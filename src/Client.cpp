@@ -854,6 +854,10 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     if (!avail(1)) return;
     const i8 z = static_cast<i8>(data[p]);
 
+    // Track every world item so the renderer can draw dynamic server objects
+    // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
+    items_[serial] = ItemObj{itemId, x, y, z};
+
     // Door-open confirmation: after we send an open command we wait for the
     // door to actually swing. The server announces that by updating the door
     // object at/near the blocked cell. Any object update within 2 tiles of it
@@ -888,6 +892,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    items_.erase(serial);
     for (auto it = doorCache_.begin(); it != doorCache_.end(); ++it) {
         if (it->serial == serial) { doorCache_.erase(it); break; }
     }
@@ -1717,8 +1722,13 @@ void Client::RenderTick() {
 
     if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
 
+    std::vector<render::DynItem> dyn;
+    dyn.reserve(items_.size());
+    for (const auto& kv : items_)
+        dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y, kv.second.z});
+
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
-                           playerX_, playerY_);
+                           playerX_, playerY_, dyn.data(), dyn.size());
     if (!mfb_update(renderer_->Frame(), 0)) {
         // User closed the window — stop drawing, keep the bot running.
         mfb_close();

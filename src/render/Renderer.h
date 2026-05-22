@@ -10,6 +10,9 @@
 
 namespace uo::render {
 
+// A server-sent world item to draw as static art (lamp posts, doors, ...).
+struct DynItem { u16 itemId; i32 x; i32 y; i8 z; };
+
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per
 // pixel) centered on a world cell, drawing land terrain and static art with a
 // painter's-algorithm order. No windowing — hand Frame() to mfb_update.
@@ -19,7 +22,8 @@ public:
 
     void RenderWorld(map::Map& map, art::ArtLoader& art,
                      const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
-                     i32 camX, i32 camY);
+                     i32 camX, i32 camY,
+                     const DynItem* items = nullptr, usize nItems = 0);
 
     const u16* Frame() const { return fb_.data(); }
     int Width()  const { return w_; }

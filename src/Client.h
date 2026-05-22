@@ -241,6 +241,11 @@ private:
     // Recent doors seen in 0x1A object packets (dynamic server objects, often
     // sent well before we reach them). On a bump we scan this before deciding
     // a tile is a wall: if a door sits there we double-click it open + retry.
+    // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
+    // serial — fed to the renderer so dynamic server objects are drawn too.
+    struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; };
+    std::unordered_map<u32, ItemObj> items_;
+
     struct DoorObj { u32 serial; u16 itemId; i32 x; i32 y; i8 z; };
     std::deque<DoorObj> doorCache_;
     const DoorObj* FindDoorAt(i32 x, i32 y, i8 z, i32 radius = 0) const;

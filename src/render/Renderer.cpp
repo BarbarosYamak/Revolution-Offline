@@ -38,7 +38,8 @@ Renderer::Renderer(int width, int height)
 
 void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
-                           i32 camX, i32 camY) {
+                           i32 camX, i32 camY,
+                           const DynItem* items, usize nItems) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
 
     // Cells whose screen position can land on-screen. The margin pads for tall
@@ -192,6 +193,25 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 }
             }
         }
+    }
+
+    // Dynamic server items (lamp posts, doors, ...) — drawn as static art,
+    // interleaved into the same painter's order as map statics.
+    for (usize ii = 0; ii < nItems; ++ii) {
+        const DynItem& it = items[ii];
+        const art::Sprite* sp = art.Static(it.itemId);
+        if (!sp) continue;
+        const i32 dxw = it.x - camX, dyw = it.y - camY;
+        const int sx = originX + (dxw - dyw) * kHalfTile;
+        const int sy = originY + (dxw + dyw) * kHalfTile - it.z * kZStep;
+        Draw d{};
+        d.depth = it.x + it.y; d.col = it.x - it.y; d.z = it.z; d.order = 1;
+        d.quad = false;
+        d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
+        d.transparent = true;
+        d.dx = sx - sp->width / 2;
+        d.dy = sy + kTile - sp->height;
+        draws.push_back(d);
     }
 
     // Order like the client (World_RenderEntities @0x401E90): cells back-to-front
