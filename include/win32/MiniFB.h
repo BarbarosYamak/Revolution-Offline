@@ -194,7 +194,7 @@ inline int mfb_open(const char *title, const int width, const int height, const 
     const int x_offset = GetSystemMetrics(SM_XVIRTUALSCREEN) < 0 ? -1920 : 0;
     const int y_offset = GetSystemMetrics(SM_XVIRTUALSCREEN) < 0 ? height * 2 : 0;
 
-    mfb_state = calloc(1, sizeof(MfbState));
+    mfb_state = (MfbState *) calloc(1, sizeof(MfbState));
     if (!mfb_state) {
         return 0;
     }
@@ -217,7 +217,7 @@ inline int mfb_open(const char *title, const int width, const int height, const 
         return 0;
     }
 
-    mfb_state->bitmap_info = calloc(1, sizeof(BITMAPINFO) + sizeof(RGBQUAD) * 256);
+    mfb_state->bitmap_info = (BITMAPINFO *) calloc(1, sizeof(BITMAPINFO) + sizeof(RGBQUAD) * 256);
     if (!mfb_state->bitmap_info) {
         DestroyWindow(mfb_state->window);
         free(mfb_state);
