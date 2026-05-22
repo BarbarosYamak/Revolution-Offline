@@ -8,6 +8,10 @@
 #include "uo/packet_lengths.h"
 #include "uo/tiledata.h"
 #include "uo/world.h"
+#include "uo/art.h"
+#include "uo/texmap.h"
+#include "render/Renderer.h"
+#include "win32/MiniFB.h"
 
 #include <algorithm>
 #include <cctype>
@@ -30,10 +34,13 @@ namespace {
 constexpr usize kMaxInFlight = 1;
 // Per-trip A* replan budget — bounds obstacle-avoidance loops on an
 // unreachable goal.
-constexpr u32 kMaxReplans = 40;
+constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 6;
+constexpr u32 kGrassPenalty = 32;
+// Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
+// than open grass so the bot skirts forests instead of threading the trees.
+constexpr u32 kForestPenalty = 64;
 // Recent-doors cache size, how many open attempts to make at one cell before
 // concluding it's not an openable door, and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
@@ -47,7 +54,7 @@ constexpr i64   kDoorWaitMs   = 700;
 constexpr usize kMobileCacheMax = 64;
 constexpr i64   kFatigueWindowMs = 1500;  // a reject this soon after a fatigue msg = stamina
 constexpr i64   kStaminaWaitMs   = 2000;  // let stamina regen before retrying
-constexpr i64   kMobileWaitMs    = 900;   // let the mobile step aside / shove cooldown
+constexpr i64   kMobileWaitMs    = 100;   // let the mobile step aside / shove cooldown
 constexpr u32   kMobileRepathAfter = 15;  // after N mobile bumps, reroute around it
 constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) after this
 constexpr i64   kMobilesNamesTimeoutMs = 500;
@@ -102,6 +109,7 @@ Client::Client(const Config& cfg)
       moveSeq_(0),
       botRun_(true),
       worldLoaded_(false),
+      renderInit_(false), renderWindowOpen_(false),
       botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
       botActive_(false),
       botReplanCount_(0), botResumeAtMs_(0),
@@ -133,6 +141,7 @@ Client::Client(const Config& cfg)
 }
 
 Client::~Client() {
+    if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
     logger_.Close();
@@ -305,6 +314,7 @@ bool Client::PumpUntilDisconnected() {
         if (state_ == State::InWorld) {
             PumpStdinCommand();
             BotTick();
+            RenderTick();
 
             // Keepalive — mirrors Packet_BuildKeepalive @ 0x4279B0 +
             // GameLoop_Update @ 0x4BF720: original client emits 0x73
@@ -433,7 +443,7 @@ void Client::OnServerList(const u8* data, usize size) {
     }
 
     state_ = State::AwaitingServerList;
-    selectedServer_ = PromptServerSelection();
+    selectedServer_ = 0; // PromptServerSelection();
     if (selectedServer_ < 0 || selectedServer_ >= serverCount_) {
         std::fprintf(stderr, "[ui] no server selected; aborting\n");
         state_ = State::Failed;
@@ -666,7 +676,7 @@ void Client::OnCharacterList(const u8* data, usize size) {
         return;
     }
 
-    selectedChar_ = PromptCharacterSelection();
+    selectedChar_ = 0; // PromptCharacterSelection();
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
         std::fprintf(stderr, "[ui] invalid character slot\n");
@@ -1664,6 +1674,60 @@ bool Client::EnsureWorldLoaded() {
     return true;
 }
 
+void Client::RenderTick() {
+    if (!cfg_.enableRenderer) return;
+
+    if (!renderInit_) {
+        renderInit_ = true;
+        if (!EnsureWorldLoaded()) {
+            std::fprintf(stderr, "[render] world data unavailable; renderer off\n");
+            cfg_.enableRenderer = false;
+            return;
+        }
+        art_ = std::make_unique<art::ArtLoader>();
+        if (!cfg_.artIdxPath || !cfg_.artPath ||
+            !art_->Open(cfg_.artIdxPath, cfg_.artPath)) {
+            std::fprintf(stderr, "[render] failed to open art MULs; renderer off\n");
+            art_.reset();
+            cfg_.enableRenderer = false;
+            return;
+        }
+        texmaps_ = std::make_unique<texmap::TexmapLoader>();
+        if (!cfg_.texIdxPath || !cfg_.texPath ||
+            !texmaps_->Open(cfg_.texIdxPath, cfg_.texPath)) {
+            std::fprintf(stderr, "[render] failed to open texmaps; renderer off\n");
+            art_.reset();
+            texmaps_.reset();
+            cfg_.enableRenderer = false;
+            return;
+        }
+        const int rw = cfg_.renderWidth  > 0 ? cfg_.renderWidth  : 800;
+        const int rh = cfg_.renderHeight > 0 ? cfg_.renderHeight : 600;
+        const int sc = cfg_.renderScale  > 0 ? cfg_.renderScale  : 1;
+        if (!mfb_open("uo-client world", rw, rh, sc, 15)) {
+            std::fprintf(stderr, "[render] mfb_open failed; renderer off\n");
+            art_.reset();
+            cfg_.enableRenderer = false;
+            return;
+        }
+        renderer_ = std::make_unique<render::Renderer>(rw, rh);
+        renderWindowOpen_ = true;
+        std::printf("[render] world window opened (%dx%d)\n", rw, rh);
+    }
+
+    if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
+
+    renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
+                           playerX_, playerY_);
+    if (!mfb_update(renderer_->Frame(), 0)) {
+        // User closed the window — stop drawing, keep the bot running.
+        mfb_close();
+        renderWindowOpen_ = false;
+        cfg_.enableRenderer = false;
+        std::printf("[render] window closed; rendering disabled\n");
+    }
+}
+
 i64 Client::NowMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds>(
                std::chrono::steady_clock::now().time_since_epoch()).count();
@@ -1697,7 +1761,8 @@ bool Client::BotReplanToGoal() {
     opts.blacklist = &blacklist_;
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind.
-    opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
+    opts.grassPenalty   = followActive_ ? 0u : kGrassPenalty;
+    opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
     opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
     opts.goalZ    = botGoalZ_;
 

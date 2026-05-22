@@ -2,6 +2,8 @@
 
 #include "uo/art.h"
 #include "uo/map.h"
+#include "uo/texmap.h"
+#include "uo/tiledata.h"
 #include "uo/types.h"
 
 #include <vector>
@@ -15,14 +17,26 @@ class Renderer {
 public:
     Renderer(int width, int height);
 
-    void RenderWorld(map::Map& map, art::ArtLoader& art, i32 camX, i32 camY);
+    void RenderWorld(map::Map& map, art::ArtLoader& art,
+                     const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
+                     i32 camX, i32 camY);
 
     const u16* Frame() const { return fb_.data(); }
     int Width()  const { return w_; }
     int Height() const { return h_; }
 
+    // Screen + art-texture coordinate, used to stretch land tiles.
+    struct TexVert { int x, y, u, v; };
+
 private:
     void Blit(const art::Sprite& s, int dx, int dy);
+    void BlitRaw(const u16* src, int sw, int sh, int dx, int dy, bool skipTransparent);
+    // Affine-textured triangle (a,b,c). Samples src (texW x texH, row-major) at
+    // each vertex's (u,v). When skipTransparent, source texels of 0 are left
+    // alone (for the diamond land art); texmaps draw fully opaque. Used to warp
+    // a land tile onto a quad whose corners follow the four corner cells' z.
+    void TexTri(const u16* src, int texW, int texH, bool skipTransparent,
+                TexVert a, TexVert b, TexVert c);
 
     int w_;
     int h_;

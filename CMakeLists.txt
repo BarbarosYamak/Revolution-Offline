@@ -32,6 +32,8 @@ set(UO_CLIENT_SOURCES
     src/builders/Builders.cpp
     src/bot/Pathfinding.cpp
     src/bot/Blacklist.cpp
+    src/render/Renderer.cpp
+    src/render/MiniFBWindow.cpp
 )
 
 add_executable(uo_client ${UO_CLIENT_SOURCES})
@@ -39,7 +41,7 @@ target_include_directories(uo_client PRIVATE include src)
 target_link_libraries(uo_client PRIVATE uo_mul)
 
 if(WIN32)
-    target_link_libraries(uo_client PRIVATE ws2_32)
+    target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)
 endif()
 
 # --- MUL static library (M2) -------------------------------------------
@@ -49,6 +51,8 @@ set(UO_MUL_SOURCES
     src/mul/Map.cpp
     src/mul/Verdata.cpp
     src/mul/World.cpp
+    src/mul/ArtLoader.cpp
+    src/mul/TexmapLoader.cpp
 )
 add_library(uo_mul STATIC ${UO_MUL_SOURCES})
 target_include_directories(uo_mul PUBLIC include src)

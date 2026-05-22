@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include <cstdio>
+#include <cstring>
 
 int main(int argc, char** argv) {
     uo::Client::Config cfg;
@@ -23,8 +24,20 @@ int main(int argc, char** argv) {
     cfg.enableKeepalive  = false;       // 0x73 0x00 every 20s — stays inside the
                                        // shard's ~60s client-silence kick window
     cfg.acceptDoors      = true;        // path through doors; open them at runtime
+    cfg.enableRenderer   = true;        // open the world window (pass --headless to disable)
+    cfg.artIdxPath       = "E:/uo/artidx.mul";
+    cfg.artPath          = "E:/uo/art.mul";
+    cfg.texIdxPath       = "E:/uo/texidx.mul";
+    cfg.texPath          = "E:/uo/texmaps.mul";
+    cfg.renderWidth      = 800;   // framebuffer; window is renderScale x larger
+    cfg.renderHeight     = 600;
+    cfg.renderScale      = 1;     // 2x upscale (MiniFB does it for free)
 
-    if (argc > 1) cfg.loginHost        = argv[1];
+    for (int i = 1; i < argc; ++i) {
+        if (std::strcmp(argv[i], "--headless") == 0) cfg.enableRenderer = false;
+    }
+
+    if (argc > 1 && argv[1][0] != '-') cfg.loginHost = argv[1];
     if (argc > 2) cfg.loginPort        = static_cast<uo::u16>(std::atoi(argv[2]));
     if (argc > 3) cfg.username         = argv[3];
     if (argc > 4) cfg.password         = argv[4];

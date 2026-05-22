@@ -22,6 +22,9 @@
 namespace uo::tiledata { class TileDataLoader; }
 namespace uo::map      { class Map; }
 namespace uo::world    { class World; }
+namespace uo::art      { class ArtLoader; }
+namespace uo::texmap   { class TexmapLoader; }
+namespace uo::render   { class Renderer; }
 
 namespace uo {
 
@@ -61,6 +64,15 @@ public:
         bool        legacyMovePacket; // pre-T2A 3-byte 0x02 (UO Demo)
         bool        enableKeepalive;  // false for UO Demo (no 0x73 from client)
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
+        // Renderer — optional MiniFB world window (camera follows the player).
+        bool        enableRenderer;   // open a window and draw the world each tick
+        const char* artIdxPath;       // artidx.mul (tile bitmap index)
+        const char* artPath;          // art.mul (tile bitmaps)
+        const char* texIdxPath;       // texidx.mul (land texture index)
+        const char* texPath;          // texmaps.mul (land textures, sloped tiles)
+        int         renderWidth;      // window framebuffer width  (<=0 -> 512)
+        int         renderHeight;     // window framebuffer height (<=0 -> 384)
+        int         renderScale;      // integer upscale factor    (<=0 -> 2)
     };
 
     explicit Client(const Config& cfg);
@@ -143,6 +155,7 @@ private:
     void BotFollowTick();
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
     void BotTick();           // called from PumpUntilDisconnected
+    void RenderTick();        // draws the world window (no-op unless enabled)
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
@@ -201,6 +214,15 @@ private:
     std::unique_ptr<uo::map::Map>                 worldMap_;
     std::unique_ptr<uo::world::World>             world_;
     bool worldLoaded_;
+
+    // Renderer — lazily initialized on the first in-world tick when
+    // cfg_.enableRenderer. Closing the window stops drawing but leaves the
+    // bot running (cfg_.enableRenderer is cleared).
+    std::unique_ptr<uo::art::ArtLoader>      art_;
+    std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
+    std::unique_ptr<uo::render::Renderer>    renderer_;
+    bool renderInit_;
+    bool renderWindowOpen_;
     std::deque<u8> botPath_;    // directions still to execute
     i32 botGoalX_;
     i32 botGoalY_;

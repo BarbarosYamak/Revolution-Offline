@@ -44,6 +44,8 @@ struct WalkResult {
     i8   standZ;       // z to stand at if walkable; 0 otherwise
     u32  staticCount;  // how many statics existed in this cell
     u16  landTileId;   // land terrain tile id at the cell (for terrain bias)
+    bool nearFoliage;  // a Foliage-flagged static sits in/next to this cell
+                       // (trees/undergrowth) — for a forest-avoidance bias
 };
 
 class World {

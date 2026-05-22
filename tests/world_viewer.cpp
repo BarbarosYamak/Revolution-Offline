@@ -1,7 +1,7 @@
 // Phase-1 standalone world viewer: loads the MULs and draws the isometric
 // world centered on a coordinate. Arrow keys pan the camera (Shift = faster).
 //
-//   build_viewer.bat <camX> <camY> [w] [h]
+//   build_viewer.bat <camX> <camY> [w] [h] [scale]
 
 #define MINIFB_IMPLEMENTATION
 #include "win32/MiniFB.h"
@@ -9,6 +9,8 @@
 #include "render/Renderer.h"
 #include "uo/art.h"
 #include "uo/map.h"
+#include "uo/texmap.h"
+#include "uo/tiledata.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -25,13 +27,14 @@ constexpr int VK_SHIFT_ = 0x10;
 
 int main(int argc, char** argv) {
     if (argc < 3) {
-        std::printf("usage: %s <camX> <camY> [w] [h]\n", argv[0]);
+        std::printf("usage: %s <camX> <camY> [w] [h] [scale]\n", argv[0]);
         return 1;
     }
     i32 camX = std::atoi(argv[1]);
     i32 camY = std::atoi(argv[2]);
-    const int w = argc > 3 ? std::atoi(argv[3]) : 800;
-    const int h = argc > 4 ? std::atoi(argv[4]) : 600;
+    const int w = argc > 3 ? std::atoi(argv[3]) : 512;
+    const int h = argc > 4 ? std::atoi(argv[4]) : 384;
+    const int scale = argc > 5 ? std::atoi(argv[5]) : 2;   // window = scale x fb
 
     map::Map map;
     if (!map.Open("E:/uo/map0.mul", "E:/uo/staidx0.mul", "E:/uo/statics0.mul",
@@ -44,7 +47,17 @@ int main(int argc, char** argv) {
         std::printf("failed to open art MULs (E:/uo/artidx.mul, E:/uo/art.mul)\n");
         return 3;
     }
-    if (!mfb_open("uo world viewer", w, h, 1, 15)) {
+    tiledata::TileDataLoader td;
+    if (!td.Load("E:/uo/tiledata.mul")) {
+        std::printf("failed to load E:/uo/tiledata.mul\n");
+        return 5;
+    }
+    texmap::TexmapLoader tex;
+    if (!tex.Open("E:/uo/texidx.mul", "E:/uo/texmaps.mul")) {
+        std::printf("failed to open texmaps (E:/uo/texidx.mul, E:/uo/texmaps.mul)\n");
+        return 6;
+    }
+    if (!mfb_open("uo world viewer", w, h, scale, 15)) {
         std::printf("mfb_open failed\n");
         return 4;
     }
@@ -67,7 +80,7 @@ int main(int argc, char** argv) {
         camX = camX < 0 ? 0 : (camX > maxX ? maxX : camX);
         camY = camY < 0 ? 0 : (camY > maxY ? maxY : camY);
 
-        rend.RenderWorld(map, art, camX, camY);
+        rend.RenderWorld(map, art, td, tex, camX, camY);
         if (!mfb_update(rend.Frame(), 60)) break;
     }
 

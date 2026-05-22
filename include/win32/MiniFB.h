@@ -167,22 +167,20 @@ static LRESULT CALLBACK WndProc(HWND hWnd, const UINT message, const WPARAM wPar
 }
 
 // Creates a window with a frame buffer of the given pixel depth (1, 8, 15, 16, or 32 bpp).
-inline int mfb_open(const char *title, const int width, const int height, const int scale, const int bpp) {
-    const WNDCLASS wc = {
-        .style = CS_OWNDC | CS_VREDRAW | CS_HREDRAW,
-        .lpfnWndProc = WndProc,
-        .hCursor = LoadCursor(nullptr, IDC_ARROW),
-        .lpszClassName = title,
-    };
+int mfb_open(const char *title, const int width, const int height, const int scale, const int bpp) {
+    WNDCLASS wc = {0};
+    wc.style = CS_OWNDC | CS_VREDRAW | CS_HREDRAW;
+    wc.lpfnWndProc = WndProc;
+    wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wc.lpszClassName = title;
 
     if (!RegisterClass(&wc) && GetLastError() != ERROR_CLASS_ALREADY_EXISTS) {
         return 0;
     }
 
-    RECT rect = {
-        .right = width * scale,
-        .bottom = height * scale,
-    };
+    RECT rect = {0};
+    rect.right = width * scale;
+    rect.bottom = height * scale;
 
     AdjustWindowRect(&rect, WS_POPUP | WS_SYSMENU | WS_CAPTION, 0);
     rect.right -= rect.left;
@@ -242,7 +240,7 @@ inline int mfb_open(const char *title, const int width, const int height, const 
 }
 
 // Sets a range of palette entries (8-bit mode only).
-inline void mfb_set_palette_array(const uint32_t *const new_palette, const uint8_t start, const uint8_t count) {
+void mfb_set_palette_array(const uint32_t *const new_palette, const uint8_t start, const uint8_t count) {
     const auto palette = (uint32_t *) &mfb_state->bitmap_info->bmiColors[0];
     for (int i = start; i < start + count; i++) {
         palette[i] = new_palette[i - start];
@@ -250,13 +248,13 @@ inline void mfb_set_palette_array(const uint32_t *const new_palette, const uint8
 }
 
 // Sets a single palette entry (8-bit mode only).
-inline void mfb_set_palette(const uint8_t color_index, const uint32_t color) {
+void mfb_set_palette(const uint8_t color_index, const uint32_t color) {
     const auto palette = (uint32_t *) &mfb_state->bitmap_info->bmiColors[0];
     palette[color_index] = color;
 }
 
 // Blits the buffer to the window and processes pending messages. Returns false if window was closed.
-inline bool mfb_update(const void *buffer, const int fps_limit) {
+bool mfb_update(const void *buffer, const int fps_limit) {
     static DWORD previous_frame_time = 0;
     MSG msg;
 
@@ -285,7 +283,7 @@ inline bool mfb_update(const void *buffer, const int fps_limit) {
 }
 
 // Releases all resources and destroys the window.
-inline void mfb_close() {
+void mfb_close() {
     mfb_state->pixel_buffer = nullptr;
     free(mfb_state->bitmap_info);
     ReleaseDC(mfb_state->window, mfb_state->device_context);
@@ -295,7 +293,7 @@ inline void mfb_close() {
 }
 
 // Returns a pointer to the 512-byte key state array (nonzero = held).
-inline const char *mfb_keystatus() {
+const char *mfb_keystatus() {
     return mfb_state->keys;
 }
 
