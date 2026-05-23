@@ -61,6 +61,9 @@ constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) aft
 constexpr i64   kMobilesNamesTimeoutMs = 500;
 constexpr i64   kFollowReplanMinMs = 120;
 constexpr i64   kFollowProbeMs     = 1200;
+constexpr usize kPathLookaheadSteps = 5;
+constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr i64   kLookaheadMobileFreshMs = 5000;
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
@@ -1859,6 +1862,145 @@ void Client::BotPredictStep(u8 dir) {
     }
 }
 
+bool Client::LookaheadExtraBlocked(i32 x, i32 y, i8 z, void* user) {
+    const auto* c = static_cast<const Client*>(user);
+    return c && c->IsLookaheadBlocked(x, y, z);
+}
+
+bool Client::IsDynamicItemBlocking(i32 x, i32 y, i8 z) const {
+    if (!tileData_) return false;
+    const i32 colLo = static_cast<i32>(z);
+    const i32 colHi = colLo + 16;
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        if (it.x != x || it.y != y) continue;
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = tileData_->Static(gid);
+        if (IsDoorGraphic(gid) || (st.flags & tiledata::kFlagDoor)) continue;
+        if (!world_->IsStaticBlocker(gid)) continue;
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+    return false;
+}
+
+bool Client::IsLookaheadBlocked(i32 x, i32 y, i8 z) const {
+    if (!world_) return false;
+
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(x);
+    q.y = static_cast<u32>(y);
+    q.fromZ = z;
+    const auto wr = world_->QueryCell(q);
+    if (!wr.walkable) return true;
+
+    if (blacklist_.IsBlocked(x, y, wr.standZ)) return true;
+
+    const i64 now = NowMs();
+    for (const auto& m : mobileCache_) {
+        if (m.x != x || m.y != y) continue;
+        if (now - m.seenMs > kLookaheadMobileFreshMs) continue;
+        i32 dz = static_cast<i32>(wr.standZ) - static_cast<i32>(m.z);
+        if (dz < 0) dz = -dz;
+        if (dz <= 8) return true;
+    }
+
+    return IsDynamicItemBlocking(x, y, wr.standZ);
+}
+
+bool Client::BotLookaheadPatchPath() {
+    if (!world_ || botPath_.empty()) return false;
+
+    struct PreviewStep {
+        i32 x;
+        i32 y;
+        i8  z;
+        bool blocked;
+    };
+
+    PreviewStep preview[kPathLookaheadSteps + 1];
+    usize previewCount = 0;
+    usize firstBlocked = kPathLookaheadSteps + 1;
+    i32 x = playerX_;
+    i32 y = playerY_;
+    i8 z = playerZ_;
+
+    const usize maxPreview = std::min<usize>(botPath_.size(), kPathLookaheadSteps + 1);
+    for (usize i = 0; i < maxPreview; ++i) {
+        i32 dx, dy;
+        bot::DirToDelta(botPath_[i], &dx, &dy);
+        const i32 nx = x + dx;
+        const i32 ny = y + dy;
+
+        world::WalkQuery q{};
+        q.x = static_cast<u32>(nx);
+        q.y = static_cast<u32>(ny);
+        q.fromZ = z;
+        const auto wr = world_->QueryCell(q);
+        if (!wr.walkable) {
+            if (i < kPathLookaheadSteps && firstBlocked > kPathLookaheadSteps)
+                firstBlocked = i;
+            preview[previewCount++] = {nx, ny, z, true};
+            break;
+        }
+
+        bool mobileBlocked = false;
+        const i64 now = NowMs();
+        for (const auto& m : mobileCache_) {
+            if (m.x != nx || m.y != ny) continue;
+            if (now - m.seenMs > kLookaheadMobileFreshMs) continue;
+            i32 dz = static_cast<i32>(wr.standZ) - static_cast<i32>(m.z);
+            if (dz < 0) dz = -dz;
+            if (dz <= 8) { mobileBlocked = true; break; }
+        }
+
+        const bool blocked =
+            blacklist_.IsBlocked(nx, ny, wr.standZ) ||
+            mobileBlocked ||
+            IsDynamicItemBlocking(nx, ny, wr.standZ);
+        if (i < kPathLookaheadSteps && blocked && firstBlocked > kPathLookaheadSteps)
+            firstBlocked = i;
+
+        x = nx;
+        y = ny;
+        z = wr.standZ;
+        preview[previewCount++] = {x, y, z, blocked};
+    }
+
+    if (firstBlocked > kPathLookaheadSteps) return false;
+
+    for (usize anchor = firstBlocked + 1; anchor < previewCount; ++anchor) {
+        if (preview[anchor].blocked) continue;
+
+        bot::PathOptions opts;
+        opts.blacklist = &blacklist_;
+        opts.grassPenalty   = followActive_ ? 0u : kGrassPenalty;
+        opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
+        opts.hasGoalZ = true;
+        opts.goalZ = preview[anchor].z;
+        opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
+        opts.extraBlocked = &Client::LookaheadExtraBlocked;
+        opts.extraBlockedUser = this;
+
+        auto patch = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
+                                   preview[anchor].x, preview[anchor].y, opts);
+        if (patch.empty()) continue;
+
+        std::deque<u8> next;
+        for (u8 d : patch) next.push_back(d);
+        for (usize i = anchor + 1; i < botPath_.size(); ++i)
+            next.push_back(botPath_[i]);
+        botPath_.swap(next);
+        std::printf("[bot] lookahead patched around block at step %zu: "
+                    "new segment=%zu, skipped=%zu, path=%zu\n",
+                    firstBlocked + 1, patch.size(), anchor + 1, botPath_.size());
+        return true;
+    }
+
+    return false;
+}
+
 bool Client::BotReplanToGoal() {
     if (++botReplanCount_ > kMaxReplans) {
         std::fprintf(stderr, "[bot] giving up after %u replans (unreachable?)\n",
@@ -2078,6 +2220,8 @@ void Client::BotPumpMoves() {
     const i64 now_ms = NowMs();
     if (now_ms < botResumeAtMs_) return;  // human reaction pause after a bump
     const u32 needGap = botRun_ ? runThrottleMs_ : walkThrottleMs_;
+
+    if (pendingMoves_.empty()) BotLookaheadPatchPath();
 
     while (pendingMoves_.size() < kMaxInFlight && !botPath_.empty()) {
         if (lastMoveSentMs_ != 0 &&

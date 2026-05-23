@@ -163,6 +163,10 @@ private:
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
+    bool BotLookaheadPatchPath(); // short local reroute around near dynamic blocks
+    bool IsLookaheadBlocked(i32 x, i32 y, i8 z) const;
+    bool IsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
+    static bool LookaheadExtraBlocked(i32 x, i32 y, i8 z, void* user);
     // Threat hook: called when we detect we're under attack mid-travel.
     // For now it just halts travel safely; engage/flee/recall are TODO.
     void BotInterruptForThreat(const char* reason);

@@ -62,6 +62,10 @@ struct PathOptions {
     // several levels (e.g. ground vs. an upper storey). Unset = any reachable z.
     bool hasGoalZ = false;
     i32  goalZ    = 0;
+    // Optional runtime overlay for short-lived dynamic obstacles owned by the
+    // caller (mobiles, server-spawned items, etc.). Return true to reject cell.
+    bool (*extraBlocked)(i32 x, i32 y, i8 z, void* user) = nullptr;
+    void* extraBlockedUser = nullptr;
 };
 
 // A* on the 8-connected grid using `world.QueryCell()` for walkability.

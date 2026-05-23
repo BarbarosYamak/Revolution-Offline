@@ -153,6 +153,9 @@ std::vector<u8> FindPath(uo::world::World& world,
             // After the normal MUL checks, reject learned/overlay blocks.
             if (opts.blacklist && opts.blacklist->IsBlocked(nx, ny, wr.standZ))
                 continue;
+            if (opts.extraBlocked &&
+                opts.extraBlocked(nx, ny, wr.standZ, opts.extraBlockedUser))
+                continue;
 
             // UO diagonal corner rule: a diagonal step from (n) to
             // (nx,ny) requires BOTH adjacent straight cells to be
