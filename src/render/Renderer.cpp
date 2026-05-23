@@ -24,8 +24,10 @@ constexpr u16 kBackground = 0;   // black
 struct Draw {
     i32 depth;          // x + y  — far-to-near tile depth
     i32 col;            // x - y  — orders cells on the same diagonal
-    i32 z;              // sort z within a cell
-    int order;          // z-tie: land (0) under static (1)
+    i32 z;              // tile base z
+    int height;         // tiledata height (statics); within-cell sort uses z+height
+    int order;          // layer/type: land (0) under static (1) under mob (2)
+    bool surface;       // a floor/surface static — drawn first on a z-tie
     bool quad;          // true: stretched/texmap quad; false: flat blit
     const u16* src;     // source pixels (art sprite or texmap)
     int sw, sh;         // source dimensions
@@ -279,11 +281,14 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     const i32 wy = static_cast<i32>(by) * 8 + s.cellY;
                     const art::Sprite* sp = art.Static(s.itemId);
                     if (!sp) continue;
+                    const tiledata::StaticTile& stt = td.Static(s.itemId);
                     const i32 dxw = wx - camX, dyw = wy - camY;
                     const int sx = originX + (dxw - dyw) * kHalfTile;
                     const int sy = originY + (dxw + dyw) * kHalfTile - s.z * kZStep;
                     Draw d{};
                     d.depth = wx + wy; d.col = wx - wy; d.z = s.z; d.order = 1;
+                    d.height = stt.height;
+                    d.surface = (stt.flags & tiledata::kFlagSurface) != 0;
                     d.quad = false;
                     d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
                     d.transparent = true;
@@ -302,13 +307,17 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     for (usize ii = 0; ii < nItems; ++ii) {
         const DynItem& it = items[ii];
         if (culled(it.z)) continue;
-        const art::Sprite* sp = art.Static(static_cast<u16>(it.itemId + it.gfxOffset));
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const art::Sprite* sp = art.Static(gid);
         if (!sp) continue;
+        const tiledata::StaticTile& stt = td.Static(gid);
         const i32 dxw = it.x - camX, dyw = it.y - camY;
         const int sx = originX + (dxw - dyw) * kHalfTile;
         const int sy = originY + (dxw + dyw) * kHalfTile - it.z * kZStep;
         Draw d{};
         d.depth = it.x + it.y; d.col = it.x - it.y; d.z = it.z; d.order = 1;
+        d.height = stt.height;
+        d.surface = (stt.flags & tiledata::kFlagSurface) != 0;
         d.quad = false;
         d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
         d.transparent = true;
@@ -354,7 +363,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         if (la != lb) return la < lb;
         if (a.depth != b.depth) return a.depth < b.depth;
         if (a.col   != b.col)   return a.col   < b.col;
-        if (a.z     != b.z)     return a.z     < b.z;
+        // Within a cell, order by the tile's TOP (z + height): a tall wall whose
+        // top reaches a floor's level ties with that floor, and surfaces (floors)
+        // then draw first so the wall occludes them. Matches the client's
+        // sortKey_z + UsePrioritySortTieBreaker (CDrawItem_AddToDrawList).
+        const int za = a.z + a.height, zb = b.z + b.height;
+        if (za != zb) return za < zb;
+        if (a.surface != b.surface) return a.surface > b.surface;  // floors first
         return a.order < b.order;
     });
 
