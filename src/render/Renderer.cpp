@@ -178,6 +178,16 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     ceilingZ = std::max(static_cast<int>(s.z), pz + 16);
             }
         }
+
+        // Some interiors sit below the terrain land tile: the floor is a
+        // static at negative z while the raw land at the same x/y remains
+        // above it. Treat that terrain as the overhead cut plane too, or the
+        // land is drawn over the room.
+        map::LandCell ownLand{};
+        if (map.ReadCell(static_cast<u32>(player->x), static_cast<u32>(player->y), &ownLand) &&
+            ownLand.z > pz + 14 && pz + 16 < ceilingZ) {
+            ceilingZ = pz + 16;
+        }
     }
     auto culled = [&](int z) { return z >= ceilingZ; };
 
@@ -260,6 +270,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                         // north corner for stretched tiles mis-sorts sloped land vs.
                         // its neighbours — the cause of the saw-tooth coastline.
                         const int avgZ = (z0 + z1 + z2 + z3) >> 2;
+                        if (culled(avgZ)) continue;
                         const i32 depth = wx + wy, col = wx - wy;
                         Draw d{};
                         d.depth = depth; d.col = col; d.z = z0; d.priority = true;
