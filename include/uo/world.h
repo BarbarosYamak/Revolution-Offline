@@ -37,6 +37,8 @@ struct WalkQuery {
     i8  maxStepUp   = 12;
     i8  maxStepDown = 12;
     u8  charHeight  = 16;
+    bool hasPreferredZ = false;
+    i32 preferredZ = 0;
 };
 
 struct WalkResult {

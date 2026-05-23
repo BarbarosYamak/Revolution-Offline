@@ -21,6 +21,8 @@ Standalone test/diagnostic helpers (not part of the normal build):
 - `scripts\build_bltest.bat`    — blacklist.mul (verdata) round-trip.
 - `scripts\build_pathprobe.bat <sx sy sz gx gy>` — run the bot's A\* against the
   real MULs and report path length / node-cap behaviour.
+- `scripts\pathfinding_regression.bat` — run the required pathfinding regression
+  routes between `(1869,2881,40)` and `(1446,1663,-10)` in both directions.
 - `uo_mul_dump.exe`  — dump tiledata / map cells / walkability (see its `--help`).
 
 ---
@@ -114,6 +116,12 @@ stdin commands (in-world):
   `0x0003–0x0006`, tunable in `IsGrassLikeTile`) cost extra, biasing routes onto
   roads/dirt/cobble where mobs are sparser. Heuristic stays admissible.
 - **Blacklist overlay** consulted *after* the MUL checks (see below).
+
+Regression coverage:
+- Run `scripts\pathfinding_regression.bat` after pathfinding or `World::QueryCell`
+  changes. It verifies `(1869,2881,40) -> (1446,1663,-10)` for descending into a
+  negative-Z interior and `(1446,1663,-10) -> (1869,2881,40)` for climbing back
+  through stepped/static surfaces.
 
 ### Walkability (`src/mul/World.cpp` `QueryCell` / `IsStaticBlocker`)
 - Land surface walkable unless Impassable or Wet (water).

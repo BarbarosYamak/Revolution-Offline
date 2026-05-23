@@ -108,6 +108,15 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
             }
             if (shelfBetween) continue;
         }
+        if (dz < 0) {
+            bool shelfBetween = false;
+            for (u32 cj = 0; cj < ncands && !shelfBetween; ++cj) {
+                if (cj == ci) continue;
+                const i32 oz = cands[cj].top;
+                if (oz < fromZ && oz > sz) shelfBetween = true;
+            }
+            if (shelfBetween) continue;
+        }
 
         // (2) Vertical clearance, measured from the *approach* level. The
         // original client's Pathfinding_GetTileMinZ/GetTileTopZ check headroom
@@ -121,7 +130,8 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         // under a rising staircase is rejected. Decorative items are ignored.
         const i32 approachZ = (fromZ > sz) ? fromZ : sz;
         bool blocked = false;
-        if (!landBlocked && sz < fromZ && static_cast<i32>(land.z) != sz) {
+        if (!cands[ci].staticSurface &&
+            !landBlocked && sz < fromZ && static_cast<i32>(land.z) != sz) {
             const i32 obs_lo = static_cast<i32>(land.z);
             const i32 obs_hi = obs_lo + 1;
             const i32 col_lo = approachZ;
@@ -149,11 +159,13 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         }
         if (blocked) continue;
 
-        const i32 abs_dz = dz < 0 ? -dz : dz;
-        if (!best_found || abs_dz < best_dist) {
+        const i32 targetZ = q.hasPreferredZ ? q.preferredZ : fromZ;
+        const i32 dist = static_cast<i32>(sz) - targetZ;
+        const i32 abs_dist = dist < 0 ? -dist : dist;
+        if (!best_found || abs_dist < best_dist) {
             best_found = true;
             best_z     = sz;
-            best_dist  = abs_dz;
+            best_dist  = abs_dist;
         }
     }
 

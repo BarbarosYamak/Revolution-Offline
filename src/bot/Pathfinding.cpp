@@ -3,6 +3,7 @@
 #include "bot/Blacklist.h"
 #include "uo/world.h"
 
+#include <algorithm>
 #include <queue>
 #include <unordered_map>
 #include <vector>
@@ -62,6 +63,17 @@ u64 Pack(i32 x, i32 y, i8 z) {
             static_cast<u64>(static_cast<u8>(z));
 }
 
+u8 DirFromDelta(i32 dx, i32 dy) {
+    if (dx == 0 && dy < 0)  return 0;
+    if (dx > 0 && dy < 0)   return 1;
+    if (dx > 0 && dy == 0)  return 2;
+    if (dx > 0 && dy > 0)   return 3;
+    if (dx == 0 && dy > 0)  return 4;
+    if (dx < 0 && dy > 0)   return 5;
+    if (dx < 0 && dy == 0)  return 6;
+    return 7;
+}
+
 // Open grass-like land tiles, penalised to bias routes toward roads/dirt.
 // Tunable starting set (common Britannia grass); a soft penalty, so an
 // incomplete set only weakens the bias — it never produces a wrong path.
@@ -84,6 +96,172 @@ std::vector<u8> FindPath(uo::world::World& world,
         if (!opts.hasGoalZ) return result;
         const i32 dz = static_cast<i32>(sz) - opts.goalZ;
         if (dz <= kGoalZTolerance && dz >= -kGoalZTolerance) return result;
+
+        struct LayerEntry {
+            i32 x;
+            i32 y;
+            i8 z;
+            u8 finalDir;
+            u32 h;
+        };
+
+        LayerEntry entries[64];
+        u32 entryCount = 0;
+        for (u8 d = 0; d < 8; ++d) {
+            i32 dx = 0, dy = 0;
+            DirToDelta(d, &dx, &dy);
+            const i32 ax = gx - dx;
+            const i32 ay = gy - dy;
+            if (ax < 0 || ay < 0) continue;
+
+            i8 seenZ[64];
+            u32 seenCount = 0;
+            for (i32 fz = -128; fz <= 127; ++fz) {
+                uo::world::WalkQuery aq{};
+                aq.x = static_cast<u32>(ax);
+                aq.y = static_cast<u32>(ay);
+                aq.fromZ = static_cast<i8>(fz);
+                aq.maxStepUp = static_cast<i8>(opts.maxStepUp);
+                aq.maxStepDown = static_cast<i8>(opts.maxStepDown);
+                aq.charHeight = opts.charHeight;
+                aq.hasPreferredZ = true;
+                aq.preferredZ = opts.goalZ;
+                const auto ar = world.QueryCell(aq);
+                if (!ar.walkable) continue;
+
+                bool known = false;
+                for (u32 i = 0; i < seenCount; ++i) {
+                    if (seenZ[i] == ar.standZ) { known = true; break; }
+                }
+                if (known) continue;
+                if (seenCount < 64) seenZ[seenCount++] = ar.standZ;
+
+                uo::world::WalkQuery gq{};
+                gq.x = static_cast<u32>(gx);
+                gq.y = static_cast<u32>(gy);
+                gq.fromZ = ar.standZ;
+                gq.maxStepUp = static_cast<i8>(opts.maxStepUp);
+                gq.maxStepDown = static_cast<i8>(opts.maxStepDown);
+                gq.charHeight = opts.charHeight;
+                gq.hasPreferredZ = true;
+                gq.preferredZ = opts.goalZ;
+                const auto gr = world.QueryCell(gq);
+                if (!gr.walkable) continue;
+                const i32 gdz = static_cast<i32>(gr.standZ) - opts.goalZ;
+                if (gdz > kGoalZTolerance || gdz < -kGoalZTolerance) continue;
+                if (entryCount >= 64) break;
+                entries[entryCount++] = {
+                    ax, ay, ar.standZ,
+                    DirFromDelta(gx - ax, gy - ay),
+                    Heuristic(sx, sy, ax, ay)
+                };
+            }
+        }
+
+        std::sort(entries, entries + entryCount,
+                  [](const LayerEntry& a, const LayerEntry& b) {
+                      return a.h < b.h;
+                  });
+        std::vector<Node> localNodes;
+        std::queue<u32> localOpen;
+        std::unordered_map<u64, u32> localSeen;
+        localNodes.push_back({sx, sy, sz, 0, 0, UINT32_MAX, 0});
+        localSeen[Pack(sx, sy, sz)] = 0;
+        localOpen.push(0);
+
+        constexpr i32 kLayerSearchRadius = 64;
+        constexpr u32 kLayerSearchMaxNodes = 20000;
+        u32 localExpanded = 0;
+        while (!localOpen.empty() && localExpanded++ < kLayerSearchMaxNodes) {
+            const u32 curIdx = localOpen.front();
+            localOpen.pop();
+            const Node cur = localNodes[curIdx];
+
+            for (u32 ei = 0; ei < entryCount; ++ei) {
+                if (cur.x != entries[ei].x || cur.y != entries[ei].y ||
+                    cur.z != entries[ei].z) {
+                    continue;
+                }
+                u32 nidx = curIdx;
+                while (nidx != UINT32_MAX &&
+                       localNodes[nidx].parent != UINT32_MAX) {
+                    result.push_back(localNodes[nidx].dirFromParent);
+                    nidx = localNodes[nidx].parent;
+                }
+                std::reverse(result.begin(), result.end());
+                result.push_back(entries[ei].finalDir);
+                if (opts.stats) {
+                    opts.stats->expanded = localExpanded;
+                    opts.stats->closestX = gx;
+                    opts.stats->closestY = gy;
+                    opts.stats->closestZ = static_cast<i8>(opts.goalZ);
+                    opts.stats->closestH = 0;
+                    opts.stats->reachedGoalColumn = true;
+                }
+                return result;
+            }
+
+            for (u8 d = 0; d < 8; ++d) {
+                i32 dx = 0, dy = 0;
+                DirToDelta(d, &dx, &dy);
+                const i32 nx = cur.x + dx;
+                const i32 ny = cur.y + dy;
+                if (nx < gx - kLayerSearchRadius ||
+                    nx > gx + kLayerSearchRadius ||
+                    ny < gy - kLayerSearchRadius ||
+                    ny > gy + kLayerSearchRadius) {
+                    continue;
+                }
+
+                uo::world::WalkQuery wq{};
+                wq.x = static_cast<u32>(nx);
+                wq.y = static_cast<u32>(ny);
+                wq.fromZ = cur.z;
+                wq.maxStepUp = static_cast<i8>(opts.maxStepUp);
+                wq.maxStepDown = static_cast<i8>(opts.maxStepDown);
+                wq.charHeight = opts.charHeight;
+                wq.hasPreferredZ = true;
+                wq.preferredZ = opts.goalZ;
+                const auto wr = world.QueryCell(wq);
+                if (!wr.walkable) continue;
+                if (opts.blacklist && opts.blacklist->IsBlocked(nx, ny, wr.standZ))
+                    continue;
+                if (opts.extraBlocked &&
+                    opts.extraBlocked(nx, ny, wr.standZ, opts.extraBlockedUser))
+                    continue;
+
+                if (dx != 0 && dy != 0) {
+                    uo::world::WalkQuery wqA{}, wqB{};
+                    wqA.x = static_cast<u32>(cur.x + dx);
+                    wqA.y = static_cast<u32>(cur.y);
+                    wqA.fromZ = cur.z;
+                    wqA.maxStepUp = wq.maxStepUp;
+                    wqA.maxStepDown = wq.maxStepDown;
+                    wqA.charHeight = wq.charHeight;
+                    wqA.hasPreferredZ = true;
+                    wqA.preferredZ = opts.goalZ;
+                    wqB.x = static_cast<u32>(cur.x);
+                    wqB.y = static_cast<u32>(cur.y + dy);
+                    wqB.fromZ = cur.z;
+                    wqB.maxStepUp = wq.maxStepUp;
+                    wqB.maxStepDown = wq.maxStepDown;
+                    wqB.charHeight = wq.charHeight;
+                    wqB.hasPreferredZ = true;
+                    wqB.preferredZ = opts.goalZ;
+                    if (!world.QueryCell(wqA).walkable) continue;
+                    if (!world.QueryCell(wqB).walkable) continue;
+                }
+
+                const u64 key = Pack(nx, ny, wr.standZ);
+                if (localSeen.find(key) != localSeen.end()) continue;
+                const u32 idx = static_cast<u32>(localNodes.size());
+                localNodes.push_back({nx, ny, wr.standZ, 0, 0, curIdx, d});
+                localSeen[key] = idx;
+                localOpen.push(idx);
+            }
+        }
+        if (opts.stats) opts.stats->expanded = localExpanded;
+        return result;
     }
 
     std::vector<Node> nodes;
@@ -110,7 +288,15 @@ std::vector<u8> FindPath(uo::world::World& world,
 
         if (opts.stats) {
             const u32 h = Heuristic(n.x, n.y, gx, gy);
-            if (h < opts.stats->closestH) {
+            bool better = h < opts.stats->closestH;
+            if (!better && opts.hasGoalZ && h == opts.stats->closestH) {
+                i32 curDz = static_cast<i32>(n.z) - opts.goalZ;
+                i32 oldDz = static_cast<i32>(opts.stats->closestZ) - opts.goalZ;
+                if (curDz < 0) curDz = -curDz;
+                if (oldDz < 0) oldDz = -oldDz;
+                better = curDz < oldDz;
+            }
+            if (better) {
                 opts.stats->closestH = h;
                 opts.stats->closestX = n.x;
                 opts.stats->closestY = n.y;
@@ -147,6 +333,8 @@ std::vector<u8> FindPath(uo::world::World& world,
             wq.maxStepUp  = static_cast<i8>(opts.maxStepUp);
             wq.maxStepDown= static_cast<i8>(opts.maxStepDown);
             wq.charHeight = opts.charHeight;
+            wq.hasPreferredZ = opts.hasGoalZ;
+            wq.preferredZ = opts.goalZ;
             const auto wr = world.QueryCell(wq);
             if (!wr.walkable) continue;
 
@@ -170,12 +358,16 @@ std::vector<u8> FindPath(uo::world::World& world,
                 wqA.maxStepUp = wq.maxStepUp;
                 wqA.maxStepDown = wq.maxStepDown;
                 wqA.charHeight = wq.charHeight;
+                wqA.hasPreferredZ = wq.hasPreferredZ;
+                wqA.preferredZ = wq.preferredZ;
                 wqB.x = static_cast<u32>(n.x);
                 wqB.y = static_cast<u32>(n.y + dy);
                 wqB.fromZ = n.z;
                 wqB.maxStepUp = wq.maxStepUp;
                 wqB.maxStepDown = wq.maxStepDown;
                 wqB.charHeight = wq.charHeight;
+                wqB.hasPreferredZ = wq.hasPreferredZ;
+                wqB.preferredZ = wq.preferredZ;
                 if (!world.QueryCell(wqA).walkable) continue;
                 if (!world.QueryCell(wqB).walkable) continue;
             }

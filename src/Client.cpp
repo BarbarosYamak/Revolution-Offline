@@ -38,7 +38,7 @@ constexpr usize kMaxInFlight = 1;
 constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 20;
+constexpr u32 kGrassPenalty = 24;
 // Recent-doors cache size and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
 constexpr usize kDoorCacheMax = 20;
