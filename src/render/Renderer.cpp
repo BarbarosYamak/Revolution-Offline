@@ -345,6 +345,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     // by depth then column; within a cell by z, land before static on a z-tie.
     // Stable so equal-z statics keep statics0.mul order (trunk under crown).
     std::stable_sort(draws.begin(), draws.end(), [](const Draw& a, const Draw& b) {
+        // Land is the ground: draw the whole land layer first, then objects
+        // (statics + mobiles). Otherwise a land tile in front (higher depth)
+        // paints over a wall behind it — cobblestone bleeding through walls,
+        // especially where terrain steps up beside a building.
+        const int la = (a.order == 0) ? 0 : 1;
+        const int lb = (b.order == 0) ? 0 : 1;
+        if (la != lb) return la < lb;
         if (a.depth != b.depth) return a.depth < b.depth;
         if (a.col   != b.col)   return a.col   < b.col;
         if (a.z     != b.z)     return a.z     < b.z;
