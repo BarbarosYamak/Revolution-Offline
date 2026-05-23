@@ -1776,7 +1776,7 @@ void Client::RenderTick() {
     mobs.push_back({playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true});
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
-                           playerX_, playerY_, dyn.data(), dyn.size(),
+                           playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            anim_.get(), mobs.data(), mobs.size());
     if (!mfb_update(renderer_->Frame(), 0)) {
         // User closed the window — stop drawing, keep the bot running.

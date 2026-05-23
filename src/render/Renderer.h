@@ -33,7 +33,7 @@ public:
 
     void RenderWorld(map::Map& map, art::ArtLoader& art,
                      const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
-                     i32 camX, i32 camY,
+                     i32 camX, i32 camY, i32 camZ = 0,
                      const DynItem* items = nullptr, usize nItems = 0,
                      anim::AnimLoader* anim = nullptr,
                      const Mob* mobs = nullptr, usize nMobs = 0);

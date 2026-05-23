@@ -41,7 +41,7 @@ Renderer::Renderer(int width, int height)
 
 void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
-                           i32 camX, i32 camY,
+                           i32 camX, i32 camY, i32 camZ,
                            const DynItem* items, usize nItems,
                            anim::AnimLoader* anim,
                            const Mob* mobs, usize nMobs) {
@@ -61,7 +61,11 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     const u32 by0 = static_cast<u32>(minY) / 8, by1 = static_cast<u32>(maxY) / 8;
 
     const int originX = w_ / 2;
-    const int originY = h_ / 2;
+    // Centre on the player INCLUDING his z: a cell at (camX,camY,camZ) must land
+    // at the screen centre. Without the +camZ*kZStep the z=0 ground point is
+    // centred instead, so an elevated player (e.g. z=20 on a foundation) sits
+    // ~camZ*4 px high and the view shows extra tiles below him.
+    const int originY = h_ / 2 + camZ * kZStep;
 
     std::vector<Draw> draws;
     std::vector<map::StaticItem> statics(2048);
