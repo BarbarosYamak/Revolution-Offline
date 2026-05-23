@@ -43,6 +43,8 @@ struct Draw {
                         // the canopy/trunk pair, but the cell walk still lets a nearer
                         // trunk occlude a farther canopy.
     bool priority;      // client UsePrioritySortTieBreaker: true only for land
+    bool surface;       // floor/bridge static that can be visually occluded by walls
+    bool occluder;      // wall/blocking static with vertical volume
     int height;         // tiledata height. On an exact z-TIE the SHORTER tile draws
                         // first and the taller one on top: a table (z20/h6) or a
                         // wall-top (z30/h3) sits over the floor (h0) it shares the
@@ -327,6 +329,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     d.depth = wx + wy; d.col = wx - wy;
                     d.z = s.z; d.priority = false; d.height = stt.height;
                     d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
+                    d.surface = (stt.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
+                    d.occluder = !d.surface && (stt.flags & (tiledata::kFlagWall |
+                                   tiledata::kFlagImpassable | tiledata::kFlagWindow)) != 0;
                     d.quad = false;
                     d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
                     d.transparent = true;
@@ -356,6 +361,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.depth = it.x + it.y; d.col = it.x - it.y;
         d.z = it.z; d.priority = false; d.height = stt.height;
         d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
+        d.surface = (stt.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
+        d.occluder = !d.surface && (stt.flags & (tiledata::kFlagWall |
+                     tiledata::kFlagImpassable | tiledata::kFlagWindow)) != 0;
         d.quad = false;
         d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
         d.transparent = true;
@@ -411,6 +419,12 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         // over its own trunk. Kept per-cell (not global) so the back-to-front cell
         // walk still lets a nearer trunk occlude a farther canopy.
         if (a.foliage != b.foliage) return a.foliage < b.foliage;
+        auto surfaceInsideOccluder = [](const Draw& floor, const Draw& wall) {
+            return floor.surface && wall.occluder && wall.height > 0 &&
+                   floor.z > wall.z && floor.z < wall.z + wall.height;
+        };
+        if (surfaceInsideOccluder(a, b)) return true;
+        if (surfaceInsideOccluder(b, a)) return false;
         if (a.z     != b.z)     return a.z     < b.z;       // base drawCellZ
         if (a.priority != b.priority) return a.priority > b.priority;  // land under objects
         if (a.height != b.height) return a.height < b.height;          // shorter under taller
