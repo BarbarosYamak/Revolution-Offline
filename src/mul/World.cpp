@@ -34,7 +34,7 @@ bool World::IsStaticBlocker(u16 itemId) const {
 static constexpr u32 kMaxStaticsPerBlock = 1024;
 
 WalkResult World::QueryCell(const WalkQuery& q) const {
-    WalkResult r{false, 0, 0, 0, false};
+    WalkResult r{false, 0, 0, 0};
 
     map::LandCell land{};
     if (!map_.ReadCell(q.x, q.y, &land)) return r;
@@ -64,17 +64,8 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z)};
 
     u32 cellStaticCount = 0;
-    bool nearFoliage = false;
     for (u32 i = 0; i < nblockStatics; ++i) {
         const auto& s = stbuf[i];
-        // Forest bias: trees and undergrowth carry the Foliage flag. A foliage
-        // static in this cell or an adjacent one (within the same block) marks
-        // a "woods" cell so A* can be biased to skirt forests, not thread them.
-        if (!nearFoliage && (td_.Static(s.itemId).flags & td::kFlagFoliage)) {
-            const int ddx = static_cast<int>(s.cellX) - static_cast<int>(cx);
-            const int ddy = static_cast<int>(s.cellY) - static_cast<int>(cy);
-            if (ddx >= -1 && ddx <= 1 && ddy >= -1 && ddy <= 1) nearFoliage = true;
-        }
         if (s.cellX != cx || s.cellY != cy) continue;
         ++cellStaticCount;
         i8 top;
@@ -83,7 +74,6 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         }
     }
     r.staticCount  = cellStaticCount;
-    r.nearFoliage  = nearFoliage;
 
     const i32 fromZ = static_cast<i32>(q.fromZ);
 

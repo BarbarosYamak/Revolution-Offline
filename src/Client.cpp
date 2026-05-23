@@ -38,10 +38,7 @@ constexpr usize kMaxInFlight = 1;
 constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 15;
-// Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
-// than open grass so the bot skirts forests instead of threading the trees.
-constexpr u32 kForestPenalty = 18;
+constexpr u32 kGrassPenalty = 20;
 // Recent-doors cache size, how many open attempts to make at one cell before
 // concluding it's not an openable door, and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
@@ -1975,8 +1972,7 @@ bool Client::BotLookaheadPatchPath() {
 
         bot::PathOptions opts;
         opts.blacklist = &blacklist_;
-        opts.grassPenalty   = followActive_ ? 0u : kGrassPenalty;
-        opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
+        opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
         opts.hasGoalZ = true;
         opts.goalZ = preview[anchor].z;
         opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
@@ -2013,8 +2009,7 @@ bool Client::BotReplanToGoal() {
     opts.blacklist = &blacklist_;
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind.
-    opts.grassPenalty   = followActive_ ? 0u : kGrassPenalty;
-    opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
+    opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
     opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
     opts.goalZ    = botGoalZ_;
 

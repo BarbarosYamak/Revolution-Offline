@@ -184,8 +184,6 @@ std::vector<u8> FindPath(uo::world::World& world,
             u32 ng = n.g + step;
             if (opts.grassPenalty != 0 && IsGrassLikeTile(wr.landTileId))
                 ng += opts.grassPenalty;
-            if (opts.foliagePenalty != 0 && wr.nearFoliage)
-                ng += opts.foliagePenalty;
             if (opts.stats && nx == gx && ny == gy)
                 opts.stats->reachedGoalColumn = true;
 

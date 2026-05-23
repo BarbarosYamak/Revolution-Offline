@@ -52,9 +52,6 @@ struct PathOptions {
     // Extra step cost added when stepping onto open grass-like terrain, to
     // bias routes toward roads/dirt where mobs are sparser. 0 = no bias.
     u32 grassPenalty = 0;
-    // Extra step cost when the cell is in/next to foliage (woods). Biases
-    // routes to skirt forests rather than thread between the trees. 0 = none.
-    u32 foliagePenalty = 0;
     // Optional: filled with search diagnostics. null = no tracing.
     PathStats* stats = nullptr;
     // Pin the destination floor: when set, the goal is only satisfied at a
