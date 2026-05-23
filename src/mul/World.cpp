@@ -52,7 +52,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     }
 
     // Collect candidate standing surfaces (their top faces) at this cell.
-    struct Candidate { i32 top; };
+    struct Candidate { i32 top; bool staticSurface; };
     Candidate cands[64];
     u32 ncands = 0;
 
@@ -61,7 +61,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     const auto& landTile = td_.Land(land.tileId);
     const bool landBlocked =
         (landTile.flags & (td::kFlagImpassable | td::kFlagWet)) != 0;
-    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z)};
+    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z), false};
 
     u32 cellStaticCount = 0;
     for (u32 i = 0; i < nblockStatics; ++i) {
@@ -70,7 +70,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         ++cellStaticCount;
         i8 top;
         if (StaticSurfaceTop(s.itemId, s.z, &top)) {
-            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top)};
+            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top), true};
         }
     }
     r.staticCount  = cellStaticCount;
@@ -85,7 +85,8 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     for (u32 ci = 0; ci < ncands; ++ci) {
         const i32 sz = cands[ci].top;
         const i32 dz = sz - fromZ;
-        if (dz > q.maxStepUp) continue;
+        const i32 maxStepUp = cands[ci].staticSurface ? q.maxStepUp : 2;
+        if (dz > maxStepUp) continue;
         if (-dz > q.maxStepDown) continue;
 
         // (1) Climbing onto a stacked staircase from the wrong side. The

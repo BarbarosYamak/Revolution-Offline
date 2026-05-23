@@ -106,8 +106,9 @@ stdin commands (in-world):
 - Costs 10 (straight) / 14 (diagonal); Chebyshev heuristic (admissible).
 - **Diagonal corner rule:** a diagonal step needs both orthogonal neighbours
   walkable (no corner-cutting).
-- Step limits match the classic client: upward `maxStepUp = 2`, downward
-  `maxStepDown = 127`; vertical clearance still uses `charHeight = 16`.
+- Land step-up is capped at `+2`; static surfaces use `maxStepUp = 12` so
+  stairs/ramp stacks still climb. `maxStepDown = 12` keeps A* from exploding
+  across unrelated floors; vertical clearance still uses `charHeight = 16`.
 - `maxNodesExpanded = 32768` (ample — a ~125-tile town route stays well under).
 - **Grass penalty** (`grassPenalty = 6`): open grass land tiles (currently
   `0x0003–0x0006`, tunable in `IsGrassLikeTile`) cost extra, biasing routes onto

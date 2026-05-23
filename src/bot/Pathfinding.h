@@ -36,11 +36,11 @@ struct PathStats {
 
 struct PathOptions {
     u32 maxIterations = 8192*4; // Sure to be enought
-    // Classic client pathfinding allows only small upward steps (+2), but
-    // falling down is limited by tile-stack clearance instead of a small
-    // symmetric dz cap.
-    u8  maxStepUp     = 2;
-    u8  maxStepDown   = 127;
+    // Land step-up is capped separately at +2 in World::QueryCell. Static
+    // surfaces keep a looser limit so stair/ramp stacks can climb; drops stay
+    // bounded to keep A* from exploding across unrelated floors.
+    u8  maxStepUp     = 12;
+    u8  maxStepDown   = 12;
     u8  charHeight    = 16;
     // For very long paths, cap; otherwise A* may run unbounded if no
     // path exists.

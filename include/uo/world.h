@@ -31,11 +31,11 @@ struct WalkQuery {
     u32 x;
     u32 y;
     i8  fromZ;
-    // The classic client caps upward movement at currentZ + 2
-    // (Pathfinding_GetTileTopZ), while drops are constrained by tile stack
-    // clearance rather than by a small symmetric step-down limit.
-    i8  maxStepUp   = 2;
-    i8  maxStepDown = 127;
+    // Land step-up is capped separately at +2. Static surfaces keep a looser
+    // limit so stair/ramp stacks can climb; drops stay bounded to keep A*
+    // from exploding across unrelated floors.
+    i8  maxStepUp   = 12;
+    i8  maxStepDown = 12;
     u8  charHeight  = 16;
 };
 
