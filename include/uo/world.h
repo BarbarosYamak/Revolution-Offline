@@ -31,11 +31,11 @@ struct WalkQuery {
     u32 x;
     u32 y;
     i8  fromZ;
-    // Classic UO allows up to +12 step up onto a Surface tile (stairs,
-    // platforms). Pure +2 limit is too strict and prevents escape from
-    // sub-z pockets the server places us in after teleports/kicks.
-    i8  maxStepUp   = 12;
-    i8  maxStepDown = 12;
+    // The classic client caps upward movement at currentZ + 2
+    // (Pathfinding_GetTileTopZ), while drops are constrained by tile stack
+    // clearance rather than by a small symmetric step-down limit.
+    i8  maxStepUp   = 2;
+    i8  maxStepDown = 127;
     u8  charHeight  = 16;
 };
 

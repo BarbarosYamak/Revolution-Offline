@@ -120,6 +120,13 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         // under a rising staircase is rejected. Decorative items are ignored.
         const i32 approachZ = (fromZ > sz) ? fromZ : sz;
         bool blocked = false;
+        if (!landBlocked && sz < fromZ && static_cast<i32>(land.z) != sz) {
+            const i32 obs_lo = static_cast<i32>(land.z);
+            const i32 obs_hi = obs_lo + 1;
+            const i32 col_lo = approachZ;
+            const i32 col_hi = approachZ + q.charHeight;
+            if (obs_hi > col_lo && obs_lo < col_hi) blocked = true;
+        }
         for (u32 i = 0; i < nblockStatics && !blocked; ++i) {
             const auto& s = stbuf[i];
             if (s.cellX != cx || s.cellY != cy) continue;

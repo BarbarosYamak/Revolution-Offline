@@ -36,12 +36,11 @@ struct PathStats {
 
 struct PathOptions {
     u32 maxIterations = 8192*4; // Sure to be enought
-    // Classic UO step rules: walking allows +2 over flat ground but
-    // up to +12 onto stair-like Surface tiles. We use the loose upper
-    // limit so A* can climb out of low pockets the server placed us
-    // in via teleport / kick.
-    u8  maxStepUp     = 12;
-    u8  maxStepDown   = 12;
+    // Classic client pathfinding allows only small upward steps (+2), but
+    // falling down is limited by tile-stack clearance instead of a small
+    // symmetric dz cap.
+    u8  maxStepUp     = 2;
+    u8  maxStepDown   = 127;
     u8  charHeight    = 16;
     // For very long paths, cap; otherwise A* may run unbounded if no
     // path exists.

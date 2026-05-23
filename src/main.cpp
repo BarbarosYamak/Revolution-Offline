@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     cfg.legacyMovePacket = false;       // UO Demo 1997 protocol: 3-byte 0x02
     cfg.enableKeepalive  = false;       // 0x73 0x00 every 20s — stays inside the
                                        // shard's ~60s client-silence kick window
-    cfg.acceptDoors      = true;        // path through doors; open them at runtime
+    cfg.acceptDoors      = false;       // static Door tiles are not runtime-openable here
     cfg.enableRenderer   = true;        // open the world window (pass --headless to disable)
     cfg.artIdxPath       = "E:/uo/artidx.mul";
     cfg.artPath          = "E:/uo/art.mul";

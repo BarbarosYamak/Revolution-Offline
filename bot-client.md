@@ -36,7 +36,7 @@ Standalone test/diagnostic helpers (not part of the normal build):
 | sendSeed              | true | 4-byte seed prefix on connect |
 | legacyMovePacket      | false | false = 7-byte 0x02 (T2A+) |
 | enableKeepalive       | false | 0x73 keepalive disabled |
-| acceptDoors           | true | A\* routes through door tiles (see Doors) |
+| acceptDoors           | false | static Door tiles are blockers; runtime doors come from dynamic objects |
 | tiledata/map/staidx/statics | `E:/uo/*.mul` | required for the bot |
 
 The MUL files are loaded lazily on the first `goto`.
@@ -106,7 +106,8 @@ stdin commands (in-world):
 - Costs 10 (straight) / 14 (diagonal); Chebyshev heuristic (admissible).
 - **Diagonal corner rule:** a diagonal step needs both orthogonal neighbours
   walkable (no corner-cutting).
-- Step limits `maxStepUp/Down = 12`, `charHeight = 16`.
+- Step limits match the classic client: upward `maxStepUp = 2`, downward
+  `maxStepDown = 127`; vertical clearance still uses `charHeight = 16`.
 - `maxNodesExpanded = 32768` (ample — a ~125-tile town route stays well under).
 - **Grass penalty** (`grassPenalty = 6`): open grass land tiles (currently
   `0x0003–0x0006`, tunable in `IsGrassLikeTile`) cost extra, biasing routes onto
@@ -138,22 +139,22 @@ computes the blocked cell `(bx,by,bz)`, then decides **in this order**:
 1. **Mobile on the tile:** `mobileCache_` (from `0x77`/`0x78`, own serial excluded,
    pruned on `0x1D`) → if a mobile is on the blocked cell/floor it's a moving/shove
    obstacle → wait `kMobileWaitMs` (0.9s), retry, **never blacklist**.
-2. **Door:** send the legit **OpenDoor action** `0x12`/`0x58` (server spatially
-   searches the *faced* tile and opens any door there — graphic- and
-   timing-independent), and also double-click (`0x06`) any door already seen near
-   the cell. Doors don't swing instantly, so wait `kDoorWaitMs` (700ms) and retry,
-   up to `kMaxDoorTries` (4) blind attempts.
+2. **Door:** only when a cached dynamic door object is near the blocked cell,
+   send the legit **OpenDoor action** `0x12`/`0x58` (server spatially searches
+   the *faced* tile and opens any door there), and also double-click (`0x06`)
+   that door serial. Doors don't swing instantly, so wait `kDoorWaitMs` (700ms)
+   and retry the blocked step once.
    - **Open confirmation:** after sending an open we set `awaitingDoorOpen_`; any
      `0x1A` object update at the cell (≤2 tiles, ≤8 z) means the door swung →
      log "OPENED" and retry immediately; a re-bump with no update logs "did NOT open".
    - **Nearest-Z:** `FindDoorAt` returns the door closest in z (within ±8) so a
      door stacked on another storey is never the target.
-   - **Guard:** a cell with a known door within 1 tile is **never blacklisted**;
-     we only keep trying to open it, stopping the trip (no mark) after
-     `kMaxDoorGiveUp` (10) if it truly won't budge.
-3. **Wall / lamp post / unknown static:** none of the above and the door budget
-   spent → add a **transient** avoid (this-trip only) and reroute; stop only if
-   there's genuinely no other route.
+   - **Guard:** no blind door attempts. If the next reject arrives with no door
+     update, treat it as not-a-door for this trip.
+3. **Wall / lamp post / unknown static / door timeout:** add a point **transient**
+   avoid for the rejected cell (this-trip only) and patch only the nearby path
+   prefix to the first reachable anchor within the next few old-path steps.
+   If the local patch fails, stop instead of retrying the same rejected move.
 
 Steps 0/1 keep retrying the same cell up to `kMaxStuckWaits` (25) then stop the
 trip **without** marking anything.
@@ -207,16 +208,14 @@ tests/                    huffman / blacklist / path-probe standalone checks
 | const | value | meaning |
 |---|---|---|
 | kMaxInFlight | 1 | moves in flight (depth-1; do not raise without position-carrying acks) |
-| kMaxReplans | 40 | A\* replans per trip before giving up |
-| kGrassPenalty | 6 | extra A\* cost on grass tiles |
+| kMaxReplans | 128 | A\* replans per trip before giving up |
+| kGrassPenalty | 20 | extra A\* cost on grass tiles |
 | kDoorCacheMax | 20 | recent doors tracked |
-| kMaxDoorTries | 4 | blind OpenDoor attempts before avoiding |
-| kMaxDoorGiveUp | 10 | open attempts with a door present before stopping trip |
 | kDoorWaitMs | 700 | wait for a door to swing |
 | kMobileCacheMax | 64 | recent mobiles tracked |
 | kFatigueWindowMs | 1500 | reject-after-fatigue window |
 | kStaminaWaitMs | 2000 | wait for stamina regen |
-| kMobileWaitMs | 900 | wait for a mobile to clear |
+| kMobileWaitMs | 500 | wait for a mobile to clear |
 | kMaxStuckWaits | 25 | wait-retries at one cell before stopping (no mark) |
 | walk/run throttle | 400 / 200 | step cadence (ctor) |
 | ackWatchdogMs_ | 5000 | unacked-move abort (ctor) |
@@ -228,8 +227,9 @@ tests/                    huffman / blacklist / path-probe standalone checks
 - **Combat actions** (engage/flee/recall) — only the threat hook exists.
 - **Road bias** — grass tile set is a minimal starting set (`0x0003–0x0006`);
   expand `IsGrassLikeTile` with this shard's exact grass/road IDs to sharpen it.
-- **Door cache graphics** — `IsDoorGraphic` covers `0x0675–0x06F6`; the OpenDoor
-  *action* is graphic-agnostic so this only affects the secondary double-click path.
+- **Door cache graphics** — when tiledata is loaded, dynamic doors are detected
+  by `kFlagDoor` on `itemId + gfxOffset`; `IsDoorGraphic` is only a fallback
+  before tiledata exists.
 - **verdata.mul read** — not implemented (this server only reads verdata's version
   word and never applies static/map patches, so base MULs already match it).
 - **blacklist.mul auto-persist** — disabled (read-only) to avoid poisoning passages.
