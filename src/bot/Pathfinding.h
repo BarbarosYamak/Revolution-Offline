@@ -36,9 +36,10 @@ struct PathStats {
 
 struct PathOptions {
     u32 maxIterations = 8192*4; // Sure to be enought
-    // Land step-up is capped separately at +2 in World::QueryCell. Static
-    // surfaces keep a looser limit so stair/ramp stacks can climb; drops stay
-    // bounded to keep A* from exploding across unrelated floors.
+    // Classic UO step rules: walking allows +2 over flat ground but
+    // up to +12 onto stair-like Surface tiles. We use the loose upper
+    // limit so A* can climb out of low pockets the server placed us
+    // in via teleport / kick.
     u8  maxStepUp     = 12;
     u8  maxStepDown   = 12;
     u8  charHeight    = 16;
@@ -51,8 +52,8 @@ struct PathOptions {
     // Extra step cost added when stepping onto open grass-like terrain, to
     // bias routes toward roads/dirt where mobs are sparser. 0 = no bias.
     u32 grassPenalty = 0;
-    // Extra step cost when stepping in/next to foliage statics. This catches
-    // actual woods even when the underlying land tile id is shared elsewhere.
+    // Extra step cost when the cell is in/next to foliage (woods). Biases
+    // routes to skirt forests rather than thread between the trees. 0 = none.
     u32 foliagePenalty = 0;
     // Optional: filled with search diagnostics. null = no tracing.
     PathStats* stats = nullptr;

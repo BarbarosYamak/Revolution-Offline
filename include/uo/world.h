@@ -31,14 +31,12 @@ struct WalkQuery {
     u32 x;
     u32 y;
     i8  fromZ;
-    // Land step-up is capped separately at +2. Static surfaces keep a looser
-    // limit so stair/ramp stacks can climb; drops stay bounded to keep A*
-    // from exploding across unrelated floors.
+    // Classic UO allows up to +12 step up onto a Surface tile (stairs,
+    // platforms). Pure +2 limit is too strict and prevents escape from
+    // sub-z pockets the server places us in after teleports/kicks.
     i8  maxStepUp   = 12;
     i8  maxStepDown = 12;
     u8  charHeight  = 16;
-    bool hasPreferredZ = false;
-    i32 preferredZ = 0;
 };
 
 struct WalkResult {
@@ -46,7 +44,8 @@ struct WalkResult {
     i8   standZ;       // z to stand at if walkable; 0 otherwise
     u32  staticCount;  // how many statics existed in this cell
     u16  landTileId;   // land terrain tile id at the cell (for terrain bias)
-    bool nearFoliage;  // foliage static in/next to this cell (forest bias)
+    bool nearFoliage;  // a Foliage-flagged static sits in/next to this cell
+                       // (trees/undergrowth) — for a forest-avoidance bias
 };
 
 class World {

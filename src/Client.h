@@ -164,8 +164,6 @@ private:
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
     bool BotLookaheadPatchPath(); // short local reroute around near dynamic blocks
-    bool BotPatchPathAfterReject(u8 rejectedDir); // local reroute to a near path anchor
-    void BotRestoreRejectedStep(u8 rejectedDir);
     bool IsLookaheadBlocked(i32 x, i32 y, i8 z) const;
     bool IsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
     static bool LookaheadExtraBlocked(i32 x, i32 y, i8 z, void* user);
@@ -249,7 +247,6 @@ private:
     bot::Blacklist blacklist_;
     u32 botReplanCount_;
     i64 botResumeAtMs_;
-    i64 botLastPlanMs_;
     std::mt19937 rng_;
 
     // Recent doors seen in 0x1A object packets (dynamic server objects, often

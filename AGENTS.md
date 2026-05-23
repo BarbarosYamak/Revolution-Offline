@@ -15,7 +15,6 @@ This is a C++17 CMake project for an Ultima Online client and tooling. Core code
 - `scripts\build_hufftest.bat`: builds and runs the Huffman round-trip test.
 - `scripts\build_bltest.bat`: builds and runs the blacklist round-trip test.
 - `scripts\build_pathprobe.bat [args]`: builds and runs the pathfinding probe.
-- `scripts\pathfinding_regression.bat`: Windows-only pathfinding regression harness; verifies both directions between `(1869,2881,40)` and the negative-Z interior `(1446,1663,-10)`.
 - `scripts\build_viewer.bat [args]`: builds and runs the world viewer probe.
 - `scripts\render_regression.bat`: Windows-only renderer regression harness; dumps PNG scenes to `build\regression\` for visual comparison with the official 2.0.7 client. Do not use Bash/WSL here.
 
@@ -25,7 +24,7 @@ Use C++17 unless a probe requires newer syntax. Keep code exception-free and RTT
 
 ## Testing Guidelines
 
-Place focused probes in `tests/` with behavior-oriented names, such as `huffman_roundtrip.cpp` or `path_probe.cpp`. For pathfinding or `World::QueryCell` changes, run `scripts\pathfinding_regression.bat`; it checks both descent into `(1446,1663,-10)` and the climb back to `(1869,2881,40)`. Use `scripts\build_pathprobe.bat sx sy sz gx gy [margin]` for extra ad hoc MUL routes. New coverage should get a script under `scripts/` or a CMake/CTest target.
+Place focused probes in `tests/` with behavior-oriented names, such as `huffman_roundtrip.cpp` or `path_probe.cpp`. For pathfinding changes, run `scripts\build_pathprobe.bat sx sy sz gx gy [margin]` on a real MUL route. New coverage should get a script under `scripts/` or a CMake/CTest target.
 
 For renderer changes, run `scripts\render_regression.bat` and inspect all generated PNGs, especially `07_negz_interior.png` for negative-Z interiors. The harness uses `scripts\build_viewer.bat` and writes only under `build\regression\`.
 

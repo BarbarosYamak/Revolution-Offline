@@ -52,7 +52,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     }
 
     // Collect candidate standing surfaces (their top faces) at this cell.
-    struct Candidate { i32 top; bool staticSurface; };
+    struct Candidate { i32 top; };
     Candidate cands[64];
     u32 ncands = 0;
 
@@ -61,23 +61,25 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     const auto& landTile = td_.Land(land.tileId);
     const bool landBlocked =
         (landTile.flags & (td::kFlagImpassable | td::kFlagWet)) != 0;
-    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z), false};
+    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z)};
 
     u32 cellStaticCount = 0;
     bool nearFoliage = false;
     for (u32 i = 0; i < nblockStatics; ++i) {
         const auto& s = stbuf[i];
+        // Forest bias: trees and undergrowth carry the Foliage flag. A foliage
+        // static in this cell or an adjacent one (within the same block) marks
+        // a "woods" cell so A* can be biased to skirt forests, not thread them.
         if (!nearFoliage && (td_.Static(s.itemId).flags & td::kFlagFoliage)) {
             const int ddx = static_cast<int>(s.cellX) - static_cast<int>(cx);
             const int ddy = static_cast<int>(s.cellY) - static_cast<int>(cy);
-            if (ddx >= -1 && ddx <= 1 && ddy >= -1 && ddy <= 1)
-                nearFoliage = true;
+            if (ddx >= -1 && ddx <= 1 && ddy >= -1 && ddy <= 1) nearFoliage = true;
         }
         if (s.cellX != cx || s.cellY != cy) continue;
         ++cellStaticCount;
         i8 top;
         if (StaticSurfaceTop(s.itemId, s.z, &top)) {
-            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top), true};
+            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top)};
         }
     }
     r.staticCount  = cellStaticCount;
@@ -93,8 +95,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     for (u32 ci = 0; ci < ncands; ++ci) {
         const i32 sz = cands[ci].top;
         const i32 dz = sz - fromZ;
-        const i32 maxStepUp = cands[ci].staticSurface ? q.maxStepUp : 2;
-        if (dz > maxStepUp) continue;
+        if (dz > q.maxStepUp) continue;
         if (-dz > q.maxStepDown) continue;
 
         // (1) Climbing onto a stacked staircase from the wrong side. The
@@ -116,15 +117,6 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
             }
             if (shelfBetween) continue;
         }
-        if (dz < 0) {
-            bool shelfBetween = false;
-            for (u32 cj = 0; cj < ncands && !shelfBetween; ++cj) {
-                if (cj == ci) continue;
-                const i32 oz = cands[cj].top;
-                if (oz < fromZ && oz > sz) shelfBetween = true;
-            }
-            if (shelfBetween) continue;
-        }
 
         // (2) Vertical clearance, measured from the *approach* level. The
         // original client's Pathfinding_GetTileMinZ/GetTileTopZ check headroom
@@ -138,14 +130,6 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         // under a rising staircase is rejected. Decorative items are ignored.
         const i32 approachZ = (fromZ > sz) ? fromZ : sz;
         bool blocked = false;
-        if (!cands[ci].staticSurface &&
-            !landBlocked && sz < fromZ && static_cast<i32>(land.z) != sz) {
-            const i32 obs_lo = static_cast<i32>(land.z);
-            const i32 obs_hi = obs_lo + 1;
-            const i32 col_lo = approachZ;
-            const i32 col_hi = approachZ + q.charHeight;
-            if (obs_hi > col_lo && obs_lo < col_hi) blocked = true;
-        }
         for (u32 i = 0; i < nblockStatics && !blocked; ++i) {
             const auto& s = stbuf[i];
             if (s.cellX != cx || s.cellY != cy) continue;
@@ -167,13 +151,11 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         }
         if (blocked) continue;
 
-        const i32 targetZ = q.hasPreferredZ ? q.preferredZ : fromZ;
-        const i32 dist = static_cast<i32>(sz) - targetZ;
-        const i32 abs_dist = dist < 0 ? -dist : dist;
-        if (!best_found || abs_dist < best_dist) {
+        const i32 abs_dz = dz < 0 ? -dz : dz;
+        if (!best_found || abs_dz < best_dist) {
             best_found = true;
             best_z     = sz;
-            best_dist  = abs_dist;
+            best_dist  = abs_dz;
         }
     }
 
