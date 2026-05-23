@@ -17,17 +17,36 @@ constexpr int kZStep    = 4;
 
 constexpr u16 kBackground = 0;   // black
 
-// One draw command — land or static. Land and statics share one list, ordered
-// exactly like the client (World_RenderEntities @0x401E90): cells back-to-front
-// (depth, then column), and WITHIN a cell by z, land before static on a z-tie.
-// A stable sort keeps equal-z statics in statics0.mul order (trunk under crown).
+// One draw command — land, static, item or mobile. All share one list, ordered
+// exactly like the client (World_RenderEntities @0x401E90 + CDrawItem_AddToDrawList
+// @0x403B50): cells back-to-front (depth, then column), and WITHIN a cell by
+// drawCellZ ascending, with PRIORITY items inserted before non-priority on a
+// z-tie. Verified in the IDB: the ONLY priority class is LAND (flat & stretched
+// both return 1 from UsePrioritySortTieBreaker @vtable+0x1C); statics, items,
+// mobiles, multis and corpses are all non-priority. So at equal z, land draws
+// first (it is the ground) and everything else keeps insertion order via a
+// stable sort (statics0.mul order: trunk under crown).
 struct Draw {
     i32 depth;          // x + y  — far-to-near tile depth
     i32 col;            // x - y  — orders cells on the same diagonal
-    i32 z;              // tile base z
-    int height;         // tiledata height (statics); within-cell sort uses z+height
-    int order;          // layer/type: land (0) under static (1) under mob (2)
-    bool surface;       // a floor/surface static — drawn first on a z-tie
+    i32 z;              // within-cell sort key = drawCellZ (the tile's BASE z).
+                        // Land = north corner (flat) or (c0+c1+c2+c3)>>2 average
+                        // (stretched) per LandObject_CreateForCell; static/item/mob
+                        // = base z. NOT z+height: a tall wall must sort BELOW the
+                        // higher floor it supports so the floor covers it (else the
+                        // wall top pokes up through the floor).
+    bool foliage;       // tiledata Foliage flag (0x20000) — tree/bush leaf canopy.
+                        // The client links these into a SEPARATE list
+                        // (pActiveDrawListHead, Entity_OnAddToWorld @0x4C3C30) drawn
+                        // in a later pass so the canopy sits over its trunk. We sort
+                        // it last WITHIN its cell (after depth/col) — same effect for
+                        // the canopy/trunk pair, but the cell walk still lets a nearer
+                        // trunk occlude a farther canopy.
+    bool priority;      // client UsePrioritySortTieBreaker: true only for land
+    int height;         // tiledata height. On an exact z-TIE the SHORTER tile draws
+                        // first and the taller one on top: a table (z20/h6) or a
+                        // wall-top (z30/h3) sits over the floor (h0) it shares the
+                        // cell+z with, instead of the floor bleeding over them.
     bool quad;          // true: stretched/texmap quad; false: flat blit
     const u16* src;     // source pixels (art sprite or texmap)
     int sw, sh;         // source dimensions
@@ -235,9 +254,15 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                                 for (i32 nx = wx - 1; nx <= wx + 2 && useArt; ++nx)
                                     if (zAt(nx, ny) != z0) useArt = false;
                         }
+                        // drawCellZ (LandObject_CreateForCell @0x4B74E0): flat tile
+                        // sorts by its north-corner z; a stretched tile sorts by the
+                        // average of its four corners ((c0+c1+c2+c3)>>2). Using the
+                        // north corner for stretched tiles mis-sorts sloped land vs.
+                        // its neighbours — the cause of the saw-tooth coastline.
+                        const int avgZ = (z0 + z1 + z2 + z3) >> 2;
                         const i32 depth = wx + wy, col = wx - wy;
                         Draw d{};
-                        d.depth = depth; d.col = col; d.z = z0; d.order = 0;
+                        d.depth = depth; d.col = col; d.z = z0; d.priority = true;
                         if (!t || useArt) {
                             if (z0 == z1 && z1 == z2 && z2 == z3) {
                                 d.quad = false;
@@ -247,6 +272,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                             } else {
                                 // Textureless sloped tile: stretch the art so it
                                 // still meets its neighbors (avoids a crack).
+                                d.z = avgZ;
                                 d.quad = true;
                                 d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
                                 d.transparent = true;
@@ -257,6 +283,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                             }
                         } else {
                             const int hi = t->size - 1;
+                            d.z = avgZ;
                             d.quad = true;
                             d.src = t->px.data(); d.sw = t->size; d.sh = t->size;
                             d.transparent = false;
@@ -286,9 +313,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     const int sx = originX + (dxw - dyw) * kHalfTile;
                     const int sy = originY + (dxw + dyw) * kHalfTile - s.z * kZStep;
                     Draw d{};
-                    d.depth = wx + wy; d.col = wx - wy; d.z = s.z; d.order = 1;
-                    d.height = stt.height;
-                    d.surface = (stt.flags & tiledata::kFlagSurface) != 0;
+                    d.depth = wx + wy; d.col = wx - wy;
+                    d.z = s.z; d.priority = false; d.height = stt.height;
+                    d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
                     d.quad = false;
                     d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
                     d.transparent = true;
@@ -315,9 +342,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         const int sx = originX + (dxw - dyw) * kHalfTile;
         const int sy = originY + (dxw + dyw) * kHalfTile - it.z * kZStep;
         Draw d{};
-        d.depth = it.x + it.y; d.col = it.x - it.y; d.z = it.z; d.order = 1;
-        d.height = stt.height;
-        d.surface = (stt.flags & tiledata::kFlagSurface) != 0;
+        d.depth = it.x + it.y; d.col = it.x - it.y;
+        d.z = it.z; d.priority = false; d.height = stt.height;
+        d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
         d.quad = false;
         d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
         d.transparent = true;
@@ -340,7 +367,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             const int sx = originX + (dxw - dyw) * kHalfTile;
             const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep;
             Draw d{};
-            d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.order = 2;
+            d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
             d.quad = false;
             d.src = fr->px.data(); d.sw = anim::Frame::kW; d.sh = anim::Frame::kH;
             d.transparent = true;
@@ -350,27 +377,33 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         }
     }
 
-    // Order like the client (World_RenderEntities @0x401E90): cells back-to-front
-    // by depth then column; within a cell by z, land before static on a z-tie.
-    // Stable so equal-z statics keep statics0.mul order (trunk under crown).
+    // Order like the client. World_RenderEntities @0x401E90 walks the visible
+    // cells back-to-front (depth = x+y, then column = x-y); within a cell
+    // CDrawItem_AddToDrawList @0x403B50 keeps the bucket sorted by drawCellZ (the
+    // tile's BASE z) ascending, with a PRIORITY item inserted ahead of a
+    // non-priority one on a z-tie. Verified in the IDB: land (flat & stretched) is
+    // the ONLY priority class — so land draws first on a z-tie (it is the ground).
+    // Statics sort by base z so a tall wall stays BELOW the higher floor it
+    // supports (a wooden battlement floor covers the sandstone wall beneath it);
+    // sorting by the tile TOP instead made tall walls poke up through the floor.
+    // On an exact z-tie the SHORTER tile draws first and the taller one on top
+    // (by tiledata height): a table (z20/h6) or a wall-top (z30/h3) draws over the
+    // floor (h0) it shares a cell+z with, instead of the floor bleeding over them.
+    // Stretched land uses its average-corner z (LandObject_CreateForCell) for a
+    // smooth coast. Stable so equal-key statics keep statics0.mul order.
     std::stable_sort(draws.begin(), draws.end(), [](const Draw& a, const Draw& b) {
-        // Land is the ground: draw the whole land layer first, then objects
-        // (statics + mobiles). Otherwise a land tile in front (higher depth)
-        // paints over a wall behind it — cobblestone bleeding through walls,
-        // especially where terrain steps up beside a building.
-        const int la = (a.order == 0) ? 0 : 1;
-        const int lb = (b.order == 0) ? 0 : 1;
-        if (la != lb) return la < lb;
         if (a.depth != b.depth) return a.depth < b.depth;
         if (a.col   != b.col)   return a.col   < b.col;
-        // Within a cell, order by the tile's TOP (z + height): a tall wall whose
-        // top reaches a floor's level ties with that floor, and surfaces (floors)
-        // then draw first so the wall occludes them. Matches the client's
-        // sortKey_z + UsePrioritySortTieBreaker (CDrawItem_AddToDrawList).
-        const int za = a.z + a.height, zb = b.z + b.height;
-        if (za != zb) return za < zb;
-        if (a.surface != b.surface) return a.surface > b.surface;  // floors first
-        return a.order < b.order;
+        // Foliage (tree/bush canopies) draws after everything else IN ITS CELL,
+        // like the client's separate pActiveDrawListHead pass (Entity_OnAddToWorld
+        // @0x4C3C30, gated on the Foliage flag 0x20000) — so the leaf crown sits
+        // over its own trunk. Kept per-cell (not global) so the back-to-front cell
+        // walk still lets a nearer trunk occlude a farther canopy.
+        if (a.foliage != b.foliage) return a.foliage < b.foliage;
+        if (a.z     != b.z)     return a.z     < b.z;       // base drawCellZ
+        if (a.priority != b.priority) return a.priority > b.priority;  // land under objects
+        if (a.height != b.height) return a.height < b.height;          // shorter under taller
+        return false;                                       // else: insertion order
     });
 
     for (const Draw& d : draws) {

@@ -9,6 +9,7 @@
 #include "render/Renderer.h"
 #include "uo/art.h"
 #include "uo/map.h"
+#include "uo/png.h"
 #include "uo/texmap.h"
 #include "uo/tiledata.h"
 
@@ -35,6 +36,8 @@ int main(int argc, char** argv) {
     const int w = argc > 3 ? std::atoi(argv[3]) : 512;
     const int h = argc > 4 ? std::atoi(argv[4]) : 384;
     const int scale = argc > 5 ? std::atoi(argv[5]) : 2;   // window = scale x fb
+    const int camZ  = argc > 6 ? std::atoi(argv[6]) : 0;
+    const char* dump = argc > 7 ? argv[7] : nullptr;       // PNG path => render once
 
     map::Map map;
     if (!map.Open("E:/uo/map0.mul", "E:/uo/staidx0.mul", "E:/uo/statics0.mul",
@@ -65,6 +68,14 @@ int main(int argc, char** argv) {
     render::Renderer rend(w, h);
     const i32 maxX = static_cast<i32>(map.WidthCells()) - 1;
     const i32 maxY = static_cast<i32>(map.HeightCells()) - 1;
+
+    if (dump) {
+        rend.RenderWorld(map, art, td, tex, camX, camY, camZ);
+        png::Save(dump, rend.Frame(), w, h);
+        std::printf("dumped %s (%d,%d,z%d)\n", dump, camX, camY, camZ);
+        mfb_close();
+        return 0;
+    }
 
     std::printf("viewer: arrows pan (shift=fast), close window to quit. start=%d,%d\n",
                 camX, camY);

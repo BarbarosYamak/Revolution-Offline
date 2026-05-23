@@ -19,7 +19,9 @@ namespace uo::tiledata {
 //   0x10000000 = Roof  (AOS puts Roof at 0x08000000)
 //   0x20000000 = Door  (AOS puts Door at 0x10000000)
 //   0x40000000 = StairBack,  0x80000000 = StairRight
-// (NB: trees are NOT flagged Foliage in this data — they're just Impassable.)
+// (NB: a tree is two statics in one cell — the trunk is just Impassable, but the
+//  leaf CANOPY carries kFlagFoliage 0x20000; the renderer draws foliage last so
+//  the crown sits over the trunk.)
 
 constexpr u32 kLandCount   = 16384;
 constexpr u32 kStaticCount = 16384;
