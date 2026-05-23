@@ -38,10 +38,10 @@ constexpr usize kMaxInFlight = 1;
 constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 32;
+constexpr u32 kGrassPenalty = 15;
 // Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
 // than open grass so the bot skirts forests instead of threading the trees.
-constexpr u32 kForestPenalty = 64;
+constexpr u32 kForestPenalty = 18;
 // Recent-doors cache size, how many open attempts to make at one cell before
 // concluding it's not an openable door, and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
@@ -55,7 +55,7 @@ constexpr i64   kDoorWaitMs   = 700;
 constexpr usize kMobileCacheMax = 64;
 constexpr i64   kFatigueWindowMs = 1500;  // a reject this soon after a fatigue msg = stamina
 constexpr i64   kStaminaWaitMs   = 2000;  // let stamina regen before retrying
-constexpr i64   kMobileWaitMs    = 100;   // let the mobile step aside / shove cooldown
+constexpr i64   kMobileWaitMs    = 500;   // let the mobile step aside / shove cooldown
 constexpr u32   kMobileRepathAfter = 15;  // after N mobile bumps, reroute around it
 constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) after this
 constexpr i64   kMobilesNamesTimeoutMs = 500;
