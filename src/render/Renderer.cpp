@@ -61,11 +61,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     const u32 by0 = static_cast<u32>(minY) / 8, by1 = static_cast<u32>(maxY) / 8;
 
     const int originX = w_ / 2;
-    // Centre on the player INCLUDING his z: a cell at (camX,camY,camZ) must land
-    // at the screen centre. Without the +camZ*kZStep the z=0 ground point is
-    // centred instead, so an elevated player (e.g. z=20 on a foundation) sits
-    // ~camZ*4 px high and the view shows extra tiles below him.
-    const int originY = h_ / 2 + camZ * kZStep;
+    // Centre on the player INCLUDING his z. (sx,sy) is a cell's NORTH vertex,
+    // but the player stands at the cell CENTRE (kHalfTile below the vertex), so
+    // we centre the cell centre of (camX,camY,camZ): +camZ*kZStep accounts for
+    // his elevation, -kHalfTile for the vertex->centre offset. Without this the
+    // z=0 vertex is centred and an elevated player sits high with extra tiles
+    // drawn below him.
+    const int originY = h_ / 2 + camZ * kZStep - kHalfTile;
 
     std::vector<Draw> draws;
     std::vector<map::StaticItem> statics(2048);
