@@ -38,7 +38,10 @@ constexpr usize kMaxInFlight = 1;
 constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 24;
+constexpr u32 kGrassPenalty = 10;
+// Extra A* cost for stepping in/next to foliage statics. This is the primary
+// forest-avoidance signal; land-tile ids alone are too broad and inconsistent.
+constexpr u32 kForestPenalty = 64;
 // Recent-doors cache size and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
 constexpr usize kDoorCacheMax = 20;
@@ -57,6 +60,8 @@ constexpr i64   kFollowReplanMinMs = 120;
 constexpr i64   kFollowProbeMs     = 1200;
 constexpr usize kPathLookaheadSteps = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr usize kRejectAnchorPreviewSteps = 24;
+constexpr u32   kRejectPatchMaxNodesExpanded = 32768;
 constexpr i64   kLookaheadMobileFreshMs = 5000;
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
@@ -124,7 +129,7 @@ Client::Client(const Config& cfg)
       playerBody_(0x0190), lastManualMoveMs_(0),
       botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
       botActive_(false),
-      botReplanCount_(0), botResumeAtMs_(0),
+      botReplanCount_(0), botResumeAtMs_(0), botLastPlanMs_(0),
       rng_(static_cast<u32>(
           std::chrono::steady_clock::now().time_since_epoch().count())),
       doorCellX_(0), doorCellY_(0), doorCellZ_(0),
@@ -1962,7 +1967,7 @@ bool Client::BotLookaheadPatchPath() {
 
         bot::PathOptions opts;
         opts.blacklist = &blacklist_;
-        opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
+        opts.grassPenalty = 0;  // local obstacle patches should stay short
         opts.hasGoalZ = true;
         opts.goalZ = preview[anchor].z;
         opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
@@ -2006,12 +2011,13 @@ bool Client::BotPatchPathAfterReject(u8 rejectedDir) {
         i8 z;
     };
 
-    Anchor anchors[kPathLookaheadSteps + 1];
+    Anchor anchors[kRejectAnchorPreviewSteps + 1];
     usize anchorCount = 0;
     i32 pathX = playerX_;
     i32 pathY = playerY_;
     i8 z = playerZ_;
-    const usize maxPreview = std::min<usize>(oldPath.size(), kPathLookaheadSteps + 1);
+    const usize maxPreview =
+        std::min<usize>(oldPath.size(), kRejectAnchorPreviewSteps + 1);
 
     for (usize i = 0; i < maxPreview; ++i) {
         i32 dx, dy;
@@ -2036,12 +2042,10 @@ bool Client::BotPatchPathAfterReject(u8 rejectedDir) {
 
         bot::PathOptions opts;
         opts.blacklist = &blacklist_;
-        opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
+        opts.grassPenalty = 0;  // local reject patches should stay short
         opts.hasGoalZ = true;
         opts.goalZ = a.z;
-        opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
-        opts.extraBlocked = &Client::LookaheadExtraBlocked;
-        opts.extraBlockedUser = this;
+        opts.maxNodesExpanded = kRejectPatchMaxNodesExpanded;
 
         auto patch = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
                                    a.x, a.y, opts);
@@ -2074,6 +2078,7 @@ bool Client::BotReplanToGoal() {
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind.
     opts.grassPenalty = followActive_ ? 0u : kGrassPenalty;
+    opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
     opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
     opts.goalZ    = botGoalZ_;
 
@@ -2089,12 +2094,15 @@ bool Client::BotReplanToGoal() {
     u64 budget = cheb * cheb * 4 + 65536;
     if (budget > 2000000) budget = 2000000;
     opts.maxNodesExpanded = static_cast<u32>(budget);
+    const i64 planStartMs = NowMs();
     auto path = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
                               botGoalX_, botGoalY_, opts);
+    botLastPlanMs_ = NowMs() - planStartMs;
     if (path.empty()) {
         std::fprintf(stderr,
-            "[bot] no path to (%d,%d) avoiding %zu block(s); stopping\n",
-            botGoalX_, botGoalY_, blacklist_.Count());
+            "[bot] no path to (%d,%d) avoiding %zu block(s) after %lldms; stopping\n",
+            botGoalX_, botGoalY_, blacklist_.Count(),
+            static_cast<long long>(botLastPlanMs_));
         botPath_.clear();
         botActive_ = false;
         return false;
@@ -2266,7 +2274,8 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
                     botRun_ ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
     if (!BotReplanToGoal()) return;
-    std::printf("[bot] path: %zu steps\n", botPath_.size());
+    std::printf("[bot] path: %zu steps (%lldms)\n",
+                botPath_.size(), static_cast<long long>(botLastPlanMs_));
     BotPumpMoves();
 }
 

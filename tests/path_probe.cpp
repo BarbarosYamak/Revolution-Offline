@@ -202,44 +202,65 @@ int main(int argc, char** argv) {
     }
 
     // ---- A* cost: total path cost = sum of step costs (10 straight / 14
-    // diagonal) plus the grass penalty per open-grass step. Run penalty=0
-    // (true geometric route, cheap to search) and penalty=6 (what the live
-    // client actually pays / explores).
-    auto isGrass = [](u16 id) { return id >= 0x0003 && id <= 0x0006; };
+    // diagonal) plus grass and foliage penalties. Run with no bias and with
+    // the live bot's current terrain bias.
+    auto isGrass = [](u16 id) {
+        return (id >= 0x0003 && id <= 0x0006) ||
+               (id >= 192 && id <= 219) ||
+               id == 239;
+    };
     bot::PathStats st;
-    auto measure = [&](u32 penalty, u32 cap) {
+    auto measure = [&](u32 grassPenalty, u32 foliagePenalty, u32 cap) {
         bot::PathStats s{};
         bot::PathOptions opts;
         opts.maxNodesExpanded = cap;
         opts.stats        = &s;
         opts.hasGoalZ     = hasGoalZ;
         opts.goalZ        = (i32)gz;
-        opts.grassPenalty = penalty;
+        opts.grassPenalty = grassPenalty;
+        opts.foliagePenalty = foliagePenalty;
         const auto pp = bot::FindPath(world, (i32)sx,(i32)sy,(i8)sz,
                                       (i32)gx,(i32)gy, opts);
         i32 x=(i32)sx, y=(i32)sy; i8 z=(i8)sz;
-        u64 geo=0, total=0; u32 grassSteps=0, diag=0;
+        i32 minX=x, maxX=x, minY=y, maxY=y;
+        u64 geo=0, total=0; u32 grassSteps=0, foliageSteps=0, diag=0;
         for (u8 d : pp) {
             i32 dx, dy; bot::DirToDelta(d, &dx, &dy);
             const bool isDiag = (dx != 0 && dy != 0);
             const u32 base = isDiag ? 14u : 10u;
             x += dx; y += dy;
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
             world::WalkQuery q{}; q.x=(u32)x; q.y=(u32)y; q.fromZ=z;
             const auto r = world.QueryCell(q);
             if (r.walkable) z = r.standZ;
             geo += base; total += base;
-            if (penalty && isGrass(r.landTileId)) { total += penalty; ++grassSteps; }
+            if (grassPenalty && isGrass(r.landTileId)) {
+                total += grassPenalty;
+                ++grassSteps;
+            }
+            if (foliagePenalty && r.nearFoliage) {
+                total += foliagePenalty;
+                ++foliageSteps;
+            }
             if (isDiag) ++diag;
         }
-        std::printf("penalty=%-2u cap=%-8u %-9s steps=%zu (diag=%u) grassSteps=%u "
-                    "geoCost=%llu pathCost=%llu expanded=%u closest=(%d,%d,%d) h=%u\n",
-                    penalty, cap, pp.empty() ? "(NO PATH)" : "OK", pp.size(), diag,
-                    grassSteps, (unsigned long long)geo, (unsigned long long)total,
-                    s.expanded, s.closestX, s.closestY, (int)s.closestZ, s.closestH);
+        std::printf("grass=%-2u foliage=%-2u cap=%-8u %-9s "
+                    "steps=%zu (diag=%u) grassSteps=%u foliageSteps=%u "
+                    "geoCost=%llu pathCost=%llu expanded=%u "
+                    "bbox=[%d..%d,%d..%d] closest=(%d,%d,%d) h=%u\n",
+                    grassPenalty, foliagePenalty, cap,
+                    pp.empty() ? "(NO PATH)" : "OK", pp.size(), diag,
+                    grassSteps, foliageSteps,
+                    (unsigned long long)geo, (unsigned long long)total,
+                    s.expanded, minX, maxX, minY, maxY,
+                    s.closestX, s.closestY, (int)s.closestZ, s.closestH);
         st = s;
     };
-    measure(0, 4000000);
-    measure(6, 8000000);
+    measure(0, 0, 4000000);
+    measure(10, 64, 8000000);
     std::printf("\n");
 
     Neighbors(world, "FRONTIER", st.closestX, st.closestY, st.closestZ);

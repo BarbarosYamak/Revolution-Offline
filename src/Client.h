@@ -249,6 +249,7 @@ private:
     bot::Blacklist blacklist_;
     u32 botReplanCount_;
     i64 botResumeAtMs_;
+    i64 botLastPlanMs_;
     std::mt19937 rng_;
 
     // Recent doors seen in 0x1A object packets (dynamic server objects, often

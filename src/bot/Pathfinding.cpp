@@ -78,7 +78,9 @@ u8 DirFromDelta(i32 dx, i32 dy) {
 // Tunable starting set (common Britannia grass); a soft penalty, so an
 // incomplete set only weakens the bias — it never produces a wrong path.
 bool IsGrassLikeTile(u16 id) {
-    return (id >= 0x0003 && id <= 0x0006) || (id >= 197 && id <= 199);
+    return (id >= 0x0003 && id <= 0x0006) ||
+           (id >= 192 && id <= 219) ||
+           id == 239;
 }
 
 }
@@ -376,6 +378,8 @@ std::vector<u8> FindPath(uo::world::World& world,
             u32 ng = n.g + step;
             if (opts.grassPenalty != 0 && IsGrassLikeTile(wr.landTileId))
                 ng += opts.grassPenalty;
+            if (opts.foliagePenalty != 0 && wr.nearFoliage)
+                ng += opts.foliagePenalty;
             if (opts.stats && nx == gx && ny == gy)
                 opts.stats->reachedGoalColumn = true;
 
