@@ -12,9 +12,14 @@ namespace uo::tiledata {
 //                   = 608256 bytes; 16384 entries total
 //   Total file:     1036288 bytes
 //
-// Flag bits (`TileFlags`) are documented in tons of public UO refs;
-// included here as a non-exhaustive enum so callers don't need to
-// reproduce magic constants.
+// Flag bits (`TileFlags`). The low/mid bits (0x1..0x00800000) follow the
+// standard MUL layout. The HIGH bits (>= 0x01000000), however, use this
+// client's PRE-AOS ("client206") layout, which is shifted one bit UP from the
+// modern AOS layout — verified by sampling tiledata.mul:
+//   0x10000000 = Roof  (AOS puts Roof at 0x08000000)
+//   0x20000000 = Door  (AOS puts Door at 0x10000000)
+//   0x40000000 = StairBack,  0x80000000 = StairRight
+// (NB: trees are NOT flagged Foliage in this data — they're just Impassable.)
 
 constexpr u32 kLandCount   = 16384;
 constexpr u32 kStaticCount = 16384;
@@ -42,13 +47,15 @@ enum TileFlags : u32 {
     kFlagContainer    = 0x00200000,
     kFlagWearable     = 0x00400000,
     kFlagLightSource  = 0x00800000,
-    kFlagAnimation    = 0x01000000,
-    kFlagHoverOver    = 0x02000000,
-    kFlagArmor        = 0x04000000,
-    kFlagRoof         = 0x08000000,
-    kFlagDoor         = 0x10000000,
-    kFlagStairBack    = 0x20000000,
-    kFlagStairRight   = 0x40000000,
+    kFlagAnimation    = 0x01000000,   // animated (traps, ovens, piers)
+    kFlagHoverOver    = 0x02000000,   // hover-over / no-diagonal
+    // -- pre-AOS high flags (shifted +1 bit vs AOS), verified vs tiledata.mul --
+    kFlagWhole        = 0x04000000,   // walls / solid structural pieces (AOS: Armor)
+    kFlagWearable2    = 0x08000000,   // clothing, instruments (equipable/held)
+    kFlagRoof         = 0x10000000,   // roof / canopy (thatch, shingles, tent)
+    kFlagDoor         = 0x20000000,   // doors / secret doors
+    kFlagStairBack    = 0x40000000,   // stairs (back face)
+    kFlagStairRight   = 0x80000000,   // stairs (right face)
 };
 
 // On-file land tile is 26 bytes; in-memory keep it 28 to mirror the

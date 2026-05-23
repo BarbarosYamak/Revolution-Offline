@@ -24,6 +24,7 @@ namespace uo::map      { class Map; }
 namespace uo::world    { class World; }
 namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
+namespace uo::anim     { class AnimLoader; }
 namespace uo::render   { class Renderer; }
 
 namespace uo {
@@ -70,6 +71,8 @@ public:
         const char* artPath;          // art.mul (tile bitmaps)
         const char* texIdxPath;       // texidx.mul (land texture index)
         const char* texPath;          // texmaps.mul (land textures, sloped tiles)
+        const char* animIdxPath;      // anim.idx (body animation index)
+        const char* animPath;         // anim.mul (body animations, still frames)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
         int         renderScale;      // integer upscale factor    (<=0 -> 2)
@@ -156,6 +159,7 @@ private:
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
     void BotTick();           // called from PumpUntilDisconnected
     void RenderTick();        // draws the world window (no-op unless enabled)
+    void HandleManualWalk();  // arrow-key steering from the render window
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
@@ -220,9 +224,12 @@ private:
     // bot running (cfg_.enableRenderer is cleared).
     std::unique_ptr<uo::art::ArtLoader>      art_;
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
+    std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     bool renderInit_;
     bool renderWindowOpen_;
+    u16  playerBody_;           // local player body graphic for the renderer
+    i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
     std::deque<u8> botPath_;    // directions still to execute
     i32 botGoalX_;
     i32 botGoalY_;
@@ -243,7 +250,7 @@ private:
     // a tile is a wall: if a door sits there we double-click it open + retry.
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
-    struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; };
+    struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; };
     std::unordered_map<u32, ItemObj> items_;
 
     struct DoorObj { u32 serial; u16 itemId; i32 x; i32 y; i8 z; };
@@ -258,12 +265,12 @@ private:
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
     // wall — such tiles are never blacklisted.
-    struct MobileObj { u32 serial; i32 x; i32 y; i8 z; u8 dir; i64 seenMs; };
+    struct MobileObj { u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; i64 seenMs; };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
-    void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir);
+    void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body);
     bool followActive_;
     u32  followSerial_;
     u32  followDistance_;

@@ -18,7 +18,7 @@ if(MSVC)
         _WIN32_WINNT=0x0601
     )
 else()
-    add_compile_options(-Wall -Wextra -fno-exceptions -fno-rtti)
+    add_compile_options(-Wall -Wextra -fno-exceptions -fno-rtti -Ofast)
 endif()
 
 # Sources are added incrementally as M1 phases land.
@@ -53,6 +53,7 @@ set(UO_MUL_SOURCES
     src/mul/World.cpp
     src/mul/ArtLoader.cpp
     src/mul/TexmapLoader.cpp
+    src/mul/AnimLoader.cpp
 )
 add_library(uo_mul STATIC ${UO_MUL_SOURCES})
 target_include_directories(uo_mul PUBLIC include src)

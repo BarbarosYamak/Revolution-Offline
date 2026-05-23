@@ -29,6 +29,8 @@ int main(int argc, char** argv) {
     cfg.artPath          = "E:/uo/art.mul";
     cfg.texIdxPath       = "E:/uo/texidx.mul";
     cfg.texPath          = "E:/uo/texmaps.mul";
+    cfg.animIdxPath      = "E:/uo/anim.idx";
+    cfg.animPath         = "E:/uo/anim.mul";
     cfg.renderWidth      = 800;   // framebuffer; window is renderScale x larger
     cfg.renderHeight     = 600;
     cfg.renderScale      = 1;     // 2x upscale (MiniFB does it for free)

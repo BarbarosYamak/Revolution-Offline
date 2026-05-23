@@ -10,6 +10,7 @@
 #include "uo/world.h"
 #include "uo/art.h"
 #include "uo/texmap.h"
+#include "uo/anim.h"
 #include "render/Renderer.h"
 #include "win32/MiniFB.h"
 
@@ -64,6 +65,19 @@ constexpr i64   kFollowProbeMs     = 1200;
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
 
+// Inverse of bot::DirToDelta: a unit (dx,dy) world step -> UO facing 0..7
+// (0=N(0,-1), 2=E(+1,0), 4=S(0,+1), 6=W(-1,0); odds are the diagonals).
+u8 DeltaToDir(int dx, int dy) {
+    if (dx == 0 && dy < 0)  return 0;  // N
+    if (dx > 0 && dy < 0)   return 1;  // NE
+    if (dx > 0 && dy == 0)  return 2;  // E
+    if (dx > 0 && dy > 0)   return 3;  // SE
+    if (dx == 0 && dy > 0)  return 4;  // S
+    if (dx < 0 && dy > 0)   return 5;  // SW
+    if (dx < 0 && dy == 0)  return 6;  // W
+    return 7;                          // NW
+}
+
 // Stringify u32 IPv4 in host order to dotted notation.
 void IpToString(u32 host_ip, char* out, usize cap) {
     std::snprintf(out, cap, "%u.%u.%u.%u",
@@ -110,6 +124,7 @@ Client::Client(const Config& cfg)
       botRun_(true),
       worldLoaded_(false),
       renderInit_(false), renderWindowOpen_(false),
+      playerBody_(0x0190), lastManualMoveMs_(0),
       botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
       botActive_(false),
       botReplanCount_(0), botResumeAtMs_(0),
@@ -835,11 +850,14 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 
     if (!avail(2)) return;
     const u16 g = LoadBE16(data + p); p += 2;
-    const bool stackable = (g & 0x8000) != 0;
+    // graphic high bit => a graphic-increment byte (itemIdOffset) follows
+    // immediately; it selects a door's open/closed frame (drawn = id + offset).
+    const bool hasOffset = (g & 0x8000) != 0;
     const u16 itemId = static_cast<u16>(g & 0x3FFF);
 
-    if (stackable) { if (!avail(1)) return; p += 1; }
-    if (hasAmount) { if (!avail(2)) return; p += 2; }
+    u8 gfxOffset = 0;
+    if (hasOffset) { if (!avail(1)) return; gfxOffset = data[p]; p += 1; }
+    if (hasAmount) { if (!avail(2)) return; p += 2; }   // stack count
 
     if (!avail(2)) return;
     const u16 xw = LoadBE16(data + p); p += 2;
@@ -850,13 +868,16 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     const u16 yw = LoadBE16(data + p); p += 2;
     const i32 y = yw & 0x3FFF;
 
+    // direction (facing) byte — present when x has 0x8000. It is the entity's
+    // facing, NOT a graphic offset, so it must be skipped here, not added to
+    // the art (adding it is what turned lamps into logs).
     if (hasDir) { if (!avail(1)) return; p += 1; }
     if (!avail(1)) return;
     const i8 z = static_cast<i8>(data[p]);
 
     // Track every world item so the renderer can draw dynamic server objects
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
-    items_[serial] = ItemObj{itemId, x, y, z};
+    items_[serial] = ItemObj{itemId, x, y, z, gfxOffset};
 
     // Door-open confirmation: after we send an open command we wait for the
     // door to actually swing. The server announces that by updating the door
@@ -940,8 +961,14 @@ void Client::RememberMobileName(u32 serial, const char* name) {
     mobileNames_[serial] = name;
 }
 
-void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir) {
-    if (serial == playerSerial_) return;  // never treat ourselves as an obstacle
+void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
+    if (serial == playerSerial_) {
+        // Don't treat ourselves as an obstacle, but do learn our own body so
+        // the renderer can draw the local player (and facing for arrow walk).
+        if (body) playerBody_ = body;
+        playerFacing_ = static_cast<u8>(dir & 0x07);
+        return;
+    }
     const i64 now = NowMs();
     for (auto& m : mobileCache_) {
         if (m.serial == serial) {
@@ -949,19 +976,20 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir) {
             m.y = y;
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
+            if (body) m.body = body;
             m.seenMs = now;
             return;
         }
     }
     if (mobileCache_.size() >= kMobileCacheMax) mobileCache_.pop_front();
-    mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07), now});
+    mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07), body, now});
 }
 
-// 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), ...
+// 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), dir(1) ...
 void Client::OnMobileMove(const u8* data, usize size) {
     if (size < 13) return;
     UpdateMobile(LoadBE32(data + 1), LoadBE16(data + 7), LoadBE16(data + 9),
-                 static_cast<i8>(data[11]), data[12]);
+                 static_cast<i8>(data[11]), data[12], LoadBE16(data + 5));
 }
 
 // 0x78 Mobile Incoming (variable): cmd, len(2), serial(4), body(2), x(2),
@@ -969,7 +997,7 @@ void Client::OnMobileMove(const u8* data, usize size) {
 void Client::OnMobileIncoming(const u8* data, usize size) {
     if (size < 15) return;
     UpdateMobile(LoadBE32(data + 3), LoadBE16(data + 9), LoadBE16(data + 11),
-                 static_cast<i8>(data[13]), data[14]);
+                 static_cast<i8>(data[13]), data[14], LoadBE16(data + 7));
 }
 
 // 0x98 AllNames / MobName reply:
@@ -1706,6 +1734,13 @@ void Client::RenderTick() {
             cfg_.enableRenderer = false;
             return;
         }
+        // Body animations are optional — without them mobiles just aren't drawn.
+        anim_ = std::make_unique<anim::AnimLoader>();
+        if (!cfg_.animIdxPath || !cfg_.animPath ||
+            !anim_->Open(cfg_.animIdxPath, cfg_.animPath)) {
+            std::fprintf(stderr, "[render] anim MULs unavailable; mobiles won't draw\n");
+            anim_.reset();
+        }
         const int rw = cfg_.renderWidth  > 0 ? cfg_.renderWidth  : 800;
         const int rh = cfg_.renderHeight > 0 ? cfg_.renderHeight : 600;
         const int sc = cfg_.renderScale  > 0 ? cfg_.renderScale  : 1;
@@ -1722,13 +1757,27 @@ void Client::RenderTick() {
 
     if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
 
+    HandleManualWalk();
+
     std::vector<render::DynItem> dyn;
     dyn.reserve(items_.size());
     for (const auto& kv : items_)
-        dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y, kv.second.z});
+        dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y,
+                       kv.second.z, kv.second.gfxOffset});
+
+    // Mobiles: nearby NPCs/players from the cache plus the local player. The
+    // player carries isPlayer=true so the renderer can compute the roof cutoff.
+    std::vector<render::Mob> mobs;
+    mobs.reserve(mobileCache_.size() + 1);
+    for (const auto& m : mobileCache_) {
+        if (!m.body) continue;
+        mobs.push_back({m.body, m.x, m.y, m.z, m.dir, false});
+    }
+    mobs.push_back({playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true});
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
-                           playerX_, playerY_, dyn.data(), dyn.size());
+                           playerX_, playerY_, dyn.data(), dyn.size(),
+                           anim_.get(), mobs.data(), mobs.size());
     if (!mfb_update(renderer_->Frame(), 0)) {
         // User closed the window — stop drawing, keep the bot running.
         mfb_close();
@@ -1736,6 +1785,57 @@ void Client::RenderTick() {
         cfg_.enableRenderer = false;
         std::printf("[render] window closed; rendering disabled\n");
     }
+}
+
+// Arrow keys in the render window steer the player on foot. Screen-aligned to
+// the iso axes (up = north-west on screen = the (-1,-1) world step), with
+// diagonals when two keys are held. Manual input cancels any active bot path
+// so we don't fight the autopilot. Throttled to the normal walk cadence.
+void Client::HandleManualWalk() {
+    const char* keys = mfb_keystatus();
+    if (!keys) return;
+
+    constexpr int kVkLeft = 0x25, kVkUp = 0x26, kVkRight = 0x27, kVkDown = 0x28;
+    const bool up = keys[kVkUp], down = keys[kVkDown];
+    const bool left = keys[kVkLeft], right = keys[kVkRight];
+    if (!(up || down || left || right)) return;
+
+    // Arrows map to world CARDINAL directions (Up=North): a single press is a
+    // straight N/E/S/W world step (not a diagonal). Because the view is iso,
+    // a cardinal world step looks diagonal on screen — that's expected. Two
+    // keys combine into the 4 diagonal facings.
+    int dx = 0, dy = 0;
+    if (up)    { dy -= 1; }   // North
+    if (down)  { dy += 1; }   // South
+    if (left)  { dx -= 1; }   // West
+    if (right) { dx += 1; }   // East
+    if (dx == 0 && dy == 0) return;   // opposing keys cancel
+
+    // Take over from the bot.
+    if (botActive_ || !botPath_.empty()) {
+        botActive_ = false;
+        botPath_.clear();
+        followActive_ = false;
+    }
+    if (!pendingMoves_.empty()) return;   // wait for the prior step to ack
+
+    const i64 now = NowMs();
+    const u32 gap = botRun_ ? runThrottleMs_ : walkThrottleMs_;
+    if (lastManualMoveMs_ != 0 && now - lastManualMoveMs_ < static_cast<i64>(gap))
+        return;
+
+    const u8 dir = DeltaToDir(dx, dy);
+    const bool wasStep = (dir == playerFacing_);   // turn first, then step
+    const u8 seq  = NextSeq();
+    const u8 wire = botRun_ ? static_cast<u8>(dir | 0x80) : dir;
+    u8 buf[16];
+    usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
+    if (!Send(buf, n, "0x02 Move (manual arrow)")) return;
+    pendingMoves_.push_back({seq, dir, wasStep, now});
+    lastMoveSentMs_ = now;
+    lastManualMoveMs_ = now;
+    if (wasStep) BotPredictStep(dir);
+    else         playerFacing_ = dir;
 }
 
 i64 Client::NowMs() const {

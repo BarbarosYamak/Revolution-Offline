@@ -1,6 +1,9 @@
 #include "render/Renderer.h"
 
 #include <algorithm>
+#include <climits>
+#include <cstdlib>
+#include <unordered_set>
 
 namespace uo::render {
 
@@ -39,7 +42,9 @@ Renderer::Renderer(int width, int height)
 void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
                            i32 camX, i32 camY,
-                           const DynItem* items, usize nItems) {
+                           const DynItem* items, usize nItems,
+                           anim::AnimLoader* anim,
+                           const Mob* mobs, usize nMobs) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
 
     // Cells whose screen position can land on-screen. The margin pads for tall
@@ -60,6 +65,94 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
 
     std::vector<Draw> draws;
     std::vector<map::StaticItem> statics(2048);
+
+    // Roof/floor cutoff (Visibility_ComputeFogDistance @0x404A00 +
+    // RoofVisibility_FloodFillConnectedRoofs @0x404900). When the player is
+    // under a roof the client hides the WHOLE connected roof, not just the
+    // tiles right above his head: it flood-fills the connected roof and takes
+    // its MINIMUM z as the ceiling, then culls everything at/above that z
+    // (WorldObject_IsVisible @0x404CA0). 127/none => draw everything (outdoors).
+    //
+    // Roof/canopy tiles (thatch, shingles, tent) carry the Roof flag
+    // (0x10000000 in this client era; see tiledata.h). Upper-floor surfaces
+    // carry the Surface flag (0x200).
+    constexpr u32 kRoofOverhead = tiledata::kFlagRoof;
+    int ceilingZ = INT_MAX;
+    const Mob* player = nullptr;
+    for (usize i = 0; i < nMobs; ++i)
+        if (mobs[i].isPlayer) { player = &mobs[i]; break; }
+    if (player) {
+        const int pz = player->z;
+        std::vector<map::StaticItem> rbuf(2048);
+
+        // Lowest roof tile (bit 0x10000000) in a cell; if ref != INT_MIN, only
+        // tiles within 6 z of it count (so the fill follows one sloped roof and
+        // won't jump to a taller neighbouring structure). INT_MIN = none.
+        auto roofZAt = [&](i32 cx, i32 cy, int ref) -> int {
+            if (cx < 0 || cy < 0) return INT_MIN;
+            u32 nn = 0;
+            if (!map.ReadStatics(static_cast<u32>(cx) / 8, static_cast<u32>(cy) / 8,
+                                 rbuf.data(), static_cast<u32>(rbuf.size()), &nn))
+                return INT_MIN;
+            const u8 lx = static_cast<u8>(cx & 7), ly = static_cast<u8>(cy & 7);
+            int best = INT_MIN;
+            for (u32 i = 0; i < nn; ++i) {
+                const map::StaticItem& s = rbuf[i];
+                if (s.cellX != lx || s.cellY != ly) continue;
+                if (!(td.Static(s.itemId).flags & kRoofOverhead)) continue;
+                if (ref != INT_MIN && std::abs(static_cast<int>(s.z) - ref) > 6) continue;
+                if (best == INT_MIN || s.z < best) best = s.z;
+            }
+            return best;
+        };
+
+        // Flood-fill the connected roof (4-neighbour, each step within 6 z),
+        // seeded from the player's own + SE cell, accumulating the minimum z.
+        struct Cell { i32 x, y; int ref; };
+        std::vector<Cell> stack;
+        std::unordered_set<u64> visited;
+        auto seed = [&](i32 cx, i32 cy) {
+            const int rz = roofZAt(cx, cy, INT_MIN);
+            if (rz != INT_MIN && rz > pz + 14) stack.push_back({cx, cy, INT_MIN});
+        };
+        seed(player->x, player->y);
+        seed(player->x + 1, player->y + 1);
+
+        int minRoof = INT_MAX;
+        usize guard = 0;
+        while (!stack.empty() && guard++ < 16384u) {
+            const Cell c = stack.back();
+            stack.pop_back();
+            const u64 key = (static_cast<u64>(static_cast<u32>(c.x)) << 32) |
+                            static_cast<u32>(c.y);
+            if (!visited.insert(key).second) continue;
+            const int rz = roofZAt(c.x, c.y, c.ref);
+            if (rz == INT_MIN) continue;
+            if (rz < minRoof) minRoof = rz;
+            stack.push_back({c.x - 1, c.y, rz});
+            stack.push_back({c.x + 1, c.y, rz});
+            stack.push_back({c.x, c.y - 1, rz});
+            stack.push_back({c.x, c.y + 1, rz});
+        }
+        if (minRoof != INT_MAX) ceilingZ = std::max(minRoof, pz + 16);
+
+        // Plain upper floor directly overhead (multi-storey): lowest Surface
+        // tile in the player's own cell above his head lowers the ceiling too.
+        u32 n = 0;
+        if (map.ReadStatics(static_cast<u32>(player->x) / 8, static_cast<u32>(player->y) / 8,
+                            statics.data(), static_cast<u32>(statics.size()), &n)) {
+            const u8 lx = static_cast<u8>(player->x & 7), ly = static_cast<u8>(player->y & 7);
+            for (u32 i = 0; i < n; ++i) {
+                const map::StaticItem& s = statics[i];
+                if (s.cellX != lx || s.cellY != ly) continue;
+                if (s.z <= pz + 14) continue;
+                if ((td.Static(s.itemId).flags & tiledata::kFlagSurface) &&
+                    std::max(static_cast<int>(s.z), pz + 16) < ceilingZ)
+                    ceilingZ = std::max(static_cast<int>(s.z), pz + 16);
+            }
+        }
+    }
+    auto culled = [&](int z) { return z >= ceilingZ; };
 
     // Vertical reach of z offsets, for the per-tile cull (z is a signed byte).
     const int kZPad = 128 * kZStep;
@@ -175,6 +268,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                                 static_cast<u32>(statics.size()), &n)) {
                 for (u32 i = 0; i < n; ++i) {
                     const map::StaticItem& s = statics[i];
+                    if (culled(s.z)) continue;   // hidden by the roof cutoff
                     const i32 wx = static_cast<i32>(bx) * 8 + s.cellX;
                     const i32 wy = static_cast<i32>(by) * 8 + s.cellY;
                     const art::Sprite* sp = art.Static(s.itemId);
@@ -196,10 +290,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     }
 
     // Dynamic server items (lamp posts, doors, ...) — drawn as static art,
-    // interleaved into the same painter's order as map statics.
+    // interleaved into the same painter's order as map statics. The drawn
+    // graphic is itemId + gfxOffset: a door stores a base graphic plus a
+    // graphic-increment that selects its open/closed/hinge frame (sub_405290).
     for (usize ii = 0; ii < nItems; ++ii) {
         const DynItem& it = items[ii];
-        const art::Sprite* sp = art.Static(it.itemId);
+        if (culled(it.z)) continue;
+        const art::Sprite* sp = art.Static(static_cast<u16>(it.itemId + it.gfxOffset));
         if (!sp) continue;
         const i32 dxw = it.x - camX, dyw = it.y - camY;
         const int sx = originX + (dxw - dyw) * kHalfTile;
@@ -212,6 +309,30 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.dx = sx - sp->width / 2;
         d.dy = sy + kTile - sp->height;
         draws.push_back(d);
+    }
+
+    // Mobiles (players/NPCs) — a single still body frame, no animation yet.
+    // Interleaved by z with statics, like the client's draw buckets. The
+    // 64x128 anim canvas anchors at (kAnchorX, kAnchorY); we place that anchor
+    // at the tile floor (cell centre). Equipment/mounts/hue are out of scope.
+    if (anim) {
+        for (usize mi = 0; mi < nMobs; ++mi) {
+            const Mob& m = mobs[mi];
+            if (culled(m.z)) continue;
+            const anim::Frame* fr = anim->Body(m.body, m.dir);
+            if (!fr) continue;
+            const i32 dxw = m.x - camX, dyw = m.y - camY;
+            const int sx = originX + (dxw - dyw) * kHalfTile;
+            const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep;
+            Draw d{};
+            d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.order = 2;
+            d.quad = false;
+            d.src = fr->px.data(); d.sw = anim::Frame::kW; d.sh = anim::Frame::kH;
+            d.transparent = true;
+            d.dx = sx - anim::Frame::kAnchorX;
+            d.dy = sy + kHalfTile - anim::Frame::kAnchorY;  // feet at cell centre
+            draws.push_back(d);
+        }
     }
 
     // Order like the client (World_RenderEntities @0x401E90): cells back-to-front
