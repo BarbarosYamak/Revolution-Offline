@@ -1,3 +1,5 @@
+IMPORTANT: While user talk to you using Russian you should talk back to user using only English
+
 # Repository Guidelines
 
 ## Project Structure & Module Organization
