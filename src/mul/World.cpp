@@ -6,6 +6,8 @@ namespace uo::world {
 
 namespace td = uo::tiledata;
 
+constexpr i32 kMaxLandStepUp = 2;
+
 // A static is a "surface" if it has Surface or Bridge flag.
 bool World::StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const {
     const auto& s = td_.Static(itemId);
@@ -52,7 +54,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     }
 
     // Collect candidate standing surfaces (their top faces) at this cell.
-    struct Candidate { i32 top; };
+    struct Candidate { i32 top; bool land; };
     Candidate cands[64];
     u32 ncands = 0;
 
@@ -61,7 +63,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     const auto& landTile = td_.Land(land.tileId);
     const bool landBlocked =
         (landTile.flags & (td::kFlagImpassable | td::kFlagWet)) != 0;
-    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z)};
+    if (!landBlocked && ncands < 64) cands[ncands++] = {static_cast<i32>(land.z), true};
 
     u32 cellStaticCount = 0;
     bool nearFoliage = false;
@@ -79,13 +81,14 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         ++cellStaticCount;
         i8 top;
         if (StaticSurfaceTop(s.itemId, s.z, &top)) {
-            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top)};
+            if (ncands < 64) cands[ncands++] = {static_cast<i32>(top), false};
         }
     }
     r.staticCount  = cellStaticCount;
     r.nearFoliage  = nearFoliage;
 
     const i32 fromZ = static_cast<i32>(q.fromZ);
+    const i32 targetZ = q.hasPreferredZ ? static_cast<i32>(q.preferredZ) : fromZ;
 
     // Pick the best candidate: walkable, within step range, with clearance.
     bool best_found = false;
@@ -95,6 +98,7 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
     for (u32 ci = 0; ci < ncands; ++ci) {
         const i32 sz = cands[ci].top;
         const i32 dz = sz - fromZ;
+        if (q.hasPreferredZ && cands[ci].land && dz > kMaxLandStepUp) continue;
         if (dz > q.maxStepUp) continue;
         if (-dz > q.maxStepDown) continue;
 
@@ -114,6 +118,15 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
                 if (cj == ci) continue;
                 const i32 oz = cands[cj].top;
                 if (oz > fromZ && oz < sz) shelfBetween = true;
+            }
+            if (shelfBetween) continue;
+        }
+        if (dz < 0) {
+            bool shelfBetween = false;
+            for (u32 cj = 0; cj < ncands && !shelfBetween; ++cj) {
+                if (cj == ci) continue;
+                const i32 oz = cands[cj].top;
+                if (oz < fromZ && oz > sz) shelfBetween = true;
             }
             if (shelfBetween) continue;
         }
@@ -151,11 +164,12 @@ WalkResult World::QueryCell(const WalkQuery& q) const {
         }
         if (blocked) continue;
 
-        const i32 abs_dz = dz < 0 ? -dz : dz;
-        if (!best_found || abs_dz < best_dist) {
+        const i32 targetDz = sz - targetZ;
+        const i32 abs_target_dz = targetDz < 0 ? -targetDz : targetDz;
+        if (!best_found || abs_target_dz < best_dist) {
             best_found = true;
             best_z     = sz;
-            best_dist  = abs_dz;
+            best_dist  = abs_target_dz;
         }
     }
 

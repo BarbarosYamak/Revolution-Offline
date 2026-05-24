@@ -16,7 +16,7 @@ namespace uo::world {
 //           surface z = static.z + static.height (top face).
 //
 //   - Step limits (used by the client to refuse local moves):
-//       up   <= +2 z-units
+//       up   <= +12 z-units on stair-like surfaces
 //       down <= -12 z-units
 //
 //   - Vertical clearance:
@@ -31,12 +31,13 @@ struct WalkQuery {
     u32 x;
     u32 y;
     i8  fromZ;
-    // Classic UO allows up to +12 step up onto a Surface tile (stairs,
-    // platforms). Pure +2 limit is too strict and prevents escape from
-    // sub-z pockets the server places us in after teleports/kicks.
+    // Loose upper limit lets A* climb stair stacks; QueryCell still picks a
+    // concrete surface and rejects blocked headroom.
     i8  maxStepUp   = 12;
     i8  maxStepDown = 12;
     u8  charHeight  = 16;
+    bool hasPreferredZ = false;
+    i8   preferredZ = 0;
 };
 
 struct WalkResult {

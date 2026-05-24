@@ -110,7 +110,15 @@ std::vector<u8> FindPath(uo::world::World& world,
 
         if (opts.stats) {
             const u32 h = Heuristic(n.x, n.y, gx, gy);
-            if (h < opts.stats->closestH) {
+            bool betterClosest = h < opts.stats->closestH;
+            if (!betterClosest && h == opts.stats->closestH && opts.hasGoalZ) {
+                const i32 curDz = static_cast<i32>(n.z) - opts.goalZ;
+                const i32 bestDz = static_cast<i32>(opts.stats->closestZ) - opts.goalZ;
+                const i32 curAbsDz = curDz < 0 ? -curDz : curDz;
+                const i32 bestAbsDz = bestDz < 0 ? -bestDz : bestDz;
+                betterClosest = curAbsDz < bestAbsDz;
+            }
+            if (betterClosest) {
                 opts.stats->closestH = h;
                 opts.stats->closestX = n.x;
                 opts.stats->closestY = n.y;
@@ -147,6 +155,8 @@ std::vector<u8> FindPath(uo::world::World& world,
             wq.maxStepUp  = static_cast<i8>(opts.maxStepUp);
             wq.maxStepDown= static_cast<i8>(opts.maxStepDown);
             wq.charHeight = opts.charHeight;
+            wq.hasPreferredZ = opts.hasGoalZ;
+            wq.preferredZ    = opts.goalZ;
             const auto wr = world.QueryCell(wq);
             if (!wr.walkable) continue;
 
@@ -170,12 +180,16 @@ std::vector<u8> FindPath(uo::world::World& world,
                 wqA.maxStepUp = wq.maxStepUp;
                 wqA.maxStepDown = wq.maxStepDown;
                 wqA.charHeight = wq.charHeight;
+                wqA.hasPreferredZ = wq.hasPreferredZ;
+                wqA.preferredZ = wq.preferredZ;
                 wqB.x = static_cast<u32>(n.x);
                 wqB.y = static_cast<u32>(n.y + dy);
                 wqB.fromZ = n.z;
                 wqB.maxStepUp = wq.maxStepUp;
                 wqB.maxStepDown = wq.maxStepDown;
                 wqB.charHeight = wq.charHeight;
+                wqB.hasPreferredZ = wq.hasPreferredZ;
+                wqB.preferredZ = wq.preferredZ;
                 if (!world.QueryCell(wqA).walkable) continue;
                 if (!world.QueryCell(wqB).walkable) continue;
             }

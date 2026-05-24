@@ -36,10 +36,8 @@ struct PathStats {
 
 struct PathOptions {
     u32 maxIterations = 8192*4; // Sure to be enought
-    // Classic UO step rules: walking allows +2 over flat ground but
-    // up to +12 onto stair-like Surface tiles. We use the loose upper
-    // limit so A* can climb out of low pockets the server placed us
-    // in via teleport / kick.
+    // Loose upper limit lets A* climb stair stacks; QueryCell still picks a
+    // concrete surface and rejects blocked headroom.
     u8  maxStepUp     = 12;
     u8  maxStepDown   = 12;
     u8  charHeight    = 16;

@@ -236,6 +236,21 @@ int main(int argc, char** argv) {
                     penalty, cap, pp.empty() ? "(NO PATH)" : "OK", pp.size(), diag,
                     grassSteps, (unsigned long long)geo, (unsigned long long)total,
                     s.expanded, s.closestX, s.closestY, (int)s.closestZ, s.closestH);
+        if (!pp.empty() && pp.size() <= 64) {
+            x=(i32)sx; y=(i32)sy; z=(i8)sz;
+            std::printf("  route:");
+            for (u8 d : pp) {
+                i32 dx, dy; bot::DirToDelta(d, &dx, &dy);
+                x += dx; y += dy;
+                world::WalkQuery q{}; q.x=(u32)x; q.y=(u32)y; q.fromZ=z;
+                q.hasPreferredZ = hasGoalZ;
+                q.preferredZ = (i8)gz;
+                const auto r = world.QueryCell(q);
+                if (r.walkable) z = r.standZ;
+                std::printf(" %s(%d,%d,%d)", kDirName[d], x, y, (int)z);
+            }
+            std::printf("\n");
+        }
         st = s;
     };
     measure(0, 4000000);
