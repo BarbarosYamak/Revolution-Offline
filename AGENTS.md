@@ -26,6 +26,8 @@ Use C++17 unless a probe requires newer syntax. Keep code exception-free and RTT
 
 Place focused probes in `tests/` with behavior-oriented names, such as `huffman_roundtrip.cpp` or `path_probe.cpp`. For pathfinding changes, run `scripts\build_pathprobe.bat sx sy sz gx gy [margin]` on a real MUL route. New coverage should get a script under `scripts/` or a CMake/CTest target.
 
+After ANY change under `src\bot\` (A*, blacklist, lookahead) or to `World::QueryCell`/walkability, you MUST run `scripts\path_regression.bat` and diff the regenerated `tests\path_regression.txt` against the committed baseline. It runs two long cross-continent routes (Trinsic bridge <-> Britain basement, both directions). Treat `result` / `steps` / `expanded` / `pathCost` as deterministic regression signals — a diff there is a real behavior change and must be explained; `searchUs` is wall-clock timing (machine/run dependent), so read it as a performance trend, not a hard check. Commit the updated baseline only when the behavior change is intended.
+
 For renderer changes, run `scripts\render_regression.bat` and inspect all generated PNGs, especially `07_negz_interior.png` for negative-Z interiors. The harness uses `scripts\build_viewer.bat` and writes only under `build\regression\`.
 
 ## Commit & Pull Request Guidelines

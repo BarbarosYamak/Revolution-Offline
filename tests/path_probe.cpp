@@ -7,6 +7,7 @@
 #include "uo/tiledata.h"
 #include "uo/world.h"
 
+#include <chrono>
 #include <cstdio>
 #include <cstdlib>
 #include <deque>
@@ -215,8 +216,12 @@ int main(int argc, char** argv) {
         opts.hasGoalZ     = hasGoalZ;
         opts.goalZ        = (i32)gz;
         opts.grassPenalty = penalty;
+        const auto t0 = std::chrono::steady_clock::now();
         const auto pp = bot::FindPath(world, (i32)sx,(i32)sy,(i8)sz,
                                       (i32)gx,(i32)gy, opts);
+        const auto t1 = std::chrono::steady_clock::now();
+        const double searchUs =
+            std::chrono::duration<double, std::micro>(t1 - t0).count();
         i32 x=(i32)sx, y=(i32)sy; i8 z=(i8)sz;
         u64 geo=0, total=0; u32 grassSteps=0, diag=0;
         for (u8 d : pp) {
@@ -232,10 +237,12 @@ int main(int argc, char** argv) {
             if (isDiag) ++diag;
         }
         std::printf("penalty=%-2u cap=%-8u %-9s steps=%zu (diag=%u) grassSteps=%u "
-                    "geoCost=%llu pathCost=%llu expanded=%u closest=(%d,%d,%d) h=%u\n",
+                    "geoCost=%llu pathCost=%llu expanded=%u searchUs=%.1f "
+                    "closest=(%d,%d,%d) h=%u\n",
                     penalty, cap, pp.empty() ? "(NO PATH)" : "OK", pp.size(), diag,
                     grassSteps, (unsigned long long)geo, (unsigned long long)total,
-                    s.expanded, s.closestX, s.closestY, (int)s.closestZ, s.closestH);
+                    s.expanded, searchUs, s.closestX, s.closestY, (int)s.closestZ,
+                    s.closestH);
         if (!pp.empty() && pp.size() <= 64) {
             x=(i32)sx; y=(i32)sy; z=(i8)sz;
             std::printf("  route:");

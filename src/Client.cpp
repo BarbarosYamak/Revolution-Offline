@@ -1980,8 +1980,11 @@ bool Client::BotLookaheadPatchPath() {
         opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
         opts.extraBlockedUser = this;
 
+        const auto t0 = std::chrono::steady_clock::now();
         auto patch = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
                                    target.x, target.y, opts);
+        const double searchUs = std::chrono::duration<double, std::micro>(
+            std::chrono::steady_clock::now() - t0).count();
         if (patch.empty()) continue;
 
         std::deque<u8> next;
@@ -1990,8 +1993,9 @@ bool Client::BotLookaheadPatchPath() {
             next.push_back(botPath_[i]);
         botPath_.swap(next);
         std::printf("[bot] lookahead patched around block at step %zu: "
-                    "anchor=%zu new segment=%zu path=%zu\n",
-                    firstBlocked + 1, anchor + 1, patch.size(), botPath_.size());
+                    "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
+                    firstBlocked + 1, anchor + 1, patch.size(), botPath_.size(),
+                    searchUs);
         return true;
     }
 
@@ -2070,16 +2074,22 @@ bool Client::BotReplanToGoal() {
     u64 budget = cheb * cheb * 4 + 65536;
     if (budget > 2000000) budget = 2000000;
     opts.maxNodesExpanded = static_cast<u32>(budget);
+    const auto t0 = std::chrono::steady_clock::now();
     auto path = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
                               botGoalX_, botGoalY_, opts);
+    const double searchUs = std::chrono::duration<double, std::micro>(
+        std::chrono::steady_clock::now() - t0).count();
     if (path.empty()) {
         std::fprintf(stderr,
-            "[bot] no path to (%d,%d) avoiding %zu block(s); stopping\n",
-            botGoalX_, botGoalY_, blacklist_.Count());
+            "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
+            "(search %.1fus)\n",
+            botGoalX_, botGoalY_, blacklist_.Count(), searchUs);
         botPath_.clear();
         botActive_ = false;
         return false;
     }
+    std::printf("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
+                botGoalX_, botGoalY_, path.size(), searchUs);
     botPath_.assign(path.begin(), path.end());
     return true;
 }

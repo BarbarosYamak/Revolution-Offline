@@ -1,0 +1,15 @@
+# Pathfinding regression metrics -- golden baseline.
+# Re-run scripts\path_regression.bat after ANY pathfinding change and diff this file.
+# Deterministic regression signal: result / steps / expanded / pathCost.
+# searchUs is wall-clock timing: machine/run dependent, treat as a trend.
+# Waypoints: trinsic_bridge=1869,2881,40   brit_down=1446,1663,-10
+
+== trinsic_bridge -> brit_down  (1869,2881,40 -> 1446,1663,-10) ==
+start (1869,2881,40) walkable=1 standZ=40
+penalty=0  cap=4000000  OK        steps=1434 (diag=509) grassSteps=0 geoCost=16376 pathCost=16376 expanded=447374 searchUs=4140665.7 closest=(1446,1663,-10) h=0
+penalty=6  cap=8000000  OK        steps=1478 (diag=529) grassSteps=158 geoCost=16896 pathCost=17844 expanded=565734 searchUs=6859161.6 closest=(1446,1663,-10) h=0
+
+== brit_down -> trinsic_bridge  (1446,1663,-10 -> 1869,2881,40) ==
+start (1446,1663,-10) walkable=1 standZ=-10
+penalty=0  cap=4000000  OK        steps=1424 (diag=507) grassSteps=0 geoCost=16268 pathCost=16268 expanded=799745 searchUs=7544503.9 closest=(1869,2881,40) h=0
+penalty=6  cap=8000000  OK        steps=1477 (diag=520) grassSteps=109 geoCost=16850 pathCost=17504 expanded=844760 searchUs=10720840.1 closest=(1869,2881,40) h=0

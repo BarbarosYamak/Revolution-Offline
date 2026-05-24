@@ -31,27 +31,57 @@ bool World::IsStaticBlocker(u16 itemId) const {
     return (s.flags & blockMask) != 0;
 }
 
-// Read statics for a block and filter to cell. Caller bounds the buffer
-// by kMaxStaticsPerCell; cells with more than that are extremely rare.
+// Upper bound on statics decoded per block. Blocks with more than this are
+// extremely rare; the tail is dropped, matching the old fixed-buffer behavior.
 static constexpr u32 kMaxStaticsPerBlock = 1024;
+
+// Return a decoded block (land + statics) from the cache, loading it on miss.
+// Round-robin eviction; nullptr on I/O error or out-of-range.
+const World::CachedBlock* World::CachedBlockAt(u32 bx, u32 by) const {
+    for (u32 i = 0; i < kBlockCacheSlots; ++i) {
+        const CachedBlock& c = blockCache_[i];
+        if (c.valid && c.bx == bx && c.by == by) return &c;
+    }
+
+    CachedBlock& slot = blockCache_[blockCacheNext_];
+    blockCacheNext_ = (blockCacheNext_ + 1) % kBlockCacheSlots;
+    slot.valid = false;   // invalidate until fully loaded (early-return safe)
+
+    if (!map_.ReadBlock(bx, by, &slot.land)) return nullptr;
+
+    u32 probe = 0;
+    if (!map_.ReadStatics(bx, by, nullptr, 0, &probe)) return nullptr;
+    if (probe > kMaxStaticsPerBlock) probe = kMaxStaticsPerBlock;
+    slot.statics.resize(probe);
+    u32 got = 0;
+    if (probe > 0) {
+        if (!map_.ReadStatics(bx, by, slot.statics.data(), probe, &got))
+            return nullptr;
+        slot.statics.resize(got);
+    }
+
+    slot.bx = bx;
+    slot.by = by;
+    slot.valid = true;
+    return &slot;
+}
 
 WalkResult World::QueryCell(const WalkQuery& q) const {
     WalkResult r{false, 0, 0, 0, false};
 
-    map::LandCell land{};
-    if (!map_.ReadCell(q.x, q.y, &land)) return r;
-    r.landTileId = land.tileId;
-
-    map::StaticItem stbuf[kMaxStaticsPerBlock];
-    u32 nblockStatics = 0;
     const u32 bx = q.x / 8;
     const u32 by = q.y / 8;
     const u8  cx = static_cast<u8>(q.x % 8);
     const u8  cy = static_cast<u8>(q.y % 8);
 
-    if (!map_.ReadStatics(bx, by, stbuf, kMaxStaticsPerBlock, &nblockStatics)) {
-        return r;
-    }
+    const CachedBlock* blk = CachedBlockAt(bx, by);
+    if (!blk) return r;
+
+    const map::LandCell& land = blk->land.cells[cy * 8 + cx];
+    r.landTileId = land.tileId;
+
+    const map::StaticItem* stbuf = blk->statics.data();
+    const u32 nblockStatics = static_cast<u32>(blk->statics.size());
 
     // Collect candidate standing surfaces (their top faces) at this cell.
     struct Candidate { i32 top; bool land; };

@@ -35,9 +35,10 @@ struct PathStats {
 };
 
 struct PathOptions {
-    u32 maxIterations = 8192*4; // Sure to be enought
     // Loose upper limit lets A* climb stair stacks; QueryCell still picks a
-    // concrete surface and rejects blocked headroom.
+    // concrete surface and rejects blocked headroom. (Real stair shelves jump
+    // by 5+ z-units and platforms by ~10, so a tight per-step cap makes
+    // legitimate climbs unreachable.)
     u8  maxStepUp     = 12;
     u8  maxStepDown   = 12;
     u8  charHeight    = 16;

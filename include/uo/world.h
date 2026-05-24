@@ -4,6 +4,8 @@
 #include "uo/tiledata.h"
 #include "uo/types.h"
 
+#include <vector>
+
 namespace uo::world {
 
 // UO walkability rules (matches classic 2.x client + RunUO/POL server
@@ -70,9 +72,26 @@ public:
     bool StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const;
 
 private:
+    // A* expands a node's 8 neighbours (a 3x3 cell window spanning at most
+    // four 8x8 blocks), so QueryCell hammers the same blocks repeatedly. Cache
+    // the last few decoded blocks (land + statics) to turn the per-cell
+    // ReadBlock/ReadStatics I/O into a hit for nearly every query. MUL map data
+    // is immutable for the World's lifetime, so cached blocks never go stale.
+    struct CachedBlock {
+        bool                          valid = false;
+        u32                           bx    = 0;
+        u32                           by    = 0;
+        map::MapBlock                 land{};
+        std::vector<map::StaticItem>  statics;   // reuses capacity across loads
+    };
+    static constexpr u32 kBlockCacheSlots = 4;
+    const CachedBlock* CachedBlockAt(u32 bx, u32 by) const;
+
     const tiledata::TileDataLoader& td_;
     map::Map&                       map_;
     bool                            acceptDoors_ = false;
+    mutable CachedBlock             blockCache_[kBlockCacheSlots];
+    mutable u32                     blockCacheNext_ = 0;
 };
 
 }
