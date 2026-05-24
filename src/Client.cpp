@@ -113,6 +113,12 @@ const char* StateName(int s) {
     }
 }
 
+std::string PacketString(const u8* p, usize len) {
+    usize n = 0;
+    while (n < len && p[n] != 0) ++n;
+    return std::string(reinterpret_cast<const char*>(p), n);
+}
+
 }
 
 Client::Client(const Config& cfg)
@@ -940,6 +946,50 @@ void Client::RememberMobileName(u32 serial, const char* name) {
     mobileNames_[serial] = name;
 }
 
+void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
+                                    u16 hue, u16 font, const char* speaker,
+                                    const char* text) {
+    JournalEntry e{};
+    e.timeMs = NowMs();
+    e.sourceSerial = sourceSerial;
+    e.sourceBody = sourceBody;
+    e.type = type;
+    e.hue = hue;
+    e.font = font;
+    e.ownerKind = JournalOwnerKind::Unknown;
+    e.hasPosition = false;
+    e.x = 0; e.y = 0; e.z = 0;
+    e.speaker = speaker ? speaker : "";
+    e.text = text ? text : "";
+
+    const u32 serial = sourceSerial & 0x7FFFFFFFu;
+    if (sourceSerial == 0xFFFFFFFFu || sourceSerial == 0) {
+        e.ownerKind = JournalOwnerKind::System;
+    } else if (serial == playerSerial_) {
+        e.ownerKind = JournalOwnerKind::Player;
+        e.hasPosition = true;
+        e.x = playerX_;
+        e.y = playerY_;
+        e.z = playerZ_;
+    } else if (const MobileObj* m = FindMobileBySerial(serial)) {
+        e.ownerKind = JournalOwnerKind::Mobile;
+        e.hasPosition = true;
+        e.x = m->x;
+        e.y = m->y;
+        e.z = m->z;
+    } else if (auto it = items_.find(serial); it != items_.end()) {
+        e.ownerKind = JournalOwnerKind::Item;
+        e.hasPosition = true;
+        e.x = it->second.x;
+        e.y = it->second.y;
+        e.z = it->second.z;
+    }
+
+    journal_.push_back(std::move(e));
+    while (journal_.size() > kMaxJournalEntries)
+        journal_.pop_front();
+}
+
 void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
     if (serial == playerSerial_) {
         // Don't treat ourselves as an obstacle, but do learn our own body so
@@ -1068,17 +1118,22 @@ void Client::OnStats(const u8* data, usize size) {
 void Client::OnAsciiMessage(const u8* data, usize size) {
     if (size < 45) return;
     const u32 sourceSerial = LoadBE32(data + 3);
-    char speaker[31];
-    std::memcpy(speaker, data + 14, 30);
-    speaker[30] = '\0';
-    RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker);
-    const char* text = reinterpret_cast<const char*>(data + 44);
-    LogInfo("[chat ascii] %s: %s\n", speaker, text);
+    const u16 sourceBody = LoadBE16(data + 7);
+    const u8 type = data[9];
+    const u16 hue = LoadBE16(data + 10);
+    const u16 font = LoadBE16(data + 12);
+    const std::string speaker = PacketString(data + 14, 30);
+    if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker.c_str());
+    const std::string text = PacketString(data + 44, size - 44);
+    RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
+                           speaker.c_str(), text.c_str());
+    LogInfo("[chat ascii] %s: %s\n", speaker.c_str(), text.c_str());
 
     // Stamina signal: the server denies movement and says "too fatigued to
     // move" when stamina is spent. Record it so a reject right after is
     // treated as fatigue (wait to regen), not as an obstacle to avoid.
-    if (std::strstr(text, "fatigued")) {
+    if (std::strstr(text.c_str(), "fatigued")) {
         lastFatigueMs_ = NowMs();
         LogInfo("[bot] fatigue detected; rejects will wait for stamina regen\n");
     }
@@ -1093,10 +1148,13 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
 void Client::OnUnicodeMessage(const u8* data, usize size) {
     if (size < 50) return;
     const u32 sourceSerial = LoadBE32(data + 3);
-    char speaker[31];
-    std::memcpy(speaker, data + 14, 30);
-    speaker[30] = '\0';
-    RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker);
+    const u16 sourceBody = LoadBE16(data + 7);
+    const u8 type = data[9];
+    const u16 hue = LoadBE16(data + 10);
+    const u16 font = LoadBE16(data + 12);
+    const std::string speaker = PacketString(data + 14, 30);
+    if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker.c_str());
 
     char buf[256];
     usize n = 0;
@@ -1106,7 +1164,9 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
         buf[n++] = (ch < 0x80) ? static_cast<char>(ch) : '?';
     }
     buf[n] = '\0';
-    LogInfo("[chat uni  ] %s: %s\n", speaker, buf);
+    RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
+                           speaker.c_str(), buf);
+    LogInfo("[chat uni  ] %s: %s\n", speaker.c_str(), buf);
 }
 
 void Client::OnUnknown(const u8* data, usize size) {

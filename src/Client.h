@@ -128,6 +128,9 @@ private:
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
     void OnUnknown            (const u8* data, usize size);
+    void RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
+                                u16 hue, u16 font, const char* speaker,
+                                const char* text);
 
     // M3 — movement
     void OnDrawGamePlayer     (const u8* data, usize size);  // 0x20
@@ -311,6 +314,24 @@ private:
     // (stdin: `verbose on|off`). Keeps per-packet noise (0x11/0x20/0x21/0x22
     // and unhandled ids) out of the window by default.
     bool verboseConsole_;
+
+    enum class JournalOwnerKind : u8 { System, Player, Mobile, Item, Unknown };
+    struct JournalEntry {
+        i64 timeMs;
+        u32 sourceSerial;
+        u16 sourceBody;
+        u8 type;
+        u16 hue;
+        u16 font;
+        JournalOwnerKind ownerKind;
+        bool hasPosition;
+        i32 x, y;
+        i8 z;
+        std::string speaker;
+        std::string text;
+    };
+    static constexpr usize kMaxJournalEntries = 1024;
+    std::deque<JournalEntry> journal_;
 
     std::thread             stdin_thread_;
     std::mutex              stdin_mtx_;

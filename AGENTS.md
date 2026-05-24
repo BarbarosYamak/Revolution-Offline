@@ -12,6 +12,8 @@ This is a C++17 CMake project for an Ultima Online client and tooling. Core code
 
 `render::Minimap` overlays an orientation panel onto the world frame in `RenderTick` (top-right corner, toggle with `M`, composited via `Renderer::Overlay`). It uses the same isometric projection as the 3D view (`su = x-y`, `sv = x+y`), so north points to the top-right corner. Cell colours come from `radarcol.mul` (`render::RadarColors`) using the real client's radar rule — the topmost surface wins (land, then statics by z-test) — modeled on `CRadarGump_Update`/`CRadarGump_RenderMinimap` in `client_2.0.7.exe`. Colours are cached per 8x8 map block. The view auto-scales (in iso screen space) so the player and the whole planned `botPath_` route fit, and draws the route plus player/goal markers. The panel is only drawn when `radarcol.mul` loads (`cfg_.radarcolPath`).
 
+When reverse-engineering with IDA, always save newly confirmed behavior and corrections to bad decompiler guesses as IDA comments or names, then save the IDB. The local source should not become the only record of client-2.0.7 findings.
+
 ## Build, Test, and Development Commands
 
 - `scripts\build.bat`: configures Ninja with Visual Studio Build Tools and builds all CMake targets.
