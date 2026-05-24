@@ -161,6 +161,8 @@ private:
     void BotTick();           // called from PumpUntilDisconnected
     void RenderTick();        // draws the world window (no-op unless enabled)
     void HandleManualWalk();  // arrow-key steering from the render window
+    void HandleWorldClick();  // right-click in the render window -> goto that cell
+    void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
@@ -246,6 +248,7 @@ private:
     bool renderWindowOpen_;
     bool minimapVisible_;       // overlay minimap panel (toggle with 'M')
     bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
+    bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
     u16  playerBody_;           // local player body graphic for the renderer
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
     std::deque<u8> botPath_;    // directions still to execute
@@ -269,7 +272,9 @@ private:
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
     struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; };
+    static constexpr usize kMaxItemCache = 32768;
     std::unordered_map<u32, ItemObj> items_;
+    std::deque<u32> itemOrder_;
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a

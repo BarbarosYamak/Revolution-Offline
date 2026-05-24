@@ -39,6 +39,20 @@ void mfb_close();
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus();
 
+// Consume the most recent right-click. Returns true once per click and writes
+// the click position in FRAMEBUFFER pixels (already divided by the window
+// scale). Returns false when no unconsumed right-click is pending.
+bool mfb_poll_rclick(int *x, int *y);
+
+// Current mouse position in FRAMEBUFFER pixels. Returns true while the cursor
+// is inside the window's client area, false when it has left.
+bool mfb_mousepos(int *x, int *y);
+
+// Hide the OS cursor over the client area (so the caller can draw its own).
+// Off by default — only enable once you actually have a cursor to draw, or the
+// pointer would simply vanish over the window.
+void mfb_set_hide_cursor(int hide);
+
 // Update the window title bar.
 void mfb_set_title(const char *title);
 
@@ -77,6 +91,13 @@ typedef struct {
     const void *pixel_buffer;
     BITMAPINFO *bitmap_info;
     char keys[512];
+    int rclick_pending;   // a right-click is waiting to be consumed
+    int rclick_x;         // framebuffer-pixel click position
+    int rclick_y;
+    int mouse_x;          // framebuffer-pixel cursor position
+    int mouse_y;
+    int mouse_inside;     // cursor currently within the client area
+    int hide_cursor;      // hide the OS cursor over the client area
 } MfbState;
 
 static MfbState *mfb_state;
@@ -155,6 +176,53 @@ static LRESULT CALLBACK WndProc(HWND hWnd, const UINT message, const WPARAM wPar
             if (wParam < sizeof(mfb_state->keys)) {
                 mfb_state->keys[wParam] = down;
             }
+            break;
+        }
+
+        case WM_MOUSEMOVE: {
+            const int scale = mfb_state->scale > 0 ? mfb_state->scale : 1;
+            mfb_state->mouse_x = ((int) (short) LOWORD(lParam)) / scale;
+            mfb_state->mouse_y = ((int) (short) HIWORD(lParam)) / scale;
+            if (!mfb_state->mouse_inside) {
+                mfb_state->mouse_inside = 1;
+                TRACKMOUSEEVENT tme;
+                tme.cbSize = sizeof(tme);
+                tme.dwFlags = TME_LEAVE;
+                tme.hwndTrack = hWnd;
+                tme.dwHoverTime = 0;
+                TrackMouseEvent(&tme);   // so we get a WM_MOUSELEAVE
+            }
+            break;
+        }
+
+        case WM_MOUSELEAVE:
+            mfb_state->mouse_inside = 0;
+            break;
+
+        case WM_SETCURSOR:
+            // Hide the OS cursor over the client area only when enabled; we
+            // draw our own there. Otherwise keep the normal arrow.
+            if (mfb_state->hide_cursor && LOWORD(lParam) == HTCLIENT) {
+                SetCursor(nullptr);
+                result = TRUE;
+                break;
+            }
+            result = DefWindowProc(hWnd, message, wParam, lParam);
+            break;
+
+        case WM_RBUTTONDOWN: {
+            // lParam packs the cursor position in client (scaled) pixels.
+            const int cx = (int) (short) LOWORD(lParam);
+            const int cy = (int) (short) HIWORD(lParam);
+            const int scale = mfb_state->scale > 0 ? mfb_state->scale : 1;
+            int fx = cx / scale, fy = cy / scale;
+            if (fx < 0) fx = 0;
+            if (fy < 0) fy = 0;
+            if (fx >= mfb_state->buffer_width)  fx = mfb_state->buffer_width - 1;
+            if (fy >= mfb_state->buffer_height) fy = mfb_state->buffer_height - 1;
+            mfb_state->rclick_x = fx;
+            mfb_state->rclick_y = fy;
+            mfb_state->rclick_pending = 1;
             break;
         }
 
@@ -298,6 +366,28 @@ void mfb_close() {
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus() {
     return mfb_state->keys;
+}
+
+// Consume the most recent right-click (framebuffer pixels). One true per click.
+bool mfb_poll_rclick(int *x, int *y) {
+    if (!mfb_state || !mfb_state->rclick_pending)
+        return false;
+    if (x) *x = mfb_state->rclick_x;
+    if (y) *y = mfb_state->rclick_y;
+    mfb_state->rclick_pending = 0;
+    return true;
+}
+
+// Current mouse position in framebuffer pixels; true while inside the client.
+bool mfb_mousepos(int *x, int *y) {
+    if (!mfb_state) return false;
+    if (x) *x = mfb_state->mouse_x;
+    if (y) *y = mfb_state->mouse_y;
+    return mfb_state->mouse_inside != 0;
+}
+
+void mfb_set_hide_cursor(int hide) {
+    if (mfb_state) mfb_state->hide_cursor = hide;
 }
 
 // Update the window title bar.

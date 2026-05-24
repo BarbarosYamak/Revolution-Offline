@@ -134,7 +134,7 @@ Client::Client(const Config& cfg)
       botRun_(true),
       worldLoaded_(false),
       renderInit_(false), renderWindowOpen_(false),
-      minimapVisible_(true), minimapKeyDown_(false),
+      minimapVisible_(true), minimapKeyDown_(false), spaceKeyDown_(false),
       playerBody_(0x0190), lastManualMoveMs_(0),
       botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
       botActive_(false),
@@ -839,7 +839,6 @@ void Client::OnMobileHp(const u8* data, usize size) {
 //   x(2 BE) [bit 0x8000 -> direction byte present]
 //   y(2 BE) [bit 0x8000 hue present, 0x4000 status flags present]
 //   [dir present] dir(1)   z(1)   [hue] hue(2)   [flags] flags(1)
-// We only care about doors — cache them by serial for the bot's bump logic.
 // ---------------------------------------------------------------------------
 void Client::OnObjectInfo(const u8* data, usize size) {
     usize p = 3;  // skip cmd + length
@@ -879,7 +878,14 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 
     // Track every world item so the renderer can draw dynamic server objects
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
+    const bool isNewItem = items_.find(serial) == items_.end();
     items_[serial] = ItemObj{itemId, x, y, z, gfxOffset};
+    if (isNewItem) itemOrder_.push_back(serial);
+    while (items_.size() > kMaxItemCache && !itemOrder_.empty()) {
+        const u32 oldSerial = itemOrder_.front();
+        itemOrder_.pop_front();
+        items_.erase(oldSerial);
+    }
 
 }
 
@@ -888,6 +894,8 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     items_.erase(serial);
+    itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
+                     itemOrder_.end());
     for (auto it = mobileCache_.begin(); it != mobileCache_.end(); ++it) {
         if (it->serial == serial) { mobileCache_.erase(it); break; }
     }
@@ -1251,6 +1259,14 @@ void Client::OnMoveReject(const u8* data, usize size) {
         return;
     }
 
+    if (BotIsDynamicItemBlocking(bx, by, static_cast<i8>(bz))) {
+        LogInfo("[bot] dynamic item blocks (%d,%d,%d); rerouting\n",
+                    bx, by, static_cast<int>(bz));
+        if (BotReplanToGoal())
+            botResumeAtMs_ = NowMs() + 150;
+        return;
+    }
+
     // Door handling uses the official macro: no door serial/static lookup.
     // On the first reject of an edge, face is already set by the server's
     // reject packet, so try OpenDoor once and then retry the same step. If
@@ -1275,6 +1291,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // be reachable from another approach direction.
     rejectedEdges_.push_back({playerX_, playerY_, playerZ_,
                               bx, by, static_cast<i8>(bz)});
+    blacklist_.AddTransient(bx, by, bz, 0);
     LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; avoiding edge + rerouting\n",
                 playerX_, playerY_, static_cast<int>(playerZ_),
                 bx, by, static_cast<int>(bz));
@@ -1676,12 +1693,14 @@ void Client::RenderTick() {
         }
         renderer_ = std::make_unique<render::Renderer>(rw, rh);
         renderWindowOpen_ = true;
+        mfb_set_hide_cursor(1);   // we draw our own UO cursor from art_
         LogInfo("[render] world window opened (%dx%d)\n", rw, rh);
     }
 
     if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
 
     HandleManualWalk();
+    HandleWorldClick();
 
     std::vector<render::DynItem> dyn;
     dyn.reserve(items_.size());
@@ -1703,11 +1722,19 @@ void Client::RenderTick() {
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            anim_.get(), mobs.data(), mobs.size());
 
-    // Minimap overlay panel (top-right). Toggle with 'M'.
+    // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
     if (const char* keys = mfb_keystatus()) {
         const bool mDown = keys[0x4D] != 0;   // VK 'M'
         if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
         minimapKeyDown_ = mDown;
+
+        const bool spaceDown = keys[0x20] != 0;   // VK_SPACE
+        if (spaceDown && !spaceKeyDown_) {
+            u8 ob[8];
+            Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (SPACE)");
+            LogInfo("[door] OpenDoor (SPACE)\n");
+        }
+        spaceKeyDown_ = spaceDown;
     }
     if (minimapVisible_ && worldMap_ && radarColors_) {
         if (!minimap_) {
@@ -1732,6 +1759,8 @@ void Client::RenderTick() {
         const int mw = minimap_->Size();
         renderer_->Overlay(minimap_->Frame(), mw, mw, renderer_->Width() - mw - 8, 8);
     }
+
+    DrawCursorOverlay();
 
     char title[64];
     std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]", playerX_, playerY_, static_cast<int>(playerZ_));
@@ -1796,6 +1825,78 @@ void Client::HandleManualWalk() {
     else         playerFacing_ = dir;
 }
 
+// Right-click in the render window retargets the bot: invert the screen point
+// to a world cell, cancel whatever path/follow is running, and goto there.
+void Client::HandleWorldClick() {
+    int mx, my;
+    if (!mfb_poll_rclick(&mx, &my)) return;
+    if (!renderer_) return;
+
+    i32 wx = 0, wy = 0;
+    renderer_->ScreenToWorld(mx, my, playerX_, playerY_, &wx, &wy);
+    if (wx < 0 || wy < 0) return;
+
+    // Cancel the current task cleanly (mirrors BotInterruptForThreat) so
+    // BotStartGoto's busy-guard lets the new destination through.
+    if (followActive_) BotStopFollow("retargeted by right-click");
+    botPath_.clear();
+    pendingMoves_.clear();
+    botActive_ = false;
+    moveSeq_ = 0;
+
+    LogInfo("[bot] right-click goto (%d,%d) [screen %d,%d]\n", wx, wy, mx, my);
+    BotStartGoto(wx, wy);
+}
+
+namespace {
+// 8-way screen sector (0..7) from the window centre, ported verbatim from the
+// client's Cursor_GetDirectionFromCenter @0x4B9FD0. The 2:1 comparison ratios
+// match the isometric view, so the arrow points the way the player would walk.
+int CursorDirFromCenter(int x, int y, int w, int h) {
+    const int v6 = x - w / 2;
+    const int v7 = y - h / 2;
+    if (v6 <= 0) {
+        if (v7 <= -2 * v6) {
+            if (2 * v7 <= -v6) {
+                if (2 * v7 <= v6) return v7 <= 2 * v6 ? 0 : 7;
+                return 6;
+            }
+            return 5;
+        }
+        return 4;
+    }
+    if (v7 >= -2 * v6) {
+        if (2 * v7 >= -v6) {
+            if (2 * v7 >= v6) return v7 >= 2 * v6 ? 4 : 3;
+            return 2;
+        }
+        return 1;
+    }
+    return 0;
+}
+}  // namespace
+
+// Software mouse cursor: the UO directional walk cursor matching the mouse's
+// screen sector. The cursors are STATIC ART (not gumps): g_CursorArtId in the
+// client is an art index 0x4000+itemId — peace-mode walk = itemId 0x206A+dir
+// (war set 0x2053+dir), per MouseManager_Startup @0x4B9530. The OS cursor is
+// hidden over the client area, so this is the only cursor the user sees.
+void Client::DrawCursorOverlay() {
+    if (!art_ || !renderer_) return;
+    int mx, my;
+    if (!mfb_mousepos(&mx, &my)) return;   // cursor left the window
+
+    const int dir = CursorDirFromCenter(mx, my, renderer_->Width(), renderer_->Height());
+    const art::Sprite* sp = art_->Static(static_cast<u16>(0x206A + (dir & 7)));
+    if (!sp || sp->px.empty()) return;
+
+    // Cursor art fills its background with a chroma key (0x001F blue); key it
+    // out via the corner pixel. Centre the arrow on the cursor position.
+    const u16 key = sp->px[0];
+    renderer_->BlitSpriteKeyed(sp->px.data(), sp->width, sp->height,
+                               mx - sp->width / 2, my - sp->height / 2, key);
+}
+
 i64 Client::NowMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds>(
                std::chrono::steady_clock::now().time_since_epoch()).count();
@@ -1841,11 +1942,19 @@ bool Client::BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const {
         const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
         const auto& st = tileData_->Static(gid);
         if (IsDoorGraphic(gid) || (st.flags & tiledata::kFlagDoor)) continue;
-        if (!world_->IsStaticBlocker(gid)) continue;
+        const bool blocksMovement =
+            world_->IsStaticBlocker(gid) ||
+            ((st.flags & tiledata::kFlagSurface) != 0) ||
+            st.height != 0;
+        if (!blocksMovement) continue;
 
         const i32 obsLo = static_cast<i32>(it.z);
         const i32 obsHi = obsLo + (st.height ? st.height : 1);
-        if (obsHi > colLo && obsLo < colHi) return true;
+        // Dynamic server items are not part of World::QueryCell's standing
+        // surface stack, so a table top at exactly standZ must still block the
+        // cell. Otherwise A* tries to "stand" on the table's top face and the
+        // server rejects the move.
+        if (obsHi >= colLo && obsLo < colHi) return true;
     }
     return false;
 }
@@ -2013,6 +2122,7 @@ bool Client::BotReplanToGoal() {
     opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
     opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
     opts.goalZ    = botGoalZ_;
+    opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
     opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
     opts.extraBlockedUser = this;
 

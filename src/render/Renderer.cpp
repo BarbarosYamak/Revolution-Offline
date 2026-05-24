@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <climits>
+#include <cmath>
 #include <cstdlib>
 #include <unordered_set>
 
@@ -454,6 +455,38 @@ void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
             drow[px] = srow[col];
         }
     }
+}
+
+void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key) {
+    if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        const u16* srow = &src[static_cast<usize>(row) * sw];
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const u16 p = srow[col];
+            if (!p || p == key) continue;
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            drow[px] = p;
+        }
+    }
+}
+
+void Renderer::ScreenToWorld(int sx, int sy, i32 camX, i32 camY,
+                             i32* outX, i32* outY) const {
+    // RenderWorld places the player's cell centre (feet) at the screen centre
+    // (w/2, h/2): the +camZ*kZStep in originY and the per-tile -z*kZStep offset
+    // cancel for the player's own elevation. A cell at (camX+dx, camY+dy) on the
+    // same floor lands at screen (w/2 + (dx-dy)*kHalfTile, h/2 + (dx+dy)*kHalfTile).
+    // Invert that:
+    const double dsx = sx - w_ / 2.0;
+    const double dsy = sy - h_ / 2.0;
+    const double dx = (dsx + dsy) / (2.0 * kHalfTile);   // (dx-dy)+(dx+dy) = 2dx
+    const double dy = (dsy - dsx) / (2.0 * kHalfTile);   // (dx+dy)-(dx-dy) = 2dy
+    if (outX) *outX = camX + static_cast<i32>(std::lround(dx));
+    if (outY) *outY = camY + static_cast<i32>(std::lround(dy));
 }
 
 void Renderer::Blit(const art::Sprite& s, int dx, int dy) {

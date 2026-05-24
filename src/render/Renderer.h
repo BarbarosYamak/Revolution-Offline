@@ -47,6 +47,19 @@ public:
     // written. Used to stamp the minimap panel over the world after RenderWorld.
     void Overlay(const u16* src, int sw, int sh, int dx, int dy);
 
+    // Blit a sprite onto the frame at (dx,dy) skipping transparent (0) pixels
+    // AND any pixel equal to `key` (a chroma-key background). UO cursor art
+    // fills its background with 0x001F (blue), so the cursor passes its corner
+    // colour as the key. Used for the software mouse cursor on top of all.
+    void BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key);
+
+    // Inverse of the isometric world projection: map a framebuffer pixel back to
+    // a world cell, assuming the clicked ground sits at the camera's elevation
+    // (the per-tile z offset cancels for same-z ground; slopes are approximate —
+    // good enough for a navigation goal that A* then resolves). camX/camY is the
+    // cell the view is centred on (the player). Writes the resulting cell.
+    void ScreenToWorld(int sx, int sy, i32 camX, i32 camY, i32* outX, i32* outY) const;
+
     // Screen + art-texture coordinate, used to stretch land tiles.
     struct TexVert { int x, y, u, v; };
 
