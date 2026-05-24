@@ -25,7 +25,7 @@ namespace uo::world    { class World; }
 namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
-namespace uo::render   { class Renderer; class Minimap; }
+namespace uo::render   { class Renderer; class Minimap; class RadarColors; }
 
 namespace uo {
 
@@ -73,6 +73,7 @@ public:
         const char* texPath;          // texmaps.mul (land textures, sloped tiles)
         const char* animIdxPath;      // anim.idx (body animation index)
         const char* animPath;         // anim.mul (body animations, still frames)
+        const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
         int         renderScale;      // integer upscale factor    (<=0 -> 2)
@@ -240,6 +241,7 @@ private:
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::Minimap>     minimap_;
+    std::unique_ptr<uo::render::RadarColors> radarColors_;
     bool renderInit_;
     bool renderWindowOpen_;
     bool minimapVisible_;       // overlay minimap panel (toggle with 'M')

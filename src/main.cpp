@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
     cfg.texPath          = "E:/uo/texmaps.mul";
     cfg.animIdxPath      = "E:/uo/anim.idx";
     cfg.animPath         = "E:/uo/anim.mul";
+    cfg.radarcolPath     = "E:/uo/radarcol.mul";  // minimap tile colors (ok if absent)
     cfg.renderWidth      = 800;   // framebuffer; window is renderScale x larger
     cfg.renderHeight     = 600;
     cfg.renderScale      = 1;     // 2x upscale (MiniFB does it for free)

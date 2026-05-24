@@ -34,6 +34,7 @@ set(UO_CLIENT_SOURCES
     src/bot/Blacklist.cpp
     src/render/Renderer.cpp
     src/render/Minimap.cpp
+    src/render/RadarColors.cpp
     src/render/MiniFBWindow.cpp
 )
 

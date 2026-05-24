@@ -13,6 +13,7 @@
 #include "uo/anim.h"
 #include "render/Renderer.h"
 #include "render/Minimap.h"
+#include "render/RadarColors.h"
 #include "win32/MiniFB.h"
 
 #include <algorithm>
@@ -1657,6 +1658,13 @@ void Client::RenderTick() {
             LogWarn( "[render] anim MULs unavailable; mobiles won't draw\n");
             anim_.reset();
         }
+        // radarcol.mul drives the minimap colours (real-client radar palette).
+        // Optional: without it the minimap panel is simply not drawn.
+        radarColors_ = std::make_unique<render::RadarColors>();
+        if (!cfg_.radarcolPath || !radarColors_->Load(cfg_.radarcolPath)) {
+            LogWarn( "[render] radarcol.mul unavailable; minimap disabled\n");
+            radarColors_.reset();
+        }
         const int rw = cfg_.renderWidth  > 0 ? cfg_.renderWidth  : 800;
         const int rh = cfg_.renderHeight > 0 ? cfg_.renderHeight : 600;
         const int sc = cfg_.renderScale  > 0 ? cfg_.renderScale  : 1;
@@ -1701,7 +1709,7 @@ void Client::RenderTick() {
         if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
         minimapKeyDown_ = mDown;
     }
-    if (minimapVisible_ && world_ && tileData_) {
+    if (minimapVisible_ && worldMap_ && radarColors_) {
         if (!minimap_) {
             int ms = std::min(200, std::min(renderer_->Width(), renderer_->Height()) - 16);
             if (ms < 64) ms = 64;
@@ -1719,7 +1727,7 @@ void Client::RenderTick() {
             cx += ddx; cy += ddy;
             px.push_back(cx); py.push_back(cy);
         }
-        minimap_->Render(*world_, *tileData_, playerX_, playerY_,
+        minimap_->Render(*worldMap_, *radarColors_, playerX_, playerY_,
                          px.data(), py.data(), px.size());
         const int mw = minimap_->Size();
         renderer_->Overlay(minimap_->Frame(), mw, mw, renderer_->Width() - mw - 8, 8);
