@@ -163,10 +163,6 @@ private:
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
-    bool BotLookaheadPatchPath(); // short local reroute around near dynamic blocks
-    bool IsLookaheadBlocked(i32 x, i32 y, i8 z) const;
-    bool IsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
-    static bool LookaheadExtraBlocked(i32 x, i32 y, i8 z, void* user);
     // Threat hook: called when we detect we're under attack mid-travel.
     // For now it just halts travel safely; engage/flee/recall are TODO.
     void BotInterruptForThreat(const char* reason);
@@ -251,7 +247,7 @@ private:
 
     // Recent doors seen in 0x1A object packets (dynamic server objects, often
     // sent well before we reach them). On a bump we scan this before deciding
-    // a tile is a wall: if a door sits there we double-click it open + retry.
+    // a tile is a wall: if a door sits there we send the OpenDoor macro + retry.
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
     struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; };
