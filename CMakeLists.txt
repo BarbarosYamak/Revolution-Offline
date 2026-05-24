@@ -33,6 +33,7 @@ set(UO_CLIENT_SOURCES
     src/bot/Pathfinding.cpp
     src/bot/Blacklist.cpp
     src/render/Renderer.cpp
+    src/render/Minimap.cpp
     src/render/MiniFBWindow.cpp
 )
 

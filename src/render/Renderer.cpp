@@ -441,6 +441,21 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     }
 }
 
+void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
+    if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        const u16* srow = &src[static_cast<usize>(row) * sw];
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            drow[px] = srow[col];
+        }
+    }
+}
+
 void Renderer::Blit(const art::Sprite& s, int dx, int dy) {
     BlitRaw(s.px.data(), s.width, s.height, dx, dy, true);
 }

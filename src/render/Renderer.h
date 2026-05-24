@@ -42,6 +42,11 @@ public:
     int Width()  const { return w_; }
     int Height() const { return h_; }
 
+    // Composite a small ARGB1555 buffer (sw x sh, row-major) onto the frame at
+    // (dx,dy), clipped to the framebuffer. Opaque copy — every source pixel is
+    // written. Used to stamp the minimap panel over the world after RenderWorld.
+    void Overlay(const u16* src, int sw, int sh, int dx, int dy);
+
     // Screen + art-texture coordinate, used to stretch land tiles.
     struct TexVert { int x, y, u, v; };
 

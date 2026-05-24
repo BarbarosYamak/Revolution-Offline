@@ -12,6 +12,7 @@
 #include "uo/texmap.h"
 #include "uo/anim.h"
 #include "render/Renderer.h"
+#include "render/Minimap.h"
 #include "win32/MiniFB.h"
 
 #include <algorithm>
@@ -132,6 +133,7 @@ Client::Client(const Config& cfg)
       botRun_(true),
       worldLoaded_(false),
       renderInit_(false), renderWindowOpen_(false),
+      minimapVisible_(true), minimapKeyDown_(false),
       playerBody_(0x0190), lastManualMoveMs_(0),
       botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
       botActive_(false),
@@ -1692,6 +1694,37 @@ void Client::RenderTick() {
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            anim_.get(), mobs.data(), mobs.size());
+
+    // Minimap overlay panel (top-right). Toggle with 'M'.
+    if (const char* keys = mfb_keystatus()) {
+        const bool mDown = keys[0x4D] != 0;   // VK 'M'
+        if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
+        minimapKeyDown_ = mDown;
+    }
+    if (minimapVisible_ && world_ && tileData_) {
+        if (!minimap_) {
+            int ms = std::min(200, std::min(renderer_->Width(), renderer_->Height()) - 16);
+            if (ms < 64) ms = 64;
+            minimap_ = std::make_unique<render::Minimap>(ms);
+        }
+        // Replay the remaining directions from the player to get route cells.
+        std::vector<i32> px, py;
+        px.reserve(botPath_.size() + 1);
+        py.reserve(botPath_.size() + 1);
+        i32 cx = playerX_, cy = playerY_;
+        px.push_back(cx); py.push_back(cy);
+        for (u8 d : botPath_) {
+            i32 ddx = 0, ddy = 0;
+            bot::DirToDelta(static_cast<u8>(d & 7), &ddx, &ddy);
+            cx += ddx; cy += ddy;
+            px.push_back(cx); py.push_back(cy);
+        }
+        minimap_->Render(*world_, *tileData_, playerX_, playerY_,
+                         px.data(), py.data(), px.size());
+        const int mw = minimap_->Size();
+        renderer_->Overlay(minimap_->Frame(), mw, mw, renderer_->Width() - mw - 8, 8);
+    }
+
     char title[64];
     std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]", playerX_, playerY_, static_cast<int>(playerZ_));
     mfb_set_title(title);

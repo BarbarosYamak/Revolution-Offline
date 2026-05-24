@@ -25,7 +25,7 @@ namespace uo::world    { class World; }
 namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
-namespace uo::render   { class Renderer; }
+namespace uo::render   { class Renderer; class Minimap; }
 
 namespace uo {
 
@@ -239,8 +239,11 @@ private:
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
+    std::unique_ptr<uo::render::Minimap>     minimap_;
     bool renderInit_;
     bool renderWindowOpen_;
+    bool minimapVisible_;       // overlay minimap panel (toggle with 'M')
+    bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
     u16  playerBody_;           // local player body graphic for the renderer
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
     std::deque<u8> botPath_;    // directions still to execute
