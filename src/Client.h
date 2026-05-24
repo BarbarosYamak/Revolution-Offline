@@ -167,8 +167,16 @@ private:
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
     bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
     bool BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
-    bool BotMaybeOpenDoorAhead(u8 dir, i64 nowMs);
+    bool BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
+                           i32 toX, i32 toY, i8 toZ) const;
+    bool BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
+                              i32 toX, i32 toY, i8 toZ) const;
+    void BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
+                              i32 toX, i32 toY, i8 toZ);
     static bool BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user);
+    static bool BotRuntimeBlockedStepForPath(i32 fromX, i32 fromY, i8 fromZ,
+                                             i32 toX, i32 toY, i8 toZ,
+                                             void* user);
     // Threat hook: called when we detect we're under attack mid-travel.
     // For now it just halts travel safely; engage/flee/recall are TODO.
     void BotInterruptForThreat(const char* reason);
@@ -249,27 +257,14 @@ private:
     u32 botReplanCount_;
     i64 botResumeAtMs_;
     std::mt19937 rng_;
+    struct RejectedEdge { i32 fromX, fromY; i8 fromZ; i32 toX, toY; i8 toZ; };
+    std::vector<RejectedEdge> rejectedEdges_;
+    std::vector<RejectedEdge> doorRetryEdges_;
 
-    // Recent doors seen in 0x1A object packets (dynamic server objects, often
-    // sent well before we reach them). On a bump we scan this before deciding
-    // a tile is a wall: if a door sits there we send the OpenDoor macro + retry.
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
     struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; };
     std::unordered_map<u32, ItemObj> items_;
-
-    struct DoorObj { u32 serial; u16 itemId; i32 x; i32 y; i8 z; };
-    std::deque<DoorObj> doorCache_;
-    const DoorObj* FindDoorAt(i32 x, i32 y, i8 z, i32 radius = 0) const;
-    i32 doorCellX_;
-    i32 doorCellY_;
-    i8  doorCellZ_;           // surface z of the blocked cell (to pick the door on our floor)
-    u32 doorAttempts_;
-    bool awaitingDoorOpen_;   // sent an open command, waiting to confirm it swung
-    bool proactiveDoorOpenPending_;
-    i32 proactiveDoorX_;
-    i32 proactiveDoorY_;
-    i8  proactiveDoorZ_;
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a

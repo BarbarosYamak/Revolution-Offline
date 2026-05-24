@@ -64,6 +64,13 @@ struct PathOptions {
     // Optional runtime overlay for short-lived dynamic obstacles owned by the
     // caller (mobiles, server-spawned items, etc.). Return true to reject cell.
     bool (*extraBlocked)(i32 x, i32 y, i8 z, void* user) = nullptr;
+    // Optional directed step overlay for server-learned edge rejects. This is
+    // intentionally separate from cell blocking: stair exits may reject one
+    // approach direction while the destination cell remains reachable via the
+    // proper stair step.
+    bool (*extraBlockedStep)(i32 fromX, i32 fromY, i8 fromZ,
+                             i32 toX, i32 toY, i8 toZ,
+                             void* user) = nullptr;
     void* extraBlockedUser = nullptr;
 };
 

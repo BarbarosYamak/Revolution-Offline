@@ -42,13 +42,6 @@ constexpr u32 kGrassPenalty = 14;
 // Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
 // than open grass so the bot skirts forests instead of threading the trees.
 constexpr u32 kForestPenalty = 15;
-// Recent-doors cache size, how many open attempts to make at one cell before
-// concluding it's not an openable door, and how long to wait after an open
-// command for the door to actually swing (doors are NOT instantaneous).
-constexpr usize kDoorCacheMax = 20;
-constexpr u32   kMaxDoorTries = 4;     // blind open attempts before avoiding
-constexpr u32   kMaxDoorGiveUp = 10;   // attempts with a door present -> stop trip
-constexpr i64   kDoorWaitMs   = 700;
 // Mobile cache + stamina/shove handling: a tile holding a mobile, or a reject
 // right after a "too fatigued" message, is never blacklisted — we wait and
 // retry (the mob moves, or stamina regenerates and the shove succeeds).
@@ -65,9 +58,20 @@ constexpr usize kPathLookaheadScanSteps = 5;
 constexpr usize kPathLookaheadAnchorExtra = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
 constexpr i64   kLookaheadMobileFreshMs = 5000;
+constexpr i64   kDoorRetryWaitMs = 700;
+constexpr i32   kGoalZPreferenceRadius = 24;
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
+
+bool ShouldPreferBotGoalZ(bool hasGoalZ, i32 x, i32 y, i32 gx, i32 gy) {
+    if (!hasGoalZ) return false;
+    i32 dx = gx - x;
+    i32 dy = gy - y;
+    if (dx < 0) dx = -dx;
+    if (dy < 0) dy = -dy;
+    return (dx > dy ? dx : dy) <= kGoalZPreferenceRadius;
+}
 
 // Inverse of bot::DirToDelta: a unit (dx,dy) world step -> UO facing 0..7
 // (0=N(0,-1), 2=E(+1,0), 4=S(0,+1), 6=W(-1,0); odds are the diagonals).
@@ -134,10 +138,6 @@ Client::Client(const Config& cfg)
       botReplanCount_(0), botResumeAtMs_(0),
       rng_(static_cast<u32>(
           std::chrono::steady_clock::now().time_since_epoch().count())),
-      doorCellX_(0), doorCellY_(0), doorCellZ_(0),
-      doorAttempts_(0), awaitingDoorOpen_(false),
-      proactiveDoorOpenPending_(false),
-      proactiveDoorX_(0), proactiveDoorY_(0), proactiveDoorZ_(0),
       followActive_(false), followSerial_(0), followDistance_(1),
       followLastReplanMs_(0), followLastProbeMs_(0),
       mobilesListPending_(false), mobilesListDeadlineMs_(0),
@@ -878,35 +878,6 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
     items_[serial] = ItemObj{itemId, x, y, z, gfxOffset};
 
-    // Door-open confirmation: after we send an open command we wait for the
-    // door to actually swing. The server announces that by updating the door
-    // object at/near the blocked cell. Any object update within 2 tiles of it
-    // means the door changed — resume the blocked step immediately.
-    if (awaitingDoorOpen_) {
-        i32 ax = (x > doorCellX_) ? x - doorCellX_ : doorCellX_ - x;
-        i32 ay = (y > doorCellY_) ? y - doorCellY_ : doorCellY_ - y;
-        i32 az = static_cast<i32>(z) - static_cast<i32>(doorCellZ_);
-        if (az < 0) az = -az;
-        // Same x,y vicinity AND our floor — a door stacked on another storey
-        // (z far away) must not be mistaken for the one we're trying to pass.
-        if (ax <= 2 && ay <= 2 && az <= 8) {
-            awaitingDoorOpen_ = false;
-            proactiveDoorOpenPending_ = false;
-            doorAttempts_ = 0;
-            LogInfo("[bot] door @(%d,%d,z%d) OPENED (object 0x%08X @%d,%d,z%d); resuming\n",
-                        doorCellX_, doorCellY_, static_cast<int>(doorCellZ_),
-                        serial, x, y, static_cast<int>(z));
-            botResumeAtMs_ = NowMs();  // retry the blocked step now
-        }
-    }
-
-    if (!IsDoorGraphic(itemId)) return;
-
-    for (auto& d : doorCache_) {
-        if (d.serial == serial) { d.itemId = itemId; d.x = x; d.y = y; d.z = z; return; }
-    }
-    if (doorCache_.size() >= kDoorCacheMax) doorCache_.pop_front();
-    doorCache_.push_back({serial, itemId, x, y, z});
 }
 
 // 0x1D Delete Object (5 bytes): cmd + serial(4 BE). Drop it from both caches.
@@ -914,9 +885,6 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     items_.erase(serial);
-    for (auto it = doorCache_.begin(); it != doorCache_.end(); ++it) {
-        if (it->serial == serial) { doorCache_.erase(it); break; }
-    }
     for (auto it = mobileCache_.begin(); it != mobileCache_.end(); ++it) {
         if (it->serial == serial) { mobileCache_.erase(it); break; }
     }
@@ -1037,24 +1005,6 @@ const Client::MobileObj* Client::FindMobileBySerial(u32 serial) const {
         if (m.serial == serial) return &m;
     }
     return nullptr;
-}
-
-// Returns the door within `radius` tiles whose z is closest to `z` (and within
-// the server's +/-8 reach). In multi-storey buildings doors stack at the same
-// x,y on different floors, so picking the nearest by z keeps us on our floor.
-const Client::DoorObj* Client::FindDoorAt(i32 x, i32 y, i8 z, i32 radius) const {
-    const DoorObj* best = nullptr;
-    i32 bestDz = 0x7FFFFFFF;
-    for (const auto& d : doorCache_) {
-        i32 ax = (x > d.x) ? x - d.x : d.x - x;
-        i32 ay = (y > d.y) ? y - d.y : d.y - y;
-        if (ax > radius || ay > radius) continue;
-        i32 dz = static_cast<i32>(z) - static_cast<i32>(d.z);
-        if (dz < 0) dz = -dz;
-        if (dz > 8) continue;            // different floor / out of reach
-        if (dz < bestDz) { bestDz = dz; best = &d; }
-    }
-    return best;
 }
 
 // ---------------------------------------------------------------------------
@@ -1239,7 +1189,6 @@ void Client::OnMoveReject(const u8* data, usize size) {
     playerRunning_ = false;
     pendingMoves_.clear();
     moveSeq_ = 0;
-    proactiveDoorOpenPending_ = false;
 
     if (!botActive_) return;
 
@@ -1249,7 +1198,6 @@ void Client::OnMoveReject(const u8* data, usize size) {
     const i32 bx = playerX_ + dx;
     const i32 by = playerY_ + dy;
     i32 bz = playerZ_;
-    bool neighborStatic = false;
     if (world_) {
         world::WalkQuery q{};
         q.x = static_cast<u32>(bx);
@@ -1257,28 +1205,9 @@ void Client::OnMoveReject(const u8* data, usize size) {
         q.fromZ = playerZ_;
         const auto r = world_->QueryCell(q);
         if (r.walkable) bz = r.standZ;
-        // "Near block" check: is an adjacent tile impassable in our MUL data?
-        for (u8 nd = 0; nd < 8 && !neighborStatic; ++nd) {
-            i32 ndx, ndy;
-            bot::DirToDelta(nd, &ndx, &ndy);
-            world::WalkQuery nq{};
-            nq.x = static_cast<u32>(bx + ndx);
-            nq.y = static_cast<u32>(by + ndy);
-            nq.fromZ = static_cast<i8>(bz);
-            if (!world_->QueryCell(nq).walkable) neighborStatic = true;
-        }
     }
 
     // Track repeated bumps at the same cell (and the floor we're on).
-    if (bx != doorCellX_ || by != doorCellY_) {
-        doorCellX_ = bx; doorCellY_ = by; doorAttempts_ = 0; stuckWaits_ = 0;
-        awaitingDoorOpen_ = false;
-    } else if (awaitingDoorOpen_) {
-        LogInfo("[bot] door @(%d,%d) did NOT open (no update after last try)\n", bx, by);
-        awaitingDoorOpen_ = false;
-    }
-    doorCellZ_ = static_cast<i8>(bz);
-
     // (0) Stamina: a reject right after a "too fatigued" message is not an
     // obstacle — we're just spent. Wait for regen and retry; never blacklist.
     const bool fatigued = lastFatigueMs_ != 0 &&
@@ -1319,47 +1248,33 @@ void Client::OnMoveReject(const u8* data, usize size) {
         return;
     }
 
-    // Is there a known door within 1 tile of the blocked cell? Such a cell is
-    // a real passage and is NEVER blacklisted — we only ever try to open it.
-    const DoorObj* nearDoor = FindDoorAt(bx, by, static_cast<i8>(bz), 1);
-
-    // Phase 1 — try to open a door. We keep opening while either a door is
-    // known nearby (guard: never give that tile to the blacklist) or we're
-    // still within the initial blind-try budget (the door's 0x1A may not have
-    // arrived yet). The server-side OpenDoor action opens whatever door faces
-    // us regardless of graphic/serial; it matches the official macro packet.
-    // Doors don't swing instantly, so wait kDoorWaitMs between tries.
-    const bool shouldTryBlindDoor = neighborStatic && doorAttempts_ < kMaxDoorTries;
-    if (nearDoor != nullptr || shouldTryBlindDoor) {
-        ++doorAttempts_;
+    // Door handling uses the official macro: no door serial/static lookup.
+    // On the first reject of an edge, face is already set by the server's
+    // reject packet, so try OpenDoor once and then retry the same step. If
+    // the same edge rejects again, treat it as non-door geometry and reroute.
+    if (rejectedWasStep &&
+        !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
+                              bx, by, static_cast<i8>(bz))) {
+        BotRememberDoorRetry(playerX_, playerY_, playerZ_,
+                             bx, by, static_cast<i8>(bz));
         u8 ob[8];
-        Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58)");
-        // A door that won't budge after many tries is a dead end — stop the
-        // trip rather than loop forever, but still never blacklist its tile.
-        if (nearDoor != nullptr && doorAttempts_ > kMaxDoorGiveUp) {
-            LogWarn(
-                "[bot] door @(%d,%d) won't open after %u tries; stopping "
-                "(not blacklisted)\n", bx, by, doorAttempts_);
-            botPath_.clear();
-            botActive_ = false;
-            return;
-        }
-        awaitingDoorOpen_ = true;  // confirmed (or timed out) via 0x1A near this cell
-        LogInfo("[bot] reject at (%d,%d,z%d): OpenDoor sent, awaiting confirm (try %u)%s\n",
-                    bx, by, static_cast<int>(bz), doorAttempts_,
-                    nearDoor ? " [door cached]" : "");
-        if (rejectedWasStep) botPath_.push_front(rdir);
-        botResumeAtMs_ = NowMs() + kDoorWaitMs;
+        Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 reject retry)");
+        botPath_.push_front(rdir);
+        botResumeAtMs_ = NowMs() + kDoorRetryWaitMs;
+        LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; OpenDoor + retry\n",
+                    playerX_, playerY_, static_cast<int>(playerZ_),
+                    bx, by, static_cast<int>(bz));
         return;
     }
 
-    // Phase 2 — no door nearby and the blind door budget is spent: a wall,
-    // lamp post, or a mob in the way. Avoid it for THIS trip ONLY (transient,
-    // never written to blacklist.mul, so a real passage is never permanently
-    // poisoned) and reroute. Stop only if there's genuinely no other way.
-    blacklist_.AddTransient(bx, by, bz, neighborStatic ? 1 : 0);
-    LogInfo("[bot] (%d,%d,%d) blocked after %u tries; avoiding (transient) "
-                "+ rerouting\n", bx, by, static_cast<int>(bz), doorAttempts_);
+    // A repeated reject means this exact directed step is not server-walkable
+    // now. Do not blacklist the destination cell: on stairs the same cell may
+    // be reachable from another approach direction.
+    rejectedEdges_.push_back({playerX_, playerY_, playerZ_,
+                              bx, by, static_cast<i8>(bz)});
+    LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; avoiding edge + rerouting\n",
+                playerX_, playerY_, static_cast<int>(playerZ_),
+                bx, by, static_cast<int>(bz));
     std::uniform_int_distribution<int> rd(200, 400);
     if (BotReplanToGoal())
         botResumeAtMs_ = NowMs() + rd(rng_);
@@ -1900,10 +1815,52 @@ bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
     return BotIsDynamicItemBlocking(x, y, z);
 }
 
+bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
+                               i32 toX, i32 toY, i8 toZ) const {
+    for (const auto& e : rejectedEdges_) {
+        if (e.fromX != fromX || e.fromY != fromY ||
+            e.toX != toX || e.toY != toY)
+            continue;
+        i32 fromDz = static_cast<i32>(fromZ) - static_cast<i32>(e.fromZ);
+        i32 toDz = static_cast<i32>(toZ) - static_cast<i32>(e.toZ);
+        if (fromDz < 0) fromDz = -fromDz;
+        if (toDz < 0) toDz = -toDz;
+        if (fromDz <= 2 && toDz <= 2) return true;
+    }
+    return false;
+}
+
+bool Client::BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
+                                  i32 toX, i32 toY, i8 toZ) const {
+    for (const auto& e : doorRetryEdges_) {
+        if (e.fromX != fromX || e.fromY != fromY ||
+            e.toX != toX || e.toY != toY)
+            continue;
+        i32 fromDz = static_cast<i32>(fromZ) - static_cast<i32>(e.fromZ);
+        i32 toDz = static_cast<i32>(toZ) - static_cast<i32>(e.toZ);
+        if (fromDz < 0) fromDz = -fromDz;
+        if (toDz < 0) toDz = -toDz;
+        if (fromDz <= 2 && toDz <= 2) return true;
+    }
+    return false;
+}
+
+void Client::BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
+                                  i32 toX, i32 toY, i8 toZ) {
+    doorRetryEdges_.push_back({fromX, fromY, fromZ, toX, toY, toZ});
+}
+
 bool Client::BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user) {
     const auto* c = static_cast<const Client*>(user);
     return c && (c->BotIsMobileBlocking(x, y, z) ||
                  c->BotIsDynamicItemBlocking(x, y, z));
+}
+
+bool Client::BotRuntimeBlockedStepForPath(i32 fromX, i32 fromY, i8 fromZ,
+                                          i32 toX, i32 toY, i8 toZ,
+                                          void* user) {
+    const auto* c = static_cast<const Client*>(user);
+    return c && c->BotIsRejectedEdge(fromX, fromY, fromZ, toX, toY, toZ);
 }
 
 bool Client::BotLookaheadPatchPath() {
@@ -1936,7 +1893,8 @@ bool Client::BotLookaheadPatchPath() {
         q.x = static_cast<u32>(nx);
         q.y = static_cast<u32>(ny);
         q.fromZ = z;
-        q.hasPreferredZ = botHasGoalZ_;
+        q.hasPreferredZ = ShouldPreferBotGoalZ(botHasGoalZ_, nx, ny,
+                                               botGoalX_, botGoalY_);
         q.preferredZ = static_cast<i8>(botGoalZ_);
         const auto wr = world_->QueryCell(q);
 
@@ -1945,9 +1903,8 @@ bool Client::BotLookaheadPatchPath() {
         i8 standZ = z;
         if (wr.walkable) {
             standZ = wr.standZ;
-            // Known doors are handled by the OpenDoor macro, not by rerouting.
-            blocked = (FindDoorAt(nx, ny, standZ, 0) == nullptr) &&
-                      BotIsRuntimeBlocked(nx, ny, standZ);
+            blocked = BotIsRuntimeBlocked(nx, ny, standZ) ||
+                      BotIsRejectedEdge(x, y, z, nx, ny, standZ);
         }
 
         if (i < kPathLookaheadScanSteps && (blocked || !walkable) &&
@@ -1974,6 +1931,7 @@ bool Client::BotLookaheadPatchPath() {
         opts.goalZ = target.z;
         opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
         opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
+        opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
         opts.extraBlockedUser = this;
 
         const auto t0 = std::chrono::steady_clock::now();
@@ -1998,49 +1956,6 @@ bool Client::BotLookaheadPatchPath() {
     return false;
 }
 
-bool Client::BotMaybeOpenDoorAhead(u8 dir, i64 nowMs) {
-    if (!world_) return false;
-
-    i32 dx, dy;
-    bot::DirToDelta(dir, &dx, &dy);
-    const i32 nx = playerX_ + dx;
-    const i32 ny = playerY_ + dy;
-
-    world::WalkQuery q{};
-    q.x = static_cast<u32>(nx);
-    q.y = static_cast<u32>(ny);
-    q.fromZ = playerZ_;
-    q.hasPreferredZ = botHasGoalZ_;
-    q.preferredZ = static_cast<i8>(botGoalZ_);
-    const auto wr = world_->QueryCell(q);
-    if (!wr.walkable) return false;
-
-    if (!FindDoorAt(nx, ny, wr.standZ, 0)) return false;
-
-    if (proactiveDoorOpenPending_ &&
-        proactiveDoorX_ == nx && proactiveDoorY_ == ny &&
-        proactiveDoorZ_ == wr.standZ) {
-        proactiveDoorOpenPending_ = false;
-        awaitingDoorOpen_ = false;
-        return false;
-    }
-
-    u8 ob[8];
-    Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 lookahead)");
-    proactiveDoorOpenPending_ = true;
-    proactiveDoorX_ = nx;
-    proactiveDoorY_ = ny;
-    proactiveDoorZ_ = wr.standZ;
-    doorCellX_ = nx;
-    doorCellY_ = ny;
-    doorCellZ_ = wr.standZ;
-    awaitingDoorOpen_ = true;
-    botResumeAtMs_ = nowMs + kDoorWaitMs;
-    LogInfo("[bot] lookahead OpenDoor before step into (%d,%d,z%d)\n",
-                nx, ny, static_cast<int>(wr.standZ));
-    return true;
-}
-
 bool Client::BotReplanToGoal() {
     if (++botReplanCount_ > kMaxReplans) {
         LogWarn( "[bot] giving up after %u replans (unreachable?)\n",
@@ -2057,6 +1972,8 @@ bool Client::BotReplanToGoal() {
     opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
     opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
     opts.goalZ    = botGoalZ_;
+    opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
+    opts.extraBlockedUser = this;
 
     // Scale the node-expansion budget with goal distance. The grass penalty
     // inflates step cost without the heuristic knowing, so on a long open
@@ -2103,7 +2020,6 @@ void Client::BotInterruptForThreat(const char* reason) {
     pendingMoves_.clear();
     botActive_ = false;
     followActive_ = false;
-    proactiveDoorOpenPending_ = false;
     moveSeq_ = 0;
 }
 
@@ -2118,7 +2034,6 @@ void Client::BotStopFollow(const char* reason) {
     botPath_.clear();
     pendingMoves_.clear();
     botActive_ = false;
-    proactiveDoorOpenPending_ = false;
     moveSeq_ = 0;
 }
 
@@ -2240,11 +2155,10 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     botActive_ = true;
     botReplanCount_ = 0;
     botResumeAtMs_ = 0;
-    doorAttempts_ = 0;
-    awaitingDoorOpen_ = false;
-    proactiveDoorOpenPending_ = false;
     stuckWaits_ = 0;
     blacklist_.ClearTransient();
+    rejectedEdges_.clear();
+    doorRetryEdges_.clear();
     moveSeq_ = 0;  // fresh fastwalk sequence (0 = resync)
 
     if (botHasGoalZ_)
@@ -2280,8 +2194,6 @@ void Client::BotPumpMoves() {
 
         const u8 dir = botPath_.front();
         const bool wasStep = (dir == playerFacing_);
-        if (wasStep && BotMaybeOpenDoorAhead(dir, now_ms)) return;
-
         // Idle self-click every few moves — mimics a human and doubles as a
         // liveness ping on shards with bot heuristics.
 #if 0

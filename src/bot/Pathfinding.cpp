@@ -176,6 +176,10 @@ std::vector<u8> FindPath(uo::world::World& world,
             if (opts.extraBlocked &&
                 opts.extraBlocked(nx, ny, wr.standZ, opts.extraBlockedUser))
                 continue;
+            if (opts.extraBlockedStep &&
+                opts.extraBlockedStep(n.x, n.y, n.z, nx, ny, wr.standZ,
+                                      opts.extraBlockedUser))
+                continue;
 
             // UO diagonal corner rule: a diagonal step from (n) to
             // (nx,ny) requires BOTH adjacent straight cells to be
