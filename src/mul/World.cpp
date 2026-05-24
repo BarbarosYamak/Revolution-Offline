@@ -20,17 +20,16 @@ bool World::StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const {
     return true;
 }
 
-// Anything impassable/wall/door (closed)/window/no-shoot is a blocker
-// when standing into its volume. Foliage usually isn't a blocker for
-// walking on land; classic clients treat it as Surface=0 / Impassable=0
-// so we never treat it as wall.
+// The classic client's path stack only creates blocker volumes from
+// Impassable (and from surfaces before they become stand candidates). Wall,
+// Window and NoShoot are visual/LOS flags here; using them for walking blocks
+// false-positive walls in open passages.
 bool World::IsStaticBlocker(u16 itemId) const {
     const auto& s = td_.Static(itemId);
     if ((s.flags & td::kFlagImpassable) == 0 &&
         (s.flags & (td::kFlagSurface | td::kFlagBridge)) != 0)
         return false;
-    u32 blockMask = td::kFlagImpassable | td::kFlagWall |
-                    td::kFlagWindow     | td::kFlagNoShoot;
+    u32 blockMask = td::kFlagImpassable;
     // Optionally let A* route through pure-door tiles (opened at runtime).
     if (!acceptDoors_) blockMask |= td::kFlagDoor;
     return (s.flags & blockMask) != 0;

@@ -6,10 +6,10 @@
 
 == trinsic_bridge -> brit_down  (1869,2881,40 -> 1446,1663,-10) ==
 start (1869,2881,40) walkable=1 standZ=40
-penalty=0  cap=4000000  OK        steps=1434 (diag=509) grassSteps=0 geoCost=16376 pathCost=16376 expanded=446305 searchUs=4140665.7 closest=(1446,1663,-10) h=0
-penalty=6  cap=8000000  OK        steps=1481 (diag=526) grassSteps=156 geoCost=16914 pathCost=17850 expanded=564350 searchUs=6859161.6 closest=(1446,1663,-10) h=0
+penalty=0  cap=4000000  OK        steps=1434 (diag=509) grassSteps=0 geoCost=16376 pathCost=16376 expanded=446158 searchUs=4059686.3 closest=(1446,1663,-10) h=0
+penalty=6  cap=8000000  OK        steps=1482 (diag=525) grassSteps=156 geoCost=16920 pathCost=17856 expanded=564500 searchUs=6754184.4 closest=(1446,1663,-10) h=0
 
 == brit_down -> trinsic_bridge  (1446,1663,-10 -> 1869,2881,40) ==
 start (1446,1663,-10) walkable=1 standZ=-10
-penalty=0  cap=4000000  OK        steps=1424 (diag=507) grassSteps=0 geoCost=16268 pathCost=16268 expanded=798541 searchUs=7544503.9 closest=(1869,2881,40) h=0
-penalty=6  cap=8000000  OK        steps=1476 (diag=521) grassSteps=109 geoCost=16844 pathCost=17498 expanded=842887 searchUs=10720840.1 closest=(1869,2881,40) h=0
+penalty=0  cap=4000000  OK        steps=1424 (diag=507) grassSteps=0 geoCost=16268 pathCost=16268 expanded=805087 searchUs=7450985.7 closest=(1869,2881,40) h=0
+penalty=6  cap=8000000  OK        steps=1477 (diag=520) grassSteps=109 geoCost=16850 pathCost=17504 expanded=862594 searchUs=10894745.2 closest=(1869,2881,40) h=0
