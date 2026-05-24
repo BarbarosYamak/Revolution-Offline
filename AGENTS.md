@@ -37,3 +37,6 @@ Commits use concise, imperative, scope-prefixed messages, for example `bot: add 
 ## Security & Configuration Tips
 
 Do not commit credentials, shard-specific secrets, or private asset paths. `src/main.cpp` currently contains local defaults for host, login, and MUL asset locations; prefer command-line overrides or local-only edits when testing against private environments.
+
+
+@bot-client.md
