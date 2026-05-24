@@ -1,4 +1,4 @@
-IMPORTANT: While user talk to you using Russian you should talk back to user using only English
+IMPORTANT: While user talk to you in Russian you should talk back to user using only English
 
 # Repository Guidelines
 
