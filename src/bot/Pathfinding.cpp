@@ -206,8 +206,29 @@ std::vector<u8> FindPath(uo::world::World& world,
                 wqB.hasPreferredZ = ShouldPreferGoalZ(
                     opts, static_cast<i32>(wqB.x), static_cast<i32>(wqB.y), gx, gy);
                 wqB.preferredZ = opts.goalZ;
-                if (!world.QueryCell(wqA).walkable) continue;
-                if (!world.QueryCell(wqB).walkable) continue;
+                const auto wrA = world.QueryCell(wqA);
+                if (!wrA.walkable) continue;
+                if (opts.blacklist && opts.blacklist->IsBlocked(wqA.x, wqA.y, wrA.standZ))
+                    continue;
+                if (opts.extraBlocked &&
+                    opts.extraBlocked(wqA.x, wqA.y, wrA.standZ, opts.extraBlockedUser))
+                    continue;
+                if (opts.extraBlockedStep &&
+                    opts.extraBlockedStep(n.x, n.y, n.z, wqA.x, wqA.y, wrA.standZ,
+                                          opts.extraBlockedUser))
+                    continue;
+
+                const auto wrB = world.QueryCell(wqB);
+                if (!wrB.walkable) continue;
+                if (opts.blacklist && opts.blacklist->IsBlocked(wqB.x, wqB.y, wrB.standZ))
+                    continue;
+                if (opts.extraBlocked &&
+                    opts.extraBlocked(wqB.x, wqB.y, wrB.standZ, opts.extraBlockedUser))
+                    continue;
+                if (opts.extraBlockedStep &&
+                    opts.extraBlockedStep(n.x, n.y, n.z, wqB.x, wqB.y, wrB.standZ,
+                                          opts.extraBlockedUser))
+                    continue;
             }
 
             const u32 step = (dx != 0 && dy != 0) ? kDiagonalCost : kStraightCost;

@@ -8,9 +8,12 @@ namespace td = uo::tiledata;
 
 constexpr i32 kMaxLandStepUp = 2;
 
-// A static is a "surface" if it has Surface or Bridge flag.
+// A static is a standing surface if it has Surface or Bridge and is not
+// Impassable. The classic client treats Impassable+Surface as blocker-only:
+// it sets the blocker bit from 0x40 and does not add surface bits.
 bool World::StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const {
     const auto& s = td_.Static(itemId);
+    if (s.flags & td::kFlagImpassable) return false;
     const bool isSurface = (s.flags & (td::kFlagSurface | td::kFlagBridge)) != 0;
     if (!isSurface) return false;
     if (topOut) *topOut = static_cast<i8>(baseZ + s.height);
@@ -23,7 +26,9 @@ bool World::StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const {
 // so we never treat it as wall.
 bool World::IsStaticBlocker(u16 itemId) const {
     const auto& s = td_.Static(itemId);
-    if (s.flags & (td::kFlagSurface | td::kFlagBridge)) return false;
+    if ((s.flags & td::kFlagImpassable) == 0 &&
+        (s.flags & (td::kFlagSurface | td::kFlagBridge)) != 0)
+        return false;
     u32 blockMask = td::kFlagImpassable | td::kFlagWall |
                     td::kFlagWindow     | td::kFlagNoShoot;
     // Optionally let A* route through pure-door tiles (opened at runtime).
