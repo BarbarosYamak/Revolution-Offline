@@ -61,6 +61,10 @@ constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) aft
 constexpr i64   kMobilesNamesTimeoutMs = 500;
 constexpr i64   kFollowReplanMinMs = 120;
 constexpr i64   kFollowProbeMs     = 1200;
+constexpr usize kPathLookaheadScanSteps = 5;
+constexpr usize kPathLookaheadAnchorExtra = 5;
+constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr i64   kLookaheadMobileFreshMs = 5000;
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
@@ -132,6 +136,8 @@ Client::Client(const Config& cfg)
           std::chrono::steady_clock::now().time_since_epoch().count())),
       doorCellX_(0), doorCellY_(0), doorCellZ_(0),
       doorAttempts_(0), awaitingDoorOpen_(false),
+      proactiveDoorOpenPending_(false),
+      proactiveDoorX_(0), proactiveDoorY_(0), proactiveDoorZ_(0),
       followActive_(false), followSerial_(0), followDistance_(1),
       followLastReplanMs_(0), followLastProbeMs_(0),
       mobilesListPending_(false), mobilesListDeadlineMs_(0),
@@ -892,6 +898,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
         // (z far away) must not be mistaken for the one we're trying to pass.
         if (ax <= 2 && ay <= 2 && az <= 8) {
             awaitingDoorOpen_ = false;
+            proactiveDoorOpenPending_ = false;
             doorAttempts_ = 0;
             std::printf("[bot] door @(%d,%d,z%d) OPENED (object 0x%08X @%d,%d,z%d); resuming\n",
                         doorCellX_, doorCellY_, static_cast<int>(doorCellZ_),
@@ -1221,8 +1228,9 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // Direction of the move that was rejected (prefer the queued move's dir;
     // fall back to the server's reported facing).
     u8 rdir = dirByte & 0x07;
+    bool rejectedWasStep = false;
     for (const auto& pm : pendingMoves_)
-        if (pm.seq == seq) { rdir = pm.dir; break; }
+        if (pm.seq == seq) { rdir = pm.dir; rejectedWasStep = pm.wasStep; break; }
 
     std::fprintf(stderr,
         "[0x21] move REJECTED seq=%u; server says (%u,%u,%d) facing=%u\n",
@@ -1238,6 +1246,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     playerRunning_ = false;
     pendingMoves_.clear();
     moveSeq_ = 0;
+    proactiveDoorOpenPending_ = false;
 
     if (!botActive_) return;
 
@@ -1346,8 +1355,8 @@ void Client::OnMoveReject(const u8* data, usize size) {
         std::printf("[bot] reject at (%d,%d,z%d): OpenDoor sent, awaiting confirm (try %u)%s\n",
                     bx, by, static_cast<int>(bz), doorAttempts_,
                     nearDoor ? " [door cached]" : "");
-        if (BotReplanToGoal())  // path unchanged; we retry the same step
-            botResumeAtMs_ = NowMs() + kDoorWaitMs;
+        if (rejectedWasStep) botPath_.push_front(rdir);
+        botResumeAtMs_ = NowMs() + kDoorWaitMs;
         return;
     }
 
@@ -1856,6 +1865,182 @@ void Client::BotPredictStep(u8 dir) {
     }
 }
 
+bool Client::BotIsMobileBlocking(i32 x, i32 y, i8 z) const {
+    const i64 now = NowMs();
+    for (const auto& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (m.x != x || m.y != y) continue;
+        if (now - m.seenMs > kLookaheadMobileFreshMs) continue;
+        i32 dz = static_cast<i32>(z) - static_cast<i32>(m.z);
+        if (dz < 0) dz = -dz;
+        if (dz <= 8) return true;
+    }
+    return false;
+}
+
+bool Client::BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const {
+    if (!tileData_ || !world_) return false;
+    const i32 colLo = static_cast<i32>(z);
+    const i32 colHi = colLo + 16;
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        if (it.x != x || it.y != y) continue;
+
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = tileData_->Static(gid);
+        if (IsDoorGraphic(gid) || (st.flags & tiledata::kFlagDoor)) continue;
+        if (!world_->IsStaticBlocker(gid)) continue;
+
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+    return false;
+}
+
+bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
+    if (blacklist_.IsBlocked(x, y, z)) return true;
+    if (BotIsMobileBlocking(x, y, z)) return true;
+    return BotIsDynamicItemBlocking(x, y, z);
+}
+
+bool Client::BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user) {
+    const auto* c = static_cast<const Client*>(user);
+    return c && (c->BotIsMobileBlocking(x, y, z) ||
+                 c->BotIsDynamicItemBlocking(x, y, z));
+}
+
+bool Client::BotLookaheadPatchPath() {
+    if (!world_ || botPath_.empty()) return false;
+
+    struct PreviewStep {
+        i32 x;
+        i32 y;
+        i8  z;
+        bool walkable;
+        bool blocked;
+    };
+
+    PreviewStep preview[kPathLookaheadScanSteps + kPathLookaheadAnchorExtra];
+    usize previewCount = 0;
+    usize firstBlocked = static_cast<usize>(-1);
+    i32 x = playerX_;
+    i32 y = playerY_;
+    i8 z = playerZ_;
+
+    const usize maxPreview = std::min<usize>(
+        botPath_.size(), kPathLookaheadScanSteps + kPathLookaheadAnchorExtra);
+    for (usize i = 0; i < maxPreview; ++i) {
+        i32 dx, dy;
+        bot::DirToDelta(botPath_[i], &dx, &dy);
+        const i32 nx = x + dx;
+        const i32 ny = y + dy;
+
+        world::WalkQuery q{};
+        q.x = static_cast<u32>(nx);
+        q.y = static_cast<u32>(ny);
+        q.fromZ = z;
+        q.hasPreferredZ = botHasGoalZ_;
+        q.preferredZ = static_cast<i8>(botGoalZ_);
+        const auto wr = world_->QueryCell(q);
+
+        bool blocked = true;
+        bool walkable = wr.walkable;
+        i8 standZ = z;
+        if (wr.walkable) {
+            standZ = wr.standZ;
+            // Known doors are handled by the OpenDoor macro, not by rerouting.
+            blocked = (FindDoorAt(nx, ny, standZ, 0) == nullptr) &&
+                      BotIsRuntimeBlocked(nx, ny, standZ);
+        }
+
+        if (i < kPathLookaheadScanSteps && (blocked || !walkable) &&
+            firstBlocked == static_cast<usize>(-1)) {
+            firstBlocked = i;
+        }
+
+        preview[previewCount++] = {nx, ny, standZ, walkable, blocked};
+        x = nx;
+        y = ny;
+        z = standZ;
+    }
+
+    if (firstBlocked == static_cast<usize>(-1)) return false;
+
+    const usize firstAnchor = std::min(kPathLookaheadScanSteps - 1, previewCount - 1);
+    for (usize anchor = firstAnchor; anchor < previewCount; ++anchor) {
+        const auto& target = preview[anchor];
+        if (!target.walkable || target.blocked) continue;
+
+        bot::PathOptions opts;
+        opts.blacklist = &blacklist_;
+        opts.hasGoalZ = true;
+        opts.goalZ = target.z;
+        opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
+        opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
+        opts.extraBlockedUser = this;
+
+        auto patch = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
+                                   target.x, target.y, opts);
+        if (patch.empty()) continue;
+
+        std::deque<u8> next;
+        for (u8 d : patch) next.push_back(d);
+        for (usize i = anchor + 1; i < botPath_.size(); ++i)
+            next.push_back(botPath_[i]);
+        botPath_.swap(next);
+        std::printf("[bot] lookahead patched around block at step %zu: "
+                    "anchor=%zu new segment=%zu path=%zu\n",
+                    firstBlocked + 1, anchor + 1, patch.size(), botPath_.size());
+        return true;
+    }
+
+    return false;
+}
+
+bool Client::BotMaybeOpenDoorAhead(u8 dir, i64 nowMs) {
+    if (!world_) return false;
+
+    i32 dx, dy;
+    bot::DirToDelta(dir, &dx, &dy);
+    const i32 nx = playerX_ + dx;
+    const i32 ny = playerY_ + dy;
+
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(nx);
+    q.y = static_cast<u32>(ny);
+    q.fromZ = playerZ_;
+    q.hasPreferredZ = botHasGoalZ_;
+    q.preferredZ = static_cast<i8>(botGoalZ_);
+    const auto wr = world_->QueryCell(q);
+    if (!wr.walkable) return false;
+
+    if (!FindDoorAt(nx, ny, wr.standZ, 0)) return false;
+
+    if (proactiveDoorOpenPending_ &&
+        proactiveDoorX_ == nx && proactiveDoorY_ == ny &&
+        proactiveDoorZ_ == wr.standZ) {
+        proactiveDoorOpenPending_ = false;
+        awaitingDoorOpen_ = false;
+        return false;
+    }
+
+    u8 ob[8];
+    Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 lookahead)");
+    proactiveDoorOpenPending_ = true;
+    proactiveDoorX_ = nx;
+    proactiveDoorY_ = ny;
+    proactiveDoorZ_ = wr.standZ;
+    doorCellX_ = nx;
+    doorCellY_ = ny;
+    doorCellZ_ = wr.standZ;
+    awaitingDoorOpen_ = true;
+    botResumeAtMs_ = nowMs + kDoorWaitMs;
+    std::printf("[bot] lookahead OpenDoor before step into (%d,%d,z%d)\n",
+                nx, ny, static_cast<int>(wr.standZ));
+    return true;
+}
+
 bool Client::BotReplanToGoal() {
     if (++botReplanCount_ > kMaxReplans) {
         std::fprintf(stderr, "[bot] giving up after %u replans (unreachable?)\n",
@@ -1912,6 +2097,7 @@ void Client::BotInterruptForThreat(const char* reason) {
     pendingMoves_.clear();
     botActive_ = false;
     followActive_ = false;
+    proactiveDoorOpenPending_ = false;
     moveSeq_ = 0;
 }
 
@@ -1926,6 +2112,7 @@ void Client::BotStopFollow(const char* reason) {
     botPath_.clear();
     pendingMoves_.clear();
     botActive_ = false;
+    proactiveDoorOpenPending_ = false;
     moveSeq_ = 0;
 }
 
@@ -2049,6 +2236,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     botResumeAtMs_ = 0;
     doorAttempts_ = 0;
     awaitingDoorOpen_ = false;
+    proactiveDoorOpenPending_ = false;
     stuckWaits_ = 0;
     blacklist_.ClearTransient();
     moveSeq_ = 0;  // fresh fastwalk sequence (0 = resync)
@@ -2076,6 +2264,8 @@ void Client::BotPumpMoves() {
     if (now_ms < botResumeAtMs_) return;  // human reaction pause after a bump
     const u32 needGap = botRun_ ? runThrottleMs_ : walkThrottleMs_;
 
+    if (pendingMoves_.empty()) BotLookaheadPatchPath();
+
     while (pendingMoves_.size() < kMaxInFlight && !botPath_.empty()) {
         if (lastMoveSentMs_ != 0 &&
             now_ms - lastMoveSentMs_ < static_cast<i64>(needGap)) {
@@ -2084,6 +2274,7 @@ void Client::BotPumpMoves() {
 
         const u8 dir = botPath_.front();
         const bool wasStep = (dir == playerFacing_);
+        if (wasStep && BotMaybeOpenDoorAhead(dir, now_ms)) return;
 
         // Idle self-click every few moves — mimics a human and doubles as a
         // liveness ping on shards with bot heuristics.

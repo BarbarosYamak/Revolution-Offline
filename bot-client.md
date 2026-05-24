@@ -112,6 +112,39 @@ stdin commands (in-world):
   `0x0003–0x0006`, tunable in `IsGrassLikeTile`) cost extra, biasing routes onto
   roads/dirt/cobble where mobs are sparser. Heuristic stays admissible.
 - **Blacklist overlay** consulted *after* the MUL checks (see below).
+- With an explicit destination Z, `goalZ` is a finish-floor constraint and only
+  biases surface selection near the goal. Intermediate cells still pick surfaces
+  from the current `fromZ`, so a far route is not globally pulled toward the
+  destination floor.
+
+### Path lookahead (`Client::BotLookaheadPatchPath`)
+
+The bot does not rebuild the whole path on every tick. When there are no pending
+moves, it previews the already-built `botPath_`:
+
+1. Simulate the next 5 path steps, plus 5 more candidate anchor steps, using
+   `World::QueryCell` to track the predicted `standZ`.
+2. A preview cell is runtime-blocked if it is in the transient blacklist, contains
+   a fresh mobile from `0x77`/`0x78`, contains a blocking dynamic item from `0x1A`,
+   or is not walkable by the normal MUL checks.
+3. A door object is not treated as a blocker for reroute, but only when the door
+   is in the exact step cell. Nearby doors are ignored so walking past a doorway
+   does not spam OpenDoor.
+4. If a block appears in the first 5 steps, the bot tries a small A\* patch from
+   the current position to the first later preview anchor that is walkable and
+   unblocked.
+5. The patch search is capped at 4096 expanded nodes and does not use grass/forest
+   penalties; it is meant to be a fast local detour, not a route-quality decision.
+6. If a patch is found, it replaces only the path prefix and keeps the old path
+   tail after the anchor. The patch may be shorter or longer than the skipped
+   segment.
+7. If no patch is found, `botPath_` is left untouched. A later real `0x21` reject
+   is handled by the normal anti-stuck/reject fallback.
+
+Door lookahead is separate: before stepping into a cached door cell, while already
+facing the step direction, the bot sends the official macro packet
+`0x12 OpenDoor (0x58)`, waits briefly, then retries the same step. It does not
+double-click door serials.
 
 ### Walkability (`src/mul/World.cpp` `QueryCell` / `IsStaticBlocker`)
 - Land surface walkable unless Impassable or Wet (water).
@@ -139,10 +172,10 @@ computes the blocked cell `(bx,by,bz)`, then decides **in this order**:
    pruned on `0x1D`) → if a mobile is on the blocked cell/floor it's a moving/shove
    obstacle → wait `kMobileWaitMs` (0.9s), retry, **never blacklist**.
 2. **Door:** send the legit **OpenDoor action** `0x12`/`0x58` (server spatially
-   searches the *faced* tile and opens any door there — graphic- and
-   timing-independent), and also double-click (`0x06`) any door already seen near
-   the cell. Doors don't swing instantly, so wait `kDoorWaitMs` (700ms) and retry,
-   up to `kMaxDoorTries` (4) blind attempts.
+   searches the faced tile and opens any door there — graphic- and
+   timing-independent). Door serials are not double-clicked. Doors don't swing
+   instantly, so wait `kDoorWaitMs` (700ms) and retry, up to `kMaxDoorTries` (4)
+   blind attempts.
    - **Open confirmation:** after sending an open we set `awaitingDoorOpen_`; any
      `0x1A` object update at the cell (≤2 tiles, ≤8 z) means the door swung →
      log "OPENED" and retry immediately; a re-bump with no update logs "did NOT open".
@@ -229,7 +262,8 @@ tests/                    huffman / blacklist / path-probe standalone checks
 - **Road bias** — grass tile set is a minimal starting set (`0x0003–0x0006`);
   expand `IsGrassLikeTile` with this shard's exact grass/road IDs to sharpen it.
 - **Door cache graphics** — `IsDoorGraphic` covers `0x0675–0x06F6`; the OpenDoor
-  *action* is graphic-agnostic so this only affects the secondary double-click path.
+  *action* is graphic-agnostic, so this only affects cached-door lookahead and
+  confirmation logic.
 - **verdata.mul read** — not implemented (this server only reads verdata's version
   word and never applies static/map patches, so base MULs already match it).
 - **blacklist.mul auto-persist** — disabled (read-only) to avoid poisoning passages.

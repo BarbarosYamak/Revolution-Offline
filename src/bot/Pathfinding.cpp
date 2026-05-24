@@ -40,6 +40,7 @@ constexpr u32 kDiagonalCost = 14;
 // When a goal z is pinned, accept arriving within this many z-units of it
 // (surface tops jitter a couple units between adjacent floor tiles).
 constexpr i32 kGoalZTolerance = 4;
+constexpr i32 kGoalZPreferenceRadius = 24;
 
 u32 Heuristic(i32 x, i32 y, i32 gx, i32 gy) {
     const u32 dx = static_cast<u32>(std::abs(gx - x));
@@ -47,6 +48,15 @@ u32 Heuristic(i32 x, i32 y, i32 gx, i32 gy) {
     const u32 mn = (dx < dy) ? dx : dy;
     const u32 mx = (dx < dy) ? dy : dx;
     return kStraightCost * (mx - mn) + kDiagonalCost * mn;
+}
+
+bool ShouldPreferGoalZ(const PathOptions& opts, i32 x, i32 y, i32 gx, i32 gy) {
+    if (!opts.hasGoalZ) return false;
+    i32 dx = gx - x;
+    i32 dy = gy - y;
+    if (dx < 0) dx = -dx;
+    if (dy < 0) dy = -dy;
+    return (dx > dy ? dx : dy) <= kGoalZPreferenceRadius;
 }
 
 // A* search state is 3D: the same (x,y) column can be a distinct node at
@@ -155,7 +165,7 @@ std::vector<u8> FindPath(uo::world::World& world,
             wq.maxStepUp  = static_cast<i8>(opts.maxStepUp);
             wq.maxStepDown= static_cast<i8>(opts.maxStepDown);
             wq.charHeight = opts.charHeight;
-            wq.hasPreferredZ = opts.hasGoalZ;
+            wq.hasPreferredZ = ShouldPreferGoalZ(opts, nx, ny, gx, gy);
             wq.preferredZ    = opts.goalZ;
             const auto wr = world.QueryCell(wq);
             if (!wr.walkable) continue;
@@ -180,16 +190,18 @@ std::vector<u8> FindPath(uo::world::World& world,
                 wqA.maxStepUp = wq.maxStepUp;
                 wqA.maxStepDown = wq.maxStepDown;
                 wqA.charHeight = wq.charHeight;
-                wqA.hasPreferredZ = wq.hasPreferredZ;
-                wqA.preferredZ = wq.preferredZ;
+                wqA.hasPreferredZ = ShouldPreferGoalZ(
+                    opts, static_cast<i32>(wqA.x), static_cast<i32>(wqA.y), gx, gy);
+                wqA.preferredZ = opts.goalZ;
                 wqB.x = static_cast<u32>(n.x);
                 wqB.y = static_cast<u32>(n.y + dy);
                 wqB.fromZ = n.z;
                 wqB.maxStepUp = wq.maxStepUp;
                 wqB.maxStepDown = wq.maxStepDown;
                 wqB.charHeight = wq.charHeight;
-                wqB.hasPreferredZ = wq.hasPreferredZ;
-                wqB.preferredZ = wq.preferredZ;
+                wqB.hasPreferredZ = ShouldPreferGoalZ(
+                    opts, static_cast<i32>(wqB.x), static_cast<i32>(wqB.y), gx, gy);
+                wqB.preferredZ = opts.goalZ;
                 if (!world.QueryCell(wqA).walkable) continue;
                 if (!world.QueryCell(wqB).walkable) continue;
             }

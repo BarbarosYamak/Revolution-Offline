@@ -163,6 +163,12 @@ private:
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
+    bool BotLookaheadPatchPath(); // short local reroute around visible blockers
+    bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
+    bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
+    bool BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
+    bool BotMaybeOpenDoorAhead(u8 dir, i64 nowMs);
+    static bool BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user);
     // Threat hook: called when we detect we're under attack mid-travel.
     // For now it just halts travel safely; engage/flee/recall are TODO.
     void BotInterruptForThreat(const char* reason);
@@ -261,6 +267,10 @@ private:
     i8  doorCellZ_;           // surface z of the blocked cell (to pick the door on our floor)
     u32 doorAttempts_;
     bool awaitingDoorOpen_;   // sent an open command, waiting to confirm it swung
+    bool proactiveDoorOpenPending_;
+    i32 proactiveDoorX_;
+    i32 proactiveDoorY_;
+    i8  proactiveDoorZ_;
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
