@@ -170,6 +170,7 @@ private:
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
     bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
     bool BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
+    bool BotStepNeedsDoorOpen(i8 fromZ, i32 toX, i32 toY, i8 toZ) const;
     bool BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
                            i32 toX, i32 toY, i8 toZ) const;
     bool BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,

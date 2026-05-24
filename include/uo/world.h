@@ -71,6 +71,12 @@ public:
     // Returns false if static is not a surface.
     bool StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const;
 
+    // True when a static door at (x,y) intersects the character body column
+    // for a step from fromZ to standZ. Used to send the official OpenDoor
+    // macro before walking into a door tile.
+    bool HasDoorAt(u32 x, u32 y, i8 fromZ, i8 standZ,
+                   u8 charHeight = 16) const;
+
 private:
     // A* expands a node's 8 neighbours (a 3x3 cell window spanning at most
     // four 8x8 blocks), so QueryCell hammers the same blocks repeatedly. Cache

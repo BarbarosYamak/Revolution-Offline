@@ -36,6 +36,30 @@ bool World::IsStaticBlocker(u16 itemId) const {
     return (s.flags & blockMask) != 0;
 }
 
+bool World::HasDoorAt(u32 x, u32 y, i8 fromZ, i8 standZ,
+                      u8 charHeight) const {
+    const u32 bx = x / 8;
+    const u32 by = y / 8;
+    const u8  cx = static_cast<u8>(x % 8);
+    const u8  cy = static_cast<u8>(y % 8);
+
+    const CachedBlock* blk = CachedBlockAt(bx, by);
+    if (!blk) return false;
+
+    const i32 colLo = (fromZ > standZ) ? fromZ : standZ;
+    const i32 colHi = colLo + charHeight;
+    for (const auto& s : blk->statics) {
+        if (s.cellX != cx || s.cellY != cy) continue;
+        const auto& st = td_.Static(s.itemId);
+        if ((st.flags & td::kFlagDoor) == 0) continue;
+
+        const i32 obsLo = static_cast<i32>(s.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+    return false;
+}
+
 // Upper bound on statics decoded per block. Blocks with more than this are
 // extremely rare; the tail is dropped, matching the old fixed-buffer behavior.
 static constexpr u32 kMaxStaticsPerBlock = 1024;

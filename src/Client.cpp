@@ -1959,6 +1959,29 @@ bool Client::BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const {
     return false;
 }
 
+bool Client::BotStepNeedsDoorOpen(i8 fromZ, i32 toX, i32 toY, i8 toZ) const {
+    if (!tileData_ || !world_) return false;
+
+    const i32 colLo = (fromZ > toZ) ? fromZ : toZ;
+    const i32 colHi = colLo + 16;
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        if (it.x != toX || it.y != toY) continue;
+
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = tileData_->Static(gid);
+        if (!IsDoorGraphic(gid) && (st.flags & tiledata::kFlagDoor) == 0)
+            continue;
+
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+
+    return world_->HasDoorAt(static_cast<u32>(toX), static_cast<u32>(toY),
+                             fromZ, toZ);
+}
+
 bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
     if (blacklist_.IsBlocked(x, y, z)) return true;
     if (BotIsMobileBlocking(x, y, z)) return true;
@@ -2345,6 +2368,38 @@ void Client::BotPumpMoves() {
 
         const u8 dir = botPath_.front();
         const bool wasStep = (dir == playerFacing_);
+        if (wasStep) {
+            i32 dx, dy;
+            bot::DirToDelta(dir, &dx, &dy);
+            const i32 nx = playerX_ + dx;
+            const i32 ny = playerY_ + dy;
+
+            world::WalkQuery q{};
+            q.x = static_cast<u32>(nx);
+            q.y = static_cast<u32>(ny);
+            q.fromZ = playerZ_;
+            q.hasPreferredZ = ShouldPreferBotGoalZ(botHasGoalZ_, nx, ny,
+                                                   botGoalX_, botGoalY_);
+            q.preferredZ = static_cast<i8>(botGoalZ_);
+            const auto wr = world_->QueryCell(q);
+            if (wr.walkable &&
+                BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ) &&
+                !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
+                                      nx, ny, wr.standZ)) {
+                if (!pendingMoves_.empty()) return;
+                {
+                    u8 ob[8];
+                    const usize on = build::OpenDoor(ob);
+                    Send(ob, on, "0x12 OpenDoor (0x58 lookahead)");
+                    BotRememberDoorRetry(playerX_, playerY_, playerZ_,
+                                         nx, ny, wr.standZ);
+                    botResumeAtMs_ = now_ms + kDoorRetryWaitMs;
+                    LogInfo("[bot] door ahead at (%d,%d,z%d); OpenDoor before step\n",
+                            nx, ny, static_cast<int>(wr.standZ));
+                }
+                return;
+            }
+        }
         // Idle self-click every few moves — mimics a human and doubles as a
         // liveness ping on shards with bot heuristics.
 #if 0
