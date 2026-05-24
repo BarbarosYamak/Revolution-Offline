@@ -38,10 +38,10 @@ constexpr usize kMaxInFlight = 1;
 constexpr u32 kMaxReplans = 128;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) — biases travel toward roads/dirt where mobs are sparser.
-constexpr u32 kGrassPenalty = 15;
+constexpr u32 kGrassPenalty = 14;
 // Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
 // than open grass so the bot skirts forests instead of threading the trees.
-constexpr u32 kForestPenalty = 18;
+constexpr u32 kForestPenalty = 15;
 // Recent-doors cache size, how many open attempts to make at one cell before
 // concluding it's not an openable door, and how long to wait after an open
 // command for the door to actually swing (doors are NOT instantaneous).
@@ -1777,6 +1777,9 @@ void Client::RenderTick() {
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            anim_.get(), mobs.data(), mobs.size());
+    char title[64];
+    std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]", playerX_, playerY_, static_cast<int>(playerZ_));
+    mfb_set_title(title);
     if (!mfb_update(renderer_->Frame(), 0)) {
         // User closed the window — stop drawing, keep the bot running.
         mfb_close();

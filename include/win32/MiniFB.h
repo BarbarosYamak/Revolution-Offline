@@ -39,6 +39,9 @@ void mfb_close();
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus();
 
+// Update the window title bar.
+void mfb_set_title(const char *title);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
@@ -295,6 +298,12 @@ void mfb_close() {
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus() {
     return mfb_state->keys;
+}
+
+// Update the window title bar.
+void mfb_set_title(const char *title) {
+    if (mfb_state && mfb_state->window)
+        SetWindowText(mfb_state->window, title);
 }
 
 #endif
