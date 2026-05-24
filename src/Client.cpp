@@ -165,7 +165,7 @@ Client::~Client() {
     if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
-    logger_.Close();
+    Logger::Instance().Close();
     net::Socket::WSACleanupOnce();
 }
 
@@ -173,16 +173,10 @@ int Client::Run() {
     if (!net::Socket::WSAStart()) return 1;
 
     if (cfg_.logFile && cfg_.logFile[0]) {
-        if (!logger_.Open(cfg_.logFile)) {
-            std::fprintf(stderr, "warning: cannot open log file '%s'\n", cfg_.logFile);
+        if (!Logger::Instance().OpenFile(cfg_.logFile)) {
+            LogWarn( "warning: cannot open log file '%s'\n", cfg_.logFile);
         } else {
-            // Verbose from the start so the JSONL captures the full
-            // handshake (seed → 0x80 → 0xA8 → 0xA0 → 0x8C → 0x91 → 0xA9
-            // → 0x5D → 0x1B → 0x55). M3+ may flip it off until 0x55
-            // for noise reduction, but for protocol bring-up we want
-            // every byte.
-            logger_.EnableVerbose();
-            logger_.Event("session_start", "verbose log enabled from start");
+            LogEvent("session_start", "text log opened");
         }
     }
 
@@ -202,20 +196,20 @@ int Client::Run() {
 bool Client::ConnectAndSendSeed(const char* host, u16 port) {
     char ev[160];
     std::snprintf(ev, sizeof(ev), "connect %s:%u", host, port);
-    logger_.Event("net_connect_begin", ev);
-    std::printf("[net] connecting to %s:%u ...\n", host, port);
+    LogEvent("net_connect_begin", ev);
+    LogInfo("[net] connecting to %s:%u ...\n", host, port);
     if (!sock_.Connect(host, port)) {
-        logger_.Event("net_connect_fail", ev);
+        LogEvent("net_connect_fail", ev);
         state_ = State::Failed;
         return false;
     }
-    logger_.Event("net_connected", ev);
-    std::printf("[net] connected.\n");
+    LogEvent("net_connected", ev);
+    LogInfo("[net] connected.\n");
 
     if (cfg_.sendSeed) {
         u8 seedbuf[4];
         build::Seed(seedbuf, cfg_.plaintextSeed);
-        std::printf("[seed] sent 0x%08X (plaintext)\n", cfg_.plaintextSeed);
+        LogInfo("[seed] sent 0x%08X (plaintext)\n", cfg_.plaintextSeed);
         // Seed is 4 raw bytes (not a UO packet) — log as event so the
         // JSONL captures the actual wire bytes.
         char hexbuf[20];
@@ -224,15 +218,15 @@ bool Client::ConnectAndSendSeed(const char* host, u16 port) {
         char detail[64];
         std::snprintf(detail, sizeof(detail),
                       "0x%08X hex=%s", cfg_.plaintextSeed, hexbuf);
-        logger_.Event("seed_out", detail);
+        LogEvent("seed_out", detail);
         if (!sock_.SendAll(seedbuf, sizeof(seedbuf))) {
-            logger_.Event("seed_out_failed", detail);
+            LogEvent("seed_out_failed", detail);
             state_ = State::Failed;
             return false;
         }
     } else {
-        logger_.Event("seed_skipped", "cfg_.sendSeed=false");
-        std::printf("[seed] skipped (cfg_.sendSeed=false)\n");
+        LogEvent("seed_skipped", "cfg_.sendSeed=false");
+        LogInfo("[seed] skipped (cfg_.sendSeed=false)\n");
     }
     state_ = State::LoginHandshake;
     return true;
@@ -244,10 +238,10 @@ bool Client::Send(const u8* data, usize size, const char* note) {
         std::snprintf(detail, sizeof(detail),
             "SendAll failed; size=%zu first=0x%02X note=%s",
             size, size ? data[0] : 0, note ? note : "");
-        logger_.Event("send_failed", detail);
+        LogEvent("send_failed", detail);
         return false;
     }
-    logger_.Log(Direction::Out, data, size, note);
+    LogPacket(Direction::Out, data, size, note);
     return true;
 }
 
@@ -265,7 +259,7 @@ bool Client::PumpUntilDisconnected() {
             state_ != State::InWorld &&
             state_ != State::AwaitingServerList &&
             state_ != State::AwaitingCharacterList) {
-            std::fprintf(stderr,
+            LogWarn(
                 "[stall] no packets for %llds, state=%s, "
                 "tcp still open=%d\n",
                 static_cast<long long>(idle),
@@ -276,14 +270,14 @@ bool Client::PumpUntilDisconnected() {
         // Wait briefly for socket data; periodically pump stdin speech.
         int rd = sock_.WaitReadable(50);
         if (rd < 0) {
-            std::fprintf(stderr, "[net] select error; bailing\n");
+            LogWarn( "[net] select error; bailing\n");
             return false;
         }
         if (rd > 0) {
             int n = sock_.RecvSome(rxbuf, sizeof(rxbuf));
             if (n < 0) {
-                std::fprintf(stderr, "[net] socket closed by peer.\n");
-                logger_.Event("disconnect", "recv returned -1 (RST or FIN)");
+                LogWarn( "[net] socket closed by peer.\n");
+                LogEvent("disconnect", "recv returned -1 (RST or FIN)");
                 break;
             }
             if (n > 0) {
@@ -299,8 +293,8 @@ bool Client::PumpUntilDisconnected() {
                     // Game stream is Huffman-compressed; decode before framing.
                     rxScratch_.clear();
                     if (!huff_.Decompress(rxbuf, feed_n, rxScratch_)) {
-                        std::fprintf(stderr, "[huffman] malformed compressed stream\n");
-                        logger_.Event("huffman_error", "malformed code in game stream");
+                        LogWarn( "[huffman] malformed compressed stream\n");
+                        LogEvent("huffman_error", "malformed code in game stream");
                         return false;
                     }
                     feed = rxScratch_.data();
@@ -308,7 +302,7 @@ bool Client::PumpUntilDisconnected() {
                     if (feed_n == 0) continue;  // partial block; need more bytes
                 }
                 if (!stream_.FeedBytes(feed, feed_n)) {
-                    std::fprintf(stderr, "[net] stream buffer overflow\n");
+                    LogWarn( "[net] stream buffer overflow\n");
                     return false;
                 }
                 for (;;) {
@@ -317,12 +311,12 @@ bool Client::PumpUntilDisconnected() {
                     const char* err = nullptr;
                     if (!stream_.TryNext(&pkt, &pkt_size, &err)) {
                         if (err) {
-                            std::fprintf(stderr, "[stream] %s (pending=%zu)\n",
+                            LogWarn( "[stream] %s (pending=%zu)\n",
                                          err, stream_.Pending());
                             char detail[128];
                             std::snprintf(detail, sizeof(detail),
                                 "%s (pending=%zu)", err, stream_.Pending());
-                            logger_.Event("stream_error", detail);
+                            LogEvent("stream_error", detail);
                             return false;
                         }
                         break;
@@ -372,7 +366,7 @@ bool Client::PumpUntilDisconnected() {
 // to OnUnknown so the new client logs but doesn't crash.
 // ---------------------------------------------------------------------------
 void Client::Dispatch(const u8* data, usize size) {
-    logger_.Log(Direction::In, data, size);
+    LogPacket(Direction::In, data, size);
 
     const u8 cmd = data[0];
     switch (cmd) {
@@ -454,11 +448,11 @@ void Client::OnServerList(const u8* data, usize size) {
         ++serverCount_;
     }
 
-    std::printf("[0xA8] %d server(s):\n", serverCount_);
+    LogInfo("[0xA8] %d server(s):\n", serverCount_);
     for (int i = 0; i < serverCount_; ++i) {
         char ip[32];
         IpToString(servers_[i].ip, ip, sizeof(ip));
-        std::printf("  [%d] %-24s  %s  full=%u%%  tz=%u\n",
+        LogInfo("  [%d] %-24s  %s  full=%u%%  tz=%u\n",
                     i, servers_[i].name, ip,
                     servers_[i].percentFull, servers_[i].timezone);
     }
@@ -466,7 +460,7 @@ void Client::OnServerList(const u8* data, usize size) {
     state_ = State::AwaitingServerList;
     selectedServer_ = 0; // PromptServerSelection();
     if (selectedServer_ < 0 || selectedServer_ >= serverCount_) {
-        std::fprintf(stderr, "[ui] no server selected; aborting\n");
+        LogWarn( "[ui] no server selected; aborting\n");
         state_ = State::Failed;
         return;
     }
@@ -508,15 +502,15 @@ void Client::OnLegacyCharList(const u8* data, usize size) {
         if (charSlots_[i].name[0]) ++populated;
     }
 
-    std::printf("[0x81] legacy char list (flag=0x%02X proto=0x%02X) — %d slot(s) (populated %d):\n",
+    LogInfo("[0x81] legacy char list (flag=0x%02X proto=0x%02X) — %d slot(s) (populated %d):\n",
                 data[3], data[4], charCount_, populated);
     for (int i = 0; i < charCount_; ++i) {
         const char* nm = charSlots_[i].name[0] ? charSlots_[i].name : "<empty>";
-        std::printf("  [%d] %s\n", i, nm);
+        LogInfo("  [%d] %s\n", i, nm);
     }
 
     if (populated == 0) {
-        std::fprintf(stderr, "[ui] no characters on this shard; aborting\n");
+        LogWarn( "[ui] no characters on this shard; aborting\n");
         state_ = State::Failed;
         return;
     }
@@ -524,7 +518,7 @@ void Client::OnLegacyCharList(const u8* data, usize size) {
     selectedChar_ = PromptCharacterSelection();
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
-        std::fprintf(stderr, "[ui] invalid character slot\n");
+        LogWarn( "[ui] invalid character slot\n");
         state_ = State::Failed;
         return;
     }
@@ -561,12 +555,12 @@ void Client::OnConnectToGameServer(const u8* data, usize size) {
 
     char ip[32];
     IpToString(gameServerIp_, ip, sizeof(ip));
-    std::printf("[0x8C] game server = %s:%u  seed=0x%08X\n",
+    LogInfo("[0x8C] game server = %s:%u  seed=0x%08X\n",
                 ip, gameServerPort_, gameSeed_);
     char ev[160];
     std::snprintf(ev, sizeof(ev), "ip=%s port=%u seed=0x%08X",
                   ip, gameServerPort_, gameSeed_);
-    logger_.Event("game_server_assigned", ev);
+    LogEvent("game_server_assigned", ev);
 
     // Two reconnect modes, mirroring Packet_HandleConnectToGameServer
     // @ 0x423AB0:
@@ -641,13 +635,13 @@ void Client::OnConnectToGameServer(const u8* data, usize size) {
         state_ = State::Failed;
         return;
     }
-    std::printf("[net] reconnected to game server.\n");
+    LogInfo("[net] reconnected to game server.\n");
 
     if (cfg_.sendSeed) {
         u8 seedbuf[4];
         build::Seed(seedbuf, gameSeed_);
         sock_.SendAll(seedbuf, sizeof(seedbuf));
-        std::printf("[seed] game-server seed 0x%08X sent\n", gameSeed_);
+        LogInfo("[seed] game-server seed 0x%08X sent\n", gameSeed_);
     }
   */
     {
@@ -685,14 +679,14 @@ void Client::OnCharacterList(const u8* data, usize size) {
         if (charSlots_[i].name[0]) ++populated;
     }
 
-    std::printf("[0xA9] %d slot(s) (populated %d):\n", charCount_, populated);
+    LogInfo("[0xA9] %d slot(s) (populated %d):\n", charCount_, populated);
     for (int i = 0; i < charCount_; ++i) {
         const char* nm = charSlots_[i].name[0] ? charSlots_[i].name : "<empty>";
-        std::printf("  [%d] %s\n", i, nm);
+        LogInfo("  [%d] %s\n", i, nm);
     }
 
     if (populated == 0) {
-        std::fprintf(stderr, "[ui] no characters on this shard; aborting\n");
+        LogWarn( "[ui] no characters on this shard; aborting\n");
         state_ = State::Failed;
         return;
     }
@@ -700,7 +694,7 @@ void Client::OnCharacterList(const u8* data, usize size) {
     selectedChar_ = 0; // PromptCharacterSelection();
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
-        std::fprintf(stderr, "[ui] invalid character slot\n");
+        LogWarn( "[ui] invalid character slot\n");
         state_ = State::Failed;
         return;
     }
@@ -740,7 +734,7 @@ void Client::OnLoginConfirm(const u8* data, usize size) {
     playerX_ = static_cast<i32>(x);
     playerY_ = static_cast<i32>(y);
     playerZ_ = static_cast<i8>(z & 0xFF);
-    std::printf("[0x1B] serial=0x%08X body=0x%04X pos=(%d,%d,%d)\n",
+    LogInfo("[0x1B] serial=0x%08X body=0x%04X pos=(%d,%d,%d)\n",
                 playerSerial_, body,
                 playerX_, playerY_, static_cast<int>(playerZ_));
     char ev[160];
@@ -748,7 +742,7 @@ void Client::OnLoginConfirm(const u8* data, usize size) {
                   "serial=0x%08X body=0x%04X pos=(%d,%d,%d)",
                   playerSerial_, body,
                   playerX_, playerY_, static_cast<int>(playerZ_));
-    logger_.Event("login_confirm", ev);
+    LogEvent("login_confirm", ev);
 }
 
 // ---------------------------------------------------------------------------
@@ -756,17 +750,16 @@ void Client::OnLoginConfirm(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnLoginComplete(const u8* data, usize size) {
     (void)data; (void)size;
-    std::printf("[0x55] login complete — entering world\n");
+    LogInfo("[0x55] login complete — entering world\n");
     state_ = State::InWorld;
-    logger_.EnableVerbose();
-    logger_.Event("in_world", "0x55 received; verbose log enabled");
+    LogEvent("in_world", "0x55 received");
     // Initialise the keepalive timer so the first keepalive fires
     // exactly 60s after entering the world (matches the original).
     lastActivityMs_ =
         std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::steady_clock::now().time_since_epoch()).count();
     StartStdinThread();
-    std::printf("\nType to chat (Enter to send). Ctrl-C to quit.\n\n");
+    LogInfo("\nType to chat (Enter to send). Ctrl-C to quit.\n\n");
 }
 
 // ---------------------------------------------------------------------------
@@ -783,7 +776,7 @@ void Client::OnLoginDenied(const u8* data, usize size) {
         case 3: msg = "invalid credentials";                          break;
         default: msg = "communication error / other";                 break;
     }
-    std::fprintf(stderr, "[0x82] LOGIN DENIED (%u): %s\n", reason, msg);
+    LogWarn( "[0x82] LOGIN DENIED (%u): %s\n", reason, msg);
     state_ = State::Failed;
 }
 
@@ -805,7 +798,7 @@ void Client::OnClientVersionQuery(const u8* data, usize size) {
 void Client::OnFeatures(const u8* data, usize size) {
     if (size < 3) return;
     u16 flags = LoadBE16(data + 1);
-    std::printf("[0xB9] server features = 0x%04X\n", flags);
+    LogInfo("[0xB9] server features = 0x%04X\n", flags);
 }
 
 // ---------------------------------------------------------------------------
@@ -814,7 +807,7 @@ void Client::OnFeatures(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnViewRange(const u8* data, usize size) {
     if (size < 2) return;
-    std::printf("[0xC8] view range = %u\n", data[1]);
+    LogInfo("[0xC8] view range = %u\n", data[1]);
 }
 
 // ---------------------------------------------------------------------------
@@ -900,7 +893,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
             awaitingDoorOpen_ = false;
             proactiveDoorOpenPending_ = false;
             doorAttempts_ = 0;
-            std::printf("[bot] door @(%d,%d,z%d) OPENED (object 0x%08X @%d,%d,z%d); resuming\n",
+            LogInfo("[bot] door @(%d,%d,z%d) OPENED (object 0x%08X @%d,%d,z%d); resuming\n",
                         doorCellX_, doorCellY_, static_cast<int>(doorCellZ_),
                         serial, x, y, static_cast<int>(z));
             botResumeAtMs_ = NowMs();  // retry the blocked step now
@@ -1021,7 +1014,7 @@ void Client::OnMobName(const u8* data, usize size) {
     if (name[0]) {
         RememberMobileName(serial, name);
         if (verboseConsole_)
-            std::printf("[0x98] name 0x%08X = %s\n", serial, name);
+            LogInfo("[0x98] name 0x%08X = %s\n", serial, name);
     }
     if (mobilesListPending_) {
         mobilesListAwaiting_.erase(serial);
@@ -1096,7 +1089,7 @@ void Client::OnStats(const u8* data, usize size) {
     u16 hp_cur = LoadBE16(data + 37);
     u16 hp_max = LoadBE16(data + 39);
     if (verboseConsole_)
-        std::printf("[0x11] %s  HP=%u/%u\n", name, hp_cur, hp_max);
+        LogInfo("[0x11] %s  HP=%u/%u\n", name, hp_cur, hp_max);
 }
 
 // ---------------------------------------------------------------------------
@@ -1119,14 +1112,14 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     speaker[30] = '\0';
     RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker);
     const char* text = reinterpret_cast<const char*>(data + 44);
-    std::printf("[chat ascii] %s: %s\n", speaker, text);
+    LogInfo("[chat ascii] %s: %s\n", speaker, text);
 
     // Stamina signal: the server denies movement and says "too fatigued to
     // move" when stamina is spent. Record it so a reject right after is
     // treated as fatigue (wait to regen), not as an obstacle to avoid.
     if (std::strstr(text, "fatigued")) {
         lastFatigueMs_ = NowMs();
-        std::printf("[bot] fatigue detected; rejects will wait for stamina regen\n");
+        LogInfo("[bot] fatigue detected; rejects will wait for stamina regen\n");
     }
 }
 
@@ -1152,12 +1145,12 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
         buf[n++] = (ch < 0x80) ? static_cast<char>(ch) : '?';
     }
     buf[n] = '\0';
-    std::printf("[chat uni  ] %s: %s\n", speaker, buf);
+    LogInfo("[chat uni  ] %s: %s\n", speaker, buf);
 }
 
 void Client::OnUnknown(const u8* data, usize size) {
     if (!verboseConsole_) return;  // every packet is in the JSON log already
-    std::fprintf(stderr,
+    LogWarn(
         "[?] unhandled packet id=0x%02X len=%zu in state=%s\n",
         data[0], size, StateName(static_cast<int>(state_)));
 }
@@ -1196,12 +1189,12 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
             pendingMoves_.clear();
             moveSeq_ = 0;
             if (botActive_ || !botPath_.empty()) {
-                std::fprintf(stderr, "[bot] 0x20 resync; aborting path\n");
+                LogWarn( "[bot] 0x20 resync; aborting path\n");
                 botPath_.clear();
                 botActive_ = false;
             }
         }
-        std::printf("[0x20] player @(%d,%d,%d) facing=%u\n",
+        LogInfo("[0x20] player @(%d,%d,%d) facing=%u\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
                     playerFacing_);
     }
@@ -1232,7 +1225,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     for (const auto& pm : pendingMoves_)
         if (pm.seq == seq) { rdir = pm.dir; rejectedWasStep = pm.wasStep; break; }
 
-    std::fprintf(stderr,
+    LogWarn(
         "[0x21] move REJECTED seq=%u; server says (%u,%u,%d) facing=%u\n",
         seq, x, y, static_cast<int>(z), dirByte & 0x07);
 
@@ -1281,7 +1274,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
         doorCellX_ = bx; doorCellY_ = by; doorAttempts_ = 0; stuckWaits_ = 0;
         awaitingDoorOpen_ = false;
     } else if (awaitingDoorOpen_) {
-        std::printf("[bot] door @(%d,%d) did NOT open (no update after last try)\n", bx, by);
+        LogInfo("[bot] door @(%d,%d) did NOT open (no update after last try)\n", bx, by);
         awaitingDoorOpen_ = false;
     }
     doorCellZ_ = static_cast<i8>(bz);
@@ -1299,7 +1292,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     if (fatigued || mob) {
         const bool blockedByMobile = (mob != nullptr) && !fatigued;
         if (++stuckWaits_ > kMaxStuckWaits) {
-            std::fprintf(stderr,
+            LogWarn(
                 "[bot] (%d,%d) blocked by %s for too long; stopping (not blacklisted)\n",
                 bx, by, fatigued ? "fatigue" : "a mobile");
             botPath_.clear();
@@ -1310,7 +1303,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
             // Don't stall indefinitely behind another mover: avoid this cell
             // for this trip and rebuild a full route around it.
             blacklist_.AddTransient(bx, by, bz, 0);
-            std::printf("[bot] mobile still blocks (%d,%d) after %u waits; rerouting now\n",
+            LogInfo("[bot] mobile still blocks (%d,%d) after %u waits; rerouting now\n",
                         bx, by, stuckWaits_);
             stuckWaits_ = 0;
             if (BotReplanToGoal())
@@ -1318,7 +1311,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
             return;
         }
         const i64 wait = fatigued ? kStaminaWaitMs : kMobileWaitMs;
-        std::printf("[bot] reject at (%d,%d): %s — waiting %lldms, retrying (%u) [no blacklist]\n",
+        LogInfo("[bot] reject at (%d,%d): %s — waiting %lldms, retrying (%u) [no blacklist]\n",
                     bx, by, fatigued ? "fatigued (stamina)" : "mobile in the way",
                     static_cast<long long>(wait), stuckWaits_);
         if (BotReplanToGoal())
@@ -1344,7 +1337,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
         // A door that won't budge after many tries is a dead end — stop the
         // trip rather than loop forever, but still never blacklist its tile.
         if (nearDoor != nullptr && doorAttempts_ > kMaxDoorGiveUp) {
-            std::fprintf(stderr,
+            LogWarn(
                 "[bot] door @(%d,%d) won't open after %u tries; stopping "
                 "(not blacklisted)\n", bx, by, doorAttempts_);
             botPath_.clear();
@@ -1352,7 +1345,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
             return;
         }
         awaitingDoorOpen_ = true;  // confirmed (or timed out) via 0x1A near this cell
-        std::printf("[bot] reject at (%d,%d,z%d): OpenDoor sent, awaiting confirm (try %u)%s\n",
+        LogInfo("[bot] reject at (%d,%d,z%d): OpenDoor sent, awaiting confirm (try %u)%s\n",
                     bx, by, static_cast<int>(bz), doorAttempts_,
                     nearDoor ? " [door cached]" : "");
         if (rejectedWasStep) botPath_.push_front(rdir);
@@ -1365,7 +1358,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // never written to blacklist.mul, so a real passage is never permanently
     // poisoned) and reroute. Stop only if there's genuinely no other way.
     blacklist_.AddTransient(bx, by, bz, neighborStatic ? 1 : 0);
-    std::printf("[bot] (%d,%d,%d) blocked after %u tries; avoiding (transient) "
+    LogInfo("[bot] (%d,%d,%d) blocked after %u tries; avoiding (transient) "
                 "+ rerouting\n", bx, by, static_cast<int>(bz), doorAttempts_);
     std::uniform_int_distribution<int> rd(200, 400);
     if (BotReplanToGoal())
@@ -1384,14 +1377,14 @@ void Client::OnMoveAck(const u8* data, usize size) {
     if (size < 3) return;
     const u8 seq = data[1];
     if (pendingMoves_.empty()) {
-        std::fprintf(stderr, "[0x22] unsolicited ack seq=%u\n", seq);
+        LogWarn( "[0x22] unsolicited ack seq=%u\n", seq);
         return;
     }
     const PendingMove pm = pendingMoves_.front();
     pendingMoves_.pop_front();
     if (pm.seq != seq) {
         // Acks should arrive in send order; a mismatch means we lost sync.
-        std::fprintf(stderr, "[0x22] ack seq=%u, expected %u — resyncing\n",
+        LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
                      seq, pm.seq);
     }
     // Top up the pipeline immediately rather than waiting for the next tick.
@@ -1403,7 +1396,7 @@ void Client::OnMoveAck(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 int Client::PromptServerSelection() {
     int sel = -1;
-    std::printf("> select server [0..%d]: ", serverCount_ - 1);
+    LogInfo("> select server [0..%d]: ", serverCount_ - 1);
     std::fflush(stdout);
     if (!(std::cin >> sel)) return -1;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -1412,7 +1405,7 @@ int Client::PromptServerSelection() {
 
 int Client::PromptCharacterSelection() {
     int sel = -1;
-    std::printf("> select character [0..%d]: ", charCount_ - 1);
+    LogInfo("> select character [0..%d]: ", charCount_ - 1);
     std::fflush(stdout);
     if (!(std::cin >> sel)) return -1;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -1491,7 +1484,7 @@ void Client::PrintNearbyMobiles() {
         mobilesListAwaiting_.clear();
     }
     if (mobileCache_.empty()) {
-        std::printf("[mobiles] no mobiles cached yet\n");
+        LogInfo("[mobiles] no mobiles cached yet\n");
         return;
     }
     struct Row {
@@ -1508,7 +1501,7 @@ void Client::PrintNearbyMobiles() {
         rows.push_back({&m, dist});
     }
     if (rows.empty()) {
-        std::printf("[mobiles] no mobiles in range\n");
+        LogInfo("[mobiles] no mobiles in range\n");
         return;
     }
 
@@ -1533,10 +1526,10 @@ void Client::PrintNearbyMobiles() {
 void Client::FlushPendingMobilesList() {
     if (!mobilesListPending_) return;
     mobilesListPending_ = false;
-    std::printf("[mobiles] nearby (%zu):\n", mobilesListSerials_.size());
+    LogInfo("[mobiles] nearby (%zu):\n", mobilesListSerials_.size());
     for (u32 serial : mobilesListSerials_) {
         const char* name = MobileName(serial);
-        std::printf("  %s 0x%08X\n", name ? name : "<unknown>", serial);
+        LogInfo("  %s 0x%08X\n", name ? name : "<unknown>", serial);
     }
     mobilesListSerials_.clear();
     mobilesListAwaiting_.clear();
@@ -1559,7 +1552,7 @@ void Client::HandleStdinLine(const char* line) {
         if (got >= 2) {
             BotStartGoto(tx, ty, got >= 3, tz);
         } else {
-            std::fprintf(stderr,
+            LogWarn(
                 "[cmd] usage: goto <x> <y> [z]  (comma or space separated)\n");
         }
         return;
@@ -1569,7 +1562,7 @@ void Client::HandleStdinLine(const char* line) {
     if (std::strcmp(line, "stop") == 0) {
         if (followActive_) BotStopFollow("stopped by user");
         if (!botPath_.empty()) {
-            std::printf("[bot] path cleared (%zu steps left)\n",
+            LogInfo("[bot] path cleared (%zu steps left)\n",
                         botPath_.size());
         }
         botPath_.clear();
@@ -1615,20 +1608,20 @@ void Client::HandleStdinLine(const char* line) {
         char* target = args;
         while (*target == ' ' || *target == '\t') ++target;
         if (!target[0]) {
-            std::fprintf(stderr, "[cmd] usage: follow <name|0xserial> [distance]|off\n");
+            LogWarn( "[cmd] usage: follow <name|0xserial> [distance]|off\n");
             return;
         }
 
         u32 serial = 0;
         if ((target[0] == '0') && (target[1] == 'x' || target[1] == 'X')) {
             if (!ParseSerial(target, &serial) || serial == 0) {
-                std::fprintf(stderr, "[cmd] invalid serial: %s\n", target);
+                LogWarn( "[cmd] invalid serial: %s\n", target);
                 return;
             }
         } else {
             serial = ResolveFollowSerialByName(target);
             if (serial == 0) {
-                std::fprintf(stderr,
+                LogWarn(
                     "[cmd] mobile '%s' not found in cache; run `mobiles` and retry\n", target);
                 return;
             }
@@ -1639,7 +1632,7 @@ void Client::HandleStdinLine(const char* line) {
 
     // `pos` — print current position.
     if (std::strcmp(line, "pos") == 0) {
-        std::printf("[pos] (%d,%d,%d) facing=%u%s\n",
+        LogInfo("[pos] (%d,%d,%d) facing=%u%s\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
                     playerFacing_, playerRunning_ ? " run" : "");
         return;
@@ -1654,7 +1647,7 @@ void Client::HandleStdinLine(const char* line) {
         if (std::strcmp(arg, "on") == 0)       verboseConsole_ = true;
         else if (std::strcmp(arg, "off") == 0) verboseConsole_ = false;
         else                                   verboseConsole_ = !verboseConsole_;
-        std::printf("[cmd] verbose console %s\n", verboseConsole_ ? "ON" : "off");
+        LogInfo("[cmd] verbose console %s\n", verboseConsole_ ? "ON" : "off");
         return;
     }
 
@@ -1683,7 +1676,7 @@ bool Client::EnsureWorldLoaded() {
     if (worldLoaded_) return true;
     if (!cfg_.tiledataPath || !cfg_.mapPath ||
         !cfg_.staidxPath   || !cfg_.staticsPath) {
-        std::fprintf(stderr,
+        LogWarn(
             "[bot] MUL paths not configured; goto disabled\n");
         return false;
     }
@@ -1708,7 +1701,7 @@ bool Client::EnsureWorldLoaded() {
     // layered on top of the base statics. Load them so A* avoids known bad
     // tiles from the first step.
     blacklist_.Load("blacklist.mul", worldMap_->HeightBlocks());
-    std::printf("[bot] world data loaded (%zu blacklisted spot(s)).\n",
+    LogInfo("[bot] world data loaded (%zu blacklisted spot(s)).\n",
                 blacklist_.PersistentCount());
     return true;
 }
@@ -1719,14 +1712,14 @@ void Client::RenderTick() {
     if (!renderInit_) {
         renderInit_ = true;
         if (!EnsureWorldLoaded()) {
-            std::fprintf(stderr, "[render] world data unavailable; renderer off\n");
+            LogWarn( "[render] world data unavailable; renderer off\n");
             cfg_.enableRenderer = false;
             return;
         }
         art_ = std::make_unique<art::ArtLoader>();
         if (!cfg_.artIdxPath || !cfg_.artPath ||
             !art_->Open(cfg_.artIdxPath, cfg_.artPath)) {
-            std::fprintf(stderr, "[render] failed to open art MULs; renderer off\n");
+            LogWarn( "[render] failed to open art MULs; renderer off\n");
             art_.reset();
             cfg_.enableRenderer = false;
             return;
@@ -1734,7 +1727,7 @@ void Client::RenderTick() {
         texmaps_ = std::make_unique<texmap::TexmapLoader>();
         if (!cfg_.texIdxPath || !cfg_.texPath ||
             !texmaps_->Open(cfg_.texIdxPath, cfg_.texPath)) {
-            std::fprintf(stderr, "[render] failed to open texmaps; renderer off\n");
+            LogWarn( "[render] failed to open texmaps; renderer off\n");
             art_.reset();
             texmaps_.reset();
             cfg_.enableRenderer = false;
@@ -1744,21 +1737,21 @@ void Client::RenderTick() {
         anim_ = std::make_unique<anim::AnimLoader>();
         if (!cfg_.animIdxPath || !cfg_.animPath ||
             !anim_->Open(cfg_.animIdxPath, cfg_.animPath)) {
-            std::fprintf(stderr, "[render] anim MULs unavailable; mobiles won't draw\n");
+            LogWarn( "[render] anim MULs unavailable; mobiles won't draw\n");
             anim_.reset();
         }
         const int rw = cfg_.renderWidth  > 0 ? cfg_.renderWidth  : 800;
         const int rh = cfg_.renderHeight > 0 ? cfg_.renderHeight : 600;
         const int sc = cfg_.renderScale  > 0 ? cfg_.renderScale  : 1;
         if (!mfb_open("uo-client world", rw, rh, sc, 15)) {
-            std::fprintf(stderr, "[render] mfb_open failed; renderer off\n");
+            LogWarn( "[render] mfb_open failed; renderer off\n");
             art_.reset();
             cfg_.enableRenderer = false;
             return;
         }
         renderer_ = std::make_unique<render::Renderer>(rw, rh);
         renderWindowOpen_ = true;
-        std::printf("[render] world window opened (%dx%d)\n", rw, rh);
+        LogInfo("[render] world window opened (%dx%d)\n", rw, rh);
     }
 
     if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
@@ -1789,7 +1782,7 @@ void Client::RenderTick() {
         mfb_close();
         renderWindowOpen_ = false;
         cfg_.enableRenderer = false;
-        std::printf("[render] window closed; rendering disabled\n");
+        LogInfo("[render] window closed; rendering disabled\n");
     }
 }
 
@@ -1992,7 +1985,7 @@ bool Client::BotLookaheadPatchPath() {
         for (usize i = anchor + 1; i < botPath_.size(); ++i)
             next.push_back(botPath_[i]);
         botPath_.swap(next);
-        std::printf("[bot] lookahead patched around block at step %zu: "
+        LogInfo("[bot] lookahead patched around block at step %zu: "
                     "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
                     firstBlocked + 1, anchor + 1, patch.size(), botPath_.size(),
                     searchUs);
@@ -2040,14 +2033,14 @@ bool Client::BotMaybeOpenDoorAhead(u8 dir, i64 nowMs) {
     doorCellZ_ = wr.standZ;
     awaitingDoorOpen_ = true;
     botResumeAtMs_ = nowMs + kDoorWaitMs;
-    std::printf("[bot] lookahead OpenDoor before step into (%d,%d,z%d)\n",
+    LogInfo("[bot] lookahead OpenDoor before step into (%d,%d,z%d)\n",
                 nx, ny, static_cast<int>(wr.standZ));
     return true;
 }
 
 bool Client::BotReplanToGoal() {
     if (++botReplanCount_ > kMaxReplans) {
-        std::fprintf(stderr, "[bot] giving up after %u replans (unreachable?)\n",
+        LogWarn( "[bot] giving up after %u replans (unreachable?)\n",
                      botReplanCount_);
         botPath_.clear();
         botActive_ = false;
@@ -2080,7 +2073,7 @@ bool Client::BotReplanToGoal() {
     const double searchUs = std::chrono::duration<double, std::micro>(
         std::chrono::steady_clock::now() - t0).count();
     if (path.empty()) {
-        std::fprintf(stderr,
+        LogWarn(
             "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
             "(search %.1fus)\n",
             botGoalX_, botGoalY_, blacklist_.Count(), searchUs);
@@ -2088,7 +2081,7 @@ bool Client::BotReplanToGoal() {
         botActive_ = false;
         return false;
     }
-    std::printf("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
+    LogInfo("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
                 botGoalX_, botGoalY_, path.size(), searchUs);
     botPath_.assign(path.begin(), path.end());
     return true;
@@ -2099,10 +2092,10 @@ bool Client::BotReplanToGoal() {
 // hit. TODO: per-policy reaction — engage (war + attack), flee (path away from
 // the threat), or recall ("kal ort por"); see task #6.
 void Client::BotInterruptForThreat(const char* reason) {
-    std::fprintf(stderr,
+    LogWarn(
         "[bot] THREAT (%s): halting travel (TODO engage/flee/recall)\n",
         reason ? reason : "?");
-    logger_.Event("threat", reason ? reason : "");
+    LogEvent("threat", reason ? reason : "");
     botPath_.clear();
     pendingMoves_.clear();
     botActive_ = false;
@@ -2113,7 +2106,7 @@ void Client::BotInterruptForThreat(const char* reason) {
 
 void Client::BotStopFollow(const char* reason) {
     if (!followActive_) return;
-    std::printf("[follow] stopped (%s)\n", reason ? reason : "off");
+    LogInfo("[follow] stopped (%s)\n", reason ? reason : "off");
     followActive_ = false;
     followSerial_ = 0;
     followDistance_ = 1;
@@ -2138,7 +2131,7 @@ void Client::BotStartFollow(u32 serial, u32 followDistance) {
     moveSeq_ = 0;
     botActive_ = false;
     const char* name = MobileName(serial);
-    std::printf("[follow] tracking %s0x%08X (distance=%u)\n",
+    LogInfo("[follow] tracking %s0x%08X (distance=%u)\n",
                 name ? name : "", serial, followDistance_);
     u8 pkt[8];
     const usize n = build::MobNameQuery(pkt, serial);
@@ -2188,7 +2181,7 @@ void Client::BotFollowTick() {
             const usize n = build::MobNameQuery(pkt, followSerial_);
             Send(pkt, n, "0x98 AllNames (follow probe)");
             followLastProbeMs_ = now;
-            std::printf("[follow] waiting for 0x%08X to appear in range\n", followSerial_);
+            LogInfo("[follow] waiting for 0x%08X to appear in range\n", followSerial_);
         }
         return;
     }
@@ -2232,7 +2225,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     if (!EnsureWorldLoaded()) return;
     followActive_ = false;
     if (!pendingMoves_.empty() || !botPath_.empty()) {
-        std::fprintf(stderr,
+        LogWarn(
             "[bot] busy (inflight=%zu path=%zu); type 'stop' first\n",
             pendingMoves_.size(), botPath_.size());
         return;
@@ -2252,15 +2245,15 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     moveSeq_ = 0;  // fresh fastwalk sequence (0 = resync)
 
     if (botHasGoalZ_)
-        std::printf("[bot] %s from (%d,%d,%d) to (%d,%d,z%d)\n",
+        LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d,z%d)\n",
                     botRun_ ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty, tz);
     else
-        std::printf("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
+        LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
                     botRun_ ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
     if (!BotReplanToGoal()) return;
-    std::printf("[bot] path: %zu steps\n", botPath_.size());
+    LogInfo("[bot] path: %zu steps\n", botPath_.size());
     BotPumpMoves();
 }
 
@@ -2319,7 +2312,7 @@ void Client::BotPumpMoves() {
 
     if (botPath_.empty() && pendingMoves_.empty()) {
         botActive_ = false;
-        std::printf("[bot] arrived at (%d,%d,%d)\n",
+        LogInfo("[bot] arrived at (%d,%d,%d)\n",
                     playerX_, playerY_, static_cast<int>(playerZ_));
     }
 }
@@ -2336,7 +2329,7 @@ void Client::BotTick() {
         const i64 now_ms = NowMs();
         if (now_ms - pendingMoves_.front().sentMs >
                 static_cast<i64>(ackWatchdogMs_)) {
-            std::fprintf(stderr,
+            LogWarn(
                 "[bot] watchdog: oldest move unacked %llds; aborting path\n",
                 static_cast<long long>(
                     (now_ms - pendingMoves_.front().sentMs) / 1000));

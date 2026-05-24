@@ -181,7 +181,6 @@ private:
     net::Socket       sock_;
     net::PacketStream stream_;
     net::Huffman      huff_;
-    PacketLogger      logger_;
 
     // Server->client game stream is Huffman-compressed once the server
     // processes our 0x91 GameLogin. Off during the (plaintext) login phase.

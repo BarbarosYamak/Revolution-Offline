@@ -2,42 +2,74 @@
 
 #include "uo/types.h"
 
+#include <cstdarg>
 #include <cstdio>
 
 namespace uo {
 
-// Line-delimited JSON packet logger. Writes one record per packet to a
-// file plus a short hex dump to stdout. The format is deliberately
-// minimal so that downstream tools (jq, etc.) can ingest it directly.
-
 enum class Direction : u8 { In, Out };
 
-class PacketLogger {
+// Severity, low to high. The minimum-level filter drops anything below it.
+// (`Log` is the plain catch-all level between Info and Warn.)
+enum class LogLevel : u8 { Trace, Debug, Info, Log, Warn, Error };
+
+// Per-message routing. Console writes to stdout (stderr for Warn/Error);
+// File writes to the open text log. Both = Console | File.
+enum class LogSink : u8 { Console = 1, File = 2, Both = 3 };
+
+// Process-wide text logger. One timestamped line per message:
+//   [HH:MM:SS.mmm] LEVEL message
+// Packet hex dumps go to the FILE ONLY so the console stays readable; to chase
+// a packet, take a console message's timestamp and grep the log file for it.
+class Logger {
 public:
-    PacketLogger();
-    ~PacketLogger();
+    static Logger& Instance();
 
-    bool Open(const char* path);
+    bool OpenFile(const char* path);   // truncates; false on open error
     void Close();
+    bool IsOpen() const { return file_ != nullptr; }
 
-    // Emit one packet record (always to stdout; to the JSON file once
-    // verbose-mode has been enabled by EnableVerbose()).
-    void Log(Direction dir, const u8* data, usize size, const char* note = nullptr);
+    // Drop any message strictly below this level. Default: Trace (keep all).
+    void     SetMinLevel(LogLevel lvl) { minLevel_ = lvl; }
+    LogLevel MinLevel() const { return minLevel_; }
 
-    // Until this is called, packets received during login are echoed
-    // to stdout but the JSON file is suppressed. Plan: caller flips
-    // verbose ON after 0x55 Login Complete arrives.
-    void EnableVerbose() { verbose_ = true; }
-    bool Verbose() const { return verbose_; }
+    // printf-style; the caller supplies the trailing '\n'.
+    void Write(LogLevel lvl, LogSink sink, const char* fmt, ...);
+    void WriteV(LogLevel lvl, LogSink sink, const char* fmt, std::va_list ap);
 
-    // Free-form event for non-packet milestones (disconnect, timeout,
-    // watchdog fire, etc.) so the JSONL is a complete session record.
-    void Event(const char* kind, const char* detail);
+    // One packet record -> file only (hex + optional note).
+    void Packet(Direction dir, const u8* data, usize size, const char* note = nullptr);
+
+    // Named milestone (connect, disconnect, ...). Both sinks by default.
+    void Event(const char* kind, const char* detail, LogSink sink = LogSink::Both);
 
 private:
-    std::FILE* file_;
-    bool verbose_;
-    u64 seq_;
+    Logger() = default;
+    ~Logger();
+    Logger(const Logger&) = delete;
+    Logger& operator=(const Logger&) = delete;
+
+    void Emit(LogLevel lvl, LogSink sink, const char* body);
+
+    std::FILE* file_     = nullptr;
+    LogLevel   minLevel_ = LogLevel::Trace;
 };
+
+// Free convenience wrappers over Logger::Instance(). Default sink = Both, so
+// the file keeps a full session record while the console shows the message.
+// printf-style; include your own trailing '\n'.
+void LogTrace(const char* fmt, ...);
+void LogDebug(const char* fmt, ...);
+void LogInfo (const char* fmt, ...);
+void LogLog  (const char* fmt, ...);
+void LogWarn (const char* fmt, ...);
+void LogError(const char* fmt, ...);
+
+// Explicit-sink variant, e.g. LogMsg(LogLevel::Debug, LogSink::File, "...").
+void LogMsg(LogLevel lvl, LogSink sink, const char* fmt, ...);
+
+// Shorthands mirroring the surface the client already used.
+void LogPacket(Direction dir, const u8* data, usize size, const char* note = nullptr);
+void LogEvent(const char* kind, const char* detail);
 
 }

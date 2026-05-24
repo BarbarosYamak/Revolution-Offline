@@ -1,5 +1,7 @@
 #include "net/Socket.h"
 
+#include "uo/log.h"
+
 #include <ws2tcpip.h>
 #include <cstdio>
 #include <cstring>
@@ -15,7 +17,7 @@ bool Socket::WSAStart() {
     WSADATA wd{};
     int rc = ::WSAStartup(MAKEWORD(2, 2), &wd);
     if (rc != 0) {
-        std::fprintf(stderr, "WSAStartup failed: %d\n", rc);
+        LogError( "WSAStartup failed: %d\n", rc);
         return false;
     }
     g_wsa_started = true;
@@ -48,7 +50,7 @@ bool Socket::Connect(const char* host, u16 port) {
     addrinfo* res = nullptr;
     int rc = ::getaddrinfo(host, portstr, &hints, &res);
     if (rc != 0 || !res) {
-        std::fprintf(stderr, "getaddrinfo(%s:%u) failed: %d\n", host, port, rc);
+        LogError( "getaddrinfo(%s:%u) failed: %d\n", host, port, rc);
         return false;
     }
 
@@ -68,7 +70,7 @@ bool Socket::Connect(const char* host, u16 port) {
     ::freeaddrinfo(res);
 
     if (!ok) {
-        std::fprintf(stderr, "connect(%s:%u) failed: WSA=%d\n",
+        LogError( "connect(%s:%u) failed: WSA=%d\n",
                      host, port, last_err);
         return false;
     }
@@ -94,12 +96,12 @@ bool Socket::SendAll(const u8* data, usize len) {
                 FD_SET(s_, &wfd);
                 timeval tv{1, 0};
                 if (::select(0, nullptr, &wfd, nullptr, &tv) <= 0) {
-                    std::fprintf(stderr, "send timeout\n");
+                    LogError( "send timeout\n");
                     return false;
                 }
                 continue;
             }
-            std::fprintf(stderr, "send failed: WSA=%d\n", err);
+            LogError( "send failed: WSA=%d\n", err);
             return false;
         }
         sent += static_cast<usize>(n);
@@ -116,7 +118,7 @@ int Socket::RecvSome(u8* dst, usize cap) {
     if (n == SOCKET_ERROR) {
         int err = ::WSAGetLastError();
         if (err == WSAEWOULDBLOCK) return 0;
-        std::fprintf(stderr, "recv failed: WSA=%d\n", err);
+        LogError( "recv failed: WSA=%d\n", err);
         closed_ = true;
         return -1;
     }

@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     cfg.username         = "xrip";
     cfg.password         = "xrip";
     cfg.version          = "2.0.7";
-    cfg.logFile          = "uo-client.log.jsonl";
+    cfg.logFile          = "uo-client.log";
     cfg.plaintextSeed    = 0xAC1CA001u;  // server IP: 172.28.160.1
     cfg.gamePortOverride = 0;
     cfg.gameHostOverride = nullptr;
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     if (argc > 5) cfg.gamePortOverride = static_cast<uo::u16>(std::atoi(argv[5]));
     if (argc > 6) cfg.gameHostOverride = argv[6];
 
-    std::printf("uo-client M1 — host=%s:%u user='%s' seed=0x%08X\n",
+    uo::LogInfo("uo-client M1 — host=%s:%u user='%s' seed=0x%08X\n",
                 cfg.loginHost, cfg.loginPort, cfg.username, cfg.plaintextSeed);
 
     uo::Client client(cfg);
