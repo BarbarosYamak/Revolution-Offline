@@ -12,6 +12,7 @@
 #include "uo/texmap.h"
 #include "uo/anim.h"
 #include "render/Renderer.h"
+#include "render/Text.h"
 #include "render/Minimap.h"
 #include "render/RadarColors.h"
 #include "win32/MiniFB.h"
@@ -62,6 +63,16 @@ constexpr u32   kLookaheadMaxNodesExpanded = 4096;
 constexpr i64   kLookaheadMobileFreshMs = 5000;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
+constexpr int   kHudFontHeight = 13;
+constexpr int   kSysLogLines = 8;
+constexpr i64   kOverheadMs = 6000;
+constexpr int   kHeadOffset = 44;
+constexpr int   kStatusBarWidth = 96;
+constexpr int   kStatusBarHeight = 8;
+constexpr int   kStatusPanelWidth = 196;
+constexpr int   kStatusPanelHeight = 66;
+constexpr i64   kOverheadNameProbeMs = 10000;
+constexpr i64   kStatusProbeMs = 3000;
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
@@ -119,6 +130,28 @@ std::string PacketString(const u8* p, usize len) {
     return std::string(reinterpret_cast<const char*>(p), n);
 }
 
+u16 HudColor(int r, int g, int b) {
+    return static_cast<u16>(0x8000 |
+                            ((std::clamp(r, 0, 255) >> 3) << 10) |
+                            ((std::clamp(g, 0, 255) >> 3) << 5) |
+                             (std::clamp(b, 0, 255) >> 3));
+}
+
+u16 JournalColor(u16 hue, u16 fallback) {
+    if (hue == 0x0025 || hue == 0x0026) return HudColor(255, 96, 96);
+    if (hue == 0x0044 || hue == 0x0059) return HudColor(128, 180, 255);
+    if (hue == 0x03B2) return HudColor(225, 225, 225);
+    return fallback;
+}
+
+u16 ScaleHudColor(u16 c, int scale255) {
+    scale255 = std::clamp(scale255, 0, 255);
+    const int r = static_cast<int>((c >> 10) & 31) * 255 / 31;
+    const int g = static_cast<int>((c >> 5) & 31) * 255 / 31;
+    const int b = static_cast<int>(c & 31) * 255 / 31;
+    return HudColor(r * scale255 / 255, g * scale255 / 255, b * scale255 / 255);
+}
+
 }
 
 Client::Client(const Config& cfg)
@@ -132,8 +165,8 @@ Client::Client(const Config& cfg)
       gameSeed_(0),
       gameServerIp_(0),
       gameServerPort_(0),
+      player_{},
       playerSerial_(0),
-      lastHp_(-1),
       playerX_(0), playerY_(0), playerZ_(0),
       playerFacing_(0), playerRunning_(false),
       moveSeq_(0),
@@ -152,6 +185,7 @@ Client::Client(const Config& cfg)
       mobilesListPending_(false), mobilesListDeadlineMs_(0),
       lastFatigueMs_(0), stuckWaits_(0),
       lastMoveSentMs_(0),
+      lastStatusProbeMs_(0),
       // Canonical UO on-foot step intervals — what the real client's
       // auto-walk pathfinding emits. Pacing at these rates (not faster)
       // is exactly how a legit client avoids tripping fastwalk/speedhack
@@ -397,18 +431,22 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xBD: OnClientVersionQuery(data, size); break;
         case 0xC8: OnViewRange(data, size); break;
         case 0xA1: OnMobileHp(data, size); break;
+        case 0xA2: OnMobileMana(data, size); break;
+        case 0xA3: OnMobileStamina(data, size); break;
         case 0x1A: OnObjectInfo(data, size); break;
         case 0x1D: OnDeleteObject(data, size); break;
         case 0x77: OnMobileMove(data, size); break;
         case 0x78: OnMobileIncoming(data, size); break;
         case 0x98: OnMobName(data, size); break;
+        case 0x2D: OnMobileAttributes(data, size); break;
+        case 0x3A: OnSkills(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0x23: case 0x25: case 0x2D: case 0x2E: case 0x2F:
-        case 0x3A: case 0x3C: case 0x4E: case 0x4F: case 0x53:
+        case 0x23: case 0x25: case 0x2E: case 0x2F:
+        case 0x3C: case 0x4E: case 0x4F: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D: case 0x6E:
         case 0x70: case 0x72: case 0x88:
-        case 0x8B: case 0x97: case 0xA2: case 0xA3:
+        case 0x8B: case 0x97:
         case 0xB0: case 0xBA: case 0xBC: case 0xBF: case 0xC0:
         case 0xC1: case 0xCB: case 0xCC:
             // Logged above; behavior is no-op until later milestones.
@@ -735,14 +773,25 @@ void Client::OnCharacterList(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnLoginConfirm(const u8* data, usize size) {
     if (size < 18) return;
-    playerSerial_ = LoadBE32(data + 1);
+    playerSerial_ = LoadBE32(data + 1) & 0x7FFFFFFFu;
     u16 body = LoadBE16(data + 9);
     u16 x    = LoadBE16(data + 11);
     u16 y    = LoadBE16(data + 13);
     u16 z    = LoadBE16(data + 15);  // low byte is z; high byte usually 0
+    u8 dir   = data[17];
     playerX_ = static_cast<i32>(x);
     playerY_ = static_cast<i32>(y);
     playerZ_ = static_cast<i8>(z & 0xFF);
+    playerFacing_ = dir & 0x07;
+    playerRunning_ = false;
+    playerBody_ = body;
+    player_.serial = playerSerial_;
+    player_.body = body;
+    player_.x = playerX_;
+    player_.y = playerY_;
+    player_.z = playerZ_;
+    player_.facing = playerFacing_;
+    player_.running = playerRunning_;
     LogInfo("[0x1B] serial=0x%08X body=0x%04X pos=(%d,%d,%d)\n",
                 playerSerial_, body,
                 playerX_, playerY_, static_cast<int>(playerZ_));
@@ -826,15 +875,50 @@ void Client::OnViewRange(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnMobileHp(const u8* data, usize size) {
     if (size < 9) return;
-    const u32 serial = LoadBE32(data + 1);
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     if (serial != playerSerial_) return;
     const i32 curHp = static_cast<i32>(LoadBE16(data + 7));
-    if (lastHp_ >= 0 && curHp < lastHp_ && (botActive_ || !pendingMoves_.empty())) {
+    if (player_.hpCur >= 0 && curHp < player_.hpCur && (botActive_ || !pendingMoves_.empty())) {
         char reason[48];
-        std::snprintf(reason, sizeof(reason), "HP %d -> %d", lastHp_, curHp);
+        std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
         BotInterruptForThreat(reason);
     }
-    lastHp_ = curHp;
+    player_.serial = serial;
+    player_.hpCur = curHp;
+    player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
+}
+
+void Client::OnMobileMana(const u8* data, usize size) {
+    if (size < 9) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    if (serial != playerSerial_) return;
+    player_.serial = serial;
+    player_.manaMax = static_cast<i32>(LoadBE16(data + 5));
+    player_.manaCur = static_cast<i32>(LoadBE16(data + 7));
+}
+
+void Client::OnMobileStamina(const u8* data, usize size) {
+    if (size < 9) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    if (serial != playerSerial_) return;
+    player_.serial = serial;
+    player_.stamMax = static_cast<i32>(LoadBE16(data + 5));
+    player_.stamCur = static_cast<i32>(LoadBE16(data + 7));
+}
+
+// 0x2D Mob Attributes: cmd, serial, hitsMax/hitsCur, manaMax/manaCur,
+// stamMax/stamCur. For the local player this is a compact stat refresh.
+void Client::OnMobileAttributes(const u8* data, usize size) {
+    if (size < 17) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    if (serial != playerSerial_) return;
+    player_.serial = serial;
+    player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
+    player_.hpCur = static_cast<i32>(LoadBE16(data + 7));
+    player_.manaMax = static_cast<i32>(LoadBE16(data + 9));
+    player_.manaCur = static_cast<i32>(LoadBE16(data + 11));
+    player_.stamMax = static_cast<i32>(LoadBE16(data + 13));
+    player_.stamCur = static_cast<i32>(LoadBE16(data + 15));
 }
 
 // ---------------------------------------------------------------------------
@@ -996,6 +1080,13 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
         // the renderer can draw the local player (and facing for arrow walk).
         if (body) playerBody_ = body;
         playerFacing_ = static_cast<u8>(dir & 0x07);
+        player_.serial = serial;
+        if (body) player_.body = body;
+        player_.x = x;
+        player_.y = y;
+        player_.z = z;
+        player_.facing = playerFacing_;
+        player_.running = false;
         return;
     }
     const i64 now = NowMs();
@@ -1088,19 +1179,90 @@ void Client::OnPing(const u8* data, usize size) {
 //   [1-2]  length (BE)
 //   [3-6]  serial (BE)
 //   [7-36] name (30 ASCII)
-//   [37-38] HP cur, [39-40] HP max  (BE)
-//   ... gender, str/dex/int, stam, mana, gold, ar, weight ...
-// We only peek HP for liveness output.
+//   [37-38] HP cur, [39-40] HP max  (BE), then flags and extended stats.
 // ---------------------------------------------------------------------------
 void Client::OnStats(const u8* data, usize size) {
     if (size < 41) return;
-    char name[31];
-    std::memcpy(name, data + 7, 30);
-    name[30] = '\0';
-    u16 hp_cur = LoadBE16(data + 37);
-    u16 hp_max = LoadBE16(data + 39);
+    const u32 serial = LoadBE32(data + 3) & 0x7FFFFFFFu;
+    if (playerSerial_ != 0 && serial != playerSerial_) return;
+    player_.serial = serial;
+    playerSerial_ = serial;
+    player_.name = PacketString(data + 7, 30);
+    player_.hpCur = static_cast<i32>(LoadBE16(data + 37));
+    player_.hpMax = static_cast<i32>(LoadBE16(data + 39));
+
+    if (size >= 66) {
+        player_.nameChangeFlag = data[41];
+        player_.statusFlag = data[42];
+        player_.sexRace = data[43];
+        player_.strength = static_cast<i32>(LoadBE16(data + 44));
+        player_.dexterity = static_cast<i32>(LoadBE16(data + 46));
+        player_.intelligence = static_cast<i32>(LoadBE16(data + 48));
+        player_.stamCur = static_cast<i32>(LoadBE16(data + 50));
+        player_.stamMax = static_cast<i32>(LoadBE16(data + 52));
+        player_.manaCur = static_cast<i32>(LoadBE16(data + 54));
+        player_.manaMax = static_cast<i32>(LoadBE16(data + 56));
+        player_.gold = static_cast<i32>(LoadBE32(data + 58));
+        player_.armor = static_cast<i32>(LoadBE16(data + 62));
+        player_.weight = static_cast<i32>(LoadBE16(data + 64));
+    }
+
+    usize p = 66;
+    if (player_.statusFlag >= 5 && p + 3 <= size) {
+        player_.maxWeight = static_cast<i32>(LoadBE16(data + p)); p += 2;
+        player_.race = data[p++];
+    }
+    if (player_.statusFlag >= 3 && p + 4 <= size) {
+        player_.statsCap = static_cast<i32>(LoadBE16(data + p)); p += 2;
+        player_.followers = data[p++];
+        player_.followersMax = data[p++];
+    }
+
     if (verboseConsole_)
-        LogInfo("[0x11] %s  HP=%u/%u\n", name, hp_cur, hp_max);
+        LogInfo("[0x11] %s  HP=%d/%d STR=%d DEX=%d INT=%d STAM=%d/%d MANA=%d/%d\n",
+                player_.name.c_str(), player_.hpCur, player_.hpMax,
+                player_.strength, player_.dexterity, player_.intelligence,
+                player_.stamCur, player_.stamMax, player_.manaCur, player_.manaMax);
+}
+
+// 0x3A Send Skills. Server sends either a full skill table or a single skill
+// update. Values are fixed-point tenths (e.g. 512 == 51.2).
+void Client::OnSkills(const u8* data, usize size) {
+    if (size < 4) return;
+    const u8 type = data[3];
+    usize p = 4;
+    const bool hasCap = (type == 0x02 || type == 0xDF);
+    const bool single = (type == 0xFF || type == 0xDF);
+
+    auto readOne = [&]() -> bool {
+        const usize need = hasCap ? 9u : 7u;
+        if (p + need > size) return false;
+        const u16 id = LoadBE16(data + p); p += 2;
+        if (!single && id == 0) return false;
+        PlayerSkill skill{};
+        skill.id = id;
+        skill.valueTenths = LoadBE16(data + p); p += 2;
+        skill.baseTenths = LoadBE16(data + p); p += 2;
+        skill.lock = data[p++];
+        skill.hasCap = hasCap;
+        skill.capTenths = 0;
+        if (hasCap) {
+            skill.capTenths = LoadBE16(data + p);
+            p += 2;
+        }
+        player_.skills[id] = skill;
+        return true;
+    };
+
+    if (type == 0x00 || type == 0x02) {
+        while (readOne()) {}
+    } else if (single) {
+        readOne();
+    }
+
+    if (verboseConsole_)
+        LogInfo("[0x3A] skills update type=0x%02X known=%zu\n",
+                type, player_.skills.size());
 }
 
 // ---------------------------------------------------------------------------
@@ -1193,7 +1355,8 @@ void Client::OnUnknown(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnDrawGamePlayer(const u8* data, usize size) {
     if (size < 19) return;
-    const u32 serial = LoadBE32(data + 1);
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    const u16 body    = LoadBE16(data + 5);
     const u16 x      = LoadBE16(data + 11);
     const u16 y      = LoadBE16(data + 13);
     const u8  dir    = data[17];
@@ -1204,6 +1367,14 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         playerZ_ = z;
         playerFacing_  = dir & 0x07;
         playerRunning_ = false;
+        playerBody_ = body;
+        player_.serial = serial;
+        player_.body = body;
+        player_.x = playerX_;
+        player_.y = playerY_;
+        player_.z = playerZ_;
+        player_.facing = playerFacing_;
+        player_.running = playerRunning_;
         // A full resync (teleport / server correction) invalidates every
         // predicted-but-unacked move and any path planned off the old pose.
         if (!pendingMoves_.empty() || botActive_ || !botPath_.empty()) {
@@ -1258,6 +1429,11 @@ void Client::OnMoveReject(const u8* data, usize size) {
     playerZ_ = z;
     playerFacing_ = dirByte & 0x07;
     playerRunning_ = false;
+    player_.x = playerX_;
+    player_.y = playerY_;
+    player_.z = playerZ_;
+    player_.facing = playerFacing_;
+    player_.running = playerRunning_;
     pendingMoves_.clear();
     moveSeq_ = 0;
 
@@ -1752,6 +1928,13 @@ void Client::RenderTick() {
             return;
         }
         renderer_ = std::make_unique<render::Renderer>(rw, rh);
+        text_ = std::make_unique<render::TextRenderer>();
+        if (!text_->Init(kHudFontHeight)) {
+            LogWarn("[render] Arial text unavailable; HUD text disabled\n");
+            text_.reset();
+        } else {
+            LogInfo("[render] HUD text initialized (Arial %dpx)\n", kHudFontHeight);
+        }
         renderWindowOpen_ = true;
         mfb_set_hide_cursor(1);   // we draw our own UO cursor from art_
         LogInfo("[render] world window opened (%dx%d)\n", rw, rh);
@@ -1820,6 +2003,9 @@ void Client::RenderTick() {
         renderer_->Overlay(minimap_->Frame(), mw, mw, renderer_->Width() - mw - 8, 8);
     }
 
+    DrawStatusBars();
+    DrawSystemLog();
+    DrawOverheadText();
     DrawCursorOverlay();
 
     char title[64];
@@ -1831,6 +2017,170 @@ void Client::RenderTick() {
         renderWindowOpen_ = false;
         cfg_.enableRenderer = false;
         LogInfo("[render] window closed; rendering disabled\n");
+    }
+}
+
+void Client::DrawStatusBars() {
+    if (!renderer_) return;
+    if (playerSerial_ != 0 &&
+        player_.hpMax <= 0 && player_.manaMax <= 0 && player_.stamMax <= 0) {
+        const i64 now = NowMs();
+        if (now - lastStatusProbeMs_ >= kStatusProbeMs) {
+            u8 pkt[16];
+            const usize n = build::GetPlayerStatus(pkt, 0x04, playerSerial_);
+            Send(pkt, n, "0x34 GetPlayerStatus (HUD basic status)");
+            lastStatusProbeMs_ = now;
+        }
+    }
+
+    struct Bar { const char* name; i32 cur; i32 max; u16 fill; };
+    const Bar bars[] = {
+        {"HP", player_.hpCur, player_.hpMax, HudColor(190, 42, 42)},
+        {"Mana", player_.manaCur, player_.manaMax, HudColor(50, 86, 190)},
+        {"Stam", player_.stamCur, player_.stamMax, HudColor(205, 172, 45)},
+    };
+
+    constexpr int panelX = 8;
+    constexpr int panelY = 8;
+    constexpr int labelX = panelX + 8;
+    constexpr int x = panelX + 48;
+    int y = panelY + 9;
+    const u16 border = HudColor(215, 215, 215);
+    const u16 panel = HudColor(5, 5, 7);
+    const u16 bg = HudColor(18, 18, 20);
+    const u16 label = HudColor(245, 245, 245);
+
+    std::vector<u16> fb(static_cast<usize>(kStatusPanelWidth) * kStatusPanelHeight, panel);
+    for (int px = 0; px < kStatusPanelWidth; ++px) {
+        fb[px] = border;
+        fb[static_cast<usize>(kStatusPanelHeight - 1) * kStatusPanelWidth + px] = border;
+    }
+    for (int py = 0; py < kStatusPanelHeight; ++py) {
+        fb[static_cast<usize>(py) * kStatusPanelWidth] = border;
+        fb[static_cast<usize>(py) * kStatusPanelWidth + (kStatusPanelWidth - 1)] = border;
+    }
+    renderer_->Overlay(fb.data(), kStatusPanelWidth, kStatusPanelHeight, panelX, panelY);
+
+    for (const Bar& b : bars) {
+        renderer_->FillRect(x - 1, y - 1, kStatusBarWidth + 2, kStatusBarHeight + 2, border);
+        renderer_->FillRect(x, y, kStatusBarWidth, kStatusBarHeight, bg);
+        if (b.max > 0 && b.cur >= 0) {
+            const int fillW = std::clamp(b.cur, 0, b.max) * kStatusBarWidth / b.max;
+            renderer_->FillRect(x, y, fillW, kStatusBarHeight, b.fill);
+        }
+
+        if (text_) {
+            char buf[64];
+            if (b.max > 0 && b.cur >= 0)
+                std::snprintf(buf, sizeof(buf), "%d/%d", b.cur, b.max);
+            else
+                std::snprintf(buf, sizeof(buf), "--/--");
+            text_->Draw(*renderer_, b.name, labelX,
+                        y - 4, label, render::TextRenderer::Align::Left);
+            text_->Draw(*renderer_, buf, x + kStatusBarWidth + 6,
+                        y - 3, label, render::TextRenderer::Align::Left);
+        }
+        y += kStatusBarHeight + 11;
+    }
+}
+
+void Client::DrawSystemLog() {
+    if (!renderer_ || !text_) return;
+
+    const u16 fallback = HudColor(220, 220, 220);
+    const int lh = text_->LineHeight();
+    int drawn = 0;
+    for (auto it = journal_.rbegin(); it != journal_.rend() && drawn < kSysLogLines; ++it) {
+        if (it->ownerKind != JournalOwnerKind::System) continue;
+        const int y = renderer_->Height() - 10 - lh * (drawn + 1);
+        text_->Draw(*renderer_, it->text, 10, y, JournalColor(it->hue, fallback),
+                    render::TextRenderer::Align::Left);
+        ++drawn;
+    }
+}
+
+void Client::DrawOverheadText() {
+    if (!renderer_ || !text_) return;
+
+    struct LabelTarget { u32 serial; i32 x; i32 y; i8 z; u16 body; u8 dir; std::string name; };
+    const i64 now = NowMs();
+    std::vector<LabelTarget> targets;
+    if (!player_.name.empty()) {
+        targets.push_back({playerSerial_, playerX_, playerY_, playerZ_,
+                           playerBody_, playerFacing_, player_.name});
+    }
+    for (const auto& m : mobileCache_) {
+        auto it = mobileNames_.find(m.serial);
+        if (it == mobileNames_.end() || it->second.empty()) {
+            int sx = 0, sy = 0;
+            renderer_->WorldToScreen(m.x, m.y, m.z, playerX_, playerY_, playerZ_, &sx, &sy);
+            if (sx >= -120 && sx <= renderer_->Width() + 120 &&
+                sy >= -120 && sy <= renderer_->Height() + 80) {
+                const auto p = overheadNameProbeMs_.find(m.serial);
+                if (p == overheadNameProbeMs_.end() || now - p->second >= kOverheadNameProbeMs) {
+                    u8 pkt[8];
+                    const usize n = build::MobNameQuery(pkt, m.serial);
+                    Send(pkt, n, "0x98 AllNames (HUD name query)");
+                    overheadNameProbeMs_[m.serial] = now;
+                }
+            }
+            continue;
+        }
+        targets.push_back({m.serial, m.x, m.y, m.z, m.body, m.dir, it->second});
+    }
+
+    const u16 nameColor = HudColor(135, 210, 255);
+    const u16 speechColor = HudColor(255, 255, 255);
+    const int lh = text_->LineHeight();
+    auto textTopOffset = [&](u16 body, u8 dir) {
+        int offset = kHeadOffset;
+        if (anim_) {
+            if (const anim::Frame* fr = anim_->Body(body, dir)) {
+                int minY = anim::Frame::kH;
+                for (int row = 0; row < anim::Frame::kH; ++row) {
+                    const u16* src = &fr->px[static_cast<usize>(row) * anim::Frame::kW];
+                    for (int col = 0; col < anim::Frame::kW; ++col) {
+                        if (src[col]) {
+                            minY = std::min(minY, row);
+                            break;
+                        }
+                    }
+                }
+                if (minY < anim::Frame::kH)
+                    offset = std::clamp(anim::Frame::kAnchorY - minY - 4, 32, 96);
+            }
+        }
+        return offset;
+    };
+
+    for (const auto& t : targets) {
+        int sx = 0, sy = 0;
+        renderer_->WorldToScreen(t.x, t.y, t.z, playerX_, playerY_, playerZ_, &sx, &sy);
+        if (sx < -120 || sx > renderer_->Width() + 120 ||
+            sy < -120 || sy > renderer_->Height() + 80) {
+            continue;
+        }
+
+        int y = sy - textTopOffset(t.body, t.dir) - lh;
+        text_->Draw(*renderer_, t.name, sx, y, nameColor, render::TextRenderer::Align::Center);
+
+        int speechLines = 0;
+        for (auto it = journal_.rbegin(); it != journal_.rend() && speechLines < 2; ++it) {
+            const u32 serial = it->sourceSerial & 0x7FFFFFFFu;
+            if (serial != t.serial) continue;
+            if (it->ownerKind != JournalOwnerKind::Player &&
+                it->ownerKind != JournalOwnerKind::Mobile) {
+                continue;
+            }
+            if (now - it->timeMs > kOverheadMs) continue;
+            const i64 age = now - it->timeMs;
+            const int fade = age < 4000 ? 255 : static_cast<int>((kOverheadMs - age) * 255 / 2000);
+            y -= lh;
+            text_->Draw(*renderer_, it->text, sx, y,
+                        ScaleHudColor(JournalColor(it->hue, speechColor), fade),
+                        render::TextRenderer::Align::Center);
+            ++speechLines;
+        }
     }
 }
 
@@ -1882,7 +2232,11 @@ void Client::HandleManualWalk() {
     lastMoveSentMs_ = now;
     lastManualMoveMs_ = now;
     if (wasStep) BotPredictStep(dir);
-    else         playerFacing_ = dir;
+    else {
+        playerFacing_ = dir;
+        player_.facing = dir;
+        player_.running = botRun_;
+    }
 }
 
 // Right-click in the render window retargets the bot: invert the screen point
@@ -1976,6 +2330,11 @@ void Client::BotPredictStep(u8 dir) {
         const auto r = world_->QueryCell(q);
         if (r.walkable) playerZ_ = r.standZ;
     }
+    player_.x = playerX_;
+    player_.y = playerY_;
+    player_.z = playerZ_;
+    player_.facing = static_cast<u8>(dir & 0x07);
+    player_.running = botRun_;
 }
 
 bool Client::BotIsMobileBlocking(i32 x, i32 y, i8 z) const {
@@ -2488,7 +2847,11 @@ void Client::BotPumpMoves() {
         ++movesSinceClick_;
 
         if (wasStep) { botPath_.pop_front(); BotPredictStep(dir); }
-        else         { playerFacing_ = dir; }  // turn: re-send same dir to step
+        else {
+            playerFacing_ = dir;  // turn: re-send same dir to step
+            player_.facing = dir;
+            player_.running = botRun_;
+        }
     }
 
     if (botPath_.empty() && pendingMoves_.empty()) {

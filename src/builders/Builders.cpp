@@ -101,6 +101,15 @@ usize SingleClick(u8* out, u32 serial) {
     return w.size();
 }
 
+usize GetPlayerStatus(u8* out, u8 type, u32 serial) {
+    BufWriter w(out, 10);
+    w.WriteU8(RawId(PacketId::GetPlayerStatus));
+    w.WriteU32(0xEDEDEDEDu);
+    w.WriteU8(type);
+    w.WriteU32(serial);
+    return w.size();
+}
+
 // 0x98 AllNames / MobName query — 7 bytes.
 usize MobNameQuery(u8* out, u32 serial) {
     BufWriter w(out, 7);

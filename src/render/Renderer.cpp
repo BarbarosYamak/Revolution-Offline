@@ -457,6 +457,46 @@ void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
     }
 }
 
+void Renderer::FillRect(int x, int y, int rw, int rh, u16 color) {
+    if (rw <= 0 || rh <= 0 || x >= w_ || y >= h_ || x + rw <= 0 || y + rh <= 0) return;
+    const int x0 = std::max(0, x);
+    const int y0 = std::max(0, y);
+    const int x1 = std::min(w_, x + rw);
+    const int y1 = std::min(h_, y + rh);
+    for (int py = y0; py < y1; ++py) {
+        u16* row = &fb_[static_cast<usize>(py) * w_];
+        for (int px = x0; px < x1; ++px) row[px] = color;
+    }
+}
+
+void Renderer::BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy) {
+    if (!bgra || sw <= 0 || sh <= 0 || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            const u32 s = bgra[static_cast<usize>(row) * sw + col];
+            const u32 a = (s >> 24) & 0xFFu;
+            if (a == 0) continue;
+
+            const u16 d = drow[px];
+            const u32 sr = ((s >> 16) & 0xFFu) * 31u / 255u;
+            const u32 sg = ((s >> 8) & 0xFFu) * 31u / 255u;
+            const u32 sb = (s & 0xFFu) * 31u / 255u;
+            const u32 dr = (d >> 10) & 31u;
+            const u32 dg = (d >> 5) & 31u;
+            const u32 db = d & 31u;
+            const u32 r = (sr * a + dr * (255u - a) + 127u) / 255u;
+            const u32 g = (sg * a + dg * (255u - a) + 127u) / 255u;
+            const u32 b = (sb * a + db * (255u - a) + 127u) / 255u;
+            drow[px] = static_cast<u16>(0x8000u | (r << 10) | (g << 5) | b);
+        }
+    }
+}
+
 void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key) {
     if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
     for (int row = 0; row < sh; ++row) {
@@ -487,6 +527,20 @@ void Renderer::ScreenToWorld(int sx, int sy, i32 camX, i32 camY,
     const double dy = (dsy - dsx) / (2.0 * kHalfTile);   // (dx+dy)-(dx-dy) = 2dy
     if (outX) *outX = camX + static_cast<i32>(std::lround(dx));
     if (outY) *outY = camY + static_cast<i32>(std::lround(dy));
+}
+
+void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,
+                             i32 camX, i32 camY, i32 camZ,
+                             int* outSx, int* outSy) const {
+    const i32 dxw = worldX - camX;
+    const i32 dyw = worldY - camY;
+    const int sx = w_ / 2 + (dxw - dyw) * kHalfTile;
+    const int sy = (h_ / 2 + camZ * kZStep - kHalfTile) +
+                   (dxw + dyw) * kHalfTile -
+                   static_cast<int>(z) * kZStep +
+                   kHalfTile;
+    if (outSx) *outSx = sx;
+    if (outSy) *outSy = sy;
 }
 
 void Renderer::Blit(const art::Sprite& s, int dx, int dy) {

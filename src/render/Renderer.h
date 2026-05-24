@@ -46,6 +46,8 @@ public:
     // (dx,dy), clipped to the framebuffer. Opaque copy — every source pixel is
     // written. Used to stamp the minimap panel over the world after RenderWorld.
     void Overlay(const u16* src, int sw, int sh, int dx, int dy);
+    void FillRect(int x, int y, int w, int h, u16 color);
+    void BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy);
 
     // Blit a sprite onto the frame at (dx,dy) skipping transparent (0) pixels
     // AND any pixel equal to `key` (a chroma-key background). UO cursor art
@@ -59,6 +61,9 @@ public:
     // good enough for a navigation goal that A* then resolves). camX/camY is the
     // cell the view is centred on (the player). Writes the resulting cell.
     void ScreenToWorld(int sx, int sy, i32 camX, i32 camY, i32* outX, i32* outY) const;
+    void WorldToScreen(i32 worldX, i32 worldY, i8 z,
+                       i32 camX, i32 camY, i32 camZ,
+                       int* outSx, int* outSy) const;
 
     // Screen + art-texture coordinate, used to stretch land tiles.
     struct TexVert { int x, y, u, v; };

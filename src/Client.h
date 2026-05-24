@@ -25,7 +25,7 @@ namespace uo::world    { class World; }
 namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
-namespace uo::render   { class Renderer; class Minimap; class RadarColors; }
+namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
 namespace uo {
 
@@ -120,6 +120,10 @@ private:
     void OnPing               (const u8* data, usize size);
     void OnStats              (const u8* data, usize size);
     void OnMobileHp           (const u8* data, usize size);  // 0xA1
+    void OnMobileMana         (const u8* data, usize size);  // 0xA2
+    void OnMobileStamina      (const u8* data, usize size);  // 0xA3
+    void OnMobileAttributes   (const u8* data, usize size);  // 0x2D
+    void OnSkills             (const u8* data, usize size);  // 0x3A
     void OnObjectInfo         (const u8* data, usize size);  // 0x1A
     void OnDeleteObject       (const u8* data, usize size);  // 0x1D
     void OnMobileMove         (const u8* data, usize size);  // 0x77
@@ -165,6 +169,9 @@ private:
     void RenderTick();        // draws the world window (no-op unless enabled)
     void HandleManualWalk();  // arrow-key steering from the render window
     void HandleWorldClick();  // right-click in the render window -> goto that cell
+    void DrawStatusBars();
+    void DrawSystemLog();
+    void DrawOverheadText();
     void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
@@ -214,8 +221,34 @@ private:
     u32   gameServerIp_;      // host-order
     u16   gameServerPort_;    // host-order
 
+    struct PlayerSkill {
+        u16 id;
+        u16 valueTenths;
+        u16 baseTenths;
+        u16 capTenths;
+        u8 lock;
+        bool hasCap;
+    };
+    struct PlayerObj {
+        u32 serial = 0;
+        u16 body = 0;
+        std::string name;
+        i32 x = 0, y = 0;
+        i8 z = 0;
+        u8 facing = 0;
+        bool running = false;
+        i32 hpCur = -1, hpMax = -1;
+        i32 manaCur = -1, manaMax = -1;
+        i32 stamCur = -1, stamMax = -1;
+        i32 strength = -1, dexterity = -1, intelligence = -1;
+        i32 gold = -1, armor = -1, weight = -1, maxWeight = -1;
+        u8 nameChangeFlag = 0, statusFlag = 0, sexRace = 0, race = 0;
+        i32 statsCap = -1;
+        u8 followers = 0, followersMax = 0;
+        std::unordered_map<u16, PlayerSkill> skills;
+    };
+    PlayerObj player_;
     u32   playerSerial_;
-    i32   lastHp_;              // last known own hit points (-1 = unknown)
 
     // M3 player state — populated from 0x1B/0x20/0x22.
     i32   playerX_;
@@ -246,6 +279,7 @@ private:
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
+    std::unique_ptr<uo::render::TextRenderer> text_;
     std::unique_ptr<uo::render::Minimap>     minimap_;
     std::unique_ptr<uo::render::RadarColors> radarColors_;
     bool renderInit_;
@@ -298,10 +332,12 @@ private:
     i64  mobilesListDeadlineMs_;
     std::vector<u32> mobilesListSerials_;
     std::unordered_set<u32> mobilesListAwaiting_;
+    std::unordered_map<u32, i64> overheadNameProbeMs_;
     i64 lastFatigueMs_;       // last "too fatigued to move" message time
     u32 stuckWaits_;          // consecutive wait-retries at the current bump cell
 
     i64 lastMoveSentMs_;        // for throttle + watchdog
+    i64 lastStatusProbeMs_;     // 0x34 status request while HUD has no stats
     u32 walkThrottleMs_;        // min gap between move sends (default 500)
     u32 runThrottleMs_;         // min gap if player is running (default 250)
     u32 ackWatchdogMs_;         // clear stuck awaiting flag after N ms

@@ -48,6 +48,10 @@ usize SpeechAscii(u8* out, u8 type, u16 hue, u16 font, const char* text);
 // 0x09 Single Click (5 bytes): cmd + serial(4 BE).
 usize SingleClick(u8* out, u32 serial);
 
+// 0x34 Get Player Status (10 bytes): cmd, 0xEDEDEDED marker, request type,
+// serial. type 0x04 requests basic status (0x11); 0x05 requests skills (0x3A).
+usize GetPlayerStatus(u8* out, u8 type, u32 serial);
+
 // 0x98 AllNames / MobName query (7 bytes): cmd + len(2) + serial(4 BE).
 // Requests the target mobile's name (server replies with 0x98 including name).
 usize MobNameQuery(u8* out, u32 serial);
