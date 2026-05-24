@@ -10,6 +10,8 @@ This is a C++17 CMake project for an Ultima Online client and tooling. Core code
 
 `Client` owns protocol state, packet dispatch, movement, bot commands, renderer ticks, and cached objects. Bot movement is depth-1: send one `0x02` move, predict position, then reconcile on `0x22` ack or snap back on `0x21` reject. `bot::FindPath` runs A* over `World::QueryCell`; `blacklist_`, cached mobiles, and dynamic `0x1A` items add obstacles. Lookahead patches short prefixes of `botPath_`; full `BotReplanToGoal()` is the fallback.
 
+`render::Minimap` overlays an orientation panel onto the world frame in `RenderTick` (top-right corner, toggle with `M`, composited via `Renderer::Overlay`). It uses the same isometric projection as the 3D view (`su = x-y`, `sv = x+y`), so north points to the top-right corner. Cell colours come from `radarcol.mul` (`render::RadarColors`) using the real client's radar rule — the topmost surface wins (land, then statics by z-test) — modeled on `CRadarGump_Update`/`CRadarGump_RenderMinimap` in `client_2.0.7.exe`. Colours are cached per 8x8 map block. The view auto-scales (in iso screen space) so the player and the whole planned `botPath_` route fit, and draws the route plus player/goal markers. The panel is only drawn when `radarcol.mul` loads (`cfg_.radarcolPath`).
+
 ## Build, Test, and Development Commands
 
 - `scripts\build.bat`: configures Ninja with Visual Studio Build Tools and builds all CMake targets.
