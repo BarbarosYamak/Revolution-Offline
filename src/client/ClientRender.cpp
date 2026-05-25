@@ -180,11 +180,11 @@ void Client::RenderTick() {
         }
         // Replay the remaining directions from the player to get route cells.
         std::vector<i32> px, py;
-        px.reserve(botPath_.size() + 1);
-        py.reserve(botPath_.size() + 1);
+        px.reserve(nav_.bot.path.size() + 1);
+        py.reserve(nav_.bot.path.size() + 1);
         i32 cx = playerX_, cy = playerY_;
         px.push_back(cx); py.push_back(cy);
-        for (u8 d : botPath_) {
+        for (u8 d : nav_.bot.path) {
             i32 ddx = 0, ddy = 0;
             bot::DirToDelta(static_cast<u8>(d & 7), &ddx, &ddy);
             cx += ddx; cy += ddy;
@@ -402,33 +402,32 @@ void Client::HandleManualWalk() {
     if (dx == 0 && dy == 0) return;   // opposing keys cancel
 
     // Take over from the bot.
-    if (botActive_ || !botPath_.empty()) {
-        botActive_ = false;
-        botPath_.clear();
-        followActive_ = false;
+    if (nav_.bot.active || !nav_.bot.path.empty()) {
+        BotAbortPath("manual walk");
+        nav_.follow.active = false;
     }
-    if (!pendingMoves_.empty()) return;   // wait for the prior step to ack
+    if (!nav_.movement.pending.empty()) return;   // wait for the prior step to ack
 
     const i64 now = NowMs();
-    const u32 gap = botRun_ ? runThrottleMs_ : walkThrottleMs_;
+    const u32 gap = BotMoveGapMs();
     if (lastManualMoveMs_ != 0 && now - lastManualMoveMs_ < static_cast<i64>(gap))
         return;
 
     const u8 dir = DeltaToDir(dx, dy);
     const bool wasStep = (dir == playerFacing_);   // turn first, then step
     const u8 seq  = NextSeq();
-    const u8 wire = botRun_ ? static_cast<u8>(dir | 0x80) : dir;
+    const u8 wire = nav_.movement.run ? static_cast<u8>(dir | 0x80) : dir;
     u8 buf[16];
     usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
     if (!Send(buf, n, "0x02 Move (manual arrow)")) return;
-    pendingMoves_.push_back({seq, dir, wasStep, now});
-    lastMoveSentMs_ = now;
+    nav_.movement.pending.push_back({seq, dir, wasStep, now});
+    nav_.movement.lastMoveSentMs = now;
     lastManualMoveMs_ = now;
     if (wasStep) BotPredictStep(dir);
     else {
         playerFacing_ = dir;
         player_.facing = dir;
-        player_.running = botRun_;
+        player_.running = nav_.movement.run;
     }
 }
 
@@ -445,11 +444,9 @@ void Client::HandleWorldClick() {
 
     // Cancel the current task cleanly (mirrors BotInterruptForThreat) so
     // BotStartGoto's busy-guard lets the new destination through.
-    if (followActive_) BotStopFollow("retargeted by right-click");
-    botPath_.clear();
-    pendingMoves_.clear();
-    botActive_ = false;
-    moveSeq_ = 0;
+    if (nav_.follow.active) BotStopFollow("retargeted by right-click");
+    BotAbortPath("retargeted by right-click");
+    BotResetMovement();
 
     LogInfo("[bot] right-click goto (%d,%d) [screen %d,%d]\n", wx, wy, mx, my);
     BotStartGoto(wx, wy);

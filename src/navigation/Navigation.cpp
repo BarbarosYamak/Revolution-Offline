@@ -20,6 +20,11 @@ namespace {
 // pipelines desync when a mid-flight move is rejected (we'd never learn where
 // the surviving moves left us). One confirmed step at a time stays exact.
 constexpr usize kMaxInFlight = 1;
+// Canonical UO on-foot step intervals. Pacing at these rates, not faster,
+// is how the original client avoids fastwalk/speedhack checks.
+constexpr u32 kWalkThrottleMs = 400;
+constexpr u32 kRunThrottleMs = 200;
+constexpr u32 kAckWatchdogMs = 5000;
 // Per-trip A* replan budget -- bounds obstacle-avoidance loops on an
 // unreachable goal.
 constexpr u32 kMaxReplans = 128;
@@ -121,7 +126,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // fall back to the server's reported facing).
     u8 rdir = dirByte & 0x07;
     bool rejectedWasStep = false;
-    for (const auto& pm : pendingMoves_)
+    for (const auto& pm : nav_.movement.pending)
         if (pm.seq == seq) { rdir = pm.dir; rejectedWasStep = pm.wasStep; break; }
 
     LogWarn(
@@ -141,10 +146,9 @@ void Client::OnMoveReject(const u8* data, usize size) {
     player_.z = playerZ_;
     player_.facing = playerFacing_;
     player_.running = playerRunning_;
-    pendingMoves_.clear();
-    moveSeq_ = 0;
+    BotResetMovement();
 
-    if (!botActive_) return;
+    if (!nav_.bot.active) return;
 
     // The cell we were blocked from entering, and its surface z.
     i32 dx, dy;
@@ -161,8 +165,8 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // Track repeated bumps at the same cell (and the floor we're on).
     // (0) Stamina: a reject right after a "too fatigued" message is not an
     // obstacle — we're just spent. Wait for regen and retry; never blacklist.
-    const bool fatigued = lastFatigueMs_ != 0 &&
-                          (NowMs() - lastFatigueMs_) < kFatigueWindowMs;
+    const bool fatigued = nav_.lastFatigueMs != 0 &&
+                          (NowMs() - nav_.lastFatigueMs) < kFatigueWindowMs;
 
     // (1) Is a mobile standing on the blocked cell? Walking into one is a
     // shove (succeeds once rested), so a reject there is a moving/stamina
@@ -171,31 +175,30 @@ void Client::OnMoveReject(const u8* data, usize size) {
 
     if (fatigued || mob) {
         const bool blockedByMobile = (mob != nullptr) && !fatigued;
-        if (++stuckWaits_ > kMaxStuckWaits) {
+        if (++nav_.bot.stuckWaits > kMaxStuckWaits) {
             LogWarn(
                 "[bot] (%d,%d) blocked by %s for too long; stopping (not blacklisted)\n",
                 bx, by, fatigued ? "fatigue" : "a mobile");
-            botPath_.clear();
-            botActive_ = false;
+            BotAbortPath("blocked too long");
             return;
         }
-        if (blockedByMobile && stuckWaits_ >= kMobileRepathAfter) {
+        if (blockedByMobile && nav_.bot.stuckWaits >= kMobileRepathAfter) {
             // Don't stall indefinitely behind another mover: avoid this cell
             // for this trip and rebuild a full route around it.
-            blacklist_.AddTransient(bx, by, bz, 0);
+            nav_.bot.blacklist.AddTransient(bx, by, bz, 0);
             LogInfo("[bot] mobile still blocks (%d,%d) after %u waits; rerouting now\n",
-                        bx, by, stuckWaits_);
-            stuckWaits_ = 0;
+                        bx, by, nav_.bot.stuckWaits);
+            nav_.bot.stuckWaits = 0;
             if (BotReplanToGoal())
-                botResumeAtMs_ = NowMs() + 150;
+                nav_.bot.resumeAtMs = NowMs() + 150;
             return;
         }
         const i64 wait = fatigued ? kStaminaWaitMs : kMobileWaitMs;
         LogInfo("[bot] reject at (%d,%d): %s — waiting %lldms, retrying (%u) [no blacklist]\n",
                     bx, by, fatigued ? "fatigued (stamina)" : "mobile in the way",
-                    static_cast<long long>(wait), stuckWaits_);
+                    static_cast<long long>(wait), nav_.bot.stuckWaits);
         if (BotReplanToGoal())
-            botResumeAtMs_ = NowMs() + wait;
+            nav_.bot.resumeAtMs = NowMs() + wait;
         return;
     }
 
@@ -203,7 +206,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
         LogInfo("[bot] dynamic item blocks (%d,%d,%d); rerouting\n",
                     bx, by, static_cast<int>(bz));
         if (BotReplanToGoal())
-            botResumeAtMs_ = NowMs() + 150;
+            nav_.bot.resumeAtMs = NowMs() + 150;
         return;
     }
 
@@ -218,8 +221,8 @@ void Client::OnMoveReject(const u8* data, usize size) {
                              bx, by, static_cast<i8>(bz));
         u8 ob[8];
         Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 reject retry)");
-        botPath_.push_front(rdir);
-        botResumeAtMs_ = NowMs() + kDoorRetryWaitMs;
+        nav_.bot.path.push_front(rdir);
+        nav_.bot.resumeAtMs = NowMs() + kDoorRetryWaitMs;
         LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; OpenDoor + retry\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
                     bx, by, static_cast<int>(bz));
@@ -229,15 +232,15 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // A repeated reject means this exact directed step is not server-walkable
     // now. Keep the directed edge fact, and preserve the existing transient
     // cell block so A* does not immediately retry the same landing spot.
-    rejectedEdges_.push_back({playerX_, playerY_, playerZ_,
-                              bx, by, static_cast<i8>(bz)});
-    blacklist_.AddTransient(bx, by, bz, 0);
+    nav_.bot.rejectedEdges.push_back({playerX_, playerY_, playerZ_,
+                                      bx, by, static_cast<i8>(bz)});
+    nav_.bot.blacklist.AddTransient(bx, by, bz, 0);
     LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; avoiding edge + rerouting\n",
                 playerX_, playerY_, static_cast<int>(playerZ_),
                 bx, by, static_cast<int>(bz));
     std::uniform_int_distribution<int> rd(200, 400);
     if (BotReplanToGoal())
-        botResumeAtMs_ = NowMs() + rd(rng_);
+        nav_.bot.resumeAtMs = NowMs() + rd(nav_.rng);
 }
 
 
@@ -252,12 +255,12 @@ void Client::OnMoveReject(const u8* data, usize size) {
 void Client::OnMoveAck(const u8* data, usize size) {
     if (size < 3) return;
     const u8 seq = data[1];
-    if (pendingMoves_.empty()) {
+    if (nav_.movement.pending.empty()) {
         LogWarn( "[0x22] unsolicited ack seq=%u\n", seq);
         return;
     }
-    const PendingMove pm = pendingMoves_.front();
-    pendingMoves_.pop_front();
+    const navigation::PendingMove pm = nav_.movement.pending.front();
+    nav_.movement.pending.pop_front();
     if (pm.seq != seq) {
         // Acks should arrive in send order; a mismatch means we lost sync.
         LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
@@ -273,8 +276,8 @@ void Client::OnMoveAck(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 // Classic UO sequence: starts at 0, wraps 0xFF -> 1 (0 reserved for resync).
 u8 Client::NextSeq() {
-    u8 s = moveSeq_;
-    moveSeq_ = (moveSeq_ == 0xFF) ? 1 : (moveSeq_ + 1);
+    u8 s = nav_.movement.moveSeq;
+    nav_.movement.moveSeq = (nav_.movement.moveSeq == 0xFF) ? 1 : (nav_.movement.moveSeq + 1);
     return s;
 }
 
@@ -307,9 +310,9 @@ bool Client::EnsureWorldLoaded() {
     // Learned static blocks persist in blacklist.mul (verdata format),
     // layered on top of the base statics. Load them so A* avoids known bad
     // tiles from the first step.
-    blacklist_.Load("blacklist.mul", worldMap_->HeightBlocks());
+    nav_.bot.blacklist.Load("blacklist.mul", worldMap_->HeightBlocks());
     LogInfo("[bot] world data loaded (%zu blacklisted spot(s)).\n",
-                blacklist_.PersistentCount());
+                nav_.bot.blacklist.PersistentCount());
     return true;
 }
 
@@ -329,7 +332,12 @@ void Client::BotPredictStep(u8 dir) {
     player_.y = playerY_;
     player_.z = playerZ_;
     player_.facing = static_cast<u8>(dir & 0x07);
-    player_.running = botRun_;
+    player_.running = nav_.movement.run;
+}
+
+
+u32 Client::BotMoveGapMs() const {
+    return nav_.movement.run ? kRunThrottleMs : kWalkThrottleMs;
 }
 
 
@@ -399,7 +407,7 @@ bool Client::BotStepNeedsDoorOpen(i8 fromZ, i32 toX, i32 toY, i8 toZ) const {
 
 
 bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
-    if (blacklist_.IsBlocked(x, y, z)) return true;
+    if (nav_.bot.blacklist.IsBlocked(x, y, z)) return true;
     if (BotIsMobileBlocking(x, y, z)) return true;
     return BotIsDynamicItemBlocking(x, y, z);
 }
@@ -407,7 +415,7 @@ bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
 
 bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
                                i32 toX, i32 toY, i8 toZ) const {
-    for (const auto& e : rejectedEdges_) {
+    for (const auto& e : nav_.bot.rejectedEdges) {
         if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
                                   fromX, fromY, fromZ, toX, toY, toZ)) {
             return true;
@@ -419,7 +427,7 @@ bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
 
 bool Client::BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
                                   i32 toX, i32 toY, i8 toZ) const {
-    for (const auto& e : doorRetryEdges_) {
+    for (const auto& e : nav_.bot.doorRetryEdges) {
         if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
                                   fromX, fromY, fromZ, toX, toY, toZ)) {
             return true;
@@ -431,7 +439,7 @@ bool Client::BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
 
 void Client::BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
                                   i32 toX, i32 toY, i8 toZ) {
-    doorRetryEdges_.push_back({fromX, fromY, fromZ, toX, toY, toZ});
+    nav_.bot.doorRetryEdges.push_back({fromX, fromY, fromZ, toX, toY, toZ});
 }
 
 
@@ -451,7 +459,7 @@ bool Client::BotRuntimeBlockedStepForPath(i32 fromX, i32 fromY, i8 fromZ,
 
 
 bool Client::BotLookaheadPatchPath() {
-    if (!world_ || botPath_.empty()) return false;
+    if (!world_ || nav_.bot.path.empty()) return false;
 
     struct PreviewStep {
         i32 x;
@@ -469,15 +477,16 @@ bool Client::BotLookaheadPatchPath() {
     i8 z = playerZ_;
 
     const usize maxPreview = std::min<usize>(
-        botPath_.size(), kPathLookaheadScanSteps + kPathLookaheadAnchorExtra);
+        nav_.bot.path.size(), kPathLookaheadScanSteps + kPathLookaheadAnchorExtra);
     for (usize i = 0; i < maxPreview; ++i) {
         i32 dx, dy;
-        bot::DirToDelta(botPath_[i], &dx, &dy);
+        bot::DirToDelta(nav_.bot.path[i], &dx, &dy);
         const i32 nx = x + dx;
         const i32 ny = y + dy;
 
         const world::WalkQuery q = MakeGoalAwareWalkQuery(
-            nx, ny, z, botHasGoalZ_, botGoalX_, botGoalY_, botGoalZ_);
+            nx, ny, z, nav_.bot.hasGoalZ, nav_.bot.goalX, nav_.bot.goalY,
+            nav_.bot.goalZ);
         const auto wr = world_->QueryCell(q);
 
         bool blocked = true;
@@ -508,7 +517,7 @@ bool Client::BotLookaheadPatchPath() {
         if (!target.walkable || target.blocked) continue;
 
         bot::PathOptions opts;
-        opts.blacklist = &blacklist_;
+        opts.blacklist = &nav_.bot.blacklist;
         opts.hasGoalZ = true;
         opts.goalZ = target.z;
         opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
@@ -525,12 +534,12 @@ bool Client::BotLookaheadPatchPath() {
 
         std::deque<u8> next;
         for (u8 d : patch) next.push_back(d);
-        for (usize i = anchor + 1; i < botPath_.size(); ++i)
-            next.push_back(botPath_[i]);
-        botPath_.swap(next);
+        for (usize i = anchor + 1; i < nav_.bot.path.size(); ++i)
+            next.push_back(nav_.bot.path[i]);
+        nav_.bot.path.swap(next);
         LogInfo("[bot] lookahead patched around block at step %zu: "
                     "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
-                    firstBlocked + 1, anchor + 1, patch.size(), botPath_.size(),
+                    firstBlocked + 1, anchor + 1, patch.size(), nav_.bot.path.size(),
                     searchUs);
         return true;
     }
@@ -540,21 +549,20 @@ bool Client::BotLookaheadPatchPath() {
 
 
 bool Client::BotReplanToGoal() {
-    if (++botReplanCount_ > kMaxReplans) {
+    if (++nav_.bot.replanCount > kMaxReplans) {
         LogWarn( "[bot] giving up after %u replans (unreachable?)\n",
-                     botReplanCount_);
-        botPath_.clear();
-        botActive_ = false;
+                     nav_.bot.replanCount);
+        BotAbortPath("too many replans");
         return false;
     }
     bot::PathOptions opts;
-    opts.blacklist = &blacklist_;
+    opts.blacklist = &nav_.bot.blacklist;
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind.
-    opts.grassPenalty   = followActive_ ? 0u : kGrassPenalty;
-    opts.foliagePenalty = followActive_ ? 0u : kForestPenalty;
-    opts.hasGoalZ = botHasGoalZ_;       // pin destination floor when given
-    opts.goalZ    = botGoalZ_;
+    opts.grassPenalty   = nav_.follow.active ? 0u : kGrassPenalty;
+    opts.foliagePenalty = nav_.follow.active ? 0u : kForestPenalty;
+    opts.hasGoalZ = nav_.bot.hasGoalZ;  // pin destination floor when given
+    opts.goalZ    = nav_.bot.goalZ;
     opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
     opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
     opts.extraBlockedUser = this;
@@ -566,27 +574,26 @@ bool Client::BotReplanToGoal() {
     // unreachable. Budget quadratically (with headroom for detours) but bound
     // it so a genuinely unreachable goal still fails in finite time/memory.
     const u64 cheb = static_cast<u64>(
-        ChebyshevDistance(playerX_, playerY_, botGoalX_, botGoalY_));
+        ChebyshevDistance(playerX_, playerY_, nav_.bot.goalX, nav_.bot.goalY));
     u64 budget = cheb * cheb * 4 + 65536;
     if (budget > 2000000) budget = 2000000;
     opts.maxNodesExpanded = static_cast<u32>(budget);
     const auto t0 = std::chrono::steady_clock::now();
     auto path = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
-                              botGoalX_, botGoalY_, opts);
+                              nav_.bot.goalX, nav_.bot.goalY, opts);
     const double searchUs = std::chrono::duration<double, std::micro>(
         std::chrono::steady_clock::now() - t0).count();
     if (path.empty()) {
         LogWarn(
             "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
             "(search %.1fus)\n",
-            botGoalX_, botGoalY_, blacklist_.Count(), searchUs);
-        botPath_.clear();
-        botActive_ = false;
+            nav_.bot.goalX, nav_.bot.goalY, nav_.bot.blacklist.Count(), searchUs);
+        BotAbortPath("no path");
         return false;
     }
     LogInfo("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
-                botGoalX_, botGoalY_, path.size(), searchUs);
-    botPath_.assign(path.begin(), path.end());
+                nav_.bot.goalX, nav_.bot.goalY, path.size(), searchUs);
+    nav_.bot.path.assign(path.begin(), path.end());
     return true;
 }
 
@@ -600,43 +607,54 @@ void Client::BotInterruptForThreat(const char* reason) {
         "[bot] THREAT (%s): halting travel (TODO engage/flee/recall)\n",
         reason ? reason : "?");
     LogEvent("threat", reason ? reason : "");
-    botPath_.clear();
-    pendingMoves_.clear();
-    botActive_ = false;
-    followActive_ = false;
-    moveSeq_ = 0;
+    BotAbortPath(reason);
+    nav_.follow.active = false;
+    BotResetMovement();
+}
+
+
+void Client::BotNoteFatigueMessage() {
+    nav_.lastFatigueMs = NowMs();
+}
+
+
+void Client::BotAbortPath(const char*) {
+    nav_.bot.path.clear();
+    nav_.bot.active = false;
+}
+
+
+void Client::BotResetMovement() {
+    nav_.movement.pending.clear();
+    nav_.movement.moveSeq = 0;
 }
 
 
 void Client::BotStopFollow(const char* reason) {
-    if (!followActive_) return;
+    if (!nav_.follow.active) return;
     LogInfo("[follow] stopped (%s)\n", reason ? reason : "off");
-    followActive_ = false;
-    followSerial_ = 0;
-    followDistance_ = 1;
-    followLastReplanMs_ = 0;
-    followLastProbeMs_ = 0;
-    botPath_.clear();
-    pendingMoves_.clear();
-    botActive_ = false;
-    moveSeq_ = 0;
+    nav_.follow.active = false;
+    nav_.follow.serial = 0;
+    nav_.follow.distance = 1;
+    nav_.follow.lastReplanMs = 0;
+    nav_.follow.lastProbeMs = 0;
+    BotAbortPath(reason);
+    BotResetMovement();
 }
 
 
 void Client::BotStartFollow(u32 serial, u32 followDistance) {
     if (!EnsureWorldLoaded()) return;
-    followActive_ = true;
-    followSerial_ = serial;
-    followDistance_ = followDistance ? followDistance : 1;
-    followLastReplanMs_ = 0;
-    followLastProbeMs_ = 0;
-    botPath_.clear();
-    pendingMoves_.clear();
-    moveSeq_ = 0;
-    botActive_ = false;
+    nav_.follow.active = true;
+    nav_.follow.serial = serial;
+    nav_.follow.distance = followDistance ? followDistance : 1;
+    nav_.follow.lastReplanMs = 0;
+    nav_.follow.lastProbeMs = 0;
+    BotAbortPath("follow start");
+    BotResetMovement();
     const char* name = MobileName(serial);
     LogInfo("[follow] tracking %s0x%08X (distance=%u)\n",
-                name ? name : "", serial, followDistance_);
+                name ? name : "", serial, nav_.follow.distance);
     u8 pkt[8];
     const usize n = build::MobNameQuery(pkt, serial);
     Send(pkt, n, "0x98 AllNames (follow start)");
@@ -644,8 +662,8 @@ void Client::BotStartFollow(u32 serial, u32 followDistance) {
 
 
 bool Client::ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const {
-    if (!followActive_ || !gx || !gy || !gz || !world_) return false;
-    const MobileObj* t = FindMobileBySerial(followSerial_);
+    if (!nav_.follow.active || !gx || !gy || !gz || !world_) return false;
+    const MobileObj* t = FindMobileBySerial(nav_.follow.serial);
     if (!t) return false;
 
     const u8 behind = static_cast<u8>((t->dir + 4) & 0x07);
@@ -674,17 +692,18 @@ bool Client::ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const {
 
 
 void Client::BotFollowTick() {
-    if (!followActive_) return;
+    if (!nav_.follow.active) return;
     const i64 now = NowMs();
 
-    const MobileObj* t = FindMobileBySerial(followSerial_);
+    const MobileObj* t = FindMobileBySerial(nav_.follow.serial);
     if (!t) {
-        if (now - followLastProbeMs_ >= kFollowProbeMs) {
+        if (now - nav_.follow.lastProbeMs >= kFollowProbeMs) {
             u8 pkt[8];
-            const usize n = build::MobNameQuery(pkt, followSerial_);
+            const usize n = build::MobNameQuery(pkt, nav_.follow.serial);
             Send(pkt, n, "0x98 AllNames (follow probe)");
-            followLastProbeMs_ = now;
-            LogInfo("[follow] waiting for 0x%08X to appear in range\n", followSerial_);
+            nav_.follow.lastProbeMs = now;
+            LogInfo("[follow] waiting for 0x%08X to appear in range\n",
+                    nav_.follow.serial);
         }
         return;
     }
@@ -692,33 +711,33 @@ void Client::BotFollowTick() {
     const i32 dx = AbsDiff(playerX_, t->x);
     const i32 dy = AbsDiff(playerY_, t->y);
     const i32 dz = AbsDiff(playerZ_, t->z);
-    if (dx <= static_cast<i32>(followDistance_) &&
-        dy <= static_cast<i32>(followDistance_) && dz <= 8) {
+    if (dx <= static_cast<i32>(nav_.follow.distance) &&
+        dy <= static_cast<i32>(nav_.follow.distance) && dz <= 8) {
         // Already inside follow radius: don't keep replanning. Let any
         // in-flight move settle first to avoid stop/start jitter.
-        if (pendingMoves_.empty()) {
-            botPath_.clear();
-            botActive_ = false;
+        if (nav_.movement.pending.empty()) {
+            BotAbortPath("inside follow radius");
         }
         return;
     }
 
-    if (now - followLastReplanMs_ < kFollowReplanMinMs) return;
+    if (now - nav_.follow.lastReplanMs < kFollowReplanMinMs) return;
     i32 gx = 0, gy = 0;
     i8 gz = 0;
     if (!ChooseFollowGoal(&gx, &gy, &gz)) return;
 
-    const bool goalChanged = (gx != botGoalX_ || gy != botGoalY_ ||
-                              !botHasGoalZ_ || gz != static_cast<i8>(botGoalZ_));
-    if (!goalChanged && (botActive_ || !pendingMoves_.empty())) return;
+    const bool goalChanged = (gx != nav_.bot.goalX || gy != nav_.bot.goalY ||
+                              !nav_.bot.hasGoalZ ||
+                              gz != static_cast<i8>(nav_.bot.goalZ));
+    if (!goalChanged && (nav_.bot.active || !nav_.movement.pending.empty())) return;
 
-    botGoalX_ = gx;
-    botGoalY_ = gy;
-    botGoalZ_ = gz;
-    botHasGoalZ_ = true;
-    botActive_ = true;
-    botReplanCount_ = 0;
-    followLastReplanMs_ = now;
+    nav_.bot.goalX = gx;
+    nav_.bot.goalY = gy;
+    nav_.bot.goalZ = gz;
+    nav_.bot.hasGoalZ = true;
+    nav_.bot.active = true;
+    nav_.bot.replanCount = 0;
+    nav_.follow.lastReplanMs = now;
     BotReplanToGoal();
     BotPumpMoves();
 }
@@ -726,36 +745,36 @@ void Client::BotFollowTick() {
 
 void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     if (!EnsureWorldLoaded()) return;
-    followActive_ = false;
-    if (!pendingMoves_.empty() || !botPath_.empty()) {
+    nav_.follow.active = false;
+    if (!nav_.movement.pending.empty() || !nav_.bot.path.empty()) {
         LogWarn(
             "[bot] busy (inflight=%zu path=%zu); type 'stop' first\n",
-            pendingMoves_.size(), botPath_.size());
+            nav_.movement.pending.size(), nav_.bot.path.size());
         return;
     }
-    botGoalX_ = tx;
-    botGoalY_ = ty;
-    botGoalZ_ = tz;
-    botHasGoalZ_ = hasZ;
-    botActive_ = true;
-    botReplanCount_ = 0;
-    botResumeAtMs_ = 0;
-    stuckWaits_ = 0;
-    blacklist_.ClearTransient();
-    rejectedEdges_.clear();
-    doorRetryEdges_.clear();
-    moveSeq_ = 0;  // fresh fastwalk sequence (0 = resync)
+    nav_.bot.goalX = tx;
+    nav_.bot.goalY = ty;
+    nav_.bot.goalZ = tz;
+    nav_.bot.hasGoalZ = hasZ;
+    nav_.bot.active = true;
+    nav_.bot.replanCount = 0;
+    nav_.bot.resumeAtMs = 0;
+    nav_.bot.stuckWaits = 0;
+    nav_.bot.blacklist.ClearTransient();
+    nav_.bot.rejectedEdges.clear();
+    nav_.bot.doorRetryEdges.clear();
+    BotResetMovement();  // fresh fastwalk sequence (0 = resync)
 
-    if (botHasGoalZ_)
+    if (nav_.bot.hasGoalZ)
         LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d,z%d)\n",
-                    botRun_ ? "running" : "walking",
+                    nav_.movement.run ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty, tz);
     else
         LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
-                    botRun_ ? "running" : "walking",
+                    nav_.movement.run ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
     if (!BotReplanToGoal()) return;
-    LogInfo("[bot] path: %zu steps\n", botPath_.size());
+    LogInfo("[bot] path: %zu steps\n", nav_.bot.path.size());
     BotPumpMoves();
 }
 
@@ -764,21 +783,21 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
 // elapsed. Each move is predicted immediately (pos for a step, facing for a
 // turn) and reconciled later by 0x22 / 0x21.
 void Client::BotPumpMoves() {
-    if (!botActive_) return;
+    if (!nav_.bot.active) return;
 
     const i64 now_ms = NowMs();
-    if (now_ms < botResumeAtMs_) return;  // human reaction pause after a bump
-    const u32 needGap = botRun_ ? runThrottleMs_ : walkThrottleMs_;
+    if (now_ms < nav_.bot.resumeAtMs) return;  // human reaction pause after a bump
+    const u32 needGap = nav_.movement.run ? kRunThrottleMs : kWalkThrottleMs;
 
-    if (pendingMoves_.empty()) BotLookaheadPatchPath();
+    if (nav_.movement.pending.empty()) BotLookaheadPatchPath();
 
-    while (pendingMoves_.size() < kMaxInFlight && !botPath_.empty()) {
-        if (lastMoveSentMs_ != 0 &&
-            now_ms - lastMoveSentMs_ < static_cast<i64>(needGap)) {
+    while (nav_.movement.pending.size() < kMaxInFlight && !nav_.bot.path.empty()) {
+        if (nav_.movement.lastMoveSentMs != 0 &&
+            now_ms - nav_.movement.lastMoveSentMs < static_cast<i64>(needGap)) {
             return;  // enforce only minimum legal step gap, no random jitter
         }
 
-        const u8 dir = botPath_.front();
+        const u8 dir = nav_.bot.path.front();
         const bool wasStep = (dir == playerFacing_);
         if (wasStep) {
             i32 dx, dy;
@@ -787,20 +806,21 @@ void Client::BotPumpMoves() {
             const i32 ny = playerY_ + dy;
 
             const world::WalkQuery q = MakeGoalAwareWalkQuery(
-                nx, ny, playerZ_, botHasGoalZ_, botGoalX_, botGoalY_, botGoalZ_);
+                nx, ny, playerZ_, nav_.bot.hasGoalZ, nav_.bot.goalX,
+                nav_.bot.goalY, nav_.bot.goalZ);
             const auto wr = world_->QueryCell(q);
             if (wr.walkable &&
                 BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ) &&
                 !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
                                       nx, ny, wr.standZ)) {
-                if (!pendingMoves_.empty()) return;
+                if (!nav_.movement.pending.empty()) return;
                 {
                     u8 ob[8];
                     const usize on = build::OpenDoor(ob);
                     Send(ob, on, "0x12 OpenDoor (0x58 lookahead)");
                     BotRememberDoorRetry(playerX_, playerY_, playerZ_,
                                          nx, ny, wr.standZ);
-                    botResumeAtMs_ = now_ms + kDoorRetryWaitMs;
+                    nav_.bot.resumeAtMs = now_ms + kDoorRetryWaitMs;
                     LogInfo("[bot] door ahead at (%d,%d,z%d); OpenDoor before step\n",
                             nx, ny, static_cast<int>(wr.standZ));
                 }
@@ -809,32 +829,32 @@ void Client::BotPumpMoves() {
         }
 
         const u8 seq  = NextSeq();
-        const u8 wire = botRun_ ? static_cast<u8>(dir | 0x80) : dir;
+        const u8 wire = nav_.movement.run ? static_cast<u8>(dir | 0x80) : dir;
         u8 buf[16];
         usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
         char note[72];
         std::snprintf(note, sizeof(note), "0x02 Move dir=%u seq=%u %s%s",
                       dir, seq, wasStep ? "step" : "turn",
-                      botRun_ ? " run" : "");
+                      nav_.movement.run ? " run" : "");
         if (!Send(buf, n, note)) {
-            botActive_ = false; botPath_.clear(); pendingMoves_.clear();
+            BotAbortPath("send failed");
+            BotResetMovement();
             return;
         }
 
-        pendingMoves_.push_back({seq, dir, wasStep, now_ms});
-        lastMoveSentMs_ = now_ms;
-        ++movesSinceClick_;
+        nav_.movement.pending.push_back({seq, dir, wasStep, now_ms});
+        nav_.movement.lastMoveSentMs = now_ms;
 
-        if (wasStep) { botPath_.pop_front(); BotPredictStep(dir); }
+        if (wasStep) { nav_.bot.path.pop_front(); BotPredictStep(dir); }
         else {
             playerFacing_ = dir;  // turn: re-send same dir to step
             player_.facing = dir;
-            player_.running = botRun_;
+            player_.running = nav_.movement.run;
         }
     }
 
-    if (botPath_.empty() && pendingMoves_.empty()) {
-        botActive_ = false;
+    if (nav_.bot.path.empty() && nav_.movement.pending.empty()) {
+        nav_.bot.active = false;
         LogInfo("[bot] arrived at (%d,%d,%d)\n",
                     playerX_, playerY_, static_cast<int>(playerZ_));
     }
@@ -845,22 +865,20 @@ void Client::BotTick() {
     if (mobilesListPending_ && NowMs() >= mobilesListDeadlineMs_) {
         FlushPendingMobilesList();
     }
-    if (followActive_) BotFollowTick();
-    if (!botActive_) return;
-    if (!pendingMoves_.empty()) {
+    if (nav_.follow.active) BotFollowTick();
+    if (!nav_.bot.active) return;
+    if (!nav_.movement.pending.empty()) {
         // Watchdog: the oldest in-flight move should ack quickly. If it
         // never does, the move was silently dropped — abort the path.
         const i64 now_ms = NowMs();
-        if (now_ms - pendingMoves_.front().sentMs >
-                static_cast<i64>(ackWatchdogMs_)) {
+        if (now_ms - nav_.movement.pending.front().sentMs >
+                static_cast<i64>(kAckWatchdogMs)) {
             LogWarn(
                 "[bot] watchdog: oldest move unacked %llds; aborting path\n",
                 static_cast<long long>(
-                    (now_ms - pendingMoves_.front().sentMs) / 1000));
-            pendingMoves_.clear();
-            moveSeq_ = 0;
-            botPath_.clear();
-            botActive_ = false;
+                    (now_ms - nav_.movement.pending.front().sentMs) / 1000));
+            BotResetMovement();
+            BotAbortPath("move ack watchdog");
             return;
         }
     }

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "bot/Blacklist.h"
 #include "net/Huffman.h"
 #include "net/PacketStream.h"
 #include "net/Socket.h"
+#include "navigation/NavigationState.h"
 #include "uo/log.h"
 #include "uo/types.h"
 
@@ -12,7 +12,6 @@
 #include <memory>
 #include <mutex>
 #include <queue>
-#include <random>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -163,6 +162,9 @@ private:
     void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0);
     void BotStartFollow(u32 serial, u32 followDistance);
     void BotStopFollow(const char* reason);
+    void BotNoteFatigueMessage();
+    void BotAbortPath(const char* reason);
+    void BotResetMovement();
     void BotFollowTick();
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
     void BotTick();           // called from PumpUntilDisconnected
@@ -175,6 +177,7 @@ private:
     void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
+    u32  BotMoveGapMs() const;
     bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
     bool BotLookaheadPatchPath(); // short local reroute around visible blockers
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
@@ -256,15 +259,10 @@ private:
     i8    playerZ_;
     u8    playerFacing_;        // 0..7 (low 3 bits of dir byte)
     bool  playerRunning_;
-    u8    moveSeq_;             // next sequence to send (0 = resync, then 1..255 wrap->1)
-
-    // Pipelined movement, mirroring the real client's CMovementManager
-    // pending ring: send several moves ahead and never block on a per-step
-    // ack. Each entry is a move sent but not yet acked (FIFO). Position is
-    // predicted on send and reconciled on 0x22 ack / 0x21 reject.
-    struct PendingMove { u8 seq; u8 dir; bool wasStep; i64 sentMs; };
-    std::deque<PendingMove> pendingMoves_;
-    bool  botRun_;              // send the 0x80 run bit and use run cadence
+    // Navigation owns predicted movement, bot route/follow state, and
+    // learned transient blockers. Server packets still own authoritative
+    // player position above.
+    navigation::NavigationState nav_;
 
     // M3 bot data files + walker
     std::unique_ptr<uo::tiledata::TileDataLoader> tileData_;
@@ -289,23 +287,6 @@ private:
     bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
     u16  playerBody_;           // local player body graphic for the renderer
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
-    std::deque<u8> botPath_;    // directions still to execute
-    i32 botGoalX_;
-    i32 botGoalY_;
-    i32 botGoalZ_;              // target floor z (valid only if botHasGoalZ_)
-    bool botHasGoalZ_;         // goto specified an explicit z to pin
-    bool botActive_;
-
-    // Obstacle avoidance: learned/dynamic blocks A* must route around, the
-    // earliest tick we may send the next step (human reaction delay after a
-    // bump), and a per-trip replan budget so an unreachable goal can't loop.
-    bot::Blacklist blacklist_;
-    u32 botReplanCount_;
-    i64 botResumeAtMs_;
-    std::mt19937 rng_;
-    struct RejectedEdge { i32 fromX, fromY; i8 fromZ; i32 toX, toY; i8 toZ; };
-    std::vector<RejectedEdge> rejectedEdges_;
-    std::vector<RejectedEdge> doorRetryEdges_;
 
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
@@ -323,27 +304,13 @@ private:
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
     void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body);
-    bool followActive_;
-    u32  followSerial_;
-    u32  followDistance_;
-    i64  followLastReplanMs_;
-    i64  followLastProbeMs_;
     bool mobilesListPending_;
     i64  mobilesListDeadlineMs_;
     std::vector<u32> mobilesListSerials_;
     std::unordered_set<u32> mobilesListAwaiting_;
     std::unordered_map<u32, i64> overheadNameProbeMs_;
-    i64 lastFatigueMs_;       // last "too fatigued to move" message time
-    u32 stuckWaits_;          // consecutive wait-retries at the current bump cell
-
-    i64 lastMoveSentMs_;        // for throttle + watchdog
     i64 lastStatusProbeMs_;     // 0x34 status request while HUD has no stats
-    u32 walkThrottleMs_;        // min gap between move sends (default 500)
-    u32 runThrottleMs_;         // min gap if player is running (default 250)
-    u32 ackWatchdogMs_;         // clear stuck awaiting flag after N ms
-    u32 movesSinceClick_;       // periodic 0x09 self-click anti-bot mask
     i64 lastActivityMs_;        // any TCP send/recv — for 0x73 keepalive
-    u32 keepaliveIntervalMs_;   // default 60s, mirrors original client
 
     // Console chatter gate. The JSON packet log always records everything;
     // the window shows only meaningful events unless this is toggled on

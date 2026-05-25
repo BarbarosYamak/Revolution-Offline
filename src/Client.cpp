@@ -34,6 +34,9 @@ namespace {
 // Recent mobile cache and delayed name query handling.
 constexpr usize kMobileCacheMax = 64;
 constexpr i64   kMobilesNamesTimeoutMs = 500;
+// UO Demo / Sphere-style shards kick the connection after ~60s of
+// client-side silence. Stay well inside the window: 20s gap.
+constexpr i64   kKeepaliveIntervalMs = 20000;
 // Stringify u32 IPv4 in host order to dotted notation.
 void IpToString(u32 host_ip, char* out, usize cap) {
     std::snprintf(out, cap, "%u.%u.%u.%u",
@@ -82,37 +85,18 @@ Client::Client(const Config& cfg)
       playerSerial_(0),
       playerX_(0), playerY_(0), playerZ_(0),
       playerFacing_(0), playerRunning_(false),
-      moveSeq_(0),
-      botRun_(true),
       worldLoaded_(false),
       renderInit_(false), renderWindowOpen_(false),
       minimapVisible_(true), minimapKeyDown_(false), spaceKeyDown_(false),
       playerBody_(0x0190), lastManualMoveMs_(0),
-      botGoalX_(0), botGoalY_(0), botGoalZ_(0), botHasGoalZ_(false),
-      botActive_(false),
-      botReplanCount_(0), botResumeAtMs_(0),
-      rng_(static_cast<u32>(
-          std::chrono::steady_clock::now().time_since_epoch().count())),
-      followActive_(false), followSerial_(0), followDistance_(1),
-      followLastReplanMs_(0), followLastProbeMs_(0),
+      nav_{},
       mobilesListPending_(false), mobilesListDeadlineMs_(0),
-      lastFatigueMs_(0), stuckWaits_(0),
-      lastMoveSentMs_(0),
       lastStatusProbeMs_(0),
-      // Canonical UO on-foot step intervals — what the real client's
-      // auto-walk pathfinding emits. Pacing at these rates (not faster)
-      // is exactly how a legit client avoids tripping fastwalk/speedhack
-      // checks; the server grants one fastwalk key per step at this cadence.
-      //   foot walk = 400ms, foot run = 200ms (mounted is half each).
-      walkThrottleMs_(400), runThrottleMs_(200),
-      ackWatchdogMs_(5000),
       verboseConsole_(false),
       stop_stdin_(false),
-      movesSinceClick_(0),
-      lastActivityMs_(0),
-      // UO Demo / Sphere-style shards kick the connection after ~60s
-      // of client-side silence. Stay well inside the window: 20s gap.
-      keepaliveIntervalMs_(20000) {
+      lastActivityMs_(0) {
+    nav_.rng.seed(static_cast<u32>(
+        std::chrono::steady_clock::now().time_since_epoch().count()));
     std::memset(servers_, 0, sizeof(servers_));
     std::memset(charSlots_, 0, sizeof(charSlots_));
 }
@@ -298,7 +282,7 @@ bool Client::PumpUntilDisconnected() {
             if (cfg_.enableKeepalive &&
                 lastActivityMs_ != 0 &&
                 playerSerial_ != 0 &&
-                now_ms2 - lastActivityMs_ > static_cast<i64>(keepaliveIntervalMs_)) {
+                now_ms2 - lastActivityMs_ > kKeepaliveIntervalMs) {
                 // Use 0x09 SingleClick on our own serial as a real,
                 // unambiguous "I'm here" packet. The shard answers with
                 // a 0x1C name message — confirms the connection is
@@ -791,7 +775,8 @@ void Client::OnMobileHp(const u8* data, usize size) {
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     if (serial != playerSerial_) return;
     const i32 curHp = static_cast<i32>(LoadBE16(data + 7));
-    if (player_.hpCur >= 0 && curHp < player_.hpCur && (botActive_ || !pendingMoves_.empty())) {
+    if (player_.hpCur >= 0 && curHp < player_.hpCur &&
+        (nav_.bot.active || !nav_.movement.pending.empty())) {
         char reason[48];
         std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
         BotInterruptForThreat(reason);
@@ -1209,7 +1194,7 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     // move" when stamina is spent. Record it so a reject right after is
     // treated as fatigue (wait to regen), not as an obstacle to avoid.
     if (std::strstr(text.c_str(), "fatigued")) {
-        lastFatigueMs_ = NowMs();
+        BotNoteFatigueMessage();
         LogInfo("[bot] fatigue detected; rejects will wait for stamina regen\n");
     }
 }
@@ -1290,13 +1275,11 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         player_.running = playerRunning_;
         // A full resync (teleport / server correction) invalidates every
         // predicted-but-unacked move and any path planned off the old pose.
-        if (!pendingMoves_.empty() || botActive_ || !botPath_.empty()) {
-            pendingMoves_.clear();
-            moveSeq_ = 0;
-            if (botActive_ || !botPath_.empty()) {
+        if (!nav_.movement.pending.empty() || nav_.bot.active || !nav_.bot.path.empty()) {
+            BotResetMovement();
+            if (nav_.bot.active || !nav_.bot.path.empty()) {
                 LogWarn( "[bot] 0x20 resync; aborting path\n");
-                botPath_.clear();
-                botActive_ = false;
+                BotAbortPath("0x20 resync");
             }
         }
         LogInfo("[0x20] player @(%d,%d,%d) facing=%u\n",
@@ -1473,13 +1456,12 @@ void Client::HandleStdinLine(const char* line) {
 
     // `stop` — drop the current path.
     if (std::strcmp(line, "stop") == 0) {
-        if (followActive_) BotStopFollow("stopped by user");
-        if (!botPath_.empty()) {
+        if (nav_.follow.active) BotStopFollow("stopped by user");
+        if (!nav_.bot.path.empty()) {
             LogInfo("[bot] path cleared (%zu steps left)\n",
-                        botPath_.size());
+                        nav_.bot.path.size());
         }
-        botPath_.clear();
-        botActive_ = false;
+        BotAbortPath("stopped by user");
         return;
     }
 
