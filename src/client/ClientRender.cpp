@@ -144,15 +144,48 @@ void Client::RenderTick() {
         dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y,
                        kv.second.z, kv.second.gfxOffset});
 
+    // Per-direction worn-item draw order (layer numbers, back-to-front),
+    // verbatim from g_DrawLayerOrder @0x5144C0 with the mount slot (layer 25)
+    // dropped — mounts are out of scope. Index by facing 0..7.
+    static constexpr uo::u8 kLayerDrawOrder[8][24] = {
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,2,21,20,6},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,2,6},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,2,6},
+        {20,5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,6,1,2,21},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,6,2},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,6,2},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,2,21,20,6},
+        {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,2,21,20,6},
+    };
+
+    // Resolve worn items to anim ids in the client's per-facing draw order. Only
+    // graphics with a valid worn anim (0x190..0x3E7) are drawable.
+    auto resolveEquip = [&](uo::u8 dir, const std::vector<std::pair<uo::u8, uo::u16>>& equip,
+                            std::vector<uo::u16>& out) {
+        if (!tileData_ || equip.empty()) return;
+        for (uo::u8 slot : kLayerDrawOrder[dir & 7]) {
+            for (const auto& e : equip) {
+                if (e.first != slot) continue;
+                const uo::u16 a = tileData_->ItemAnimId(e.second);
+                if (a >= 0x190 && a < 0x3E8) out.push_back(a);
+                break;
+            }
+        }
+    };
+
     // Mobiles: nearby NPCs/players from the cache plus the local player. The
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
     mobs.reserve(mobileCache_.size() + 1);
     for (const auto& m : mobileCache_) {
         if (!m.body) continue;
-        mobs.push_back({m.body, m.x, m.y, m.z, m.dir, false});
+        render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, {}};
+        resolveEquip(m.dir, m.equip, mob.equipAnims);
+        mobs.push_back(std::move(mob));
     }
-    mobs.push_back({playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true});
+    render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, {}};
+    resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
+    mobs.push_back(std::move(self));
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
@@ -329,18 +362,18 @@ void Client::DrawOverheadText() {
         int offset = kHeadOffset;
         if (anim_) {
             if (const anim::Frame* fr = anim_->Body(body, dir)) {
-                int minY = anim::Frame::kH;
-                for (int row = 0; row < anim::Frame::kH; ++row) {
-                    const u16* src = &fr->px[static_cast<usize>(row) * anim::Frame::kW];
-                    for (int col = 0; col < anim::Frame::kW; ++col) {
+                int minY = fr->height;
+                for (int row = 0; row < fr->height; ++row) {
+                    const u16* src = &fr->px[static_cast<usize>(row) * fr->width];
+                    for (int col = 0; col < fr->width; ++col) {
                         if (src[col]) {
                             minY = std::min(minY, row);
                             break;
                         }
                     }
                 }
-                if (minY < anim::Frame::kH)
-                    offset = std::clamp(anim::Frame::kAnchorY - minY - 4, 32, 96);
+                if (minY < fr->height)
+                    offset = std::clamp(fr->anchorY - minY - 4, 32, 96);
             }
         }
         return offset;

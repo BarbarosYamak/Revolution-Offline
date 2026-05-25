@@ -70,18 +70,22 @@ struct LandTile {
     u8   _pad[2];      // +26 (memory-only padding; matches stride 28)
 };
 
+// Field names/offsets verified against ObjectManager_LoadTileData @0x4C7AE0:
+// file is dense (37B): flags(4) weight(1) quality(1) quantity(4) animId(2)
+// hue(2) renderDimIndex(2) height(1) name(20). `animId` is the worn-item
+// animation used to draw equipment over a mobile (valid range 0x190..0x3E7).
 struct StaticTile {
-    u32  flags;        // +0
-    u8   weight;       // +4
-    u8   quality;      // +5
-    u8   _pad0[2];     // +6  (memory-only gap; file is dense)
-    u32  misc;         // +8  (animation/quantity, version-dependent)
-    u16  hue;          // +12
-    u16  stackOffset;  // +14
-    u16  value;        // +16
-    u8   height;       // +18
-    char name[20];     // +19 (ASCII, NUL-padded)
-    u8   _pad1[1];     // +39 (memory-only)
+    u32  flags;          // +0
+    u8   weight;         // +4
+    u8   quality;        // +5
+    u8   _pad0[2];       // +6  (memory-only gap; file is dense)
+    u32  quantity;       // +8   (file +6)
+    u16  animId;         // +12  (file +10) worn-item animation id
+    u16  hue;            // +14  (file +12)
+    u16  renderDimIndex; // +16  (file +14)
+    u8   height;         // +18  (file +16)
+    char name[20];       // +19  (ASCII, NUL-padded)
+    u8   _pad1[1];       // +39  (memory-only)
 };
 #pragma pack(pop)
 
@@ -103,6 +107,9 @@ public:
 
     const LandTile&   Land(u32 id) const   { return lands_[id < kLandCount ? id : 0]; }
     const StaticTile& Static(u32 id) const { return statics_[id < kStaticCount ? id : 0]; }
+
+    // Worn-item animation id for an item graphic (0 == none/not equippable).
+    u16 ItemAnimId(u16 graphic) const { return Static(graphic).animId; }
 
     const LandTile*   LandArray()   const { return lands_; }
     const StaticTile* StaticArray() const { return statics_; }

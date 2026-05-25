@@ -345,10 +345,11 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x78: OnMobileIncoming(data, size); break;
         case 0x98: OnMobName(data, size); break;
         case 0x2D: OnMobileAttributes(data, size); break;
+        case 0x2E: OnEquipItem(data, size); break;
         case 0x3A: OnSkills(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0x23: case 0x25: case 0x2E: case 0x2F:
+        case 0x23: case 0x25: case 0x2F:
         case 0x3C: case 0x4E: case 0x4F: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D: case 0x6E:
         case 0x70: case 0x72: case 0x88:
@@ -1020,11 +1021,59 @@ void Client::OnMobileMove(const u8* data, usize size) {
 }
 
 // 0x78 Mobile Incoming (variable): cmd, len(2), serial(4), body(2), x(2),
-// y(2), z(1), dir(1), ... (equipment list follows; we only need position).
+// y(2), z(1), dir(1), hue(2), flag(1), notoriety(1), then an equipment list of
+// { serial(4), graphic(2), layer(1), hue(2 iff graphic&0x8000) } records ended
+// by a zero serial. Layout verified vs Packet_HandleUpdatePlayer @0x4174C0
+// (the real 0x78 parser; its "0x77" IDB label is wrong).
 void Client::OnMobileIncoming(const u8* data, usize size) {
     if (size < 15) return;
-    UpdateMobile(LoadBE32(data + 3), LoadBE16(data + 9), LoadBE16(data + 11),
+    const u32 serial = LoadBE32(data + 3);
+    UpdateMobile(serial, LoadBE16(data + 9), LoadBE16(data + 11),
                  static_cast<i8>(data[13]), data[14], LoadBE16(data + 7));
+
+    // Equipment list begins after the 19-byte header.
+    std::vector<std::pair<u8, u16>> equip;
+    usize p = 19;
+    while (p + 7u <= size) {                  // serial(4)+graphic(2)+layer(1)
+        const u32 itemSerial = LoadBE32(data + p);
+        if (itemSerial == 0) break;           // zero serial terminates the list
+        p += 4;
+        u16 graphic = LoadBE16(data + p); p += 2;
+        const u8 layer = data[p]; p += 1;
+        const bool hasHue = (graphic & 0x8000) != 0;
+        graphic &= 0x3FFFu;                   // item id (drop hue flag/high bits)
+        if (hasHue) { if (p + 2u > size) break; p += 2; }   // skip hue (out of scope)
+        equip.emplace_back(layer, graphic);
+    }
+    SetMobileEquip(serial, std::move(equip));
+}
+
+// 0x2E Worn Item (15B fixed): cmd, item serial(4), graphic(2), pad(1),
+// layer(1), mobile serial(4), hue(2). Layout per Packet_HandleWornItem
+// @0x419910. Updates a single equipped layer on an already-cached mobile.
+void Client::OnEquipItem(const u8* data, usize size) {
+    if (size < 15) return;
+    const u16 graphic = static_cast<u16>(LoadBE16(data + 5) & 0x3FFFu);
+    const u8  layer   = data[8];
+    const u32 mobile  = LoadBE32(data + 9);
+    SetMobileEquipLayer(mobile, layer, graphic);
+}
+
+void Client::SetMobileEquip(u32 serial, std::vector<std::pair<u8, u16>> equip) {
+    if (serial == playerSerial_) { playerEquip_ = std::move(equip); return; }
+    for (auto& m : mobileCache_)
+        if (m.serial == serial) { m.equip = std::move(equip); return; }
+}
+
+void Client::SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic) {
+    auto upsert = [&](std::vector<std::pair<u8, u16>>& v) {
+        for (auto& e : v)
+            if (e.first == layer) { e.second = graphic; return; }
+        v.emplace_back(layer, graphic);
+    };
+    if (serial == playerSerial_) { upsert(playerEquip_); return; }
+    for (auto& m : mobileCache_)
+        if (m.serial == serial) { upsert(m.equip); return; }
 }
 
 // 0x98 AllNames / MobName reply:

@@ -374,9 +374,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     }
 
     // Mobiles (players/NPCs) — a single still body frame, no animation yet.
-    // Interleaved by z with statics, like the client's draw buckets. The
-    // 64x128 anim canvas anchors at (kAnchorX, kAnchorY); we place that anchor
-    // at the tile floor (cell centre). Equipment/mounts/hue are out of scope.
+    // Interleaved by z with statics, like the client's draw buckets. Each frame
+    // is fitted to its content; we place its command origin (anchorX/anchorY)
+    // at the tile floor (cell centre). Hue/mounts are out of scope.
     if (anim) {
         for (usize mi = 0; mi < nMobs; ++mi) {
             const Mob& m = mobs[mi];
@@ -389,11 +389,27 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             Draw d{};
             d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
             d.quad = false;
-            d.src = fr->px.data(); d.sw = anim::Frame::kW; d.sh = anim::Frame::kH;
+            d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
             d.transparent = true;
-            d.dx = sx - anim::Frame::kAnchorX;
-            d.dy = sy + kHalfTile - anim::Frame::kAnchorY;  // feet at cell centre
+            d.dx = sx - fr->anchorX;
+            d.dy = sy + kHalfTile - fr->anchorY;  // command origin at cell centre
             draws.push_back(d);
+
+            // Worn gear over the body. Each equip frame is a body-like anim with
+            // its own anchor, so it lines up at the same floor point. They share
+            // this mobile's sort key, so stable_sort keeps body-then-layer order.
+            for (u16 ea : m.equipAnims) {
+                const anim::Frame* ef = anim->Body(ea, m.dir);
+                if (!ef) continue;
+                Draw e{};
+                e.depth = m.x + m.y; e.col = m.x - m.y; e.z = m.z; e.priority = false;
+                e.quad = false;
+                e.src = ef->px.data(); e.sw = ef->width; e.sh = ef->height;
+                e.transparent = true;
+                e.dx = sx - ef->anchorX;
+                e.dy = sy + kHalfTile - ef->anchorY;
+                draws.push_back(e);
+            }
         }
     }
 

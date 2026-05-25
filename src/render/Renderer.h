@@ -22,7 +22,12 @@ struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; };
 // A mobile (player/NPC) to draw as a still body frame. No animation yet; the
 // facing picks the frame's direction. isPlayer flags the local player (used to
 // compute the roof cutoff so we can see ourselves inside a building).
-struct Mob { u16 body; i32 x; i32 y; i8 z; u8 dir; bool isPlayer; };
+// equipAnims are worn-item animation ids, already in back-to-front draw order;
+// each is drawn over the body using its own frame anchor (no hue).
+struct Mob {
+    u16 body; i32 x; i32 y; i8 z; u8 dir; bool isPlayer;
+    std::vector<u16> equipAnims;
+};
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per
 // pixel) centered on a world cell, drawing land terrain and static art with a

@@ -8,16 +8,27 @@
 
 namespace uo::anim {
 
-// A decoded body animation frame. We mirror the official client's scratch
-// canvas exactly: a fixed 64x128 ARGB1555 buffer (Mobile_RenderToCacheFromAnimMul
-// @0x4D11D0 memsets 0x4000 bytes = 64*128 u16) with the draw anchor at
-// (kAnchorX, kAnchorY). 0 = transparent. Directions 5..7 are stored mirrored.
+// A decoded body animation frame.
+//
+// The official client (Mobile_RenderToCacheFromAnimMul @0x4D11D0,
+// AnimFrame_DrawCommandStream @0x4D0040) decodes EVERY body into a fixed
+// 64x128 ARGB1555 scratch buffer (memset 0x4000 = 64*128 u16) with the command
+// origin at (32, 80) and SKIPS the per-frame {cx,cy,w,h} header (a4 = frame+8),
+// so in 2.0.7 a large body (dragon) or a tall one (horse head) is silently
+// clipped to that box. We keep the same command coordinate space (col = 32+x,
+// row = 80+y) but size the canvas to the actual decoded-pixel bounding box, so
+// the whole sprite is kept. `anchorX/anchorY` is the canvas pixel that maps to
+// the command origin (32,80); the renderer places it at the cell-floor centre,
+// reproducing the original on-screen position for content that already fit.
+// 0 = transparent. Directions 5..7 are stored mirrored.
 struct Frame {
-    static constexpr int kW       = 64;
-    static constexpr int kH       = 128;
-    static constexpr int kAnchorX = 32;   // command x-origin in the canvas
-    static constexpr int kAnchorY = 80;   // command y-origin in the canvas
-    std::vector<u16> px;                  // kW*kH, row-major; empty == no frame
+    static constexpr int kOriginX = 32;   // command x-origin (matches client)
+    static constexpr int kOriginY = 80;   // command y-origin (matches client)
+    int width  = 0;
+    int height = 0;
+    int anchorX = 0;   // canvas col mapping to the command origin
+    int anchorY = 0;   // canvas row mapping to the command origin
+    std::vector<u16> px;   // width*height, row-major; empty == no frame
 };
 
 // Loads anim.idx / anim.mul (high-detail body animations) and decodes a single

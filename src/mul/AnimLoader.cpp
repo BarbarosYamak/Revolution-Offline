@@ -1,5 +1,7 @@
 #include "uo/anim.h"
 
+#include <climits>
+
 namespace uo::anim {
 
 namespace {
@@ -73,33 +75,64 @@ const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
     const u32 off0 = RdU32(&raw[kPaletteSize + 4u]);  // frameOffset[0]
 
     // Frame data sits at palette-start + frameOffset; first 8 bytes are the
-    // { cx, cy, w, h } header (used only for hit-test bounds in the client —
-    // pixels anchor at the fixed canvas origin), command stream follows.
+    // { cx, cy, w, h } header. The official client SKIPS it and decodes into a
+    // fixed 64x128 canvas at origin (32,80) -- clipping large bodies. We keep
+    // the same command space (col = 32+x, row = 80+y) but fit the canvas to the
+    // decoded-pixel bounding box, so nothing is clipped.
     const usize frameBase = static_cast<usize>(kPaletteSize) + off0;
     if (frameBase + 8u > raw.size()) return nullptr;
+    const usize cmdStart = frameBase + 8u;
 
-    f.px.assign(static_cast<usize>(Frame::kW) * Frame::kH, 0);
-    usize cur = frameBase + 8u;
-    while (cur + 4u <= raw.size()) {
+    // Pass 1: bounding box of the decoded pixels.
+    int minCol = INT_MAX, maxCol = INT_MIN, minRow = INT_MAX, maxRow = INT_MIN;
+    for (usize cur = cmdStart; cur + 4u <= raw.size(); ) {
         const u32 cmd = RdU32(&raw[cur]);
         cur += 4u;
         if (cmd == kSentinel) break;
         const int xOff = static_cast<i32>(cmd) >> 22;          // signed bits[31:22]
         const int yOff = static_cast<i32>(cmd << 10) >> 22;    // signed bits[21:12]
         const int run  = static_cast<int>(cmd & 0xFFFu);
-        if (run <= 0) continue;
         if (cur + static_cast<usize>(run) > raw.size()) break;
+        if (run > 0) {
+            const int row = Frame::kOriginY + yOff;
+            const int colBase = mirror ? (Frame::kOriginX - xOff - run)
+                                       : (Frame::kOriginX + xOff);
+            if (row < minRow) minRow = row;
+            if (row > maxRow) maxRow = row;
+            if (colBase < minCol) minCol = colBase;
+            if (colBase + run - 1 > maxCol) maxCol = colBase + run - 1;
+        }
+        cur += static_cast<usize>(run);
+    }
+    if (minRow > maxRow || minCol > maxCol) return nullptr;  // empty stream
 
-        const int row = yOff + Frame::kAnchorY;
-        if (row >= 0 && row < Frame::kH) {
-            u16* drow = &f.px[static_cast<usize>(row) * Frame::kW];
-            const int colBase = mirror ? (Frame::kAnchorX - xOff - run)
-                                       : (Frame::kAnchorX + xOff);
+    const int w = maxCol - minCol + 1;
+    const int h = maxRow - minRow + 1;
+    if (w <= 0 || h <= 0 || w > 1024 || h > 1024) return nullptr;  // sanity guard
+    f.width  = w;
+    f.height = h;
+    f.anchorX = Frame::kOriginX - minCol;   // canvas col mapping to command origin
+    f.anchorY = Frame::kOriginY - minRow;   // canvas row mapping to command origin
+    f.px.assign(static_cast<usize>(w) * h, 0);
+
+    // Pass 2: decode into the fitted buffer. Row/col are in-bounds by
+    // construction (the bbox came from the same formula), so no clamping.
+    for (usize cur = cmdStart; cur + 4u <= raw.size(); ) {
+        const u32 cmd = RdU32(&raw[cur]);
+        cur += 4u;
+        if (cmd == kSentinel) break;
+        const int xOff = static_cast<i32>(cmd) >> 22;
+        const int yOff = static_cast<i32>(cmd << 10) >> 22;
+        const int run  = static_cast<int>(cmd & 0xFFFu);
+        if (cur + static_cast<usize>(run) > raw.size()) break;
+        if (run > 0) {
+            const int row = Frame::kOriginY + yOff - minRow;
+            const int colBase = (mirror ? (Frame::kOriginX - xOff - run)
+                                        : (Frame::kOriginX + xOff)) - minCol;
+            u16* drow = &f.px[static_cast<usize>(row) * w];
             for (int i = 0; i < run; ++i) {
-                const int col = colBase + i;
-                if (col < 0 || col >= Frame::kW) continue;
                 const u8 pidx = mirror ? raw[cur + (run - 1 - i)] : raw[cur + i];
-                drow[col] = RdU16(&pal[2u * pidx]);
+                drow[colBase + i] = RdU16(&pal[2u * pidx]);
             }
         }
         cur += static_cast<usize>(run);

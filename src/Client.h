@@ -17,6 +17,7 @@
 #include <thread>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 #include <vector>
 
 namespace uo::tiledata { class TileDataLoader; }
@@ -128,6 +129,7 @@ private:
     void OnDeleteObject       (const u8* data, usize size);  // 0x1D
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
+    void OnEquipItem          (const u8* data, usize size);  // 0x2E
     void OnMobName            (const u8* data, usize size);  // 0x98
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
@@ -289,6 +291,7 @@ private:
     bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
     bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
     u16  playerBody_;           // local player body graphic for the renderer
+    std::vector<std::pair<u8, u16>> playerEquip_;  // own worn items (layer, graphic)
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
 
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
@@ -301,12 +304,19 @@ private:
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
     // wall — such tiles are never blacklisted.
-    struct MobileObj { u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; i64 seenMs; };
+    struct MobileObj {
+        u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; i64 seenMs;
+        // Worn items as (layer, item graphic). No hue (out of scope). Preserved
+        // across 0x77 position updates; rebuilt on 0x78, patched by 0x2E.
+        std::vector<std::pair<u8, u16>> equip;
+    };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
     void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body);
+    void SetMobileEquip(u32 serial, std::vector<std::pair<u8, u16>> equip);
+    void SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic);
     bool mobilesListPending_;
     i64  mobilesListDeadlineMs_;
     std::vector<u32> mobilesListSerials_;

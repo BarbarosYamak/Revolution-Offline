@@ -59,11 +59,11 @@ int DumpTileData(const char* path, const char* section,
             const auto& s = loader.Static(static_cast<uo::u32>(i));
             EscapeAsciiNul(s.name, sizeof(s.name), nm, sizeof(nm));
             std::printf("{\"kind\":\"static\",\"id\":%ld,\"flags\":\"0x%08X\","
-                        "\"weight\":%u,\"quality\":%u,\"misc\":\"0x%08X\","
-                        "\"hue\":%u,\"stackOffset\":%u,\"value\":%u,"
+                        "\"weight\":%u,\"quality\":%u,\"quantity\":\"0x%08X\","
+                        "\"animId\":%u,\"hue\":%u,\"renderDimIndex\":%u,"
                         "\"height\":%u,\"name\":\"%s\"}\n",
-                        i, s.flags, s.weight, s.quality, s.misc,
-                        s.hue, s.stackOffset, s.value, s.height, nm);
+                        i, s.flags, s.weight, s.quality, s.quantity,
+                        s.animId, s.hue, s.renderDimIndex, s.height, nm);
         }
     }
 

@@ -52,11 +52,11 @@ bool TileDataLoader::Load(const char* path) {
         if (!f.Read(&s.flags,       4))  goto fail; // file +0..3
         if (!f.Read(&s.weight,      1))  goto fail; // file +4
         if (!f.Read(&s.quality,     1))  goto fail; // file +5
-        if (!f.Read(&s.misc,        4))  goto fail; // file +6..9
-        if (!f.Read(&s.hue,         2))  goto fail; // file +10..11
-        if (!f.Read(&s.stackOffset, 2))  goto fail; // file +12..13
-        if (!f.Read(&s.value,       2))  goto fail; // file +14..15
-        if (!f.Read(&s.height,      1))  goto fail; // file +16
+        if (!f.Read(&s.quantity,       4))  goto fail; // file +6..9
+        if (!f.Read(&s.animId,         2))  goto fail; // file +10..11
+        if (!f.Read(&s.hue,            2))  goto fail; // file +12..13
+        if (!f.Read(&s.renderDimIndex, 2))  goto fail; // file +14..15
+        if (!f.Read(&s.height,         1))  goto fail; // file +16
         if (!f.Read(s.name,         20)) goto fail; // file +17..36
     }
 
