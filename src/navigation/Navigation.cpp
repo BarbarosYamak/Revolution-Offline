@@ -45,18 +45,56 @@ constexpr u32   kLookaheadMaxNodesExpanded = 4096;
 constexpr i64   kLookaheadMobileFreshMs = 5000;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
+constexpr i32   kRejectedEdgeZTolerance = 2;
+constexpr usize kNoPreviewStep = static_cast<usize>(-1);
 
 // Canonical openable door graphics (wood/metal/barred/gates, closed+open
 // states). Tunable; covers town/building doors a traveller meets.
 bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
 
+inline i32 AbsDiff(i32 a, i32 b) {
+    i32 d = a - b;
+    return d < 0 ? -d : d;
+}
+
+inline i32 ChebyshevDistance(i32 ax, i32 ay, i32 bx, i32 by) {
+    const i32 dx = AbsDiff(ax, bx);
+    const i32 dy = AbsDiff(ay, by);
+    return dx > dy ? dx : dy;
+}
+
 bool ShouldPreferBotGoalZ(bool hasGoalZ, i32 x, i32 y, i32 gx, i32 gy) {
     if (!hasGoalZ) return false;
-    i32 dx = gx - x;
-    i32 dy = gy - y;
-    if (dx < 0) dx = -dx;
-    if (dy < 0) dy = -dy;
-    return (dx > dy ? dx : dy) <= kGoalZPreferenceRadius;
+    return ChebyshevDistance(x, y, gx, gy) <= kGoalZPreferenceRadius;
+}
+
+world::WalkQuery MakeWalkQuery(i32 x, i32 y, i8 fromZ) {
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(x);
+    q.y = static_cast<u32>(y);
+    q.fromZ = fromZ;
+    return q;
+}
+
+world::WalkQuery MakeGoalAwareWalkQuery(i32 x, i32 y, i8 fromZ,
+                                        bool hasGoalZ, i32 goalX, i32 goalY,
+                                        i32 goalZ) {
+    world::WalkQuery q = MakeWalkQuery(x, y, fromZ);
+    q.hasPreferredZ = ShouldPreferBotGoalZ(hasGoalZ, x, y, goalX, goalY);
+    q.preferredZ = static_cast<i8>(goalZ);
+    return q;
+}
+
+bool SameDirectedEdgeNearZ(i32 edgeFromX, i32 edgeFromY, i8 edgeFromZ,
+                           i32 edgeToX, i32 edgeToY, i8 edgeToZ,
+                           i32 fromX, i32 fromY, i8 fromZ,
+                           i32 toX, i32 toY, i8 toZ) {
+    if (edgeFromX != fromX || edgeFromY != fromY ||
+        edgeToX != toX || edgeToY != toY) {
+        return false;
+    }
+    return AbsDiff(fromZ, edgeFromZ) <= kRejectedEdgeZTolerance &&
+           AbsDiff(toZ, edgeToZ) <= kRejectedEdgeZTolerance;
 }
 
 }
@@ -115,10 +153,7 @@ void Client::OnMoveReject(const u8* data, usize size) {
     const i32 by = playerY_ + dy;
     i32 bz = playerZ_;
     if (world_) {
-        world::WalkQuery q{};
-        q.x = static_cast<u32>(bx);
-        q.y = static_cast<u32>(by);
-        q.fromZ = playerZ_;
+        const world::WalkQuery q = MakeWalkQuery(bx, by, playerZ_);
         const auto r = world_->QueryCell(q);
         if (r.walkable) bz = r.standZ;
     }
@@ -192,8 +227,8 @@ void Client::OnMoveReject(const u8* data, usize size) {
     }
 
     // A repeated reject means this exact directed step is not server-walkable
-    // now. Do not blacklist the destination cell: on stairs the same cell may
-    // be reachable from another approach direction.
+    // now. Keep the directed edge fact, and preserve the existing transient
+    // cell block so A* does not immediately retry the same landing spot.
     rejectedEdges_.push_back({playerX_, playerY_, playerZ_,
                               bx, by, static_cast<i8>(bz)});
     blacklist_.AddTransient(bx, by, bz, 0);
@@ -286,10 +321,7 @@ void Client::BotPredictStep(u8 dir) {
     playerY_ += dy;
     // Track the surface z so the next step's walk-check uses the right base.
     if (world_) {
-        world::WalkQuery q{};
-        q.x = static_cast<u32>(playerX_);
-        q.y = static_cast<u32>(playerY_);
-        q.fromZ = playerZ_;
+        const world::WalkQuery q = MakeWalkQuery(playerX_, playerY_, playerZ_);
         const auto r = world_->QueryCell(q);
         if (r.walkable) playerZ_ = r.standZ;
     }
@@ -307,9 +339,7 @@ bool Client::BotIsMobileBlocking(i32 x, i32 y, i8 z) const {
         if (m.serial == playerSerial_) continue;
         if (m.x != x || m.y != y) continue;
         if (now - m.seenMs > kLookaheadMobileFreshMs) continue;
-        i32 dz = static_cast<i32>(z) - static_cast<i32>(m.z);
-        if (dz < 0) dz = -dz;
-        if (dz <= 8) return true;
+        if (AbsDiff(z, m.z) <= 8) return true;
     }
     return false;
 }
@@ -378,14 +408,10 @@ bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
 bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
                                i32 toX, i32 toY, i8 toZ) const {
     for (const auto& e : rejectedEdges_) {
-        if (e.fromX != fromX || e.fromY != fromY ||
-            e.toX != toX || e.toY != toY)
-            continue;
-        i32 fromDz = static_cast<i32>(fromZ) - static_cast<i32>(e.fromZ);
-        i32 toDz = static_cast<i32>(toZ) - static_cast<i32>(e.toZ);
-        if (fromDz < 0) fromDz = -fromDz;
-        if (toDz < 0) toDz = -toDz;
-        if (fromDz <= 2 && toDz <= 2) return true;
+        if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
+                                  fromX, fromY, fromZ, toX, toY, toZ)) {
+            return true;
+        }
     }
     return false;
 }
@@ -394,14 +420,10 @@ bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
 bool Client::BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
                                   i32 toX, i32 toY, i8 toZ) const {
     for (const auto& e : doorRetryEdges_) {
-        if (e.fromX != fromX || e.fromY != fromY ||
-            e.toX != toX || e.toY != toY)
-            continue;
-        i32 fromDz = static_cast<i32>(fromZ) - static_cast<i32>(e.fromZ);
-        i32 toDz = static_cast<i32>(toZ) - static_cast<i32>(e.toZ);
-        if (fromDz < 0) fromDz = -fromDz;
-        if (toDz < 0) toDz = -toDz;
-        if (fromDz <= 2 && toDz <= 2) return true;
+        if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
+                                  fromX, fromY, fromZ, toX, toY, toZ)) {
+            return true;
+        }
     }
     return false;
 }
@@ -441,7 +463,7 @@ bool Client::BotLookaheadPatchPath() {
 
     PreviewStep preview[kPathLookaheadScanSteps + kPathLookaheadAnchorExtra];
     usize previewCount = 0;
-    usize firstBlocked = static_cast<usize>(-1);
+    usize firstBlocked = kNoPreviewStep;
     i32 x = playerX_;
     i32 y = playerY_;
     i8 z = playerZ_;
@@ -454,13 +476,8 @@ bool Client::BotLookaheadPatchPath() {
         const i32 nx = x + dx;
         const i32 ny = y + dy;
 
-        world::WalkQuery q{};
-        q.x = static_cast<u32>(nx);
-        q.y = static_cast<u32>(ny);
-        q.fromZ = z;
-        q.hasPreferredZ = ShouldPreferBotGoalZ(botHasGoalZ_, nx, ny,
-                                               botGoalX_, botGoalY_);
-        q.preferredZ = static_cast<i8>(botGoalZ_);
+        const world::WalkQuery q = MakeGoalAwareWalkQuery(
+            nx, ny, z, botHasGoalZ_, botGoalX_, botGoalY_, botGoalZ_);
         const auto wr = world_->QueryCell(q);
 
         bool blocked = true;
@@ -473,7 +490,7 @@ bool Client::BotLookaheadPatchPath() {
         }
 
         if (i < kPathLookaheadScanSteps && (blocked || !walkable) &&
-            firstBlocked == static_cast<usize>(-1)) {
+            firstBlocked == kNoPreviewStep) {
             firstBlocked = i;
         }
 
@@ -483,7 +500,7 @@ bool Client::BotLookaheadPatchPath() {
         z = standZ;
     }
 
-    if (firstBlocked == static_cast<usize>(-1)) return false;
+    if (firstBlocked == kNoPreviewStep) return false;
 
     const usize firstAnchor = std::min(kPathLookaheadScanSteps - 1, previewCount - 1);
     for (usize anchor = firstAnchor; anchor < previewCount; ++anchor) {
@@ -548,9 +565,8 @@ bool Client::BotReplanToGoal() {
     // nodes — the fixed default cap then makes a reachable-but-far goal look
     // unreachable. Budget quadratically (with headroom for detours) but bound
     // it so a genuinely unreachable goal still fails in finite time/memory.
-    const i32 adx = (botGoalX_ > playerX_) ? botGoalX_ - playerX_ : playerX_ - botGoalX_;
-    const i32 ady = (botGoalY_ > playerY_) ? botGoalY_ - playerY_ : playerY_ - botGoalY_;
-    const u64 cheb = static_cast<u64>(adx > ady ? adx : ady);
+    const u64 cheb = static_cast<u64>(
+        ChebyshevDistance(playerX_, playerY_, botGoalX_, botGoalY_));
     u64 budget = cheb * cheb * 4 + 65536;
     if (budget > 2000000) budget = 2000000;
     opts.maxNodesExpanded = static_cast<u32>(budget);
@@ -641,13 +657,10 @@ bool Client::ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const {
         const i32 ty = t->y + dy;
         if (FindMobileAt(tx, ty, t->z)) continue;
 
-        world::WalkQuery q{};
-        q.x = static_cast<u32>(tx);
-        q.y = static_cast<u32>(ty);
         // Follow must stick to the target's floor. Using our current z here
         // picks the wrong layer in multi-storey columns (e.g. target fell
         // from a second floor and we're still above).
-        q.fromZ = t->z;
+        const world::WalkQuery q = MakeWalkQuery(tx, ty, t->z);
         const auto wr = world_->QueryCell(q);
         if (!wr.walkable) continue;
 
@@ -676,10 +689,9 @@ void Client::BotFollowTick() {
         return;
     }
 
-    const i32 dx = (playerX_ > t->x) ? (playerX_ - t->x) : (t->x - playerX_);
-    const i32 dy = (playerY_ > t->y) ? (playerY_ - t->y) : (t->y - playerY_);
-    i32 dz = static_cast<i32>(playerZ_) - static_cast<i32>(t->z);
-    if (dz < 0) dz = -dz;
+    const i32 dx = AbsDiff(playerX_, t->x);
+    const i32 dy = AbsDiff(playerY_, t->y);
+    const i32 dz = AbsDiff(playerZ_, t->z);
     if (dx <= static_cast<i32>(followDistance_) &&
         dy <= static_cast<i32>(followDistance_) && dz <= 8) {
         // Already inside follow radius: don't keep replanning. Let any
@@ -774,13 +786,8 @@ void Client::BotPumpMoves() {
             const i32 nx = playerX_ + dx;
             const i32 ny = playerY_ + dy;
 
-            world::WalkQuery q{};
-            q.x = static_cast<u32>(nx);
-            q.y = static_cast<u32>(ny);
-            q.fromZ = playerZ_;
-            q.hasPreferredZ = ShouldPreferBotGoalZ(botHasGoalZ_, nx, ny,
-                                                   botGoalX_, botGoalY_);
-            q.preferredZ = static_cast<i8>(botGoalZ_);
+            const world::WalkQuery q = MakeGoalAwareWalkQuery(
+                nx, ny, playerZ_, botHasGoalZ_, botGoalX_, botGoalY_, botGoalZ_);
             const auto wr = world_->QueryCell(q);
             if (wr.walkable &&
                 BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ) &&

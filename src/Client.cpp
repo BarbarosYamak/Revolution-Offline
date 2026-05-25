@@ -1,6 +1,5 @@
 #include "Client.h"
 
-#include "bot/Pathfinding.h"
 #include "uo/builders.h"
 #include "uo/endian.h"
 #include "uo/map.h"
