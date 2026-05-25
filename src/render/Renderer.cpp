@@ -54,6 +54,7 @@ struct Draw {
     const u16* src;     // source pixels (art sprite or texmap)
     int sw, sh;         // source dimensions
     bool transparent;   // skip 0 texels (art) vs draw all (texmap)
+    u16 hue;            // 0 = original pixels; nonzero = whole-sprite hue ramp
     int dx, dy;                   // flat-blit top-left (when !quad)
     Renderer::TexVert N, E, S, W; // quad corners (when quad)
 };
@@ -68,6 +69,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            i32 camX, i32 camY, i32 camZ,
                            const DynItem* items, usize nItems,
                            animdata::AnimDataLoader* animData, u32 animTick,
+                           hues::HuesLoader* hues,
                            anim::AnimLoader* anim,
                            const Mob* mobs, usize nMobs) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
@@ -354,6 +356,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     d.quad = false;
                     d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
                     d.transparent = true;
+                    d.hue = s.hue;
                     d.dx = sx - sp->width / 2;
                     d.dy = sy + kTile - sp->height;   // bottom-anchored
                     draws.push_back(d);
@@ -389,6 +392,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.quad = false;
         d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
         d.transparent = true;
+        d.hue = it.hue;
         d.dx = sx - sp->width / 2;
         d.dy = sy + kTile - sp->height;
         draws.push_back(d);
@@ -397,7 +401,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
     // Interleaved by z with statics, like the client's draw buckets. Each frame
     // is fitted to its content; we place its command origin (anchorX/anchorY)
-    // at the tile floor (cell centre). Hue/mounts are out of scope.
+    // at the tile floor (cell centre). Mounts are out of scope.
     if (anim) {
         for (usize mi = 0; mi < nMobs; ++mi) {
             const Mob& m = mobs[mi];
@@ -416,6 +420,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             d.quad = false;
             d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
             d.transparent = true;
+            d.hue = m.hue;
             d.dx = sx - fr->anchorX;
             d.dy = sy + kHalfTile - fr->anchorY;  // command origin at cell centre
             draws.push_back(d);
@@ -423,14 +428,15 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             // Worn gear over the body. Each equip frame is a body-like anim with
             // its own anchor, so it lines up at the same floor point. They share
             // this mobile's sort key, so stable_sort keeps body-then-layer order.
-            for (u16 ea : m.equipAnims) {
-                const anim::Frame* ef = anim->Body(ea, m.dir, m.action, m.frame);
+            for (const EquipAnim& ea : m.equipAnims) {
+                const anim::Frame* ef = anim->Body(ea.anim, m.dir, m.action, m.frame);
                 if (!ef) continue;
                 Draw e{};
                 e.depth = m.x + m.y; e.col = m.x - m.y; e.z = m.z; e.priority = false;
                 e.quad = false;
                 e.src = ef->px.data(); e.sw = ef->width; e.sh = ef->height;
                 e.transparent = true;
+                e.hue = ea.hue;
                 e.dx = sx - ef->anchorX;
                 e.dy = sy + kHalfTile - ef->anchorY;
                 draws.push_back(e);
@@ -478,7 +484,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.E, d.S);
             TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.S, d.W);
         } else {
-            BlitRaw(d.src, d.sw, d.sh, d.dx, d.dy, d.transparent);
+            BlitRaw(d.src, d.sw, d.sh, d.dx, d.dy, d.transparent, hues, d.hue);
         }
     }
 }
@@ -588,7 +594,8 @@ void Renderer::Blit(const art::Sprite& s, int dx, int dy) {
     BlitRaw(s.px.data(), s.width, s.height, dx, dy, true);
 }
 
-void Renderer::BlitRaw(const u16* src, int sw, int sh, int dx, int dy, bool skipTransparent) {
+void Renderer::BlitRaw(const u16* src, int sw, int sh, int dx, int dy,
+                       bool skipTransparent, hues::HuesLoader* hues, u16 hue) {
     if (dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
 
     for (int row = 0; row < sh; ++row) {
@@ -601,7 +608,7 @@ void Renderer::BlitRaw(const u16* src, int sw, int sh, int dx, int dy, bool skip
             if (!p && skipTransparent) continue;
             const int px = dx + col;
             if (px < 0 || px >= w_) continue;
-            drow[px] = p;
+            drow[px] = hues ? hues->Remap(p, hue) : p;
         }
     }
 }

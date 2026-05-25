@@ -40,7 +40,8 @@ struct Group {
 
 // Loads anim.idx / anim.mul (high-detail body animations) and decodes the frames
 // of a body's action group for a given facing. NO equipment layering, mounts,
-// hue shifting, or body.def / bodyconv.def remapping — just the base body.
+// body.def / bodyconv.def remapping — just the base body. Hue is applied later
+// by the renderer from the decoded pixels.
 //
 // Frame format (AnimFrame_DrawCommandStream @0x4D0040, payload layout from
 // Mobile_RenderToCacheFromAnimMul): 256-entry u16 palette, u32 frameCount,

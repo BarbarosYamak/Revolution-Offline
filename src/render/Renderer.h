@@ -3,6 +3,7 @@
 #include "uo/anim.h"
 #include "uo/animdata.h"
 #include "uo/art.h"
+#include "uo/hues.h"
 #include "uo/map.h"
 #include "uo/texmap.h"
 #include "uo/tiledata.h"
@@ -18,7 +19,12 @@ namespace uo::render {
 // directionByte and adds it to the graphic in sub_405290 — that's how a door
 // picks its open/closed/hinge frame. (The separate 0x1A *direction*/facing byte
 // is NOT added to the art.)
-struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; };
+struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; u16 hue = 0; };
+
+struct EquipAnim {
+    u16 anim = 0;
+    u16 hue = 0;
+};
 
 // A mobile (player/NPC) to draw. `dir` picks the facing; `action`/`frame` select
 // the animation group and the frame within its cycle (chosen Client-side from
@@ -26,7 +32,7 @@ struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; };
 // compute the roof cutoff so we can see ourselves inside a building).
 // equipAnims are worn-item animation ids, already in back-to-front draw order;
 // each is drawn over the body at the SAME action/frame, using its own frame
-// anchor (no hue).
+// anchor.
 // ddx/ddy interpolate the on-screen position between the previous and current
 // cell during a step (in cells, added to x/y; 0 when not mid-step), so the
 // sprite slides in sync with the walk cycle instead of teleporting. The local
@@ -34,7 +40,8 @@ struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; };
 // stays centred; other mobiles slide by their own offset on top.
 struct Mob {
     u16 body; i32 x; i32 y; i8 z; u8 dir; bool isPlayer;
-    std::vector<u16> equipAnims;
+    u16 hue = 0;
+    std::vector<EquipAnim> equipAnims;
     u8 action = 0; u16 frame = 0;
     float ddx = 0.0f; float ddy = 0.0f;
 };
@@ -51,6 +58,7 @@ public:
                      i32 camX, i32 camY, i32 camZ = 0,
                      const DynItem* items = nullptr, usize nItems = 0,
                      animdata::AnimDataLoader* animData = nullptr, u32 animTick = 0,
+                     hues::HuesLoader* hues = nullptr,
                      anim::AnimLoader* anim = nullptr,
                      const Mob* mobs = nullptr, usize nMobs = 0);
 
@@ -86,7 +94,8 @@ public:
 
 private:
     void Blit(const art::Sprite& s, int dx, int dy);
-    void BlitRaw(const u16* src, int sw, int sh, int dx, int dy, bool skipTransparent);
+    void BlitRaw(const u16* src, int sw, int sh, int dx, int dy,
+                 bool skipTransparent, hues::HuesLoader* hues = nullptr, u16 hue = 0);
     // Affine-textured triangle (a,b,c). Samples src (texW x texH, row-major) at
     // each vertex's (u,v). When skipTransparent, source texels of 0 are left
     // alone (for the diamond land art); texmaps draw fully opaque. Used to warp

@@ -865,6 +865,8 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 
     if (!avail(2)) return;
     const u16 yw = LoadBE16(data + p); p += 2;
+    const bool hasHue = (yw & 0x8000) != 0;
+    const bool hasFlags = (yw & 0x4000) != 0;
     const i32 y = yw & 0x3FFF;
 
     // direction (facing) byte — present when x has 0x8000. It is the entity's
@@ -873,11 +875,15 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     if (hasDir) { if (!avail(1)) return; p += 1; }
     if (!avail(1)) return;
     const i8 z = static_cast<i8>(data[p]);
+    p += 1;
+    u16 hue = 0;
+    if (hasHue) { if (!avail(2)) return; hue = LoadBE16(data + p); p += 2; }
+    if (hasFlags) { if (!avail(1)) return; p += 1; }
 
     // Track every world item so the renderer can draw dynamic server objects
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
     const bool isNewItem = items_.find(serial) == items_.end();
-    items_[serial] = ItemObj{itemId, x, y, z, gfxOffset};
+    items_[serial] = ItemObj{itemId, x, y, z, gfxOffset, hue};
     if (isNewItem) itemOrder_.push_back(serial);
     while (items_.size() > kMaxItemCache && !itemOrder_.empty()) {
         const u32 oldSerial = itemOrder_.front();
@@ -982,11 +988,13 @@ void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
         journal_.pop_front();
 }
 
-void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
+void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
+                          u16 hue, bool hasHue) {
     if (serial == playerSerial_) {
         // Don't treat ourselves as an obstacle, but do learn our own body so
         // the renderer can draw the local player (and facing for arrow walk).
         if (body) playerBody_ = body;
+        if (hasHue) playerHue_ = hue;
         playerFacing_ = static_cast<u8>(dir & 0x07);
         player_.serial = serial;
         if (body) player_.body = body;
@@ -1018,12 +1026,14 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
             if (body) m.body = body;
+            if (hasHue) m.hue = hue;
             m.seenMs = now;
             return;
         }
     }
     if (mobileCache_.size() >= kMobileCacheMax) mobileCache_.pop_front();
-    mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07), body, now});
+    mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07),
+                            body, hasHue ? hue : 0u, now});
 }
 
 // 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), dir(1) ...
@@ -1042,10 +1052,11 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
     if (size < 15) return;
     const u32 serial = LoadBE32(data + 3);
     UpdateMobile(serial, LoadBE16(data + 9), LoadBE16(data + 11),
-                 static_cast<i8>(data[13]), data[14], LoadBE16(data + 7));
+                 static_cast<i8>(data[13]), data[14], LoadBE16(data + 7),
+                 LoadBE16(data + 15), true);
 
     // Equipment list begins after the 19-byte header.
-    std::vector<std::pair<u8, u16>> equip;
+    std::vector<EquipObj> equip;
     usize p = 19;
     while (p + 7u <= size) {                  // serial(4)+graphic(2)+layer(1)
         const u32 itemSerial = LoadBE32(data + p);
@@ -1055,8 +1066,9 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
         const u8 layer = data[p]; p += 1;
         const bool hasHue = (graphic & 0x8000) != 0;
         graphic &= 0x3FFFu;                   // item id (drop hue flag/high bits)
-        if (hasHue) { if (p + 2u > size) break; p += 2; }   // skip hue (out of scope)
-        equip.emplace_back(layer, graphic);
+        u16 hue = 0;
+        if (hasHue) { if (p + 2u > size) break; hue = LoadBE16(data + p); p += 2; }
+        equip.push_back({layer, graphic, hue});
     }
     SetMobileEquip(serial, std::move(equip));
 }
@@ -1069,20 +1081,21 @@ void Client::OnEquipItem(const u8* data, usize size) {
     const u16 graphic = static_cast<u16>(LoadBE16(data + 5) & 0x3FFFu);
     const u8  layer   = data[8];
     const u32 mobile  = LoadBE32(data + 9);
-    SetMobileEquipLayer(mobile, layer, graphic);
+    const u16 hue     = LoadBE16(data + 13);
+    SetMobileEquipLayer(mobile, layer, graphic, hue);
 }
 
-void Client::SetMobileEquip(u32 serial, std::vector<std::pair<u8, u16>> equip) {
+void Client::SetMobileEquip(u32 serial, std::vector<EquipObj> equip) {
     if (serial == playerSerial_) { playerEquip_ = std::move(equip); return; }
     for (auto& m : mobileCache_)
         if (m.serial == serial) { m.equip = std::move(equip); return; }
 }
 
-void Client::SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic) {
-    auto upsert = [&](std::vector<std::pair<u8, u16>>& v) {
+void Client::SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic, u16 hue) {
+    auto upsert = [&](std::vector<EquipObj>& v) {
         for (auto& e : v)
-            if (e.first == layer) { e.second = graphic; return; }
-        v.emplace_back(layer, graphic);
+            if (e.layer == layer) { e.graphic = graphic; e.hue = hue; return; }
+        v.push_back({layer, graphic, hue});
     };
     if (serial == playerSerial_) { upsert(playerEquip_); return; }
     for (auto& m : mobileCache_)

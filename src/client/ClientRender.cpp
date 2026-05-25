@@ -8,6 +8,7 @@
 #include "uo/map.h"
 #include "uo/anim.h"
 #include "uo/animdata.h"
+#include "uo/hues.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -144,6 +145,11 @@ void Client::RenderTick() {
             LogWarn( "[render] animdata.mul unavailable; static item animation disabled\n");
             animData_.reset();
         }
+        hues_ = std::make_unique<hues::HuesLoader>();
+        if (!cfg_.huesPath || !hues_->Load(cfg_.huesPath)) {
+            LogWarn( "[render] hues.mul unavailable; object/mobile hue disabled\n");
+            hues_.reset();
+        }
         // radarcol.mul drives the minimap colours (real-client radar palette).
         // Optional: without it the minimap panel is simply not drawn.
         radarColors_ = std::make_unique<render::RadarColors>();
@@ -182,7 +188,7 @@ void Client::RenderTick() {
     dyn.reserve(items_.size());
     for (const auto& kv : items_)
         dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y,
-                       kv.second.z, kv.second.gfxOffset});
+                       kv.second.z, kv.second.gfxOffset, kv.second.hue});
 
     // Per-direction worn-item draw order (layer numbers, back-to-front),
     // verbatim from g_DrawLayerOrder @0x5144C0 with the mount slot (layer 25)
@@ -200,14 +206,14 @@ void Client::RenderTick() {
 
     // Resolve worn items to anim ids in the client's per-facing draw order. Only
     // graphics with a valid worn anim (0x190..0x3E7) are drawable.
-    auto resolveEquip = [&](uo::u8 dir, const std::vector<std::pair<uo::u8, uo::u16>>& equip,
-                            std::vector<uo::u16>& out) {
+    auto resolveEquip = [&](uo::u8 dir, const std::vector<EquipObj>& equip,
+                            std::vector<render::EquipAnim>& out) {
         if (!tileData_ || equip.empty()) return;
         for (uo::u8 slot : kLayerDrawOrder[dir & 7]) {
             for (const auto& e : equip) {
-                if (e.first != slot) continue;
-                const uo::u16 a = tileData_->ItemAnimId(e.second);
-                if (a >= 0x190 && a < 0x3E8) out.push_back(a);
+                if (e.layer != slot) continue;
+                const uo::u16 a = tileData_->ItemAnimId(e.graphic);
+                if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
                 break;
             }
         }
@@ -403,7 +409,7 @@ void Client::RenderTick() {
     mobs.reserve(mobileCache_.size() + 1);
     for (auto& m : mobileCache_) {
         if (!m.body) continue;
-        render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, {}};
+        render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < kMoveAnimWindowMs;
         if (moving) {
@@ -417,7 +423,7 @@ void Client::RenderTick() {
         mob.ddy = slideDelta(m.movedMs, m.stepDurMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
-    render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, {}};
+    render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
     // The local player is not in mobileCache_, so give it its own idle/walk
     // action selection. Keep the walk window only while another step may follow;
@@ -445,6 +451,7 @@ void Client::RenderTick() {
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            animData_.get(), static_cast<uo::u32>(nowAnim / kAnimListTickMs),
+                           hues_.get(),
                            anim_.get(), mobs.data(), mobs.size());
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.

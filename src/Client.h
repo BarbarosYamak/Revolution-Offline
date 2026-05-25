@@ -27,6 +27,7 @@ namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
 namespace uo::animdata { class AnimDataLoader; }
+namespace uo::hues     { class HuesLoader; }
 namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
 namespace uo {
@@ -76,6 +77,7 @@ public:
         const char* animIdxPath;      // anim.idx (body animation index)
         const char* animPath;         // anim.mul (body animations, still frames)
         const char* animDataPath;     // animdata.mul (animated static/dynamic art)
+        const char* huesPath;         // hues.mul (object/mobile hue ramps)
         const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
@@ -305,6 +307,7 @@ private:
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::animdata::AnimDataLoader> animData_;
+    std::unique_ptr<uo::hues::HuesLoader>    hues_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::TextRenderer> text_;
     std::unique_ptr<uo::render::Minimap>     minimap_;
@@ -315,12 +318,14 @@ private:
     bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
     bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
     u16  playerBody_;           // local player body graphic for the renderer
-    std::vector<std::pair<u8, u16>> playerEquip_;  // own worn items (layer, graphic)
+    struct EquipObj { u8 layer; u16 graphic; u16 hue; };
+    std::vector<EquipObj> playerEquip_;  // own worn items (layer, graphic, hue)
+    u16  playerHue_ = 0;
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
 
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
     // serial — fed to the renderer so dynamic server objects are drawn too.
-    struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; };
+    struct ItemObj { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset; u16 hue; };
     static constexpr usize kMaxItemCache = 32768;
     std::unordered_map<u32, ItemObj> items_;
     std::deque<u32> itemOrder_;
@@ -329,22 +334,23 @@ private:
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
     // wall — such tiles are never blacklisted.
     struct MobileObj {
-        u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; i64 seenMs;
+        u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; u16 hue; i64 seenMs;
         i64 movedMs = 0;     // when (x,y) last changed (anim: walk vs idle)
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         i64 stepDurMs = 0;   // measured duration of the current step (auto cadence)
         IdleAnimState idleAnim;
-        // Worn items as (layer, item graphic). No hue (out of scope). Preserved
-        // across 0x77 position updates; rebuilt on 0x78, patched by 0x2E.
-        std::vector<std::pair<u8, u16>> equip;
+        // Worn items as (layer, item graphic, hue). Preserved across 0x77
+        // position updates; rebuilt on 0x78, patched by 0x2E.
+        std::vector<EquipObj> equip;
     };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
-    void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body);
-    void SetMobileEquip(u32 serial, std::vector<std::pair<u8, u16>> equip);
-    void SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic);
+    void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
+                      u16 hue = 0, bool hasHue = false);
+    void SetMobileEquip(u32 serial, std::vector<EquipObj> equip);
+    void SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic, u16 hue);
     bool mobilesListPending_;
     i64  mobilesListDeadlineMs_;
     std::vector<u32> mobilesListSerials_;
