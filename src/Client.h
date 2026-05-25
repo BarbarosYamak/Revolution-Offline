@@ -27,6 +27,7 @@ namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
 namespace uo::animdata { class AnimDataLoader; }
+namespace uo::animinfo { class AnimInfoLoader; }
 namespace uo::hues     { class HuesLoader; }
 namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
@@ -77,6 +78,7 @@ public:
         const char* animIdxPath;      // anim.idx (body animation index)
         const char* animPath;         // anim.mul (body animations, still frames)
         const char* animDataPath;     // animdata.mul (animated static/dynamic art)
+        const char* animInfoPath;     // animinfo.mul (mobile walk/run timing)
         const char* huesPath;         // hues.mul (object/mobile hue ramps)
         const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
@@ -277,7 +279,8 @@ private:
                                 // (toggle in-world with `day [on|off]`)
     i64   lastStepMs_ = 0;      // when we last actually changed cell (anim: walk vs idle)
     i32   prevPlayerX_ = 0; i32 prevPlayerY_ = 0;  // cell before the current step (slide interp)
-    i64   stepDurMs_ = 0;       // duration of the current step (run/walk cadence)
+    i64   playerMoveAnimTickMs_ = 0;
+    u32   playerMoveAnimCounter_ = 0;
     struct IdleAnimState {
         i64 nextProbeMs = 0;
         i64 lastTickMs = 0;
@@ -315,6 +318,7 @@ private:
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
     std::unique_ptr<uo::animdata::AnimDataLoader> animData_;
+    std::unique_ptr<uo::animinfo::AnimInfoLoader> animInfo_;
     std::unique_ptr<uo::hues::HuesLoader>    hues_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::TextRenderer> text_;
@@ -345,7 +349,9 @@ private:
         u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; u16 hue; i64 seenMs;
         i64 movedMs = 0;     // when (x,y) last changed (anim: walk vs idle)
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
-        i64 stepDurMs = 0;   // measured duration of the current step (auto cadence)
+        bool running = false; // high bit of the server direction byte
+        i64 moveAnimTickMs = 0;
+        u32 moveAnimCounter = 0;
         IdleAnimState idleAnim;
         // Worn items as (layer, item graphic, hue). Preserved across 0x77
         // position updates; rebuilt on 0x78, patched by 0x2E.

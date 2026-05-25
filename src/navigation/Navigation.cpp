@@ -337,7 +337,6 @@ void Client::BotPredictStep(u8 dir) {
     player_.facing = static_cast<u8>(dir & 0x07);
     player_.running = nav_.movement.run;
     lastStepMs_ = NowMs();          // real step -> walk/run anim (vs idle stand)
-    stepDurMs_ = BotMoveGapMs();    // slide over the run/walk cadence
 }
 
 
@@ -914,7 +913,8 @@ void Client::BotPumpMoves() {
         else {
             playerFacing_ = dir;  // turn: re-send same dir to step
             player_.facing = dir;
-            player_.running = nav_.movement.run;
+            player_.running = false;
+            lastStepMs_ = 0;
         }
     }
 

@@ -8,6 +8,7 @@
 #include "uo/map.h"
 #include "uo/anim.h"
 #include "uo/animdata.h"
+#include "uo/animinfo.h"
 #include "uo/hues.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
@@ -81,27 +82,31 @@ BodyKind KindOf(u16 body) {
     return BodyKind::People;
 }
 
+bool MonsterHasRunAction(u16 body) {
+    switch (body) {
+        case 4: case 5: case 6: case 9: case 10: case 12:
+        case 30: case 39: case 59: case 60: case 61:
+            return true;
+        default:
+            return false;
+    }
+}
+
 // Map motion state -> animation group id (UO per-kind group enums). Only the
 // walk/run/stand groups we support; everything else (attack/cast/die/fidget) is
-// out of scope. NPC running is not observable from 0x77/0x78, so callers pass
-// running=false for NPCs.
-u8 PickAction(BodyKind k, bool moving, bool running) {
+// out of scope. Remote mobile packets preserve the run bit in the direction byte.
+u8 PickAction(u16 body, bool moving, bool running) {
+    const BodyKind k = KindOf(body);
     switch (k) {
-        case BodyKind::Monster: return moving ? 0u : 1u;                 // walk / stand
+        case BodyKind::Monster:
+            return moving ? (running && MonsterHasRunAction(body) ? 19u : 0u) : 1u;
         case BodyKind::Animal:  return moving ? (running ? 1u : 0u) : 2u; // run/walk / stand
         case BodyKind::People:  return moving ? (running ? 2u : 0u) : 4u; // run/walk(unarmed) / stand
     }
     return 0u;
 }
 
-// Per-frame advance interval (ms) by motion state. Provisional — confirm the
-// client's real frame timing in IDA. A mobile counts as "moving" for the window
-// after its last step (step cadence + slack) so the gap between steps doesn't
-// flicker the cycle back to idle.
 constexpr i64 kAnimIntervalIdleMs = 200;
-constexpr i64 kAnimIntervalWalkMs = 150;
-constexpr i64 kAnimIntervalRunMs  = 100;
-constexpr i64 kMoveAnimWindowMs   = 600;
 constexpr i64 kIdleFidgetDelayMs  = 15000; // Mobile_TryPlayIdleAnimation gate.
 constexpr i64 kAnimListTickMs = 76;        // GameLoop_Update object/anim gate.
 } // namespace
@@ -144,6 +149,10 @@ void Client::RenderTick() {
         if (!cfg_.animDataPath || !animData_->Load(cfg_.animDataPath)) {
             LogWarn( "[render] animdata.mul unavailable; static item animation disabled\n");
             animData_.reset();
+        }
+        animInfo_ = std::make_unique<animinfo::AnimInfoLoader>();
+        if (!cfg_.animInfoPath || !animInfo_->Load(cfg_.animInfoPath)) {
+            LogWarn( "[render] animinfo.mul unavailable; using default mobile timing\n");
         }
         hues_ = std::make_unique<hues::HuesLoader>();
         if (!cfg_.huesPath || !hues_->Load(cfg_.huesPath)) {
@@ -223,9 +232,15 @@ void Client::RenderTick() {
     // clock. Falls back to group 0 (walk) when the chosen group is unavailable,
     // so bodies without a stand group still draw.
     const i64 nowAnim = NowMs();
+    auto moveDurationMs = [&](uo::u16 body, bool running) -> i64 {
+        const u8 ticks = animInfo_ ? animInfo_->MoveFrameCount(body, running)
+                                   : static_cast<u8>(running ? 2 : 4);
+        return static_cast<i64>(ticks ? ticks : 1) * kAnimListTickMs;
+    };
+
     auto resolveAnim = [&](uo::u16 body, uo::u8 dir, bool moving, bool running,
-                           uo::u8& action, uo::u16& frame) {
-        action = PickAction(KindOf(body), moving, running);
+                           uo::u32 animCounter, uo::u8& action, uo::u16& frame) {
+        action = PickAction(body, moving, running);
         uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
@@ -233,9 +248,20 @@ void Client::RenderTick() {
         }
         frame = 0;
         if (fc == 0u) return;
-        const i64 interval = !moving ? kAnimIntervalIdleMs
-                                     : (running ? kAnimIntervalRunMs : kAnimIntervalWalkMs);
-        frame = static_cast<uo::u16>((nowAnim / interval) % fc);
+        if (moving && fc > 1u) --fc; // Client uses frameCounter % (frameCount-1).
+        if (moving) {
+            frame = static_cast<uo::u16>(animCounter % fc);
+            return;
+        }
+        frame = static_cast<uo::u16>((nowAnim / kAnimIntervalIdleMs) % fc);
+    };
+
+    auto tickMoveAnim = [&](i64& lastTickMs, u32& counter) {
+        if (lastTickMs == 0) lastTickMs = nowAnim;
+        while (nowAnim - lastTickMs >= kAnimListTickMs) {
+            lastTickMs += kAnimListTickMs;
+            ++counter;
+        }
     };
 
     auto pickIdleFidget = [](uo::u16 body, bool secondChoice, uo::u8& action,
@@ -335,7 +361,7 @@ void Client::RenderTick() {
 
     auto resolveIdleAnim = [&](uo::u16 body, uo::u8 dir, IdleAnimState& idle,
                                uo::u8& action, uo::u16& frame) {
-        action = PickAction(KindOf(body), false, false);
+        action = PickAction(body, false, false);
         uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
@@ -411,41 +437,49 @@ void Client::RenderTick() {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
-        const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < kMoveAnimWindowMs;
+        const i64 mobMoveMs = moveDurationMs(m.body, m.running);
+        const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
         if (moving) {
             m.idleAnim.active = false;
             m.idleAnim.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
-            resolveAnim(m.body, m.dir, true, false, mob.action, mob.frame);
+            tickMoveAnim(m.moveAnimTickMs, m.moveAnimCounter);
+            resolveAnim(m.body, m.dir, true, m.running, m.moveAnimCounter,
+                        mob.action, mob.frame);
         } else {
+            m.moveAnimTickMs = 0;
             resolveIdleAnim(m.body, m.dir, m.idleAnim, mob.action, mob.frame);
         }
-        mob.ddx = slideDelta(m.movedMs, m.stepDurMs, m.x, m.prevX);
-        mob.ddy = slideDelta(m.movedMs, m.stepDurMs, m.y, m.prevY);
+        mob.ddx = slideDelta(m.movedMs, mobMoveMs, m.x, m.prevX);
+        mob.ddy = slideDelta(m.movedMs, mobMoveMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
-    // The local player is not in mobileCache_, so give it its own idle/walk
-    // action selection. Keep the walk window only while another step may follow;
-    // otherwise arrival snaps back to the stand/idle group immediately.
-    const bool selfMayKeepMoving = nav_.bot.active || !nav_.bot.path.empty() ||
-                                   !nav_.movement.pending.empty();
+    const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
-                             (nowAnim - lastStepMs_) < stepDurMs_;
+                             (nowAnim - lastStepMs_) < selfMoveMs;
+    const bool selfMovementChainActive =
+        nav_.bot.active || !nav_.bot.path.empty() || !nav_.movement.pending.empty() ||
+        (lastManualMoveMs_ != 0 &&
+         nowAnim - lastManualMoveMs_ <
+             static_cast<i64>(BotMoveGapMs() + kAnimListTickMs));
     const bool selfMoving = selfMidStep ||
-                            (selfMayKeepMoving && lastStepMs_ != 0 &&
-                             (nowAnim - lastStepMs_) < kMoveAnimWindowMs);
+                            (selfMovementChainActive && lastStepMs_ != 0);
     const bool selfRunning = selfMoving && player_.running;
     if (selfMoving) {
         playerIdleAnim_.active = false;
         playerIdleAnim_.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
-        resolveAnim(playerBody_, playerFacing_, true, selfRunning, self.action, self.frame);
+        tickMoveAnim(playerMoveAnimTickMs_, playerMoveAnimCounter_);
+        resolveAnim(playerBody_, playerFacing_, true, selfRunning, playerMoveAnimCounter_,
+                    self.action, self.frame);
     } else {
+        playerMoveAnimTickMs_ = 0;
+        if (!selfMovementChainActive) playerMoveAnimCounter_ = 3;
         resolveIdleAnim(playerBody_, playerFacing_, playerIdleAnim_,
                         self.action, self.frame);
     }
-    self.ddx = slideDelta(lastStepMs_, stepDurMs_, playerX_, prevPlayerX_);
-    self.ddy = slideDelta(lastStepMs_, stepDurMs_, playerY_, prevPlayerY_);
+    self.ddx = slideDelta(lastStepMs_, selfMoveMs, playerX_, prevPlayerX_);
+    self.ddy = slideDelta(lastStepMs_, selfMoveMs, playerY_, prevPlayerY_);
     mobs.push_back(std::move(self));
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
@@ -734,7 +768,8 @@ void Client::HandleManualWalk() {
     else {
         playerFacing_ = dir;
         player_.facing = dir;
-        player_.running = nav_.movement.run;
+        player_.running = false;
+        lastStepMs_ = 0;
     }
 }
 

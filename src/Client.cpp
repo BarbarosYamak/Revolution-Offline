@@ -10,6 +10,7 @@
 #include "uo/art.h"
 #include "uo/texmap.h"
 #include "uo/anim.h"
+#include "uo/animinfo.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -1017,6 +1018,7 @@ void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
 
 void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                           u16 hue, bool hasHue) {
+    const bool running = (dir & 0x80u) != 0;
     if (serial == playerSerial_) {
         // Don't treat ourselves as an obstacle, but do learn our own body so
         // the renderer can draw the local player (and facing for arrow walk).
@@ -1029,19 +1031,15 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
         player_.y = y;
         player_.z = z;
         player_.facing = playerFacing_;
-        player_.running = false;
+        player_.running = running;
         return;
     }
     const i64 now = NowMs();
     for (auto& m : mobileCache_) {
         if (m.serial == serial) {
             if (m.x != x || m.y != y) {
-                // Real step -> walk anim + slide interp. Measure the step
-                // duration from the gap since the last step so the slide matches
-                // the mobile's cadence; only a single-cell step slides (a larger
-                // jump is a teleport/resync and snaps).
-                const i64 dt = now - m.movedMs;
-                m.stepDurMs = (m.movedMs != 0 && dt > 60 && dt < 700) ? dt : 250;
+                // Real step -> walk anim + slide interp. Only a single-cell
+                // step slides; a larger jump is a teleport/resync and snaps.
                 const bool adjacent = (x - m.x <= 1 && m.x - x <= 1) &&
                                       (y - m.y <= 1 && m.y - y <= 1);
                 m.prevX = adjacent ? m.x : x;
@@ -1052,6 +1050,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
             m.y = y;
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
+            m.running = running;
             if (body) m.body = body;
             if (hasHue) m.hue = hue;
             m.seenMs = now;
@@ -1061,6 +1060,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
     if (mobileCache_.size() >= kMobileCacheMax) mobileCache_.pop_front();
     mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07),
                             body, hasHue ? hue : 0u, now});
+    mobileCache_.back().running = running;
 }
 
 // 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), dir(1) ...

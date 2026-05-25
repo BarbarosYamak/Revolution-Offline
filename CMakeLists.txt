@@ -61,6 +61,7 @@ set(UO_MUL_SOURCES
     src/mul/TexmapLoader.cpp
     src/mul/AnimLoader.cpp
     src/mul/AnimDataLoader.cpp
+    src/mul/AnimInfoLoader.cpp
     src/mul/HuesLoader.cpp
 )
 add_library(uo_mul STATIC ${UO_MUL_SOURCES})
