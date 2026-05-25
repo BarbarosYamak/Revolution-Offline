@@ -590,6 +590,19 @@ void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,
     if (outSy) *outSy = sy;
 }
 
+void Renderer::ApplyDarkness(int darkness) {
+    if (darkness <= 0) return;
+    if (darkness > 31) darkness = 31;
+    const int scale = 32 - darkness;   // ch * scale / 32, per 5-bit channel
+    for (u16& p : fb_) {
+        const u16 a = p & 0x8000;
+        const int r = ((p >> 10) & 0x1F) * scale / 32;
+        const int g = ((p >> 5) & 0x1F) * scale / 32;
+        const int b = (p & 0x1F) * scale / 32;
+        p = static_cast<u16>(a | (r << 10) | (g << 5) | b);
+    }
+}
+
 void Renderer::Blit(const art::Sprite& s, int dx, int dy) {
     BlitRaw(s.px.data(), s.width, s.height, dx, dy, true);
 }

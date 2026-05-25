@@ -73,6 +73,15 @@ public:
     void FillRect(int x, int y, int w, int h, u16 color);
     void BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy);
 
+    // Ambient night/cave darkening over the whole frame (the 2.0.7 light pass,
+    // ambient term only). `darkness` is the client's clamped level: 0 = full
+    // daylight (no-op), 31 = near black. Per 5-bit R/G/B channel the client
+    // applies linear attenuation `ch * (32 - darkness) / 32` (g_DarkenLUT in
+    // Light_BuildDarkenTables @0x40D3B0). The alpha/opaque bit is preserved.
+    // Call after RenderWorld but before HUD/minimap overlays so only the world
+    // dims, matching the original (gumps draw at full brightness).
+    void ApplyDarkness(int darkness);
+
     // Blit a sprite onto the frame at (dx,dy) skipping transparent (0) pixels
     // AND any pixel equal to `key` (a chroma-key background). UO cursor art
     // fills its background with 0x001F (blue), so the cursor passes its corner

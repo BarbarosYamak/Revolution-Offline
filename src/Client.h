@@ -131,6 +131,8 @@ private:
     void OnSkills             (const u8* data, usize size);  // 0x3A
     void OnObjectInfo         (const u8* data, usize size);  // 0x1A
     void OnDeleteObject       (const u8* data, usize size);  // 0x1D
+    void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
+    void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
     void OnEquipItem          (const u8* data, usize size);  // 0x2E
@@ -267,6 +269,12 @@ private:
     i8    playerZ_;
     u8    playerFacing_;        // 0..7 (low 3 bits of dir byte)
     bool  playerRunning_;
+    // World light (0x4F overall, 0x4E personal). 0 = day/bright, 0x1F = black;
+    // render darkness = clamp(overall - personal, 0..31). See Renderer::ApplyDarkness.
+    u8    overallLightLevel_ = 0;
+    u8    personalLightLevel_ = 0;
+    bool  alwaysDay_ = true;    // force full daylight, ignore 0x4E/0x4F levels
+                                // (toggle in-world with `day [on|off]`)
     i64   lastStepMs_ = 0;      // when we last actually changed cell (anim: walk vs idle)
     i32   prevPlayerX_ = 0; i32 prevPlayerY_ = 0;  // cell before the current step (slide interp)
     i64   stepDurMs_ = 0;       // duration of the current step (run/walk cadence)

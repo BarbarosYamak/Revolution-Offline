@@ -347,10 +347,12 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x2D: OnMobileAttributes(data, size); break;
         case 0x2E: OnEquipItem(data, size); break;
         case 0x3A: OnSkills(data, size); break;
+        case 0x4E: OnPersonalLightLevel(data, size); break;
+        case 0x4F: OnOverallLightLevel(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
         case 0x23: case 0x25: case 0x2F:
-        case 0x3C: case 0x4E: case 0x4F: case 0x53:
+        case 0x3C: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D: case 0x6E:
         case 0x70: case 0x72: case 0x88:
         case 0x8B: case 0x97:
@@ -773,6 +775,31 @@ void Client::OnFeatures(const u8* data, usize size) {
 void Client::OnViewRange(const u8* data, usize size) {
     if (size < 2) return;
     LogInfo("[0xC8] view range = %u\n", data[1]);
+}
+
+// ---------------------------------------------------------------------------
+// 0x4F Overall Light Level (2 bytes): cmd, level. 0x00 = day/bright,
+// 0x1F = black. Mirrors Packet_HandleOverallLightLevel @0x4152F0. Drives the
+// renderer's ambient darkening (Renderer::ApplyDarkness).
+// ---------------------------------------------------------------------------
+void Client::OnOverallLightLevel(const u8* data, usize size) {
+    if (size < 2) return;
+    overallLightLevel_ = data[1];
+    if (verboseConsole_) LogInfo("[0x4F] overall light = %u\n", data[1]);
+}
+
+// ---------------------------------------------------------------------------
+// 0x4E Personal Light Level (6 bytes): cmd, serial(4 BE), level. The original
+// (Packet_HandlePersonalLightLevel @0x41D3C0 -> Entity_SetPersonalLightLevel)
+// only feeds the global darkness when the target is the local player; we do the
+// same. Higher personal light reduces darkness (night-sight / personal glow).
+// ---------------------------------------------------------------------------
+void Client::OnPersonalLightLevel(const u8* data, usize size) {
+    if (size < 6) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    if (serial != playerSerial_) return;
+    personalLightLevel_ = data[5];
+    if (verboseConsole_) LogInfo("[0x4E] personal light = %u\n", data[5]);
 }
 
 // ---------------------------------------------------------------------------
@@ -1627,6 +1654,20 @@ void Client::HandleStdinLine(const char* line) {
         else if (std::strcmp(arg, "off") == 0) verboseConsole_ = false;
         else                                   verboseConsole_ = !verboseConsole_;
         LogInfo("[cmd] verbose console %s\n", verboseConsole_ ? "ON" : "off");
+        return;
+    }
+
+    // `day [on|off]` — when on, force full daylight and ignore server light
+    // levels (0x4E/0x4F). Off lets the server's night/cave darkness show. No
+    // argument flips the current state.
+    if (std::strncmp(line, "day", 3) == 0 &&
+        (line[3] == '\0' || line[3] == ' ')) {
+        const char* arg = line + 3;
+        while (*arg == ' ') ++arg;
+        if (std::strcmp(arg, "on") == 0)       alwaysDay_ = true;
+        else if (std::strcmp(arg, "off") == 0) alwaysDay_ = false;
+        else                                   alwaysDay_ = !alwaysDay_;
+        LogInfo("[cmd] always-day %s\n", alwaysDay_ ? "ON" : "off");
         return;
     }
 

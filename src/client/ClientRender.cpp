@@ -454,6 +454,17 @@ void Client::RenderTick() {
                            hues_.get(),
                            anim_.get(), mobs.data(), mobs.size());
 
+    // Ambient night/cave darkening (2.0.7 light pass, ambient term). Forced off
+    // while alwaysDay_. darkness = clamp(overall - personal, 0..31). Applied to
+    // the world only — before the minimap/HUD overlays below, which stay bright.
+    if (!alwaysDay_) {
+        int darkness = static_cast<int>(overallLightLevel_) -
+                       static_cast<int>(personalLightLevel_);
+        if (darkness < 0) darkness = 0;
+        if (darkness > 31) darkness = 31;
+        renderer_->ApplyDarkness(darkness);
+    }
+
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
     if (const char* keys = mfb_keystatus()) {
         const bool mDown = keys[0x4D] != 0;   // VK 'M'
