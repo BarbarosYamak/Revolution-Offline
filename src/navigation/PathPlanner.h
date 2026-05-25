@@ -63,6 +63,7 @@ struct PathRequest {
 struct PathResult {
     u64 requestId = 0;
     bool worldReady = false;
+    bool goalWalkable = true;
     std::vector<u8> path;
     double searchUs = 0.0;
     usize blacklistCount = 0;

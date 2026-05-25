@@ -629,6 +629,13 @@ void Client::BotPollPathPlanner() {
         return;
     }
 
+    if (!result.goalWalkable) {
+        LogWarn("[bot] goal (%d,%d) is not walkable; skipping A* and stopping\n",
+                    result.goalX, result.goalY);
+        BotAbortPath("goal not walkable");
+        return;
+    }
+
     if (result.path.empty()) {
         LogWarn(
             "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "

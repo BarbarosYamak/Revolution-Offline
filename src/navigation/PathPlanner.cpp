@@ -15,6 +15,7 @@ namespace {
 
 constexpr i64 kMobileFreshMs = 5000;
 constexpr i32 kRejectedEdgeZTolerance = 2;
+constexpr i32 kGoalZTolerance = 4;
 
 bool IsDoorGraphic(u16 id) {
     return id >= 0x0675 && id <= 0x06F6;
@@ -103,6 +104,21 @@ bool ExtraBlockedStep(i32 fromX, i32 fromY, i8 fromZ,
     return false;
 }
 
+bool GoalColumnIsWalkable(const world::World& world, const PathRequest& request) {
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(request.goalX);
+    q.y = static_cast<u32>(request.goalY);
+    q.fromZ = static_cast<i8>(request.hasGoalZ ? request.goalZ : request.startZ);
+    q.maxStepUp = 127;
+    q.maxStepDown = 127;
+    q.hasPreferredZ = request.hasGoalZ;
+    q.preferredZ = static_cast<i8>(request.goalZ);
+    const auto result = world.QueryCell(q);
+    if (!result.walkable) return false;
+    if (!request.hasGoalZ) return true;
+    return AbsDiff(static_cast<i32>(result.standZ), request.goalZ) <= kGoalZTolerance;
+}
+
 }
 
 PathPlanner::PathPlanner(PathPlannerConfig config)
@@ -189,28 +205,32 @@ void PathPlanner::WorkerLoop() {
 
         result.worldReady = EnsureWorldLoaded();
         if (result.worldReady) {
-            bot::PathOptions opts;
-            opts.blacklist = &request.blacklist;
-            opts.grassPenalty = request.grassPenalty;
-            opts.foliagePenalty = request.foliagePenalty;
-            opts.hasGoalZ = request.hasGoalZ;
-            opts.goalZ = request.goalZ;
-            opts.maxNodesExpanded = request.maxNodesExpanded;
+            if (!GoalColumnIsWalkable(*world_, request)) {
+                result.goalWalkable = false;
+            } else {
+                bot::PathOptions opts;
+                opts.blacklist = &request.blacklist;
+                opts.grassPenalty = request.grassPenalty;
+                opts.foliagePenalty = request.foliagePenalty;
+                opts.hasGoalZ = request.hasGoalZ;
+                opts.goalZ = request.goalZ;
+                opts.maxNodesExpanded = request.maxNodesExpanded;
 
-            RuntimeOverlay overlay;
-            overlay.tileData = tileData_.get();
-            overlay.world = world_.get();
-            overlay.request = &request;
-            opts.extraBlocked = &ExtraBlocked;
-            opts.extraBlockedStep = &ExtraBlockedStep;
-            opts.extraBlockedUser = &overlay;
+                RuntimeOverlay overlay;
+                overlay.tileData = tileData_.get();
+                overlay.world = world_.get();
+                overlay.request = &request;
+                opts.extraBlocked = &ExtraBlocked;
+                opts.extraBlockedStep = &ExtraBlockedStep;
+                opts.extraBlockedUser = &overlay;
 
-            const auto t0 = std::chrono::steady_clock::now();
-            result.path = bot::FindPath(*world_,
-                                        request.startX, request.startY, request.startZ,
-                                        request.goalX, request.goalY, opts);
-            result.searchUs = std::chrono::duration<double, std::micro>(
-                std::chrono::steady_clock::now() - t0).count();
+                const auto t0 = std::chrono::steady_clock::now();
+                result.path = bot::FindPath(*world_,
+                                            request.startX, request.startY, request.startZ,
+                                            request.goalX, request.goalY, opts);
+                result.searchUs = std::chrono::duration<double, std::micro>(
+                    std::chrono::steady_clock::now() - t0).count();
+            }
         }
 
         {
