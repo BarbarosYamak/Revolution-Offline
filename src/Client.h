@@ -180,10 +180,12 @@ private:
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
     void BotTick();           // called from PumpUntilDisconnected
     void RenderTick();        // draws the world window (no-op unless enabled)
+    void HandleRenderChatInput();
     void HandleManualWalk();  // arrow-key steering from the render window
     void HandleWorldClick();  // right-click in the render window -> goto that cell
     void DrawStatusBars();
     void DrawSystemLog();
+    void DrawChatInput();
     void DrawOverheadText();
     void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
@@ -329,6 +331,8 @@ private:
     bool minimapVisible_;       // overlay minimap panel (toggle with 'M')
     bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
     bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
+    bool chatInputActive_;
+    std::string chatInputLine_;
     u16  playerBody_;           // local player body graphic for the renderer
     struct EquipObj { u8 layer; u16 graphic; u16 hue; };
     std::vector<EquipObj> playerEquip_;  // own worn items (layer, graphic, hue)

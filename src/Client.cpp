@@ -90,6 +90,7 @@ Client::Client(const Config& cfg)
       worldLoaded_(false),
       renderInit_(false), renderWindowOpen_(false),
       minimapVisible_(true), minimapKeyDown_(false), spaceKeyDown_(false),
+      chatInputActive_(false),
       playerBody_(0x0190), lastManualMoveMs_(0),
       nav_{},
       mobilesListPending_(false), mobilesListDeadlineMs_(0),

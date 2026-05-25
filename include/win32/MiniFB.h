@@ -39,6 +39,10 @@ void mfb_close();
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus();
 
+// Consume one queued text input character from WM_CHAR. Returns false when no
+// character is pending. Enter is '\r', Backspace is '\b', Escape is 27.
+bool mfb_poll_char(uint32_t *ch);
+
 // Consume the most recent right-click. Returns true once per click and writes
 // the click position in FRAMEBUFFER pixels (already divided by the window
 // scale). Returns false when no unconsumed right-click is pending.
@@ -91,6 +95,9 @@ typedef struct {
     const void *pixel_buffer;
     BITMAPINFO *bitmap_info;
     char keys[512];
+    uint32_t text_chars[64];
+    int text_read;
+    int text_write;
     int rclick_pending;   // a right-click is waiting to be consumed
     int rclick_x;         // framebuffer-pixel click position
     int rclick_y;
@@ -101,6 +108,14 @@ typedef struct {
 } MfbState;
 
 static MfbState *mfb_state;
+
+static void mfb_push_char(uint32_t ch) {
+    const int next = (mfb_state->text_write + 1) % 64;
+    if (next == mfb_state->text_read)
+        return;
+    mfb_state->text_chars[mfb_state->text_write] = ch;
+    mfb_state->text_write = next;
+}
 
 // Sets up bitmap_info header and color table for the given bpp.
 static void setup_bitmap(const int width, const int height, const int bpp) {
@@ -178,6 +193,10 @@ static LRESULT CALLBACK WndProc(HWND hWnd, const UINT message, const WPARAM wPar
             }
             break;
         }
+
+        case WM_CHAR:
+            mfb_push_char((uint32_t) wParam);
+            break;
 
         case WM_MOUSEMOVE: {
             const int scale = mfb_state->scale > 0 ? mfb_state->scale : 1;
@@ -366,6 +385,14 @@ void mfb_close() {
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus() {
     return mfb_state->keys;
+}
+
+bool mfb_poll_char(uint32_t *ch) {
+    if (!mfb_state || mfb_state->text_read == mfb_state->text_write)
+        return false;
+    if (ch) *ch = mfb_state->text_chars[mfb_state->text_read];
+    mfb_state->text_read = (mfb_state->text_read + 1) % 64;
+    return true;
 }
 
 // Consume the most recent right-click (framebuffer pixels). One true per click.

@@ -30,6 +30,7 @@ namespace {
 
 constexpr int   kHudFontHeight = 14;
 constexpr int   kSysLogLines = 8;
+constexpr usize kChatInputMax = 120;
 constexpr i64   kOverheadMs = 6000;
 constexpr int   kHeadOffset = 44;
 constexpr int   kStatusBarWidth = 96;
@@ -191,8 +192,17 @@ void Client::RenderTick() {
 
     if (!renderWindowOpen_ || !renderer_ || !worldMap_ || !tileData_) return;
 
-    HandleManualWalk();
-    HandleWorldClick();
+    HandleRenderChatInput();
+    if (chatInputActive_) {
+        HandleWorldClick();
+        if (const char* keys = mfb_keystatus()) {
+            minimapKeyDown_ = keys[0x4D] != 0;
+            spaceKeyDown_ = keys[0x20] != 0;
+        }
+    } else {
+        HandleManualWalk();
+        HandleWorldClick();
+    }
 
     std::vector<render::DynItem> dyn;
     dyn.reserve(items_.size());
@@ -501,18 +511,20 @@ void Client::RenderTick() {
     }
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
-    if (const char* keys = mfb_keystatus()) {
-        const bool mDown = keys[0x4D] != 0;   // VK 'M'
-        if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
-        minimapKeyDown_ = mDown;
+    if (!chatInputActive_) {
+        if (const char* keys = mfb_keystatus()) {
+            const bool mDown = keys[0x4D] != 0;   // VK 'M'
+            if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
+            minimapKeyDown_ = mDown;
 
-        const bool spaceDown = keys[0x20] != 0;   // VK_SPACE
-        if (spaceDown && !spaceKeyDown_) {
-            u8 ob[8];
-            Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (SPACE)");
-            LogInfo("[door] OpenDoor (SPACE)\n");
+            const bool spaceDown = keys[0x20] != 0;   // VK_SPACE
+            if (spaceDown && !spaceKeyDown_) {
+                u8 ob[8];
+                Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (SPACE)");
+                LogInfo("[door] OpenDoor (SPACE)\n");
+            }
+            spaceKeyDown_ = spaceDown;
         }
-        spaceKeyDown_ = spaceDown;
     }
     if (minimapVisible_ && worldMap_ && radarColors_) {
         if (!minimap_) {
@@ -540,6 +552,7 @@ void Client::RenderTick() {
 
     DrawStatusBars();
     DrawSystemLog();
+    DrawChatInput();
     DrawOverheadText();
     DrawCursorOverlay();
 
@@ -552,6 +565,40 @@ void Client::RenderTick() {
         renderWindowOpen_ = false;
         cfg_.enableRenderer = false;
         LogInfo("[render] window closed; rendering disabled\n");
+    }
+}
+
+void Client::HandleRenderChatInput() {
+    uint32_t ch = 0;
+    while (mfb_poll_char(&ch)) {
+        if (!chatInputActive_) {
+            if (ch == '\r' || ch == '\n') {
+                chatInputActive_ = true;
+                chatInputLine_.clear();
+            }
+            continue;
+        }
+
+        if (ch == '\r' || ch == '\n') {
+            if (!chatInputLine_.empty())
+                HandleStdinLine(chatInputLine_.c_str());
+            chatInputLine_.clear();
+            chatInputActive_ = false;
+            continue;
+        }
+        if (ch == 27) {
+            chatInputLine_.clear();
+            chatInputActive_ = false;
+            continue;
+        }
+        if (ch == '\b') {
+            if (!chatInputLine_.empty())
+                chatInputLine_.pop_back();
+            continue;
+        }
+        if (ch == '\t') ch = ' ';
+        if (ch >= 32 && ch < 127 && chatInputLine_.size() < kChatInputMax)
+            chatInputLine_.push_back(static_cast<char>(ch));
     }
 }
 
@@ -624,14 +671,27 @@ void Client::DrawSystemLog() {
 
     const u16 fallback = HudColor(220, 220, 220);
     const int lh = text_->LineHeight();
+    const int bottomReserve = lh + 8;
     int drawn = 0;
     for (auto it = journal_.rbegin(); it != journal_.rend() && drawn < kSysLogLines; ++it) {
         if (it->ownerKind != JournalOwnerKind::System) continue;
-        const int y = renderer_->Height() - 10 - lh * (drawn + 1);
+        const int y = renderer_->Height() - 10 - bottomReserve - lh * (drawn + 1);
         text_->Draw(*renderer_, it->text, 10, y, JournalColor(it->hue, fallback),
                     render::TextRenderer::Align::Left);
         ++drawn;
     }
+}
+
+void Client::DrawChatInput() {
+    if (!renderer_ || !text_ || !chatInputActive_) return;
+
+    const int lh = text_->LineHeight();
+    const bool showCursor = ((NowMs() / 500) & 1) == 0;
+    std::string line = "> ";
+    line += chatInputLine_;
+    if (showCursor) line += '_';
+    text_->Draw(*renderer_, line, 10, renderer_->Height() - 10 - lh,
+                HudColor(245, 245, 245), render::TextRenderer::Align::Left);
 }
 
 void Client::DrawOverheadText() {
