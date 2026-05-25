@@ -34,10 +34,8 @@ int main(int argc, char** argv) {
     cfg.animDataPath     = "E:/uo/animdata.mul";
     cfg.animInfoPath     = "E:/uo/animinfo.mul";
     cfg.huesPath         = "E:/uo/hues.mul";
-    cfg.lightIdxPath     = "E:/uo/lightidx.mul";  // light shapes (ok if absent)
-    cfg.lightPath        = "E:/uo/light.mul";
     cfg.radarcolPath     = "E:/uo/radarcol.mul";  // minimap tile colors (ok if absent)
-#if 0
+#if 1
     cfg.renderWidth      = 960;   // framebuffer; window is renderScale x larger
     cfg.renderHeight     = 540;
     cfg.renderScale      = 2;     // 2x upscale (MiniFB does it for free)

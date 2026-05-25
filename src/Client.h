@@ -80,8 +80,6 @@ public:
         const char* animDataPath;     // animdata.mul (animated static/dynamic art)
         const char* animInfoPath;     // animinfo.mul (mobile walk/run timing)
         const char* huesPath;         // hues.mul (object/mobile hue ramps)
-        const char* lightIdxPath;     // lightidx.mul (light shape index)
-        const char* lightPath;        // light.mul (light shape bitmaps)
         const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
