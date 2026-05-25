@@ -2819,16 +2819,7 @@ void Client::BotPumpMoves() {
                 return;
             }
         }
-        // Idle self-click every few moves — mimics a human and doubles as a
-        // liveness ping on shards with bot heuristics.
-#if 0
-        if (movesSinceClick_ >= 3 && playerSerial_ != 0) {
-            u8 cbuf[8];
-            usize cn = build::SingleClick(cbuf, playerSerial_);
-            Send(cbuf, cn, "0x09 SingleClick (anti-bot)");
-            movesSinceClick_ = 0;
-        }
-#endif
+
         const u8 seq  = NextSeq();
         const u8 wire = botRun_ ? static_cast<u8>(dir | 0x80) : dir;
         u8 buf[16];
