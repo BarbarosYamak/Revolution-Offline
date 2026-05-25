@@ -63,6 +63,7 @@ set(UO_MUL_SOURCES
     src/mul/AnimDataLoader.cpp
     src/mul/AnimInfoLoader.cpp
     src/mul/HuesLoader.cpp
+    src/mul/LightLoader.cpp
 )
 add_library(uo_mul STATIC ${UO_MUL_SOURCES})
 target_include_directories(uo_mul PUBLIC include src)

@@ -34,11 +34,18 @@ int main(int argc, char** argv) {
     cfg.animDataPath     = "E:/uo/animdata.mul";
     cfg.animInfoPath     = "E:/uo/animinfo.mul";
     cfg.huesPath         = "E:/uo/hues.mul";
+    cfg.lightIdxPath     = "E:/uo/lightidx.mul";  // light shapes (ok if absent)
+    cfg.lightPath        = "E:/uo/light.mul";
     cfg.radarcolPath     = "E:/uo/radarcol.mul";  // minimap tile colors (ok if absent)
+#if 0
+    cfg.renderWidth      = 960;   // framebuffer; window is renderScale x larger
+    cfg.renderHeight     = 540;
+    cfg.renderScale      = 2;     // 2x upscale (MiniFB does it for free)
+#else
     cfg.renderWidth      = 800;   // framebuffer; window is renderScale x larger
     cfg.renderHeight     = 600;
     cfg.renderScale      = 1;     // 2x upscale (MiniFB does it for free)
-
+#endif
     for (int i = 1; i < argc; ++i) {
         if (std::strcmp(argv[i], "--headless") == 0) cfg.enableRenderer = false;
     }

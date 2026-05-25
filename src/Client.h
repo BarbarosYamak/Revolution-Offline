@@ -29,6 +29,7 @@ namespace uo::anim     { class AnimLoader; }
 namespace uo::animdata { class AnimDataLoader; }
 namespace uo::animinfo { class AnimInfoLoader; }
 namespace uo::hues     { class HuesLoader; }
+namespace uo::light    { class LightLoader; }
 namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
 namespace uo {
@@ -80,6 +81,8 @@ public:
         const char* animDataPath;     // animdata.mul (animated static/dynamic art)
         const char* animInfoPath;     // animinfo.mul (mobile walk/run timing)
         const char* huesPath;         // hues.mul (object/mobile hue ramps)
+        const char* lightIdxPath;     // lightidx.mul (light shape index)
+        const char* lightPath;        // light.mul (light shape bitmaps)
         const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
@@ -322,6 +325,7 @@ private:
     std::unique_ptr<uo::animdata::AnimDataLoader> animData_;
     std::unique_ptr<uo::animinfo::AnimInfoLoader> animInfo_;
     std::unique_ptr<uo::hues::HuesLoader>    hues_;
+    std::unique_ptr<uo::light::LightLoader>  light_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::TextRenderer> text_;
     std::unique_ptr<uo::render::Minimap>     minimap_;

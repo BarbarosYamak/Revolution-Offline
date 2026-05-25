@@ -4,6 +4,7 @@
 #include "uo/animdata.h"
 #include "uo/art.h"
 #include "uo/hues.h"
+#include "uo/light.h"
 #include "uo/map.h"
 #include "uo/texmap.h"
 #include "uo/tiledata.h"
@@ -44,6 +45,10 @@ struct Mob {
     std::vector<EquipAnim> equipAnims;
     u8 action = 0; u16 frame = 0;
     float ddx = 0.0f; float ddy = 0.0f;
+    // light.mul shape id of a held/worn light source (torch, lantern), -1 =
+    // none. Set Client-side from the equipped item's tiledata renderDimIndex so
+    // a carried torch casts a moving light pool like the original.
+    int light = -1;
 };
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per
@@ -60,7 +65,9 @@ public:
                      animdata::AnimDataLoader* animData = nullptr, u32 animTick = 0,
                      hues::HuesLoader* hues = nullptr,
                      anim::AnimLoader* anim = nullptr,
-                     const Mob* mobs = nullptr, usize nMobs = 0);
+                     const Mob* mobs = nullptr, usize nMobs = 0,
+                     light::LightLoader* lights = nullptr,
+                     int ambientDarkness = 0);
 
     const u16* Frame() const { return fb_.data(); }
     int Width()  const { return w_; }
@@ -73,14 +80,6 @@ public:
     void FillRect(int x, int y, int w, int h, u16 color);
     void BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy);
 
-    // Ambient night/cave darkening over the whole frame (the 2.0.7 light pass,
-    // ambient term only). `darkness` is the client's clamped level: 0 = full
-    // daylight (no-op), 31 = near black. Per 5-bit R/G/B channel the client
-    // applies linear attenuation `ch * (32 - darkness) / 32` (g_DarkenLUT in
-    // Light_BuildDarkenTables @0x40D3B0). The alpha/opaque bit is preserved.
-    // Call after RenderWorld but before HUD/minimap overlays so only the world
-    // dims, matching the original (gumps draw at full brightness).
-    void ApplyDarkness(int darkness);
 
     // Blit a sprite onto the frame at (dx,dy) skipping transparent (0) pixels
     // AND any pixel equal to `key` (a chroma-key background). UO cursor art
@@ -112,9 +111,25 @@ private:
     void TexTri(const u16* src, int texW, int texH, bool skipTransparent,
                 TexVert a, TexVert b, TexVert c);
 
+    // A collected point light: a screen-space center + the light.mul shape id
+    // (tiledata renderDimIndex). Gathered during the draw, resolved in the
+    // lighting pass.
+    struct LightSrc { int sx, sy; u16 lightId; };
+
+    // The 2.0.7 light pass (ambient term + point lights), ported from
+    // Light_ApplyToRect_LoRes @0x40F660. Builds a per-pixel "darkness" map
+    // (0 = full bright .. 31 = near black) seeded with `ambientDarkness`, then
+    // SUBTRACTS each light's baked intensity bitmap (clamp 0), and composites
+    // onto the frame with linear per-channel attenuation `ch*(32-d)/32`
+    // (g_DarkenLUT). No-op when fully lit and no lights. Runs over the world
+    // frame only; HUD/minimap are stamped afterwards at full brightness.
+    void ApplyLighting(light::LightLoader* lights, int ambientDarkness,
+                       const std::vector<LightSrc>& srcs);
+
     int w_;
     int h_;
     std::vector<u16> fb_;
+    std::vector<u8>  dark_;   // per-pixel darkness scratch (reused each frame)
 };
 
 }

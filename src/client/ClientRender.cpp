@@ -10,6 +10,7 @@
 #include "uo/animdata.h"
 #include "uo/animinfo.h"
 #include "uo/hues.h"
+#include "uo/light.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -160,6 +161,14 @@ void Client::RenderTick() {
         if (!cfg_.huesPath || !hues_->Load(cfg_.huesPath)) {
             LogWarn( "[render] hues.mul unavailable; object/mobile hue disabled\n");
             hues_.reset();
+        }
+        // light.mul shapes for point lights (torches, fires). Optional: without
+        // it only the flat ambient darkening (Tier 1) is applied.
+        light_ = std::make_unique<light::LightLoader>();
+        if (!cfg_.lightIdxPath || !cfg_.lightPath ||
+            !light_->Open(cfg_.lightIdxPath, cfg_.lightPath)) {
+            LogWarn( "[render] light.mul unavailable; point lights disabled\n");
+            light_.reset();
         }
         // radarcol.mul drives the minimap colours (real-client radar palette).
         // Optional: without it the minimap panel is simply not drawn.
@@ -440,6 +449,18 @@ void Client::RenderTick() {
         return static_cast<float>((t - 1.0) * (cur - prev));
     };
 
+    // A held/worn light source (torch, lantern): the renderDimIndex of the
+    // first equipped item flagged kFlagLightSource. -1 if none / no light.mul.
+    auto equipLightId = [&](const std::vector<EquipObj>& eq) -> int {
+        if (!light_ || !tileData_) return -1;
+        for (const EquipObj& e : eq) {
+            const tiledata::StaticTile& stt = tileData_->Static(e.graphic);
+            if (stt.flags & tiledata::kFlagLightSource)
+                return stt.renderDimIndex;
+        }
+        return -1;
+    };
+
     // Mobiles: nearby NPCs/players from the cache plus the local player. The
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
@@ -448,6 +469,7 @@ void Client::RenderTick() {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
+        mob.light = equipLightId(m.equip);
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
         if (moving) {
@@ -466,6 +488,7 @@ void Client::RenderTick() {
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
+    self.light = equipLightId(playerEquip_);
     const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
                              (nowAnim - lastStepMs_) < selfMoveMs;
@@ -493,22 +516,23 @@ void Client::RenderTick() {
     self.ddy = slideDelta(lastStepMs_, selfMoveMs, playerY_, prevPlayerY_);
     mobs.push_back(std::move(self));
 
+    // Ambient night/cave darkness (2.0.7 light pass). Forced off while
+    // alwaysDay_. darkness = clamp(overall - personal, 0..31); RenderWorld then
+    // carves lit pools around light.mul emitters and composites — world only,
+    // before the minimap/HUD overlays below, which stay at full brightness.
+    int darkness = 0;
+    if (!alwaysDay_) {
+        darkness = static_cast<int>(overallLightLevel_) -
+                   static_cast<int>(personalLightLevel_);
+        if (darkness < 0) darkness = 0;
+        if (darkness > 31) darkness = 31;
+    }
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
                            animData_.get(), static_cast<uo::u32>(nowAnim / kAnimListTickMs),
                            hues_.get(),
-                           anim_.get(), mobs.data(), mobs.size());
-
-    // Ambient night/cave darkening (2.0.7 light pass, ambient term). Forced off
-    // while alwaysDay_. darkness = clamp(overall - personal, 0..31). Applied to
-    // the world only — before the minimap/HUD overlays below, which stay bright.
-    if (!alwaysDay_) {
-        int darkness = static_cast<int>(overallLightLevel_) -
-                       static_cast<int>(personalLightLevel_);
-        if (darkness < 0) darkness = 0;
-        if (darkness > 31) darkness = 31;
-        renderer_->ApplyDarkness(darkness);
-    }
+                           anim_.get(), mobs.data(), mobs.size(),
+                           light_.get(), darkness);
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
     if (!chatInputActive_) {
@@ -557,7 +581,14 @@ void Client::RenderTick() {
     DrawCursorOverlay();
 
     char title[64];
-    std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]", playerX_, playerY_, static_cast<int>(playerZ_));
+    if (nav_.bot.active || !nav_.bot.path.empty()) {
+        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d] path=%zu",
+                      playerX_, playerY_, static_cast<int>(playerZ_),
+                      nav_.bot.path.size());
+    } else {
+        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]",
+                      playerX_, playerY_, static_cast<int>(playerZ_));
+    }
     mfb_set_title(title);
     if (!mfb_update(renderer_->Frame(), 0)) {
         // User closed the window — stop drawing, keep the bot running.

@@ -71,8 +71,11 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            animdata::AnimDataLoader* animData, u32 animTick,
                            hues::HuesLoader* hues,
                            anim::AnimLoader* anim,
-                           const Mob* mobs, usize nMobs) {
+                           const Mob* mobs, usize nMobs,
+                           light::LightLoader* lights,
+                           int ambientDarkness) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
+    std::vector<LightSrc> lightSrcs;
 
     // Cells whose screen position can land on-screen. The margin pads for tall
     // statics anchored below the window and for elevation offsets.
@@ -360,6 +363,12 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     d.dx = sx - sp->width / 2;
                     d.dy = sy + kTile - sp->height;   // bottom-anchored
                     draws.push_back(d);
+
+                    // Light id comes from the BASE graphic (the client stores
+                    // the lit object by bodyType, not the animated frame) — so
+                    // an animated flame keeps a steady pool instead of blinking.
+                    if (lights && (baseStt.flags & tiledata::kFlagLightSource))
+                        lightSrcs.push_back({sx, sy + kHalfTile, baseStt.renderDimIndex});
                 }
             }
         }
@@ -396,6 +405,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.dx = sx - sp->width / 2;
         d.dy = sy + kTile - sp->height;
         draws.push_back(d);
+
+        if (lights && (baseStt.flags & tiledata::kFlagLightSource))
+            lightSrcs.push_back({sx, sy + kHalfTile, baseStt.renderDimIndex});
     }
 
     // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
@@ -424,6 +436,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             d.dx = sx - fr->anchorX;
             d.dy = sy + kHalfTile - fr->anchorY;  // command origin at cell centre
             draws.push_back(d);
+
+            if (lights && m.light >= 0)
+                lightSrcs.push_back({sx, sy + kHalfTile, static_cast<u16>(m.light)});
 
             // Worn gear over the body. Each equip frame is a body-like anim with
             // its own anchor, so it lines up at the same floor point. They share
@@ -487,6 +502,8 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             BlitRaw(d.src, d.sw, d.sh, d.dx, d.dy, d.transparent, hues, d.hue);
         }
     }
+
+    ApplyLighting(lights, ambientDarkness, lightSrcs);
 }
 
 void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
@@ -590,16 +607,49 @@ void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,
     if (outSy) *outSy = sy;
 }
 
-void Renderer::ApplyDarkness(int darkness) {
-    if (darkness <= 0) return;
-    if (darkness > 31) darkness = 31;
-    const int scale = 32 - darkness;   // ch * scale / 32, per 5-bit channel
-    for (u16& p : fb_) {
+void Renderer::ApplyLighting(light::LightLoader* lights, int ambientDarkness,
+                             const std::vector<LightSrc>& srcs) {
+    if (ambientDarkness <= 0) return;             // full daylight: nothing to do
+    if (ambientDarkness > 31) ambientDarkness = 31;
+
+    // Per-pixel darkness map seeded with the ambient term.
+    dark_.assign(static_cast<usize>(w_) * h_, static_cast<u8>(ambientDarkness));
+
+    // Carve out lit pools: subtract each light's baked intensity bitmap,
+    // centered on its screen position, clamping at 0 (= fully lit).
+    if (lights) {
+        for (const LightSrc& ls : srcs) {
+            const light::Shape* sh = lights->Get(ls.lightId);
+            if (!sh) continue;
+            const int x0 = ls.sx - sh->width / 2;
+            const int y0 = ls.sy - sh->height / 2;
+            for (int row = 0; row < sh->height; ++row) {
+                const int py = y0 + row;
+                if (py < 0 || py >= h_) continue;
+                const u8* srow = &sh->px[static_cast<usize>(row) * sh->width];
+                u8* drow = &dark_[static_cast<usize>(py) * w_];
+                for (int col = 0; col < sh->width; ++col) {
+                    const int px = x0 + col;
+                    if (px < 0 || px >= w_) continue;
+                    const int v = drow[px] - srow[col];
+                    drow[px] = v < 0 ? 0 : static_cast<u8>(v);
+                }
+            }
+        }
+    }
+
+    // Composite: darken each 5-bit channel by the per-pixel darkness via the
+    // client's linear curve `ch*(32-d)/32` (g_DarkenLUT). Alpha bit preserved.
+    for (usize i = 0; i < fb_.size(); ++i) {
+        const int d = dark_[i];
+        if (d <= 0) continue;                     // lit: leave the true color
+        const int scale = 32 - d;
+        const u16 p = fb_[i];
         const u16 a = p & 0x8000;
         const int r = ((p >> 10) & 0x1F) * scale / 32;
         const int g = ((p >> 5) & 0x1F) * scale / 32;
         const int b = (p & 0x1F) * scale / 32;
-        p = static_cast<u16>(a | (r << 10) | (g << 5) | b);
+        fb_[i] = static_cast<u16>(a | (r << 10) | (g << 5) | b);
     }
 }
 
