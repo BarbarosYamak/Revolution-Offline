@@ -10,7 +10,6 @@
 #include "uo/animdata.h"
 #include "uo/animinfo.h"
 #include "uo/hues.h"
-#include "uo/light.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -161,14 +160,6 @@ void Client::RenderTick() {
         if (!cfg_.huesPath || !hues_->Load(cfg_.huesPath)) {
             LogWarn( "[render] hues.mul unavailable; object/mobile hue disabled\n");
             hues_.reset();
-        }
-        // light.mul shapes for point lights (torches, fires). Optional: without
-        // it only the flat ambient darkening (Tier 1) is applied.
-        light_ = std::make_unique<light::LightLoader>();
-        if (!cfg_.lightIdxPath || !cfg_.lightPath ||
-            !light_->Open(cfg_.lightIdxPath, cfg_.lightPath)) {
-            LogWarn( "[render] light.mul unavailable; point lights disabled\n");
-            light_.reset();
         }
         // radarcol.mul drives the minimap colours (real-client radar palette).
         // Optional: without it the minimap panel is simply not drawn.
@@ -449,14 +440,14 @@ void Client::RenderTick() {
         return static_cast<float>((t - 1.0) * (cur - prev));
     };
 
-    // A held/worn light source (torch, lantern): the renderDimIndex of the
-    // first equipped item flagged kFlagLightSource. -1 if none / no light.mul.
-    auto equipLightId = [&](const std::vector<EquipObj>& eq) -> int {
-        if (!light_ || !tileData_) return -1;
+    // A held/worn light source (torch, lantern): the item graphic of the first
+    // equipped item flagged kFlagLightSource (the renderer classifies its
+    // color/radius). -1 if none.
+    auto equipLightGraphic = [&](const std::vector<EquipObj>& eq) -> int {
+        if (!tileData_) return -1;
         for (const EquipObj& e : eq) {
-            const tiledata::StaticTile& stt = tileData_->Static(e.graphic);
-            if (stt.flags & tiledata::kFlagLightSource)
-                return stt.renderDimIndex;
+            if (tileData_->Static(e.graphic).flags & tiledata::kFlagLightSource)
+                return e.graphic;
         }
         return -1;
     };
@@ -469,7 +460,7 @@ void Client::RenderTick() {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
-        mob.light = equipLightId(m.equip);
+        mob.light = equipLightGraphic(m.equip);
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
         if (moving) {
@@ -488,7 +479,7 @@ void Client::RenderTick() {
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
-    self.light = equipLightId(playerEquip_);
+    self.light = equipLightGraphic(playerEquip_);
     const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
                              (nowAnim - lastStepMs_) < selfMoveMs;
@@ -532,7 +523,7 @@ void Client::RenderTick() {
                            animData_.get(), static_cast<uo::u32>(nowAnim / kAnimListTickMs),
                            hues_.get(),
                            anim_.get(), mobs.data(), mobs.size(),
-                           light_.get(), darkness);
+                           darkness);
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
     if (!chatInputActive_) {

@@ -72,10 +72,10 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            hues::HuesLoader* hues,
                            anim::AnimLoader* anim,
                            const Mob* mobs, usize nMobs,
-                           light::LightLoader* lights,
                            int ambientDarkness) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
     std::vector<LightSrc> lightSrcs;
+    const bool collectLights = ambientDarkness > 0;
 
     // Cells whose screen position can land on-screen. The margin pads for tall
     // statics anchored below the window and for elevation offsets.
@@ -245,6 +245,33 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         return zmap[static_cast<usize>(y - gy0) * gw + (x - gx0)];
     };
 
+    // Light occlusion, mirroring the client's light pass: a light is suppressed
+    // when the draw cell diagonally toward the camera (x+1,y+1) holds a solid
+    // tile (wall/roof) above it — so a building's own wall/roof blocks its
+    // interior and window light from outside, instead of blazing through.
+    std::vector<map::StaticItem> occBuf(2048);
+    auto lightOccluded = [&](i32 wx, i32 wy, int z) -> bool {
+        const i32 cx = wx + 1, cy = wy + 1;
+        if (cx < 0 || cy < 0) return false;
+        u32 n = 0;
+        if (!map.ReadStatics(static_cast<u32>(cx) / 8, static_cast<u32>(cy) / 8,
+                             occBuf.data(), static_cast<u32>(occBuf.size()), &n))
+            return false;
+        const u8 lx = static_cast<u8>(cx & 7), ly = static_cast<u8>(cy & 7);
+        for (u32 i = 0; i < n; ++i) {
+            const map::StaticItem& s = occBuf[i];
+            if (s.cellX != lx || s.cellY != ly) continue;
+            if (s.z <= z + 4) continue;                 // not above the light
+            if (culled(s.z)) continue;                  // hidden by the roof
+                                                        // cutoff (we're inside)
+                                                        // -> it can't occlude
+            if (td.Static(s.itemId).flags &
+                (tiledata::kFlagWall | tiledata::kFlagImpassable | tiledata::kFlagRoof))
+                return true;
+        }
+        return false;
+    };
+
     for (u32 by = by0; by <= by1; ++by) {
         for (u32 bx = bx0; bx <= bx1; ++bx) {
             // --- Land (drawn immediately; always under statics) ------------
@@ -364,11 +391,12 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     d.dy = sy + kTile - sp->height;   // bottom-anchored
                     draws.push_back(d);
 
-                    // Light id comes from the BASE graphic (the client stores
-                    // the lit object by bodyType, not the animated frame) — so
-                    // an animated flame keeps a steady pool instead of blinking.
-                    if (lights && (baseStt.flags & tiledata::kFlagLightSource))
-                        lightSrcs.push_back({sx, sy + kHalfTile, baseStt.renderDimIndex});
+                    // Classify by the BASE graphic (the client stores the lit
+                    // object by bodyType, not the animated frame) — so a flame
+                    // keeps a steady pool instead of blinking with its anim.
+                    if (collectLights && (baseStt.flags & tiledata::kFlagLightSource) &&
+                        !lightOccluded(wx, wy, s.z))
+                        lightSrcs.push_back({sx, sy + kHalfTile, s.itemId});
                 }
             }
         }
@@ -406,8 +434,9 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.dy = sy + kTile - sp->height;
         draws.push_back(d);
 
-        if (lights && (baseStt.flags & tiledata::kFlagLightSource))
-            lightSrcs.push_back({sx, sy + kHalfTile, baseStt.renderDimIndex});
+        if (collectLights && (baseStt.flags & tiledata::kFlagLightSource) &&
+            !lightOccluded(it.x, it.y, it.z))
+            lightSrcs.push_back({sx, sy + kHalfTile, static_cast<u16>(it.itemId + it.gfxOffset)});
     }
 
     // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
@@ -437,7 +466,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             d.dy = sy + kHalfTile - fr->anchorY;  // command origin at cell centre
             draws.push_back(d);
 
-            if (lights && m.light >= 0)
+            if (collectLights && m.light >= 0 && !lightOccluded(m.x, m.y, m.z))
                 lightSrcs.push_back({sx, sy + kHalfTile, static_cast<u16>(m.light)});
 
             // Worn gear over the body. Each equip frame is a body-like anim with
@@ -503,7 +532,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         }
     }
 
-    ApplyLighting(lights, ambientDarkness, lightSrcs);
+    ApplyLighting(ambientDarkness, lightSrcs);
 }
 
 void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
@@ -607,48 +636,76 @@ void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,
     if (outSy) *outSy = sy;
 }
 
-void Renderer::ApplyLighting(light::LightLoader* lights, int ambientDarkness,
-                             const std::vector<LightSrc>& srcs) {
+namespace {
+
+// Per-light look: corona radius (screen px) + color weights (0..255 per
+// channel). A light cancels ambient darkness scaled by these weights, so a
+// warm weight (low G/B) leaves a reddish pool, white leaves a neutral pool.
+// Ranges are this shard's graphics — tune freely; unknown lights default white.
+struct LightStyle { int radius; u8 wr, wg, wb; };
+
+LightStyle ClassifyLight(u16 g) {
+    auto in = [&](u16 a, u16 b) { return g >= a && g <= b; };
+    if (in(0x3E02, 0x3E0B))                       // campfire / fire field
+        return {120, 255, 130,  55};
+    if (in(0x3914, 0x3929))                       // torches (wall / held)
+        return { 78, 255, 140,  60};
+    if (in(0x1ECD, 0x1ED2))                       // magic fire orbs
+        return { 70, 255, 120,  60};
+    if (in(0x0A0F, 0x0A1C) || in(0x09FB, 0x0A29)) // candles / candelabra
+        return { 46, 255, 150,  80};
+    return {140, 255, 250, 235};                  // lamps / lanterns / windows
+}
+
+}  // namespace
+
+void Renderer::ApplyLighting(int ambientDarkness, const std::vector<LightSrc>& srcs) {
     if (ambientDarkness <= 0) return;             // full daylight: nothing to do
     if (ambientDarkness > 31) ambientDarkness = 31;
 
-    // Per-pixel darkness map seeded with the ambient term.
-    dark_.assign(static_cast<usize>(w_) * h_, static_cast<u8>(ambientDarkness));
+    // Per-pixel RGB darkness map seeded with the (neutral) ambient term.
+    dark_.assign(static_cast<usize>(w_) * h_ * 3u, static_cast<u8>(ambientDarkness));
 
-    // Carve out lit pools: subtract each light's baked intensity bitmap,
-    // centered on its screen position, clamping at 0 (= fully lit).
-    if (lights) {
-        for (const LightSrc& ls : srcs) {
-            const light::Shape* sh = lights->Get(ls.lightId);
-            if (!sh) continue;
-            const int x0 = ls.sx - sh->width / 2;
-            const int y0 = ls.sy - sh->height / 2;
-            for (int row = 0; row < sh->height; ++row) {
-                const int py = y0 + row;
-                if (py < 0 || py >= h_) continue;
-                const u8* srow = &sh->px[static_cast<usize>(row) * sh->width];
-                u8* drow = &dark_[static_cast<usize>(py) * w_];
-                for (int col = 0; col < sh->width; ++col) {
-                    const int px = x0 + col;
-                    if (px < 0 || px >= w_) continue;
-                    const int v = drow[px] - srow[col];
-                    drow[px] = v < 0 ? 0 : static_cast<u8>(v);
-                }
+    // Carve out lit pools: a smooth radial corona reduces darkness per channel
+    // by the light's color weight, clamped at 0 (= fully lit). Quadratic
+    // falloff (1 - d^2/r^2)^2 — soft edge, no sqrt.
+    for (const LightSrc& ls : srcs) {
+        const LightStyle st = ClassifyLight(ls.graphic);
+        const int r = st.radius;
+        if (r <= 0) continue;
+        const i64 r2 = static_cast<i64>(r) * r;
+        const int x0 = std::max(0, ls.sx - r), x1 = std::min(w_ - 1, ls.sx + r);
+        const int y0 = std::max(0, ls.sy - r), y1 = std::min(h_ - 1, ls.sy + r);
+        for (int py = y0; py <= y1; ++py) {
+            const i64 dy = py - ls.sy;
+            u8* drow = &dark_[(static_cast<usize>(py) * w_) * 3u];
+            for (int px = x0; px <= x1; ++px) {
+                const i64 dx = px - ls.sx;
+                const i64 d2 = dx * dx + dy * dy;
+                if (d2 >= r2) continue;
+                const float f = 1.0f - static_cast<float>(d2) / static_cast<float>(r2);
+                const float fall = f * f;             // soft edge
+                u8* dp = &drow[static_cast<usize>(px) * 3u];
+                const int sr = static_cast<int>(fall * st.wr / 255.0f * ambientDarkness + 0.5f);
+                const int sg = static_cast<int>(fall * st.wg / 255.0f * ambientDarkness + 0.5f);
+                const int sb = static_cast<int>(fall * st.wb / 255.0f * ambientDarkness + 0.5f);
+                dp[0] = static_cast<u8>(std::max(0, dp[0] - sr));
+                dp[1] = static_cast<u8>(std::max(0, dp[1] - sg));
+                dp[2] = static_cast<u8>(std::max(0, dp[2] - sb));
             }
         }
     }
 
-    // Composite: darken each 5-bit channel by the per-pixel darkness via the
-    // client's linear curve `ch*(32-d)/32` (g_DarkenLUT). Alpha bit preserved.
+    // Composite: darken each 5-bit channel by its per-pixel darkness via the
+    // linear curve `ch*(32-d)/32`. Alpha bit preserved.
     for (usize i = 0; i < fb_.size(); ++i) {
-        const int d = dark_[i];
-        if (d <= 0) continue;                     // lit: leave the true color
-        const int scale = 32 - d;
+        const u8* dp = &dark_[i * 3u];
+        if (dp[0] == 0 && dp[1] == 0 && dp[2] == 0) continue;   // fully lit
         const u16 p = fb_[i];
         const u16 a = p & 0x8000;
-        const int r = ((p >> 10) & 0x1F) * scale / 32;
-        const int g = ((p >> 5) & 0x1F) * scale / 32;
-        const int b = (p & 0x1F) * scale / 32;
+        const int r = ((p >> 10) & 0x1F) * (32 - dp[0]) / 32;
+        const int g = ((p >> 5)  & 0x1F) * (32 - dp[1]) / 32;
+        const int b = ( p        & 0x1F) * (32 - dp[2]) / 32;
         fb_[i] = static_cast<u16>(a | (r << 10) | (g << 5) | b);
     }
 }

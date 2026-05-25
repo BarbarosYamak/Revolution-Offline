@@ -4,7 +4,6 @@
 #include "uo/animdata.h"
 #include "uo/art.h"
 #include "uo/hues.h"
-#include "uo/light.h"
 #include "uo/map.h"
 #include "uo/texmap.h"
 #include "uo/tiledata.h"
@@ -45,9 +44,9 @@ struct Mob {
     std::vector<EquipAnim> equipAnims;
     u8 action = 0; u16 frame = 0;
     float ddx = 0.0f; float ddy = 0.0f;
-    // light.mul shape id of a held/worn light source (torch, lantern), -1 =
-    // none. Set Client-side from the equipped item's tiledata renderDimIndex so
-    // a carried torch casts a moving light pool like the original.
+    // Item graphic of a held/worn light source (torch, lantern), -1 = none.
+    // Set Client-side from the equipped item when its tiledata is flagged a
+    // light source, so a carried torch casts a moving, classified light pool.
     int light = -1;
 };
 
@@ -66,7 +65,6 @@ public:
                      hues::HuesLoader* hues = nullptr,
                      anim::AnimLoader* anim = nullptr,
                      const Mob* mobs = nullptr, usize nMobs = 0,
-                     light::LightLoader* lights = nullptr,
                      int ambientDarkness = 0);
 
     const u16* Frame() const { return fb_.data(); }
@@ -111,25 +109,23 @@ private:
     void TexTri(const u16* src, int texW, int texH, bool skipTransparent,
                 TexVert a, TexVert b, TexVert c);
 
-    // A collected point light: a screen-space center + the light.mul shape id
-    // (tiledata renderDimIndex). Gathered during the draw, resolved in the
-    // lighting pass.
-    struct LightSrc { int sx, sy; u16 lightId; };
+    // A collected point light: a screen-space center + the emitter's item
+    // graphic (used to classify color/radius). Gathered during the draw.
+    struct LightSrc { int sx, sy; u16 graphic; };
 
-    // The 2.0.7 light pass (ambient term + point lights), ported from
-    // Light_ApplyToRect_LoRes @0x40F660. Builds a per-pixel "darkness" map
-    // (0 = full bright .. 31 = near black) seeded with `ambientDarkness`, then
-    // SUBTRACTS each light's baked intensity bitmap (clamp 0), and composites
-    // onto the frame with linear per-channel attenuation `ch*(32-d)/32`
-    // (g_DarkenLUT). No-op when fully lit and no lights. Runs over the world
-    // frame only; HUD/minimap are stamped afterwards at full brightness.
-    void ApplyLighting(light::LightLoader* lights, int ambientDarkness,
-                       const std::vector<LightSrc>& srcs);
+    // Procedural night lighting. Builds a per-pixel 3-channel "darkness" map
+    // (0 = full bright .. 31 = near black per R/G/B) seeded with
+    // `ambientDarkness`, then SUBTRACTS a smooth radial corona for each light
+    // (color + radius classified from its graphic — warm for fire/candles,
+    // white for lamps), and composites with the linear curve `ch*(32-d)/32`.
+    // No-op when fully lit. Runs over the world frame only; HUD/minimap are
+    // stamped afterwards at full brightness.
+    void ApplyLighting(int ambientDarkness, const std::vector<LightSrc>& srcs);
 
     int w_;
     int h_;
     std::vector<u16> fb_;
-    std::vector<u8>  dark_;   // per-pixel darkness scratch (reused each frame)
+    std::vector<u8>  dark_;   // per-pixel RGB darkness scratch (3*w*h, reused)
 };
 
 }

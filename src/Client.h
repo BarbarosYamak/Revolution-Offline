@@ -29,7 +29,6 @@ namespace uo::anim     { class AnimLoader; }
 namespace uo::animdata { class AnimDataLoader; }
 namespace uo::animinfo { class AnimInfoLoader; }
 namespace uo::hues     { class HuesLoader; }
-namespace uo::light    { class LightLoader; }
 namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
 namespace uo {
@@ -325,7 +324,6 @@ private:
     std::unique_ptr<uo::animdata::AnimDataLoader> animData_;
     std::unique_ptr<uo::animinfo::AnimInfoLoader> animInfo_;
     std::unique_ptr<uo::hues::HuesLoader>    hues_;
-    std::unique_ptr<uo::light::LightLoader>  light_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::TextRenderer> text_;
     std::unique_ptr<uo::render::Minimap>     minimap_;
