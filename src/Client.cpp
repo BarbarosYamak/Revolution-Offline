@@ -33,7 +33,7 @@ namespace uo {
 namespace {
 
 // Recent mobile cache and delayed name query handling.
-constexpr usize kMobileCacheMax = 64;
+constexpr usize kMobileCacheMax = 512;
 constexpr i64   kMobilesNamesTimeoutMs = 500;
 // UO Demo / Sphere-style shards kick the connection after ~60s of
 // client-side silence. Stay well inside the window: 20s gap.
