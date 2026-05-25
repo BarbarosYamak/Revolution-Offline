@@ -18,6 +18,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <cstdio>
 #include <memory>
 #include <random>
@@ -27,7 +28,7 @@ namespace uo {
 
 namespace {
 
-constexpr int   kHudFontHeight = 13;
+constexpr int   kHudFontHeight = 14;
 constexpr int   kSysLogLines = 8;
 constexpr i64   kOverheadMs = 6000;
 constexpr int   kHeadOffset = 44;
@@ -636,18 +637,59 @@ void Client::DrawSystemLog() {
 void Client::DrawOverheadText() {
     if (!renderer_ || !text_) return;
 
-    struct LabelTarget { u32 serial; i32 x; i32 y; i8 z; u16 body; u8 dir; std::string name; };
+    struct LabelTarget {
+        u32 serial;
+        i32 x;
+        i32 y;
+        i8 z;
+        u16 body;
+        u8 dir;
+        float ddx;
+        float ddy;
+        std::string name;
+    };
     const i64 now = NowMs();
+    auto moveDurationMs = [&](uo::u16 body, bool running) -> i64 {
+        const u8 ticks = animInfo_ ? animInfo_->MoveFrameCount(body, running)
+                                   : static_cast<u8>(running ? 2 : 4);
+        return static_cast<i64>(ticks ? ticks : 1) * kAnimListTickMs;
+    };
+    auto slideDelta = [&](i64 movedMs, i64 durMs, uo::i32 cur, uo::i32 prev) -> float {
+        if (movedMs == 0 || durMs <= 0) return 0.0f;
+        const i64 el = now - movedMs;
+        if (el < 0 || el >= durMs) return 0.0f;
+        const double t = static_cast<double>(el) / static_cast<double>(durMs);
+        return static_cast<float>((t - 1.0) * (cur - prev));
+    };
+
+    const i64 playerMoveMs = moveDurationMs(playerBody_, player_.running);
+    const float playerDdx = slideDelta(lastStepMs_, playerMoveMs, playerX_, prevPlayerX_);
+    const float playerDdy = slideDelta(lastStepMs_, playerMoveMs, playerY_, prevPlayerY_);
+    auto projectLabel = [&](i32 x, i32 y, i8 z, float ddx, float ddy, int* outSx, int* outSy) {
+        renderer_->WorldToScreen(x, y, z, playerX_, playerY_, playerZ_, outSx, outSy);
+        constexpr int kHalfTile = 22;
+        const int camOffX = static_cast<int>(std::lround(-(playerDdx - playerDdy) * kHalfTile));
+        const int camOffY = static_cast<int>(std::lround(-(playerDdx + playerDdy) * kHalfTile));
+        const int mobOffX = static_cast<int>(std::lround((ddx - ddy) * kHalfTile));
+        const int mobOffY = static_cast<int>(std::lround((ddx + ddy) * kHalfTile));
+        if (outSx) *outSx += camOffX + mobOffX;
+        if (outSy) *outSy += camOffY + mobOffY;
+    };
+
     std::vector<LabelTarget> targets;
     if (!player_.name.empty()) {
         targets.push_back({playerSerial_, playerX_, playerY_, playerZ_,
-                           playerBody_, playerFacing_, player_.name});
+                           playerBody_, playerFacing_, playerDdx, playerDdy,
+                           player_.name});
     }
     for (const auto& m : mobileCache_) {
+        const i64 mobMoveMs = moveDurationMs(m.body, m.running);
+        const float mobDdx = slideDelta(m.movedMs, mobMoveMs, m.x, m.prevX);
+        const float mobDdy = slideDelta(m.movedMs, mobMoveMs, m.y, m.prevY);
         auto it = mobileNames_.find(m.serial);
         if (it == mobileNames_.end() || it->second.empty()) {
             int sx = 0, sy = 0;
-            renderer_->WorldToScreen(m.x, m.y, m.z, playerX_, playerY_, playerZ_, &sx, &sy);
+            projectLabel(m.x, m.y, m.z, mobDdx, mobDdy, &sx, &sy);
             if (sx >= -120 && sx <= renderer_->Width() + 120 &&
                 sy >= -120 && sy <= renderer_->Height() + 80) {
                 const auto p = overheadNameProbeMs_.find(m.serial);
@@ -660,7 +702,8 @@ void Client::DrawOverheadText() {
             }
             continue;
         }
-        targets.push_back({m.serial, m.x, m.y, m.z, m.body, m.dir, it->second});
+        targets.push_back({m.serial, m.x, m.y, m.z, m.body, m.dir,
+                           mobDdx, mobDdy, it->second});
     }
 
     const u16 nameColor = HudColor(135, 210, 255);
@@ -689,14 +732,15 @@ void Client::DrawOverheadText() {
 
     for (const auto& t : targets) {
         int sx = 0, sy = 0;
-        renderer_->WorldToScreen(t.x, t.y, t.z, playerX_, playerY_, playerZ_, &sx, &sy);
+        projectLabel(t.x, t.y, t.z, t.ddx, t.ddy, &sx, &sy);
         if (sx < -120 || sx > renderer_->Width() + 120 ||
             sy < -120 || sy > renderer_->Height() + 80) {
             continue;
         }
 
         int y = sy - textTopOffset(t.body, t.dir) - lh;
-        text_->Draw(*renderer_, t.name, sx, y, nameColor, render::TextRenderer::Align::Center);
+        text_->Draw(*renderer_, t.name, sx, y, nameColor,
+                    render::TextRenderer::Align::Center);
 
         int speechLines = 0;
         for (auto it = journal_.rbegin(); it != journal_.rend() && speechLines < 2; ++it) {
