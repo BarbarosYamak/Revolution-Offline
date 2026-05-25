@@ -26,6 +26,7 @@ set(UO_CLIENT_SOURCES
     src/main.cpp
     src/Client.cpp
     src/Logger.cpp
+    src/client/ClientRender.cpp
     src/net/Socket.cpp
     src/net/PacketStream.cpp
     src/net/Huffman.cpp
