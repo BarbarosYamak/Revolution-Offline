@@ -26,6 +26,7 @@ namespace uo::world    { class World; }
 namespace uo::art      { class ArtLoader; }
 namespace uo::texmap   { class TexmapLoader; }
 namespace uo::anim     { class AnimLoader; }
+namespace uo::animdata { class AnimDataLoader; }
 namespace uo::render   { class Renderer; class TextRenderer; class Minimap; class RadarColors; }
 
 namespace uo {
@@ -74,6 +75,7 @@ public:
         const char* texPath;          // texmaps.mul (land textures, sloped tiles)
         const char* animIdxPath;      // anim.idx (body animation index)
         const char* animPath;         // anim.mul (body animations, still frames)
+        const char* animDataPath;     // animdata.mul (animated static/dynamic art)
         const char* radarcolPath;     // radarcol.mul (per-tile minimap colors)
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
@@ -267,12 +269,21 @@ private:
     i32   prevPlayerX_ = 0; i32 prevPlayerY_ = 0;  // cell before the current step (slide interp)
     i64   stepDurMs_ = 0;       // duration of the current step (run/walk cadence)
     struct IdleAnimState {
-        i64 startMs = 0;
         i64 nextProbeMs = 0;
+        i64 lastTickMs = 0;
         u8 action = 0;
-        u16 frameCount = 0;
+        u16 maxFrames = 0;
+        u16 delayPerFrame = 0;
+        u16 maxDuration = 0;
+        u16 currentFrame = 0;
+        u16 currentDuration = 0;
+        u16 pad = 0;
+        u16 repeatCount = 0;
+        u16 renderedFrame = 0;
+        u8 renderedAction = 0;
         bool active = false;
-        bool repeat = false;
+        bool reverse = false;
+        bool hasRenderedFrame = false;
     };
     IdleAnimState playerIdleAnim_;
     // Navigation owns predicted movement, bot route/follow state, and
@@ -293,6 +304,7 @@ private:
     std::unique_ptr<uo::art::ArtLoader>      art_;
     std::unique_ptr<uo::texmap::TexmapLoader> texmaps_;
     std::unique_ptr<uo::anim::AnimLoader>    anim_;
+    std::unique_ptr<uo::animdata::AnimDataLoader> animData_;
     std::unique_ptr<uo::render::Renderer>    renderer_;
     std::unique_ptr<uo::render::TextRenderer> text_;
     std::unique_ptr<uo::render::Minimap>     minimap_;

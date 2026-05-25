@@ -7,6 +7,7 @@
 #include "uo/texmap.h"
 #include "uo/map.h"
 #include "uo/anim.h"
+#include "uo/animdata.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -101,9 +102,7 @@ constexpr i64 kAnimIntervalWalkMs = 150;
 constexpr i64 kAnimIntervalRunMs  = 100;
 constexpr i64 kMoveAnimWindowMs   = 600;
 constexpr i64 kIdleFidgetDelayMs  = 15000; // Mobile_TryPlayIdleAnimation gate.
-// Idle fidgets pass animationDelay=0, but AnimList_TickAll advances only when
-// pad_1B6 > delay, so each frame takes two ~76ms render/update ticks.
-constexpr i64 kIdleFidgetFrameMs  = 152;
+constexpr i64 kAnimListTickMs = 76;        // GameLoop_Update object/anim gate.
 } // namespace
 
 void Client::RenderTick() {
@@ -139,6 +138,11 @@ void Client::RenderTick() {
             !anim_->Open(cfg_.animIdxPath, cfg_.animPath)) {
             LogWarn( "[render] anim MULs unavailable; mobiles won't draw\n");
             anim_.reset();
+        }
+        animData_ = std::make_unique<animdata::AnimDataLoader>();
+        if (!cfg_.animDataPath || !animData_->Load(cfg_.animDataPath)) {
+            LogWarn( "[render] animdata.mul unavailable; static item animation disabled\n");
+            animData_.reset();
         }
         // radarcol.mul drives the minimap colours (real-client radar palette).
         // Optional: without it the minimap panel is simply not drawn.
@@ -229,18 +233,97 @@ void Client::RenderTick() {
     };
 
     auto pickIdleFidget = [](uo::u16 body, bool secondChoice, uo::u8& action,
-                             bool& repeat) {
-        repeat = false;
+                             uo::u16& maxFrames, uo::u16& repeatCount) {
+        repeatCount = 0;
         const BodyKind k = KindOf(body);
         if (k == BodyKind::People) {
             action = secondChoice ? 5u : 6u; // people fidgets from Mobile_TryPlayIdleAnimation.
-            repeat = secondChoice;
+            maxFrames = 5;
+            repeatCount = secondChoice ? 1u : 0u;
         } else if (k == BodyKind::Animal) {
             action = secondChoice ? 9u : 10u;
+            maxFrames = secondChoice ? 5u : 3u;
         } else if (body >= 150u) {
             action = secondChoice ? 3u : 4u; // sea/anim2 monster class.
+            maxFrames = secondChoice ? 15u : 20u;
         } else {
             action = secondChoice ? 17u : 18u;
+            maxFrames = 5;
+            repeatCount = (body == 21u && secondChoice) ? 1u : 0u;
+        }
+    };
+
+    auto stopIdleAnim = [&](IdleAnimState& idle) {
+        idle.active = false;
+        idle.hasRenderedFrame = false;
+        idle.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+    };
+
+    auto renderIdleFrame = [](IdleAnimState& idle) {
+        idle.renderedAction = static_cast<uo::u8>(idle.action + idle.currentDuration);
+        idle.renderedFrame = idle.currentFrame;
+        idle.hasRenderedFrame = true;
+    };
+
+    auto advanceIdleFrame = [&](IdleAnimState& idle) {
+        if (idle.reverse) {
+            if (idle.currentFrame != 0u && idle.currentFrame <= idle.maxFrames) {
+                renderIdleFrame(idle);
+                --idle.currentFrame;
+                idle.pad = 0;
+                return;
+            }
+            if (idle.currentDuration != 0u) {
+                renderIdleFrame(idle);
+                --idle.currentDuration;
+                idle.currentFrame = static_cast<uo::u16>(idle.maxFrames - 1u);
+                idle.pad = 0;
+                return;
+            }
+            if (idle.repeatCount != 0u) {
+                idle.reverse = false;
+                idle.repeatCount = 0;
+                renderIdleFrame(idle);
+                ++idle.currentFrame;
+                idle.pad = 0;
+                return;
+            }
+            stopIdleAnim(idle);
+            return;
+        }
+
+        if (idle.currentFrame < idle.maxFrames - 1u) {
+            renderIdleFrame(idle);
+            ++idle.currentFrame;
+            idle.pad = 0;
+            return;
+        }
+        if (idle.currentDuration == idle.maxDuration - 1u) {
+            if (idle.repeatCount != 0u) {
+                idle.reverse = true;
+                idle.repeatCount = 0;
+                renderIdleFrame(idle);
+                --idle.currentFrame;
+                idle.pad = 0;
+                return;
+            }
+            stopIdleAnim(idle);
+            return;
+        }
+
+        renderIdleFrame(idle);
+        ++idle.currentDuration;
+        idle.currentFrame = 0;
+        idle.pad = 0;
+    };
+
+    auto tickIdleAnim = [&](IdleAnimState& idle) {
+        while (idle.active && nowAnim - idle.lastTickMs >= kAnimListTickMs) {
+            idle.lastTickMs += kAnimListTickMs;
+            const u16 oldPad = idle.pad;
+            ++idle.pad;
+            if (oldPad <= idle.delayPerFrame) continue;
+            advanceIdleFrame(idle);
         }
     };
 
@@ -256,17 +339,13 @@ void Client::RenderTick() {
 
         if (!anim_) return;
         if (idle.active) {
-            const i64 elapsed = nowAnim - idle.startMs;
-            const u32 repeatCount = idle.repeat ? 2u : 1u;
-            const u32 totalFrames = static_cast<u32>(idle.frameCount) * repeatCount;
-            const u32 f = elapsed <= 0 ? 0u : static_cast<u32>(elapsed / kIdleFidgetFrameMs);
-            if (idle.frameCount != 0 && f < totalFrames) {
-                action = idle.action;
-                frame = static_cast<uo::u16>(f % idle.frameCount);
+            tickIdleAnim(idle);
+            if (idle.active && idle.hasRenderedFrame) {
+                action = idle.renderedAction;
+                frame = idle.renderedFrame;
                 return;
             }
-            idle.active = false;
-            idle.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+            if (idle.active) return;
         }
 
         if (idle.nextProbeMs == 0) idle.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
@@ -282,21 +361,29 @@ void Client::RenderTick() {
         }
 
         uo::u8 fidgetAction = 0;
-        bool repeat = false;
+        uo::u16 maxFrames = 0;
+        uo::u16 repeatCount = 0;
         std::uniform_int_distribution<int> choice(0, 1);
-        pickIdleFidget(body, choice(nav_.rng) != 0, fidgetAction, repeat);
+        pickIdleFidget(body, choice(nav_.rng) != 0, fidgetAction, maxFrames, repeatCount);
         fc = anim_->FrameCount(body, dir, fidgetAction);
         if (fc == 0u) {
             idle.nextProbeMs = nowAnim + 76;
             return;
         }
+        maxFrames = static_cast<uo::u16>(std::min<uo::u32>(maxFrames, fc));
+        if (maxFrames == 0u) return;
         idle.active = true;
-        idle.startMs = nowAnim;
+        idle.lastTickMs = nowAnim;
         idle.action = fidgetAction;
-        idle.frameCount = static_cast<uo::u16>(fc);
-        idle.repeat = repeat;
-        action = fidgetAction;
-        frame = 0;
+        idle.maxFrames = maxFrames;
+        idle.delayPerFrame = 0;
+        idle.maxDuration = 1;
+        idle.currentFrame = 0;
+        idle.currentDuration = 0;
+        idle.pad = 0;
+        idle.repeatCount = repeatCount;
+        idle.reverse = false;
+        idle.hasRenderedFrame = false;
     };
 
     // Slide between previous and current cell over the step, so the sprite moves
@@ -357,6 +444,7 @@ void Client::RenderTick() {
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
+                           animData_.get(), static_cast<uo::u32>(nowAnim / kAnimListTickMs),
                            anim_.get(), mobs.data(), mobs.size());
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.

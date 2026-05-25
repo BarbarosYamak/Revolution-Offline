@@ -67,6 +67,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                            const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
                            i32 camX, i32 camY, i32 camZ,
                            const DynItem* items, usize nItems,
+                           animdata::AnimDataLoader* animData, u32 animTick,
                            anim::AnimLoader* anim,
                            const Mob* mobs, usize nMobs) {
     std::fill(fb_.begin(), fb_.end(), kBackground);
@@ -333,9 +334,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     if (culled(s.z)) continue;   // hidden by the roof cutoff
                     const i32 wx = static_cast<i32>(bx) * 8 + s.cellX;
                     const i32 wy = static_cast<i32>(by) * 8 + s.cellY;
-                    const art::Sprite* sp = art.Static(s.itemId);
+                    const tiledata::StaticTile& baseStt = td.Static(s.itemId);
+                    u16 gid = s.itemId;
+                    if (animData && (baseStt.flags & tiledata::kFlagAnimation))
+                        gid = static_cast<u16>(gid + animData->FrameOffset(gid, animTick));
+                    const art::Sprite* sp = art.Static(gid);
                     if (!sp) continue;
-                    const tiledata::StaticTile& stt = td.Static(s.itemId);
+                    const tiledata::StaticTile& stt = td.Static(gid);
                     const i32 dxw = wx - camX, dyw = wy - camY;
                     const int sx = originX + (dxw - dyw) * kHalfTile;
                     const int sy = originY + (dxw + dyw) * kHalfTile - s.z * kZStep;
@@ -364,7 +369,10 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     for (usize ii = 0; ii < nItems; ++ii) {
         const DynItem& it = items[ii];
         if (culled(it.z)) continue;
-        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const tiledata::StaticTile& baseStt = td.Static(gid);
+        if (animData && (baseStt.flags & tiledata::kFlagAnimation))
+            gid = static_cast<u16>(gid + animData->FrameOffset(gid, animTick));
         const art::Sprite* sp = art.Static(gid);
         if (!sp) continue;
         const tiledata::StaticTile& stt = td.Static(gid);

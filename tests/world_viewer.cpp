@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
         // Inject a player at the camera so the roof cutoff engages (interior view).
         render::Mob player{0, camX, camY, static_cast<i8>(camZ), 0, true};
         rend.RenderWorld(map, art, td, tex, camX, camY, camZ,
-                         nullptr, 0, nullptr, &player, 1);
+                         nullptr, 0, nullptr, 0, nullptr, &player, 1);
         png::Save(dump, rend.Frame(), w, h);
         std::printf("dumped %s (%d,%d,z%d)\n", dump, camX, camY, camZ);
         mfb_close();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "uo/anim.h"
+#include "uo/animdata.h"
 #include "uo/art.h"
 #include "uo/map.h"
 #include "uo/texmap.h"
@@ -49,6 +50,7 @@ public:
                      const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
                      i32 camX, i32 camY, i32 camZ = 0,
                      const DynItem* items = nullptr, usize nItems = 0,
+                     animdata::AnimDataLoader* animData = nullptr, u32 animTick = 0,
                      anim::AnimLoader* anim = nullptr,
                      const Mob* mobs = nullptr, usize nMobs = 0);
 
