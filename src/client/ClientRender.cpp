@@ -17,6 +17,7 @@
 #include <chrono>
 #include <cstdio>
 #include <memory>
+#include <random>
 #include <vector>
 
 namespace uo {
@@ -99,6 +100,10 @@ constexpr i64 kAnimIntervalIdleMs = 200;
 constexpr i64 kAnimIntervalWalkMs = 150;
 constexpr i64 kAnimIntervalRunMs  = 100;
 constexpr i64 kMoveAnimWindowMs   = 600;
+constexpr i64 kIdleFidgetDelayMs  = 15000; // Mobile_TryPlayIdleAnimation gate.
+// Idle fidgets pass animationDelay=0, but AnimList_TickAll advances only when
+// pad_1B6 > delay, so each frame takes two ~76ms render/update ticks.
+constexpr i64 kIdleFidgetFrameMs  = 152;
 } // namespace
 
 void Client::RenderTick() {
@@ -205,8 +210,8 @@ void Client::RenderTick() {
     };
 
     // Pick the animation group from motion state and the frame from the render
-    // clock (no stored per-mobile phase). Falls back to group 0 (walk) when the
-    // chosen group is unavailable, so bodies without a stand group still draw.
+    // clock. Falls back to group 0 (walk) when the chosen group is unavailable,
+    // so bodies without a stand group still draw.
     const i64 nowAnim = NowMs();
     auto resolveAnim = [&](uo::u16 body, uo::u8 dir, bool moving, bool running,
                            uo::u8& action, uo::u16& frame) {
@@ -221,6 +226,77 @@ void Client::RenderTick() {
         const i64 interval = !moving ? kAnimIntervalIdleMs
                                      : (running ? kAnimIntervalRunMs : kAnimIntervalWalkMs);
         frame = static_cast<uo::u16>((nowAnim / interval) % fc);
+    };
+
+    auto pickIdleFidget = [](uo::u16 body, bool secondChoice, uo::u8& action,
+                             bool& repeat) {
+        repeat = false;
+        const BodyKind k = KindOf(body);
+        if (k == BodyKind::People) {
+            action = secondChoice ? 5u : 6u; // people fidgets from Mobile_TryPlayIdleAnimation.
+            repeat = secondChoice;
+        } else if (k == BodyKind::Animal) {
+            action = secondChoice ? 9u : 10u;
+        } else if (body >= 150u) {
+            action = secondChoice ? 3u : 4u; // sea/anim2 monster class.
+        } else {
+            action = secondChoice ? 17u : 18u;
+        }
+    };
+
+    auto resolveIdleAnim = [&](uo::u16 body, uo::u8 dir, IdleAnimState& idle,
+                               uo::u8& action, uo::u16& frame) {
+        action = PickAction(KindOf(body), false, false);
+        uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
+        if (fc == 0u && action != 0u) {
+            action = 0u;
+            fc = anim_ ? anim_->FrameCount(body, dir, 0u) : 0u;
+        }
+        frame = fc == 0u ? 0u : static_cast<uo::u16>(std::min<uo::u32>(3u, fc - 1u));
+
+        if (!anim_) return;
+        if (idle.active) {
+            const i64 elapsed = nowAnim - idle.startMs;
+            const u32 repeatCount = idle.repeat ? 2u : 1u;
+            const u32 totalFrames = static_cast<u32>(idle.frameCount) * repeatCount;
+            const u32 f = elapsed <= 0 ? 0u : static_cast<u32>(elapsed / kIdleFidgetFrameMs);
+            if (idle.frameCount != 0 && f < totalFrames) {
+                action = idle.action;
+                frame = static_cast<uo::u16>(f % idle.frameCount);
+                return;
+            }
+            idle.active = false;
+            idle.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+        }
+
+        if (idle.nextProbeMs == 0) idle.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+        if (nowAnim < idle.nextProbeMs) return;
+
+        // The real client tests rand() % (4*mobileCount + 120) < 2 each
+        // object update after 15s. We keep the same low-probability timer.
+        const int nearby = std::max<int>(1, static_cast<int>(mobileCache_.size() + 1));
+        std::uniform_int_distribution<int> chance(0, 4 * nearby + 119);
+        if (chance(nav_.rng) >= 2) {
+            idle.nextProbeMs = nowAnim + 76;
+            return;
+        }
+
+        uo::u8 fidgetAction = 0;
+        bool repeat = false;
+        std::uniform_int_distribution<int> choice(0, 1);
+        pickIdleFidget(body, choice(nav_.rng) != 0, fidgetAction, repeat);
+        fc = anim_->FrameCount(body, dir, fidgetAction);
+        if (fc == 0u) {
+            idle.nextProbeMs = nowAnim + 76;
+            return;
+        }
+        idle.active = true;
+        idle.startMs = nowAnim;
+        idle.action = fidgetAction;
+        idle.frameCount = static_cast<uo::u16>(fc);
+        idle.repeat = repeat;
+        action = fidgetAction;
+        frame = 0;
     };
 
     // Slide between previous and current cell over the step, so the sprite moves
@@ -238,20 +314,43 @@ void Client::RenderTick() {
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
     mobs.reserve(mobileCache_.size() + 1);
-    for (const auto& m : mobileCache_) {
+    for (auto& m : mobileCache_) {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < kMoveAnimWindowMs;
-        resolveAnim(m.body, m.dir, moving, false, mob.action, mob.frame);
+        if (moving) {
+            m.idleAnim.active = false;
+            m.idleAnim.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+            resolveAnim(m.body, m.dir, true, false, mob.action, mob.frame);
+        } else {
+            resolveIdleAnim(m.body, m.dir, m.idleAnim, mob.action, mob.frame);
+        }
         mob.ddx = slideDelta(m.movedMs, m.stepDurMs, m.x, m.prevX);
         mob.ddy = slideDelta(m.movedMs, m.stepDurMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
-    const bool selfMoving = lastStepMs_ != 0 && (nowAnim - lastStepMs_) < kMoveAnimWindowMs;
-    resolveAnim(playerBody_, playerFacing_, selfMoving, player_.running, self.action, self.frame);
+    // The local player is not in mobileCache_, so give it its own idle/walk
+    // action selection. Keep the walk window only while another step may follow;
+    // otherwise arrival snaps back to the stand/idle group immediately.
+    const bool selfMayKeepMoving = nav_.bot.active || !nav_.bot.path.empty() ||
+                                   !nav_.movement.pending.empty();
+    const bool selfMidStep = lastStepMs_ != 0 &&
+                             (nowAnim - lastStepMs_) < stepDurMs_;
+    const bool selfMoving = selfMidStep ||
+                            (selfMayKeepMoving && lastStepMs_ != 0 &&
+                             (nowAnim - lastStepMs_) < kMoveAnimWindowMs);
+    const bool selfRunning = selfMoving && player_.running;
+    if (selfMoving) {
+        playerIdleAnim_.active = false;
+        playerIdleAnim_.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+        resolveAnim(playerBody_, playerFacing_, true, selfRunning, self.action, self.frame);
+    } else {
+        resolveIdleAnim(playerBody_, playerFacing_, playerIdleAnim_,
+                        self.action, self.frame);
+    }
     self.ddx = slideDelta(lastStepMs_, stepDurMs_, playerX_, prevPlayerX_);
     self.ddy = slideDelta(lastStepMs_, stepDurMs_, playerY_, prevPlayerY_);
     mobs.push_back(std::move(self));

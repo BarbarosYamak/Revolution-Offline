@@ -266,6 +266,15 @@ private:
     i64   lastStepMs_ = 0;      // when we last actually changed cell (anim: walk vs idle)
     i32   prevPlayerX_ = 0; i32 prevPlayerY_ = 0;  // cell before the current step (slide interp)
     i64   stepDurMs_ = 0;       // duration of the current step (run/walk cadence)
+    struct IdleAnimState {
+        i64 startMs = 0;
+        i64 nextProbeMs = 0;
+        u8 action = 0;
+        u16 frameCount = 0;
+        bool active = false;
+        bool repeat = false;
+    };
+    IdleAnimState playerIdleAnim_;
     // Navigation owns predicted movement, bot route/follow state, and
     // learned transient blockers. Server packets still own authoritative
     // player position above.
@@ -312,6 +321,7 @@ private:
         i64 movedMs = 0;     // when (x,y) last changed (anim: walk vs idle)
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         i64 stepDurMs = 0;   // measured duration of the current step (auto cadence)
+        IdleAnimState idleAnim;
         // Worn items as (layer, item graphic). No hue (out of scope). Preserved
         // across 0x77 position updates; rebuilt on 0x78, patched by 0x2E.
         std::vector<std::pair<u8, u16>> equip;
