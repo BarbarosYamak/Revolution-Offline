@@ -1,8 +1,10 @@
 # uo-client — state & design notes
 
-A headless Ultima Online **2.0.7-protocol** client + A\* navigation bot, written to
-talk to the custom `ouo` server in the parent directory. No GUI; it logs packets
-to stdout and a JSONL file, and drives a character with `goto`-style pathfinding.
+An Ultima Online **2.0.7-protocol** client + A\* navigation bot, written to
+talk to the custom `ouo` server in the parent directory. It logs packets to
+stdout and a JSONL file, and drives a character with `goto`-style pathfinding.
+An optional MiniFB renderer (world view + minimap + HUD) is **on by default**;
+pass `--headless` to disable it and run as a pure console client.
 
 ---
 
@@ -108,7 +110,7 @@ stdin commands (in-world):
   walkable (no corner-cutting).
 - Step limits `maxStepUp/Down = 12`, `charHeight = 16`.
 - `maxNodesExpanded = 32768` (ample — a ~125-tile town route stays well under).
-- **Grass penalty** (`grassPenalty = 6`): open grass land tiles (currently
+- **Grass penalty** (`grassPenalty = 14`): open grass land tiles (currently
   `0x0003–0x0006`, tunable in `IsGrassLikeTile`) cost extra, biasing routes onto
   roads/dirt/cobble where mobs are sparser. Heuristic stays admissible.
 - **Blacklist overlay** consulted *after* the MUL checks (see below).
@@ -241,7 +243,7 @@ tests/                    huffman / blacklist / path-probe standalone checks
 |---|---|---|
 | kMaxInFlight | 1 | moves in flight (depth-1; do not raise without position-carrying acks) |
 | kMaxReplans | 40 | A\* replans per trip before giving up |
-| kGrassPenalty | 6 | extra A\* cost on grass tiles |
+| kGrassPenalty | 14 | extra A\* cost on grass tiles |
 | kDoorCacheMax | 20 | recent doors tracked |
 | kMaxDoorTries | 4 | blind OpenDoor attempts before avoiding |
 | kMaxDoorGiveUp | 10 | open attempts with a door present before stopping trip |
