@@ -402,7 +402,7 @@ void Client::HandleManualWalk() {
     if (dx == 0 && dy == 0) return;   // opposing keys cancel
 
     // Take over from the bot.
-    if (nav_.bot.active || !nav_.bot.path.empty()) {
+    if (nav_.bot.active || nav_.bot.planning || !nav_.bot.path.empty()) {
         BotAbortPath("manual walk");
         nav_.follow.active = false;
     }

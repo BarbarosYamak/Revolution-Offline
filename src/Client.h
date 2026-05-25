@@ -3,6 +3,7 @@
 #include "net/Huffman.h"
 #include "net/PacketStream.h"
 #include "net/Socket.h"
+#include "navigation/PathPlanner.h"
 #include "navigation/NavigationState.h"
 #include "uo/log.h"
 #include "uo/types.h"
@@ -177,8 +178,9 @@ private:
     void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
     void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
+    void BotPollPathPlanner();
     u32  BotMoveGapMs() const;
-    bool BotReplanToGoal();   // re-run A* from current pose; false = gave up
+    bool BotReplanToGoal();   // queue a full A* replan from current pose
     bool BotLookaheadPatchPath(); // short local reroute around visible blockers
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
     bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
@@ -268,6 +270,7 @@ private:
     std::unique_ptr<uo::tiledata::TileDataLoader> tileData_;
     std::unique_ptr<uo::map::Map>                 worldMap_;
     std::unique_ptr<uo::world::World>             world_;
+    std::unique_ptr<uo::navigation::PathPlanner>  pathPlanner_;
     bool worldLoaded_;
 
     // Renderer — lazily initialized on the first in-world tick when

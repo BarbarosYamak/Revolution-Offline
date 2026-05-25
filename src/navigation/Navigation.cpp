@@ -11,6 +11,7 @@
 #include <chrono>
 #include <cstdio>
 #include <random>
+#include <utility>
 
 namespace uo {
 
@@ -549,24 +550,17 @@ bool Client::BotLookaheadPatchPath() {
 
 
 bool Client::BotReplanToGoal() {
+    if (!pathPlanner_) {
+        LogWarn("[bot] path worker is unavailable; stopping\n");
+        BotAbortPath("path worker unavailable");
+        return false;
+    }
     if (++nav_.bot.replanCount > kMaxReplans) {
         LogWarn( "[bot] giving up after %u replans (unreachable?)\n",
                      nav_.bot.replanCount);
         BotAbortPath("too many replans");
         return false;
     }
-    bot::PathOptions opts;
-    opts.blacklist = &nav_.bot.blacklist;
-    // For follow we want the shortest valid path to keep up with a moving
-    // target; road/grass bias only makes us lag behind.
-    opts.grassPenalty   = nav_.follow.active ? 0u : kGrassPenalty;
-    opts.foliagePenalty = nav_.follow.active ? 0u : kForestPenalty;
-    opts.hasGoalZ = nav_.bot.hasGoalZ;  // pin destination floor when given
-    opts.goalZ    = nav_.bot.goalZ;
-    opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
-    opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
-    opts.extraBlockedUser = this;
-
     // Scale the node-expansion budget with goal distance. The grass penalty
     // inflates step cost without the heuristic knowing, so on a long open
     // route A* loses its straight-line guidance and expands ~O(distance^2)
@@ -577,24 +571,77 @@ bool Client::BotReplanToGoal() {
         ChebyshevDistance(playerX_, playerY_, nav_.bot.goalX, nav_.bot.goalY));
     u64 budget = cheb * cheb * 4 + 65536;
     if (budget > 2000000) budget = 2000000;
-    opts.maxNodesExpanded = static_cast<u32>(budget);
-    const auto t0 = std::chrono::steady_clock::now();
-    auto path = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
-                              nav_.bot.goalX, nav_.bot.goalY, opts);
-    const double searchUs = std::chrono::duration<double, std::micro>(
-        std::chrono::steady_clock::now() - t0).count();
-    if (path.empty()) {
+
+    navigation::PathRequest request;
+    request.requestId = nav_.bot.nextPlanRequestId++;
+    if (request.requestId == 0) request.requestId = nav_.bot.nextPlanRequestId++;
+    request.startX = playerX_;
+    request.startY = playerY_;
+    request.startZ = playerZ_;
+    request.goalX = nav_.bot.goalX;
+    request.goalY = nav_.bot.goalY;
+    request.goalZ = nav_.bot.goalZ;
+    request.hasGoalZ = nav_.bot.hasGoalZ;
+    request.maxNodesExpanded = static_cast<u32>(budget);
+    // For follow we want the shortest valid path to keep up with a moving
+    // target; road/grass bias only makes us lag behind.
+    request.grassPenalty = nav_.follow.active ? 0u : kGrassPenalty;
+    request.foliagePenalty = nav_.follow.active ? 0u : kForestPenalty;
+    request.playerSerial = playerSerial_;
+    request.blacklist = nav_.bot.blacklist;
+    request.rejectedEdges = nav_.bot.rejectedEdges;
+    request.mobiles.reserve(mobileCache_.size());
+    for (const auto& m : mobileCache_) {
+        request.mobiles.push_back({m.serial, m.x, m.y, m.z, m.seenMs});
+    }
+    request.dynamicItems.reserve(items_.size());
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        request.dynamicItems.push_back({it.itemId, it.x, it.y, it.z, it.gfxOffset});
+    }
+
+    nav_.bot.path.clear();
+    nav_.bot.planning = true;
+    nav_.bot.planRequestId = request.requestId;
+    pathPlanner_->Request(std::move(request));
+    LogInfo("[bot] planning path to (%d,%d) in background\n",
+                nav_.bot.goalX, nav_.bot.goalY);
+    return true;
+}
+
+
+void Client::BotPollPathPlanner() {
+    if (!pathPlanner_) return;
+
+    navigation::PathResult result;
+    if (!pathPlanner_->Poll(&result)) return;
+
+    if (!nav_.bot.planning || result.requestId != nav_.bot.planRequestId) {
+        return;
+    }
+
+    nav_.bot.planning = false;
+    nav_.bot.planRequestId = 0;
+
+    if (!result.worldReady) {
+        LogWarn("[bot] path worker could not load MUL data; stopping\n");
+        BotAbortPath("path worker unavailable");
+        return;
+    }
+
+    if (result.path.empty()) {
         LogWarn(
             "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
             "(search %.1fus)\n",
-            nav_.bot.goalX, nav_.bot.goalY, nav_.bot.blacklist.Count(), searchUs);
+            result.goalX, result.goalY, result.blacklistCount, result.searchUs);
         BotAbortPath("no path");
-        return false;
+        return;
     }
+
     LogInfo("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
-                nav_.bot.goalX, nav_.bot.goalY, path.size(), searchUs);
-    nav_.bot.path.assign(path.begin(), path.end());
-    return true;
+                result.goalX, result.goalY, result.path.size(), result.searchUs);
+    nav_.bot.path.assign(result.path.begin(), result.path.end());
+    BotPumpMoves();
 }
 
 
@@ -621,6 +668,8 @@ void Client::BotNoteFatigueMessage() {
 void Client::BotAbortPath(const char*) {
     nav_.bot.path.clear();
     nav_.bot.active = false;
+    nav_.bot.planning = false;
+    nav_.bot.planRequestId = 0;
 }
 
 
@@ -729,13 +778,17 @@ void Client::BotFollowTick() {
     const bool goalChanged = (gx != nav_.bot.goalX || gy != nav_.bot.goalY ||
                               !nav_.bot.hasGoalZ ||
                               gz != static_cast<i8>(nav_.bot.goalZ));
-    if (!goalChanged && (nav_.bot.active || !nav_.movement.pending.empty())) return;
+    if (!goalChanged &&
+        (nav_.bot.active || nav_.bot.planning || !nav_.movement.pending.empty())) {
+        return;
+    }
 
     nav_.bot.goalX = gx;
     nav_.bot.goalY = gy;
     nav_.bot.goalZ = gz;
     nav_.bot.hasGoalZ = true;
     nav_.bot.active = true;
+    nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
     nav_.follow.lastReplanMs = now;
     BotReplanToGoal();
@@ -746,10 +799,11 @@ void Client::BotFollowTick() {
 void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     if (!EnsureWorldLoaded()) return;
     nav_.follow.active = false;
-    if (!nav_.movement.pending.empty() || !nav_.bot.path.empty()) {
+    if (!nav_.movement.pending.empty() || !nav_.bot.path.empty() || nav_.bot.planning) {
         LogWarn(
-            "[bot] busy (inflight=%zu path=%zu); type 'stop' first\n",
-            nav_.movement.pending.size(), nav_.bot.path.size());
+            "[bot] busy (inflight=%zu path=%zu planning=%s); type 'stop' first\n",
+            nav_.movement.pending.size(), nav_.bot.path.size(),
+            nav_.bot.planning ? "yes" : "no");
         return;
     }
     nav_.bot.goalX = tx;
@@ -757,6 +811,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
     nav_.bot.goalZ = tz;
     nav_.bot.hasGoalZ = hasZ;
     nav_.bot.active = true;
+    nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
     nav_.bot.resumeAtMs = 0;
     nav_.bot.stuckWaits = 0;
@@ -773,9 +828,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
         LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
                     nav_.movement.run ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
-    if (!BotReplanToGoal()) return;
-    LogInfo("[bot] path: %zu steps\n", nav_.bot.path.size());
-    BotPumpMoves();
+    BotReplanToGoal();
 }
 
 
@@ -784,6 +837,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
 // turn) and reconciled later by 0x22 / 0x21.
 void Client::BotPumpMoves() {
     if (!nav_.bot.active) return;
+    if (nav_.bot.planning) return;
 
     const i64 now_ms = NowMs();
     if (now_ms < nav_.bot.resumeAtMs) return;  // human reaction pause after a bump
@@ -866,7 +920,9 @@ void Client::BotTick() {
         FlushPendingMobilesList();
     }
     if (nav_.follow.active) BotFollowTick();
+    BotPollPathPlanner();
     if (!nav_.bot.active) return;
+    if (nav_.bot.planning) return;
     if (!nav_.movement.pending.empty()) {
         // Watchdog: the oldest in-flight move should ack quickly. If it
         // never does, the move was silently dropped — abort the path.

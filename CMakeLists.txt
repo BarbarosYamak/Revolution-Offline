@@ -33,6 +33,7 @@ set(UO_CLIENT_SOURCES
     src/builders/Builders.cpp
     src/bot/Pathfinding.cpp
     src/bot/Blacklist.cpp
+    src/navigation/PathPlanner.cpp
     src/navigation/Navigation.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp

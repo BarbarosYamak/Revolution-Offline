@@ -39,6 +39,9 @@ struct BotState {
     i32 goalZ = 0;              // valid only when hasGoalZ is true
     bool hasGoalZ = false;
     bool active = false;
+    bool planning = false;
+    u64 planRequestId = 0;
+    u64 nextPlanRequestId = 1;
     u32 replanCount = 0;
     i64 resumeAtMs = 0;
     u32 stuckWaits = 0;         // consecutive wait-retries at the current bump cell

@@ -24,6 +24,7 @@
 #include <chrono>
 #include <iostream>
 #include <limits>
+#include <utility>
 
 #include <winsock2.h>
 
@@ -97,6 +98,14 @@ Client::Client(const Config& cfg)
       lastActivityMs_(0) {
     nav_.rng.seed(static_cast<u32>(
         std::chrono::steady_clock::now().time_since_epoch().count()));
+    navigation::PathPlannerConfig pathConfig;
+    pathConfig.tiledataPath = cfg_.tiledataPath ? cfg_.tiledataPath : "";
+    pathConfig.mapPath = cfg_.mapPath ? cfg_.mapPath : "";
+    pathConfig.staidxPath = cfg_.staidxPath ? cfg_.staidxPath : "";
+    pathConfig.staticsPath = cfg_.staticsPath ? cfg_.staticsPath : "";
+    pathConfig.verdataPath = cfg_.verdataPath ? cfg_.verdataPath : "";
+    pathConfig.acceptDoors = cfg_.acceptDoors;
+    pathPlanner_ = std::make_unique<navigation::PathPlanner>(std::move(pathConfig));
     std::memset(servers_, 0, sizeof(servers_));
     std::memset(charSlots_, 0, sizeof(charSlots_));
 }
@@ -1457,9 +1466,9 @@ void Client::HandleStdinLine(const char* line) {
     // `stop` — drop the current path.
     if (std::strcmp(line, "stop") == 0) {
         if (nav_.follow.active) BotStopFollow("stopped by user");
-        if (!nav_.bot.path.empty()) {
-            LogInfo("[bot] path cleared (%zu steps left)\n",
-                        nav_.bot.path.size());
+        if (!nav_.bot.path.empty() || nav_.bot.planning) {
+            LogInfo("[bot] path cleared (%zu steps left, planning=%s)\n",
+                        nav_.bot.path.size(), nav_.bot.planning ? "yes" : "no");
         }
         BotAbortPath("stopped by user");
         return;
