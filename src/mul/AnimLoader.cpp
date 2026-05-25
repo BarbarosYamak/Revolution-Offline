@@ -32,18 +32,31 @@ u32 AnimLoader::IndexFor(u16 body, u8 action, u8 storedDir) {
     return base + static_cast<u32>(action) * 5u + storedDir;
 }
 
-const Frame* AnimLoader::Body(u16 body, u8 dir, u8 action) {
-    if (!IsOpen()) return nullptr;
-    const u8 d = dir & 7u;
-    const u32 key = (static_cast<u32>(body) << 16) | (static_cast<u32>(action) << 4) | d;
-    auto it = cache_.find(key);
-    if (it != cache_.end())
-        return it->second.px.empty() ? nullptr : &it->second;
-    return Load(key, body, action, d);
+const Frame* AnimLoader::Body(u16 body, u8 dir, u8 action, u16 frame) {
+    const Group* g = GetGroup(body, dir, action);
+    if (!g || g->frames.empty()) return nullptr;
+    if (frame >= g->frames.size()) frame = static_cast<u16>(g->frames.size() - 1);
+    const Frame& f = g->frames[frame];
+    return f.px.empty() ? nullptr : &f;   // blank frame in the cycle -> draw nothing
 }
 
-const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
-    Frame& f = cache_[key];   // inserts an empty (negative-cached) frame
+u32 AnimLoader::FrameCount(u16 body, u8 dir, u8 action) {
+    const Group* g = GetGroup(body, dir, action);
+    return g ? static_cast<u32>(g->frames.size()) : 0u;
+}
+
+const Group* AnimLoader::GetGroup(u16 body, u8 dir, u8 action) {
+    if (!IsOpen()) return nullptr;
+    const u8 d = dir & 7u;
+    const u32 key = (static_cast<u32>(body) << 16) |
+                    (static_cast<u32>(action) << 3) | d;
+    auto it = cache_.find(key);
+    if (it != cache_.end()) return &it->second;
+    return LoadGroup(key, body, action, d);
+}
+
+const Group* AnimLoader::LoadGroup(u32 key, u16 body, u8 action, u8 dir) {
+    Group& g = cache_[key];   // inserts an empty (negative-cached) group
 
     // Facing (0=N..7=NW) -> stored anim direction (0..4) + mirror. Verified
     // from the client's tables g_CDHDHueShift (@0x514B50, stored dir) and
@@ -56,31 +69,50 @@ const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
     const u8 stored   = kStoredDir[dir & 7];
     const u32 index = IndexFor(body, action, stored);
 
-    if (!idx_.Seek(static_cast<i64>(index) * 12, 0)) return nullptr;
+    if (!idx_.Seek(static_cast<i64>(index) * 12, 0)) return &g;
     u32 entry[3];
-    if (!idx_.Read(entry, sizeof(entry))) return nullptr;
+    if (!idx_.Read(entry, sizeof(entry))) return &g;
     const u32 lookup = entry[0];
     const u32 length = entry[1];
     if (lookup == 0xFFFFFFFFu || length < kPaletteSize + 8u || length > (1u << 22))
-        return nullptr;
+        return &g;
 
     std::vector<u8> raw(length);
-    if (!mul_.Seek(static_cast<i64>(lookup), 0)) return nullptr;
-    if (!mul_.Read(raw.data(), length)) return nullptr;
+    if (!mul_.Seek(static_cast<i64>(lookup), 0)) return &g;
+    if (!mul_.Read(raw.data(), length)) return &g;
 
     const u8* pal = raw.data();                       // 256 u16 palette
     const u32 frameCount = RdU32(&raw[kPaletteSize]);
-    if (frameCount == 0) return nullptr;
-    if (kPaletteSize + 4u + 4u > length) return nullptr;
-    const u32 off0 = RdU32(&raw[kPaletteSize + 4u]);  // frameOffset[0]
+    if (frameCount == 0 || frameCount > 1024) return &g;
+    // frame offset table: u32 frameOffset[frameCount] after frameCount.
+    const usize tableStart = static_cast<usize>(kPaletteSize) + 4u;
+    if (tableStart + static_cast<usize>(frameCount) * 4u > raw.size()) return &g;
 
-    // Frame data sits at palette-start + frameOffset; first 8 bytes are the
-    // { cx, cy, w, h } header. The official client SKIPS it and decodes into a
-    // fixed 64x128 canvas at origin (32,80) -- clipping large bodies. We keep
-    // the same command space (col = 32+x, row = 80+y) but fit the canvas to the
-    // decoded-pixel bounding box, so nothing is clipped.
-    const usize frameBase = static_cast<usize>(kPaletteSize) + off0;
-    if (frameBase + 8u > raw.size()) return nullptr;
+    // Decode every frame, keeping its index so worn-gear layers (which share the
+    // body's frame count per action) stay in lockstep. A frame that fails to
+    // decode is kept as a blank entry to preserve indexing.
+    g.frames.resize(frameCount);
+    bool any = false;
+    for (u32 fi = 0; fi < frameCount; ++fi) {
+        const u32 off = RdU32(&raw[tableStart + static_cast<usize>(fi) * 4u]);
+        const usize frameBase = static_cast<usize>(kPaletteSize) + off;
+        if (DecodeFrame(raw, pal, frameBase, mirror, g.frames[fi]))
+            any = true;
+    }
+    if (!any) g.frames.clear();   // all-blank group -> negative cache (triggers fallback)
+    return &g;
+}
+
+// Frame data sits at palette-start + frameOffset; first 8 bytes are the
+// { cx, cy, w, h } header. The official client SKIPS it and decodes into a fixed
+// 64x128 canvas at origin (32,80) -- clipping large bodies. We keep the same
+// command space (col = 32+x, row = 80+y) but fit the canvas to the decoded-pixel
+// bounding box, so nothing is clipped. The constant origin means the same
+// command coordinate lands at the same screen pixel across a cycle, so the body
+// bob/step encoded in the frames is preserved.
+bool AnimLoader::DecodeFrame(const std::vector<u8>& raw, const u8* pal,
+                             usize frameBase, bool mirror, Frame& out) {
+    if (frameBase + 8u > raw.size()) return false;
     const usize cmdStart = frameBase + 8u;
 
     // Pass 1: bounding box of the decoded pixels.
@@ -104,16 +136,16 @@ const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
         }
         cur += static_cast<usize>(run);
     }
-    if (minRow > maxRow || minCol > maxCol) return nullptr;  // empty stream
+    if (minRow > maxRow || minCol > maxCol) return false;  // empty stream
 
     const int w = maxCol - minCol + 1;
     const int h = maxRow - minRow + 1;
-    if (w <= 0 || h <= 0 || w > 1024 || h > 1024) return nullptr;  // sanity guard
-    f.width  = w;
-    f.height = h;
-    f.anchorX = Frame::kOriginX - minCol;   // canvas col mapping to command origin
-    f.anchorY = Frame::kOriginY - minRow;   // canvas row mapping to command origin
-    f.px.assign(static_cast<usize>(w) * h, 0);
+    if (w <= 0 || h <= 0 || w > 1024 || h > 1024) return false;  // sanity guard
+    out.width  = w;
+    out.height = h;
+    out.anchorX = Frame::kOriginX - minCol;   // canvas col mapping to command origin
+    out.anchorY = Frame::kOriginY - minRow;   // canvas row mapping to command origin
+    out.px.assign(static_cast<usize>(w) * h, 0);
 
     // Pass 2: decode into the fitted buffer. Row/col are in-bounds by
     // construction (the bbox came from the same formula), so no clamping.
@@ -129,7 +161,7 @@ const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
             const int row = Frame::kOriginY + yOff - minRow;
             const int colBase = (mirror ? (Frame::kOriginX - xOff - run)
                                         : (Frame::kOriginX + xOff)) - minCol;
-            u16* drow = &f.px[static_cast<usize>(row) * w];
+            u16* drow = &out.px[static_cast<usize>(row) * w];
             for (int i = 0; i < run; ++i) {
                 const u8 pidx = mirror ? raw[cur + (run - 1 - i)] : raw[cur + i];
                 drow[colBase + i] = RdU16(&pal[2u * pidx]);
@@ -138,11 +170,11 @@ const Frame* AnimLoader::Load(u32 key, u16 body, u8 action, u8 dir) {
         cur += static_cast<usize>(run);
     }
 
-    // Guard against an all-transparent decode (treat as "no frame").
-    for (u16 p : f.px)
-        if (p) return &f;
-    f.px.clear();
-    return nullptr;
+    // All-transparent decode counts as "no frame".
+    for (u16 p : out.px)
+        if (p) return true;
+    out.px.clear();
+    return false;
 }
 
 }

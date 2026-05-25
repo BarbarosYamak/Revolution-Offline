@@ -1000,6 +1000,19 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body) {
     const i64 now = NowMs();
     for (auto& m : mobileCache_) {
         if (m.serial == serial) {
+            if (m.x != x || m.y != y) {
+                // Real step -> walk anim + slide interp. Measure the step
+                // duration from the gap since the last step so the slide matches
+                // the mobile's cadence; only a single-cell step slides (a larger
+                // jump is a teleport/resync and snaps).
+                const i64 dt = now - m.movedMs;
+                m.stepDurMs = (m.movedMs != 0 && dt > 60 && dt < 700) ? dt : 250;
+                const bool adjacent = (x - m.x <= 1 && m.x - x <= 1) &&
+                                      (y - m.y <= 1 && m.y - y <= 1);
+                m.prevX = adjacent ? m.x : x;
+                m.prevY = adjacent ? m.y : y;
+                m.movedMs = now;
+            }
             m.x = x;
             m.y = y;
             m.z = z;

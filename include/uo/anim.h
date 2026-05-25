@@ -31,10 +31,16 @@ struct Frame {
     std::vector<u16> px;   // width*height, row-major; empty == no frame
 };
 
-// Loads anim.idx / anim.mul (high-detail body animations) and decodes a single
-// still frame of a body for a given facing. This is groundwork for entity
-// rendering: NO equipment layering, mounts, hue shifting, or body.def /
-// bodyconv.def remapping — just the base body still frame.
+// One action group of a body for one facing: every frame of the cycle, decoded.
+// UO authors body and worn-equipment groups with matching frame counts per
+// action, so a body frame index addresses the same pose on every layer.
+struct Group {
+    std::vector<Frame> frames;   // empty == group unavailable (negative-cached)
+};
+
+// Loads anim.idx / anim.mul (high-detail body animations) and decodes the frames
+// of a body's action group for a given facing. NO equipment layering, mounts,
+// hue shifting, or body.def / bodyconv.def remapping — just the base body.
 //
 // Frame format (AnimFrame_DrawCommandStream @0x4D0040, payload layout from
 // Mobile_RenderToCacheFromAnimMul): 256-entry u16 palette, u32 frameCount,
@@ -48,17 +54,27 @@ public:
     bool IsOpen() const { return idx_.IsOpen() && mul_.IsOpen(); }
 
     // body = mobile graphic (e.g. 0x190 human male). dir = 0..7 facing.
-    // action defaults to 0 (first group; frame 0 is a near-standing pose).
-    // Returns a 64x128 frame (anchor 32,80) or nullptr if unavailable.
-    const Frame* Body(u16 body, u8 dir, u8 action = 0);
+    // action = animation group (walk/stand/run/...; default 0). frame indexes
+    // into the group and is clamped to its size. Returns nullptr if the group is
+    // empty/unavailable. Each frame fits its own content (anchor 32,80).
+    const Frame* Body(u16 body, u8 dir, u8 action = 0, u16 frame = 0);
+
+    // Number of frames in a body's action group for a facing (0 if unavailable).
+    u32 FrameCount(u16 body, u8 dir, u8 action = 0);
 
 private:
     static u32 IndexFor(u16 body, u8 action, u8 storedDir);
-    const Frame* Load(u32 key, u16 body, u8 action, u8 dir);
+    // Decode one frame's command stream (starting at frameBase, an 8-byte header
+    // then commands) into a content-fitted bitmap. Returns false on a bad/empty
+    // frame. `mirror` flips dirs 5..7 horizontally.
+    static bool DecodeFrame(const std::vector<u8>& raw, const u8* pal,
+                            usize frameBase, bool mirror, Frame& out);
+    const Group* LoadGroup(u32 key, u16 body, u8 action, u8 dir);
+    const Group* GetGroup(u16 body, u8 dir, u8 action);
 
     mul::File idx_;
     mul::File mul_;
-    std::unordered_map<u32, Frame> cache_;   // keyed by packed (body,action,dir)
+    std::unordered_map<u32, Group> cache_;   // keyed by packed (body,action,dir)
 };
 
 }

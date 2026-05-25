@@ -68,6 +68,37 @@ u16 ScaleHudColor(u16 c, int scale255) {
     const int b = static_cast<int>(c & 31) * 255 / 31;
     return HudColor(r * scale255 / 255, g * scale255 / 255, b * scale255 / 255);
 }
+
+// Body-kind thresholds mirror AnimLoader::IndexFor (the anim.mul index layout):
+// monsters (high detail) < 200, animals (low detail) < 400, people >= 400.
+enum class BodyKind { Monster, Animal, People };
+BodyKind KindOf(u16 body) {
+    if (body < 200) return BodyKind::Monster;
+    if (body < 400) return BodyKind::Animal;
+    return BodyKind::People;
+}
+
+// Map motion state -> animation group id (UO per-kind group enums). Only the
+// walk/run/stand groups we support; everything else (attack/cast/die/fidget) is
+// out of scope. NPC running is not observable from 0x77/0x78, so callers pass
+// running=false for NPCs.
+u8 PickAction(BodyKind k, bool moving, bool running) {
+    switch (k) {
+        case BodyKind::Monster: return moving ? 0u : 1u;                 // walk / stand
+        case BodyKind::Animal:  return moving ? (running ? 1u : 0u) : 2u; // run/walk / stand
+        case BodyKind::People:  return moving ? (running ? 2u : 0u) : 4u; // run/walk(unarmed) / stand
+    }
+    return 0u;
+}
+
+// Per-frame advance interval (ms) by motion state. Provisional — confirm the
+// client's real frame timing in IDA. A mobile counts as "moving" for the window
+// after its last step (step cadence + slack) so the gap between steps doesn't
+// flicker the cycle back to idle.
+constexpr i64 kAnimIntervalIdleMs = 200;
+constexpr i64 kAnimIntervalWalkMs = 150;
+constexpr i64 kAnimIntervalRunMs  = 100;
+constexpr i64 kMoveAnimWindowMs   = 600;
 } // namespace
 
 void Client::RenderTick() {
@@ -173,6 +204,36 @@ void Client::RenderTick() {
         }
     };
 
+    // Pick the animation group from motion state and the frame from the render
+    // clock (no stored per-mobile phase). Falls back to group 0 (walk) when the
+    // chosen group is unavailable, so bodies without a stand group still draw.
+    const i64 nowAnim = NowMs();
+    auto resolveAnim = [&](uo::u16 body, uo::u8 dir, bool moving, bool running,
+                           uo::u8& action, uo::u16& frame) {
+        action = PickAction(KindOf(body), moving, running);
+        uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
+        if (fc == 0u && action != 0u) {
+            action = 0u;
+            fc = anim_ ? anim_->FrameCount(body, dir, 0u) : 0u;
+        }
+        frame = 0;
+        if (fc == 0u) return;
+        const i64 interval = !moving ? kAnimIntervalIdleMs
+                                     : (running ? kAnimIntervalRunMs : kAnimIntervalWalkMs);
+        frame = static_cast<uo::u16>((nowAnim / interval) % fc);
+    };
+
+    // Slide between previous and current cell over the step, so the sprite moves
+    // in sync with the walk cycle instead of teleporting. dd = (t-1)*(cur-prev):
+    // prev-cur at t=0, easing to 0 at t=1 (sprite reaches its current cell).
+    auto slideDelta = [&](i64 movedMs, i64 durMs, uo::i32 cur, uo::i32 prev) -> float {
+        if (movedMs == 0 || durMs <= 0) return 0.0f;
+        const i64 el = nowAnim - movedMs;
+        if (el < 0 || el >= durMs) return 0.0f;
+        const double t = static_cast<double>(el) / static_cast<double>(durMs);
+        return static_cast<float>((t - 1.0) * (cur - prev));
+    };
+
     // Mobiles: nearby NPCs/players from the cache plus the local player. The
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
@@ -181,10 +242,18 @@ void Client::RenderTick() {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, {}};
         resolveEquip(m.dir, m.equip, mob.equipAnims);
+        const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < kMoveAnimWindowMs;
+        resolveAnim(m.body, m.dir, moving, false, mob.action, mob.frame);
+        mob.ddx = slideDelta(m.movedMs, m.stepDurMs, m.x, m.prevX);
+        mob.ddy = slideDelta(m.movedMs, m.stepDurMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, {}};
     resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
+    const bool selfMoving = lastStepMs_ != 0 && (nowAnim - lastStepMs_) < kMoveAnimWindowMs;
+    resolveAnim(playerBody_, playerFacing_, selfMoving, player_.running, self.action, self.frame);
+    self.ddx = slideDelta(lastStepMs_, stepDurMs_, playerX_, prevPlayerX_);
+    self.ddy = slideDelta(lastStepMs_, stepDurMs_, playerY_, prevPlayerY_);
     mobs.push_back(std::move(self));
 
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,

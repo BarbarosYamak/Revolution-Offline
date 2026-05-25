@@ -19,14 +19,23 @@ namespace uo::render {
 // is NOT added to the art.)
 struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; };
 
-// A mobile (player/NPC) to draw as a still body frame. No animation yet; the
-// facing picks the frame's direction. isPlayer flags the local player (used to
+// A mobile (player/NPC) to draw. `dir` picks the facing; `action`/`frame` select
+// the animation group and the frame within its cycle (chosen Client-side from
+// movement state + the render clock). isPlayer flags the local player (used to
 // compute the roof cutoff so we can see ourselves inside a building).
 // equipAnims are worn-item animation ids, already in back-to-front draw order;
-// each is drawn over the body using its own frame anchor (no hue).
+// each is drawn over the body at the SAME action/frame, using its own frame
+// anchor (no hue).
+// ddx/ddy interpolate the on-screen position between the previous and current
+// cell during a step (in cells, added to x/y; 0 when not mid-step), so the
+// sprite slides in sync with the walk cycle instead of teleporting. The local
+// player's ddx/ddy scrolls the whole scene (camera follows it) and the player
+// stays centred; other mobiles slide by their own offset on top.
 struct Mob {
     u16 body; i32 x; i32 y; i8 z; u8 dir; bool isPlayer;
     std::vector<u16> equipAnims;
+    u8 action = 0; u16 frame = 0;
+    float ddx = 0.0f; float ddy = 0.0f;
 };
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per

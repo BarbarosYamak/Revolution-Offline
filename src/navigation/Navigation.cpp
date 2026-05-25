@@ -321,6 +321,8 @@ bool Client::EnsureWorldLoaded() {
 void Client::BotPredictStep(u8 dir) {
     i32 dx, dy;
     bot::DirToDelta(dir, &dx, &dy);
+    prevPlayerX_ = playerX_;   // for the slide interpolation in the renderer
+    prevPlayerY_ = playerY_;
     playerX_ += dx;
     playerY_ += dy;
     // Track the surface z so the next step's walk-check uses the right base.
@@ -334,6 +336,8 @@ void Client::BotPredictStep(u8 dir) {
     player_.z = playerZ_;
     player_.facing = static_cast<u8>(dir & 0x07);
     player_.running = nav_.movement.run;
+    lastStepMs_ = NowMs();          // real step -> walk/run anim (vs idle stand)
+    stepDurMs_ = BotMoveGapMs();    // slide over the run/walk cadence
 }
 
 

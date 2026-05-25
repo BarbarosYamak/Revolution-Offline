@@ -263,6 +263,9 @@ private:
     i8    playerZ_;
     u8    playerFacing_;        // 0..7 (low 3 bits of dir byte)
     bool  playerRunning_;
+    i64   lastStepMs_ = 0;      // when we last actually changed cell (anim: walk vs idle)
+    i32   prevPlayerX_ = 0; i32 prevPlayerY_ = 0;  // cell before the current step (slide interp)
+    i64   stepDurMs_ = 0;       // duration of the current step (run/walk cadence)
     // Navigation owns predicted movement, bot route/follow state, and
     // learned transient blockers. Server packets still own authoritative
     // player position above.
@@ -306,6 +309,9 @@ private:
     // wall — such tiles are never blacklisted.
     struct MobileObj {
         u32 serial; i32 x; i32 y; i8 z; u8 dir; u16 body; i64 seenMs;
+        i64 movedMs = 0;     // when (x,y) last changed (anim: walk vs idle)
+        i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
+        i64 stepDurMs = 0;   // measured duration of the current step (auto cadence)
         // Worn items as (layer, item graphic). No hue (out of scope). Preserved
         // across 0x77 position updates; rebuilt on 0x78, patched by 0x2E.
         std::vector<std::pair<u8, u16>> equip;

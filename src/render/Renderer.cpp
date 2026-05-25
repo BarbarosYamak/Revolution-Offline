@@ -84,14 +84,27 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     const u32 bx0 = static_cast<u32>(minX) / 8, bx1 = static_cast<u32>(maxX) / 8;
     const u32 by0 = static_cast<u32>(minY) / 8, by1 = static_cast<u32>(maxY) / 8;
 
-    const int originX = w_ / 2;
+    // Smooth movement: the local player's per-step interpolation (ddx,ddy in
+    // cells) scrolls the whole scene so the player stays centred; other mobiles
+    // slide by their own offset on top (mobile loop below). Horizontal only.
+    double camOffX = 0.0, camOffY = 0.0;
+    for (usize mi = 0; mi < nMobs; ++mi) {
+        if (mobs[mi].isPlayer) {
+            const double ddx = mobs[mi].ddx, ddy = mobs[mi].ddy;
+            camOffX = -(ddx - ddy) * kHalfTile;
+            camOffY = -(ddx + ddy) * kHalfTile;
+            break;
+        }
+    }
+
+    const int originX = w_ / 2 + static_cast<int>(std::lround(camOffX));
     // Centre on the player INCLUDING his z. (sx,sy) is a cell's NORTH vertex,
     // but the player stands at the cell CENTRE (kHalfTile below the vertex), so
     // we centre the cell centre of (camX,camY,camZ): +camZ*kZStep accounts for
     // his elevation, -kHalfTile for the vertex->centre offset. Without this the
     // z=0 vertex is centred and an elevated player sits high with extra tiles
     // drawn below him.
-    const int originY = h_ / 2 + camZ * kZStep - kHalfTile;
+    const int originY = h_ / 2 + camZ * kZStep - kHalfTile + static_cast<int>(std::lround(camOffY));
 
     std::vector<Draw> draws;
     std::vector<map::StaticItem> statics(2048);
@@ -373,7 +386,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         draws.push_back(d);
     }
 
-    // Mobiles (players/NPCs) — a single still body frame, no animation yet.
+    // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
     // Interleaved by z with statics, like the client's draw buckets. Each frame
     // is fitted to its content; we place its command origin (anchorX/anchorY)
     // at the tile floor (cell centre). Hue/mounts are out of scope.
@@ -381,11 +394,15 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         for (usize mi = 0; mi < nMobs; ++mi) {
             const Mob& m = mobs[mi];
             if (culled(m.z)) continue;
-            const anim::Frame* fr = anim->Body(m.body, m.dir);
+            const anim::Frame* fr = anim->Body(m.body, m.dir, m.action, m.frame);
             if (!fr) continue;
             const i32 dxw = m.x - camX, dyw = m.y - camY;
-            const int sx = originX + (dxw - dyw) * kHalfTile;
-            const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep;
+            // Per-sprite slide between previous and current cell. The player's
+            // offset cancels the camera shift above, leaving it centred.
+            const int mobOffX = static_cast<int>(std::lround((m.ddx - m.ddy) * kHalfTile));
+            const int mobOffY = static_cast<int>(std::lround((m.ddx + m.ddy) * kHalfTile));
+            const int sx = originX + (dxw - dyw) * kHalfTile + mobOffX;
+            const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep + mobOffY;
             Draw d{};
             d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
             d.quad = false;
@@ -399,7 +416,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             // its own anchor, so it lines up at the same floor point. They share
             // this mobile's sort key, so stable_sort keeps body-then-layer order.
             for (u16 ea : m.equipAnims) {
-                const anim::Frame* ef = anim->Body(ea, m.dir);
+                const anim::Frame* ef = anim->Body(ea, m.dir, m.action, m.frame);
                 if (!ef) continue;
                 Draw e{};
                 e.depth = m.x + m.y; e.col = m.x - m.y; e.z = m.z; e.priority = false;
