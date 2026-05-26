@@ -70,15 +70,17 @@ bool IsDynamicItemBlocking(const RuntimeOverlay& overlay, i32 x, i32 y, i8 z) {
         const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
         const auto& st = overlay.tileData->Static(gid);
         if (IsDoorGraphic(gid) || (st.flags & tiledata::kFlagDoor)) continue;
+        const bool isSurface =
+            (st.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
         const bool blocksMovement =
             overlay.world->IsStaticBlocker(gid) ||
-            ((st.flags & tiledata::kFlagSurface) != 0) ||
-            st.height != 0;
+            isSurface;
         if (!blocksMovement) continue;
 
         const i32 obsLo = static_cast<i32>(it.z);
-        const i32 obsHi = obsLo + (st.height ? st.height : 1);
-        if (obsHi >= colLo && obsLo < colHi) return true;
+        const i32 obsHi = obsLo +
+            (isSurface ? st.height : (st.height ? st.height : 1));
+        if (obsHi > colLo && obsLo < colHi) return true;
     }
     return false;
 }
