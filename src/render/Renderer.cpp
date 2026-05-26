@@ -44,6 +44,8 @@ struct Draw {
                         // the canopy/trunk pair, but the cell walk still lets a nearer
                         // trunk occlude a farther canopy.
     bool priority;      // client UsePrioritySortTieBreaker: true only for land
+    bool mobile;        // mobiles use Entity_InsertIntoDrawCellBucket: at equal z
+                        // they are appended after existing land/statics/items.
     bool surface;       // floor/bridge static that can be visually occluded by walls
     bool occluder;      // wall/blocking static with vertical volume
     int height;         // tiledata height. On an exact z-TIE the SHORTER tile draws
@@ -465,6 +467,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 if (mf) {
                     Draw md{};
                     md.depth = m.x + m.y; md.col = m.x - m.y; md.z = m.z; md.priority = false;
+                    md.mobile = true;
                     md.quad = false;
                     md.src = mf->px.data(); md.sw = mf->width; md.sh = mf->height;
                     md.transparent = true;
@@ -476,6 +479,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
 
             Draw d{};
             d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
+            d.mobile = true;
             d.quad = false;
             d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
             d.transparent = true;
@@ -496,6 +500,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 if (!ef) continue;
                 Draw e{};
                 e.depth = m.x + m.y; e.col = m.x - m.y; e.z = m.z; e.priority = false;
+                e.mobile = true;
                 e.quad = false;
                 e.src = ef->px.data(); e.sw = ef->width; e.sh = ef->height;
                 e.transparent = true;
@@ -516,9 +521,13 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     // Statics sort by base z so a tall wall stays BELOW the higher floor it
     // supports (a wooden battlement floor covers the sandstone wall beneath it);
     // sorting by the tile TOP instead made tall walls poke up through the floor.
-    // On an exact z-tie the SHORTER tile draws first and the taller one on top
-    // (by tiledata height): a table (z20/h6) or a wall-top (z30/h3) draws over the
-    // floor (h0) it shares a cell+z with, instead of the floor bleeding over them.
+    // Mobiles are appended after same-z world draw items by
+    // Entity_InsertIntoDrawCellBucket (they do not use the CDrawItem priority
+    // tie path), so a seated body draws over the chair at the same cell/z.
+    // On an exact z-tie between world items the SHORTER tile draws first and
+    // the taller one on top (by tiledata height): a table (z20/h6) or a
+    // wall-top (z30/h3) draws over the floor (h0) it shares a cell+z with,
+    // instead of the floor bleeding over them.
     // Stretched land uses its average-corner z (LandObject_CreateForCell) for a
     // smooth coast. Stable so equal-key statics keep statics0.mul order.
     std::stable_sort(draws.begin(), draws.end(), [](const Draw& a, const Draw& b) {
@@ -537,6 +546,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         if (surfaceInsideOccluder(a, b)) return true;
         if (surfaceInsideOccluder(b, a)) return false;
         if (a.z     != b.z)     return a.z     < b.z;       // base drawCellZ
+        if (a.mobile != b.mobile) return a.mobile < b.mobile; // world under mobiles
         if (a.priority != b.priority) return a.priority > b.priority;  // land under objects
         if (a.height != b.height) return a.height < b.height;          // shorter under taller
         return false;                                       // else: insertion order
