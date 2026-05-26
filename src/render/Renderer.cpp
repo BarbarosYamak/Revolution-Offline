@@ -442,7 +442,8 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
     // Interleaved by z with statics, like the client's draw buckets. Each frame
     // is fitted to its content; we place its command origin (anchorX/anchorY)
-    // at the tile floor (cell centre). Mounts are out of scope.
+    // at the tile floor (cell centre). A mount/seat body (when present) is drawn
+    // first so the rider sits on top.
     if (anim) {
         for (usize mi = 0; mi < nMobs; ++mi) {
             const Mob& m = mobs[mi];
@@ -456,14 +457,32 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             const int mobOffY = static_cast<int>(std::lround((m.ddx + m.ddy) * kHalfTile));
             const int sx = originX + (dxw - dyw) * kHalfTile + mobOffX;
             const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep + mobOffY;
+
+            // Mount/seat body under the rider (same sort key; pushed first so the
+            // stable sort keeps it below the rider).
+            if (m.mountBody) {
+                const anim::Frame* mf = anim->Body(m.mountBody, m.dir, m.mountAction, m.mountFrame);
+                if (mf) {
+                    Draw md{};
+                    md.depth = m.x + m.y; md.col = m.x - m.y; md.z = m.z; md.priority = false;
+                    md.quad = false;
+                    md.src = mf->px.data(); md.sw = mf->width; md.sh = mf->height;
+                    md.transparent = true;
+                    md.dx = sx - mf->anchorX;
+                    md.dy = sy + kHalfTile - mf->anchorY;
+                    draws.push_back(md);
+                }
+            }
+
             Draw d{};
             d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
             d.quad = false;
             d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
             d.transparent = true;
             d.hue = m.hue;
+            const int seatY = m.sitting ? m.sitOffsetY : 0;  // chair seat shift
             d.dx = sx - fr->anchorX;
-            d.dy = sy + kHalfTile - fr->anchorY;  // command origin at cell centre
+            d.dy = sy + kHalfTile - fr->anchorY + seatY;  // command origin at cell centre
             draws.push_back(d);
 
             if (collectLights && m.light >= 0 && !lightOccluded(m.x, m.y, m.z))
@@ -482,7 +501,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 e.transparent = true;
                 e.hue = ea.hue;
                 e.dx = sx - ef->anchorX;
-                e.dy = sy + kHalfTile - ef->anchorY;
+                e.dy = sy + kHalfTile - ef->anchorY + seatY;
                 draws.push_back(e);
             }
         }

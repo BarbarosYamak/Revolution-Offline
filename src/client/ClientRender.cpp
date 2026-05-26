@@ -111,6 +111,56 @@ u8 PickAction(u16 body, bool moving, bool running) {
 constexpr i64 kAnimIntervalIdleMs = 200;
 constexpr i64 kIdleFidgetDelayMs  = 15000; // Mobile_TryPlayIdleAnimation gate.
 constexpr i64 kAnimListTickMs = 76;        // GameLoop_Update object/anim gate.
+
+// Chair/sit table, ported verbatim from the 2.0.7 g_SittingChairTable
+// (@0x55DB68; Mobile_FindSittingChair). A humanoid standing on one of these
+// tiles is drawn SEATED. dirMask is a bitmask of the chair's facing(s):
+// bit0->0(N), bit1->2(E), bit2->4(S), bit3->6(W); bit4 (0x10) = special. The
+// seated body faces the chair (overriding its walk facing). offElse/off06 are
+// the seat Y shift (off06 when facing N/W, offElse otherwise) — signed.
+struct ChairSit { uo::u16 graphic; uo::u8 dirMask; int offElse; int off06; };
+constexpr ChairSit kChairSit[] = {
+    {0x0B2E,4,6,6},{0x0B2F,2,6,6},{0x0B4E,2,0,0},{0x0B4F,4,0,0},
+    {0x0B52,2,0,0},{0x0B53,4,0,0},{0x0B56,2,4,4},{0x0B57,4,4,4},
+    {0x0B5A,2,8,8},{0x0B5B,4,8,8},{0x1218,4,4,4},{0x1219,2,4,4},
+    {0x0B50,1,0,0},{0x0B51,8,0,0},{0x0B54,1,0,0},{0x0B55,8,0,0},
+    {0x0B58,8,0,8},{0x0B59,1,0,8},{0x0B5C,1,0,8},{0x0B5D,8,0,8},
+    {0x121A,1,0,8},{0x121B,8,0,8},{0x0B32,4,0,0},{0x0B33,2,0,0},
+    {0x1527,2,0,0},{0x0459,5,2,2},{0x045A,10,2,2},{0x045B,5,2,2},
+    {0x045C,10,2,2},{0x0B2C,10,2,2},{0x0B2D,5,2,2},{0x3DFF,5,2,2},
+    {0x3E00,10,2,2},{0x0B5F,10,3,14},{0x0B60,10,3,14},{0x0B61,10,3,14},
+    {0x0B62,10,3,10},{0x0B63,10,3,10},{0x0B64,10,3,10},{0x0B65,5,3,10},
+    {0x0B66,5,3,10},{0x0B67,5,3,10},{0x0B68,5,3,10},{0x0B69,5,3,10},
+    {0x0B6A,5,3,10},{0x0B91,4,6,6},{0x0B92,4,6,6},{0x0B93,2,6,6},
+    {0x0B94,2,6,6},{0x1DC7,10,3,10},{0x1DC8,10,3,10},{0x1DC9,10,3,10},
+    {0x1DCA,5,3,10},{0x1DCB,5,3,10},{0x1DCC,5,3,10},{0x1DCD,10,3,10},
+    {0x1DCE,10,3,10},{0x1DCF,10,3,10},{0x1DD0,5,3,10},{0x1DD1,5,3,10},
+    {0x1DD2,10,3,10},{0x11FC,15,2,7},{0x0A2A,15,-4,-4},{0x0A2B,15,-8,-8},
+    {0x0CF3,26,2,8},{0x0CF4,26,2,8},{0x0CF6,21,2,8},{0x0CF7,21,2,8},
+    {0x1771,31,0,0},
+};
+
+const ChairSit* FindChairSit(uo::u16 graphic) {
+    for (const ChairSit& c : kChairSit)
+        if (c.graphic == graphic) return &c;
+    return nullptr;
+}
+
+// Pick the seated facing from the chair's dirMask. Single-bit -> that cardinal
+// facing; multi-bit (stools/thrones) -> the allowed facing nearest the mob's
+// current facing. bit4 (0x10) is special and ignored for facing.
+uo::u8 SitFacing(uo::u8 dirMask, uo::u8 curDir) {
+    int best = -1, bestDist = 99;
+    const int cur = curDir & 7;
+    for (int b = 0; b < 4; ++b) {
+        if (!(dirMask & (1 << b))) continue;
+        const int f = b * 2;                 // 0=N,2=E,4=S,6=W
+        int d = std::abs(f - cur);
+        if (d > 4) d = 8 - d;                 // circular over 8 facings
+        if (d < bestDist) { bestDist = d; best = f; }
+    }
+    return best >= 0 ? static_cast<uo::u8>(best) : static_cast<uo::u8>(cur);
+}
 } // namespace
 
 void Client::RenderTick() {
@@ -212,7 +262,8 @@ void Client::RenderTick() {
 
     // Per-direction worn-item draw order (layer numbers, back-to-front),
     // verbatim from g_DrawLayerOrder @0x5144C0 with the mount slot (layer 25)
-    // dropped — mounts are out of scope. Index by facing 0..7.
+    // omitted here — the mount is handled separately (drawn as a body under the
+    // rider, see applyMount below), not as a worn overlay. Index by facing 0..7.
     static constexpr uo::u8 kLayerDrawOrder[8][24] = {
         {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,2,21,20,6},
         {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,2,6},
@@ -452,6 +503,80 @@ void Client::RenderTick() {
         return -1;
     };
 
+    // Mount/seat handling: a mobile with an item on the mount layer (25) is
+    // "mounted" — the client renders it seated (the ride anim group) and draws
+    // the mount body under it. This is also how a chair seats a player: the
+    // server occupies layer 25; a chair has no body anim, so only the seated
+    // pose shows (the chair itself is a world static). Mirrors the original
+    // (Mobile_OnEquip: isMounted = pEquipped[25]; ride groups 23/24).
+    auto applyMount = [&](const std::vector<EquipObj>& equip, uo::u8 dir,
+                          bool moving, bool running, int counter,
+                          render::Mob& mob) -> bool {
+        uo::u16 mountG = 0;
+        for (const EquipObj& e : equip)
+            if (e.layer == 25) { mountG = e.graphic; break; }
+        if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
+        mob.action = (moving && running) ? 24u : 23u;    // ride run / ride idle+walk
+        const uo::u32 fc = anim_ ? anim_->FrameCount(mob.body, dir, mob.action) : 0;
+        mob.frame = (moving && fc) ? static_cast<uo::u16>(counter % fc) : 0;
+        const uo::u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
+        if (mb) {                                         // real mount: draw its body
+            mob.mountBody = mb;
+            mob.mountAction = PickAction(mb, moving, running);
+            const uo::u32 mfc = anim_ ? anim_->FrameCount(mb, dir, mob.mountAction) : 0;
+            mob.mountFrame = (moving && mfc) ? static_cast<uo::u16>(counter % mfc) : 0;
+        }
+        return true;
+    };
+
+    // Seated-on-chair: a HUMANOID mob standing on a chair tile (a DynItem in
+    // `dyn` whose graphic is in kChairSit) is drawn seated, facing the chair
+    // (overriding its walk facing), with a seat Y shift. Mirrors the 2.0.7
+    // Mobile_FindSittingChair (humanoid body, stationary). Returns true if seated
+    // (caller then skips the normal walk/idle + mount selection).
+    std::vector<map::StaticItem> sitStatics(256);
+    auto applySit = [&](uo::i32 x, uo::i32 y, uo::i8 z, bool moving,
+                        render::Mob& mob) -> bool {
+        if (moving || mob.body < 0x190 || mob.body >= 0x3E8) return false;
+        const ChairSit* c = nullptr;
+        // (1) dynamic 0x1A items on the tile
+        for (const render::DynItem& d : dyn) {
+            if (d.x == x && d.y == y && std::abs(int(d.z) - int(z)) <= 4) {
+                c = FindChairSit(d.itemId);
+                if (c) break;
+            }
+        }
+        // (2) map statics on the tile (tavern furniture etc. live in statics.mul)
+        if (!c && worldMap_) {
+            uo::u32 n = 0;
+            if (worldMap_->ReadStatics(static_cast<uo::u32>(x) / 8, static_cast<uo::u32>(y) / 8,
+                                       sitStatics.data(),
+                                       static_cast<uo::u32>(sitStatics.size()), &n)) {
+                const uo::u8 lx = static_cast<uo::u8>(x & 7), ly = static_cast<uo::u8>(y & 7);
+                for (uo::u32 i = 0; i < n; ++i) {
+                    const map::StaticItem& s = sitStatics[i];
+                    if (s.cellX == lx && s.cellY == ly && std::abs(int(s.z) - int(z)) <= 4) {
+                        c = FindChairSit(s.itemId);
+                        if (c) break;
+                    }
+                }
+            }
+        }
+        if (!c) return false;
+        mob.dir = SitFacing(c->dirMask, mob.dir);
+        mob.sitting = true;
+        // off06/offElse is the per-chair fine seat height; kSitBaseY corrects our
+        // anchor baseline vs the client's render-cache origin (TUNABLE).
+        constexpr int kSitBaseY = 20;
+        mob.sitOffsetY = kSitBaseY + ((mob.dir == 0 || mob.dir == 6) ? c->off06 : c->offElse);
+        // Seated anim group, exactly as the 2.0.7 Mobile_RenderSeatedOnChair:
+        // facing N/W (0/6) -> group 25, else -> group 4. Our AnimLoader index
+        // matches the client's people layout, so this is the real sit pose.
+        mob.action = (mob.dir == 0 || mob.dir == 6) ? 25u : 4u;
+        mob.frame = 0;
+        return true;
+    };
+
     // Mobiles: nearby NPCs/players from the cache plus the local player. The
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
@@ -459,26 +584,34 @@ void Client::RenderTick() {
     for (auto& m : mobileCache_) {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
-        resolveEquip(m.dir, m.equip, mob.equipAnims);
         mob.light = equipLightGraphic(m.equip);
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
-        if (moving) {
-            m.idleAnim.active = false;
-            m.idleAnim.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
-            tickMoveAnim(m.moveAnimTickMs, m.moveAnimCounter);
-            resolveAnim(m.body, m.dir, true, m.running, m.moveAnimCounter,
-                        mob.action, mob.frame);
-        } else {
-            m.moveAnimTickMs = 0;
-            resolveIdleAnim(m.body, m.dir, m.idleAnim, mob.action, mob.frame);
+        // Sitting overrides facing, so resolve worn gear AFTER it (gear must
+        // follow the seated facing, not the walk facing).
+        const bool seated = applySit(m.x, m.y, m.z, moving, mob);
+        resolveEquip(mob.dir, m.equip, mob.equipAnims);
+        if (!seated) {
+            if (moving) {
+                m.idleAnim.active = false;
+                m.idleAnim.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+                tickMoveAnim(m.moveAnimTickMs, m.moveAnimCounter);
+            } else {
+                m.moveAnimTickMs = 0;
+            }
+            if (!applyMount(m.equip, m.dir, moving, m.running, m.moveAnimCounter, mob)) {
+                if (moving)
+                    resolveAnim(m.body, m.dir, true, m.running, m.moveAnimCounter,
+                                mob.action, mob.frame);
+                else
+                    resolveIdleAnim(m.body, m.dir, m.idleAnim, mob.action, mob.frame);
+            }
         }
         mob.ddx = slideDelta(m.movedMs, mobMoveMs, m.x, m.prevX);
         mob.ddy = slideDelta(m.movedMs, mobMoveMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
-    resolveEquip(playerFacing_, playerEquip_, self.equipAnims);
     self.light = equipLightGraphic(playerEquip_);
     const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
@@ -491,17 +624,26 @@ void Client::RenderTick() {
     const bool selfMoving = selfMidStep ||
                             (selfMovementChainActive && lastStepMs_ != 0);
     const bool selfRunning = selfMoving && player_.running;
-    if (selfMoving) {
-        playerIdleAnim_.active = false;
-        playerIdleAnim_.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
-        tickMoveAnim(playerMoveAnimTickMs_, playerMoveAnimCounter_);
-        resolveAnim(playerBody_, playerFacing_, true, selfRunning, playerMoveAnimCounter_,
-                    self.action, self.frame);
-    } else {
-        playerMoveAnimTickMs_ = 0;
-        if (!selfMovementChainActive) playerMoveAnimCounter_ = 3;
-        resolveIdleAnim(playerBody_, playerFacing_, playerIdleAnim_,
-                        self.action, self.frame);
+    const bool selfSeated = applySit(playerX_, playerY_, playerZ_, selfMoving, self);
+    resolveEquip(self.dir, playerEquip_, self.equipAnims);
+    if (!selfSeated) {
+        if (selfMoving) {
+            playerIdleAnim_.active = false;
+            playerIdleAnim_.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
+            tickMoveAnim(playerMoveAnimTickMs_, playerMoveAnimCounter_);
+        } else {
+            playerMoveAnimTickMs_ = 0;
+            if (!selfMovementChainActive) playerMoveAnimCounter_ = 3;
+        }
+        if (!applyMount(playerEquip_, playerFacing_, selfMoving, selfRunning,
+                        playerMoveAnimCounter_, self)) {
+            if (selfMoving)
+                resolveAnim(playerBody_, playerFacing_, true, selfRunning, playerMoveAnimCounter_,
+                            self.action, self.frame);
+            else
+                resolveIdleAnim(playerBody_, playerFacing_, playerIdleAnim_,
+                                self.action, self.frame);
+        }
     }
     self.ddx = slideDelta(lastStepMs_, selfMoveMs, playerX_, prevPlayerX_);
     self.ddy = slideDelta(lastStepMs_, selfMoveMs, playerY_, prevPlayerY_);

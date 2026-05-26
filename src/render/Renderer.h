@@ -48,6 +48,16 @@ struct Mob {
     // Set Client-side from the equipped item when its tiledata is flagged a
     // light source, so a carried torch casts a moving, classified light pool.
     int light = -1;
+    // Mount/seat body drawn UNDER the rider (0 = on foot). Set from the layer-25
+    // mount-equip item's tiledata animId. When mounted, the rider's action/frame
+    // above are the seated ride group (23/24), so a mounted/seated mobile sits.
+    // mountAction/mountFrame animate the mount body itself. A chair-only seat has
+    // no body anim (mountBody 0) — the rider still sits, the chair is a world static.
+    int mountBody = 0; u8 mountAction = 0; u16 mountFrame = 0;
+    // Sitting on a chair (client-side detection, ported from the 2.0.7
+    // g_SittingChairTable @0x55DB68). When set, `dir` has been overridden to the
+    // chair's facing and the body is drawn shifted by sitOffsetY onto the seat.
+    bool sitting = false; int sitOffsetY = 0;
 };
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per
