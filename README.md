@@ -11,6 +11,12 @@ This is the classic UO *babysitting* loop: the script grinds, you keep an eye on
 it. Here the script is a real protocol client and the window is a software
 reimplementation of the original renderer.
 
+## Demo
+
+[![Watch the bot navigate in the isometric window](https://img.youtube.com/vi/0YYXLrZHQfE/maxresdefault.jpg)](https://www.youtube.com/watch?v=0YYXLrZHQfE)
+
+*The A\* bot pathfinding across Britannia while the software renderer recreates the 1997-era client — click to watch on YouTube.*
+
 > **Scope.** This client talks to one server: the reverse-engineered **UO Demo**
 > shard at **[draxinar/ouo](https://github.com/draxinar/ouo)**. Compatibility with
 > other shards (OSI, modern emulators) is **out of scope** and not planned.
@@ -19,6 +25,7 @@ reimplementation of the original renderer.
 
 ## Table of contents
 
+- [Demo](#demo)
 - [What it is / what it is not](#what-it-is--what-it-is-not)
 - [How it was built — LLMs + reverse engineering](#how-it-was-built--llms--reverse-engineering)
 - [Architecture](#architecture)
