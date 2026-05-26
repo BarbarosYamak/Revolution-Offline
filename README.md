@@ -194,13 +194,21 @@ toggle so the window isn't drowned in per-tick chatter).
 
 ### Predict-and-reconcile movement
 
-Movement is **depth-1** (`kMaxInFlight = 1`): send one `0x02` move, predict the
-new position/facing locally, then reconcile on the server's reply.
+Movement is **pipelined** (`kMaxInFlight = 4`, the "fastwalk stack"): several
+`0x02` moves may be in flight at once, each predicting its new position/facing
+locally, then reconciled on the server's replies.
 
-- The `0x22` **ack carries no position**, so deeper pipelining would desync on a
-  reject — hence depth-1.
+- The `0x22` **ack carries no position**, but we never need it — position is
+  predicted locally and only ever corrected by a reject. Pipelining is safe
+  because the `0x21` reject carries the authoritative pose (see below) and the
+  server has no step-rate anti-speedhack (the throttle still paces *sends*).
 - `0x21` **reject** snaps the client back to the server's authoritative pose and
-  clears the in-flight slot.
+  drops the in-flight queue. A blocked step makes the server deny every queued
+  move behind it (it holds MovePrevented until we resend `seq 0`), so a depth-N
+  pipeline yields N identical rejects; only the first (whose seq is still
+  in-flight) is acted on, the rest just resync the pose. Steps that were
+  speculatively consumed from the path are restored so a reroute/door-retry
+  resumes from the right spot.
 - `0x20` is a full resync that aborts the current path.
 - **Turn-then-step:** stepping a new direction first turns (an acked server
   `DoTurn`) and then steps; both are predicted locally.

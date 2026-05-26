@@ -81,11 +81,23 @@ Login flow (single TCP socket, "stay-on-socket" model):
   (`runThrottleMs_` / `walkThrottleMs_`) with no added jitter. The server has
   **no step-timing anti-speedhack** and ignores the
   fastwalk key (we send 0), so pacing is purely for realism / stamina.
-- **Depth-1, predict + reconcile:** `kMaxInFlight = 1`. The server's `0x22` ack
-  carries **no position**, so deeper pipelining would desync on a reject. Each
-  step is predicted on send (pos for a step, facing for a turn) and confirmed by
-  `0x22`; `0x21` snaps us back to the server's authoritative pose; `0x20` is a
-  full resync that aborts the path.
+- **Pipelined ("fastwalk stack"), predict + reconcile:** `kMaxInFlight = 4`.
+  Several `0x02` moves may be in flight at once. Each step is predicted on send
+  (pos for a step, facing for a turn) and confirmed by `0x22`. The `0x22` ack
+  carries **no position**, but we never need it — position is predicted locally
+  and only corrected by a reject. `0x21` snaps us back to the server's
+  authoritative pose; `0x20` is a full resync that aborts the path. Pipelining is
+  safe because the reject carries position and the server has **no step-rate
+  anti-speedhack** (it keeps a 5-slot `movementTimers` ring built for exactly
+  this); the throttle still paces *sends*, so a deeper queue just removes
+  round-trip stalls (smoother travel) without moving illegally faster.
+- **Redundant rejects:** a blocked step makes the server set MovePrevented and
+  deny **every** queued move behind it until we resend `seq 0`, so a depth-N
+  pipeline produces N identical `0x21`s. `OnMoveReject` acts only on the first
+  (the one whose seq is still in `pending`); the rest just resync the (identical)
+  pose and return, so stuck-waits / blacklist / OpenDoor aren't double-counted.
+  Steps speculatively consumed from `botPath_` are pushed back on a reject so the
+  door-retry branch (the one reject path that doesn't replan) resumes correctly.
 - **Sequence:** starts at 0 (resync), 1..255 wrapping to 1; reset to 0 after a
   reject / resync.
 - **Turn-then-step:** stepping a new direction first turns (server `DoTurn`,
@@ -241,7 +253,7 @@ tests/                    huffman / blacklist / path-probe standalone checks
 
 | const | value | meaning |
 |---|---|---|
-| kMaxInFlight | 1 | moves in flight (depth-1; do not raise without position-carrying acks) |
+| kMaxInFlight | 4 | moves in flight (pipelined fastwalk stack; reject de-dup in `OnMoveReject` makes depth>1 safe) |
 | kMaxReplans | 40 | A\* replans per trip before giving up |
 | kGrassPenalty | 14 | extra A\* cost on grass tiles |
 | kDoorCacheMax | 20 | recent doors tracked |

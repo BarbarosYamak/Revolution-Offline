@@ -12,15 +12,24 @@
 #include <cstdio>
 #include <random>
 #include <utility>
+#include <vector>
 
 namespace uo {
 
 namespace {
 
-// Depth-1 movement: this server's 0x22 ack carries no position, so deeper
-// pipelines desync when a mid-flight move is rejected (we'd never learn where
-// the surviving moves left us). One confirmed step at a time stays exact.
-constexpr usize kMaxInFlight = 1;
+// Pipelined ("fastwalk stack") movement. The server has no step-rate
+// anti-speedhack and ignores the fastwalk key, and its 0x21 reject carries the
+// authoritative x/y/z/facing -- so several 0x02 moves may be in flight at once
+// and a mid-pipeline rejection is fully recoverable (snap to the reject pose,
+// reset seq to 0, replan). The 0x22 ack carries no position, but we never need
+// it: position is predicted locally and only ever corrected by a reject. A
+// blocked step makes the server deny every queued move behind it (it holds
+// MovePrevented until we resend seq 0), so OnMoveReject de-dups the resulting
+// redundant rejects. The step throttle still paces *sends*, so a deeper queue
+// removes round-trip stalls (smoother travel) without moving illegally faster.
+// Matches the server's 5-slot movementTimers ring; 4 leaves headroom.
+constexpr usize kMaxInFlight = 4;
 // Canonical UO on-foot step intervals. Pacing at these rates, not faster,
 // is how the original client avoids fastwalk/speedhack checks.
 constexpr u32 kWalkThrottleMs = 400;
@@ -123,20 +132,28 @@ void Client::OnMoveReject(const u8* data, usize size) {
     const u8  dirByte = data[6];
     const i8  z       = static_cast<i8>(data[7]);
 
-    // Direction of the move that was rejected (prefer the queued move's dir;
-    // fall back to the server's reported facing).
+    // Match the rejected sequence against the in-flight queue, and gather the
+    // steps we speculatively consumed from botPath_ while pipelining. With a
+    // pipeline depth > 1 a single blocked step makes the server deny every
+    // queued move behind it (it holds MovePrevented until we resend seq 0), so
+    // we receive several 0x21s for one obstacle. Only the first -- whose seq is
+    // still in `pending` -- is real; the rest are stale echoes of a block we
+    // already handled.
     u8 rdir = dirByte & 0x07;
     bool rejectedWasStep = false;
-    for (const auto& pm : nav_.movement.pending)
-        if (pm.seq == seq) { rdir = pm.dir; rejectedWasStep = pm.wasStep; break; }
+    bool found = false;
+    std::vector<u8> inflightSteps;
+    for (const auto& pm : nav_.movement.pending) {
+        if (pm.seq == seq && !found) {
+            rdir = pm.dir;
+            rejectedWasStep = pm.wasStep;
+            found = true;
+        }
+        if (pm.wasStep) inflightSteps.push_back(pm.dir);
+    }
 
-    LogWarn(
-        "[0x21] move REJECTED seq=%u; server says (%u,%u,%d) facing=%u\n",
-        seq, x, y, static_cast<int>(z), dirByte & 0x07);
-
-    // Server is authoritative — snap prediction back to its reported pose and
-    // drop the whole in-flight queue (anything we predicted past the reject is
-    // stale). Classic UO: seq resets to 0.
+    // Server is authoritative — snap prediction back to its reported pose. The
+    // pose is correct whether this reject is the real one or a stale echo.
     playerX_ = static_cast<i32>(x);
     playerY_ = static_cast<i32>(y);
     playerZ_ = z;
@@ -147,9 +164,31 @@ void Client::OnMoveReject(const u8* data, usize size) {
     player_.z = playerZ_;
     player_.facing = playerFacing_;
     player_.running = playerRunning_;
+
+    if (!found) {
+        // Stale echo: the real reject already reset the queue and rerouted.
+        // Resync the pose (done above) but don't double-count the obstacle.
+        LogInfo("[0x21] stale reject seq=%u (block already handled); pose resynced\n",
+                seq);
+        return;
+    }
+
+    LogWarn(
+        "[0x21] move REJECTED seq=%u; server says (%u,%u,%d) facing=%u\n",
+        seq, x, y, static_cast<int>(z), dirByte & 0x07);
+
+    // Drop the whole in-flight queue (anything predicted past the reject is
+    // stale). Classic UO: seq resets to 0.
     BotResetMovement();
 
     if (!nav_.bot.active) return;
+
+    // Restore the steps popped from botPath_ during pipelining: we've snapped
+    // back to the pose *before* the oldest in-flight step, so the path must
+    // resume from there. Replanning branches clear the path anyway; the
+    // door-retry branch relies on this restored prefix.
+    for (auto it = inflightSteps.rbegin(); it != inflightSteps.rend(); ++it)
+        nav_.bot.path.push_front(*it);
 
     // The cell we were blocked from entering, and its surface z.
     i32 dx, dy;
@@ -222,7 +261,8 @@ void Client::OnMoveReject(const u8* data, usize size) {
                              bx, by, static_cast<i8>(bz));
         u8 ob[8];
         Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 reject retry)");
-        nav_.bot.path.push_front(rdir);
+        // The rejected step is already restored at botPath_'s front by the
+        // pipeline-prefix reconstruction above; just OpenDoor and let it retry.
         nav_.bot.resumeAtMs = NowMs() + kDoorRetryWaitMs;
         LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; OpenDoor + retry\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
