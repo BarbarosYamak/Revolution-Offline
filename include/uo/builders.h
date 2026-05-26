@@ -60,6 +60,11 @@ usize MobNameQuery(u8* out, u32 serial);
 // e.g. double-clicking a door makes the server open it (DoorOpen).
 usize DoubleClick(u8* out, u32 serial);
 
+// 0x72 War Mode request (5 bytes): cmd, target mode, three cached args.
+// Official client initializes the cached args to 04 00 00 and updates them from
+// inbound 0x72 confirmations.
+usize WarMode(u8* out, bool warMode, u8 arg1 = 4, u8 arg2 = 0, u8 arg3 = 0);
+
 // 0x12 Action Request — Open Door (5 bytes): cmd + len + subcommand 0x58 +
 // NUL. The legit player "open door" hotkey macro; the server spatial-searches
 // the tile the player is facing and opens any door there (no serial needed),

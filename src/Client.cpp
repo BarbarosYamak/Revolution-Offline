@@ -348,6 +348,9 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x98: OnMobName(data, size); break;
         case 0x2D: OnMobileAttributes(data, size); break;
         case 0x2E: OnEquipItem(data, size); break;
+        case 0x6E: OnCharacterAnimation(data, size); break;
+        case 0x72: OnWarMode(data, size); break;
+        case 0xAF: OnDeathAnimation(data, size); break;
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
@@ -355,8 +358,8 @@ void Client::Dispatch(const u8* data, usize size) {
         // Common in-world packets we just log + ignore for M1.
         case 0x23: case 0x25: case 0x2F:
         case 0x3C: case 0x53:
-        case 0x54: case 0x5B: case 0x65: case 0x6D: case 0x6E:
-        case 0x70: case 0x72: case 0x88:
+        case 0x54: case 0x5B: case 0x65: case 0x6D:
+        case 0x70: case 0x88:
         case 0x8B: case 0x97:
         case 0xB0: case 0xBA: case 0xBC: case 0xBF: case 0xC0:
         case 0xC1: case 0xCB: case 0xCC:
@@ -929,10 +932,18 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     items_.erase(serial);
     itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
                      itemOrder_.end());
+    bool delayedMobile = false;
     for (auto it = mobileCache_.begin(); it != mobileCache_.end(); ++it) {
-        if (it->serial == serial) { mobileCache_.erase(it); break; }
+        if (it->serial != serial) continue;
+        if (it->deadRemoveMs != 0) {
+            it->deadRemoveMs = NowMs() + 1500;
+            delayedMobile = true;
+        } else {
+            mobileCache_.erase(it);
+        }
+        break;
     }
-    mobileNames_.erase(serial);
+    if (!delayedMobile) mobileNames_.erase(serial);
 }
 
 const char* Client::MobileName(u32 serial) const {
@@ -1018,13 +1029,16 @@ void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
 }
 
 void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
-                          u16 hue, bool hasHue) {
+                          u16 hue, bool hasHue, u8 statusFlags,
+                          bool hasStatusFlags) {
     const bool running = (dir & 0x80u) != 0;
+    const bool warMode = (statusFlags & 0x40u) != 0;
     if (serial == playerSerial_) {
         // Don't treat ourselves as an obstacle, but do learn our own body so
         // the renderer can draw the local player (and facing for arrow walk).
         if (body) playerBody_ = body;
         if (hasHue) playerHue_ = hue;
+        if (hasStatusFlags) playerWarMode_ = warMode;
         playerFacing_ = static_cast<u8>(dir & 0x07);
         player_.serial = serial;
         if (body) player_.body = body;
@@ -1052,8 +1066,10 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
             m.z = z;
             m.dir = static_cast<u8>(dir & 0x07);
             m.running = running;
+            if (hasStatusFlags) m.warMode = warMode;
             if (body) m.body = body;
             if (hasHue) m.hue = hue;
+            m.deadRemoveMs = 0;
             m.seenMs = now;
             return;
         }
@@ -1062,13 +1078,17 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
     mobileCache_.push_back({serial, x, y, z, static_cast<u8>(dir & 0x07),
                             body, hasHue ? hue : 0u, now});
     mobileCache_.back().running = running;
+    mobileCache_.back().warMode = hasStatusFlags ? warMode : false;
 }
 
 // 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), dir(1) ...
 void Client::OnMobileMove(const u8* data, usize size) {
     if (size < 13) return;
+    const bool hasStatus = size >= 16;
     UpdateMobile(LoadBE32(data + 1), LoadBE16(data + 7), LoadBE16(data + 9),
-                 static_cast<i8>(data[11]), data[12], LoadBE16(data + 5));
+                 static_cast<i8>(data[11]), data[12], LoadBE16(data + 5),
+                 hasStatus ? LoadBE16(data + 13) : 0u, hasStatus,
+                 hasStatus ? data[15] : 0u, hasStatus);
 }
 
 // 0x78 Mobile Incoming (variable): cmd, len(2), serial(4), body(2), x(2),
@@ -1077,11 +1097,11 @@ void Client::OnMobileMove(const u8* data, usize size) {
 // by a zero serial. Layout verified vs Packet_HandleUpdatePlayer @0x4174C0
 // (the real 0x78 parser; its "0x77" IDB label is wrong).
 void Client::OnMobileIncoming(const u8* data, usize size) {
-    if (size < 15) return;
+    if (size < 19) return;
     const u32 serial = LoadBE32(data + 3);
     UpdateMobile(serial, LoadBE16(data + 9), LoadBE16(data + 11),
                  static_cast<i8>(data[13]), data[14], LoadBE16(data + 7),
-                 LoadBE16(data + 15), true);
+                 LoadBE16(data + 15), true, data[17], true);
 
     // Equipment list begins after the 19-byte header.
     std::vector<EquipObj> equip;
@@ -1111,6 +1131,128 @@ void Client::OnEquipItem(const u8* data, usize size) {
     const u32 mobile  = LoadBE32(data + 9);
     const u16 hue     = LoadBE16(data + 13);
     SetMobileEquipLayer(mobile, layer, graphic, hue);
+}
+
+// 0x6E Character Animation (14B fixed): cmd, serial(4), action(2),
+// maxFrames(2), maxDuration(2), reverse(1), bounce(1), delay(1).
+// Verified against client_2.0.7 Packet_HandleCharacterAnimation @0x41F450.
+void Client::OnCharacterAnimation(const u8* data, usize size) {
+    if (size < 14) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    const u16 action = LoadBE16(data + 5);
+    const u16 maxFrames = LoadBE16(data + 7);
+    const u16 maxDuration = LoadBE16(data + 9);
+    const bool reverse = data[11] != 0;
+    const bool bounce = data[12] != 0;
+    const u16 delay = data[13];
+    if (action > 0x22u) return;
+
+    auto start = [&](ServerAnimState& a) {
+        a.active = true;
+        a.lastTickMs = NowMs();
+        a.action = static_cast<u8>(action & 0xFFu);
+        a.maxFrames = maxFrames;
+        a.delayPerFrame = delay;
+        a.maxDuration = maxDuration;
+        a.currentFrame = (reverse && maxFrames != 0) ? static_cast<u16>(maxFrames - 1u) : 0u;
+        a.currentDuration = (reverse && maxDuration != 0) ? static_cast<u16>(maxDuration - 1u) : 0u;
+        a.pad = 0;
+        a.renderedFrame = 0;
+        a.reverse = reverse;
+        a.bounce = bounce;
+        a.hasRenderedFrame = false;
+    };
+
+    if (serial == playerSerial_) {
+        start(playerServerAnim_);
+    } else {
+        for (auto& m : mobileCache_) {
+            if (m.serial == serial) {
+                start(m.serverAnim);
+                break;
+            }
+        }
+    }
+
+    if (verboseConsole_) {
+        LogInfo("[0x6E] anim serial=0x%08X action=%u frames=%u duration=%u rev=%u bounce=%u delay=%u\n",
+                serial, static_cast<unsigned>(action), static_cast<unsigned>(maxFrames),
+                static_cast<unsigned>(maxDuration), reverse ? 1u : 0u,
+                bounce ? 1u : 0u, static_cast<unsigned>(delay));
+    }
+}
+
+// 0x72 War Mode: cmd, mode, arg1, arg2, arg3. The original client stores the
+// trailing args and reuses them on the next outbound war-mode request.
+void Client::OnWarMode(const u8* data, usize size) {
+    if (size < 5) return;
+    playerWarMode_ = data[1] != 0;
+    warModeArg1_ = data[2];
+    warModeArg2_ = data[3];
+    warModeArg3_ = data[4];
+    if (verboseConsole_)
+        LogInfo("[0x72] war mode %s args=%02X %02X %02X\n",
+                playerWarMode_ ? "on" : "off", warModeArg1_, warModeArg2_, warModeArg3_);
+}
+
+// 0xAF Death Animation (13B fixed): cmd, mobile serial(4), corpse serial(4),
+// unknown(4). Verified against Packet_HandleDeathAnimation @0x424CD0 and
+// Mobile_PlayDeathAnimation @0x4C65C0 in client_2.0.7.
+void Client::OnDeathAnimation(const u8* data, usize size) {
+    if (size < 13) return;
+    const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    const u32 corpseSerial = LoadBE32(data + 5) & 0x7FFFFFFFu;
+    const u32 unknown = LoadBE32(data + 9);
+    const bool normalDeath = unknown == 0;
+
+    auto pickDeathAnim = [&](u16 body, u8& action, u16& frames) {
+        frames = 5;
+        if (body < 0x96u) {
+            action = normalDeath ? 2u : 3u;
+        } else if (body < 0xC8u) {
+            action = 8u;
+            frames = 15;
+        } else if (body < 0x190u) {
+            action = normalDeath ? 8u : 12u;
+        } else {
+            action = normalDeath ? 21u : 22u;
+        }
+    };
+
+    auto start = [&](ServerAnimState& a, u16 body) {
+        u8 action = 0;
+        u16 frames = 0;
+        pickDeathAnim(body, action, frames);
+        a.active = true;
+        a.lastTickMs = NowMs();
+        a.action = action;
+        a.maxFrames = frames;
+        a.delayPerFrame = 0;
+        a.maxDuration = 1;
+        a.currentFrame = 0;
+        a.currentDuration = 0;
+        a.pad = 0;
+        a.renderedFrame = 0;
+        a.reverse = false;
+        a.bounce = false;
+        a.hasRenderedFrame = false;
+    };
+
+    if (serial == playerSerial_) {
+        start(playerServerAnim_, playerBody_);
+    } else {
+        for (auto& m : mobileCache_) {
+            if (m.serial != serial) continue;
+            start(m.serverAnim, m.body);
+            m.deadRemoveMs = NowMs() + 2500;
+            break;
+        }
+    }
+
+    if (verboseConsole_) {
+        LogInfo("[0xAF] death serial=0x%08X corpse=0x%08X normal=%u unknown=0x%08X\n",
+                serial, corpseSerial, normalDeath ? 1u : 0u, unknown);
+    }
 }
 
 void Client::SetMobileEquip(u32 serial, std::vector<EquipObj> equip) {
@@ -1367,6 +1509,7 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
     if (size < 19) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     const u16 body    = LoadBE16(data + 5);
+    const u8  flags   = data[10];
     const u16 x      = LoadBE16(data + 11);
     const u16 y      = LoadBE16(data + 13);
     const u8  dir    = data[17];
@@ -1377,6 +1520,7 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         playerZ_ = z;
         playerFacing_  = dir & 0x07;
         playerRunning_ = false;
+        playerWarMode_ = (flags & 0x40u) != 0;
         playerBody_ = body;
         player_.serial = serial;
         player_.body = body;

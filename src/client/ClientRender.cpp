@@ -94,16 +94,18 @@ bool MonsterHasRunAction(u16 body) {
     }
 }
 
-// Map motion state -> animation group id (UO per-kind group enums). Only the
-// walk/run/stand groups we support; everything else (attack/cast/die/fidget) is
-// out of scope. Remote mobile packets preserve the run bit in the direction byte.
-u8 PickAction(u16 body, bool moving, bool running) {
+// Map motion/war state -> animation group id (UO per-kind group enums).
+// Remote mobile packets preserve the run bit in the direction byte and carry
+// war mode in the status flag byte (bit 0x40).
+u8 PickAction(u16 body, bool moving, bool running, bool warMode) {
     const BodyKind k = KindOf(body);
     switch (k) {
         case BodyKind::Monster:
             return moving ? (running && MonsterHasRunAction(body) ? 19u : 0u) : 1u;
         case BodyKind::Animal:  return moving ? (running ? 1u : 0u) : 2u; // run/walk / stand
-        case BodyKind::People:  return moving ? (running ? 2u : 0u) : 4u; // run/walk(unarmed) / stand
+        case BodyKind::People:
+            if (!moving && warMode) return 7u; // ready/attack stance.
+            return moving ? (running ? 2u : 0u) : 4u; // run/walk(unarmed) / stand
     }
     return 0u;
 }
@@ -248,6 +250,7 @@ void Client::RenderTick() {
         if (const char* keys = mfb_keystatus()) {
             minimapKeyDown_ = keys[0x4D] != 0;
             spaceKeyDown_ = keys[0x20] != 0;
+            tabKeyDown_ = keys[0x09] != 0;
         }
     } else {
         HandleManualWalk();
@@ -301,8 +304,9 @@ void Client::RenderTick() {
     };
 
     auto resolveAnim = [&](uo::u16 body, uo::u8 dir, bool moving, bool running,
+                           bool warMode,
                            uo::u32 animCounter, uo::u8& action, uo::u16& frame) {
-        action = PickAction(body, moving, running);
+        action = PickAction(body, moving, running, warMode);
         uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
@@ -324,6 +328,95 @@ void Client::RenderTick() {
             lastTickMs += kAnimListTickMs;
             ++counter;
         }
+    };
+
+    auto stopServerAnim = [](ServerAnimState& a) {
+        a.active = false;
+        a.hasRenderedFrame = false;
+    };
+
+    auto renderServerAnimFrame = [](ServerAnimState& a) {
+        a.renderedFrame = a.currentFrame;
+        a.hasRenderedFrame = true;
+    };
+
+    auto advanceServerAnimFrame = [&](ServerAnimState& a) {
+        if (a.reverse) {
+            if (a.currentFrame != 0u && a.currentFrame <= a.maxFrames) {
+                renderServerAnimFrame(a);
+                --a.currentFrame;
+                a.pad = 0;
+                return;
+            }
+            if (a.currentDuration != 0u) {
+                renderServerAnimFrame(a);
+                --a.currentDuration;
+                a.currentFrame = static_cast<u16>(a.maxFrames - 1u);
+                a.pad = 0;
+                return;
+            }
+            if (a.bounce) {
+                a.reverse = false;
+                a.bounce = false;
+                renderServerAnimFrame(a);
+                ++a.currentFrame;
+                a.pad = 0;
+                return;
+            }
+            stopServerAnim(a);
+            return;
+        }
+
+        if (a.currentFrame < static_cast<u16>(a.maxFrames - 1u)) {
+            renderServerAnimFrame(a);
+            ++a.currentFrame;
+            a.pad = 0;
+            return;
+        }
+        if (a.currentDuration == static_cast<u16>(a.maxDuration - 1u)) {
+            if (a.bounce) {
+                a.reverse = true;
+                a.bounce = false;
+                renderServerAnimFrame(a);
+                --a.currentFrame;
+                a.pad = 0;
+                return;
+            }
+            stopServerAnim(a);
+            return;
+        }
+        renderServerAnimFrame(a);
+        ++a.currentDuration;
+        a.currentFrame = 0;
+        a.pad = 0;
+    };
+
+    auto resolveServerAnim = [&](uo::u16 body, uo::u8 dir, ServerAnimState& a,
+                                 uo::u8& action, uo::u16& frame) -> bool {
+        if (!a.active || !anim_) return false;
+        const uo::u32 fullCount = anim_->FrameCount(body, dir, a.action);
+        if (fullCount == 0u) {
+            stopServerAnim(a);
+            return false;
+        }
+        a.maxFrames = static_cast<u16>(
+            std::min<uo::u32>(a.maxFrames ? a.maxFrames : fullCount, fullCount));
+        if (a.maxFrames == 0u) { stopServerAnim(a); return false; }
+        if (a.currentFrame >= a.maxFrames)
+            a.currentFrame = a.reverse ? static_cast<u16>(a.maxFrames - 1u) : 0u;
+
+        while (a.active && nowAnim - a.lastTickMs >= kAnimListTickMs) {
+            a.lastTickMs += kAnimListTickMs;
+            const u16 oldPad = a.pad;
+            ++a.pad;
+            if (oldPad <= a.delayPerFrame) continue;
+            advanceServerAnimFrame(a);
+        }
+        if (!a.active) return false;
+
+        action = a.action;
+        frame = a.hasRenderedFrame ? a.renderedFrame : a.currentFrame;
+        return true;
     };
 
     auto pickIdleFidget = [](uo::u16 body, bool secondChoice, uo::u8& action,
@@ -421,9 +514,9 @@ void Client::RenderTick() {
         }
     };
 
-    auto resolveIdleAnim = [&](uo::u16 body, uo::u8 dir, IdleAnimState& idle,
+    auto resolveIdleAnim = [&](uo::u16 body, uo::u8 dir, bool warMode, IdleAnimState& idle,
                                uo::u8& action, uo::u16& frame) {
-        action = PickAction(body, false, false);
+        action = PickAction(body, false, false, warMode);
         uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
@@ -509,23 +602,37 @@ void Client::RenderTick() {
     // server occupies layer 25; a chair has no body anim, so only the seated
     // pose shows (the chair itself is a world static). Mirrors the original
     // (Mobile_OnEquip: isMounted = pEquipped[25]; ride groups 23/24).
+    auto mountGraphic = [](const std::vector<EquipObj>& equip) -> uo::u16 {
+        for (const EquipObj& e : equip)
+            if (e.layer == 25) return e.graphic;
+        return 0;
+    };
+
+    auto applyMountUnderlay = [&](const std::vector<EquipObj>& equip, uo::u8 dir,
+                                  bool moving, bool running, int counter,
+                                  render::Mob& mob) -> bool {
+        const uo::u16 mountG = mountGraphic(equip);
+        if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
+        const uo::u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
+        if (mb) {                                         // real mount: draw its body
+            mob.mountBody = mb;
+            mob.mountAction = PickAction(mb, moving, running, false);
+            const uo::u32 mfc = anim_ ? anim_->FrameCount(mb, dir, mob.mountAction) : 0;
+            mob.mountFrame = (moving && mfc) ? static_cast<uo::u16>(counter % mfc) : 0;
+            return true;
+        }
+        return false;
+    };
+
     auto applyMount = [&](const std::vector<EquipObj>& equip, uo::u8 dir,
                           bool moving, bool running, int counter,
                           render::Mob& mob) -> bool {
-        uo::u16 mountG = 0;
-        for (const EquipObj& e : equip)
-            if (e.layer == 25) { mountG = e.graphic; break; }
+        const uo::u16 mountG = mountGraphic(equip);
         if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
         mob.action = (moving && running) ? 24u : 23u;    // ride run / ride idle+walk
         const uo::u32 fc = anim_ ? anim_->FrameCount(mob.body, dir, mob.action) : 0;
         mob.frame = (moving && fc) ? static_cast<uo::u16>(counter % fc) : 0;
-        const uo::u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
-        if (mb) {                                         // real mount: draw its body
-            mob.mountBody = mb;
-            mob.mountAction = PickAction(mb, moving, running);
-            const uo::u32 mfc = anim_ ? anim_->FrameCount(mb, dir, mob.mountAction) : 0;
-            mob.mountFrame = (moving && mfc) ? static_cast<uo::u16>(counter % mfc) : 0;
-        }
+        applyMountUnderlay(equip, dir, moving, running, counter, mob);
         return true;
     };
 
@@ -581,6 +688,14 @@ void Client::RenderTick() {
     // player carries isPlayer=true so the renderer can compute the roof cutoff.
     std::vector<render::Mob> mobs;
     mobs.reserve(mobileCache_.size() + 1);
+    for (auto it = mobileCache_.begin(); it != mobileCache_.end(); ) {
+        if (it->deadRemoveMs != 0 && !it->serverAnim.active && nowAnim >= it->deadRemoveMs) {
+            mobileNames_.erase(it->serial);
+            it = mobileCache_.erase(it);
+        } else {
+            ++it;
+        }
+    }
     for (auto& m : mobileCache_) {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
@@ -592,19 +707,25 @@ void Client::RenderTick() {
         const bool seated = applySit(m.x, m.y, m.z, moving, mob);
         resolveEquip(mob.dir, m.equip, mob.equipAnims);
         if (!seated) {
-            if (moving) {
+            const bool serverAnim = resolveServerAnim(m.body, mob.dir, m.serverAnim,
+                                                      mob.action, mob.frame);
+            if (serverAnim) {
+                m.idleAnim.active = false;
+                if (moving) tickMoveAnim(m.moveAnimTickMs, m.moveAnimCounter);
+                else m.moveAnimTickMs = 0;
+                applyMountUnderlay(m.equip, mob.dir, moving, m.running,
+                                   m.moveAnimCounter, mob);
+            } else if (moving) {
                 m.idleAnim.active = false;
                 m.idleAnim.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
                 tickMoveAnim(m.moveAnimTickMs, m.moveAnimCounter);
+                if (!applyMount(m.equip, m.dir, moving, m.running, m.moveAnimCounter, mob))
+                    resolveAnim(m.body, m.dir, true, m.running, m.warMode, m.moveAnimCounter,
+                                mob.action, mob.frame);
             } else {
                 m.moveAnimTickMs = 0;
-            }
-            if (!applyMount(m.equip, m.dir, moving, m.running, m.moveAnimCounter, mob)) {
-                if (moving)
-                    resolveAnim(m.body, m.dir, true, m.running, m.moveAnimCounter,
-                                mob.action, mob.frame);
-                else
-                    resolveIdleAnim(m.body, m.dir, m.idleAnim, mob.action, mob.frame);
+                if (!applyMount(m.equip, m.dir, moving, m.running, m.moveAnimCounter, mob))
+                    resolveIdleAnim(m.body, m.dir, m.warMode, m.idleAnim, mob.action, mob.frame);
             }
         }
         mob.ddx = slideDelta(m.movedMs, mobMoveMs, m.x, m.prevX);
@@ -627,21 +748,29 @@ void Client::RenderTick() {
     const bool selfSeated = applySit(playerX_, playerY_, playerZ_, selfMoving, self);
     resolveEquip(self.dir, playerEquip_, self.equipAnims);
     if (!selfSeated) {
-        if (selfMoving) {
+        const bool serverAnim = resolveServerAnim(playerBody_, self.dir, playerServerAnim_,
+                                                  self.action, self.frame);
+        if (serverAnim) {
+            playerIdleAnim_.active = false;
+            if (selfMoving) tickMoveAnim(playerMoveAnimTickMs_, playerMoveAnimCounter_);
+            else playerMoveAnimTickMs_ = 0;
+            applyMountUnderlay(playerEquip_, self.dir, selfMoving, selfRunning,
+                               playerMoveAnimCounter_, self);
+        } else if (selfMoving) {
             playerIdleAnim_.active = false;
             playerIdleAnim_.nextProbeMs = nowAnim + kIdleFidgetDelayMs;
             tickMoveAnim(playerMoveAnimTickMs_, playerMoveAnimCounter_);
+            if (!applyMount(playerEquip_, playerFacing_, selfMoving, selfRunning,
+                            playerMoveAnimCounter_, self))
+                resolveAnim(playerBody_, playerFacing_, true, selfRunning, playerWarMode_,
+                            playerMoveAnimCounter_,
+                            self.action, self.frame);
         } else {
             playerMoveAnimTickMs_ = 0;
             if (!selfMovementChainActive) playerMoveAnimCounter_ = 3;
-        }
-        if (!applyMount(playerEquip_, playerFacing_, selfMoving, selfRunning,
-                        playerMoveAnimCounter_, self)) {
-            if (selfMoving)
-                resolveAnim(playerBody_, playerFacing_, true, selfRunning, playerMoveAnimCounter_,
-                            self.action, self.frame);
-            else
-                resolveIdleAnim(playerBody_, playerFacing_, playerIdleAnim_,
+            if (!applyMount(playerEquip_, playerFacing_, selfMoving, selfRunning,
+                            playerMoveAnimCounter_, self))
+                resolveIdleAnim(playerBody_, playerFacing_, playerWarMode_, playerIdleAnim_,
                                 self.action, self.frame);
         }
     }
@@ -667,7 +796,8 @@ void Client::RenderTick() {
                            anim_.get(), mobs.data(), mobs.size(),
                            darkness);
 
-    // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor.
+    // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor, TAB
+    // requests war/peace mode.
     if (!chatInputActive_) {
         if (const char* keys = mfb_keystatus()) {
             const bool mDown = keys[0x4D] != 0;   // VK 'M'
@@ -681,6 +811,17 @@ void Client::RenderTick() {
                 LogInfo("[door] OpenDoor (SPACE)\n");
             }
             spaceKeyDown_ = spaceDown;
+
+            const bool tabDown = keys[0x09] != 0; // VK_TAB
+            if (tabDown && !tabKeyDown_) {
+                u8 pkt[8];
+                const bool wantWar = !playerWarMode_;
+                Send(pkt, build::WarMode(pkt, wantWar, warModeArg1_,
+                                         warModeArg2_, warModeArg3_),
+                     wantWar ? "0x72 WarMode on (TAB)" : "0x72 WarMode off (TAB)");
+                LogInfo("[war] request %s (TAB)\n", wantWar ? "on" : "off");
+            }
+            tabKeyDown_ = tabDown;
         }
     }
     if (minimapVisible_ && worldMap_ && radarColors_) {
@@ -1101,7 +1242,8 @@ void Client::DrawCursorOverlay() {
     if (!mfb_mousepos(&mx, &my)) return;   // cursor left the window
 
     const int dir = CursorDirFromCenter(mx, my, renderer_->Width(), renderer_->Height());
-    const art::Sprite* sp = art_->Static(static_cast<u16>(0x206A + (dir & 7)));
+    const u16 base = playerWarMode_ ? 0x2053u : 0x206Au;
+    const art::Sprite* sp = art_->Static(static_cast<u16>(base + (dir & 7)));
     if (!sp || sp->px.empty()) return;
 
     // Cursor art fills its background with a chroma key (0x001F blue); key it

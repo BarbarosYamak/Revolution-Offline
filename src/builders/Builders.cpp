@@ -127,6 +127,16 @@ usize DoubleClick(u8* out, u32 serial) {
     return w.size();
 }
 
+usize WarMode(u8* out, bool warMode, u8 arg1, u8 arg2, u8 arg3) {
+    BufWriter w(out, 5);
+    w.WriteU8(RawId(PacketId::WarMode));
+    w.WriteU8(warMode ? 1u : 0u);
+    w.WriteU8(arg1);
+    w.WriteU8(arg2);
+    w.WriteU8(arg3);
+    return w.size();
+}
+
 // 0x12 Action Request — Open Door (5 bytes): cmd, length(2 BE), subcommand
 // 0x58, empty NUL payload. The server opens any door in the tile the player
 // faces; no serial needed, so it is immune to door packets arriving late.

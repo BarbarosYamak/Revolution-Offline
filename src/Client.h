@@ -138,6 +138,9 @@ private:
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
     void OnEquipItem          (const u8* data, usize size);  // 0x2E
+    void OnCharacterAnimation (const u8* data, usize size);  // 0x6E
+    void OnWarMode            (const u8* data, usize size);  // 0x72
+    void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
@@ -273,6 +276,7 @@ private:
     i8    playerZ_;
     u8    playerFacing_;        // 0..7 (low 3 bits of dir byte)
     bool  playerRunning_;
+    bool  playerWarMode_ = false;
     // World light (0x4F overall, 0x4E personal). 0 = day/bright, 0x1F = black;
     // render darkness = clamp(overall - personal, 0..31). See Renderer::ApplyDarkness.
     u8    overallLightLevel_ = 0;
@@ -300,7 +304,23 @@ private:
         bool reverse = false;
         bool hasRenderedFrame = false;
     };
+    struct ServerAnimState {
+        i64 lastTickMs = 0;
+        u8 action = 0;
+        u16 maxFrames = 0;
+        u16 delayPerFrame = 0;
+        u16 maxDuration = 0;
+        u16 currentFrame = 0;
+        u16 currentDuration = 0;
+        u16 pad = 0;
+        u16 renderedFrame = 0;
+        bool active = false;
+        bool reverse = false;
+        bool bounce = false;
+        bool hasRenderedFrame = false;
+    };
     IdleAnimState playerIdleAnim_;
+    ServerAnimState playerServerAnim_;
     // Navigation owns predicted movement, bot route/follow state, and
     // learned transient blockers. Server packets still own authoritative
     // player position above.
@@ -331,12 +351,16 @@ private:
     bool minimapVisible_;       // overlay minimap panel (toggle with 'M')
     bool minimapKeyDown_;       // 'M' edge-detect so a held key toggles once
     bool spaceKeyDown_;         // SPACE edge-detect (OpenDoor on press, once)
+    bool tabKeyDown_ = false;   // TAB edge-detect (war/peace toggle)
     bool chatInputActive_;
     std::string chatInputLine_;
     u16  playerBody_;           // local player body graphic for the renderer
     struct EquipObj { u8 layer; u16 graphic; u16 hue; };
     std::vector<EquipObj> playerEquip_;  // own worn items (layer, graphic, hue)
     u16  playerHue_ = 0;
+    u8   warModeArg1_ = 4;      // cached 0x72 trailing args, as in client 2.0.7
+    u8   warModeArg2_ = 0;
+    u8   warModeArg3_ = 0;
     i64  lastManualMoveMs_;     // arrow-key walk throttle (render window)
 
     // All world items seen via 0x1A (lamp posts, doors, decor, ...), keyed by
@@ -354,9 +378,12 @@ private:
         i64 movedMs = 0;     // when (x,y) last changed (anim: walk vs idle)
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         bool running = false; // high bit of the server direction byte
+        bool warMode = false; // 0x77/0x78 status flag bit 0x40
+        i64 deadRemoveMs = 0;  // 0xAF keeps the mobile until death anim ends
         i64 moveAnimTickMs = 0;
         u32 moveAnimCounter = 0;
         IdleAnimState idleAnim;
+        ServerAnimState serverAnim;
         // Worn items as (layer, item graphic, hue). Preserved across 0x77
         // position updates; rebuilt on 0x78, patched by 0x2E.
         std::vector<EquipObj> equip;
@@ -366,7 +393,8 @@ private:
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
     void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
-                      u16 hue = 0, bool hasHue = false);
+                      u16 hue = 0, bool hasHue = false,
+                      u8 statusFlags = 0, bool hasStatusFlags = false);
     void SetMobileEquip(u32 serial, std::vector<EquipObj> equip);
     void SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic, u16 hue);
     bool mobilesListPending_;

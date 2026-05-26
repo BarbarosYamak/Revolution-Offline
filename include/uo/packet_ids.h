@@ -13,6 +13,7 @@ enum class PacketId : u8 {
     MoveRequest         = 0x02,
     SpeechAscii         = 0x03,
     DoubleClick         = 0x06,
+    WarMode             = 0x72,
     SingleClick         = 0x09,
     MobNameQuery        = 0x98,
     PlayCharacter       = 0x5D,
@@ -34,6 +35,7 @@ enum class PacketId : u8 {
     ServerPingNullsub   = 0x73,   // server-initiated keepalive
     EntityStatus        = 0x77,
     UpdatePlayer        = 0x78,
+    CharacterAnimation  = 0x6E,
     LoginDenied         = 0x82,
     ConnectToGameServer = 0x8C,
     ServerList          = 0xA8,
@@ -41,6 +43,7 @@ enum class PacketId : u8 {
     UpdateStamina       = 0xA3,
     CharacterList       = 0xA9,
     UnicodeMessage      = 0xAE,
+    DeathAnimation      = 0xAF,
     SupportedFeatures   = 0xB9,
     ClientVersionQuery  = 0xBD,
     ExtendedCommand     = 0xBF,
