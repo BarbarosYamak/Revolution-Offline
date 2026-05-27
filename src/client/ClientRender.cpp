@@ -826,6 +826,11 @@ void Client::RenderTick() {
             if (mDown && !minimapKeyDown_) minimapVisible_ = !minimapVisible_;
             minimapKeyDown_ = mDown;
 
+            const bool escDown = keys[0x1B] != 0;   // VK_ESCAPE — cancel target
+            if (escDown && !escKeyDown_ && targetCursorActive_)
+                CancelTargetCursor("Esc");
+            escKeyDown_ = escDown;
+
             const bool spaceDown = keys[0x20] != 0;   // VK_SPACE
             if (spaceDown && !spaceKeyDown_) {
                 u8 ob[8];
@@ -877,14 +882,15 @@ void Client::RenderTick() {
     DrawOverheadText();
     DrawCursorOverlay();
 
-    char title[64];
+    char title[80];
+    const char* tgt = targetCursorActive_ ? " [TARGET]" : "";
     if (nav_.bot.active || !nav_.bot.path.empty()) {
-        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d] path=%zu",
+        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d] path=%zu%s",
                       playerX_, playerY_, static_cast<int>(playerZ_),
-                      nav_.bot.path.size());
+                      nav_.bot.path.size(), tgt);
     } else {
-        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]",
-                      playerX_, playerY_, static_cast<int>(playerZ_));
+        std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d]%s",
+                      playerX_, playerY_, static_cast<int>(playerZ_), tgt);
     }
     mfb_set_title(title);
     if (!mfb_update(renderer_->Frame(), 0)) {
@@ -1330,6 +1336,12 @@ void Client::HandleWorldClick() {
     if (!mfb_poll_rclick(&mx, &my)) return;
     if (!renderer_) return;
 
+    // A right-click cancels an armed target cursor instead of retargeting the bot.
+    if (targetCursorActive_) {
+        CancelTargetCursor("right-click");
+        return;
+    }
+
     i32 wx = 0, wy = 0;
     renderer_->ScreenToWorld(mx, my, playerX_, playerY_, &wx, &wy);
     if (wx < 0 || wy < 0) return;
@@ -1351,7 +1363,33 @@ void Client::HandleWorldClick() {
 // 0x09 (single-click look), so a double-click never also fires the single.
 void Client::HandleItemClicks() {
     if (!renderer_) return;
-    u8 buf[16];
+    u8 buf[19];
+
+    // An armed target cursor takes click priority over look/use (the official
+    // client bails out of Entity_PerformDefaultAction while g_TargetCursorActive).
+    // A left-click (single or double) resolves it: an object click answers with
+    // the picked serial, an empty-ground click answers with the tile.
+    if (targetCursorActive_) {
+        // Drain BOTH click queues so a paired single+double event can't leak a
+        // use/open into a later frame once we've left target mode.
+        int mx = 0, my = 0;
+        bool hit = false;
+        int dx = 0, dy = 0;
+        if (mfb_poll_ldblclick(&dx, &dy)) { hit = true; mx = dx; my = dy; }
+        int lx = 0, ly = 0;
+        if (mfb_poll_lclick(&lx, &ly)) { if (!hit) { mx = lx; my = ly; } hit = true; }
+        if (hit) {
+            if (const u32 s = renderer_->PickObject(mx, my)) {
+                TargetRespondObject(s);
+            } else {
+                i32 wx = 0, wy = 0;
+                renderer_->ScreenToWorld(mx, my, playerX_, playerY_, &wx, &wy);
+                if (wx >= 0 && wy >= 0)
+                    TargetRespondGround(wx, wy, /*hasZ=*/false, 0);
+            }
+        }
+        return;
+    }
 
     // A pending single-click commits once the double-click window passes with no
     // second press (WorldGump_OnHoverTick @0x47A910: frameCount==1 && elapsed >
@@ -1381,7 +1419,8 @@ void Client::HandleItemClicks() {
         // Two presses inside the window: the use/open action wins; drop any
         // deferred single from the first press.
         pendingLClick_ = false;
-        const u32 s = renderer_->PickObject(mx, my);
+        bool isMob = false;
+        const u32 s = renderer_->PickObject(mx, my, &isMob);
         if (s) {
             // Face the double-clicked object. In the official client this turn is
             // SERVER-driven (Entity_PerformDefaultAction @0x47AF20 sends only 0x06;
@@ -1408,9 +1447,18 @@ void Client::HandleItemClicks() {
                     }
                 }
             }
-            const usize n = build::DoubleClick(buf, s);
-            Send(buf, n, "0x06 DoubleClick (use/open)");
-            LogInfo("[click] double-click use 0x%08X\n", s);
+            // War mode + a mobile (not self) => attack; otherwise use/open.
+            // Mirrors the war-mode branch of Entity_PerformDefaultAction @0x47AF20.
+            const bool isMobile = isMob || FindMobileBySerial(s) != nullptr;
+            if (playerWarMode_ && isMobile && s != playerSerial_) {
+                const usize n = build::Attack(buf, s);
+                Send(buf, n, "0x05 Attack Request");
+                LogInfo("[click] attack 0x%08X (war mode)\n", s);
+            } else {
+                const usize n = build::DoubleClick(buf, s);
+                Send(buf, n, "0x06 DoubleClick (use/open)");
+                LogInfo("[click] double-click use 0x%08X\n", s);
+            }
         }
     } else if (single) {
         // First press: pick now (the draw list is current), defer the look.
@@ -1500,9 +1548,21 @@ void Client::DrawCursorOverlay() {
     int mx, my;
     if (!mfb_mousepos(&mx, &my)) return;   // cursor left the window
 
-    const int dir = CursorDirFromCenter(mx, my, renderer_->Width(), renderer_->Height());
-    const u16 base = playerWarMode_ ? 0x2053u : 0x206Au;
-    const art::Sprite* sp = art_->Static(static_cast<u16>(base + (dir & 7)));
+    // While a target cursor is armed, hovering the world forces a single fixed
+    // sprite: CMapGump_HandleMouseMove @0x47A520 calls TargetCursor_OnFocusRefresh(19)
+    // when g_TargetCursorActive, so g_CursorForcedSpriteIdx=19 -> cursor table slot 19
+    // (war) / 42 (=19+23, peace) from MouseManager_Startup @0x4B9530 = art 24671/24694
+    // = static 0x205F (war) / 0x2076 (peace). (Slot 20 / 0x2060 / 0x2077 is the
+    // post-action hourglass, NOT the reticle.) Otherwise: walk cursor = base + dir.
+    u16 artId;
+    if (targetCursorActive_) {
+        artId = playerWarMode_ ? 0x205Fu : 0x2076u;
+    } else {
+        const int dir = CursorDirFromCenter(mx, my, renderer_->Width(), renderer_->Height());
+        const u16 base = playerWarMode_ ? 0x2053u : 0x206Au;
+        artId = static_cast<u16>(base + (dir & 7));
+    }
+    const art::Sprite* sp = art_->Static(artId);
     if (!sp || sp->px.empty()) return;
 
     // The click hotspot is encoded IN the cursor art as two pure-green marker

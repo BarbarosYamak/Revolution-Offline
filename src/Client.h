@@ -145,6 +145,7 @@ private:
     void OnWarMode            (const u8* data, usize size);  // 0x72
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
+    void OnTargetCursor       (const u8* data, usize size);  // 0x6C
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
     void OnUnknown            (const u8* data, usize size);
@@ -190,6 +191,12 @@ private:
     void HandleManualWalk();  // arrow-key steering from the render window
     void HandleWorldClick();  // right-click in the render window -> goto that cell
     void HandleItemClicks();  // left-click (look) + double-click (use/open) on world objects
+    // Target cursor (0x6C): the server arms a target after a spell/item use; the
+    // next world click (or `target` console command) resolves it. See OnTargetCursor.
+    void TargetRespondObject(u32 serial);  // answer with a clicked mobile/item
+    void TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z);  // answer with a tile
+    void CancelTargetCursor(const char* reason);             // Esc / right-click
+    bool ResolveObjectTarget(u32 serial, i32* x, i32* y, i8* z, u16* model) const;
     void DrawStatusBars();
     void DrawContainers();    // simple text HUD listing open containers' items
     void DrawSystemLog();
@@ -368,6 +375,15 @@ private:
     // a double-click sends only the 0x06 use/open (matching WorldGump_OnHoverTick
     // @0x47A910 / WorldGump_OnLButtonUp @0x47A310 in client_2.0.7.exe).
     u32  hoverSerial_ = 0;
+    // Target cursor armed by an inbound 0x6C (Packet_HandleTargetCursor @0x41E960).
+    // While active, the next world click resolves into a 0x6C response; Esc/right-
+    // click cancels. id/subtype are echoed back; type is the server's requested
+    // mode (0=object, 1=ground) but the response type follows what we actually hit.
+    bool targetCursorActive_ = false;
+    u8   targetCursorType_ = 0;
+    u32  targetCursorId_ = 0;
+    u8   targetCursorSubtype_ = 0;
+    bool escKeyDown_ = false;         // VK_ESCAPE edge-detect (cancel target once)
     bool pendingLClick_ = false;     // a single-click is waiting out the dbl-click window
     u32  pendingLClickSerial_ = 0;   // object picked on that press (0 = empty space)
     i64  pendingLClickMs_ = 0;       // press time, vs mfb_double_click_ms()

@@ -60,6 +60,11 @@ usize MobNameQuery(u8* out, u32 serial);
 // e.g. double-clicking a door makes the server open it (DoorOpen).
 usize DoubleClick(u8* out, u32 serial);
 
+// 0x05 Attack Request (5 bytes): cmd + serial(4 BE). Sent when double-clicking
+// a mobile in war mode (Packet_BuildAttackRequest @0x425680). The server replies
+// 0xAA (attack accepted / refused).
+usize Attack(u8* out, u32 serial);
+
 // 0x72 War Mode request (5 bytes): cmd, target mode, three cached args.
 // Official client initializes the cached args to 04 00 00 and updates them from
 // inbound 0x72 confirmations.
@@ -70,6 +75,29 @@ usize WarMode(u8* out, bool warMode, u8 arg1 = 4, u8 arg2 = 0, u8 arg3 = 0);
 // the tile the player is facing and opens any door there (no serial needed),
 // so it works even if the door's object packet hasn't arrived yet.
 usize OpenDoor(u8* out);
+
+// 0x6C Target Cursor response (19 bytes). Sent in reply to an inbound 0x6C
+// target request (e.g. after casting a spell or using an item that needs a
+// target). Layout mirrors TargetCursor_SendResponse @0x41E560:
+//   BYTE  cmd (0x6C)
+//   BYTE  type        (0 = object/serial, 1 = ground/static)
+//   BYTE[4] cursorId  (BE, echoed from the request)
+//   BYTE  subtype     (echoed from the request)
+//   BYTE[4] serial    (BE, target object; 0 for ground)
+//   BYTE[2] x (BE)
+//   BYTE[2] y (BE)
+//   BYTE  unknown (0)
+//   BYTE  z (signed)
+//   BYTE[2] model     (BE, target graphic; 0 for ground)
+//
+// Object click: type 0, the clicked serial plus its x/y/z and graphic.
+usize TargetCursorObject(u8* out, u32 cursorId, u8 subtype, u32 serial,
+                         u16 x, u16 y, i8 z, u16 model);
+// Ground/static click: type 1, serial 0.
+usize TargetCursorGround(u8* out, u32 cursorId, u8 subtype,
+                         u16 x, u16 y, i8 z, u16 model);
+// Cancel (Esc / right-click): type 0, serial 0, x=y=0xFFFF, z/model 0.
+usize TargetCursorCancel(u8* out, u32 cursorId, u8 subtype);
 
 // 0x02 Move Request (3 or 7 bytes).
 //   BYTE cmd

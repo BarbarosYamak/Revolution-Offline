@@ -127,6 +127,14 @@ usize DoubleClick(u8* out, u32 serial) {
     return w.size();
 }
 
+// 0x05 Attack Request — 5 bytes: cmd + serial(4 BE).
+usize Attack(u8* out, u32 serial) {
+    BufWriter w(out, 5);
+    w.WriteU8(RawId(PacketId::AttackRequest));
+    w.WriteU32(serial);
+    return w.size();
+}
+
 usize WarMode(u8* out, bool warMode, u8 arg1, u8 arg2, u8 arg3) {
     BufWriter w(out, 5);
     w.WriteU8(RawId(PacketId::WarMode));
@@ -147,6 +155,39 @@ usize OpenDoor(u8* out) {
     out[3] = 0x58;  // subcommand: open door (faced tile spatial search)
     out[4] = 0x00;  // empty NUL-terminated payload
     return 5;
+}
+
+// 0x6C Target Cursor response (19 bytes) — see builders.h for the field map.
+// Shared body for the object/ground/cancel variants; `type` and the target
+// fields differ per caller.
+static usize TargetCursorResponse(u8* out, u8 type, u32 cursorId, u8 subtype,
+                                  u32 serial, u16 x, u16 y, i8 z, u16 model) {
+    BufWriter w(out, 19);
+    w.WriteU8(RawId(PacketId::TargetCursor));
+    w.WriteU8(type);
+    w.WriteU32(cursorId);
+    w.WriteU8(subtype);
+    w.WriteU32(serial);
+    w.WriteU16(x);
+    w.WriteU16(y);
+    w.WriteU8(0);                       // unknown high byte of the z word
+    w.WriteU8(static_cast<u8>(z));      // signed z
+    w.WriteU16(model);
+    return w.size();
+}
+
+usize TargetCursorObject(u8* out, u32 cursorId, u8 subtype, u32 serial,
+                         u16 x, u16 y, i8 z, u16 model) {
+    return TargetCursorResponse(out, 0, cursorId, subtype, serial, x, y, z, model);
+}
+
+usize TargetCursorGround(u8* out, u32 cursorId, u8 subtype,
+                         u16 x, u16 y, i8 z, u16 model) {
+    return TargetCursorResponse(out, 1, cursorId, subtype, 0, x, y, z, model);
+}
+
+usize TargetCursorCancel(u8* out, u32 cursorId, u8 subtype) {
+    return TargetCursorResponse(out, 0, cursorId, subtype, 0, 0xFFFF, 0xFFFF, 0, 0);
 }
 
 // 0x02 Move Request.

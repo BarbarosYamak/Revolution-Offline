@@ -349,6 +349,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x77: OnMobileMove(data, size); break;
         case 0x78: OnMobileIncoming(data, size); break;
         case 0x98: OnMobName(data, size); break;
+        case 0x6C: OnTargetCursor(data, size); break;
         case 0x2D: OnMobileAttributes(data, size); break;
         case 0x2E: OnEquipItem(data, size); break;
         case 0x6E: OnCharacterAnimation(data, size); break;
@@ -1393,6 +1394,97 @@ void Client::OnMobName(const u8* data, usize size) {
     }
 }
 
+// 0x6C Target Cursor (server -> client). The server arms a target after a
+// spell cast or an item use that needs a target; we stash the cursor id/type/
+// subtype and wait for the player to click (or a `target` console command) to
+// build the 0x6C response. Mirrors Packet_HandleTargetCursor @0x41E960, minus
+// the special house/boat-placement and auto-target callbacks.
+void Client::OnTargetCursor(const u8* data, usize size) {
+    if (size < 7) return;
+    targetCursorType_    = data[1];
+    targetCursorId_      = LoadBE32(data + 2);
+    targetCursorSubtype_ = data[6];
+    targetCursorActive_  = true;
+    LogInfo("[0x6C] target cursor armed: id=0x%08X type=%u subtype=%u — "
+            "click a target (right-click/Esc to cancel)\n",
+            targetCursorId_, targetCursorType_, targetCursorSubtype_);
+}
+
+// Look up a known object's position and graphic for an object-target reply.
+// Checks the local player, dynamic items (0x1A), then cached mobiles (0x77/78).
+bool Client::ResolveObjectTarget(u32 serial, i32* x, i32* y, i8* z,
+                                 u16* model) const {
+    if (serial == playerSerial_) {
+        *x = playerX_; *y = playerY_; *z = playerZ_; *model = playerBody_;
+        return true;
+    }
+    if (auto it = items_.find(serial); it != items_.end()) {
+        *x = it->second.x; *y = it->second.y; *z = it->second.z;
+        *model = it->second.itemId;
+        return true;
+    }
+    if (const MobileObj* m = FindMobileBySerial(serial)) {
+        *x = m->x; *y = m->y; *z = m->z; *model = m->body;
+        return true;
+    }
+    return false;
+}
+
+void Client::TargetRespondObject(u32 serial) {
+    if (!targetCursorActive_) {
+        LogWarn("[target] no target cursor active\n");
+        return;
+    }
+    i32 x = 0, y = 0; i8 z = 0; u16 model = 0;
+    ResolveObjectTarget(serial, &x, &y, &z, &model);  // best-effort coords/graphic
+    u8 buf[19];
+    const usize n = build::TargetCursorObject(
+        buf, targetCursorId_, targetCursorSubtype_, serial,
+        static_cast<u16>(x), static_cast<u16>(y), z, model);
+    Send(buf, n, "0x6C TargetCursor (object)");
+    LogInfo("[target] object 0x%08X (%d,%d,%d) model 0x%04X\n",
+            serial, x, y, static_cast<int>(z), model);
+    targetCursorActive_ = false;
+    targetCursorSubtype_ = 0;
+}
+
+void Client::TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z) {
+    if (!targetCursorActive_) {
+        LogWarn("[target] no target cursor active\n");
+        return;
+    }
+    if (!hasZ) {
+        z = playerZ_;
+        if (world_ && x >= 0 && y >= 0) {
+            world::WalkQuery q;
+            q.x = static_cast<u32>(x);
+            q.y = static_cast<u32>(y);
+            q.fromZ = playerZ_;
+            const world::WalkResult r = world_->QueryCell(q);
+            if (r.walkable) z = r.standZ;
+        }
+    }
+    u8 buf[19];
+    const usize n = build::TargetCursorGround(
+        buf, targetCursorId_, targetCursorSubtype_,
+        static_cast<u16>(x), static_cast<u16>(y), z, 0);
+    Send(buf, n, "0x6C TargetCursor (ground)");
+    LogInfo("[target] ground (%d,%d,%d)\n", x, y, static_cast<int>(z));
+    targetCursorActive_ = false;
+    targetCursorSubtype_ = 0;
+}
+
+void Client::CancelTargetCursor(const char* reason) {
+    if (!targetCursorActive_) return;
+    u8 buf[19];
+    const usize n = build::TargetCursorCancel(buf, targetCursorId_,
+                                              targetCursorSubtype_);
+    Send(buf, n, "0x6C TargetCursor (cancel)");
+    LogInfo("[target] cancelled (%s)\n", reason ? reason : "");
+    targetCursorActive_ = false;
+    targetCursorSubtype_ = 0;
+}
+
 const Client::MobileObj* Client::FindMobileAt(i32 x, i32 y, i8 z) const {
     for (const auto& m : mobileCache_) {
         if (m.x != x || m.y != y) continue;
@@ -1885,6 +1977,69 @@ void Client::HandleStdinLine(const char* line) {
         LogInfo("[pos] (%d,%d,%d) facing=%u%s\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
                     playerFacing_, playerRunning_ ? " run" : "");
+        return;
+    }
+
+    // `target ...` — answer a pending 0x6C target cursor (armed by the server
+    // after a spell/item use). Forms:
+    //   target cancel|off       cancel the cursor (0x6C with x/y = 0xFFFF)
+    //   target self             our own character
+    //   target 0xSERIAL         a mobile/item by serial
+    //   target <x> <y> [z]      a ground tile (z auto-resolved if omitted)
+    if (std::strncmp(line, "target", 6) == 0 &&
+        (line[6] == '\0' || line[6] == ' ' || line[6] == '\t')) {
+        const char* arg = line + 6;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        if (!targetCursorActive_) {
+            LogWarn("[cmd] no target cursor active\n");
+            return;
+        }
+        if (std::strcmp(arg, "cancel") == 0 || std::strcmp(arg, "off") == 0) {
+            CancelTargetCursor("user");
+            return;
+        }
+        if (std::strcmp(arg, "self") == 0) {
+            TargetRespondObject(playerSerial_);
+            return;
+        }
+        if ((arg[0] == '0') && (arg[1] == 'x' || arg[1] == 'X')) {
+            u32 serial = 0;
+            if (!ParseSerial(arg, &serial) || serial == 0) {
+                LogWarn("[cmd] invalid serial: %s\n", arg);
+                return;
+            }
+            TargetRespondObject(serial);
+            return;
+        }
+        char args[128];
+        std::strncpy(args, arg, sizeof(args) - 1);
+        args[sizeof(args) - 1] = '\0';
+        for (char* p = args; *p; ++p) if (*p == ',') *p = ' ';
+        i32 tx = 0, ty = 0, tz = 0;
+        const int got = std::sscanf(args, "%d %d %d", &tx, &ty, &tz);
+        if (got >= 2) {
+            TargetRespondGround(tx, ty, got >= 3, static_cast<i8>(tz));
+        } else {
+            LogWarn("[cmd] usage: target cancel|self|<0xserial>|<x> <y> [z]\n");
+        }
+        return;
+    }
+
+    // `use <0xserial>` — double-click an object by serial (sends 0x06), the
+    // gesture that uses/opens it (containers reply 0x24+0x3C; doors swing, etc).
+    if (std::strncmp(line, "use", 3) == 0 &&
+        (line[3] == ' ' || line[3] == '\t')) {
+        const char* arg = line + 3;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        u32 serial = 0;
+        if (!ParseSerial(arg, &serial) || serial == 0) {
+            LogWarn("[cmd] usage: use <0xserial>\n");
+            return;
+        }
+        u8 buf[8];
+        const usize n = build::DoubleClick(buf, serial);
+        Send(buf, n, "0x06 DoubleClick (use)");
+        LogInfo("[cmd] use 0x%08X\n", serial);
         return;
     }
 

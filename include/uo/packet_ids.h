@@ -12,7 +12,9 @@ enum class PacketId : u8 {
     // Outbound
     MoveRequest         = 0x02,
     SpeechAscii         = 0x03,
+    AttackRequest       = 0x05,
     DoubleClick         = 0x06,
+    TargetCursor        = 0x6C,   // bidirectional: server requests, client answers
     WarMode             = 0x72,
     SingleClick         = 0x09,
     MobNameQuery        = 0x98,
