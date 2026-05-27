@@ -133,6 +133,9 @@ private:
     void OnSkills             (const u8* data, usize size);  // 0x3A
     void OnObjectInfo         (const u8* data, usize size);  // 0x1A
     void OnDeleteObject       (const u8* data, usize size);  // 0x1D
+    void OnDrawContainer      (const u8* data, usize size);  // 0x24
+    void OnAddItemToContainer (const u8* data, usize size);  // 0x25
+    void OnContainerContents  (const u8* data, usize size);  // 0x3C
     void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
     void OnMobileMove         (const u8* data, usize size);  // 0x77
@@ -187,6 +190,7 @@ private:
     void HandleManualWalk();  // arrow-key steering from the render window
     void HandleWorldClick();  // right-click in the render window -> goto that cell
     void DrawStatusBars();
+    void DrawContainers();    // simple text HUD listing open containers' items
     void DrawSystemLog();
     void DrawChatInput();
     void DrawOverheadText();
@@ -369,6 +373,18 @@ private:
     static constexpr usize kMaxItemCache = 32768;
     std::unordered_map<u32, ItemObj> items_;
     std::deque<u32> itemOrder_;
+
+    // Open containers (bank, backpack, chests, corpses) registered by 0x24, with
+    // contents listed by 0x3C and patched by 0x25. We don't draw the real gump
+    // art yet — DrawContainers() lists each contained item as text. gumpId is the
+    // 0x24 "model type" (500/501 = bank, 10/48 = paperdoll, 0xFFFF = close).
+    // Keyed by the raw container serial, matching what 0x3C/0x25 carry. Mirrors
+    // Packet_HandleDrawContainer / Packet_HandleContainerItems in
+    // client_2.0.7.exe (0x417f70 / 0x418990), minus the gump rendering.
+    struct ContainerItem { u32 serial; u16 graphic; u8 gfxOffset; u16 amount; u16 x; u16 y; u16 hue; };
+    struct OpenContainer { u32 serial; u16 gumpId; };
+    std::vector<OpenContainer> openContainers_;
+    std::unordered_map<u32, std::vector<ContainerItem>> containerItems_;
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a

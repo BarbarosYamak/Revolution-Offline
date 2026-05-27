@@ -849,6 +849,7 @@ void Client::RenderTick() {
     }
 
     DrawStatusBars();
+    DrawContainers();
     DrawSystemLog();
     DrawChatInput();
     DrawOverheadText();
@@ -968,6 +969,90 @@ void Client::DrawStatusBars() {
                         y - 3, label, render::TextRenderer::Align::Left);
         }
         y += kStatusBarHeight + 11;
+    }
+}
+
+void Client::DrawContainers() {
+    if (!renderer_ || !text_ || openContainers_.empty()) return;
+
+    const int lh = text_->LineHeight();
+    const int pad = 6;
+    const int rowH = lh + 2;
+    const int panelW = 280;
+    const int maxRows = 14;
+    const u16 border = HudColor(215, 215, 215);
+    const u16 bg = HudColor(12, 12, 16);
+    const u16 titleColor = HudColor(255, 220, 120);
+    const u16 itemColor = HudColor(225, 225, 225);
+
+    // tiledata.mul static-tile name (loaded lazily with the MULs; may be null
+    // before the first goto). NUL-padded to 20 bytes, not always terminated.
+    auto tileName = [&](u16 graphic) -> std::string {
+        if (!tileData_) return std::string();
+        const char* n = tileData_->Static(graphic).name;
+        usize len = 0;
+        while (len < 20 && n[len]) ++len;
+        return std::string(n, len);
+    };
+    auto itemGraphic = [&](u32 serial) -> u16 {
+        auto i = items_.find(serial);
+        return (i != items_.end()) ? i->second.itemId : 0;
+    };
+
+    const int panelX = renderer_->Width() - panelW - 8;
+    int y = 8;
+    if (minimapVisible_ && minimap_) y = 8 + minimap_->Size() + 12;
+
+    for (const auto& oc : openContainers_) {
+        auto it = containerItems_.find(oc.serial);
+        const std::vector<ContainerItem>* items =
+            (it != containerItems_.end()) ? &it->second : nullptr;
+        const int nItems = items ? static_cast<int>(items->size()) : 0;
+        const int shown = std::min(nItems, maxRows);
+        const int extra = nItems - shown;
+        const int rows = 1 + std::max(shown, 1) + (extra > 0 ? 1 : 0);
+        const int panelH = pad * 2 + rows * rowH;
+        if (y + panelH > renderer_->Height() - 8) break;  // out of room
+
+        renderer_->FillRect(panelX - 1, y - 1, panelW + 2, panelH + 2, border);
+        renderer_->FillRect(panelX, y, panelW, panelH, bg);
+
+        const char* kind = "Container";
+        if (oc.gumpId == 500 || oc.gumpId == 501) kind = "Bank";
+        else if (oc.gumpId == 10 || oc.gumpId == 48) kind = "Paperdoll";
+
+        int ty = y + pad;
+        char buf[96];
+        const std::string contName = tileName(itemGraphic(oc.serial));
+        if (!contName.empty())
+            std::snprintf(buf, sizeof(buf), "%s: %s (0x%08X) [%d]",
+                          kind, contName.c_str(), oc.serial, nItems);
+        else
+            std::snprintf(buf, sizeof(buf), "%s (0x%08X) [%d]", kind, oc.serial, nItems);
+        text_->Draw(*renderer_, buf, panelX + pad, ty, titleColor,
+                    render::TextRenderer::Align::Left);
+        ty += rowH;
+
+        if (nItems == 0) {
+            text_->Draw(*renderer_, "(empty)", panelX + pad, ty, itemColor,
+                        render::TextRenderer::Align::Left);
+        } else {
+            for (int i = 0; i < shown; ++i) {
+                const ContainerItem& ci = (*items)[i];
+                const std::string nm = tileName(ci.graphic);
+                std::snprintf(buf, sizeof(buf), "0x%04X x%-3u %s",
+                              ci.graphic, ci.amount, nm.c_str());
+                text_->Draw(*renderer_, buf, panelX + pad, ty, itemColor,
+                            render::TextRenderer::Align::Left);
+                ty += rowH;
+            }
+            if (extra > 0) {
+                std::snprintf(buf, sizeof(buf), "... +%d more", extra);
+                text_->Draw(*renderer_, buf, panelX + pad, ty, itemColor,
+                            render::TextRenderer::Align::Left);
+            }
+        }
+        y += panelH + 8;
     }
 }
 

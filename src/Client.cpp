@@ -343,6 +343,9 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xA3: OnMobileStamina(data, size); break;
         case 0x1A: OnObjectInfo(data, size); break;
         case 0x1D: OnDeleteObject(data, size); break;
+        case 0x24: OnDrawContainer(data, size); break;
+        case 0x25: OnAddItemToContainer(data, size); break;
+        case 0x3C: OnContainerContents(data, size); break;
         case 0x77: OnMobileMove(data, size); break;
         case 0x78: OnMobileIncoming(data, size); break;
         case 0x98: OnMobName(data, size); break;
@@ -356,8 +359,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x4F: OnOverallLightLevel(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0x23: case 0x25: case 0x2F:
-        case 0x3C: case 0x53:
+        case 0x23: case 0x2F: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D:
         case 0x70: case 0x88:
         case 0x8B: case 0x97:
@@ -944,6 +946,103 @@ void Client::OnDeleteObject(const u8* data, usize size) {
         break;
     }
     if (!delayedMobile) mobileNames_.erase(serial);
+
+    // Drop the object from any open container, and close it if it was itself a
+    // container. Container item serials are full item serials (< 0x80000000),
+    // so the 0x7FFFFFFF mask above is a no-op for them.
+    for (auto& kv : containerItems_) {
+        auto& list = kv.second;
+        list.erase(std::remove_if(list.begin(), list.end(),
+                       [&](const ContainerItem& e) { return e.serial == serial; }),
+                   list.end());
+    }
+    containerItems_.erase(serial);
+    openContainers_.erase(std::remove_if(openContainers_.begin(), openContainers_.end(),
+                              [&](const OpenContainer& c) { return c.serial == serial; }),
+                          openContainers_.end());
+}
+
+// 0x24 Draw Container (7 bytes): cmd, serial(4 BE), gumpId(2 BE). The real
+// client opens a gump bound to the container entity (Packet_HandleDrawContainer
+// @ 0x417f70); we just register it so DrawContainers() can list the contents.
+// gumpId 0xFFFF closes it; 500/501 = bank, 10/48 = paperdoll.
+void Client::OnDrawContainer(const u8* data, usize size) {
+    if (size < 7) return;
+    const u32 serial = LoadBE32(data + 1);
+    const u16 gumpId = LoadBE16(data + 5);
+
+    auto sameSerial = [&](const OpenContainer& c) { return c.serial == serial; };
+    if (gumpId == 0xFFFF) {  // close / clear
+        openContainers_.erase(std::remove_if(openContainers_.begin(),
+                                  openContainers_.end(), sameSerial),
+                              openContainers_.end());
+        containerItems_.erase(serial);
+        return;
+    }
+    auto it = std::find_if(openContainers_.begin(), openContainers_.end(), sameSerial);
+    if (it == openContainers_.end())
+        openContainers_.push_back(OpenContainer{serial, gumpId});
+    else
+        it->gumpId = gumpId;
+    LogInfo("[0x24] open container 0x%08X gump=%u\n", serial, gumpId);
+}
+
+// 0x3C Container Contents (variable): count(2 BE), then `count` 19-byte records
+// of serial(4) graphic(2) gfxOffset(1) amount(2) x(2) y(2) container(4) hue(2).
+// This 2.0.7 format has NO grid/slot byte (Packet_HandleContainerItems
+// @ 0x418990). A 0x3C is a full dump for its container(s), so each referenced
+// container's list is cleared once before refilling.
+void Client::OnContainerContents(const u8* data, usize size) {
+    if (size < 5) return;
+    const u16 count = LoadBE16(data + 3);
+    usize p = 5;
+    std::unordered_set<u32> cleared;
+    for (u16 i = 0; i < count; ++i) {
+        if (p + 19 > size) break;
+        ContainerItem ci{};
+        ci.serial    = LoadBE32(data + p); p += 4;
+        ci.graphic   = LoadBE16(data + p); p += 2;
+        ci.gfxOffset = data[p];            p += 1;
+        ci.amount    = LoadBE16(data + p); p += 2;
+        ci.x         = LoadBE16(data + p); p += 2;
+        ci.y         = LoadBE16(data + p); p += 2;
+        const u32 cont = LoadBE32(data + p); p += 4;
+        ci.hue       = LoadBE16(data + p); p += 2;
+
+        auto& list = containerItems_[cont];
+        if (cleared.insert(cont).second) list.clear();
+        list.push_back(ci);
+        if (std::find_if(openContainers_.begin(), openContainers_.end(),
+                [&](const OpenContainer& c) { return c.serial == cont; })
+            == openContainers_.end())
+            openContainers_.push_back(OpenContainer{cont, 0});
+    }
+    LogInfo("[0x3C] container contents: %u item(s)\n", count);
+}
+
+// 0x25 Add Single Item to Container (20 bytes): one 0x3C record without the
+// leading count (Packet_HandleAddItemToContainer @ 0x418800). Upserts by serial.
+void Client::OnAddItemToContainer(const u8* data, usize size) {
+    if (size < 20) return;
+    ContainerItem ci{};
+    ci.serial    = LoadBE32(data + 1);
+    ci.graphic   = LoadBE16(data + 5);
+    ci.gfxOffset = data[7];
+    ci.amount    = LoadBE16(data + 8);
+    ci.x         = LoadBE16(data + 10);
+    ci.y         = LoadBE16(data + 12);
+    const u32 cont = LoadBE32(data + 14);
+    ci.hue       = LoadBE16(data + 18);
+
+    auto& list = containerItems_[cont];
+    auto it = std::find_if(list.begin(), list.end(),
+                  [&](const ContainerItem& e) { return e.serial == ci.serial; });
+    if (it == list.end()) list.push_back(ci);
+    else *it = ci;
+    if (std::find_if(openContainers_.begin(), openContainers_.end(),
+            [&](const OpenContainer& c) { return c.serial == cont; })
+        == openContainers_.end())
+        openContainers_.push_back(OpenContainer{cont, 0});
 }
 
 const char* Client::MobileName(u32 serial) const {
