@@ -420,26 +420,26 @@ args rather than committing your own environment. Key fields:
 
 **stdin commands** (typed in the console while in-world):
 
-| Command | Effect |
-|---|---|
-| `goto <x> <y> [z]` | One-shot A* path to fixed coordinates |
-| `follow <name|0xserial> [distance]` | Follow a mobile; chase only when farther than `distance` (default 1) |
-| `follow off` | Stop following |
-| `mobiles` | Query nearby names (`0x98`), then list `name serialId` |
-| `cast <spellId>` | Cast a spell (1-based id) via `0x12`/`0x56` |
-| `skill <skillId>` | Use a skill (0-based id) via `0x12`/`0x24` |
-| `use <0xserial|type|'name'> [pack]` | Double-click an item by serial, graphic id, or name; searches backpack → worn → nearest world item |
-| `arm|disarm [weapon|shield|both]` | Move weapon/shield to backpack and back |
-| `pickup <target>` | Lift nearest matching world item (`0x07`) into backpack |
+| Command                                    | Effect |
+|--------------------------------------------|---|
+| `goto <x> <y> [z]`                         | One-shot A* path to fixed coordinates |
+| `follow <name\|0xserial> [distance]`       | Follow a mobile; chase only when farther than `distance` (default 1) |
+| `follow off`                               | Stop following |
+| `mobiles`                                  | Query nearby names (`0x98`), then list `name serialId` |
+| `cast <spellId>`                           | Cast a spell (1-based id) via `0x12`/`0x56` |
+| `skill <skillId>`                          | Use a skill (0-based id) via `0x12`/`0x24` |
+| `use <0xserial\|type\|'name'> [pack]`      | Double-click an item by serial, graphic id, or name; searches backpack → worn → nearest world item |
+| `arm\|disarm [weapon\|shield\|both]`       | Move weapon/shield to backpack and back |
+| `pickup <target>`                          | Lift nearest matching world item (`0x07`) into backpack |
 | `drop <target> <x> <y> [z]\|<0xcontainer>` | Move backpack item to tile or container |
-| `equip <target> [pack]` | Wear an item (layer from tiledata `quality`) |
-| `unequip <weapon|shield|target> [pack]` | Take a worn item off; drops to world or backpack |
-| `stop` | Abort the current path |
-| `pos` | Print the player's position |
-| `day [on\|off]` | Force full daylight / restore server light levels |
-| `verbose [on\|off]` | Toggle per-packet console chatter |
-| `target ...` | Set target cursor |
-| *anything else* | Sent as `0x03` ASCII speech |
+| `equip <target> [pack]`                    | Wear an item (layer from tiledata `quality`) |
+| `unequip <weapon\|shield\|target> [pack]`  | Take a worn item off; drops to world or backpack |
+| `stop`                                     | Abort the current path |
+| `pos`                                      | Print the player's position |
+| `day [on\|off]`                            | Force full daylight / restore server light levels |
+| `verbose [on\|off]`                        | Toggle per-packet console chatter |
+| `target ...`                               | Set target cursor |
+| *anything else*                            | Sent as `0x03` ASCII speech |
 
 **Item-target tokens:** `0x…` ≥ `0x40000000` → serial; smaller → graphic id; else → tiledata name. Multi-word names need quotes.
 
