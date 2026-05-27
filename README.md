@@ -300,7 +300,7 @@ What it draws, in painter's-algorithm order:
 - **Procedural night lighting:** a per-pixel RGB darkness map seeded by the world
   light level (`0x4E`/`0x4F`), with smooth radial coronas subtracted for each
   classified light source (warm for fire/candles, white for lamps; a carried
-  torch/lantern casts a moving pool). A `day [on|off]` toggle forces full daylight.
+  torch/lantern casts a moving pool). A `day [on<code>|</code>off]` toggle forces full daylight.
 
 Overlaid on top of the world frame:
 
@@ -436,8 +436,8 @@ args rather than committing your own environment. Key fields:
 | `unequip <weapon|shield|target> [pack]` | Take a worn item off; drops to world or backpack |
 | `stop` | Abort the current path |
 | `pos` | Print the player's position |
-| `day [on|off]` | Force full daylight / restore server light levels |
-| `verbose [on|off]` | Toggle per-packet console chatter |
+| `day [on\|off]` | Force full daylight / restore server light levels |
+| `verbose [on\|off]` | Toggle per-packet console chatter |
 | `target ...` | Set target cursor |
 | *anything else* | Sent as `0x03` ASCII speech |
 
