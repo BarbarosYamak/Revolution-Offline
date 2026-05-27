@@ -403,9 +403,13 @@ private:
     std::string FormatItemName(u16 graphic) const;
     void ShowItemLabel(u32 serial);
     u16  playerBody_;           // local player body graphic for the renderer
-    struct EquipObj { u8 layer; u16 graphic; u16 hue; };
+    struct EquipObj { u8 layer; u16 graphic; u16 hue; u32 serial = 0; };
     std::vector<EquipObj> playerEquip_;  // own worn items (layer, graphic, hue)
     u16  playerHue_ = 0;
+    // Disarm memory: serial last taken off each hand layer so `arm` can put it
+    // back. Indexed by layer (1 = one-handed/weapon, 2 = two-handed/shield);
+    // index 0 unused. Mirrors g_ArmDisarm_SavedSerial @0xCD5A68.
+    u32  armSavedSerial_[3] = {0, 0, 0};
     u8   warModeArg1_ = 4;      // cached 0x72 trailing args, as in client 2.0.7
     u8   warModeArg2_ = 0;
     u8   warModeArg3_ = 0;
@@ -477,7 +481,44 @@ private:
                       u16 hue = 0, bool hasHue = false,
                       u8 statusFlags = 0, bool hasStatusFlags = false);
     void SetMobileEquip(u32 serial, std::vector<EquipObj> equip);
-    void SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic, u16 hue);
+    void SetMobileEquipLayer(u32 mobileSerial, u32 itemSerial, u8 layer,
+                             u16 graphic, u16 hue);
+    // Serial of our worn item at a layer (0 if nothing equipped there).
+    u32 PlayerEquipSerialAt(u8 layer) const;
+    // Lowercased tiledata static name for an item graphic ("" if no tiledata).
+    std::string ItemNameLower(u16 graphic) const;
+    // Equip layer for an item graphic, read from tiledata (StaticTile.quality,
+    // as the client does in Gump_HandleMouseOver @0x45486d). 0 = unknown.
+    u8 ItemEquipLayer(u16 graphic) const;
+    // True if an item graphic matches the query (exact graphic when hasType,
+    // else a case-insensitive tiledata-name substring).
+    bool ItemMatches(u16 graphic, bool hasType, u16 type,
+                     const std::string& lowerName) const;
+    // Zones for FindItem (bitmask).
+    enum SearchZone : unsigned { kZoneBackpack = 1, kZoneEquip = 2, kZoneWorld = 4 };
+    // Resolve an item by type/name across the requested zones (backpack first,
+    // then worn equipment, then the nearest world item). Optionally reports the
+    // matched graphic, worn layer (0 unless from kZoneEquip) and a where-label.
+    u32 FindItem(bool hasType, u16 type, const std::string& lowerName,
+                 unsigned zones, u16* graphicOut, u8* layerOut,
+                 const char** whereOut) const;
+    // Parse a leading item token: quoted 'name'/"name", a 0xserial, a numeric
+    // graphic type, or a single bareword name. Sets exactly one of *serialOut,
+    // (*hasTypeOut + *typeOut), or *lowerNameOut, and points *restOut past the
+    // token. Returns false on a malformed token.
+    bool ParseItemToken(const char* arg, u32* serialOut, bool* hasTypeOut,
+                        u16* typeOut, std::string* lowerNameOut,
+                        const char** restOut) const;
+    void HandleUseCommand(const char* arg);
+    void HandlePickupCommand(const char* arg);
+    void HandleDropCommand(const char* arg);
+    void HandleEquipCommand(const char* arg);
+    void HandleUnequipCommand(const char* arg);
+    // arm/disarm: move the weapon (layer 1) / shield (layer 2) between hand and
+    // backpack, remembering what was disarmed so `arm` re-equips it. Mirrors
+    // Macro_ActionArmDisarm_Validate @0x4b6c90. `doArm` re-equips the saved
+    // item; otherwise the equipped item is dropped into the backpack.
+    void ArmDisarmHand(bool doArm, u8 layer);
     bool mobilesListPending_;
     i64  mobilesListDeadlineMs_;
     std::vector<u32> mobilesListSerials_;

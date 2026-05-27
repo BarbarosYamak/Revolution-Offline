@@ -76,6 +76,19 @@ usize WarMode(u8* out, bool warMode, u8 arg1 = 4, u8 arg2 = 0, u8 arg3 = 0);
 // so it works even if the door's object packet hasn't arrived yet.
 usize OpenDoor(u8* out);
 
+// 0x12 Action Request — Cast Spell (variable): cmd + len(2 BE) + subcommand
+// 0x56 + ASCII spell id + NUL. Mirrors MACRO_CASTSPELL in client_2.0.7
+// (Macro_ExecuteAction @0x4b52ec: payload = "%d", spellId). spellId is the
+// 1-based spell number (the macro stores it 0-based and sends intParam+1).
+usize CastSpell(u8* out, int spellId);
+
+// 0x12 Action Request — Use Skill (variable): cmd + len(2 BE) + subcommand
+// 0x24 + ASCII "<skillId> 0" + NUL. Mirrors MACRO_USESKILL
+// (Macro_ExecuteAction @0x4b5228 / SkillsGump_SendUseSkillAction @0x49fe78:
+// payload = "%d %d", skillId, 0). skillId is the 0-based skill index; the
+// trailing 0 is the lock/last-skill flag the official client always sends.
+usize UseSkill(u8* out, int skillId);
+
 // 0x6C Target Cursor response (19 bytes). Sent in reply to an inbound 0x6C
 // target request (e.g. after casting a spell or using an item that needs a
 // target). Layout mirrors TargetCursor_SendResponse @0x41E560:
@@ -98,6 +111,23 @@ usize TargetCursorGround(u8* out, u32 cursorId, u8 subtype,
                          u16 x, u16 y, i8 z, u16 model);
 // Cancel (Esc / right-click): type 0, serial 0, x=y=0xFFFF, z/model 0.
 usize TargetCursorCancel(u8* out, u32 cursorId, u8 subtype);
+
+// 0x07 Pick Up Item (7 bytes): cmd + serial(4 BE) + amount(2 BE). Lifts an
+// item onto the drag cursor; amount 0 means the whole stack. Models
+// Packet_BuildPickUp @0x425700. Always paired with a 0x08 drop or 0x13 equip.
+usize PickUpItem(u8* out, u32 serial, u16 amount = 0);
+
+// 0x08 Drop Item (14 bytes): cmd + serial(4 BE) + x(2 BE) + y(2 BE) + z(1) +
+// container(4 BE). Drops the lifted item; x=y=0xFFFF drops "anywhere" inside
+// the target container, container 0xFFFFFFFF drops on the ground. Models
+// Packet_BuildDropRequest @0x425410.
+usize DropItem(u8* out, u32 serial, u16 x, u16 y, i8 z, u32 container);
+
+// 0x13 Equip Item (10 bytes): cmd + serial(4 BE) + layer(1) + mobile(4 BE).
+// Wears the lifted item on `mobile` at `layer`. Models Packet_BuildEquipRequest
+// @0x425ac0. Layers: 1 = one-handed (weapon), 2 = two-handed (shield), 21 =
+// backpack.
+usize EquipItem(u8* out, u32 serial, u8 layer, u32 mobile);
 
 // 0x02 Move Request (3 or 7 bytes).
 //   BYTE cmd

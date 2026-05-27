@@ -39,6 +39,15 @@ constexpr i64   kMobilesNamesTimeoutMs = 500;
 // UO Demo / Sphere-style shards kick the connection after ~60s of
 // client-side silence. Stay well inside the window: 20s gap.
 constexpr i64   kKeepaliveIntervalMs = 20000;
+// Equipment layers used by use/arm/disarm (UOLayer in client_2.0.7).
+constexpr u8    kLayerOneHanded = 1;     // right hand (weapon)
+constexpr u8    kLayerTwoHanded = 2;     // left hand (shield / 2H weapon)
+constexpr u8    kLayerBackpack  = 0x15;  // 21
+// "search only backpack/equipment" scope keyword for use/equip commands.
+bool IsPackScope(const char* s) {
+    return std::strcmp(s, "pack") == 0 || std::strcmp(s, "inv") == 0 ||
+           std::strcmp(s, "self") == 0 || std::strcmp(s, "me") == 0;
+}
 // Stringify u32 IPv4 in host order to dotted notation.
 void IpToString(u32 host_ip, char* out, usize cap) {
     std::snprintf(out, cap, "%u.%u.%u.%u",
@@ -1235,7 +1244,7 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
         graphic &= 0x3FFFu;                   // item id (drop hue flag/high bits)
         u16 hue = 0;
         if (hasHue) { if (p + 2u > size) break; hue = LoadBE16(data + p); p += 2; }
-        equip.push_back({layer, graphic, hue});
+        equip.push_back({layer, graphic, hue, itemSerial});
     }
     SetMobileEquip(serial, std::move(equip));
 }
@@ -1245,11 +1254,12 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
 // @0x419910. Updates a single equipped layer on an already-cached mobile.
 void Client::OnEquipItem(const u8* data, usize size) {
     if (size < 15) return;
+    const u32 itemSerial = LoadBE32(data + 1);
     const u16 graphic = static_cast<u16>(LoadBE16(data + 5) & 0x3FFFu);
     const u8  layer   = data[8];
     const u32 mobile  = LoadBE32(data + 9);
     const u16 hue     = LoadBE16(data + 13);
-    SetMobileEquipLayer(mobile, layer, graphic, hue);
+    SetMobileEquipLayer(mobile, itemSerial, layer, graphic, hue);
 }
 
 // 0x6E Character Animation (14B fixed): cmd, serial(4), action(2),
@@ -1398,15 +1408,499 @@ void Client::SetMobileEquip(u32 serial, std::vector<EquipObj> equip) {
         if (m.serial == serial) { m.equip = std::move(equip); return; }
 }
 
-void Client::SetMobileEquipLayer(u32 serial, u8 layer, u16 graphic, u16 hue) {
+void Client::SetMobileEquipLayer(u32 mobileSerial, u32 itemSerial, u8 layer,
+                                 u16 graphic, u16 hue) {
     auto upsert = [&](std::vector<EquipObj>& v) {
         for (auto& e : v)
-            if (e.layer == layer) { e.graphic = graphic; e.hue = hue; return; }
-        v.push_back({layer, graphic, hue});
+            if (e.layer == layer) {
+                e.graphic = graphic; e.hue = hue; e.serial = itemSerial; return;
+            }
+        v.push_back({layer, graphic, hue, itemSerial});
     };
-    if (serial == playerSerial_) { upsert(playerEquip_); return; }
+    if (mobileSerial == playerSerial_) { upsert(playerEquip_); return; }
     for (auto& m : mobileCache_)
-        if (m.serial == serial) { upsert(m.equip); return; }
+        if (m.serial == mobileSerial) { upsert(m.equip); return; }
+}
+
+u32 Client::PlayerEquipSerialAt(u8 layer) const {
+    for (const auto& e : playerEquip_)
+        if (e.layer == layer) return e.serial;
+    return 0;
+}
+
+std::string Client::ItemNameLower(u16 graphic) const {
+    if (!tileData_ || !tileData_->IsLoaded()) return std::string();
+    const auto& st = tileData_->Static(graphic);
+    char buf[21];
+    std::memcpy(buf, st.name, 20);
+    buf[20] = '\0';
+    std::string s(buf);
+    for (char& c : s)
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    return s;
+}
+
+u8 Client::ItemEquipLayer(u16 graphic) const {
+    if (!tileData_ || !tileData_->IsLoaded()) return 0;
+    return tileData_->Static(graphic).quality;
+}
+
+bool Client::ItemMatches(u16 graphic, bool hasType, u16 type,
+                         const std::string& lowerName) const {
+    if (hasType) return graphic == type;
+    if (lowerName.empty()) return false;
+    const std::string nm = ItemNameLower(graphic);
+    return !nm.empty() && nm.find(lowerName) != std::string::npos;
+}
+
+u32 Client::FindItem(bool hasType, u16 type, const std::string& lowerName,
+                     unsigned zones, u16* graphicOut, u8* layerOut,
+                     const char** whereOut) const {
+    auto emit = [&](u32 serial, u16 g, u8 layer, const char* w) -> u32 {
+        if (graphicOut) *graphicOut = g;
+        if (layerOut) *layerOut = layer;
+        if (whereOut) *whereOut = w;
+        return serial;
+    };
+
+    // 1. Backpack contents (direct children of the worn backpack).
+    if (zones & kZoneBackpack) {
+        const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+        if (backpack) {
+            auto it = containerItems_.find(backpack);
+            if (it != containerItems_.end())
+                for (const auto& ci : it->second)
+                    if (ItemMatches(ci.graphic, hasType, type, lowerName))
+                        return emit(ci.serial, ci.graphic, 0, "backpack");
+        }
+    }
+
+    // 2. Our worn equipment (e.g. the axe in hand).
+    if (zones & kZoneEquip) {
+        for (const auto& e : playerEquip_)
+            if (ItemMatches(e.graphic, hasType, type, lowerName))
+                return emit(e.serial, e.graphic, e.layer, "equipment");
+    }
+
+    // 3. Nearest matching world item.
+    if (zones & kZoneWorld) {
+        u32 best = 0;
+        u16 bestGraphic = 0;
+        i32 bestDist = 0x7FFFFFFF;
+        for (const auto& kv : items_) {
+            const ItemObj& o = kv.second;
+            if (!ItemMatches(o.itemId, hasType, type, lowerName)) continue;
+            const i32 dx = (o.x > playerX_) ? (o.x - playerX_) : (playerX_ - o.x);
+            const i32 dy = (o.y > playerY_) ? (o.y - playerY_) : (playerY_ - o.y);
+            const i32 d = (dx > dy) ? dx : dy;
+            if (d < bestDist) { bestDist = d; best = kv.first; bestGraphic = o.itemId; }
+        }
+        if (best) return emit(best, bestGraphic, 0, "world");
+    }
+    return 0;
+}
+
+bool Client::ParseItemToken(const char* arg, u32* serialOut, bool* hasTypeOut,
+                            u16* typeOut, std::string* lowerNameOut,
+                            const char** restOut) const {
+    *serialOut = 0;
+    *hasTypeOut = false;
+    *typeOut = 0;
+    lowerNameOut->clear();
+    while (*arg == ' ' || *arg == '\t') ++arg;
+    if (!*arg) { *restOut = arg; return false; }
+
+    std::string token;
+    bool forcedName = false;
+    if (*arg == '\'' || *arg == '"') {
+        const char q = *arg++;
+        const char* end = std::strchr(arg, q);
+        if (!end) { *restOut = arg; return false; }
+        token.assign(arg, static_cast<usize>(end - arg));
+        forcedName = true;
+        arg = end + 1;
+    } else {
+        const char* end = arg;
+        while (*end && *end != ' ' && *end != '\t') ++end;
+        token.assign(arg, static_cast<usize>(end - arg));
+        arg = end;
+    }
+    while (*arg == ' ' || *arg == '\t') ++arg;
+    *restOut = arg;
+    if (token.empty()) return false;
+
+    bool numeric = false, hex = false;
+    if (!forcedName) {
+        if (token[0] == '0' && (token[1] == 'x' || token[1] == 'X')) {
+            numeric = hex = true;
+        } else {
+            numeric = true;
+            for (char c : token)
+                if (!std::isdigit(static_cast<unsigned char>(c))) { numeric = false; break; }
+        }
+    }
+
+    if (numeric) {
+        u32 val = 0;
+        if (std::sscanf(token.c_str(), hex ? "%x" : "%u", &val) != 1) return false;
+        if (val >= 0x40000000u) *serialOut = val;
+        else { *hasTypeOut = true; *typeOut = static_cast<u16>(val); }
+    } else {
+        *lowerNameOut = token;
+        for (char& c : *lowerNameOut)
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+    return true;
+}
+
+// Move the weapon (layer 1) or shield (layer 2) between hand and backpack,
+// remembering the disarmed serial so a later `arm` re-equips it. Models
+// Macro_ActionArmDisarm_Validate @0x4b6c90: PickUp (0x07) then Drop (0x08) to
+// the backpack on disarm, PickUp then Equip (0x13) on arm.
+void Client::ArmDisarmHand(bool doArm, u8 layer) {
+    const char* hand = (layer == kLayerOneHanded) ? "weapon" : "shield";
+    u8 buf[16];
+    if (doArm) {
+        const u32 saved = armSavedSerial_[layer];
+        if (saved == 0) {
+            LogWarn("[cmd] arm: no %s remembered (disarm one first)\n", hand);
+            return;
+        }
+        if (PlayerEquipSerialAt(layer) != 0) {
+            LogInfo("[cmd] arm: %s slot already occupied\n", hand);
+            return;
+        }
+        Send(buf, build::PickUpItem(buf, saved, 0), "0x07 PickUp (arm)");
+        Send(buf, build::EquipItem(buf, saved, layer, playerSerial_),
+             "0x13 Equip (arm)");
+        LogInfo("[cmd] arm %s 0x%08X\n", hand, saved);
+        armSavedSerial_[layer] = 0;
+        return;
+    }
+    // Disarm.
+    const u32 equipped = PlayerEquipSerialAt(layer);
+    if (equipped == 0) {
+        LogInfo("[cmd] disarm: no %s equipped\n", hand);
+        return;
+    }
+    const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+    if (backpack == 0) {
+        LogWarn("[cmd] disarm: backpack serial unknown\n");
+        return;
+    }
+    Send(buf, build::PickUpItem(buf, equipped, 0), "0x07 PickUp (disarm)");
+    Send(buf, build::DropItem(buf, equipped, 0xFFFF, 0xFFFF, 0, backpack),
+         "0x08 Drop (disarm)");
+    armSavedSerial_[layer] = equipped;
+    LogInfo("[cmd] disarm %s 0x%08X -> backpack\n", hand, equipped);
+}
+
+// `use` command: resolve the target by serial / graphic type / tiledata name,
+// then double-click it (0x06). See HandleStdinLine for the entry point.
+void Client::HandleUseCommand(const char* arg) {
+    if (!arg || !arg[0]) {
+        LogInfo(
+            "[cmd] use - double-click an item (sends 0x06)\n"
+            "  use <0xserial>     a specific object by serial\n"
+            "  use <type>         by graphic id (decimal or 0x.. below 0x40000000)\n"
+            "  use '<name>'       by tiledata name substring (e.g. use 'bandage')\n"
+            "  use <name>         same, unquoted (may be several words)\n"
+            "  ... pack           add as the last word to skip the world search\n"
+            "  order: backpack -> worn equipment -> nearest world item\n");
+        return;
+    }
+
+    std::string query;
+    bool inventoryOnly = false;
+    bool forcedName = false;
+
+    if (*arg == '\'' || *arg == '"') {
+        const char q = *arg++;
+        const char* end = std::strchr(arg, q);
+        if (!end) { LogWarn("[cmd] use: unterminated quote\n"); return; }
+        query.assign(arg, static_cast<usize>(end - arg));
+        forcedName = true;
+        const char* tail = end + 1;
+        while (*tail == ' ' || *tail == '\t') ++tail;
+        if (tail[0]) inventoryOnly = IsPackScope(tail);
+    } else {
+        std::string s(arg);
+        usize e = s.size();
+        while (e > 0 && (s[e - 1] == ' ' || s[e - 1] == '\t')) --e;
+        s.resize(e);
+        const usize sp = s.find_last_of(" \t");
+        if (sp != std::string::npos && IsPackScope(s.c_str() + sp + 1)) {
+            inventoryOnly = true;
+            s.resize(sp);
+            usize e2 = s.size();
+            while (e2 > 0 && (s[e2 - 1] == ' ' || s[e2 - 1] == '\t')) --e2;
+            s.resize(e2);
+        }
+        query = s;
+    }
+
+    if (query.empty()) { LogWarn("[cmd] use: empty target\n"); return; }
+
+    bool numeric = false, hex = false;
+    if (query[0] == '0' && (query[1] == 'x' || query[1] == 'X')) {
+        numeric = hex = true;
+    } else {
+        numeric = true;
+        for (char c : query)
+            if (!std::isdigit(static_cast<unsigned char>(c))) { numeric = false; break; }
+    }
+
+    u32 serial = 0;
+    bool hasType = false;
+    u16 type = 0;
+    std::string lowerName;
+
+    if (numeric && !forcedName) {
+        u32 val = 0;
+        if (std::sscanf(query.c_str(), hex ? "%x" : "%u", &val) != 1) {
+            LogWarn("[cmd] use: bad number '%s'\n", query.c_str());
+            return;
+        }
+        if (val >= 0x40000000u) serial = val;            // looks like a serial
+        else { hasType = true; type = static_cast<u16>(val); }
+    } else {
+        lowerName = query;
+        for (char& c : lowerName)
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        if ((!tileData_ || !tileData_->IsLoaded()) && !EnsureWorldLoaded()) {
+            LogWarn("[cmd] use: tiledata not loaded; cannot match by name\n");
+            return;
+        }
+    }
+
+    if (serial == 0) {
+        const char* where = "?";
+        unsigned zones = kZoneBackpack | kZoneEquip;
+        if (!inventoryOnly) zones |= kZoneWorld;
+        serial = FindItem(hasType, type, lowerName, zones, nullptr, nullptr, &where);
+        if (serial == 0) {
+            LogWarn("[cmd] use: '%s' not found%s\n", query.c_str(),
+                    inventoryOnly ? " in backpack/equipment" : "");
+            return;
+        }
+        u8 buf[8];
+        Send(buf, build::DoubleClick(buf, serial), "0x06 DoubleClick (use)");
+        LogInfo("[cmd] use '%s' -> 0x%08X (%s)\n", query.c_str(), serial, where);
+        return;
+    }
+
+    u8 buf[8];
+    Send(buf, build::DoubleClick(buf, serial), "0x06 DoubleClick (use)");
+    LogInfo("[cmd] use 0x%08X\n", serial);
+}
+
+// `pickup <name|type|0xserial>` — lift the nearest matching WORLD item (0x07)
+// and drop it into the backpack (0x08). Loots a ground item into the pack.
+void Client::HandlePickupCommand(const char* arg) {
+    if (!arg || !arg[0]) {
+        LogInfo("[cmd] usage: pickup <0xserial|type|'name'>  (nearest world item -> backpack)\n");
+        return;
+    }
+    u32 serial = 0; bool hasType = false; u16 type = 0; std::string name; const char* rest = arg;
+    if (!ParseItemToken(arg, &serial, &hasType, &type, &name, &rest)) {
+        LogWarn("[cmd] pickup: bad target\n");
+        return;
+    }
+    if (!name.empty() && (!tileData_ || !tileData_->IsLoaded()) && !EnsureWorldLoaded()) {
+        LogWarn("[cmd] pickup: tiledata not loaded; cannot match by name\n");
+        return;
+    }
+    const char* where = "?";
+    if (serial == 0)
+        serial = FindItem(hasType, type, name, kZoneWorld, nullptr, nullptr, &where);
+    if (serial == 0) { LogWarn("[cmd] pickup: no matching world item\n"); return; }
+
+    const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+    if (backpack == 0) { LogWarn("[cmd] pickup: backpack serial unknown\n"); return; }
+    u8 buf[16];
+    Send(buf, build::PickUpItem(buf, serial, 0), "0x07 PickUp (pickup)");
+    Send(buf, build::DropItem(buf, serial, 0xFFFF, 0xFFFF, 0, backpack),
+         "0x08 Drop (pickup->pack)");
+    LogInfo("[cmd] pickup 0x%08X -> backpack\n", serial);
+}
+
+// `drop <target> <x> <y> [z]` | `drop <target> <0xcontainer>` — lift a backpack
+// item (0x07) and drop it at world coords (container 0xFFFFFFFF) or into a
+// container (0x08).
+void Client::HandleDropCommand(const char* arg) {
+    if (!arg || !arg[0]) {
+        LogInfo("[cmd] usage: drop <0xserial|type|'name'> <x> <y> [z] | drop <target> <0xcontainer>\n");
+        return;
+    }
+    u32 serial = 0; bool hasType = false; u16 type = 0; std::string name; const char* rest = arg;
+    if (!ParseItemToken(arg, &serial, &hasType, &type, &name, &rest)) {
+        LogWarn("[cmd] drop: bad target\n");
+        return;
+    }
+    if (!name.empty() && (!tileData_ || !tileData_->IsLoaded()) && !EnsureWorldLoaded()) {
+        LogWarn("[cmd] drop: tiledata not loaded; cannot match by name\n");
+        return;
+    }
+    if (serial == 0)
+        serial = FindItem(hasType, type, name, kZoneBackpack, nullptr, nullptr, nullptr);
+    if (serial == 0) { LogWarn("[cmd] drop: item not found in backpack\n"); return; }
+
+    if (!rest || !rest[0]) {
+        LogWarn("[cmd] drop: need a destination (<x> <y> [z] or <0xcontainer>)\n");
+        return;
+    }
+
+    u8 buf[16];
+    u32 container = 0;
+    if (ParseSerial(rest, &container) && container != 0) {
+        Send(buf, build::PickUpItem(buf, serial, 0), "0x07 PickUp (drop)");
+        Send(buf, build::DropItem(buf, serial, 0xFFFF, 0xFFFF, 0, container),
+             "0x08 Drop (->container)");
+        LogInfo("[cmd] drop 0x%08X -> container 0x%08X\n", serial, container);
+        return;
+    }
+    char coords[64];
+    std::strncpy(coords, rest, sizeof(coords) - 1);
+    coords[sizeof(coords) - 1] = '\0';
+    for (char* p = coords; *p; ++p) if (*p == ',') *p = ' ';
+    i32 dx = 0, dy = 0, dz = 0;
+    const int got = std::sscanf(coords, "%d %d %d", &dx, &dy, &dz);
+    if (got < 2) {
+        LogWarn("[cmd] drop: bad destination '%s'\n", rest);
+        return;
+    }
+    Send(buf, build::PickUpItem(buf, serial, 0), "0x07 PickUp (drop)");
+    Send(buf, build::DropItem(buf, serial, static_cast<u16>(dx), static_cast<u16>(dy),
+                              static_cast<i8>(got >= 3 ? dz : 0), 0xFFFFFFFFu),
+         "0x08 Drop (->ground)");
+    LogInfo("[cmd] drop 0x%08X -> (%d,%d,%d)\n", serial, dx, dy, got >= 3 ? dz : 0);
+}
+
+// `equip <target> [pack]` — lift an item (0x07) and wear it (0x13) at the layer
+// from tiledata. Searches backpack + nearest world by default; `pack` limits to
+// the backpack.
+void Client::HandleEquipCommand(const char* arg) {
+    if (!arg || !arg[0]) {
+        LogInfo("[cmd] usage: equip <0xserial|type|'name'> [pack]   (pack = backpack only)\n");
+        return;
+    }
+    u32 serial = 0; bool hasType = false; u16 type = 0; std::string name; const char* rest = arg;
+    if (!ParseItemToken(arg, &serial, &hasType, &type, &name, &rest)) {
+        LogWarn("[cmd] equip: bad target\n");
+        return;
+    }
+    bool packOnly = (rest && rest[0] && IsPackScope(rest));
+    // Equip needs tiledata for the layer; name matching needs it too.
+    if ((!tileData_ || !tileData_->IsLoaded()) && !EnsureWorldLoaded()) {
+        LogWarn("[cmd] equip: tiledata not loaded\n");
+        return;
+    }
+    unsigned zones = kZoneBackpack | (packOnly ? 0u : kZoneWorld);
+    const char* where = "?";
+    u16 graphic = 0;
+    if (serial == 0) {
+        serial = FindItem(hasType, type, name, zones, &graphic, nullptr, &where);
+    } else {
+        // Direct serial: find the graphic from caches so we can pick the layer.
+        if (auto it = items_.find(serial); it != items_.end()) graphic = it->second.itemId;
+        else {
+            const u32 bp = PlayerEquipSerialAt(kLayerBackpack);
+            if (auto ci = containerItems_.find(bp); ci != containerItems_.end())
+                for (const auto& e : ci->second)
+                    if (e.serial == serial) { graphic = e.graphic; break; }
+        }
+    }
+    if (serial == 0) { LogWarn("[cmd] equip: item not found\n"); return; }
+
+    const u8 layer = ItemEquipLayer(graphic);
+    if (layer == 0) {
+        LogWarn("[cmd] equip: 0x%04X is not equippable (no layer in tiledata)\n", graphic);
+        return;
+    }
+    u8 buf[16];
+    Send(buf, build::PickUpItem(buf, serial, 0), "0x07 PickUp (equip)");
+    Send(buf, build::EquipItem(buf, serial, layer, playerSerial_), "0x13 Equip");
+    LogInfo("[cmd] equip 0x%08X graphic=0x%04X layer=%u\n", serial, graphic, layer);
+}
+
+// `unequip <weapon|shield|target> [pack]` — lift a worn item (0x07) and drop it
+// at the player's feet (world) by default, or into the backpack with `pack`.
+void Client::HandleUnequipCommand(const char* arg) {
+    if (!arg || !arg[0]) {
+        LogInfo("[cmd] usage: unequip <weapon|shield|type|'name'> [pack]   (default drops to world)\n");
+        return;
+    }
+    // Hand keywords resolve directly to a worn layer.
+    std::string first;
+    {
+        const char* p = arg;
+        while (*p && *p != ' ' && *p != '\t') ++p;
+        first.assign(arg, static_cast<usize>(p - arg));
+    }
+    auto lower = [](std::string s) {
+        for (char& c : s) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        return s;
+    };
+    const std::string firstLower = lower(first);
+
+    u32 serial = 0;
+    u16 graphic = 0;
+    const char* rest = arg;
+
+    // What's worn in each hand. A two-handed weapon (staff, bow, halberd) sits
+    // on the LEFT/two-handed layer, not the one-handed layer, so `weapon` must
+    // look at both. The graphic lets tiledata tell a weapon from a shield.
+    u32 rightSerial = 0, leftSerial = 0;
+    u16 rightGfx = 0, leftGfx = 0;
+    for (const auto& e : playerEquip_) {
+        if (e.layer == kLayerOneHanded) { rightSerial = e.serial; rightGfx = e.graphic; }
+        else if (e.layer == kLayerTwoHanded) { leftSerial = e.serial; leftGfx = e.graphic; }
+    }
+    auto isWeapon = [&](u16 g) -> bool {
+        return tileData_ && tileData_->IsLoaded() &&
+               (tileData_->Static(g).flags & tiledata::kFlagWeapon) != 0;
+    };
+
+    if (firstLower == "weapon" || firstLower == "right") {
+        if (rightSerial && isWeapon(rightGfx))      serial = rightSerial;
+        else if (leftSerial && isWeapon(leftGfx))   serial = leftSerial;
+        else serial = rightSerial ? rightSerial : leftSerial;  // fallback
+        rest = arg + first.size();
+    } else if (firstLower == "shield" || firstLower == "left") {
+        serial = leftSerial;
+        rest = arg + first.size();
+    } else {
+        u32 s = 0; bool hasType = false; u16 type = 0; std::string name;
+        if (!ParseItemToken(arg, &s, &hasType, &type, &name, &rest)) {
+            LogWarn("[cmd] unequip: bad target\n");
+            return;
+        }
+        if (!name.empty() && (!tileData_ || !tileData_->IsLoaded()) && !EnsureWorldLoaded()) {
+            LogWarn("[cmd] unequip: tiledata not loaded; cannot match by name\n");
+            return;
+        }
+        serial = (s != 0) ? s
+                          : FindItem(hasType, type, name, kZoneEquip, &graphic, nullptr, nullptr);
+    }
+    while (*rest == ' ' || *rest == '\t') ++rest;
+    const bool toPack = (rest[0] && IsPackScope(rest));
+
+    if (serial == 0) { LogWarn("[cmd] unequip: not currently worn\n"); return; }
+
+    u8 buf[16];
+    Send(buf, build::PickUpItem(buf, serial, 0), "0x07 PickUp (unequip)");
+    if (toPack) {
+        const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+        if (backpack == 0) { LogWarn("[cmd] unequip: backpack serial unknown\n"); return; }
+        Send(buf, build::DropItem(buf, serial, 0xFFFF, 0xFFFF, 0, backpack),
+             "0x08 Drop (unequip->pack)");
+        LogInfo("[cmd] unequip 0x%08X -> backpack\n", serial);
+    } else {
+        Send(buf, build::DropItem(buf, serial, static_cast<u16>(playerX_),
+                                  static_cast<u16>(playerY_), playerZ_, 0xFFFFFFFFu),
+             "0x08 Drop (unequip->ground)");
+        LogInfo("[cmd] unequip 0x%08X -> ground (%d,%d)\n", serial, playerX_, playerY_);
+    }
 }
 
 // 0x98 AllNames / MobName reply:
@@ -2062,21 +2556,109 @@ void Client::HandleStdinLine(const char* line) {
         return;
     }
 
-    // `use <0xserial>` — double-click an object by serial (sends 0x06), the
-    // gesture that uses/opens it (containers reply 0x24+0x3C; doors swing, etc).
+    // `use ...` — double-click an object (sends 0x06) by serial, by tiledata
+    // name, or by graphic type, searching backpack -> worn gear -> world.
     if (std::strncmp(line, "use", 3) == 0 &&
-        (line[3] == ' ' || line[3] == '\t')) {
+        (line[3] == '\0' || line[3] == ' ' || line[3] == '\t')) {
         const char* arg = line + 3;
         while (*arg == ' ' || *arg == '\t') ++arg;
-        u32 serial = 0;
-        if (!ParseSerial(arg, &serial) || serial == 0) {
-            LogWarn("[cmd] usage: use <0xserial>\n");
+        HandleUseCommand(arg);
+        return;
+    }
+
+    // `disarm [weapon|shield|both]` / `arm [weapon|shield|both]` — move the
+    // weapon (right hand) and/or shield (left hand) to the backpack and back.
+    if ((std::strncmp(line, "arm", 3) == 0 &&
+         (line[3] == '\0' || line[3] == ' ' || line[3] == '\t')) ||
+        (std::strncmp(line, "disarm", 6) == 0 &&
+         (line[6] == '\0' || line[6] == ' ' || line[6] == '\t'))) {
+        const bool doArm = (line[0] == 'a');
+        const char* arg = line + (doArm ? 3 : 6);
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        bool weapon = false, shield = false;
+        if (!arg[0] || std::strcmp(arg, "both") == 0) { weapon = shield = true; }
+        else if (std::strcmp(arg, "weapon") == 0 || std::strcmp(arg, "right") == 0) weapon = true;
+        else if (std::strcmp(arg, "shield") == 0 || std::strcmp(arg, "left") == 0)  shield = true;
+        else {
+            LogWarn("[cmd] usage: %s [weapon|shield|both]\n", doArm ? "arm" : "disarm");
             return;
         }
-        u8 buf[8];
-        const usize n = build::DoubleClick(buf, serial);
-        Send(buf, n, "0x06 DoubleClick (use)");
-        LogInfo("[cmd] use 0x%08X\n", serial);
+        if (weapon) ArmDisarmHand(doArm, kLayerOneHanded);
+        if (shield) ArmDisarmHand(doArm, kLayerTwoHanded);
+        return;
+    }
+
+    // `pickup ...` — lift a nearby world item into the backpack.
+    if (std::strncmp(line, "pickup", 6) == 0 &&
+        (line[6] == '\0' || line[6] == ' ' || line[6] == '\t')) {
+        const char* arg = line + 6;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        HandlePickupCommand(arg);
+        return;
+    }
+
+    // `drop ...` — move a backpack item to world coords or a container.
+    if (std::strncmp(line, "drop", 4) == 0 &&
+        (line[4] == '\0' || line[4] == ' ' || line[4] == '\t')) {
+        const char* arg = line + 4;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        HandleDropCommand(arg);
+        return;
+    }
+
+    // `unequip ...` — take a worn item off (to world, or backpack with `pack`).
+    // Checked before `equip` so the "equip" prefix test doesn't swallow it.
+    if (std::strncmp(line, "unequip", 7) == 0 &&
+        (line[7] == '\0' || line[7] == ' ' || line[7] == '\t')) {
+        const char* arg = line + 7;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        HandleUnequipCommand(arg);
+        return;
+    }
+
+    // `equip ...` — wear an item from backpack (or world unless `pack`).
+    if (std::strncmp(line, "equip", 5) == 0 &&
+        (line[5] == '\0' || line[5] == ' ' || line[5] == '\t')) {
+        const char* arg = line + 5;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        HandleEquipCommand(arg);
+        return;
+    }
+
+    // `cast <spellId>` — cast a spell by its 1-based number via the official
+    // 0x12 action packet (subcommand 0x56). Spells that need a target arm an
+    // inbound 0x6C cursor; answer it with the `target` command.
+    if (std::strncmp(line, "cast", 4) == 0 &&
+        (line[4] == ' ' || line[4] == '\t')) {
+        const char* arg = line + 4;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        int spellId = 0;
+        if (std::sscanf(arg, "%d", &spellId) != 1 || spellId <= 0) {
+            LogWarn("[cmd] usage: cast <spellId>  (1-based spell number)\n");
+            return;
+        }
+        u8 buf[32];
+        const usize n = build::CastSpell(buf, spellId);
+        Send(buf, n, "0x12 CastSpell (0x56)");
+        LogInfo("[cmd] cast spell %d\n", spellId);
+        return;
+    }
+
+    // `skill <skillId>` — use a skill by its 0-based index via the official
+    // 0x12 action packet (subcommand 0x24, payload "<id> 0").
+    if (std::strncmp(line, "skill", 5) == 0 &&
+        (line[5] == ' ' || line[5] == '\t')) {
+        const char* arg = line + 5;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        int skillId = -1;
+        if (std::sscanf(arg, "%d", &skillId) != 1 || skillId < 0) {
+            LogWarn("[cmd] usage: skill <skillId>  (0-based skill index)\n");
+            return;
+        }
+        u8 buf[32];
+        const usize n = build::UseSkill(buf, skillId);
+        Send(buf, n, "0x12 UseSkill (0x24)");
+        LogInfo("[cmd] use skill %d\n", skillId);
         return;
     }
 

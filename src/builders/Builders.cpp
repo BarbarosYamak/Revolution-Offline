@@ -3,6 +3,7 @@
 #include "uo/endian.h"
 #include "uo/packet_ids.h"
 
+#include <cstdio>
 #include <cstring>
 
 namespace uo::build {
@@ -155,6 +156,66 @@ usize OpenDoor(u8* out) {
     out[3] = 0x58;  // subcommand: open door (faced tile spatial search)
     out[4] = 0x00;  // empty NUL-terminated payload
     return 5;
+}
+
+// 0x12 Action Request — generic string action (variable):
+//   BYTE    cmd 0x12
+//   BYTE[2] total length (BE) = payloadLen + 5
+//   BYTE    subcommand
+//   BYTE[N] payload ASCII + NUL
+// Models Packet_BuildActionRequest @0x4257f0; cast spell (0x56), use skill
+// (0x24) and bow/salute (0xC7) all flow through this same packet.
+static usize ActionRequestStr(u8* out, u8 subcommand, const char* payload) {
+    BufWriter w(out, 256);
+    w.WriteU8(0x12);
+    const usize len_at = w.size();
+    w.WriteU16(0);
+    w.WriteU8(subcommand);
+    const usize plen = std::strlen(payload);
+    w.WriteBytes(reinterpret_cast<const u8*>(payload), plen);
+    w.WriteU8(0); // NUL
+    w.PatchU16(len_at, static_cast<u16>(w.size()));
+    return w.size();
+}
+
+usize CastSpell(u8* out, int spellId) {
+    char payload[16];
+    std::snprintf(payload, sizeof(payload), "%d", spellId);
+    return ActionRequestStr(out, 0x56, payload);
+}
+
+usize UseSkill(u8* out, int skillId) {
+    char payload[16];
+    std::snprintf(payload, sizeof(payload), "%d 0", skillId);
+    return ActionRequestStr(out, 0x24, payload);
+}
+
+usize PickUpItem(u8* out, u32 serial, u16 amount) {
+    BufWriter w(out, 7);
+    w.WriteU8(0x07);
+    w.WriteU32(serial);
+    w.WriteU16(amount);
+    return w.size();
+}
+
+usize DropItem(u8* out, u32 serial, u16 x, u16 y, i8 z, u32 container) {
+    BufWriter w(out, 14);
+    w.WriteU8(0x08);
+    w.WriteU32(serial);
+    w.WriteU16(x);
+    w.WriteU16(y);
+    w.WriteU8(static_cast<u8>(z));
+    w.WriteU32(container);
+    return w.size();
+}
+
+usize EquipItem(u8* out, u32 serial, u8 layer, u32 mobile) {
+    BufWriter w(out, 10);
+    w.WriteU8(0x13);
+    w.WriteU32(serial);
+    w.WriteU8(layer);
+    w.WriteU32(mobile);
+    return w.size();
 }
 
 // 0x6C Target Cursor response (19 bytes) — see builders.h for the field map.

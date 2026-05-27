@@ -109,8 +109,28 @@ stdin commands (in-world):
 - `goto <x> <y> [z]` — one-shot path to fixed coordinates
 - `follow <name|0xserial> [distance]` / `follow off` — follow by name or serial; chase only when farther than `distance` (default 1)
 - `mobiles` — first sends `0x98` AllNames queries for nearby mobiles, then lists `name serialId`
-- `stop`, `pos`, `verbose [on|off]`
+- `cast <spellId>` — cast a spell (1-based id) via `0x12`/`0x56`
+- `skill <skillId>` — use a skill (0-based id) via `0x12`/`0x24`
+- `use <0xserial|type|'name'> [pack]` — double-click (`0x06`) an item by serial,
+  tiledata graphic id, or name substring; searches backpack → worn gear → nearest
+  world item. `pack` (or `inv`/`self`) limits the search to backpack + worn gear.
+- `arm|disarm [weapon|shield|both]` — move the weapon (layer 1) / shield (layer 2)
+  to the backpack and back; `disarm` remembers the serial so `arm` re-equips it
+  (mirrors `Macro_ActionArmDisarm_Validate`, `0x07`+`0x08` / `0x07`+`0x13`).
+- `pickup <target>` — lift the nearest matching world item (`0x07`) into the backpack (`0x08`)
+- `drop <target> <x> <y> [z]` | `drop <target> <0xcontainer>` — move a backpack item to a tile or container
+- `equip <target> [pack]` — wear an item (layer from tiledata `quality`); searches
+  backpack + world unless `pack` limits to the backpack
+- `unequip <weapon|shield|target> [pack]` — take a worn item off; drops to the
+  player's tile (world) by default, or into the backpack with `pack`
+- `stop`, `pos`, `verbose [on|off]`, `day [on|off]`, `target ...`
 - any other line is sent as 0x03 ascii speech
+
+> Item-target tokens (`use`/`pickup`/`drop`/`equip`/`unequip`): a `0x…` value ≥
+> `0x40000000` is treated as an object serial, a smaller number as a graphic/type
+> id, and anything else as a tiledata name. Multi-word names must be quoted
+> (`'…'`/`"…"`) for every command except `use`, which also accepts unquoted
+> multi-word names.
 
 ---
 
