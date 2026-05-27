@@ -1383,6 +1383,31 @@ void Client::HandleItemClicks() {
         pendingLClick_ = false;
         const u32 s = renderer_->PickObject(mx, my);
         if (s) {
+            // Face the double-clicked object. In the official client this turn is
+            // SERVER-driven (Entity_PerformDefaultAction @0x47AF20 sends only 0x06;
+            // the server faces the mobile on use and replies with the new direction
+            // via 0x20). Our server doesn't, so predict the facing locally —
+            // cosmetic, same visible result for the local player, no extra packet.
+            if (s != playerSerial_) {
+                i32 tx = 0, ty = 0;
+                bool found = false;
+                if (auto it = items_.find(s); it != items_.end()) {
+                    tx = it->second.x; ty = it->second.y; found = true;
+                } else {
+                    for (const auto& m : mobileCache_) {
+                        if (m.serial != s) continue;
+                        tx = m.x; ty = m.y; found = true; break;
+                    }
+                }
+                if (found) {
+                    const int ddx = (tx > playerX_) - (tx < playerX_);
+                    const int ddy = (ty > playerY_) - (ty < playerY_);
+                    if (ddx || ddy) {
+                        playerFacing_ = DeltaToDir(ddx, ddy);
+                        player_.facing = playerFacing_;
+                    }
+                }
+            }
             const usize n = build::DoubleClick(buf, s);
             Send(buf, n, "0x06 DoubleClick (use/open)");
             LogInfo("[click] double-click use 0x%08X\n", s);
