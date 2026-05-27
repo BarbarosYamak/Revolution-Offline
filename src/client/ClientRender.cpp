@@ -22,6 +22,7 @@
 #include <cstdio>
 #include <memory>
 #include <random>
+#include <unordered_set>
 #include <vector>
 
 namespace uo {
@@ -262,9 +263,40 @@ void Client::RenderTick() {
         HandleWorldClick();
     }
 
+    // Decide how each corpse (0x2006) draws this frame, mirroring CCorpse_OnRender:
+    //  - hidden while its dead mobile's death animation still plays (the official
+    //    !DeathAnimationQueue_ContainsCorpseOrMobile guard);
+    //  - otherwise drawn as the dead body's death-pose frame (corpseAnim);
+    //  - bodies we can't resolve fall back to the flat 0x2006 item sprite.
+    std::unordered_set<u32> corpseAnim;
+    std::unordered_set<u32> corpseHidden;
+    for (const auto& kv : corpses_) {
+        if (items_.find(kv.first) == items_.end()) continue;
+        const CorpseObj& c = kv.second;
+        bool dyingNow = false;
+        if (c.deadMobile != 0 && c.deadMobile == playerSerial_) {
+            dyingNow = playerServerAnim_.active;
+        } else if (c.deadMobile != 0) {
+            const MobileObj* dm = FindMobileBySerial(c.deadMobile);
+            dyingNow = dm && dm->serverAnim.active;
+        }
+        if (dyingNow) { corpseHidden.insert(kv.first); continue; }
+        if (c.body == 0 || !anim_) continue;   // static fallback
+        const u8 act = c.deathAction ? c.deathAction : DeathActionForBody(c.body, true);
+        u32 fc = anim_->FrameCount(c.body, c.dir, act);
+        if (fc == 0u) fc = anim_->FrameCount(c.body, c.dir, 0u);
+        if (fc == 0u) continue;                 // no frames -> static fallback
+        corpseAnim.insert(kv.first);
+    }
+
     std::vector<render::DynItem> dyn;
     dyn.reserve(items_.size());
     for (const auto& kv : items_) {
+        // Corpses drawn as a body pose (or hidden during the death anim) must not
+        // also draw the flat item sprite.
+        if (kv.second.itemId == 0x2006 &&
+            (corpseAnim.count(kv.first) || corpseHidden.count(kv.first)))
+            continue;
         render::DynItem di{kv.second.itemId, kv.second.x, kv.second.y,
                            kv.second.z, kv.second.gfxOffset, kv.second.hue};
         di.serial = kv.first;
@@ -293,6 +325,37 @@ void Client::RenderTick() {
                             std::vector<render::EquipAnim>& out) {
         if (!tileData_ || equip.empty()) return;
         for (uo::u8 slot : kLayerDrawOrder[dir & 7]) {
+            for (const auto& e : equip) {
+                if (e.layer != slot) continue;
+                const uo::u16 a = tileData_->ItemAnimId(e.graphic);
+                if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
+                break;
+            }
+        }
+    };
+
+    // Per-facing corpse layer draw order, verbatim from g_CorpseLayerDrawOrder
+    // @0x5147E0 (25 entries per facing). CCorpse_OnRender walks this and skips
+    // slots 21 and 25 (special/mount), so the corpse wears the same gear in the
+    // dead body's own z-order — slightly different from the standing order above.
+    static constexpr uo::u8 kCorpseLayerDrawOrder[8][25] = {
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,2,21,20},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
+        {25,20,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,2,21},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,2,21,20},
+        {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,2,21,20},
+    };
+    // Corpse worn-gear overlay. Only humanoid corpses carry it (CCorpse_OnRender
+    // draws the layers only for stackCount >= 0x190).
+    auto resolveCorpseEquip = [&](uo::u8 dir, uo::u16 body,
+                                  const std::vector<EquipObj>& equip,
+                                  std::vector<render::EquipAnim>& out) {
+        if (!tileData_ || equip.empty() || body < 0x190u) return;
+        for (uo::u8 slot : kCorpseLayerDrawOrder[dir & 7]) {
+            if (slot == 21u || slot == 25u) continue;
             for (const auto& e : equip) {
                 if (e.layer != slot) continue;
                 const uo::u16 a = tileData_->ItemAnimId(e.graphic);
@@ -698,7 +761,10 @@ void Client::RenderTick() {
     std::vector<render::Mob> mobs;
     mobs.reserve(mobileCache_.size() + 1);
     for (auto it = mobileCache_.begin(); it != mobileCache_.end(); ) {
-        if (it->deadRemoveMs != 0 && !it->serverAnim.active && nowAnim >= it->deadRemoveMs) {
+        // A dying mobile is pruned once its death animation finishes (the corpse
+        // object then renders the pose). deadRemoveMs is a hard cap in case the
+        // anim never resolves (e.g. no anim file / unknown body).
+        if (it->deadRemoveMs != 0 && (!it->serverAnim.active || nowAnim >= it->deadRemoveMs)) {
             mobileNames_.erase(it->serial);
             it = mobileCache_.erase(it);
         } else {
@@ -707,6 +773,20 @@ void Client::RenderTick() {
     }
     for (auto& m : mobileCache_) {
         if (!m.body) continue;
+        // Dying mobile: show only the death animation; suppress idle/move so it
+        // never "stands back up" before the corpse takes over.
+        if (m.deadRemoveMs != 0) {
+            if (!m.serverAnim.active) continue;
+            render::Mob dmob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
+            dmob.serial = m.serial;
+            dmob.highlight = (m.serial == hoverSerial_);
+            dmob.light = equipLightGraphic(m.equip);
+            if (resolveServerAnim(m.body, dmob.dir, m.serverAnim, dmob.action, dmob.frame)) {
+                resolveEquip(dmob.dir, m.equip, dmob.equipAnims);
+                mobs.push_back(std::move(dmob));
+            }
+            continue;
+        }
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         mob.serial = m.serial;
         mob.highlight = (m.serial == hoverSerial_);  // light up whole figure under cursor
@@ -743,6 +823,30 @@ void Client::RenderTick() {
         mob.ddy = slideDelta(m.movedMs, mobMoveMs, m.y, m.prevY);
         mobs.push_back(std::move(mob));
     }
+
+    // Corpses: the dead body frozen on the final frame of its death animation,
+    // facing the way it died, with worn gear overlaid (humanoids). Mirrors
+    // CCorpse_OnRender — the corpse is its own entity, distinct from the (now
+    // gone) mobile. corpseAnim was decided above; entries not in it draw as the
+    // flat 0x2006 sprite via the dyn list.
+    for (auto& kv : corpses_) {
+        if (!corpseAnim.count(kv.first)) continue;
+        const CorpseObj& c = kv.second;
+        auto io = items_.find(kv.first);
+        if (io == items_.end()) continue;
+        render::Mob cm{c.body, io->second.x, io->second.y, io->second.z,
+                       c.dir, false, c.hue, {}};
+        cm.serial = kv.first;
+        cm.highlight = (kv.first == hoverSerial_);
+        u8 act = c.deathAction ? c.deathAction : DeathActionForBody(c.body, true);
+        u32 fc = anim_->FrameCount(c.body, c.dir, act);
+        if (fc == 0u) { act = 0u; fc = anim_->FrameCount(c.body, c.dir, 0u); }
+        cm.action = act;
+        cm.frame  = fc ? static_cast<u16>(fc - 1u) : 0u;
+        resolveCorpseEquip(c.dir, c.body, c.equip, cm.equipAnims);
+        mobs.push_back(std::move(cm));
+    }
+
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     self.serial = playerSerial_;
     self.highlight = (playerSerial_ != 0 && playerSerial_ == hoverSerial_);

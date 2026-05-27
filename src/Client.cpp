@@ -891,7 +891,10 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 
     u8 gfxOffset = 0;
     if (hasOffset) { if (!avail(1)) return; gfxOffset = data[p]; p += 1; }
-    if (hasAmount) { if (!avail(2)) return; p += 2; }   // stack count
+    // stack count for piles; for a corpse (0x2006) this field is the dead body
+    // graphic (CObjectManager_HandleMove copies it to CCorpse::stackCount).
+    u16 amount = 0;
+    if (hasAmount) { if (!avail(2)) return; amount = LoadBE16(data + p); p += 2; }
 
     if (!avail(2)) return;
     const u16 xw = LoadBE16(data + p); p += 2;
@@ -906,8 +909,10 @@ void Client::OnObjectInfo(const u8* data, usize size) {
 
     // direction (facing) byte — present when x has 0x8000. It is the entity's
     // facing, NOT a graphic offset, so it must be skipped here, not added to
-    // the art (adding it is what turned lamps into logs).
-    if (hasDir) { if (!avail(1)) return; p += 1; }
+    // the art (adding it is what turned lamps into logs). A corpse keeps it as
+    // the pose facing (CCorpse stores it in facingFlags).
+    u8 dir = 0;
+    if (hasDir) { if (!avail(1)) return; dir = data[p]; p += 1; }
     if (!avail(1)) return;
     const i8 z = static_cast<i8>(data[p]);
     p += 1;
@@ -926,6 +931,19 @@ void Client::OnObjectInfo(const u8* data, usize size) {
         items_.erase(oldSerial);
     }
 
+    // A corpse (0x2006) is rendered as the dead body's death-pose frame, not as
+    // the flat item sprite. The amount field is the body graphic and the dir
+    // byte is the facing it died at. deathAction/equip/deadMobile come from the
+    // 0xAF that preceded this object (already in corpses_); a pre-existing
+    // corpse (no death seen) defaults to the normal-death group for its body.
+    if (itemId == 0x2006) {
+        CorpseObj& c = corpses_[serial];
+        c.body = amount;
+        c.dir  = dir & 7u;
+        c.hue  = hue;
+        if (c.deathAction == 0)
+            c.deathAction = DeathActionForBody(amount, true);
+    }
 }
 
 // 0x1D Delete Object (5 bytes): cmd + serial(4 BE). Drop it from both caches.
@@ -933,6 +951,7 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     items_.erase(serial);
+    corpses_.erase(serial);
     itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
                      itemOrder_.end());
     bool delayedMobile = false;
@@ -1295,6 +1314,15 @@ void Client::OnWarMode(const u8* data, usize size) {
                 playerWarMode_ ? "on" : "off", warModeArg1_, warModeArg2_, warModeArg3_);
 }
 
+// Death anim group by body, verbatim from Mobile_PlayDeathAnimation @0x4C65C0.
+// The same group (at its final frame) is the corpse's rendered pose.
+u8 Client::DeathActionForBody(u16 body, bool normalDeath) {
+    if (body < 0x96u)  return normalDeath ? 2u : 3u;
+    if (body < 0xC8u)  return 8u;
+    if (body < 0x190u) return normalDeath ? 8u : 12u;
+    return normalDeath ? 21u : 22u;
+}
+
 // 0xAF Death Animation (13B fixed): cmd, mobile serial(4), corpse serial(4),
 // unknown(4). Verified against Packet_HandleDeathAnimation @0x424CD0 and
 // Mobile_PlayDeathAnimation @0x4C65C0 in client_2.0.7.
@@ -1305,18 +1333,10 @@ void Client::OnDeathAnimation(const u8* data, usize size) {
     const u32 unknown = LoadBE32(data + 9);
     const bool normalDeath = unknown == 0;
 
+    // frames: 15 for the 0x96..0xC7 class, 5 otherwise (Mobile_PlayDeathAnimation).
     auto pickDeathAnim = [&](u16 body, u8& action, u16& frames) {
-        frames = 5;
-        if (body < 0x96u) {
-            action = normalDeath ? 2u : 3u;
-        } else if (body < 0xC8u) {
-            action = 8u;
-            frames = 15;
-        } else if (body < 0x190u) {
-            action = normalDeath ? 8u : 12u;
-        } else {
-            action = normalDeath ? 21u : 22u;
-        }
+        action = DeathActionForBody(body, normalDeath);
+        frames = (body >= 0x96u && body < 0xC8u) ? 15u : 5u;
     };
 
     auto start = [&](ServerAnimState& a, u16 body) {
@@ -1338,13 +1358,30 @@ void Client::OnDeathAnimation(const u8* data, usize size) {
         a.hasRenderedFrame = false;
     };
 
+    // Record the corpse->dead-mobile mapping, the death group, and a snapshot of
+    // the worn gear so the corpse object (0x2006) can render the body's death
+    // pose wearing the same equipment. Mirrors DeathAnimationQueue_Add @0x4C3B50,
+    // which is keyed by corpse serial; the corpse object may arrive after the
+    // dying mobile has already been pruned, so we capture the gear now.
+    auto registerCorpse = [&](u16 body, const std::vector<EquipObj>& equip, u16 mobHue) {
+        if (corpseSerial == 0) return;
+        CorpseObj& c = corpses_[corpseSerial];
+        c.deadMobile = serial;
+        c.deathAction = DeathActionForBody(body, normalDeath);
+        c.equip = equip;
+        if (c.body == 0) c.body = body;   // until the 0x1A object sets it
+        if (c.hue == 0) c.hue = mobHue;
+    };
+
     if (serial == playerSerial_) {
         start(playerServerAnim_, playerBody_);
+        registerCorpse(playerBody_, playerEquip_, playerHue_);
     } else {
         for (auto& m : mobileCache_) {
             if (m.serial != serial) continue;
             start(m.serverAnim, m.body);
             m.deadRemoveMs = NowMs() + 2500;
+            registerCorpse(m.body, m.equip, m.hue);
             break;
         }
     }

@@ -418,6 +418,27 @@ private:
     std::unordered_map<u32, ItemObj> items_;
     std::deque<u32> itemOrder_;
 
+    // Corpses (item graphic 0x2006). Unlike the official client where CCorpse is
+    // a CMobile subclass (CCorpse_OnRender @0x406560), we keep the corpse-only
+    // anim state in a side map keyed by the corpse item serial; the live position
+    // still lives in items_. The 0x1A object carries body in the amount field and
+    // facing in the direction byte (CObjectManager_HandleMove @0x4C7D6C copies
+    // them to stackCount/facingFlags), so the corpse renders the dead body's
+    // death-pose frame from anim.mul. deathAction/equip/deadMobile are filled by
+    // the 0xAF that preceded the corpse (DeathAnimationQueue_Add @0x4C3B50).
+    struct CorpseObj {
+        u16 body = 0;        // dead body graphic (0x1A amount / stackCount)
+        u8  dir = 0;         // facing it died at (0x1A direction byte)
+        u16 hue = 0;
+        u8  deathAction = 0; // death anim group that played (0 = not set by 0xAF)
+        u32 deadMobile = 0;  // dying mobile serial — corpse is hidden until its
+                             // death animation finishes (queue suppression)
+        std::vector<EquipObj> equip;  // worn gear snapshot from the dead mobile
+    };
+    std::unordered_map<u32, CorpseObj> corpses_;
+    // Death anim group for a body, mirroring Mobile_PlayDeathAnimation @0x4C65C0.
+    static u8 DeathActionForBody(u16 body, bool normalDeath);
+
     // Open containers (bank, backpack, chests, corpses) registered by 0x24, with
     // contents listed by 0x3C and patched by 0x25. We don't draw the real gump
     // art yet — DrawContainers() lists each contained item as text. gumpId is the
