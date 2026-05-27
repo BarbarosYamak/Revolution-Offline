@@ -64,6 +64,12 @@ struct Mob {
     // Mobile serial, carried through for PickObject (its body, mount and worn
     // layers all report this serial when clicked).
     u32 serial = 0;
+    // Mouse-over highlight: when set, EVERY layer (body, mount, worn gear) is
+    // drawn with the highlight hue, not just the bare body — matching the client
+    // (Mobile_OnRender @0x406FE0 forces the draw hue across all layers when the
+    // serial matches g_ContextActionTargetSerial). Otherwise a clothed humanoid
+    // only lit up on its exposed skin.
+    bool highlight = false;
 };
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per

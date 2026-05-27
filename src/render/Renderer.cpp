@@ -18,6 +18,11 @@ constexpr int kZStep    = 4;
 
 constexpr u16 kBackground = 0;   // black
 
+// Mouse-over highlight hue (client draw-hue chain, Mobile_OnRender @0x406FE0:
+// serial == g_ContextActionTargetSerial -> hue 53), applied to every layer of a
+// highlighted mobile.
+constexpr u16 kHighlightHue = 53;
+
 // One draw command — land, static, item or mobile. All share one list, ordered
 // exactly like the client (World_RenderEntities @0x401E90 + CDrawItem_AddToDrawList
 // @0x403B50): cells back-to-front (depth, then column), and WITHIN a cell by
@@ -474,6 +479,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     md.quad = false;
                     md.src = mf->px.data(); md.sw = mf->width; md.sh = mf->height;
                     md.transparent = true;
+                    if (m.highlight) md.hue = kHighlightHue;
                     md.dx = sx - mf->anchorX;
                     md.dy = sy + kHalfTile - mf->anchorY;
                     md.serial = m.serial; md.pickable = m.serial != 0;
@@ -487,7 +493,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             d.quad = false;
             d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
             d.transparent = true;
-            d.hue = m.hue;
+            d.hue = m.highlight ? kHighlightHue : m.hue;
             const int seatY = m.sitting ? m.sitOffsetY : 0;  // chair seat shift
             d.dx = sx - fr->anchorX;
             d.dy = sy + kHalfTile - fr->anchorY + seatY;  // command origin at cell centre
@@ -509,7 +515,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 e.quad = false;
                 e.src = ef->px.data(); e.sw = ef->width; e.sh = ef->height;
                 e.transparent = true;
-                e.hue = ea.hue;
+                e.hue = m.highlight ? kHighlightHue : ea.hue;
                 e.dx = sx - ef->anchorX;
                 e.dy = sy + kHalfTile - ef->anchorY + seatY;
                 e.serial = m.serial; e.pickable = m.serial != 0;

@@ -709,7 +709,7 @@ void Client::RenderTick() {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
         mob.serial = m.serial;
-        if (m.serial == hoverSerial_) mob.hue = kHighlightHue;  // light up under cursor
+        mob.highlight = (m.serial == hoverSerial_);  // light up whole figure under cursor
         mob.light = equipLightGraphic(m.equip);
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
@@ -745,7 +745,7 @@ void Client::RenderTick() {
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
     self.serial = playerSerial_;
-    if (playerSerial_ != 0 && playerSerial_ == hoverSerial_) self.hue = kHighlightHue;
+    self.highlight = (playerSerial_ != 0 && playerSerial_ == hoverSerial_);
     self.light = equipLightGraphic(playerEquip_);
     const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
