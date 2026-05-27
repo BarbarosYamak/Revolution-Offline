@@ -39,6 +39,11 @@ constexpr int   kStatusPanelWidth = 196;
 constexpr int   kStatusPanelHeight = 66;
 constexpr i64   kOverheadNameProbeMs = 10000;
 constexpr i64   kStatusProbeMs = 3000;
+// Mouse-over highlight hue, verbatim from the client's draw-hue chain
+// (Mobile_OnRender @0x406FE0: serial == g_ContextActionTargetSerial -> hue 53).
+constexpr u16   kHighlightHue = 53;
+// How long a single-click item name label floats over the item.
+constexpr i64   kItemLabelMs = 4000;
 
 // Inverse of bot::DirToDelta: a unit (dx,dy) world step -> UO facing 0..7
 // (0=N(0,-1), 2=E(+1,0), 4=S(0,+1), 6=W(-1,0); odds are the diagonals).
@@ -259,9 +264,13 @@ void Client::RenderTick() {
 
     std::vector<render::DynItem> dyn;
     dyn.reserve(items_.size());
-    for (const auto& kv : items_)
-        dyn.push_back({kv.second.itemId, kv.second.x, kv.second.y,
-                       kv.second.z, kv.second.gfxOffset, kv.second.hue});
+    for (const auto& kv : items_) {
+        render::DynItem di{kv.second.itemId, kv.second.x, kv.second.y,
+                           kv.second.z, kv.second.gfxOffset, kv.second.hue};
+        di.serial = kv.first;
+        if (kv.first == hoverSerial_) di.hue = kHighlightHue;  // light up under cursor
+        dyn.push_back(di);
+    }
 
     // Per-direction worn-item draw order (layer numbers, back-to-front),
     // verbatim from g_DrawLayerOrder @0x5144C0 with the mount slot (layer 25)
@@ -699,6 +708,8 @@ void Client::RenderTick() {
     for (auto& m : mobileCache_) {
         if (!m.body) continue;
         render::Mob mob{m.body, m.x, m.y, m.z, m.dir, false, m.hue, {}};
+        mob.serial = m.serial;
+        if (m.serial == hoverSerial_) mob.hue = kHighlightHue;  // light up under cursor
         mob.light = equipLightGraphic(m.equip);
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
         const bool moving = m.movedMs != 0 && (nowAnim - m.movedMs) < mobMoveMs;
@@ -733,6 +744,8 @@ void Client::RenderTick() {
         mobs.push_back(std::move(mob));
     }
     render::Mob self{playerBody_, playerX_, playerY_, playerZ_, playerFacing_, true, playerHue_, {}};
+    self.serial = playerSerial_;
+    if (playerSerial_ != 0 && playerSerial_ == hoverSerial_) self.hue = kHighlightHue;
     self.light = equipLightGraphic(playerEquip_);
     const i64 selfMoveMs = moveDurationMs(playerBody_, player_.running);
     const bool selfMidStep = lastStepMs_ != 0 &&
@@ -795,6 +808,15 @@ void Client::RenderTick() {
                            hues_.get(),
                            anim_.get(), mobs.data(), mobs.size(),
                            darkness);
+
+    // Object interaction: pick the object under the cursor (for next frame's
+    // highlight) and dispatch left/double clicks. Done after RenderWorld so the
+    // pick list reflects the frame just drawn.
+    {
+        int mx = 0, my = 0;
+        hoverSerial_ = mfb_mousepos(&mx, &my) ? renderer_->PickObject(mx, my) : 0;
+    }
+    HandleItemClicks();
 
     // Window hotkeys: 'M' toggles the minimap, SPACE sends OpenDoor, TAB
     // requests war/peace mode.
@@ -1210,6 +1232,40 @@ void Client::DrawOverheadText() {
             ++speechLines;
         }
     }
+
+    // Single-click item name labels, anchored to each item's live position so
+    // they track if the item is moved/updated. Expired or vanished items drop.
+    constexpr int kHalfTile = 22;
+    const u16 itemColor = HudColor(255, 255, 255);
+    for (auto li = itemLabels_.begin(); li != itemLabels_.end(); ) {
+        auto obj = items_.find(li->serial);
+        if (now >= li->expireMs || obj == items_.end()) {
+            li = itemLabels_.erase(li);
+            continue;
+        }
+        const Client::ItemObj& o = obj->second;
+        int sx = 0, sy = 0;
+        projectLabel(o.x, o.y, o.z, 0.0f, 0.0f, &sx, &sy);
+        if (sx >= -120 && sx <= renderer_->Width() + 120 &&
+            sy >= -120 && sy <= renderer_->Height() + 80) {
+            int spriteH = 44;   // fall back to a tile if the art is unavailable
+            if (art_) {
+                const art::Sprite* sp = art_->Static(static_cast<u16>(o.itemId + o.gfxOffset));
+                if (sp && sp->height) spriteH = sp->height;
+            }
+            // Sprite top sits at sy + kHalfTile - spriteH (item is bottom-anchored
+            // a tile below the WorldToScreen cell point); float the label above it.
+            const i64 age = now - (li->expireMs - kItemLabelMs);
+            const int fade = age < kItemLabelMs - 1000
+                                 ? 255
+                                 : static_cast<int>((kItemLabelMs - age) * 255 / 1000);
+            const int y = sy + kHalfTile - spriteH - lh;
+            text_->Draw(*renderer_, li->text, sx, y,
+                        ScaleHudColor(itemColor, std::clamp(fade, 0, 255)),
+                        render::TextRenderer::Align::Center);
+        }
+        ++li;
+    }
 }
 
 // Arrow keys in the render window steer the player on foot. Screen-aligned to
@@ -1288,6 +1344,99 @@ void Client::HandleWorldClick() {
     BotStartGoto(wx, wy);
 }
 
+// Left-click and double-click on world objects, mirroring the client's
+// WorldGump click state machine. A double-click sends 0x06 (use/open) — the
+// gesture that opens a container (server replies 0x24+0x3C, drawn by the HUD).
+// A single click is DEFERRED until the double-click window elapses, then sends
+// 0x09 (single-click look), so a double-click never also fires the single.
+void Client::HandleItemClicks() {
+    if (!renderer_) return;
+    u8 buf[16];
+
+    // A pending single-click commits once the double-click window passes with no
+    // second press (WorldGump_OnHoverTick @0x47A910: frameCount==1 && elapsed >
+    // GetDoubleClickTime()).
+    if (pendingLClick_ &&
+        NowMs() - pendingLClickMs_ >= static_cast<i64>(mfb_double_click_ms())) {
+        if (pendingLClickSerial_) {
+            // Item: show its name locally from tiledata (no packet), exactly like
+            // the client. Mobile/other: send the 0x09 look request.
+            if (items_.count(pendingLClickSerial_)) {
+                ShowItemLabel(pendingLClickSerial_);
+            } else {
+                const usize n = build::SingleClick(buf, pendingLClickSerial_);
+                Send(buf, n, "0x09 SingleClick (look)");
+                LogInfo("[click] single-click 0x%08X\n", pendingLClickSerial_);
+            }
+        }
+        pendingLClick_ = false;
+    }
+
+    int mx = 0, my = 0;
+    const bool dbl = mfb_poll_ldblclick(&mx, &my);
+    int lx = 0, ly = 0;
+    const bool single = mfb_poll_lclick(&lx, &ly);
+
+    if (dbl) {
+        // Two presses inside the window: the use/open action wins; drop any
+        // deferred single from the first press.
+        pendingLClick_ = false;
+        const u32 s = renderer_->PickObject(mx, my);
+        if (s) {
+            const usize n = build::DoubleClick(buf, s);
+            Send(buf, n, "0x06 DoubleClick (use/open)");
+            LogInfo("[click] double-click use 0x%08X\n", s);
+        }
+    } else if (single) {
+        // First press: pick now (the draw list is current), defer the look.
+        const u32 s = renderer_->PickObject(lx, ly);
+        pendingLClick_ = (s != 0);
+        pendingLClickSerial_ = s;
+        pendingLClickMs_ = NowMs();
+    }
+}
+
+// Tiledata_FormatItemName @0x4C4870: article prefix from the flag bits 0xC000
+// (0x4000="a ", 0x8000="an ", 0xC000="the "), then the name with its
+// %singular/plural% markup resolved to the singular form (text before '/').
+std::string Client::FormatItemName(u16 graphic) const {
+    if (!tileData_) return std::string();
+    const tiledata::StaticTile& st = tileData_->Static(graphic);
+    std::string out;
+    switch (st.flags & 0xC000u) {
+        case 0x4000u: out = "a ";   break;
+        case 0x8000u: out = "an ";  break;
+        case 0xC000u: out = "the "; break;
+        default: break;
+    }
+    const char* p = st.name;
+    for (usize n = 0; n < 20 && p[n]; ) {
+        if (p[n] != '%') { out += p[n++]; continue; }
+        ++n;                                            // enter %...% markup
+        while (n < 20 && p[n] && p[n] != '/' && p[n] != '%') out += p[n++];  // singular
+        while (n < 20 && p[n] && p[n] != '%') ++n;      // skip plural part
+        if (n < 20 && p[n] == '%') ++n;                 // consume closing %
+    }
+    // Trim trailing spaces some names carry past the 20-byte field.
+    while (!out.empty() && out.back() == ' ') out.pop_back();
+    return out;
+}
+
+void Client::ShowItemLabel(u32 serial) {
+    auto it = items_.find(serial);
+    if (it == items_.end()) return;
+    std::string name = FormatItemName(static_cast<u16>(it->second.itemId + it->second.gfxOffset));
+    if (name.empty()) return;
+    const i64 expire = NowMs() + kItemLabelMs;
+    for (auto& lbl : itemLabels_) {                     // refresh an existing label
+        if (lbl.serial != serial) continue;
+        lbl.text = std::move(name);
+        lbl.expireMs = expire;
+        return;
+    }
+    itemLabels_.push_back({serial, expire, std::move(name)});
+}
+
 namespace {
 // 8-way screen sector (0..7) from the window centre, ported verbatim from the
 // client's Cursor_GetDirectionFromCenter @0x4B9FD0. The 2:1 comparison ratios
@@ -1331,11 +1480,27 @@ void Client::DrawCursorOverlay() {
     const art::Sprite* sp = art_->Static(static_cast<u16>(base + (dir & 7)));
     if (!sp || sp->px.empty()) return;
 
+    // The click hotspot is encoded IN the cursor art as two pure-green marker
+    // pixels (0x03E0), one on the top row giving hotspot X and one on the left
+    // column giving hotspot Y — ported from Cursor_LoadSpritesAndHotspots
+    // @0x4B9A90, which scans the art for value 992 (0x03E0) to fill
+    // g_CursorHotspotX/YTable. The shape (and thus the hotspot) changes per
+    // screen sector, so each direction points from its own marker. We draw the
+    // sprite so that marker lands on the mouse, then pick at the mouse — matching
+    // the client (Cursor_DrawOverlay @0x4BBF60 blits top-left at
+    // g_CursorPos - hotspot; MouseManager_OnLButtonDown @0x4BA200 hit-tests at
+    // g_CursorPos + hotspot = the marker).
+    int hx = 0, hy = 0;
+    for (int x = 0; x < sp->width; ++x)
+        if ((sp->px[x] & 0x7FFF) == 0x03E0) { hx = x; break; }            // top row
+    for (int y = 0; y < sp->height; ++y)
+        if ((sp->px[static_cast<usize>(y) * sp->width] & 0x7FFF) == 0x03E0) { hy = y; break; }  // left col
+
     // Cursor art fills its background with a chroma key (0x001F blue); key it
-    // out via the corner pixel. Centre the arrow on the cursor position.
+    // out via the corner pixel, and drop the two green hotspot markers too.
     const u16 key = sp->px[0];
     renderer_->BlitSpriteKeyed(sp->px.data(), sp->width, sp->height,
-                               mx - sp->width / 2, my - sp->height / 2, key);
+                               mx - hx, my - hy, key, /*skipHotspotMarker=*/true);
 }
 
 } // namespace uo

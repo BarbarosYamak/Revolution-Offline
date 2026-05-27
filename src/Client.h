@@ -189,6 +189,7 @@ private:
     void HandleRenderChatInput();
     void HandleManualWalk();  // arrow-key steering from the render window
     void HandleWorldClick();  // right-click in the render window -> goto that cell
+    void HandleItemClicks();  // left-click (look) + double-click (use/open) on world objects
     void DrawStatusBars();
     void DrawContainers();    // simple text HUD listing open containers' items
     void DrawSystemLog();
@@ -358,6 +359,33 @@ private:
     bool tabKeyDown_ = false;   // TAB edge-detect (war/peace toggle)
     bool chatInputActive_;
     std::string chatInputLine_;
+
+    // Mouse interaction (ported from the client's WorldGump click state machine).
+    // hoverSerial_ is the object currently under the cursor — drawn with the
+    // highlight hue so it "lights up", like g_ContextActionTargetSerial @hue 53.
+    // A left-click is DEFERRED: the single-click "look" only fires once the
+    // double-click window (mfb_double_click_ms) elapses with no second click, so
+    // a double-click sends only the 0x06 use/open (matching WorldGump_OnHoverTick
+    // @0x47A910 / WorldGump_OnLButtonUp @0x47A310 in client_2.0.7.exe).
+    u32  hoverSerial_ = 0;
+    bool pendingLClick_ = false;     // a single-click is waiting out the dbl-click window
+    u32  pendingLClickSerial_ = 0;   // object picked on that press (0 = empty space)
+    i64  pendingLClickMs_ = 0;       // press time, vs mfb_double_click_ms()
+
+    // Single-click "look" name labels floated over world items. The 2.0.7 client
+    // shows an item's name LOCALLY from tiledata on single-click — no packet —
+    // as a short-lived overhead bark (Entity_ShowLocalLookMessage @0x4C95B0;
+    // WorldGump_HandleTargetOrLookClick returns before the 0x09 for items, which
+    // is mobile-only). We mirror that: an item click adds a label here; a mobile
+    // click still sends 0x09. Drawn by DrawOverheadText, anchored to the item's
+    // live position so it tracks if the item moves, expiring after kItemLabelMs.
+    struct ItemLabel { u32 serial; i64 expireMs; std::string text; };
+    std::vector<ItemLabel> itemLabels_;
+    // Build an item's display name from tiledata, mirroring
+    // Tiledata_FormatItemName @0x4C4870: article prefix from flags&0xC000
+    // (a/an/the) plus the name with its %singular/plural% markup resolved.
+    std::string FormatItemName(u16 graphic) const;
+    void ShowItemLabel(u32 serial);
     u16  playerBody_;           // local player body graphic for the renderer
     struct EquipObj { u8 layer; u16 graphic; u16 hue; };
     std::vector<EquipObj> playerEquip_;  // own worn items (layer, graphic, hue)

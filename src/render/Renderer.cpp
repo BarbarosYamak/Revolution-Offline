@@ -59,6 +59,8 @@ struct Draw {
     u16 hue;            // 0 = original pixels; nonzero = whole-sprite hue ramp
     int dx, dy;                   // flat-blit top-left (when !quad)
     Renderer::TexVert N, E, S, W; // quad corners (when quad)
+    u32 serial = 0;     // owning entity serial when pickable (0 otherwise)
+    bool pickable = false; // server item / mobile sprite — hit-testable by PickObject
 };
 
 }  // namespace
@@ -434,6 +436,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         d.hue = it.hue;
         d.dx = sx - sp->width / 2;
         d.dy = sy + kTile - sp->height;
+        d.serial = it.serial; d.pickable = it.serial != 0;
         draws.push_back(d);
 
         if (collectLights && (baseStt.flags & tiledata::kFlagLightSource) &&
@@ -473,6 +476,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                     md.transparent = true;
                     md.dx = sx - mf->anchorX;
                     md.dy = sy + kHalfTile - mf->anchorY;
+                    md.serial = m.serial; md.pickable = m.serial != 0;
                     draws.push_back(md);
                 }
             }
@@ -487,6 +491,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
             const int seatY = m.sitting ? m.sitOffsetY : 0;  // chair seat shift
             d.dx = sx - fr->anchorX;
             d.dy = sy + kHalfTile - fr->anchorY + seatY;  // command origin at cell centre
+            d.serial = m.serial; d.pickable = m.serial != 0;
             draws.push_back(d);
 
             if (collectLights && m.light >= 0 && !lightOccluded(m.x, m.y, m.z))
@@ -507,6 +512,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
                 e.hue = ea.hue;
                 e.dx = sx - ef->anchorX;
                 e.dy = sy + kHalfTile - ef->anchorY + seatY;
+                e.serial = m.serial; e.pickable = m.serial != 0;
                 draws.push_back(e);
             }
         }
@@ -552,12 +558,18 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
         return false;                                       // else: insertion order
     });
 
+    // Record pickable sprites in final draw order (back-to-front) so PickObject
+    // can hit-test the cursor against the same pixels we draw. Only flat-blit
+    // items/mobiles are pickable (land/static quads have no serial).
+    picks_.clear();
     for (const Draw& d : draws) {
         if (d.quad) {
             TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.E, d.S);
             TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.S, d.W);
         } else {
             BlitRaw(d.src, d.sw, d.sh, d.dx, d.dy, d.transparent, hues, d.hue);
+            if (d.pickable)
+                picks_.push_back({d.serial, d.mobile, d.dx, d.dy, d.sw, d.sh, d.src});
         }
     }
 
@@ -619,7 +631,8 @@ void Renderer::BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy) {
     }
 }
 
-void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key) {
+void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key,
+                               bool skipHotspotMarker) {
     if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
     for (int row = 0; row < sh; ++row) {
         const int py = dy + row;
@@ -629,6 +642,7 @@ void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u
         for (int col = 0; col < sw; ++col) {
             const u16 p = srow[col];
             if (!p || p == key) continue;
+            if (skipHotspotMarker && (p & 0x7FFF) == 0x03E0) continue;  // green hotspot dot
             const int px = dx + col;
             if (px < 0 || px >= w_) continue;
             drow[px] = p;
@@ -649,6 +663,21 @@ void Renderer::ScreenToWorld(int sx, int sy, i32 camX, i32 camY,
     const double dy = (dsy - dsx) / (2.0 * kHalfTile);   // (dx+dy)-(dx-dy) = 2dy
     if (outX) *outX = camX + static_cast<i32>(std::lround(dx));
     if (outY) *outY = camY + static_cast<i32>(std::lround(dy));
+}
+
+u32 Renderer::PickObject(int sx, int sy, bool* mobile) const {
+    // Walk front-to-back (picks_ is back-to-front draw order) and return the
+    // first object whose sprite has a non-transparent texel under the cursor —
+    // the topmost visible hit, like the client's far->near cell walk.
+    for (auto it = picks_.rbegin(); it != picks_.rend(); ++it) {
+        const int lx = sx - it->dx, ly = sy - it->dy;
+        if (lx < 0 || ly < 0 || lx >= it->sw || ly >= it->sh) continue;
+        if (!it->src[static_cast<usize>(ly) * it->sw + lx]) continue;  // see-through
+        if (mobile) *mobile = it->mobile;
+        return it->serial;
+    }
+    if (mobile) *mobile = false;
+    return 0;
 }
 
 void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,

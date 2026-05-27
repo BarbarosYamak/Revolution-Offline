@@ -19,7 +19,10 @@ namespace uo::render {
 // directionByte and adds it to the graphic in sub_405290 — that's how a door
 // picks its open/closed/hinge frame. (The separate 0x1A *direction*/facing byte
 // is NOT added to the art.)
-struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; u16 hue = 0; };
+struct DynItem { u16 itemId; i32 x; i32 y; i8 z; u8 gfxOffset = 0; u16 hue = 0;
+                 // Server object serial, carried through so PickObject can map a
+                 // clicked sprite back to the entity (0 = not pickable).
+                 u32 serial = 0; };
 
 struct EquipAnim {
     u16 anim = 0;
@@ -58,6 +61,9 @@ struct Mob {
     // g_SittingChairTable @0x55DB68). When set, `dir` has been overridden to the
     // chair's facing and the body is drawn shifted by sitOffsetY onto the seat.
     bool sitting = false; int sitOffsetY = 0;
+    // Mobile serial, carried through for PickObject (its body, mount and worn
+    // layers all report this serial when clicked).
+    u32 serial = 0;
 };
 
 // Software isometric rasterizer. Produces an ARGB1555 framebuffer (one u16 per
@@ -93,13 +99,26 @@ public:
     // AND any pixel equal to `key` (a chroma-key background). UO cursor art
     // fills its background with 0x001F (blue), so the cursor passes its corner
     // colour as the key. Used for the software mouse cursor on top of all.
-    void BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key);
+    // When skipHotspotMarker is set, pure-green pixels (0x03E0) are also skipped:
+    // UO cursor art embeds two such marker pixels (on the top row and left
+    // column) to encode the click hotspot — they must not be drawn.
+    void BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key,
+                         bool skipHotspotMarker = false);
 
     // Inverse of the isometric world projection: map a framebuffer pixel back to
     // a world cell, assuming the clicked ground sits at the camera's elevation
     // (the per-tile z offset cancels for same-z ground; slopes are approximate —
     // good enough for a navigation goal that A* then resolves). camX/camY is the
     // cell the view is centred on (the player). Writes the resulting cell.
+    // Topmost world entity (server item or mobile) whose drawn sprite covers
+    // screen pixel (sx,sy). Faithful to the client's World_GetObjectAtScreenLoc
+    // @0x409AB0: it walks the last RenderWorld draw list front-to-back and
+    // returns the first object whose sprite alpha-mask is non-transparent under
+    // the cursor — a real PICK, not a math inversion. Only items/mobiles are
+    // pickable (map land/statics have no serial). Returns 0 when nothing is hit;
+    // sets *mobile true when the hit was a mobile (vs a server item).
+    u32 PickObject(int sx, int sy, bool* mobile = nullptr) const;
+
     void ScreenToWorld(int sx, int sy, i32 camX, i32 camY, i32* outX, i32* outY) const;
     void WorldToScreen(i32 worldX, i32 worldY, i8 z,
                        i32 camX, i32 camY, i32 camZ,
@@ -132,10 +151,15 @@ private:
     // stamped afterwards at full brightness.
     void ApplyLighting(int ambientDarkness, const std::vector<LightSrc>& srcs);
 
+    // One pickable sprite from the last RenderWorld, stored in draw order
+    // (back-to-front). PickObject scans these in reverse for the topmost hit.
+    struct PickEntry { u32 serial; bool mobile; int dx, dy, sw, sh; const u16* src; };
+
     int w_;
     int h_;
     std::vector<u16> fb_;
     std::vector<u8>  dark_;   // per-pixel RGB darkness scratch (3*w*h, reused)
+    std::vector<PickEntry> picks_;  // pickable sprites from the last RenderWorld
 };
 
 }

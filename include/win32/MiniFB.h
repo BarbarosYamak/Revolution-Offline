@@ -48,6 +48,17 @@ bool mfb_poll_char(uint32_t *ch);
 // scale). Returns false when no unconsumed right-click is pending.
 bool mfb_poll_rclick(int *x, int *y);
 
+// Consume the most recent left-button press / double-click. Same FRAMEBUFFER-
+// pixel convention as mfb_poll_rclick. The window class uses CS_DBLCLKS, so the
+// second press of a double-click arrives as a DBLCLK (poll_ldblclick), not a
+// plain lclick — the caller can defer the single-click action until the
+// double-click window (mfb_double_click_ms) elapses, like the UO client.
+bool mfb_poll_lclick(int *x, int *y);
+bool mfb_poll_ldblclick(int *x, int *y);
+
+// System double-click interval in milliseconds (GetDoubleClickTime()).
+unsigned mfb_double_click_ms(void);
+
 // Current mouse position in FRAMEBUFFER pixels. Returns true while the cursor
 // is inside the window's client area, false when it has left.
 bool mfb_mousepos(int *x, int *y);
@@ -101,6 +112,12 @@ typedef struct {
     int rclick_pending;   // a right-click is waiting to be consumed
     int rclick_x;         // framebuffer-pixel click position
     int rclick_y;
+    int lclick_pending;   // a left-button press is waiting to be consumed
+    int lclick_x;
+    int lclick_y;
+    int ldblclick_pending; // a left double-click is waiting to be consumed
+    int ldblclick_x;
+    int ldblclick_y;
     int mouse_x;          // framebuffer-pixel cursor position
     int mouse_y;
     int mouse_inside;     // cursor currently within the client area
@@ -245,6 +262,39 @@ static LRESULT CALLBACK WndProc(HWND hWnd, const UINT message, const WPARAM wPar
             break;
         }
 
+        case WM_LBUTTONDOWN: {
+            const int cx = (int) (short) LOWORD(lParam);
+            const int cy = (int) (short) HIWORD(lParam);
+            const int scale = mfb_state->scale > 0 ? mfb_state->scale : 1;
+            int fx = cx / scale, fy = cy / scale;
+            if (fx < 0) fx = 0;
+            if (fy < 0) fy = 0;
+            if (fx >= mfb_state->buffer_width)  fx = mfb_state->buffer_width - 1;
+            if (fy >= mfb_state->buffer_height) fy = mfb_state->buffer_height - 1;
+            mfb_state->lclick_x = fx;
+            mfb_state->lclick_y = fy;
+            mfb_state->lclick_pending = 1;
+            break;
+        }
+
+        case WM_LBUTTONDBLCLK: {
+            // With CS_DBLCLKS the second press of a double-click arrives here
+            // (sequence: DOWN, UP, DBLCLK, UP). The first DOWN already queued an
+            // lclick; the caller treats a pending dblclick as the use/open gesture.
+            const int cx = (int) (short) LOWORD(lParam);
+            const int cy = (int) (short) HIWORD(lParam);
+            const int scale = mfb_state->scale > 0 ? mfb_state->scale : 1;
+            int fx = cx / scale, fy = cy / scale;
+            if (fx < 0) fx = 0;
+            if (fy < 0) fy = 0;
+            if (fx >= mfb_state->buffer_width)  fx = mfb_state->buffer_width - 1;
+            if (fy >= mfb_state->buffer_height) fy = mfb_state->buffer_height - 1;
+            mfb_state->ldblclick_x = fx;
+            mfb_state->ldblclick_y = fy;
+            mfb_state->ldblclick_pending = 1;
+            break;
+        }
+
         case WM_CLOSE:
             mfb_state->close_requested = 1;
             break;
@@ -259,7 +309,7 @@ static LRESULT CALLBACK WndProc(HWND hWnd, const UINT message, const WPARAM wPar
 // Creates a window with a frame buffer of the given pixel depth (1, 8, 15, 16, or 32 bpp).
 int mfb_open(const char *title, const int width, const int height, const int scale, const int bpp) {
     WNDCLASS wc = {0};
-    wc.style = CS_OWNDC | CS_VREDRAW | CS_HREDRAW;
+    wc.style = CS_OWNDC | CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS;
     wc.lpfnWndProc = WndProc;
     wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wc.lpszClassName = title;
@@ -403,6 +453,30 @@ bool mfb_poll_rclick(int *x, int *y) {
     if (y) *y = mfb_state->rclick_y;
     mfb_state->rclick_pending = 0;
     return true;
+}
+
+// Consume the most recent left-button press (framebuffer pixels).
+bool mfb_poll_lclick(int *x, int *y) {
+    if (!mfb_state || !mfb_state->lclick_pending)
+        return false;
+    if (x) *x = mfb_state->lclick_x;
+    if (y) *y = mfb_state->lclick_y;
+    mfb_state->lclick_pending = 0;
+    return true;
+}
+
+// Consume the most recent left double-click (framebuffer pixels).
+bool mfb_poll_ldblclick(int *x, int *y) {
+    if (!mfb_state || !mfb_state->ldblclick_pending)
+        return false;
+    if (x) *x = mfb_state->ldblclick_x;
+    if (y) *y = mfb_state->ldblclick_y;
+    mfb_state->ldblclick_pending = 0;
+    return true;
+}
+
+unsigned mfb_double_click_ms(void) {
+    return GetDoubleClickTime();
 }
 
 // Current mouse position in framebuffer pixels; true while inside the client.
