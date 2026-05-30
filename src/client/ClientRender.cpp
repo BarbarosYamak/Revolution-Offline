@@ -1229,6 +1229,7 @@ void Client::DrawOverheadText() {
         float ddx;
         float ddy;
         std::string name;
+        u8 noto;   // notoriety for the name color (0/1 = blue)
     };
     const i64 now = NowMs();
     auto moveDurationMs = [&](uo::u16 body, bool running) -> i64 {
@@ -1262,7 +1263,7 @@ void Client::DrawOverheadText() {
     if (!player_.name.empty()) {
         targets.push_back({playerSerial_, playerX_, playerY_, playerZ_,
                            playerBody_, playerFacing_, playerDdx, playerDdy,
-                           player_.name});
+                           player_.name, 1});  // self: innocent/blue
     }
     for (const auto& m : mobileCache_) {
         const i64 mobMoveMs = moveDurationMs(m.body, m.running);
@@ -1285,11 +1286,22 @@ void Client::DrawOverheadText() {
             continue;
         }
         targets.push_back({m.serial, m.x, m.y, m.z, m.body, m.dir,
-                           mobDdx, mobDdy, it->second});
+                           mobDdx, mobDdy, it->second, m.noto});
     }
 
-    const u16 nameColor = HudColor(135, 210, 255);
     const u16 speechColor = HudColor(255, 255, 255);
+    // Name color by notoriety (matches the classic client buckets).
+    auto notoColor = [&](u8 noto) -> u16 {
+        switch (noto) {
+            case 2:  return HudColor(70, 230, 70);    // friend - green
+            case 3:
+            case 4:  return HudColor(170, 170, 170);  // gray / criminal
+            case 5:  return HudColor(255, 160, 40);   // enemy - orange
+            case 6:  return HudColor(255, 70, 70);     // murderer / PK - red
+            case 7:  return HudColor(255, 230, 60);   // invulnerable - yellow
+            default: return HudColor(135, 210, 255);  // innocent / unknown - blue
+        }
+    };
     const int lh = text_->LineHeight();
     auto textTopOffset = [&](u16 body, u8 dir) {
         int offset = kHeadOffset;
@@ -1321,7 +1333,7 @@ void Client::DrawOverheadText() {
         }
 
         int y = sy - textTopOffset(t.body, t.dir) - lh;
-        text_->Draw(*renderer_, t.name, sx, y, nameColor,
+        text_->Draw(*renderer_, t.name, sx, y, notoColor(t.noto),
                     render::TextRenderer::Align::Center);
 
         int speechLines = 0;

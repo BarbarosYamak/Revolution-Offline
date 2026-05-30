@@ -94,6 +94,30 @@ const World::CachedBlock* World::CachedBlockAt(u32 bx, u32 by) const {
     return &slot;
 }
 
+void World::CollectStatics(i32 cx, i32 cy, i32 radius,
+                           std::vector<StaticHit>& out) const {
+    if (radius < 0) return;
+    const i32 minX = cx - radius, maxX = cx + radius;
+    const i32 minY = cy - radius, maxY = cy + radius;
+    const i32 bx0 = (minX < 0 ? 0 : minX) / 8;
+    const i32 by0 = (minY < 0 ? 0 : minY) / 8;
+    const i32 bx1 = (maxX < 0 ? 0 : maxX) / 8;
+    const i32 by1 = (maxY < 0 ? 0 : maxY) / 8;
+    for (i32 by = by0; by <= by1; ++by) {
+        for (i32 bx = bx0; bx <= bx1; ++bx) {
+            const CachedBlock* blk = CachedBlockAt(static_cast<u32>(bx),
+                                                   static_cast<u32>(by));
+            if (!blk) continue;
+            for (const auto& s : blk->statics) {
+                const i32 sx = bx * 8 + s.cellX;
+                const i32 sy = by * 8 + s.cellY;
+                if (sx < minX || sx > maxX || sy < minY || sy > maxY) continue;
+                out.push_back(StaticHit{sx, sy, s.z, s.itemId});
+            }
+        }
+    }
+}
+
 WalkResult World::QueryCell(const WalkQuery& q) const {
     WalkResult r{false, 0, 0, 0, false};
 

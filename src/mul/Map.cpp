@@ -5,8 +5,60 @@
 
 namespace uo::map {
 
+void StumpOverlay::Add(i32 x, i32 y, i8 z, u16 fromId, u16 stumpId,
+                       i64 expiryMs) {
+    for (Spot& s : spots_) {
+        if (s.x == x && s.y == y && s.fromId == fromId) {
+            s.z        = z;
+            s.stumpId  = stumpId;
+            s.expiryMs = expiryMs;
+            return;
+        }
+    }
+    spots_.push_back(Spot{x, y, z, fromId, stumpId, expiryMs});
+}
+
+void StumpOverlay::Update(i64 nowMs) {
+    now_ = nowMs;
+    for (usize i = 0; i < spots_.size();) {
+        if (spots_[i].expiryMs <= nowMs) {
+            spots_[i] = spots_.back();
+            spots_.pop_back();
+        } else {
+            ++i;
+        }
+    }
+}
+
+bool StumpOverlay::Rewrite(i32 x, i32 y, i8 z, u16* itemId) const {
+    if (!itemId) return false;
+    for (const Spot& s : spots_) {
+        if (s.x != x || s.y != y || s.fromId != *itemId) continue;
+        if (s.expiryMs <= now_) continue;
+        const i32 dz = static_cast<i32>(s.z) - static_cast<i32>(z);
+        if (dz > kZTol || dz < -kZTol) continue;
+        *itemId = s.stumpId;
+        return true;
+    }
+    return false;
+}
+
 Map::Map() : widthBlocks_(0), heightBlocks_(0) {}
 Map::~Map() = default;
+
+u32 Map::ApplyStumps(u32 bx, u32 by, StaticItem* out, u32 count) const {
+    if (!out || stumps_.Count() == 0) return count;
+    u32 w = 0;
+    for (u32 i = 0; i < count; ++i) {
+        const i32 wx = static_cast<i32>(bx) * 8 + out[i].cellX;
+        const i32 wy = static_cast<i32>(by) * 8 + out[i].cellY;
+        stumps_.Rewrite(wx, wy, out[i].z, &out[i].itemId);
+        if (out[i].itemId == StumpOverlay::kRemove) continue;  // drop this item
+        if (w != i) out[w] = out[i];
+        ++w;
+    }
+    return w;
+}
 
 bool Map::Open(const char* mapPath,
                const char* staidxPath,
@@ -108,7 +160,7 @@ bool Map::ReadStatics(u32 bx, u32 by,
             if (out && cap > 0 && n > 0) {
                 const u32 to_read = (n < cap) ? n : cap;
                 std::memcpy(out, p, to_read * sizeof(StaticItem));
-                *count = to_read;
+                *count = ApplyStumps(bx, by, out, to_read);
             } else {
                 *count = n;  // probe (no buffer) or empty block
             }
@@ -134,7 +186,7 @@ bool Map::ReadStatics(u32 bx, u32 by,
         if (!statics_.Seek(static_cast<i64>(idx.lookup), 0)) return false;
         const u32 to_read = (n < cap) ? n : cap;
         if (!statics_.Read(out, to_read * sizeof(StaticItem))) return false;
-        *count = to_read;
+        *count = ApplyStumps(bx, by, out, to_read);
     } else {
         *count = n; // probe: return count even with no buffer
     }

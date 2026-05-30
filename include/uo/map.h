@@ -4,6 +4,8 @@
 #include "uo/types.h"
 #include "uo/verdata.h"
 
+#include <vector>
+
 namespace uo::map {
 
 // Britannia (map0) is 6144 x 4096 cells = 768 x 512 blocks.
@@ -59,6 +61,46 @@ static_assert(sizeof(StaticItem)        == 7,   "StaticItem == 7");
 constexpr u32 kBlockBytesOnDisk = 196;
 constexpr u32 kNoStatics        = 0xFFFFFFFFu;
 
+// In-memory statics overlay: temporarily rewrite a chopped tree's graphic to
+// a stump so the world view shows it as depleted while the server regrows it.
+// Modeled on the runtime blacklist overlay (range/z-aware spots, no MUL edit);
+// kept purely in memory for now, but self-contained so a blacklist.mul-style
+// persistence layer can be bolted on later without touching ReadStatics.
+//
+// Entries carry an absolute expiry (ms, same clock as Client::NowMs). Update()
+// prunes expired spots and refreshes the clock Rewrite() compares against, so
+// ReadStatics itself stays clock-free. The server's resource regrowth is a
+// global ~68min tick (no per-tree timer the client can observe), so the TTL is
+// just a sensible "looks chopped for a while" duration chosen by the caller.
+class StumpOverlay {
+public:
+    // Use kRemove as `stumpId` to suppress (delete) the item from the list
+    // rather than rewriting it to another graphic.
+    static constexpr u16 kRemove = 0xFFFFu;
+
+    // Replace static `fromId` at world cell (x,y) (z matched within kZTol)
+    // with `stumpId` until `expiryMs`. Re-adding the same cell refreshes it.
+    // Use stumpId=kRemove to strip the item from ReadStatics output entirely.
+    void Add(i32 x, i32 y, i8 z, u16 fromId, u16 stumpId, i64 expiryMs);
+    void Clear() { spots_.clear(); }
+
+    // Drop expired spots and remember `nowMs` for later Rewrite() calls.
+    void Update(i64 nowMs);
+
+    // If a live override matches this cell+graphic, set *itemId to the new
+    // graphic (or kRemove to signal deletion) and return true; otherwise
+    // leave *itemId untouched and return false.
+    bool Rewrite(i32 x, i32 y, i8 z, u16* itemId) const;
+
+    usize Count() const { return spots_.size(); }
+
+private:
+    struct Spot { i32 x, y; i8 z; u16 fromId, stumpId; i64 expiryMs; };
+    static constexpr i32 kZTol = 8;
+    std::vector<Spot> spots_;
+    i64               now_ = 0;
+};
+
 class Map {
 public:
     Map();
@@ -99,11 +141,20 @@ public:
     // you only need one cell; for path queries prefer ReadBlock.
     bool ReadCell(u32 x, u32 y, LandCell* out);
 
+    // Runtime stump overlay applied by ReadStatics (see StumpOverlay).
+    StumpOverlay&       Stumps()       { return stumps_; }
+    const StumpOverlay& Stumps() const { return stumps_; }
+
 private:
+    // Rewrite/remove records in `out[0..count)` that match live stump entries.
+    // Items marked kRemove are compacted out. Returns the new (<=count) count.
+    u32 ApplyStumps(u32 bx, u32 by, StaticItem* out, u32 count) const;
+
     mul::File    map_;
     mul::File    staidx_;
     mul::File    statics_;
     mul::Verdata verdata_;
+    StumpOverlay stumps_;
     u32 widthBlocks_;
     u32 heightBlocks_;
 };

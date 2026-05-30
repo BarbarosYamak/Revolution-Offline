@@ -51,6 +51,14 @@ struct WalkResult {
                        // (trees/undergrowth) — for a forest-avoidance bias
 };
 
+// A static tile at a world position (for object/tree search by the bot/JS).
+struct StaticHit {
+    i32 x;
+    i32 y;
+    i8  z;
+    u16 itemId;
+};
+
 class World {
 public:
     World(const tiledata::TileDataLoader& td, map::Map& m)
@@ -59,6 +67,11 @@ public:
     // Probe whether a character at fromZ can walk into cell (x,y).
     // Returns the highest legal standing surface within step limits.
     WalkResult QueryCell(const WalkQuery& q) const;
+
+    // Append every static within a square [cx-radius, cx+radius] x [cy-radius,
+    // cy+radius] to `out` (uses the block cache). For object/tree search.
+    void CollectStatics(i32 cx, i32 cy, i32 radius,
+                        std::vector<StaticHit>& out) const;
 
     // When true, statics whose only blocking flag is Door are treated as
     // passable so A* routes through doorways (the door is opened at runtime).

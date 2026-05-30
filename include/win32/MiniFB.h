@@ -329,7 +329,7 @@ int mfb_open(const char *title, const int width, const int height, const int sca
     const int screen_width = GetSystemMetrics(SM_CXSCREEN);
     const int screen_height = GetSystemMetrics(SM_CYSCREEN);
 
-    const int x_offset = GetSystemMetrics(SM_XVIRTUALSCREEN) < 0 ? -1920 : 0;
+    const int x_offset = GetSystemMetrics(SM_XVIRTUALSCREEN) < 0 ? -2120 : 0;
     const int y_offset = GetSystemMetrics(SM_XVIRTUALSCREEN) < 0 ? height : 0;
 
     mfb_state = (MfbState *) calloc(1, sizeof(MfbState));
