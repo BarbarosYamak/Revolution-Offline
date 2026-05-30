@@ -8,6 +8,22 @@
 
 namespace uo::build {
 
+usize VendorBuy(u8* out, u32 vendorSerial, const VendorBuyEntry* entries, usize count) {
+    BufWriter w(out, 256);
+    w.WriteU8(RawId(PacketId::VendorBuy));
+    const usize len_at = w.size();
+    w.WriteU16(0);
+    w.WriteU32(vendorSerial);
+    w.WriteU8(0x02);                 // flag 2 = buying (server rejects anything else)
+    for (usize i = 0; i < count; ++i) {
+        w.WriteU8(entries[i].layer);
+        w.WriteU32(entries[i].serial);
+        w.WriteU16(entries[i].qty);
+    }
+    w.PatchU16(len_at, static_cast<u16>(w.size()));
+    return w.size();
+}
+
 usize Seed(u8* out, u32 seed) {
     StoreBE32(out, seed);
     return 4;
@@ -143,6 +159,27 @@ usize WarMode(u8* out, bool warMode, u8 arg1, u8 arg2, u8 arg3) {
     w.WriteU8(arg1);
     w.WriteU8(arg2);
     w.WriteU8(arg3);
+    return w.size();
+}
+
+// 0x2C Resurrection Menu choice — 2 bytes: cmd + choice.
+usize ResurrectChoice(u8* out, u8 choice) {
+    BufWriter w(out, 2);
+    w.WriteU8(RawId(PacketId::ResurrectionMenu));
+    w.WriteU8(choice);
+    return w.size();
+}
+
+// 0x7D Response To Dialog Box — 13 bytes: cmd + dialogSerial + menuId + index +
+// model + hue. Mirrors Packet_BuildDialogBoxResponse @0x427b20.
+usize DialogResponse(u8* out, u32 dialogSerial, u16 menuId, u16 index, u16 model, u16 hue) {
+    BufWriter w(out, 13);
+    w.WriteU8(RawId(PacketId::DialogResponse));
+    w.WriteU32(dialogSerial);
+    w.WriteU16(menuId);
+    w.WriteU16(index);
+    w.WriteU16(model);
+    w.WriteU16(hue);
     return w.size();
 }
 

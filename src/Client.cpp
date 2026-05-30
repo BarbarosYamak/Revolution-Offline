@@ -16,6 +16,7 @@
 #include "render/Minimap.h"
 #include "render/RadarColors.h"
 #include "win32/MiniFB.h"
+#include "js/ClientBindings.h"
 
 #include <algorithm>
 #include <cctype>
@@ -119,6 +120,9 @@ Client::Client(const Config& cfg)
     pathPlanner_ = std::make_unique<navigation::PathPlanner>(std::move(pathConfig));
     std::memset(servers_, 0, sizeof(servers_));
     std::memset(charSlots_, 0, sizeof(charSlots_));
+    js_.SetBindingInstaller(
+        [this](JSContext* c) { uo::js::InstallClientBindings(c, this); });
+    js_.SetBindingTeardown([]() { uo::js::DetachClientBindings(); });
 }
 
 Client::~Client() {
@@ -289,6 +293,9 @@ bool Client::PumpUntilDisconnected() {
         if (state_ == State::InWorld) {
             PumpStdinCommand();
             BotTick();
+            PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
+            uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
+            js_.Tick();   // drive script timers + drain the JS job queue
             RenderTick();
 
             // Keepalive — mirrors Packet_BuildKeepalive @ 0x4279B0 +
@@ -355,6 +362,9 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x24: OnDrawContainer(data, size); break;
         case 0x25: OnAddItemToContainer(data, size); break;
         case 0x3C: OnContainerContents(data, size); break;
+        case 0x74: OnVendorShopData(data, size); break;
+        case 0x3B: OnVendorOfferAccept(data, size); break;
+        case 0x88: OnOpenPaperdoll(data, size); break;
         case 0x77: OnMobileMove(data, size); break;
         case 0x78: OnMobileIncoming(data, size); break;
         case 0x98: OnMobName(data, size); break;
@@ -362,16 +372,19 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x2D: OnMobileAttributes(data, size); break;
         case 0x2E: OnEquipItem(data, size); break;
         case 0x6E: OnCharacterAnimation(data, size); break;
+        case 0x2F: OnSwing(data, size); break;
         case 0x72: OnWarMode(data, size); break;
+        case 0x2C: OnResurrectionMenu(data, size); break;
+        case 0x7C: OnOpenDialog(data, size); break;
         case 0xAF: OnDeathAnimation(data, size); break;
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
-        case 0x23: case 0x2F: case 0x53:
+        case 0x23: case 0x53:
         case 0x54: case 0x5B: case 0x65: case 0x6D:
-        case 0x70: case 0x88:
+        case 0x70:
         case 0x8B: case 0x97:
         case 0xB0: case 0xBA: case 0xBC: case 0xBF: case 0xC0:
         case 0xC1: case 0xCB: case 0xCC:
@@ -664,7 +677,7 @@ void Client::OnCharacterList(const u8* data, usize size) {
         return;
     }
 
-    selectedChar_ = 0; // PromptCharacterSelection();
+    selectedChar_ = 1; // PromptCharacterSelection();
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
         LogWarn( "[ui] invalid character slot\n");
@@ -744,6 +757,11 @@ void Client::OnLoginComplete(const u8* data, usize size) {
             std::chrono::steady_clock::now().time_since_epoch()).count();
     StartStdinThread();
     LogInfo("\nType to chat (Enter to send). Ctrl-C to quit.\n\n");
+    // Peek into the backpack so its contents are known up front. The worn
+    // backpack serial may arrive with the player's 0x78 before or after this;
+    // open now if known, else TryOpenBackpackOnLogin fires from SetMobileEquip.
+    openBackpackPending_ = true;
+    TryOpenBackpackOnLogin();
 }
 
 // ---------------------------------------------------------------------------
@@ -791,6 +809,9 @@ void Client::OnFeatures(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 void Client::OnViewRange(const u8* data, usize size) {
     if (size < 2) return;
+    // Server-set object update/cull radius (5..18 in the official client).
+    // Drives PurgeOutOfRange; clamp to a sane window and ignore 0.
+    if (data[1] >= 5 && data[1] <= 24) viewRange_ = data[1];
     LogInfo("[0xC8] view range = %u\n", data[1]);
 }
 
@@ -827,7 +848,18 @@ void Client::OnPersonalLightLevel(const u8* data, usize size) {
 void Client::OnMobileHp(const u8* data, usize size) {
     if (size < 9) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
-    if (serial != playerSerial_) return;
+    if (serial != playerSerial_) {
+        // Foreign mobile (e.g. a foe we are fighting): cache its health so the
+        // bot can judge whether a fight is winnable. Often a 0..max ratio.
+        for (auto& m : mobileCache_) {
+            if (m.serial == serial) {
+                m.hpMax = static_cast<i32>(LoadBE16(data + 5));
+                m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                break;
+            }
+        }
+        return;
+    }
     const i32 curHp = static_cast<i32>(LoadBE16(data + 7));
     if (player_.hpCur >= 0 && curHp < player_.hpCur &&
         (nav_.bot.active || !nav_.movement.pending.empty())) {
@@ -863,7 +895,16 @@ void Client::OnMobileStamina(const u8* data, usize size) {
 void Client::OnMobileAttributes(const u8* data, usize size) {
     if (size < 17) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
-    if (serial != playerSerial_) return;
+    if (serial != playerSerial_) {
+        for (auto& m : mobileCache_) {
+            if (m.serial == serial) {
+                m.hpMax = static_cast<i32>(LoadBE16(data + 5));
+                m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                break;
+            }
+        }
+        return;
+    }
     player_.serial = serial;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
     player_.hpCur = static_cast<i32>(LoadBE16(data + 7));
@@ -971,6 +1012,7 @@ void Client::OnDeleteObject(const u8* data, usize size) {
             delayedMobile = true;
         } else {
             mobileCache_.erase(it);
+            uo::js::EmitMobileLeave(serial);  // -> World 'mobile_leave' (serial)
         }
         break;
     }
@@ -991,6 +1033,58 @@ void Client::OnDeleteObject(const u8* data, usize size) {
                           openContainers_.end());
 }
 
+// Range cull, mirroring CObjectManager_UpdateMovement @0x4c8b00: the official
+// client drops every entity past Entity_IsWithinWorldRange (a Chebyshev/square
+// radius of viewRange_ tiles around the player) and re-acquires it from the
+// server's re-send when it comes back. We do the same for tracked mobiles and
+// open world-containers so those caches reflect "what's around us" and never
+// grow stale. JS holds serials, not pointers, so a purged record simply reads
+// back as exists=false; we also emit a leave/close event for prompt cleanup.
+void Client::PurgeOutOfRange() {
+    if (state_ != State::InWorld) return;
+    // Self-gate: only when the player has actually changed tile since last run.
+    if (playerX_ == lastPurgeX_ && playerY_ == lastPurgeY_) return;
+    lastPurgeX_ = playerX_;
+    lastPurgeY_ = playerY_;
+
+    const i32 r  = viewRange_ > 0 ? viewRange_ : 18;
+    const i32 px = playerX_, py = playerY_;
+    auto outOfRange = [&](i32 x, i32 y) {
+        i32 dx = x - px; if (dx < 0) dx = -dx;
+        i32 dy = y - py; if (dy < 0) dy = -dy;
+        return dx > r || dy > r;  // Chebyshev, matching Entity_IsWithinWorldRange
+    };
+
+    // Mobiles — never the local player, and keep a mobile whose death animation
+    // is still playing (its own deadRemoveMs timer removes it).
+    for (auto it = mobileCache_.begin(); it != mobileCache_.end();) {
+        if (it->serial != playerSerial_ && it->deadRemoveMs == 0 &&
+            outOfRange(it->x, it->y)) {
+            const u32 serial = it->serial;
+            mobileNames_.erase(serial);
+            it = mobileCache_.erase(it);
+            uo::js::EmitMobileLeave(serial);  // -> World 'mobile_leave' (serial)
+        } else {
+            ++it;
+        }
+    }
+
+    // Open world containers (chests/corpses) — close any whose backing world
+    // item has left range. Player-owned containers (backpack/bank) have no
+    // items_ entry, so they never match here and stay open.
+    for (auto it = openContainers_.begin(); it != openContainers_.end();) {
+        auto pos = items_.find(it->serial);
+        if (pos != items_.end() && outOfRange(pos->second.x, pos->second.y)) {
+            const u32 serial = it->serial;
+            containerItems_.erase(serial);
+            it = openContainers_.erase(it);
+            uo::js::EmitContainerClose(serial);  // -> World 'container_close'
+        } else {
+            ++it;
+        }
+    }
+}
+
 // 0x24 Draw Container (7 bytes): cmd, serial(4 BE), gumpId(2 BE). The real
 // client opens a gump bound to the container entity (Packet_HandleDrawContainer
 // @ 0x417f70); we just register it so DrawContainers() can list the contents.
@@ -1008,12 +1102,20 @@ void Client::OnDrawContainer(const u8* data, usize size) {
         containerItems_.erase(serial);
         return;
     }
+    if (gumpId == 0x30) {  // vendor buy gump — `serial` is the vendor MOBILE
+        uo::js::EmitVendorOffer(serial);  // builds payload from pendingVendor_ now
+        pendingVendor_.clear();
+        pendingVendorGroups_ = 0;
+        LogInfo("[0x24] vendor buy gump for 0x%08X\n", serial);
+        return;  // not a real container; don't register/draw it
+    }
     auto it = std::find_if(openContainers_.begin(), openContainers_.end(), sameSerial);
     if (it == openContainers_.end())
         openContainers_.push_back(OpenContainer{serial, gumpId});
     else
         it->gumpId = gumpId;
     LogInfo("[0x24] open container 0x%08X gump=%u\n", serial, gumpId);
+    uo::js::EmitContainerOpen(serial, gumpId);  // -> World 'container_open'
 }
 
 // 0x3C Container Contents (variable): count(2 BE), then `count` 19-byte records
@@ -1049,6 +1151,75 @@ void Client::OnContainerContents(const u8* data, usize size) {
     LogInfo("[0x3C] container contents: %u item(s)\n", count);
 }
 
+// 0x74 SHOP_DATA (variable): the vendor's buy window prices/names. Layout
+// (PacketManager_MakePacket_SHOP_DATA @0x0049C053): containerSerial(4 BE),
+// count(1), then per item price(4 BE), nameLen(1), name. The matching 0x3C for
+// this container arrived first, so we zip prices with the already-stored
+// ContainerItem rows to recover each item's serial / graphic / amount — but
+// MIRROR-ORDERED (see the loop). Rows accumulate in pendingVendor_ until the
+// 0x24 gump 0x30 (vendor serial) finalizes the session in OnDrawContainer.
+void Client::OnVendorShopData(const u8* data, usize size) {
+    if (size < 8) return;
+    const u32 contSerial = LoadBE32(data + 3);
+    const u8 count = data[7];
+    usize p = 8;
+    const u8 layer = (pendingVendorGroups_ == 0) ? 0x1A : 0x1B;  // 26 stock / 27 offered
+    ++pendingVendorGroups_;
+
+    auto it = containerItems_.find(contSerial);
+    const std::vector<ContainerItem>* stock =
+        (it != containerItems_.end()) ? &it->second : nullptr;
+    const std::size_t stockN = stock ? stock->size() : 0;
+
+    // CRITICAL: 0x74 SHOP_DATA walks the vendor's contents list FORWARD
+    // (spatialNext), but the 0x3C that preceded it was built in REVERSE
+    // (PacketManager_MakePacket_MULTI_OBJ_TO_OBJ @0x00499EEB: backward pass via
+    // spatialPrev). So the two packets are mirror-ordered: 0x74 row i pairs with
+    // stock row (stockN-1-i), NOT stock[i]. Zipping by the same index sends the
+    // wrong serial (we sent the Red-Potion serial for "bandage").
+    for (u8 i = 0; i < count; ++i) {
+        if (p + 5 > size) break;
+        const u32 price = LoadBE32(data + p); p += 4;
+        const u8 nameLen = data[p];           p += 1;
+        if (p + nameLen > size) break;
+        std::string name(reinterpret_cast<const char*>(data + p), nameLen);
+        p += nameLen;
+        if (const auto z = name.find('\0'); z != std::string::npos) name.resize(z);
+        if (!stock || i >= stockN)
+            continue;  // no 0x3C row to pair: can't buy without a serial
+        const ContainerItem& ci = (*stock)[stockN - 1 - i];   // reverse pairing
+        pendingVendor_.push_back(VendorItem{ci.serial, ci.graphic, ci.amount, price, layer, name});
+    }
+    LogInfo("[0x74] vendor shop data: cont=0x%08X %u item(s), layer=0x%02X\n",
+            contSerial, count, layer);
+}
+
+// 0x3B OFFERACCEPT (variable, server->client): closes the vendor gump after a
+// buy/sell completes (PacketManager_MakePacket_OFFERACCEPT @0x0049B398:
+// vendorSerial(4 BE), flag(1)). We forward it as `vendor_done` so a parked buy
+// flow can stop waiting. (The same 0x3B id is what we SEND to buy.)
+void Client::OnVendorOfferAccept(const u8* data, usize size) {
+    if (size < 8) return;
+    const u32 vendor = LoadBE32(data + 3);
+    const u8 flag = data[7];
+    LogInfo("[0x3B] vendor transaction closed: vendor=0x%08X flag=%u\n", vendor, flag);
+    uo::js::EmitVendorDone(vendor, flag);
+}
+
+// 0x88 OPEN_PAPERDOLL (66 bytes): serial(4 BE), title[60] (NUL-padded ASCII),
+// flags(1). The title is "<name> the <job>" (CNPC_PaperdollTitle_VT), the only
+// client-visible carrier of a vendor's job. Cache it and emit `paperdoll`.
+void Client::OnOpenPaperdoll(const u8* data, usize size) {
+    if (size < 66) return;
+    const u32 serial = LoadBE32(data + 1);
+    char title[61];
+    std::memcpy(title, data + 5, 60);
+    title[60] = '\0';
+    paperdollTitles_[serial] = title;
+    LogInfo("[0x88] paperdoll 0x%08X: \"%s\"\n", serial, title);
+    uo::js::EmitPaperdoll(serial, title);
+}
+
 // 0x25 Add Single Item to Container (20 bytes): one 0x3C record without the
 // leading count (Packet_HandleAddItemToContainer @ 0x418800). Upserts by serial.
 void Client::OnAddItemToContainer(const u8* data, usize size) {
@@ -1077,6 +1248,11 @@ void Client::OnAddItemToContainer(const u8* data, usize size) {
 const char* Client::MobileName(u32 serial) const {
     auto it = mobileNames_.find(serial);
     return (it == mobileNames_.end()) ? nullptr : it->second.c_str();
+}
+
+const char* Client::PaperdollTitle(u32 serial) const {
+    auto it = paperdollTitles_.find(serial);
+    return (it == paperdollTitles_.end()) ? nullptr : it->second.c_str();
 }
 
 u32 Client::ResolveFollowSerialByName(const char* name) const {
@@ -1151,6 +1327,8 @@ void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
         e.z = it->second.z;
     }
 
+    uo::js::EmitJournalEvent(e.text.c_str(), e.type, e.sourceSerial, e.hue,
+                             static_cast<int>(e.ownerKind));  // -> Player 'journal'
     journal_.push_back(std::move(e));
     while (journal_.size() > kMaxJournalEntries)
         journal_.pop_front();
@@ -1158,7 +1336,7 @@ void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
 
 void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                           u16 hue, bool hasHue, u8 statusFlags,
-                          bool hasStatusFlags) {
+                          bool hasStatusFlags, int notoriety) {
     const bool running = (dir & 0x80u) != 0;
     const bool warMode = (statusFlags & 0x40u) != 0;
     if (serial == playerSerial_) {
@@ -1199,6 +1377,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
             if (hasHue) m.hue = hue;
             m.deadRemoveMs = 0;
             m.seenMs = now;
+            if (notoriety >= 0) m.noto = static_cast<u8>(notoriety);
             return;
         }
     }
@@ -1207,6 +1386,7 @@ void Client::UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                             body, hasHue ? hue : 0u, now});
     mobileCache_.back().running = running;
     mobileCache_.back().warMode = hasStatusFlags ? warMode : false;
+    if (notoriety >= 0) mobileCache_.back().noto = static_cast<u8>(notoriety);
 }
 
 // 0x77 Mobile Move (17 bytes): cmd, serial(4), body(2), x(2), y(2), z(1), dir(1) ...
@@ -1227,9 +1407,12 @@ void Client::OnMobileMove(const u8* data, usize size) {
 void Client::OnMobileIncoming(const u8* data, usize size) {
     if (size < 19) return;
     const u32 serial = LoadBE32(data + 3);
+    const bool isNew = (serial != playerSerial_) && !FindMobileBySerial(serial);
     UpdateMobile(serial, LoadBE16(data + 9), LoadBE16(data + 11),
                  static_cast<i8>(data[13]), data[14], LoadBE16(data + 7),
-                 LoadBE16(data + 15), true, data[17], true);
+                 LoadBE16(data + 15), true, data[17], true, data[18]);
+    if (isNew)
+        uo::js::EmitMobileEvent(serial);  // -> World 'mobile' (serial; use Mobiles.get)
 
     // Equipment list begins after the 19-byte header.
     std::vector<EquipObj> equip;
@@ -1247,6 +1430,25 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
         equip.push_back({layer, graphic, hue, itemSerial});
     }
     SetMobileEquip(serial, std::move(equip));
+}
+
+// 0x2F Swing / fight-occurring (10B): cmd, flag, attacker(4 BE), defender(4 BE).
+// Server sends this on every weapon swing (combat.c PlaySwingAnimation). It is
+// the earliest serial-bearing combat signal (long before HP changes), in EITHER
+// direction:
+//   - defender == us  -> a mob swung at us       -> 'attacked' (attacker serial)
+//   - attacker == us  -> we are swinging at a foe -> 'combat'   (defender serial)
+// The second case matters because this server surfaces an aggro'd fight as our
+// own swings (also confirmed by 0xAA attack-approved); without it the bot would
+// stand and trade blows while the script never noticed it was fighting.
+void Client::OnSwing(const u8* data, usize size) {
+    if (size < 10) return;
+    const u32 attacker = LoadBE32(data + 2);
+    const u32 defender = LoadBE32(data + 6);
+    if (defender == playerSerial_ && attacker != 0)
+        uo::js::EmitAttackedEvent(attacker);  // -> Player 'attacked' (serial)
+    else if (attacker == playerSerial_ && defender != 0)
+        uo::js::EmitCombatEvent(defender);    // -> Player 'combat' (serial)
 }
 
 // 0x2E Worn Item (15B fixed): cmd, item serial(4), graphic(2), pad(1),
@@ -1298,6 +1500,8 @@ void Client::OnCharacterAnimation(const u8* data, usize size) {
         for (auto& m : mobileCache_) {
             if (m.serial == serial) {
                 start(m.serverAnim);
+                m.lastAnimMs = NowMs();                       // for the JS threat meter
+                m.lastAnimAction = static_cast<u8>(action & 0xFFu);
                 break;
             }
         }
@@ -1322,6 +1526,98 @@ void Client::OnWarMode(const u8* data, usize size) {
     if (verboseConsole_)
         LogInfo("[0x72] war mode %s args=%02X %02X %02X\n",
                 playerWarMode_ ? "on" : "off", warModeArg1_, warModeArg2_, warModeArg3_);
+}
+
+// 0x2C Resurrection Menu (2B fixed): cmd, action. Server prompts the death /
+// resurrect menu (action 0); we reply with 0x2C choice 1 (resurrect) or 2
+// (ghost). Mirrors Packet_HandleResurrectionMenu @0x419080. We don't auto-reply
+// here — the action is forwarded to JS so the bot decides (e.g. confirm a
+// resurrection after asking a healer).
+void Client::OnResurrectionMenu(const u8* data, usize size) {
+    if (size < 2) return;
+    const u8 action = data[1];
+    LogInfo("[0x2C] resurrection menu action=%u\n", action);
+    LogEvent("resurrect_menu", action == 1 ? "resurrect" : "prompt");
+    uo::js::EmitResurrectMenu(action);  // -> Player 'resurrect_menu' ({action})
+}
+
+// 0x7C Open Dialog/Menu (variable): cmd, blockSize(2), dialogSerial(4 BE),
+// menuId(2 BE), questionLen(1), question[], responseCount(1), then per option
+// { model(2 BE), hue(2 BE), textLen(1), text[] }. Verified against
+// Packet_HandleOpenDialog @0x420c80; the client answers with 0x7D
+// (Packet_BuildDialogBoxResponse). Used here for the healer resurrect prompt.
+// We parse it whole into activeDialog_ and forward it to JS (`dialog` event);
+// nothing is auto-answered in C++ — the bot decides which option to pick.
+void Client::OnOpenDialog(const u8* data, usize size) {
+    // cmd(1) + blockSize(2) + serial(4) + menuId(2) + questionLen(1) = 10 min
+    if (size < 10) return;
+    usize p = 3;                                  // skip cmd + blockSize
+    const u32 serial = LoadBE32(data + p); p += 4;
+    const u16 menuId = LoadBE16(data + p); p += 2;
+    const u8  qLen   = data[p];            p += 1;
+    if (p + qLen + 1 > size) return;              // need question + responseCount
+
+    ActiveDialog d;
+    d.active = true;
+    d.id = serial;
+    d.menuId = menuId;
+    d.question.assign(reinterpret_cast<const char*>(data + p), qLen);
+    p += qLen;
+    const u8 count = data[p]; p += 1;
+    for (u8 i = 0; i < count; ++i) {
+        if (p + 5 > size) break;                  // model(2)+hue(2)+textLen(1)
+        DialogOption opt;
+        opt.model = LoadBE16(data + p); p += 2;
+        opt.hue   = LoadBE16(data + p); p += 2;
+        const u8 tLen = data[p];        p += 1;
+        if (p + tLen > size) break;
+        opt.text.assign(reinterpret_cast<const char*>(data + p), tLen);
+        p += tLen;
+        d.options.push_back(std::move(opt));
+    }
+
+    activeDialog_ = std::move(d);
+    LogInfo("[0x7C] dialog id=0x%08X menu=%u: \"%s\" (%zu options)\n",
+            activeDialog_.id, activeDialog_.menuId, activeDialog_.question.c_str(),
+            activeDialog_.options.size());
+    for (usize i = 0; i < activeDialog_.options.size(); ++i)
+        LogInfo("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
+    LogEvent("dialog", activeDialog_.question.c_str());
+    uo::js::EmitDialogEvent();          // -> Player/World 'dialog' (built from activeDialog_)
+}
+
+// 0x7D answer to the 0x7C menu. index is 1-based (0 = cancel); model/hue echo
+// the chosen option entry (the server matches the click that way).
+void Client::SendDialogResponse(u32 id, u16 menuId, u16 index, u16 model, u16 hue) {
+    u8 buf[13];
+    Send(buf, build::DialogResponse(buf, id, menuId, index, model, hue),
+         "0x7D DialogResponse");
+}
+
+// Answer the active dialog by 1-based option index (0 = cancel). Pulls model/hue
+// from the stored option, sends 0x7D, and clears the dialog. Returns false if
+// there is no active dialog or the index is out of range.
+bool Client::AnswerDialog(u16 index) {
+    if (!activeDialog_.active) {
+        LogWarn("[0x7D] no active dialog to answer\n");
+        return false;
+    }
+    u16 model = 0, hue = 0;
+    if (index != 0) {
+        if (index > activeDialog_.options.size()) {
+            LogWarn("[0x7D] dialog index %u out of range (%zu options)\n",
+                    index, activeDialog_.options.size());
+            return false;
+        }
+        const DialogOption& opt = activeDialog_.options[index - 1];
+        model = opt.model;
+        hue = opt.hue;
+    }
+    LogInfo("[0x7D] answering dialog id=0x%08X menu=%u index=%u\n",
+            activeDialog_.id, activeDialog_.menuId, index);
+    SendDialogResponse(activeDialog_.id, activeDialog_.menuId, index, model, hue);
+    activeDialog_.active = false;
+    return true;
 }
 
 // Death anim group by body, verbatim from Mobile_PlayDeathAnimation @0x4C65C0.
@@ -1403,9 +1699,28 @@ void Client::OnDeathAnimation(const u8* data, usize size) {
 }
 
 void Client::SetMobileEquip(u32 serial, std::vector<EquipObj> equip) {
-    if (serial == playerSerial_) { playerEquip_ = std::move(equip); return; }
+    if (serial == playerSerial_) {
+        playerEquip_ = std::move(equip);
+        TryOpenBackpackOnLogin();   // backpack serial may have just become known
+        return;
+    }
     for (auto& m : mobileCache_)
         if (m.serial == serial) { m.equip = std::move(equip); return; }
+}
+
+void Client::OpenBackpack() {
+    const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+    if (backpack == 0) { LogWarn("[backpack] serial unknown\n"); return; }
+    u8 buf[8];
+    Send(buf, build::DoubleClick(buf, backpack), "0x06 DoubleClick (backpack)");
+    LogInfo("[backpack] opening 0x%08X\n", backpack);
+}
+
+void Client::TryOpenBackpackOnLogin() {
+    if (!openBackpackPending_) return;
+    if (PlayerEquipSerialAt(kLayerBackpack) == 0) return;   // wait for the worn list
+    openBackpackPending_ = false;
+    OpenBackpack();
 }
 
 void Client::SetMobileEquipLayer(u32 mobileSerial, u32 itemSerial, u8 layer,
@@ -1939,6 +2254,7 @@ void Client::OnTargetCursor(const u8* data, usize size) {
     LogInfo("[0x6C] target cursor armed: id=0x%08X type=%u subtype=%u — "
             "click a target (right-click/Esc to cancel)\n",
             targetCursorId_, targetCursorType_, targetCursorSubtype_);
+    uo::js::EmitTargetEvent(targetCursorId_, targetCursorType_);  // -> Player 'target'
 }
 
 // Look up a known object's position and graphic for an object-target reply.
@@ -2005,6 +2321,25 @@ void Client::TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z) {
     targetCursorSubtype_ = 0;
 }
 
+void Client::TargetRespondStatic(i32 x, i32 y, i8 z, u16 graphic) {
+    if (!targetCursorActive_) {
+        LogWarn("[target] no target cursor active\n");
+        return;
+    }
+    // Static target: tile reply (type=1, serial=0) carrying the static's
+    // graphic in modelID — that's how the server knows it's a tree, not bare
+    // ground (a model of 0 yields "you can't use an axe on that").
+    u8 buf[19];
+    const usize n = build::TargetCursorGround(
+        buf, targetCursorId_, targetCursorSubtype_,
+        static_cast<u16>(x), static_cast<u16>(y), z, graphic);
+    Send(buf, n, "0x6C TargetCursor (static)");
+    LogInfo("[target] static 0x%04X (%d,%d,%d)\n", graphic, x, y,
+            static_cast<int>(z));
+    targetCursorActive_ = false;
+    targetCursorSubtype_ = 0;
+}
+
 void Client::CancelTargetCursor(const char* reason) {
     if (!targetCursorActive_) return;
     u8 buf[19];
@@ -2058,7 +2393,19 @@ void Client::OnPing(const u8* data, usize size) {
 void Client::OnStats(const u8* data, usize size) {
     if (size < 41) return;
     const u32 serial = LoadBE32(data + 3) & 0x7FFFFFFFu;
-    if (playerSerial_ != 0 && serial != playerSerial_) return;
+    if (playerSerial_ != 0 && serial != playerSerial_) {
+        // Status of another mobile (from our 0x34 query): cache its HP so the bot
+        // can judge a fight before committing. curHp@37, maxHp@39 are in the fixed
+        // header; the rest of the extended block is only sent for self/editing.
+        for (auto& m : mobileCache_) {
+            if (m.serial == serial) {
+                m.hpCur = static_cast<i32>(LoadBE16(data + 37));
+                m.hpMax = static_cast<i32>(LoadBE16(data + 39));
+                break;
+            }
+        }
+        return;
+    }
     player_.serial = serial;
     playerSerial_ = serial;
     player_.name = PacketString(data + 7, 30);
@@ -2432,6 +2779,28 @@ void Client::HandleStdinLine(const char* line) {
         return;
     }
 
+    // `run <script.js>` — (re)load and execute a JS bot script in a fresh
+    // runtime. Script/JS errors are caught and printed to stderr ([js]); they
+    // never crash the client. Edit the file and `run` again for a clean slate.
+    if (std::strncmp(line, "run", 3) == 0 &&
+        (line[3] == ' ' || line[3] == '\t')) {
+        const char* path = line + 3;
+        while (*path == ' ' || *path == '\t') ++path;
+        if (!*path) {
+            LogWarn("[cmd] usage: run <script.js>\n");
+        } else {
+            js_.Run(path);
+        }
+        return;
+    }
+
+    // `js stop` — tear down the running script (clean slate).
+    if (std::strcmp(line, "js stop") == 0) {
+        js_.Stop();
+        LogInfo("[js] stopped\n");
+        return;
+    }
+
     // `stop` — drop the current path.
     if (std::strcmp(line, "stop") == 0) {
         if (nav_.follow.active) BotStopFollow("stopped by user");
@@ -2508,6 +2877,30 @@ void Client::HandleStdinLine(const char* line) {
         LogInfo("[pos] (%d,%d,%d) facing=%u%s\n",
                     playerX_, playerY_, static_cast<int>(playerZ_),
                     playerFacing_, playerRunning_ ? " run" : "");
+        return;
+    }
+
+    // `dialog` — show the active 0x7C menu; `dialog <index>` answers it (1-based,
+    // 0/`cancel` cancels). The bot normally auto-answers via JS; this is manual.
+    if (std::strncmp(line, "dialog", 6) == 0 &&
+        (line[6] == '\0' || line[6] == ' ' || line[6] == '\t')) {
+        const char* arg = line + 6;
+        while (*arg == ' ' || *arg == '\t') ++arg;
+        if (!activeDialog_.active) {
+            LogInfo("[dialog] none active\n");
+            return;
+        }
+        if (*arg == '\0') {
+            LogInfo("[dialog] id=0x%08X menu=%u: \"%s\"\n", activeDialog_.id,
+                    activeDialog_.menuId, activeDialog_.question.c_str());
+            for (usize i = 0; i < activeDialog_.options.size(); ++i)
+                LogInfo("         %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
+            return;
+        }
+        const u16 index = (std::strcmp(arg, "cancel") == 0 || std::strcmp(arg, "off") == 0)
+                              ? 0u
+                              : static_cast<u16>(std::atoi(arg));
+        AnswerDialog(index);
         return;
     }
 
@@ -2690,15 +3083,80 @@ void Client::HandleStdinLine(const char* line) {
     }
 
     // Otherwise: speak it.
+    SayAscii(line);
+}
+
+void Client::SayAscii(const char* text) {
+    if (!text || !text[0]) return;
     u8 buf[512];
-    usize n = build::SpeechAscii(buf,
-                                 /*type=*/0x00,
-                                 /*hue=*/0x0040,
-                                 /*font=*/0x0003,
-                                 line);
+    const usize n = build::SpeechAscii(buf,
+                                       /*type=*/0x00,
+                                       /*hue=*/0x0040,
+                                       /*font=*/0x0003,
+                                       text);
     if (n > sizeof(buf)) return;
     Send(buf, n, "0x03 SpeechAscii");
 }
+
+void Client::SendAttack(u32 serial) {
+    if (!serial) return;
+    u8 buf[5];
+    Send(buf, build::Attack(buf, serial), "0x05 AttackRequest");
+}
+
+void Client::SendDoubleClick(u32 serial) {
+    if (!serial) return;
+    u8 buf[5];
+    Send(buf, build::DoubleClick(buf, serial), "0x06 DoubleClick (js)");
+}
+
+void Client::SendTakeToBackpack(u32 serial, u16 qty) {
+    if (!serial) return;
+    const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+    if (!backpack) { LogWarn("[take] backpack serial unknown\n"); return; }
+    u8 buf[16];
+    Send(buf, build::PickUpItem(buf, serial, qty), "0x07 PickUp (take)");
+    Send(buf, build::DropItem(buf, serial, 0xFFFF, 0xFFFF, 0, backpack), "0x08 Drop (take->pack)");
+}
+
+void Client::SendVendorBuy(u32 vendor, const std::vector<VendorBuyReq>& items) {
+    if (!vendor || items.empty()) return;
+    std::vector<build::VendorBuyEntry> entries;
+    entries.reserve(items.size());
+    for (const VendorBuyReq& r : items) {
+        if (r.qty == 0 || !r.serial) continue;
+        entries.push_back(build::VendorBuyEntry{r.layer ? r.layer : u8(0x1A), r.serial, r.qty});
+    }
+    if (entries.empty()) return;
+    u8 buf[256];
+    const usize n = build::VendorBuy(buf, vendor, entries.data(), entries.size());
+    if (n > sizeof(buf)) return;
+    Send(buf, n, "0x3B VendorBuy");
+}
+
+// 0x34 status query (subtype 4). The server replies with a 0x11 status (carrying
+// the mob's HP) AND adds us to that mob's 8-slot target history, after which it
+// auto-pushes 0xA1 HP updates whenever the mob's HP changes (within 18 tiles) —
+// no polling needed. Unlike 0x05, this does NOT aggro the mob. (Server:
+// HandlePacket_CLIENTQUERY case 0x04 -> CPlayer_SetLastTarget + SendStatusToPlayer;
+// CMobile_BroadcastStatUpdate gates pushes on CPlayer_HasTargetedSerial.)
+void Client::SendStatusRequest(u32 serial) {
+    if (!serial) return;
+    u8 buf[10];
+    Send(buf, build::GetPlayerStatus(buf, 4, serial), "0x34 StatusRequest");
+}
+
+void Client::SetWarMode(bool on) {
+    u8 buf[5];
+    Send(buf, build::WarMode(buf, on), "0x72 WarMode");
+    playerWarMode_ = on;  // predict; server confirms via 0x72
+}
+
+void Client::SendResurrectChoice(u8 choice) {
+    u8 buf[2];
+    Send(buf, build::ResurrectChoice(buf, choice), "0x2C ResurrectChoice");
+}
+
 i64 Client::NowMs() const {
     return std::chrono::duration_cast<std::chrono::milliseconds>(
                std::chrono::steady_clock::now().time_since_epoch()).count();

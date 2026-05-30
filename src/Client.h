@@ -5,11 +5,13 @@
 #include "net/Socket.h"
 #include "navigation/PathPlanner.h"
 #include "navigation/NavigationState.h"
+#include "js/JsEngine.h"
 #include "uo/log.h"
 #include "uo/types.h"
 
 #include <atomic>
 #include <deque>
+#include <functional>
 #include <memory>
 #include <mutex>
 #include <queue>
@@ -45,6 +47,8 @@ struct ServerEntry {
 struct CharEntry {
     char name[31];   // ASCII, NUL-terminated; empty -> unused slot
 };
+
+namespace js { struct ClientBindings; }  // friend: live JS bindings (ClientBindings.cpp)
 
 class Client {
 public:
@@ -92,6 +96,9 @@ public:
     int Run();
 
 private:
+    // Live JS Player getters read private player state directly (no snapshot).
+    // Defined in src/js/ClientBindings.cpp; keeps quickjs.h out of this header.
+    friend struct js::ClientBindings;
     enum class State : u8 {
         Disconnected,
         LoginHandshake,
@@ -136,13 +143,19 @@ private:
     void OnDrawContainer      (const u8* data, usize size);  // 0x24
     void OnAddItemToContainer (const u8* data, usize size);  // 0x25
     void OnContainerContents  (const u8* data, usize size);  // 0x3C
+    void OnVendorShopData     (const u8* data, usize size);  // 0x74 buy-window prices
+    void OnVendorOfferAccept  (const u8* data, usize size);  // 0x3B vendor transaction closed
+    void OnOpenPaperdoll      (const u8* data, usize size);  // 0x88 paperdoll (carries title)
     void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
+    void OnSwing              (const u8* data, usize size);  // 0x2F fight/swing
     void OnEquipItem          (const u8* data, usize size);  // 0x2E
     void OnCharacterAnimation (const u8* data, usize size);  // 0x6E
     void OnWarMode            (const u8* data, usize size);  // 0x72
+    void OnResurrectionMenu   (const u8* data, usize size);  // 0x2C
+    void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
     void OnTargetCursor       (const u8* data, usize size);  // 0x6C
@@ -167,6 +180,37 @@ private:
     void StopStdinThread();
     void PumpStdinCommand();
     void HandleStdinLine(const char* line);
+    void SayAscii(const char* text);   // send 0x03 ascii speech (console + JS Player.say)
+    void SendAttack(u32 serial);       // 0x05 attack request (JS Player.attack)
+    void SendDoubleClick(u32 serial);  // 0x06 raw double-click by serial (JS Player.doubleClick);
+                                       // double-clicking an NPC opens its paperdoll (-> 0x88 title)
+    void SendTakeToBackpack(u32 serial, u16 qty); // 0x07+0x08 lift item from any open container -> backpack (JS Player.take)
+    void SendStatusRequest(u32 serial); // 0x34 status query (JS Player.requestStatus);
+                                        // server then pushes 0xA1 HP updates for it
+    void SetWarMode(bool on);          // 0x72 war-mode toggle (JS Player.warMode)
+    void SendResurrectChoice(u8 choice); // 0x2C resurrect menu reply (JS Player.resurrect)
+    bool PlayerIsGhost() const {       // dead == ghost body (Mobile_IsGhostForm @0x4c6930)
+        return playerBody_ == 0x192 || playerBody_ == 0x193;
+    }
+    // 0x7C Open Dialog/Menu (e.g. the healer resurrect prompt). The whole dialog
+    // is parsed into activeDialog_ and forwarded to JS as the `dialog` event.
+    struct DialogOption {
+        u16 model = 0;       // option's display model (0 for a text-only list)
+        u16 hue = 0;
+        std::string text;    // option label as sent (e.g. "YES - You choose...")
+    };
+    struct ActiveDialog {
+        bool active = false;
+        u32  id = 0;         // dialogSerial (echoed back in 0x7D)
+        u16  menuId = 0;
+        std::string question;
+        std::vector<DialogOption> options;   // 1-based on the wire; [0] = option 1
+    };
+    const ActiveDialog& Dialog() const { return activeDialog_; }
+    void SendDialogResponse(u32 id, u16 menuId, u16 index, u16 model, u16 hue); // 0x7D
+    bool AnswerDialog(u16 index);      // answer activeDialog_ by 1-based index (0 = cancel)
+    void OpenBackpack();               // 0x06 double-click the worn backpack
+    void TryOpenBackpackOnLogin();     // open it once, as soon as its serial is known
     void PrintNearbyMobiles();
     void FlushPendingMobilesList();
     const char* MobileName(u32 serial) const;
@@ -177,12 +221,24 @@ private:
 
     // --- M3 bot -----------------------------------------------------------
     bool EnsureWorldLoaded();
-    void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0);
+    // Show a chopped/depleted tree at (x,y,z) as a stump in the world view for
+    // `ttlMs` (<=0 uses the default). In-memory only (uo::map::StumpOverlay);
+    // it reverts on its own once the TTL lapses. `treeGraphic` is the live tree
+    // static id to replace. Exposed to JS as World.markStump.
+    void MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs = 0);
+    void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0,
+                      bool terrainBias = true);
     void BotStartFollow(u32 serial, u32 followDistance);
     void BotStopFollow(const char* reason);
     void BotNoteFatigueMessage();
     void BotAbortPath(const char* reason);
     void BotResetMovement();
+    // Scripted-trip completion bridge: a JS `await goto()` registers a one-shot
+    // callback that the trip end fires exactly once (arrived -> success, any
+    // abort -> failure with reason). Settled by uo::js::ClientBindings.
+    void BotSetDoneCb(std::function<void(bool success, const char* reason)> cb);
+    void BotClearDoneCb();
+    void BotSignalDone(bool success, const char* reason);
     void BotFollowTick();
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
     void BotTick();           // called from PumpUntilDisconnected
@@ -195,6 +251,7 @@ private:
     // next world click (or `target` console command) resolves it. See OnTargetCursor.
     void TargetRespondObject(u32 serial);  // answer with a clicked mobile/item
     void TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z);  // answer with a tile
+    void TargetRespondStatic(i32 x, i32 y, i8 z, u16 graphic);  // answer with a static (tree)
     void CancelTargetCursor(const char* reason);             // Esc / right-click
     bool ResolveObjectTarget(u32 serial, i32* x, i32* y, i8* z, u16* model) const;
     void DrawStatusBars();
@@ -281,6 +338,8 @@ private:
     };
     PlayerObj player_;
     u32   playerSerial_;
+    ActiveDialog activeDialog_;   // latest 0x7C menu, until answered (0x7D)
+    bool openBackpackPending_ = false;   // open the backpack once after login
 
     // M3 player state — populated from 0x1B/0x20/0x22.
     i32   playerX_;
@@ -337,6 +396,7 @@ private:
     // learned transient blockers. Server packets still own authoritative
     // player position above.
     navigation::NavigationState nav_;
+    std::function<void(bool, const char*)> botDoneCb_;  // one-shot scripted-trip completion
 
     // M3 bot data files + walker
     std::unique_ptr<uo::tiledata::TileDataLoader> tileData_;
@@ -455,6 +515,20 @@ private:
     std::vector<OpenContainer> openContainers_;
     std::unordered_map<u32, std::vector<ContainerItem>> containerItems_;
 
+    // Vendor buy window: the server sends, in order, a 0x3C (stock container
+    // contents) then a 0x74 SHOP_DATA (prices + names, SAME order), optionally a
+    // second pair for the offered/resale container, then a 0x24 gump 0x30 whose
+    // "container" serial is the VENDOR MOBILE. We join 0x3C+0x74 by index into
+    // VendorItem rows (carrying the shop-container layer to send back in 0x3B)
+    // and accumulate them in pendingVendor_ until the gump 0x30 finalizes the
+    // session and emits the `vendor_buy` event. See shopkeeper.c / human.m.
+    struct VendorItem { u32 serial; u16 graphic; u16 amount; u32 price; u8 layer; std::string name; };
+    std::vector<VendorItem> pendingVendor_;
+    int pendingVendorGroups_ = 0;        // 0x74 groups seen this session (0 -> layer 0x1A, else 0x1B)
+    // One buy request row (JS Vendor.buy): how many of `serial` to buy from `layer`.
+    struct VendorBuyReq { u32 serial; u16 qty; u8 layer; };
+    void SendVendorBuy(u32 vendor, const std::vector<VendorBuyReq>& items);  // 0x3B
+
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
     // wall — such tiles are never blacklisted.
@@ -464,6 +538,10 @@ private:
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         bool running = false; // high bit of the server direction byte
         bool warMode = false; // 0x77/0x78 status flag bit 0x40
+        u8 noto = 0;          // 0x78 notoriety: 1 blue,2 green,3/4 gray,5 orange,6 red,7 yellow
+        i32 hpCur = -1, hpMax = -1;  // 0xA1/0x2D health (often a 0..max ratio for foreign mobs)
+        i64 lastAnimMs = 0;   // 0x6E: when it last played an action animation (0 = never)
+        u8 lastAnimAction = 0;// 0x6E action code of that animation (swing/cast/get-hit/...)
         i64 deadRemoveMs = 0;  // 0xAF keeps the mobile until death anim ends
         i64 moveAnimTickMs = 0;
         u32 moveAnimCounter = 0;
@@ -475,11 +553,30 @@ private:
     };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
+    // Paperdoll title ("<name> the <job>", e.g. "Aldo the healer") learned from
+    // an 0x88 OPEN_PAPERDOLL after we double-click a mobile. The job suffix is the
+    // only client-visible way to tell a healer from a tavernkeeper, so the restock
+    // bot uses it to pick the right vendor. nullptr until the paperdoll arrives.
+    std::unordered_map<u32, std::string> paperdollTitles_;
+    const char* PaperdollTitle(u32 serial) const;
     const MobileObj* FindMobileAt(i32 x, i32 y, i8 z) const;
     const MobileObj* FindMobileBySerial(u32 serial) const;
+
+    // Object update/cull radius (Chebyshev tiles), set by 0xC8; default 18.
+    // Mirrors g_ObjectUpdateRange in client_2.0.7 (Packet_HandleClientViewRange).
+    int viewRange_ = 18;
+    // Drop tracked mobiles / open world-containers that have left viewRange_ of
+    // the player, like CObjectManager_UpdateMovement @0x4c8b00 (out-of-range
+    // entities -> _Destroy_RefCounter). The server re-sends them (0x78/0x1A)
+    // when they re-enter range, so the local cache stays bounded to "what's
+    // around us" instead of growing stale. Self-gated on player movement via
+    // lastPurgeX_/Y_; called once per pump iteration.
+    void PurgeOutOfRange();
+    i32 lastPurgeX_ = 0x7FFFFFFF, lastPurgeY_ = 0x7FFFFFFF;
     void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                       u16 hue = 0, bool hasHue = false,
-                      u8 statusFlags = 0, bool hasStatusFlags = false);
+                      u8 statusFlags = 0, bool hasStatusFlags = false,
+                      int notoriety = -1);
     void SetMobileEquip(u32 serial, std::vector<EquipObj> equip);
     void SetMobileEquipLayer(u32 mobileSerial, u32 itemSerial, u8 layer,
                              u16 graphic, u16 hue);
@@ -555,6 +652,11 @@ private:
     std::mutex              stdin_mtx_;
     std::queue<std::string> stdin_lines_;
     std::atomic<bool>       stop_stdin_;
+
+    // Embedded JS scripting engine (QuickJS-NG). Ticks on the main loop after
+    // BotTick; `run <file>` (re)starts a script in a fresh runtime. Script
+    // errors are caught and printed ([js]) and never crash the client.
+    js::JsEngine js_;
 };
 
 }

@@ -15,8 +15,11 @@ enum class PacketId : u8 {
     AttackRequest       = 0x05,
     DoubleClick         = 0x06,
     TargetCursor        = 0x6C,   // bidirectional: server requests, client answers
+    ResurrectionMenu    = 0x2C,   // bidirectional: server prompts, client answers (1=ress, 2=ghost)
+    DialogResponse      = 0x7D,   // outbound: answer to 0x7C Open Dialog/Menu
     WarMode             = 0x72,
     SingleClick         = 0x09,
+    VendorBuy           = 0x3B,   // outbound buy list; server also sends 0x3B to close the gump
     MobNameQuery        = 0x98,
     PlayCharacter       = 0x5D,
     LoginRequest        = 0x80,
@@ -32,6 +35,7 @@ enum class PacketId : u8 {
     MobAttributes       = 0x2D,
     GetPlayerStatus     = 0x34,
     PauseClient         = 0x33,
+    OpenDialog          = 0x7C,   // server opens a list/menu dialog (e.g. healer resurrect)
     Skills              = 0x3A,
     LoginComplete       = 0x55,
     ServerPingNullsub   = 0x73,   // server-initiated keepalive

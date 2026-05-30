@@ -1,13 +1,34 @@
 cmake_minimum_required(VERSION 3.20)
-project(uo_client CXX)
+project(uo_client CXX C)   # C enabled for the quickjs-ng dependency
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
+
+# --- quickjs-ng (JS scripting runtime) ---------------------------------------
+# Pulled via FetchContent at a pinned tag; bump QUICKJS_NG_TAG to update.
+# Declared BEFORE our global strict flags (below) so quickjs builds with its
+# own default flags — it's C, and linking C objects into our /EHs-c- /GR- C++
+# exe is ABI-safe. Examples/CLI/tests are disabled to keep the build lean.
+include(FetchContent)
+# Plain (non-cache) var so every build dir uses the same version — a CACHE var
+# goes stale per-build-dir when bumped. Edit this line to update; tags:
+# git ls-remote --tags https://github.com/quickjs-ng/quickjs.git
+set(QUICKJS_NG_TAG "v0.15.0")
+set(BUILD_SHARED_LIBS   OFF CACHE BOOL "" FORCE)
+set(QJS_BUILD_EXAMPLES  OFF CACHE BOOL "" FORCE)
+set(QJS_BUILD_CLI       OFF CACHE BOOL "" FORCE)
+set(BUILD_EXAMPLES      OFF CACHE BOOL "" FORCE)
+set(BUILD_QJS_LIBC      OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(quickjs
+    GIT_REPOSITORY https://github.com/quickjs-ng/quickjs.git
+    GIT_TAG        ${QUICKJS_NG_TAG}
+    GIT_SHALLOW    TRUE)
+FetchContent_MakeAvailable(quickjs)
 
 if(MSVC)
     add_compile_options(/W4 /EHs-c- /GR- /utf-8 /permissive-)
@@ -26,6 +47,8 @@ set(UO_CLIENT_SOURCES
     src/main.cpp
     src/Client.cpp
     src/Logger.cpp
+    src/js/JsEngine.cpp
+    src/js/ClientBindings.cpp
     src/client/ClientRender.cpp
     src/net/Socket.cpp
     src/net/PacketStream.cpp
@@ -43,8 +66,8 @@ set(UO_CLIENT_SOURCES
 )
 
 add_executable(uo_client ${UO_CLIENT_SOURCES})
-target_include_directories(uo_client PRIVATE include src)
-target_link_libraries(uo_client PRIVATE uo_mul)
+target_include_directories(uo_client PRIVATE include src ${quickjs_SOURCE_DIR})
+target_link_libraries(uo_client PRIVATE uo_mul qjs)
 
 if(WIN32)
     target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)

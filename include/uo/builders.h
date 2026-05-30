@@ -70,6 +70,17 @@ usize Attack(u8* out, u32 serial);
 // inbound 0x72 confirmations.
 usize WarMode(u8* out, bool warMode, u8 arg1 = 4, u8 arg2 = 0, u8 arg3 = 0);
 
+// 0x2C Resurrection Menu choice (2 bytes): cmd + choice. choice: 1 = resurrect,
+// 2 = remain a ghost (0 = manifest/prompt). Mirrors Packet_BuildResMenuChoice
+// @0x4262a0; the server prompts with an inbound 0x2C and we answer with this.
+usize ResurrectChoice(u8* out, u8 choice);
+
+// 0x7D Response To Dialog Box (13 bytes): cmd, dialogSerial(4 BE), menuId(2 BE),
+// index(2 BE, 1-based; 0 = cancel), model(2 BE), hue(2 BE). Answers the 0x7C
+// Open Dialog/Menu; index/model/hue identify the chosen option (model+hue echo
+// the 0x7C entry). Mirrors Packet_BuildDialogBoxResponse @0x427b20.
+usize DialogResponse(u8* out, u32 dialogSerial, u16 menuId, u16 index, u16 model, u16 hue);
+
 // 0x12 Action Request — Open Door (5 bytes): cmd + len + subcommand 0x58 +
 // NUL. The legit player "open door" hotkey macro; the server spatial-searches
 // the tile the player is facing and opens any door there (no serial needed),
@@ -128,6 +139,20 @@ usize DropItem(u8* out, u32 serial, u16 x, u16 y, i8 z, u32 container);
 // @0x425ac0. Layers: 1 = one-handed (weapon), 2 = two-handed (shield), 21 =
 // backpack.
 usize EquipItem(u8* out, u32 serial, u8 layer, u32 mobile);
+
+// One vendor buy-list row sent inside the 0x3B buy packet. `layer` selects the
+// vendor's shop container (0x1A = 26 stock list, 0x1B = 27 offered/resale);
+// `serial` is the stock item's serial as listed by the 0x3C/0x74 shop dump.
+struct VendorBuyEntry {
+    u8  layer;
+    u32 serial;
+    u16 qty;
+};
+
+// 0x3B Vendor Buy (variable): cmd + len(2 BE) + vendorSerial(4 BE) + flag(0x02)
+// + count×{ layer(1), serial(4 BE), qty(2 BE) }. Mirrors HandlePacket_OFFERACCEPT
+// (server @0x00496C0F: numItems = (len-8)/7). An empty list (count 0) is a no-op.
+usize VendorBuy(u8* out, u32 vendorSerial, const VendorBuyEntry* entries, usize count);
 
 // 0x02 Move Request (3 or 7 bytes).
 //   BYTE cmd
