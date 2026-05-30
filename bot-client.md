@@ -240,6 +240,34 @@ ever uses **transient** avoidance during travel and never writes the file.
 
 ---
 
+## Out-of-range object cull (`Client::PurgeOutOfRange`)
+
+The official client purges its object manager every tick: any entity past
+`Entity_IsWithinWorldRange` (a **Chebyshev/square radius** of `g_ObjectUpdateRange`
+tiles around the player, default **18**, set by `0xC8`) is destroyed
+(`_Destroy_RefCounter`) and re-acquired from the server's re-send when it comes back
+in range. Modeled on `CObjectManager_UpdateMovement` @0x4c8b00 +
+`Entity_IsWithinWorldRange` @0x4c4720 + `Packet_HandleClientViewRange` @0x429170.
+
+We mirror this for the two caches that otherwise grow stale:
+- **Mobiles** (`mobileCache_`) — drop anyone past `viewRange_`; never the local player,
+  and a mobile mid-death-animation is kept until its own `deadRemoveMs` timer fires.
+- **Open world containers** (`openContainers_`/`containerItems_`) — close any whose
+  backing world item (`items_`) has left range. Player-owned containers (backpack/bank)
+  have no `items_` entry, so they are never matched and stay open.
+
+`PurgeOutOfRange` runs once per pump iteration, self-gated on player tile movement
+(`lastPurgeX_/Y_`), right after `BotTick()`. `viewRange_` comes from `0xC8` (clamped
+5..24, default 18). Generic ground items in `items_` are **not** culled (they feed the
+renderer/pathfinding and are pruned by `0x1D` + the FIFO cap), matching the named scope.
+
+**JS soft-handling:** JS holds serials, never pointers, so a culled record simply reads
+back as `exists === false`. Removal also queues a `mobile_leave` (serial) or
+`container_close` (`{serial}`) event so a tracker can drop it promptly; the threat meter
+additionally self-prunes its per-serial maps each sample, so it needs no leave handler.
+
+---
+
 ## Combat interrupt (hook only)
 
 `OnMobileHp` (`0xA1`) tracks our HP; a drop while travelling calls
@@ -247,6 +275,111 @@ ever uses **transient** avoidance during travel and never writes the file.
 resets seq) and logs/event-logs the threat. The actual reactions —
 **engage / flee / recall ("kal ort por")** — are explicit TODOs; they need
 combat-target packet specifics, recall spell/reagent/rune handling, and a policy.
+
+---
+
+## Server data model (creatures / templates)
+
+Findings from reading the `ouo` server (parent dir; real UO server source, C). Useful
+whenever the bot needs to reason about *what* a mob is, not just where it is.
+
+- **Creature template DB:** `bank/templatestable.dat` — one master file, null-padded
+  (read with `tr -d '\000'`). Records begin at a `# <name>  Difficulty N` header and
+  carry tag-style fields: `<type>`, `<name>`, `<corpsename>`, `<alignment>`,
+  `<notoriety>`, `<script>`, `<strength>`/`<hp>`/`<sk ...>`, `<eq ...>`, `<resource ...>`.
+  Sibling files in `bank/` are extra columns keyed by `template.NNN` (`freq`, `lim`,
+  `near`/`dungn` = spawn regions, `morestats` = stats, `jobs`, `stuff` = equipment).
+- **Body / anim id** (what the client sees in `0x78`/`0x77`, i.e. `mob.body`) comes from
+  `<type NORMAL <CONST>>`; resolve `<CONST>` via `bank/defines` (e.g. `ETTINS 18`,
+  `OGRES 1`, `ORCS 17` — these match real UO bodies). Some consts are **weighted random
+  body sets** `{ body wt body wt }` (e.g. `TROLLS { 54 1 53 1 55 1 }` → bodies 53/54/55),
+  so one creature can spawn as several bodies — include all. `<name NNN>` (500–605) is a
+  template/name id, **not** the body.
+- **Aggression (attacks on sight)** is template data, not a runtime flag:
+  **`<alignment EVIL>`** (equivalently `<notoriety -125>`). `<alignment>` ∈ {NEUTRAL,
+  EVIL, GOOD, CHAOTIC}. Animals like bear/cougar/panther/horse/deer are **NEUTRAL** — on
+  this server they do **not** aggress on sight (do not auto-engage them).
+- **`<script monster>` is NOT an aggression signal** — it is the generic creature AI,
+  used by passive animals too (deer/horse/pig/bear all carry it). The combat-AI scripts
+  are layered: `monster` (base creature), `spellai`/`dragonai`/`daemon` (casters/special),
+  `pet`/`packanimal`/`reindeer` (tameable), `human` (townsfolk/NPC jobs).
+- **Body 400 = human**, shared by harmless NPCs and evil human mages alike, so it is
+  **ambiguous from the client** — the bot must not treat it as aggressive; rely on a
+  confirmed hit instead.
+- **Notoriety** the client sees is a per-viewer relationship (`CMobile_ComputeNotoriety`),
+  so it can not by itself say "this mob is attacking me" — wild gray animals read the same
+  whether idle or hostile. That is why the JS threat meter combines body-list aggression
+  with confirmed-attack signals (HP drop, swing, "is attacking you!").
+
+### Mobile HP (health bars)
+
+The server does **not** push a foreign mobile's HP until the client asks for it.
+To get a mob's HP, send a **`0x34` status query** (subtype `0x04`, serial) — the
+real 2.0.7 client's "open health bar". The server (`HandlePacket_CLIENTQUERY` case
+`0x04`) then:
+1. replies once with a **`0x11`** status packet carrying the mob's `curHp@37` /
+   `maxHp@39` (the extended stat block after byte 41 is only sent for self/editing), and
+2. calls `CPlayer_SetLastTarget`, adding the serial to the player's **8-slot target
+   history** (`CPlayer_HasTargetedSerial`).
+
+Thereafter `CMobile_BroadcastStatUpdate` (@0x0047197C) **auto-pushes `0xA1`** HP
+updates to every nearby player (≤18 tiles) whose target history holds that serial,
+whenever the mob's HP changes — so **no polling is needed**. `0x34` is passive (it
+does not aggro the target, unlike the `0x05` attack). The client side: `OnStats`
+caches mob HP from `0x11`, `OnMobileHp`/`OnMobileAttributes` from `0xA1`/`0x2D`;
+`createThreatMeter` sends the `0x34` for every dangerous mob so `mob.hpPct` is known
+before engaging. Up to 8 mobs can be tracked at once (the history depth).
+
+### Aggressive creatures
+
+The resolved EVIL body list is baked into `scripts/js/bootstrap.js`
+(`DEFAULT_AGGRESSIVE_BODIES`, the default `aggressiveBodies` for `createThreatMeter`).
+Re-derive it with `awk` over `bank/defines` + the de-nulled `templatestable.dat` if the
+shard's templates change.
+
+---
+
+## Vendors / buying (consumables restock)
+
+Buying from an NPC vendor is **speech-triggered**, not a packet. The server's
+shop handler (`Q4M7` in `scripts.wombat/human.m`) opens a vendor's buy window for
+**any shop keyword** (`buy`/`trade`/`shop`/…, list in `Script_hasShopKeyword`)
+spoken within **3 tiles** — there is **no name check**, so `Player.say('buy')`
+near the vendor is enough, and every vendor in earshot responds (one window each).
+
+The buy window arrives as a sequence (`CShopkeeper_OpenBuyWindow` @0x004D0C90):
+a greeting, **0x3C** stock-container contents (serial/graphic/amount per item),
+**0x74 SHOP_DATA** (price + name, *same order*), optionally a second 0x3C/0x74
+pair for the offered/resale container, then a **0x24 gump 0x30** whose
+"container" serial is the **vendor mobile**, and a 0x11 (gold). `Client::
+OnVendorShopData` zips 0x3C+0x74 by index into `VendorItem` rows (carrying the
+shop-container layer: `0x1A`=26 stock, `0x1B`=27 offered); the gump 0x30 in
+`OnDrawContainer` finalizes the session and emits **`vendor_buy`**
+`{vendor, items:[{serial,graphic,amount,price,layer,name}]}`.
+
+To buy, send **0x3B** (`build::VendorBuy` / `Client::SendVendorBuy`):
+`vendorSerial`, flag `2`, then `count×{layer(1), serial(4 BE), qty(2 BE)}`
+(`HandlePacket_OFFERACCEPT` @0x00496C0F: `numItems=(len-8)/7`). The server replies
+**0x3B OFFERACCEPT** (close), a speech total, and a coin sound; `Client::
+OnVendorOfferAccept` emits **`vendor_done`** `{vendor, flag}`. Gold ≥ 2000 with an
+empty backpack auto-draws from the bank (`CMobile_ProcessBuyList`).
+
+**Identifying the right vendor:** names vary, and the plain name (single-click /
+0x98) has no job. The job is only in the **paperdoll title** (`"<name> the
+<job>"`, `CNPC_PaperdollTitle_VT`). `Player.doubleClick(serial)` (raw 0x06) on an
+NPC opens its paperdoll → **0x88** → `Client::OnOpenPaperdoll` caches the title
+(`mobile.title`) and emits **`paperdoll`** `{serial, title}`. So the bot matches a
+vendor by `title.includes('healer')`, not by name.
+
+JS surface: `Vendor.buy(vendorSerial, [{serial, qty}])`, events `vendor_buy` /
+`vendor_done` / `paperdoll` (shared registry — `Vendor.once(...)` etc.),
+`mobile.title`, `Player.doubleClick(serial)`. The reusable restocker is
+`scripts/js/lib/restock.js` (`restockConsumables(consumables, token)`): for every
+consumable the backpack is **out of** (count 0) it walks to `coords`, finds the
+vendor by `title`, says buy, and buys up to `target`. The lumberjack wires it as
+the tail of the bank cycle: `bank = sequence(goToBank, deposit, rest, restock)`,
+config in `Lumberjack.CONSUMABLES`. Backpack counting is pure JS over
+`Player.equipment.backpack.items` (each row has `name` + `amount`).
 
 ---
 
@@ -265,7 +398,13 @@ src/bot/Blacklist.*       walkability overlay + blacklist.mul (verdata) I/O
 src/mul/{File,TileDataLoader,Map,World}.cpp   MUL loaders + walkability
 include/uo/*.h            shared headers (types, packet ids/lengths, mul, etc.)
 tests/                    huffman / blacklist / path-probe standalone checks
+scripts/js/               JS bot scripts (lumberjack, …) + lib/ (auto-loaded)
+src/js/                   QuickJS engine + Player/World/Mobiles bindings
 ```
+
+> **Writing bots in JS:** see `BT.md` — the behaviour-runner framework
+> (priority behaviours + cancellation tokens) with a full worked example.
+> `scripts/js/lumberjack.js` is the reference bot.
 
 ---
 

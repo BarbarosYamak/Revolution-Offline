@@ -46,3 +46,4 @@ Do not commit credentials, shard-specific secrets, or private asset paths. `src/
 
 
 @bot-client.md
+@JS-BIBLE.md
