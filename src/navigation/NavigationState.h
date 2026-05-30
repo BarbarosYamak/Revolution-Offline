@@ -40,6 +40,7 @@ struct BotState {
     bool hasGoalZ = false;
     bool active = false;
     bool planning = false;
+    bool terrainBias = true;    // false = no grass/foliage penalty (e.g. tree-to-tree)
     u64 planRequestId = 0;
     u64 nextPlanRequestId = 1;
     u32 replanCount = 0;

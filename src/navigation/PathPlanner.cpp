@@ -13,7 +13,6 @@ namespace uo::navigation {
 
 namespace {
 
-constexpr i64 kMobileFreshMs = 5000;
 constexpr i32 kRejectedEdgeZTolerance = 2;
 constexpr i32 kGoalZTolerance = 4;
 
@@ -24,11 +23,6 @@ bool IsDoorGraphic(u16 id) {
 i32 AbsDiff(i32 a, i32 b) {
     const i32 d = a - b;
     return d < 0 ? -d : d;
-}
-
-i64 NowMs() {
-    using namespace std::chrono;
-    return duration_cast<milliseconds>(steady_clock::now().time_since_epoch()).count();
 }
 
 bool SameDirectedEdgeNearZ(i32 edgeFromX, i32 edgeFromY, i8 edgeFromZ,
@@ -53,7 +47,10 @@ bool IsMobileBlocking(const PathRequest& request, i32 x, i32 y, i8 z) {
     for (const auto& m : request.mobiles) {
         if (m.serial == request.playerSerial) continue;
         if (m.x != x || m.y != y) continue;
-        if (NowMs() - m.seenMs > kMobileFreshMs) continue;
+        // No time-freshness: a mobile in the cache is in range (PurgeOutOfRange
+        // culls by range, 0x1D on despawn), and a stationary one never resends
+        // 0x77 — so a stale seenMs does NOT mean it left. Expiring it here blinds
+        // A* to a present blocker the server still rejects us into.
         if (AbsDiff(z, m.z) <= 8) return true;
     }
     return false;

@@ -57,7 +57,6 @@ constexpr i64   kFollowProbeMs     = 1200;
 constexpr usize kPathLookaheadScanSteps = 5;
 constexpr usize kPathLookaheadAnchorExtra = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
-constexpr i64   kLookaheadMobileFreshMs = 5000;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
 constexpr i32   kRejectedEdgeZTolerance = 2;
@@ -213,6 +212,15 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // obstacle, never a wall. Wait and retry; never blacklist.
     const MobileObj* mob = FindMobileAt(bx, by, static_cast<i8>(bz));
 
+    if (mob && !fatigued) {
+        // The reject is positive proof the mobile is still on (bx,by) right now.
+        // Refresh its timestamp so the very next replan/lookahead routes around
+        // it instead of re-deriving the same straight path into it.
+        for (auto& m : mobileCache_) {
+            if (m.serial == mob->serial) { m.seenMs = NowMs(); break; }
+        }
+    }
+
     if (fatigued || mob) {
         const bool blockedByMobile = (mob != nullptr) && !fatigued;
         if (++nav_.bot.stuckWaits > kMaxStuckWaits) {
@@ -357,6 +365,23 @@ bool Client::EnsureWorldLoaded() {
     return true;
 }
 
+void Client::MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs) {
+    // Trees are two statics at the same cell: trunk (treeGraphic, Impassable)
+    // + canopy (treeGraphic+1, Foliage+Impassable). We replace the trunk with
+    // the "stump" graphic and the canopy with id=1 "nodraw" (invisible) so the
+    // crown disappears. The overlay is in-memory only (StumpOverlay); it reverts
+    // on its own when the TTL lapses, mirroring the server's regrowth cadence.
+    constexpr u16 kTreeStumpGraphic = 3670;   // "stump" (height=3, Impassable)
+    constexpr i64 kStumpTtlMs       = 10 * 60 * 1000;  // 10 minutes
+    if (!EnsureWorldLoaded() || !worldMap_) return;
+    const i64 expiry = NowMs() + ((ttlMs > 0) ? ttlMs : kStumpTtlMs);
+    // Trunk → stump
+    worldMap_->Stumps().Add(x, y, z, treeGraphic, kTreeStumpGraphic, expiry);
+    // Canopy (always trunk+1 in this art set) → remove entirely from the list
+    worldMap_->Stumps().Add(x, y, z, static_cast<u16>(treeGraphic + 1),
+                            map::StumpOverlay::kRemove, expiry);
+}
+
 
 void Client::BotPredictStep(u8 dir) {
     i32 dx, dy;
@@ -386,11 +411,12 @@ u32 Client::BotMoveGapMs() const {
 
 
 bool Client::BotIsMobileBlocking(i32 x, i32 y, i8 z) const {
-    const i64 now = NowMs();
     for (const auto& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
         if (m.x != x || m.y != y) continue;
-        if (now - m.seenMs > kLookaheadMobileFreshMs) continue;
+        // No time-freshness (see PathPlanner::IsMobileBlocking): a cached mobile
+        // is in range and present even if stationary/stale, so the lookahead
+        // must treat it as a blocker and patch around it before we bump.
         if (AbsDiff(z, m.z) <= 8) return true;
     }
     return false;
@@ -629,9 +655,11 @@ bool Client::BotReplanToGoal() {
     request.hasGoalZ = nav_.bot.hasGoalZ;
     request.maxNodesExpanded = static_cast<u32>(budget);
     // For follow we want the shortest valid path to keep up with a moving
-    // target; road/grass bias only makes us lag behind.
-    request.grassPenalty = nav_.follow.active ? 0u : kGrassPenalty;
-    request.foliagePenalty = nav_.follow.active ? 0u : kForestPenalty;
+    // target; road/grass bias only makes us lag behind. terrainBias=false
+    // (e.g. tree-to-tree hops) likewise drops the bias for direct short routes.
+    const bool bias = nav_.bot.terrainBias && !nav_.follow.active;
+    request.grassPenalty = bias ? kGrassPenalty : 0u;
+    request.foliagePenalty = bias ? kForestPenalty : 0u;
     request.playerSerial = playerSerial_;
     request.blacklist = nav_.bot.blacklist;
     request.rejectedEdges = nav_.bot.rejectedEdges;
@@ -717,11 +745,32 @@ void Client::BotNoteFatigueMessage() {
 }
 
 
-void Client::BotAbortPath(const char*) {
+void Client::BotAbortPath(const char* reason) {
     nav_.bot.path.clear();
     nav_.bot.active = false;
     nav_.bot.planning = false;
     nav_.bot.planRequestId = 0;
+    BotSignalDone(false, reason);  // reject any scripted `await goto()`
+}
+
+
+void Client::BotSetDoneCb(std::function<void(bool, const char*)> cb) {
+    // Supersede any still-pending scripted trip so its promise never hangs.
+    if (botDoneCb_) { auto old = std::move(botDoneCb_); old(false, "superseded"); }
+    botDoneCb_ = std::move(cb);
+}
+
+
+void Client::BotClearDoneCb() {
+    botDoneCb_ = nullptr;  // drop without firing (e.g. JS runtime torn down)
+}
+
+
+void Client::BotSignalDone(bool success, const char* reason) {
+    if (!botDoneCb_) return;
+    auto cb = std::move(botDoneCb_);  // one-shot: clear before calling
+    botDoneCb_ = nullptr;
+    cb(success, reason ? reason : "");
 }
 
 
@@ -848,7 +897,7 @@ void Client::BotFollowTick() {
 }
 
 
-void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
+void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
     if (!EnsureWorldLoaded()) return;
     nav_.follow.active = false;
     if (!nav_.movement.pending.empty() || !nav_.bot.path.empty() || nav_.bot.planning) {
@@ -856,12 +905,14 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz) {
             "[bot] busy (inflight=%zu path=%zu planning=%s); type 'stop' first\n",
             nav_.movement.pending.size(), nav_.bot.path.size(),
             nav_.bot.planning ? "yes" : "no");
+        BotSignalDone(false, "busy");  // reject a scripted goto issued while busy
         return;
     }
     nav_.bot.goalX = tx;
     nav_.bot.goalY = ty;
     nav_.bot.goalZ = tz;
     nav_.bot.hasGoalZ = hasZ;
+    nav_.bot.terrainBias = terrainBias;
     nav_.bot.active = true;
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
@@ -964,11 +1015,14 @@ void Client::BotPumpMoves() {
         nav_.bot.active = false;
         LogInfo("[bot] arrived at (%d,%d,%d)\n",
                     playerX_, playerY_, static_cast<int>(playerZ_));
+        BotSignalDone(true, "arrived");  // resolve any scripted `await goto()`
     }
 }
 
 
 void Client::BotTick() {
+    // Expire stump overlays and refresh the clock ReadStatics rewrites against.
+    if (worldMap_) worldMap_->Stumps().Update(NowMs());
     if (mobilesListPending_ && NowMs() >= mobilesListDeadlineMs_) {
         FlushPendingMobilesList();
     }
