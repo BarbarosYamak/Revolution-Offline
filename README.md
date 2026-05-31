@@ -11,6 +11,11 @@ This is the classic UO *babysitting* loop: the script grinds, you keep an eye on
 it. Here the script is a real protocol client and the window is a software
 reimplementation of the original renderer.
 
+And the "script" can be a **real script**: an embedded JavaScript engine lets you
+write the bot's high-level behaviour in JS on top of the C++ navigation core. The
+one that ships — a **lumberjack** — chops trees, banks the logs, restocks
+consumables from vendors, eats, and fights, flees or resurrects on its own.
+
 ## Demo
 
 [![Watch the bot navigate in the isometric window](https://img.youtube.com/vi/0YYXLrZHQfE/maxresdefault.jpg)](https://www.youtube.com/watch?v=0YYXLrZHQfE)
@@ -31,6 +36,7 @@ reimplementation of the original renderer.
 - [Architecture](#architecture)
 - [Networking & protocol](#networking--protocol)
 - [Movement & the navigation bot](#movement--the-navigation-bot)
+- [Bot scripting (JavaScript)](#bot-scripting-javascript)
 - [Renderer — the observation frontend](#renderer--the-observation-frontend)
 - [The target server](#the-target-server)
 - [Requirements & game assets](#requirements--game-assets)
@@ -53,6 +59,9 @@ reimplementation of the original renderer.
   stream, packet framing, movement, mobiles, items, stats, speech/journal.
 - An **A\* navigation bot** that drives a character with predict-and-reconcile
   movement, door handling, dynamic obstacle avoidance, and follow logic.
+- An **embedded JavaScript scripting layer** for writing bots as priority
+  behaviours (cancellable async steps) with batteries-included banking, survival
+  and vendor-restock skills — shipped with a full autonomous **lumberjack**.
 - A **software isometric renderer** that draws land, statics, dynamic items,
   animated mobiles (with equipment, mounts, hues and night lighting), a radar
   minimap and a HUD — modelled directly on the original client's output.
@@ -153,6 +162,7 @@ heavy template metaprogramming and no hidden allocation in the hot paths.
 | `builders/` | Outbound packet construction (seed, move, speech, double/single click, OpenDoor, login, etc.). |
 | `navigation/` | `PathPlanner` runs A\* on a **background worker thread** (request/poll); `NavigationState` holds movement, bot route, follow and learned-blocker state. |
 | `bot/` | `Pathfinding` (the A\* core + grass bias) and `Blacklist` (runtime walkability overlay + `blacklist.mul` verdata I/O). |
+| `js/` (`src/js/`) | Embedded **QuickJS** engine (`JsEngine`) plus `Player` / `World` / `Mobiles` / `Vendor` script bindings (`ClientBindings`). Runs the bot scripts under `scripts/js/`. |
 | `mul/` | MUL/verdata asset loaders and `World::QueryCell` walkability. Also builds `uo_mul.lib` and the `uo_mul_dump` CLI. |
 | `render/` | Software isometric `Renderer` (ARGB1555), `Minimap`/`RadarColors`, `Text`/HUD, and the `MiniFBWindow` host. |
 
@@ -187,10 +197,19 @@ animation, `0x72` war-mode, `0x73` ping, `0x77`/`0x78` mobile move/incoming,
 `0x98` mob name, `0xA1`/`0xA2`/`0xA3` HP/mana/stamina, `0xA8` server-list, `0xAF`
 death, `0xB9` features, `0xBD` version-query, `0xC8` view-range.
 
+Item, container and vendor flows add `0x24` container gump, `0x3C` container
+contents, `0x74` vendor shop data, `0x3B` vendor offer, `0x88` paperdoll (the only
+client-visible carrier of an NPC's job title), `0x2C` resurrect menu and `0x7C`
+server menu/dialog.
+
 **Outbound builders** (`src/builders/Builders.cpp`): seed, `0x02` move, `0x03`
 speech, `0x06` double-click, `0x09` single-click, `0x12` OpenDoor (subcommand
 `0x58`), `0x5D` play-character, `0x73` ping, `0x80` login, `0x91` game-login,
 `0xA0` select-server, `0xBD` version.
+
+The client also sends `0x07`/`0x08` (lift / drop), `0x34` (status query, for mob
+HP), `0x3B` (vendor buy) and `0x98` (all-names query) for the item, vendor and
+combat interactions used by the commands and scripts.
 
 Every packet is logged to a JSONL file and to the console (gated by a `verbose`
 toggle so the window isn't drowned in per-tick chatter).
@@ -267,6 +286,50 @@ On a `0x21` reject the bot decides, **in order**:
 
 `blacklist.mul` I/O exists (verdata format) but **auto-persist is disabled** —
 the bot uses transient avoidance only, so it can't poison real passages.
+
+---
+
+## Bot scripting (JavaScript)
+
+Above the C++ navigation core sits an embedded
+**[QuickJS](https://bellard.org/quickjs/)** engine (`src/js/`), so the bot's
+*high-level* behaviour is written in JavaScript — no recompile. Edit a script, type
+`run` again, and it reloads in a fresh runtime; script errors are caught and
+printed (`[js]`) and never crash the client.
+
+```
+run scripts\js\lumberjack.js      :: load + run a bot script (re-run to reload)
+js stop                           :: tear the running script down
+```
+
+**Scripting surface** (`src/js/ClientBindings.cpp`): `Player` (live state +
+actions — goto, use, equip, attack, follow, say, drop, `requestStatus`, …),
+`World` (`statics`, the stump overlay), `Mobiles` (live serial-backed handles
+carrying HP / notoriety / body / paperdoll title), and `Vendor` (speech-triggered
+buying). Events (`on`/`once`) surface journal lines, target cursors, arrivals,
+container opens, incoming/leaving mobiles, attacks, dialogs, resurrect menus,
+paperdolls and vendor windows. `scripts/js/globals.d.ts` is the typed source of
+truth for the whole surface.
+
+**The behaviour runner** (`scripts/js/lib/bt.js`): a bot is a flat list of
+behaviours in **priority order**. Each tick the highest-priority behaviour whose
+guard is true owns the body, and a strictly higher-priority one **preempts** it.
+Preemption is cooperative via a **cancellation token**: long awaits are wrapped so
+a preempted step unwinds at once (a threat interrupts chopping within a tick, not
+after the 15-second chop wait). A `BehaviorScript` base class (`lib/bot.js`) adds
+the lifecycle (incl. an awaited one-time `onStartup`), movement (`walkTo`) and
+inventory; opt-in mixins add banking (`lib/bank.js`) and survival/restock
+(`lib/survival.js`). A shared **threat meter** (`lib/threat.js`) scores nearby
+danger from a body-list of aggressive creatures plus confirmed-attack signals.
+
+**The shipped bot** — `scripts/js/lumberjack.js` — is a complete worked example:
+it rotates between forest stands chopping trees, banks the logs when full, withdraws
+gold, restocks bandages/food from vendors (matched by paperdoll *job* title, not
+name), eats on a timer, and — driven by the threat meter — fights, bandages
+mid-fight, flees an unwinnable foe (rotating to a fresh stand and avoiding the
+mob's area), and walks to a healer to resurrect when killed.
+
+The full guide is **[`BT.md`](BT.md)**.
 
 ---
 
@@ -439,6 +502,8 @@ args rather than committing your own environment. Key fields:
 | `day [on\|off]`                            | Force full daylight / restore server light levels |
 | `verbose [on\|off]`                        | Toggle per-packet console chatter |
 | `target ...`                               | Set target cursor |
+| `run <script.js>`                          | Load + run a JS bot script in a fresh runtime (re-run to reload) |
+| `js stop`                                  | Stop the running JS script |
 | *anything else*                            | Sent as `0x03` ASCII speech |
 
 **Item-target tokens:** `0x…` ≥ `0x40000000` → serial; smaller → graphic id; else → tiledata name. Multi-word names need quotes.
@@ -496,6 +561,7 @@ src/
   builders/Builders.cpp   outbound packet builders
   navigation/             PathPlanner (threaded A*) · NavigationState
   bot/                    Pathfinding (A* + grass bias) · Blacklist (overlay + I/O)
+  js/                     QuickJS engine (JsEngine) + Player/World/Mobiles/Vendor bindings
   mul/                    File · TileData · Map · World · Art · Texmap · Anim ·
                           AnimData · AnimInfo · Hues · Verdata · RadarColors · dump CLI
   render/                 Renderer (iso) · Minimap · RadarColors · Text · MiniFBWindow
@@ -504,16 +570,19 @@ include/
   win32/MiniFB.h          windowing
 tests/                    huffman / blacklist / path-probe / viewer / anim probes
 scripts/                  build + regression batch files
-AGENTS.md, bot-client.md  developer + design documentation
+  js/                     JS bot scripts (lumberjack) + lib/ (behaviour runner + skills)
+AGENTS.md · BT.md · ...   developer + design documentation (see below)
 ```
 
 ---
 
 ## Status, limitations & roadmap
 
-- **Combat reactions are a hook only.** A HP drop while travelling halts the path
-  safely and logs the threat; the actual *engage / flee / recall* policies are TODO
-  (they need combat-target packets, recall/reagent/rune handling, and a policy).
+- **Combat in C++ is a hook; the policy lives in JS.** The C++ core only halts the
+  path safely on a HP drop and logs the threat. The actual *engage / flee /
+  resurrect* behaviour is implemented in the JS layer (the threat meter + the
+  lumberjack's DPS-race assessment). **Recall** (spell + reagent/rune handling) is
+  still TODO.
 - **Road bias** uses a minimal grass tile set; expand it with this shard's exact
   grass/road IDs to sharpen routing.
 - **`blacklist.mul` auto-persist is disabled** (read-only) to avoid poisoning
@@ -527,7 +596,7 @@ AGENTS.md, bot-client.md  developer + design documentation
 
 ## Developer documentation
 
-Two in-repo docs go deeper than this README:
+Several in-repo docs go deeper than this README:
 
 - **[`AGENTS.md`](AGENTS.md)** — repository guidelines: structure, runtime notes,
   build/test commands, coding style, and the reverse-engineering workflow
@@ -536,6 +605,11 @@ Two in-repo docs go deeper than this README:
 - **[`bot-client.md`](bot-client.md)** — the design & state notes: protocol flow,
   movement model, pathfinding internals, obstacle/door/mobile/fatigue handling, the
   full tunables table, and the known-limitations list.
+- **[`BT.md`](BT.md)** — the bot-scripting guide: the priority behaviour runner,
+  cancellation tokens, the `BehaviorScript` base class and skill mixins, with a full
+  worked example. `scripts/js/globals.d.ts` carries the matching TypeScript types
+  (the source of truth for the scripting surface).
+- **[`JS-BIBLE.md`](JS-BIBLE.md)** — the deeper JS scripting reference.
 
 ---
 
