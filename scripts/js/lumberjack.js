@@ -98,23 +98,31 @@ class Lumberjack extends BehaviorScript {
             ` at ${this.threat.x},${this.threat.y}`);
     }
 
-    assessFight(base) {
-        const myFrac = this.hpFrac();
-        const foePct = this.threat ? this.threat.hpPct : -1;
+    assessFight(baseline) {
+        const myHp = this.hpFrac();
+        const foeHp = this.threat ? this.threat.hpPct : -1;
         const now = Date.now();
-        if (base.t0 === 0 && foePct >= 0) { base.t0 = now; base.my0 = myFrac; base.foe0 = foePct; }
+        // Latch the start-of-fight snapshot once foe HP is actually known.
+        if (baseline.startMs === 0 && foeHp >= 0) {
+            baseline.startMs = now;
+            baseline.startMyHp = myHp;
+            baseline.startFoeHp = foeHp;
+        }
 
-        if (myFrac < this.FLEE_HP_FRAC) return { flee: true, why: `HP ${(myFrac * 100) | 0}% < floor` };
+        // Hard floor: bail the moment my HP drops below the panic threshold.
+        if (myHp < this.FLEE_HP_FRAC) return { flee: true, why: `HP ${(myHp * 100) | 0}% < floor` };
 
-        if (base.t0 && now - base.t0 >= this.LOSE_ASSESS_MS) {
-            const myLost = base.my0 - myFrac;
-            const foeLost = base.foe0 - foePct;
-            if (myLost >= 0.1) {
-                if (foeLost <= 0.02)
-                    return { flee: true, why: `cannot dent foe (foe ${(foePct * 100) | 0}%)` };
-                const myTtl = myFrac / myLost, foeTtl = foePct / foeLost;
-                if (myTtl <= foeTtl)
-                    return { flee: true, why: `losing race (me ${myTtl.toFixed(1)} <= foe ${foeTtl.toFixed(1)})` };
+        // Trend check, only after the fight has run long enough to read a trend.
+        if (baseline.startMs && now - baseline.startMs >= this.LOSE_ASSESS_MS) {
+            const myHpLost = baseline.startMyHp - myHp;
+            const foeHpLost = baseline.startFoeHp - foeHp;
+            if (myHpLost >= 0.1) {
+                if (foeHpLost <= 0.02)
+                    return { flee: true, why: `cannot dent foe (foe ${(foeHp * 100) | 0}%)` };
+                // Crude time-to-die for each side: remaining HP / loss-so-far.
+                const myTimeToDie = myHp / myHpLost, foeTimeToDie = foeHp / foeHpLost;
+                if (myTimeToDie <= foeTimeToDie)
+                    return { flee: true, why: `losing race (me ${myTimeToDie.toFixed(1)} <= foe ${foeTimeToDie.toFixed(1)})` };
             }
         }
         return { flee: false };
@@ -124,11 +132,12 @@ class Lumberjack extends BehaviorScript {
         const { token } = this;
         token.onCancel(() => { Player.follow(false); Player.setWarMode(false); });
         let followSerial = 0;
-        const base = { t0: 0, my0: -1, foe0: -1 };
+        const baseline = { startMs: 0, startMyHp: -1, startFoeHp: -1 };
         while (this.threat?.exists && !Player.dead) {
-            const verdict = this.assessFight(base);
+            const verdict = this.assessFight(baseline);
             if (verdict.flee) {
-                console.warn(`[lj] ${verdict.why} -> flee (hp ${Player.hp}/${Player.hpMax})`);
+                const foeName = this.threat?.name || '0x' + (this.threat?.serial ?? 0).toString(16);
+                console.warn(`[lj] ${verdict.why} -> flee from ${foeName} (hp ${Player.hp}/${Player.hpMax})`);
                 this.fleeing = true;
                 // Blacklist this mob's area for a while and rotate to a different
                 // stand, so after banking + resting `chop` starts somewhere new
@@ -337,6 +346,14 @@ class Lumberjack extends BehaviorScript {
 
     onStart() {
         this.threatMeter.start();
+    }
+
+    // Rest to full stamina and stock consumables before the first chop. Awaited by
+    // the base class before the tick loop starts (see BehaviorScript._bootstrap),
+    // so it has a token and runs exactly once, with no behaviour racing it.
+    async onStartup() {
+        await this.rest();
+        await this.restock();
     }
 
     onStop() {

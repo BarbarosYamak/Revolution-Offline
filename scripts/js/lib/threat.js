@@ -200,8 +200,12 @@
                 if (!blame.length && nearby.length)                     // else the nearest
                     blame = [nearby.reduce((b, n) => (!b || n.dist < b.dist ? n : b), null)];
                 for (const n of blame) {
-                    if (!meter.hostileUntil.has(n.serial))
-                        console.warn(`[threat] hit -> confirmed foe 0x${n.serial.toString(16)} body=0x${n.body.toString(16)} (add to aggressiveBodies if it attacks on sight)`);
+                    if (!meter.hostileUntil.has(n.serial)) {
+                        // Only nag to extend the list for bodies we did NOT already
+                        // class as aggressive; a known body is just confirmed.
+                        const hint = aggroSet.has(n.body) ? '' : ' (add to aggressiveBodies if it attacks on sight)';
+                        console.warn(`[threat] hit -> confirmed foe 0x${n.serial.toString(16)} body=0x${n.body.toString(16)}${hint}`);
+                    }
                     meter.markHostile(n.serial);
                 }
             }

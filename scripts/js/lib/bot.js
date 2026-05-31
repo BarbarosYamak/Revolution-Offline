@@ -68,17 +68,38 @@
                 onPreempt: () => this.onPreempt(),
                 onTransition: (name, event) => this.onTransition(name, event),
             });
-            this.onStart();
-            this.runner.start();
+            this._stopped = false;
+            this.onStart();        // synchronous setup (e.g. start the threat meter)
+            this._bootstrap();     // async prelude, THEN start the tick loop
             return this;
         }
 
+        // Run the async onStartup() hook to completion, then begin the behaviour
+        // tick loop. The hook gets a real token (so walkTo/rest/restock work) and
+        // runs BEFORE the runner ticks — so it cannot be preempted by a behaviour;
+        // keep it to short, safe prep (rest, restock), not open-ended work.
+        async _bootstrap() {
+            const token = makeToken();
+            this.token = token;
+            try {
+                await this.onStartup();
+            } catch (e) {
+                if (e !== CANCELLED) (this.onError || reportError)(e);
+            } finally {
+                if (this.token === token) this.token = null;
+            }
+            if (!this._stopped) this.runner.start();
+        }
+
         stop() {
+            this._stopped = true;
+            if (this.token) this.token.cancel();   // unwind an in-flight onStartup
             if (this.runner) this.runner.stop();
             this.onStop();
         }
 
         onStart() {}
+        async onStartup() {}   // async one-time prelude, awaited before the tick loop
         onStop() {}
         onPreempt() { Player.stop(); }
 
