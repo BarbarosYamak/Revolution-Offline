@@ -9,9 +9,57 @@
 
 // ===== shared data shapes =====
 
+type UoSerial = number;
+
+/** World-space point without height. */
+interface UoPoint {
+    x: number;
+    y: number;
+}
+
+/** World-space point with height. */
+interface UoWorldPoint extends UoPoint {
+    z: number;
+}
+
+/** Movement pathing options accepted by Player.goto() and BehaviorScript.walkTo(). */
+interface UoPathOptions {
+    /** false drops the road/grass bias for a direct route. */
+    terrain?: boolean;
+}
+
+/** High-level movement options used by BehaviorScript.walkTo(). */
+interface WalkOptions extends UoPathOptions {
+    /** Walk to one of the 8 surrounding cells instead of the target cell itself. */
+    adjacent?: boolean;
+    /** Stop once within this Chebyshev distance. */
+    range?: number;
+}
+
+/** Player.use/equip/drop item selector: serial, graphic id, or name substring. */
+type UoItemTarget = UoSerial | string;
+
+/** One row sent to Vendor.buy(). `serial` must come from a VendorItem row. */
+interface VendorBuyRequest {
+    serial: UoSerial;
+    qty: number;
+    /** Vendor shop-container layer; defaults to 0x1A stock. */
+    layer?: number;
+}
+
+/** Restock rule consumed by SurvivalSkill.restockConsumables(). */
+interface ConsumableSpec {
+    /** Name substring(s) to count/buy. Defaults to the containing map key. */
+    name?: string | string[];
+    target: number;
+    coords: UoPoint;
+    /** Paperdoll title substring, e.g. "healer" or "provisioner". */
+    title: string;
+}
+
 /** One item inside a container (Player.equipment.backpack.items). */
 interface UoItem {
-    serial: number;
+    serial: UoSerial;
     graphic: number;
     amount: number;
     hue: number;
@@ -21,15 +69,12 @@ interface UoItem {
 
 /** A worn container (e.g. the backpack). `items` is empty until it is opened. */
 interface UoContainer {
-    serial: number;
+    serial: UoSerial;
     items: UoItem[];
 }
 
 /** One static tile from World.statics(). */
-interface UoStatic {
-    x: number;
-    y: number;
-    z: number;
+interface UoStatic extends UoWorldPoint {
     /** Raw tile id. */
     graphic: number;
     /** Lowercased tiledata name (use to spot trees etc.). */
@@ -45,22 +90,22 @@ interface TargetEvent { id: number; type: number; }
 interface JournalEvent {
     text: string;
     type: number;
-    serial: number;
+    serial: UoSerial;
     hue: number;
     /** True when it is a system line (no owner mobile). */
     system: boolean;
 }
 
 /** `arrival`: a Player.goto() reached its destination. */
-interface ArrivalEvent { x: number; y: number; z: number; }
+interface ArrivalEvent extends UoWorldPoint {}
 
 /** `container_open`: a container gump opened (0x24). */
-interface ContainerEvent { serial: number; gump: number; }
+interface ContainerEvent { serial: UoSerial; gump: number; }
 
 /** One row of a vendor's buy window (joined 0x3C stock + 0x74 prices). */
 interface VendorItem {
     /** Stock item serial — pass to Vendor.buy(). */
-    serial: number;
+    serial: UoSerial;
     graphic: number;
     /** Amount the vendor has in stock. */
     amount: number;
@@ -81,7 +126,7 @@ interface VendorDoneEvent { vendor: number; flag: number; }
 
 /** `paperdoll`: an 0x88 paperdoll arrived after a double-click. title is
  *  "<name> the <job>" — the only client-visible carrier of an NPC's job. */
-interface PaperdollEvent { serial: number; title: string; }
+interface PaperdollEvent { serial: UoSerial; title: string; }
 
 /** One selectable option of a 0x7C dialog/menu. */
 interface DialogOption {
@@ -106,7 +151,7 @@ interface DialogEvent {
 /** A live mobile handle: holds only the serial; every field re-resolves the
  *  cache, so it never dangles. Read `exists` for liveness. From Mobiles.get/all. */
 interface UoMobile {
-    readonly serial: number;
+    readonly serial: UoSerial;
     readonly x: number;
     readonly y: number;
     readonly z: number;
@@ -146,17 +191,17 @@ interface UoEventMap {
     arrival: ArrivalEvent;
     container_open: ContainerEvent;
     /** A container closed or was culled for leaving view range. { serial }. */
-    container_close: { serial: number };
+    container_close: { serial: UoSerial };
     /** A mobile newly appeared (0x78). Payload is its serial; use Mobiles.get. */
-    mobile: number;
+    mobile: UoSerial;
     /** A mobile's record was removed (0x1D delete, or it left the ~18-tile view
      *  range and was culled). Payload is its serial; Mobiles.get now reads
      *  exists=false. Use it to drop the mobile from any local tracking. */
-    mobile_leave: number;
+    mobile_leave: UoSerial;
     /** Something swung at us (0x2F). Payload is the attacker serial; use Mobiles.get. */
-    attacked: number;
+    attacked: UoSerial;
     /** We are swinging at a foe (0x2F, us as attacker). Payload is the defender serial. */
-    combat: number;
+    combat: UoSerial;
     /** The server opened the resurrection menu (0x2C). action: 0 prompt, 1 resurrect, 2 ghost. */
     resurrect_menu: { action: number };
     /** The server opened a 0x7C list/menu dialog (e.g. healer resurrect). */
@@ -185,7 +230,7 @@ interface UoEvents {
 
 interface UoPlayer extends UoEvents {
     // --- live read-only state ---
-    readonly serial: number;
+    readonly serial: UoSerial;
     readonly name: string;
     readonly x: number;
     readonly y: number;
@@ -211,44 +256,45 @@ interface UoPlayer extends UoEvents {
     // --- actions ---
     /** Walk to (x, y[, z]). Resolves on arrival; rejects Error{reason} on abort.
      *  opts.terrain=false drops the road/grass bias (direct route, e.g. between trees). */
-    goto(x: number, y: number, z?: number, opts?: { terrain?: boolean }): Promise<void>;
-    goto(x: number, y: number, opts?: { terrain?: boolean }): Promise<void>;
+    goto(x: number, y: number, z?: number, opts?: UoPathOptions): Promise<void>;
+    goto(x: number, y: number, opts?: UoPathOptions): Promise<void>;
     /** Double-click an item by serial, graphic id, or name substring. */
-    use(target: number | string): void;
+    use(target: UoItemTarget): void;
     /** Raw double-click by serial (0x06), no item resolution — use for MOBILES.
      *  Double-clicking an NPC opens its paperdoll, which fires the `paperdoll`
      *  event (and populates that mobile's `title`). */
-    doubleClick(serial: number): void;
+    doubleClick(serial: UoSerial): void;
     /** Lift `qty` units (default 0 = whole stack) of `serial` from whatever open
      *  container holds it and drop into the backpack (0x07 + 0x08). Use to
      *  withdraw items from the bank box. */
-    take(serial: number, qty?: number): void;
+    take(serial: UoSerial, qty?: number): void;
     /** Items inside any currently-open container by its serial (e.g. the bank box
      *  after saying "bank"). Returns [] if the container is not open or the items
      *  haven't arrived yet (0x3C). */
-    containerItems(serial: number): UoItem[];
+    containerItems(serial: UoSerial): UoItem[];
     /** Wear an item from the backpack (or world) by serial or name. The layer
      *  comes from tiledata — use this for the axe, which must be in hand to chop. */
-    equip(target: number | string): void;
+    equip(target: UoItemTarget): void;
     /** Answer the armed target cursor. */
-    target(serial: number): void;                                  // object
+    target(serial: UoSerial): void;                                // object
     target(x: number, y: number, z?: number): void;               // ground tile
     target(x: number, y: number, z: number, graphic: number): void; // static (tree)
     /** Speak a line (0x03), e.g. "bank". */
     say(text: string): void;
     /** Move a bag item (by serial / graphic / name) into a container serial. */
-    drop(target: number | string, container: number): void;
+    drop(target: UoItemTarget, container: UoSerial): void;
     /** Send an attack request (0x05) at a mobile serial. */
-    attack(serial: number): void;
+    attack(serial: UoSerial): void;
     /** Query a mobile's status (0x34): the server replies with its HP and then
      *  auto-pushes 0xA1 updates, so afterwards Mobiles.get(serial).hp/.hpPct stay
      *  live. Passive — does NOT aggro the target (unlike attack). */
-    requestStatus(serial: number): void;
+    requestStatus(serial: UoSerial): void;
     /** Follow a mobile via the bot pathfinder, keeping within `distance` tiles
      *  (default 1 = melee). Use during a fight to chase + hold facing on the foe.
      *  Call follow(false) / follow(0) to stop. */
-    follow(serial: number, distance?: number): void;
+    follow(serial: UoSerial, distance?: number): void;
     follow(off: false): void;
+    follow(off: 0 | null): void;
     /** Abort any in-flight goto path and stop following. Makes a parked
      *  Player.goto() reject — the cancel primitive behaviour steps rely on. */
     stop(): void;
@@ -278,7 +324,7 @@ interface UoWorld extends UoEvents {
 /** Live mobile collection. Handles are live (see UoMobile). */
 interface UoMobiles {
     /** A live handle for `serial` (always returns one; check .exists). */
-    get(serial: number): UoMobile;
+    get(serial: UoSerial): UoMobile;
     /** Live handles for every cached mobile (excluding the player). */
     all(): UoMobile[];
 }
@@ -292,7 +338,7 @@ interface UoVendor extends UoEvents {
     /** Buy from a vendor: pass the `vendor` serial and items from a `vendor_buy`
      *  offer's rows ({serial, qty}; layer defaults to 0x1A stock). Sends 0x3B and
      *  returns the number of rows sent. The server closes with `vendor_done`. */
-    buy(vendorSerial: number, items: { serial: number; qty: number; layer?: number }[]): number;
+    buy(vendorSerial: UoSerial, items: VendorBuyRequest[]): number;
 }
 
 declare const Player: UoPlayer;
@@ -309,22 +355,27 @@ declare function delay(ms: number): Promise<void>;
 /** King-move (Chebyshev) distance between two points: max(|dx|, |dy|). This is
  *  UO's own notion of distance (a diagonal step counts as one tile), matching the
  *  server's range checks. Use for "how many tiles away" tests and nearest-sort. */
-declare function tileDistance(a: { x: number; y: number }, b: { x: number; y: number }): number;
+declare function tileDistance(a: UoPoint, b: UoPoint): number;
 
 /** Print an error (and its stack) to stderr. */
 declare function reportError(e: unknown): void;
 
-/** Wait for a journal line; resolves with the line text. Rejects on timeout. */
-declare function waitForJournal(opts: {
+interface JournalWaitOptions {
     contains?: string | RegExp;
+    /** Omit only for intentionally unbounded waits; prefer a timeout in behaviour steps. */
     ms?: number;
-}): Promise<string>;
+}
+
+/** Wait for a journal line; resolves with the line text. Rejects on timeout. */
+declare function waitForJournal(opts: JournalWaitOptions): Promise<string>;
 
 /** Wait for a container to open. With `serial`, only that one matches. */
-declare function waitForContainer(opts?: {
-    serial?: number;
+interface ContainerWaitOptions {
+    serial?: UoSerial;
     ms?: number;
-}): Promise<ContainerEvent>;
+}
+
+declare function waitForContainer(opts?: ContainerWaitOptions): Promise<ContainerEvent>;
 
 /** Tunable weights/thresholds for createThreatMeter (all optional). */
 interface ThreatMeterOpts {
@@ -359,9 +410,9 @@ interface ThreatMeterOpts {
     /** Map a notoriety (1..7) to a danger weight; 0 = ignore. */
     notoDanger?: (n: number) => number;
     /** Fired when the danger level changes. */
-    onLevel?: (level: ThreatLevel, prev: ThreatLevel, score: number, top: number) => void;
+    onLevel?: (level: ThreatLevel, prev: ThreatLevel, score: number, top: UoSerial) => void;
     /** Fired every sample while level === 'danger' (top = scariest mob serial). */
-    onDanger?: (top: number, score: number) => void;
+    onDanger?: (top: UoSerial, score: number) => void;
 }
 
 type ThreatLevel = 'calm' | 'wary' | 'danger';
@@ -370,7 +421,7 @@ type ThreatLevel = 'calm' | 'wary' | 'danger';
 interface ThreatMeter {
     readonly score: number;
     readonly level: ThreatLevel;
-    readonly top: number;      // serial of the scariest mob (0 = none)
+    readonly top: UoSerial;    // serial of the scariest mob (0 = none)
     readonly count: number;    // hostile mobs in range
     cfg: ThreatMeterOpts;
     /** Recompute once now (start() calls this on a timer). */
@@ -381,10 +432,10 @@ interface ThreatMeter {
     stop(): void;
     /** Force the meter to max for directMemoryMs (an explicit attack on us). Pass
      *  the attacker serial to also mark it as the confirmed foe. */
-    markDirectAttack(serial?: number): void;
+    markDirectAttack(serial?: UoSerial): void;
     /** Mark a mob as a confirmed attacker (counts its proactive score, makes it
      *  eligible as the top foe) for hostileMemoryMs. */
-    markHostile(serial: number): void;
+    markHostile(serial: UoSerial): void;
 }
 
 /** Create a shared multi-factor danger meter (scoring lives in bootstrap.js). */
@@ -401,6 +452,8 @@ interface CancelToken {
     readonly cancelled: boolean;
     /** Register a cleanup callback run when the step is preempted. */
     onCancel(fn: () => void): void;
+    /** Fire cancellation and run registered cleanup callbacks. */
+    cancel(): void;
     /** Throw CANCELLED if preempted (call between awaits). */
     check(): void;
     /** Await a promise, unwinding with CANCELLED the instant we are preempted.
@@ -516,8 +569,7 @@ declare class BehaviorScript {
     /** Walk to `target`. range>0 loops until within N tiles; range==0 steps onto
      *  the target (or, with adjacent, the nearest surrounding cell). terrain=false
      *  drops the road/grass bias. Returns true on arrival. */
-    walkTo(target: { x: number; y: number },
-        opts?: { adjacent?: boolean; range?: number; terrain?: boolean }): Promise<boolean>;
+    walkTo(target: UoPoint, opts?: WalkOptions): Promise<boolean>;
 }
 
 /** Banking skill (lib/bank.js). Mix in with
@@ -525,11 +577,11 @@ declare class BehaviorScript {
  *  this.WALLET. */
 interface BankSkill {
     /** Open a container by serial; resolves with the container_open event. */
-    openContainer(serial: number): Promise<ContainerEvent>;
+    openContainer(serial: UoSerial): Promise<ContainerEvent>;
     /** Say "bank" and resolve with the bank box once it opens. */
     openBank(): Promise<ContainerEvent>;
     /** Drop one backpack stack into a container, retrying past the cooldown. */
-    depositStack(item: UoItem, container: number): Promise<boolean>;
+    depositStack(item: UoItem, container: UoSerial): Promise<boolean>;
     /** Deposit every backpack stack whose name contains `nameFilter`. */
     deposit(nameFilter: string): Promise<void>;
     /** Withdraw gold until the backpack holds `amount` (default this.WALLET). */
@@ -548,17 +600,12 @@ interface SurvivalSkill {
     eatFood(): Promise<void>;
     /** Find a vendor near `coords` whose paperdoll title contains `title` (guild
      *  masters excluded). Double-clicks nearby mobiles to learn titles. */
-    findVendor(title: string, coords: { x: number; y: number }): Promise<UoMobile | null>;
+    findVendor(title: string, coords: UoPoint): Promise<UoMobile | null>;
     /** Approach a vendor, say "vendor buy", and buy up to `target` of the matching items. */
     buyFrom(vendor: UoMobile, nameVariants: string[], displayName: string, target: number): Promise<boolean>;
     /** Buy back every consumable the backpack is out of, visiting the needed
      *  vendors along the shortest total route from the current position. */
-    restockConsumables(consumables: Record<string, {
-        name?: string | string[];
-        target: number;
-        coords: { x: number; y: number };
-        title: string;
-    }>): Promise<void>;
+    restockConsumables(consumables: Record<string, ConsumableSpec>): Promise<void>;
 }
 
 /** Bots mix the skills onto their prototype, so a subclass exposes both at
