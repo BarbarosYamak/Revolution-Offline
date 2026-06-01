@@ -81,7 +81,7 @@ bool IsGrassLikeTile(u16 id) {
 
 }
 
-std::vector<u8> FindPath(uo::world::World& world,
+std::vector<u8> FindPath(world::World& world,
                          i32 sx, i32 sy, i8 sz,
                          i32 gx, i32 gy,
                          const PathOptions& opts) {
@@ -158,7 +158,7 @@ std::vector<u8> FindPath(uo::world::World& world,
             const i32 ny = n.y + dy;
             if (nx < 0 || ny < 0) continue;
 
-            uo::world::WalkQuery wq{};
+            world::WalkQuery wq{};
             wq.x          = static_cast<u32>(nx);
             wq.y          = static_cast<u32>(ny);
             wq.fromZ      = n.z;
@@ -187,7 +187,7 @@ std::vector<u8> FindPath(uo::world::World& world,
             // wall and the server silently rejects (or RSTs after
             // repeats).
             if (dx != 0 && dy != 0) {
-                uo::world::WalkQuery wqA{}, wqB{};
+                world::WalkQuery wqA{}, wqB{};
                 wqA.x = static_cast<u32>(n.x + dx);
                 wqA.y = static_cast<u32>(n.y);
                 wqA.fromZ = n.z;

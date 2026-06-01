@@ -4,7 +4,7 @@
 
 namespace uo::world {
 
-namespace td = uo::tiledata;
+namespace td = tiledata;
 
 constexpr i32 kMaxLandStepUp = 2;
 

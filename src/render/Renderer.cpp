@@ -4,6 +4,7 @@
 #include <climits>
 #include <cmath>
 #include <cstdlib>
+#include <ranges>
 #include <unordered_set>
 
 namespace uo::render {
@@ -234,7 +235,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     const int gw = gx1 - gx0 + 1, gh = gy1 - gy0 + 1;
     std::vector<i8> zmap(static_cast<usize>(gw) * gh, 0);
     {
-        map::MapBlock zb;
+        map::MapBlock zb{};
         for (u32 by = static_cast<u32>(gy0)/8; by <= static_cast<u32>(gy1)/8; ++by) {
             for (u32 bx = static_cast<u32>(gx0)/8; bx <= static_cast<u32>(gx1)/8; ++bx) {
                 if (!map.ReadBlock(bx, by, &zb)) continue;
@@ -284,7 +285,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     for (u32 by = by0; by <= by1; ++by) {
         for (u32 bx = bx0; bx <= bx1; ++bx) {
             // --- Land (drawn immediately; always under statics) ------------
-            map::MapBlock mb;
+            map::MapBlock mb{};
             if (map.ReadBlock(bx, by, &mb)) {
                 for (int cy = 0; cy < 8; ++cy) {
                     for (int cx = 0; cx < 8; ++cx) {
@@ -542,7 +543,7 @@ void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
     // instead of the floor bleeding over them.
     // Stretched land uses its average-corner z (LandObject_CreateForCell) for a
     // smooth coast. Stable so equal-key statics keep statics0.mul order.
-    std::stable_sort(draws.begin(), draws.end(), [](const Draw& a, const Draw& b) {
+    std::ranges::stable_sort(draws, [](const Draw& a, const Draw& b) {
         if (a.depth != b.depth) return a.depth < b.depth;
         if (a.col   != b.col)   return a.col   < b.col;
         // Foliage (tree/bush canopies) draws after everything else IN ITS CELL,
@@ -675,12 +676,12 @@ u32 Renderer::PickObject(int sx, int sy, bool* mobile) const {
     // Walk front-to-back (picks_ is back-to-front draw order) and return the
     // first object whose sprite has a non-transparent texel under the cursor —
     // the topmost visible hit, like the client's far->near cell walk.
-    for (auto it = picks_.rbegin(); it != picks_.rend(); ++it) {
-        const int lx = sx - it->dx, ly = sy - it->dy;
-        if (lx < 0 || ly < 0 || lx >= it->sw || ly >= it->sh) continue;
-        if (!it->src[static_cast<usize>(ly) * it->sw + lx]) continue;  // see-through
-        if (mobile) *mobile = it->mobile;
-        return it->serial;
+    for (const auto & pick : std::views::reverse(picks_)) {
+        const int lx = sx - pick.dx, ly = sy - pick.dy;
+        if (lx < 0 || ly < 0 || lx >= pick.sw || ly >= pick.sh) continue;
+        if (!pick.src[static_cast<usize>(ly) * pick.sw + lx]) continue;  // see-through
+        if (mobile) *mobile = pick.mobile;
+        return pick.serial;
     }
     if (mobile) *mobile = false;
     return 0;

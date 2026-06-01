@@ -677,7 +677,7 @@ void Client::OnCharacterList(const u8* data, usize size) {
         return;
     }
 
-    selectedChar_ = 1; // PromptCharacterSelection();
+    selectedChar_ = 0; // PromptCharacterSelection();
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
         LogWarn( "[ui] invalid character slot\n");

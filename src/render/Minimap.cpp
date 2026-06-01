@@ -43,13 +43,13 @@ Minimap::Minimap(int size)
 // like CRadarGump_Update — land first, then any static whose z is >= the
 // running top z overrides it (later statics win ties, matching the client's
 // z-buffer compare `staticZ+128 >= zbuf`).
-void Minimap::FillBlock(uo::map::Map& map, const RadarColors& radar,
+void Minimap::FillBlock(map::Map& map, const RadarColors& radar,
                         u32 bx, u32 by, std::vector<u16>& cols) {
     cols.assign(64, kColVoid);
     int topZ[64];
     for (int i = 0; i < 64; ++i) topZ[i] = INT_MIN;
 
-    uo::map::MapBlock mb;
+    map::MapBlock mb;
     if (map.ReadBlock(bx, by, &mb)) {
         for (int i = 0; i < 64; ++i) {
             bool has = false;
@@ -64,7 +64,7 @@ void Minimap::FillBlock(uo::map::Map& map, const RadarColors& radar,
     if (map.ReadStatics(bx, by, staticsBuf_.data(),
                         static_cast<u32>(staticsBuf_.size()), &n)) {
         for (u32 i = 0; i < n; ++i) {
-            const uo::map::StaticItem& s = staticsBuf_[i];
+            const map::StaticItem& s = staticsBuf_[i];
             const int idx = (s.cellY & 7) * 8 + (s.cellX & 7);
             if (static_cast<int>(s.z) >= topZ[idx]) {
                 topZ[idx] = s.z;
@@ -74,7 +74,7 @@ void Minimap::FillBlock(uo::map::Map& map, const RadarColors& radar,
     }
 }
 
-u16 Minimap::CellColor(uo::map::Map& map, const RadarColors& radar, i32 x, i32 y) {
+u16 Minimap::CellColor(map::Map& map, const RadarColors& radar, i32 x, i32 y) {
     if (x < 0 || y < 0) return kColVoid;
     const u32 bx = static_cast<u32>(x) / 8, by = static_cast<u32>(y) / 8;
     if (bx >= map.WidthBlocks() || by >= map.HeightBlocks()) return kColVoid;
@@ -112,7 +112,7 @@ void Minimap::DrawLine(int x0, int y0, int x1, int y1, u16 color) {
     }
 }
 
-void Minimap::Render(uo::map::Map& map, const RadarColors& radar,
+void Minimap::Render(map::Map& map, const RadarColors& radar,
                      i32 playerX, i32 playerY,
                      const i32* pathX, const i32* pathY, usize nPath) {
     // Cheap change signature: skip the (potentially thousands of) cell lookups

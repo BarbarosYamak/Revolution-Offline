@@ -126,7 +126,7 @@ constexpr i64 kAnimListTickMs = 76;        // GameLoop_Update object/anim gate.
 // bit0->0(N), bit1->2(E), bit2->4(S), bit3->6(W); bit4 (0x10) = special. The
 // seated body faces the chair (overriding its walk facing). offElse/off06 are
 // the seat Y shift (off06 when facing N/W, offElse otherwise) — signed.
-struct ChairSit { uo::u16 graphic; uo::u8 dirMask; int offElse; int off06; };
+struct ChairSit { u16 graphic; u8 dirMask; int offElse; int off06; };
 constexpr ChairSit kChairSit[] = {
     {0x0B2E,4,6,6},{0x0B2F,2,6,6},{0x0B4E,2,0,0},{0x0B4F,4,0,0},
     {0x0B52,2,0,0},{0x0B53,4,0,0},{0x0B56,2,4,4},{0x0B57,4,4,4},
@@ -148,7 +148,7 @@ constexpr ChairSit kChairSit[] = {
     {0x1771,31,0,0},
 };
 
-const ChairSit* FindChairSit(uo::u16 graphic) {
+const ChairSit* FindChairSit(u16 graphic) {
     for (const ChairSit& c : kChairSit)
         if (c.graphic == graphic) return &c;
     return nullptr;
@@ -157,7 +157,7 @@ const ChairSit* FindChairSit(uo::u16 graphic) {
 // Pick the seated facing from the chair's dirMask. Single-bit -> that cardinal
 // facing; multi-bit (stools/thrones) -> the allowed facing nearest the mob's
 // current facing. bit4 (0x10) is special and ignored for facing.
-uo::u8 SitFacing(uo::u8 dirMask, uo::u8 curDir) {
+u8 SitFacing(u8 dirMask, u8 curDir) {
     int best = -1, bestDist = 99;
     const int cur = curDir & 7;
     for (int b = 0; b < 4; ++b) {
@@ -167,7 +167,7 @@ uo::u8 SitFacing(uo::u8 dirMask, uo::u8 curDir) {
         if (d > 4) d = 8 - d;                 // circular over 8 facings
         if (d < bestDist) { bestDist = d; best = f; }
     }
-    return best >= 0 ? static_cast<uo::u8>(best) : static_cast<uo::u8>(cur);
+    return best >= 0 ? static_cast<u8>(best) : static_cast<u8>(cur);
 }
 } // namespace
 
@@ -271,7 +271,7 @@ void Client::RenderTick() {
     std::unordered_set<u32> corpseAnim;
     std::unordered_set<u32> corpseHidden;
     for (const auto& kv : corpses_) {
-        if (items_.find(kv.first) == items_.end()) continue;
+        if (!items_.contains(kv.first)) continue;
         const CorpseObj& c = kv.second;
         bool dyingNow = false;
         if (c.deadMobile != 0 && c.deadMobile == playerSerial_) {
@@ -295,7 +295,7 @@ void Client::RenderTick() {
         // Corpses drawn as a body pose (or hidden during the death anim) must not
         // also draw the flat item sprite.
         if (kv.second.itemId == 0x2006 &&
-            (corpseAnim.count(kv.first) || corpseHidden.count(kv.first)))
+            (corpseAnim.contains(kv.first) || corpseHidden.contains(kv.first)))
             continue;
         render::DynItem di{kv.second.itemId, kv.second.x, kv.second.y,
                            kv.second.z, kv.second.gfxOffset, kv.second.hue};
@@ -308,7 +308,7 @@ void Client::RenderTick() {
     // verbatim from g_DrawLayerOrder @0x5144C0 with the mount slot (layer 25)
     // omitted here — the mount is handled separately (drawn as a body under the
     // rider, see applyMount below), not as a worn overlay. Index by facing 0..7.
-    static constexpr uo::u8 kLayerDrawOrder[8][24] = {
+    static constexpr u8 kLayerDrawOrder[8][24] = {
         {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,2,21,20,6},
         {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,2,6},
         {5,4,3,24,19,13,8,9,14,15,7,23,17,22,12,10,11,16,18,1,21,20,2,6},
@@ -321,13 +321,13 @@ void Client::RenderTick() {
 
     // Resolve worn items to anim ids in the client's per-facing draw order. Only
     // graphics with a valid worn anim (0x190..0x3E7) are drawable.
-    auto resolveEquip = [&](uo::u8 dir, const std::vector<EquipObj>& equip,
+    auto resolveEquip = [&](u8 dir, const std::vector<EquipObj>& equip,
                             std::vector<render::EquipAnim>& out) {
         if (!tileData_ || equip.empty()) return;
-        for (uo::u8 slot : kLayerDrawOrder[dir & 7]) {
+        for (u8 slot : kLayerDrawOrder[dir & 7]) {
             for (const auto& e : equip) {
                 if (e.layer != slot) continue;
-                const uo::u16 a = tileData_->ItemAnimId(e.graphic);
+                const u16 a = tileData_->ItemAnimId(e.graphic);
                 if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
                 break;
             }
@@ -338,7 +338,7 @@ void Client::RenderTick() {
     // @0x5147E0 (25 entries per facing). CCorpse_OnRender walks this and skips
     // slots 21 and 25 (special/mount), so the corpse wears the same gear in the
     // dead body's own z-order — slightly different from the standing order above.
-    static constexpr uo::u8 kCorpseLayerDrawOrder[8][25] = {
+    static constexpr u8 kCorpseLayerDrawOrder[8][25] = {
         {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,2,21,20},
         {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
         {25,5,4,3,24,13,8,9,14,15,19,7,23,17,22,12,10,11,16,18,6,1,21,20,2},
@@ -350,15 +350,15 @@ void Client::RenderTick() {
     };
     // Corpse worn-gear overlay. Only humanoid corpses carry it (CCorpse_OnRender
     // draws the layers only for stackCount >= 0x190).
-    auto resolveCorpseEquip = [&](uo::u8 dir, uo::u16 body,
+    auto resolveCorpseEquip = [&](u8 dir, u16 body,
                                   const std::vector<EquipObj>& equip,
                                   std::vector<render::EquipAnim>& out) {
         if (!tileData_ || equip.empty() || body < 0x190u) return;
-        for (uo::u8 slot : kCorpseLayerDrawOrder[dir & 7]) {
+        for (u8 slot : kCorpseLayerDrawOrder[dir & 7]) {
             if (slot == 21u || slot == 25u) continue;
             for (const auto& e : equip) {
                 if (e.layer != slot) continue;
-                const uo::u16 a = tileData_->ItemAnimId(e.graphic);
+                const u16 a = tileData_->ItemAnimId(e.graphic);
                 if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
                 break;
             }
@@ -369,17 +369,17 @@ void Client::RenderTick() {
     // clock. Falls back to group 0 (walk) when the chosen group is unavailable,
     // so bodies without a stand group still draw.
     const i64 nowAnim = NowMs();
-    auto moveDurationMs = [&](uo::u16 body, bool running) -> i64 {
+    auto moveDurationMs = [&](u16 body, bool running) -> i64 {
         const u8 ticks = animInfo_ ? animInfo_->MoveFrameCount(body, running)
                                    : static_cast<u8>(running ? 2 : 4);
         return static_cast<i64>(ticks ? ticks : 1) * kAnimListTickMs;
     };
 
-    auto resolveAnim = [&](uo::u16 body, uo::u8 dir, bool moving, bool running,
+    auto resolveAnim = [&](u16 body, u8 dir, bool moving, bool running,
                            bool warMode,
-                           uo::u32 animCounter, uo::u8& action, uo::u16& frame) {
+                           u32 animCounter, u8& action, u16& frame) {
         action = PickAction(body, moving, running, warMode);
-        uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
+        u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
             fc = anim_ ? anim_->FrameCount(body, dir, 0u) : 0u;
@@ -388,10 +388,10 @@ void Client::RenderTick() {
         if (fc == 0u) return;
         if (moving && fc > 1u) --fc; // Client uses frameCounter % (frameCount-1).
         if (moving) {
-            frame = static_cast<uo::u16>(animCounter % fc);
+            frame = static_cast<u16>(animCounter % fc);
             return;
         }
-        frame = static_cast<uo::u16>((nowAnim / kAnimIntervalIdleMs) % fc);
+        frame = static_cast<u16>((nowAnim / kAnimIntervalIdleMs) % fc);
     };
 
     auto tickMoveAnim = [&](i64& lastTickMs, u32& counter) {
@@ -463,16 +463,16 @@ void Client::RenderTick() {
         a.pad = 0;
     };
 
-    auto resolveServerAnim = [&](uo::u16 body, uo::u8 dir, ServerAnimState& a,
-                                 uo::u8& action, uo::u16& frame) -> bool {
+    auto resolveServerAnim = [&](u16 body, u8 dir, ServerAnimState& a,
+                                 u8& action, u16& frame) -> bool {
         if (!a.active || !anim_) return false;
-        const uo::u32 fullCount = anim_->FrameCount(body, dir, a.action);
+        const u32 fullCount = anim_->FrameCount(body, dir, a.action);
         if (fullCount == 0u) {
             stopServerAnim(a);
             return false;
         }
         a.maxFrames = static_cast<u16>(
-            std::min<uo::u32>(a.maxFrames ? a.maxFrames : fullCount, fullCount));
+            std::min<u32>(a.maxFrames ? a.maxFrames : fullCount, fullCount));
         if (a.maxFrames == 0u) { stopServerAnim(a); return false; }
         if (a.currentFrame >= a.maxFrames)
             a.currentFrame = a.reverse ? static_cast<u16>(a.maxFrames - 1u) : 0u;
@@ -491,8 +491,8 @@ void Client::RenderTick() {
         return true;
     };
 
-    auto pickIdleFidget = [](uo::u16 body, bool secondChoice, uo::u8& action,
-                             uo::u16& maxFrames, uo::u16& repeatCount) {
+    auto pickIdleFidget = [](u16 body, bool secondChoice, u8& action,
+                             u16& maxFrames, u16& repeatCount) {
         repeatCount = 0;
         const BodyKind k = KindOf(body);
         if (k == BodyKind::People) {
@@ -519,7 +519,7 @@ void Client::RenderTick() {
     };
 
     auto renderIdleFrame = [](IdleAnimState& idle) {
-        idle.renderedAction = static_cast<uo::u8>(idle.action + idle.currentDuration);
+        idle.renderedAction = static_cast<u8>(idle.action + idle.currentDuration);
         idle.renderedFrame = idle.currentFrame;
         idle.hasRenderedFrame = true;
     };
@@ -535,7 +535,7 @@ void Client::RenderTick() {
             if (idle.currentDuration != 0u) {
                 renderIdleFrame(idle);
                 --idle.currentDuration;
-                idle.currentFrame = static_cast<uo::u16>(idle.maxFrames - 1u);
+                idle.currentFrame = static_cast<u16>(idle.maxFrames - 1u);
                 idle.pad = 0;
                 return;
             }
@@ -586,15 +586,15 @@ void Client::RenderTick() {
         }
     };
 
-    auto resolveIdleAnim = [&](uo::u16 body, uo::u8 dir, bool warMode, IdleAnimState& idle,
-                               uo::u8& action, uo::u16& frame) {
+    auto resolveIdleAnim = [&](u16 body, u8 dir, bool warMode, IdleAnimState& idle,
+                               u8& action, u16& frame) {
         action = PickAction(body, false, false, warMode);
-        uo::u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
+        u32 fc = anim_ ? anim_->FrameCount(body, dir, action) : 0u;
         if (fc == 0u && action != 0u) {
             action = 0u;
             fc = anim_ ? anim_->FrameCount(body, dir, 0u) : 0u;
         }
-        frame = fc == 0u ? 0u : static_cast<uo::u16>(std::min<uo::u32>(3u, fc - 1u));
+        frame = fc == 0u ? 0u : static_cast<u16>(std::min<u32>(3u, fc - 1u));
 
         if (!anim_) return;
         if (idle.active) {
@@ -619,9 +619,9 @@ void Client::RenderTick() {
             return;
         }
 
-        uo::u8 fidgetAction = 0;
-        uo::u16 maxFrames = 0;
-        uo::u16 repeatCount = 0;
+        u8 fidgetAction = 0;
+        u16 maxFrames = 0;
+        u16 repeatCount = 0;
         std::uniform_int_distribution<int> choice(0, 1);
         pickIdleFidget(body, choice(nav_.rng) != 0, fidgetAction, maxFrames, repeatCount);
         fc = anim_->FrameCount(body, dir, fidgetAction);
@@ -629,7 +629,7 @@ void Client::RenderTick() {
             idle.nextProbeMs = nowAnim + 76;
             return;
         }
-        maxFrames = static_cast<uo::u16>(std::min<uo::u32>(maxFrames, fc));
+        maxFrames = static_cast<u16>(std::min<u32>(maxFrames, fc));
         if (maxFrames == 0u) return;
         idle.active = true;
         idle.lastTickMs = nowAnim;
@@ -648,7 +648,7 @@ void Client::RenderTick() {
     // Slide between previous and current cell over the step, so the sprite moves
     // in sync with the walk cycle instead of teleporting. dd = (t-1)*(cur-prev):
     // prev-cur at t=0, easing to 0 at t=1 (sprite reaches its current cell).
-    auto slideDelta = [&](i64 movedMs, i64 durMs, uo::i32 cur, uo::i32 prev) -> float {
+    auto slideDelta = [&](i64 movedMs, i64 durMs, i32 cur, i32 prev) -> float {
         if (movedMs == 0 || durMs <= 0) return 0.0f;
         const i64 el = nowAnim - movedMs;
         if (el < 0 || el >= durMs) return 0.0f;
@@ -674,36 +674,36 @@ void Client::RenderTick() {
     // server occupies layer 25; a chair has no body anim, so only the seated
     // pose shows (the chair itself is a world static). Mirrors the original
     // (Mobile_OnEquip: isMounted = pEquipped[25]; ride groups 23/24).
-    auto mountGraphic = [](const std::vector<EquipObj>& equip) -> uo::u16 {
+    auto mountGraphic = [](const std::vector<EquipObj>& equip) -> u16 {
         for (const EquipObj& e : equip)
             if (e.layer == 25) return e.graphic;
         return 0;
     };
 
-    auto applyMountUnderlay = [&](const std::vector<EquipObj>& equip, uo::u8 dir,
+    auto applyMountUnderlay = [&](const std::vector<EquipObj>& equip, u8 dir,
                                   bool moving, bool running, int counter,
                                   render::Mob& mob) -> bool {
-        const uo::u16 mountG = mountGraphic(equip);
+        const u16 mountG = mountGraphic(equip);
         if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
-        const uo::u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
+        const u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
         if (mb) {                                         // real mount: draw its body
             mob.mountBody = mb;
             mob.mountAction = PickAction(mb, moving, running, false);
-            const uo::u32 mfc = anim_ ? anim_->FrameCount(mb, dir, mob.mountAction) : 0;
-            mob.mountFrame = (moving && mfc) ? static_cast<uo::u16>(counter % mfc) : 0;
+            const u32 mfc = anim_ ? anim_->FrameCount(mb, dir, mob.mountAction) : 0;
+            mob.mountFrame = (moving && mfc) ? static_cast<u16>(counter % mfc) : 0;
             return true;
         }
         return false;
     };
 
-    auto applyMount = [&](const std::vector<EquipObj>& equip, uo::u8 dir,
+    auto applyMount = [&](const std::vector<EquipObj>& equip, u8 dir,
                           bool moving, bool running, int counter,
                           render::Mob& mob) -> bool {
-        const uo::u16 mountG = mountGraphic(equip);
+        const u16 mountG = mountGraphic(equip);
         if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
         mob.action = (moving && running) ? 24u : 23u;    // ride run / ride idle+walk
-        const uo::u32 fc = anim_ ? anim_->FrameCount(mob.body, dir, mob.action) : 0;
-        mob.frame = (moving && fc) ? static_cast<uo::u16>(counter % fc) : 0;
+        const u32 fc = anim_ ? anim_->FrameCount(mob.body, dir, mob.action) : 0;
+        mob.frame = (moving && fc) ? static_cast<u16>(counter % fc) : 0;
         applyMountUnderlay(equip, dir, moving, running, counter, mob);
         return true;
     };
@@ -714,7 +714,7 @@ void Client::RenderTick() {
     // Mobile_FindSittingChair (humanoid body, stationary). Returns true if seated
     // (caller then skips the normal walk/idle + mount selection).
     std::vector<map::StaticItem> sitStatics(256);
-    auto applySit = [&](uo::i32 x, uo::i32 y, uo::i8 z, bool moving,
+    auto applySit = [&](i32 x, i32 y, i8 z, bool moving,
                         render::Mob& mob) -> bool {
         if (moving || mob.body < 0x190 || mob.body >= 0x3E8) return false;
         const ChairSit* c = nullptr;
@@ -727,12 +727,12 @@ void Client::RenderTick() {
         }
         // (2) map statics on the tile (tavern furniture etc. live in statics.mul)
         if (!c && worldMap_) {
-            uo::u32 n = 0;
-            if (worldMap_->ReadStatics(static_cast<uo::u32>(x) / 8, static_cast<uo::u32>(y) / 8,
+            u32 n = 0;
+            if (worldMap_->ReadStatics(static_cast<u32>(x) / 8, static_cast<u32>(y) / 8,
                                        sitStatics.data(),
-                                       static_cast<uo::u32>(sitStatics.size()), &n)) {
-                const uo::u8 lx = static_cast<uo::u8>(x & 7), ly = static_cast<uo::u8>(y & 7);
-                for (uo::u32 i = 0; i < n; ++i) {
+                                       static_cast<u32>(sitStatics.size()), &n)) {
+                const u8 lx = static_cast<u8>(x & 7), ly = static_cast<u8>(y & 7);
+                for (u32 i = 0; i < n; ++i) {
                     const map::StaticItem& s = sitStatics[i];
                     if (s.cellX == lx && s.cellY == ly && std::abs(int(s.z) - int(z)) <= 4) {
                         c = FindChairSit(s.itemId);
@@ -908,7 +908,7 @@ void Client::RenderTick() {
     }
     renderer_->RenderWorld(*worldMap_, *art_, *tileData_, *texmaps_,
                            playerX_, playerY_, playerZ_, dyn.data(), dyn.size(),
-                           animData_.get(), static_cast<uo::u32>(nowAnim / kAnimListTickMs),
+                           animData_.get(), static_cast<u32>(nowAnim / kAnimListTickMs),
                            hues_.get(),
                            anim_.get(), mobs.data(), mobs.size(),
                            darkness);
@@ -1232,12 +1232,12 @@ void Client::DrawOverheadText() {
         u8 noto;   // notoriety for the name color (0/1 = blue)
     };
     const i64 now = NowMs();
-    auto moveDurationMs = [&](uo::u16 body, bool running) -> i64 {
+    auto moveDurationMs = [&](u16 body, bool running) -> i64 {
         const u8 ticks = animInfo_ ? animInfo_->MoveFrameCount(body, running)
                                    : static_cast<u8>(running ? 2 : 4);
         return static_cast<i64>(ticks ? ticks : 1) * kAnimListTickMs;
     };
-    auto slideDelta = [&](i64 movedMs, i64 durMs, uo::i32 cur, uo::i32 prev) -> float {
+    auto slideDelta = [&](i64 movedMs, i64 durMs, i32 cur, i32 prev) -> float {
         if (movedMs == 0 || durMs <= 0) return 0.0f;
         const i64 el = now - movedMs;
         if (el < 0 || el >= durMs) return 0.0f;
