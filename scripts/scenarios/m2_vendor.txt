@@ -1,0 +1,50 @@
+# M2 — vendor interaction.
+#
+# Double-clicking a vendor only opens its paperdoll on Sphere
+# (Source-X src/game/clients/CClientEvent.cpp:2378). A shop opens when the
+# player SPEAKS to the vendor, which the SPEECH scripts turn into NV_BUY
+# (src/game/chars/CCharNPCAct.cpp:147-160). The client then joins the 0x3C
+# stock list with the 0x74 price list to build the offer.
+#
+# Innkeeper spawn: Felucca 610,810 (Yew), from the shard's own worldgen.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+say walking to the inn
+
+goto 612 812
+wait_goto
+
+# NPCs wander, so walk to whatever mobile the server actually shows us here
+# rather than assuming the vendor is standing on its spawn tile.
+sleep 3000
+remember v mobile_nearest
+require v
+goto_mobile @v
+wait_goto
+sleep 1000
+
+say hello
+sleep 1000
+
+# Ask to see the wares. Confirmation is the assembled offer.
+vendor_open @v buy
+wait_action
+expect success
+
+sleep 500
+
+# Buy exactly one of the first thing offered. The scenario chooses; there is
+# no shopping logic anywhere in the client.
+vendor_buy vendor vendor_first 1
+wait_action
+
+sleep 2000
+say vendor done
+sleep 1000
+logout

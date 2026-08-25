@@ -1,0 +1,45 @@
+# M2 — Magery.
+#
+# Sphere requires a spellbook holding the spell for a normal cast
+# (CChar::Spell_CanCast, Source-X src/game/chars/CCharSpell.cpp:2517-2529) and
+# there is no ini flag to disable that. A scroll is the other route a real
+# player has: double-clicking an IT_SCROLL casts the spell it carries
+# (src/game/clients/CClientUse.cpp:350-371), with the spellbook check skipped
+# because the caster is the scroll, not the character.
+#
+# Run this with the mage character, which the server's own newbie template
+# equipped with scrolls when it was created with Magery as a starting skill.
+#
+# 0x1F31 = i_scroll_heal (1st circle). Scrolls are consumed by the cast, so a
+# fresh mage character has one of each and this scenario spends one per run.
+#
+# ReagentsRequired=0 in this shard's sphere.ini, so no reagents are consumed.
+# Precast is OFF (MagicFlags unset), so the target cursor comes FIRST and the
+# cast runs after the target is answered.
+
+wait_world
+sleep 2500
+
+remember pack backpack
+open @pack
+wait_action
+expect success
+
+remember scroll pack_graphic 0x1F31
+require scroll
+
+say casting from a scroll
+
+# One action: double-click the scroll, answer the cursor it arms, and wait for
+# the server to consume the scroll -- which only happens once the spell has
+# actually gone off (Spell_CastDone).
+cast_scroll @scroll self
+wait_action
+expect success
+
+# Let the effect and the stat update land.
+sleep 2000
+
+say magery done
+sleep 1500
+logout

@@ -1,0 +1,50 @@
+# M2 — active skill use and Magery initiation.
+#
+# Skill ids are Sphere's SKILL_TYPE enum (Source-X
+# src/game/uo_files/uofiles_enums.h:459-521), NOT the client's skill-list order:
+#   1 = Anatomy (needs a target)   4 = ArmsLore (needs a target)
+#  21 = Hiding  (no target)       14 = DetectingHidden (no target)
+#
+# Magery: Source-X requires a spellbook holding the spell
+# (CChar::Spell_CanCast, src/game/chars/CCharSpell.cpp:2517-2529) and this
+# character has none, so the cast is expected to be refused BY THE SERVER.
+# That refusal is itself proof the cast packet was parsed and processed.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+expect success
+
+remember bow pack_graphic 0x13b2
+
+say skill test
+
+# --- targeted skill: Anatomy on ourselves -----------------------------------
+# The action arms on 0x12/0x24, the server answers with 0x6C, and the action
+# auto-answers with the configured target.
+skill 1 self
+wait_action
+
+sleep 1500
+
+# --- untargeted skill: Hiding -----------------------------------------------
+# No cursor should arrive for this one; it resolves from its own result message.
+skill 21
+wait_action
+
+sleep 2000
+
+# --- Magery -----------------------------------------------------------------
+# Spell 5 = Magic Arrow. Without a spellbook the server refuses; the action
+# reports server_failure rather than pretending anything happened.
+cast 5 self
+wait_action
+
+sleep 1500
+
+say skill test done
+sleep 1000
+logout

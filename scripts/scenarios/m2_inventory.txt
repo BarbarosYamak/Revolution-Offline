@@ -1,0 +1,63 @@
+# M2 — object use, containers, inventory drag/drop, equipment.
+#
+# Uses only what a fresh character starts with, so it needs nothing from the
+# world. Every step is confirmed by a server packet: `wait_action` waits for
+# the confirmation and `expect` asserts what actually happened.
+
+wait_world
+sleep 2000
+
+# --- object use / container -------------------------------------------------
+# The backpack must be open before the server will let us lift from it
+# (Source-X gates every pickup on m_openedContainers, CCharAct.cpp:2856-2896).
+remember pack backpack
+require pack
+open @pack
+wait_action
+expect success
+
+sleep 500
+
+# --- identify items the server told us about --------------------------------
+# 0x0e21 = i_bandage, 0x0f9e = i_scissors, 0x0f51 = i_dagger.
+remember bandages pack_graphic 0x0e21
+require bandages
+remember dagger pack_graphic 0x0f51
+
+say inventory test
+
+# --- use an object ----------------------------------------------------------
+# Double-clicking bandages arms a target cursor (t_bandage); cancel it here,
+# the bandage action itself is covered by m2_bandage.
+use @bandages
+wait_target
+target_cancel
+sleep 500
+
+# --- equipment --------------------------------------------------------------
+# Layer 1 = one-handed weapon. The server decides the final layer and confirms
+# with 0x2E; ActionEquip fails if it lands anywhere else.
+equip @dagger 1
+wait_action
+expect success
+sleep 500
+
+unequip @dagger
+wait_action
+expect success
+sleep 500
+
+# --- drop to the ground and pick it back up ---------------------------------
+# A 2.0.7 client gets no drop ack, so success is the 0x1A world-item packet.
+drop_ground @dagger 1
+wait_action
+expect success
+sleep 800
+
+move @dagger 1 @pack
+wait_action
+expect success
+
+say inventory ok
+sleep 1000
+logout

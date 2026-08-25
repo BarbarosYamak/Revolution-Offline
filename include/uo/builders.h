@@ -66,9 +66,14 @@ struct CreateCharacterParams {
     u8          str        = 30;    // server clamps each to 60 and the sum to 80
     u8          dex        = 30;
     u8          intel      = 20;
-    u8          skill1     = 31;    // Swordsmanship (skill ids are the server's)
+    // Skill ids are Sphere's SKILL_TYPE enum values
+    // (Source-X src/game/uo_files/uofiles_enums.h:459-521), NOT the classic
+    // client's skill-list order. M1 shipped 31/33/17 believing they were
+    // Swordsmanship/Tactics/Healing; they are actually Archery/Stealing/Healing,
+    // which is what the test character really got.
+    u8          skill1     = 40;    // Swordsmanship
     u8          skill1Val  = 50;    // server clamps each to 50 and the sum to 100
-    u8          skill2     = 33;    // Tactics
+    u8          skill2     = 27;    // Tactics
     u8          skill2Val  = 30;
     u8          skill3     = 17;    // Healing
     u8          skill3Val  = 20;

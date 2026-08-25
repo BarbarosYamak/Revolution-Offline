@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include "bot/Scenario.h"
+#include "uo/actions.h"
 #include "uo/sphere_rules.h"
 
 #include "uo/builders.h"
@@ -441,6 +442,7 @@ void Client::Tick(int waitMs) {
                 std::chrono::duration_cast<std::chrono::milliseconds>(
                     std::chrono::steady_clock::now().time_since_epoch()).count();
             (void)now_ms2;
+            ActionTick();
             PumpKeepalive();
         }
     }
@@ -500,6 +502,8 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
         case 0xD1: OnLogoutAck(data, size); break;
+        case 0x27: OnDragCancel(data, size); break;
+        case 0xAA: OnAttackAck(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
         case 0x23: case 0x53:
@@ -1039,6 +1043,7 @@ void Client::OnMobileMana(const u8* data, usize size) {
     player_.serial = serial;
     player_.manaMax = static_cast<i32>(LoadBE16(data + 5));
     player_.manaCur = static_cast<i32>(LoadBE16(data + 7));
+    ActionOnManaChanged(player_.manaCur);
 }
 
 void Client::OnMobileStamina(const u8* data, usize size) {
@@ -1154,12 +1159,17 @@ void Client::OnObjectInfo(const u8* data, usize size) {
         if (c.deathAction == 0)
             c.deathAction = DeathActionForBody(amount, true);
     }
+
+    // A 2.0.7 client never receives a drop acknowledgement, so an item
+    // appearing in the world IS the confirmation that a ground drop worked.
+    ActionOnItemWorld(serial, x, y, static_cast<i8>(z));
 }
 
 // 0x1D Delete Object (5 bytes): cmd + serial(4 BE). Drop it from both caches.
 void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
+    ActionOnObjectDeleted(serial);
     items_.erase(serial);
     corpses_.erase(serial);
     itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
@@ -1264,6 +1274,10 @@ void Client::OnDrawContainer(const u8* data, usize size) {
     }
     if (gumpId == 0x30) {  // vendor buy gump — `serial` is the vendor MOBILE
         uo::js::EmitVendorOffer(serial);  // builds payload from pendingVendor_ now
+        // The 0x24 gump 0x30 is what terminates the 0x2E/0x3C/0x74 burst, so
+        // this is the point where the offer is complete and an action waiting
+        // for a vendor's wares can be answered.
+        ActionOnVendorOffer(serial);
         pendingVendor_.clear();
         pendingVendorGroups_ = 0;
         LogInfo("[0x24] vendor buy gump for 0x%08X\n", serial);
@@ -1275,6 +1289,7 @@ void Client::OnDrawContainer(const u8* data, usize size) {
     else
         it->gumpId = gumpId;
     LogInfo("[0x24] open container 0x%08X gump=%u\n", serial, gumpId);
+    ActionOnContainerOpened(serial, gumpId);
     uo::js::EmitContainerOpen(serial, gumpId);  // -> World 'container_open'
 }
 
@@ -1309,6 +1324,7 @@ void Client::OnContainerContents(const u8* data, usize size) {
             openContainers_.push_back(OpenContainer{cont, 0});
     }
     LogInfo("[0x3C] container contents: %u item(s)\n", count);
+    ActionOnContainerContents(cleared.empty() ? 0u : *cleared.begin(), count);
     const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
     if (backpack != 0 && cleared.count(backpack) != 0) {
         if (!backpackContentsKnown_) {
@@ -1409,6 +1425,7 @@ void Client::OnAddItemToContainer(const u8* data, usize size) {
                   [&](const ContainerItem& e) { return e.serial == ci.serial; });
     if (it == list.end()) list.push_back(ci);
     else *it = ci;
+    ActionOnItemInContainer(ci.serial, cont);
     if (std::find_if(openContainers_.begin(), openContainers_.end(),
             [&](const OpenContainer& c) { return c.serial == cont; })
         == openContainers_.end())
@@ -1632,6 +1649,7 @@ void Client::OnEquipItem(const u8* data, usize size) {
     const u32 mobile  = LoadBE32(data + 9);
     const u16 hue     = LoadBE16(data + 13);
     SetMobileEquipLayer(mobile, itemSerial, layer, graphic, hue);
+    ActionOnItemEquipped(mobile, itemSerial, layer);
 }
 
 // 0x6E Character Animation (14B fixed): cmd, serial(4), action(2),
@@ -1708,6 +1726,17 @@ void Client::OnResurrectionMenu(const u8* data, usize size) {
     const u8 action = data[1];
     LogInfo("[0x2C] resurrection menu action=%u\n", action);
     LogEvent("resurrect_menu", action == 1 ? "resurrect" : "prompt");
+
+    // This packet IS the death notification for our own character. Source-X
+    // sends 0xAF only to bystanders (src/game/chars/CCharAct.cpp:4446) and the
+    // switch to the ghost body emits no packet at all (:4493-4494), so 0x2C is
+    // the first and only thing that tells us we died.
+    if (life_ != act::LifeState::Dead) {
+        life_ = act::LifeState::Dead;
+        LogInfo("[STATE] dead (0x2C resurrect menu)\n");
+        LogEvent("state_dead", "0x2C received");
+    }
+
     uo::js::EmitResurrectMenu(action);  // -> Player 'resurrect_menu' ({action})
 }
 
@@ -1898,6 +1927,27 @@ void Client::OnLogoutAck(const u8* data, usize size) {
 }
 
 // ---------------------------------------------------------------------------
+// 0x27 Drag Cancel (2 bytes: cmd + reason). The server refused a lift, so the
+// item never left where it was. Without this the client would sit through the
+// action's whole timeout believing a move might still succeed.
+// ---------------------------------------------------------------------------
+void Client::OnDragCancel(const u8* data, usize size) {
+    const u8 reason = (size >= 2) ? data[1] : 0xFF;
+    ActionOnDragCancel(reason);
+}
+
+// ---------------------------------------------------------------------------
+// 0xAA Attack Acknowledge (5 bytes: cmd + serial). The server echoes the
+// serial it accepted as our combat target, or 0 when it refused.
+// ---------------------------------------------------------------------------
+void Client::OnAttackAck(const u8* data, usize size) {
+    const u32 serial = (size >= 5) ? LoadBE32(data + 1) : 0;
+    if (serial) LogInfo("[0xAA] attacking 0x%08X\n", serial);
+    else        LogWarn("[0xAA] attack refused\n");
+    ActionOnAttackAck(serial);
+}
+
+// ---------------------------------------------------------------------------
 // Sphere adapter -- session-level helpers
 // ---------------------------------------------------------------------------
 
@@ -1909,6 +1959,17 @@ void Client::SendCreateCharacter() {
     build::CreateCharacterParams p;
     p.name = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName : "Bot";
     p.slot = static_cast<u32>(cfg_.charSlot < 0 ? 0 : cfg_.charSlot);
+    if (cfg_.createSkill[0] > 0) {
+        p.skill1 = static_cast<u8>(cfg_.createSkill[0]);
+        p.skill1Val = static_cast<u8>(cfg_.createSkillVal[0]);
+        p.skill2 = static_cast<u8>(cfg_.createSkill[1]);
+        p.skill2Val = static_cast<u8>(cfg_.createSkillVal[1]);
+        p.skill3 = static_cast<u8>(cfg_.createSkill[2]);
+        p.skill3Val = static_cast<u8>(cfg_.createSkillVal[2]);
+        LogInfo("[0x00] requested skills %u:%u %u:%u %u:%u\n",
+                p.skill1, p.skill1Val, p.skill2, p.skill2Val,
+                p.skill3, p.skill3Val);
+    }
     u8 buf[128];
     const usize n = build::CreateCharacter(buf, p);
     LogInfo("[0x00] creating character '%s' in slot %u\n", p.name, p.slot);
@@ -2007,6 +2068,30 @@ void Client::ActionGoto(i32 x, i32 y) {
     BotStartGoto(x, y);
 }
 
+bool Client::MobilePosition(u32 serial, i32* x, i32* y) const {
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial != serial) continue;
+        if (x) *x = m.x;
+        if (y) *y = m.y;
+        return true;
+    }
+    return false;
+}
+
+bool Client::ActionGotoMobile(u32 serial, int stopWithin) {
+    i32 mx = 0, my = 0;
+    if (!MobilePosition(serial, &mx, &my)) {
+        LogWarn("[action] goto_mobile 0x%08X: not in the mobile cache\n", serial);
+        return false;
+    }
+    // Stop a tile short so we end up beside it rather than trying to walk
+    // onto its tile, which the server would refuse.
+    const i32 dx = (mx > playerX_) ? -stopWithin : (mx < playerX_ ? stopWithin : 0);
+    LogInfo("[action] goto_mobile 0x%08X at (%d,%d)\n", serial, mx, my);
+    ActionGoto(mx + dx, my);
+    return true;
+}
+
 bool Client::GotoBusy() {
     if (!gotoRequested_) return false;
     if (nav_.bot.planning || nav_.bot.active) return true;
@@ -2028,6 +2113,759 @@ bool Client::GotoBusy() {
                   gotoArrived_ ? 1 : 0, off);
     LogEvent("goto_done", ev);
     return false;
+}
+
+
+// ===========================================================================
+// M2 player action primitives
+//
+// Every action here follows the same shape:
+//   1. validate locally (fail InvalidState rather than send a doomed packet)
+//   2. send the packet a real client would send
+//   3. record what server response counts as confirmation
+//   4. let the packet handlers call FinishAction() when it arrives
+//   5. time out cleanly otherwise
+//
+// The confirmation rules are the interesting part and are documented per
+// action, with the Source-X behaviour they rely on.
+// ===========================================================================
+
+namespace {
+// Deadlines. Generous enough for a loaded server, short enough that a
+// scenario fails rather than hangs.
+constexpr i64 kUseTimeoutMs      = 4000;
+constexpr i64 kMoveTimeoutMs     = 4000;
+constexpr i64 kEquipTimeoutMs    = 4000;
+constexpr i64 kSkillTimeoutMs    = 8000;
+constexpr i64 kCastTimeoutMs     = 12000;
+constexpr i64 kAttackTimeoutMs   = 4000;
+constexpr i64 kBankTimeoutMs     = 6000;
+constexpr i64 kVendorTimeoutMs   = 8000;
+constexpr i64 kBandageTimeoutMs  = 15000;
+// Resurrection is driven by the world (a healer walking over, a shrine), so it
+// gets a long window rather than a request/response deadline.
+constexpr i64 kResurrectTimeoutMs = 120000;
+// A lift must be followed by a drop; the server cancels a dangling lift.
+constexpr i64 kDragSettleMs      = 250;
+}  // namespace
+
+void Client::BeginAction(act::Kind kind, i64 timeoutMs) {
+    if (action_.Active()) {
+        LogWarn("[action] %s superseded by %s\n",
+                act::KindName(action_.kind), act::KindName(kind));
+        FinishAction(act::Result::InvalidState, "superseded");
+    }
+    action_.Begin(kind, NowMs(), timeoutMs);
+    manaAtActionStart_ = PlayerMana();
+    goldAtActionStart_ = PlayerGold();
+    LogInfo("[ACTION] %s start\n", act::KindName(kind));
+}
+
+void Client::FinishAction(act::Result r, const char* why) {
+    if (!action_.Active()) return;
+    const act::Kind kind = action_.kind;
+    action_.Finish(r);
+    const i64 tookMs = NowMs() - action_.startedMs;
+
+    if (r == act::Result::Success) {
+        LogInfo("[ACTION_RESULT] %s %s (%lldms) %s\n", act::KindName(kind),
+                act::ResultName(r), static_cast<long long>(tookMs),
+                why ? why : "");
+    } else {
+        LogWarn("[ACTION_RESULT] %s %s (%lldms) %s\n", act::KindName(kind),
+                act::ResultName(r), static_cast<long long>(tookMs),
+                why ? why : "");
+    }
+    char ev[192];
+    std::snprintf(ev, sizeof(ev), "%s %s took=%lldms %s", act::KindName(kind),
+                  act::ResultName(r), static_cast<long long>(tookMs),
+                  why ? why : "");
+    LogEvent("action_result", ev);
+}
+
+void Client::ActionTick() {
+    if (action_.ExpireIfDue(NowMs())) {
+        LogWarn("[ACTION_RESULT] %s timeout (no server confirmation)\n",
+                act::KindName(action_.kind));
+        char ev[96];
+        std::snprintf(ev, sizeof(ev), "%s timeout", act::KindName(action_.kind));
+        LogEvent("action_result", ev);
+        // A timed-out drag must not leave the client believing it holds an
+        // item: the server either never accepted the lift or cancelled it.
+        if (drag_.InFlight()) {
+            LogWarn("[ITEM] drag of 0x%08X abandoned after timeout\n",
+                    drag_.Serial());
+            drag_.Reset();
+        }
+        target_.OnCancelled();
+    }
+}
+
+// --- helpers ---------------------------------------------------------------
+
+i32 Client::PlayerMana() const { return player_.manaCur; }
+i32 Client::PlayerGold() const { return player_.gold; }
+
+bool Client::ContainerKnown(u32 serial) const {
+    return containerItems_.find(serial) != containerItems_.end();
+}
+
+u32 Client::NearestMobile(int maxDist) const {
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (maxDist > 0 && d > maxDist) continue;
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
+u32 Client::NearestMobileNamed(const char* needle) const {
+    if (!needle || !needle[0]) return 0;
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const auto it = mobileNames_.find(m.serial);
+        const char* nm = (it != mobileNames_.end()) ? it->second.c_str() : nullptr;
+        const char* title = PaperdollTitle(m.serial);
+        bool match = false;
+        for (const char* hay : {nm, title}) {
+            if (!hay) continue;
+            for (const char* p = hay; *p && !match; ++p) {
+                usize i = 0;
+                while (needle[i] && p[i] &&
+                       std::tolower(static_cast<unsigned char>(p[i])) ==
+                       std::tolower(static_cast<unsigned char>(needle[i]))) ++i;
+                if (!needle[i]) match = true;
+            }
+        }
+        if (!match) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
+u32 Client::FindBackpackItemByGraphic(u16 graphic) const {
+    const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+    if (!pack) return 0;
+    const auto it = containerItems_.find(pack);
+    if (it == containerItems_.end()) return 0;
+    for (const ContainerItem& ci : it->second)
+        if (ci.graphic == graphic) return ci.serial;
+    return 0;
+}
+
+u32 Client::BackpackItemCount(u16 graphic) const {
+    const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+    if (!pack) return 0;
+    const auto it = containerItems_.find(pack);
+    if (it == containerItems_.end()) return 0;
+    u32 total = 0;
+    for (const ContainerItem& ci : it->second)
+        if (ci.graphic == graphic) total += ci.amount ? ci.amount : 1;
+    return total;
+}
+
+// --- object use ------------------------------------------------------------
+// 0x06 double-click. What counts as confirmation depends on what was clicked,
+// so any of these ends the action: a container opening (0x24), a target cursor
+// (0x6C, e.g. a tool or bandage), a system message (0x1C), or the item
+// changing/vanishing. That is exactly what a player sees happen.
+void Client::ActionUseObject(u32 serial) {
+    if (!serial) { BeginAction(act::Kind::UseObject, kUseTimeoutMs);
+                   FinishAction(act::Result::InvalidState, "null serial"); return; }
+    BeginAction(act::Kind::UseObject, kUseTimeoutMs);
+    action_.subject = serial;
+    LogInfo("[ACTION] use_object serial=0x%08X\n", serial);
+    SendDoubleClick(serial);
+}
+
+void Client::ActionOpenContainer(u32 serial) {
+    if (!serial) { BeginAction(act::Kind::OpenContainer, kUseTimeoutMs);
+                   FinishAction(act::Result::InvalidState, "null serial"); return; }
+    BeginAction(act::Kind::OpenContainer, kUseTimeoutMs);
+    action_.subject = serial;
+    LogInfo("[ACTION] open_container serial=0x%08X\n", serial);
+    SendDoubleClick(serial);
+}
+
+// --- inventory -------------------------------------------------------------
+
+bool Client::SendLift(u32 serial, u16 amount) {
+    if (drag_.InFlight()) {
+        LogWarn("[ITEM] a drag of 0x%08X is already in flight\n", drag_.Serial());
+        return false;
+    }
+    u8 buf[16];
+    const usize n = build::PickUpItem(buf, serial, amount);
+    if (!Send(buf, n, "0x07 PickUpItem")) return false;
+    drag_.BeginLift(serial, amount, NowMs());
+    LogInfo("[ITEM] drag serial=0x%08X amount=%u\n", serial, amount);
+    return true;
+}
+
+void Client::SendDropToContainer(u32 serial, u32 container) {
+    u8 buf[24];
+    // x/y 0xFFFF = "anywhere in the container", the classic client's own
+    // behaviour when dropping onto a container gump rather than a slot.
+    const usize n = build::DropItem(buf, serial, 0xFFFF, 0xFFFF, 0, container);
+    Send(buf, n, "0x08 DropItem (container)");
+    drag_.OnDropSent(container);
+    LogInfo("[ITEM] drop container=0x%08X\n", container);
+}
+
+void Client::SendDropToGround(u32 serial, i32 x, i32 y, i8 z) {
+    u8 buf[24];
+    const usize n = build::DropItem(buf, serial, static_cast<u16>(x),
+                                    static_cast<u16>(y), z, 0xFFFFFFFFu);
+    Send(buf, n, "0x08 DropItem (ground)");
+    drag_.OnDropSent(0xFFFFFFFFu);
+    LogInfo("[ITEM] drop ground=(%d,%d,%d)\n", x, y, static_cast<int>(z));
+}
+
+// A UO move is lift + drop. Nothing is assumed moved until the server says so:
+// success is 0x25 (item added to the destination container), failure is 0x27
+// (drag cancel) with a reason code.
+void Client::ActionMoveItem(u32 serial, u16 amount, u32 destContainer) {
+    BeginAction(act::Kind::MoveItem, kMoveTimeoutMs);
+    action_.subject = serial;
+    action_.destination = destContainer;
+    action_.amount = amount;
+    if (!serial || !destContainer) {
+        FinishAction(act::Result::InvalidState, "null serial/destination");
+        return;
+    }
+    LogInfo("[ACTION] move_item serial=0x%08X amount=%u dest=0x%08X\n",
+            serial, amount, destContainer);
+    if (!SendLift(serial, amount)) {
+        FinishAction(act::Result::InvalidState, "lift refused locally");
+        return;
+    }
+    SendDropToContainer(serial, destContainer);
+}
+
+void Client::ActionDropGround(u32 serial, u16 amount, i32 x, i32 y, i8 z) {
+    BeginAction(act::Kind::DropGround, kMoveTimeoutMs);
+    action_.subject = serial;
+    action_.amount = amount;
+    action_.x = x; action_.y = y; action_.z = z;
+    if (!serial) { FinishAction(act::Result::InvalidState, "null serial"); return; }
+    LogInfo("[ACTION] drop_ground serial=0x%08X at (%d,%d,%d)\n",
+            serial, x, y, static_cast<int>(z));
+    if (!SendLift(serial, amount)) {
+        FinishAction(act::Result::InvalidState, "lift refused locally");
+        return;
+    }
+    SendDropToGround(serial, x, y, z);
+}
+
+// --- equipment -------------------------------------------------------------
+// Equipping is lift + 0x13 wear. Confirmation is the server's 0x2E telling us
+// the item is on that layer of OUR mobile -- never a local assumption.
+void Client::ActionEquip(u32 serial, u8 layer) {
+    BeginAction(act::Kind::Equip, kEquipTimeoutMs);
+    action_.subject = serial;
+    action_.layer = layer;
+    if (!serial || !playerSerial_) {
+        FinishAction(act::Result::InvalidState, "null serial");
+        return;
+    }
+    LogInfo("[ACTION] equip serial=0x%08X layer=%u\n", serial, layer);
+    if (!SendLift(serial, 1)) {
+        FinishAction(act::Result::InvalidState, "lift refused locally");
+        return;
+    }
+    u8 buf[16];
+    const usize n = build::EquipItem(buf, serial, layer, playerSerial_);
+    Send(buf, n, "0x13 EquipItem");
+    drag_.OnDropSent(playerSerial_);
+}
+
+// Unequipping is lift off the layer + drop into the backpack; the server
+// confirms with 0x25 into the pack.
+void Client::ActionUnequip(u32 serial) {
+    BeginAction(act::Kind::Unequip, kEquipTimeoutMs);
+    action_.subject = serial;
+    const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
+    action_.destination = pack;
+    if (!serial || !pack) {
+        FinishAction(act::Result::InvalidState, "no item or no backpack");
+        return;
+    }
+    LogInfo("[ACTION] unequip serial=0x%08X -> backpack 0x%08X\n", serial, pack);
+    if (!SendLift(serial, 1)) {
+        FinishAction(act::Result::InvalidState, "lift refused locally");
+        return;
+    }
+    SendDropToContainer(serial, pack);
+}
+
+// --- targeting -------------------------------------------------------------
+// Answering a cursor is only allowed for the cursor that is actually live.
+// The generation check is what stops a late reply from answering a different
+// request than the one the caller meant.
+bool Client::ActionTargetObject(u32 serial) {
+    if (!target_.Active()) {
+        LogWarn("[TARGET] reply refused: no cursor armed\n");
+        return false;
+    }
+    LogInfo("[TARGET] reply serial=0x%08X gen=%u\n", serial,
+            target_.Current().generation);
+    TargetRespondObject(serial);
+    return true;
+}
+
+bool Client::ActionTargetGround(i32 x, i32 y, i8 z) {
+    if (!target_.Active()) {
+        LogWarn("[TARGET] reply refused: no cursor armed\n");
+        return false;
+    }
+    LogInfo("[TARGET] reply ground=(%d,%d,%d) gen=%u\n", x, y,
+            static_cast<int>(z), target_.Current().generation);
+    TargetRespondGround(x, y, true, z);
+    return true;
+}
+
+bool Client::ActionCancelTarget() {
+    if (!target_.Active()) return false;
+    LogInfo("[TARGET] cancel gen=%u\n", target_.Current().generation);
+    CancelTargetCursor("action");
+    // Whatever asked for this cursor cannot complete now.
+    if (action_.Active() && action_.awaitingTarget)
+        FinishAction(act::Result::Rejected, "target cancelled by the client");
+    return true;
+}
+
+// A cursor arrived while an action was waiting for one. Actions that carry a
+// target answer it themselves; the rest simply record that it happened.
+void Client::OnTargetArmedForAction() {
+    if (!action_.Active()) return;
+
+    // A bare "use object" is answered by whatever the server does next. If it
+    // arms a target cursor, the double-click was accepted and that IS the
+    // confirmation -- a scroll, a tool or a bandage all behave this way. The
+    // caller then answers the cursor itself. Actions that carry their own
+    // target (skills, spells, bandages) fall through and auto-answer below.
+    if (action_.kind == act::Kind::UseObject && !action_.awaitingTarget) {
+        FinishAction(act::Result::Success, "server armed a target cursor");
+        return;
+    }
+    if (!action_.awaitingTarget) return;
+    action_.targetGeneration = target_.Current().generation;
+
+    if (action_.destination != 0) {
+        LogInfo("[TARGET] auto-reply for %s -> 0x%08X\n",
+                act::KindName(action_.kind), action_.destination);
+        ActionTargetObject(action_.destination);
+        action_.awaitingTarget = false;
+        // The action itself is confirmed by its own effect (message, mana,
+        // bandage completion); the target reply is only a step along the way.
+    }
+}
+
+// --- skills and magery -----------------------------------------------------
+// Both go out as the 0x12 action request the 2.0.x client uses (cast = 0x56,
+// skill = 0x24 with "<id> 0"). Confirmation is the observable consequence: a
+// target cursor for targeted uses, or a system message / mana change.
+void Client::ActionUseSkill(int skillId, u32 targetSerial) {
+    BeginAction(act::Kind::UseSkill, kSkillTimeoutMs);
+    action_.id = skillId;
+    action_.destination = targetSerial;
+    action_.awaitingTarget = true;
+    LogInfo("[ACTION] use_skill id=%d target=0x%08X\n", skillId, targetSerial);
+    u8 buf[64];
+    const usize n = build::UseSkill(buf, skillId);
+    Send(buf, n, "0x12 UseSkill");
+}
+
+void Client::ActionCastSpell(int spellId, u32 targetSerial) {
+    BeginAction(act::Kind::CastSpell, kCastTimeoutMs);
+    action_.id = spellId;
+    action_.destination = targetSerial;
+    action_.awaitingTarget = true;
+    LogInfo("[ACTION] cast_spell id=%d target=0x%08X mana=%d\n",
+            spellId, targetSerial, PlayerMana());
+    u8 buf[64];
+    const usize n = build::CastSpell(buf, spellId);
+    Send(buf, n, "0x12 CastSpell");
+}
+
+// --- combat ----------------------------------------------------------------
+void Client::ActionCastScroll(u32 scrollSerial, u32 targetSerial) {
+    BeginAction(act::Kind::CastSpell, kCastTimeoutMs);
+    action_.subject = scrollSerial;
+    action_.destination = targetSerial ? targetSerial : playerSerial_;
+    action_.awaitingTarget = true;
+    if (!scrollSerial) {
+        FinishAction(act::Result::InvalidState, "no scroll");
+        return;
+    }
+    LogInfo("[ACTION] cast_spell from scroll=0x%08X target=0x%08X mana=%d\n",
+            scrollSerial, action_.destination, PlayerMana());
+    SendDoubleClick(scrollSerial);
+}
+
+void Client::ActionAttack(u32 serial) {
+    BeginAction(act::Kind::Attack, kAttackTimeoutMs);
+    action_.subject = serial;
+    if (!serial) { FinishAction(act::Result::InvalidState, "null serial"); return; }
+    LogInfo("[ACTION] attack serial=0x%08X\n", serial);
+    SendAttack(serial);
+}
+
+void Client::ActionWarMode(bool on) {
+    LogInfo("[ACTION] war_mode %s\n", on ? "on" : "off");
+    SetWarMode(on);
+}
+
+// --- bandages --------------------------------------------------------------
+// A bandage is used like any other item (double-click) and then asks for a
+// target. The targeting layer stays generic: the bandage-specific part is only
+// that this action knows which serial to answer with.
+void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
+    BeginAction(act::Kind::Bandage, kBandageTimeoutMs);
+    action_.subject = bandageSerial;
+    action_.destination = targetSerial ? targetSerial : playerSerial_;
+    action_.awaitingTarget = true;
+    if (!bandageSerial) {
+        FinishAction(act::Result::InvalidState, "no bandage");
+        return;
+    }
+    LogInfo("[ACTION] bandage item=0x%08X target=0x%08X\n",
+            bandageSerial, action_.destination);
+    SendDoubleClick(bandageSerial);
+}
+
+// --- banking ---------------------------------------------------------------
+// Sphere opens the bank the way a player does it: speak the keyword near a
+// banker. There is no client-side shortcut; the server decides.
+void Client::ActionOpenBank(u32 bankerSerial, const char* phrase) {
+    BeginAction(act::Kind::OpenBank, kBankTimeoutMs);
+    action_.subject = bankerSerial;
+    LogInfo("[ACTION] open_bank banker=0x%08X phrase='%s'\n",
+            bankerSerial, phrase ? phrase : "bank");
+    SayAscii(phrase && phrase[0] ? phrase : "bank");
+}
+
+// --- vendors ---------------------------------------------------------------
+// A vendor shop is opened by speaking to the vendor. Confirmation is the
+// 0x24 gump 0x30 that terminates the 0x2E/0x3C/0x74 burst, which the client
+// already assembles into vendorOffer_.
+void Client::ActionVendorOpen(u32 vendorSerial, const char* phrase) {
+    BeginAction(act::Kind::VendorBuy, kVendorTimeoutMs);
+    action_.subject = vendorSerial;
+    action_.destination = vendorSerial;
+    vendorOffer_.clear();
+    vendorOfferVendor_ = 0;
+    LogInfo("[VENDOR] open vendor=0x%08X phrase='%s'\n",
+            vendorSerial, phrase ? phrase : "buy");
+    SayAscii(phrase && phrase[0] ? phrase : "buy");
+}
+
+void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
+    BeginAction(act::Kind::VendorBuy, kVendorTimeoutMs);
+    action_.subject = itemSerial;
+    action_.destination = vendorSerial;
+    action_.amount = qty;
+
+    u8 layer = 0x1A;
+    bool found = false;
+    for (const VendorItem& v : vendorOffer_) {
+        if (v.serial == itemSerial) { layer = v.layer; found = true; break; }
+    }
+    if (!found) {
+        FinishAction(act::Result::InvalidState, "item not in the vendor offer");
+        return;
+    }
+    LogInfo("[VENDOR] buy item=0x%08X qty=%u from vendor=0x%08X gold=%d\n",
+            itemSerial, qty, vendorSerial, PlayerGold());
+    std::vector<VendorBuyReq> req;
+    req.push_back(VendorBuyReq{itemSerial, qty, layer});
+    SendVendorBuy(vendorSerial, req);
+}
+
+void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
+    BeginAction(act::Kind::VendorSell, kVendorTimeoutMs);
+    action_.subject = itemSerial;
+    action_.destination = vendorSerial;
+    action_.amount = qty;
+    FinishAction(act::Result::Unavailable,
+                 "vendor sell (0x9F) not implemented yet");
+}
+
+// --- resurrection ----------------------------------------------------------
+// Resurrection is the SERVER's decision. Replying to the 0x2C menu does NOT
+// resurrect on Source-X: both choices take the same branch and only re-send
+// the ghost's world state (src/network/receive.cpp:616-639). The real paths a
+// player has are walking a ghost to a healer NPC (which resurrects on its own,
+// src/game/chars/CCharNPCAct.cpp:895-937) or double-clicking a shrine
+// (src/game/clients/CClientUse.cpp:326-332).
+//
+// So this action announces the ghost to the server and then waits for the
+// server to bring the character back to life; the confirmation is the body
+// change in 0x20/0x78.
+void Client::ActionResurrectAccept() {
+    BeginAction(act::Kind::Resurrect, kResurrectTimeoutMs);
+    if (life_ != act::LifeState::Dead) {
+        FinishAction(act::Result::InvalidState, "not dead");
+        return;
+    }
+    LogInfo("[ACTION] resurrect: waiting for the server to raise us\n");
+    SendResurrectChoice(2);   // acknowledge the ghost state
+}
+
+// ===========================================================================
+// Confirmation hooks -- called from the packet handlers
+// ===========================================================================
+
+void Client::ActionOnContainerOpened(u32 serial, u16 gumpId) {
+    // The bank box arrives as a container we did not double-click, while an
+    // open_bank action is outstanding.
+    if (action_.Active() && action_.kind == act::Kind::OpenBank) {
+        bankContainer_ = serial;
+        LogInfo("[STATE] bank container=0x%08X gump=0x%04X\n", serial, gumpId);
+        LogEvent("bank_opened", "container recognised");
+        FinishAction(act::Result::Success, "bank container opened");
+        return;
+    }
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::OpenContainer ||
+        action_.kind == act::Kind::UseObject) {
+        if (action_.subject == serial || action_.subject == 0)
+            FinishAction(act::Result::Success, "container opened");
+    }
+}
+
+void Client::ActionOnContainerContents(u32 container, u16 count) {
+    (void)count;
+    if (!action_.Active()) return;
+    if ((action_.kind == act::Kind::OpenContainer ||
+         action_.kind == act::Kind::UseObject) &&
+        action_.subject == container) {
+        FinishAction(act::Result::Success, "contents received");
+    }
+}
+
+void Client::ActionOnItemInContainer(u32 item, u32 container) {
+    if (drag_.InFlight() && drag_.Serial() == item) drag_.Reset();
+    if (!action_.Active()) return;
+
+    const bool isOurItem = (action_.subject == item);
+    if (!isOurItem) return;
+
+    if (action_.kind == act::Kind::MoveItem ||
+        action_.kind == act::Kind::Unequip) {
+        if (action_.destination == container || action_.destination == 0) {
+            FinishAction(act::Result::Success, "item is in the destination");
+        } else {
+            FinishAction(act::Result::ServerFailure,
+                         "item landed in a different container");
+        }
+    } else if (action_.kind == act::Kind::VendorBuy) {
+        FinishAction(act::Result::Success, "purchased item delivered");
+    }
+}
+
+void Client::ActionOnItemEquipped(u32 mobile, u32 item, u8 layer) {
+    if (drag_.InFlight() && drag_.Serial() == item) drag_.Reset();
+    if (!action_.Active() || action_.kind != act::Kind::Equip) return;
+    if (mobile != playerSerial_ || item != action_.subject) return;
+    if (layer == action_.layer || action_.layer == 0) {
+        FinishAction(act::Result::Success, "worn on the requested layer");
+    } else {
+        FinishAction(act::Result::ServerFailure, "worn on a different layer");
+    }
+}
+
+void Client::ActionOnItemWorld(u32 item, i32 x, i32 y, i8 z) {
+    if (drag_.InFlight() && drag_.Serial() == item) drag_.Reset();
+    if (!action_.Active() || action_.kind != act::Kind::DropGround) return;
+    if (item != action_.subject) return;
+    (void)z;
+    if (x == action_.x && y == action_.y)
+        FinishAction(act::Result::Success, "item is on the ground at the target");
+    else
+        FinishAction(act::Result::Success, "item is on the ground (server placed it)");
+}
+
+// 0x27: the server refused a lift. This is the case that used to corrupt
+// client state -- the item never moved, so the drag is dropped and the action
+// fails with a reason instead of timing out.
+void Client::ActionOnDragCancel(u8 reason) {
+    static const char* kReasons[] = {
+        "cannot lift that",          // 0
+        "out of range",              // 1
+        "out of sight",              // 2
+        "belongs to another",        // 3
+        "already holding something", // 4
+        "unspecified",               // 5
+    };
+    const char* why = (reason < 6) ? kReasons[reason] : "unknown reason";
+    LogWarn("[ITEM] drag cancelled by server: %s (code %u)\n", why, reason);
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "reason=%u %s", reason, why);
+    LogEvent("drag_cancel", ev);
+    drag_.Reset();
+    if (!action_.Active()) return;
+    if (action_.kind == act::Kind::MoveItem ||
+        action_.kind == act::Kind::DropGround ||
+        action_.kind == act::Kind::Equip ||
+        action_.kind == act::Kind::Unequip) {
+        FinishAction(act::Result::Rejected, why);
+    }
+}
+
+void Client::ActionOnAttackAck(u32 serial) {
+    if (!action_.Active() || action_.kind != act::Kind::Attack) return;
+    if (serial == 0) {
+        FinishAction(act::Result::Rejected, "attack refused by the server");
+        return;
+    }
+    if (serial == action_.subject)
+        FinishAction(act::Result::Success, "server accepted the target");
+}
+
+void Client::ActionOnBodyChange(u16 body) {
+    const act::LifeState next = act::LifeStateFromBody(body);
+    if (next == life_) return;
+    life_ = next;
+    LogInfo("[STATE] %s (body 0x%04X)\n", act::LifeStateName(life_), body);
+    LogEvent(life_ == act::LifeState::Dead ? "state_dead" : "state_resurrected",
+             "server body change");
+    if (life_ == act::LifeState::Alive && action_.Active() &&
+        action_.kind == act::Kind::Resurrect) {
+        FinishAction(act::Result::Success, "character is alive again");
+    }
+}
+
+void Client::ActionOnVendorOffer(u32 vendorSerial) {
+    vendorOfferVendor_ = vendorSerial;
+    vendorOffer_ = pendingVendor_;
+    LogInfo("[VENDOR] offer from 0x%08X: %zu item(s)\n",
+            vendorSerial, vendorOffer_.size());
+    for (usize i = 0; i < vendorOffer_.size() && i < 8; ++i) {
+        const VendorItem& v = vendorOffer_[i];
+        LogInfo("[VENDOR]   0x%08X %-22s x%-3u %u gp\n",
+                v.serial, v.name.c_str(), v.amount, v.price);
+    }
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "vendor=0x%08X items=%zu",
+                  vendorSerial, vendorOffer_.size());
+    LogEvent("vendor_offer", ev);
+
+    if (action_.Active() && action_.kind == act::Kind::VendorBuy &&
+        action_.subject == action_.destination) {
+        // This was a "show me your wares", not a purchase.
+        FinishAction(vendorOffer_.empty() ? act::Result::Unavailable
+                                          : act::Result::Success,
+                     "vendor offer received");
+    }
+}
+
+// Sphere reports what an action actually did as text: a system line for
+// refusals ("This is beyond your ability."), and a line spoken by our own
+// character for a skill's result ("...looks to be of normal strength...",
+// "You have hidden yourself well"). Reading those is what turns a skill or a
+// spell from "packet sent" into a server-confirmed outcome.
+//
+// `type` is the 0x1C talk mode. Mode 10 (TALKMODE_SPELL) is the words of
+// power the server makes us speak while casting -- progress, not a result.
+void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
+    if (!text || !text[0] || !action_.Active()) return;
+    constexpr u8 kTalkModeSpell = 10;
+
+    auto contains = [&](const char* needle) {
+        const usize n = std::strlen(needle);
+        for (const char* p = text; *p; ++p) {
+            usize i = 0;
+            while (i < n && p[i] &&
+                   std::tolower(static_cast<unsigned char>(p[i])) ==
+                   std::tolower(static_cast<unsigned char>(needle[i]))) ++i;
+            if (i == n) return true;
+        }
+        return false;
+    };
+
+    if (contains("you cannot reach") || contains("out of range") ||
+        contains("too far away") || contains("cannot see")) {
+        FinishAction(act::Result::Rejected, text);
+        return;
+    }
+    if (contains("you have no line of sight")) {
+        FinishAction(act::Result::Rejected, text);
+        return;
+    }
+    if (contains("more reagents") || contains("not enough mana") ||
+        contains("lack the mana") || contains("fizzle")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    // Sphere's refusal when the spell is not castable at all -- no spellbook
+    // holding it, or not enough skill (CChar::Spell_CanCast,
+    // src/game/chars/CCharSpell.cpp:2517-2529 and the skill requirement check
+    // just above it).
+    if (contains("beyond your ability") || contains("you have no spellbook") ||
+        contains("not in your spellbook") || contains("do not have that spell")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    if (contains("you must wait") || contains("cannot use that skill") ||
+        contains("there is no such skill")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    // Bandaging someone who is not hurt: the server refuses rather than
+    // consuming the bandage.
+    if (contains("you are healthy") || contains("they are healthy") ||
+        contains("at full health")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    if (contains("seem to hide") || contains("cannot hide")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+    if (contains("you are already hidden") || contains("you must be dead")) {
+        FinishAction(act::Result::ServerFailure, text);
+        return;
+    }
+
+    // A line spoken by our OWN character is the result of what we just did:
+    // the skill's finding, or the outcome of a heal. Words of power are the
+    // exception -- they are the cast still running.
+    if (sourceSerial != 0 && sourceSerial == playerSerial_ &&
+        type != kTalkModeSpell) {
+        if (action_.kind == act::Kind::UseSkill ||
+            action_.kind == act::Kind::Bandage) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
+    }
+}
+
+// Mana leaving the pool is the clearest confirmation that a spell actually
+// went off: Sphere only deducts it in Spell_CastDone
+// (src/game/chars/CCharSpell.cpp:3054 -> Spell_CanCast with fTest=false).
+// The server deletes a scroll when its spell is cast (Spell_CastDone consumes
+// the charge), so a 0x1D for the scroll we used confirms the cast completed.
+void Client::ActionOnObjectDeleted(u32 serial) {
+    if (!action_.Active() || action_.kind != act::Kind::CastSpell) return;
+    if (serial != action_.subject) return;
+    FinishAction(act::Result::Success, "scroll consumed by the cast");
+}
+
+void Client::ActionOnManaChanged(i32 mana) {
+    if (!action_.Active() || action_.kind != act::Kind::CastSpell) return;
+    if (manaAtActionStart_ < 0 || mana >= manaAtActionStart_) return;
+    char why[96];
+    std::snprintf(why, sizeof(why), "mana %d -> %d", manaAtActionStart_, mana);
+    FinishAction(act::Result::Success, why);
 }
 
 void Client::ActionSay(const char* text) {
@@ -2674,14 +3512,25 @@ void Client::OnMobName(const u8* data, usize size) {
 // the special house/boat-placement and auto-target callbacks.
 void Client::OnTargetCursor(const u8* data, usize size) {
     if (size < 7) return;
-    targetCursorType_    = data[1];
-    targetCursorId_      = LoadBE32(data + 2);
-    targetCursorSubtype_ = data[6];
-    targetCursorActive_  = true;
-    LogInfo("[0x6C] target cursor armed: id=0x%08X type=%u subtype=%u — "
-            "click a target (right-click/Esc to cancel)\n",
-            targetCursorId_, targetCursorType_, targetCursorSubtype_);
-    uo::js::EmitTargetEvent(targetCursorId_, targetCursorType_);  // -> Player 'target'
+    const u8  type    = data[1];
+    const u32 id      = LoadBE32(data + 2);
+    const u8  subtype = data[6];
+
+    const bool superseded = target_.Active();
+    target_.OnArmed(id, type, subtype, NowMs());
+
+    LogInfo("[0x6C] TARGET requested id=0x%08X type=%s subtype=%u gen=%u%s\n",
+            id, type == 1 ? "ground" : "object", subtype, target_.Generation(),
+            superseded ? " (supersedes an unanswered cursor)" : "");
+    char ev[128];
+    std::snprintf(ev, sizeof(ev), "id=0x%08X type=%u subtype=%u gen=%u",
+                  id, type, subtype, target_.Generation());
+    LogEvent("target_requested", ev);
+
+    // An action that asked for a target can now answer it.
+    OnTargetArmedForAction();
+
+    uo::js::EmitTargetEvent(id, type);  // -> Player 'target'
 }
 
 // Look up a known object's position and graphic for an object-target reply.
@@ -2705,7 +3554,7 @@ bool Client::ResolveObjectTarget(u32 serial, i32* x, i32* y, i8* z,
 }
 
 void Client::TargetRespondObject(u32 serial) {
-    if (!targetCursorActive_) {
+    if (!target_.Active()) {
         LogWarn("[target] no target cursor active\n");
         return;
     }
@@ -2713,17 +3562,16 @@ void Client::TargetRespondObject(u32 serial) {
     ResolveObjectTarget(serial, &x, &y, &z, &model);  // best-effort coords/graphic
     u8 buf[19];
     const usize n = build::TargetCursorObject(
-        buf, targetCursorId_, targetCursorSubtype_, serial,
+        buf, target_.Current().id, target_.Current().subtype, serial,
         static_cast<u16>(x), static_cast<u16>(y), z, model);
     Send(buf, n, "0x6C TargetCursor (object)");
     LogInfo("[target] object 0x%08X (%d,%d,%d) model 0x%04X\n",
             serial, x, y, static_cast<int>(z), model);
-    targetCursorActive_ = false;
-    targetCursorSubtype_ = 0;
+    target_.OnReplied();
 }
 
 void Client::TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z) {
-    if (!targetCursorActive_) {
+    if (!target_.Active()) {
         LogWarn("[target] no target cursor active\n");
         return;
     }
@@ -2740,16 +3588,15 @@ void Client::TargetRespondGround(i32 x, i32 y, bool hasZ, i8 z) {
     }
     u8 buf[19];
     const usize n = build::TargetCursorGround(
-        buf, targetCursorId_, targetCursorSubtype_,
+        buf, target_.Current().id, target_.Current().subtype,
         static_cast<u16>(x), static_cast<u16>(y), z, 0);
     Send(buf, n, "0x6C TargetCursor (ground)");
     LogInfo("[target] ground (%d,%d,%d)\n", x, y, static_cast<int>(z));
-    targetCursorActive_ = false;
-    targetCursorSubtype_ = 0;
+    target_.OnReplied();
 }
 
 void Client::TargetRespondStatic(i32 x, i32 y, i8 z, u16 graphic) {
-    if (!targetCursorActive_) {
+    if (!target_.Active()) {
         LogWarn("[target] no target cursor active\n");
         return;
     }
@@ -2758,24 +3605,22 @@ void Client::TargetRespondStatic(i32 x, i32 y, i8 z, u16 graphic) {
     // ground (a model of 0 yields "you can't use an axe on that").
     u8 buf[19];
     const usize n = build::TargetCursorGround(
-        buf, targetCursorId_, targetCursorSubtype_,
+        buf, target_.Current().id, target_.Current().subtype,
         static_cast<u16>(x), static_cast<u16>(y), z, graphic);
     Send(buf, n, "0x6C TargetCursor (static)");
     LogInfo("[target] static 0x%04X (%d,%d,%d)\n", graphic, x, y,
             static_cast<int>(z));
-    targetCursorActive_ = false;
-    targetCursorSubtype_ = 0;
+    target_.OnReplied();
 }
 
 void Client::CancelTargetCursor(const char* reason) {
-    if (!targetCursorActive_) return;
+    if (!target_.Active()) return;
     u8 buf[19];
-    const usize n = build::TargetCursorCancel(buf, targetCursorId_,
-                                              targetCursorSubtype_);
+    const usize n = build::TargetCursorCancel(buf, target_.Current().id,
+                                              target_.Current().subtype);
     Send(buf, n, "0x6C TargetCursor (cancel)");
     LogInfo("[target] cancelled (%s)\n", reason ? reason : "");
-    targetCursorActive_ = false;
-    targetCursorSubtype_ = 0;
+    target_.OnReplied();
 }
 
 const Client::MobileObj* Client::FindMobileAt(i32 x, i32 y, i8 z) const {
@@ -2877,6 +3722,7 @@ void Client::OnStats(const u8* data, usize size) {
         player_.stamCur = static_cast<i32>(LoadBE16(data + 50));
         player_.stamMax = static_cast<i32>(LoadBE16(data + 52));
         player_.manaCur = static_cast<i32>(LoadBE16(data + 54));
+        ActionOnManaChanged(player_.manaCur);
         player_.manaMax = static_cast<i32>(LoadBE16(data + 56));
         player_.gold = static_cast<i32>(LoadBE32(data + 58));
         player_.armor = static_cast<i32>(LoadBE16(data + 62));
@@ -2975,6 +3821,9 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
         BotNoteFatigueMessage();
         LogInfo("[bot] fatigue detected; rejects will wait for stamina regen\n");
     }
+    // Sphere reports most action failures as plain system messages; let the
+    // action layer turn the obvious ones into a result instead of a timeout.
+    ActionOnSysMessage(text.c_str(), sourceSerial & 0x7FFFFFFFu, type);
 }
 
 // ---------------------------------------------------------------------------
@@ -3046,6 +3895,7 @@ void Client::OnDrawGamePlayer(const u8* data, usize size) {
         playerRunning_ = false;
         playerWarMode_ = (flags & 0x40u) != 0;
         playerBody_ = body;
+        ActionOnBodyChange(body);
         player_.serial = serial;
         player_.body = body;
         player_.x = playerX_;
@@ -3369,7 +4219,7 @@ void Client::HandleStdinLine(const char* line) {
         (line[6] == '\0' || line[6] == ' ' || line[6] == '\t')) {
         const char* arg = line + 6;
         while (*arg == ' ' || *arg == '\t') ++arg;
-        if (!targetCursorActive_) {
+        if (!target_.Active()) {
             LogWarn("[cmd] no target cursor active\n");
             return;
         }

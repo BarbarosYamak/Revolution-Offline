@@ -12,3 +12,11 @@ target_include_directories(sphere_regression PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME sphere_regression COMMAND sphere_regression)
+
+# M2 action layer: targeting, action results, drag transactions, life state.
+add_executable(m2_actions m2_actions.cpp)
+target_include_directories(m2_actions PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m2_actions COMMAND m2_actions)

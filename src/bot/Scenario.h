@@ -26,6 +26,7 @@ namespace bot {
 //   wait_world            wait until the character is in the world
 //   walk <dir> <count>    queue steps; dir = n|ne|e|se|s|sw|w|nw
 //   goto <x> <y>          plan a route with A* and walk it
+//   goto_mobile <who>     walk to a mobile the server has shown us
 //   wait_goto             wait until the route finishes (arrived or gave up)
 //   wait_walk             wait until every queued step has been answered
 //   say <text>            speak (ASCII)
@@ -34,6 +35,48 @@ namespace bot {
 //   sleep <ms>            pause
 //   hold <ms>             stay connected and idle for this long
 //   logout                request logout and close the connection
+//
+// M2 player actions. Each starts an asynchronous action; `wait_action` blocks
+// the script until the server confirms, rejects or the deadline passes, and
+// `expect <result>` asserts what happened (success by default).
+//
+//   use <serial|@name>            double-click an object
+//   open <serial|@name>           double-click, expecting container contents
+//   move <item> <amount> <dest>   move an item into a container
+//   drop_ground <item> <amount>   drop an item at the character's feet
+//   equip <item> <layer>          wear an item on a layer
+//   unequip <item>                take it off, back into the backpack
+//   skill <id> [target]           use a skill (auto-answers its cursor)
+//   cast <id> [target]            cast a spell (auto-answers its cursor)
+//   cast_scroll <item> [target]   cast the spell a scroll carries
+//   attack <serial|@name>         initiate combat
+//   war <on|off>                  toggle war mode
+//   bandage <item> [target]       use a bandage on a character
+//   bank <banker> [phrase]        open the bank the way a player does
+//   vendor_open <vendor> [phrase]  ask a vendor to show its wares (speech)
+//   vendor_buy <vendor> <item> <qty>
+//   target <serial|@name>         answer an armed cursor with an object
+//   target_ground <x> <y> <z>     answer an armed cursor with a tile
+//   target_cancel                 cancel an armed cursor
+//   wait_action                   wait for the current action to finish
+//   expect <result>               assert the last action result
+//   wait_target                   wait until a target cursor is armed
+//   resurrect                     acknowledge the ghost state and wait
+//   wait_dead                     wait until the server reports us dead
+//   wait_alive                    wait until the server reports us alive
+//   remember <name> <expr>        bind a serial for later use (see below)
+//   require <name>                fail the scenario unless <name> is bound
+//
+// `remember` binds a name to a serial so later steps can refer to it as
+// @name. Supported expressions:
+//   self                          our own character
+//   backpack                      the worn backpack
+//   bank                          the container the server opened as our bank
+//   pack_graphic <hex>            first backpack item with that graphic
+//   mobile_nearest                nearest cached mobile that is not us
+//   mobile_name <text>            nearest cached mobile whose name contains text
+//   vendor_first                  first item in the current vendor offer
+//   0x1234ABCD                    a literal serial
 // ---------------------------------------------------------------------------
 class Scenario {
 public:
@@ -42,7 +85,8 @@ public:
     bool Load(const char* path, std::string* err);
 
     bool Empty() const { return steps_.empty(); }
-    bool Finished() const { return pc_ >= steps_.size(); }
+    bool Finished() const { return pc_ >= steps_.size() || failed_; }
+    bool Failed() const { return failed_; }
 
     // Advance the script. Call once per client tick with the current
     // monotonic millisecond clock.
@@ -52,6 +96,11 @@ private:
     enum class Op : u8 {
         WaitWorld, Walk, WaitWalk, Say, Backpack, WaitBackpack,
         Sleep, Hold, Logout, Goto, WaitGoto,
+        // M2
+        Use, Open, Move, DropGround, Equip, Unequip, Skill, Cast, Attack,
+        War, Bandage, Bank, VendorOpen, VendorBuy, Target, TargetGround, TargetCancel,
+        WaitAction, Expect, WaitTarget, Resurrect, Remember, Require, CastScroll,
+        GotoMobile, WaitDead, WaitAlive,
     };
     struct Step {
         Op          op = Op::WaitWorld;
@@ -59,12 +108,22 @@ private:
         int         count = 0;
         i32         x = 0;
         i32         y = 0;
+        i32         z = 0;
+        int         id = 0;          // skill / spell id
+        std::string a, b, c;         // operands, resolved at run time
         i64         durationMs = 0;
         std::string text;
         int         line = 0;
     };
 
+    // Resolve an operand (literal serial, @name or a keyword) to a serial.
+    u32 Resolve(Client& client, const std::string& tok) const;
+    void Bind(const std::string& name, u32 serial);
+
     std::vector<Step> steps_;
+    std::vector<std::pair<std::string, u32>> binds_;
+    bool failed_ = false;
+    bool aborted_ = false;   // failure already reported and logout issued
     usize pc_ = 0;
     bool  entered_ = false;    // current step has run its one-shot side effect
     i64   deadlineMs_ = 0;     // for Sleep/Hold

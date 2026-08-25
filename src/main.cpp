@@ -28,6 +28,9 @@ void PrintUsage() {
         "  --char-slot <n>    character slot to play (default 0)\n"
         "  --char-name <s>    play the slot with this name (overrides --char-slot)\n"
         "  --create-char      create the character if the account has none\n"
+        "  --create-skills <s> starting skills as id:val,id:val,id:val\n"
+        "                     (Sphere SKILL_TYPE ids, e.g. 25:50,16:30,26:20\n"
+        "                      for a mage -- the server grants the matching kit)\n"
         "\n"
         "Behaviour:\n"
         "  --scenario <file>  run a scripted action list once in world\n"
@@ -126,6 +129,8 @@ int main(int argc, char** argv) {
     base.charSlot         = 0;
     base.charName         = nullptr;
     base.createCharIfMissing = false;
+    base.createSkill[0] = base.createSkill[1] = base.createSkill[2] = 0;
+    base.createSkillVal[0] = base.createSkillVal[1] = base.createSkillVal[2] = 0;
     base.runWhenWalking   = false;
     base.sessionTag       = nullptr;
     base.enableStdin      = false;
@@ -164,6 +169,21 @@ int main(int argc, char** argv) {
         else if (ArgIs(a, "--seed"))      { base.plaintextSeed = static_cast<uo::u32>(std::strtoul(next, nullptr, 0)); ++i; }
         else if (ArgIs(a, "--char-slot")) { base.charSlot = std::atoi(next); ++i; }
         else if (ArgIs(a, "--char-name")) { base.charName = next; ++i; }
+        else if (ArgIs(a, "--create-skills")) {
+            // "id:val,id:val,id:val"
+            int n = 0;
+            const char* p = next;
+            while (*p && n < 3) {
+                base.createSkill[n] = std::atoi(p);
+                const char* colon = std::strchr(p, ':');
+                base.createSkillVal[n] = colon ? std::atoi(colon + 1) : 0;
+                ++n;
+                const char* comma = std::strchr(p, ',');
+                if (!comma) break;
+                p = comma + 1;
+            }
+            ++i;
+        }
         else if (ArgIs(a, "--scenario"))  { base.scenarioPath = next; ++i; }
         else if (ArgIs(a, "--keepalive")) { base.keepaliveIntervalMs = static_cast<uo::u32>(std::atoi(next)); ++i; }
         else if (ArgIs(a, "--tag"))       { base.sessionTag = next; ++i; }

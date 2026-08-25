@@ -931,7 +931,7 @@ void Client::RenderTick() {
             minimapKeyDown_ = mDown;
 
             const bool escDown = keys[0x1B] != 0;   // VK_ESCAPE — cancel target
-            if (escDown && !escKeyDown_ && targetCursorActive_)
+            if (escDown && !escKeyDown_ && target_.Active())
                 CancelTargetCursor("Esc");
             escKeyDown_ = escDown;
 
@@ -987,7 +987,7 @@ void Client::RenderTick() {
     DrawCursorOverlay();
 
     char title[80];
-    const char* tgt = targetCursorActive_ ? " [TARGET]" : "";
+    const char* tgt = target_.Active() ? " [TARGET]" : "";
     if (nav_.bot.active || !nav_.bot.path.empty()) {
         std::snprintf(title, sizeof(title), "uo-client [%d,%d,%d] path=%zu%s",
                       playerX_, playerY_, static_cast<int>(playerZ_),
@@ -1439,7 +1439,7 @@ void Client::HandleWorldClick() {
     if (!renderer_) return;
 
     // A right-click cancels an armed target cursor instead of retargeting the bot.
-    if (targetCursorActive_) {
+    if (target_.Active()) {
         CancelTargetCursor("right-click");
         return;
     }
@@ -1471,7 +1471,7 @@ void Client::HandleItemClicks() {
     // client bails out of Entity_PerformDefaultAction while g_TargetCursorActive).
     // A left-click (single or double) resolves it: an object click answers with
     // the picked serial, an empty-ground click answers with the tile.
-    if (targetCursorActive_) {
+    if (target_.Active()) {
         // Drain BOTH click queues so a paired single+double event can't leak a
         // use/open into a later frame once we've left target mode.
         int mx = 0, my = 0;
@@ -1657,7 +1657,7 @@ void Client::DrawCursorOverlay() {
     // = static 0x205F (war) / 0x2076 (peace). (Slot 20 / 0x2060 / 0x2077 is the
     // post-action hourglass, NOT the reticle.) Otherwise: walk cursor = base + dir.
     u16 artId;
-    if (targetCursorActive_) {
+    if (target_.Active()) {
         artId = playerWarMode_ ? 0x205Fu : 0x2076u;
     } else {
         const int dir = CursorDirFromCenter(mx, my, renderer_->Width(), renderer_->Height());

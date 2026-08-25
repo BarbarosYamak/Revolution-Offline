@@ -6,6 +6,7 @@
 #include "navigation/PathPlanner.h"
 #include "navigation/NavigationState.h"
 #include "js/JsEngine.h"
+#include "uo/actions.h"
 #include "uo/log.h"
 #include "uo/types.h"
 
@@ -78,6 +79,13 @@ public:
         int         charSlot;         // slot to play (default 0)
         const char* charName;         // optional: pick the slot whose name matches
         bool        createCharIfMissing;  // send 0x00 when the account has no chars
+        // Starting skills requested at character creation, as Sphere SKILL_TYPE
+        // ids with values in whole points. The server clamps each to 50 and the
+        // sum to 100 (CChar::InitPlayer), and its own newbie templates decide
+        // the starting kit -- a character created with Magery is handed a
+        // spellbook exactly as a human player's would be.
+        int         createSkill[3];
+        int         createSkillVal[3];
         bool        runWhenWalking;   // true = 0x80 run bit + 200ms; false = walk 400ms
         const char* sessionTag;       // short id used in logs ("bot01"); nullptr = none
         bool        enableStdin;      // read console commands (single-session only)
@@ -147,8 +155,97 @@ public:
     // outstanding-step limit and reject handling apply exactly as they do to
     // a scripted walk.
     void ActionGoto(i32 x, i32 y);
+    // Walk to a mobile the server has told us about. NPCs wander, so a
+    // scenario cannot assume a fixed tile for a vendor or a banker.
+    bool ActionGotoMobile(u32 serial, int stopWithin = 1);
+    bool MobilePosition(u32 serial, i32* x, i32* y) const;
     bool GotoBusy();                     // planning or walking a route
     bool GotoSucceeded() const { return gotoArrived_; }
+
+    // -----------------------------------------------------------------
+    // M2 player action primitives.
+    //
+    // Each expresses player INTENT; the packet layout lives underneath. They
+    // start an asynchronous action and return immediately -- completion is
+    // server-confirmed, observed through packets, and reported through
+    // ActionResult(). A scenario waits with ActionBusy() and then branches on
+    // the result, so "the packet was sent" and "the server did it" are never
+    // confused. Every action has a deadline and fails cleanly on timeout.
+    //
+    // Only one deliberate action is in flight at a time (a player has one pair
+    // of hands). Movement is deliberately NOT an action: it keeps its own
+    // controller, so a bot can walk while an action is outstanding.
+    // -----------------------------------------------------------------
+    bool         ActionBusy() const { return action_.Active(); }
+    act::Result  ActionResult() const { return action_.result; }
+    act::Kind    ActionKind() const { return action_.kind; }
+    const act::Action& CurrentAction() const { return action_; }
+
+    // Objects and containers
+    void ActionUseObject(u32 serial);           // double-click anything
+    void ActionOpenContainer(u32 serial);       // double-click, expect contents
+
+    // Inventory
+    void ActionMoveItem(u32 serial, u16 amount, u32 destContainer);
+    void ActionDropGround(u32 serial, u16 amount, i32 x, i32 y, i8 z);
+
+    // Equipment
+    void ActionEquip(u32 serial, u8 layer);
+    void ActionUnequip(u32 serial);             // back into the backpack
+
+    // Targeting (answering a cursor the server armed)
+    bool ActionTargetObject(u32 serial);
+    bool ActionTargetGround(i32 x, i32 y, i8 z);
+    bool ActionCancelTarget();
+    bool TargetActive() const { return target_.Active(); }
+    u32  TargetGeneration() const { return target_.Generation(); }
+    u8   TargetSubtype() const { return target_.Current().subtype; }
+
+    // Skills and magery
+    void ActionUseSkill(int skillId, u32 targetSerial = 0);
+    void ActionCastSpell(int spellId, u32 targetSerial = 0);
+    // Cast the spell carried by a scroll. Sphere treats a scroll as the caster
+    // (src/game/clients/CClientUse.cpp:350-371), so this is the route a player
+    // has when they own no spellbook. Confirmed by the scroll being consumed.
+    void ActionCastScroll(u32 scrollSerial, u32 targetSerial = 0);
+
+    // Combat
+    void ActionAttack(u32 serial);
+    void ActionWarMode(bool on);
+
+    // Healing
+    void ActionUseBandage(u32 bandageSerial, u32 targetSerial);
+
+    // One row of a vendor offer, joined from the 0x3C stock contents and the
+    // 0x74 price/name list. Plain data: the scenario picks what to buy.
+    struct VendorItem { u32 serial; u16 graphic; u16 amount; u32 price; u8 layer; std::string name; };
+
+    // Banking and vendors
+    void ActionOpenBank(u32 bankerSerial, const char* phrase = "bank");
+    // Ask a vendor to show its wares. Sphere opens the shop from SPEECH, not
+    // from a double-click, so this says the word a player would say.
+    void ActionVendorOpen(u32 vendorSerial, const char* phrase = "buy");
+    void ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty);
+    void ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty);
+    const std::vector<VendorItem>& VendorOffer() const { return vendorOffer_; }
+    u32  VendorOfferFrom() const { return vendorOfferVendor_; }
+
+    // Life state (server-driven only)
+    act::LifeState Life() const { return life_; }
+    bool IsDead() const { return life_ == act::LifeState::Dead; }
+    void ActionResurrectAccept();               // answer a 0x2C resurrect menu
+
+    // Introspection used by scenarios and tests
+    // Nearest cached mobile (server-driven; never invented). maxDist 0 = any.
+    u32  NearestMobile(int maxDist) const;
+    u32  NearestMobileNamed(const char* needle) const;
+    u32  FindBackpackItemByGraphic(u16 graphic) const;
+    u32  BackpackItemCount(u16 graphic) const;
+    i32  PlayerMana() const;
+    i32  PlayerGold() const;
+    u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
+    bool ContainerKnown(u32 serial) const;
+    u32  BankContainer() const { return bankContainer_; }
 
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
@@ -238,6 +335,8 @@ private:
     void OnUnicodeMessage     (const u8* data, usize size);
     void OnUnknown            (const u8* data, usize size);
     void OnLogoutAck          (const u8* data, usize size);  // 0xD1
+    void OnDragCancel         (const u8* data, usize size);  // 0x27
+    void OnAttackAck          (const u8* data, usize size);  // 0xAA
     void RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
                                 u16 hue, u16 font, const char* speaker,
                                 const char* text);
@@ -306,6 +405,29 @@ private:
 
     void PumpDirectSteps();            // drive ActionWalk's queue (no A*)
     void OnStepRejected(u8 dir);       // resync bookkeeping for a rejected step
+
+    // --- M2 action plumbing ------------------------------------------------
+    void BeginAction(act::Kind kind, i64 timeoutMs);
+    void FinishAction(act::Result r, const char* why);
+    void ActionTick();                 // deadline sweep, one per client tick
+    void OnTargetArmedForAction();     // a 0x6C arrived while an action waits
+    // Confirmation hooks, called from the packet handlers.
+    void ActionOnContainerOpened(u32 serial, u16 gumpId);
+    void ActionOnContainerContents(u32 container, u16 count);
+    void ActionOnItemInContainer(u32 item, u32 container);
+    void ActionOnItemEquipped(u32 mobile, u32 item, u8 layer);
+    void ActionOnItemWorld(u32 item, i32 x, i32 y, i8 z);
+    void ActionOnDragCancel(u8 reason);
+    void ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type);
+    void ActionOnManaChanged(i32 mana);
+    void ActionOnObjectDeleted(u32 serial);
+    void ActionOnBodyChange(u16 body);
+    void ActionOnVendorOffer(u32 vendorSerial);
+    void ActionOnAttackAck(u32 serial);
+    // Lift + drop, the two halves of every UO item move.
+    bool SendLift(u32 serial, u16 amount);
+    void SendDropToContainer(u32 serial, u32 container);
+    void SendDropToGround(u32 serial, i32 x, i32 y, i8 z);
     void PumpKeepalive();              // 0x73 while in world
     void ReportUnframeableStream(const char* err);  // log + end session safely
     void PrintNearbyMobiles();
@@ -537,10 +659,11 @@ private:
     // While active, the next world click resolves into a 0x6C response; Esc/right-
     // click cancels. id/subtype are echoed back; type is the server's requested
     // mode (0=object, 1=ground) but the response type follows what we actually hit.
-    bool targetCursorActive_ = false;
-    u8   targetCursorType_ = 0;
-    u32  targetCursorId_ = 0;
-    u8   targetCursorSubtype_ = 0;
+    // Per-session target cursor state machine (uo/actions.h). Carries a
+    // generation counter so an action can only answer the cursor it caused --
+    // a superseded cursor's reply is refused rather than sent to the wrong
+    // request. Session-owned, so two clients never share a cursor.
+    act::TargetState target_;
     bool escKeyDown_ = false;         // VK_ESCAPE edge-detect (cancel target once)
     bool pendingLClick_ = false;     // a single-click is waiting out the dbl-click window
     u32  pendingLClickSerial_ = 0;   // object picked on that press (0 = empty space)
@@ -620,7 +743,6 @@ private:
     // VendorItem rows (carrying the shop-container layer to send back in 0x3B)
     // and accumulate them in pendingVendor_ until the gump 0x30 finalizes the
     // session and emits the `vendor_buy` event. See shopkeeper.c / human.m.
-    struct VendorItem { u32 serial; u16 graphic; u16 amount; u32 price; u8 layer; std::string name; };
     std::vector<VendorItem> pendingVendor_;
     int pendingVendorGroups_ = 0;        // 0x74 groups seen this session (0 -> layer 0x1A, else 0x1B)
     // One buy request row (JS Vendor.buy): how many of `serial` to buy from `layer`.
@@ -747,6 +869,16 @@ private:
     bool  logoutAcked_ = false;          // server answered 0xD1
     bool  charCreateSent_ = false;       // 0x00 sent; don't loop on it
     std::unique_ptr<bot::Scenario> scenario_;
+
+    // --- M2 action state (all session-owned) -------------------------------
+    act::Action    action_;
+    act::DragState drag_;
+    act::LifeState life_ = act::LifeState::Alive;
+    u32 bankContainer_ = 0;         // container the server opened as our bank
+    u32 vendorOfferVendor_ = 0;     // vendor whose offer is in vendorOffer_
+    std::vector<VendorItem> vendorOffer_;
+    i32 manaAtActionStart_ = -1;    // for observing a spell's mana cost
+    i32 goldAtActionStart_ = -1;    // for observing a purchase
 
     // --- session lifecycle / identity ------------------------------------
     mutable Logger log_;                 // this session's own log file + tag
