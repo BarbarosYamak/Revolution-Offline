@@ -10,6 +10,7 @@
 #include "uo/types.h"
 
 #include <atomic>
+#include <chrono>
 #include <deque>
 #include <functional>
 #include <memory>
@@ -78,6 +79,8 @@ public:
         const char* charName;         // optional: pick the slot whose name matches
         bool        createCharIfMissing;  // send 0x00 when the account has no chars
         bool        runWhenWalking;   // true = 0x80 run bit + 200ms; false = walk 400ms
+        const char* sessionTag;       // short id used in logs ("bot01"); nullptr = none
+        bool        enableStdin;      // read console commands (single-session only)
         const char* scenarioPath;     // optional scripted action list (nullptr = none)
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
@@ -102,7 +105,20 @@ public:
     explicit Client(const Config& cfg);
     ~Client();
 
+    // Blocking convenience wrapper: Start(), then Tick() until the session
+    // ends. Equivalent to what a single-client process wants.
     int Run();
+
+    // Non-blocking lifecycle, for hosting several sessions in one thread.
+    //   Start()    connect + seed + 0x80 + load the scenario. false on failure.
+    //   Tick(ms)   one pump iteration; waits up to `waitMs` for socket data.
+    //   Finished() the session has ended (disconnected or failed).
+    //   ExitCode() 0 on a clean session, non-zero on failure.
+    bool Start();
+    void Tick(int waitMs);
+    bool Finished() const { return finished_; }
+    int  ExitCode() const { return exitCode_; }
+    const char* SessionTag() const { return sessionTag_; }
 
     // -----------------------------------------------------------------
     // Player action API — the adapter boundary.
@@ -125,6 +141,15 @@ public:
     // paced and sent one at a time, each waiting for the server's 0x22/0x21.
     void ActionWalk(u8 dir, int count);
     bool WalkQueueBusy() const;          // steps still queued or in flight
+    // Ask the A* planner for a route to (x, y) and walk it. The planner only
+    // produces desired steps; every one of them is still submitted by the
+    // movement controller (SubmitStep), so pacing, sequencing, the
+    // outstanding-step limit and reject handling apply exactly as they do to
+    // a scripted walk.
+    void ActionGoto(i32 x, i32 y);
+    bool GotoBusy();                     // planning or walking a route
+    bool GotoSucceeded() const { return gotoArrived_; }
+
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
     void ActionLogout();                 // 0xD1 + socket close
@@ -148,8 +173,21 @@ private:
 
     // --- main pump --------------------------------------------------------
     bool ConnectAndSendSeed(const char* host, u16 port);
-    bool PumpUntilDisconnected();
+    // (the old PumpUntilDisconnected loop is now Run() + Tick())
     void Dispatch(const u8* data, usize size);
+
+    // --- per-session logging ----------------------------------------------
+    // These deliberately shadow the uo::Log* free functions. Inside any Client
+    // member function an unqualified LogInfo(...) therefore resolves here and
+    // is written through this session's own Logger -- tagged with the session
+    // id and routed to this session's log file. Non-member code keeps using
+    // the process-wide logger.
+    void LogInfo (const char* fmt, ...) const;
+    void LogWarn (const char* fmt, ...) const;
+    void LogError(const char* fmt, ...) const;
+    void LogEvent(const char* kind, const char* detail) const;
+    void LogPacket(Direction dir, const u8* data, usize size,
+                   const char* note = nullptr) const;
 
     // --- outbound ---------------------------------------------------------
     bool Send(const u8* data, usize size, const char* note = nullptr);
@@ -253,7 +291,21 @@ private:
     // --- Sphere adapter (M1) ---------------------------------------------
     void SendGameLogin();              // 0x91 on the current socket
     void SendCreateCharacter();        // 0x00 create-character request
+    // --- movement: the single submission path ----------------------------
+    // Outcome of offering one step to the movement controller.
+    enum class StepSubmit : u8 {
+        Sent,       // a real step went out; the caller should consume it
+        Turned,     // a turn went out; offer the same direction again
+        Throttled,  // too soon (pacing); retry later
+        InFlight,   // outstanding-step limit reached; retry later
+        Failed,     // the send itself failed
+    };
+    // The ONLY place a 0x02 is built and sent. Owns the sequence, the pacing,
+    // the outstanding-step limit and the local prediction.
+    StepSubmit SubmitStep(u8 dir, bool run, const char* source);
+
     void PumpDirectSteps();            // drive ActionWalk's queue (no A*)
+    void OnStepRejected(u8 dir);       // resync bookkeeping for a rejected step
     void PumpKeepalive();              // 0x73 while in world
     void ReportUnframeableStream(const char* err);  // log + end session safely
     void PrintNearbyMobiles();
@@ -286,7 +338,7 @@ private:
     void BotSignalDone(bool success, const char* reason);
     void BotFollowTick();
     bool ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const;
-    void BotTick();           // called from PumpUntilDisconnected
+    void BotTick();           // called once per Tick() while in world
     void RenderTick();        // draws the world window (no-op unless enabled)
     void HandleRenderChatInput();
     void HandleManualWalk();  // arrow-key steering from the render window
@@ -683,6 +735,10 @@ private:
     i32   walkBatchStartX_ = 0;          // position when the current batch began
     i32   walkBatchStartY_ = 0;
     bool  walkBatchActive_ = false;
+    bool  gotoRequested_ = false;        // ActionGoto issued, outcome pending
+    bool  gotoArrived_ = false;          // last ActionGoto reached its goal
+    i32   gotoTargetX_ = 0;
+    i32   gotoTargetY_ = 0;
     u8    pingSeq_ = 0;                  // 0x73 keepalive counter
     int   pingOutstanding_ = 0;          // keepalives sent, answer not yet seen
     i64   lastPingEchoMs_ = 0;           // rate limit for echoing server pings
@@ -691,6 +747,15 @@ private:
     bool  logoutAcked_ = false;          // server answered 0xD1
     bool  charCreateSent_ = false;       // 0x00 sent; don't loop on it
     std::unique_ptr<bot::Scenario> scenario_;
+
+    // --- session lifecycle / identity ------------------------------------
+    mutable Logger log_;                 // this session's own log file + tag
+    const char* sessionTag_ = "";
+    bool  started_ = false;
+    bool  finished_ = false;
+    int   exitCode_ = 0;
+    std::chrono::steady_clock::time_point lastActivity_{};
+    bool  stalledLogged_ = false;
 
     enum class JournalOwnerKind : u8 { System, Player, Mobile, Item, Unknown };
     struct JournalEntry {

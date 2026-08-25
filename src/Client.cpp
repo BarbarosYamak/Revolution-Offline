@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include "bot/Scenario.h"
+#include "uo/sphere_rules.h"
 
 #include "uo/builders.h"
 #include "uo/endian.h"
@@ -26,6 +27,7 @@
 #include <cstdio>
 #include <cstring>
 #include <chrono>
+#include <cstdarg>
 #include <iostream>
 #include <limits>
 #include <utility>
@@ -46,12 +48,6 @@ constexpr i64   kKeepaliveIntervalMs = 20000;
 constexpr u8    kLayerOneHanded = 1;     // right hand (weapon)
 constexpr u8    kLayerTwoHanded = 2;     // left hand (shield / 2H weapon)
 constexpr u8    kLayerBackpack  = 0x15;  // 21
-// Canonical UO on-foot step intervals, used by the direct-step action queue.
-// Walking is never subject to Sphere's walk-buffer speedhack check -- that
-// branch requires STATF_FLY, which the server sets only for a running step
-// (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:905-935).
-constexpr u32   kWalkStepMs = 400;
-constexpr u32   kRunStepMs  = 200;
 // How long to wait for the server's 0xD1 before closing anyway.
 constexpr i64   kLogoutGraceMs = 2000;
 // Never echo an unsolicited server ping more than once per second.
@@ -122,6 +118,12 @@ Client::Client(const Config& cfg)
       lastActivityMs_(0) {
     nav_.rng.seed(static_cast<u32>(
         std::chrono::steady_clock::now().time_since_epoch().count()));
+    // One gait for every movement source. A* used to run unconditionally while
+    // scripted walks honoured the config; with a single movement controller the
+    // choice belongs in one place. Walking (the default) never reaches Sphere's
+    // walk-buffer speedhack check, which only runs for running steps
+    // (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:905-935).
+    nav_.movement.run = cfg_.runWhenWalking;
     navigation::PathPlannerConfig pathConfig;
     pathConfig.tiledataPath = cfg_.tiledataPath ? cfg_.tiledataPath : "";
     pathConfig.mapPath = cfg_.mapPath ? cfg_.mapPath : "";
@@ -133,7 +135,11 @@ Client::Client(const Config& cfg)
     std::memset(servers_, 0, sizeof(servers_));
     std::memset(charSlots_, 0, sizeof(charSlots_));
     js_.SetBindingInstaller(
-        [this](JSContext* c) { uo::js::InstallClientBindings(c, this); });
+        [this](JSContext* c) {
+            // Refused when another session already owns the JS bindings; the
+            // error is logged there and this session simply has no scripting.
+            (void)uo::js::InstallClientBindings(c, this);
+        });
     js_.SetBindingTeardown([]() { uo::js::DetachClientBindings(); });
 }
 
@@ -141,28 +147,81 @@ Client::~Client() {
     if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
-    Logger::Instance().Close();
-    net::Socket::WSACleanupOnce();
+    log_.Close();
+    // Deliberately NOT closing Logger::Instance() and NOT calling
+    // WSACleanupOnce(): both are process-wide and another session may still
+    // be running. Winsock teardown belongs to the process (main), not to one
+    // session. (M1.5 state audit items 7 and 8.)
+}
+
+// --- per-session logging ---------------------------------------------------
+// Each forwards to this session's Logger, which prefixes the session tag.
+
+void Client::LogInfo(const char* fmt, ...) const {
+    std::va_list ap; va_start(ap, fmt);
+    log_.WriteV(LogLevel::Info, LogSink::Both, fmt, ap);
+    va_end(ap);
+}
+
+void Client::LogWarn(const char* fmt, ...) const {
+    std::va_list ap; va_start(ap, fmt);
+    log_.WriteV(LogLevel::Warn, LogSink::Both, fmt, ap);
+    va_end(ap);
+}
+
+void Client::LogError(const char* fmt, ...) const {
+    std::va_list ap; va_start(ap, fmt);
+    log_.WriteV(LogLevel::Error, LogSink::Both, fmt, ap);
+    va_end(ap);
+}
+
+void Client::LogEvent(const char* kind, const char* detail) const {
+    log_.Event(kind, detail);
+}
+
+void Client::LogPacket(Direction dir, const u8* data, usize size,
+                       const char* note) const {
+    log_.Packet(dir, data, size, note);
 }
 
 int Client::Run() {
-    if (!net::Socket::WSAStart()) return 1;
+    if (!Start()) return exitCode_;
+    while (!finished_) Tick(50);
+    return exitCode_;
+}
 
+// Bring the session up to the point where it is waiting on the server:
+// connected, seeded, 0x80 sent, scenario loaded. Never blocks on the network
+// beyond the TCP connect itself.
+bool Client::Start() {
+    if (started_) return !finished_;
+    started_ = true;
+
+    // Winsock init is idempotent and refcount-free; the matching cleanup is
+    // the process's job, not the session's.
+    if (!net::Socket::WSAStart()) { exitCode_ = 1; finished_ = true; return false; }
+
+    sessionTag_ = (cfg_.sessionTag && cfg_.sessionTag[0]) ? cfg_.sessionTag : "";
+    log_.SetTag(sessionTag_);
     if (cfg_.logFile && cfg_.logFile[0]) {
-        if (!Logger::Instance().OpenFile(cfg_.logFile)) {
-            LogWarn( "warning: cannot open log file '%s'\n", cfg_.logFile);
+        if (!log_.OpenFile(cfg_.logFile)) {
+            LogWarn("warning: cannot open log file '%s'\n", cfg_.logFile);
         } else {
             LogEvent("session_start", "text log opened");
         }
     }
 
-    if (!ConnectAndSendSeed(cfg_.loginHost, cfg_.loginPort)) return 2;
+    if (!ConnectAndSendSeed(cfg_.loginHost, cfg_.loginPort)) {
+        exitCode_ = 2; finished_ = true; return false;
+    }
 
     // Send 0x80 immediately after the seed; the original client does the
     // same — there is no server-side ack between seed and login.
     u8 buf[256];
-    usize n = build::LoginRequest(buf, cfg_.username, cfg_.password);
-    if (!Send(buf, n, "0x80 LoginRequest")) return 3;
+    const usize n = build::LoginRequest(buf, cfg_.username, cfg_.password);
+    if (!Send(buf, n, "0x80 LoginRequest")) {
+        exitCode_ = 3; finished_ = true; return false;
+    }
     state_ = State::AwaitingServerList;
 
     if (cfg_.scenarioPath && cfg_.scenarioPath[0]) {
@@ -172,13 +231,13 @@ int Client::Run() {
             LogError("[scenario] %s\n", err.c_str());
             LogEvent("scenario_load_failed", err.c_str());
             scenario_.reset();
-            return 5;
+            exitCode_ = 5; finished_ = true; return false;
         }
         LogInfo("[scenario] loaded '%s'\n", cfg_.scenarioPath);
     }
 
-    if (!PumpUntilDisconnected()) return 4;
-    return 0;
+    lastActivity_ = std::chrono::steady_clock::now();
+    return true;
 }
 
 bool Client::ConnectAndSendSeed(const char* host, u16 port) {
@@ -241,9 +300,7 @@ void Client::LogPacketRedacted(Direction dir, const u8* data, usize size,
                                const char* note) {
     if (!cfg_.logPackets) return;
 
-    usize passOff = 0;
-    if (size >= 62 && data[0] == 0x80)      passOff = 31;   // cmd + user[30]
-    else if (size >= 65 && data[0] == 0x91) passOff = 35;   // cmd + key[4] + user[30]
+    const usize passOff = sphere::CredentialPasswordOffset(data, size);
 
     if (passOff == 0) {
         LogPacket(dir, data, size, note);
@@ -253,24 +310,33 @@ void Client::LogPacketRedacted(Direction dir, const u8* data, usize size,
     u8 scratch[256];
     const usize n = (size < sizeof(scratch)) ? size : sizeof(scratch);
     std::memcpy(scratch, data, n);
-    for (usize i = passOff; i < passOff + 30 && i < n; ++i) scratch[i] = 0xEE;
+    for (usize i = passOff;
+         i < passOff + sphere::kCredentialFieldLen && i < n; ++i)
+        scratch[i] = sphere::kRedactionFill;
     char redacted[160];
     std::snprintf(redacted, sizeof(redacted), "%s [password redacted]",
                   note ? note : "");
     LogPacket(dir, scratch, n, redacted);
 }
 
-bool Client::PumpUntilDisconnected() {
-    u8 rxbuf[8192];
-    auto last_activity = std::chrono::steady_clock::now();
-    bool stalled_logged = false;
+// One iteration of the session pump. Waits up to `waitMs` for socket data,
+// then services whatever is due. A host with several sessions calls this on
+// each of them in turn.
+void Client::Tick(int waitMs) {
+    if (finished_) return;
+    if (state_ == State::Failed || sock_.Closed()) {
+        finished_ = true;
+        if (exitCode_ == 0 && state_ == State::Failed) exitCode_ = 4;
+        return;
+    }
 
-    while (state_ != State::Failed && !sock_.Closed()) {
+    u8 rxbuf[8192];
+    {
         // Liveness heartbeat — surface server silence after 5s.
         auto now = std::chrono::steady_clock::now();
         auto idle = std::chrono::duration_cast<std::chrono::seconds>(
-                        now - last_activity).count();
-        if (!stalled_logged && idle >= 5 &&
+                        now - lastActivity_).count();
+        if (!stalledLogged_ && idle >= 5 &&
             state_ != State::InWorld &&
             state_ != State::AwaitingServerList &&
             state_ != State::AwaitingCharacterList) {
@@ -280,24 +346,25 @@ bool Client::PumpUntilDisconnected() {
                 static_cast<long long>(idle),
                 StateName(static_cast<int>(state_)),
                 sock_.IsOpen() && !sock_.Closed() ? 1 : 0);
-            stalled_logged = true;
+            stalledLogged_ = true;
         }
         // Wait briefly for socket data; periodically pump stdin speech.
-        int rd = sock_.WaitReadable(50);
+        int rd = sock_.WaitReadable(waitMs);
         if (rd < 0) {
-            LogWarn( "[net] select error; bailing\n");
-            return false;
+            LogWarn("[net] select error; bailing\n");
+            exitCode_ = 4; finished_ = true; return;
         }
         if (rd > 0) {
             int n = sock_.RecvSome(rxbuf, sizeof(rxbuf));
             if (n < 0) {
-                LogWarn( "[net] socket closed by peer.\n");
+                LogWarn("[net] socket closed by peer.\n");
                 LogEvent("disconnect", "recv returned -1 (RST or FIN)");
-                break;
+                finished_ = true;
+                return;
             }
             if (n > 0) {
-                last_activity = std::chrono::steady_clock::now();
-                stalled_logged = false;
+                lastActivity_ = std::chrono::steady_clock::now();
+                stalledLogged_ = false;
                 // Note: do NOT reset lastActivityMs_ on recv. The
                 // original client keeps a SEND-only timer
                 // (g_LastNetworkActivity) and emits the 60-second
@@ -308,17 +375,20 @@ bool Client::PumpUntilDisconnected() {
                     // Game stream is Huffman-compressed; decode before framing.
                     rxScratch_.clear();
                     if (!huff_.Decompress(rxbuf, feed_n, rxScratch_)) {
-                        LogWarn( "[huffman] malformed compressed stream\n");
+                        LogWarn("[huffman] malformed compressed stream\n");
                         LogEvent("huffman_error", "malformed code in game stream");
-                        return false;
+                        exitCode_ = 4; finished_ = true; return;
                     }
                     feed = rxScratch_.data();
                     feed_n = rxScratch_.size();
-                    if (feed_n == 0) continue;  // partial block; need more bytes
+                    // Partial Huffman block: nothing framed yet, so end this
+                    // tick and let the next one add more bytes. (Was
+                    // `continue` when this body was a while-loop.)
+                    if (feed_n == 0) return;
                 }
                 if (!stream_.FeedBytes(feed, feed_n)) {
-                    LogWarn( "[net] stream buffer overflow\n");
-                    return false;
+                    LogWarn("[net] stream buffer overflow\n");
+                    exitCode_ = 4; finished_ = true; return;
                 }
                 for (;;) {
                     const u8* pkt = nullptr;
@@ -327,7 +397,7 @@ bool Client::PumpUntilDisconnected() {
                     if (!stream_.TryNext(&pkt, &pkt_size, &err)) {
                         if (err) {
                             ReportUnframeableStream(err);
-                            return false;
+                            exitCode_ = 4; finished_ = true; return;
                         }
                         break;
                     }
@@ -347,7 +417,8 @@ bool Client::PumpUntilDisconnected() {
                 LogEvent("logout_complete",
                          logoutAcked_ ? "acked" : "grace timeout");
                 sock_.Close();
-                return true;
+                finished_ = true;
+                return;
             }
         }
 
@@ -373,7 +444,6 @@ bool Client::PumpUntilDisconnected() {
             PumpKeepalive();
         }
     }
-    return state_ != State::Failed;
 }
 
 // ---------------------------------------------------------------------------
@@ -636,13 +706,13 @@ void Client::OnConnectToGameServer(const u8* data, usize size) {
         (cfg_.gameHostOverride && cfg_.gameHostOverride[0]) ||
         (cfg_.gamePortOverride != 0);
 
-    // Same endpoint as the socket we already hold? Then stay on it.
-    // Compare against the socket's real peer, not the configured host string,
-    // so "localhost" vs "127.0.0.1" can't produce a spurious reconnect.
+    // Same endpoint as the socket we already hold? Then stay on it. Compared
+    // against the socket's real peer, not the configured host string, so
+    // "localhost" vs "127.0.0.1" cannot cause a spurious reconnect.
+    // Rule + rationale: uo::sphere::StayOnLoginSocket (include/uo/sphere_rules.h).
     const bool same_endpoint =
-        !overridden &&
-        (connect_port == sock_.PeerPort()) &&
-        (gameServerIp_ == 0 || gameServerIp_ == sock_.PeerIp());
+        sphere::StayOnLoginSocket(gameServerIp_, connect_port,
+                                  sock_.PeerIp(), sock_.PeerPort(), overridden);
 
     if (same_endpoint) {
         LogInfo("[0x8C] staying on the login socket "
@@ -738,16 +808,13 @@ void Client::OnCharacterList(const u8* data, usize size) {
         return;
     }
 
-    // Pick by name when configured, else by slot index.
-    selectedChar_ = -1;
+    // Pick by name when configured, else by slot index
+    // (uo::sphere::SelectCharacterSlot, include/uo/sphere_rules.h).
+    const char* names[8] = {nullptr};
+    for (int i = 0; i < charCount_ && i < 8; ++i) names[i] = charSlots_[i].name;
+    selectedChar_ = sphere::SelectCharacterSlot(names, charCount_,
+                                                cfg_.charName, cfg_.charSlot);
     if (cfg_.charName && cfg_.charName[0]) {
-        for (int i = 0; i < charCount_; ++i) {
-            if (charSlots_[i].name[0] &&
-                _stricmp(charSlots_[i].name, cfg_.charName) == 0) {
-                selectedChar_ = i;
-                break;
-            }
-        }
         if (selectedChar_ < 0) {
             if (cfg_.createCharIfMissing && !charCreateSent_) {
                 LogInfo("[ui] '%s' not on this account; creating it\n",
@@ -761,8 +828,6 @@ void Client::OnCharacterList(const u8* data, usize size) {
             state_ = State::Failed;
             return;
         }
-    } else {
-        selectedChar_ = cfg_.charSlot;
     }
 
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
@@ -846,8 +911,12 @@ void Client::OnLoginComplete(const u8* data, usize size) {
     lastActivityMs_ =
         std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::steady_clock::now().time_since_epoch()).count();
-    StartStdinThread();
-    LogInfo("\nType to chat (Enter to send). Ctrl-C to quit.\n\n");
+    if (cfg_.enableStdin) {
+        // stdin has exactly one reader per process; a second session must not
+        // race it for keystrokes (M1.5 state audit item 12).
+        StartStdinThread();
+        LogInfo("\nType to chat (Enter to send). Ctrl-C to quit.\n\n");
+    }
     // Peek into the backpack so its contents are known up front. The worn
     // backpack serial may arrive with the player's 0x78 before or after this;
     // open now if known, else TryOpenBackpackOnLogin fires from SetMobileEquip.
@@ -1924,6 +1993,43 @@ bool Client::WalkQueueBusy() const {
     return !directSteps_.empty() || !nav_.movement.pending.empty();
 }
 
+void Client::ActionGoto(i32 x, i32 y) {
+    gotoRequested_ = true;
+    gotoArrived_ = false;
+    gotoTargetX_ = x;
+    gotoTargetY_ = y;
+    LogInfo("[action] goto (%d,%d) from (%d,%d,%d)\n",
+            x, y, playerX_, playerY_, static_cast<int>(playerZ_));
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "target=(%d,%d) from=(%d,%d)",
+                  x, y, playerX_, playerY_);
+    LogEvent("goto_start", ev);
+    BotStartGoto(x, y);
+}
+
+bool Client::GotoBusy() {
+    if (!gotoRequested_) return false;
+    if (nav_.bot.planning || nav_.bot.active) return true;
+
+    // The trip ended: A* is neither planning nor walking any more.
+    gotoRequested_ = false;
+    gotoArrived_ = (playerX_ == gotoTargetX_ && playerY_ == gotoTargetY_);
+    const int dx = playerX_ - gotoTargetX_;
+    const int dy = playerY_ - gotoTargetY_;
+    const int off = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+    LogInfo("[action] goto finished at (%d,%d,%d); target (%d,%d); %s "
+            "(off by %d tile(s))\n",
+            playerX_, playerY_, static_cast<int>(playerZ_),
+            gotoTargetX_, gotoTargetY_,
+            gotoArrived_ ? "ARRIVED" : "stopped short", off);
+    char ev[128];
+    std::snprintf(ev, sizeof(ev), "at=(%d,%d) target=(%d,%d) arrived=%d off=%d",
+                  playerX_, playerY_, gotoTargetX_, gotoTargetY_,
+                  gotoArrived_ ? 1 : 0, off);
+    LogEvent("goto_done", ev);
+    return false;
+}
+
 void Client::ActionSay(const char* text) {
     if (!text || !text[0]) return;
     LogInfo("[action] say: %s\n", text);
@@ -1955,6 +2061,52 @@ void Client::ActionLogout() {
 // its walk-buffer speedhack check only runs for running steps
 // (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:930-935) -- so a
 // depth-1 pipeline at the canonical cadence cannot trip it.
+// The one and only 0x02 sender. Every movement source funnels through here.
+Client::StepSubmit Client::SubmitStep(u8 dir, bool run, const char* source) {
+    dir &= 0x07;
+
+    // 1. Outstanding-step limit: never exceed what the controller allows.
+    if (nav_.movement.pending.size() >= nav_.movement.maxInFlight)
+        return StepSubmit::InFlight;
+
+    // 2. Pacing: never faster than the canonical cadence for this gait.
+    const i64 now = NowMs();
+    const u32 gap = run ? nav_.movement.runStepMs : nav_.movement.walkStepMs;
+    if (nav_.movement.lastMoveSentMs != 0 &&
+        now - nav_.movement.lastMoveSentMs < static_cast<i64>(gap))
+        return StepSubmit::Throttled;
+
+    // 3. Turn-then-step: a direction change is a separate move that the
+    //    server acks without relocating the character.
+    const bool isStep = (dir == playerFacing_);
+
+    // 4. Sequence: allocated here and nowhere else.
+    const u8 seq = NextSeq();
+    const u8 wire = run ? static_cast<u8>(dir | 0x80) : dir;
+
+    u8 buf[16];
+    const usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
+    char note[96];
+    std::snprintf(note, sizeof(note), "0x02 Move dir=%u seq=%u %s%s src=%s",
+                  dir, seq, isStep ? "step" : "turn", run ? " run" : "",
+                  source ? source : "?");
+    if (!Send(buf, n, note)) return StepSubmit::Failed;
+
+    // 5. Bookkeeping the ack/reject handlers rely on.
+    nav_.movement.pending.push_back({seq, dir, isStep, now});
+    nav_.movement.lastMoveSentMs = now;
+    lastDirectStepMs_ = now;
+
+    if (isStep) {
+        BotPredictStep(dir);
+        return StepSubmit::Sent;
+    }
+    playerFacing_ = dir;
+    player_.facing = dir;
+    player_.running = false;
+    return StepSubmit::Turned;
+}
+
 void Client::PumpDirectSteps() {
     if (directSteps_.empty()) {
         // Batch just drained: report where the character ended up. The server
@@ -1977,38 +2129,17 @@ void Client::PumpDirectSteps() {
         }
         return;
     }
-    if (!nav_.movement.pending.empty()) return;   // await ack/reject first
-
-    const i64 now = NowMs();
-    const u32 gap = directStepsRun_ ? kRunStepMs : kWalkStepMs;
-    if (lastDirectStepMs_ != 0 && now - lastDirectStepMs_ < static_cast<i64>(gap))
-        return;
-
     const u8 dir = directSteps_.front();
-    const bool isStep = (dir == playerFacing_);   // else this move only turns
-    const u8 seq = NextSeq();
-    const u8 wire = directStepsRun_ ? static_cast<u8>(dir | 0x80) : dir;
-
-    u8 buf[16];
-    const usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
-    char note[80];
-    std::snprintf(note, sizeof(note), "0x02 Move dir=%u seq=%u %s%s",
-                  dir, seq, isStep ? "step" : "turn",
-                  directStepsRun_ ? " run" : "");
-    if (!Send(buf, n, note)) return;
-
-    nav_.movement.pending.push_back({seq, dir, isStep, now});
-    nav_.movement.lastMoveSentMs = now;
-    lastDirectStepMs_ = now;
-
-    if (isStep) {
-        directSteps_.pop_front();
-        BotPredictStep(dir);
-    } else {
-        // Turn first; the same direction is re-sent next tick as a real step.
-        playerFacing_ = dir;
-        player_.facing = dir;
-        player_.running = false;
+    switch (SubmitStep(dir, directStepsRun_, "action")) {
+        case StepSubmit::Sent:
+            directSteps_.pop_front();
+            break;
+        case StepSubmit::Turned:
+            // The turn was acknowledged as a move; the same direction is
+            // offered again next tick as a real step.
+            break;
+        default:
+            break;   // throttled / in flight / failed: nothing more this tick
     }
 }
 
@@ -2686,13 +2817,17 @@ const Client::MobileObj* Client::FindMobileBySerial(u32 serial) const {
 void Client::OnPing(const u8* data, usize size) {
     if (size < 2) return;
 
-    if (pingOutstanding_ > 0) {
-        --pingOutstanding_;
-        return;   // this is the reply to our keepalive; nothing to send
-    }
-
     const i64 now = NowMs();
-    if (lastPingEchoMs_ != 0 && now - lastPingEchoMs_ < kPingEchoMinGapMs) return;
+    switch (sphere::DecidePing(pingOutstanding_, now, lastPingEchoMs_,
+                               kPingEchoMinGapMs)) {
+        case sphere::PingAction::ConsumeAsReply:
+            --pingOutstanding_;
+            return;               // the reply to our keepalive; send nothing
+        case sphere::PingAction::Ignore:
+            return;               // unsolicited, but too soon to echo again
+        case sphere::PingAction::Echo:
+            break;
+    }
     lastPingEchoMs_ = now;
 
     u8 buf[2];

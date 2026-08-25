@@ -29,9 +29,9 @@ bool ParseDir(const std::string& tok, u8* out) {
 const char* OpName(int op) {
     static const char* kNames[] = {
         "wait_world", "walk", "wait_walk", "say", "backpack",
-        "wait_backpack", "sleep", "hold", "logout",
+        "wait_backpack", "sleep", "hold", "logout", "goto", "wait_goto",
     };
-    return (op >= 0 && op < 9) ? kNames[op] : "?";
+    return (op >= 0 && op < 11) ? kNames[op] : "?";
 }
 
 }  // namespace
@@ -73,6 +73,20 @@ bool Scenario::Load(const char* path, std::string* err) {
         else if (verb == "backpack")      st.op = Op::Backpack;
         else if (verb == "wait_backpack") st.op = Op::WaitBackpack;
         else if (verb == "logout")        st.op = Op::Logout;
+        else if (verb == "wait_goto")     st.op = Op::WaitGoto;
+        else if (verb == "goto") {
+            int gx = 0, gy = 0;
+            ls >> gx >> gy;
+            if (gx <= 0 || gy <= 0) {
+                if (err) *err = "line " + std::to_string(lineNo) +
+                                ": goto needs <x> <y>";
+                steps_.clear();
+                return false;
+            }
+            st.op = Op::Goto;
+            st.x = gx;
+            st.y = gy;
+        }
         else if (verb == "walk") {
             std::string dir;
             int count = 0;
@@ -131,6 +145,9 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::Hold:
                     deadlineMs_ = nowMs + st.durationMs;
                     break;
+                case Op::Goto:
+                    client.ActionGoto(st.x, st.y);
+                    break;
                 case Op::Logout:
                     client.ActionLogout();
                     break;
@@ -147,6 +164,8 @@ void Scenario::Tick(Client& client, i64 nowMs) {
             case Op::Say:          done = true; break;
             case Op::Backpack:     done = true; break;
             case Op::WaitBackpack: done = client.BackpackContentsKnown(); break;
+            case Op::Goto:         done = true; break;   // completion is wait_goto
+            case Op::WaitGoto:     done = !client.GotoBusy(); break;
             case Op::Sleep:
             case Op::Hold:         done = nowMs >= deadlineMs_; break;
             case Op::Logout:       done = true; break;

@@ -25,6 +25,8 @@ namespace bot {
 //
 //   wait_world            wait until the character is in the world
 //   walk <dir> <count>    queue steps; dir = n|ne|e|se|s|sw|w|nw
+//   goto <x> <y>          plan a route with A* and walk it
+//   wait_goto             wait until the route finishes (arrived or gave up)
 //   wait_walk             wait until every queued step has been answered
 //   say <text>            speak (ASCII)
 //   backpack              open the worn backpack
@@ -49,12 +51,14 @@ public:
 private:
     enum class Op : u8 {
         WaitWorld, Walk, WaitWalk, Say, Backpack, WaitBackpack,
-        Sleep, Hold, Logout,
+        Sleep, Hold, Logout, Goto, WaitGoto,
     };
     struct Step {
         Op          op = Op::WaitWorld;
         u8          dir = 0;
         int         count = 0;
+        i32         x = 0;
+        i32         y = 0;
         i64         durationMs = 0;
         std::string text;
         int         line = 0;

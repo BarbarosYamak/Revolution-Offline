@@ -2,6 +2,7 @@
 
 #include "Client.h"
 #include "uo/world.h"
+#include "uo/log.h"
 
 #include "quickjs.h"
 
@@ -13,7 +14,19 @@
 namespace uo::js {
     // ClientBindings is a friend of Client (declared in Client.h), so its getters
     // read the live private player fields directly — no snapshot, no per-access
-    // allocation. One Client per engine, so static binding state is enough.
+    // allocation.
+    //
+    // OWNERSHIP (M1.5): this binding state is per-session, but it still lives in
+    // statics, so exactly ONE Client in a process may own it at a time. The
+    // Emit* entry points below carry no client argument, so they can only
+    // target the owner. InstallClientBindings enforces that: a second Client
+    // asking for bindings while another owns them is refused loudly instead of
+    // silently redirecting the first client's promises, handlers and events.
+    //
+    // Multi-session processes therefore run at most one JS-scripted session.
+    // The M1.5 acceptance sessions are scenario-driven and never install
+    // bindings at all. See docs/M1_5_CLIENT_HARDENING.md for the plan to make
+    // this per-context (thread the owner through the Emit* API).
     struct ClientBindings {
         static Client *client;
         static JSContext *context; // current runtime's context (reset each Run)
@@ -878,7 +891,9 @@ namespace uo::js {
         }
 
         // Rebind to a fresh runtime (already Detached, or first run).
-        static void Reset(JSContext *newCtx, Client *newClient) {
+        // Returns false when another live Client already owns the bindings.
+        static bool Reset(JSContext *newCtx, Client *newClient) {
+            if (newClient && client && client != newClient) return false;
             client = newClient;
             context = newCtx;
             pending.clear();
@@ -886,7 +901,11 @@ namespace uo::js {
             eventQueue.clear();
             if (newClient)
                 newClient->BotClearDoneCb();
+            return true;
         }
+
+        // Which Client owns the bindings right now (nullptr = free).
+        static Client *Owner() { return client; }
     };
 
     Client *ClientBindings::client = nullptr;
@@ -961,8 +980,15 @@ namespace uo::js {
         };
     } // namespace
 
-    void InstallClientBindings(JSContext *ctx, Client *client) {
-        ClientBindings::Reset(ctx, client); // rebind to this fresh runtime
+    bool InstallClientBindings(JSContext *ctx, Client *client) {
+        if (!ClientBindings::Reset(ctx, client)) {
+            // Another session owns the JS bindings. Refuse rather than
+            // hijack them (M1.5 state audit items 1-5).
+            LogError("[js] bindings already owned by another client session; "
+                     "this session cannot run scripts. One JS session per "
+                     "process for now.\n");
+            return false;
+        }
 
         const JSValue global = JS_GetGlobalObject(ctx);
         const JSValue player = JS_NewObject(ctx);
@@ -986,6 +1012,11 @@ namespace uo::js {
         JS_SetPropertyStr(ctx, global, "Vendor", vendor); // consumes vendor
 
         JS_FreeValue(ctx, global);
+        return true;
+    }
+
+    bool ClientBindingsOwnedBy(const Client *c) {
+        return ClientBindings::Owner() == c;
     }
 
     void EmitTargetEvent(unsigned id, unsigned type) {

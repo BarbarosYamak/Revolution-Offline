@@ -1421,28 +1421,14 @@ void Client::HandleManualWalk() {
     }
     if (!nav_.movement.pending.empty()) return;   // wait for the prior step to ack
 
-    const i64 now = NowMs();
-    const u32 gap = BotMoveGapMs();
-    if (lastManualMoveMs_ != 0 && now - lastManualMoveMs_ < static_cast<i64>(gap))
-        return;
-
     const u8 dir = DeltaToDir(dx, dy);
-    const bool wasStep = (dir == playerFacing_);   // turn first, then step
-    const u8 seq  = NextSeq();
-    const u8 wire = nav_.movement.run ? static_cast<u8>(dir | 0x80) : dir;
-    u8 buf[16];
-    usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
-    if (!Send(buf, n, "0x02 Move (manual arrow)")) return;
-    nav_.movement.pending.push_back({seq, dir, wasStep, now});
-    nav_.movement.lastMoveSentMs = now;
-    lastManualMoveMs_ = now;
-    if (wasStep) BotPredictStep(dir);
-    else {
-        playerFacing_ = dir;
-        player_.facing = dir;
-        player_.running = false;
-        lastStepMs_ = 0;
-    }
+    // Manual keys are just another movement source: the controller applies the
+    // same pacing, sequence and outstanding-step rules as A* and scripted
+    // actions, so supervision input can never outrun the server's limits.
+    const StepSubmit res = SubmitStep(dir, nav_.movement.run, "manual");
+    if (res == StepSubmit::Turned) lastStepMs_ = 0;
+    if (res == StepSubmit::Sent || res == StepSubmit::Turned)
+        lastManualMoveMs_ = NowMs();
 }
 
 // Right-click in the render window retargets the bot: invert the screen point

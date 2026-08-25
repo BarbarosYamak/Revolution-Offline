@@ -56,21 +56,30 @@ static void Timestamp(char* out, usize cap) {
                   tmv.tm_hour, tmv.tm_min, tmv.tm_sec, ms);
 }
 
+void Logger::SetTag(const char* tag) {
+    if (!tag || !tag[0]) { tag_[0] = 0; return; }
+    std::snprintf(tag_, sizeof(tag_), "%s", tag);
+}
+
 void Logger::Emit(LogLevel lvl, LogSink sink, const char* body) {
     if (static_cast<u8>(lvl) < static_cast<u8>(minLevel_)) return;
 
     char ts[16];
     Timestamp(ts, sizeof(ts));
     const int s = static_cast<int>(sink);
+    // "[hh:mm:ss.mmm] LEVEL [tag] message" -- the tag identifies the session.
+    char tagbuf[32];
+    if (tag_[0]) std::snprintf(tagbuf, sizeof(tagbuf), "[%s] ", tag_);
+    else         tagbuf[0] = 0;
 
     if (s & static_cast<int>(LogSink::Console)) {
         std::FILE* dst =
             (static_cast<u8>(lvl) >= static_cast<u8>(LogLevel::Warn)) ? stderr : stdout;
-        std::fprintf(dst, "[%s] %s %s", ts, LevelTag(lvl), body);
+        std::fprintf(dst, "[%s] %s %s%s", ts, LevelTag(lvl), tagbuf, body);
         std::fflush(dst);
     }
     if ((s & static_cast<int>(LogSink::File)) && file_) {
-        std::fprintf(file_, "[%s] %s %s", ts, LevelTag(lvl), body);
+        std::fprintf(file_, "[%s] %s %s%s", ts, LevelTag(lvl), tagbuf, body);
         std::fflush(file_);
     }
 }
@@ -94,8 +103,12 @@ void Logger::Packet(Direction dir, const u8* data, usize size, const char* note)
     char ts[16];
     Timestamp(ts, sizeof(ts));
     const char* d = (dir == Direction::In) ? "in " : "out";
-    std::fprintf(file_, "[%s] PKT   %s 0x%02X len=%zu  ",
-                 ts, d, data[0], size);
+    // The tag says which session produced this packet.
+    char tagbuf[32];
+    if (tag_[0]) std::snprintf(tagbuf, sizeof(tagbuf), "[%s] ", tag_);
+    else         tagbuf[0] = 0;
+    std::fprintf(file_, "[%s] PKT   %s%s 0x%02X len=%zu  ",
+                 ts, tagbuf, d, data[0], size);
 
     static const char hex[] = "0123456789abcdef";
     for (usize i = 0; i < size; ++i) {

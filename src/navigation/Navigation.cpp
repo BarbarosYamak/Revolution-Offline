@@ -5,6 +5,7 @@
 #include "uo/endian.h"
 #include "uo/map.h"
 #include "uo/tiledata.h"
+#include "uo/sphere_rules.h"
 #include "uo/world.h"
 
 #include <algorithm>
@@ -52,6 +53,9 @@ constexpr i64   kStaminaWaitMs   = 2000;  // let stamina regen before retrying
 constexpr i64   kMobileWaitMs    = 500;   // let the mobile step aside / shove cooldown
 constexpr u32   kMobileRepathAfter = 15;  // after N mobile bumps, reroute around it
 constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) after this
+// Consecutive rejects tolerated for a scripted/manual step before the queued
+// batch is abandoned (an A* path has its own richer recovery below).
+constexpr u32   kMaxStepRejects  = 3;
 constexpr i64   kFollowReplanMinMs = 120;
 constexpr i64   kFollowProbeMs     = 1200;
 constexpr usize kPathLookaheadScanSteps = 5;
@@ -177,10 +181,16 @@ void Client::OnMoveReject(const u8* data, usize size) {
         seq, x, y, static_cast<int>(z), dirByte & 0x07);
 
     // Drop the whole in-flight queue (anything predicted past the reject is
-    // stale). Classic UO: seq resets to 0.
+    // stale). Classic UO: seq resets to 0, which is also the only sequence
+    // value Sphere validates (PacketMovementReq::onReceive,
+    // src/network/receive.cpp:270-273).
     BotResetMovement();
 
-    if (!nav_.bot.active) return;
+    if (!nav_.bot.active) {
+        // No A* path owns the movement: this was a scripted or manual step.
+        OnStepRejected(rdir);
+        return;
+    }
 
     // Restore the steps popped from botPath_ during pipelining: we've snapped
     // back to the pose *before* the oldest in-flight step, so the path must
@@ -310,13 +320,16 @@ void Client::OnMoveAck(const u8* data, usize size) {
     }
     const navigation::PendingMove pm = nav_.movement.pending.front();
     nav_.movement.pending.pop_front();
+    nav_.movement.rejectStreak = 0;   // the server accepted a move
     if (pm.seq != seq) {
         // Acks should arrive in send order; a mismatch means we lost sync.
         LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
                      seq, pm.seq);
     }
-    // Top up the pipeline immediately rather than waiting for the next tick.
+    // Top up immediately rather than waiting for the next tick. Both movement
+    // sources funnel into SubmitStep, so whichever one owns the queue advances.
     BotPumpMoves();
+    PumpDirectSteps();
 }
 
 
@@ -325,8 +338,8 @@ void Client::OnMoveAck(const u8* data, usize size) {
 // ---------------------------------------------------------------------------
 // Classic UO sequence: starts at 0, wraps 0xFF -> 1 (0 reserved for resync).
 u8 Client::NextSeq() {
-    u8 s = nav_.movement.moveSeq;
-    nav_.movement.moveSeq = (nav_.movement.moveSeq == 0xFF) ? 1 : (nav_.movement.moveSeq + 1);
+    const u8 s = nav_.movement.moveSeq;
+    nav_.movement.moveSeq = sphere::NextMoveSequence(s);
     return s;
 }
 
@@ -774,6 +787,29 @@ void Client::BotSignalDone(bool success, const char* reason) {
 }
 
 
+// A rejected step that did not belong to an A* path (scripted action or
+// manual key). The server has already been believed for the pose; decide
+// whether to keep retrying the queued steps or give up on the batch.
+void Client::OnStepRejected(u8 dir) {
+    if (directSteps_.empty()) return;
+
+    ++nav_.movement.rejectStreak;
+    if (nav_.movement.rejectStreak >= kMaxStepRejects) {
+        const usize dropped = directSteps_.size();
+        directSteps_.clear();
+        walkBatchActive_ = false;
+        nav_.movement.rejectStreak = 0;
+        LogWarn("[move] step dir=%u rejected %u times; abandoning %zu queued "
+                "step(s)\n", dir, kMaxStepRejects, dropped);
+        LogEvent("walk_batch_aborted", "server kept rejecting the step");
+        return;
+    }
+    // Otherwise keep the queue: the next SubmitStep restarts at sequence 0
+    // and the server re-evaluates the same step.
+    LogInfo("[move] step dir=%u rejected (%u/%u); retrying from seq 0\n",
+            dir, nav_.movement.rejectStreak, kMaxStepRejects);
+}
+
 void Client::BotResetMovement() {
     nav_.movement.pending.clear();
     nav_.movement.moveSeq = 0;
@@ -944,16 +980,13 @@ void Client::BotPumpMoves() {
 
     const i64 now_ms = NowMs();
     if (now_ms < nav_.bot.resumeAtMs) return;  // human reaction pause after a bump
-    const u32 needGap = nav_.movement.run ? kRunThrottleMs : kWalkThrottleMs;
 
     if (nav_.movement.pending.empty()) BotLookaheadPatchPath();
 
-    while (nav_.movement.pending.size() < kMaxInFlight && !nav_.bot.path.empty()) {
-        if (nav_.movement.lastMoveSentMs != 0 &&
-            now_ms - nav_.movement.lastMoveSentMs < static_cast<i64>(needGap)) {
-            return;  // enforce only minimum legal step gap, no random jitter
-        }
-
+    // Pacing and the outstanding-step limit live in SubmitStep; this loop just
+    // keeps offering the next desired step until the controller says "not yet".
+    while (nav_.movement.pending.size() < nav_.movement.maxInFlight &&
+           !nav_.bot.path.empty()) {
         const u8 dir = nav_.bot.path.front();
         const bool wasStep = (dir == playerFacing_);
         if (wasStep) {
@@ -985,29 +1018,20 @@ void Client::BotPumpMoves() {
             }
         }
 
-        const u8 seq  = NextSeq();
-        const u8 wire = nav_.movement.run ? static_cast<u8>(dir | 0x80) : dir;
-        u8 buf[16];
-        usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
-        char note[72];
-        std::snprintf(note, sizeof(note), "0x02 Move dir=%u seq=%u %s%s",
-                      dir, seq, wasStep ? "step" : "turn",
-                      nav_.movement.run ? " run" : "");
-        if (!Send(buf, n, note)) {
+        // A* never touches the socket: it offers the next desired step to the
+        // movement controller, which owns pacing, sequencing, the
+        // outstanding-step limit and the local prediction.
+        const StepSubmit res = SubmitStep(dir, nav_.movement.run, "astar");
+        if (res == StepSubmit::Sent) {
+            nav_.bot.path.pop_front();
+        } else if (res == StepSubmit::Turned) {
+            lastStepMs_ = 0;     // same direction is offered again as a step
+        } else if (res == StepSubmit::Failed) {
             BotAbortPath("send failed");
             BotResetMovement();
             return;
-        }
-
-        nav_.movement.pending.push_back({seq, dir, wasStep, now_ms});
-        nav_.movement.lastMoveSentMs = now_ms;
-
-        if (wasStep) { nav_.bot.path.pop_front(); BotPredictStep(dir); }
-        else {
-            playerFacing_ = dir;  // turn: re-send same dir to step
-            player_.facing = dir;
-            player_.running = false;
-            lastStepMs_ = 0;
+        } else {
+            return;              // throttled or outstanding-step limit
         }
     }
 

@@ -13,7 +13,15 @@ namespace js {
 
 // Register app globals on ctx, bound to `client`. Called by JsEngine on every
 // fresh runtime (see Client ctor -> SetBindingInstaller).
-void InstallClientBindings(JSContext* ctx, Client* client);
+//
+// The binding state is per-session but still lives in statics, so only one
+// Client per process may own it. Returns false (and logs) if another live
+// Client already does; that session then runs without scripting rather than
+// corrupting the owner's promises/handlers/event queue.
+bool InstallClientBindings(JSContext* ctx, Client* client);
+
+// True when `c` is the Client the bindings are currently bound to.
+bool ClientBindingsOwnedBy(const Client* c);
 
 // Server-driven events the Client emits into the JS event system (Player.on /
 // once). Quickjs-free signatures so Client.cpp needn't include quickjs.h.

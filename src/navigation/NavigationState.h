@@ -25,11 +25,29 @@ struct RejectedEdge {
     i8  toZ = 0;
 };
 
+// All movement submission state. Every 0x02 the client ever sends is issued
+// by Client::SubmitStep() using this -- A* paths, scripted actions and manual
+// keys alike -- so pacing, sequencing, the outstanding-step limit and
+// ack/reject bookkeeping cannot be bypassed by any caller.
 struct MovementState {
     u8 moveSeq = 0;             // next sequence to send (0 = resync)
     bool run = true;            // send the 0x80 run bit and use run cadence
     std::deque<PendingMove> pending;
     i64 lastMoveSentMs = 0;     // for throttle + watchdog
+
+    // Canonical UO on-foot step intervals. Sphere's walk-buffer speedhack
+    // check only runs for running steps (CClient::Event_Walk,
+    // src/game/clients/CClientEvent.cpp:905-935), so walking at 400ms is
+    // unconditionally safe; running is paced at the canonical 200ms.
+    u32 walkStepMs = 400;
+    u32 runStepMs = 200;
+
+    // Outstanding 0x02s allowed at once. 1 = strict request/ack, which is what
+    // M1 measured as reject-free against Sphere.
+    usize maxInFlight = 1;
+
+    // Consecutive rejects seen while draining the current step queue.
+    u32 rejectStreak = 0;
 };
 
 struct BotState {

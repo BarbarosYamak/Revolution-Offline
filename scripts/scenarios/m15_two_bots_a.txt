@@ -1,0 +1,23 @@
+# M1.5 two-session acceptance — session A.
+#
+# Modest movement only: this milestone is about session isolation, not
+# navigation. A walks east/west; B (the other scenario) walks north/south, so
+# the two never contend for the same tile and each bot's path is identifiable.
+
+wait_world
+sleep 3000
+
+say bot01 online
+
+walk e 4
+wait_walk
+sleep 500
+walk w 4
+wait_walk
+
+say bot01 walk complete
+
+# Stay connected well past the 5-minute acceptance window on keepalive alone.
+hold 330000
+
+logout

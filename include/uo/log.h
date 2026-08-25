@@ -23,7 +23,12 @@ enum class LogSink : u8 { Console = 1, File = 2, Both = 3 };
 // a packet, take a console message's timestamp and grep the log file for it.
 class Logger {
 public:
+    // Process-wide logger: console output and anything with no session
+    // context (startup, CLI errors). Sessions own their own Logger instead.
     static Logger& Instance();
+
+    Logger() = default;
+    ~Logger();
 
     bool OpenFile(const char* path);   // truncates; false on open error
     void Close();
@@ -32,6 +37,11 @@ public:
     // Drop any message strictly below this level. Default: Trace (keep all).
     void     SetMinLevel(LogLevel lvl) { minLevel_ = lvl; }
     LogLevel MinLevel() const { return minLevel_; }
+
+    // Short session tag ("bot01"). When set it prefixes every line this
+    // logger writes, so output from concurrent sessions stays attributable.
+    void        SetTag(const char* tag);
+    const char* Tag() const { return tag_; }
 
     // printf-style; the caller supplies the trailing '\n'.
     void Write(LogLevel lvl, LogSink sink, const char* fmt, ...);
@@ -44,8 +54,6 @@ public:
     void Event(const char* kind, const char* detail, LogSink sink = LogSink::Both);
 
 private:
-    Logger() = default;
-    ~Logger();
     Logger(const Logger&) = delete;
     Logger& operator=(const Logger&) = delete;
 
@@ -53,6 +61,7 @@ private:
 
     std::FILE* file_     = nullptr;
     LogLevel   minLevel_ = LogLevel::Trace;
+    char       tag_[24]  = {0};
 };
 
 // Free convenience wrappers over Logger::Instance(). Default sink = Both, so

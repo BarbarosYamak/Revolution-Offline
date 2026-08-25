@@ -1,0 +1,31 @@
+# M1.5 Phase 6 — A* navigation smoke test (single session).
+#
+# The point is the plumbing, not the navigation: A* must produce steps and hand
+# every one of them to the movement controller, which is the only thing that
+# talks to the socket. Watch the packet log -- each 0x02 carries `src=astar`,
+# the same pacing and sequencing as a scripted walk.
+#
+# Coordinates are Felucca/Yew, where a fresh character starts (633,858).
+
+wait_world
+sleep 3000
+
+say navigating
+
+# Roughly 25 tiles east of the spawn. If the exact tile is unreachable the
+# planner stops at the nearest tile it can reach, which the run reports.
+goto 658 858
+wait_goto
+
+say arrived
+
+sleep 1000
+
+# Back to the starting tile, so the run is repeatable.
+goto 633 858
+wait_goto
+
+say returned
+
+sleep 2000
+logout
