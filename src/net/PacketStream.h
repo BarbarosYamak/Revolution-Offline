@@ -37,6 +37,10 @@ public:
     // Bytes still buffered (not yet consumed by TryNext).
     usize Pending() const { return tail_ - head_; }
 
+    // Read-only view of the unconsumed bytes — used to hex-dump the head of
+    // the stream when TryNext reports an unframeable opcode.
+    const u8* PendingData() const { return buf_ + head_; }
+
     void Reset() { head_ = 0; tail_ = 0; }
 
 private:

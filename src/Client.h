@@ -49,6 +49,7 @@ struct CharEntry {
 };
 
 namespace js { struct ClientBindings; }  // friend: live JS bindings (ClientBindings.cpp)
+namespace bot { class Scenario; }        // M1 scripted action runner (bot/Scenario.h)
 
 class Client {
 public:
@@ -72,6 +73,14 @@ public:
         const char* verdataPath;      // optional verdata.mul overlay (nullptr = none)
         bool        legacyMovePacket; // pre-T2A 3-byte 0x02 (UO Demo)
         bool        enableKeepalive;  // false for UO Demo (no 0x73 from client)
+        // --- Sphere/Source-X adapter settings (M1) ------------------------
+        int         charSlot;         // slot to play (default 0)
+        const char* charName;         // optional: pick the slot whose name matches
+        bool        createCharIfMissing;  // send 0x00 when the account has no chars
+        bool        runWhenWalking;   // true = 0x80 run bit + 200ms; false = walk 400ms
+        const char* scenarioPath;     // optional scripted action list (nullptr = none)
+        bool        logPackets;       // write PKT hex lines to the log file
+        u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
         // Renderer — optional MiniFB world window (camera follows the player).
         bool        enableRenderer;   // open a window and draw the world each tick
@@ -94,6 +103,31 @@ public:
     ~Client();
 
     int Run();
+
+    // -----------------------------------------------------------------
+    // Player action API — the adapter boundary.
+    //
+    // Everything above this line is protocol plumbing; everything that
+    // drives the character (an M1 scenario today, a bot brain later) uses
+    // only these calls and never touches packets, sockets or wire state.
+    // Each action is what a human player can do through the UO client:
+    // the server stays authoritative and may refuse any of them.
+    // -----------------------------------------------------------------
+    bool IsInWorld() const { return state_ == State::InWorld; }
+    u32  PlayerSerial() const { return playerSerial_; }
+    i32  PlayerX() const { return playerX_; }
+    i32  PlayerY() const { return playerY_; }
+    i8   PlayerZ() const { return playerZ_; }
+    u32  BackpackSerial() const { return PlayerEquipSerialAt(0x15); }  // layer 21 = backpack
+    bool BackpackContentsKnown() const { return backpackContentsKnown_; }
+
+    // Queue `count` single steps in `dir` (0=N, 1=NE, ... 7=NW). Steps are
+    // paced and sent one at a time, each waiting for the server's 0x22/0x21.
+    void ActionWalk(u8 dir, int count);
+    bool WalkQueueBusy() const;          // steps still queued or in flight
+    void ActionSay(const char* text);    // 0x03 ascii speech
+    void ActionOpenBackpack();           // 0x06 double-click the worn backpack
+    void ActionLogout();                 // 0xD1 + socket close
 
 private:
     // Live JS Player getters read private player state directly (no snapshot).
@@ -119,6 +153,9 @@ private:
 
     // --- outbound ---------------------------------------------------------
     bool Send(const u8* data, usize size, const char* note = nullptr);
+    // Packet log with the password field masked (0x80 / 0x91).
+    void LogPacketRedacted(Direction dir, const u8* data, usize size,
+                           const char* note);
 
     // --- inbound handlers (1:1 with dispatcher switch cases we care about)
     void OnServerList         (const u8* data, usize size);
@@ -162,6 +199,7 @@ private:
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
     void OnUnknown            (const u8* data, usize size);
+    void OnLogoutAck          (const u8* data, usize size);  // 0xD1
     void RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
                                 u16 hue, u16 font, const char* speaker,
                                 const char* text);
@@ -211,6 +249,13 @@ private:
     bool AnswerDialog(u16 index);      // answer activeDialog_ by 1-based index (0 = cancel)
     void OpenBackpack();               // 0x06 double-click the worn backpack
     void TryOpenBackpackOnLogin();     // open it once, as soon as its serial is known
+
+    // --- Sphere adapter (M1) ---------------------------------------------
+    void SendGameLogin();              // 0x91 on the current socket
+    void SendCreateCharacter();        // 0x00 create-character request
+    void PumpDirectSteps();            // drive ActionWalk's queue (no A*)
+    void PumpKeepalive();              // 0x73 while in world
+    void ReportUnframeableStream(const char* err);  // log + end session safely
     void PrintNearbyMobiles();
     void FlushPendingMobilesList();
     const char* MobileName(u32 serial) const;
@@ -340,6 +385,7 @@ private:
     u32   playerSerial_;
     ActiveDialog activeDialog_;   // latest 0x7C menu, until answered (0x7D)
     bool openBackpackPending_ = false;   // open the backpack once after login
+    bool backpackContentsKnown_ = false; // 0x3C for the backpack has arrived
 
     // M3 player state — populated from 0x1B/0x20/0x22.
     i32   playerX_;
@@ -629,6 +675,22 @@ private:
     // (stdin: `verbose on|off`). Keeps per-packet noise (0x11/0x20/0x21/0x22
     // and unhandled ids) out of the window by default.
     bool verboseConsole_;
+
+    // --- Sphere adapter (M1) state ---------------------------------------
+    std::deque<u8> directSteps_;         // ActionWalk queue (dirs still to send)
+    bool  directStepsRun_ = false;       // send the run bit for queued steps
+    i64   lastDirectStepMs_ = 0;
+    i32   walkBatchStartX_ = 0;          // position when the current batch began
+    i32   walkBatchStartY_ = 0;
+    bool  walkBatchActive_ = false;
+    u8    pingSeq_ = 0;                  // 0x73 keepalive counter
+    int   pingOutstanding_ = 0;          // keepalives sent, answer not yet seen
+    i64   lastPingEchoMs_ = 0;           // rate limit for echoing server pings
+    bool  loggingOut_ = false;           // ActionLogout was called
+    i64   logoutSentMs_ = 0;             // when 0xD1 went out
+    bool  logoutAcked_ = false;          // server answered 0xD1
+    bool  charCreateSent_ = false;       // 0x00 sent; don't loop on it
+    std::unique_ptr<bot::Scenario> scenario_;
 
     enum class JournalOwnerKind : u8 { System, Player, Mobile, Item, Unknown };
     struct JournalEntry {

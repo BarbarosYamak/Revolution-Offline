@@ -1,5 +1,7 @@
 #include "Client.h"
 
+#include "bot/Scenario.h"
+
 #include "uo/builders.h"
 #include "uo/endian.h"
 #include "uo/map.h"
@@ -44,6 +46,16 @@ constexpr i64   kKeepaliveIntervalMs = 20000;
 constexpr u8    kLayerOneHanded = 1;     // right hand (weapon)
 constexpr u8    kLayerTwoHanded = 2;     // left hand (shield / 2H weapon)
 constexpr u8    kLayerBackpack  = 0x15;  // 21
+// Canonical UO on-foot step intervals, used by the direct-step action queue.
+// Walking is never subject to Sphere's walk-buffer speedhack check -- that
+// branch requires STATF_FLY, which the server sets only for a running step
+// (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:905-935).
+constexpr u32   kWalkStepMs = 400;
+constexpr u32   kRunStepMs  = 200;
+// How long to wait for the server's 0xD1 before closing anyway.
+constexpr i64   kLogoutGraceMs = 2000;
+// Never echo an unsolicited server ping more than once per second.
+constexpr i64   kPingEchoMinGapMs = 1000;
 // "search only backpack/equipment" scope keyword for use/equip commands.
 bool IsPackScope(const char* s) {
     return std::strcmp(s, "pack") == 0 || std::strcmp(s, "inv") == 0 ||
@@ -153,6 +165,18 @@ int Client::Run() {
     if (!Send(buf, n, "0x80 LoginRequest")) return 3;
     state_ = State::AwaitingServerList;
 
+    if (cfg_.scenarioPath && cfg_.scenarioPath[0]) {
+        scenario_ = std::make_unique<bot::Scenario>();
+        std::string err;
+        if (!scenario_->Load(cfg_.scenarioPath, &err)) {
+            LogError("[scenario] %s\n", err.c_str());
+            LogEvent("scenario_load_failed", err.c_str());
+            scenario_.reset();
+            return 5;
+        }
+        LogInfo("[scenario] loaded '%s'\n", cfg_.scenarioPath);
+    }
+
     if (!PumpUntilDisconnected()) return 4;
     return 0;
 }
@@ -205,8 +229,35 @@ bool Client::Send(const u8* data, usize size, const char* note) {
         LogEvent("send_failed", detail);
         return false;
     }
-    LogPacket(Direction::Out, data, size, note);
+    LogPacketRedacted(Direction::Out, data, size, note);
     return true;
+}
+
+// Packet logging with credentials masked. 0x80 (account login) and 0x91 (game
+// login) carry the password in clear on the wire; the hex dump would otherwise
+// put it in the log file. The password field is replaced with 0xEE filler --
+// length and every other field stay intact for diagnosis.
+void Client::LogPacketRedacted(Direction dir, const u8* data, usize size,
+                               const char* note) {
+    if (!cfg_.logPackets) return;
+
+    usize passOff = 0;
+    if (size >= 62 && data[0] == 0x80)      passOff = 31;   // cmd + user[30]
+    else if (size >= 65 && data[0] == 0x91) passOff = 35;   // cmd + key[4] + user[30]
+
+    if (passOff == 0) {
+        LogPacket(dir, data, size, note);
+        return;
+    }
+
+    u8 scratch[256];
+    const usize n = (size < sizeof(scratch)) ? size : sizeof(scratch);
+    std::memcpy(scratch, data, n);
+    for (usize i = passOff; i < passOff + 30 && i < n; ++i) scratch[i] = 0xEE;
+    char redacted[160];
+    std::snprintf(redacted, sizeof(redacted), "%s [password redacted]",
+                  note ? note : "");
+    LogPacket(dir, scratch, n, redacted);
 }
 
 bool Client::PumpUntilDisconnected() {
@@ -275,12 +326,7 @@ bool Client::PumpUntilDisconnected() {
                     const char* err = nullptr;
                     if (!stream_.TryNext(&pkt, &pkt_size, &err)) {
                         if (err) {
-                            LogWarn( "[stream] %s (pending=%zu)\n",
-                                         err, stream_.Pending());
-                            char detail[128];
-                            std::snprintf(detail, sizeof(detail),
-                                "%s (pending=%zu)", err, stream_.Pending());
-                            LogEvent("stream_error", detail);
+                            ReportUnframeableStream(err);
                             return false;
                         }
                         break;
@@ -290,8 +336,25 @@ bool Client::PumpUntilDisconnected() {
             }
         }
 
+        // Logout: send 0xD1, give the server a moment to answer, then close
+        // the socket -- the close is the logout as far as Sphere is concerned.
+        if (loggingOut_) {
+            const i64 waited = NowMs() - logoutSentMs_;
+            if (logoutAcked_ || waited >= kLogoutGraceMs) {
+                LogInfo("[net] closing connection (%s)\n",
+                        logoutAcked_ ? "logout acknowledged"
+                                     : "no ack within grace period");
+                LogEvent("logout_complete",
+                         logoutAcked_ ? "acked" : "grace timeout");
+                sock_.Close();
+                return true;
+            }
+        }
+
         if (state_ == State::InWorld) {
             PumpStdinCommand();
+            PumpDirectSteps();
+            if (scenario_) scenario_->Tick(*this, NowMs());
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
@@ -306,22 +369,8 @@ bool Client::PumpUntilDisconnected() {
             const auto now_ms2 =
                 std::chrono::duration_cast<std::chrono::milliseconds>(
                     std::chrono::steady_clock::now().time_since_epoch()).count();
-            if (cfg_.enableKeepalive &&
-                lastActivityMs_ != 0 &&
-                playerSerial_ != 0 &&
-                now_ms2 - lastActivityMs_ > kKeepaliveIntervalMs) {
-                // Use 0x09 SingleClick on our own serial as a real,
-                // unambiguous "I'm here" packet. The shard answers with
-                // a 0x1C name message — confirms the connection is
-                // live both ways. 0x73 0x00 turned out to be treated as
-                // junk on UO Demo emulators and accumulated toward a
-                // silent kick.
-                u8 buf[8];
-                usize n = build::SingleClick(buf, playerSerial_);
-                if (Send(buf, n, "0x09 SelfClick (keepalive)")) {
-                    lastActivityMs_ = now_ms2;
-                }
-            }
+            (void)now_ms2;
+            PumpKeepalive();
         }
     }
     return state_ != State::Failed;
@@ -333,7 +382,7 @@ bool Client::PumpUntilDisconnected() {
 // to OnUnknown so the new client logs but doesn't crash.
 // ---------------------------------------------------------------------------
 void Client::Dispatch(const u8* data, usize size) {
-    LogPacket(Direction::In, data, size);
+    if (cfg_.logPackets) LogPacket(Direction::In, data, size);
 
     const u8 cmd = data[0];
     switch (cmd) {
@@ -380,6 +429,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
+        case 0xD1: OnLogoutAck(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
         case 0x23: case 0x53:
@@ -548,32 +598,30 @@ void Client::OnConnectToGameServer(const u8* data, usize size) {
                   ip, gameServerPort_, gameSeed_);
     LogEvent("game_server_assigned", ev);
 
-    // Two reconnect modes, mirroring Packet_HandleConnectToGameServer
-    // @ 0x423AB0:
+    // Sphere/Source-X relay semantics (verified in the local checkout):
     //
-    //   * RECONNECT (handshakeState != 0 branch + serverIp != localIP):
-    //     close current socket, open new TCP to (ip,port), and the
-    //     connect helper sub_42CB90 sends 4 raw seed bytes BEFORE
-    //     anything else. Then 0x91 goes on the new stream.
+    //  * Source-X advertises its own ServIP/ServPort here — for a
+    //    single-server shard that is the endpoint we are already talking to.
+    //    PacketServerRelay::onSent (src/network/send.cpp:2823-2830) calls
+    //    m_Crypt.InitFast(customerId, CONNECT_GAME) "in case the client
+    //    decides not to establish a new connection", so the existing socket
+    //    is switched to the game protocol server-side. It then expects a bare
+    //    0x91 as the next bytes on the wire.
     //
-    //   * STAY-ON-SOCKET (LABEL_47, serverIp == localIP):
-    //     no new TCP, no new seed; just send 0x91 over the existing
-    //     login-server socket.
+    //    Re-sending the 4-byte seed here (as a fresh TCP connection would)
+    //    corrupts that: Source-X would read 0xAC.. as a packet opcode, find no
+    //    handler and discard the whole buffer
+    //    (src/network/CNetworkInput.cpp:399-406), stalling the login until
+    //    DeadSocketTime. So: same endpoint -> no seed, 0x91 only.
     //
-    // UO Demo-style emulators that use a single TCP socket for both
-    // login and game advertise serverIp == 0 to mean "stay here". The
-    // canonical client would error ("%s is full"), but we follow
-    // LABEL_47 in that case so we keep talking.
-    // Stay on socket when the game server is the same host as login server.
-    // The server may advertise a different port (e.g. 1593) but it might be
-    // the same process.  We detect this by seeing if the game port differs
-    // from our login port — if so, stay on the existing socket just like
-    // official patched clients do when serverIp == localIP (LABEL_47).
-    const bool stay_on_socket =
-        (gameServerPort_ != cfg_.loginPort) &&
-        !(cfg_.gameHostOverride && cfg_.gameHostOverride[0]) &&
-        (cfg_.gamePortOverride == 0);
-
+    //  * A different endpoint is a real relay: close, reconnect, send the
+    //    seed the server just handed us, then 0x91.
+    //
+    // Nocrypt note: our 0x91 arrives in plaintext. Source-X routes it through
+    // CCrypto::RelayGameCryptStart (src/common/crypto/CCrypto.cpp:318-405);
+    // the no-crypt key is key index 0 with client version 0
+    // (CCryptoKeysHolder::addNoCryptKey, :58-64), so the "< 2.0.4 does not
+    // double-encrypt" branch runs and the packet passes through untouched.
     const char* connect_host = ip;
     if (cfg_.gameHostOverride && cfg_.gameHostOverride[0]) {
         connect_host = cfg_.gameHostOverride;
@@ -582,58 +630,61 @@ void Client::OnConnectToGameServer(const u8* data, usize size) {
     }
 
     u16 connect_port = gameServerPort_;
-    if (cfg_.gamePortOverride != 0) {
-        connect_port = cfg_.gamePortOverride;
+    if (cfg_.gamePortOverride != 0) connect_port = cfg_.gamePortOverride;
+
+    const bool overridden =
+        (cfg_.gameHostOverride && cfg_.gameHostOverride[0]) ||
+        (cfg_.gamePortOverride != 0);
+
+    // Same endpoint as the socket we already hold? Then stay on it.
+    // Compare against the socket's real peer, not the configured host string,
+    // so "localhost" vs "127.0.0.1" can't produce a spurious reconnect.
+    const bool same_endpoint =
+        !overridden &&
+        (connect_port == sock_.PeerPort()) &&
+        (gameServerIp_ == 0 || gameServerIp_ == sock_.PeerIp());
+
+    if (same_endpoint) {
+        LogInfo("[0x8C] staying on the login socket "
+                "(advertised %s:%u == peer 0x%08X:%u)\n",
+                connect_host, connect_port, sock_.PeerIp(), sock_.PeerPort());
+        LogEvent("relay_same_socket", "no seed re-sent; 0x91 follows");
+        SendGameLogin();
+        return;
     }
 
-    // Stay on socket - official clients reconnect to same server (same IP/port)
-    if (stay_on_socket) {
-        // Same socket, send seed + 0x91
+    LogInfo("[0x8C] relaying to %s:%u (new connection)\n",
+            connect_host, connect_port);
+    LogEvent("relay_reconnect", connect_host);
+    state_ = State::ConnectingToGameServer;
+    stream_.Reset();
+    sock_.Close();
+    if (!sock_.Connect(connect_host, connect_port)) {
+        LogWarn("[net] relay connect to %s:%u failed\n", connect_host, connect_port);
+        state_ = State::Failed;
+        return;
+    }
+    {
         u8 seedbuf[4];
         build::Seed(seedbuf, gameSeed_);
         if (!sock_.SendAll(seedbuf, sizeof(seedbuf))) {
             state_ = State::Failed;
             return;
         }
-        u8 buf[128];
-        usize n = build::GameLogin(buf, gameSeed_, cfg_.username, cfg_.password);
-        if (!Send(buf, n, "0x91 GameLogin (single-socket)")) {
-            state_ = State::Failed;
-            return;
-        }
-        // The server enables Huffman compression on the game stream the
-        // moment it handles our 0x91 (HandlePacket_POSTLOGIN). Every byte
-        // it sends from here on (0xB9, 0xA9, ...) is compressed.
-        huff_.Reset();
-        decompress_ = true;
-        state_ = State::GameHandshake;
-        return;
-    }
-
-
-    // Fallback: reconnect to game server if not staying on socket
-
-    state_ = State::ConnectingToGameServer;
-/*
-    stream_.Reset();
-    sock_.Close();
-    if (!sock_.Connect(cfg_.loginHost, cfg_.loginPort)) {
-        state_ = State::Failed;
-        return;
-    }
-    LogInfo("[net] reconnected to game server.\n");
-
-    if (cfg_.sendSeed) {
-        u8 seedbuf[4];
-        build::Seed(seedbuf, gameSeed_);
-        sock_.SendAll(seedbuf, sizeof(seedbuf));
         LogInfo("[seed] game-server seed 0x%08X sent\n", gameSeed_);
     }
-  */
-    {
-        u8 buf[128];
-        usize n = build::GameLogin(buf, gameSeed_, cfg_.username, cfg_.password);
-        Send(buf, n, "0x91 GameLogin");
+    SendGameLogin();
+}
+
+// 0x91 on whatever socket we currently hold. Huffman starts the moment the
+// server processes it: Source-X compresses every outbound packet once the
+// connection is CONNECT_GAME (src/network/CNetworkOutput.cpp:416).
+void Client::SendGameLogin() {
+    u8 buf[128];
+    const usize n = build::GameLogin(buf, gameSeed_, cfg_.username, cfg_.password);
+    if (!Send(buf, n, "0x91 GameLogin")) {
+        state_ = State::Failed;
+        return;
     }
     huff_.Reset();
     decompress_ = true;
@@ -672,18 +723,58 @@ void Client::OnCharacterList(const u8* data, usize size) {
     }
 
     if (populated == 0) {
-        LogWarn( "[ui] no characters on this shard; aborting\n");
+        // No character on this account yet. Source-X has no console verb to
+        // create one (CAccounts::sm_szVerbKeys, src/game/clients/CAccount.cpp:309),
+        // so the supported path is the ordinary client creation packet: the
+        // server validates and applies its own rules in PacketCreate::doCreate /
+        // CChar::InitPlayer.
+        if (cfg_.createCharIfMissing && !charCreateSent_) {
+            SendCreateCharacter();
+            return;
+        }
+        LogWarn("[ui] no characters on this account; aborting\n");
+        LogEvent("charlist_empty", "no characters and creation disabled");
         state_ = State::Failed;
         return;
     }
 
-    selectedChar_ = 0; // PromptCharacterSelection();
+    // Pick by name when configured, else by slot index.
+    selectedChar_ = -1;
+    if (cfg_.charName && cfg_.charName[0]) {
+        for (int i = 0; i < charCount_; ++i) {
+            if (charSlots_[i].name[0] &&
+                _stricmp(charSlots_[i].name, cfg_.charName) == 0) {
+                selectedChar_ = i;
+                break;
+            }
+        }
+        if (selectedChar_ < 0) {
+            if (cfg_.createCharIfMissing && !charCreateSent_) {
+                LogInfo("[ui] '%s' not on this account; creating it\n",
+                        cfg_.charName);
+                SendCreateCharacter();
+                return;
+            }
+            LogWarn("[ui] character '%s' not found on this account\n",
+                    cfg_.charName);
+            LogEvent("charlist_name_miss", cfg_.charName);
+            state_ = State::Failed;
+            return;
+        }
+    } else {
+        selectedChar_ = cfg_.charSlot;
+    }
+
     if (selectedChar_ < 0 || selectedChar_ >= charCount_ ||
         !charSlots_[selectedChar_].name[0]) {
-        LogWarn( "[ui] invalid character slot\n");
+        LogWarn("[ui] invalid character slot %d (of %d)\n",
+                selectedChar_, charCount_);
+        LogEvent("charlist_bad_slot", "configured slot is empty or out of range");
         state_ = State::Failed;
         return;
     }
+    LogInfo("[ui] playing slot %d ('%s')\n",
+            selectedChar_, charSlots_[selectedChar_].name);
 
     u8 buf[128];
     // slotOrFlag low byte = slot index; clientIP = 0 (we're headless).
@@ -1149,6 +1240,16 @@ void Client::OnContainerContents(const u8* data, usize size) {
             openContainers_.push_back(OpenContainer{cont, 0});
     }
     LogInfo("[0x3C] container contents: %u item(s)\n", count);
+    const u32 backpack = PlayerEquipSerialAt(kLayerBackpack);
+    if (backpack != 0 && cleared.count(backpack) != 0) {
+        if (!backpackContentsKnown_) {
+            char ev[96];
+            std::snprintf(ev, sizeof(ev), "serial=0x%08X items=%u",
+                          backpack, count);
+            LogEvent("backpack_contents", ev);
+        }
+        backpackContentsKnown_ = true;
+    }
 }
 
 // 0x74 SHOP_DATA (variable): the vendor's buy window prices/names. Layout
@@ -1714,6 +1815,201 @@ void Client::OpenBackpack() {
     u8 buf[8];
     Send(buf, build::DoubleClick(buf, backpack), "0x06 DoubleClick (backpack)");
     LogInfo("[backpack] opening 0x%08X\n", backpack);
+}
+
+// 0xD1 Logout acknowledgement (2 bytes: cmd + accepted). Source-X answers
+// every 0xD1 with PacketLogoutAck (src/network/send.cpp:4631); the socket
+// close that follows is what it treats as the actual logout
+// (CClient::CharDisconnect, src/game/clients/CClient.cpp:166-233).
+void Client::OnLogoutAck(const u8* data, usize size) {
+    const u8 accepted = (size >= 2) ? data[1] : 0;
+    LogInfo("[0xD1] logout acknowledged (accepted=%u)\n", accepted);
+    LogEvent("logout_ack", accepted ? "accepted" : "refused");
+    logoutAcked_ = true;
+}
+
+// ---------------------------------------------------------------------------
+// Sphere adapter -- session-level helpers
+// ---------------------------------------------------------------------------
+
+// 0x00 create character. Values are requests only: Source-X clamps stats and
+// skills in CChar::InitPlayer (src/game/chars/CChar.cpp:1770-1800) and runs its
+// own f_onchar_create scripts, so nothing here grants the bot anything.
+void Client::SendCreateCharacter() {
+    charCreateSent_ = true;
+    build::CreateCharacterParams p;
+    p.name = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName : "Bot";
+    p.slot = static_cast<u32>(cfg_.charSlot < 0 ? 0 : cfg_.charSlot);
+    u8 buf[128];
+    const usize n = build::CreateCharacter(buf, p);
+    LogInfo("[0x00] creating character '%s' in slot %u\n", p.name, p.slot);
+    if (!Send(buf, n, "0x00 CreateCharacter")) {
+        state_ = State::Failed;
+        return;
+    }
+    LogEvent("char_create_sent", p.name);
+    // Source-X calls Setup_Start() on success, so 0x1B/0x55 follow just as
+    // they would after 0x5D; on failure it answers 0x82.
+    state_ = State::AwaitingLoginConfirm;
+}
+
+// Client-side keepalive. Source-X drops a connection that sends nothing for
+// DeadSocketTime (default 5 min; src/network/CNetworkInput.cpp:159-172) and
+// answers 0x73 with its own 0x73 (src/network/receive.cpp:1335-1344).
+void Client::PumpKeepalive() {
+    if (!cfg_.enableKeepalive) return;
+    if (playerSerial_ == 0) return;
+    const u32 interval =
+        cfg_.keepaliveIntervalMs ? cfg_.keepaliveIntervalMs : kKeepaliveIntervalMs;
+    const i64 now = NowMs();
+    if (lastActivityMs_ == 0) { lastActivityMs_ = now; return; }
+    if (now - lastActivityMs_ < static_cast<i64>(interval)) return;
+
+    u8 buf[4];
+    const usize n = build::PingRequest(buf, pingSeq_++);
+    if (Send(buf, n, "0x73 Ping (keepalive)")) {
+        lastActivityMs_ = now;
+        if (pingOutstanding_ < 4) ++pingOutstanding_;
+    }
+}
+
+// An opcode with no length entry cannot be framed, and neither can any byte
+// after it -- the stream is unrecoverable from here. Dump what we have so the
+// opcode can be added to the Sphere overlay, then end the session cleanly
+// instead of dying mid-loop.
+void Client::ReportUnframeableStream(const char* err) {
+    const usize pending = stream_.Pending();
+    const u8* head = stream_.PendingData();
+    const u8 cmd = pending ? head[0] : 0;
+
+    char hex[3 * 64 + 1];
+    usize hn = 0;
+    const usize dump = pending < 64 ? pending : 64;
+    for (usize i = 0; i < dump && hn + 3 < sizeof(hex); ++i)
+        hn += static_cast<usize>(std::snprintf(hex + hn, sizeof(hex) - hn,
+                                               "%02x ", head[i]));
+    hex[hn] = '\0';
+
+    LogError("[stream] %s: opcode 0x%02X, %zu byte(s) buffered\n",
+             err, cmd, pending);
+    LogError("[stream] head: %s\n", hex);
+    LogError("[stream] framing is unrecoverable -- ending this session. "
+             "Add a length for 0x%02X to include/uo/packet_lengths_sphere.h "
+             "if the server is expected to send it.\n", cmd);
+
+    char detail[256];
+    std::snprintf(detail, sizeof(detail),
+                  "opcode=0x%02X pending=%zu head=%s", cmd, pending, hex);
+    LogEvent("stream_unframeable", detail);
+    state_ = State::Failed;
+}
+
+// ---------------------------------------------------------------------------
+// Player action API -- the adapter boundary (see Client.h)
+// ---------------------------------------------------------------------------
+
+void Client::ActionWalk(u8 dir, int count) {
+    if (count <= 0) return;
+    directStepsRun_ = cfg_.runWhenWalking;
+    for (int i = 0; i < count; ++i) directSteps_.push_back(dir & 0x07);
+    walkBatchStartX_ = playerX_;
+    walkBatchStartY_ = playerY_;
+    walkBatchActive_ = true;
+    LogInfo("[action] walk dir=%u x%d (%s) from (%d,%d,%d)\n", dir & 0x07, count,
+            directStepsRun_ ? "run" : "walk",
+            playerX_, playerY_, static_cast<int>(playerZ_));
+}
+
+bool Client::WalkQueueBusy() const {
+    return !directSteps_.empty() || !nav_.movement.pending.empty();
+}
+
+void Client::ActionSay(const char* text) {
+    if (!text || !text[0]) return;
+    LogInfo("[action] say: %s\n", text);
+    SayAscii(text);
+}
+
+void Client::ActionOpenBackpack() {
+    LogInfo("[action] open backpack\n");
+    OpenBackpack();
+}
+
+// Sphere treats the socket close as the logout (CClient::CharDisconnect,
+// src/game/clients/CClient.cpp:166-233); 0xD1 is the polite announcement and
+// is answered with 0xD1 (PacketLogoutAck, src/network/send.cpp:4631).
+void Client::ActionLogout() {
+    if (loggingOut_) return;
+    loggingOut_ = true;
+    LogInfo("[action] logout requested\n");
+    u8 buf[4];
+    const usize n = build::LogoutRequest(buf);
+    Send(buf, n, "0xD1 LogoutRequest");
+    logoutSentMs_ = NowMs();
+    LogEvent("logout_requested", "0xD1 sent; awaiting ack, then closing");
+}
+
+// One step at a time: send, then wait for the server's 0x22 (accept) or 0x21
+// (reject) before the next. Sphere only inspects the sequence when it has been
+// reset (PacketMovementReq::onReceive, src/network/receive.cpp:259-282), and
+// its walk-buffer speedhack check only runs for running steps
+// (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:930-935) -- so a
+// depth-1 pipeline at the canonical cadence cannot trip it.
+void Client::PumpDirectSteps() {
+    if (directSteps_.empty()) {
+        // Batch just drained: report where the character ended up. The server
+        // is the authority here -- it only acks a step (0x22) after
+        // CanMoveWalkTo and MoveToChar succeed
+        // (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:872-890).
+        if (walkBatchActive_ && nav_.movement.pending.empty()) {
+            walkBatchActive_ = false;
+            const int dx = playerX_ - walkBatchStartX_;
+            const int dy = playerY_ - walkBatchStartY_;
+            const int tiles = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+            LogInfo("[action] walk done: (%d,%d) -> (%d,%d,%d), %d tile(s)\n",
+                    walkBatchStartX_, walkBatchStartY_,
+                    playerX_, playerY_, static_cast<int>(playerZ_), tiles);
+            char ev[128];
+            std::snprintf(ev, sizeof(ev), "from=(%d,%d) to=(%d,%d,%d) tiles=%d",
+                          walkBatchStartX_, walkBatchStartY_, playerX_, playerY_,
+                          static_cast<int>(playerZ_), tiles);
+            LogEvent("walk_batch_done", ev);
+        }
+        return;
+    }
+    if (!nav_.movement.pending.empty()) return;   // await ack/reject first
+
+    const i64 now = NowMs();
+    const u32 gap = directStepsRun_ ? kRunStepMs : kWalkStepMs;
+    if (lastDirectStepMs_ != 0 && now - lastDirectStepMs_ < static_cast<i64>(gap))
+        return;
+
+    const u8 dir = directSteps_.front();
+    const bool isStep = (dir == playerFacing_);   // else this move only turns
+    const u8 seq = NextSeq();
+    const u8 wire = directStepsRun_ ? static_cast<u8>(dir | 0x80) : dir;
+
+    u8 buf[16];
+    const usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
+    char note[80];
+    std::snprintf(note, sizeof(note), "0x02 Move dir=%u seq=%u %s%s",
+                  dir, seq, isStep ? "step" : "turn",
+                  directStepsRun_ ? " run" : "");
+    if (!Send(buf, n, note)) return;
+
+    nav_.movement.pending.push_back({seq, dir, isStep, now});
+    nav_.movement.lastMoveSentMs = now;
+    lastDirectStepMs_ = now;
+
+    if (isStep) {
+        directSteps_.pop_front();
+        BotPredictStep(dir);
+    } else {
+        // Turn first; the same direction is re-sent next tick as a real step.
+        playerFacing_ = dir;
+        player_.facing = dir;
+        player_.running = false;
+    }
 }
 
 void Client::TryOpenBackpackOnLogin() {
@@ -2369,15 +2665,39 @@ const Client::MobileObj* Client::FindMobileBySerial(u32 serial) const {
 }
 
 // ---------------------------------------------------------------------------
-// 0x73 Server Ping (2 bytes: cmd + sequence). Original handler is
-// nullsub_2 (silently consumed). Many shards still expect an echo to
-// keep the connection alive, so we echo. Sequence byte is forwarded.
+// 0x73 Ping (2 bytes: cmd + sequence).
+//
+// Two different meanings, and telling them apart matters:
+//
+//  * An ANSWER to the keepalive we sent. Sphere only ever creates
+//    PacketPingAck from inside PacketPingReq::onReceive
+//    (Source-X src/network/receive.cpp:1335-1344; the constructor is
+//    src/network/send.cpp:2266) -- it never pings first. Echoing this reply
+//    makes the server answer again, and the two sides ping-pong as fast as
+//    the socket allows. That is exactly what happened on the first
+//    10-minute run here: ~24,000 exchanges in 100 seconds.
+//
+//  * An UNSOLICITED ping from a shard that expects the client to echo
+//    (the UO Demo behaviour this client was originally written against).
+//
+// So: consume it as the answer when a keepalive is outstanding, otherwise
+// echo once -- rate limited, so no peer can drive a storm either way.
 // ---------------------------------------------------------------------------
 void Client::OnPing(const u8* data, usize size) {
     if (size < 2) return;
+
+    if (pingOutstanding_ > 0) {
+        --pingOutstanding_;
+        return;   // this is the reply to our keepalive; nothing to send
+    }
+
+    const i64 now = NowMs();
+    if (lastPingEchoMs_ != 0 && now - lastPingEchoMs_ < kPingEchoMinGapMs) return;
+    lastPingEchoMs_ = now;
+
     u8 buf[2];
-    usize n = build::PingReply(buf, data[1]);
-    Send(buf, n, "0x73 PingReply");
+    const usize n = build::PingReply(buf, data[1]);
+    Send(buf, n, "0x73 PingReply (unsolicited server ping)");
 }
 
 // ---------------------------------------------------------------------------

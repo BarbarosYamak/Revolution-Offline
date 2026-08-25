@@ -28,6 +28,12 @@ public:
     bool IsOpen() const { return s_ != INVALID_SOCKET; }
     bool Closed() const { return closed_; }
 
+    // Peer of the current connection, in host byte order (0 when not
+    // connected). Used to tell "the shard relayed us to itself" from a real
+    // relay to another endpoint.
+    u32 PeerIp() const { return peerIp_; }
+    u16 PeerPort() const { return peerPort_; }
+
     // Block until socket is readable or timeout (ms). 0 -> poll, -1 -> infinite.
     // Returns: 1 readable, 0 timeout, -1 error.
     int WaitReadable(int timeout_ms);
@@ -38,6 +44,8 @@ public:
 private:
     SOCKET s_;
     bool closed_;
+    u32 peerIp_ = 0;      // host order
+    u16 peerPort_ = 0;
 };
 
 }

@@ -110,6 +110,76 @@ usize PingReply(u8* out, u8 sequence) {
     return 2;
 }
 
+// 0x73 Ping request — 2 bytes. Same shape as the reply; Source-X answers
+// with PacketPingAck (src/network/receive.cpp:1335-1344).
+usize PingRequest(u8* out, u8 sequence) {
+    out[0] = RawId(PacketId::ServerPingNullsub);
+    out[1] = sequence;
+    return 2;
+}
+
+// 0xD1 Logout request — 2 bytes (cmd + 0x00).
+usize LogoutRequest(u8* out) {
+    out[0] = 0xD1;
+    out[1] = 0x00;
+    return 2;
+}
+
+// 0x00 Create Character — 104 bytes.
+// Offsets verified field-by-field against PacketCreate::onReceive
+// (Source-X src/network/receive.cpp:58-152), whose reads start at offset 1:
+//   [0]       cmd
+//   [1-9]     skip(9)   : pattern1(4) + pattern2(4) + 1
+//   [10-39]   name      : fixed 30 ASCII (Packet::readStringASCII, packet.cpp:782)
+//   [40-41]   skip(2)
+//   [42-45]   flags(u32)
+//   [46-53]   skip(8)
+//   [54]      profession
+//   [55-69]   skip(15)
+//   [70]      race/sex flag (even=male, odd=female; <7.0.0.0: 0/1 = human)
+//   [71-73]   str, dex, int
+//   [74-79]   skill1, val1, skill2, val2, skill3, val3
+//   [80-81]   skin hue
+//   [82-85]   hair id, hair hue
+//   [86-89]   beard id, beard hue
+//   [90]      shard index
+//   [91]      start location index
+//   [92-99]   skip(8)   : slot(4) + client ip(4)
+//   [100-103] shirt hue, pants hue
+usize CreateCharacter(u8* out, const CreateCharacterParams& p) {
+    BufWriter w(out, 104);
+    w.WriteU8(0x00);
+    w.WriteU32(0xEDEDEDEDu);   // pattern1
+    w.WriteU32(0xFFFFFFFFu);   // pattern2
+    w.WriteU8(0x00);           // "kuoc" marker byte
+    w.WriteFixedAscii(p.name, 30);
+    w.WriteU16(0x0000);
+    w.WriteU32(0x00000001u);   // client flags (T2A)
+    w.WriteU32(0x00000000u);   // unknown
+    w.WriteU32(0x00000000u);   // unknown
+    w.WriteU8(0x00);           // profession 0 = custom (skills come from below)
+    for (int i = 0; i < 15; ++i) w.WriteU8(0x00);
+    w.WriteU8(p.female ? 0x01 : 0x00);
+    w.WriteU8(p.str);
+    w.WriteU8(p.dex);
+    w.WriteU8(p.intel);
+    w.WriteU8(p.skill1); w.WriteU8(p.skill1Val);
+    w.WriteU8(p.skill2); w.WriteU8(p.skill2Val);
+    w.WriteU8(p.skill3); w.WriteU8(p.skill3Val);
+    w.WriteU16(p.skinHue);
+    w.WriteU16(p.hairId);
+    w.WriteU16(p.hairHue);
+    w.WriteU16(p.beardId);
+    w.WriteU16(p.beardHue);
+    w.WriteU8(0x00);           // shard index
+    w.WriteU8(p.startLoc);
+    w.WriteU32(p.slot);
+    w.WriteU32(p.clientIP);
+    w.WriteU16(p.shirtHue);
+    w.WriteU16(p.pantsHue);
+    return w.size();
+}
+
 // 0x09 Single Click — 5 bytes.
 usize SingleClick(u8* out, u32 serial) {
     BufWriter w(out, 5);

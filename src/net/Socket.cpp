@@ -60,6 +60,12 @@ bool Socket::Connect(const char* host, u16 port) {
         SOCKET s = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
         if (s == INVALID_SOCKET) { last_err = WSAGetLastError(); continue; }
         if (connect(s, p->ai_addr, static_cast<int>(p->ai_addrlen)) == 0) {
+            if (p->ai_family == AF_INET && p->ai_addrlen >= sizeof(sockaddr_in)) {
+                const sockaddr_in* sin =
+                    reinterpret_cast<const sockaddr_in*>(p->ai_addr);
+                peerIp_   = ntohl(sin->sin_addr.s_addr);
+                peerPort_ = ntohs(sin->sin_port);
+            }
             s_ = s;
             ok = true;
             break;

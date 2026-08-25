@@ -1,7 +1,7 @@
 #include "net/PacketStream.h"
 
 #include "uo/endian.h"
-#include "uo/packet_lengths.h"
+#include "uo/packet_lengths_sphere.h"
 
 #include <cstring>
 
@@ -29,9 +29,13 @@ bool PacketStream::TryNext(const u8** out_data, usize* out_size, const char** er
     if (head_ == tail_) return false;
 
     u8 cmd = buf_[head_];
-    u16 len_field = kPacketLength[cmd];
+    // 2.0.7 client table first, then the Sphere overlay (packet_lengths_sphere.h).
+    u16 len_field = PacketLengthFor(cmd);
 
     if (len_field == 0) {
+        // No length is knowable, so the stream cannot be resynchronised:
+        // every byte after this one is unframeable. The caller reports the
+        // opcode and dumps the buffer before shutting the session down.
         if (err) *err = "unknown opcode (no length entry)";
         return false;
     }

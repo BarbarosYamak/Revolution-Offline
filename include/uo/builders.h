@@ -41,6 +41,50 @@ usize ClientVersion(u8* out, const char* version);
 // 0x73 Ping reply (2 bytes). Echo the sequence byte the server sent.
 usize PingReply(u8* out, u8 sequence);
 
+// 0x73 Ping request (2 bytes). Identical shape to the reply; the server
+// answers with its own 0x73. Used as the client-side keepalive so the
+// connection never goes silent for DeadSocketTime (Source-X
+// src/network/CNetworkInput.cpp:159-172; handler src/network/receive.cpp:1335).
+usize PingRequest(u8* out, u8 sequence);
+
+// 0xD1 Logout request (2 bytes: cmd + 0x00). Source-X replies with its own
+// 0xD1 (PacketLogoutAck, src/network/send.cpp:4631) and treats the socket
+// close that follows as the real logout (CClient::CharDisconnect,
+// src/game/clients/CClient.cpp:166-233).
+usize LogoutRequest(u8* out);
+
+// 0x00 Create Character (104 bytes) — the classic pre-7.0 creation packet.
+// This is the only server-supported way to add a character to an account:
+// Source-X has no console verb for it (CAccounts::sm_szVerbKeys,
+// src/game/clients/CAccount.cpp:309-318). Field offsets match
+// PacketCreate::onReceive (src/network/receive.cpp:58-152); the server clamps
+// every stat/skill itself in CChar::InitPlayer (src/game/chars/CChar.cpp:1770-1800),
+// so these values are requests, not grants.
+struct CreateCharacterParams {
+    const char* name       = "";
+    bool        female     = false;
+    u8          str        = 30;    // server clamps each to 60 and the sum to 80
+    u8          dex        = 30;
+    u8          intel      = 20;
+    u8          skill1     = 31;    // Swordsmanship (skill ids are the server's)
+    u8          skill1Val  = 50;    // server clamps each to 50 and the sum to 100
+    u8          skill2     = 33;    // Tactics
+    u8          skill2Val  = 30;
+    u8          skill3     = 17;    // Healing
+    u8          skill3Val  = 20;
+    u16         skinHue    = 0x83EA;
+    u16         hairId     = 0x203B;
+    u16         hairHue    = 0x0450;
+    u16         beardId    = 0;
+    u16         beardHue   = 0;
+    u16         shirtHue   = 0x035;
+    u16         pantsHue   = 0x0198;
+    u8          startLoc   = 0;     // index into the shard's starting-location list
+    u32         slot       = 0;     // character slot to fill (u32 on the wire)
+    u32         clientIP   = 0;
+};
+usize CreateCharacter(u8* out, const CreateCharacterParams& p);
+
 // 0x03 ASCII Speech (variable).
 // type: 0=normal, 2=emote, 6=system, 8=whisper, 9=yell ...
 usize SpeechAscii(u8* out, u8 type, u16 hue, u16 font, const char* text);
