@@ -68,3 +68,33 @@ target_include_directories(m35_authenticity PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m35_authenticity COMMAND m35_authenticity)
+
+# M3.6: the navigation recovery lifecycle (the M3.5 orphaned-recovery bug), the
+# historical Magery training bands, and the Revolution rules profile. Links
+# Journey for the recovery tests; still no server, no MULs, no atlas.
+add_executable(m36_progression m36_progression.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/Journey.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Training.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/TravelMode.cpp)
+target_include_directories(m36_progression PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(m36_progression PRIVATE uo_world)
+
+add_test(NAME m36_progression COMMAND m36_progression)
+
+# Observer client (uo_viewer) crash-proofing. Drives the whole 32-bit input
+# domain through include/uo/safe_graphics.h -- the layer every tiledata / art /
+# hue / anim lookup in the viewer goes through -- and asserts that the graphics
+# that killed ClassicUO on this shard (0x3EB4 and friends) resolve to a
+# placeholder instead of an out-of-range index. Runs with NO client data (the
+# unbound/null-table case); if UO_MUL_DIR is set it additionally sweeps the real
+# MULs. Links uo_mul for the loaders.
+add_executable(viewer_safety viewer_safety.cpp)
+target_include_directories(viewer_safety PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(viewer_safety PRIVATE uo_mul)
+
+add_test(NAME viewer_safety COMMAND viewer_safety)

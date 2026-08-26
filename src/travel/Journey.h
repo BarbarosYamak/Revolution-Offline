@@ -30,6 +30,12 @@ enum class Phase : u8 {
     Walking,       // a walk leg is in progress
     AtTransit,     // standing at a transit, waiting for it to take effect
     Arrived,
+    // The character is somewhere the world router cannot use -- sealed into an
+    // upper storey, a walled pocket -- and the CLIENT has taken ownership of
+    // movement to walk it back out. The journey is parked, not finished: it
+    // keeps its goal and its identity, and resumes planning when the escape
+    // reports back. Nothing may end the trip while it is in this phase.
+    Recovering,
     Failed,
 };
 
@@ -78,6 +84,10 @@ struct Limits {
     i64 recoveryPauseMs = 1200;
     // How long a transit gets to move us before we call it failed.
     i64 transitTimeoutMs = 8000;
+    // Escape attempts, each at a different anchor, before the character is
+    // reported as genuinely sealed in. Bounded so a pocket cannot become an
+    // infinite walk.
+    int maxPositionRecoveries = 3;
     // A jump of at least this many tiles between two position samples is a
     // world transition (recall, gate, teleporter), not walking.
     i32 transitionJumpTiles = 24;
@@ -95,9 +105,13 @@ public:
     void Abort(const char* why);
     void Reset();
 
+    // Recovering counts as active on purpose. A parent journey that reported
+    // itself inactive while its escape walk was still running is exactly the
+    // orphaned-recovery bug M3.5 found on the Mage Tower.
     bool Active() const { return phase_ == Phase::NeedRoute ||
                                  phase_ == Phase::Walking ||
-                                 phase_ == Phase::AtTransit; }
+                                 phase_ == Phase::AtTransit ||
+                                 phase_ == Phase::Recovering; }
     Phase   CurrentPhase() const { return phase_; }
     Failure FailureReason() const { return failure_; }
     const std::string& FailureDetail() const { return failureDetail_; }
@@ -148,6 +162,23 @@ public:
     // was told to, so the journey stops re-issuing it.
     void NoteCommandIssued(Command c, i64 nowMs);
 
+    // --- position recovery -------------------------------------------------
+    //
+    // Distinct from the per-leg retry below: this is "the character is in the
+    // wrong PLACE", not "this leg was hard". The client owns the movement
+    // while it runs; the journey parks and keeps the destination.
+    //
+    // Returns false when the recovery budget is spent, which is the caller's
+    // signal to fail the trip cleanly -- with evidence -- rather than loop.
+    bool BeginPositionRecovery(const char* why, i64 nowMs);
+    // The escape walk finished. `reached` says whether the anchor was actually
+    // arrived at. Reaching it resumes planning for the ORIGINAL goal; not
+    // reaching it spends an attempt and lets the caller try another anchor.
+    void OnPositionRecovered(bool reached, i64 nowMs);
+    bool Recovering() const { return phase_ == Phase::Recovering; }
+    int  PositionRecoveries() const { return positionRecoveries_; }
+    const std::string& RecoveryReason() const { return recoveryReason_; }
+
     // --- introspection for tests and logs ----------------------------------
     int LegRetries() const { return legRetries_; }
     int NoProgressSamples() const { return noProgress_; }
@@ -182,6 +213,8 @@ private:
 
     i64 waitUntilMs_ = 0;
     i64 transitStartedMs_ = 0;
+    int positionRecoveries_ = 0;
+    std::string recoveryReason_;
 
     // Progress tracking for the current leg.
     i32 bestDistance_ = 0x7FFFFFFF;

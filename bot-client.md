@@ -552,6 +552,83 @@ None of the three is wired into a live session yet; see the M3.5 debt list.
 
 ---
 
+## uo_viewer — the observer client
+
+`uo_viewer` is the graphical "watch the shard" client. It **replaces
+ClassicUO** (`docs/OBSERVER_CLIENT.md`). It is not a second client: it is the
+same `uo::Client` session engine with a different front end, so it logs in with
+the same packets as a bot and cannot do anything a player cannot.
+
+```
+src/viewer/ViewerMain.cpp      entry point: credentials, paths, loop, Esc, PNG dump
+include/uo/safe_graphics.h     the crash-proof gateway to every client-data table
+tests/viewer_safety.cpp        ctest `viewer_safety` — the regression for it
+```
+
+```
+cd build-m1
+uo_viewer.exe                                  # first account in the creds file
+uo_viewer.exe --user revolutionbot02
+uo_viewer.exe --audit-only                     # graphics self-test only, no socket
+uo_viewer.exe --dump-png frame.png --quit-after 30
+uo_viewer.exe --creds ..\..\..\local\dev\observer-credentials.env
+```
+
+The two launchers at the project root run it for you and are the normal entry
+points — they pass `--root` and the right credentials file, and forward any
+extra arguments:
+
+```
+tools\launch_observer.bat                 # account Observer, normal player
+tools\launch_admin.bat                    # account Admin, PLEVEL 7 (server-side)
+tools\launch_observer.bat --create-char   # first run on an account with no character
+tools\launch_*.bat --classicuo            # legacy ClassicUO path, still available
+```
+
+Defaults: `127.0.0.1:2593`, client version **2.0.3**, no encryption, client data
+from `$UO_MUL_DIR` else `<root>/local/revolution-client`, credentials from
+`<root>/local/dev/bot-credentials.env`. The project root is found by walking up
+for that credentials file, or given with `--root`.
+
+**Credential files.** `--creds` accepts every shape in `local/dev/`: any key
+ending in `_ACCOUNT` or `_USER` names an account, and its siblings
+`<PREFIX>_PASSWORD` / `<PREFIX>_PASS_<ACCOUNT>` / `<PREFIX>_HOST` /
+`<PREFIX>_PORT` supply the rest, falling back to `UO_BOT_PASS_<ACCOUNT>` then
+`UO_BOT_PASS`. So `bot-credentials.env`, `observer-credentials.env` and
+`admin-credentials.env` all work unmodified, and a single-account file needs no
+`--user`. The password goes exactly one place — the `0x80`/`0x91` login packets —
+and is never printed, logged or put in the window title.
+
+**Esc** sends `0xD1` and closes the socket, so the character logs out rather than
+going link-dead. `M` toggles the minimap, `Tab` toggles war/peace.
+
+### Why it exists: out-of-era graphics
+
+Revolution ships Renaissance-era (2.0.3) client data while its server scripts
+still hand out later graphics. ClassicUO died with `IndexOutOfRangeException`
+every launch because it indexed tiledata/anim with whatever graphic arrived: the
+unicorn mount item **`0x3EB4`** is a ship *prow* in this `tiledata.mul`, so the
+`animId` it read there is not a body id.
+
+`uo/safe_graphics.h` makes every such lookup **total** — it accepts the whole
+32-bit input domain, every loader pointer may be null, and nothing can index out
+of range:
+
+* `SanitizeMountBody` / `SanitizeWornAnim` refuse a tiledata `animId` that is
+  not a body / worn anim this era's `anim.mul` can address. Wired into
+  `ClientRender.cpp` (`applyMountUnderlay`, `resolveEquip`).
+* `SanitizeAction` / `SanitizeDir` / `SanitizeHue` clamp or refuse.
+* `ArtLoader::SetPlaceholders(true)` (opt-in; bots leave it off) turns every
+  unresolvable art index into a loud magenta placeholder instead of nullptr, and
+  `Config::renderPlaceholders` additionally stands a placeholder on the cell of
+  any mobile whose body cannot be drawn. An observer must *see* the object it
+  cannot draw, not silently miss it.
+* `TileDataLoader::Land/Static` return a zeroed tile when the loader holds no
+  data, instead of dereferencing a null array.
+
+`ctest -R viewer_safety` sweeps the whole domain through all of it with no client
+data at all, and — when `UO_MUL_DIR` is set — again against the real MULs.
+
 ## Known limitations / TODO
 
 - **Combat actions** (engage/flee/recall) — only the threat hook exists.

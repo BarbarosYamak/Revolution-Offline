@@ -28,12 +28,29 @@ public:
     const Sprite* Land(u16 tileId);
     const Sprite* Static(u16 itemId);
 
+    // Opt-in crash/blank guard for out-of-era graphics.
+    //
+    // OFF (default): an index with no bitmap returns nullptr and the caller
+    // draws nothing -- the existing bot/renderer behaviour, unchanged.
+    //
+    // ON: the same index returns a loud magenta placeholder sprite instead.
+    // The observer client turns this on so a graphic this Renaissance-era
+    // art.mul cannot draw (a post-Renaissance mount, a shard-custom item)
+    // shows up as a visible marker at the right tile rather than silently
+    // vanishing. Either way the lookup is bounds-checked and never throws.
+    void SetPlaceholders(bool on) { placeholders_ = on; }
+    bool Placeholders() const { return placeholders_; }
+
 private:
     const Sprite* LoadIndex(u32 index, bool isLand);
+    // Fill `s` with the placeholder bitmap and return it, or return nullptr
+    // when placeholders are off.
+    const Sprite* Miss(Sprite& s);
 
     mul::File idx_;
     mul::File art_;
     std::unordered_map<u32, Sprite> cache_;
+    bool placeholders_ = false;
 };
 
 }

@@ -1,0 +1,49 @@
+# M3.6 -- charge a Runebook with a Recall scroll.
+#
+# RUN ONLY AS SESSION 7 (RevolutionMageGM), the fenced mechanics probe.
+#
+# Historical rule, OFFICIAL_REVOLUTION_UPDATE 13.05.2009:
+#   "Sarj (recall scroll ekleyerek) ile runebook kullanirsaniz magery
+#    yetenegine ihtiyaciniz olmayacaktir."
+#   "If you use the runebook with charges (by adding recall scrolls) you will
+#    not need the magery skill."
+#
+# So: adding a Recall scroll adds a charge, and a charged use does not require
+# Magery. The RATE (one scroll = one charge) and the absence of a maximum are
+# reconstruction -- the archive states neither -- and are marked as such in
+# revolution_runebook.scp.
+
+wait_world
+sleep 2500
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember book pack_graphic 0x22C5
+require book
+remember scroll pack_graphic 0x1F4C
+require scroll
+
+use @book
+wait_action
+sleep 2500
+gump_report
+
+# Button 40 = "add a Recall scroll as a charge".
+gump_button 40
+sleep 2000
+wait_target
+target @scroll
+sleep 3000
+
+use @book
+wait_action
+sleep 2500
+gump_report
+
+say the book is charged
+sleep 1500
+logout

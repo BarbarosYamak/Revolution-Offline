@@ -574,14 +574,20 @@ bool Client::TravelTryEscape() {
                       travelEscapes_);
         LogEvent("travel_escape", ev);
 
-        // Restart the journey for the same destination. The escape walk itself
-        // is just the first leg of the retry: if it succeeds the replan happens
-        // from the new position, and if it fails the ladder runs again from
-        // there and eventually reports the character as genuinely stuck.
-        const std::string label = journey_.Label();
-        const i32 gx = journey_.GoalX(), gy = journey_.GoalY();
-        const i32 radius = journey_.ArriveRadius();
-        journey_.Begin(label.c_str(), gx, gy, radius, NowMs());
+        // PARK the journey rather than restarting it. Restarting was the M2.5
+        // approach and it is what orphaned the recovery: Begin() wiped the
+        // trip, the parent reported itself finished, and the escape walk
+        // carried on with nobody waiting for it. The journey now keeps its
+        // label, goal, radius and avoid-cell memory, stays Active, and issues
+        // Wait until the walk reports back.
+        if (!journey_.Recovering() &&
+            !journey_.BeginPositionRecovery("route unusable from here", NowMs())) {
+            // Budget spent. Undo the bookkeeping for an attempt we will not
+            // make, and let the caller fail cleanly.
+            --travelEscapes_;
+            travelEscapeTried_.pop_back();
+            return false;
+        }
         travelWalkOutstanding_ = false;
         ActionGoto(c.x, c.y, /*hasZ=*/true, c.z);
         travelLegTargetX_ = c.x;
@@ -628,6 +634,32 @@ void Client::TravelTick() {
         travelWalkOutstanding_ = false;
         const i32 off = Chebyshev(playerX_, playerY_, travelLegTargetX_,
                                   travelLegTargetY_);
+
+        // An escape walk is not a route leg, and must not be reported as one.
+        // It belongs to the recovery lifecycle: the journey parked when it
+        // started, and this is the only thing that unparks it.
+        if (journey_.Recovering()) {
+            const bool reached = GotoSucceeded() || off <= kLegArriveSlack;
+            LogInfo("[travel] recovery walk %s at (%d,%d,%d) (off %d); "
+                    "attempt %d/%d\n", reached ? "reached its anchor" : "fell short",
+                    playerX_, playerY_, static_cast<int>(playerZ_), off,
+                    journey_.PositionRecoveries(),
+                    journey_.GetLimits().maxPositionRecoveries);
+            char ev[160];
+            std::snprintf(ev, sizeof(ev),
+                          "reached=%d at=(%d,%d,%d) off=%d attempt=%d",
+                          reached ? 1 : 0, playerX_, playerY_,
+                          static_cast<int>(playerZ_), off,
+                          journey_.PositionRecoveries());
+            LogEvent("travel_recovery_done", ev);
+            journey_.OnPositionRecovered(reached, now);
+            // If it fell short and budget remains, the journey is still parked
+            // and the next tick will start another attempt from here.
+            if (!reached && journey_.Recovering() && !TravelTryEscape()) {
+                TravelFinish(false, "sealed in; recovery exhausted");
+            }
+            return;
+        }
         // Chasing a mobile also means standing on its floor, not above it.
         bool wrongFloor = false;
         if (travelEntitySerial_) {

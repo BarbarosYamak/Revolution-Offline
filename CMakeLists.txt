@@ -63,7 +63,10 @@ set(UO_CLIENT_SOURCES
     src/travel/ClientTravel.cpp
     src/fleet/Fleet.cpp
     src/travel/RouteStyle.cpp
+    src/travel/TravelMode.cpp
     src/progression/Economy.cpp
+    src/progression/Training.cpp
+    src/progression/Rules.cpp
     src/progression/ClientProgression.cpp
     src/progression/ClientTrade.cpp
     src/progression/Progression.cpp
@@ -84,6 +87,26 @@ target_link_libraries(uo_client PRIVATE uo_mul uo_world qjs)
 
 if(WIN32)
     target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)
+endif()
+
+# --- uo_viewer: the observer client (replaces ClassicUO) -----------------
+# Same session engine as uo_client -- it logs in through the very same
+# uo::Client, so it is a real player on the wire and cannot be anything else --
+# with a different front end: window always on, camera on the character, Esc
+# logs out, and every client-data lookup routed through include/uo/safe_graphics.h
+# so an out-of-era graphic (0x3EB4, the unicorn-that-is-a-ship-prow that killed
+# ClassicUO) draws a placeholder instead of taking the process down.
+# See docs/OBSERVER_CLIENT.md.
+set(UO_VIEWER_SOURCES ${UO_CLIENT_SOURCES})
+list(REMOVE_ITEM UO_VIEWER_SOURCES src/main.cpp)
+list(APPEND UO_VIEWER_SOURCES src/viewer/ViewerMain.cpp)
+
+add_executable(uo_viewer ${UO_VIEWER_SOURCES})
+target_include_directories(uo_viewer PRIVATE include src ${quickjs_SOURCE_DIR})
+target_link_libraries(uo_viewer PRIVATE uo_mul uo_world qjs)
+
+if(WIN32)
+    target_link_libraries(uo_viewer PRIVATE ws2_32 user32 gdi32)
 endif()
 
 # --- MUL static library (M2) -------------------------------------------

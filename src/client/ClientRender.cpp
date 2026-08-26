@@ -10,6 +10,8 @@
 #include "uo/animdata.h"
 #include "uo/animinfo.h"
 #include "uo/hues.h"
+#include "uo/png.h"
+#include "uo/safe_graphics.h"
 #include "render/Renderer.h"
 #include "render/Text.h"
 #include "render/Minimap.h"
@@ -45,6 +47,11 @@ constexpr i64   kStatusProbeMs = 3000;
 constexpr u16   kHighlightHue = 53;
 // How long a single-click item name label floats over the item.
 constexpr i64   kItemLabelMs = 4000;
+// Graphic id used to stand in for an entity this client data set cannot draw.
+// 0x4000+0xFFFF is past the end of artidx.mul, so ArtLoader resolves it to its
+// placeholder bitmap (only when placeholders are enabled) and to nothing
+// otherwise. See uo/safe_graphics.h.
+constexpr u16   kUndrawableGraphic = 0xFFFF;
 
 // Inverse of bot::DirToDelta: a unit (dx,dy) world step -> UO facing 0..7
 // (0=N(0,-1), 2=E(+1,0), 4=S(0,+1), 6=W(-1,0); odds are the diagonals).
@@ -189,6 +196,9 @@ void Client::RenderTick() {
             cfg_.enableRenderer = false;
             return;
         }
+        // Observer mode: an art index this data set cannot resolve becomes a
+        // loud placeholder instead of nothing. Bots leave this off.
+        art_->SetPlaceholders(cfg_.renderPlaceholders);
         texmaps_ = std::make_unique<texmap::TexmapLoader>();
         if (!cfg_.texIdxPath || !cfg_.texPath ||
             !texmaps_->Open(cfg_.texIdxPath, cfg_.texPath)) {
@@ -327,8 +337,12 @@ void Client::RenderTick() {
         for (u8 slot : kLayerDrawOrder[dir & 7]) {
             for (const auto& e : equip) {
                 if (e.layer != slot) continue;
-                const u16 a = tileData_->ItemAnimId(e.graphic);
-                if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
+                // Same guard as the mount body: an item that is not a wearable
+                // in THIS tiledata has an arbitrary animId, which must never
+                // reach anim.idx. SanitizeWornAnim returns 0 for anything
+                // outside [0x190, 0x3E7] and the layer is simply not drawn.
+                const u16 a = safegfx::SanitizeWornAnim(tileData_->ItemAnimId(e.graphic));
+                if (a) out.push_back({a, e.hue});
                 break;
             }
         }
@@ -358,8 +372,12 @@ void Client::RenderTick() {
             if (slot == 21u || slot == 25u) continue;
             for (const auto& e : equip) {
                 if (e.layer != slot) continue;
-                const u16 a = tileData_->ItemAnimId(e.graphic);
-                if (a >= 0x190 && a < 0x3E8) out.push_back({a, e.hue});
+                // Same guard as the mount body: an item that is not a wearable
+                // in THIS tiledata has an arbitrary animId, which must never
+                // reach anim.idx. SanitizeWornAnim returns 0 for anything
+                // outside [0x190, 0x3E7] and the layer is simply not drawn.
+                const u16 a = safegfx::SanitizeWornAnim(tileData_->ItemAnimId(e.graphic));
+                if (a) out.push_back({a, e.hue});
                 break;
             }
         }
@@ -685,7 +703,14 @@ void Client::RenderTick() {
                                   render::Mob& mob) -> bool {
         const u16 mountG = mountGraphic(equip);
         if (!mountG || mob.body < 0x190) return false;   // only people ride/sit
-        const u16 mb = tileData_ ? tileData_->ItemAnimId(mountG) : 0;
+        // THE 0x3EB4 GUARD. tiledata's animId is a mount BODY only when the
+        // tile really is a mount item. Revolution's Renaissance tiledata has a
+        // ship "prow" at the unicorn's graphic, so its animId is arbitrary
+        // bytes -- exactly the value that made ClassicUO index its animation
+        // table out of range and die. SanitizeMountBody refuses anything this
+        // era's anim.mul cannot address, and the rider is drawn on foot.
+        const u16 mb = safegfx::SanitizeMountBody(
+            tileData_ ? tileData_->ItemAnimId(mountG) : 0u);
         if (mb) {                                         // real mount: draw its body
             mob.mountBody = mb;
             mob.mountAction = PickAction(mb, moving, running, false);
@@ -894,6 +919,29 @@ void Client::RenderTick() {
     self.ddx = slideDelta(lastStepMs_, selfMoveMs, playerX_, prevPlayerX_);
     self.ddy = slideDelta(lastStepMs_, selfMoveMs, playerY_, prevPlayerY_);
     mobs.push_back(std::move(self));
+
+    // ---- Out-of-era safety net (observer client) -------------------------
+    // A mobile whose body this Renaissance-era anim.mul cannot address --- a
+    // post-Renaissance creature, or a rider whose mount item resolved to no
+    // body --- is refused by safegfx::BodyInRange BEFORE anything indexes
+    // anim.idx, and the renderer then simply draws nothing for it. That is
+    // safe but invisible, which is its own kind of lie for a client whose job
+    // is to show what is there. With placeholders on we stand a loud marker on
+    // its cell instead, so the operator sees "something the client data cannot
+    // draw is standing here" rather than an empty tile.
+    if (cfg_.renderPlaceholders) {
+        for (const render::Mob& m : mobs) {
+            const bool drawable = safegfx::BodyInRange(m.body) && anim_ &&
+                                  anim_->FrameCount(m.body, m.dir, m.action) != 0u;
+            if (drawable) continue;
+            render::DynItem ph{};
+            ph.itemId = kUndrawableGraphic;
+            ph.x = m.x;
+            ph.y = m.y;
+            ph.z = m.z;
+            dyn.push_back(ph);
+        }
+    }
 
     // Ambient night/cave darkness (2.0.7 light pass). Forced off while
     // alwaysDay_. darkness = clamp(overall - personal, 0..31); RenderWorld then
@@ -1690,6 +1738,29 @@ void Client::DrawCursorOverlay() {
     const u16 key = sp->px[0];
     renderer_->BlitSpriteKeyed(sp->px.data(), sp->width, sp->height,
                                mx - hx, my - hy, key, /*skipHotspotMarker=*/true);
+}
+
+// ---------------------------------------------------------------------------
+// Read-only render inspection. Nothing here touches the socket, the session
+// state machine or any cached object; it only reads the framebuffer the last
+// RenderTick produced. Used by uo_viewer to prove it actually drew a frame.
+// ---------------------------------------------------------------------------
+int Client::RenderWidth() const {
+    return renderer_ ? renderer_->Width() : 0;
+}
+
+int Client::RenderHeight() const {
+    return renderer_ ? renderer_->Height() : 0;
+}
+
+const u16* Client::RenderFrame() const {
+    return renderer_ ? renderer_->Frame() : nullptr;
+}
+
+bool Client::SaveRenderFramePng(const char* path) const {
+    if (!path || !path[0] || !renderer_) return false;
+    return png::Save(path, renderer_->Frame(),
+                     renderer_->Width(), renderer_->Height());
 }
 
 } // namespace uo

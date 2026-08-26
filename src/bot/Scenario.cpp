@@ -53,6 +53,7 @@ const char* const kOpNames[] = {
     "trade_cancel", "wait_trade_open", "wait_trade_partner",
     "wait_trade_closed", "expect_trade", "wait_trade_offer", "wait_trade_mine",
     "npc_train", "give",
+    "wait_gump", "gump_button", "gump_report",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -246,6 +247,8 @@ bool Scenario::Load(const char* path, std::string* err) {
         else if (verb == "wait_dead")       st.op = Op::WaitDead;
         else if (verb == "wait_alive")      st.op = Op::WaitAlive;
         else if (verb == "scan_mobiles")    st.op = Op::ScanMobiles;
+        else if (verb == "gump_report")     st.op = Op::GumpReport;
+        else if (verb == "wait_gump")       st.op = Op::WaitGump;
         else if (verb == "mark_hp")         st.op = Op::MarkHp;
         else if (verb == "expect_hp_gain")  st.op = Op::ExpectHpGain;
         else if (verb == "mark_gold")       st.op = Op::MarkGold;
@@ -524,6 +527,13 @@ bool Scenario::Load(const char* path, std::string* err) {
             const auto s0 = rest.find_first_not_of(" 	");
             st.text = (s0 == std::string::npos) ? "buy" : rest.substr(s0);
             st.op = Op::VendorOpen;
+        }
+        else if (verb == "gump_button") {
+            // gump_button <id> -- the gump's own button id, as the server
+            // numbered it. The runebook uses 11..18 to travel and 21..28 to
+            // insert a rune.
+            if (!need(st.a, "<button>")) { steps_.clear(); return false; }
+            st.op = Op::GumpButton;
         }
         else if (verb == "npc_train") {
             // npc_train <npc> <skillkey>  -- the skill key is Sphere's own
@@ -848,6 +858,21 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::VendorOpen:
                     client.ActionVendorOpen(Resolve(client, st.a), st.text.c_str());
                     break;
+                case Op::GumpButton: {
+                    const u32 b = static_cast<u32>(std::strtoul(st.a.c_str(), nullptr, 0));
+                    const bool sent = client.AnswerGump(b, 0);
+                    std::printf("[scenario] gump_button %u -> %s\n", b,
+                                sent ? "sent" : "no gump open");
+                    break;
+                }
+                case Op::GumpReport:
+                    std::printf("[scenario] gump active=%d context=0x%08X options=%zu\n",
+                                client.GumpActive() ? 1 : 0, client.GumpContext(),
+                                static_cast<unsigned>(client.GumpOptions().size()));
+                    for (const Client::GumpOption& o : client.GumpOptions())
+                        std::printf("[scenario]   gump option id=%u button=%d '%s'\n",
+                                    o.id, o.button ? 1 : 0, o.label.c_str());
+                    break;
                 case Op::NpcTrain:
                     client.ActionNpcTrain(Resolve(client, st.a), st.b.c_str());
                     break;
@@ -952,6 +977,7 @@ void Scenario::Tick(Client& client, i64 nowMs) {
             case Op::WaitWalk:     done = !client.WalkQueueBusy(); break;
             case Op::WaitBackpack: done = client.BackpackContentsKnown(); break;
             case Op::WaitGoto:     done = !client.GotoBusy(); break;
+            case Op::WaitGump:     done = client.GumpActive(); break;
             case Op::WaitDead:     done = client.IsDead(); break;
             case Op::WaitAlive:    done = !client.IsDead(); break;
             case Op::WaitHpBelow:  done = client.PlayerHp() > 0 &&

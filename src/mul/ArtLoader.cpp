@@ -83,6 +83,28 @@ bool ArtLoader::Open(const char* artIdxPath, const char* artPath) {
 const Sprite* ArtLoader::Land(u16 tileId)   { return LoadIndex(tileId, true); }
 const Sprite* ArtLoader::Static(u16 itemId) { return LoadIndex(kStaticBase + itemId, false); }
 
+// Every failure path in LoadIndex funnels through here. With placeholders off
+// this is the historical `return nullptr`; with them on it materialises the
+// loud marker into the cache slot, so the cache-hit path returns it too.
+const Sprite* ArtLoader::Miss(Sprite& s) {
+    if (!placeholders_) return nullptr;
+
+    constexpr int kDim  = 20;
+    constexpr u16 kInk  = 0xFC1F;   // opaque magenta
+    constexpr u16 kVoid = 0x8000;   // opaque black
+    s.width  = kDim;
+    s.height = kDim;
+    s.px.assign(static_cast<usize>(kDim) * kDim, kVoid);
+    for (int y = 0; y < kDim; ++y) {
+        for (int x = 0; x < kDim; ++x) {
+            const bool border = (x == 0 || y == 0 || x == kDim - 1 || y == kDim - 1);
+            const bool check  = (((x >> 2) ^ (y >> 2)) & 1) != 0;
+            if (border || check) s.px[static_cast<usize>(y) * kDim + x] = kInk;
+        }
+    }
+    return &s;
+}
+
 const Sprite* ArtLoader::LoadIndex(u32 index, bool isLand) {
     auto it = cache_.find(index);
     if (it != cache_.end())
@@ -91,21 +113,24 @@ const Sprite* ArtLoader::LoadIndex(u32 index, bool isLand) {
     Sprite& s = cache_[index];   // inserts an empty (0x0) sprite
 
     // 12-byte index entry: { u32 lookup, u32 length, u32 extra }.
-    if (!idx_.Seek(static_cast<i64>(index) * 12, 0)) return nullptr;
+    // The index is bounded by construction (u16 tile id, +0x4000 for statics),
+    // and every read below is checked -- a seek past the end of artidx.mul
+    // simply fails the read, it does not fault.
+    if (!idx_.Seek(static_cast<i64>(index) * 12, 0)) return Miss(s);
     u32 entry[3];
-    if (!idx_.Read(entry, sizeof(entry))) return nullptr;
+    if (!idx_.Read(entry, sizeof(entry))) return Miss(s);
     const u32 lookup = entry[0];
     const u32 length = entry[1];
-    if (lookup == 0xFFFFFFFFu || length == 0 || length > (1u << 24)) return nullptr;
+    if (lookup == 0xFFFFFFFFu || length == 0 || length > (1u << 24)) return Miss(s);
 
     std::vector<u8> raw(length);
-    if (!art_.Seek(static_cast<i64>(lookup), 0)) return nullptr;
-    if (!art_.Read(raw.data(), length)) return nullptr;
+    if (!art_.Seek(static_cast<i64>(lookup), 0)) return Miss(s);
+    if (!art_.Read(raw.data(), length)) return Miss(s);
 
     if (isLand) DecodeLand(raw, s);
     else        DecodeStatic(raw, s);
 
-    return s.width ? &s : nullptr;
+    return s.width ? &s : Miss(s);
 }
 
 }

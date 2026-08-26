@@ -122,6 +122,12 @@ public:
         int         renderWidth;      // window framebuffer width  (<=0 -> 512)
         int         renderHeight;     // window framebuffer height (<=0 -> 384)
         int         renderScale;      // integer upscale factor    (<=0 -> 2)
+        // Draw a loud magenta placeholder for any graphic/body this client
+        // data set cannot resolve, instead of drawing nothing. Render-only;
+        // no protocol effect. Off by default (the bots want a clean frame);
+        // uo_viewer turns it on -- an observer must SEE the out-of-era object
+        // rather than silently miss it. See uo/safe_graphics.h.
+        bool        renderPlaceholders;
     };
 
     explicit Client(const Config& cfg);
@@ -459,6 +465,20 @@ public:
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
     void ActionLogout();                 // 0xD1 + socket close
+
+    // -----------------------------------------------------------------
+    // Read-only render inspection (uo_viewer).
+    //
+    // These expose what the renderer already drew. They send nothing, change
+    // no session state and have no protocol effect whatsoever -- they exist so
+    // the observer client can prove it produced a frame (dump it to PNG) and
+    // can tell whether its window is still up.
+    // -----------------------------------------------------------------
+    bool RenderWindowOpen() const { return renderWindowOpen_; }
+    int  RenderWidth() const;
+    int  RenderHeight() const;
+    const u16* RenderFrame() const;                 // nullptr before frame 1
+    bool SaveRenderFramePng(const char* path) const;
 
 private:
     // Live JS Player getters read private player state directly (no snapshot).

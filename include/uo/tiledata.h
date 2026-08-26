@@ -105,8 +105,20 @@ public:
 
     bool IsLoaded() const { return loaded_; }
 
-    const LandTile&   Land(u32 id) const   { return lands_[id < kLandCount ? id : 0]; }
-    const StaticTile& Static(u32 id) const { return statics_[id < kStaticCount ? id : 0]; }
+    // Total accessors: any u32 is accepted. Out-of-range ids clamp to entry 0
+    // (unchanged behaviour), and -- the part that matters for the observer
+    // client -- an UNLOADED loader returns a zeroed tile instead of
+    // dereferencing a null array. A failed/absent tiledata.mul must not be a
+    // crash; see uo/safe_graphics.h.
+    const LandTile&   Land(u32 id) const   {
+        return lands_ ? lands_[id < kLandCount ? id : 0] : ZeroLand();
+    }
+    const StaticTile& Static(u32 id) const {
+        return statics_ ? statics_[id < kStaticCount ? id : 0] : ZeroStatic();
+    }
+
+    static const LandTile&   ZeroLand();
+    static const StaticTile& ZeroStatic();
 
     // Worn-item animation id for an item graphic (0 == none/not equippable).
     u16 ItemAnimId(u16 graphic) const { return Static(graphic).animId; }

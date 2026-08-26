@@ -152,6 +152,7 @@ private:
         WaitTradeOpen, WaitTradePartner, WaitTradeClosed, ExpectTrade,
         WaitTradeOffer, WaitTradeMine,
         NpcTrain, Give,
+        WaitGump, GumpButton, GumpReport,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

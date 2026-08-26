@@ -10,6 +10,21 @@ namespace uo::tiledata {
 TileDataLoader::TileDataLoader()
     : lands_(nullptr), statics_(nullptr), loaded_(false) {}
 
+// Fallback tiles returned when the loader holds no data at all (Load() never
+// ran, or failed). Flags 0 = no Impassable/Surface/Wall bit set, height 0,
+// empty name -- the "nothing is known about this tile" answer. Returning these
+// is what keeps a missing or truncated tiledata.mul from being a null deref in
+// every renderer and walkability call.
+const LandTile& TileDataLoader::ZeroLand() {
+    static const LandTile z{};
+    return z;
+}
+
+const StaticTile& TileDataLoader::ZeroStatic() {
+    static const StaticTile z{};
+    return z;
+}
+
 TileDataLoader::~TileDataLoader() {
     delete[] lands_;
     delete[] statics_;

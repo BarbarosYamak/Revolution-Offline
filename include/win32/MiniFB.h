@@ -434,7 +434,11 @@ void mfb_close() {
 
 // Returns a pointer to the 512-byte key state array (nonzero = held).
 const char *mfb_keystatus() {
-    return mfb_state->keys;
+    // Null-safe: callers poll this from their own main loop, which may run
+    // before mfb_open or after the user closed the window. Report "no key
+    // held" instead of dereferencing a freed state block.
+    static const char no_keys[512] = {0};
+    return mfb_state ? mfb_state->keys : no_keys;
 }
 
 bool mfb_poll_char(uint32_t *ch) {

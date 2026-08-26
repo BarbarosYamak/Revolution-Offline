@@ -17,7 +17,8 @@ u32 PackTile(i32 x, i32 y) {
 }
 
 const char* const kPhaseNames[] = {
-    "idle", "need_route", "walking", "at_transit", "arrived", "failed",
+    "idle", "need_route", "walking", "at_transit", "arrived", "recovering",
+    "failed",
 };
 
 const char* const kFailureNames[] = {
@@ -69,6 +70,8 @@ void Journey::Reset() {
     oscillations_ = 0;
     haveSample_ = false;
     recentTiles_.clear();
+    positionRecoveries_ = 0;
+    recoveryReason_.clear();
 }
 
 void Journey::Begin(const char* label, i32 goalX, i32 goalY, i32 arriveRadius,
@@ -80,6 +83,76 @@ void Journey::Begin(const char* label, i32 goalX, i32 goalY, i32 arriveRadius,
     arriveRadius_ = arriveRadius > 0 ? arriveRadius : 1;
     phase_ = Phase::NeedRoute;
     waitUntilMs_ = nowMs;
+}
+
+// --- position recovery ------------------------------------------------------
+//
+// The lifecycle this replaces, and why:
+//
+// M2.5 recovered from "sealed into an upper storey" by calling Begin() again
+// for the same destination. That restarted the journey from scratch while the
+// escape walk was still being planned, so the parent trip died and the walk
+// carried on with nobody waiting for it -- an orphaned recovery. M3.5 saw it
+// live on the Mage Tower and could only half-fix it.
+//
+// Now the journey PARKS. It keeps its label, its goal, its arrive radius and
+// its avoid-cell memory, reports itself active throughout, and issues Wait so
+// the client is the only thing moving. When the escape reports back, planning
+// resumes for the ORIGINAL destination.
+bool Journey::BeginPositionRecovery(const char* why, i64 nowMs) {
+    // Recovery must be allowed FROM Failed: a character sealed into an upper
+    // storey fails at plan time, and that failed plan is precisely the moment
+    // the escape has to start. Refusing here was the first version's bug.
+    // Idle and Arrived are genuinely over, and an exhausted budget is what
+    // makes a failure final.
+    if (phase_ == Phase::Idle || phase_ == Phase::Arrived) return false;
+    if (positionRecoveries_ >= limits_.maxPositionRecoveries) return false;
+
+    // Un-fail the trip: it is alive again for as long as recovery runs.
+    failure_ = Failure::None;
+    failureDetail_.clear();
+
+    ++positionRecoveries_;
+    recoveryReason_ = why ? why : "unreachable from here";
+    phase_ = Phase::Recovering;
+    // Per-leg progress state belongs to the route we are abandoning.
+    legIssued_ = false;
+    legRetries_ = 0;
+    noProgress_ = 0;
+    oscillations_ = 0;
+    bestDistance_ = 0x7FFFFFFF;
+    haveSample_ = false;
+    recentTiles_.clear();
+    waitUntilMs_ = nowMs;
+    return true;
+}
+
+void Journey::OnPositionRecovered(bool reached, i64 nowMs) {
+    if (phase_ != Phase::Recovering) return;
+
+    if (reached) {
+        // Somewhere the router can see. Re-plan for the goal we never gave up
+        // on. Replan budget is refreshed because the earlier failures were
+        // about the old position, not about this route being impossible.
+        routePlans_ = 0;
+        route_ = route::WorldRoute{};
+        legIndex_ = 0;
+        phase_ = Phase::NeedRoute;
+        waitUntilMs_ = nowMs;
+        return;
+    }
+
+    // The anchor was not reached. Another attempt may still work from here;
+    // when the budget runs out the trip fails with the reason that started it,
+    // which is far more useful than "no route".
+    if (positionRecoveries_ >= limits_.maxPositionRecoveries) {
+        Fail(Failure::Unreachable, recoveryReason_.empty()
+                                       ? "sealed in; recovery exhausted"
+                                       : recoveryReason_.c_str());
+        return;
+    }
+    phase_ = Phase::Recovering;
+    waitUntilMs_ = nowMs + limits_.recoveryPauseMs;
 }
 
 void Journey::Abort(const char* why) {
@@ -319,6 +392,10 @@ Command Journey::NextCommand(i64 nowMs) const {
         case Phase::Idle:    return Command::Idle;
         case Phase::Arrived: return Command::Finish;
         case Phase::Failed:  return Command::Fail;
+        // The client owns movement while an escape walk is in flight. Asking
+        // it to walk or plan here is what produced two movement owners and an
+        // orphaned recovery.
+        case Phase::Recovering: return Command::Wait;
         case Phase::NeedRoute:
             if (nowMs < waitUntilMs_) return Command::Wait;
             if (routePlans_ >= limits_.maxRoutePlans) return Command::Fail;

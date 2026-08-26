@@ -1,0 +1,64 @@
+# M3.6 -- Magery trained the way RevolutionUO players actually trained it.
+#
+# M3 trained Magery 50.0 -> 50.9 by casting NIGHT SIGHT, and measured
+# ~0.53 skill/hour from it. That measurement is real, and it is a valid proof
+# that legitimate skill gain works -- but it is NOT an authentic Revolution
+# rate for this band, because Night Sight is the WRONG SPELL at Magery 50.
+#
+# The Revolution training guide (forum topic 59111) gives the bands:
+#
+#     0-30    Night Sight
+#     30-40   Bless
+#     40-60   GREATER HEAL      <-- Magery 50.9 lives here
+#     60-70   Magic Reflection
+#     70-80   Reveal / Invisibility / Energy Bolt
+#     80-90   Energy Field / Mass Dispel
+#     90-100  Earth Elemental / Earthquake
+#
+# So this trains with [SPELL 29] Greater Heal:
+#     SKILLREQ=MAGERY 40.0   MANAUSE=11   CAST_TIME=1.3
+#     RESOURCES=garlic, ginseng, mandrake root, spider silk
+#     FLAGS=...|spellflag_targ_char|spellflag_playeronly|spellflag_heal
+#
+# Two things checked before committing an hour to this:
+#
+#  1. Casting it on yourself at full health is NOT refused. Source-X's heal
+#     branch is just `UpdateStatVal(STAT_STR, iEffect)` (CCharSpell.cpp:2067) --
+#     the HP is capped, the cast still completes, and the gain still rolls.
+#  2. This runtime has ReagentsRequired=0 (sphere.ini:1060), so no reagent is
+#     consumed by any of this. That is a divergence from historical Revolution,
+#     where reagents were a whole economy, and it is recorded as an
+#     authenticity conflict rather than relied upon.
+#
+# Meditation is interleaved exactly as in M3 so the two runs are comparable:
+# the only deliberate difference is the spell.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 2000
+skill_report
+
+# Report every ~60 actions so the rate can be read while the block is still
+# running rather than only at the end.
+loop 100
+  loop 60
+    skill 46
+    wait_action
+    sleep 200
+    cast 29 self
+    wait_action
+    sleep 200
+  endloop
+  request_skills
+  sleep 1500
+  skill_report
+endloop
+
+request_skills
+sleep 3000
+skill_report
+say greater heal training block done
+sleep 1000
+logout
