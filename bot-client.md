@@ -511,6 +511,47 @@ src/js/                   QuickJS engine + Player/World/Mobiles bindings
 
 ---
 
+## Fleet, route style and economy (M3.5)
+
+Three self-contained units, all pure logic with injected clocks and seeds, all
+covered by `tests/m35_authenticity.cpp` (856 checks).
+
+**`include/uo/fleet.h` — connection admission.** Models THIS server's guard:
+`MaxConnectRequestsPerIP=50`, a counter that **does not decay** and clears only
+after `NetTTL` (300 s) of total silence *since the last attempt*, with a ~300 s
+IP ban on overflow. Two consequences drive the design: a rejected attempt is
+still an attempt (so retrying resets the clock you are waiting on — M3 banned
+itself this way four times in three minutes), and the unit is the IP, so the
+budget is fleet-wide. `AdmissionController` runs a conservative budget of 30,
+staggers, backs off exponentially, breaks the circuit after repeated failures,
+and **never emits an attempt while a ban is believed to be in force**.
+`FleetLedger` shares the history between processes through a small text file.
+
+**`include/uo/route_style.h` — bounded route variation.** Sits between the
+world route and the tile A*:
+
+```
+semantic goal -> world route -> [route variation] -> local A* -> SubmitStep()
+```
+
+A `Style` derives from the character's name, so habits are stable across
+sessions with no stored state. It answers three questions deterministically:
+which of several equivalent approach tiles is mine, how much do I dislike this
+tile (a bounded, stable spatial bias), and have I just walked here (a decaying
+recent-path penalty). Five preferences change behaviour rather than decorate
+it. Nothing here can make an illegal tile look legal.
+
+**`include/uo/economy.h` — economic knowledge.** `PriceBook` separates prices
+observed on this shard from RevolutionUO forum-era figures: `Best()` returns
+only the former, and historical baselines are reachable only through
+`HistoricalBaseline()`. `KnownTransformations()` records M3's carving discovery
+as data with its evidence, and `EstimateTransformation` reports margin per unit
+**and per stone** — because M3's fisher left eleven catches on the dock.
+
+None of the three is wired into a live session yet; see the M3.5 debt list.
+
+---
+
 ## Known limitations / TODO
 
 - **Combat actions** (engage/flee/recall) — only the threat hook exists.

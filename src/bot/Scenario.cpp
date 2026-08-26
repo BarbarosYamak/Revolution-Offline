@@ -52,6 +52,7 @@ const char* const kOpNames[] = {
     "trade_start", "trade_offer", "trade_accept", "trade_retract",
     "trade_cancel", "wait_trade_open", "wait_trade_partner",
     "wait_trade_closed", "expect_trade", "wait_trade_offer", "wait_trade_mine",
+    "npc_train", "give",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -524,6 +525,18 @@ bool Scenario::Load(const char* path, std::string* err) {
             st.text = (s0 == std::string::npos) ? "buy" : rest.substr(s0);
             st.op = Op::VendorOpen;
         }
+        else if (verb == "npc_train") {
+            // npc_train <npc> <skillkey>  -- the skill key is Sphere's own
+            // (e.g. "blacksmithy"), because the server matches on it.
+            if (!need(st.a, "<npc>") || !need(st.b, "<skill>")) { steps_.clear(); return false; }
+            st.op = Op::NpcTrain;
+        }
+        else if (verb == "give") {
+            // give <mobile> <item> <amount>  -- hand over a counted stack.
+            if (!need(st.a, "<mobile>") || !need(st.b, "<item>") ||
+                !need(st.c, "<amount>")) { steps_.clear(); return false; }
+            st.op = Op::Give;
+        }
         else if (verb == "vendor_buy" || verb == "vendor_sell") {
             if (!need(st.a, "<vendor>") || !need(st.b, "<item>") ||
                 !need(st.c, "<qty>")) { steps_.clear(); return false; }
@@ -834,6 +847,14 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     break;
                 case Op::VendorOpen:
                     client.ActionVendorOpen(Resolve(client, st.a), st.text.c_str());
+                    break;
+                case Op::NpcTrain:
+                    client.ActionNpcTrain(Resolve(client, st.a), st.b.c_str());
+                    break;
+                case Op::Give:
+                    client.ActionNpcGive(Resolve(client, st.a),
+                                         Resolve(client, st.b),
+                                         static_cast<u16>(std::atoi(st.c.c_str())));
                     break;
                 case Op::VendorBuy:
                     client.ActionVendorBuy(Resolve(client, st.a),

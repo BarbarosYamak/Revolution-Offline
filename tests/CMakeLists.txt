@@ -55,3 +55,16 @@ target_include_directories(m3_progression PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m3_progression COMMAND m3_progression)
+
+# M3.5 authenticity units: fleet connection admission (the IP-ban guard M3
+# tripped live), bounded per-character route variation, and economic
+# transformation knowledge. Pure logic; no server, no MULs, no world data.
+add_executable(m35_authenticity m35_authenticity.cpp
+    ${CMAKE_SOURCE_DIR}/src/fleet/Fleet.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/RouteStyle.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Economy.cpp)
+target_include_directories(m35_authenticity PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m35_authenticity COMMAND m35_authenticity)

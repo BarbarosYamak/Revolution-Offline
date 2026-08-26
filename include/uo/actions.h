@@ -64,6 +64,7 @@ enum class Kind : u8 {
     Bandage,        // use a bandage, then target a character
     Resurrect,
     TradeOpen,      // offer an item to a player, expecting a trade window
+    NpcTrain,       // ask an NPC to teach a skill, expecting its price
 };
 
 inline const char* KindName(Kind k) {
@@ -78,6 +79,7 @@ inline const char* KindName(Kind k) {
         case Kind::UseSkill:      return "use_skill";
         case Kind::CastSpell:     return "cast_spell";
         case Kind::Attack:        return "attack";
+        case Kind::NpcTrain:      return "npc_train";
         case Kind::OpenBank:      return "open_bank";
         case Kind::VendorBuy:     return "vendor_buy";
         case Kind::VendorSell:    return "vendor_sell";

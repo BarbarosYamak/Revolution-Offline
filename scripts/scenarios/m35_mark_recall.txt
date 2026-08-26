@@ -1,0 +1,83 @@
+# M3.5 Phase 9 -- Mark / Recall MECHANICS probe.
+#
+# RUN ONLY AS SESSION 7 (RevolutionMageGM).
+#
+# This character's Magery 60 was set by SERVER CONSOLE, not earned. It exists
+# precisely so mechanics that are progression-blocked can still be tested.
+# What this proves is that OUR CLIENT can drive Mark and Recall correctly
+# against a real server. It proves NOTHING about legitimate progression: M3's
+# RevolutionMage2 is at Magery 50.9, no shard vendor sells a sixth-circle
+# scroll, and that status is unchanged by anything here.
+#
+# Requirements read from the shard rather than assumed:
+#   [SPELL 45] Mark    SKILLREQ=MAGERY 60.0  MANAUSE=20  spellflag_targ_item
+#   [SPELL 32] Recall  SKILLREQ=MAGERY 40.0  MANAUSE=11
+#   both RESOURCES=i_reag_black_pearl, i_reag_blood_moss, i_reag_mandrake_root
+#   i_rune_marker = 0x1F14 (FLIP=1 -> 0x1F15), TYPE=t_rune
+#
+# The blank rune was placed by console alongside this character's spellbook and
+# reagents, as part of the same fencing. Buying one from a mage shop is still
+# UNPROVEN: the Britain "mage" place holds Caedmon the mage guildmaster, who
+# keeps no shop at all (the M3 finding), and the actual vendor was not in
+# range. That gap is recorded rather than papered over.
+#
+# PROOF, and why each part is needed:
+#   * the rune's MOREP goes from -1,-1 to a real point   -> the server marked it
+#   * we then travel a long way under our own power      -> no residual position
+#   * after Recall the server's own 0x20 reports the marked tile
+# No teleport command and no coordinate injection anywhere: the spell moves the
+# character or nothing does.
+
+wait_world
+sleep 2500
+ensure_peace
+use_moongates on
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember rune pack_graphic 0x1F14
+require rune
+
+# ------------------------------------------------------------------ 1. mark it
+# Marked where the character stands. That happens to be the Mage Tower's upper
+# storey (z=30) -- the sealed-floor cell the world router cannot see. M3.5
+# found and partly fixed that (the escape rung now fires at plan time as well
+# as mid-walk) but the journey still aborts while the escape walk is in
+# flight, so it is recorded as debt rather than worked around here. None of it
+# matters to what this scenario tests: Mark does not care about storeys, and
+# using the world router would be testing the wrong thing.
+#
+# At Magery exactly 60.0 -- the spell's own SKILLREQ -- most casts fizzle.
+# That is authentic rather than a fault: a player who has only just reached
+# the gate stands there and tries again.
+loop 12
+  wait_mana 25
+  cast 45 @rune
+  wait_action
+  sleep 3500
+endloop
+
+# --------------------------------------------------- 2. leave, under own power
+# The tile pathfinder can move inside this floor even where the macro router
+# cannot route out of it, so the character walks off the marked tile for real.
+goto 1480 1558
+wait_goto
+sleep 2000
+
+# --------------------------------------------------------------- 3. recall
+loop 8
+  wait_mana 20
+  cast 32 @rune
+  wait_action
+  sleep 4000
+endloop
+
+say the rune brought me home
+sleep 2000
+logout

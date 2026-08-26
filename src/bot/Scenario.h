@@ -151,6 +151,7 @@ private:
         TradeStart, TradeOffer, TradeAccept, TradeRetract, TradeCancel,
         WaitTradeOpen, WaitTradePartner, WaitTradeClosed, ExpectTrade,
         WaitTradeOffer, WaitTradeMine,
+        NpcTrain, Give,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

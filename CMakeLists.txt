@@ -61,6 +61,9 @@ set(UO_CLIENT_SOURCES
     src/navigation/PathPlanner.cpp
     src/navigation/Navigation.cpp
     src/travel/ClientTravel.cpp
+    src/fleet/Fleet.cpp
+    src/travel/RouteStyle.cpp
+    src/progression/Economy.cpp
     src/progression/ClientProgression.cpp
     src/progression/ClientTrade.cpp
     src/progression/Progression.cpp

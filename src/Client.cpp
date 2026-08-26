@@ -2759,6 +2759,54 @@ void Client::ActionVendorOpen(u32 vendorSerial, const char* phrase) {
     SayAscii(say.c_str());
 }
 
+// --- NPC teaching ----------------------------------------------------------
+//
+// Sphere's Teaching system is real and stock: CChar::NPC_OnTrainHear
+// (CCharNPCAct_Vendor.cpp:370) answers the speech verb TRAIN followed by a
+// skill name, quotes a price, and remembers the offer. Handing the NPC gold
+// then completes it (NPC_OnTrainPay, :273).
+//
+// What it will teach, from this runtime's own sphere.ini:
+//     NPCTrainPercent=30   -> up to 30% of the TRAINER's own skill
+//     NPCTrainMax=420      -> and never above 42.0 whatever the trainer knows
+//     NPCTrainCost=1       -> 1gp per 0.1 skill
+// so a GM trainer teaches to 30.0, and 0 -> 30.0 costs exactly 300 gold.
+//
+// Addressed by name for the reason M3 found the hard way: an unnamed keyword
+// is answered by the nearest NPC, not the one we walked to.
+void Client::ActionNpcTrain(u32 npcSerial, const char* skillKey) {
+    BeginAction(act::Kind::NpcTrain, kVendorTimeoutMs);
+    action_.subject = npcSerial;
+    action_.destination = npcSerial;
+    std::string phrase = "train ";
+    phrase += (skillKey && skillKey[0]) ? skillKey : "";
+    const std::string say = AddressMobile(npcSerial, phrase.c_str());
+    LogInfo("[TRAIN] ask 0x%08X say='%s'\n", npcSerial, say.c_str());
+    LogEvent("npc_train_ask", say.c_str());
+    SayAscii(say.c_str());
+}
+
+// Hand an item (in practice, a counted stack of gold) to a mobile. This is an
+// ordinary lift-and-drop onto the character, the same motion a player makes.
+//
+// It finishes as soon as the drop is away, and deliberately claims nothing
+// about the outcome: the NPC's container is not ours to see. The proof that
+// teaching happened is the server's own skill and gold numbers afterwards, not
+// this result.
+void Client::ActionNpcGive(u32 mobileSerial, u32 itemSerial, u16 amount) {
+    LogInfo("[GIVE] 0x%08X x%u -> 0x%08X (gold %d)\n", itemSerial, amount,
+            mobileSerial, PlayerGold());
+    if (!SendLift(itemSerial, amount)) {
+        LogWarn("[GIVE] could not lift 0x%08X\n", itemSerial);
+        return;
+    }
+    SendDropToContainer(itemSerial, mobileSerial);
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "item=0x%08X amount=%u to=0x%08X", itemSerial,
+                  amount, mobileSerial);
+    LogEvent("npc_give", ev);
+}
+
 void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
     BeginAction(act::Kind::VendorBuy, kVendorTimeoutMs);
     action_.subject = itemSerial;
@@ -3107,6 +3155,30 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         if (contains("you are at peace")) {
             // Sphere's "nothing to meditate for": mana is already full.
             FinishAction(act::Result::Success, text);
+            return;
+        }
+    }
+    // The trainer's answer. Its price quote is the confirmation that the offer
+    // stands and that gold will be accepted; everything else it can say is a
+    // refusal, and each one is a distinct, useful fact for a bot deciding
+    // whether to pay a teacher or grind the skill itself.
+    if (action_.kind == act::Kind::NpcTrain) {
+        if (contains("i will train you in all i know")) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
+        if (contains("you already know as much as i can teach") ||
+            contains("you know more about") ||
+            contains("there is nothing that i can teach you") ||
+            contains("that is all i can teach")) {
+            // Not an error: the honest answer is "this teacher is done with
+            // you", which is exactly what a TrainerDecision needs to hear.
+            FinishAction(act::Result::InvalidState, text);
+            return;
+        }
+        if (contains("i know nothing about") ||
+            contains("i would never train the likes of you")) {
+            FinishAction(act::Result::ServerFailure, text);
             return;
         }
     }

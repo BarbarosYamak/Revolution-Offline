@@ -250,6 +250,10 @@ public:
     // Ask a vendor to show its wares. Sphere opens the shop from SPEECH, not
     // from a double-click, so this says the word a player would say.
     void ActionVendorOpen(u32 vendorSerial, const char* phrase = "buy");
+    // NPC teaching (Sphere's stock Teaching system; see the .cpp for the
+    // runtime's NPCTrainPercent / NPCTrainMax / NPCTrainCost values).
+    void ActionNpcTrain(u32 npcSerial, const char* skillKey);
+    void ActionNpcGive(u32 mobileSerial, u32 itemSerial, u16 amount);
     void ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty);
     // Ask a vendor what it will buy. Sphere answers with 0x9E, which -- unlike
     // the buy flow -- carries the item serials itself.

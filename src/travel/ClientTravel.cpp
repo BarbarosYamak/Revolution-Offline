@@ -384,8 +384,18 @@ void Client::TravelPlanRoute() {
 
     journey_.SetRoute(r, NowMs());
     journey_.NoteCommandIssued(travel::Command::PlanRoute, NowMs());
-    if (journey_.CurrentPhase() == travel::Phase::Failed)
+    if (journey_.CurrentPhase() == travel::Phase::Failed) {
+        // A plan that fails because the character is standing somewhere the
+        // router cannot see gets the same escape ladder as a route that runs
+        // out mid-walk. This branch used to end the journey outright, which is
+        // why M2.5's fix for debt item 5 did not actually cover the case it was
+        // written for: being sealed into an upper storey fails HERE, at plan
+        // time, and never reached the rung in TravelStep.
+        if (journey_.FailureReason() == travel::Failure::NoRoute &&
+            TravelTryEscape())
+            return;
         TravelFinish(false, journey_.FailureDetail().c_str());
+    }
 }
 
 // Transit pads within reach of this leg, minus the one the route is actually
@@ -650,12 +660,28 @@ void Client::TravelTick() {
         case travel::Command::UseTransit:TravelUseTransit();break;
         case travel::Command::Finish:    TravelFinish(true, ""); break;
         case travel::Command::Fail:
-            // Before giving up on an unreachable route, try to get somewhere
-            // the router can see. A character sealed into an upper storey or a
-            // walled pocket produces this failure for every destination, and
-            // no amount of replanning helps -- the plan is fine, the character
-            // is in the wrong place.
-            if (journey_.FailureReason() == travel::Failure::Unreachable &&
+            // Before giving up, try to get somewhere the router can see. A
+            // character sealed into an upper storey or a walled pocket
+            // produces this failure for every destination, and no amount of
+            // replanning helps -- the plan is fine, the character is in the
+            // wrong place.
+            //
+            // BOTH failure modes have to be caught here. Being sealed in shows
+            // up as NoRoute when the planner cannot even build a route from
+            // where we stand (Journey.cpp:121), and as Unreachable when a
+            // route was built and then ran out under us (:200). M2.5's fix for
+            // debt item 5 only covered the second, because that is the one the
+            // obstacle scenario happened to produce; M3.5 hit the first on the
+            // Mage Tower's upper storey -- "plan Britain banker: no world route
+            // to the destination, nodes=1" -- and the escape rung never fired.
+            //
+            // A genuine "there is no such route" also lands on NoRoute, so this
+            // will occasionally spend an escape attempt on a destination that
+            // was never reachable. That costs a few seconds, is bounded to
+            // three attempts, and then fails cleanly -- which is a far better
+            // trade than a character that can never leave a building again.
+            if ((journey_.FailureReason() == travel::Failure::Unreachable ||
+                 journey_.FailureReason() == travel::Failure::NoRoute) &&
                 TravelTryEscape())
                 break;
             TravelFinish(false, journey_.FailureDetail().empty()
