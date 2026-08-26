@@ -92,6 +92,26 @@ bool Map::Open(const char* mapPath,
         }
     }
 
+    // The caller's width is a request, not a fact: map*.mul carries no header
+    // and a shard may ship either the pre-ML (768-block) or the ML (896-block)
+    // Britannia. The file size is the only authority, so derive the width from
+    // it whenever the rows divide cleanly. Getting this wrong is silent and
+    // expensive: too small amputates the eastern world (the Lost Lands), too
+    // large indexes past the end of the file.
+    const u64 rowBytes = static_cast<u64>(heightBlocks_) * kBlockBytesOnDisk;
+    if (rowBytes > 0) {
+        const u64 impliedWidth = map_.Size() / rowBytes;
+        if (impliedWidth > 0 && impliedWidth != widthBlocks_) {
+            std::fprintf(stderr,
+                "map: '%s' holds %llu block columns, not the requested %u; "
+                "using the file's own width\n",
+                mapPath,
+                static_cast<unsigned long long>(impliedWidth),
+                widthBlocks_);
+            widthBlocks_ = static_cast<u32>(impliedWidth);
+        }
+    }
+
     const u64 expected_map_bytes =
         static_cast<u64>(widthBlocks_) * heightBlocks_ * kBlockBytesOnDisk;
     if (map_.Size() < expected_map_bytes) {

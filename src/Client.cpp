@@ -431,6 +431,15 @@ void Client::Tick(int waitMs) {
             PumpStdinCommand();
             PumpDirectSteps();
             if (scenario_) scenario_->Tick(*this, NowMs());
+            // Load the shared world once, on the first in-world tick. The
+            // const query accessors (CurrentRegion, WithinPlace, ...) cannot
+            // trigger the lazy load themselves, and a scenario is entitled to
+            // ask "which region am I in" before it asks to travel anywhere.
+            EnsureWorldKnowledge();
+            // Travel drives the tile A* through ActionGoto, so it has to run
+            // before BotTick pumps the steps it queued.
+            TravelTick();
+            WarModeTick();
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
@@ -515,7 +524,10 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x54: case 0x5B: case 0x65: case 0x6D:
         case 0x70:
         case 0x8B: case 0x97:
-        case 0xB0: case 0xBA: case 0xBC: case 0xBF: case 0xC0:
+        case 0xB0: OnGenericGump(data, size); break;
+
+        // Common in-world packets we just log + ignore for M1.
+        case 0xBA: case 0xBC: case 0xBF: case 0xC0:
         case 0xC1: case 0xCB: case 0xCC:
             // Logged above; behavior is no-op until later milestones.
             break;
@@ -1163,6 +1175,23 @@ void Client::OnObjectInfo(const u8* data, usize size) {
         c.hue  = hue;
         if (c.deathAction == 0)
             c.deathAction = DeathActionForBody(amount, true);
+        // Our own corpse. A 2.0.x client is never told which corpse is its
+        // own (0xAF explicitly excludes the dying client -- M2 finding 3), so
+        // the identification is circumstantial and says so: a corpse that
+        // appears next to where we just died, before we have claimed one.
+        const travel::DeathRecord& d = knowledge_.LastDeath();
+        const bool mineByLink = (c.deadMobile && c.deadMobile == playerSerial_);
+        const bool mineByPlace =
+            d.valid && d.corpseSerial == 0 &&
+            NowMs() - d.timeMs < 60000 &&
+            (x - d.x) * (x - d.x) + (y - d.y) * (y - d.y) <= 9;
+        if (mineByLink || mineByPlace) {
+            knowledge_.NoteCorpse(serial, x, y, static_cast<i8>(z));
+            char ev[128];
+            std::snprintf(ev, sizeof(ev), "corpse=0x%08X at=(%d,%d,%d)",
+                          serial, x, y, static_cast<int>(z));
+            LogEvent("corpse_located", ev);
+        }
     }
 
     // A 2.0.7 client never receives a drop acknowledgement, so an item
@@ -1175,6 +1204,10 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     ActionOnObjectDeleted(serial);
+    // A deleted mobile is a target that is provably gone -- the clearest
+    // reason there is to stop standing around in war mode.
+    war_.OnTargetGone(serial, NowMs());
+    knowledge_.ForgetService(serial);
     items_.erase(serial);
     corpses_.erase(serial);
     itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
@@ -1409,6 +1442,10 @@ void Client::OnOpenPaperdoll(const u8* data, usize size) {
     paperdollTitles_[serial] = title;
     LogInfo("[0x88] paperdoll 0x%08X: \"%s\"\n", serial, title);
     uo::js::EmitPaperdoll(serial, title);
+    // A paperdoll title is how a player tells a healer from a tavernkeeper
+    // (M2). Filing it as a live sighting is what lets TravelToService prefer
+    // the NPC this character has actually seen over the spawner table.
+    NoteServiceFromTitle(serial, title);
 }
 
 // 0x25 Add Single Item to Container (20 bytes): one 0x3C record without the
@@ -1641,6 +1678,9 @@ void Client::OnSwing(const u8* data, usize size) {
         uo::js::EmitAttackedEvent(attacker);  // -> Player 'attacked' (serial)
     else if (attacker == playerSerial_ && defender != 0)
         uo::js::EmitCombatEvent(defender);    // -> Player 'combat' (serial)
+    // Either direction is combat still happening, which keeps war mode alive.
+    if (attacker == playerSerial_ || defender == playerSerial_)
+        war_.OnCombatEvent(NowMs());
 }
 
 // 0x2E Worn Item (15B fixed): cmd, item serial(4), graphic(2), pad(1),
@@ -1716,6 +1756,9 @@ void Client::OnWarMode(const u8* data, usize size) {
     warModeArg1_ = data[2];
     warModeArg2_ = data[3];
     warModeArg3_ = data[4];
+    // The watchdog only ever learns war mode from here, never from the request
+    // we sent: the server is the authority on whether the weapon is out.
+    war_.OnServerWarMode(playerWarMode_, NowMs());
     if (verboseConsole_)
         LogInfo("[0x72] war mode %s args=%02X %02X %02X\n",
                 playerWarMode_ ? "on" : "off", warModeArg1_, warModeArg2_, warModeArg3_);
@@ -2003,6 +2046,9 @@ void Client::OnAttackAck(const u8* data, usize size) {
     const u32 serial = (size >= 5) ? LoadBE32(data + 1) : 0;
     if (serial) LogInfo("[0xAA] attacking 0x%08X\n", serial);
     else        LogWarn("[0xAA] attack refused\n");
+    // An accepted attack is the one unambiguous "we are fighting THIS" signal
+    // Sphere gives a 2.0.x client, so it is what arms the war-mode watchdog.
+    if (serial) war_.OnCombatIntent(serial, NowMs());
     ActionOnAttackAck(serial);
 }
 
@@ -2116,7 +2162,7 @@ bool Client::WalkQueueBusy() const {
     return !directSteps_.empty() || !nav_.movement.pending.empty();
 }
 
-void Client::ActionGoto(i32 x, i32 y) {
+void Client::ActionGoto(i32 x, i32 y, bool hasZ, i8 z) {
     gotoRequested_ = true;
     gotoArrived_ = false;
     gotoTargetX_ = x;
@@ -2127,14 +2173,15 @@ void Client::ActionGoto(i32 x, i32 y) {
     std::snprintf(ev, sizeof(ev), "target=(%d,%d) from=(%d,%d)",
                   x, y, playerX_, playerY_);
     LogEvent("goto_start", ev);
-    BotStartGoto(x, y);
+    BotStartGoto(x, y, hasZ, z);
 }
 
-bool Client::MobilePosition(u32 serial, i32* x, i32* y) const {
+bool Client::MobilePosition(u32 serial, i32* x, i32* y, i8* z) const {
     for (const MobileObj& m : mobileCache_) {
         if (m.serial != serial) continue;
         if (x) *x = m.x;
         if (y) *y = m.y;
+        if (z) *z = m.z;
         return true;
     }
     return false;
@@ -2296,6 +2343,33 @@ u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (maxDist > 0 && d > maxDist) continue;
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
+u32 Client::NearestMobileWithTrade(const char* trade) const {
+    if (!trade || !trade[0]) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(trade);
+
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        const std::string t = lower(title);
+        const usize the = t.rfind(" the ");
+        if (the == std::string::npos) continue;
+        if (t.substr(the + 5) != want) continue;
+
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (!best || d < bestD) { best = m.serial; bestD = d; }
     }
     return best;
@@ -2597,9 +2671,14 @@ void Client::ActionAttack(u32 serial) {
     SendAttack(serial);
 }
 
+// One path in and out of war mode, so the watchdog always knows why we are in
+// it. Routing this straight at SetWarMode -- as it did before M2.5 -- left the
+// watchdog holding a stale peaceful intent, and it dutifully sheathed the
+// weapon a millisecond after the caller drew it.
 void Client::ActionWarMode(bool on) {
     LogInfo("[ACTION] war_mode %s\n", on ? "on" : "off");
-    SetWarMode(on);
+    if (on) EnterWarMode();
+    else    ExitWarMode();
 }
 
 // --- bandages --------------------------------------------------------------
@@ -2844,6 +2923,20 @@ void Client::ActionOnBodyChange(u16 body) {
     LogInfo("[STATE] %s (body 0x%04X)\n", act::LifeStateName(life_), body);
     LogEvent(life_ == act::LifeState::Dead ? "state_dead" : "state_resurrected",
              "server body change");
+    if (life_ == act::LifeState::Dead) {
+        // Where we fell is where the corpse will be. Recorded now because the
+        // ghost is about to walk away from it, and a later corpse run needs a
+        // destination it did not have to guess.
+        const wm::Region* r = CurrentRegion();
+        knowledge_.NoteDeath(playerX_, playerY_, playerZ_,
+                             r ? r->id.c_str() : "", NowMs());
+        char ev[160];
+        std::snprintf(ev, sizeof(ev), "at=(%d,%d,%d) region=%s",
+                      playerX_, playerY_, static_cast<int>(playerZ_),
+                      r ? r->id.c_str() : "?");
+        LogEvent("death_location", ev);
+        if (journey_.Active()) TravelAbort("died");
+    }
     if (life_ == act::LifeState::Alive && action_.Active() &&
         action_.kind == act::Kind::Resurrect) {
         FinishAction(act::Result::Success, "character is alive again");
@@ -2867,6 +2960,18 @@ void Client::ActionOnVendorOffer(u32 vendorSerial) {
 
     if (action_.Active() && action_.kind == act::Kind::VendorBuy &&
         action_.subject == action_.destination) {
+        // Asking to shop is SPEECH, and every vendor within three tiles
+        // answers it (M2 finding 1) -- outside a Britain mage shop that means
+        // the alchemist's potions arrive alongside the mage's reagents. Only
+        // the vendor we actually addressed completes the action; the others
+        // are recorded and ignored, or the bot ends up buying from whoever
+        // happened to shout back first.
+        if (action_.destination && vendorSerial != action_.destination) {
+            LogInfo("[VENDOR] offer from 0x%08X is not the vendor we asked "
+                    "(0x%08X); still waiting\n",
+                    vendorSerial, action_.destination);
+            return;
+        }
         // This was a "show me your wares", not a purchase.
         FinishAction(vendorOffer_.empty() ? act::Result::Unavailable
                                           : act::Result::Success,

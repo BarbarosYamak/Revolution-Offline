@@ -90,8 +90,12 @@ namespace bot {
 //   pack_graphic <hex>            first backpack item with that graphic
 //   mobile_nearest                nearest cached mobile that is not us
 //   mobile_name <text>            nearest cached mobile whose name contains text
+//   mobile_trade <text>           nearest mobile whose paperdoll trade is
+//                                 exactly <text> ("the mage", not "the mage
+//                                 guildmaster")
 //   mobile_body <hex>             nearest cached mobile with that body graphic
 //   vendor_first                  first item in the current vendor offer
+//   vendor_graphic:<hex>          the offered item with that graphic id
 //   vendor_sell_first             first item the vendor offered to buy
 //   vendor_sell_graphic:<hex>     the offered item with that graphic id
 //   0x1234ABCD                    a literal serial
@@ -127,6 +131,13 @@ private:
         // inserting mid-enum while appending the name silently misnames every
         // op after the insertion point (it has happened).
         SetGait,
+        // M2.5 semantic travel. None of these carries a route -- only a
+        // destination -- which is the whole point of the milestone.
+        TravelPoint, TravelPlace, TravelRegion, TravelService, TravelResource,
+        TravelEntity, TravelCorpse, TravelHome, SetHome,
+        WaitTravel, ExpectTravel, UseMoongates,
+        EnsurePeace, ExpectPeace, ExpectWar,
+        ExpectRegion, ExpectPlace, ExpectServiceKnown,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {
@@ -145,6 +156,10 @@ private:
 
     // Resolve an operand (literal serial, @name or a keyword) to a serial.
     u32 Resolve(Client& client, const std::string& tok) const;
+    // A travel verb whose destination did not resolve. That is a scenario
+    // bug (a place that does not exist, a mobile not in view), not a travel
+    // outcome, so it aborts rather than being reported as a failed trip.
+    void FailTravelStart(Client& client, const Step& st, const char* verb);
     void Bind(const std::string& name, u32 serial);
 
     std::vector<Step> steps_;

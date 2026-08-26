@@ -1,0 +1,23 @@
+# M2.5 Scenario 2 -- cross-region travel, Yew to Britain.
+#
+# One line of intent for roughly a thousand tiles of Britannia. The hierarchy
+# does the work: a whole-world search over navgrid cells produces a handful of
+# waypoints, and the M1.5 tile A* walks between them.
+#
+# Running is the default gait, so this is a bot running the roads the way a
+# player would, not an NPC ambling.
+
+wait_world
+sleep 2000
+ensure_peace
+
+expect_region Yew
+
+travel_region Britain
+wait_travel
+expect_travel ok
+expect_region Britain
+
+say britain at last
+sleep 1000
+logout

@@ -1,0 +1,33 @@
+# M2.5 Scenario 3b -- travel by public moongate, the return leg.
+#
+# Nothing here mentions a gate location or a destination coordinate. The bot is
+# told it may use gates and given a need ("a banker, in Britain"); the planner
+# compares running the whole way against running to the nearest gate, using it,
+# and running on from the far side, and picks whichever is cheaper.
+#
+# The gate itself is used the way a player uses it: walk to it, double-click,
+# read the destination list out of the gump the shard's own d_moongates script
+# sends, tick the destination, press the gump's own OKAY button. No internal
+# teleport and no server command.
+#
+# World preparation (operator, not gameplay): the ten Felucca gates from
+# functions/worldgen/decoration/moongates.scp were placed through the shard
+# console. See docs/M2_5_WORLD_NAVIGATION.md.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# The return run starts standing on the Britain gate, which is its own
+# little AREADEF outside the town proper -- so assert the gate, not the town.
+expect_place Britain Moongate
+
+use_moongates on
+travel_service banker Yew
+wait_travel
+expect_travel ok
+expect_region Yew
+
+say through the gate
+sleep 1000
+logout

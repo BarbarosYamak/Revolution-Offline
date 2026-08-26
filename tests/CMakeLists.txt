@@ -20,3 +20,18 @@ target_include_directories(m2_actions PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m2_actions COMMAND m2_actions)
+
+# M2.5 world model, whole-world routing, journey state machine, war watchdog
+# and per-character knowledge. Links uo_world and the travel state machines --
+# the same objects the client links -- and needs no server, no MULs and no
+# generated atlas: the world under test is synthesised inline.
+add_executable(m25_world m25_world.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/Journey.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/PersonalKnowledge.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/WarMode.cpp)
+target_include_directories(m25_world PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(m25_world PRIVATE uo_world)
+
+add_test(NAME m25_world COMMAND m25_world)

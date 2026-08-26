@@ -1,0 +1,20 @@
+# M2.5 Scenario 6 (blocker half) -- stand in the only way through.
+#
+# (622,829) is the single entrance to a one-tile alcove at (622,830) inside the
+# Empath Abbey: the walkability dump says the alcove's only open neighbour is
+# to the north. A character standing here is an obstacle the traveller cannot
+# route around, only handle.
+#
+# This half parks and waits. The runner starts the traveller only after this
+# session's log reports it has arrived, so the two are sequenced by observable
+# state rather than by a sleep -- the M2 rendezvous debt.
+
+wait_world
+sleep 2000
+ensure_peace
+travel_point 622 829 1
+wait_travel
+expect_travel ok
+say blocking the way
+hold 180000
+logout

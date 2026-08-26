@@ -1,0 +1,27 @@
+# M2.5 Scenario 7 -- stuck recovery is bounded.
+#
+# The destination is open water off the Yew coast: reachable on the map, not
+# reachable on foot. The requirement is not that the bot gets there -- it is
+# that it works the recovery ladder (retry the leg, rule the cell out, replan)
+# a bounded number of times and then fails cleanly, without oscillating and
+# without spamming the server.
+#
+# PASS is: expect_travel fail, and a bounded number of replans in the log.
+
+wait_world
+sleep 2000
+ensure_peace
+
+travel_point 300 900 1
+wait_travel
+expect_travel fail
+
+# ...and the session is still healthy afterwards: a failed trip must leave the
+# character in a state where the next one works.
+travel_place Yew banker
+wait_travel
+expect_travel ok
+
+say recovered
+sleep 1000
+logout

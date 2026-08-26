@@ -22,3 +22,8 @@ cmake*/
 *.out
 *.log
 *.jsonl
+# M2.5 world data. The atlas is derived from the shard's own scripts and is
+# committed; the navgrid is measured from the copyrighted client MULs, so it
+# is regenerated locally instead. See docs/M2_5_WORLD_NAVIGATION.md for the
+# uo_atlasgen command line.
+data/*.bin

@@ -397,6 +397,50 @@ config in `Lumberjack.CONSUMABLES`. Backpack counting is pure JS over
 
 ---
 
+## World knowledge and travel (M2.5)
+
+Above the tile A* sits a layer that takes destinations as *needs* rather than
+coordinates. `Client::TravelToService(Service::Banker, "Yew")` resolves against
+a world atlas, plans a route over a coarse navigation grid, and hands each leg
+to `ActionGoto` — so `SubmitStep()` is still the only thing that ever builds a
+`0x02`.
+
+```
+src/world/Atlas.*        regions / places / services, parsed from the atlas file
+src/world/NavGrid.*      16x16-tile cells: standable anchor + MEASURED crossings
+src/world/RoutePlanner.* cell A* + teleporter/moongate edges -> <=40-tile legs
+src/world/SharedWorld.*  one immutable copy per process
+src/world/AtlasGenMain.cpp   uo_atlasgen: derives both from the shard's data
+src/travel/Journey.*     leg sequencing, stuck/oscillation, bounded recovery
+src/travel/PersonalKnowledge.*  what THIS character has seen/marked/died at
+src/travel/WarMode.*     when to sheathe
+src/travel/ClientTravel.cpp  Client glue + 0xB0/0xB1 gump (public moongates)
+```
+
+Two things that are easy to get wrong and are worth stating:
+
+* **A navgrid edge is measured, not inferred.** "Both cells hold standable
+  ground" does not mean you can walk between them — rivers and walls satisfy
+  the first and fail the second. `NavGrid::BuildEdges` runs this same A*
+  between neighbouring anchors and records what actually works.
+* **`Map::Open` derives the map width from the file size.** `map*.mul` has no
+  header, and Revolution ships the ML-size Britannia (896 x 512 blocks). The
+  old 768-block constant silently amputated everything east of x = 6143.
+
+Generate the data with:
+
+```
+uo_atlasgen --scripts runtime/scripts --mul runtime/mul \
+            --out-atlas data/revolution_atlas.txt \
+            --out-grid  data/revolution_navgrid.bin
+```
+
+`uo_atlasgen --probe <x> <y>` reports what the generated world believes is at a
+point. Full findings — moongates, Mark/Recall, the region model — are in
+`docs/M2_5_WORLD_NAVIGATION.md`.
+
+---
+
 ## File layout
 
 ```

@@ -42,6 +42,11 @@ const char* const kOpNames[] = {
     "scan_mobiles",
     // Index-aligned with Scenario::Op. Append here, never insert.
     "gait",
+    "travel_point", "travel_place", "travel_region", "travel_service",
+    "travel_resource", "travel_entity", "travel_corpse", "travel_home",
+    "set_home", "wait_travel", "expect_travel", "use_moongates",
+    "ensure_peace", "expect_peace", "expect_war",
+    "expect_region", "expect_place", "expect_service_known",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -75,7 +80,24 @@ bool ParseResultName(const std::string& s, act::Result* out) {
     return false;
 }
 
+bool ContainsNoCase(const std::string& hay, const std::string& needle) {
+    if (needle.empty()) return false;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    return lower(hay).find(lower(needle)) != std::string::npos;
+}
+
 }  // namespace
+
+void Scenario::FailTravelStart(Client& client, const Step& st,
+                               const char* verb) {
+    LogError("[scenario] %s could not resolve a destination: %s (line %d); "
+             "aborting\n", verb, client.TravelFailureText(), st.line);
+    failed_ = true;
+}
 
 void Scenario::Bind(const std::string& name, u32 serial) {
     for (auto& b : binds_) {
@@ -117,6 +139,17 @@ u32 Scenario::Resolve(Client& client, const std::string& tok) const {
     if (tok == "vendor_first") {
         const auto& offer = client.VendorOffer();
         return offer.empty() ? 0u : offer.front().serial;
+    }
+    // vendor_graphic:<hex> -- name the exact item to buy, the same way
+    // vendor_sell_graphic: names the exact item to sell. Without this a
+    // scenario can only take whatever Sphere happens to list first, which is
+    // no way to ask for a recall rune.
+    if (tok.rfind("vendor_graphic:", 0) == 0) {
+        const u16 want = static_cast<u16>(
+            std::strtoul(tok.c_str() + 15, nullptr, 0));
+        for (const auto& v : client.VendorOffer())
+            if (v.graphic == want) return v.serial;
+        return 0;
     }
     if (tok.size() > 2 && tok[0] == '0' && (tok[1] == 'x' || tok[1] == 'X'))
         return static_cast<u32>(std::strtoul(tok.c_str(), nullptr, 16));
@@ -206,6 +239,72 @@ bool Scenario::Load(const char* path, std::string* err) {
             }
             st.count = static_cast<int>(g);
             st.op = Op::SetGait;
+        }
+        else if (verb == "wait_travel")     st.op = Op::WaitTravel;
+        else if (verb == "travel_corpse")   st.op = Op::TravelCorpse;
+        else if (verb == "travel_home")     st.op = Op::TravelHome;
+        else if (verb == "set_home")        st.op = Op::SetHome;
+        else if (verb == "ensure_peace")    st.op = Op::EnsurePeace;
+        else if (verb == "expect_peace")    st.op = Op::ExpectPeace;
+        else if (verb == "expect_war")      st.op = Op::ExpectWar;
+        else if (verb == "use_moongates") {
+            if (!need(st.a, "<on|off>")) { steps_.clear(); return false; }
+            st.op = Op::UseMoongates;
+        }
+        else if (verb == "expect_travel") {
+            if (!need(st.a, "<ok|fail>")) { steps_.clear(); return false; }
+            st.op = Op::ExpectTravel;
+        }
+        else if (verb == "travel_point") {
+            int gx = 0, gy = 0, r = 1;
+            ls >> gx >> gy;
+            if (!(ls >> r)) r = 1;
+            if (gx <= 0 || gy <= 0) {
+                if (err) *err = "line " + std::to_string(lineNo) +
+                                ": travel_point needs <x> <y> [radius]";
+                steps_.clear();
+                return false;
+            }
+            st.op = Op::TravelPoint; st.x = gx; st.y = gy; st.count = r;
+        }
+        // The destination verbs take the REST of the line, because a place or
+        // a region is named the way the shard names it ("Yew Bank", "Britain
+        // Territory") and quoting every one of them would be noise.
+        else if (verb == "travel_place" || verb == "travel_region" ||
+                 verb == "travel_resource" || verb == "expect_region" ||
+                 verb == "expect_place" || verb == "expect_service_known") {
+            std::string rest;
+            std::getline(ls, rest);
+            const auto s0 = rest.find_first_not_of(" \t");
+            if (s0 == std::string::npos) {
+                if (err) *err = "line " + std::to_string(lineNo) + ": " + verb +
+                                " needs a name";
+                steps_.clear();
+                return false;
+            }
+            st.text = rest.substr(s0);
+            st.op = (verb == "travel_place")    ? Op::TravelPlace
+                  : (verb == "travel_region")   ? Op::TravelRegion
+                  : (verb == "travel_resource") ? Op::TravelResource
+                  : (verb == "expect_region")   ? Op::ExpectRegion
+                  : (verb == "expect_place")    ? Op::ExpectPlace
+                                                : Op::ExpectServiceKnown;
+        }
+        // `travel_service <service> [region...]` -- the optional tail narrows
+        // it to one region, so "a banker" and "the banker in Yew" are both
+        // sayable without naming a bank.
+        else if (verb == "travel_service") {
+            if (!need(st.a, "<service>")) { steps_.clear(); return false; }
+            std::string rest;
+            std::getline(ls, rest);
+            const auto s0 = rest.find_first_not_of(" \t");
+            if (s0 != std::string::npos) st.text = rest.substr(s0);
+            st.op = Op::TravelService;
+        }
+        else if (verb == "travel_entity") {
+            if (!need(st.a, "<serial|@name>")) { steps_.clear(); return false; }
+            if (!(ls >> st.count)) st.count = 2;
+            st.op = Op::TravelEntity;
         }
         else if (verb == "mark_item" || verb == "expect_item_drop") {
             if (!need(st.a, "<graphic>")) { steps_.clear(); return false; }
@@ -344,7 +443,21 @@ bool Scenario::Load(const char* path, std::string* err) {
             if (!need(st.a, "<name>") || !need(st.b, "<expression>")) {
                 steps_.clear(); return false;
             }
-            ls >> st.c;   // optional argument for the expression
+            // The rest of the line, so an expression argument can contain
+            // spaces -- an NPC's trade lives in its paperdoll title ("Alenne,
+            // the mage"), and a single token cannot name one.
+            {
+                std::string rest;
+                std::getline(ls, rest);
+                const auto s0 = rest.find_first_not_of(" \t");
+                if (s0 != std::string::npos) {
+                    st.c = rest.substr(s0);
+                    while (!st.c.empty() &&
+                           (st.c.back() == ' ' || st.c.back() == '\t' ||
+                            st.c.back() == '\r'))
+                        st.c.pop_back();
+                }
+            }
             st.op = Op::Remember;
         }
         else if (verb == "require") {
@@ -443,6 +556,78 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     if (!client.ActionGotoMobile(Resolve(client, st.a)))
                         LogWarn("[scenario] goto_mobile: unknown mobile\n");
                     break;
+
+                // --- M2.5 semantic travel ------------------------------
+                // Each of these fails the scenario if the DESTINATION cannot
+                // be resolved. Whether the trip succeeds is a separate
+                // question, asked later by wait_travel + expect_travel.
+                case Op::TravelPoint:
+                    if (!client.TravelToPoint(st.x, st.y,
+                                              st.count > 0 ? st.count : 1,
+                                              "scenario point"))
+                        FailTravelStart(client, st, "travel_point");
+                    break;
+                case Op::TravelPlace:
+                    if (!client.TravelToPlace(st.text.c_str()))
+                        FailTravelStart(client, st, "travel_place");
+                    break;
+                case Op::TravelRegion:
+                    if (!client.TravelToRegion(st.text.c_str()))
+                        FailTravelStart(client, st, "travel_region");
+                    break;
+                case Op::TravelService: {
+                    const wm::Service svc = wm::ServiceFromName(st.a.c_str());
+                    if (svc == wm::Service::None) {
+                        LogError("[scenario] travel_service: '%s' is not a "
+                                 "service (line %d)\n", st.a.c_str(), st.line);
+                        failed_ = true;
+                    } else if (!client.TravelToService(
+                                   svc, st.text.empty() ? nullptr
+                                                        : st.text.c_str())) {
+                        FailTravelStart(client, st, "travel_service");
+                    }
+                    break;
+                }
+                case Op::TravelResource: {
+                    const wm::ResourceKind r =
+                        wm::ResourceFromName(st.text.c_str());
+                    if (r == wm::ResourceKind::None) {
+                        LogError("[scenario] travel_resource: '%s' is not a "
+                                 "resource (line %d)\n", st.text.c_str(),
+                                 st.line);
+                        failed_ = true;
+                    } else if (!client.TravelToResource(r)) {
+                        FailTravelStart(client, st, "travel_resource");
+                    }
+                    break;
+                }
+                case Op::TravelEntity:
+                    if (!client.TravelToEntity(Resolve(client, st.a),
+                                               st.count > 0 ? st.count : 2))
+                        FailTravelStart(client, st, "travel_entity");
+                    break;
+                case Op::TravelCorpse:
+                    if (!client.TravelToLastCorpse())
+                        FailTravelStart(client, st, "travel_corpse");
+                    break;
+                case Op::TravelHome:
+                    if (!client.ReturnHome())
+                        FailTravelStart(client, st, "travel_home");
+                    break;
+                case Op::SetHome:
+                    client.Knowledge().SetHome(client.PlayerX(),
+                                               client.PlayerY(),
+                                               client.PlayerZ(), "");
+                    LogInfo("[scenario] home = (%d,%d,%d)\n", client.PlayerX(),
+                            client.PlayerY(),
+                            static_cast<int>(client.PlayerZ()));
+                    break;
+                case Op::UseMoongates:
+                    client.SetUseMoongates(st.a == "on" || st.a == "1");
+                    break;
+                case Op::EnsurePeace:
+                    client.EnsurePeaceMode();
+                    break;
                 case Op::CastScroll:
                     client.ActionCastScroll(Resolve(client, st.a),
                                             st.b.empty() ? client.PlayerSerial()
@@ -505,6 +690,8 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                         }
                     } else if (st.b == "mobile_name") {
                         serial = client.NearestMobileNamed(st.c.c_str());
+                    } else if (st.b == "mobile_trade") {
+                        serial = client.NearestMobileWithTrade(st.c.c_str());
                     } else {
                         serial = Resolve(client, st.b);
                     }
@@ -573,6 +760,91 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogInfo("[scenario] item 0x%04X drop confirmed: %u -> %u\n",
                             g, markItemCount_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::WaitTravel:   done = !client.TravelBusy(); break;
+            case Op::ExpectTravel: {
+                const bool want = (st.a == "ok" || st.a == "success" ||
+                                   st.a == "1");
+                const bool got = client.TravelSucceeded();
+                if (got != want) {
+                    LogError("[scenario] EXPECT travel %s but it %s (%s) "
+                             "(line %d); aborting\n", st.a.c_str(),
+                             got ? "arrived" : "failed",
+                             client.TravelFailureText(), st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] expect travel %s: ok\n", st.a.c_str());
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectPeace:
+            case Op::ExpectWar: {
+                const bool wantWar = (st.op == Op::ExpectWar);
+                if (client.WarModeOn() != wantWar) {
+                    LogError("[scenario] EXPECT %s but war mode is %s "
+                             "(line %d); aborting\n",
+                             wantWar ? "war" : "peace",
+                             client.WarModeOn() ? "on" : "off", st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] war mode is %s, as expected\n",
+                            client.WarModeOn() ? "on" : "off");
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectRegion: {
+                // Reads the shared atlas against the server's own position --
+                // it asserts where the character IS, not where it was sent.
+                // The test is containment in the named region's rectangles,
+                // not a name match on whatever the smallest region happens to
+                // be, so standing in the Empath Abbey still counts as Yew.
+                const wm::Region* r = client.CurrentRegion();
+                const bool ok = client.WithinRegion(st.text.c_str());
+                if (!ok) {
+                    LogError("[scenario] EXPECT region '%s' but we are in "
+                             "'%s' at (%d,%d) (line %d); aborting\n",
+                             st.text.c_str(), r ? r->name.c_str() : "<none>",
+                             client.PlayerX(), client.PlayerY(), st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] region is '%s' (%s), as expected\n",
+                            r->name.c_str(), r->id.c_str());
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectPlace: {
+                const bool ok = client.WithinPlace(st.text.c_str());
+                if (!ok) {
+                    LogError("[scenario] EXPECT to be at '%s' but we are at "
+                             "(%d,%d) (line %d); aborting\n", st.text.c_str(),
+                             client.PlayerX(), client.PlayerY(), st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] standing at '%s', as expected\n",
+                            st.text.c_str());
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectServiceKnown: {
+                const wm::Service svc = wm::ServiceFromName(st.text.c_str());
+                const bool ok = svc != wm::Service::None &&
+                                client.Knowledge().RecentService(
+                                    svc, nowMs, 0) != nullptr;
+                if (!ok) {
+                    LogError("[scenario] EXPECT to have seen a %s but this "
+                             "character has not (line %d); aborting\n",
+                             st.text.c_str(), st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] this character has seen a %s\n",
+                            st.text.c_str());
                 }
                 done = true;
                 break;

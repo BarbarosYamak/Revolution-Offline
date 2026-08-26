@@ -1,0 +1,20 @@
+# M2.5 Scenario 2b -- the return leg, Britain to Yew.
+#
+# Same one line of intent in the other direction. Running it as a pair is what
+# proves the world route graph is not a one-way fluke, and it is also how the
+# character gets home between test runs without anyone typing coordinates.
+
+wait_world
+sleep 2000
+ensure_peace
+
+expect_region Britain
+
+travel_region Yew
+wait_travel
+expect_travel ok
+expect_region Yew
+
+say home again
+sleep 1000
+logout

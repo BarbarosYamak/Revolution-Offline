@@ -54,11 +54,16 @@ set(UO_CLIENT_SOURCES
     src/net/PacketStream.cpp
     src/net/Huffman.cpp
     src/builders/Builders.cpp
-    src/bot/Pathfinding.cpp
+    # Pathfinding.cpp / Blacklist.cpp are compiled into uo_world (the
+    # navgrid's edge pass runs the same A*), and uo_client links it --
+    # listing them here as well compiles them twice into one binary.
     src/bot/Scenario.cpp
-    src/bot/Blacklist.cpp
     src/navigation/PathPlanner.cpp
     src/navigation/Navigation.cpp
+    src/travel/ClientTravel.cpp
+    src/travel/Journey.cpp
+    src/travel/PersonalKnowledge.cpp
+    src/travel/WarMode.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp
@@ -68,7 +73,7 @@ set(UO_CLIENT_SOURCES
 
 add_executable(uo_client ${UO_CLIENT_SOURCES})
 target_include_directories(uo_client PRIVATE include src ${quickjs_SOURCE_DIR})
-target_link_libraries(uo_client PRIVATE uo_mul qjs)
+target_link_libraries(uo_client PRIVATE uo_mul uo_world qjs)
 
 if(WIN32)
     target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)
@@ -90,6 +95,30 @@ set(UO_MUL_SOURCES
 )
 add_library(uo_mul STATIC ${UO_MUL_SOURCES})
 target_include_directories(uo_mul PUBLIC include src)
+
+# --- uo_world: semantic world model + whole-world routing (M2.5) --------
+# Deliberately a separate library from the client: it has no sockets, no
+# packets and no session state, so the unit tests link it directly and the
+# atlas generator reuses it without dragging the client in.
+set(UO_WORLD_SOURCES
+    src/world/WorldModel.cpp
+    src/world/Atlas.cpp
+    src/world/NavGrid.cpp
+    src/world/RoutePlanner.cpp
+    src/world/SharedWorld.cpp
+)
+# NavGrid's edge pass runs the bot's own tile A*, so the world library carries
+# the pathfinder: what the router believes is crossable is measured with the
+# same code the walker uses.
+list(APPEND UO_WORLD_SOURCES src/bot/Pathfinding.cpp src/bot/Blacklist.cpp)
+add_library(uo_world STATIC ${UO_WORLD_SOURCES})
+target_include_directories(uo_world PUBLIC include src)
+target_link_libraries(uo_world PUBLIC uo_mul)
+
+# --- uo_atlasgen: derives the atlas + navgrid from the shard's own data --
+# Offline tool. See docs/M2_5_WORLD_NAVIGATION.md for the command line.
+add_executable(uo_atlasgen src/world/AtlasGenMain.cpp)
+target_link_libraries(uo_atlasgen PRIVATE uo_world)
 
 # --- uo_mul_dump CLI ---------------------------------------------------
 add_executable(uo_mul_dump src/mul/dump_main.cpp)

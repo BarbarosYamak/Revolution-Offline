@@ -48,6 +48,10 @@ void PrintUsage() {
         "  --headless         no render window (default)\n"
         "  --render           open the world window (single session only)\n"
         "  --mul-dir <dir>    directory holding the MUL files (pathfinding/render)\n"
+        "  --data-dir <dir>   world atlas + navgrid directory (default: data).\n"
+        "                     Generate with uo_atlasgen; without it the client\n"
+        "                     still walks with `goto` but has no semantic\n"
+        "                     destinations.\n"
         "  -h, --help         this text\n"
         "\n"
         "Multiple sessions in one process:\n"
@@ -145,7 +149,12 @@ int main(int argc, char** argv) {
     base.renderHeight     = 540;
     base.renderScale      = 2;
 
+    base.atlasPath        = nullptr;
+    base.navgridPath      = nullptr;
+
     std::string mulDir;
+    std::string dataDir = "data";
+    std::string atlasPath, navgridPath;
     std::string baseLog = "uo-client.log";
     std::vector<std::string> sessionSpecs;
 
@@ -194,12 +203,22 @@ int main(int argc, char** argv) {
         else if (ArgIs(a, "--tag"))       { base.sessionTag = next; ++i; }
         else if (ArgIs(a, "--log"))       { baseLog = next; ++i; }
         else if (ArgIs(a, "--mul-dir"))   { mulDir = next; ++i; }
+        else if (ArgIs(a, "--data-dir"))  { dataDir = next; ++i; }
         else if (ArgIs(a, "--session"))   { sessionSpecs.push_back(next); ++i; }
         else {
             std::fprintf(stderr, "unknown option: %s\n", a);
             PrintUsage();
             return 64;
         }
+    }
+
+    // World knowledge is one shared, immutable data set for the whole process,
+    // so the paths are process-wide rather than per-session strings.
+    if (!dataDir.empty()) {
+        atlasPath   = dataDir + "/revolution_atlas.txt";
+        navgridPath = dataDir + "/revolution_navgrid.bin";
+        base.atlasPath   = atlasPath.c_str();
+        base.navgridPath = navgridPath.c_str();
     }
 
     // A bare invocation is just the one-session case of the same code path.

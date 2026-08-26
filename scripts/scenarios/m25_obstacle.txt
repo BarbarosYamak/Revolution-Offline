@@ -1,0 +1,38 @@
+# M2.5 Scenario 6 (traveller half) -- a dynamic obstacle on the only route.
+#
+# Another character is parked beside the single tile that leads in and out of a
+# one-tile alcove in the Empath Abbey. The requirement is not that this bot
+# wins: it is that the encounter is BOUNDED. A mobile in the way is waited for,
+# never blacklisted; the leg is retried a fixed number of times; the world
+# route is replanned a fixed number of times; and then the trip ends one way or
+# the other. It must never spin, and the session must survive it -- Sphere
+# punishes retry storms by re-arming its flood TTL (M2).
+#
+# So this asserts the two things that actually matter and nothing it cannot
+# honestly promise: the blocked trip TERMINATES, and the session is still able
+# to travel afterwards.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# Walk into the alcove. Whether the other character is in the doorway right now
+# decides whether this succeeds, so nothing is asserted about it.
+travel_point 622 830 1
+wait_travel
+
+# Now try to leave with someone standing in the only way out. wait_travel
+# returning at all is the no-hang assertion; the run's own timeout is the
+# backstop if that were ever false.
+travel_place Yew healer
+wait_travel
+
+# ...and the session is still healthy: it can still be given a destination and
+# still reach it.
+travel_point 622 830 1
+wait_travel
+expect_travel ok
+
+say bounded, and still travelling
+sleep 1000
+logout

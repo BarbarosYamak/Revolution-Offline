@@ -1,0 +1,29 @@
+# M2.5 Scenario 5 -- war mode is not a place to leave a bot.
+#
+# Enter war mode deliberately, then start ordinary travel. Nothing in this
+# file asks to leave war mode: the watchdog notices there is no target and a
+# peaceful intent, and sends the 0x72 itself. The assertion reads the server's
+# own war state, not a local flag.
+
+wait_world
+sleep 2000
+
+ensure_peace
+expect_peace
+
+war on
+sleep 2000
+expect_war
+
+# Travelling is a peaceful intent. The watchdog should drop war mode on its
+# own while this journey runs.
+travel_place Yew banker
+wait_travel
+expect_travel ok
+
+sleep 4000
+expect_peace
+
+say sheathed
+sleep 1000
+logout

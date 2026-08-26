@@ -8,10 +8,19 @@
 
 namespace uo::map {
 
-// Britannia (map0) is 6144 x 4096 cells = 768 x 512 blocks.
+// Britannia (map0). The pre-ML file is 6144 x 4096 cells (768 x 512 blocks);
+// the ML-size file adds the Lost Lands strip to the east and is 7168 x 4096
+// cells (896 x 512 blocks). The Revolution client ships the ML-size map0.mul
+// (89,915,392 bytes = 896 * 512 * 196), and the shard agrees:
+// `runtime/sphere.ini` carries `Map0=7168,4096,-1,0,0`. Britannia's own
+// AREADEFs reach x = 7168 (Lost Lands: Papua ~5670, Delucia ~5250), so a
+// 768-block width silently amputates everything east of x = 6143.
 // Other maps (Ilshenar, Malas, Tokuno) have their own dimensions.
-constexpr u32 kBritWidthBlocks  = 768;
+constexpr u32 kBritWidthBlocks  = 896;
 constexpr u32 kBritHeightBlocks = 512;
+// The narrower pre-ML width, kept so a shard shipping the old file still
+// loads: Map::Open falls back to whatever the file size actually implies.
+constexpr u32 kBritWidthBlocksPreML = 768;
 constexpr u32 kBlockCells       = 64;     // 8 x 8
 
 // On-disk layout for one 8x8 block in map*.mul:
