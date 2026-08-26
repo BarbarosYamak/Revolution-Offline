@@ -396,7 +396,7 @@ void Client::MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs) {
 }
 
 
-void Client::BotPredictStep(u8 dir) {
+void Client::BotPredictStep(u8 dir, bool run) {
     i32 dx, dy;
     bot::DirToDelta(dir, &dx, &dy);
     prevPlayerX_ = playerX_;   // for the slide interpolation in the renderer
@@ -413,13 +413,43 @@ void Client::BotPredictStep(u8 dir) {
     player_.y = playerY_;
     player_.z = playerZ_;
     player_.facing = static_cast<u8>(dir & 0x07);
-    player_.running = nav_.movement.run;
+    // Mirror what the step we just sent told the server: Event_Walk sets
+    // STATF_FLY straight from the 0x80 bit of that step
+    // (src/game/clients/CClientEvent.cpp:904), so this is the same value the
+    // server now holds -- not the session gait, which a per-step Walk overrides.
+    player_.running = run;
     lastStepMs_ = NowMs();          // real step -> walk/run anim (vs idle stand)
 }
 
 
+// Gait for one A* step. Auto is the answer for the overwhelming majority --
+// crossing a town, a road or open country is exactly what running is for.
+// The exceptions below are the cases where a human player would take their
+// finger off the run key, and each one has a Sphere reason:
+//
+//  - lastStep: final precise positioning. The last step lands us on the goal
+//    tile, and the server -- not us -- decides the destination z
+//    (CChar::CanMoveWalkTo writes ptDst.m_z, src/game/chars/CCharAct.cpp:4735-4739).
+//    Walking gives the 0x22 for that step 400ms to land and reconcile the
+//    predicted pose before anything is done at the destination.
+//  - doorStep: awkward door handling. We have just fired the 0x12/0x58 open-door
+//    macro and are stepping into the frame on the next tick; the server opens
+//    the door on its own tick, so the step is racing a world change.
+//  - shoveStep: a mobile is standing on the target tile, so this step is a
+//    shove -- and Source-X refuses a shove unless STAT_DEX is at its adjusted
+//    maximum (fRequireFullStamina, src/game/chars/CCharAct.cpp:4656,4683-4684).
+//    Running is what spends that stamina, so running into a body is the one
+//    reliable way to make the shove impossible.
+sphere::Gait Client::BotStepGait(bool lastStep, bool doorStep,
+                                 bool shoveStep) const {
+    if (lastStep || doorStep || shoveStep) return sphere::Gait::Walk;
+    return sphere::Gait::Auto;
+}
+
+
 u32 Client::BotMoveGapMs() const {
-    return nav_.movement.run ? kRunThrottleMs : kWalkThrottleMs;
+    return GaitResolvesToRun(sphere::Gait::Auto) ? kRunThrottleMs
+                                                 : kWalkThrottleMs;
 }
 
 
@@ -961,11 +991,11 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
 
     if (nav_.bot.hasGoalZ)
         LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d,z%d)\n",
-                    nav_.movement.run ? "running" : "walking",
+                    GaitResolvesToRun(sphere::Gait::Auto) ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty, tz);
     else
         LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
-                    nav_.movement.run ? "running" : "walking",
+                    GaitResolvesToRun(sphere::Gait::Auto) ? "running" : "walking",
                     playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
     BotReplanToGoal();
 }
@@ -989,6 +1019,12 @@ void Client::BotPumpMoves() {
            !nav_.bot.path.empty()) {
         const u8 dir = nav_.bot.path.front();
         const bool wasStep = (dir == playerFacing_);
+        // Per-step gait inputs, gathered while we already have the target cell
+        // in hand. `lastStep` is the arrival step; the other two are decided
+        // from the same world query the door lookahead uses.
+        const bool lastStep = (nav_.bot.path.size() == 1);
+        bool doorStep = false;
+        bool shoveStep = false;
         if (wasStep) {
             i32 dx, dy;
             bot::DirToDelta(dir, &dx, &dy);
@@ -999,8 +1035,11 @@ void Client::BotPumpMoves() {
                 nx, ny, playerZ_, nav_.bot.hasGoalZ, nav_.bot.goalX,
                 nav_.bot.goalY, nav_.bot.goalZ);
             const auto wr = world_->QueryCell(q);
-            if (wr.walkable &&
-                BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ) &&
+            if (wr.walkable) {
+                doorStep = BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ);
+                shoveStep = BotIsMobileBlocking(nx, ny, wr.standZ);
+            }
+            if (wr.walkable && doorStep &&
                 !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
                                       nx, ny, wr.standZ)) {
                 if (!nav_.movement.pending.empty()) return;
@@ -1019,9 +1058,10 @@ void Client::BotPumpMoves() {
         }
 
         // A* never touches the socket: it offers the next desired step to the
-        // movement controller, which owns pacing, sequencing, the
+        // movement controller, which owns pacing, sequencing, the gait, the
         // outstanding-step limit and the local prediction.
-        const StepSubmit res = SubmitStep(dir, nav_.movement.run, "astar");
+        const StepSubmit res =
+            SubmitStep(dir, BotStepGait(lastStep, doorStep, shoveStep), "astar");
         if (res == StepSubmit::Sent) {
             nav_.bot.path.pop_front();
         } else if (res == StepSubmit::Turned) {

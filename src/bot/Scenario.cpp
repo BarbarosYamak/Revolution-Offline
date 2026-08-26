@@ -26,18 +26,38 @@ bool ParseDir(const std::string& tok, u8* out) {
     return false;
 }
 
+// Indexed by Scenario::Op. Scenario::Load static_asserts the length against
+// Op::Count -- Op is private, so the check lives in a member function.
+const char* const kOpNames[] = {
+    "wait_world", "walk", "wait_walk", "say", "backpack",
+    "wait_backpack", "sleep", "hold", "logout", "goto", "wait_goto",
+    "use", "open", "move", "drop_ground", "equip", "unequip", "skill",
+    "cast", "attack", "war", "bandage", "bank", "vendor_open", "vendor_buy", "target",
+    "target_ground", "target_cancel", "wait_action", "expect",
+    "wait_target", "resurrect", "remember", "require", "cast_scroll",
+    "goto_mobile", "wait_dead", "wait_alive",
+    "mark_hp", "expect_hp_gain", "wait_hp_below",
+    "mark_item", "expect_item_drop",
+    "mark_gold", "expect_gold_gain", "vendor_sell_open", "vendor_sell",
+    "scan_mobiles",
+    // Index-aligned with Scenario::Op. Append here, never insert.
+    "gait",
+};
+
+constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
+
 const char* OpName(int op) {
-    static const char* kNames[] = {
-        "wait_world", "walk", "wait_walk", "say", "backpack",
-        "wait_backpack", "sleep", "hold", "logout", "goto", "wait_goto",
-        "use", "open", "move", "drop_ground", "equip", "unequip", "skill",
-        "cast", "attack", "war", "bandage", "bank", "vendor_open", "vendor_buy", "target",
-        "target_ground", "target_cancel", "wait_action", "expect",
-        "wait_target", "resurrect", "remember", "require", "cast_scroll",
-        "goto_mobile", "wait_dead", "wait_alive",
-    };
-    const int n = static_cast<int>(sizeof(kNames) / sizeof(kNames[0]));
-    return (op >= 0 && op < n) ? kNames[op] : "?";
+    return (op >= 0 && static_cast<usize>(op) < kOpNameCount) ? kOpNames[op]
+                                                              : "?";
+}
+
+// `gait walk|run|auto`. Anything else is a load-time error, not a silent
+// fallback -- a typo'd gait would otherwise change how the whole run looks.
+bool ParseGait(const std::string& tok, sphere::Gait* out) {
+    if (tok == "walk") { *out = sphere::Gait::Walk; return true; }
+    if (tok == "run")  { *out = sphere::Gait::Run;  return true; }
+    if (tok == "auto") { *out = sphere::Gait::Auto; return true; }
+    return false;
 }
 
 bool ParseResultName(const std::string& s, act::Result* out) {
@@ -81,6 +101,19 @@ u32 Scenario::Resolve(Client& client, const std::string& tok) const {
     if (tok == "backpack") return client.BackpackSerial();
     if (tok == "bank")     return client.BankContainer();
     if (tok == "vendor")   return client.VendorOfferFrom();
+    if (tok == "vendor_sell_first") {
+        const auto& offer = client.VendorSellOffer();
+        return offer.empty() ? 0u : offer.front().serial;
+    }
+    // vendor_sell_graphic:<hex> -- the scenario names exactly which item it
+    // means, so the choice does not depend on the order Sphere happens to send.
+    if (tok.rfind("vendor_sell_graphic:", 0) == 0) {
+        const u16 want = static_cast<u16>(
+            std::strtoul(tok.c_str() + 20, nullptr, 0));
+        for (const auto& v : client.VendorSellOffer())
+            if (v.graphic == want) return v.serial;
+        return 0;
+    }
     if (tok == "vendor_first") {
         const auto& offer = client.VendorOffer();
         return offer.empty() ? 0u : offer.front().serial;
@@ -93,6 +126,11 @@ u32 Scenario::Resolve(Client& client, const std::string& tok) const {
 }
 
 bool Scenario::Load(const char* path, std::string* err) {
+    // kOpNames is indexed by Op, so a name appended out of order (or an op
+    // inserted mid-enum) silently renames every step after it in the logs.
+    // That bug has happened once; this is where it stops happening.
+    static_assert(kOpNameCount == static_cast<usize>(Op::Count),
+                  "kOpNames is out of sync with Scenario::Op");
     steps_.clear();
     binds_.clear();
     pc_ = 0;
@@ -146,6 +184,41 @@ bool Scenario::Load(const char* path, std::string* err) {
         else if (verb == "resurrect")       st.op = Op::Resurrect;
         else if (verb == "wait_dead")       st.op = Op::WaitDead;
         else if (verb == "wait_alive")      st.op = Op::WaitAlive;
+        else if (verb == "scan_mobiles")    st.op = Op::ScanMobiles;
+        else if (verb == "mark_hp")         st.op = Op::MarkHp;
+        else if (verb == "expect_hp_gain")  st.op = Op::ExpectHpGain;
+        else if (verb == "mark_gold")       st.op = Op::MarkGold;
+        else if (verb == "expect_gold_gain") st.op = Op::ExpectGoldGain;
+        else if (verb == "wait_hp_below") {
+            ls >> st.count;
+            st.op = Op::WaitHpBelow;
+        }
+        else if (verb == "gait") {
+            // Overrides the session gait for the rest of the scenario. The
+            // per-step exceptions in BotStepGait still apply on top of it.
+            if (!need(st.a, "<walk|run|auto>")) { steps_.clear(); return false; }
+            sphere::Gait g = sphere::Gait::Auto;
+            if (!ParseGait(st.a, &g)) {
+                if (err) *err = "line " + std::to_string(lineNo) +
+                                ": gait needs walk|run|auto";
+                steps_.clear();
+                return false;
+            }
+            st.count = static_cast<int>(g);
+            st.op = Op::SetGait;
+        }
+        else if (verb == "mark_item" || verb == "expect_item_drop") {
+            if (!need(st.a, "<graphic>")) { steps_.clear(); return false; }
+            st.op = (verb == "mark_item") ? Op::MarkItem : Op::ExpectItemDrop;
+        }
+        else if (verb == "vendor_sell_open") {
+            if (!need(st.a, "<vendor>")) { steps_.clear(); return false; }
+            std::string rest;
+            std::getline(ls, rest);
+            const auto s0 = rest.find_first_not_of(" \t");
+            st.text = (s0 == std::string::npos) ? "sell" : rest.substr(s0);
+            st.op = Op::VendorSellOpen;
+        }
         else if (verb == "goto") {
             int gx = 0, gy = 0;
             ls >> gx >> gy;
@@ -247,10 +320,10 @@ bool Scenario::Load(const char* path, std::string* err) {
             st.text = (s0 == std::string::npos) ? "buy" : rest.substr(s0);
             st.op = Op::VendorOpen;
         }
-        else if (verb == "vendor_buy") {
+        else if (verb == "vendor_buy" || verb == "vendor_sell") {
             if (!need(st.a, "<vendor>") || !need(st.b, "<item>") ||
                 !need(st.c, "<qty>")) { steps_.clear(); return false; }
-            st.op = Op::VendorBuy;
+            st.op = (verb == "vendor_buy") ? Op::VendorBuy : Op::VendorSell;
         }
         else if (verb == "target_ground") {
             ls >> st.x >> st.y >> st.z;
@@ -338,6 +411,34 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::War:
                     client.ActionWarMode(st.a == "on" || st.a == "1");
                     break;
+                case Op::MarkHp:
+                    markHp_ = client.PlayerHp();
+                    LogInfo("[scenario] mark_hp = %d\n", markHp_);
+                    break;
+                case Op::MarkGold:
+                    markGold_ = client.PlayerGold();
+                    LogInfo("[scenario] mark_gold = %d\n", markGold_);
+                    break;
+                case Op::MarkItem:
+                    markItemGraphic_ = static_cast<u16>(
+                        std::strtoul(st.a.c_str(), nullptr, 0));
+                    markItemCount_ = client.BackpackItemCount(markItemGraphic_);
+                    LogInfo("[scenario] mark_item 0x%04X = %u\n",
+                            markItemGraphic_, markItemCount_);
+                    break;
+                case Op::VendorSellOpen:
+                    client.ActionVendorSellOpen(Resolve(client, st.a),
+                                                st.text.c_str());
+                    break;
+                case Op::ScanMobiles:
+                    client.ActionScanMobiles();
+                    break;
+                case Op::SetGait:
+                    // Setting state, not requesting an action: no wait, no
+                    // server round trip. The next step submitted picks it up.
+                    client.SetMovementGait(
+                        static_cast<sphere::Gait>(st.count));
+                    break;
                 case Op::GotoMobile:
                     if (!client.ActionGotoMobile(Resolve(client, st.a)))
                         LogWarn("[scenario] goto_mobile: unknown mobile\n");
@@ -363,6 +464,11 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                                            Resolve(client, st.b),
                                            static_cast<u16>(std::atoi(st.c.c_str())));
                     break;
+                case Op::VendorSell:
+                    client.ActionVendorSell(Resolve(client, st.a),
+                                            Resolve(client, st.b),
+                                            static_cast<u16>(std::atoi(st.c.c_str())));
+                    break;
                 case Op::Target:
                     if (!client.ActionTargetObject(Resolve(client, st.a)))
                         LogWarn("[scenario] target reply refused (no cursor)\n");
@@ -384,6 +490,19 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                             static_cast<u16>(std::strtoul(st.c.c_str(), nullptr, 0)));
                     } else if (st.b == "mobile_nearest") {
                         serial = client.NearestMobile(0);
+                    } else if (st.b == "mobile_body") {
+                        // Comma-separated list: the nearest match of ANY of
+                        // them wins, so a scenario can name every creature it
+                        // considers a valid target for the test.
+                        const char* p = st.c.c_str();
+                        while (*p && !serial) {
+                            const u16 body = static_cast<u16>(
+                                std::strtoul(p, nullptr, 0));
+                            serial = client.NearestMobileWithBody(body, 0);
+                            const char* comma = std::strchr(p, ',');
+                            if (!comma) break;
+                            p = comma + 1;
+                        }
                     } else if (st.b == "mobile_name") {
                         serial = client.NearestMobileNamed(st.c.c_str());
                     } else {
@@ -414,6 +533,50 @@ void Scenario::Tick(Client& client, i64 nowMs) {
             case Op::WaitGoto:     done = !client.GotoBusy(); break;
             case Op::WaitDead:     done = client.IsDead(); break;
             case Op::WaitAlive:    done = !client.IsDead(); break;
+            case Op::WaitHpBelow:  done = client.PlayerHp() > 0 &&
+                                          client.PlayerHp() < st.count; break;
+            case Op::ExpectHpGain: {
+                const i32 now = client.PlayerHp();
+                if (markHp_ < 0 || now <= markHp_) {
+                    LogError("[scenario] EXPECT hp gain: %d -> %d (line %d); "
+                             "aborting\n", markHp_, now, st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] hp gain confirmed: %d -> %d\n",
+                            markHp_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectGoldGain: {
+                const i32 now = client.PlayerGold();
+                if (markGold_ < 0 || now <= markGold_) {
+                    LogError("[scenario] EXPECT gold gain: %d -> %d (line %d); "
+                             "aborting\n", markGold_, now, st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] gold gain confirmed: %d -> %d\n",
+                            markGold_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectItemDrop: {
+                const u16 g = static_cast<u16>(
+                    std::strtoul(st.a.c_str(), nullptr, 0));
+                const u32 now = client.BackpackItemCount(g);
+                if (g != markItemGraphic_ || now >= markItemCount_) {
+                    LogError("[scenario] EXPECT item 0x%04X to drop: %u -> %u "
+                             "(line %d); aborting\n", g, markItemCount_, now,
+                             st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] item 0x%04X drop confirmed: %u -> %u\n",
+                            g, markItemCount_, now);
+                }
+                done = true;
+                break;
+            }
             case Op::WaitAction:   done = !client.ActionBusy(); break;
             case Op::WaitTarget:   done = client.TargetActive(); break;
             case Op::Sleep:

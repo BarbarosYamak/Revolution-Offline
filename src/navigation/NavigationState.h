@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bot/Blacklist.h"
+#include "uo/sphere_rules.h"
 #include "uo/types.h"
 
 #include <deque>
@@ -31,7 +32,12 @@ struct RejectedEdge {
 // ack/reject bookkeeping cannot be bypassed by any caller.
 struct MovementState {
     u8 moveSeq = 0;             // next sequence to send (0 = resync)
-    bool run = true;            // send the 0x80 run bit and use run cadence
+    // Session gait. Auto is the standing order and resolves to Run
+    // (sphere::GaitWantsRun, include/uo/sphere_rules.h) -- players run
+    // everywhere, so bots do too. Individual steps may still ask for Walk
+    // (final approach, doorways, shoves); those are per-step arguments to
+    // SubmitStep, not changes to this field.
+    sphere::Gait gait = sphere::Gait::Auto;
     std::deque<PendingMove> pending;
     i64 lastMoveSentMs = 0;     // for throttle + watchdog
 

@@ -34,7 +34,9 @@ void PrintUsage() {
         "\n"
         "Behaviour:\n"
         "  --scenario <file>  run a scripted action list once in world\n"
-        "  --run              use the running cadence (default: walk)\n"
+        "  --run              always run (default: auto, which runs unless\n"
+        "                     stamina or encumbrance say otherwise)\n"
+        "  --walk             always walk (400ms cadence, no 0x80 run bit)\n"
         "  --no-keepalive     do not send the 0x73 keepalive\n"
         "  --keepalive <ms>   keepalive interval (default 20000)\n"
         "  --stdin            read console commands (one session only)\n"
@@ -131,7 +133,9 @@ int main(int argc, char** argv) {
     base.createCharIfMissing = false;
     base.createSkill[0] = base.createSkill[1] = base.createSkill[2] = 0;
     base.createSkillVal[0] = base.createSkillVal[1] = base.createSkillVal[2] = 0;
-    base.runWhenWalking   = false;
+    // Auto = run. Real players run; a bot that walks everywhere is the single
+    // most obvious tell there is. --walk/--run pin it for diagnostics.
+    base.defaultGait      = uo::sphere::Gait::Auto;
     base.sessionTag       = nullptr;
     base.enableStdin      = false;
     base.scenarioPath     = nullptr;
@@ -152,7 +156,8 @@ int main(int argc, char** argv) {
         if (ArgIs(a, "-h") || ArgIs(a, "--help")) { PrintUsage(); return 0; }
         else if (ArgIs(a, "--headless"))     base.enableRenderer = false;
         else if (ArgIs(a, "--render"))       base.enableRenderer = true;
-        else if (ArgIs(a, "--run"))          base.runWhenWalking = true;
+        else if (ArgIs(a, "--run"))          base.defaultGait = uo::sphere::Gait::Run;
+        else if (ArgIs(a, "--walk"))         base.defaultGait = uo::sphere::Gait::Walk;
         else if (ArgIs(a, "--no-keepalive")) base.enableKeepalive = false;
         else if (ArgIs(a, "--log-packets"))  base.logPackets = true;
         else if (ArgIs(a, "--create-char"))  base.createCharIfMissing = true;

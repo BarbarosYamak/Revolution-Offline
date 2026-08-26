@@ -1,0 +1,74 @@
+# M2 -- controlled combat, session B: the sparring partner.
+#
+# B is RevolutionSpar: Wrestling 50.0, Tactics 30.0, Anatomy 20.0, asked for
+# through the ordinary create-character packet and clamped by the server. It
+# walks to the clearing and attacks A so that A takes genuine combat damage.
+# B stays UNARMED -- the newbie katana is left in the backpack -- so it hits for
+# little, which is what keeps A alive long enough to disengage and bandage.
+#
+# B binds A by NAME for the same reason A binds B by name: body id 0x0190
+# matches every male human, and Source-X refuses an attack on a target it does
+# not consider valid (0xAA 0x4FFFFFFF).
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+say B: walking to the meeting point
+# In legs, so A* plans each hop reliably over the long haul from Yew.
+goto 600 830
+wait_goto
+goto 660 790
+wait_goto
+goto 691 755
+wait_goto
+
+sleep 60000
+
+scan_mobiles
+sleep 4000
+remember other mobile_name RevolutionBot02
+require other
+
+war on
+
+# Stay in weapon range and keep the attack live. Creatures and players both
+# move; this client has no combat AI, so the SCENARIO does the chasing with
+# ordinary movement and ordinary attack packets.
+goto_mobile @other
+wait_goto
+attack @other
+wait_action
+sleep 6000
+goto_mobile @other
+wait_goto
+attack @other
+wait_action
+sleep 6000
+goto_mobile @other
+wait_goto
+attack @other
+wait_action
+sleep 6000
+goto_mobile @other
+wait_goto
+attack @other
+wait_action
+sleep 6000
+goto_mobile @other
+wait_goto
+attack @other
+wait_action
+sleep 6000
+
+# Stop attacking well before A finishes healing and logs out. A previous run
+# left B swinging while A's client-linger body was still standing in the world
+# (Source-X keeps it there under i_handr_1 "Client Linger"), and B killed it --
+# a real death, but not the one this scenario is for.
+war off
+say B: done sparring
+sleep 1000
+logout

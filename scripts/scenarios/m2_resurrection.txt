@@ -1,0 +1,55 @@
+# M2 — resurrection through normal world mechanics.
+#
+# The character is a ghost: it was killed by a wild grey wolf at (689,753)
+# ("P'RevolutionBot01' was killed by N'grey wolf'." in the server log). The
+# client recognises this from the body the server sends (0x0192).
+#
+# Sphere resurrects a ghost when a healer NPC notices it -- that is C++
+# behaviour with no speech required (CChar::NPC_LookAtCharHealer,
+# src/game/chars/CCharNPCAct.cpp:895-937). Replying to the 0x2C menu does NOT
+# resurrect (src/network/receive.cpp:616-639), so the ghost simply walks to a
+# healer and waits.
+#
+# The wandering healer that spawns with this wildlife group is a female human
+# body (0x0191); our own ghost is 0x0192, so there is no ambiguity.
+
+wait_world
+sleep 3000
+
+say i am a ghost
+
+# Acknowledge the ghost state. This is the honest use of 0x2C: it re-sends our
+# world view, it does not raise us.
+resurrect
+
+sleep 2000
+
+# A wandering healer roams a 50-tile radius, so it may not be in view where we
+# died. The Yew healer shop is a fixed worldgen spawn (540,966) with a walk
+# range of 5, which makes it the deterministic choice. Walk there in legs so
+# A* never has to solve the whole distance at once.
+say walking to the healer
+goto 640 830
+wait_goto
+goto 590 900
+wait_goto
+goto 545 960
+wait_goto
+
+# The healer resurrects a ghost it notices, in its own time. No speech, no
+# targeting, no client-side state change.
+wait_alive
+
+say i live again
+sleep 2000
+
+# Prove the client is protocol-coherent after the transition: open the
+# backpack and read what the server sends back.
+remember pack backpack
+open @pack
+wait_action
+expect success
+
+say resurrection confirmed
+sleep 1000
+logout

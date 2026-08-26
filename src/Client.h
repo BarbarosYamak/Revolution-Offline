@@ -86,7 +86,9 @@ public:
         // spellbook exactly as a human player's would be.
         int         createSkill[3];
         int         createSkillVal[3];
-        bool        runWhenWalking;   // true = 0x80 run bit + 200ms; false = walk 400ms
+        // Session gait. Auto (the default) means Run -- see MovementState::gait.
+        // Walk/Run pin the gait for operators who need a fixed cadence.
+        sphere::Gait defaultGait;
         const char* sessionTag;       // short id used in logs ("bot01"); nullptr = none
         bool        enableStdin;      // read console commands (single-session only)
         const char* scenarioPath;     // optional scripted action list (nullptr = none)
@@ -149,6 +151,12 @@ public:
     // paced and sent one at a time, each waiting for the server's 0x22/0x21.
     void ActionWalk(u8 dir, int count);
     bool WalkQueueBusy() const;          // steps still queued or in flight
+
+    // Session gait -- the standing order every movement source inherits.
+    // Auto (the default) means run; individual steps can still ask for Walk
+    // (see BotStepGait). Scenarios override it with the `gait` verb.
+    sphere::Gait MovementGait() const { return nav_.movement.gait; }
+    void SetMovementGait(sphere::Gait g);
     // Ask the A* planner for a route to (x, y) and walk it. The planner only
     // produces desired steps; every one of them is still submitted by the
     // movement controller (SubmitStep), so pacing, sequencing, the
@@ -226,8 +234,15 @@ public:
     // from a double-click, so this says the word a player would say.
     void ActionVendorOpen(u32 vendorSerial, const char* phrase = "buy");
     void ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty);
+    // Ask a vendor what it will buy. Sphere answers with 0x9E, which -- unlike
+    // the buy flow -- carries the item serials itself.
+    void ActionVendorSellOpen(u32 vendorSerial, const char* phrase = "sell");
     void ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty);
+    const std::vector<VendorItem>& VendorSellOffer() const { return vendorSellOffer_; }
     const std::vector<VendorItem>& VendorOffer() const { return vendorOffer_; }
+    // Player vitals, read straight from the server's own status packets.
+    i32  PlayerHp() const;
+    i32  PlayerHpMax() const;
     u32  VendorOfferFrom() const { return vendorOfferVendor_; }
 
     // Life state (server-driven only)
@@ -239,6 +254,11 @@ public:
     // Nearest cached mobile (server-driven; never invented). maxDist 0 = any.
     u32  NearestMobile(int maxDist) const;
     u32  NearestMobileNamed(const char* needle) const;
+    // Nearest mobile whose body graphic matches. Body ids come from the
+    // server's own 0x78, and a creature's CHARDEF id IS its body, so a
+    // scenario can name exactly which creature it means instead of taking
+    // whatever happens to be closest.
+    u32  NearestMobileWithBody(u16 body, int maxDist) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
     u32  BackpackItemCount(u16 graphic) const;
     i32  PlayerMana() const;
@@ -246,6 +266,11 @@ public:
     u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
     bool ContainerKnown(u32 serial) const;
     u32  BankContainer() const { return bankContainer_; }
+
+    // Ask the server for the names of nearby mobiles (0x98 per mobile). NPC
+    // names carry their trade ("<name> the provisioner"), which is the only
+    // way a client can tell one vendor from another.
+    void ActionScanMobiles();
 
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
@@ -337,6 +362,7 @@ private:
     void OnLogoutAck          (const u8* data, usize size);  // 0xD1
     void OnDragCancel         (const u8* data, usize size);  // 0x27
     void OnAttackAck          (const u8* data, usize size);  // 0xAA
+    void OnVendorSellList     (const u8* data, usize size);  // 0x9E
     void RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
                                 u16 hue, u16 font, const char* speaker,
                                 const char* text);
@@ -400,8 +426,12 @@ private:
         Failed,     // the send itself failed
     };
     // The ONLY place a 0x02 is built and sent. Owns the sequence, the pacing,
-    // the outstanding-step limit and the local prediction.
-    StepSubmit SubmitStep(u8 dir, bool run, const char* source);
+    // the outstanding-step limit, the gait resolution and the local prediction.
+    // `gait` is per step: Auto defers to the session gait, Walk/Run pin this
+    // one step (final approach, doorways, shoves).
+    StepSubmit SubmitStep(u8 dir, sphere::Gait gait, const char* source);
+    // True if a step submitted with `gait` right now would carry the 0x80 bit.
+    bool GaitResolvesToRun(sphere::Gait gait) const;
 
     void PumpDirectSteps();            // drive ActionWalk's queue (no A*)
     void OnStepRejected(u8 dir);       // resync bookkeeping for a rejected step
@@ -420,6 +450,7 @@ private:
     void ActionOnDragCancel(u8 reason);
     void ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type);
     void ActionOnManaChanged(i32 mana);
+    void ActionOnGoldChanged(i32 gold);
     void ActionOnObjectDeleted(u32 serial);
     void ActionOnBodyChange(u16 body);
     void ActionOnVendorOffer(u32 vendorSerial);
@@ -480,8 +511,11 @@ private:
     void DrawOverheadText();
     void DrawCursorOverlay(); // UO directional walk cursor under the mouse
     void BotPumpMoves();      // sends moves while a flight slot + cadence allow
-    void BotPredictStep(u8 dir);  // advance predicted pos/z for a confirmed step
+    void BotPredictStep(u8 dir, bool run);  // advance predicted pos/z for a sent step
     void BotPollPathPlanner();
+    // Gait for one A* step. Auto (i.e. run) unless this particular step is one
+    // of the few that a human would walk -- see the definition for the reasons.
+    sphere::Gait BotStepGait(bool lastStep, bool doorStep, bool shoveStep) const;
     u32  BotMoveGapMs() const;
     bool BotReplanToGoal();   // queue a full A* replan from current pose
     bool BotLookaheadPatchPath(); // short local reroute around visible blockers
@@ -852,7 +886,7 @@ private:
 
     // --- Sphere adapter (M1) state ---------------------------------------
     std::deque<u8> directSteps_;         // ActionWalk queue (dirs still to send)
-    bool  directStepsRun_ = false;       // send the run bit for queued steps
+    sphere::Gait directStepsGait_ = sphere::Gait::Auto;  // gait for queued steps
     i64   lastDirectStepMs_ = 0;
     i32   walkBatchStartX_ = 0;          // position when the current batch began
     i32   walkBatchStartY_ = 0;
@@ -877,6 +911,7 @@ private:
     u32 bankContainer_ = 0;         // container the server opened as our bank
     u32 vendorOfferVendor_ = 0;     // vendor whose offer is in vendorOffer_
     std::vector<VendorItem> vendorOffer_;
+    std::vector<VendorItem> vendorSellOffer_;   // what the vendor will buy
     i32 manaAtActionStart_ = -1;    // for observing a spell's mana cost
     i32 goldAtActionStart_ = -1;    // for observing a purchase
 

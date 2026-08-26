@@ -195,6 +195,56 @@ void TestSequence() {
 }
 
 // ---------------------------------------------------------------------------
+// 5b. movement gait -- running is the default, and the run bit is bit 7
+// ---------------------------------------------------------------------------
+void TestGait() {
+    Section("movement gait");
+
+    // Source-X splits the 0x02 direction byte into `rawdir & 0xF` (facing) and
+    // `rawdir & DIR_MASK_RUNNING` (gait), DIR_MASK_RUNNING = 0x80
+    // (src/game/uo_files/uofiles_enums.h:435; CClient::Event_Walk,
+    // src/game/clients/CClientEvent.cpp:862,904). Setting the bit must never
+    // disturb the low nibble -- a leaked bit 3 would read as DIR_QTY and be
+    // rejected outright (CClientEvent.cpp:863-867).
+    for (u8 d = 0; d < 8; ++d) {
+        const u8 walk = sphere::MoveDirectionByte(d, false);
+        const u8 run  = sphere::MoveDirectionByte(d, true);
+        Check(walk == d, "walk byte is the bare direction");
+        Check((run & 0x0F) == d, "run byte keeps the direction in the low nibble");
+        Check(run == (d | 0x80u), "run byte sets exactly bit 7");
+    }
+
+    // The whole point of the model: Auto means run.
+    Check(sphere::GaitWantsRun(sphere::Gait::Auto, -1, -1, -1, -1),
+          "Auto runs before the server has sent any stats");
+    Check(sphere::GaitWantsRun(sphere::Gait::Auto, 50, 50, 0, 400),
+          "Auto runs when rested and unencumbered");
+    Check(sphere::GaitWantsRun(sphere::Gait::Run, 0, 100, 500, 400),
+          "explicit Run always runs");
+    Check(!sphere::GaitWantsRun(sphere::Gait::Walk, 100, 100, 0, 400),
+          "explicit Walk never runs");
+
+    // Fatigue reserve: CChar::CanMove refuses EVERY step at STAT_DEX <= 0
+    // (src/game/chars/CCharAct.cpp:4611-4617), so Auto stops spending before
+    // it gets there. The threshold itself is ours, not the server's.
+    Check(!sphere::GaitWantsRun(sphere::Gait::Auto, 5, 100, 0, 400),
+          "Auto walks below the stamina reserve");
+    Check(sphere::GaitWantsRun(sphere::Gait::Auto, 20, 100, 0, 400),
+          "Auto runs above the stamina reserve");
+
+    // Encumbrance: the run flag adds RunningPenalty (50) to the weight-load
+    // percent fed into the per-step stamina-loss roll (CanMoveWalkTo,
+    // src/game/chars/CCharAct.cpp:4818-4838; runtime/sphere.ini:316,319), so
+    // running is what pushes a loaded character into the loss band.
+    Check(sphere::GaitWantsRun(sphere::Gait::Auto, 100, 100, 200, 400),
+          "Auto runs at half load -- running is free while light");
+    Check(!sphere::GaitWantsRun(sphere::Gait::Auto, 100, 100, 400, 400),
+          "Auto walks at full load");
+    Check(sphere::GaitWantsRun(sphere::Gait::Auto, 100, 100, 400, -1),
+          "unknown max weight cannot veto running");
+}
+
+// ---------------------------------------------------------------------------
 // 6. credential logging never exposes a password
 // ---------------------------------------------------------------------------
 void TestRedaction() {
@@ -292,6 +342,7 @@ int main() {
     TestPingPolicy();
     TestFraming();
     TestSequence();
+    TestGait();
     TestRedaction();
     TestCharacterSelection();
 

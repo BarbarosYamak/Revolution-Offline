@@ -203,6 +203,21 @@ struct VendorBuyEntry {
 // (server @0x00496C0F: numItems = (len-8)/7). An empty list (count 0) is a no-op.
 usize VendorBuy(u8* out, u32 vendorSerial, const VendorBuyEntry* entries, usize count);
 
+// 0x9F Vendor Sell (variable). One record per item, 6 bytes each -- note this
+// is NOT the 7-byte layout of 0x3B: the sell request carries no layer byte
+// (Source-X src/network/receive.cpp:1900-1926).
+//   BYTE    cmd 0x9F
+//   BYTE[2] length (BE)
+//   BYTE[4] vendor character serial (BE)
+//   BYTE[2] item count (BE)
+//   per item: BYTE[4] item serial (BE), BYTE[2] amount (BE)
+struct VendorSellEntry {
+    u32 serial;
+    u16 qty;
+};
+usize VendorSell(u8* out, u32 vendorSerial, const VendorSellEntry* entries,
+                 usize count);
+
 // 0x02 Move Request (3 or 7 bytes).
 //   BYTE cmd
 //   BYTE direction (0..7, +0x80 for run)

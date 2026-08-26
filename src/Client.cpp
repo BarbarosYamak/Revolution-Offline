@@ -121,10 +121,14 @@ Client::Client(const Config& cfg)
         std::chrono::steady_clock::now().time_since_epoch().count()));
     // One gait for every movement source. A* used to run unconditionally while
     // scripted walks honoured the config; with a single movement controller the
-    // choice belongs in one place. Walking (the default) never reaches Sphere's
-    // walk-buffer speedhack check, which only runs for running steps
-    // (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:905-935).
-    nav_.movement.run = cfg_.runWhenWalking;
+    // choice belongs in one place. That place now defaults to Auto, i.e. run:
+    // M1 defaulted to walking because walking skips Sphere's walk-buffer
+    // speedhack check (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:930),
+    // but that check only rejects steps sent faster than 200ms apart
+    // (CClient::Event_CheckWalkBuffer, src/game/clients/CClientEvent.cpp:760-768)
+    // and the run cadence here is exactly 200ms with one step in flight, so
+    // there is nothing to trip. Walking everywhere was a needless tell.
+    nav_.movement.gait = cfg_.defaultGait;
     navigation::PathPlannerConfig pathConfig;
     pathConfig.tiledataPath = cfg_.tiledataPath ? cfg_.tiledataPath : "";
     pathConfig.mapPath = cfg_.mapPath ? cfg_.mapPath : "";
@@ -504,6 +508,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xD1: OnLogoutAck(data, size); break;
         case 0x27: OnDragCancel(data, size); break;
         case 0xAA: OnAttackAck(data, size); break;
+        case 0x9E: OnVendorSellList(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
         case 0x23: case 0x53:
@@ -1927,6 +1932,60 @@ void Client::OnLogoutAck(const u8* data, usize size) {
 }
 
 // ---------------------------------------------------------------------------
+// 0x9E Vendor Sell List (variable). What this vendor is willing to buy from
+// us, drawn from its LAYER_VENDOR_BUYS box. Layout per
+// PacketVendorSellList::fillSellList (Source-X src/network/send.cpp:3036-3135):
+//   cmd, len(2), vendorCharSerial(4), count(2),
+//   per item: serial(4), graphic(2), hue(2), amount(2), price(2),
+//             nameLen(2), name[nameLen]
+// Unlike the 0x74 buy list, this one carries serials, so no positional join
+// with a 0x3C is needed.
+// ---------------------------------------------------------------------------
+void Client::OnVendorSellList(const u8* data, usize size) {
+    if (size < 9) return;
+    const u32 vendor = LoadBE32(data + 3);
+    const u16 count = LoadBE16(data + 7);
+
+    vendorSellOffer_.clear();
+    usize p = 9;
+    for (u16 i = 0; i < count; ++i) {
+        if (p + 14 > size) break;
+        VendorItem v{};
+        v.serial  = LoadBE32(data + p); p += 4;
+        v.graphic = LoadBE16(data + p); p += 2;
+        p += 2;                                  // hue
+        v.amount  = LoadBE16(data + p); p += 2;
+        v.price   = LoadBE16(data + p); p += 2;
+        const u16 nameLen = LoadBE16(data + p); p += 2;
+        if (p + nameLen > size) break;
+        v.name.assign(reinterpret_cast<const char*>(data + p),
+                      nameLen ? nameLen - 1 : 0);   // trailing NUL
+        p += nameLen;
+        v.layer = 0;   // the sell request carries no layer byte
+        vendorSellOffer_.push_back(std::move(v));
+    }
+
+    LogInfo("[VENDOR] sell list from 0x%08X: %zu item(s)\n",
+            vendor, vendorSellOffer_.size());
+    for (usize i = 0; i < vendorSellOffer_.size() && i < 8; ++i) {
+        const VendorItem& v = vendorSellOffer_[i];
+        LogInfo("[VENDOR]   0x%08X %-22s x%-3u %u gp\n",
+                v.serial, v.name.c_str(), v.amount, v.price);
+    }
+    char ev[96];
+    std::snprintf(ev, sizeof(ev), "vendor=0x%08X items=%zu",
+                  vendor, vendorSellOffer_.size());
+    LogEvent("vendor_sell_list", ev);
+
+    if (action_.Active() && action_.kind == act::Kind::VendorSell &&
+        action_.subject == action_.destination) {
+        FinishAction(vendorSellOffer_.empty() ? act::Result::Unavailable
+                                              : act::Result::Success,
+                     "vendor sell list received");
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 0x27 Drag Cancel (2 bytes: cmd + reason). The server refused a lift, so the
 // item never left where it was. Without this the client would sit through the
 // action's whole timeout believing a move might still succeed.
@@ -2040,13 +2099,16 @@ void Client::ReportUnframeableStream(const char* err) {
 
 void Client::ActionWalk(u8 dir, int count) {
     if (count <= 0) return;
-    directStepsRun_ = cfg_.runWhenWalking;
+    // Scripted step batches follow the session gait; a scenario that needs a
+    // different one sets it with `gait` before the walk.
+    directStepsGait_ = nav_.movement.gait;
     for (int i = 0; i < count; ++i) directSteps_.push_back(dir & 0x07);
     walkBatchStartX_ = playerX_;
     walkBatchStartY_ = playerY_;
     walkBatchActive_ = true;
-    LogInfo("[action] walk dir=%u x%d (%s) from (%d,%d,%d)\n", dir & 0x07, count,
-            directStepsRun_ ? "run" : "walk",
+    LogInfo("[action] walk dir=%u x%d (gait %s -> %s) from (%d,%d,%d)\n",
+            dir & 0x07, count, sphere::GaitName(directStepsGait_),
+            GaitResolvesToRun(directStepsGait_) ? "run" : "walk",
             playerX_, playerY_, static_cast<int>(playerZ_));
 }
 
@@ -2144,7 +2206,7 @@ constexpr i64 kVendorTimeoutMs   = 8000;
 constexpr i64 kBandageTimeoutMs  = 15000;
 // Resurrection is driven by the world (a healer walking over, a shrine), so it
 // gets a long window rather than a request/response deadline.
-constexpr i64 kResurrectTimeoutMs = 120000;
+constexpr i64 kResurrectTimeoutMs = 900000;
 // A lift must be followed by a drop; the server cancels a dangling lift.
 constexpr i64 kDragSettleMs      = 250;
 }  // namespace
@@ -2204,6 +2266,8 @@ void Client::ActionTick() {
 // --- helpers ---------------------------------------------------------------
 
 i32 Client::PlayerMana() const { return player_.manaCur; }
+i32 Client::PlayerHp() const { return player_.hpCur; }
+i32 Client::PlayerHpMax() const { return player_.hpMax; }
 i32 Client::PlayerGold() const { return player_.gold; }
 
 bool Client::ContainerKnown(u32 serial) const {
@@ -2215,6 +2279,20 @@ u32 Client::NearestMobile(int maxDist) const {
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (maxDist > 0 && d > maxDist) continue;
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
+u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (m.body != body) continue;
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (maxDist > 0 && d > maxDist) continue;
@@ -2590,13 +2668,41 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
     SendVendorBuy(vendorSerial, req);
 }
 
+// "sell" opens the other half of the shop. Source-X answers with 0x9E
+// (PacketVendorSellList, src/network/send.cpp:3028) and, unlike the buy flow,
+// sends no 0x24 gump -- so the sell list itself is the confirmation.
+void Client::ActionVendorSellOpen(u32 vendorSerial, const char* phrase) {
+    BeginAction(act::Kind::VendorSell, kVendorTimeoutMs);
+    action_.subject = vendorSerial;
+    action_.destination = vendorSerial;
+    vendorSellOffer_.clear();
+    LogInfo("[VENDOR] open sell vendor=0x%08X phrase='%s'\n",
+            vendorSerial, phrase ? phrase : "sell");
+    SayAscii(phrase && phrase[0] ? phrase : "sell");
+}
+
 void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
     BeginAction(act::Kind::VendorSell, kVendorTimeoutMs);
     action_.subject = itemSerial;
     action_.destination = vendorSerial;
     action_.amount = qty;
-    FinishAction(act::Result::Unavailable,
-                 "vendor sell (0x9F) not implemented yet");
+
+    bool offered = false;
+    for (const VendorItem& v : vendorSellOffer_) {
+        if (v.serial == itemSerial) { offered = true; break; }
+    }
+    if (!offered) {
+        FinishAction(act::Result::InvalidState,
+                     "the vendor did not offer to buy that item");
+        return;
+    }
+    LogInfo("[VENDOR] sell item=0x%08X qty=%u to vendor=0x%08X gold=%d\n",
+            itemSerial, qty, vendorSerial, PlayerGold());
+
+    build::VendorSellEntry e{itemSerial, qty};
+    u8 buf[64];
+    const usize n = build::VendorSell(buf, vendorSerial, &e, 1);
+    Send(buf, n, "0x9F VendorSell");
 }
 
 // --- resurrection ----------------------------------------------------------
@@ -2860,12 +2966,46 @@ void Client::ActionOnObjectDeleted(u32 serial) {
     FinishAction(act::Result::Success, "scroll consumed by the cast");
 }
 
+// A completed sale shows up as gold arriving. Source-X only credits it after
+// the items have actually changed hands (CClientEvent.cpp:1451-1566).
+void Client::ActionOnGoldChanged(i32 gold) {
+    if (!action_.Active() || action_.kind != act::Kind::VendorSell) return;
+    if (action_.subject == action_.destination) return;   // still just browsing
+    if (goldAtActionStart_ < 0 || gold <= goldAtActionStart_) return;
+    char why[96];
+    std::snprintf(why, sizeof(why), "gold %d -> %d", goldAtActionStart_, gold);
+    FinishAction(act::Result::Success, why);
+}
+
 void Client::ActionOnManaChanged(i32 mana) {
     if (!action_.Active() || action_.kind != act::Kind::CastSpell) return;
     if (manaAtActionStart_ < 0 || mana >= manaAtActionStart_) return;
     char why[96];
     std::snprintf(why, sizeof(why), "mana %d -> %d", manaAtActionStart_, mana);
     FinishAction(act::Result::Success, why);
+}
+
+void Client::ActionScanMobiles() {
+    LogInfo("[action] scanning nearby mobiles for names\n");
+    PrintNearbyMobiles();
+
+    // 0x98 only returns an NPC's first name ("Lillie"), but the trade lives in
+    // the paperdoll title ("Lillie the provisioner"), which arrives as 0x88
+    // after a double-click. That is exactly how a human player tells one
+    // shopkeeper from another, so do the same: click each nearby mobile once.
+    int clicked = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (d > 12) continue;
+        if (PaperdollTitle(m.serial)) continue;   // already known
+        SendDoubleClick(m.serial);
+        if (++clicked >= 8) break;
+    }
+    if (clicked)
+        LogInfo("[action] requested %d paperdoll(s) for trade titles\n",
+                clicked);
 }
 
 void Client::ActionSay(const char* text) {
@@ -2899,28 +3039,61 @@ void Client::ActionLogout() {
 // its walk-buffer speedhack check only runs for running steps
 // (CClient::Event_Walk, src/game/clients/CClientEvent.cpp:930-935) -- so a
 // depth-1 pipeline at the canonical cadence cannot trip it.
+// Resolves a requested gait against the session gait and the server-driven
+// stats it depends on. Auto is the only value that can change its mind.
+bool Client::GaitResolvesToRun(sphere::Gait gait) const {
+    if (gait == sphere::Gait::Auto) gait = nav_.movement.gait;
+    return sphere::GaitWantsRun(gait, player_.stamCur, player_.stamMax,
+                                player_.weight, player_.maxWeight);
+}
+
+void Client::SetMovementGait(sphere::Gait g) {
+    if (nav_.movement.gait == g) return;
+    nav_.movement.gait = g;
+    LogInfo("[move] gait -> %s (now %s)\n", sphere::GaitName(g),
+            GaitResolvesToRun(sphere::Gait::Auto) ? "running" : "walking");
+    LogEvent("gait_changed", sphere::GaitName(g));
+}
+
 // The one and only 0x02 sender. Every movement source funnels through here.
-Client::StepSubmit Client::SubmitStep(u8 dir, bool run, const char* source) {
+// `gait` is a per-step request: Auto (the normal case) defers to the session
+// gait, Walk/Run pin this step. Nothing else builds or sends a 0x02, so the
+// run bit cannot enter the stream behind the controller's back.
+Client::StepSubmit Client::SubmitStep(u8 dir, sphere::Gait gait,
+                                      const char* source) {
     dir &= 0x07;
 
     // 1. Outstanding-step limit: never exceed what the controller allows.
     if (nav_.movement.pending.size() >= nav_.movement.maxInFlight)
         return StepSubmit::InFlight;
 
-    // 2. Pacing: never faster than the canonical cadence for this gait.
+    // 2. Gait, resolved once per step so pacing and the wire bit cannot
+    //    disagree. Sending the 0x80 bit at the walk cadence would be a lie the
+    //    server never checks, but the anim/prediction side would still act on it.
+    const bool run = GaitResolvesToRun(gait);
+
+    // 3. Pacing: never faster than the canonical cadence for this gait. 200ms
+    //    for a run is Sphere's own floor for an on-foot player
+    //    (Event_CheckWalkBuffer, src/game/clients/CClientEvent.cpp:766-767;
+    //    Event_Walk, :920), so we sit exactly on it rather than under it.
     const i64 now = NowMs();
     const u32 gap = run ? nav_.movement.runStepMs : nav_.movement.walkStepMs;
     if (nav_.movement.lastMoveSentMs != 0 &&
         now - nav_.movement.lastMoveSentMs < static_cast<i64>(gap))
         return StepSubmit::Throttled;
 
-    // 3. Turn-then-step: a direction change is a separate move that the
+    // 4. Turn-then-step: a direction change is a separate move that the
     //    server acks without relocating the character.
     const bool isStep = (dir == playerFacing_);
 
-    // 4. Sequence: allocated here and nowhere else.
+    // 5. Sequence: allocated here and nowhere else.
     const u8 seq = NextSeq();
-    const u8 wire = run ? static_cast<u8>(dir | 0x80) : dir;
+    // Source-X reads the facing as `rawdir & 0xF` and the gait as
+    // `rawdir & DIR_MASK_RUNNING` (CClient::Event_Walk,
+    // src/game/clients/CClientEvent.cpp:862,904); the sequence check in
+    // PacketMovementReq::onReceive (src/network/receive.cpp:270-282) ignores
+    // the bit entirely, so gait never affects accept/reject bookkeeping.
+    const u8 wire = sphere::MoveDirectionByte(dir, run);
 
     u8 buf[16];
     const usize n = build::MoveRequest(buf, wire, seq, 0u, cfg_.legacyMovePacket);
@@ -2930,17 +3103,20 @@ Client::StepSubmit Client::SubmitStep(u8 dir, bool run, const char* source) {
                   source ? source : "?");
     if (!Send(buf, n, note)) return StepSubmit::Failed;
 
-    // 5. Bookkeeping the ack/reject handlers rely on.
+    // 6. Bookkeeping the ack/reject handlers rely on.
     nav_.movement.pending.push_back({seq, dir, isStep, now});
     nav_.movement.lastMoveSentMs = now;
     lastDirectStepMs_ = now;
 
     if (isStep) {
-        BotPredictStep(dir);
+        BotPredictStep(dir, run);
         return StepSubmit::Sent;
     }
     playerFacing_ = dir;
     player_.facing = dir;
+    // A turn relocates nothing, so the character is standing however it was
+    // standing; STATF_FLY is only modified on a real step (Event_Walk,
+    // src/game/clients/CClientEvent.cpp:904, inside the `dir == m_dirFace` arm).
     player_.running = false;
     return StepSubmit::Turned;
 }
@@ -2968,7 +3144,7 @@ void Client::PumpDirectSteps() {
         return;
     }
     const u8 dir = directSteps_.front();
-    switch (SubmitStep(dir, directStepsRun_, "action")) {
+    switch (SubmitStep(dir, directStepsGait_, "action")) {
         case StepSubmit::Sent:
             directSteps_.pop_front();
             break;
@@ -3725,6 +3901,7 @@ void Client::OnStats(const u8* data, usize size) {
         ActionOnManaChanged(player_.manaCur);
         player_.manaMax = static_cast<i32>(LoadBE16(data + 56));
         player_.gold = static_cast<i32>(LoadBE32(data + 58));
+        ActionOnGoldChanged(player_.gold);
         player_.armor = static_cast<i32>(LoadBE16(data + 62));
         player_.weight = static_cast<i32>(LoadBE16(data + 64));
     }

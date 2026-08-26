@@ -24,6 +24,22 @@ usize VendorBuy(u8* out, u32 vendorSerial, const VendorBuyEntry* entries, usize 
     return w.size();
 }
 
+usize VendorSell(u8* out, u32 vendorSerial, const VendorSellEntry* entries,
+                 usize count) {
+    BufWriter w(out, 256);
+    w.WriteU8(0x9F);
+    const usize len_at = w.size();
+    w.WriteU16(0);
+    w.WriteU32(vendorSerial);
+    w.WriteU16(static_cast<u16>(count));
+    for (usize i = 0; i < count; ++i) {
+        w.WriteU32(entries[i].serial);
+        w.WriteU16(entries[i].qty);
+    }
+    w.PatchU16(len_at, static_cast<u16>(w.size()));
+    return w.size();
+}
+
 usize Seed(u8* out, u32 seed) {
     StoreBE32(out, seed);
     return 4;

@@ -76,11 +76,25 @@ Login flow (single TCP socket, "stay-on-socket" model):
 
 ## Movement model (`Client::BotPumpMoves` / `OnMoveAck` / `OnMoveReject`)
 
-- **Running by default** (`botRun_`), `0x80` run bit on the direction byte.
+- **Gait** (`sphere::Gait` in `include/uo/sphere_rules.h`): `Walk` / `Run` /
+  `Auto`, session default `Auto`, which means **run**. The `0x80` bit on the
+  direction byte is the whole wire form (`DIR_MASK_RUNNING`,
+  Source-X `src/game/uo_files/uofiles_enums.h:435`). `Auto` drops to a walk only
+  when stamina is under the reserve or the character is at full carry weight —
+  running adds `RunningPenalty` to the weight-load roll that costs stamina
+  (`CChar::CanMoveWalkTo`, `src/game/chars/CCharAct.cpp:4818-4838`). Individual
+  A* steps pin `Walk` for final approach, doorways and shoves (`BotStepGait`).
+  A scenario overrides the session gait with `gait walk|run|auto`; `--walk` /
+  `--run` pin it for a whole session.
 - **Cadence:** canonical foot speeds — run **200ms** / walk **400ms** per step
-  (`runThrottleMs_` / `walkThrottleMs_`) with no added jitter. The server has
-  **no step-timing anti-speedhack** and ignores the
-  fastwalk key (we send 0), so pacing is purely for realism / stamina.
+  (`runStepMs` / `walkStepMs`) with no added jitter, resolved per step inside
+  `SubmitStep` so the cadence and the wire bit can never disagree. The server
+  ignores the fastwalk key (we send 0), but it *does* time running steps:
+  `Event_CheckWalkBuffer` (`src/game/clients/CClientEvent.cpp:727-800`) runs only
+  while `STATF_FLY` is set and expects ≥200ms between on-foot steps
+  (`:766-767`), with `WalkBuffer=15` / `WalkRegen=25` enabled in
+  `runtime/sphere.ini:218,221`. Sitting exactly on 200ms with one step in flight
+  is what keeps running reject-free.
 - **Pipelined ("fastwalk stack"), predict + reconcile:** `kMaxInFlight = 4`.
   Several `0x02` moves may be in flight at once. Each step is predicted on send
   (pos for a step, facing for a turn) and confirmed by `0x22`. The `0x22` ack

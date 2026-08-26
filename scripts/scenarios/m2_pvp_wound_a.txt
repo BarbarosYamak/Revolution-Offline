@@ -1,0 +1,82 @@
+# M2 -- bandage healing on an actually injured character (session A: the one
+# that gets wounded and then heals).
+#
+# Why not a creature: the worldgen wildlife roams a 50-tile radius and is not
+# reliably hostile -- a full chase run produced zero 0x2F swings and ended with
+# "Grizzly Bear has retreated from the battle". Two characters we control is a
+# legitimate, repeatable way to take real combat damage: ordinary players,
+# ordinary attack packets, no server assistance.
+#
+# The partner is RevolutionSpar, an ordinary character created through the
+# normal 0x00 create-character path asking for SKILL_WRESTLING(43):50,
+# SKILL_TACTICS(27):30, SKILL_ANATOMY(1):20 -- Source-X clamps every one of
+# those in CChar::InitPlayer. RevolutionBot01 was tried first and missed every
+# swing: its Wrestling is 14.1, which is a training problem, not a bug.
+#
+# Targets are bound BY NAME, never by body id: body 0x0190 is every male human
+# in view, and an earlier run had both sessions bind the same passing townsman
+# (0x0000063C), which Source-X refused with 0xAA 0x4FFFFFFF. 0x98 gives real
+# names, so scan_mobiles first.
+#
+# The rendezvous (689,753) is OUTSIDE the guarded Yew region -- the client logs
+# "You have left the protection of the town guards" on the way in.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+remember bandages pack_graphic 0x0e21
+require bandages
+
+say A: walking to the meeting point
+goto 689 753
+wait_goto
+
+# Both sessions run in from Yew, so the meeting is scheduled rather than
+# negotiated: B idles 60s after arriving before it starts swinging, A idles 90s
+# before it binds. An earlier run had A bind B at the exact moment B finished
+# its rounds and logged out.
+sleep 150000
+
+# A does not fight back: it only has to receive damage, and a passive target
+# keeps the sparring partner alive for the rest of the run.
+scan_mobiles
+sleep 4000
+remember other mobile_name RevolutionSpar
+require other
+
+say A: ready
+war on
+
+# Real damage from a real opponent.
+wait_hp_below 28
+
+# Break off: healing takes seconds and being hit interrupts it.
+war off
+say A: wounded, disengaging
+goto 640 800
+wait_goto
+sleep 2500
+
+# Heal, and prove the server actually did it.
+mark_hp
+mark_item 0x0e21
+
+bandage @bandages self
+wait_action
+expect success
+
+# "*You apply bandages to self*" is the START of the heal, not the end: Sphere
+# runs Healing on a skill timer and only credits the hit points when it fires.
+# A run that asserted after 1.5s saw hp still at 18 and correctly aborted --
+# which is the point of asserting server state instead of trusting the cursor.
+sleep 12000
+expect_hp_gain
+expect_item_drop 0x0e21
+
+say A: bandage heal confirmed
+sleep 1000
+logout

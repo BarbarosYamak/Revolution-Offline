@@ -25,8 +25,11 @@ namespace bot {
 //
 //   wait_world            wait until the character is in the world
 //   walk <dir> <count>    queue steps; dir = n|ne|e|se|s|sw|w|nw
+//   gait walk|run|auto    session gait for every later step (default auto,
+//                         which runs; individual steps may still walk)
 //   goto <x> <y>          plan a route with A* and walk it
 //   goto_mobile <who>     walk to a mobile the server has shown us
+//   scan_mobiles          ask the server for nearby mobile names (0x98)
 //   wait_goto             wait until the route finishes (arrived or gave up)
 //   wait_walk             wait until every queued step has been answered
 //   say <text>            speak (ASCII)
@@ -55,6 +58,7 @@ namespace bot {
 //   bank <banker> [phrase]        open the bank the way a player does
 //   vendor_open <vendor> [phrase]  ask a vendor to show its wares (speech)
 //   vendor_buy <vendor> <item> <qty>
+//   vendor_sell <vendor> <item> <qty>
 //   target <serial|@name>         answer an armed cursor with an object
 //   target_ground <x> <y> <z>     answer an armed cursor with a tile
 //   target_cancel                 cancel an armed cursor
@@ -64,6 +68,17 @@ namespace bot {
 //   resurrect                     acknowledge the ghost state and wait
 //   wait_dead                     wait until the server reports us dead
 //   wait_alive                    wait until the server reports us alive
+//   vendor_sell_open <who> [word] ask a vendor what it will buy
+//
+// Verification verbs. These read server-driven state only, and abort the
+// scenario when the server did not actually do what was expected:
+//   mark_hp                       remember current hit points
+//   expect_hp_gain                fail unless hit points rose since mark_hp
+//   wait_hp_below <n>             wait until hit points drop below n
+//   mark_item <graphic>           remember how many of that item we carry
+//   expect_item_drop <graphic>    fail unless that count fell
+//   mark_gold                     remember current gold
+//   expect_gold_gain              fail unless gold rose since mark_gold
 //   remember <name> <expr>        bind a serial for later use (see below)
 //   require <name>                fail the scenario unless <name> is bound
 //
@@ -75,7 +90,10 @@ namespace bot {
 //   pack_graphic <hex>            first backpack item with that graphic
 //   mobile_nearest                nearest cached mobile that is not us
 //   mobile_name <text>            nearest cached mobile whose name contains text
+//   mobile_body <hex>             nearest cached mobile with that body graphic
 //   vendor_first                  first item in the current vendor offer
+//   vendor_sell_first             first item the vendor offered to buy
+//   vendor_sell_graphic:<hex>     the offered item with that graphic id
 //   0x1234ABCD                    a literal serial
 // ---------------------------------------------------------------------------
 class Scenario {
@@ -101,6 +119,15 @@ private:
         War, Bandage, Bank, VendorOpen, VendorBuy, Target, TargetGround, TargetCancel,
         WaitAction, Expect, WaitTarget, Resurrect, Remember, Require, CastScroll,
         GotoMobile, WaitDead, WaitAlive,
+        MarkHp, ExpectHpGain, WaitHpBelow,
+        MarkItem, ExpectItemDrop,
+        MarkGold, ExpectGoldGain,
+        VendorSellOpen, VendorSell, ScanMobiles,
+        // New ops go at the END: OpName()'s table is indexed by this enum, and
+        // inserting mid-enum while appending the name silently misnames every
+        // op after the insertion point (it has happened).
+        SetGait,
+        Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {
         Op          op = Op::WaitWorld;
@@ -122,6 +149,10 @@ private:
 
     std::vector<Step> steps_;
     std::vector<std::pair<std::string, u32>> binds_;
+    i32 markHp_ = -1;
+    i32 markGold_ = -1;
+    u32 markItemCount_ = 0;
+    u16 markItemGraphic_ = 0;
     bool failed_ = false;
     bool aborted_ = false;   // failure already reported and logout issued
     usize pc_ = 0;

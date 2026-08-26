@@ -1425,7 +1425,9 @@ void Client::HandleManualWalk() {
     // Manual keys are just another movement source: the controller applies the
     // same pacing, sequence and outstanding-step rules as A* and scripted
     // actions, so supervision input can never outrun the server's limits.
-    const StepSubmit res = SubmitStep(dir, nav_.movement.run, "manual");
+    // Auto, like every other source: the supervisor holding a key gets the
+    // session gait, and changes it with the `gait` verb, not by moving.
+    const StepSubmit res = SubmitStep(dir, sphere::Gait::Auto, "manual");
     if (res == StepSubmit::Turned) lastStepMs_ = 0;
     if (res == StepSubmit::Sent || res == StepSubmit::Turned)
         lastManualMoveMs_ = NowMs();
