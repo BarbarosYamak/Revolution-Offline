@@ -525,6 +525,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x70:
         case 0x8B: case 0x97:
         case 0xB0: OnGenericGump(data, size); break;
+        case 0x6F: OnSecureTrade(data, size); break;
 
         // Common in-world packets we just log + ignore for M1.
         case 0xBA: case 0xBC: case 0xBF: case 0xC0:
@@ -943,6 +944,11 @@ void Client::OnLoginComplete(const u8* data, usize size) {
     // open now if known, else TryOpenBackpackOnLogin fires from SetMobileEquip.
     openBackpackPending_ = true;
     TryOpenBackpackOnLogin();
+    // Ask what this character can do. Progression is the difference between a
+    // build and the actual character, so every session needs its own skill
+    // list before it can decide anything -- and Sphere only sends one when the
+    // client asks for it.
+    SendSkillsRequest();
 }
 
 // ---------------------------------------------------------------------------
@@ -1204,6 +1210,9 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     if (size < 5) return;
     const u32 serial = LoadBE32(data + 1) & 0x7FFFFFFFu;
     ActionOnObjectDeleted(serial);
+    // An item leaving the world is an item leaving a trade window, if that is
+    // where it was.
+    TradeNoteItemRemoved(serial);
     // A deleted mobile is a target that is provably gone -- the clearest
     // reason there is to stop standing around in war mode.
     war_.OnTargetGone(serial, NowMs());
@@ -2245,7 +2254,10 @@ namespace {
 constexpr i64 kUseTimeoutMs      = 4000;
 constexpr i64 kMoveTimeoutMs     = 4000;
 constexpr i64 kEquipTimeoutMs    = 4000;
-constexpr i64 kSkillTimeoutMs    = 8000;
+// Gathering skills are slow on purpose: Fishing's own DELAY is 8.0 seconds
+// (skills/skill18_fishing.scp), so an 8 s action deadline expired at the exact
+// moment the server was answering.
+constexpr i64 kSkillTimeoutMs    = 15000;
 constexpr i64 kCastTimeoutMs     = 12000;
 constexpr i64 kAttackTimeoutMs   = 4000;
 constexpr i64 kBankTimeoutMs     = 6000;
@@ -2838,6 +2850,9 @@ void Client::ActionOnContainerContents(u32 container, u16 count) {
 }
 
 void Client::ActionOnItemInContainer(u32 item, u32 container) {
+    // A trade window is an ordinary container as far as the protocol is
+    // concerned, so this is where the offer contents come from.
+    TradeNoteItemAdded(container, item);
     if (drag_.InFlight() && drag_.Serial() == item) drag_.Reset();
     if (!action_.Active()) return;
 
@@ -3030,6 +3045,48 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         contains("there is no such skill")) {
         FinishAction(act::Result::ServerFailure, text);
         return;
+    }
+    // Meditation ends the moment it starts when the skill is too low, and the
+    // outcome is a message rather than a packet. Classifying it is what turns
+    // a training loop from one attempt per action-timeout (8 s) into one per
+    // attempt (~2 s) -- and a failed attempt still earns skill, because
+    // CChar::Skill_Fail calls Skill_Experience just as success does.
+    if (action_.kind == act::Kind::UseSkill) {
+        // Gathering. Sphere reports the outcome as text (core/messages.scp
+        // fishing_*), so these phrases are the result packet.
+        if (contains("you pull out")) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
+        if (contains("fail to catch anything") ||
+            contains("there are no fish here") ||
+            contains("try fishing elsewhere")) {
+            // A failed gather still earns skill -- Skill_Fail calls
+            // Skill_Experience -- so this is an outcome, not an error.
+            FinishAction(act::Result::Success, text);
+            return;
+        }
+        if (contains("try fishing in water") ||
+            contains("can't fish from where") ||
+            contains("cannot fish so close") ||
+            contains("that is too far away")) {
+            FinishAction(act::Result::Rejected, text);
+            return;
+        }
+        if (contains("lose your concentration") ||
+            contains("stop concentrating")) {
+            FinishAction(act::Result::ServerFailure, text);
+            return;
+        }
+        if (contains("meditative trance") || contains("you enter a trance")) {
+            FinishAction(act::Result::Success, text);
+            return;
+        }
+        if (contains("you are at peace")) {
+            // Sphere's "nothing to meditate for": mana is already full.
+            FinishAction(act::Result::Success, text);
+            return;
+        }
     }
     // Bandaging someone who is not hurt: the server refuses rather than
     // consuming the bandage.
@@ -4731,6 +4788,23 @@ void Client::SendStatusRequest(u32 serial) {
     if (!serial) return;
     u8 buf[10];
     Send(buf, build::GetPlayerStatus(buf, 4, serial), "0x34 StatusRequest");
+}
+
+// 0x34 subtype 5 -- "show me my skills". This is the packet the real client
+// sends when the player opens the skills gump; Source-X answers it with the
+// full 0x3A list (`PacketObjStatusReq::onReceive` -> addSkillWindow). Without
+// asking, a client is simply never told what it can do: a fresh session
+// reports zero skills, which is what the first M3 audit run found.
+void Client::SendSkillsRequest() {
+    if (!playerSerial_) return;
+    u8 buf[10];
+    Send(buf, build::GetPlayerStatus(buf, 5, playerSerial_),
+         "0x34 SkillsRequest");
+}
+
+void Client::ActionRequestSkills() {
+    LogInfo("[action] requesting the skill list\n");
+    SendSkillsRequest();
 }
 
 void Client::SetWarMode(bool on) {

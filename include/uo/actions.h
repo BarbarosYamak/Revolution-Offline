@@ -63,6 +63,7 @@ enum class Kind : u8 {
     VendorSell,
     Bandage,        // use a bandage, then target a character
     Resurrect,
+    TradeOpen,      // offer an item to a player, expecting a trade window
 };
 
 inline const char* KindName(Kind k) {
@@ -82,6 +83,7 @@ inline const char* KindName(Kind k) {
         case Kind::VendorSell:    return "vendor_sell";
         case Kind::Bandage:       return "bandage";
         case Kind::Resurrect:     return "resurrect";
+        case Kind::TradeOpen:     return "trade_open";
     }
     return "?";
 }

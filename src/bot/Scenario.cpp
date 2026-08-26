@@ -47,6 +47,11 @@ const char* const kOpNames[] = {
     "set_home", "wait_travel", "expect_travel", "use_moongates",
     "ensure_peace", "expect_peace", "expect_war",
     "expect_region", "expect_place", "expect_service_known",
+    "skill_report", "mark_skill", "expect_skill_gain", "wait_skill",
+    "request_skills", "loop", "endloop", "wait_mana", "expect_item_gain",
+    "trade_start", "trade_offer", "trade_accept", "trade_retract",
+    "trade_cancel", "wait_trade_open", "wait_trade_partner",
+    "wait_trade_closed", "expect_trade", "wait_trade_offer", "wait_trade_mine",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -99,6 +104,27 @@ void Scenario::FailTravelStart(Client& client, const Step& st,
     failed_ = true;
 }
 
+// Several verbs name an item by graphic, and sometimes one name covers a set:
+// Sphere's fishing yields any of i_fish_big_1..4, so "a fish" is four graphics
+// and a scenario that named one would pass or fail on a coin toss.
+usize ParseGraphicList(const std::string& text, u16* out, usize cap) {
+    usize n = 0;
+    const char* p = text.c_str();
+    while (*p && n < cap) {
+        out[n++] = static_cast<u16>(std::strtoul(p, nullptr, 0));
+        const char* comma = std::strchr(p, ',');
+        if (!comma) break;
+        p = comma + 1;
+    }
+    return n;
+}
+
+u32 CountGraphics(Client& client, const u16* list, usize n) {
+    u32 total = 0;
+    for (usize i = 0; i < n; ++i) total += client.BackpackItemCount(list[i]);
+    return total;
+}
+
 void Scenario::Bind(const std::string& name, u32 serial) {
     for (auto& b : binds_) {
         if (b.first == name) { b.second = serial; return; }
@@ -130,10 +156,11 @@ u32 Scenario::Resolve(Client& client, const std::string& tok) const {
     // vendor_sell_graphic:<hex> -- the scenario names exactly which item it
     // means, so the choice does not depend on the order Sphere happens to send.
     if (tok.rfind("vendor_sell_graphic:", 0) == 0) {
-        const u16 want = static_cast<u16>(
-            std::strtoul(tok.c_str() + 20, nullptr, 0));
-        for (const auto& v : client.VendorSellOffer())
-            if (v.graphic == want) return v.serial;
+        u16 want[8];
+        const usize n = ParseGraphicList(tok.substr(20), want, 8);
+        for (usize i = 0; i < n; ++i)
+            for (const auto& v : client.VendorSellOffer())
+                if (v.graphic == want[i]) return v.serial;
         return 0;
     }
     if (tok == "vendor_first") {
@@ -241,6 +268,84 @@ bool Scenario::Load(const char* path, std::string* err) {
             st.op = Op::SetGait;
         }
         else if (verb == "wait_travel")     st.op = Op::WaitTravel;
+        else if (verb == "skill_report")    st.op = Op::SkillReport;
+        else if (verb == "request_skills")  st.op = Op::RequestSkills;
+        else if (verb == "trade_accept")    st.op = Op::TradeAccept;
+        else if (verb == "trade_retract")   st.op = Op::TradeRetract;
+        else if (verb == "trade_cancel")    st.op = Op::TradeCancel;
+        else if (verb == "wait_trade_open") st.op = Op::WaitTradeOpen;
+        else if (verb == "wait_trade_partner") st.op = Op::WaitTradePartner;
+        else if (verb == "wait_trade_closed")  st.op = Op::WaitTradeClosed;
+        // Waiting for goods to appear on the table is what lets two sessions
+        // agree without a sleep between them.
+        else if (verb == "wait_trade_offer") {
+            ls >> st.count;
+            if (st.count <= 0) st.count = 1;
+            st.op = Op::WaitTradeOffer;
+        }
+        else if (verb == "wait_trade_mine") {
+            ls >> st.count;
+            if (st.count <= 0) st.count = 1;
+            st.op = Op::WaitTradeMine;
+        }
+        else if (verb == "expect_trade") {
+            if (!need(st.a, "<completed|cancelled>")) { steps_.clear(); return false; }
+            st.op = Op::ExpectTrade;
+        }
+        else if (verb == "expect_item_gain") {
+            if (!need(st.a, "<graphic>")) { steps_.clear(); return false; }
+            st.op = Op::ExpectItemGain;
+        }
+        else if (verb == "trade_start") {
+            if (!need(st.a, "<partner>") || !need(st.b, "<item>")) {
+                steps_.clear(); return false;
+            }
+            st.op = Op::TradeStart;
+        }
+        else if (verb == "trade_offer") {
+            if (!need(st.a, "<item>")) { steps_.clear(); return false; }
+            ls >> st.count;
+            if (st.count <= 0) st.count = 1;
+            st.op = Op::TradeOffer;
+        }
+        else if (verb == "endloop")         st.op = Op::EndLoop;
+        else if (verb == "loop") {
+            ls >> st.count;
+            if (st.count <= 0) {
+                if (err) *err = "line " + std::to_string(lineNo) +
+                                ": loop needs a positive count";
+                steps_.clear();
+                return false;
+            }
+            st.op = Op::Loop;
+        }
+        else if (verb == "wait_mana") {
+            ls >> st.count;
+            if (st.count <= 0) {
+                if (err) *err = "line " + std::to_string(lineNo) +
+                                ": wait_mana needs a positive amount";
+                steps_.clear();
+                return false;
+            }
+            st.op = Op::WaitMana;
+        }
+        else if (verb == "mark_skill") {
+            if (!need(st.a, "<skill index>")) { steps_.clear(); return false; }
+            st.op = Op::MarkSkill;
+        }
+        else if (verb == "expect_skill_gain") {
+            if (!need(st.a, "<skill index>")) { steps_.clear(); return false; }
+            st.op = Op::ExpectSkillGain;
+        }
+        else if (verb == "wait_skill") {
+            // wait_skill <index> <tenths> -- block until the SERVER reports the
+            // trained value at or above this. There is no timeout here on
+            // purpose: the run's own timeout is the backstop, and a training
+            // scenario that silently gave up would be worse than one that ran long.
+            if (!need(st.a, "<skill index>")) { steps_.clear(); return false; }
+            ls >> st.count;
+            st.op = Op::WaitSkill;
+        }
         else if (verb == "travel_corpse")   st.op = Op::TravelCorpse;
         else if (verb == "travel_home")     st.op = Op::TravelHome;
         else if (verb == "set_home")        st.op = Op::SetHome;
@@ -532,13 +637,16 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     markGold_ = client.PlayerGold();
                     LogInfo("[scenario] mark_gold = %d\n", markGold_);
                     break;
-                case Op::MarkItem:
-                    markItemGraphic_ = static_cast<u16>(
-                        std::strtoul(st.a.c_str(), nullptr, 0));
-                    markItemCount_ = client.BackpackItemCount(markItemGraphic_);
-                    LogInfo("[scenario] mark_item 0x%04X = %u\n",
-                            markItemGraphic_, markItemCount_);
+                case Op::MarkItem: {
+                    u16 list[8];
+                    const usize n = ParseGraphicList(st.a, list, 8);
+                    markItemGraphic_ = n ? list[0] : 0;
+                    markItemList_ = st.a;
+                    markItemCount_ = CountGraphics(client, list, n);
+                    LogInfo("[scenario] mark_item %s = %u\n", st.a.c_str(),
+                            markItemCount_);
                     break;
+                }
                 case Op::VendorSellOpen:
                     client.ActionVendorSellOpen(Resolve(client, st.a),
                                                 st.text.c_str());
@@ -628,6 +736,89 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::EnsurePeace:
                     client.EnsurePeaceMode();
                     break;
+
+                // --- M3 progression ------------------------------------
+                case Op::RequestSkills:
+                    client.ActionRequestSkills();
+                    break;
+                case Op::TradeStart:
+                    client.ActionTradeStart(Resolve(client, st.a),
+                                            Resolve(client, st.b));
+                    break;
+                case Op::TradeOffer:
+                    client.ActionTradeOffer(Resolve(client, st.a),
+                                            static_cast<u16>(st.count));
+                    break;
+                case Op::TradeAccept:
+                    if (!client.ActionTradeAccept(true))
+                        LogWarn("[scenario] trade_accept: no trade open\n");
+                    break;
+                case Op::TradeRetract:
+                    if (!client.ActionTradeAccept(false))
+                        LogWarn("[scenario] trade_retract: no trade open\n");
+                    break;
+                case Op::TradeCancel:
+                    client.ActionTradeCancel();
+                    break;
+                case Op::Loop:
+                    // Push the iteration counter. The body runs count times;
+                    // EndLoop decrements and jumps back.
+                    loops_.push_back(LoopFrame{pc_, st.count});
+                    LogInfo("[scenario] loop x%d\n", st.count);
+                    break;
+                case Op::EndLoop: {
+                    if (loops_.empty()) {
+                        LogError("[scenario] endloop without loop (line %d); "
+                                 "aborting\n", st.line);
+                        failed_ = true;
+                        break;
+                    }
+                    LoopFrame& f = loops_.back();
+                    if (--f.remaining > 0) {
+                        pc_ = f.start;      // ++pc_ below lands on the body
+                        entered_ = false;
+                    } else {
+                        loops_.pop_back();
+                    }
+                    break;
+                }
+                case Op::SkillReport: {
+                    // Dump exactly what the shard says this character has.
+                    // This is the evidence a skill matrix is built from, so it
+                    // prints the raw tenths rather than a rounded display.
+                    std::vector<Client::SkillReport> all;
+                    client.PlayerSkillsAll(all);
+                    LogInfo("[skills] %zu reported, trained sum %u.%u, "
+                            "STR %d DEX %d INT %d (sum %d, cap %d)\n",
+                            all.size(), client.PlayerSkillSum() / 10,
+                            client.PlayerSkillSum() % 10, client.PlayerStr(),
+                            client.PlayerDex(), client.PlayerInt(),
+                            client.PlayerStatSum(), client.PlayerStatCap());
+                    for (const Client::SkillReport& s : all) {
+                        if (!s.baseTenths && !s.valueTenths) continue;
+                        LogInfo("[skills]   %3u base=%u.%u value=%u.%u "
+                                "cap=%u.%u lock=%u\n", s.index,
+                                s.baseTenths / 10, s.baseTenths % 10,
+                                s.valueTenths / 10, s.valueTenths % 10,
+                                s.capTenths / 10, s.capTenths % 10, s.lock);
+                    }
+                    char ev[192];
+                    std::snprintf(ev, sizeof(ev),
+                                  "skills=%zu sum=%u str=%d dex=%d int=%d",
+                                  all.size(), client.PlayerSkillSum(),
+                                  client.PlayerStr(), client.PlayerDex(),
+                                  client.PlayerInt());
+                    LogEvent("skill_report", ev);
+                    break;
+                }
+                case Op::MarkSkill: {
+                    markSkillIndex_ = static_cast<u16>(
+                        std::strtoul(st.a.c_str(), nullptr, 0));
+                    markSkillTenths_ = client.PlayerSkillBase(markSkillIndex_);
+                    LogInfo("[scenario] mark_skill %u = %d tenths\n",
+                            markSkillIndex_, markSkillTenths_);
+                    break;
+                }
                 case Op::CastScroll:
                     client.ActionCastScroll(Resolve(client, st.a),
                                             st.b.empty() ? client.PlayerSerial()
@@ -690,8 +881,30 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                         }
                     } else if (st.b == "mobile_name") {
                         serial = client.NearestMobileNamed(st.c.c_str());
+                    } else if (st.b == "carried_graphic") {
+                        // Backpack first, then worn gear -- see
+                        // Client::FindItemByGraphic for why worn matters.
+                        u16 list[8];
+                        const usize n = ParseGraphicList(st.c, list, 8);
+                        for (usize i = 0; i < n && !serial; ++i)
+                            serial = client.FindItemByGraphic(list[i], true);
                     } else if (st.b == "mobile_trade") {
-                        serial = client.NearestMobileWithTrade(st.c.c_str());
+                        // A comma list, because Sphere's titles are gendered:
+                        // the Britain docks have both "the fisherman" and
+                        // "the fisherwoman", and a scenario that named one
+                        // would work or not depending on which NPC spawned.
+                        usize start = 0;
+                        while (!serial && start <= st.c.size()) {
+                            const usize comma = st.c.find(',', start);
+                            const usize end = comma == std::string::npos
+                                                  ? st.c.size() : comma;
+                            const std::string one =
+                                st.c.substr(start, end - start);
+                            if (!one.empty())
+                                serial = client.NearestMobileWithTrade(one.c_str());
+                            if (comma == std::string::npos) break;
+                            start = comma + 1;
+                        }
                     } else {
                         serial = Resolve(client, st.b);
                     }
@@ -749,10 +962,11 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 break;
             }
             case Op::ExpectItemDrop: {
-                const u16 g = static_cast<u16>(
-                    std::strtoul(st.a.c_str(), nullptr, 0));
-                const u32 now = client.BackpackItemCount(g);
-                if (g != markItemGraphic_ || now >= markItemCount_) {
+                u16 list[8];
+                const usize n = ParseGraphicList(st.a, list, 8);
+                const u16 g = n ? list[0] : 0;
+                const u32 now = CountGraphics(client, list, n);
+                if (st.a != markItemList_ || now >= markItemCount_) {
                     LogError("[scenario] EXPECT item 0x%04X to drop: %u -> %u "
                              "(line %d); aborting\n", g, markItemCount_, now,
                              st.line);
@@ -765,6 +979,94 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 break;
             }
             case Op::WaitTravel:   done = !client.TravelBusy(); break;
+            case Op::WaitTradeOpen:
+                done = client.Trade().Active();
+                break;
+            case Op::WaitTradePartner:
+                // The partner ticked their box. Waiting for this before we
+                // tick ours is what makes the two-session test deterministic
+                // without a sleep.
+                done = client.Trade().TheirCheck() || !client.Trade().Active();
+                break;
+            case Op::WaitTradeClosed:
+                done = !client.Trade().Active();
+                break;
+            case Op::WaitTradeOffer:
+                done = static_cast<int>(client.Trade().TheirOffer().size()) >=
+                           st.count ||
+                       !client.Trade().Active();
+                break;
+            case Op::WaitTradeMine:
+                done = static_cast<int>(client.Trade().MyOffer().size()) >=
+                           st.count ||
+                       !client.Trade().Active();
+                break;
+            case Op::ExpectTrade: {
+                const bool wantDone = (st.a == "completed" || st.a == "ok");
+                const bool got =
+                    client.Trade().CurrentPhase() == trade::Phase::Completed;
+                if (got != wantDone) {
+                    LogError("[scenario] EXPECT trade %s but it was %s (%s) "
+                             "(line %d); aborting\n", st.a.c_str(),
+                             trade::PhaseName(client.Trade().CurrentPhase()),
+                             trade::CloseReasonName(client.Trade().Reason()),
+                             st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] trade %s, as expected (%s)\n",
+                            trade::PhaseName(client.Trade().CurrentPhase()),
+                            trade::CloseReasonName(client.Trade().Reason()));
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectItemGain: {
+                u16 list[8];
+                const usize n = ParseGraphicList(st.a, list, 8);
+                const u16 g = n ? list[0] : 0;
+                const u32 now = CountGraphics(client, list, n);
+                if (st.a != markItemList_ || now <= markItemCount_) {
+                    LogError("[scenario] EXPECT item 0x%04X to increase: "
+                             "%u -> %u (line %d); aborting\n", g,
+                             markItemCount_, now, st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] item 0x%04X gain confirmed: %u -> %u\n",
+                            g, markItemCount_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::WaitMana:
+                // Real regeneration, at whatever rate the shard runs it. A
+                // training loop that cast anyway would just collect "you lack
+                // sufficient mana" and no skill.
+                done = client.PlayerMana() >= st.count;
+                break;
+            case Op::WaitSkill: {
+                const i32 now = client.PlayerSkillBase(
+                    static_cast<u16>(std::strtoul(st.a.c_str(), nullptr, 0)));
+                done = now >= st.count;
+                break;
+            }
+            case Op::ExpectSkillGain: {
+                const u16 idx = static_cast<u16>(
+                    std::strtoul(st.a.c_str(), nullptr, 0));
+                const i32 now = client.PlayerSkillBase(idx);
+                if (idx != markSkillIndex_ || markSkillTenths_ < 0 ||
+                    now <= markSkillTenths_) {
+                    LogError("[scenario] EXPECT skill %u to gain: %d -> %d "
+                             "tenths (line %d); aborting\n", idx,
+                             markSkillTenths_, now, st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] skill %u gain confirmed: %d.%d -> "
+                            "%d.%d\n", idx, markSkillTenths_ / 10,
+                            markSkillTenths_ % 10, now / 10, now % 10);
+                }
+                done = true;
+                break;
+            }
             case Op::ExpectTravel: {
                 const bool want = (st.a == "ok" || st.a == "success" ||
                                    st.a == "1");

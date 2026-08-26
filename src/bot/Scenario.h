@@ -88,6 +88,8 @@ namespace bot {
 //   backpack                      the worn backpack
 //   bank                          the container the server opened as our bank
 //   pack_graphic <hex>            first backpack item with that graphic
+//   carried_graphic <hex,...>     first item with any of those graphics, in
+//                                 the backpack or worn
 //   mobile_nearest                nearest cached mobile that is not us
 //   mobile_name <text>            nearest cached mobile whose name contains text
 //   mobile_trade <text>           nearest mobile whose paperdoll trade is
@@ -138,6 +140,17 @@ private:
         WaitTravel, ExpectTravel, UseMoongates,
         EnsurePeace, ExpectPeace, ExpectWar,
         ExpectRegion, ExpectPlace, ExpectServiceKnown,
+        // M3 progression. Skill values are read from the server's own 0x3A;
+        // nothing here can change one.
+        SkillReport, MarkSkill, ExpectSkillGain, WaitSkill, RequestSkills,
+        // Training is repetition, so the scenario language needs a loop. It is
+        // deliberately the simplest thing that works: a bounded count, one
+        // level of nesting checked at load time, and no conditionals.
+        Loop, EndLoop, WaitMana, ExpectItemGain,
+        // M3 secure player trade.
+        TradeStart, TradeOffer, TradeAccept, TradeRetract, TradeCancel,
+        WaitTradeOpen, WaitTradePartner, WaitTradeClosed, ExpectTrade,
+        WaitTradeOffer, WaitTradeMine,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {
@@ -166,8 +179,13 @@ private:
     std::vector<std::pair<std::string, u32>> binds_;
     i32 markHp_ = -1;
     i32 markGold_ = -1;
+    u16 markSkillIndex_ = 0xFFFF;
+    i32 markSkillTenths_ = -1;
+    struct LoopFrame { usize start; int remaining; };
+    std::vector<LoopFrame> loops_;
     u32 markItemCount_ = 0;
     u16 markItemGraphic_ = 0;
+    std::string markItemList_;   // the graphics mark_item was given, verbatim
     bool failed_ = false;
     bool aborted_ = false;   // failure already reported and logout issued
     usize pc_ = 0;

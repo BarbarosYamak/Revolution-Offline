@@ -1,0 +1,20 @@
+# M3 -- what this shard actually gives a character.
+#
+# Reads the server's own 0x3A skill list and 0x11 status block and prints them
+# raw, in tenths. This is the evidence the skill matrix in
+# docs/REVOLUTION_GAMEPLAY_TRUTH.md is built from: no value in it is inferred
+# from what stock UO does.
+
+wait_world
+sleep 3000
+
+skill_report
+
+# Ask again after the status packets have all landed, in case the first report
+# ran before the server finished describing us.
+sleep 4000
+skill_report
+
+say skill audit done
+sleep 1000
+logout

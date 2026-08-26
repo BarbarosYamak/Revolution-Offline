@@ -11,6 +11,8 @@
 #include "travel/WarMode.h"
 #include "uo/actions.h"
 #include "uo/log.h"
+#include "uo/progression.h"
+#include "uo/trade.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
 #include "world/SharedWorld.h"
@@ -281,9 +283,52 @@ public:
     // whatever happens to be closest.
     u32  NearestMobileWithBody(u16 body, int maxDist) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
+    // The same search across worn gear as well. A newbie kit hands out tools
+    // the shard then EQUIPS -- a fishing pole is a weapon as far as Sphere is
+    // concerned (i_fishing_pole has SKILL=Fencing) -- so "the pole in my pack"
+    // finds nothing while the character is holding it.
+    u32  FindItemByGraphic(u16 graphic, bool includeEquipped) const;
     u32  BackpackItemCount(u16 graphic) const;
     i32  PlayerMana() const;
     i32  PlayerGold() const;
+
+    // -----------------------------------------------------------------
+    // Skills and stats, as the SERVER reports them (0x3A / 0x11).
+    //
+    // Values are in tenths, which is how Sphere stores and sends them:
+    // 500 is 50.0. Nothing here is ever written locally -- a skill only
+    // changes when the shard says it did, which is the whole point of
+    // training being real.
+    //
+    // The skill id on the wire is 1-based in the full-list form (a 0 id
+    // terminates the list), so `SkillIndex` is id - 1 and is what the
+    // Scripts-X `[SKILL n]` sections and the client's skills.mul use.
+    // -----------------------------------------------------------------
+    struct SkillReport {
+        u16 wireId;        // as sent by 0x3A
+        u16 index;         // wireId - 1: the [SKILL n] number
+        u16 valueTenths;   // current, including item/stat modifiers
+        u16 baseTenths;    // the trained value -- what training moves
+        u16 capTenths;     // 0 when the server did not send one
+        u8  lock;
+    };
+    usize PlayerSkillCount() const { return player_.skills.size(); }
+    bool  PlayerSkillInfo(u16 index, SkillReport* out) const;
+    // Trained value of a skill in tenths; -1 when the server has not told us.
+    i32   PlayerSkillBase(u16 index) const;
+    void  PlayerSkillsAll(std::vector<SkillReport>& out) const;
+    // Sum of every trained skill, in tenths -- the number the shard's
+    // SKILLSUM cap is measured against.
+    u32   PlayerSkillSum() const;
+
+    i32  PlayerStr() const { return player_.strength; }
+    i32  PlayerDex() const { return player_.dexterity; }
+    i32  PlayerInt() const { return player_.intelligence; }
+    i32  PlayerStatSum() const;
+    i32  PlayerStatCap() const { return player_.statsCap; }
+    i32  PlayerManaMax() const { return player_.manaMax; }
+    i32  PlayerWeight() const { return player_.weight; }
+    i32  PlayerMaxWeight() const { return player_.maxWeight; }
     u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
     bool ContainerKnown(u32 serial) const;
     u32  BankContainer() const { return bankContainer_; }
@@ -292,6 +337,26 @@ public:
     // names carry their trade ("<name> the provisioner"), which is the only
     // way a client can tell one vendor from another.
     void ActionScanMobiles();
+
+    // Ask the shard for this character's skill list (0x34 subtype 5). A client
+    // is not told its skills until it asks, exactly as the real client only
+    // learns them when the player opens the skills gump.
+    void ActionRequestSkills();
+
+    // -----------------------------------------------------------------
+    // Secure player-to-player trade (M3).
+    //
+    // Opening one means dropping an item on the other player, which is the
+    // only way a 2.0.x client has. Everything after that is 0x6F and the
+    // ordinary container packets. See include/uo/trade.h for the protocol
+    // notes and for the one rule this client enforces that the server does
+    // not.
+    // -----------------------------------------------------------------
+    void ActionTradeStart(u32 partnerSerial, u32 itemSerial);
+    void ActionTradeOffer(u32 itemSerial, u16 amount = 1);
+    bool ActionTradeAccept(bool accept);
+    bool ActionTradeCancel();
+    const trade::TradeState& Trade() const { return trade_; }
 
     // -----------------------------------------------------------------
     // M2.5 semantic travel.
@@ -498,6 +563,7 @@ private:
     void SendDoubleClick(u32 serial);  // 0x06 raw double-click by serial (JS Player.doubleClick);
                                        // double-clicking an NPC opens its paperdoll (-> 0x88 title)
     void SendTakeToBackpack(u32 serial, u16 qty); // 0x07+0x08 lift item from any open container -> backpack (JS Player.take)
+    void SendSkillsRequest();          // 0x34 subtype 5 -> full 0x3A skill list
     void SendStatusRequest(u32 serial); // 0x34 status query (JS Player.requestStatus);
                                         // server then pushes 0xA1 HP updates for it
     void SetWarMode(bool on);          // 0x72 war-mode toggle (JS Player.warMode)
@@ -1092,6 +1158,11 @@ private:
     };
     ActiveGump gump_;
     void OnGenericGump(const u8* data, usize size);   // 0xB0
+    void OnSecureTrade(const u8* data, usize size);   // 0x6F
+    void SendTradeAction(u8 action, u32 container, u32 flag);
+    void TradeNoteItemAdded(u32 container, u32 item);
+    void TradeNoteItemRemoved(u32 item);
+    trade::TradeState trade_;      // session-owned; never shared
     void AnswerGateGump();   // pick the route's destination out of an open gump
     void SendGumpResponse(u32 serial, u32 context, u32 button,
                           const u32* checks, usize checkCount);   // 0xB1

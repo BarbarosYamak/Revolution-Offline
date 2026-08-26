@@ -1,0 +1,152 @@
+# M3 -- one authentic money-making loop, end to end.
+#
+#   travel by need -> fish -> sell the catch -> gold up
+#
+# Why fishing, and why here: the shard's own VENDOR_S_FISHER template both
+# sells fishing poles and BUYS fish (templates/tm_vend.scp:1012-1023), so one
+# NPC closes the loop, and the worldgen puts two of them on the Britain docks.
+# The character already owns a pole because [NEWBIE FISHING] hands one to
+# anyone created with the skill -- the shard's own kit, not a grant.
+#
+# Three things the live runs taught, all of which this file is shaped by:
+#
+#  1. Fishing is started by USING THE POLE, not from the skill list. Source-X's
+#     CClient::Event_Skill_Use (CClientEvent.cpp:595) only handles the skills a
+#     player clicks in the skills gump; Fishing, Mining, Lumberjacking,
+#     Blacksmithy and Healing are all absent and answer "There is no such
+#     skill." The tool is the verb. (M2 found the same for Healing.)
+#  2. The pole is WORN, not carried. Sphere equips it -- i_fishing_pole has
+#     SKILL=Fencing, so it is a weapon -- and a backpack-only search finds
+#     nothing.
+#  3. Most water has no fish in it. `[REGIONTYPE r_default_water]` is
+#     `RESOURCES=60.0 mr_nothing` against 10.0 for each of the four fish
+#     (core/regionresources.scp:92-97), and a spot keeps whatever it rolled
+#     for REGEN=60*60*10 -- ten hours. Casting at one tile forever is how you
+#     get "There are no fish here" forever. So this moves down the water like
+#     a person would.
+#
+# The standing spot and the twelve targets were chosen by searching the
+# client's own data for a standable tile with the most water inside Fishing's
+# RANGE=4 -- (1453,1765) has 27 -- rather than by eye.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+# "Where is a fisherman?" -- the travel layer works out that the answer is in
+# another city.
+travel_service fisherman
+wait_travel
+expect_travel ok
+
+# ...and then to the water's edge.
+travel_point 1453 1765 1
+wait_travel
+expect_travel ok
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+# "A fish" is four graphics: Sphere's fishing yields any of i_fish_big_1..4.
+mark_item 0x09CC,0x09CD,0x09CE,0x09CF
+
+remember pole carried_graphic 0x0DBF,0x0DC0
+require pole
+
+# Three passes down twelve different tiles. Each cast waits 18 seconds, not
+# the 8 the skill's DELAY suggests: Sphere rolls 1-2 STROKES per gather
+# (m_atResource.m_dwStrokeCount = rand(2)+1, CCharSkill.cpp:1568), so a
+# two-stroke cast takes sixteen. A shorter wait cancels the gather -- "You pull
+# your line back in and stop fishing" -- and throws the attempt away.
+#
+# Thirty-six casts is not padding. Roughly six in ten tiles hold nothing at
+# all, and the ones that do still have to pass a skill check against
+# SKILL=1.0,100.0, so a dozen casts can honestly return an empty pack.
+loop 3
+  use @pole
+  wait_target
+  target_ground 1455 1761 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1763 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1765 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1767 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1769 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1456 1762 -5
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1456 1764 -5
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1456 1766 -5
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1456 1768 -5
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1762 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1764 -15
+  sleep 18000
+  use @pole
+  wait_target
+  target_ground 1455 1766 -15
+  sleep 18000
+endloop
+
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x09CC,0x09CD,0x09CE,0x09CF
+
+# Sell the catch to the fisherman who sells the poles: VENDOR_S_FISHER buys
+# fish as well (templates/tm_vend.scp:1023).
+travel_service fisherman
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+# Sphere's titles are gendered -- the Britain docks have both.
+remember buyer mobile_trade fisherman,fisherwoman
+require buyer
+
+travel_entity @buyer 2
+wait_travel
+
+vendor_sell_open @buyer sell
+wait_action
+expect success
+sleep 1000
+
+vendor_sell @buyer vendor_sell_graphic:0x09CC,0x09CD,0x09CE,0x09CF 1
+wait_action
+sleep 2500
+expect_gold_gain
+
+say a fisherman's work
+sleep 1000
+logout

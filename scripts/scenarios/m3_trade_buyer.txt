@@ -1,0 +1,53 @@
+# M3 secure trade -- the buyer's half.
+#
+# This character walks to the Britain docks, waits for a fisherman to offer it
+# something, puts gold on the table, and accepts. It is entirely event-driven:
+# every wait is on a state the SERVER reported, so the two sessions need no
+# agreed timing between them (the M2 rendezvous debt, still paid).
+#
+# Gold is traded as coins in the window. There is no virtual gold ledger for a
+# 2.0.x client -- FEATURE_TOL_VIRTUALGOLD needs MINCLIVER_NEWSECURETRADE -- so
+# this is the classic way, and the amount is real coin off this character's
+# own pile.
+
+wait_world
+sleep 2000
+ensure_peace
+
+travel_point 1451 1765 1
+wait_travel
+expect_travel ok
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+mark_item 0x09CC,0x09CD,0x09CE,0x09CF
+
+say i am buying fish
+
+# Block until the seller opens a window on us.
+wait_trade_open
+
+# Their goods first: we do not pay for an empty table.
+wait_trade_offer 1
+
+remember coins pack_graphic 0x0EED
+require coins
+trade_offer @coins 25
+wait_action
+wait_trade_mine 1
+
+trade_accept
+wait_trade_closed
+expect_trade completed
+
+sleep 2500
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x09CC,0x09CD,0x09CE,0x09CF
+
+say fish acquired
+sleep 1000
+logout

@@ -721,6 +721,12 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
         {"shipwright",   wm::Service::Shipwright},
         {"mapmaker",     wm::Service::Mapmaker},
         {"fisherman",    wm::Service::Fisherman},
+        // Sphere's paperdoll titles are gendered (CNPC_PaperdollTitle_VT), so
+        // the same trade reaches us under two names.
+        {"fisherwoman",  wm::Service::Fisherman},
+        {"seamstress",   wm::Service::Tailor},
+        {"armourer",     wm::Service::Blacksmith},
+        {"animal",       wm::Service::Stablemaster},   // "the animal trainer"
         {"cook",         wm::Service::Cook},
         {"miller",       wm::Service::Miller},
         {"stablemaster", wm::Service::Stablemaster},

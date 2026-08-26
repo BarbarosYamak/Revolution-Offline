@@ -1,0 +1,56 @@
+# M3 -- a real training block: Meditation and Magery together.
+#
+# Measured facts this loop is built around (see
+# docs/REVOLUTION_GAMEPLAY_TRUTH.md for the citations):
+#
+#   * Mana regenerates at a flat 1 point per 20 s. sphere.ini Regen1=20, and
+#     CChar::Stats_GetRegenVal returns max(1, regenVal) with no INT term, so a
+#     bigger mana pool does not buy more mana per hour -- 180/hour, whoever you
+#     are. Night Sight costs 4, so that is 45 casts an hour.
+#   * Magery's gain chance is 5.0% per use at 50.0 (ADV_RATE 10.0,200.0,800.0
+#     through CValueCurveDef::GetChancePercent). 45 casts/hour x 5% = 0.225
+#     skill an hour, so 50 -> 60 is about 44 hours of casting. That is the
+#     "skill farming was hard" memory, in numbers.
+#   * Meditation is the way out: CChar::Skill_Meditation adds a mana point per
+#     stroke on a 2.0 -> 1.0 s timer, roughly a tenfold speedup. But it FAILS
+#     at low skill -- measured live at Meditation 3.6, "You lose your
+#     concentration" two seconds in, every time.
+#   * A failed skill use still earns experience: CChar::Skill_Fail calls
+#     Skill_Experience exactly as Skill_Done does. So failed meditation
+#     attempts are how a character trains out of that hole, and they cost
+#     nothing at all.
+#
+# So the loop alternates: attempt meditation (free, always earns a Meditation
+# roll), then cast if there is mana (earns a Magery roll). When mana is out the
+# cast is refused in milliseconds and the loop simply keeps meditating, which
+# is exactly what a player grinding this would do.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 2000
+skill_report
+
+# Report every ~60 actions so the gain rate can be measured while the block is
+# still running, rather than only at the end of a multi-hour session.
+loop 100
+  loop 60
+    skill 46
+    wait_action
+    sleep 200
+    cast 6 self
+    wait_action
+    sleep 200
+  endloop
+  request_skills
+  sleep 1500
+  skill_report
+endloop
+
+request_skills
+sleep 3000
+skill_report
+say training block done
+sleep 1000
+logout

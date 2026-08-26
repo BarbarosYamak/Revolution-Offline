@@ -1,0 +1,22 @@
+# M3 -- create the income character the ordinary way.
+#
+# The 0x00 create-character packet asks for three skills; Source-X clamps each
+# to 50 and the sum to 100 in CChar::InitPlayer, and the shard's own newbie
+# templates (templates_special/sp_tm_newbie.scp) decide the kit. Nothing is
+# granted here -- the client asks and the server answers.
+#
+# Fishing 50 / Mining 30 / Blacksmithy 20: a hybrid gatherer, not a profession.
+# The same character can fish for coin, mine its own ore and smith some of it,
+# which is the shape M3 is meant to support.
+
+wait_world
+sleep 3000
+request_skills
+sleep 2000
+skill_report
+remember pack backpack
+open @pack
+wait_action
+say fisher reporting for work
+sleep 1000
+logout

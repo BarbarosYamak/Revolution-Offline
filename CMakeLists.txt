@@ -61,6 +61,10 @@ set(UO_CLIENT_SOURCES
     src/navigation/PathPlanner.cpp
     src/navigation/Navigation.cpp
     src/travel/ClientTravel.cpp
+    src/progression/ClientProgression.cpp
+    src/progression/ClientTrade.cpp
+    src/progression/Progression.cpp
+    src/progression/Trade.cpp
     src/travel/Journey.cpp
     src/travel/PersonalKnowledge.cpp
     src/travel/WarMode.cpp

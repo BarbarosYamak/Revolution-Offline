@@ -44,3 +44,14 @@ target_include_directories(path_probe PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(path_probe PRIVATE uo_world)
+
+# M3 progression, economy and secure-trade state machines. Pure logic: no
+# server, no MULs, no world data.
+add_executable(m3_progression m3_progression.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Progression.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Trade.cpp)
+target_include_directories(m3_progression PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m3_progression COMMAND m3_progression)
