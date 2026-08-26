@@ -277,6 +277,9 @@ public:
     // the guildmaster keeps no shop, so a bot shopping for reagents would
     // stand in front of him saying "buy" to no answer.
     u32  NearestMobileWithTrade(const char* trade) const;
+    // "<name> <phrase>" when the mobile's paperdoll name is known, so exactly
+    // one NPC in earshot answers (Source-X CClientEvent.cpp:1962).
+    std::string AddressMobile(u32 serial, const char* phrase) const;
     // Nearest mobile whose body graphic matches. Body ids come from the
     // server's own 0x78, and a creature's CHARDEF id IS its body, so a
     // scenario can name exactly which creature it means instead of taking

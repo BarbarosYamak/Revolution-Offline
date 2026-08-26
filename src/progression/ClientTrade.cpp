@@ -142,7 +142,7 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             // Sphere sends CLOSE for both a completed trade and a cancelled
             // one. "Both boxes were ticked when it closed" is the only thing
             // that distinguishes them from here.
-            const bool completed = trade_.MyCheck() && trade_.TheirCheck();
+            const bool completed = trade_.BothAccepted();
             trade_.OnClosed(completed ? trade::CloseReason::BothAccepted
                                       : trade::CloseReason::PartnerCancelled,
                             NowMs());

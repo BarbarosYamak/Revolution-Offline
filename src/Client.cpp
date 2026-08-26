@@ -2726,15 +2726,37 @@ void Client::ActionOpenBank(u32 bankerSerial, const char* phrase) {
 // A vendor shop is opened by speaking to the vendor. Confirmation is the
 // 0x24 gump 0x30 that terminates the 0x2E/0x3C/0x74 burst, which the client
 // already assembles into vendorOffer_.
+// Address one named NPC rather than shouting at the street.
+//
+// Source-X walks every character in earshot and, for each, calls
+// NPC_OnHearName (CClientEvent.cpp:1962). A name match sets bNamed and
+// `break`s the loop, so exactly one NPC answers; an unnamed keyword instead
+// falls through to "pick closest NPC", and the closest shopkeeper is not
+// necessarily the one we walked to. m3_sell2 said a bare "buy" a tile from
+// Jebidiah and got the shoemaker's stock list instead, from a vendor five
+// tiles further off. The paperdoll title we already fetched to identify the
+// vendor ("Shika, the fisherwoman") carries the name we need.
+std::string Client::AddressMobile(u32 serial, const char* phrase) const {
+    const std::string say = (phrase && phrase[0]) ? phrase : "";
+    auto it = paperdollTitles_.find(serial);
+    if (it == paperdollTitles_.end() || it->second.empty()) return say;
+    const std::string& title = it->second;
+    usize cut = title.find(',');
+    if (cut == std::string::npos) cut = title.find(" the ");
+    if (cut == std::string::npos || cut == 0) return say;
+    if (say.empty()) return title.substr(0, cut);
+    return title.substr(0, cut) + " " + say;
+}
+
 void Client::ActionVendorOpen(u32 vendorSerial, const char* phrase) {
     BeginAction(act::Kind::VendorBuy, kVendorTimeoutMs);
     action_.subject = vendorSerial;
     action_.destination = vendorSerial;
     vendorOffer_.clear();
     vendorOfferVendor_ = 0;
-    LogInfo("[VENDOR] open vendor=0x%08X phrase='%s'\n",
-            vendorSerial, phrase ? phrase : "buy");
-    SayAscii(phrase && phrase[0] ? phrase : "buy");
+    const std::string say = AddressMobile(vendorSerial, phrase && phrase[0] ? phrase : "buy");
+    LogInfo("[VENDOR] open vendor=0x%08X say='%s'\n", vendorSerial, say.c_str());
+    SayAscii(say.c_str());
 }
 
 void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
@@ -2767,9 +2789,9 @@ void Client::ActionVendorSellOpen(u32 vendorSerial, const char* phrase) {
     action_.subject = vendorSerial;
     action_.destination = vendorSerial;
     vendorSellOffer_.clear();
-    LogInfo("[VENDOR] open sell vendor=0x%08X phrase='%s'\n",
-            vendorSerial, phrase ? phrase : "sell");
-    SayAscii(phrase && phrase[0] ? phrase : "sell");
+    const std::string say = AddressMobile(vendorSerial, phrase && phrase[0] ? phrase : "sell");
+    LogInfo("[VENDOR] open sell vendor=0x%08X say='%s'\n", vendorSerial, say.c_str());
+    SayAscii(say.c_str());
 }
 
 void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {

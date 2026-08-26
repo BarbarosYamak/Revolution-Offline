@@ -137,12 +137,30 @@ require buyer
 travel_entity @buyer 2
 wait_travel
 
+# Two things the first attempt at this got wrong.
+#
+#  1. An NPC must be IN CONVERSATION before a keyword registers. Saying "sell"
+#     25ms after arriving got "Shika: Hmm?" out of e_Human_HearUnk -- the
+#     unrecognised-speech handler -- and no shop. Stand there, let the vendor
+#     open with e_Human_ConvInit, greet, then trade. (Addressing it by name is
+#     the client's job now: Client::AddressMobile.)
+#  2. CChar::CanTouch is `iDist > 2` (CCharStatus.cpp:1423) and vendors wander
+#     within their spawner's walkRange of 5, so re-approach immediately before
+#     the exchange instead of trusting an arrival from ten seconds ago.
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @buyer 1
+wait_travel
 vendor_sell_open @buyer sell
 wait_action
 expect success
-sleep 1000
+sleep 1500
 
-vendor_sell @buyer vendor_sell_graphic:0x09CC,0x09CD,0x09CE,0x09CF 1
+travel_entity @buyer 1
+wait_travel
+vendor_sell @buyer vendor_sell_graphic:0x09CC,0x09CD,0x09CE,0x09CF 20
 wait_action
 sleep 2500
 expect_gold_gain

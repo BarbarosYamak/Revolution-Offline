@@ -22,9 +22,9 @@ remember pack backpack
 open @pack
 wait_action
 mark_gold
-mark_item 0x09CC,0x09CD,0x09CE,0x09CF
+mark_item 0x097A
 
-say i am buying fish
+say i am buying fish steaks
 
 # Block until the seller opens a window on us.
 wait_trade_open
@@ -46,8 +46,8 @@ sleep 2500
 open @pack
 wait_action
 sleep 2000
-expect_item_gain 0x09CC,0x09CD,0x09CE,0x09CF
+expect_item_gain 0x097A
 
-say fish acquired
+say steaks acquired
 sleep 1000
 logout

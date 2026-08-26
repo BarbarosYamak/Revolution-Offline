@@ -53,6 +53,7 @@ void TradeState::Reset() {
     theirCheck_ = false;
     checkSent_ = false;
     acceptResets_ = 0;
+    bothAccepted_ = false;
     openedMs_ = 0;
     myOffer_.clear();
     theirOffer_.clear();
@@ -79,7 +80,11 @@ void TradeState::OnCheckChanged(bool mine, bool theirs, i64 nowMs) {
     phase_ = mine ? Phase::Accepted : Phase::Open;
 
     // Both checks set means the server is completing the trade; the CLOSE
-    // that follows carries the outcome, so nothing is concluded here.
+    // that follows carries the outcome, so nothing is concluded here -- but
+    // it is latched, because from this instant the goods start moving and the
+    // checks get cleared, and by the time the CLOSE arrives there would be
+    // nothing left to tell a completed trade from an abandoned one.
+    if (mine && theirs) bothAccepted_ = true;
 }
 
 void TradeState::OnClosed(CloseReason reason, i64 nowMs) {
@@ -123,6 +128,13 @@ void TradeState::ContentsChanged() {
     // table, so our acceptance should not stand. Sphere does not enforce this
     // -- Trade_Status only clears checks when someone un-checks -- so this is
     // a local retraction that the caller must actually send.
+    //
+    // Once both boxes are ticked this must not fire: the contents are changing
+    // because the server is completing the trade, and retracting there both
+    // invents a safety event that never happened and destroys the evidence
+    // that the trade succeeded. Found live in m3_trade4, where a completed
+    // sale was reported as `partner_cancelled`.
+    if (bothAccepted_) return;
     if (phase_ == Phase::Accepted || myCheck_) {
         ++acceptResets_;
         myCheck_ = false;

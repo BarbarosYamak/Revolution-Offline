@@ -91,6 +91,12 @@ public:
     u32 TheirContainer() const { return theirContainer_; }
     bool MyCheck() const { return myCheck_; }
     bool TheirCheck() const { return theirCheck_; }
+    // Latched the moment the server reported both boxes ticked. From then on
+    // the trade is committing, and the item movements that follow are the
+    // server handing the goods over -- not a partner editing the table. The
+    // CLOSE that ends a completed trade carries no reason code, so this latch
+    // is the only thing that tells completion from cancellation.
+    bool BothAccepted() const { return bothAccepted_; }
     bool CheckSent() const { return checkSent_; }
 
     const std::vector<u32>& MyOffer() const { return myOffer_; }
@@ -115,6 +121,7 @@ private:
     bool myCheck_ = false;
     bool theirCheck_ = false;
     bool checkSent_ = false;
+    bool bothAccepted_ = false;
     int acceptResets_ = 0;
     i64 openedMs_ = 0;
     std::vector<u32> myOffer_;

@@ -395,6 +395,30 @@ the tail of the bank cycle: `bank = sequence(goToBank, deposit, rest, restock)`,
 config in `Lumberjack.CONSUMABLES`. Backpack counting is pure JS over
 `Player.equipment.backpack.items` (each row has `name` + `amount`).
 
+### Corrections from Source-X (M3, measured live)
+
+The three paragraphs above describe the *reference* server. Against Source-X,
+which is the server under test, three of their claims are wrong in ways that
+cost live runs:
+
+* **There IS a name check, and it matters.** `CClientEvent.cpp:1962` calls
+  `NPC_OnHearName` on every character in earshot; a match sets `bNamed` and
+  **breaks** the listener loop, so exactly one NPC answers. A bare keyword
+  falls through to "pick closest NPC" — which is not necessarily the one you
+  walked to. `Client::AddressMobile` now prefixes the cached paperdoll name
+  (`"Taite buy"`, `"Cassiel sell"`).
+* **A keyword is not understood until the NPC is in conversation.** Speaking
+  before `e_Human_ConvInit` has opened routes the line to `e_Human_HearUnk` —
+  *"Hmm?"* — and no window opens. Approach, let it greet, say hello, then
+  trade.
+* **Reach is two tiles, not three.** `CChar::CanTouch` ends in
+  `if (iDist > 2) fCanTouch = false` (`CCharStatus.cpp:1423`), 3-D, after an
+  LOS check. Vendors wander within `walkRange` 5, so re-approach immediately
+  before each exchange rather than trusting the arrival.
+
+Selling is the mirror of buying: `"sell"` answers with **0x9E** and *no* 0x24
+gump, so the sell list is its own confirmation (`ActionVendorSellOpen`).
+
 ---
 
 ## World knowledge and travel (M2.5)

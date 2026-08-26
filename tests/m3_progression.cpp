@@ -374,6 +374,36 @@ void TestTradeAcceptReset() {
     t.OnCheckChanged(true, false, now);
     t.OnItemRemoved(0x9999);
     Check(t.AcceptResets() == 2, "an unrelated item does not retract us");
+
+    // ...but once BOTH boxes are ticked the retraction must stop firing. The
+    // server is committing at that point, and the item movements that follow
+    // are it handing the goods over. m3_trade4 hit exactly this live: both
+    // sides accepted, the goods moved, the local rule retracted, and the CLOSE
+    // that ended a successful sale was reported as `partner_cancelled`.
+    trade::TradeState c;
+    c.OnOpened(0x1234, "partner", 0xA, 0xB, 0);
+    c.OnItemAdded(0xA, 0x1111);
+    c.OnItemAdded(0xB, 0x2222);
+    c.OnCheckChanged(true, true, 0);
+    Check(c.BothAccepted(), "both boxes ticked is latched");
+
+    const int resetsBefore = c.AcceptResets();
+    c.OnItemRemoved(0x1111);
+    c.OnItemRemoved(0x2222);
+    Check(c.AcceptResets() == resetsBefore,
+          "the commit's own item movements do not count as a retraction");
+    Check(c.BothAccepted(), "and the latch survives them");
+
+    c.OnCheckChanged(false, false, 0);
+    Check(c.BothAccepted(), "clearing the boxes during the commit does not unlatch");
+
+    c.OnClosed(trade::CloseReason::BothAccepted, 0);
+    Check(c.CurrentPhase() == trade::Phase::Completed,
+          "so the close is read as the completion it was");
+
+    // The latch is per-trade, not per-session.
+    c.OnOpened(0x5678, "someone else", 0xC, 0xD, 0);
+    Check(!c.BothAccepted(), "a new trade starts unlatched");
 }
 
 void TestTradeCancellation() {
