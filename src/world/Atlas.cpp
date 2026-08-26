@@ -420,6 +420,14 @@ const TransitNode* Atlas::TransitById(const char* id) const {
     return nullptr;
 }
 
+void Atlas::TransitsNear(i32 x, i32 y, i32 radius,
+                         std::vector<const wm::TransitNode*>& out) const {
+    out.clear();
+    for (const TransitNode& t : transits_) {
+        if (Chebyshev(x, y, t.from.x, t.from.y) <= radius) out.push_back(&t);
+    }
+}
+
 bool Atlas::AllowsRecallInto(i32 x, i32 y) const {
     const Region* r = RegionAt(x, y);
     return !r || !r->flags.BlocksRecallIn();

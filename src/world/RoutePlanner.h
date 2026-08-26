@@ -94,6 +94,14 @@ public:
     u32  CellIndex(i32 tileX, i32 tileY) const;
     void CellCoords(u32 index, i32* cx, i32* cy) const;
 
+    // Standable anchors of the cells around (x, y), nearest first, excluding
+    // the cell the point is in. This is what a bot walks toward when it is
+    // sealed into somewhere the router cannot plan out of -- an upper storey
+    // with no reachable stair, say. Trying them one at a time is the cheap,
+    // bounded equivalent of "walk toward the door and see".
+    void EscapeCandidates(i32 x, i32 y, usize maxCount,
+                          std::vector<wm::Point>& out) const;
+
 private:
     struct TransitEdge {
         u32 fromCell = 0;

@@ -79,6 +79,13 @@ public:
     const wm::TransitNode* NearestTransit(wm::TransitKind kind, i32 x, i32 y,
                                           i32 maxDist = 0) const;
     const wm::TransitNode* TransitById(const char* id) const;
+    // Every transit whose ENTRY tile lies within `radius` of (x, y). The
+    // walker needs this to stay off pads it did not choose: Scripts-X puts a
+    // teleporter at (535,992) in the middle of Yew that sends you to
+    // Heartwood, so an ordinary walk through town can end on another
+    // continent (`maps/map0/map0_teleports_ml.scp:9`).
+    void TransitsNear(i32 x, i32 y, i32 radius,
+                      std::vector<const wm::TransitNode*>& out) const;
 
     // --- travel legality ---------------------------------------------------
 

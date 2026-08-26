@@ -1062,6 +1062,18 @@ private:
     bool  travelStartedDead_ = false;  // ghost trips are legitimate; see TravelTick
     bool  travelHasGoalZ_ = false;     // the destination's floor, when known
     i8    travelGoalZ_ = 0;
+    // Transit entry tiles near the current leg that this trip must NOT step
+    // on. Scripts-X puts a teleporter in the middle of Yew that sends you to
+    // Heartwood, so walking through town is otherwise a gamble. Refreshed per
+    // leg; the pad the current leg is deliberately using is excluded.
+    std::vector<wm::Point> travelAvoidPads_;
+    void TravelRefreshAvoidPads(i32 legX, i32 legY);
+    bool TravelPadIsAvoided(i32 x, i32 y) const;
+    // Bounded "walk toward the door and see" for a character the router cannot
+    // plan out of -- an upper storey with no reachable stair, say.
+    bool TravelTryEscape();
+    int   travelEscapes_ = 0;
+    std::vector<wm::Point> travelEscapeTried_;
     // Moongates are only planned through when the caller says this character
     // will use them, because a gate the shard's worldgen never placed is a
     // route that cannot be executed. Off by default; a scenario or a brain

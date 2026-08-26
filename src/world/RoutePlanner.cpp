@@ -107,6 +107,45 @@ const std::vector<RoutePlanner::TransitEdge>* RoutePlanner::EdgesFrom(
     return &transitEdges_[static_cast<usize>(it - transitCellKeys_.begin())];
 }
 
+void RoutePlanner::EscapeCandidates(i32 x, i32 y, usize maxCount,
+                                    std::vector<wm::Point>& out) const {
+    out.clear();
+    if (!grid_.Ready() || maxCount == 0) return;
+
+    const i32 homeCx = navgrid::NavGrid::TileToCell(x);
+    const i32 homeCy = navgrid::NavGrid::TileToCell(y);
+
+    struct Candidate { wm::Point p; i32 d; };
+    std::vector<Candidate> found;
+    // Three rings is ~48 tiles out: far enough to leave a building, close
+    // enough that walking to one is a short trip rather than a second journey.
+    for (i32 r = 1; r <= 3; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                const i32 adx = dx < 0 ? -dx : dx;
+                const i32 ady = dy < 0 ? -dy : dy;
+                if (adx != r && ady != r) continue;   // ring only
+                i32 ax, ay;
+                i8  az;
+                if (!grid_.Anchor(homeCx + dx, homeCy + dy, &ax, &ay, &az))
+                    continue;
+                wm::Point p;
+                p.x = ax;
+                p.y = ay;
+                p.z = az;
+                found.push_back(Candidate{p, Chebyshev(x, y, ax, ay)});
+            }
+        }
+    }
+
+    std::sort(found.begin(), found.end(),
+              [](const Candidate& a, const Candidate& b) { return a.d < b.d; });
+    for (const Candidate& c : found) {
+        if (out.size() >= maxCount) break;
+        out.push_back(c.p);
+    }
+}
+
 WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
                               const RouteOptions& opt) const {
     WorldRoute out;

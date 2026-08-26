@@ -291,6 +291,62 @@ void TestRouteAvoidance() {
     Check(blocked.failure && *blocked.failure, "failure carries a reason");
 }
 
+void TestTransitsNear() {
+    Section("transit pads near a point");
+    world_atlas::Atlas a; MakeAtlas(a);
+
+    // Walking must be able to ask "what would move me if I stepped on it?".
+    // The live shard puts a teleporter inside Yew that sends you to Heartwood,
+    // so a walk leg through a town is otherwise a gamble.
+    std::vector<const wm::TransitNode*> out;
+    a.TransitsNear(120, 120, 4, out);
+    Check(out.size() == 1 && out[0]->id == "tp_0",
+          "the teleporter under our feet is reported");
+
+    a.TransitsNear(120, 120, 1000, out);
+    Check(out.size() == 3, "a wide radius reports every transit entry");
+
+    a.TransitsNear(300, 300, 4, out);
+    Check(out.empty(), "empty ground reports no pads");
+}
+
+void TestEscapeCandidates() {
+    Section("escape candidates");
+    world_atlas::Atlas atlas; MakeAtlas(atlas);
+    navgrid::NavGrid grid;
+    MakeGrid(grid, /*withWall=*/false);
+    route::RoutePlanner planner(atlas, grid);
+
+    std::vector<wm::Point> out;
+    planner.EscapeCandidates(200, 200, 4, out);
+    Check(out.size() == 4, "returns the number asked for");
+
+    // Nearest first: a sealed bot should try the doorway before the street.
+    bool ordered = true;
+    i32 prev = -1;
+    for (const wm::Point& p : out) {
+        const i32 dx = p.x > 200 ? p.x - 200 : 200 - p.x;
+        const i32 dy = p.y > 200 ? p.y - 200 : 200 - p.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (prev >= 0 && d < prev) ordered = false;
+        prev = d;
+    }
+    Check(ordered, "candidates come out nearest first");
+
+    // The cell we are standing in is not an escape from itself.
+    bool selfExcluded = true;
+    for (const wm::Point& p : out)
+        if (navgrid::NavGrid::TileToCell(p.x) == navgrid::NavGrid::TileToCell(200) &&
+            navgrid::NavGrid::TileToCell(p.y) == navgrid::NavGrid::TileToCell(200))
+            selfExcluded = false;
+    Check(selfExcluded, "the home cell is not offered as an escape");
+
+    navgrid::NavGrid empty;
+    route::RoutePlanner noWorld(atlas, empty);
+    noWorld.EscapeCandidates(200, 200, 4, out);
+    Check(out.empty(), "no grid means no candidates, not a crash");
+}
+
 // ---------------------------------------------------------------------------
 // Journey: sequencing, and the bounded recovery ladder.
 // ---------------------------------------------------------------------------
@@ -776,6 +832,8 @@ int main() {
     TestTravelLegality();
     TestRoutePlanning();
     TestRouteAvoidance();
+    TestTransitsNear();
+    TestEscapeCandidates();
     TestJourneySequencing();
     TestJourneyNoRoute();
     TestJourneyRecoveryLadder();

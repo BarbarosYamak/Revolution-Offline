@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <deque>
+#include <string>
 #include <unordered_map>
 
 using namespace uo;
@@ -90,14 +91,26 @@ int main(int argc, char** argv) {
     if (M < 2)  M = 2;
     if (M > 20) M = 20;
 
+    // The MUL directory comes from UO_MUL_DIR so this runs against whatever
+    // client data the shard is actually serving, instead of one developer's
+    // drive letter.
+    const char* mulEnv = std::getenv("UO_MUL_DIR");
+    const std::string mulDir = mulEnv && *mulEnv ? mulEnv : "E:/uo";
+    auto mul = [&](const char* name) { return mulDir + "/" + name; };
+
     tiledata::TileDataLoader td;
-    if (!td.Load("E:/uo/tiledata.mul")) { std::printf("td load fail\n"); return 2; }
+    if (!td.Load(mul("tiledata.mul").c_str())) {
+        std::printf("td load fail (%s)\n", mul("tiledata.mul").c_str());
+        return 2;
+    }
 
     map::Map m;
-    if (!m.Open("E:/uo/map0.mul", "E:/uo/staidx0.mul", "E:/uo/statics0.mul",
+    if (!m.Open(mul("map0.mul").c_str(), mul("staidx0.mul").c_str(),
+                mul("statics0.mul").c_str(),
                 map::kBritWidthBlocks, map::kBritHeightBlocks,
-                "E:/uo/verdata.mul")) {
-        std::printf("map load fail\n"); return 2;
+                mul("verdata.mul").c_str())) {
+        std::printf("map load fail (%s)\n", mulDir.c_str());
+        return 2;
     }
     world::World world(td, m);
     world.SetAcceptDoors(true);

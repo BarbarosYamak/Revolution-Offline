@@ -523,6 +523,11 @@ bool Client::BotStepNeedsDoorOpen(i8 fromZ, i32 toX, i32 toY, i8 toZ) const {
 
 bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
     if (nav_.bot.blacklist.IsBlocked(x, y, z)) return true;
+    // A transit pad the current trip did not choose. Stepping on one is not
+    // blocked by the server -- it works, and that is the problem: it silently
+    // moves the character somewhere else. Treating it as impassable is how a
+    // player who does not want to go to Heartwood walks around it.
+    if (TravelPadIsAvoided(x, y)) return true;
     if (BotIsMobileBlocking(x, y, z)) return true;
     return BotIsDynamicItemBlocking(x, y, z);
 }

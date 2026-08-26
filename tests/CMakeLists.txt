@@ -35,3 +35,12 @@ target_include_directories(m25_world PRIVATE
 target_link_libraries(m25_world PRIVATE uo_world)
 
 add_test(NAME m25_world COMMAND m25_world)
+
+# path_probe: run the bot's own tile A* against the real MULs and visualise a
+# window around a failure. A diagnostic, not a test -- it needs client data --
+# so it is built but not registered with ctest. MULs come from UO_MUL_DIR.
+add_executable(path_probe path_probe.cpp)
+target_include_directories(path_probe PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(path_probe PRIVATE uo_world)

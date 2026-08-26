@@ -50,6 +50,11 @@ constexpr i32 kMaxSaneLegTiles = 160;
 // nowhere useful.
 constexpr i32 kSameFloorZ = 12;
 
+// Escape attempts before a trip reports the character as sealed in. Three is
+// enough to try the doorway, the next room and the street; more than that and
+// the honest answer is that this character cannot get out on its own.
+constexpr int kMaxTravelEscapes = 3;
+
 } // namespace
 
 // ---------------------------------------------------------------------------
@@ -130,6 +135,9 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     // the NPC actually stands on; without it a bot can "arrive" on the balcony.
     travelHasGoalZ_ = hasZ;
     travelGoalZ_ = z;
+    travelEscapes_ = 0;
+    travelEscapeTried_.clear();
+    travelAvoidPads_.clear();
     journey_.Begin(travelLabel_.c_str(), x, y, arriveRadius, NowMs());
     travelLastSampleMs_ = 0;
 
@@ -380,6 +388,48 @@ void Client::TravelPlanRoute() {
         TravelFinish(false, journey_.FailureDetail().c_str());
 }
 
+// Transit pads within reach of this leg, minus the one the route is actually
+// using. Recomputed per leg rather than per step: the atlas holds 450 of them
+// and the tile A* asks about thousands of cells.
+void Client::TravelRefreshAvoidPads(i32 legX, i32 legY) {
+    travelAvoidPads_.clear();
+    if (!world_knowledge_ || !world_knowledge_->ok) return;
+
+    // A leg is at most 40 tiles; a radius around its midpoint that covers both
+    // ends with room to spare is enough, and keeps the list at a handful.
+    const i32 midX = (playerX_ + legX) / 2;
+    const i32 midY = (playerY_ + legY) / 2;
+    const i32 radius = Chebyshev(playerX_, playerY_, legX, legY) + 24;
+
+    const route::RouteLeg* leg = journey_.CurrentLeg();
+    const route::RouteLeg* next = journey_.NextLeg();
+
+    // Not named `near`: <windef.h> still defines that as a macro, and the
+    // error it produces points at the line after the declaration.
+    std::vector<const wm::TransitNode*> pads;
+    world_knowledge_->atlas.TransitsNear(midX, midY, radius, pads);
+    for (const wm::TransitNode* t : pads) {
+        if (t->kind != wm::TransitKind::Teleporter) continue;
+        // The pad this leg is walking onto on purpose, or the one the next leg
+        // will use, is not an obstacle -- it is the plan.
+        auto isPlanned = [&](const route::RouteLeg* l) {
+            return l && l->kind == route::LegKind::Teleporter &&
+                   l->target.x == t->from.x && l->target.y == t->from.y;
+        };
+        if (isPlanned(leg) || isPlanned(next)) continue;
+        travelAvoidPads_.push_back(t->from);
+    }
+    if (!travelAvoidPads_.empty())
+        LogInfo("[travel] avoiding %zu teleporter pad(s) on this leg\n",
+                travelAvoidPads_.size());
+}
+
+bool Client::TravelPadIsAvoided(i32 x, i32 y) const {
+    for (const wm::Point& p : travelAvoidPads_)
+        if (p.x == x && p.y == y) return true;
+    return false;
+}
+
 void Client::TravelDriveLeg() {
     i32 tx = 0, ty = 0;
     i8 tz = 0;
@@ -403,6 +453,7 @@ void Client::TravelDriveLeg() {
     travelLegTargetX_ = tx;
     travelLegTargetY_ = ty;
     travelWalkOutstanding_ = true;
+    TravelRefreshAvoidPads(tx, ty);
     journey_.NoteCommandIssued(travel::Command::WalkTo, NowMs());
 
     // Chasing a mobile: pin the floor it is standing on for the final approach.
@@ -481,6 +532,56 @@ void Client::TravelUseTransit() {
     SendDoubleClick(gateSerial);
 }
 
+// Walk toward a nearby navgrid anchor and, if we get there, start the journey
+// over from the new position. Bounded hard: three attempts, each a different
+// anchor, and a failure to reach any of them means the character really is
+// sealed in -- which is worth reporting plainly rather than retrying forever.
+bool Client::TravelTryEscape() {
+    if (!world_knowledge_ || !world_knowledge_->ok || !world_knowledge_->planner)
+        return false;
+    if (travelEscapes_ >= kMaxTravelEscapes) return false;
+    if (GotoBusy()) return true;   // an escape walk is already in progress
+
+    std::vector<wm::Point> candidates;
+    world_knowledge_->planner->EscapeCandidates(playerX_, playerY_, 12,
+                                                candidates);
+
+    for (const wm::Point& c : candidates) {
+        bool tried = false;
+        for (const wm::Point& t : travelEscapeTried_)
+            tried = tried || (t.x == c.x && t.y == c.y);
+        if (tried) continue;
+
+        ++travelEscapes_;
+        travelEscapeTried_.push_back(c);
+        LogWarn("[travel] route exhausted at (%d,%d,%d); trying to reach "
+                "(%d,%d,%d) to get somewhere routable (escape %d/%d)\n",
+                playerX_, playerY_, static_cast<int>(playerZ_), c.x, c.y,
+                static_cast<int>(c.z), travelEscapes_, kMaxTravelEscapes);
+        char ev[160];
+        std::snprintf(ev, sizeof(ev), "from=(%d,%d,%d) to=(%d,%d) attempt=%d",
+                      playerX_, playerY_, static_cast<int>(playerZ_), c.x, c.y,
+                      travelEscapes_);
+        LogEvent("travel_escape", ev);
+
+        // Restart the journey for the same destination. The escape walk itself
+        // is just the first leg of the retry: if it succeeds the replan happens
+        // from the new position, and if it fails the ladder runs again from
+        // there and eventually reports the character as genuinely stuck.
+        const std::string label = journey_.Label();
+        const i32 gx = journey_.GoalX(), gy = journey_.GoalY();
+        const i32 radius = journey_.ArriveRadius();
+        journey_.Begin(label.c_str(), gx, gy, radius, NowMs());
+        travelWalkOutstanding_ = false;
+        ActionGoto(c.x, c.y, /*hasZ=*/true, c.z);
+        travelLegTargetX_ = c.x;
+        travelLegTargetY_ = c.y;
+        travelWalkOutstanding_ = true;
+        return true;
+    }
+    return false;
+}
+
 void Client::TravelTick() {
     if (!journey_.Active()) return;
     if (!IsInWorld()) {
@@ -549,6 +650,14 @@ void Client::TravelTick() {
         case travel::Command::UseTransit:TravelUseTransit();break;
         case travel::Command::Finish:    TravelFinish(true, ""); break;
         case travel::Command::Fail:
+            // Before giving up on an unreachable route, try to get somewhere
+            // the router can see. A character sealed into an upper storey or a
+            // walled pocket produces this failure for every destination, and
+            // no amount of replanning helps -- the plan is fine, the character
+            // is in the wrong place.
+            if (journey_.FailureReason() == travel::Failure::Unreachable &&
+                TravelTryEscape())
+                break;
             TravelFinish(false, journey_.FailureDetail().empty()
                                     ? travel::FailureName(journey_.FailureReason())
                                     : journey_.FailureDetail().c_str());
