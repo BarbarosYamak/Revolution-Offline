@@ -1,0 +1,56 @@
+# M3.7.1 -- create the account the mount proof needs.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# WHY THIS IS ALLOWED, AND WHERE THE LINE IS.
+#
+# run_admin.ps1's standing rule (docs/M3_PROGRESSION_ECONOMY.md 13) is that
+# nothing run through it may touch a bot character's SKILLS, STATS, GOLD or
+# INVENTORY. Creating an ACCOUNT touches none of those. An account is the seat
+# a player sits in, not anything the character owns -- every other bot account
+# on this shard was made the same way, and the character that will live in it
+# is then created by an ordinary 0x00 packet like all the rest.
+#
+# This distinction is the whole reason the mount work does not need a GM grant:
+#
+#   * Revolution's own /binek_bilgileri page puts a horse at Animal Taming 53.1
+#   * this runtime's c_horse_gray (CHARDEF 0e2, npcs/c_monster_classic.scp:5063)
+#     carries TAMING=29.1
+#
+# Character creation clamps a requested skill at 50.0, which clears 29.1 with
+# room to spare. So the tamer can be built the ordinary way and still tame a
+# horse HERE -- no skill is ever handed to it.
+#
+# THE DIVERGENCE IS RECORDED, NOT PAPERED OVER. 29.1 is stock Sphere's number
+# and 53.1 is Revolution's. A bot that tames a horse on this runtime is proving
+# the MOUNT MECHANIC, and must never be cited as evidence about how hard taming
+# is on Revolution. runtime/scripts is not modified to close the gap.
+#
+# IT MUST BE `.serv.account`, AND THIS IS THE SECOND TIME THIS SHARD HAS TAUGHT
+# US THAT. A client command resolves against the CHARACTER's verb table first,
+# and CChar has its own ACCOUNT verb -- "attach this character to that account".
+# So a bare `.account add name pass` is read as an account NAMED
+# "add name pass", and the server says so:
+#
+#   ERROR:Trying to attach Char 'Observer' to unexistent Account
+#         'add revolutiontamer01 <PASSWORD-FROM-bot-credentials.env>'!
+#   'Admin' commands 'account add revolutiontamer01 ...'=1
+#
+# The `=1` again means only that the command was ISSUED. The account was never
+# created. Exactly the same shape as `.savestatics` vs `.serv.savestatics`
+# (see m37_savestatics.txt): the one we want is SV_ACCOUNT ->
+# CAccounts::Account_OnCmd (CServer.cpp:1865, CAccount.cpp:422), a SERVER verb,
+# reachable only as SERV.<verb>. It refuses below PLEVEL_Admin.
+
+wait_world
+sleep 3000
+
+say .serv.account add revolutiontamer01 <PASSWORD-FROM-bot-credentials.env>
+sleep 4000
+
+say .save
+sleep 12000
+
+say tamer account created
+sleep 1500
+logout

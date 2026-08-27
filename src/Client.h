@@ -368,6 +368,8 @@ public:
     i32  PlayerWeight() const { return player_.weight; }
     i32  PlayerMaxWeight() const { return player_.maxWeight; }
     u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
+    bool PlayerIsMounted() const;
+    void ActionDismount();
     bool ContainerKnown(u32 serial) const;
     u32  BankContainer() const { return bankContainer_; }
 
@@ -1076,6 +1078,7 @@ private:
     // Equip layer for an item graphic, read from tiledata (StaticTile.quality,
     // as the client does in Gump_HandleMouseOver @0x45486d). 0 = unknown.
     u8 ItemEquipLayer(u16 graphic) const;
+    void ForgetEquippedItem(u32 itemSerial);
     // True if an item graphic matches the query (exact graphic when hasType,
     // else a case-insensitive tiledata-name substring).
     bool ItemMatches(u16 graphic, bool hasType, u16 type,

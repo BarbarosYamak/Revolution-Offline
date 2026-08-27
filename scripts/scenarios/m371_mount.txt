@@ -1,0 +1,200 @@
+# M3.7.1 -- ride a horse, and prove the step cadence actually halves.
+#
+# RUN AS SESSION 12 (RevolutionTamer), created the ordinary way with
+#   --create-char --create-skills "35:50,2:30,39:20"
+#
+# The ids are the runtime's own file names -- skill35_taming.scp,
+# skill2_animallore.scp, skill39_veterinary.scp -- and the values are whole
+# skill points in the 0x00 create packet, which is a byte per skill and takes
+# three skills at most.
+#
+# WHAT THIS PROVES
+#
+#   ANIMAL -> MOUNT -> DOUBLE TRAVEL SPEED
+#
+# measured against the server's own clock rather than trusted from a constant.
+#
+# WHY A MOUNT IS WORTH THE TROUBLE. Source-X halves the minimum time per step
+# for a mounted character. Event_CheckWalkBuffer states the table outright
+# (src/game/clients/CClientEvent.cpp:750-762):
+#
+#          RUN / Walk
+#   Mount  100 / 200
+#   foot   200 / 400
+#
+#   if (m_pChar->IsStatFlag(STATF_ONHORSE | STATF_HOVERING))
+#       iTimeMin = 100;
+#   else
+#       iTimeMin = 200;
+#
+# AND IT IS THE LIVE PATH, which had to be checked rather than assumed:
+# Event_Walk carries a second copy of the same table (:915-919) behind
+# IsSetEF(EF_FastWalkPrevention), and this shard leaves that flag off --
+# sphere.ini:836 comments it with "Not work at the moment don't use". So the
+# walkbuffer is the rule in force, and the walkbuffer is the one that reads
+# STATF_ONHORSE.
+#
+# MOUNTING AND DISMOUNTING ARE THE SAME GESTURE AT DIFFERENT TARGETS, and there
+# is no packet for either. CClient::Event_DoubleClick, CClientEvent.cpp:2362:
+#
+#   if ( pChar == m_pChar )
+#       if ( pChar->IsStatFlag(STATF_ONHORSE) )
+#           ... else if ( pChar->Horse_UnMount() ) return true;
+#
+#   if ( pChar->m_pNPC && (pChar->GetNPCBrainGroup() != NPCBRAIN_HUMAN) )
+#       if ( m_pChar->Horse_Mount(pChar) ) return true;
+#
+# Double-click the animal to mount; double-click YOURSELF to dismount. An
+# earlier revision dismounted by clicking the mount item on layer 25, reasoning
+# that the animal no longer exists so the item must be the handle. The server
+# accepted that click and left the character mounted.
+#
+# Note the war-mode guard in the same block: without COMBAT_DCLICKSELF_UNMOUNTS,
+# a character in war mode holding a fight memory gets its paperdoll instead of a
+# dismount, so nobody falls off mid-fight. `ensure_peace` below is not
+# decoration.
+#
+# NO NPC ON THIS SHARD SELLS A LIVE ANIMAL. There is not one `BUY=c_*` or
+# `SELL=c_*` line anywhere in runtime/scripts. A mount is tamed or bought from
+# another player -- the same shape of finding as M3.7's smith's hammer, and it
+# gives Tamers a real customer base.
+#
+# THE TAMING NUMBER IS A KNOWN DIVERGENCE, recorded and not papered over:
+#   * Revolution /binek_bilgileri: horse 53.1
+#   * this runtime c_horse_gray:   TAMING=29.1
+# Creation clamps a requested skill at 50.0, which clears 29.1. Nothing is
+# granted to this character. It may never be cited as evidence about how hard
+# taming is on Revolution.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+# ------------------------------------------------------------- 1. find a horse
+# GO WHERE A HORSE ACTUALLY IS, not where horses "should" be.
+#
+# The first attempt walked to Britain's west gate (1416,1690) assuming horses
+# graze outside town, arrived after 1760 tiles and 44 legs, and found nothing.
+# The second read the world save and went to the nearest horse, P=1482,1755 in
+# the bank plaza, arrived exactly on the spot, and found
+# `Gregor, Dora, Buck, Dog, Lear, Stoyan`.
+#
+# A SAVED POSITION IS NOT A CURRENT POSITION: that horse carries HOMEDIST=50 and
+# wanders a 50-tile radius while the client sees about 18. The fix is not a
+# better guess, it is more animals -- two horses sit ELEVEN tiles apart at
+# (980,1769) and (991,1771), so standing between them keeps both in view even
+# after they drift.
+#
+# The four horse bodies are CHARDEF 0c8 tan, 0cc brown_dk, 0e2 gray, 0e4
+# brown_lt (npcs/c_monster_classic.scp:4211/4424/5062/5102). All four carry
+# TAMING=29.1, which a 50.0 tamer clears.
+travel_point 985 1770
+wait_travel
+expect_travel ok
+sleep 2000
+
+# DISMOUNT BEFORE LOOKING FOR A HORSE. Mounts survive logout, so a character
+# that ends one run mounted begins the next one mounted -- and a mounted horse
+# is not a mobile in the world at all, it is an item on layer 25. A revision
+# that scanned first died on `REQUIRED 'horse' is not bound` two seconds after
+# logging `event mount_state: mounted`: it was standing on the very animal it
+# was looking for.
+#
+# Dismounting here is also the most reliable way to HAVE a horse. If the
+# character arrives already mounted, this puts that animal on the ground right
+# beside it -- no search, no drift, no luck involved. If it arrives on foot the
+# scan falls back to the wild pair described above.
+dismount
+sleep 3000
+
+scan_mobiles
+sleep 3000
+remember horse mobile_body 0x00C8,0x00E2,0x00E4,0x00CC
+require horse
+
+travel_entity @horse 1
+wait_travel
+sleep 2000
+
+# ------------------------------------------------------------------ 2. tame it
+# Taming is not one roll -- the shard runs a timed attempt that can fail -- so
+# this asks repeatedly. Each attempt is an ordinary skill use, the same packet a
+# player sends. A horse that is already tame answers "Horse is already tame."
+# and the extra attempts cost nothing.
+skill 35 @horse
+sleep 12000
+skill 35 @horse
+sleep 12000
+skill 35 @horse
+sleep 12000
+
+# ------------------------------------------------------------------ 3. mount
+mount @horse
+wait_mounted
+expect_mounted
+
+# ------------------------------------------- 4. the MOUNTED leg, measured FIRST
+#
+# ORDER MATTERS, AND THIS ORDER IS THE FIX FOR A REAL FAILURE. An earlier
+# revision walked the on-foot baseline first and only then went looking for a
+# horse. By the time it came back -- 55 seconds and 126 tiles later -- the
+# animal had wandered out of view and the run died on
+# `REQUIRED 'horse' is not bound`, with only `Sheep` and `Cougar` in range.
+#
+# Riding first means the horse is located exactly ONCE, while standing next to
+# it. After that it is on layer 25 and cannot wander off at all.
+#
+# The endpoint is one the walker has already proven rather than a number off a
+# map: an attempt using (1085,1770), picked for being a round 100 tiles away,
+# died on `EXPECT travel ok but it failed (tile route stopped short)` after
+# eight identical retries from (1048,1736) -- blocked terrain. (1048,1736) is
+# where that walker actually got to under its own power.
+#
+# Nothing here measures anything. The evidence is the log's own timestamps
+# around each `wait_travel`.
+say mounted; running the measured leg
+sleep 1500
+
+travel_point 1048 1736
+wait_travel
+expect_travel ok
+expect_mounted
+sleep 1500
+
+travel_point 985 1770
+wait_travel
+expect_travel ok
+expect_mounted
+sleep 2000
+
+say mounted leg done
+sleep 1500
+
+# --------------------------------------------------- 5. dismount, same ground
+# MOUNTS SURVIVE LOGOUT, so a run that ends mounted comes back mounted. Putting
+# the character on its own feet here is what makes the comparison below a
+# comparison and not an accident of how the last run happened to end.
+dismount
+sleep 3000
+expect_mounted 0
+
+say on foot; walking the same leg
+sleep 1500
+
+travel_point 1048 1736
+wait_travel
+expect_travel ok
+expect_mounted 0
+sleep 1500
+
+travel_point 985 1770
+wait_travel
+expect_travel ok
+expect_mounted 0
+
+say same road, twice the time
+sleep 1500
+logout

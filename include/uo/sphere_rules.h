@@ -122,6 +122,64 @@ enum class Gait : u8 {
 // DIR_MASK_RUNNING (src/game/uo_files/uofiles_enums.h:435).
 inline constexpr u8 kDirMaskRunning = 0x80;
 
+// --- mounted cadence -------------------------------------------------------
+// A mount halves the server's minimum time per step. Source-X states the table
+// in Event_CheckWalkBuffer (src/game/clients/CClientEvent.cpp:750-762):
+//
+//          RUN / Walk
+//   Mount  100 / 200
+//   foot   200 / 400
+//
+//   if (m_pChar->IsStatFlag(STATF_ONHORSE | STATF_HOVERING))
+//       iTimeMin = 100;
+//   else
+//       iTimeMin = 200;
+//
+// WHICH CODE PATH IS LIVE MATTERS. Event_Walk has a second copy of the same
+// table behind IsSetEF(EF_FastWalkPrevention) (:915-919), but this shard does
+// not set that flag -- sphere.ini:836 leaves it commented with "Not work at the
+// moment don't use". So the walkbuffer above is the rule in force, and it is
+// the one that reads STATF_ONHORSE.
+//
+// CAVEAT, recorded rather than assumed: WalkBuffer/WalkRegen (sphere.ini
+// 218/221, here 15 and 25) is a POINT BUDGET spent and regenerated over time,
+// not a hard per-step gate. Sitting exactly on iTimeMin is what the server
+// prices as free; sustained bursts may still accumulate points. Measure before
+// trusting a lower number than this.
+//
+// Mounting is not free in Revolution terms: no NPC on this shard sells a live
+// animal (0 `BUY=c_*` / `SELL=c_*` entries anywhere in runtime/scripts), so a
+// mount is tamed or bought from another player.
+inline constexpr u32 kMountedStepDivisor = 2;
+
+inline constexpr u32 MountedStepMs(u32 onFootMs, bool mounted) {
+    return mounted ? (onFootMs / kMountedStepDivisor) : onFootMs;
+}
+
+// The mount occupies equipment layer 25. Source-X seats a character whenever
+// something is on that layer (CClientRender's Mobile_OnEquip reads
+// pEquipped[25]); it is also how a chair seats a player, which is why callers
+// that care about SPEED should ask about a real mount rather than about the
+// layer alone if they ever need to tell the two apart.
+inline constexpr u8 kLayerMount = 25;
+
+// Human player/NPC bodies. Everything else is an animal, a monster or a ghost.
+//
+// This matters for more than rendering: Source-X treats a double-click on a
+// NON-human NPC as a request to RIDE it (CClientEvent.cpp:2378,
+// `GetNPCBrainGroup() != NPCBRAIN_HUMAN` -> Horse_Mount). Anything that clicks
+// mobiles to read them -- paperdoll titles, trade names -- must filter to these
+// bodies or it will mount the local livestock as a side effect.
+//
+// 0x0190/0x0191 are the human male/female bodies; 0x025D/0x025E are elf and
+// 0x029A/0x029B gargoyle, listed for completeness even though this client's
+// era renders neither.
+inline constexpr bool IsHumanBody(u16 body) {
+    return body == 0x0190 || body == 0x0191 ||
+           body == 0x025D || body == 0x025E ||
+           body == 0x029A || body == 0x029B;
+}
+
 inline u8 MoveDirectionByte(u8 dir, bool run) {
     return static_cast<u8>((dir & 0x07) | (run ? kDirMaskRunning : u8(0)));
 }

@@ -214,6 +214,26 @@ void TestGait() {
         Check(run == (d | 0x80u), "run byte sets exactly bit 7");
     }
 
+    // M3.7.1 -- a mount halves the server's minimum time per step.
+    // Event_CheckWalkBuffer, src/game/clients/CClientEvent.cpp:759-762:
+    //   Mount 100 / 200, foot 200 / 400.
+    Check(sphere::MountedStepMs(200, true) == 100,
+          "mounted running is 100ms, half the on-foot floor");
+    Check(sphere::MountedStepMs(400, true) == 200,
+          "mounted walking is 200ms");
+    Check(sphere::MountedStepMs(200, false) == 200,
+          "on foot the cadence is untouched");
+    Check(sphere::MountedStepMs(400, false) == 400,
+          "on foot the walk cadence is untouched");
+
+    // The mount lives on equipment layer 25 -- the same layer a chair uses to
+    // seat a player, which is why the client reads the LAYER and not a body id.
+    Check(sphere::kLayerMount == 25, "mount layer is 25");
+
+    // The divisor is exactly two. If Source-X's table ever stops being a clean
+    // halving this check is what should fail first.
+    Check(sphere::kMountedStepDivisor == 2, "mounted cadence is exactly 2x");
+
     // The whole point of the model: Auto means run.
     Check(sphere::GaitWantsRun(sphere::Gait::Auto, -1, -1, -1, -1),
           "Auto runs before the server has sent any stats");

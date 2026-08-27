@@ -1218,6 +1218,8 @@ void Client::OnDeleteObject(const u8* data, usize size) {
     // reason there is to stop standing around in war mode.
     war_.OnTargetGone(serial, NowMs());
     knowledge_.ForgetService(serial);
+    // A mount item leaving the world IS the dismount signal.
+    ForgetEquippedItem(serial);
     items_.erase(serial);
     corpses_.erase(serial);
     itemOrder_.erase(std::remove(itemOrder_.begin(), itemOrder_.end(), serial),
@@ -1704,6 +1706,12 @@ void Client::OnEquipItem(const u8* data, usize size) {
     const u32 mobile  = LoadBE32(data + 9);
     const u16 hue     = LoadBE16(data + 13);
     SetMobileEquipLayer(mobile, itemSerial, layer, graphic, hue);
+    if (mobile == playerSerial_ && layer == sphere::kLayerMount) {
+        LogInfo("[move] mounted (0x%04X); step cadence now %u/%ums\n", graphic,
+                sphere::MountedStepMs(nav_.movement.runStepMs, true),
+                sphere::MountedStepMs(nav_.movement.walkStepMs, true));
+        LogEvent("mount_state", "mounted");
+    }
     ActionOnItemEquipped(mobile, itemSerial, layer);
 }
 
@@ -3332,9 +3340,31 @@ void Client::ActionScanMobiles() {
     // the paperdoll title ("Lillie the provisioner"), which arrives as 0x88
     // after a double-click. That is exactly how a human player tells one
     // shopkeeper from another, so do the same: click each nearby mobile once.
+    //
+    // HUMAN BODIES ONLY, AND THIS IS NOT A TIDINESS RULE. A double-click is not
+    // an inspection -- it is whatever that mobile does when clicked, and
+    // Source-X mounts any non-human NPC you click (CClientEvent.cpp:2378):
+    //
+    //   if ( pChar->m_pNPC && (pChar->GetNPCBrainGroup() != NPCBRAIN_HUMAN) )
+    //       if ( m_pChar->Horse_Mount(pChar) ) return true;
+    //
+    // So scanning a street with a horse in it MOUNTED THE HORSE. It cost this
+    // milestone several runs: a character dismounted, scanned three seconds
+    // later, and was back on the animal before the next step --
+    //
+    //   event mount_state: dismounted     14:27:37.570
+    //   event mount_state: mounted        14:27:40.604
+    //
+    // -- and an earlier run mounted a horse it had never asked to ride at all.
+    // A bot walking a decorated town would silently climb onto every llama and
+    // ostard it passed.
+    //
+    // Trade titles only exist on humans, so restricting the click to human
+    // bodies loses nothing and removes the side effect entirely.
     int clicked = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        if (!sphere::IsHumanBody(m.body)) continue;
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (d > 12) continue;
@@ -3415,8 +3445,13 @@ Client::StepSubmit Client::SubmitStep(u8 dir, sphere::Gait gait,
     //    for a run is Sphere's own floor for an on-foot player
     //    (Event_CheckWalkBuffer, src/game/clients/CClientEvent.cpp:766-767;
     //    Event_Walk, :920), so we sit exactly on it rather than under it.
+    //    A mount halves that floor -- Event_CheckWalkBuffer reads
+    //    STATF_ONHORSE and drops iTimeMin from 200 to 100
+    //    (src/game/clients/CClientEvent.cpp:759-762). See sphere_rules.h for
+    //    why that path, and not Event_Walk's copy, is the one in force here.
     const i64 now = NowMs();
-    const u32 gap = run ? nav_.movement.runStepMs : nav_.movement.walkStepMs;
+    const u32 base = run ? nav_.movement.runStepMs : nav_.movement.walkStepMs;
+    const u32 gap = sphere::MountedStepMs(base, PlayerIsMounted());
     if (nav_.movement.lastMoveSentMs != 0 &&
         now - nav_.movement.lastMoveSentMs < static_cast<i64>(gap))
         return StepSubmit::Throttled;
@@ -3521,6 +3556,72 @@ u32 Client::PlayerEquipSerialAt(u8 layer) const {
     for (const auto& e : playerEquip_)
         if (e.layer == layer) return e.serial;
     return 0;
+}
+
+// Dismount by double-clicking YOURSELF. Source-X spells this out in
+// CClient::Event_DoubleClick (src/game/clients/CClientEvent.cpp:2362-2375):
+//
+//   if ( pChar == m_pChar )
+//       if ( pChar->IsStatFlag(STATF_ONHORSE) )
+//           ... else if ( pChar->Horse_UnMount() ) return true;
+//
+// and the very next block mounts, by double-clicking a non-human NPC:
+//
+//   if ( pChar->m_pNPC && (pChar->GetNPCBrainGroup() != NPCBRAIN_HUMAN) )
+//       if ( m_pChar->Horse_Mount(pChar) ) return true;
+//
+// So both halves are the same gesture aimed at different targets, and neither
+// is a packet of its own.
+//
+// AN EARLIER VERSION DOUBLE-CLICKED THE MOUNT ITEM ON LAYER 25, reasoning that
+// the animal no longer exists so the item must be the handle. It is not: the
+// server accepted the click and left the character mounted, and the run died
+// three seconds later on "EXPECT on foot but the character is mounted".
+//
+// WAR MODE CAN REFUSE THIS. With COMBAT_DCLICKSELF_UNMOUNTS unset, a character
+// in war mode holding a fight memory gets its paperdoll instead of a dismount
+// -- deliberately, so nobody falls off mid-fight. Callers that need to be sure
+// should make peace first.
+//
+// This exists because MOUNTS SURVIVE LOGOUT. A scenario that mounts and logs
+// out comes back mounted, so a later run measuring an on-foot baseline fails
+// before it walks a tile. A bot that wants a known gait has to put itself in
+// one rather than inherit whatever it left with.
+void Client::ActionDismount() {
+    if (!PlayerIsMounted()) { LogInfo("[move] dismount: already on foot\n"); return; }
+    LogInfo("[ACTION] dismount (double-click self 0x%08X)\n", playerSerial_);
+    ActionUseObject(playerSerial_);
+}
+
+// Mounted iff something sits on layer 25. Sphere mounts by DELETING the animal
+// (0x1D) and equipping a mount item on that layer (0x2E); dismounting reverses
+// it. So this is the same fact the server is acting on when it prices a step at
+// 100ms instead of 200 -- not a guess from an animation or a body id.
+bool Client::PlayerIsMounted() const {
+    return PlayerEquipSerialAt(sphere::kLayerMount) != 0;
+}
+
+// Equipment must be REMOVED as well as upserted, or a dismount never lands.
+// SetMobileEquipLayer only ever upserts, so without this the layer-25 entry
+// from the first mount would persist for the rest of the session and the bot
+// would keep pacing at the mounted cadence on foot -- steps the server would
+// price as too fast.
+void Client::ForgetEquippedItem(u32 itemSerial) {
+    auto drop = [&](std::vector<EquipObj>& v) {
+        for (auto it = v.begin(); it != v.end(); ++it)
+            if (it->serial == itemSerial) {
+                const bool wasMount = (it->layer == sphere::kLayerMount);
+                v.erase(it);
+                return wasMount;
+            }
+        return false;
+    };
+    if (drop(playerEquip_)) {
+        LogInfo("[move] dismounted; step cadence back to %u/%ums\n",
+                nav_.movement.runStepMs, nav_.movement.walkStepMs);
+        LogEvent("mount_state", "dismounted");
+    }
+    for (auto& m : mobileCache_) drop(m.equip);
 }
 
 std::string Client::ItemNameLower(u16 graphic) const {

@@ -55,6 +55,7 @@ const char* const kOpNames[] = {
     "npc_train", "give",
     "wait_gump", "gump_button", "gump_report",
     "target_static", "menu_choose", "expect_item_same",
+    "mount", "wait_mounted", "expect_mounted", "dismount",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -415,6 +416,31 @@ bool Scenario::Load(const char* path, std::string* err) {
             if (!need(st.a, "<serial|@name>")) { steps_.clear(); return false; }
             if (!(ls >> st.count)) st.count = 2;
             st.op = Op::TravelEntity;
+        }
+        else if (verb == "mount") {
+            if (!need(st.a, "<serial|@name>")) { steps_.clear(); return false; }
+            st.op = Op::Mount;
+        }
+        else if (verb == "dismount") {
+            st.op = Op::Dismount;
+        }
+        else if (verb == "wait_mounted") {
+            st.op = Op::WaitMounted;
+        }
+        else if (verb == "expect_mounted") {
+            // `expect_mounted` alone means "yes"; `expect_mounted 0` asserts the
+            // character is on its own feet.
+            //
+            // THE OPERAND MUST BE READ HERE. st.a is not filled in by any shared
+            // preamble -- only `need()` and explicit `ls >> st.a` ever set it --
+            // so an earlier version that tested `st.a.empty()` without reading
+            // the stream saw an always-empty string and silently asserted
+            // "mounted" every time. It failed on the on-foot baseline with
+            // "EXPECT mounted but the character is on foot", which is a scenario
+            // that was in fact behaving correctly.
+            if (!(ls >> st.a)) st.a.clear();
+            st.count = st.a.empty() ? 1 : std::atoi(st.a.c_str());
+            st.op = Op::ExpectMounted;
         }
         else if (verb == "mark_item" || verb == "expect_item_drop" ||
                  verb == "expect_item_same") {
@@ -786,6 +812,16 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::RequestSkills:
                     client.ActionRequestSkills();
                     break;
+                case Op::Dismount:
+                    client.ActionDismount();
+                    break;
+                case Op::Mount:
+                    // A player mounts by double-clicking the animal. There is
+                    // no mount packet; the server answers by deleting the
+                    // mobile and equipping a mount item on layer 25, which is
+                    // what `wait_mounted` watches for.
+                    client.ActionUseObject(Resolve(client, st.a));
+                    break;
                 case Op::TradeStart:
                     client.ActionTradeStart(Resolve(client, st.a),
                                             Resolve(client, st.b));
@@ -1085,6 +1121,25 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogInfo("[scenario] item 0x%04X drop confirmed: %u -> %u\n",
                             g, markItemCount_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::WaitMounted:
+                done = client.PlayerIsMounted();
+                break;
+            case Op::ExpectMounted: {
+                const bool want = (st.count != 0);
+                const bool got = client.PlayerIsMounted();
+                if (got != want) {
+                    LogError("[scenario] EXPECT %s but the character is %s "
+                             "(line %d); aborting\n",
+                             want ? "mounted" : "on foot",
+                             got ? "mounted" : "on foot", st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] expect %s: ok\n",
+                            want ? "mounted" : "on foot");
                 }
                 done = true;
                 break;

@@ -166,6 +166,14 @@ private:
         // blocks leaves the pack exactly as it was, and "exactly as it was" is
         // not expressible with ExpectItemDrop, which demands a decrease.
         ExpectItemSame,
+        // M3.7.1 mounts. Mounting is an ordinary double-click on the animal;
+        // what needs its own ops is the WAIT and the ASSERT, because the
+        // server confirms a mount by equipping layer 25, not by any of the
+        // things UseObject watches for (container, target cursor, sysmessage).
+        Mount,
+        WaitMounted,
+        ExpectMounted,
+        Dismount,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {
