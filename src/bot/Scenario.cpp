@@ -434,10 +434,22 @@ bool Scenario::Load(const char* path, std::string* err) {
             // "missing material -> hidden" and "acquire it -> appears" are the
             // two halves of the oracle, and both must be assertable or the
             // filtering is only ever observed anecdotally.
+            //
+            // ORDER MATTERS, and it is not obvious: need() READS FROM `ls`
+            // itself (line 235), it does not merely check a value. So it has to
+            // come FIRST, and getline() collects only what is left over -- the
+            // rest of a multi-word name.
+            //
+            // Both wrong orderings were tried live before this was read
+            // properly. getline-then-need swallows the operand and leaves the
+            // stream empty; `ls >> st.a` then getline then need consumes the
+            // operand twice over and leaves need() nothing to read. Both fail
+            // identically at load with "expect_menu_has needs <name>", which is
+            // why the second attempt looked like the fix had not been compiled.
+            if (!need(st.a, "<name>")) { steps_.clear(); return false; }
             std::getline(ls, st.text);
             const auto s0 = st.text.find_first_not_of(" \t");
             st.text = (s0 == std::string::npos) ? std::string() : st.text.substr(s0);
-            if (!need(st.a, "<name>")) { steps_.clear(); return false; }
             st.count = (verb == "expect_menu_has") ? 1 : 0;
             st.op = Op::ExpectMenuHas;
         }
@@ -450,10 +462,16 @@ bool Scenario::Load(const char* path, std::string* err) {
             // .scp; this names the thing. Sphere filters menus by skill and
             // inventory, so the two are routinely different -- and when they
             // differ, the index is wrong and the name is right.
-            std::getline(ls, st.text);
-            const auto s0 = st.text.find_first_not_of(" 	");
-            st.text = (s0 == std::string::npos) ? std::string() : st.text.substr(s0);
+            //
+            // Same fix as expect_menu_has above, and the same latent bug: this
+            // called getline() before need(), so st.a was never populated and
+            // menu_pick could never load. It went unnoticed because no scenario
+            // has ever used it -- an op that is written but never exercised is
+            // not a feature, it is an untested claim.
             if (!need(st.a, "<name>")) { steps_.clear(); return false; }
+            std::getline(ls, st.text);
+            const auto s0 = st.text.find_first_not_of(" \t");
+            st.text = (s0 == std::string::npos) ? std::string() : st.text.substr(s0);
             st.op = Op::MenuPick;
         }
         else if (verb == "wait_mounted") {

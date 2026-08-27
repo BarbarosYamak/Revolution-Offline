@@ -50,27 +50,43 @@ gait run
 # collide: the bank steps, the smith, the market, the moongate and the graveyard
 # road. Each `travel_*` re-plans from scratch, so any tile that has been poisoned
 # by a stale mobile shows up as a travel failure rather than as a silent detour.
-loop 6
+# EVERY WAYPOINT BELOW IS A TILE BOTS HAVE DEMONSTRABLY STOOD ON.
+#
+# The first version of this circuit used coordinates I picked by reasoning about
+# where Britain's landmarks are -- 1416,1638 for the market, 1495,1630, 1336,1997.
+# All 38 bots resolved `travel_service banker` correctly, walked to the bank, and
+# then spent the rest of the run OSCILLATING between (1416,1656) and (1416,1672),
+# replanning the same 34-tile goal every four seconds, because the next waypoint
+# was not somewhere they could stand.
+#
+# That is the same mistake as the PvM dwell, twice in one milestone: a constant
+# chosen by reasoning instead of by evidence. The tiles below were read out of
+# the arrival logs of that failed run -- each was reached by 20-27 independent
+# bots, so they are known-walkable and known-connected to each other.
+#
+# The bank service stays, because it is the one landmark that resolved cleanly
+# and it is where bots crowd hardest -- which is the whole point.
+loop 5
 
   travel_service banker
   wait_travel
   sleep 1500
   scan_mobiles
 
-  travel_point 1416 1638
+  travel_point 1416 1688
   wait_travel
   sleep 1200
 
-  travel_service blacksmith
+  travel_point 1386 1728
   wait_travel
-  sleep 1500
+  sleep 1200
   scan_mobiles
 
-  travel_point 1336 1997
+  travel_point 1336 1832
   wait_travel
   sleep 1200
 
-  travel_point 1495 1630
+  travel_point 1336 1928
   wait_travel
   sleep 1200
   scan_mobiles

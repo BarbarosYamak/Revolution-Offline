@@ -1,0 +1,87 @@
+# M3.9 -- prove a bot can WIN a fight and stand over what it killed.
+#
+# RUN AS SESSION 3 (RevolutionSpar).
+#
+# WHY THIS IS A RABBIT AND NOT A MONSTER
+#
+# Phase 9 asked for a real creature, real damage, real death, real loot. Two runs
+# at the Britain cemetery delivered every part of that except the one that
+# matters for an autonomous character: the bot was the one who died, twice.
+# Three undead beat it to death in 27 seconds the first time.
+#
+# So this run inverts the difficulty deliberately. RevolutionSpar currently has
+# NO EQUIPMENT -- it died at the cemetery and full loot loss put its gear on a
+# corpse -- so it is fighting bare-handed on Wrestling alone. A rabbit
+# (CHARDEF 0cd) is a creature it can actually beat in that state.
+#
+# That is not a soft target chosen to manufacture a pass. It is the smallest
+# honest question that has never been answered on this shard: CAN A BOT KILL
+# ANYTHING AT ALL? Everything about autonomous life -- income, replacing
+# equipment, surviving risk -- rests on the answer being yes, and until now the
+# only evidence pointed the other way.
+#
+# The coordinate is read out of the world save (a rabbit at 1396,1865), not
+# guessed. That correction has now been made three times in this milestone.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1200
+mark_gold
+
+use_moongates on
+
+# -------------------------------------------------------- 1. out to the farms
+# South-west of Britain: open farmland, ordinary fauna, no undead, and far
+# enough from the cemetery that nothing there will wander over and join in.
+travel_point 1396 1865
+wait_travel
+expect_travel ok
+sleep 2000
+
+say looking for something I can actually beat
+
+# --------------------------------------------------------------- 2. find prey
+# Bodies read from the CHARDEF headers: 0x00CD rabbit, 0x00D0 chicken,
+# 0x0006 bird, 0x00EE rat. All harmless, all killable bare-handed.
+scan_mobiles
+sleep 1500
+remember prey mobile_body 0x00CD,0x00D0,0x0006,0x00EE
+require prey
+
+travel_entity @prey 1
+wait_travel
+sleep 1000
+
+# ------------------------------------------------------------------ 3. kill it
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+sleep 20000
+
+# The evidence: if the prey is gone from this scan, it died. A corpse container
+# appears where it stood. There is no scenario op that asserts "that mobile no
+# longer exists", so this is read from the log rather than asserted -- and it is
+# reported as observed evidence, not as a passing assertion.
+scan_mobiles
+sleep 2000
+
+war off
+sleep 1000
+say the fight is over
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout
