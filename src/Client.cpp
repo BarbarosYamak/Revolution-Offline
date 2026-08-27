@@ -2584,6 +2584,40 @@ u32 Client::FindBackpackItemByGraphic(u16 graphic) const {
     return 0;
 }
 
+// The same lookup for any open container. Looting a corpse needs this: until
+// M3.9.1 the container cache was private to the JS bindings, so a scenario could
+// kill a creature and then not touch a thing it dropped.
+u32 Client::FindContainerItemByGraphic(u32 container, const u16* graphics,
+                                       usize count) const {
+    if (!container || !graphics || count == 0) return 0;
+    const auto it = containerItems_.find(container);
+    if (it == containerItems_.end()) return 0;
+    for (const ContainerItem& ci : it->second)
+        for (usize i = 0; i < count; ++i)
+            if (ci.graphic == graphics[i]) return ci.serial;
+    return 0;
+}
+
+usize Client::ContainerItemCount(u32 container) const {
+    const auto it = containerItems_.find(container);
+    return (it == containerItems_.end()) ? 0 : it->second.size();
+}
+
+bool Client::ContainerItemAt(u32 container, usize index, u32* serial,
+                             u16* graphic, u16* amount) const {
+    const auto it = containerItems_.find(container);
+    if (it == containerItems_.end() || index >= it->second.size()) return false;
+    const ContainerItem& ci = it->second[index];
+    if (serial)  *serial  = ci.serial;
+    if (graphic) *graphic = ci.graphic;
+    if (amount)  *amount  = ci.amount;
+    return true;
+}
+
+void Client::TakeFromContainer(u32 serial, u16 quantity) {
+    SendTakeToBackpack(serial, quantity);
+}
+
 u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist) const {
     u32 best = 0;
     i32 bestD = maxDist + 1;
