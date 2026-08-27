@@ -245,8 +245,54 @@ sleep 1500
 expect_item_gain 0x0E1D,0x0E1E,0x0E1F
 
 # The second pile, for the fourth yarn the loom needs.
+#
+# THE RE-OPEN IS LOAD-BEARING. The resolver answers from the client's container
+# snapshot and only an 0x3C refills it, so without this `remember wool2` hands
+# back the uid of the pile the FIRST spin already consumed, `use` on a dead item
+# does nothing, and the run quietly ends up with three yarn instead of six. That
+# is exactly what happened: the loom then wanted a fourth yarn that never came.
+open @pack
+wait_action
+sleep 1500
 remember wool2 pack_graphic 0x0DF8,0x101F
+require wool2
 use @wool2
+wait_target
+target @wheel
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x0E1D,0x0E1E,0x0E1F
+
+# A third pile. Six yarn already covers one bolt, but the loom carries partial
+# state between users (m_itLoom.m_iClothQty persists on the item), so how much
+# yarn a public loom needs on any given day is not knowable in advance. Margin
+# is cheaper than another twenty-minute walk.
+scan_mobiles
+sleep 2500
+remember sheep3 mobile_body 0x00CF
+require sheep3
+travel_entity @sheep3 1
+wait_travel
+sleep 2000
+use @hatchet
+wait_target
+target @sheep3
+sleep 3000
+
+travel_point 1467 1686
+wait_travel
+expect_travel ok
+sleep 2000
+
+open @pack
+wait_action
+sleep 1500
+remember wool3 pack_graphic 0x0DF8,0x101F
+require wool3
+use @wool3
 wait_target
 target @wheel
 sleep 3000
