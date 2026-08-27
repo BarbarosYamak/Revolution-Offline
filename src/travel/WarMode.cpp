@@ -90,6 +90,12 @@ void WarModeWatchdog::OnTargetGone(u32 serial, i64 nowMs) {
     lastSeenTargetMs_ = nowMs;
 }
 
+void WarModeWatchdog::OnTargetSeen(u32 serial, i64 nowMs) {
+    if (!serial || serial != target_) return;
+    hasSeenTarget_ = true;
+    lastSeenTargetMs_ = nowMs;
+}
+
 void WarModeWatchdog::OnPeacefulIntent(i64 nowMs) {
     if (!peacefulIntent_) {
         peacefulIntent_ = true;

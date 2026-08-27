@@ -63,8 +63,18 @@ public:
     // Anything that counts as combat still happening: a swing, a hit, our own
     // health dropping, the target's health changing.
     void OnCombatEvent(i64 nowMs);
-    // The target is provably gone (0x1D, death animation, out of range purge).
+    // The target is PROVABLY gone: the server destroyed the object (0x1D) or
+    // showed it dying. "Not in the mobile cache right now" is not proof --
+    // the M3.9 stationary purge (Client::PurgeOutOfRange) evicts anything
+    // briefly out of view within ~2s, and calling this on that evidence made
+    // bots sheathe mid-fight: intent_ dropped to None, the idle rule armed,
+    // and 15s later the weapon went away while the chicken was still running.
+    // Mere absence is reported by NOT calling OnTargetSeen and letting the
+    // targetLostMs rule age it out.
     void OnTargetGone(u32 serial, i64 nowMs);
+    // The target is in view right now. Refreshes the last-seen clock that
+    // drives the targetLostMs rule; absence needs no call at all.
+    void OnTargetSeen(u32 serial, i64 nowMs);
     // The bot is doing something a player would sheathe for.
     void OnPeacefulIntent(i64 nowMs);
 

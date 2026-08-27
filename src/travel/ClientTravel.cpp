@@ -141,7 +141,11 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     travelEscapes_ = 0;
     travelEscapeTried_.clear();
     travelAvoidPads_.clear();
-    journey_.Begin(travelLabel_.c_str(), x, y, arriveRadius, NowMs());
+    // The journey gets the destination's floor too (M3.9): with the goal z in
+    // its own arrival test, standing under a bridge-deck destination is "not
+    // there yet" and keeps being worked at, instead of a false 2-D arrival
+    // that TravelFinish then had to convert into an unrecoverable failure.
+    journey_.Begin(travelLabel_.c_str(), x, y, arriveRadius, NowMs(), hasZ, z);
     travelLastSampleMs_ = 0;
 
     LogInfo("[travel] %s -> (%d,%d) r=%d from (%d,%d)\n",
@@ -296,9 +300,11 @@ const char* Client::TravelPhaseName() const {
 
 void Client::TravelFinish(bool ok, const char* why) {
     // Arriving above the destination is not arriving. The journey's own goal
-    // test is two-dimensional -- it plans on a 2D grid -- so the floor is
-    // checked here, where the destination's z is known, rather than reporting
-    // a success the character cannot act on.
+    // test checks the floor too now (M3.9) when it was given a goal z, so for
+    // point/place/service trips this re-check should never fire; it stays as
+    // the final assertion because an entity chase re-aims at a moving mobile
+    // whose z the journey's goal may lag, and because reporting a success the
+    // character cannot act on is the one outcome this layer must never allow.
     if (ok) {
         i32 dz = -1;
         if (travelEntitySerial_) {
@@ -345,14 +351,18 @@ void Client::TravelNotePlaceReached(i32 x, i32 y) {
 void Client::TravelRetargetEntity() {
     if (!travelEntitySerial_ || !journey_.Active()) return;
     i32 mx = 0, my = 0;
-    if (!MobilePosition(travelEntitySerial_, &mx, &my)) {
+    i8 mz = 0;
+    if (!MobilePosition(travelEntitySerial_, &mx, &my, &mz)) {
         // Out of view. The last known position still stands as a destination:
         // the server will show us the mobile again when we get near it.
         return;
     }
     if (Chebyshev(mx, my, journey_.GoalX(), journey_.GoalY()) <= 2) return;
-    // The mobile wandered. Re-aim rather than walk to where it used to be.
-    journey_.Begin(travelLabel_.c_str(), mx, my, travelEntityWithin_, NowMs());
+    // The mobile wandered. Re-aim rather than walk to where it used to be --
+    // and pin its floor, so an NPC on a shop's upper storey is chased to the
+    // storey, not to the ground under it.
+    journey_.Begin(travelLabel_.c_str(), mx, my, travelEntityWithin_, NowMs(),
+                   /*hasGoalZ=*/true, mz);
     travelWalkOutstanding_ = false;
     if (nav_.bot.active || nav_.bot.planning)
         BotAbortPath("travel target moved");
@@ -674,7 +684,7 @@ void Client::TravelTick() {
     if (now - travelLastSampleMs_ >= kTravelSampleMs) {
         travelLastSampleMs_ = now;
         TravelRetargetEntity();
-        journey_.OnPositionSample(playerX_, playerY_, now);
+        journey_.OnPositionSample(playerX_, playerY_, playerZ_, now);
     }
 
     // Resolve an outstanding walk leg: GotoBusy() latches the trip result.
@@ -704,6 +714,12 @@ void Client::TravelTick() {
             // If it fell short and budget remains, the journey is still parked
             // and the next tick will start another attempt from here.
             if (!reached && journey_.Recovering() && !TravelTryEscape()) {
+                // No anchors left to try. Terminate the journey BEFORE
+                // reporting: a trip finished while still parked in Recovering
+                // stays Active forever -- TravelBusy() never clears and the
+                // scenario's wait_travel never wakes. Same defect class as
+                // the M3.9 soak spin, caught by reading for it.
+                journey_.Abort("sealed in; recovery exhausted");
                 TravelFinish(false, "sealed in; recovery exhausted");
             }
             return;
@@ -719,7 +735,7 @@ void Client::TravelTick() {
             }
         }
         if (!wrongFloor && (GotoSucceeded() || off <= kLegArriveSlack)) {
-            journey_.OnLegArrived(playerX_, playerY_, now);
+            journey_.OnLegArrived(playerX_, playerY_, playerZ_, now);
         } else {
             if (wrongFloor)
                 LogWarn("[travel] reached (%d,%d,%d) but the target is on "
@@ -738,7 +754,13 @@ void Client::TravelTick() {
         case travel::Command::PlanRoute: TravelPlanRoute(); break;
         case travel::Command::WalkTo:    TravelDriveLeg();  break;
         case travel::Command::UseTransit:TravelUseTransit();break;
-        case travel::Command::Finish:    TravelFinish(true, ""); break;
+        case travel::Command::Finish:
+            // The note is non-empty when the journey settled for a nearby
+            // tile because the destination itself was occupied (the crowded
+            // bank/forge case) -- an arrival, but one worth being able to
+            // count in a soak log.
+            TravelFinish(true, journey_.ArrivalNote().c_str());
+            break;
         case travel::Command::Fail:
             // Before giving up, try to get somewhere the router can see. A
             // character sealed into an upper storey or a walled pocket
@@ -764,9 +786,26 @@ void Client::TravelTick() {
                  journey_.FailureReason() == travel::Failure::NoRoute) &&
                 TravelTryEscape())
                 break;
-            TravelFinish(false, journey_.FailureDetail().empty()
-                                    ? travel::FailureName(journey_.FailureReason())
-                                    : journey_.FailureDetail().c_str());
+            {
+                const std::string why =
+                    journey_.FailureDetail().empty()
+                        ? travel::FailureName(journey_.FailureReason())
+                        : journey_.FailureDetail();
+                // A journey that answers Fail MUST NOT remain Active after we
+                // report it, or this switch re-enters here every tick: the
+                // trip is re-"finished" 16 times a second, TravelBusy() never
+                // clears, and the scenario's wait_travel never wakes. That is
+                // exactly what the M3.9 38-bot soak measured -- 99,290
+                // travel_failed events, ~62ms apart, why='none' -- when a
+                // route spent short of the goal left the journey in a live
+                // phase with no failure_ set. The state machine now resolves
+                // that case itself; this is the second line of defence, kept
+                // because the cost of the belt-and-braces is one branch and
+                // the cost of the spin was a whole soak run.
+                if (journey_.CurrentPhase() != travel::Phase::Failed)
+                    journey_.Abort(why.c_str());
+                TravelFinish(false, why.c_str());
+            }
             break;
         case travel::Command::Wait:
         case travel::Command::Idle:
@@ -882,11 +921,20 @@ void Client::WarModeTick() {
     if (!IsInWorld()) return;
     const i64 now = NowMs();
 
-    // A target we can no longer see is a target that is gone. The out-of-range
-    // purge already removes it from mobileCache_, so this is just reading what
-    // the session already knows.
+    // Report SIGHTINGS, never absence. This used to declare the target gone
+    // the first tick it was missing from mobileCache_, which was survivable
+    // while the cache only purged when the player moved -- but the M3.9
+    // stationary purge (Client::PurgeOutOfRange, 2s timer) evicts a fleeing
+    // animal that steps briefly out of view, and "gone" here dropped the
+    // combat intent to None, armed the idle rule, and had the bot sheathe its
+    // katana 15s into a fight it was winning. Seven live runs where nothing
+    // could be killed traced back to this one line. A momentary loss of sight
+    // is what the watchdog's own targetLostMs rule exists for: refresh the
+    // clock while the target is visible, do nothing while it is not, and let
+    // that rule age a genuinely lost target out. OnTargetGone remains correct
+    // where the server PROVED the loss -- the 0x1D remove handler.
     const u32 target = war_.TargetSerial();
-    if (target && !FindMobileBySerial(target)) war_.OnTargetGone(target, now);
+    if (target && FindMobileBySerial(target)) war_.OnTargetSeen(target, now);
 
     if (war_.ShouldExitWar(now)) {
         LogInfo("[war] dropping war mode: %s\n", war_.ExitReason(now));

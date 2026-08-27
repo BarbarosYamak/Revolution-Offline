@@ -82,6 +82,30 @@ struct Limits {
     // (an NPC in a doorway) clears on its own, short enough to feel like a
     // player waiting rather than a hang.
     i64 recoveryPauseMs = 1200;
+    // Extra pause before walking each successive REPLAN of the same trip,
+    // multiplied by how many plans have already been spent. The first plan
+    // walks immediately; the ones after it are reactions to trouble, and the
+    // M3.9 38-bot soak showed what no pause does: four replans in eight
+    // seconds against a bank tile that 37 other bots were also standing on.
+    // The blocker there was other characters, and characters move -- given a
+    // few seconds. Escalating linearly (1.5s, 3s, 4.5s) buys that time while
+    // keeping the whole ladder bounded at ~10s.
+    i64 replanBackoffMs = 1500;
+    // Two z values are on the same floor when they differ by no more than
+    // this. A UO storey is ~20 z-units; Sphere's own speech and shop checks
+    // are three-dimensional, so "at the same (x,y), one floor up" is not
+    // arrived. Mirrors the client's kSameFloorZ.
+    i32 sameFloorZ = 12;
+    // When every retry is spent and the character stands within this many
+    // tiles PAST the arrive radius of the goal -- on the goal's floor -- the
+    // trip arrives "nearby" instead of failing. Banks, forges and moongates
+    // are exactly where every bot wants to stand, so the goal tile being
+    // occupied is the common case, not the error case; the tile A* has
+    // already walked us to the best free tile it could reach, and "within a
+    // few tiles" is almost always what the caller actually wanted. Kept small
+    // so an interaction-radius destination (a vendor, a banker) still ends in
+    // speech range.
+    i32 crowdedArriveSlack = 3;
     // How long a transit gets to move us before we call it failed.
     i64 transitTimeoutMs = 8000;
     // Escape attempts, each at a different anchor, before the character is
@@ -100,8 +124,17 @@ public:
     // Start a trip. `label` is for logs only. `arriveRadius` is how close
     // counts as arrived at the final destination -- a place's interaction
     // radius, not a tile match, because NPCs and doorways move.
+    //
+    // `hasGoalZ`/`goalZ` pin the destination's FLOOR when the caller knows it.
+    // The journey was 2-D from M2.5 until M3.9 and that was the bridge bug:
+    // the goal test could not tell a bridge deck from the water under it, so
+    // walking beneath the destination counted as arriving and the trip was
+    // then failed after the fact by the client's own floor check -- with no
+    // recovery, because as far as the journey knew it had succeeded. With the
+    // floor known here, standing under the goal is simply "not there yet" and
+    // the normal replan/recovery ladder keeps working toward the right level.
     void Begin(const char* label, i32 goalX, i32 goalY, i32 arriveRadius,
-               i64 nowMs);
+               i64 nowMs, bool hasGoalZ = false, i8 goalZ = 0);
     void Abort(const char* why);
     void Reset();
 
@@ -119,7 +152,13 @@ public:
 
     i32 GoalX() const { return goalX_; }
     i32 GoalY() const { return goalY_; }
+    bool HasGoalZ() const { return hasGoalZ_; }
+    i8  GoalZ() const { return goalZ_; }
     i32 ArriveRadius() const { return arriveRadius_; }
+    // Non-empty when the trip ended at a nearby tile because the destination
+    // itself was not free (see Limits::crowdedArriveSlack). Empty for a clean
+    // on-the-tile arrival. For the caller's logs; an arrival either way.
+    const std::string& ArrivalNote() const { return arrivalNote_; }
 
     // --- planning ----------------------------------------------------------
 
@@ -144,13 +183,19 @@ public:
 
     // --- events ------------------------------------------------------------
 
+    // Each event exists in a 2-D form (z unknown -- floor checks are skipped,
+    // which is how the unit tests and any caller without a live z behave) and
+    // a 3-D form (the client always knows its own z and should say so).
     void OnLegArrived(i32 x, i32 y, i64 nowMs);
+    void OnLegArrived(i32 x, i32 y, i8 z, i64 nowMs);
     void OnLegFailed(const char* reason, i64 nowMs);
     // The client noticed the server moved us a long way in one step.
     void OnWorldTransition(i32 x, i32 y, i64 nowMs);
+    void OnWorldTransition(i32 x, i32 y, i8 z, i64 nowMs);
     // Called every tick with the live position; drives stuck and oscillation
     // detection and finishes the trip when the goal radius is reached.
     void OnPositionSample(i32 x, i32 y, i64 nowMs);
+    void OnPositionSample(i32 x, i32 y, i8 z, i64 nowMs);
 
     // --- driving -----------------------------------------------------------
 
@@ -194,6 +239,17 @@ private:
     void EnterLegPhase(i64 nowMs);
     void BeginRecovery(const char* why, i64 nowMs);
     i32  DistanceToLegTarget(i32 x, i32 y) const;
+    // The 3-D goal test: inside the arrive radius AND (when both sides know
+    // their z) on the goal's floor.
+    bool AtGoal(i32 x, i32 y, i8 z, bool zKnown) const;
+    bool SameFloorAsGoal(i8 z, bool zKnown) const;
+    // Every retry is spent. If the last known position is already within
+    // crowdedArriveSlack of the goal on the right floor, arrive there instead
+    // of failing; the tile A* has already put us on the best free tile.
+    bool TryCrowdedArrival();
+    void LegArrived(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs);
+    void WorldTransition(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs);
+    void PositionSample(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs);
 
     Limits limits_;
     Phase  phase_ = Phase::Idle;
@@ -202,7 +258,10 @@ private:
     std::string label_;
 
     i32 goalX_ = 0, goalY_ = 0;
+    bool hasGoalZ_ = false;
+    i8   goalZ_ = 0;
     i32 arriveRadius_ = 1;
+    std::string arrivalNote_;
 
     route::WorldRoute route_;
     int  legIndex_ = 0;
@@ -222,7 +281,13 @@ private:
     int oscillations_ = 0;
     bool haveSample_ = false;
     i32 lastX_ = 0, lastY_ = 0;
-    std::vector<u32> recentTiles_;   // packed (x<<16|y), bounded window
+    i8  lastZ_ = 0;
+    bool lastZKnown_ = false;
+    // Packed (x, y, z), bounded window. z is part of the key on purpose: a
+    // bridge deck and the ground beneath it share (x,y), and folding them
+    // into one tile made a legitimate under-then-over crossing look like an
+    // oscillation.
+    std::vector<u64> recentTiles_;
 };
 
 } // namespace uo::travel

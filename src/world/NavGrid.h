@@ -17,6 +17,33 @@
 // It is immutable once built and contains no per-character state, so one copy
 // is shared by every session in the process (M1.5 isolation rule: mutable
 // state stays per-session, static topology may be shared).
+//
+// KNOWN DEBT -- interiors (M3.9 scope, unstarted). What works today, measured:
+// the tile A* underneath is fully 3-D and interior-capable -- it climbs
+// stairs (maxStepUp 12), opens doors (the door-macro retry ladder in
+// Navigation.cpp), and treats the decorator's furniture and live mobiles as
+// obstacles. RoutePlanner::Plan snaps an unsampled start/goal cell to the
+// nearest passable one within 3 rings and hands anything within one leg
+// budget (40 tiles) straight to that A*, so a ground-floor shop within a leg
+// of sampled ground is already reachable end to end. What does NOT work:
+//   1. BuildEdges runs offline against the raw MULs, where every door is
+//      CLOSED, so cell-to-cell edges through buildings are recorded shut and
+//      the macro router treats a large interior as an impassable pocket; a
+//      goal deeper inside than one leg budget cannot be planned to, only
+//      escaped from (EscapeCandidates).
+//   2. A cell's single anchor is chosen with no notion of floors: a cell
+//      containing a two-storey shop gets one anchor at one z, so a macro
+//      route can end a leg on the wrong storey and the journey's floor test
+//      (Journey::AtGoal, M3.9) then correctly refuses to call it arrived --
+//      the trip fails cleanly instead of finishing, but it still fails.
+// Closing the gap needs (a) door-aware BuildEdges -- treat kFlagDoor statics
+// as passable during the offline sweep the way the walker does at runtime --
+// and (b) per-floor anchors: a cell may hold one anchor per distinct standing
+// z-band, with edges keyed by (cell, band) rather than cell. Both are offline
+// generator changes plus a grid format bump; nothing in the runtime walker
+// needs to change. Note mount_policy's Reason::DestinationIndoors is only a
+// riding decision (do not ride into a bank), not a navigation answer, and
+// must not be mistaken for one.
 // ---------------------------------------------------------------------------
 
 #include "uo/types.h"

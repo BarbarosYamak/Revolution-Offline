@@ -12,8 +12,17 @@ i32 Chebyshev(i32 ax, i32 ay, i32 bx, i32 by) {
     return dx > dy ? dx : dy;
 }
 
-u32 PackTile(i32 x, i32 y) {
-    return (static_cast<u32>(x & 0xFFFF) << 16) | static_cast<u32>(y & 0xFFFF);
+// z is part of the key (see the field comment in Journey.h): a 2-D pack made
+// a bridge deck and the ground under it the same tile.
+u64 PackTile(i32 x, i32 y, i8 z) {
+    return (static_cast<u64>(static_cast<u16>(x)) << 32) |
+           (static_cast<u64>(static_cast<u16>(y)) << 16) |
+           static_cast<u64>(static_cast<u8>(z));
+}
+
+i32 AbsDiff(i8 a, i8 b) {
+    const i32 d = static_cast<i32>(a) - static_cast<i32>(b);
+    return d < 0 ? -d : d;
 }
 
 const char* const kPhaseNames[] = {
@@ -69,20 +78,49 @@ void Journey::Reset() {
     noProgress_ = 0;
     oscillations_ = 0;
     haveSample_ = false;
+    lastZKnown_ = false;
     recentTiles_.clear();
     positionRecoveries_ = 0;
     recoveryReason_.clear();
+    hasGoalZ_ = false;
+    goalZ_ = 0;
+    arrivalNote_.clear();
 }
 
 void Journey::Begin(const char* label, i32 goalX, i32 goalY, i32 arriveRadius,
-                    i64 nowMs) {
+                    i64 nowMs, bool hasGoalZ, i8 goalZ) {
     Reset();
     label_ = label ? label : "";
     goalX_ = goalX;
     goalY_ = goalY;
+    hasGoalZ_ = hasGoalZ;
+    goalZ_ = goalZ;
     arriveRadius_ = arriveRadius > 0 ? arriveRadius : 1;
     phase_ = Phase::NeedRoute;
     waitUntilMs_ = nowMs;
+}
+
+bool Journey::SameFloorAsGoal(i8 z, bool zKnown) const {
+    // A floor mismatch can only be asserted when BOTH sides know their z.
+    // Failing "unknown" would break every caller that plans in 2-D.
+    if (!hasGoalZ_ || !zKnown) return true;
+    return AbsDiff(z, goalZ_) <= limits_.sameFloorZ;
+}
+
+bool Journey::AtGoal(i32 x, i32 y, i8 z, bool zKnown) const {
+    return Chebyshev(x, y, goalX_, goalY_) <= arriveRadius_ &&
+           SameFloorAsGoal(z, zKnown);
+}
+
+bool Journey::TryCrowdedArrival() {
+    if (!haveSample_) return false;
+    if (Chebyshev(lastX_, lastY_, goalX_, goalY_) >
+        arriveRadius_ + limits_.crowdedArriveSlack)
+        return false;
+    if (!SameFloorAsGoal(lastZ_, lastZKnown_)) return false;
+    arrivalNote_ = "arrived nearby; the destination tile was not free";
+    phase_ = Phase::Arrived;
+    return true;
 }
 
 // --- position recovery ------------------------------------------------------
@@ -202,7 +240,14 @@ void Journey::SetRoute(const route::WorldRoute& r, i64 nowMs) {
     bestDistance_ = 0x7FFFFFFF;
     noProgress_ = 0;
     recentTiles_.clear();
-    waitUntilMs_ = nowMs;
+    // The first plan of a trip walks immediately; every later plan is a
+    // reaction to trouble and backs off before walking (see Limits
+    // ::replanBackoffMs -- the 38-bot soak replanned four times in eight
+    // seconds at a tile other bots were standing on, and the pause is what
+    // gives a crowd time to move).
+    waitUntilMs_ = nowMs + (routePlans_ > 1
+                                ? (routePlans_ - 1) * limits_.replanBackoffMs
+                                : 0);
     // The FIRST leg can be a transit: a bot that is already standing on the
     // gate needs no walk to reach it, so the planner emits none. Assuming
     // Walking here made the journey "arrive" at the tile it was already on and
@@ -237,6 +282,21 @@ void Journey::Advance(i64 nowMs) {
         // position sample against the goal radius, not by the leg count --
         // the last leg can legitimately stop a tile or two short.
         phase_ = Phase::Walking;
+        // Pause before the replan this state leads to: a route that ran out
+        // short of the goal means the world disagreed with the plan, and the
+        // commonest disagreement -- somebody standing on the tile -- clears
+        // by itself given a moment.
+        waitUntilMs_ = nowMs + limits_.recoveryPauseMs;
+        if (routePlans_ >= limits_.maxRoutePlans) {
+            // No replan budget left either. This state MUST resolve here.
+            // Leaving it pending was the M3.9 soak's 99,290-event spin:
+            // NextCommand() answered Fail but nothing ever moved the phase to
+            // Failed, so the journey stayed Active and the client re-reported
+            // the same failure every tick, 16 times a second, forever.
+            if (!TryCrowdedArrival())
+                Fail(Failure::Unreachable,
+                     "route spent short of the goal; replan budget exhausted");
+        }
         return;
     }
     EnterLegPhase(nowMs);
@@ -270,12 +330,31 @@ void Journey::BeginRecovery(const char* why, i64 nowMs) {
         waitUntilMs_ = nowMs + limits_.recoveryPauseMs;
         return;
     }
+    // The ladder is spent. If it was spent within a few tiles of the goal on
+    // the goal's own floor, that is a crowded destination, not an unreachable
+    // one -- take the tile we are standing on and call it arrived.
+    if (TryCrowdedArrival()) return;
     Fail(Failure::Unreachable, why ? why : "route exhausted");
 }
 
 void Journey::OnLegArrived(i32 x, i32 y, i64 nowMs) {
+    LegArrived(x, y, 0, /*zKnown=*/false, nowMs);
+}
+
+void Journey::OnLegArrived(i32 x, i32 y, i8 z, i64 nowMs) {
+    LegArrived(x, y, z, /*zKnown=*/true, nowMs);
+}
+
+void Journey::LegArrived(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs) {
     if (!Active()) return;
-    if (Chebyshev(x, y, goalX_, goalY_) <= arriveRadius_) {
+    // A leg report is a position observation too; keep the last-known
+    // position fresh so a crowded-arrival decision made inside Advance sees
+    // where we actually stand, not where a 500ms-old sample left us.
+    haveSample_ = true;
+    lastX_ = x;
+    lastY_ = y;
+    if (zKnown) { lastZ_ = z; lastZKnown_ = true; }
+    if (AtGoal(x, y, z, zKnown)) {
         phase_ = Phase::Arrived;
         return;
     }
@@ -288,21 +367,32 @@ void Journey::OnLegFailed(const char* reason, i64 nowMs) {
 }
 
 void Journey::OnWorldTransition(i32 x, i32 y, i64 nowMs) {
+    WorldTransition(x, y, 0, /*zKnown=*/false, nowMs);
+}
+
+void Journey::OnWorldTransition(i32 x, i32 y, i8 z, i64 nowMs) {
+    WorldTransition(x, y, z, /*zKnown=*/true, nowMs);
+}
+
+void Journey::WorldTransition(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs) {
     if (!Active()) return;
 
     // Anything the server did to our position invalidates the local plan: the
     // path we were walking starts somewhere we are no longer standing.
-    if (Chebyshev(x, y, goalX_, goalY_) <= arriveRadius_) {
+    if (AtGoal(x, y, z, zKnown)) {
         phase_ = Phase::Arrived;
         return;
     }
 
     if (phase_ == Phase::AtTransit) {
-        // The transit did its job. Continue from the far side.
+        // The transit did its job. Continue from the far side. Advance owns
+        // the route-spent case, including failing cleanly when there is no
+        // replan budget left to route the unexpected far side.
         Advance(nowMs);
         if (phase_ == Phase::Walking && !CurrentLeg()) {
             // Nothing left in the route but we are not at the goal -- the far
             // side is somewhere the route did not anticipate, so replan.
+            // (Advance guarantees budget remains when it leaves this state.)
             phase_ = Phase::NeedRoute;
         }
         return;
@@ -310,6 +400,14 @@ void Journey::OnWorldTransition(i32 x, i32 y, i64 nowMs) {
 
     // An unplanned transition (a trap teleporter, a gate someone else opened,
     // a resurrection move). The old route is meaningless from here.
+    if (routePlans_ >= limits_.maxRoutePlans) {
+        // NeedRoute with no plan budget is not a state, it is a pending
+        // failure -- resolving it here rather than letting NextCommand report
+        // an unexplained Fail forever is part of the M3.9 spin fix.
+        Fail(Failure::Unreachable,
+             "the world moved us and the replan budget is spent");
+        return;
+    }
     phase_ = Phase::NeedRoute;
     legIssued_ = false;
     waitUntilMs_ = nowMs;
@@ -319,10 +417,19 @@ void Journey::OnWorldTransition(i32 x, i32 y, i64 nowMs) {
 }
 
 void Journey::OnPositionSample(i32 x, i32 y, i64 nowMs) {
+    PositionSample(x, y, 0, /*zKnown=*/false, nowMs);
+}
+
+void Journey::OnPositionSample(i32 x, i32 y, i8 z, i64 nowMs) {
+    PositionSample(x, y, z, /*zKnown=*/true, nowMs);
+}
+
+void Journey::PositionSample(i32 x, i32 y, i8 z, bool zKnown, i64 nowMs) {
     if (!Active()) {
         haveSample_ = true;
         lastX_ = x;
         lastY_ = y;
+        if (zKnown) { lastZ_ = z; lastZKnown_ = true; }
         return;
     }
 
@@ -330,14 +437,16 @@ void Journey::OnPositionSample(i32 x, i32 y, i64 nowMs) {
         Chebyshev(x, y, lastX_, lastY_) >= limits_.transitionJumpTiles) {
         lastX_ = x;
         lastY_ = y;
-        OnWorldTransition(x, y, nowMs);
+        if (zKnown) { lastZ_ = z; lastZKnown_ = true; }
+        WorldTransition(x, y, z, zKnown, nowMs);
         return;
     }
     haveSample_ = true;
     lastX_ = x;
     lastY_ = y;
+    if (zKnown) { lastZ_ = z; lastZKnown_ = true; }
 
-    if (Chebyshev(x, y, goalX_, goalY_) <= arriveRadius_) {
+    if (AtGoal(x, y, z, zKnown)) {
         phase_ = Phase::Arrived;
         return;
     }
@@ -365,9 +474,9 @@ void Journey::OnPositionSample(i32 x, i32 y, i64 nowMs) {
     // Oscillation: the same tile keeps coming back inside a short window. This
     // catches the shuffle a bot does between two cells that each reroute into
     // the other, which "no progress" alone can miss when the distance is equal.
-    const u32 packed = PackTile(x, y);
+    const u64 packed = PackTile(x, y, zKnown ? z : 0);
     int repeats = 0;
-    for (u32 t : recentTiles_)
+    for (u64 t : recentTiles_)
         if (t == packed) ++repeats;
     recentTiles_.push_back(packed);
     if (static_cast<int>(recentTiles_.size()) > limits_.oscillationWindow)
@@ -398,6 +507,12 @@ Command Journey::NextCommand(i64 nowMs) const {
         case Phase::Recovering: return Command::Wait;
         case Phase::NeedRoute:
             if (nowMs < waitUntilMs_) return Command::Wait;
+            // Last resort only. Every transition INTO NeedRoute now checks the
+            // plan budget and fails the trip properly instead, because a Fail
+            // answered from a live phase leaves failure_ unset and the phase
+            // untouched -- the caller reports "none" and, worse, the journey
+            // stays Active, which is the M3.9 16-Hz spin. The client also
+            // force-terminates on Fail as a second line of defence.
             if (routePlans_ >= limits_.maxRoutePlans) return Command::Fail;
             return Command::PlanRoute;
         case Phase::AtTransit:
@@ -409,7 +524,10 @@ Command Journey::NextCommand(i64 nowMs) const {
             if (nowMs < waitUntilMs_) return Command::Wait;
             if (!CurrentLeg()) {
                 // Route spent without reaching the goal radius: replan from
-                // wherever we ended up rather than declaring success.
+                // wherever we ended up rather than declaring success. The
+                // budget-exhausted arm is a last resort like NeedRoute's:
+                // Advance resolves that case itself (crowded arrival or a
+                // proper Fail) precisely so this Fail is never the answer.
                 return routePlans_ < limits_.maxRoutePlans ? Command::PlanRoute
                                                            : Command::Fail;
             }
@@ -428,7 +546,7 @@ void Journey::CommandTarget(i32* x, i32* y, i8* z) const {
     }
     if (x) *x = goalX_;
     if (y) *y = goalY_;
-    if (z) *z = 0;
+    if (z) *z = hasGoalZ_ ? goalZ_ : 0;
 }
 
 void Journey::NoteCommandIssued(Command c, i64 nowMs) {

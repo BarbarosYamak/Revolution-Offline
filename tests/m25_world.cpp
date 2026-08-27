@@ -643,6 +643,175 @@ void TestJourneyTransitLeg() {
 }
 
 // ---------------------------------------------------------------------------
+// M3.9: the crowded-destination ladder and journey z-awareness.
+//
+// Evidence for all five tests: the 38-bot soak of 2026-08-27. 731 journeys
+// succeeded and 99,290 emitted travel_failed -- 99,266 of them from the two
+// tiles adjacent to ONE waypoint (travel_point 1336 1928, the Britain bank
+// approach: 59,249 at (1335,1925) and 40,017 at (1335,1926)), at ~62ms
+// intervals, why='none', plans=4. One bot logged 8,024 failures for that one
+// waypoint. Two defects compounded:
+//
+//   * a route that ran out short of the goal with the replan budget spent
+//     left the journey in a live phase with no failure recorded, so
+//     NextCommand said Fail forever and nothing ever terminated the trip;
+//   * a goal tile occupied by other characters was treated as unreachable,
+//     when every bot in the fleet wants to stand on the same handful of bank,
+//     forge and moongate tiles -- occupied destinations are the COMMON case.
+// ---------------------------------------------------------------------------
+
+route::WorldRoute OneLegTo(i32 x, i32 y) {
+    route::WorldRoute r;
+    r.ok = true;
+    route::RouteLeg leg;
+    leg.target.x = x;
+    leg.target.y = y;
+    r.legs.push_back(leg);
+    return r;
+}
+
+void TestJourneySpentRouteTerminates() {
+    Section("journey: a spent route ENDS, one way or the other");
+    travel::Journey j;
+    travel::Limits lim;
+    lim.maxRoutePlans = 2;
+    lim.recoveryPauseMs = 0;
+    lim.replanBackoffMs = 0;
+    j.SetLimits(lim);
+
+    i64 t = 0;
+    // The goal is far away so the crowd slack cannot apply: this is the
+    // "genuinely cannot get there" arm.
+    j.Begin("far", 1000, 1000, 1, t);
+    j.SetRoute(OneLegTo(500, 500), t);          // plan 1
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(500, 500, t += 1000);        // route spent, budget remains
+    Check(j.NextCommand(t += 5000) == travel::Command::PlanRoute,
+          "a spent route with budget left replans");
+    j.SetRoute(OneLegTo(500, 500), t);          // plan 2 -- budget now spent
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(500, 500, t += 1000);
+
+    // THE SOAK BUG: this exact state used to stay Phase::Walking with
+    // failure_ == None. NextCommand answered Fail, nothing moved the phase,
+    // the journey stayed Active, and the client re-reported the same failure
+    // 16 times a second for the rest of the run.
+    Check(j.CurrentPhase() == travel::Phase::Failed,
+          "no budget and not at the goal is a TERMINAL failure");
+    Check(j.FailureReason() == travel::Failure::Unreachable,
+          "reported as unreachable, not as 'none'");
+    Check(!j.FailureDetail().empty(), "with a reason a human can read");
+    Check(!j.Active(), "and a failed journey is not active");
+}
+
+void TestJourneyCrowdedArrival() {
+    Section("journey: an occupied destination resolves to a nearby tile");
+    travel::Journey j;
+    travel::Limits lim;
+    lim.maxRoutePlans = 2;
+    lim.recoveryPauseMs = 0;
+    lim.replanBackoffMs = 0;
+    j.SetLimits(lim);
+
+    // The soak's exact geometry: goal (1336,1928) radius 1, and the best free
+    // tile the tile A* could reach was (1335,1925) -- Chebyshev 3 away, with
+    // the goal tile and its neighbours under other bots' feet.
+    i64 t = 0;
+    j.Begin("bank", 1336, 1928, 1, t);
+    j.SetRoute(OneLegTo(1336, 1928), t);
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(1335, 1925, t += 1000);      // stopped short: retry first
+    Check(j.NextCommand(t += 5000) == travel::Command::PlanRoute,
+          "the first shortfall is retried, not accepted");
+    j.SetRoute(OneLegTo(1336, 1928), t);
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(1335, 1925, t += 1000);      // budget spent, 3 tiles out
+
+    Check(j.CurrentPhase() == travel::Phase::Arrived,
+          "within the crowd slack the trip ARRIVES on the best free tile");
+    Check(!j.ArrivalNote().empty(),
+          "and the arrival says the destination was not free");
+}
+
+void TestJourneyCrowdSlackRespectsFloor() {
+    Section("journey: crowd slack never accepts the wrong floor");
+    travel::Journey j;
+    travel::Limits lim;
+    lim.maxRoutePlans = 1;
+    lim.recoveryPauseMs = 0;
+    lim.replanBackoffMs = 0;
+    j.SetLimits(lim);
+
+    i64 t = 0;
+    // The goal is on a first floor (z=20); the walker ends up beneath it.
+    j.Begin("balcony", 100, 100, 1, t, /*hasGoalZ=*/true, /*goalZ=*/20);
+    j.SetRoute(OneLegTo(100, 100), t);
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(100, 101, 0, t += 1000);   // right column, wrong floor
+
+    Check(j.CurrentPhase() == travel::Phase::Failed,
+          "one tile away on the wrong floor is NOT a crowded arrival");
+}
+
+void TestJourneyGoalFloor() {
+    Section("journey: the goal test knows about floors");
+    travel::Journey j;
+    i64 t = 0;
+    j.Begin("bridge", 1400, 1700, 2, t, /*hasGoalZ=*/true, /*goalZ=*/20);
+    j.SetRoute(OneLegTo(1400, 1700), t);
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+
+    // Standing under the destination: same (x,y), 20 z-units down. The 2-D
+    // journey called this Arrived, and the client then had to fail the whole
+    // trip after the fact with no way to recover; now it is simply "not
+    // there yet" and the normal ladder keeps working.
+    j.OnPositionSample(1400, 1700, 0, t += 500);
+    Check(j.CurrentPhase() != travel::Phase::Arrived,
+          "under the bridge is not ON the bridge");
+
+    // On the deck, within the floor tolerance: arrived.
+    j.OnPositionSample(1400, 1700, 18, t += 500);
+    Check(j.CurrentPhase() == travel::Phase::Arrived,
+          "the deck itself is arrival");
+
+    // A caller with no z -- the 2-D overloads -- keeps the old behaviour:
+    // floors are only enforced when both sides actually know them.
+    travel::Journey k;
+    k.Begin("legacy", 300, 300, 2, 0);
+    k.SetRoute(OneLegTo(300, 300), 0);
+    k.NoteCommandIssued(travel::Command::WalkTo, 0);
+    k.OnPositionSample(300, 300, 500);
+    Check(k.CurrentPhase() == travel::Phase::Arrived,
+          "a z-less sample still arrives on (x,y) alone");
+}
+
+void TestJourneyReplanBackoff() {
+    Section("journey: replans back off instead of hammering");
+    travel::Journey j;   // default limits: replanBackoffMs = 1500
+    i64 t = 0;
+    j.Begin("busy", 1000, 1000, 1, t);
+
+    j.SetRoute(OneLegTo(500, 500), t);          // plan 1
+    Check(j.NextCommand(t) == travel::Command::WalkTo,
+          "the first plan walks immediately");
+
+    j.NoteCommandIssued(travel::Command::WalkTo, t);
+    j.OnLegArrived(500, 500, t += 1000);
+    Check(j.NextCommand(t) == travel::Command::Wait,
+          "a shortfall pauses before replanning");
+    t += j.GetLimits().recoveryPauseMs;
+    Check(j.NextCommand(t) == travel::Command::PlanRoute, "then replans");
+
+    j.SetRoute(OneLegTo(500, 500), t);          // plan 2
+    Check(j.NextCommand(t) == travel::Command::Wait,
+          "the second plan does NOT walk at once -- the soak replanned four "
+          "times in eight seconds at a tile 37 other bots also wanted");
+    Check(j.NextCommand(t + j.GetLimits().replanBackoffMs) ==
+              travel::Command::WalkTo,
+          "and walks once the backoff has passed");
+}
+
+// ---------------------------------------------------------------------------
 
 void TestWarModeWatchdog() {
     Section("war mode watchdog");
@@ -709,6 +878,50 @@ void TestWarModeIdleTimeout() {
     Check(!w.ShouldExitWar(t + 4000), "inside the timeout, war mode stands");
     Check(w.ShouldExitWar(t + 6000),
           "war mode with no combat event for the timeout is stale");
+}
+
+void TestWarModeTargetBlink() {
+    Section("war mode: a target briefly out of the cache is not 'gone'");
+    // The M3.9 regression: the stationary purge (Client::PurgeOutOfRange, 2s
+    // timer) evicts a fleeing animal that steps briefly out of view, and the
+    // client used to report that eviction as OnTargetGone. Intent dropped to
+    // None, the idle rule armed, and the bot sheathed its katana 15s into a
+    // fight -- seven live runs where nothing could be killed. The client now
+    // reports only SIGHTINGS (OnTargetSeen); mere absence is aged out by the
+    // watchdog's own targetLostMs rule.
+    travel::WarModeWatchdog w;   // default limits: targetLostMs = 8000
+    i64 t = 1000;
+    w.OnServerWarMode(true, t);
+    w.OnCombatIntent(0x28CB, t);
+
+    // Five seconds of blindness: less than targetLostMs. The old behaviour
+    // exited here (via the idle rule, because intent_ had been cleared).
+    Check(!w.ShouldExitWar(t + 5000),
+          "unseen for less than targetLostMs is a blink, not a loss");
+    Check(w.Intent() == travel::CombatIntent::Fighting,
+          "and the combat intent survives the blink");
+    Check(w.TargetSerial() == 0x28CB, "the target is still the target");
+
+    // The purge put it back in the cache; the client reports the sighting.
+    w.OnTargetSeen(0x28CB, t + 5000);
+    Check(!w.ShouldExitWar(t + 12000),
+          "a re-sighting resets the lost clock");
+
+    // A sighting of something ELSE proves nothing about our target.
+    w.OnTargetSeen(0x9999, t + 12000);
+    Check(w.ShouldExitWar(t + 13001),
+          "genuinely unseen past targetLostMs still exits");
+    Check(std::string(w.ExitReason(t + 13001)) ==
+              "combat target has not been seen for a while",
+          "for the target-lost reason, not the idle one");
+
+    // OnTargetGone stays the answer where the server PROVED the loss (0x1D).
+    travel::WarModeWatchdog w2;
+    w2.OnServerWarMode(true, t);
+    w2.OnCombatIntent(0x28CB, t);
+    w2.OnTargetGone(0x28CB, t + 100);
+    Check(w2.Intent() == travel::CombatIntent::None,
+          "a server-deleted target still clears the intent at once");
 }
 
 // ---------------------------------------------------------------------------
@@ -841,8 +1054,14 @@ int main() {
     TestJourneyOscillation();
     TestJourneyTransition();
     TestJourneyTransitLeg();
+    TestJourneySpentRouteTerminates();
+    TestJourneyCrowdedArrival();
+    TestJourneyCrowdSlackRespectsFloor();
+    TestJourneyGoalFloor();
+    TestJourneyReplanBackoff();
     TestWarModeWatchdog();
     TestWarModeIdleTimeout();
+    TestWarModeTargetBlink();
     TestPersonalKnowledge();
     TestKnowledgeIsolation();
 
