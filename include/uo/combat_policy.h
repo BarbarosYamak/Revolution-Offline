@@ -22,28 +22,25 @@
 //              so a bandage must be DOUBLE-CLICKED (M2 established this the
 //              hard way). Three seconds is a long time with something hitting
 //              you, and the heal can be interrupted.
-//   Potions    REFERENCED BUT NOT DEFINED ON THIS SHARD. The alchemy menu names
-//              i_potion_healless / i_potion_heal / i_potion_healgreat
-//              (crafting/interface/def_alchemy.scp, category 4) and tm_loot.scp
-//              hands new characters i_potion_heal -- but a search of the whole
-//              runtime finds NO ITEMDEF for any of them. The only potion items
-//              that exist are i_potion_bottle and the vats.
+//   Potions    REAL, and craftable by an ordinary alchemist. They are defined
+//              in items/i_provisions_potions.scp as
+//                i_potion_HealLess   ALCHEMY  0.1, 1 ginseng, heals s_heal 50
+//                i_potion_Heal       ALCHEMY 15.1, 3 ginseng, s_greater_heal 60
+//                i_potion_HealGreat  ALCHEMY 55.1, 7 ginseng, s_greater_heal 100
+//              all ID=i_bottle_yellow, TYPE=t_potion, consumed to an empty
+//              bottle (TDATA1). A potion is a double-click and takes effect at
+//              once.
 //
-//              So DrinkPotion is correct policy and currently unreachable: it
-//              is kept because the tactic is right and the world is what is
-//              missing, and because a healPotions count that can only ever be
-//              zero is honest in a way that deleting the branch would not be.
-//              Recorded as runtime debt: alchemy category 4 cannot produce
-//              anything, and the newbie-loot line that grants a heal potion
-//              refers to an item that does not exist.
-//
-//              PRACTICAL CONSEQUENCE: on this shard today, surviving a fight
-//              means bandages and disengagement. Nothing else is available to a
-//              non-mage.
-//
-// That difference drives the whole policy: A POTION IS FOR MID-FIGHT, A BANDAGE
-// IS FOR AFTER DISENGAGING. Reversing them gets a bot killed while it stands
-// still for three seconds.
+//              A CORRECTION WORTH KEEPING: an earlier version of this header
+//              stated flatly that no heal potion existed on this shard, and a
+//              commit message repeated it. That was wrong. These ITEMDEFs put
+//              the defname in the SECTION HEADER -- "[ITEMDEF i_potion_Heal]" --
+//              rather than on a "DEFNAME=" line, so a search for
+//              "^DEFNAME=i_potion_heal" found nothing and the absence was read
+//              as evidence. Fifty-eight items carry TYPE=t_potion. Searching for
+//              one spelling of a name and concluding the thing does not exist is
+//              the same mistake as reading a body id out of generic UO
+//              documentation, which this project has now made six times.
 //
 // THE THRESHOLDS BELOW ARE DERIVED, NOT REVOLUTION-DOCUMENTED. No archive source
 // states what health a Revolution player retreats at. They are deliberately
