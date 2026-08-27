@@ -159,9 +159,10 @@ second archetype get added.
 
 ## 5. Constraints carried in from M3.9.1
 
-* **Anti-macro is not yet implemented.** M4 skill training may proceed, but it
-  **must not be called Revolution-authentic** until anti-macro adaptation is
-  built or explicitly accounted for. Carry this as a live constraint.
+* **Anti-macro is out of scope. Owner's decision, 2026-08-28.** It is no longer
+  a constraint on M4 and no longer qualifies how training is described. The
+  research stands in `REVOLUTION_ANTIMACRO_SPEC.md` if it is ever revisited; do
+  not re-raise it as blocking or as an authenticity caveat.
 * Hunting must prefer **wild, hostile, legal** targets. Farm animals near towns
   are owned and innocent; attacking one flags the character criminal, the flag
   persists across sessions, and a guard will execute it.

@@ -356,14 +356,17 @@ proof · `PARTIAL` = works with the caveat named · `OPEN` = not addressed ·
 | Interior macro routing | OPEN | scoped in `NavGrid.h`; fails **bounded** | no |
 | Reagent vendor sourcing | PARTIAL | owner testimony, no dated archive | no (Mage only) |
 | Spawn density fidelity | OPEN | stock Nerun rates, not Revolution's | no |
-| Anti-macro adaptation | OPEN | spec only | **no — but see below** |
+| Anti-macro adaptation | OUT OF SCOPE | spec only; dropped by the owner | no |
 
-### The one constraint carried into M4
+### No constraint carried into M4
 
-**Anti-macro is not implemented.** M4 skill training may proceed, but it **must
-not be described as Revolution-authentic** until anti-macro adaptation is built
-or explicitly accounted for. This is a live constraint on M4, not a blocker for
-starting it.
+**Superseded 2026-08-28.** This section previously carried anti-macro forward as
+a live constraint on M4, requiring that skill training not be described as
+Revolution-authentic until it was built. **The owner has taken anti-macro out of
+scope.** It is not a constraint, not a blocker, and not an authenticity caveat.
+The research remains in `REVOLUTION_ANTIMACRO_SPEC.md` if it is ever revisited.
+
+M4 therefore starts with no carried constraint from this gate.
 
 ---
 
