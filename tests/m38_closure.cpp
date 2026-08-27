@@ -10,6 +10,7 @@
 #include "uo/mounts.h"
 #include "uo/mount_policy.h"
 #include "uo/supplier.h"
+#include "uo/pet.h"
 #include "uo/production.h"
 #include "uo/vendor_policy.h"
 
@@ -433,6 +434,79 @@ void TestSupplierResolution() {
     Check(field.supplier.kind == SupplierKind::WorldResource, "and is a resource");
 }
 
+
+// --------------------------------------------------------------------------
+void TestPetSemantics() {
+    Section("pets: the engine's own words, not UO folklore");
+    using namespace uo::pet;
+
+    // Exact vocabulary from CCharNPCPet.cpp:88-115. Asserted so nobody
+    // "improves" them into something the server does not parse.
+    Check(std::strcmp(CommandWords(Command::Come), "come") == 0, "come");
+    Check(std::strcmp(CommandWords(Command::Stay), "stay") == 0, "stay");
+    Check(std::strcmp(CommandWords(Command::Stop), "stop") == 0, "stop");
+    Check(std::strcmp(CommandWords(Command::Kill), "kill") == 0, "kill");
+    Check(std::strcmp(CommandWords(Command::Attack), "attack") == 0, "attack");
+    Check(std::strcmp(CommandWords(Command::GuardMe), "guard me") == 0, "guard me");
+
+    // The prefix carries a trailing space on purpose: the engine matches "ALL "
+    // exactly (CClientEvent.cpp:1954). "allkill" is not a command.
+    Check(std::strcmp(kAllPrefix, "all ") == 0, "the all-prefix keeps its space");
+
+    // WHICH COMMANDS RAISE A CURSOR. Getting this wrong hangs a scenario:
+    // waiting for a target on "stay" waits forever, and NOT waiting on "kill"
+    // fires the target reply into nothing.
+    Check(NeedsTarget(Command::Kill), "kill is spoken-then-targeted");
+    Check(NeedsTarget(Command::Attack), "attack is spoken-then-targeted");
+    Check(NeedsTarget(Command::FollowTarget), "follow takes a target");
+    Check(!NeedsTarget(Command::Come), "come acts immediately");
+    Check(!NeedsTarget(Command::Stay), "stay acts immediately");
+    Check(!NeedsTarget(Command::Stop), "stop acts immediately");
+    Check(!NeedsTarget(Command::GuardMe), "guard me acts immediately");
+
+    // Range: hearing is 14 tiles, veterinary is 2. Different numbers for
+    // different jobs, and both are the engine's.
+    Check(kHearingTiles == 14, "a pet hears at 14 tiles");
+    Check(kVeterinaryTiles == 2, "bandaging needs 2");
+
+    // UNKNOWN HEALTH IS NOT FULL HEALTH.
+    OwnedAnimal a;
+    a.serial = 0x1234;
+    Check(HealthPercent(a) == -1, "unreported health is -1, never an optimistic 100");
+    Check(!IsInDanger(a), "unknown is not danger; it is unknown");
+
+    a.hpCur = 30; a.hpMax = 100;
+    Check(HealthPercent(a) == 30, "a ratio reports as a percent");
+    Check(IsInDanger(a), "30% is in danger");
+    a.hpCur = 90;
+    Check(!IsInDanger(a), "90% is not");
+
+    // Dead is not "in danger" -- it is past saving, and a rescue loop that
+    // treated it as rescuable would spin.
+    a.alive = false; a.hpCur = 0;
+    Check(!IsInDanger(a), "a dead pet is not in danger");
+
+    // Veterinary preconditions.
+    OwnedAnimal hurt;
+    hurt.alive = true; hurt.nearby = true; hurt.hpCur = 50; hurt.hpMax = 100;
+    Check(CanVeterinaryHeal(hurt, 1), "hurt, near and reachable: heal it");
+    Check(!CanVeterinaryHeal(hurt, 5), "out of the 2-tile range: no");
+    hurt.hpCur = 100;
+    Check(!CanVeterinaryHeal(hurt, 1), "a healthy pet wastes the bandage");
+    hurt.hpCur = 50; hurt.mounted = true;
+    Check(!CanVeterinaryHeal(hurt, 1),
+          "a mounted animal is an ITEM on layer 25, not a heal target");
+
+    // A MOUNTED ANIMAL IS NOT A MISSING ANIMAL. M3.7.1 lost four runs to this
+    // fact wearing four disguises.
+    OwnedAnimal ridden;
+    ridden.mounted = true;
+    Check(IsUnobservableBecauseMounted(ridden),
+          "riding it explains why no mobile scan can find it");
+    OwnedAnimal onFoot;
+    Check(!IsUnobservableBecauseMounted(onFoot), "an unridden pet should be findable");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -448,6 +522,7 @@ int main(int argc, char** argv) {
     TestRuntimeDivergence();
     TestMountPolicy();
     TestSupplierResolution();
+    TestPetSemantics();
     TestExportsNotStale(dataDir);
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

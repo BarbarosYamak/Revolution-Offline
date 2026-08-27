@@ -69,6 +69,7 @@ set(UO_CLIENT_SOURCES
     src/progression/Mounts.cpp
     src/progression/MountPolicy.cpp
     src/progression/Supplier.cpp
+    src/progression/Pet.cpp
     src/progression/VendorPolicy.cpp
     src/progression/Training.cpp
     src/progression/Rules.cpp
