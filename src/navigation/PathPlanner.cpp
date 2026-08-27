@@ -82,6 +82,22 @@ bool IsDynamicItemBlocking(const RuntimeOverlay& overlay, i32 x, i32 y, i8 z) {
     return false;
 }
 
+bool IsClosedDoorAt(const RuntimeOverlay& overlay, i32 x, i32 y, i8 z) {
+    if (!overlay.tileData || !overlay.request) return false;
+    const i32 colLo = static_cast<i32>(z);
+    const i32 colHi = colLo + 16;
+    for (const auto& it : overlay.request->dynamicItems) {
+        if (it.x != x || it.y != y) continue;
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = overlay.tileData->Static(gid);
+        if (!IsDoorGraphic(gid) && (st.flags & tiledata::kFlagDoor) == 0) continue;
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+    return false;
+}
+
 bool ExtraBlocked(i32 x, i32 y, i8 z, void* user) {
     const auto* overlay = static_cast<const RuntimeOverlay*>(user);
     if (!overlay || !overlay->request) return false;
@@ -101,6 +117,47 @@ bool ExtraBlockedStep(i32 fromX, i32 fromY, i8 fromZ,
         }
     }
     return false;
+}
+
+// Classify each of the eight neighbours of the start cell. Runs only when a
+// search has already failed, so its cost never touches a successful plan.
+//
+// The order of the checks matters and mirrors A*'s own: terrain first (the
+// baked grid), then the runtime overlays. A cell rejected by terrain is not
+// then asked whether a chair is standing on it -- the answer would be true of
+// half the world and would say nothing about why the bot is stuck.
+//
+// Doors are counted SEPARATELY and are not walls: BotStepNeedsDoorOpen can
+// open one. A start whose only exits are doors is a bot that needs to knock,
+// not a bot that is trapped.
+StartEnclosure ClassifyStartEnclosure(const world::World& world,
+                                      const RuntimeOverlay& overlay,
+                                      const PathRequest& request) {
+    StartEnclosure e{};
+    for (u8 dir = 0; dir < 8; ++dir) {
+        i32 dx = 0, dy = 0;
+        bot::DirToDelta(dir, &dx, &dy);
+        const i32 nx = request.startX + dx;
+        const i32 ny = request.startY + dy;
+        if (nx < 0 || ny < 0) { ++e.terrainBlocked; continue; }
+
+        world::WalkQuery q{};
+        q.x = static_cast<u32>(nx);
+        q.y = static_cast<u32>(ny);
+        q.fromZ = request.startZ;
+        q.maxStepUp = 12;
+        q.maxStepDown = 12;
+        const auto cell = world.QueryCell(q);
+        if (!cell.walkable) { ++e.terrainBlocked; continue; }
+
+        const i8 nz = cell.standZ;
+        if (request.blacklist.IsBlocked(nx, ny, nz)) { ++e.blacklistBlocked; continue; }
+        if (IsMobileBlocking(request, nx, ny, nz)) { ++e.mobileBlocked; continue; }
+        if (IsDynamicItemBlocking(overlay, nx, ny, nz)) { ++e.dynamicBlocked; continue; }
+        if (IsClosedDoorAt(overlay, nx, ny, nz)) { ++e.doorBlocked; continue; }
+        ++e.openExits;
+    }
+    return e;
 }
 
 bool GoalColumnIsWalkable(const world::World& world, const PathRequest& request) {
@@ -229,6 +286,16 @@ void PathPlanner::WorkerLoop() {
                                             request.goalX, request.goalY, opts);
                 result.searchUs = std::chrono::duration<double, std::micro>(
                     std::chrono::steady_clock::now() - t0).count();
+
+                // Only on failure, and only then: a successful plan pays
+                // nothing for this.
+                if (result.path.empty()) {
+                    result.hasEnclosure = true;
+                    result.enclosure =
+                        ClassifyStartEnclosure(*world_, overlay, request);
+                    result.dynamicItemCount = request.dynamicItems.size();
+                    result.mobileCount = request.mobiles.size();
+                }
             }
         }
 

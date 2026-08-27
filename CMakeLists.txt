@@ -66,6 +66,8 @@ set(UO_CLIENT_SOURCES
     src/travel/TravelMode.cpp
     src/progression/Economy.cpp
     src/progression/Production.cpp
+    src/progression/Mounts.cpp
+    src/progression/MountPolicy.cpp
     src/progression/VendorPolicy.cpp
     src/progression/Training.cpp
     src/progression/Rules.cpp
@@ -151,6 +153,16 @@ target_link_libraries(uo_world PUBLIC uo_mul)
 # Offline tool. See docs/M2_5_WORLD_NAVIGATION.md for the command line.
 add_executable(uo_atlasgen src/world/AtlasGenMain.cpp)
 target_link_libraries(uo_atlasgen PRIVATE uo_world)
+
+# --- uo_econdump: exports the compiled economy graph as TSV (M3.8 Phase 9) ---
+# The graph stays canonical; these files are a VIEW of it, and m38_exports
+# fails if the committed view has drifted from the code.
+add_executable(uo_econdump
+    src/tools/EconDumpMain.cpp
+    src/progression/Production.cpp
+    src/progression/VendorPolicy.cpp
+    src/progression/Mounts.cpp)
+target_include_directories(uo_econdump PRIVATE include src)
 
 # --- uo_mul_dump CLI ---------------------------------------------------
 add_executable(uo_mul_dump src/mul/dump_main.cpp)

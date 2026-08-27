@@ -1,0 +1,137 @@
+# M3.8 PHASE 4 -- Tinkering, which has never been exercised live at all.
+#
+# RUN AS SESSION 10 (RevolutionMiner): Mining 50 / Blacksmithy 30 / Tinkering 30,
+# and already standing in Minoc from the Phase 1 runs.
+#
+# WHY TINKERING MATTERS MORE THAN ITS MENU SUGGESTS
+#
+# M3.7 proved Lumberjacking and Carpentry (slice D: logs 2->6, then a board)
+# and Blacksmithy (slice B: a forged dagger). Tinkering was never run once --
+# and it is the skill the smith bootstrap hangs off, because i_hammer_smith is
+# `SKILLMAKE=Tinkering 40.0`. M3.7 discovered that dependency and never
+# exercised it.
+#
+# THE BOOTSTRAP DEADLOCK, recorded because it is real:
+#
+#   i_tinker_tools   RESOURCES=4 i_ingot_iron
+#                    SKILLMAKE=TINKERING 35.0,t_tinker_tools
+#
+# Tinker tools require tinker tools. Nobody can make their first pair, so they
+# must be bought -- which is why VendorPolicy.cpp already classes
+# i_tinker_tools as BasicCraftTool with that deadlock cited in a comment. This
+# scenario is the first live exercise of that policy decision.
+#
+# WHAT PHASE 4 IS REALLY AFTER
+#
+# Revolution's own training guide names NAILS and SPOON, and both exist as
+# itemdefs with sane requirements:
+#
+#   i_nails   RESOURCES=1 i_ingot_iron   Tinkering 5.0, t_tinker_tools, Blacksmithing 5.0
+#   i_spoon   RESOURCES=1 i_ingot_iron   Tinkering 12.0, t_tinker_tools
+#
+# Neither appears anywhere in sm_legacy_tinkering.scp. They are two of the 49
+# PLAYER_CRAFTED_NO_MENU items: craftable by every rule except exposure.
+#
+# THIS RUN DOES NOT RESTORE THEM. It establishes the baseline first:
+#   1. can this character buy tinker tools at all (policy + stock)?
+#   2. what does the live tinker menu actually offer it?
+#   3. can it make something from that menu today?
+#
+# Restoring a menu entry before knowing what the menu currently contains would
+# be guessing at the shape of the fix. The live filtered menu is the oracle --
+# that is Phase 10's whole point, and it applies to Phase 4 first.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+use_moongates on
+
+# --------------------------------------------------- 1. buy the tinker tools
+# t_tinker_tools is the gate on every recipe below. BasicCraftTool, so the
+# vendor policy permits the purchase -- a bot may buy a tool it cannot make.
+# GO TO THE TINKER, NOT TO "tinker".
+#
+# A first run used `travel_service tinker` and arrived at (1422,1654,10) in
+# Britain to find exactly one mobile:
+#
+#   [0x88] paperdoll 0x00001080: "Justine, the engineer guildmistress"
+#
+# A guildmistress keeps no shop, so `require shop` failed and the run ended
+# without buying anything. Vendors_spawns_felucca.scp:28 places ONLY
+# tinkerguildmaster at that spot -- Britain has a tinker GUILD and no tinker.
+#
+# THIS IS THE THIRD TIME THIS SHARD HAS DONE IT: M3.6 could not buy blank runes
+# because the Britain "mage" place holds a guildmaster, M3.7 recorded the same
+# for the mage shop, and here it is again. A semantic service name resolves to
+# a guild hall, and guild halls do not trade. Autonomous acquisition cannot
+# rely on travel_service alone.
+#
+# The real tinker is Rhyssa at (2458,455,15) in MINOC -- spawner line 172,
+# which places a `tinker` alongside the guildmaster. This character is already
+# in Minoc, ninety tiles away.
+travel_point 2458 455
+wait_travel
+expect_travel ok
+sleep 2500
+
+scan_mobiles
+sleep 4000
+remember shop mobile_trade tinker,tinkerer
+require shop
+
+travel_entity @shop 2
+wait_travel
+sleep 3000
+say hello
+sleep 3000
+
+travel_entity @shop 1
+wait_travel
+vendor_open @shop buy
+wait_action
+sleep 2500
+
+mark_item 0x1EBC,0x1EBD
+
+travel_entity @shop 1
+wait_travel
+vendor_buy @shop vendor_graphic:0x1EBC 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x1EBC,0x1EBD
+
+say tinker tools bought, not made
+
+# ------------------------------------------- 2. what does the menu OFFER me?
+# Using the tools on iron opens sm_legacy_tinkering, filtered to what this
+# character can make right now. gump_report/menu logging prints every option
+# with its resource cost -- that listing IS the Phase 4 evidence, and it is
+# what tells us whether nails and spoon are genuinely absent rather than
+# merely unfound.
+remember tools carried_graphic 0x1EBC,0x1EBD
+require tools
+
+remember iron pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require iron
+
+use @tools
+wait_target
+target @iron
+sleep 3000
+
+say tinker menu open
+sleep 2000
+logout

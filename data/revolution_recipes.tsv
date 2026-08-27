@@ -1,0 +1,76 @@
+output	output_qty	input	input_qty	skill	min_skill	skill2	min_skill2	station	tool	tool_equipped	provenance	evidence
+i_wool	1		0	none		none		none	blade	0	ANIMAL_HARVESTED	ENGINE CClientTarg.cpp:1878; sphere.ini:399 WoolGrowthTime=30
+i_yarn_ball	3	i_wool	1	none		none		spinning wheel	none	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:2066
+i_thread	6	i_cotton	1	none		none		spinning wheel	none	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:2075
+i_cloth_bolt	1	i_yarn_ball	4	none		none		loom	none	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:2230
+i_cloth	50	i_cloth_bolt	1	none		none		none	scissors	0	WORLD_PROCESSED	ENGINE CItem.cpp:4287; SCRIPT i_cloth_bolt RESOURCES=50 i_cloth
+i_sash	1	i_cloth	4	34	4.5	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT sm_cloth_misc; i_sash SKILLMAKE=Tailoring 4.5
+i_sash	1	i_thread	1	34	4.5	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT sm_cloth_misc; i_sash SKILLMAKE=Tailoring 4.5
+i_robe	1	i_cloth	16	34	59.0	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT i_robe SKILLMAKE=Tailoring 59.0
+i_robe	1	i_thread	1	34	59.0	none		none	sewing kit	0	PLAYER_CRAFTED	SCRIPT i_robe SKILLMAKE=Tailoring 59.0
+i_hide	12		0	none		none		none	blade	0	PVM_DROP	ENGINE CCharUse.cpp:49 Use_CarveCorpse; SCRIPT c_cow_brown RESOURCES=8 i_ribs_raw,12 i_hide
+i_hides_cut	1	i_hide	1	none		none		none	scissors	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:2159 (IT_HIDE -> TDATA1)
+i_leather_tunic	1	i_hides_cut	12	34	70.5	4	10.0	none	sewing kit	0	PLAYER_CRAFTED	SCRIPT sm_leather_armor; SKILLMAKE=Tailoring 70.5,Armslore 10.0
+i_ore_iron	1		0	45	1.0	none		none	pickaxe	1	WORLD_GATHERED	SCRIPT core/regiontypes.scp r_default_rock 50.0 mr_iron; regionresources.scp mr_iron SKILL=1.0,30.0
+i_ingot_iron	1	i_ore_iron	1	45	20.0	none		forge	none	0	WORLD_PROCESSED	ENGINE CCharSkill.cpp:1154 iResourceQty=1; TDATA1=20.0 TDATA2=50.0; failure loses up to half
+i_dagger	1	i_ingot_iron	4	7	0.0	none		forge	smith hammer	1	PLAYER_CRAFTED	ENGINE CClientUse.cpp:1273 LayerFind(LAYER_HAND1), :1282 IsItemTypeNear(IT_FORGE,3); SCRIPT i_dagger SKILLMAKE=Blacksmithing 0.0
+i_spear_short	1	i_ingot_iron	6	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
+i_spear_short	1	i_log	1	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
+i_log	1		0	44	1.0	none		none	blade	0	WORLD_GATHERED	SCRIPT r_default_tree 40.0 mr_tree; mr_tree REAPAMOUNT=1,3 SKILL=1.0,80.0
+i_board	1	i_log	1	11	0.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
+i_parchment	1	i_log	1	11	25.7	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7
+i_scroll_blank	1	i_parchment	1	11	25.7	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7
+i_model_ship	1	i_board	10	11	95.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100
+i_arrow_shaft	1	i_log	1	8	9.8	none		none	none	0	PLAYER_CRAFTED	SCRIPT sm_bowcraft; i_arrow_shaft SKILLMAKE=9.8 Bowcraft; REVOLUTION forum 59111 band 0-100 Shaft
+i_arrow	1	i_arrow_shaft	1	8	0.0	none		none	none	0	PLAYER_MARKET	SCRIPT i_arrow SKILLMAKE=Bowcraft 0.0; REVOLUTION cooperative category 08.11.2008
+i_arrow	1	i_feather	1	8	0.0	none		none	none	0	PLAYER_MARKET	SCRIPT i_arrow SKILLMAKE=Bowcraft 0.0; REVOLUTION cooperative category 08.11.2008
+i_bow	1	i_log	7	8	30.0	none		none	none	0	PLAYER_CRAFTED	SCRIPT i_bow SKILLMAKE=Bowcraft 30.0
+i_gears	1	i_ingot_iron	1	37	14.7	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT sm_tinker; i_gears SKILLMAKE=Tinkering 14.7
+i_lockpick	1	i_ingot_iron	1	37	48.5	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_lockpick SKILLMAKE=Tinkering 48.5; REVOLUTION forum 59111 band 42.1-100
+i_tinker_tools	1	i_ingot_iron	4	37	35.0	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_tinker_tools SKILLMAKE=TINKERING 35.0
+i_pickaxe	1	i_ingot_iron	1	37	40.0	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_pickaxe SKILLMAKE=Tinkering 40.0
+i_barrel_tap	1	i_ingot_iron	1	37	52.0	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_barrel_tap SKILLMAKE=Tinkering 52.0
+i_barrel_hoops	1	i_ingot_iron	4	37	42.0	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_barrel_hoops SKILLMAKE=Tinkering 42.0
+i_keg_potion	1	i_board	8	37	65.0	none		none	tinker tools	0	PLAYER_MARKET	SCRIPT i_keg_potion SKILLMAKE=TINKERING 65.0, capacity 100; REVOLUTION cooperative 'potion kegleri (dolu olmalı)' 08.11.2008
+i_keg_potion	1	i_barrel_tap	1	37	65.0	none		none	tinker tools	0	PLAYER_MARKET	SCRIPT i_keg_potion SKILLMAKE=TINKERING 65.0, capacity 100; REVOLUTION cooperative 'potion kegleri (dolu olmalı)' 08.11.2008
+i_keg_potion	1	i_barrel_hoops	1	37	65.0	none		none	tinker tools	0	PLAYER_MARKET	SCRIPT i_keg_potion SKILLMAKE=TINKERING 65.0, capacity 100; REVOLUTION cooperative 'potion kegleri (dolu olmalı)' 08.11.2008
+i_sewing_kit	1	i_sewing_needle	1	37	18.8	34	18.8	none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_sewing_kit SKILLMAKE=Tinkering 18.8,t_tinker_tools,Tailoring 18.8
+i_sewing_kit	1	i_bowl_wood	1	37	18.8	34	18.8	none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_sewing_kit SKILLMAKE=Tinkering 18.8,t_tinker_tools,Tailoring 18.8
+i_sewing_kit	1	i_yarn_ball	1	37	18.8	34	18.8	none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_sewing_kit SKILLMAKE=Tinkering 18.8,t_tinker_tools,Tailoring 18.8
+i_sewing_kit	1	i_thread	1	37	18.8	34	18.8	none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_sewing_kit SKILLMAKE=Tinkering 18.8,t_tinker_tools,Tailoring 18.8
+i_scissors	1	i_ingot_iron	1	37	14.5	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_scissors SKILLMAKE=Tinkering 14.5
+i_pen_and_ink	1	i_feather	1	37	44.1	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_pen_and_ink SKILLMAKE=Tinkering 44.1 -- the scribe's tool is a TINKER product
+i_pen_and_ink	1	i_ink_well	1	37	44.1	none		none	tinker tools	0	PLAYER_CRAFTED	SCRIPT i_pen_and_ink SKILLMAKE=Tinkering 44.1 -- the scribe's tool is a TINKER product
+i_bottle_empty	1		0	0	25.0	none		none	none	0	PLAYER_CRAFTED	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
+i_potion_heal	1	i_reag_ginseng	3	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
+i_potion_heal	1	i_bottle_empty	1	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
+i_potion_cure	1	i_reag_garlic	3	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
+i_potion_cure	1	i_bottle_empty	1	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
+i_potion_agilitygreat	1	i_reag_blood_moss	3	0	35.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility
+i_potion_agilitygreat	1	i_bottle_empty	1	0	35.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility
+i_potion_healgreat	1	i_reag_ginseng	7	0	55.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
+i_potion_healgreat	1	i_bottle_empty	1	0	55.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
+i_potion_curegreat	1	i_reag_garlic	6	0	65.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
+i_potion_curegreat	1	i_bottle_empty	1	0	65.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
+i_potion_poisondeadly	1	i_reag_nightshade	8	0	90.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
+i_potion_poisondeadly	1	i_bottle_empty	1	0	90.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
+i_scroll_poison	1	i_scroll_blank	1	23	30.0	25	20.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
+i_scroll_poison	1	i_reag_nightshade	1	23	30.0	25	20.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
+i_scroll_recall	1	i_scroll_blank	1	23	40.0	25	30.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
+i_scroll_recall	1	i_reag_black_pearl	1	23	40.0	25	30.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
+i_scroll_recall	1	i_reag_blood_moss	1	23	40.0	25	30.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
+i_scroll_recall	1	i_reag_mandrake_root	1	23	40.0	25	30.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
+i_scroll_gate_travel	1	i_scroll_blank	1	23	70.0	25	60.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
+i_scroll_gate_travel	1	i_reag_black_pearl	1	23	70.0	25	60.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
+i_scroll_gate_travel	1	i_reag_mandrake_root	1	23	70.0	25	60.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
+i_scroll_gate_travel	1	i_reag_sulfur_ash	1	23	70.0	25	60.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
+i_scroll_resurrection	1	i_scroll_blank	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
+i_scroll_resurrection	1	i_reag_blood_moss	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
+i_scroll_resurrection	1	i_reag_garlic	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
+i_scroll_resurrection	1	i_reag_ginseng	1	23	80.0	25	70.0	none	blank scroll	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
+i_spellbook_runebook	1	i_scroll_blank	8	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_spellbook_runebook	1	i_rune_marker	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_spellbook_runebook	1	i_scroll_recall	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_spellbook_runebook	1	i_scroll_gate_travel	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
+i_fish_big_1	1		0	18	1.0	none		none	fishing pole	0	WORLD_GATHERED	SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3
+i_fish_cut_raw	4	i_fish_big_1	1	none		none		none	blade	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1

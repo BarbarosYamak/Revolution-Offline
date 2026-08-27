@@ -60,6 +60,25 @@ struct PathRequest {
     std::vector<PathDynamicItem> dynamicItems;
 };
 
+// Why a search failed, computed only when it did.
+//
+// "no path, 23.7us" is not a diagnosis -- a search that expands almost nothing
+// has usually been sealed in at the START, and the interesting question is by
+// WHAT. M3.7 lost a run inside the Minoc bank to exactly this and could only
+// guess at the cause, because the failure carried no evidence with it.
+//
+// Each counter is the number of the eight neighbours of the start cell rejected
+// for that reason. openExits == 0 means the character is enclosed where it
+// stands, and the remaining fields say who built the wall.
+struct StartEnclosure {
+    u8 openExits        = 0;   // neighbours A* could actually step to
+    u8 terrainBlocked   = 0;   // rejected by the baked MUL/statics grid
+    u8 mobileBlocked    = 0;   // a cached mobile stands there
+    u8 dynamicBlocked   = 0;   // a dynamic (decorator) item blocks the column
+    u8 doorBlocked      = 0;   // a closed door -- openable, not a wall
+    u8 blacklistBlocked = 0;   // previously learned server rejection
+};
+
 struct PathResult {
     u64 requestId = 0;
     bool worldReady = false;
@@ -69,6 +88,11 @@ struct PathResult {
     usize blacklistCount = 0;
     i32 goalX = 0;
     i32 goalY = 0;
+    // Populated only on failure (empty path).
+    bool hasEnclosure = false;
+    StartEnclosure enclosure;
+    usize dynamicItemCount = 0;
+    usize mobileCount = 0;
 };
 
 class PathPlanner {

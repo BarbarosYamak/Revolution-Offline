@@ -1,0 +1,96 @@
+# M3.8 PHASE 4/10 -- craft from the LIVE tinker menu, and read what it offers.
+#
+# RUN AS SESSION 10 (RevolutionMiner): Mining 50 / Blacksmithy 30 / Tinkering 30,
+# already in Minoc and already holding tinker tools bought from Rhyssa.
+#
+# WHAT THE BASELINE RUN ESTABLISHED
+#
+#   item 0x1EBC gain confirmed: 0 -> 1        tinker tools BOUGHT, not made
+#   [0x7C] "Tinkering" (2 options)  1) Parts  2) Tools
+#
+# Two categories, for a character with Tinkering 30 and a pack full of iron.
+# The script file defines far more; Sphere filtered the rest away. That is the
+# Phase 10 oracle principle in its natural habitat -- the menu is the server's
+# statement of what is craftable RIGHT NOW, and it disagrees with the .scp.
+#
+# AND THE FINDING THE VENDOR HANDED US. Rhyssa's 41-item shop includes:
+#
+#   0x400026AD  nails  x12  6 gp
+#
+# Nails are SOLD by the tinker and craftable by nobody: i_nails carries
+# `SKILLMAKE=Tinkering 5.0, t_tinker_tools, Blacksmithing 5.0` and appears in no
+# live menu. That is the PLAYER_CRAFTED_NO_MENU class caught in the act -- an
+# NPC undercutting a crafter who is not allowed to compete. This character
+# clears 5.0/5.0 with room to spare and still cannot make them.
+#
+# THIS RUN DOES NOT RESTORE ANYTHING. It records what the two live categories
+# actually contain, and crafts one item from them, so Phase 4's restoration is
+# aimed at a measured gap rather than a guessed one.
+#
+# The earlier baseline ended with `use_object timeout` because a craft menu is
+# not one of the things an ordinary use-action waits for (no container, no
+# target cursor, no sysmessage). Harmless there; here the menu is answered.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------ 1. open the menu
+remember tools carried_graphic 0x1EBC,0x1EBD
+require tools
+
+remember iron pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require iron
+
+mark_item 0x1053,0x1054
+
+# NO TARGET STEP. Tinker tools open the craft menu on the DOUBLE-CLICK itself --
+# there is no 0x6C cursor to answer, unlike a smith hammer (which asks what to
+# smelt) or a sewing kit (which asks which cloth). A revision that wrote
+#
+#   use @tools / wait_target / target @iron
+#
+# hung forever at wait_target while the menu sat open on screen, because the
+# cursor it was waiting for never comes. The baseline run showed the same thing
+# more politely: the menu appeared and the use-action later reported
+# `use_object timeout`.
+#
+# @iron is still resolved above, and deliberately: it is what makes the menu
+# non-empty. Sphere filters the list by what the character can actually make,
+# so a tinker with no ingots would be offered nothing at all.
+use @tools
+sleep 4000
+
+# ---------------------------------------------------- 2. read category 1: Parts
+# Every option is logged with its resource cost, and that listing IS the Phase 4
+# evidence -- it says which of the 49 PLAYER_CRAFTED_NO_MENU items are genuinely
+# absent rather than merely unfound.
+menu_choose 1
+sleep 3000
+
+say parts listed
+sleep 1500
+
+# ------------------------------------------------------- 3. make the first one
+# Index 1 of the filtered list, whatever the server put there. Naming a script
+# position instead would repeat the mistake that earned
+# "dialog index 3 out of range (2 options)" in M3.7.
+menu_choose 1
+sleep 4000
+
+open @pack
+wait_action
+sleep 2000
+skill_report
+
+say tinkering exercised for the first time on this shard
+sleep 1500
+logout

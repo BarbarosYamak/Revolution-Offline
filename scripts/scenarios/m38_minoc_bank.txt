@@ -1,0 +1,108 @@
+# M3.8 PHASE 1 -- enter the Minoc bank, reach an interior target, and leave.
+#
+# RUN AS SESSION 10 (RevolutionMiner).
+#
+# WHAT THIS IS FOR
+#
+# M3.7 recorded the decorated world's one navigation failure: a miner walked
+# into the Minoc bank and could not get out.
+#
+#   no path to (2472,536) avoiding 0 block(s); stopping (search 23.7us)
+#   route exhausted at (2498,548,0); trying to reach (2488,552,0) (escape 1/3)
+#   no path to (2488,552) avoiding 0 block(s); stopping
+#   route exhausted at (2498,548,0); trying to reach (2488,536,0) (escape 2/3)
+#   no path to (2488,536) avoiding 0 block(s); stopping
+#   route exhausted at (2498,548,0); trying to reach (2504,536,0) (escape 3/3)
+#   no path to (2504,536) avoiding 0 block(s); stopping
+#
+# All three M2.5 escape rungs failed from one interior tile. That is a hard
+# pre-M4 blocker: every profession enters buildings, and a bot that can be
+# sealed into a bank is a bot that stops playing.
+#
+# NOTE WHAT THAT LOG DOES NOT SAY. It does not say what the wall was made of.
+# `avoiding 0 block(s)` counts the learned-rejection BLACKLIST, not the dynamic
+# overlay, and a 23.7us search is one that expanded almost nothing -- the shape
+# of a start cell that is already sealed. M3.7 could only guess at the cause.
+#
+# So the client now classifies the eight neighbours of the start cell whenever
+# a search fails, and says which of them were rejected by terrain, by a mobile,
+# by a dynamic decorator item, by a closed door, or by the blacklist. A closed
+# door is counted separately and deliberately: BotStepNeedsDoorOpen can open
+# one, so a start whose only exits are doors is a bot that needs to knock, not
+# a bot that is trapped.
+#
+# This scenario reproduces the case and reads that verdict.
+#
+# a_bank_1 (2504,552) is Minoc's bank building; a_townMinoc (2466,544) is the
+# open town centre outside it.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+
+# ------------------------------------------------ 0. let the planner use gates
+#
+# THE JOURNEY IS NOT THE TEST -- the bank interior is. The first run of this
+# scenario walked Britain to Minoc on foot: roughly 1,900 tiles and eleven
+# minutes to reach a building whose doorway is the thing under examination.
+# Every iteration of a Phase 1 fix would have paid that again.
+#
+# `travelUseMoongates_` defaults to FALSE (Client.h:1207), so the planner will
+# not consider a moongate unless a scenario asks. M2.5 proved gates work; they
+# were simply never switched on here.
+#
+# That default is worth carrying into Phase 5. The brief frames Phase 5 as
+# "travel_service does not auto-select the Runebook", but the Runebook is not
+# the only mode the planner owns and refuses to pick by itself -- moongates are
+# a second instance of the same gap. Mode selection needs to consider every
+# route the character legitimately has, not one named exception.
+use_moongates on
+
+# ------------------------------------------------------ 1. get to Minoc town
+travel_point 2466 544
+wait_travel
+expect_travel ok
+sleep 2000
+
+say outside the bank
+
+# --------------------------------------------- 2. INTO the bank, semantically
+# `travel_service banker Minoc` is the same call any banking behaviour would
+# make. The service is "banker" (the person), not "bank" (the building) --
+# ServiceFromName has no "bank", and a first run died on
+# "travel_service: bank is not a service" after walking 1,900 tiles to say so.
+# The town qualifier keeps it from routing to some other city's banker.
+#
+# This is the call that walked the M3.7 miner through the door and into the trap.
+travel_service banker Minoc
+wait_travel
+expect_travel ok
+sleep 2500
+
+say inside the bank
+
+# ------------------------------------- 3. an interior target, reached normally
+# Opening the bank box is the reason a bot is in here at all, and it proves the
+# character actually reached the banker rather than stopping in the doorway.
+scan_mobiles
+sleep 3000
+remember banker mobile_name banker
+require banker
+
+bank @banker
+wait_action
+sleep 2500
+
+# ---------------------------------------------------------- 4. OUT again
+# The whole milestone-blocker is this step. Back to the open town centre --
+# the same direction the M3.7 run tried three times and failed.
+travel_point 2466 544
+wait_travel
+expect_travel ok
+sleep 1500
+
+say out of the bank and still walking
+sleep 1500
+logout

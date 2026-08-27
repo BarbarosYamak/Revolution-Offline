@@ -762,6 +762,24 @@ void Client::BotPollPathPlanner() {
             "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
             "(search %.1fus)\n",
             result.goalX, result.goalY, result.blacklistCount, result.searchUs);
+        // WHY it failed, not just that it did. A search that expands almost
+        // nothing has usually been sealed in where it stands, and "openExits=0"
+        // plus the reason counts is the difference between a diagnosis and a
+        // guess. M3.7 lost a run inside the Minoc bank with no evidence at all.
+        if (result.hasEnclosure) {
+            const auto& e = result.enclosure;
+            LogWarn("[bot] start (%d,%d,%d) exits: open=%u terrain=%u mobile=%u "
+                    "dynamic=%u door=%u blacklist=%u "
+                    "(overlay saw %zu item(s), %zu mobile(s))\n",
+                    playerX_, playerY_, static_cast<int>(playerZ_),
+                    e.openExits, e.terrainBlocked, e.mobileBlocked,
+                    e.dynamicBlocked, e.doorBlocked, e.blacklistBlocked,
+                    result.dynamicItemCount, result.mobileCount);
+            if (e.openExits == 0 && e.doorBlocked > 0) {
+                LogWarn("[bot] every exit is a closed door -- this is a knock, "
+                        "not a trap\n");
+            }
+        }
         BotAbortPath("no path");
         return;
     }

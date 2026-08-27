@@ -111,3 +111,18 @@ target_include_directories(m37_economy PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m37_economy COMMAND m37_economy)
+
+# --- M3.8 pre-M4 closure: mount rules + export drift -----------------------
+# The data dir is passed so the export test can compare the committed TSVs
+# against a fresh in-memory regeneration, wherever CTest runs from.
+add_executable(m38_closure m38_closure.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Mounts.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/MountPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(m38_closure PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m38_closure COMMAND m38_closure ${CMAKE_SOURCE_DIR}/data)
