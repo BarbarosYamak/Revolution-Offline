@@ -4264,6 +4264,28 @@ void Client::OnTargetCursor(const u8* data, usize size) {
                   id, type, subtype, target_.Generation());
     LogEvent("target_requested", ev);
 
+    // A runebook recall answers its own cursor. The book has just moved the
+    // page's rune into the backpack and asked us to cast Recall at it, so the
+    // rune is resolved LIVE rather than from a remembered serial: M3.6 learned
+    // that runes wear out and the book re-cuts them, so a stored serial goes
+    // stale ("You can't see the target"), and that opening the pack to look
+    // would CANCEL this very cursor.
+    if (awaitingRunebookRune_) {
+        awaitingRunebookRune_ = false;
+        const u32 rune = FindBackpackItemByGraphic(0x1F14);
+        if (rune) {
+            LogInfo("[runebook] answering the recall cursor with rune 0x%08X\n",
+                    rune);
+            LogEvent("runebook_recall_target", "");
+            TargetRespondObject(rune);
+            return;
+        }
+        // No rune means the book did not surface one -- an empty page, or a
+        // refusal the server already explained. Let the cursor stand rather
+        // than inventing an answer; the journey falls back to walking.
+        LogWarn("[runebook] recall cursor arrived but no rune is in the pack\n");
+    }
+
     // An action that asked for a target can now answer it.
     OnTargetArmedForAction();
 

@@ -147,6 +147,13 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     // that TravelFinish then had to convert into an unrecoverable failure.
     journey_.Begin(travelLabel_.c_str(), x, y, arriveRadius, NowMs(), hasZ, z);
     travelLastSampleMs_ = 0;
+    // One recall per journey. TravelPlanRoute runs again on every replan, and
+    // the first version recalled from THERE -- so a single trip to Britain cast
+    // Recall three times and the shard started warning "The recall rune is
+    // starting to fade". Runes wear out and are eventually destroyed, so a
+    // planner that re-casts on each replan quietly consumes the character's
+    // property. Reset here, where a genuinely new journey starts.
+    runebookRecallDone_ = false;
 
     LogInfo("[travel] %s -> (%d,%d) r=%d from (%d,%d)\n",
             travelLabel_.c_str(), x, y, arriveRadius, playerX_, playerY_);
@@ -411,6 +418,28 @@ void Client::TravelPlanRoute() {
     cap.inCombat     = WarModeOn();
     cap.moongateRouteKnown = true;   // M2.5 proved the gate network live
 
+    // M3.9: does this character's runebook actually hold this destination?
+    //
+    // Until now this stayed at its default of false, so Mode::RunebookRecall
+    // could never be chosen no matter what the book contained -- the mode
+    // layer's Runebook arm was unreachable code.
+    //
+    // The answer comes from pages READ OUT OF THE BOOK'S OWN GUMP
+    // (NoteRunebookGump), not from anything we assume. That means it is only
+    // true after the character has opened its book at least once this session,
+    // which is the honest position: a bot that has not looked in its book does
+    // not know what is in it.
+    //
+    // Matching is by name, and a page's name is whatever Sphere called the rune
+    // when Mark succeeded -- the REGION, not the landmark. The shard owner's
+    // description of where players actually mark ("inside mage shop, brit bank,
+    // near moongate, other cities") is exactly why: a rune marked inside the
+    // Britain mage shop is named for Britain, so a route labelled for a shop
+    // still has to match a page named for its town.
+    const int rbPage = RunebookPageFor(travelLabel_);
+    cap.haveRunebookPage = (rbPage != 0);
+    cap.runebookCharges  = runebookCharges_;
+
     const i32 straightTiles =
         Chebyshev(playerX_, playerY_, journey_.GoalX(), journey_.GoalY());
     const travelmode::Mode picked = travelmode::Choose(cap, straightTiles);
@@ -426,6 +455,22 @@ void Client::TravelPlanRoute() {
                 (o.mode == picked) ? "   <- chosen" : "");
     }
     LogEvent("travel_mode", travelmode::ModeName(picked));
+
+    // M3.9: EXECUTE a chosen Recall, instead of merely having chosen it.
+    //
+    // Selection has worked since M3.6 and execution never existed, so a mage
+    // that decided to recall still walked the whole way. The recall runs FIRST
+    // and the route is planned afterwards from wherever it leaves us: if it
+    // works the walk is short, and if it fizzles, lacks mana or finds an empty
+    // page the journey simply plans from here and walks. Nothing is faked and
+    // nothing is skipped -- a failed recall costs a few seconds, not a lie.
+    if (picked == travelmode::Mode::RunebookRecall && rbPage != 0 &&
+        !runebookRecallDone_) {
+        runebookRecallDone_ = true;   // set before, not after: a refusal still
+                                      // counts as "tried", or a replan loop
+                                      // would retry it forever.
+        BeginRunebookRecall(rbPage);
+    }
 
     // A scenario may still force gates on with `use_moongates on`; what has
     // changed is that it no longer has to.
@@ -1044,12 +1089,22 @@ void Client::OnGenericGump(const u8* data, usize size) {
     gump_.serial = serial;
     gump_.context = context;
     gump_.options = std::move(options);
+    gump_.texts = texts;
 
-    LogInfo("[gump] 0x%08X context=0x%08X: %zu option(s)\n", serial, context,
-            gump_.options.size());
+    LogInfo("[gump] 0x%08X context=0x%08X: %zu option(s), %zu text(s)\n",
+            serial, context, gump_.options.size(), gump_.texts.size());
     for (const GumpOption& o : gump_.options)
         LogInfo("[gump]   %s %u = '%s'\n", o.button ? "button" : "choice",
                 o.id, o.label.c_str());
+    // Log the text table too. A runebook's page names live here and nowhere
+    // else, so a dump that shows only options makes the book look empty.
+    for (usize t = 0; t < gump_.texts.size(); ++t)
+        LogInfo("[gump]   text %zu = '%s'\n", t, gump_.texts[t].c_str());
+
+    NoteRunebookGump();
+
+    // A recall we started is waiting for exactly this gump.
+    if (pendingRunebookPage_ && AnswerRunebookTravelGump()) return;
     char ev[128];
     std::snprintf(ev, sizeof(ev), "serial=0x%08X context=0x%08X options=%zu",
                   serial, context, gump_.options.size());
@@ -1082,6 +1137,132 @@ void Client::OnGenericGump(const u8* data, usize size) {
             AnswerGateGump();
         }
     }
+}
+
+// Read a Runebook's pages out of the gump it just sent.
+//
+// This exists because the obvious approach does not work. AnswerGateGump picks
+// a moongate destination by matching gump option LABELS, and a runebook has
+// none: every travel button (11..18) arrives with an empty label, because the
+// page names are drawn as DText captions rather than as button text
+// (revolution_runebook.scp:119-162). Matching labels here would silently find
+// nothing, forever.
+//
+// The layout was measured live (m39_rb_probe) rather than assumed:
+//
+//   text 0..6  'Runebook' 'Charges: NN' 'Page' 'Name' 'Destination' 'Travel' 'Rune'
+//   then THREE texts per page: number, name, destination point
+//
+// so page N's name is texts[5 + 3N] and its travel button is 10 + N. An unset
+// page reads back as the literal "(empty)" and its point as "-".
+void Client::NoteRunebookGump() {
+    if (gump_.texts.empty() || gump_.texts[0] != "Runebook") return;
+
+    runebookSerial_ = gump_.serial;
+    runebookPages_.clear();
+    runebookCharges_ = 0;
+
+    // "Charges: 00" -- read the number rather than assuming a charged book.
+    if (gump_.texts.size() > 1) {
+        const std::string& c = gump_.texts[1];
+        const usize colon = c.find(':');
+        if (colon != std::string::npos)
+            runebookCharges_ =
+                static_cast<int>(std::strtol(c.c_str() + colon + 1, nullptr, 10));
+    }
+
+    for (int n = 1; n <= 8; ++n) {
+        const usize nameIdx = static_cast<usize>(5 + 3 * n);
+        if (nameIdx >= gump_.texts.size()) break;
+        RunebookPage p;
+        p.page  = n;
+        p.name  = gump_.texts[nameIdx];
+        p.point = (nameIdx + 1 < gump_.texts.size()) ? gump_.texts[nameIdx + 1]
+                                                     : std::string();
+        p.filled = (p.name != "(empty)" && !p.name.empty());
+        runebookPages_.push_back(std::move(p));
+    }
+
+    int filled = 0;
+    for (const RunebookPage& p : runebookPages_) {
+        if (!p.filled) continue;
+        ++filled;
+        LogInfo("[runebook] page %d = '%s' %s (travel button %d)\n", p.page,
+                p.name.c_str(), p.point.c_str(), 10 + p.page);
+    }
+    char ev[128];
+    std::snprintf(ev, sizeof(ev), "book=0x%08X pages=%d charges=%d",
+                  runebookSerial_, filled, runebookCharges_);
+    LogEvent("runebook_read", ev);
+    if (filled == 0)
+        LogInfo("[runebook] 0x%08X holds no marked pages\n", runebookSerial_);
+}
+
+// Which page holds this destination? 0 when the book does not have one.
+// Substring match in both directions, because a page name is written by whoever
+// marked it ("Britain") while a route label may be longer ("Britain bank").
+int Client::RunebookPageFor(const std::string& destination) const {
+    if (destination.empty()) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(destination);
+    for (const RunebookPage& p : runebookPages_) {
+        if (!p.filled) continue;
+        const std::string have = lower(p.name);
+        if (want.find(have) != std::string::npos ||
+            have.find(want) != std::string::npos)
+            return p.page;
+    }
+    return 0;
+}
+
+// Start a Recall the travel layer decided on: open the book so its gump comes
+// back, and remember which page we are travelling from.
+//
+// Nothing here shortcuts the spell. Pressing the page's travel button makes the
+// BOOK surface that page's rune and ask the character to cast Recall at it, so
+// the skill check, the mana, the reagents and the fizzle roll all still happen
+// on the server. A recall that "succeeded" without the server moving us would
+// be exactly the kind of unearned result this project keeps withdrawing.
+bool Client::BeginRunebookRecall(int page) {
+    if (page < 1 || page > 8) return false;
+    const u32 book = FindBackpackItemByGraphic(0x22C5);
+    if (!book) {
+        LogWarn("[runebook] recall wanted page %d but no runebook is in the "
+                "backpack\n", page);
+        return false;
+    }
+    pendingRunebookPage_  = page;
+    awaitingRunebookRune_ = false;
+    LogInfo("[runebook] recalling from page %d (book 0x%08X)\n", page, book);
+    LogEvent("runebook_recall_begin", "");
+    ActionUseObject(book);
+    return true;
+}
+
+// The book's gump is open and we are mid-recall: press page N's travel button.
+// Button ids are 10+N, confirmed live in M3.6 and again by m39_rb_probe.
+bool Client::AnswerRunebookTravelGump() {
+    if (!pendingRunebookPage_) return false;
+    const u32 button = static_cast<u32>(10 + pendingRunebookPage_);
+    bool have = false;
+    for (const GumpOption& o : gump_.options)
+        if (o.button && o.id == button) { have = true; break; }
+    if (!have) {
+        LogWarn("[runebook] gump has no travel button %u for page %d\n", button,
+                pendingRunebookPage_);
+        pendingRunebookPage_ = 0;
+        return false;
+    }
+    LogInfo("[runebook] pressing travel button %u (page %d)\n", button,
+            pendingRunebookPage_);
+    pendingRunebookPage_  = 0;
+    awaitingRunebookRune_ = true;
+    AnswerGump(button, 0);
+    return true;
 }
 
 // Pick the destination the current route leg wants out of the open gump and

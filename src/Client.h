@@ -1282,8 +1282,52 @@ private:
         u32  serial = 0;      // object the gump belongs to (echoed back)
         u32  context = 0;     // dialog id (echoed back)
         std::vector<GumpOption> options;
+        // The gump's WHOLE text table, kept because option labels are not
+        // enough. A control only takes the first text that follows it, so any
+        // text a gump draws on its own -- a DText caption rather than a button
+        // label -- was parsed and then thrown away.
+        //
+        // Revolution's runebook is exactly that shape: its page names are
+        // DText (revolution_runebook.scp:119-162, TAG.rb_dN_name), so the
+        // travel buttons 11-18 all come through with EMPTY labels and a
+        // label-matching search of the kind AnswerGateGump does can never find
+        // a destination in it.
+        std::vector<std::string> texts;
     };
     ActiveGump gump_;
+
+    // --- Runebook (M3.9) ----------------------------------------------------
+    // What the book says it holds, read from its own gump rather than
+    // remembered by us. The layout is regular and was measured live rather than
+    // assumed (m39_rb_probe): seven header texts, then THREE texts per page --
+    // the page number, the page NAME, and the destination point.
+    //
+    //   page N name    = texts[5 + 3N]        (N = 1..8)
+    //   travel button  = 10 + N               (11..18)
+    //
+    // An unset page reads back as the literal "(empty)", which is why a page
+    // name is checked against that rather than against "".
+    struct RunebookPage {
+        int         page = 0;
+        std::string name;
+        std::string point;
+        bool        filled = false;
+    };
+    std::vector<RunebookPage> runebookPages_;
+    u32  runebookSerial_ = 0;    // the book whose gump filled the list above
+    int  runebookCharges_ = 0;
+    void NoteRunebookGump();                       // called after a gump parse
+    int  RunebookPageFor(const std::string& destination) const;  // 0 = none
+
+    // Executing a Recall the travel layer chose. Two steps, because the book
+    // asks a question in between: press page N's travel button, then answer the
+    // spell's target cursor with the rune the book just surfaced.
+    int  pendingRunebookPage_ = 0;      // page we are travelling from, 0 = none
+    bool awaitingRunebookRune_ = false; // travel button pressed, cursor pending
+    bool runebookRecallDone_ = false;   // one recall per journey, not per replan
+    bool BeginRunebookRecall(int page);
+    bool AnswerRunebookTravelGump();    // true when it pressed a button
+
     void OnGenericGump(const u8* data, usize size);   // 0xB0
     void OnSecureTrade(const u8* data, usize size);   // 0x6F
     void SendTradeAction(u8 action, u32 container, u32 flag);

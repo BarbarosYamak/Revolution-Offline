@@ -1,0 +1,46 @@
+# M3.9 -- read what a Runebook gump actually contains.
+#
+# RUN AS SESSION 7 (RevolutionMageGM), the fenced mechanics probe. That
+# character is GM-PROVISIONED and is NOT evidence about ordinary progression;
+# it is used here only because it already owns a stocked runebook.
+#
+# WHY THIS PROBE EXISTS
+#
+# Wiring Recall into the travel layer needs a destination -> page mapping, and
+# the obvious approach -- matching gump option labels, the way AnswerGateGump
+# picks a moongate destination -- CANNOT WORK for a runebook. M3.6's own log
+# shows why:
+#
+#   button 11 = ''      <- travel to page 1
+#   button 21 = '2'
+#   button 12 = ''      <- travel to page 2
+#
+# Every travel button comes through with an EMPTY label. The page names are
+# drawn as DText (revolution_runebook.scp:119-162, TAG.rb_dN_name), and the
+# gump parser only ever gave a control the first text that followed it, so the
+# names were parsed into the text table and then discarded.
+#
+# The client now keeps the whole text table. This run simply opens the book and
+# dumps it, so the mapping can be built from what the shard really sends rather
+# than from a guess about layout order.
+
+wait_world
+sleep 2500
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember book pack_graphic 0x22C5
+require book
+
+use @book
+wait_action
+sleep 3000
+gump_report
+
+say runebook probed
+sleep 1500
+logout

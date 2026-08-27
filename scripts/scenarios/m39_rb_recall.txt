@@ -1,0 +1,60 @@
+# M3.9 -- prove the TRAVEL LAYER recalls, not just a hand-written scenario.
+#
+# RUN AS SESSION 7 (RevolutionMageGM). GM-PROVISIONED, so this proves the
+# MECHANIC and the wiring, never anything about ordinary progression.
+#
+# WHAT IS NEW HERE
+#
+# M3.6 already recalled from a runebook by hand: `use @book`, `gump_button 11`,
+# answer the cursor. That proved the mechanic and nothing else -- travelmode::
+# Choose could RANK a Runebook recall since M3.6 and TravelBegin had no branch
+# that executed one, so a mage that decided to recall still walked.
+#
+# This scenario presses no gump buttons. It asks the travel layer to go to
+# Britain and expects the travel layer itself to notice the book holds that
+# page, open it, press the page's travel button, and answer the spell's cursor
+# with the rune the book surfaces.
+#
+# The book must be READ before the travel layer can know what it holds -- a bot
+# that has not opened its book does not know what is in it, which is why the
+# scenario opens it once up front rather than pretending the knowledge is free.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------- 1. learn what the book holds
+remember book pack_graphic 0x22C5
+require book
+use @book
+wait_action
+sleep 2500
+
+# ------------------------------------------- 2. stand somewhere that is not it
+# Far enough that walking would be obvious in the log and slow in wall-clock.
+travel_point 1420 1690
+wait_travel
+sleep 2000
+say I am away from the marked spot
+
+# ------------------------------------------------ 3. ask the travel layer only
+# No gump_button, no target: if this works, the client did it. `travel_place`
+# names the destination the way a route does, so the page-name match is
+# exercised too.
+travel_place Britain
+wait_travel
+sleep 6000
+
+say the travel layer recalled me
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout

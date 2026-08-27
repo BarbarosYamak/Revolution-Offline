@@ -1,0 +1,278 @@
+# M3.9 -- prove a bot can kill something AND LOOT THE CORPSE.
+#
+# COPY of m39_hunt_armed.txt (do not edit that file) with a looting attempt
+# appended after the kill. Everything through "say the fight is over" is
+# unchanged from m39_hunt_armed.txt; see that file's comments for why an
+# armed fresh fighter, why real wilderness and not a farm, and why the wolf
+# body ids below are read from the CHARDEF headers rather than generic UO
+# documentation.
+#
+# RUN AS AN ARMED FIGHTER SESSION (53+ / RevolutionFighter03+).
+#
+# THE LOOT STEP IS WHERE THIS SCENARIO EARNS ITS NAME, AND IT IS WHERE IT
+# STOPS SHORT. Read src/bot/Scenario.cpp's `remember` handling (the
+# pack_graphic / carried_graphic / world_graphic / mobile_* branches,
+# Scenario.cpp:1055-1130) and Client::FindItem's SearchZone enum
+# (Client.h:1154, Client.cpp:3773-3818) end to end before assuming the
+# scenario DSL can do this:
+#
+#   kZoneBackpack -- ALWAYS PlayerEquipSerialAt(kLayerBackpack), i.e. the
+#                    bot's OWN worn backpack. Never an arbitrary container.
+#   kZoneEquip    -- the bot's own worn gear.
+#   kZoneWorld    -- top-level dynamic items_ (things lying directly on the
+#                    ground), which is how `world_graphic` finds the corpse
+#                    ITSELF below -- but a corpse's CONTENTS are not in
+#                    items_, they are in a second map keyed by container
+#                    serial (containerItems_[corpse_serial], populated by the
+#                    0x3C handler, Client.cpp:1398-1435) that nothing in the
+#                    scenario Op set can search.
+#
+# `pack_graphic`/`carried_graphic` are hard-wired to the PLAYER's backpack
+# serial specifically (Client::FindBackpackItemByGraphic,
+# Client::FindItemByGraphic, both call PlayerEquipSerialAt(kLayerBackpack)
+# directly) -- there is no "pack_graphic, but for THIS container" variant,
+# and Scenario::Resolve()'s token grammar (Scenario.cpp:147-195: @name,
+# self, backpack, bank, vendor*, vendor_sell_graphic:<hex>,
+# vendor_graphic:<hex>, a bare hex/decimal literal) has nothing that reads
+# containerItems_ for a bound-but-not-the-backpack serial either. A corpse's
+# item serials are assigned by the server at spawn time, so they cannot be
+# hardcoded as a literal the way a vendor's stock can be named by graphic --
+# vendor_graphic: works only because VendorOffer() is a SEPARATE list the
+# client already special-cases, exactly the kind of special-casing a corpse
+# does not get.
+#
+# The underlying engine capability to do this EXISTS and is proven working:
+# Client::SendTakeToBackpack(serial, qty) (Client.h:684) explicitly "lift
+# item from ANY open container -> backpack", and it is exposed to this
+# codebase's JS scripting layer as Player.take(serial, qty) plus
+# Player.containerItems(serial) (src/js/ClientBindings.cpp:486-556, the
+# latter literally commented "items array from any open container (e.g. the
+# bank box...)"). So Sphere-side and Client-engine-side, looting a corpse is
+# just "open it, list containerItems_[corpse], take the one you want" -- the
+# gap is entirely that the PLAIN-TEXT .txt Scenario interpreter this
+# milestone's runner drives (run_m25.ps1 only ever passes `--scenario
+# X.txt`, there is no JS-script launch path wired to it) never got a
+# `remember <name> container_graphic <container-bind> <graphic-list>` op (or
+# equivalent) added to expose that JS capability to .txt scenarios.
+#
+# Per the M3.9 brief: that is a real C++ gap (in Scenario.cpp, not in
+# Sphere), not a scenario-authoring puzzle to solve by cleverness, and this
+# file does not invent a workaround. Everything below this point that CAN be
+# proven with the existing Op set IS proven: the corpse is found by its
+# universal graphic, walked to if needed, opened, and the 0x3C reply is
+# waited for and will show up in the log as
+# "[0x3C] container contents: N item(s)" -- real evidence that the corpse
+# has loot sitting in it, one packet away from a pack that this interpreter
+# cannot yet reach into.
+#
+# EXPECTED CONTENTS, READ FROM THE SHARD'S OWN DATA, NOT GENERIC UO DOCS:
+# c_wolf_grey [CHARDEF 019] (c_monster_classic.scp:1197) carries
+#     RESOURCES=1 i_ribs_raw,6 i_hide
+# i_ribs_raw is ITEMDEF 009f1 (i_profession_cook_barkeep_baker.scp:991) --
+# NOT one of the generic "raw meat" ids UO documentation usually gives.
+# i_hide is ITEMDEF 01078 (i_profession_tailor_tanner.scp:349), DUPELIST
+# 01079 for the piled graphic once more than one accumulates -- the same
+# stacking trap M3.7's ore run hit, so a real container_graphic op would
+# need to accept a comma list here exactly like pack_graphic does.
+
+wait_world
+sleep 2500
+ensure_peace
+gait run
+
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------- 1. arm ourself
+remember blade pack_graphic 0x13FE,0x13FF
+require blade
+equip @blade 1
+wait_action
+sleep 2000
+say armed
+
+# --------------------------------------------------- 2. out to REAL wilderness
+use_moongates on
+travel_point 1265 1612
+wait_travel
+expect_travel ok
+sleep 2000
+
+say hunting wolves
+
+# --------------------------------------------------------------- 3. find prey
+# 0x0019 grey wolf  0x00E1 timber wolf  0x0017 dire wolf  0x0025 white wolf
+# 0x003F cougar     0x00D6 panther -- read off the CHARDEF headers, see
+# m39_hunt_armed.txt for the full history of why.
+#
+# THIS PATROL CHASES AS IT GOES, and m39_hunt_armed.txt's does not -- a real
+# difference from the copied original, made for a reason found live and
+# worth recording rather than silently fixing.
+#
+# loot3.console.txt (this file, this run) proves the miss: the scan at
+# (1229,1655) [22:35:12.466] read "Timber Wolf 0x00015311" in the nearby
+# list. m39_hunt_armed.txt's structure (which this scenario started as an
+# exact copy of) does `remember prey`/`require prey` exactly ONCE, after the
+# LAST waypoint of the sweep -- so that sighting was simply discarded, and by
+# the next scan at (1210,1680) [22:35:24.297], ~31 tiles and ~13s later, the
+# wolf had dropped out of the 18-tile view radius (viewRange_,
+# Client.h:1119) and `remember prey` bound 0x00000000 [22:35:32.732]. The
+# wolf did not vanish; the patrol out-ran it by walking two more waypoints
+# further AWAY from where it was seen instead of turning toward it -- loot1
+# and loot2 never even got a sighting, so this is the one run with hard
+# evidence of the mechanism, not a guess.
+#
+# So here: after EVERY scan, try to bind prey and immediately try
+# goto_mobile toward it. goto_mobile on an unbound (0x00000000) serial is a
+# documented no-op -- Client::ActionGotoMobile logs "not in the mobile
+# cache" and returns false without starting an action, so wait_action
+# returns immediately (client.ActionBusy() was never set) -- so this costs
+# nothing on the legs where nothing is sighted, and on the leg where
+# something IS sighted it turns the bot toward it instead of away, the same
+# way a real hunter reacts to spotting tracks instead of finishing a
+# pre-planned loop first.
+scan_mobiles
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1265 1612
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1272 1607
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1229 1655
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1210 1680
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1185 1698
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+
+# The sweep is done. If something was ever sighted, the chases above have
+# been closing on it the whole time, so give it a few more scan/chase
+# cycles to close the last distance and settle in the mobile cache before
+# the hard `require`.
+loop 4
+  scan_mobiles
+  sleep 1200
+  remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+  goto_mobile @prey
+  wait_action
+endloop
+
+require prey
+
+goto_mobile @prey
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------------ 4. kill it
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+
+loop 20
+  goto_mobile @prey
+  wait_action
+  sleep 2500
+endloop
+
+scan_mobiles
+sleep 2500
+
+war off
+sleep 1200
+say the fight is over
+
+# --------------------------------------------------------- 5. find the corpse
+# i_corpse is ITEMDEF 02006 (runtime/scripts/items/i_char_icons.scp:20-27),
+# and the comment on that itemdef says outright every corpse in the shard is
+# created from this ONE item: "you only need to alter ITEMDEF 02006 since
+# all corpses are created by that one item." So 0x2006 is not a guess and
+# not per-creature the way the wolf body ids above are.
+open @pack
+wait_action
+sleep 1000
+
+remember corpse world_graphic 0x2006
+require corpse
+
+# No travel step here on purpose. The attack loop above re-issued
+# goto_mobile every 2.5s to stay in melee range for the whole fight, so the
+# corpse should spawn within container-open range of wherever the bot is
+# standing when the loop ends. There is also no op that WOULD get us there
+# if it did not: goto takes a literal x/y (the corpse's position is not
+# known ahead of time), and travel_entity resolves only MOBILE serials via
+# Client::MobilePosition (ClientTravel.cpp:254-265) -- a corpse is a world
+# item, not in mobileCache_, so travel_entity @corpse would fail with "that
+# mobile is not in view" even though the corpse is right there. If this
+# `open` fails on range, that is real evidence of a second gap (no
+# item-position travel primitive), not something to paper over with an
+# invented workaround.
+open @corpse
+wait_action
+
+# Give the 0x3C container-contents packet time to arrive. Client.cpp:1398's
+# OnContainerContents handler logs "[0x3C] container contents: N item(s)"
+# unconditionally, whatever N is -- that line in <tag>.log is the real
+# evidence the corpse has loot sitting in it, one packet the interpreter
+# received and stored (containerItems_[corpse]) but has no scenario Op to
+# read back out.
+sleep 3000
+
+say corpse opened, contents on the wire, no scenario op can reach them yet
+
+# --------------------------------------------------- 6. THE STEP THAT DOES NOT EXIST
+#
+# The brief's own instruction: prove the transfer with mark_item before and
+# expect_item_gain after, the way m37_slice_b_minoc.txt does for smelted
+# ingots. That pattern needs a `move <item-in-corpse> <amount> @pack` line,
+# and <item-in-corpse> needs a `remember` mode that searches
+# containerItems_[@corpse] by graphic (0x09F1 ribs, 0x1078/0x1079 hide) the
+# same way `pack_graphic` searches containerItems_[player's own backpack].
+# That remember mode does not exist -- see the file header. Writing
+#     remember loot pack_graphic 0x09F1,0x1078,0x1079
+# here would not be that mode; pack_graphic ignores @corpse entirely and
+# would search the PLAYER'S backpack, silently binding whatever ribs/hide
+# the bot happens to already be carrying (nothing, for a fresh fighter) --
+# which is exactly the kind of invented, misleading workaround the brief
+# said not to build. So this scenario stops here, deliberately, with the
+# fight and the corpse both proven and the extraction left undone.
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout
