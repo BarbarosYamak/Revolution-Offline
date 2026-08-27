@@ -11,6 +11,9 @@
 
 #include "Client.h"
 
+#include "uo/travel_mode.h"
+#include "uo/rules.h"
+
 #include "uo/endian.h"
 
 #include <cstdio>
@@ -372,7 +375,52 @@ void Client::TravelPlanRoute() {
     // actually work one, which today means "the gate exists in the live
     // world". The journey learns that the hard way -- if the gate is not
     // there, the transit leg fails and the replan routes around it.
-    opt.allowMoongates = travelUseMoongates_;
+    // ---- M3.8 Phase 5: the planner chooses its own travel mode --------------
+    //
+    // travelmode::Choose has existed since M3.6 and NOTHING CALLED IT. The mode
+    // layer could rank walking, moongates, loose-rune Recall and a Runebook,
+    // and every journey still walked unless a scenario opted in by hand.
+    //
+    // That gap is wider than the brief states. It names the Runebook, but
+    // moongates were default-off too (travelUseMoongates_ = false), so M2.5's
+    // proven gate network sat unused: a Britain-to-Minoc trip walked 1,900
+    // tiles past a working moongate because no scenario had said the word.
+    //
+    // Capability is built from what the character ACTUALLY has -- its own
+    // Magery, its own mana -- never from what would be convenient.
+    travelmode::Capability cap;
+    cap.mageryTenths = PlayerSkillBase(static_cast<u16>(rules::kMagery));
+    cap.manaNow      = PlayerMana();
+    // ReagentsRequired is now 1 (M3.8 Phase 6), so casting is no longer free.
+    // Reagent SOURCING is still an open authenticity gap and nothing tracks a
+    // per-character reagent count yet, so this stays true and is recorded as
+    // debt rather than faked: a Recall arm that silently assumed reagents would
+    // be exactly the kind of unearned optimism this project keeps withdrawing.
+    cap.haveReagents = true;
+    cap.dead         = IsDead();
+    cap.inCombat     = WarModeOn();
+    cap.moongateRouteKnown = true;   // M2.5 proved the gate network live
+
+    const i32 straightTiles =
+        Chebyshev(playerX_, playerY_, journey_.GoalX(), journey_.GoalY());
+    const travelmode::Mode picked = travelmode::Choose(cap, straightTiles);
+
+    // Log the whole ranking, not just the winner. A planner that only shows what
+    // it chose cannot be argued with; the reasons on the rejected modes are what
+    // make a wrong choice debuggable.
+    for (const auto& o : travelmode::Rank(cap, straightTiles)) {
+        LogInfo("[travel] mode %-16s %s%s%s\n",
+                travelmode::ModeName(o.mode),
+                o.usable ? "usable" : "no: ",
+                o.usable ? "" : o.why.c_str(),
+                (o.mode == picked) ? "   <- chosen" : "");
+    }
+    LogEvent("travel_mode", travelmode::ModeName(picked));
+
+    // A scenario may still force gates on with `use_moongates on`; what has
+    // changed is that it no longer has to.
+    opt.allowMoongates = travelUseMoongates_ ||
+                         (picked == travelmode::Mode::Moongate);
     opt.avoidCells = &journey_.AvoidCells();
 
     const route::WorldRoute r = world_knowledge_->planner->Plan(

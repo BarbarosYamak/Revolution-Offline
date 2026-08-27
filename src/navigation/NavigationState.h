@@ -68,6 +68,10 @@ struct BotState {
     u64 planRequestId = 0;
     u64 nextPlanRequestId = 1;
     u32 replanCount = 0;
+    // Latched for one replan when a failed plan found the character enclosed
+    // with mobiles among the walls. Cleared by any plan that produces a path,
+    // so a genuinely unreachable goal still fails in finite time.
+    bool softMobileRetry = false;
     i64 resumeAtMs = 0;
     u32 stuckWaits = 0;         // consecutive wait-retries at the current bump cell
     bot::Blacklist blacklist;

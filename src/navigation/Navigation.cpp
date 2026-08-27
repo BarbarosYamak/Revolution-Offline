@@ -709,6 +709,7 @@ bool Client::BotReplanToGoal() {
     request.grassPenalty = bias ? kGrassPenalty : 0u;
     request.foliagePenalty = bias ? kForestPenalty : 0u;
     request.playerSerial = playerSerial_;
+    request.ignoreMobiles = nav_.bot.softMobileRetry;
     request.blacklist = nav_.bot.blacklist;
     request.rejectedEdges = nav_.bot.rejectedEdges;
     request.mobiles.reserve(mobileCache_.size());
@@ -743,6 +744,9 @@ void Client::BotPollPathPlanner() {
 
     nav_.bot.planning = false;
     nav_.bot.planRequestId = 0;
+    // A plan that produced a path clears the latch, so the next failure is
+    // allowed its own single soft retry.
+    if (!result.path.empty()) nav_.bot.softMobileRetry = false;
 
     if (!result.worldReady) {
         LogWarn("[bot] path worker could not load MUL data; stopping\n");
@@ -778,6 +782,31 @@ void Client::BotPollPathPlanner() {
             if (e.openExits == 0 && e.doorBlocked > 0) {
                 LogWarn("[bot] every exit is a closed door -- this is a knock, "
                         "not a trap\n");
+            }
+
+            // THE MINOC BANK FIX.
+            //
+            // Enclosed, and mobiles are part of the wall. A cached mobile never
+            // expires -- a stationary one never resends 0x77, so a stale seenMs
+            // does not mean it left. That is correct for a blocker still
+            // standing there and fatal for a bystander who wandered off.
+            //
+            // Being wrong about a mobile is CHEAP: the server rejects one step
+            // and the existing reject/reroute path absorbs it. Being wrong about
+            // a wall is not. So retry once treating mobiles as soft; terrain and
+            // furniture stay hard, so this can never walk the bot into a
+            // building.
+            //
+            // Once, not repeatedly: the latch clears only on a successful plan,
+            // so a genuinely unreachable goal still fails in finite time.
+            if (e.openExits == 0 && e.mobileBlocked > 0 &&
+                !nav_.bot.softMobileRetry) {
+                nav_.bot.softMobileRetry = true;
+                LogWarn("[bot] enclosed with %u mobile(s) in the wall; "
+                        "replanning with mobiles treated as soft\n",
+                        e.mobileBlocked);
+                LogEvent("path_soft_retry", "enclosed by mobiles");
+                if (BotReplanToGoal()) return;
             }
         }
         BotAbortPath("no path");

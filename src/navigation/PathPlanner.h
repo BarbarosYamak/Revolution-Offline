@@ -58,6 +58,19 @@ struct PathRequest {
     std::vector<RejectedEdge> rejectedEdges;
     std::vector<PathMobileBlocker> mobiles;
     std::vector<PathDynamicItem> dynamicItems;
+    // MOBILES ARE SOFT OBSTACLES; terrain and furniture are hard.
+    //
+    // A cached mobile never expires -- deliberately, because a stationary one
+    // never resends 0x77 and expiring it would blind A* to a real blocker. But
+    // that also means a bystander who has since wandered off still walls a
+    // doorway forever, which is how M3.7 lost a miner inside the Minoc bank.
+    //
+    // The resolution is not a timeout. It is that being WRONG about a mobile is
+    // cheap: the server rejects one step and the existing reject/reroute path
+    // handles it. Being wrong about a wall is not. So when a plan fails with
+    // the character enclosed and mobiles among the walls, the planner retries
+    // once with them ignored.
+    bool ignoreMobiles = false;
 };
 
 // Why a search failed, computed only when it did.

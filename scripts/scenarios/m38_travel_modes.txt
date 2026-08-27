@@ -1,0 +1,111 @@
+# M3.8 PHASE 5 + PHASE 1 -- the planner picks its own travel mode, and the
+# interior fix rides along.
+#
+# RUN AS SESSION 10 (RevolutionMiner), standing in Minoc.
+#
+# WHAT PHASE 5 ACTUALLY WAS
+#
+# `travelmode::Choose` has existed since M3.6 and NOTHING CALLED IT. The layer
+# could already rank walking, moongates, loose-rune Recall and a Runebook by
+# what the character owns -- and every journey walked anyway, unless a scenario
+# opted in by hand.
+#
+# The gap is wider than the brief states. It names the Runebook, but MOONGATES
+# WERE DEFAULT-OFF TOO (`travelUseMoongates_ = false`, Client.h:1207), so M2.5's
+# proven gate network sat unused. A Britain-to-Minoc trip earlier in this
+# milestone walked 1,900 tiles past a working moongate because no scenario had
+# said the word.
+#
+# NOTE WHAT THIS SCENARIO DOES NOT SAY: there is no `use_moongates on` here.
+# That is the entire point. If the planner still walks the long way, Phase 5 is
+# not done.
+#
+# The ranking is logged in full -- every mode with its reason, not just the
+# winner. A planner that shows only what it chose cannot be argued with.
+#
+# PHASE 1 RIDES ALONG. Minoc bank is where M3.7 lost a miner. Mobiles are now
+# SOFT obstacles: a failed plan that finds the character enclosed with mobiles
+# in the wall replans once with them ignored, because being wrong about a
+# bystander costs one rejected step while being wrong about a wall costs the
+# run. Terrain and furniture stay hard, so this cannot walk into a building.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+# ------------------------------------- 1. a long trip, with no mode specified
+# Britain is ~1,900 tiles from Minoc. Long enough that any sane planner should
+# prefer something other than its own feet -- if it is allowed to choose.
+travel_point 1453 1765
+wait_travel
+expect_travel ok
+sleep 2000
+
+say britain, by whatever route the planner picked
+
+# ---------------------------------------- 2. eat, because hunger is now real
+# HitsHungerLoss=1 and Regen3=1800 mean a character grows hungry in about four
+# and a half hours and starves in seven and a half. Nothing in this project ate
+# before, which is exactly why the setting was not enabled until there was a way
+# to prove a bot can.
+#
+# Bread is 0x103B and bakers sell it. Eating is an ordinary double-click, so no
+# new op is needed -- the proof is that the loaf is CONSUMED.
+travel_service baker
+wait_travel
+sleep 2500
+
+scan_mobiles
+sleep 3500
+remember baker mobile_trade baker,tavernkeeper
+require baker
+
+travel_entity @baker 2
+wait_travel
+sleep 2500
+say hello
+sleep 3000
+
+travel_entity @baker 1
+wait_travel
+vendor_open @baker buy
+wait_action
+sleep 2500
+
+mark_item 0x103B
+
+travel_entity @baker 1
+wait_travel
+vendor_buy @baker vendor_graphic:0x103B 2
+wait_action
+sleep 2500
+
+remember pack backpack
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x103B
+
+say bread bought
+
+# Now eat one. mark_item is re-taken so the assertion is about the EATING, not
+# about the buying.
+mark_item 0x103B
+remember bread pack_graphic 0x103B
+require bread
+
+use @bread
+wait_action
+sleep 3000
+
+open @pack
+wait_action
+sleep 2000
+expect_item_drop 0x103B
+
+say a bot that eats
+sleep 1500
+logout

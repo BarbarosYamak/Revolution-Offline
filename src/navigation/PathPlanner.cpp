@@ -101,8 +101,11 @@ bool IsClosedDoorAt(const RuntimeOverlay& overlay, i32 x, i32 y, i8 z) {
 bool ExtraBlocked(i32 x, i32 y, i8 z, void* user) {
     const auto* overlay = static_cast<const RuntimeOverlay*>(user);
     if (!overlay || !overlay->request) return false;
-    return IsMobileBlocking(*overlay->request, x, y, z) ||
-           IsDynamicItemBlocking(*overlay, x, y, z);
+    if (!overlay->request->ignoreMobiles &&
+        IsMobileBlocking(*overlay->request, x, y, z)) {
+        return true;
+    }
+    return IsDynamicItemBlocking(*overlay, x, y, z);
 }
 
 bool ExtraBlockedStep(i32 fromX, i32 fromY, i8 fromZ,
