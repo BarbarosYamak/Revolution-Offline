@@ -1,0 +1,44 @@
+# M3.7 -- persist every ATTR_STATIC decorator item to spherestatics.scp.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# WHY THIS IS ITS OWN FILE
+#
+# A bare `.savestatics` does NOT work and fails silently-ish:
+#
+#   01:33:ERROR:Undefined keyword 'savestatics'.
+#   01:33:43:'Admin' commands 'savestatics'=1
+#
+# The second line is Sphere logging that the account *issued* a command; the
+# `=1` is not a success code. A client command is resolved against the
+# CHARACTER's verb table first, and SAVESTATICS is not a character verb -- it
+# is SV_SAVESTATICS in CServer::r_Verb (CServer.cpp:2205), i.e. a SERVER verb.
+# Server verbs are reachable from script as SERV.<verb>, so the working form is
+# `.serv.savestatics`.
+#
+# This matters because every decorator item carries attr_static, and Source-X
+# routes those to a different save file:
+#
+#   CSector::SaveSector  -> else if (!pItem->IsAttr(ATTR_STATIC))
+#                               r_WriteSafe(g_World.m_FileWorld);    // sphereworld.scp
+#   CWorld::SaveStatics  -> if (!pItem->IsAttr(ATTR_STATIC)) continue;
+#                           r_WriteSafe(m_FileStatics);              // spherestatics.scp
+#
+# So an ordinary `.save` writes NONE of the ~6200 decorator items now live in
+# memory (garbage collector: 10350 objects before the first pass, 16574 after
+# doors and signs). Without this file they vanish on the next restart.
+
+wait_world
+sleep 3000
+say .show p
+sleep 2500
+
+say .serv.savestatics
+sleep 45000
+
+say .save
+sleep 15000
+
+say statics persisted
+sleep 1500
+logout

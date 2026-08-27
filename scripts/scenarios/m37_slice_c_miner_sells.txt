@@ -1,0 +1,111 @@
+# M3.7 SLICE C, SELLER SIDE -- the miner sells its smelted ingots to a smith.
+#
+# RUN AS SESSION 6 (RevolutionFisher), paired with m37_slice_c_smith_buys.txt
+# through run_m25_pair.ps1.
+#
+# WHAT THIS PROVES, and why it is the most important slice in M3.7:
+#
+#   WORLD RESOURCE -> PLAYER PRODUCER -> PLAYER MARKET -> DOWNSTREAM CRAFTER
+#
+# Slice B already established the left-hand side live: this character mined its
+# own ore out of Brit Mine1 and smelted it at the Britain forge the world
+# decorator placed. This file moves that output to another real character over
+# the wire, and the smith then consumes it.
+#
+# THE PROTOCOL, read from Source-X and confirmed on the wire in M3:
+#   * a trade OPENS by dropping an item on another player -- the context-menu
+#     route needs a newer client than this one
+#   * the server makes two linked containers and sends both sides 0x6F
+#     SECURE_TRADE_OPEN
+#   * GOLD IS COINS IN THE WINDOW. There is no virtual gold ledger for this
+#     client version, so the buyer physically puts coins in
+#   * each side ticks with 0x6F SECURE_TRADE_CHANGE; the server moves the goods
+#     only when both are ticked
+#
+# AND THE ONE RULE THIS CLIENT ENFORCES THAT THE SERVER DOES NOT: TradeState
+# retracts local acceptance whenever either window's contents change. M3 found
+# that the commit's OWN item movements tripped that rule and made a COMPLETED
+# sale report as `partner_cancelled`; the latch added afterwards is what this
+# scenario's `expect_trade completed` is really testing.
+#
+# Every wait below is on a SERVER-REPORTED fact, never a sleep: the seller waits
+# for the buyer's coin before signing, so neither side can be left holding an
+# accepted-but-empty window.
+#
+# No gold is created. No ingot is created. Both sides are read back from the
+# server's own post-trade state.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+# The Britain bank plaza -- neutral, flat, and the rendezvous M3's trade proof
+# already used.
+travel_point 1453 1765 1
+wait_travel
+expect_travel ok
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# Baseline BOTH sides of the exchange before anything moves.
+mark_gold
+mark_item 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+say i have iron ingots for sale
+sleep 2000
+
+scan_mobiles
+sleep 4000
+remember buyer mobile_name RevolutionSmith
+require buyer
+
+remember ingots carried_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require ingots
+
+# Drop the ingots on the smith. That IS the open-a-trade gesture.
+trade_start @buyer @ingots
+wait_action
+expect success
+
+wait_trade_open
+wait_trade_mine 1
+
+# ONE STACK, DELIBERATELY. Two attempts to top the window up with a second
+# `trade_offer` were abandoned, and both failures are worth recording because
+# they are properties of the client, not of this scenario:
+#
+#   1. The resolver answers from the client's container snapshot, which only an
+#      0x3C refills. Re-resolving straight after `trade_start` returned the uid
+#      of the stack that had just moved into the trade window, and the server
+#      replied "cannot lift that (code 0)".
+#   2. Re-opening the pack fixed that, and then the ADDED STACK MERGED with the
+#      identical stack already in the window. `wait_trade_mine` tests
+#      MyOffer().size() -- stacks, not amounts -- so the count stayed at 1 and
+#      both sides waited forever on a 2 that could never arrive.
+#
+# `trade_start` has no amount parameter, so the traded quantity is whatever
+# stack the resolver hands back. That is a recorded DSL limit; it does not
+# weaken the proof, which is the four numbers either side of the exchange.
+#
+# Do not sign until the buyer's coin is actually in the window.
+wait_trade_offer 1
+trade_accept
+wait_trade_closed
+expect_trade completed
+sleep 2500
+
+open @pack
+wait_action
+sleep 2000
+expect_gold_gain
+expect_item_drop 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+say sold to the smith
+sleep 1500
+logout

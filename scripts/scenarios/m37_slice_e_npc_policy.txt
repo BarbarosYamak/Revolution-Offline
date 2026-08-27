@@ -1,0 +1,146 @@
+# M3.7 SLICE E -- the NPC shortcut, refused live.
+#
+# RUN AS SESSION 6 (RevolutionFisher).
+#
+# WHAT IS BEING PROVEN, and why the ORDER of events is the proof:
+#
+#   1. the bot needs logs
+#   2. it finds a real NPC that really sells them -- the carpenter,
+#      VENDOR_S_CARPENTER, SELL=i_log,{30 80}
+#   3. it opens the shop and the logs are genuinely in the offer list, priced
+#   4. the bot has more than enough gold
+#   5. and it REFUSES, because the Revolution classification of a log is
+#      WORLD_GATHERED: you go and chop a tree for it
+#   6. the legal route is slice D2, which does exactly that
+#
+# The refusal happens in Client::ActionVendorBuy, at the last moment before the
+# 0x3B buy packet would go out -- after the item is confirmed present in the
+# offer. That placement is deliberate. A bot that "could not find" the item
+# would prove nothing; this one can see it, afford it, and declines anyway.
+#
+# THE SHARD IS NOT EDITED. VENDOR_S_CARPENTER still lists i_log and a human
+# player on this server can still buy it. That is what makes the claim
+# falsifiable rather than circular: we are not measuring our own edits.
+#
+# THE SECOND HALF -- UNKNOWN FAILS SAFE AND FAILS LOUDLY.
+# The same shop run also attempts a Magery reagent. Reagents are the audit's
+# largest and most consequential UNKNOWN: the archive proves a real reagent
+# economy (a dedicated Reagent Crystal by 07.11.2008, and Recall's cost cut from
+# three to one on 14.05.2009) but never says where reagents came from. So the
+# purchase is refused AND flagged as an authenticity gap -- a research backlog
+# entry, not a decision.
+#
+# AND THE CONTROL, from the SAME SHOPKEEPER. The carpenter sells both a saw
+# (i_saw, BasicCraftTool -> ALLOWED) and logs (i_log, WORLD_GATHERED ->
+# REFUSED). Buying one and declining the other at one vendor, seconds apart, is
+# what shows the policy DISCRIMINATES rather than simply blocking purchases.
+#
+# (An earlier draft used the tinker for the tool. Britain's only tinker place
+# spawns "Justine, the engineer guildmistress", who keeps no shop -- the same
+# trap M3 hit with "Caedmon, the mage guildmaster".)
+
+wait_world
+sleep 2500
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+mark_gold
+
+# ------------------------------------------------------------- 1. the carpenter
+travel_service carpenter
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember carp mobile_trade carpenter
+require carp
+
+travel_entity @carp 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @carp 1
+wait_travel
+vendor_open @carp buy
+wait_action
+expect success
+sleep 2000
+
+# --------------------------------------- 2. the CONTROL: a tool, allowed
+# i_saw is BasicCraftTool. Expect "[policy] allowed NPC purchase of i_saw".
+travel_entity @carp 1
+wait_travel
+vendor_buy @carp vendor_graphic:0x1034 1
+wait_action
+expect success
+sleep 2500
+
+# ------------------------------------ 3. the SHORTCUT: a resource, refused
+# VENDOR_S_CARPENTER really does list SELL=i_log,{30 80}. The logs are in the
+# offer, the gold is in the pack, and the bot declines anyway.
+open @pack
+wait_action
+sleep 1500
+mark_item 0x1BDD
+
+travel_entity @carp 1
+wait_travel
+vendor_buy @carp vendor_graphic:0x1BDD 10
+wait_action
+expect rejected
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+# Nothing arrived: the refusal is real, not cosmetic.
+#
+# THIS MUST BE "unchanged", NOT "drop". This character owns no logs, so the
+# baseline is 0 and expect_item_drop demands a DECREASE -- it can only ever
+# fail. It did: "EXPECT item 0x1BDD to drop: 0 -> 0 ... aborting", killing the
+# run AFTER the refusal it was meant to confirm had already succeeded. A
+# refusal's evidence is that the count did not move, which needed a new op.
+expect_item_same 0x1BDD
+
+# ------------------------- 4. the UNKNOWN case: refused AND flagged as a gap
+# The mage shop stocks all eight Magery reagents. Their Revolution provenance is
+# the audit's biggest open question, so the policy must refuse AND record an
+# authenticity gap rather than quietly buying or quietly declining.
+travel_service mage
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember mageshop mobile_trade mage,alchemist
+require mageshop
+
+travel_entity @mageshop 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @mageshop 1
+wait_travel
+vendor_open @mageshop buy
+wait_action
+sleep 2000
+
+travel_entity @mageshop 1
+wait_travel
+# Garlic. Expect REJECTED plus "[policy] AUTHENTICITY GAP".
+vendor_buy @mageshop vendor_graphic:0x0F84 10
+wait_action
+expect rejected
+sleep 2500
+
+say the world will provide, or another player will
+sleep 2000
+logout

@@ -153,6 +153,19 @@ private:
         WaitTradeOffer, WaitTradeMine,
         NpcTrain, Give,
         WaitGump, GumpButton, GumpReport,
+        // Answer a cursor with a STATIC tile AND its graphic. Trees are
+        // statics and the server identifies them through
+        // CanTouchStatic(&pt, id, ...), so a plain ground reply -- which
+        // carries graphic 0 -- gets "It appears immune to your blow".
+        TargetStatic,
+        // Answer a 0x7C MENU -- the old-style craft menu Sphere opens for
+        // Carpentry, Blacksmithy, Tailoring and the rest -- by 1-based option
+        // index. Distinct from gump_button, which answers a 0xB0 generic gump.
+        MenuChoose,
+        // Proves a count did NOT move. Needed for refusals: a vendor the policy
+        // blocks leaves the pack exactly as it was, and "exactly as it was" is
+        // not expressible with ExpectItemDrop, which demands a decrease.
+        ExpectItemSame,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

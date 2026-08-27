@@ -98,6 +98,17 @@ public:
         // spellbook exactly as a human player's would be.
         int         createSkill[3];
         int         createSkillVal[3];
+        // Starting stats for the 0x00 create packet. Source-X clamps each to 60
+        // and the sum to 80 (CChar::InitPlayer). 0 means "leave the default".
+        //
+        // These are exposed because M3.7 proved STR is load-bearing, not
+        // cosmetic: i_pickaxe carries REQSTR=50, and Revolution's tiledata gives
+        // i_shovel equip layer 0 -- unwearable -- so the pickaxe is the ONLY
+        // digging tool that can be equipped, and skill45_mining.scp requires
+        // SRC.WEAPON. A miner therefore needs STR 50 or it cannot mine at all.
+        int         createStr = 0;
+        int         createDex = 0;
+        int         createInt = 0;
         // Session gait. Auto (the default) means Run -- see MovementState::gait.
         // Walk/Run pin the gait for operators who need a fixed cadence.
         sphere::Gait defaultGait;
@@ -227,6 +238,12 @@ public:
     // Targeting (answering a cursor the server armed)
     bool ActionTargetObject(u32 serial);
     bool ActionTargetGround(i32 x, i32 y, i8 z);
+    // Answer a cursor with a STATIC tile, naming its graphic. Required for
+    // anything the server identifies through CanTouchStatic(&pt, id, ...) --
+    // chopping a tree is the case that forced this: trees are statics, a plain
+    // ground reply carries graphic 0, and the shard answers "It appears immune
+    // to your blow" because it cannot see a tree at the point.
+    bool ActionTargetStatic(i32 x, i32 y, i8 z, u16 graphic);
     bool ActionCancelTarget();
     bool TargetActive() const { return target_.Active(); }
     u32  TargetGeneration() const { return target_.Generation(); }
@@ -296,6 +313,14 @@ public:
     // whatever happens to be closest.
     u32  NearestMobileWithBody(u16 body, int maxDist) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
+    // The nearest WORLD item with this graphic, or 0. Needed because a craft
+    // STATION is a dynamic world item and must be targeted by SERIAL: Source-X
+    // resolves a use-target with uid.ObjFind() (CClientEvent.cpp:2481), so a
+    // GROUND target yields pItemTarg == nullptr and the IT_WOOL / IT_YARN /
+    // IT_THREAD cases in OnTarg_Use_Item silently do nothing. Targeting the
+    // ground beside a spinning wheel answers "You can't think of a way to use
+    // that item."
+    u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist = 8) const;
     // The same search across worn gear as well. A newbie kit hands out tools
     // the shard then EQUIPS -- a fishing pole is a weapon as far as Sphere is
     // concerned (i_fishing_pole has SKILL=Fencing) -- so "the pole in my pack"
@@ -461,6 +486,11 @@ public:
     u32  GumpContext() const { return gump_.context; }
     bool AnswerGump(u32 button, u32 optionId);
     bool CloseGump();
+    // Answer a 0x7C MENU by 1-based option index (0 cancels). Sphere's craft
+    // menus are menus, not gumps -- the Carpentry menu arrives as
+    // `[0x7C] menu=690 "Carpentry"` and is answered with 0x7D -- so AnswerGump
+    // cannot reach them. Public face of the private AnswerDialog.
+    bool ActionMenuChoose(u16 index);
 
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack

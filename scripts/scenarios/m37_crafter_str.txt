@@ -1,0 +1,78 @@
+# M3.7 -- raise the two crafters' STR to 100 so carry weight stops gating the
+# production chains.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (Observer) via run_admin.ps1.
+# OPERATOR ACTION, at the project owner's explicit instruction.
+#
+# WHY THIS CANNOT BE DONE THE ORDINARY WAY
+#
+# The 0x00 create packet carries str/dex/int, and Source-X clamps each to 60 and
+# the SUM to 80 in CChar::InitPlayer. `--create-stats 50:20:10` is therefore the
+# most a legitimately-created character can be given, and both crafters already
+# hold exactly that (OSTR=50, verified in the world save). Going beyond it is an
+# operator act, not a gameplay one.
+#
+# WHAT IT COSTS, stated plainly so nobody has to rediscover it
+#
+# These two characters become GM-PROVISIONED, exactly like RevolutionMageGM in
+# M3.6. That does NOT invalidate slices A and B -- those slices prove that the
+# CHAIN works (sheep->wool->yarn->bolt->cloth->garment; ore->ingot->dagger), and
+# a chain is a mechanics claim, not a progression claim. It does mean:
+#
+#   * neither character may ever be cited as evidence about how hard it is to
+#     BECOME a crafter, and
+#   * the encumbrance facts already measured stand as measured, at the STR they
+#     were measured at. A bolt is still 50 stones; 50 newbie ingots are still
+#     100; a STR 30 fisher still drops fish on the dock. Raising these two does
+#     not retract any of that -- see REVOLUTION_PRODUCTION_CHAINS.md 3.4.
+#
+# STR 100 is also a legitimately REACHABLE state rather than an impossible one:
+# the runtime's per-stat cap is 100 (STATSUM=300), and stats rise through use.
+# This is a time-skip to somewhere a player could get, which is the same
+# justification M3.6 recorded for its mage probe.
+#
+# THE IN-FICTION ALTERNATIVE, for the record: pack horses and pack llamas are
+# the ONE item in the entire vendor matrix with a dated Revolution NPC
+# permission (03.11.2010, animal trainer). That -- not raw STR -- is how a
+# Revolution crafter was meant to carry more, and it is the right answer for M4.
+#
+# UIDs read from runtime/save/spherechars.scp:
+#   RevolutionMiner   SERIAL=0a58a   OSTR 50
+#   RevolutionWeaver  SERIAL=0a6fd   OSTR 50
+#
+# RevolutionFisher (0x02c0d) is deliberately NOT touched: it is the character
+# M3's economy ledger is built on, and its STR 30 is load-bearing evidence for
+# the fish-weight finding.
+
+wait_world
+sleep 3000
+
+# Prove privilege before changing anything.
+say .show p
+sleep 2000
+
+# --- before ---
+say .show uid.0a58a.str
+sleep 2000
+say .show uid.0a6fd.str
+sleep 2000
+
+# --- set ---
+say .uid.0a58a.str=100
+sleep 2000
+say .uid.0a6fd.str=100
+sleep 2000
+
+# --- after: the read-back IS the proof, not the command echo ---
+say .show uid.0a58a.str
+sleep 2000
+say .show uid.0a6fd.str
+sleep 2000
+
+# Persist, or a restart loses it.
+say .save
+sleep 12000
+
+say crafters strengthened
+sleep 1500
+logout

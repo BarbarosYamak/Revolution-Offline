@@ -1,0 +1,151 @@
+# M3.7 SLICE D2 -- tree -> logs -> boards -> a Carpentry item.
+#
+# RUN AS SESSION 8 (RevolutionTailor), created with
+#   --create-char --create-skills "Tailoring 50, Lumberjacking 30, Carpentry 20"
+#
+# One character covers slice A and slice D2 because its newbie kit happens to
+# carry every tool both need:
+#   NEWBIE LUMBERJACKING -> i_hatchet   (t_weapon_axe: chops trees AND shears sheep)
+#   NEWBIE CARPENTRY     -> i_saw + 10 i_board  (t_carpentry tool; the boards are
+#                           STARTING STOCK, baselined and not used for the proof)
+#   NEWBIE TAILORING     -> i_sewing_kit + 1 i_cloth_bolt
+#
+# THE QUESTION THIS SLICE ANSWERS, which the milestone asked explicitly:
+# does this runtime go logs -> craft, or logs -> BOARDS -> craft? Do not invent
+# a sawmill. The answer, read from the live scripts rather than assumed:
+#
+#   i_board   RESOURCES=1 i_log   SKILLMAKE=Carpentry 0.0, t_carpentry
+#             and it is MAKEITEM in sm_carpentry, the menu root
+#
+# So the board step is REAL and it is REQUIRED -- most Carpentry recipes consume
+# boards, not logs -- but it is not a sawmill. It is a menu entry at skill zero,
+# performed with the same saw, anywhere. There is no station.
+#
+# AND THE UPSTREAM ODDITY THE BRIEF ASKED ABOUT. The Runebook's eight blank
+# scrolls resolve into logs, through Carpentry, not through Inscription:
+#
+#   i_parchment    RESOURCES=1 i_log        SKILLMAKE=Carpentry 25.7
+#   i_scroll_blank RESOURCES=1 i_parchment  SKILLMAKE=Carpentry 25.7
+#
+# Both are MAKEITEM entries in sm_wood_misc, so this is a genuine, reachable
+# script dependency and not malformed generic data -- a carpenter really is the
+# shard's papermaker. This scenario crafts a parchment as well, which proves
+# that leg of the runebook chain live even though the runebook itself stays
+# blocked further up (Gate Travel scroll: Inscription 70 + Magery 60).
+#
+# Nothing here spawns a log, a board or a finished item.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember hatchet carried_graphic 0x0F43,0x0F49
+require hatchet
+remember saw carried_graphic 0x1034
+require saw
+
+# ------------------------------------------------------------- 1. find a tree
+# Semantic travel again: name the RESOURCE, not a route. The atlas measured
+# foliage density from Revolution's own statics0.mul, so "lumber" resolves to
+# real woodland.
+travel_resource lumber
+wait_travel
+expect_travel ok
+sleep 3000
+
+# --------------------------------------------------------------- 2. chop
+# Lumberjacking is started by using the axe on a tree, exactly as mining is
+# started by using the pickaxe on rock -- the tool is the verb. A tree answers
+# 60.0 mr_nothing / 40.0 mr_tree, REAPAMOUNT=1,3, and the tile then regenerates
+# on the same ten-hour timer as every other REGIONRESOURCE.
+mark_item 0x1BDD,0x1BDE,0x1BDF,0x1BE0,0x1BE1,0x1BE2
+
+# EQUIP THE AXE. skills/skill44_lumberjacking.scp:26 carries the same
+# `IF (<SRC.WEAPON.USESCUR> < 1)` guard as mining, and SRC.WEAPON is the
+# EQUIPPED weapon -- so an axe in the pack answers "The tool is out of charges."
+# (Shearing a sheep does NOT need this: that path is OnTarg_Use_Item on the
+# animal and never enters a skill script.)
+equip @hatchet 1
+wait_action
+sleep 2000
+
+# TARGET A REAL TREE. The first run reached the woods, the axe prompted "What
+# do you want to use this on?" fourteen times, and every reply went to
+# `target_ground 0 0 0` -- a placeholder that literally targets the map origin.
+#
+# Trees are STATICS, not terrain, so unlike mining there is no land tile to aim
+# at: 320 t_tree statics sit within 40 tiles of where `travel_resource lumber`
+# put the bot, and these three are the closest with a standable neighbour. Read
+# out of Revolution's own statics0.mul, cross-checked against the 51 itemdefs
+# in i_vegetation.scp that carry TYPE=t_tree.
+travel_point 1416 1904
+wait_travel
+sleep 2000
+
+loop 6
+    use @hatchet
+    wait_target
+    target_static 1415 1904 0 0x0CDA
+    sleep 5000
+endloop
+
+travel_point 1419 1900
+wait_travel
+sleep 2000
+
+loop 6
+    use @hatchet
+    wait_target
+    target_static 1418 1900 0 0x0CDD
+    sleep 5000
+endloop
+
+travel_point 1425 1908
+wait_travel
+sleep 2000
+
+loop 6
+    use @hatchet
+    wait_target
+    target_static 1424 1908 0 0x0CD6
+    sleep 5000
+endloop
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x1BDD,0x1BDE,0x1BDF,0x1BE0,0x1BE1,0x1BE2
+
+# ---------------------------------------------------- 3. logs -> boards
+# Using the saw opens sm_carpentry. Board is the first entry and costs
+# Carpentry 0.0, so this character's 20.0 clears it comfortably.
+mark_item 0x1BD7,0x1BD8,0x1BD9,0x1BDA,0x1BDB,0x1BDC
+
+use @saw
+wait_action
+sleep 2500
+gump_report
+
+# Sphere's craft menus are 0x7C MENUS, not 0xB0 gumps. The saw opens
+#     [0x7C] menu=690 "Carpentry" (2 options)   1) boards
+# and it is answered with 0x7D by 1-based index -- gump_button cannot touch it,
+# which is why the first successful chop still produced no boards.
+menu_choose 1
+sleep 3000
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+say the wood remembers the tree
+sleep 1500
+logout

@@ -46,6 +46,26 @@ enum SkillId : int {
     kRemoveTrap       = 48,
     kMagery           = 25,
     kPoisoning        = 30,
+
+    // Production skills (M3.7). Ids read off the runtime's own file names --
+    // runtime/scripts/skills/skill<N>_<name>.scp -- not guessed from a table.
+    kAlchemy          = 0,
+    kArmsLore         = 4,
+    kBlacksmithing    = 7,
+    kBowcraft         = 8,
+    kCarpentry        = 11,
+    kCartography      = 12,
+    kCooking          = 13,
+    kEvaluatingIntel  = 16,
+    kFishing          = 18,
+    kInscription      = 23,
+    kLockpicking      = 24,
+    kTailoring        = 34,
+    kTaming           = 35,
+    kTinkering        = 37,
+    kLumberjacking    = 44,
+    kMining           = 45,
+    kMeditation       = 46,
 };
 
 struct Profile {

@@ -65,6 +65,8 @@ set(UO_CLIENT_SOURCES
     src/travel/RouteStyle.cpp
     src/travel/TravelMode.cpp
     src/progression/Economy.cpp
+    src/progression/Production.cpp
+    src/progression/VendorPolicy.cpp
     src/progression/Training.cpp
     src/progression/Rules.cpp
     src/progression/ClientProgression.cpp

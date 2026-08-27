@@ -3,6 +3,7 @@
 #include "bot/Scenario.h"
 #include "uo/actions.h"
 #include "uo/sphere_rules.h"
+#include "uo/vendor_policy.h"
 
 #include "uo/builders.h"
 #include "uo/endian.h"
@@ -2084,6 +2085,22 @@ void Client::SendCreateCharacter() {
                 p.skill1, p.skill1Val, p.skill2, p.skill2Val,
                 p.skill3, p.skill3Val);
     }
+    if (cfg_.createStr > 0) {
+        // Source-X clamps each stat to 60 and the sum to 80 in
+        // CChar::InitPlayer, exactly as it clamps the skills above. Asking is
+        // free; what arrives is the server's answer.
+        //
+        // This exists because M3.7 proved STR is load-bearing rather than
+        // cosmetic. i_pickaxe carries REQSTR=50, and Revolution's tiledata
+        // gives i_shovel equip layer 0 -- unwearable -- so the pickaxe is the
+        // ONLY digging tool that can go in a hand, and skill45_mining.scp gates
+        // on SRC.WEAPON. A miner below STR 50 cannot mine at all on this shard.
+        p.str   = static_cast<u8>(cfg_.createStr);
+        p.dex   = static_cast<u8>(cfg_.createDex);
+        p.intel = static_cast<u8>(cfg_.createInt);
+        LogInfo("[0x00] requested stats STR %u DEX %u INT %u\n",
+                p.str, p.dex, p.intel);
+    }
     u8 buf[128];
     const usize n = build::CreateCharacter(buf, p);
     LogInfo("[0x00] creating character '%s' in slot %u\n", p.name, p.slot);
@@ -2425,6 +2442,19 @@ u32 Client::FindBackpackItemByGraphic(u16 graphic) const {
     return 0;
 }
 
+u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist) const {
+    u32 best = 0;
+    i32 bestD = maxDist + 1;
+    for (const auto& kv : items_) {
+        if (kv.second.itemId != graphic) continue;
+        const i32 dx = kv.second.x - playerX_;
+        const i32 dy = kv.second.y - playerY_;
+        const i32 d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (d < bestD) { bestD = d; best = kv.first; }
+    }
+    return best;
+}
+
 u32 Client::BackpackItemCount(u16 graphic) const {
     const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
     if (!pack) return 0;
@@ -2593,6 +2623,21 @@ bool Client::ActionTargetGround(i32 x, i32 y, i8 z) {
     LogInfo("[TARGET] reply ground=(%d,%d,%d) gen=%u\n", x, y,
             static_cast<int>(z), target_.Current().generation);
     TargetRespondGround(x, y, true, z);
+    return true;
+}
+
+bool Client::ActionMenuChoose(u16 index) {
+    return AnswerDialog(index);
+}
+
+bool Client::ActionTargetStatic(i32 x, i32 y, i8 z, u16 graphic) {
+    if (!target_.Active()) {
+        LogWarn("[TARGET] static reply refused: no cursor armed\n");
+        return false;
+    }
+    LogInfo("[TARGET] reply static=(%d,%d,%d) gfx=0x%04X gen=%u\n", x, y,
+            static_cast<int>(z), graphic, target_.Current().generation);
+    TargetRespondStatic(x, y, z, graphic);
     return true;
 }
 
@@ -2814,14 +2859,52 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
     action_.amount = qty;
 
     u8 layer = 0x1A;
+    u16 graphic = 0;
     bool found = false;
     for (const VendorItem& v : vendorOffer_) {
-        if (v.serial == itemSerial) { layer = v.layer; found = true; break; }
+        if (v.serial == itemSerial) {
+            layer = v.layer; graphic = v.graphic; found = true; break;
+        }
     }
     if (!found) {
         FinishAction(act::Result::InvalidState, "item not in the vendor offer");
         return;
     }
+
+    // --- M3.7 Revolution vendor authenticity policy -------------------------
+    //
+    // The M3.7 audit found that stock Sphere vendors sell nearly the whole raw
+    // and intermediate production chain -- ore, logs, boards, wool, yarn,
+    // thread, cloth, bolts, hides, blank scrolls, bottles and every reagent.
+    // 284 of the 608 items on a working human vendor are goods a PLAYER makes.
+    //
+    // The shard is deliberately left untouched, so the vendor really will sell
+    // these. The refusal therefore lives HERE, at the last moment before the
+    // 0x3B goes out, and that ordering is the whole point of the proof: the
+    // item is in the offer, the gold is in the pack, and the bot still declines.
+    const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(graphic);
+    const char* itemName = econ::ItemNameForGraphic(graphic);
+    if (!ruling.allowed) {
+        LogWarn("[policy] REFUSED NPC purchase of %s (0x%04X): %s [%s]\n",
+                itemName ? itemName : "unmapped item", graphic,
+                ruling.reason ? ruling.reason : "no reason",
+                econ::VendorClassName(ruling.klass));
+        if (ruling.authenticityGap) {
+            // An UNKNOWN refusal is a RESEARCH GAP, not a decision. Logging it
+            // apart from the ordinary refusals is what turns the accumulated
+            // list into a backlog rather than a mystery.
+            LogWarn("[policy] AUTHENTICITY GAP: no Revolution evidence either "
+                    "way for whether an NPC sold %s\n",
+                    itemName ? itemName : "this item");
+        }
+        FinishAction(act::Result::Rejected,
+                     "Revolution vendor policy refuses this NPC purchase");
+        return;
+    }
+    LogInfo("[policy] allowed NPC purchase of %s (0x%04X): %s [%s]\n",
+            itemName ? itemName : "item", graphic,
+            ruling.reason ? ruling.reason : "", econ::VendorClassName(ruling.klass));
+
     LogInfo("[VENDOR] buy item=0x%08X qty=%u from vendor=0x%08X gold=%d\n",
             itemSerial, qty, vendorSerial, PlayerGold());
     std::vector<VendorBuyReq> req;

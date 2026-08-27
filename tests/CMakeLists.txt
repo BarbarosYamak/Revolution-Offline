@@ -98,3 +98,16 @@ target_include_directories(viewer_safety PRIVATE
 target_link_libraries(viewer_safety PRIVATE uo_mul)
 
 add_test(NAME viewer_safety COMMAND viewer_safety)
+
+# M3.7: the Revolution production graph, the NPC vendor authenticity policy and
+# the acquisition primitives. Pure data and logic -- no server, no MULs, no
+# world data, no generated atlas.
+add_executable(m37_economy m37_economy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(m37_economy PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m37_economy COMMAND m37_economy)

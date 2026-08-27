@@ -137,6 +137,7 @@ int main(int argc, char** argv) {
     base.createCharIfMissing = false;
     base.createSkill[0] = base.createSkill[1] = base.createSkill[2] = 0;
     base.createSkillVal[0] = base.createSkillVal[1] = base.createSkillVal[2] = 0;
+    base.createStr = base.createDex = base.createInt = 0;
     // Auto = run. Real players run; a bot that walks everywhere is the single
     // most obvious tell there is. --walk/--run pin it for diagnostics.
     base.defaultGait      = uo::sphere::Gait::Auto;
@@ -196,6 +197,15 @@ int main(int argc, char** argv) {
                 if (!comma) break;
                 p = comma + 1;
             }
+            ++i;
+        }
+        else if (ArgIs(a, "--create-stats")) {
+            // "str:dex:int" -- Source-X clamps each to 60 and the sum to 80.
+            base.createStr = std::atoi(next);
+            const char* c1 = std::strchr(next, ':');
+            base.createDex = c1 ? std::atoi(c1 + 1) : 0;
+            const char* c2 = c1 ? std::strchr(c1 + 1, ':') : nullptr;
+            base.createInt = c2 ? std::atoi(c2 + 1) : 0;
             ++i;
         }
         else if (ArgIs(a, "--scenario"))  { base.scenarioPath = next; ++i; }

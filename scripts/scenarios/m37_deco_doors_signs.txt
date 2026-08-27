@@ -1,0 +1,86 @@
+# M3.7 -- run the shard's own DOORS and SIGNS decorator passes, and persist
+# every ATTR_STATIC item placed so far.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+# Operator tooling. Touches no character's skills, stats, gold or inventory.
+#
+# WHY A SECOND PASS
+#
+# The world decorator's gump has three independent groups, and m37_deco_britain
+# only ran the third (the per-city furniture function):
+#
+#   button 1  place_doors_felucca + place_doors_trammel + f_link_double_doors
+#   button 2  place_signs_felucca + place_signs_trammel
+#   button 3  place_moongates                       <- ALREADY RUN (20 gates live)
+#   per-city  deco_<city>_<facet>                   <- Britain run at 01:26
+#
+# So the shop signs and the server-side doors were never placed. Confirmed:
+# runtime/save/sphereworld.scp holds zero items whose defname contains "door"
+# or "sign".
+#
+# WHY .savestatics IS THE LOAD-BEARING LINE
+#
+# Every decorator item is created with `new.attr=attr_static`, and Source-X
+# routes those to a SEPARATE save file:
+#
+#   CSector::SaveSector   -> else if (!pItem->IsAttr(ATTR_STATIC))
+#                                pItem->r_WriteSafe(g_World.m_FileWorld);
+#   CWorld::SaveStatics   -> if (!pItem->IsAttr(ATTR_STATIC)) continue;
+#                            pItem->r_WriteSafe(m_FileStatics);      // spherestatics.scp
+#
+# An ordinary `.save` therefore writes NONE of them. After m37_deco_britain the
+# server's garbage collector counted 10350 -> 14878 objects (+4528 placed) while
+# sphereworld.scp gained only vendor restock -- the stations are live in memory
+# and would have been lost on the next restart. `SAVESTATICS` (CServer.cpp:2205)
+# is the command that writes spherestatics.scp.
+#
+# ONE KNOWN ERROR, AND WHY IT IS NOT FATAL
+#
+#   ERROR:(city_britain_deco_felucca.scp,8253) ITEMDEF has invalid ID=22328
+#          (05738) (value is greater than the tiledata maximum index)
+#
+# Exactly one, out of ~4500 placements. Scripts-X's decorator is written for a
+# modern SA/HS tiledata; Revolution's client data is Renaissance-era and stops
+# short of 0x5738. Sphere logs the bad itemdef and carries on, and every craft
+# station in that file (lines 3490-4265) is placed well before line 8253.
+# Expect a similar handful here and check the count afterwards.
+
+wait_world
+sleep 3000
+
+# ------------------------------------------------------ 0. confirm privilege
+say .show p
+sleep 2500
+
+# --------------------------------------- 1. persist what Britain already put
+# Do this FIRST: if anything below wedges the server, the stations survive.
+say .serv.savestatics
+sleep 20000
+
+# ------------------------------------------------------------- 2. shop signs
+# 428 lines of f_add_sign <gump>,<x>,<y>,<z>,<text>.
+say .place_signs_felucca
+sleep 20000
+
+# ----------------------------------------------------------------- 3. doors
+# 5358 lines. This is the big one.
+say .place_doors_felucca
+sleep 45000
+
+# ------------------------------------------------- 4. dedupe and link doors
+# decorator_functions.scp:12. Its own comment says to run it from an item sent
+# to 1,1,1,<map_plane>; run from a character it does the same walk and restores
+# `p=<local.p>` at the end. It removes duplicate doors at the same z and links
+# each remaining pair, so it is also the repair for a doubled doors pass.
+say .f_link_double_doors
+sleep 40000
+
+# ------------------------------------------------------- 5. persist and save
+say .serv.savestatics
+sleep 25000
+say .save
+sleep 15000
+
+say doors and signs placed
+sleep 1500
+logout

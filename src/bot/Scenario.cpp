@@ -54,6 +54,7 @@ const char* const kOpNames[] = {
     "wait_trade_closed", "expect_trade", "wait_trade_offer", "wait_trade_mine",
     "npc_train", "give",
     "wait_gump", "gump_button", "gump_report",
+    "target_static", "menu_choose", "expect_item_same",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -415,9 +416,12 @@ bool Scenario::Load(const char* path, std::string* err) {
             if (!(ls >> st.count)) st.count = 2;
             st.op = Op::TravelEntity;
         }
-        else if (verb == "mark_item" || verb == "expect_item_drop") {
+        else if (verb == "mark_item" || verb == "expect_item_drop" ||
+                 verb == "expect_item_same") {
             if (!need(st.a, "<graphic>")) { steps_.clear(); return false; }
-            st.op = (verb == "mark_item") ? Op::MarkItem : Op::ExpectItemDrop;
+            st.op = (verb == "mark_item")       ? Op::MarkItem
+                  : (verb == "expect_item_drop") ? Op::ExpectItemDrop
+                                                 : Op::ExpectItemSame;
         }
         else if (verb == "vendor_sell_open") {
             if (!need(st.a, "<vendor>")) { steps_.clear(); return false; }
@@ -555,6 +559,24 @@ bool Scenario::Load(const char* path, std::string* err) {
         else if (verb == "target_ground") {
             ls >> st.x >> st.y >> st.z;
             st.op = Op::TargetGround;
+        }
+        else if (verb == "menu_choose") {
+            // menu_choose <1-based index>   (0 cancels)
+            ls >> st.count;
+            st.op = Op::MenuChoose;
+        }
+        else if (verb == "target_static") {
+            // target_static <x> <y> <z> <graphic>
+            //
+            // The graphic is read as a STRING and converted with base 0, not
+            // streamed into an int: `ls >> st.id` on "0x0CDA" parses a decimal
+            // 0, stops at the 'x', and hands the server model 0 -- which looks
+            // exactly like a plain ground reply and earns "It appears immune to
+            // your blow" from a tree that is really there.
+            std::string gfx;
+            ls >> st.x >> st.y >> st.z >> gfx;
+            st.id = static_cast<int>(std::strtoul(gfx.c_str(), nullptr, 0));
+            st.op = Op::TargetStatic;
         }
         else if (verb == "expect") {
             if (!need(st.a, "<result>")) { steps_.clear(); return false; }
@@ -899,6 +921,25 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     if (!client.ActionTargetGround(st.x, st.y, static_cast<i8>(st.z)))
                         LogWarn("[scenario] ground target refused (no cursor)\n");
                     break;
+                case Op::MenuChoose:
+                    // Sphere's craft menus are 0x7C MENUS, not 0xB0 gumps: the
+                    // Carpentry menu arrives as `[0x7C] menu=690 "Carpentry"`
+                    // with its options listed, and is answered with 0x7D by
+                    // 1-based index. gump_button cannot touch it.
+                    if (!client.ActionMenuChoose(static_cast<u16>(st.count)))
+                        LogWarn("[scenario] menu_choose: no active menu\n");
+                    break;
+                case Op::TargetStatic:
+                    // The reply carries the static's GRAPHIC. Source-X
+                    // identifies a targeted static through
+                    // CanTouchStatic(&pt, id, ...), so a plain ground reply --
+                    // which sends model 0 -- cannot be recognised as a tree and
+                    // the shard answers "It appears immune to your blow".
+                    if (!client.ActionTargetStatic(st.x, st.y,
+                                                   static_cast<i8>(st.z),
+                                                   static_cast<u16>(st.id)))
+                        LogWarn("[scenario] static target refused (no cursor)\n");
+                    break;
                 case Op::TargetCancel:
                     client.ActionCancelTarget();
                     break;
@@ -908,8 +949,18 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::Remember: {
                     u32 serial = 0;
                     if (st.b == "pack_graphic") {
-                        serial = client.FindBackpackItemByGraphic(
-                            static_cast<u16>(std::strtoul(st.c.c_str(), nullptr, 0)));
+                        // A COMMA LIST, like carried_graphic and mobile_body.
+                        // It used to take one graphic, and that is a real trap:
+                        // a stacked resource CHANGES GRAPHIC as the pile grows
+                        // (i_ore_iron carries DUPELIST=019b8,019b9,019ba), so a
+                        // single-id lookup silently misses the character's own
+                        // gathered stack. A live run mined seven piles, passed
+                        // expect_item_gain -- which already took a list -- and
+                        // then failed `require ore` on the very next line.
+                        u16 list[8];
+                        const usize n = ParseGraphicList(st.c, list, 8);
+                        for (usize i = 0; i < n && !serial; ++i)
+                            serial = client.FindBackpackItemByGraphic(list[i]);
                     } else if (st.b == "mobile_nearest") {
                         serial = client.NearestMobile(0);
                     } else if (st.b == "mobile_body") {
@@ -925,6 +976,19 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                             if (!comma) break;
                             p = comma + 1;
                         }
+                    } else if (st.b == "world_graphic") {
+                        // A craft STATION -- a spinning wheel, a loom, a forge.
+                        // These are dynamic WORLD items and must be targeted by
+                        // serial, never by ground coordinate: Source-X resolves
+                        // a use-target with uid.ObjFind(), so a ground target
+                        // arrives as pItemTarg == nullptr and the IT_WOOL /
+                        // IT_YARN / IT_THREAD cases in OnTarg_Use_Item fall
+                        // straight through. The live symptom is
+                        // "You can't think of a way to use that item."
+                        u16 list[8];
+                        const usize n = ParseGraphicList(st.c, list, 8);
+                        for (usize i = 0; i < n && !serial; ++i)
+                            serial = client.FindWorldItemByGraphic(list[i]);
                     } else if (st.b == "mobile_name") {
                         serial = client.NearestMobileNamed(st.c.c_str());
                     } else if (st.b == "carried_graphic") {
@@ -1021,6 +1085,23 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogInfo("[scenario] item 0x%04X drop confirmed: %u -> %u\n",
                             g, markItemCount_, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectItemSame: {
+                u16 list[8];
+                const usize n = ParseGraphicList(st.a, list, 8);
+                const u16 g = n ? list[0] : 0;
+                const u32 now = CountGraphics(client, list, n);
+                if (st.a != markItemList_ || now != markItemCount_) {
+                    LogError("[scenario] EXPECT item 0x%04X unchanged: "
+                             "%u -> %u (line %d); aborting\n", g,
+                             markItemCount_, now, st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] item 0x%04X unchanged at %u, "
+                            "as expected\n", g, now);
                 }
                 done = true;
                 break;
