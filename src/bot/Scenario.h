@@ -81,6 +81,13 @@ namespace bot {
 //   expect_gold_gain              fail unless gold rose since mark_gold
 //   remember <name> <expr>        bind a serial for later use (see below)
 //   require <name>                fail the scenario unless <name> is bound
+//   mobile_pos <serial|@name>     log a cached mobile's position and distance
+//                                 from us (read-only; does not move anything).
+//                                 Pet-command confirmations are silent (see
+//                                 uo/pet.h) so this is how a scenario observes
+//                                 an owned animal's behaviour actually change
+//                                 instead of trusting a sysmessage that never
+//                                 comes.
 //
 // `remember` binds a name to a serial so later steps can refer to it as
 // @name. Supported expressions:
@@ -177,6 +184,9 @@ private:
         MenuPick,
         ExpectMenuHas,
         MenuReport,
+        // Read-only position probe (see mobile_pos above). Appended last, like
+        // every op before it: kOpNames is indexed by this enum.
+        MobilePos,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

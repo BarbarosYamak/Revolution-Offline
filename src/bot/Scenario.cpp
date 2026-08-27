@@ -61,6 +61,7 @@ const char* const kOpNames[] = {
     // so listing both put it permanently out of step. The static_assert below
     // caught that immediately, which is exactly why it exists.
     "expect_menu_has", "menu_report",
+    "mobile_pos",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -690,6 +691,10 @@ bool Scenario::Load(const char* path, std::string* err) {
             if (!need(st.a, "<name>")) { steps_.clear(); return false; }
             st.op = Op::Require;
         }
+        else if (verb == "mobile_pos") {
+            if (!need(st.a, "<serial|@name>")) { steps_.clear(); return false; }
+            st.op = Op::MobilePos;
+        }
         else {
             if (err) *err = "line " + std::to_string(lineNo) +
                             ": unknown command '" + verb + "'";
@@ -1134,6 +1139,31 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                         LogError("[scenario] REQUIRED '%s' is not bound; "
                                  "aborting scenario\n", st.a.c_str());
                         failed_ = true;
+                    }
+                    break;
+                }
+                case Op::MobilePos: {
+                    // Read-only. A pet command's confirmation is silent (see
+                    // uo/pet.h), so a run PROVES obedience by sampling the
+                    // animal's own cached position before and after -- never
+                    // by trusting a sysmessage that Source-X does not send.
+                    const u32 serial = Resolve(client, st.a);
+                    i32 mx = 0, my = 0; i8 mz = 0;
+                    if (serial && client.MobilePosition(serial, &mx, &my, &mz)) {
+                        const i32 dx = mx - client.PlayerX();
+                        const i32 dy = my - client.PlayerY();
+                        const i32 adx = dx < 0 ? -dx : dx;
+                        const i32 ady = dy < 0 ? -dy : dy;
+                        const i32 dist = adx > ady ? adx : ady;  // Chebyshev
+                        LogInfo("[scenario] mobile_pos %s 0x%08X at (%d,%d,%d) "
+                                "dist=%d from player (%d,%d)\n",
+                                st.a.c_str(), serial, mx, my,
+                                static_cast<int>(mz), dist,
+                                client.PlayerX(), client.PlayerY());
+                    } else {
+                        LogInfo("[scenario] mobile_pos %s: not in mobile cache "
+                                "(unresolved serial, or out of range)\n",
+                                st.a.c_str());
                     }
                     break;
                 }

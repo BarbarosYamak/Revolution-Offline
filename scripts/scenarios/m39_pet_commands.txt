@@ -1,0 +1,210 @@
+# M3.9 -- prove uo/pet.h against a live tamed animal.
+#
+# RUN AS SESSION 12 (RevolutionTamer, "35:50,2:30,39:20" -- Animal Taming 50,
+# Animal Lore 30, Veterinary 20), created the ordinary way. See
+# m371_make_tamer_account.txt / m371_mount.txt for how that account and
+# character came to exist; this scenario does not create anything.
+#
+#   .\run_m25.ps1 -Scenario m39_pet_commands -Tag <tag> -Session 12 \
+#       -TimeoutSec 600 -UseRunnerCopy
+#
+# WHAT THIS PROVES, AND WHAT IT DOES NOT.
+#
+# include/uo/pet.h and src/progression/Pet.cpp encode pet-command semantics
+# (Command, CommandWords, NeedsTarget, kAllPrefix, kHearingTiles,
+# kVeterinaryTiles, HealthPercent) and are unit-tested, but before this
+# scenario existed nothing had ever driven them against the live shard. This
+# scenario tames a real animal with an ordinary Animal Taming attempt and
+# SPEAKS pet commands at it -- there is no pet packet, only ordinary
+# 0x03/0xAD speech (CClientEvent.cpp:1855, see pet.h's own header comment) --
+# then reads the animal's own reported position back to show its behaviour
+# actually changing. It does not test Kill or Attack (both need a live
+# target to fight, which is combat risk and out of scope here) and it does
+# not test Stop (pet.h documents it as identical in effect to Stay, so
+# testing both would just be the same assertion twice).
+#
+# WHICH ANIMAL: the bank plaza around (985,1770) -- found and proved
+# reachable by m371_mount.txt -- carries several LOW-difficulty farm animals
+# alongside the horses that scenario tamed: Goat (CHARDEF 0d1, TAMING=11.1),
+# Pig (0cb, 11.1), Sheep (0cf/0df, 11.1), Cow (0d8/0e7, 11.1), Dog (0d9,
+# 15.3), Rabbit (0cd, 18.9) -- all comfortably under this tamer's 50.0. The
+# remember below tries those first, in that order, and only falls back to
+# the horse bodies (0c8/0cc/0e2/0e4, TAMING=29.1, the ones m371_mount.txt
+# already tamed) if none of the easy animals happen to be in view. Picking a
+# body id off generic UO knowledge instead of the runtime's own NPC scripts
+# is exactly the mistake this project has lost runs to before (a grey wolf
+# here is CHARDEF 0x0019, not the 0x001C generic docs give).
+#
+# THE DIFFICULTY CAVEAT, RECORDED AGAIN HERE BECAUSE IT MATTERS -- FOR THE
+# HORSE FALLBACK SPECIFICALLY: this runtime's horses carry TAMING=29.1. That
+# is STOCK SPHERE'S number. Revolution's own /binek_bilgileri page puts a
+# horse at 53.1. A successful tame in this run proves the MECHANIC (taming,
+# ownership, spoken commands, silent confirmation), never Revolution's actual
+# difficulty curve -- for a horse OR for the easy farm animals above, whose
+# Revolution-side numbers are simply UNKNOWN and not claimed here.
+#
+# IF THE CHOSEN ANIMAL IS ALREADY TAME: Sphere answers "<Name> is already
+# tame." and the extra attempts cost nothing (a previous run of this same
+# scenario, or of m371_mount.txt, may have already tamed and kept it -- pet
+# ownership persists across sessions the same way any other character state
+# does). Ownership is still proven functionally further down: the commands
+# below only work at all if NPC_IsOwnedBy(this character) passes.
+#
+# WAIT_TARGET HAS NO TIMEOUT OF ITS OWN. It just polls TargetActive() every
+# tick until a 0x6C cursor arrives, so if a spoken command is ever NOT
+# recognised (wrong word, pet not owned, out of earshot) the step blocks
+# until run_m25.ps1's own -TimeoutSec kills the process. This scenario only
+# uses wait_target for Follow and Guard, both proven-reachable states by the
+# time they run (the animal is freshly tamed and standing right next to us),
+# to keep that risk bounded. It deliberately does NOT try to prove the
+# NEGATIVE case (a command silently failing after Release) live, because
+# proving a silence needs a bounded wait this scenario language cannot
+# express without wait_target's open-ended block.
+#
+# RELEASE OPENS A CONFIRMATION GUMP ON THIS SHARD, discovered empirically
+# the first time this scenario ran: "all release" does not release
+# immediately the way Come/Stay do. It answers with a 0xB0 gump --
+# "Are you sure you want to release your pet? Summoned Pets will vanish
+# permanently!" with OKAY/CANCEL buttons -- and release only actually
+# happens once that gump is answered. This scenario deliberately leaves it
+# UNANSWERED (no gump_button call) so the animal stays owned for whatever
+# runs this scenario next; Release is spoken and its gump's arrival is
+# logged, but the release itself is not completed or independently
+# reverified live here. pet.h's NeedsTarget(Release) == false is still
+# correct -- that predicate is specifically about the 0x6C target-cursor
+# mechanism, and a gump is a different confirmation channel entirely.
+#
+# MOBILE_POS IS A NEW, MINIMAL SCENARIO OP (src/bot/Scenario.{h,cpp} only --
+# Client.h/.cpp untouched). It is read-only: it logs a cached mobile's
+# position and its Chebyshev distance from the player, without moving
+# anything. It exists because pet.h says plainly that command confirmations
+# on this shard are SILENT (sphere.ini:686 SpeechPet=spk_pet suppresses the
+# stock "Yes Master" reply), so "the animal's behaviour changing" is the only
+# observable, and nothing in the existing scenario vocabulary could read a
+# mobile's position without also making OUR character walk toward it
+# (goto_mobile) or omitting position entirely (scan_mobiles' name list).
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+# --------------------------------------------------------- 1. find an animal
+travel_point 985 1770
+wait_travel
+expect_travel ok
+sleep 2000
+
+# Dismount first. Mounts survive logout; a character that ends one run
+# mounted begins the next one mounted, and a mounted animal is not a mobile
+# in the world at all -- it is an item on layer 25 (pet.h:
+# IsUnobservableBecauseMounted). Harmless if already on foot.
+dismount
+sleep 3000
+
+scan_mobiles
+sleep 3000
+remember pet mobile_body 0x00D1,0x00CB,0x00CF,0x00DF,0x00D8,0x00E7,0x00D9,0x00CD,0x00C8,0x00E2,0x00E4,0x00CC
+require pet
+
+travel_entity @pet 1
+wait_travel
+sleep 2000
+
+# ------------------------------------------------------------------ 2. tame it
+# Not one roll -- a timed skill attempt that can fail -- so ask repeatedly.
+# Each attempt is the same 0x12 UseSkill packet a real client sends.
+skill 35 @pet
+sleep 12000
+skill 35 @pet
+sleep 12000
+skill 35 @pet
+sleep 12000
+
+mobile_pos @pet
+say tamed; testing pet commands now
+sleep 1500
+
+# ------------------------------------------- 3. baseline: an unled pet stays put
+# A freshly tamed animal does not auto-follow its owner -- it keeps doing
+# whatever brain_animal was already doing. Walk off WITHOUT commanding
+# anything and read the gap that opens; this is the baseline the Come test
+# below is compared against.
+travel_point 994 1765
+wait_travel
+expect_travel ok
+sleep 2000
+mobile_pos @pet
+
+# ---------------------------------------------------------------- 4. all come
+# Immediate command (pet.h::NeedsTarget(Come) == false) -- no cursor, so no
+# wait_target here. "all " is kAllPrefix, case-insensitive on the engine
+# side, deliberately spoken exactly as CommandWords(Command::Come) returns
+# it: "come".
+say all come
+sleep 10000
+mobile_pos @pet
+
+# ---------------------------------------------------------------- 5. all stay
+# Also immediate. Issued while the pet is near us (it just came); then we
+# walk off again and check that THIS TIME the gap does not close the way it
+# did after "come" -- the differential is the proof, not either reading
+# alone.
+say all stay
+sleep 1500
+mobile_pos @pet
+
+travel_point 1003 1760
+wait_travel
+expect_travel ok
+sleep 2000
+mobile_pos @pet
+
+# Same command again, several seconds later, to see whether a "staying" pet
+# is still just standing there or has drifted under its own brain_animal AI.
+sleep 6000
+mobile_pos @pet
+
+# ------------------------------------------------------- 6. all come, a second time
+# Rules out "it happened to wander toward us" in step 4 by repeating it from
+# a fresh, independently-created gap (the one 'stay' just held open).
+say all come
+sleep 10000
+mobile_pos @pet
+
+# -------------------------------------------------------------- 7. all follow
+# Targeted command (pet.h::NeedsTarget(FollowTarget) == true): the server
+# answers the spoken word with a 0x6C cursor (addTarget(CLIMODE_TARG_PET_CMD),
+# CCharNPCPet.cpp:360-368) which we answer with our own serial -- "follow me".
+# wait_target's own log line ("[0x6C] TARGET requested id=... type=object")
+# and the fact that it returns AT ALL (see the header note on wait_target's
+# lack of a timeout) are themselves the proof the spoken word was heard,
+# recognised as a pet command, and passed NPC_IsOwnedBy.
+say all follow
+wait_target
+target self
+sleep 8000
+mobile_pos @pet
+
+# --------------------------------------------------------------- 8. all guard
+# Second targeted command, same target-cursor mechanic as Follow but a
+# different spoken word ("guard" vs "follow") -- proves the engine is
+# actually parsing distinct vocabulary, not just reacting to "all " plus
+# anything. On this shard it also draws an explicit sysmessage confirmation
+# ("<Name> is now guarding you."), unlike every other command tested here.
+say all guard
+wait_target
+target self
+sleep 3000
+
+# ------------------------------------------------------------- 9. all release
+# Immediate, and the last command on purpose: on this shard it raises a
+# confirmation gump rather than releasing outright (see the header note).
+# Left unanswered deliberately so the animal remains owned afterward.
+say all release
+sleep 2000
+say pet command proof finished
+sleep 1500
+logout

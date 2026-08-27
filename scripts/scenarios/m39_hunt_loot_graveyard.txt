@@ -1,0 +1,129 @@
+# M3.9 LOOT -- fast verification run at the Britain graveyard, not wolf
+# country. Not the milestone deliverable (that is m39_hunt_loot.txt, which
+# follows the brief's wolf-country brief literally); this is a quick, safer
+# check of the SAME open/carve/re-open mechanism using a target that is
+# minutes away instead of a multi-leg wilderness patrol, run against Fighter04
+# (session 54), who ended loot7 alive, armed, and standing near Britain.
+#
+# WHY THE GRAVEYARD IS A BETTER TEST BED THAN THE WOLF
+#
+# c_skeleton [CHARDEF 032] (npcs/c_monster_classic.scp:2059) carries BOTH
+# mechanisms in one target:
+#     RESOURCES=8 i_reag_bone                    -- needs carving (like the
+#                                                    wolf's meat/hide)
+#     ON=@CreateLoot ITEM=i_gold,{25 50}
+#                    ITEM=random_armor_bone        -- placed in the skeleton's
+#                                                    OWN pack at spawn, so
+#                                                    CChar::MakeCorpse's
+#                                                    DropAll(pCorpse)
+#                                                    (CItemCorpse.cpp:218-219)
+#                                                    moves it into the corpse
+#                                                    IMMEDIATELY on death, no
+#                                                    carving required.
+# c_spectre [CHARDEF 01a] (same file, line 1247) has ONLY @CreateLoot
+# (ITEM=i_gold,{50 100}, ITEM=random_reagent,10) and no RESOURCES at all.
+#
+# So a skeleton corpse should show a NON-ZERO item count on the very first
+# open (the gold/armor from @CreateLoot), which the wolf could not -- and
+# carving it should then ADD MORE (the bone from RESOURCES). This is a
+# cleaner, two-stage confirmation of the same finding: content exists, but
+# nothing in the scenario Op set can read WHICH items are inside an
+# arbitrary container or pull one out by graphic.
+#
+# Undead body ids, read from the same CHARDEFs m39_pvm_recover.txt already
+# used successfully: 0x0003 zombie, 0x001A spectre, 0x0032 skeleton,
+# 0x0094/0x0099/0x02EC further undead variants.
+#
+# RUN AS SESSION 54 (RevolutionFighter04) -- already alive and armed at the
+# end of loot7; no resurrect step here on purpose, so a failure to open the
+# backpack immediately below is itself informative.
+
+wait_world
+sleep 2500
+ensure_peace
+gait run
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember blade pack_graphic 0x13FE,0x13FF
+require blade
+say fighter04 ready, heading to the graveyard
+
+use_moongates on
+travel_point 1369 1475
+wait_travel
+expect_travel ok
+sleep 2000
+
+say at the graveyard
+
+# --------------------------------------------------------------- engage
+# On sight, no dwell -- m39_pvm_recover.txt's own lesson: a long scan window
+# in this graveyard gets the bot killed before it ever attacks.
+scan_mobiles
+sleep 1000
+remember prey mobile_body 0x0032,0x001A,0x0003,0x0094,0x0099,0x02EC
+require prey
+
+mark_hp
+war on
+sleep 800
+attack @prey
+wait_action
+
+# RE-ATTACK EVERY ITERATION this time, unlike the wolf scenarios. gy1
+# (2026-08-27 23:22) showed why: "[war] dropping war mode: no combat event
+# within the timeout" at 23:21:52, ~15s after the single opening attack --
+# the graveyard's tombstone clutter produced repeated "goal ... is not
+# walkable; skipping A*" and "no path to (...) avoiding 0 block(s)" while
+# three OTHER undead were also in view and attacking the bot, so the chase
+# never actually closed to weapon range on the intended target and the
+# server never saw a swing to reset the war timer. Re-issuing attack each
+# lap costs nothing when already in range and re-arms war mode when it has
+# lapsed.
+loop 14
+  attack @prey
+  goto_mobile @prey
+  wait_action
+  sleep 2500
+endloop
+
+scan_mobiles
+sleep 1500
+war off
+sleep 1000
+say the fight is over
+
+# ------------------------------------------------------ find + open corpse
+open @pack
+wait_action
+sleep 1000
+
+remember corpse world_graphic 0x2006
+require corpse
+
+open @corpse
+wait_action
+sleep 2000
+say corpse opened before carving -- watch the item count in the log
+
+# ------------------------------------------------------------------- carve
+use @blade
+wait_target
+target @corpse
+sleep 3000
+say carved
+
+open @corpse
+wait_action
+sleep 2000
+say corpse re-opened after carving -- watch the item count in the log
+
+request_skills
+sleep 1500
+skill_report
+sleep 1000
+logout
