@@ -77,6 +77,26 @@ struct Profile {
     i32 totalSkillCapTenths = 7000;
     i32 perSkillCapTenths   = 1000;
 
+    // STAT budget. 225 total is the M3.8 finding, and it arrived the same way
+    // the skill cap did: nobody states it, so ten player builds state it for
+    // them. Two unrelated threads, two classes, every build exactly 225 --
+    // 90/100/35, 100/100/25, 90/90/45, 98/97/30, 85/100/40, 50/100/75,
+    // 25/100/100 -- none above 100 in one stat and none below 25.
+    //
+    // DERIVED, not quoted. The profile previously read "build threads discuss
+    // skills only and never post stats", which was false and is why the
+    // question stayed open: the search had concluded the evidence did not
+    // exist rather than that it had not been found.
+    //
+    // THE RUNTIME ALLOWS 300. Same shape as the taming divergence -- the server
+    // is more permissive than Revolution, so this is enforced bot-side and the
+    // gap is recorded as SERVER_AUTHENTICITY_DEBT rather than patched.
+    i32 totalStatCap = 225;
+    i32 perStatCap   = 100;
+    // The lowest value seen in any published build. Not proven to be a floor,
+    // recorded because every one of the ten respects it.
+    i32 observedStatFloor = 25;
+
     // The official skill-lowering floor. Recorded because the 30-point gap
     // between it and the cap is unexplained and should not be quietly closed.
     i32 skillLowerFloorTenths = 6700;
