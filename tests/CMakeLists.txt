@@ -120,6 +120,7 @@ add_executable(m38_closure m38_closure.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Mounts.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/MountPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Supplier.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
 target_include_directories(m38_closure PRIVATE
     ${CMAKE_SOURCE_DIR}/include

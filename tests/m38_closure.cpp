@@ -9,6 +9,7 @@
 
 #include "uo/mounts.h"
 #include "uo/mount_policy.h"
+#include "uo/supplier.h"
 #include "uo/production.h"
 #include "uo/vendor_policy.h"
 
@@ -348,6 +349,90 @@ void TestMountPolicy() {
             "a marginal trip is walked rather than ridden"); }
 }
 
+
+// --------------------------------------------------------------------------
+void TestSupplierResolution() {
+    Section("suppliers: concrete entities, never professions");
+    using namespace uo::supply;
+
+    const i64 t0 = 1000000;
+    Registry reg;
+
+    // THE GUILDMISTRESS CASE, asserted so it cannot come back.
+    //
+    // Three milestones sent bots to a PROFESSION and called arrival success:
+    // blank runes (M3.6), the mage shop (M3.7), tinker tools (M3.8) -- the last
+    // arriving at "Justine, the engineer guildmistress", who keeps no shop.
+    //
+    // Nothing was ever OBSERVED selling those things, so an empty registry must
+    // say exactly that, rather than offering a place to walk to and hope.
+    Need tools{NeedKind::Item, "i_tinker_tools", 1};
+    Check(!reg.Best(tools, 0, 0, t0).usable,
+          "an unobserved need has no supplier -- not a profession to guess at");
+    Check(reg.Resolve(tools, 0, 0, t0).empty(),
+          "a guild hall never enters the registry, because it sold nothing");
+
+    // A supplier exists only once its shop list was actually read.
+    reg.RecordVendorStock(0x9096, "Rhyssa", 2458, 455, 15,
+                          "i_tinker_tools", 4, 34, t0);
+    auto best = reg.Best(tools, 2460, 460, t0);
+    Check(best.usable, "a verified sighting makes a usable supplier");
+    Check(best.supplier.serial == 0x9096, "and it is CONCRETE -- a serial");
+    Check(best.freshness == Freshness::VerifiedCurrent, "just-seen is verified");
+
+    // Freshness decays with time, not with the entity moving.
+    Check(Registry::FreshnessOf(best.supplier, t0 + kVerifiedMs + 1) ==
+          Freshness::Recent, "past the verified window it is only recent");
+    Check(Registry::FreshnessOf(best.supplier, t0 + kRecentMs + 1) ==
+          Freshness::Stale, "and eventually stale");
+
+    // Arriving to nothing DEMOTES, and three strikes invalidate. Sphere
+    // restocks, so one empty cycle must not permanently condemn a vendor --
+    // M3.7 watched a blacksmith carry no hammer while tm_vend.scp lists one.
+    reg.RecordAbsent(0x9096, "i_tinker_tools", t0 + 1);
+    Check(reg.Best(tools, 2460, 460, t0 + 1).usable,
+          "one absence is not a verdict");
+    reg.RecordAbsent(0x9096, "i_tinker_tools", t0 + 2);
+    reg.RecordAbsent(0x9096, "i_tinker_tools", t0 + 3);
+    auto dead = reg.Best(tools, 2460, 460, t0 + 3);
+    Check(!dead.usable, "three absences invalidate");
+    Check(dead.freshness == Freshness::Invalid, "...and say so");
+
+    // A fresh sighting resurrects it: the vendor restocked.
+    reg.RecordVendorStock(0x9096, "Rhyssa", 2458, 455, 15,
+                          "i_tinker_tools", 4, 34, t0 + 10);
+    Check(reg.Best(tools, 2460, 460, t0 + 10).usable,
+          "a restock clears the invalidation");
+
+    // POLICY REFUSAL IS NOT IGNORANCE. Logs are WORLD_GATHERED, so an NPC
+    // selling them is refused -- but the observation is still recorded, and the
+    // reason must survive to the caller rather than being reported as "unknown".
+    Registry reg2;
+    reg2.RecordVendorStock(0x1234, "a carpenter", 100, 100, 0,
+                           "i_log", 50, 3, t0);
+    Need logs{NeedKind::Item, "i_log", 1};
+    auto refused = reg2.Best(logs, 100, 100, t0);
+    Check(!refused.usable, "a policy-refused good is not usable");
+    Check(refused.why.find("policy") != std::string::npos,
+          "and the refusal says POLICY, not 'never seen'");
+    Check(reg2.Size() == 1, "the observation is still kept -- it is a world fact");
+
+    // Quantity is checked against what was SEEN, not what a template promises.
+    Registry reg3;
+    reg3.RecordVendorStock(0x2222, "a smith", 10, 10, 0, "i_ingot_iron", 2, 5, t0);
+    Need many{NeedKind::Item, "i_ingot_iron", 40};
+    Check(!reg3.Best(many, 10, 10, t0).usable,
+          "observed stock below the need is not usable");
+
+    // World resources need no vendor policy: gathering is always legitimate.
+    Registry reg4;
+    reg4.RecordResource("i_cotton", 1221, 1718, 0, t0);
+    Need cotton{NeedKind::Resource, "i_cotton", 1};
+    auto field = reg4.Best(cotton, 1200, 1700, t0);
+    Check(field.usable, "a field the bot stood in is a usable source");
+    Check(field.supplier.kind == SupplierKind::WorldResource, "and is a resource");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -362,6 +447,7 @@ int main(int argc, char** argv) {
     TestSkillCost();
     TestRuntimeDivergence();
     TestMountPolicy();
+    TestSupplierResolution();
     TestExportsNotStale(dataDir);
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
