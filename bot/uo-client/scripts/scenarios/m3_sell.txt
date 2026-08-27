@@ -1,0 +1,184 @@
+# M3 -- close the income loop: turn a morning's fishing into gold.
+#
+# The catch was made in m3_income6/7 by actually fishing (see m3_income.txt).
+# This file only performs the selling half, because the gathering half is
+# already proven and takes eleven minutes to repeat.
+#
+# It sells the catch TWICE OVER, two different ways, because the shard prices
+# them very differently and the difference is worth recording:
+#
+#   1. Whole fish to the fisherman.   i_fish_big_1..4, VALUE=2, WEIGHT=5.0
+#      VENDOR_B_FISHER buys them (templates/tm_vend.scp:1019-1023). Observed
+#      price: 1gp each.
+#   2. Fish steaks to the cook.       i_fish_cut_raw, VALUE=3, WEIGHT=0.1
+#      Cutting a fish with any blade multiplies the stack by FOUR --
+#      CClientTarg.cpp:1950 `SetAmount(4 * GetAmount())` -- so one 2gp fish
+#      becomes four 3gp steaks. The fisherman will NOT buy steaks; only
+#      VENDOR_B_COOK does (tm_vend.scp:730). And COOKING them is a mistake:
+#      no vendor template in the shard buys i_fish_cut_cooked at all.
+#
+#   The five-stone weight is also why m3_income7 kept hearing "You put the
+#   fish at your feet. It is too heavy." -- sixteen fish is eighty stones on a
+#   STR 30 character. Sixty-four steaks weigh 6.4.
+#
+# Two live lessons this file is shaped by:
+#
+#   a) A Sphere NPC must be IN CONVERSATION before a keyword registers.
+#      m3_income7 arrived and said "sell" 25ms later and got Shika: "Hmm?"
+#      straight out of e_Human_HearUnk. Stand there, let the vendor open with
+#      e_Human_ConvInit, say hello, then trade -- what a person does.
+#   b) CChar::CanTouch is `iDist > 2` (CCharStatus.cpp:1423). Vendors wander
+#      (walkRange 5 in their spawner row), so a position read eight seconds
+#      ago is not where they are now: re-approach immediately before each
+#      exchange instead of trusting the arrival.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+mark_item 0x09CC,0x09CD,0x09CE,0x09CF
+
+# ---------------------------------------------------------------- 1. whole fish
+
+travel_service fisherman
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+# Sphere's shop titles are gendered; the Britain docks have a fisherwoman.
+remember seller mobile_trade fisherman,fisherwoman
+require seller
+
+travel_entity @seller 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @seller 1
+wait_travel
+vendor_sell_open @seller sell
+wait_action
+expect success
+sleep 1500
+
+travel_entity @seller 1
+wait_travel
+vendor_sell @seller vendor_sell_graphic:0x09CC 20
+wait_action
+sleep 2500
+expect_gold_gain
+
+# ------------------------------------------------------------------ 2. a blade
+
+travel_service provisioner
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember shop mobile_trade provisioner
+require shop
+
+travel_entity @shop 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @shop 1
+wait_travel
+vendor_open @shop buy
+wait_action
+expect success
+sleep 1500
+
+travel_entity @shop 1
+wait_travel
+vendor_buy @shop vendor_graphic:0x0F51 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+remember knife carried_graphic 0x0F51,0x0F52
+require knife
+
+# ------------------------------------------------------------------- 3. carving
+#
+# One cut per stack: the whole stack is multiplied at once.
+
+mark_item 0x097A
+
+remember f2 pack_graphic 0x09CD
+use @knife
+wait_target
+target @f2
+sleep 1500
+
+remember f3 pack_graphic 0x09CE
+use @knife
+wait_target
+target @f3
+sleep 1500
+
+remember f4 pack_graphic 0x09CF
+use @knife
+wait_target
+target @f4
+sleep 1500
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x097A
+
+# ------------------------------------------------------------------ 4. the cook
+
+travel_service cook
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember cook mobile_trade cook
+require cook
+
+travel_entity @cook 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @cook 1
+wait_travel
+vendor_sell_open @cook sell
+wait_action
+expect success
+sleep 1500
+
+mark_gold
+travel_entity @cook 1
+wait_travel
+vendor_sell @cook vendor_sell_graphic:0x097A 60
+wait_action
+sleep 2500
+expect_gold_gain
+
+open @pack
+wait_action
+sleep 1500
+skill_report
+
+say a fisherman's work
+sleep 1000
+logout

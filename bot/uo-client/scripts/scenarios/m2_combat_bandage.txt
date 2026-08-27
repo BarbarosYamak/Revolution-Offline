@@ -1,0 +1,53 @@
+# M2 — combat initiation and bandage healing.
+#
+# Combat: 0x05 attack. Source-X answers every attack with 0xAA carrying the
+# serial it accepted, or 0 when it refuses (src/game/clients/CClientEvent.cpp:1135).
+# War mode is NOT required first: Fight_Attack sets it and echoes 0x72.
+#
+# Bandages: the Healing skill cannot be started from the skill list on this
+# server (SKILL_HEALING is absent from Event_Skill_Use's switch and falls to
+# the "no such skill" default). A player double-clicks the bandage, which arms
+# a target cursor -- that is what ActionUseBandage does.
+#
+# No combat AI: the scenario picks the target, nothing else does.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+remember bandages pack_graphic 0x0e21
+require bandages
+
+# --- bandage first, on ourselves ------------------------------------------
+say bandage test
+bandage @bandages self
+wait_action
+
+sleep 2000
+
+# --- combat ----------------------------------------------------------------
+# Attack whatever the server has shown us nearby. The scenario chooses the
+# target; there is no selection logic in the client.
+# IMPORTANT: Yew is a GUARDED region (map0_areas.scp a_townYew,
+# FLAGS=REGION_FLAG_GUARDED) and attacking a blue town NPC is a crime there.
+# Pass the intended target in explicitly rather than grabbing whatever is
+# nearest -- `mobile_nearest` will happily pick the innkeeper.
+say combat test
+remember foe mobile_nearest
+require foe
+
+war on
+sleep 500
+
+attack @foe
+wait_action
+
+sleep 4000
+war off
+
+say combat done
+sleep 1000
+logout

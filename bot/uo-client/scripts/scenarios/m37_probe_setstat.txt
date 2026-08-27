@@ -1,0 +1,39 @@
+# M3.7 -- probe: which GM syntax sets a stat on ANOTHER character?
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (Observer) via run_admin.ps1.
+#
+# The Sphere console is unreachable in this session (the server was launched
+# detached: MainWindowHandle = 0, no telnet), so operator work goes through an
+# in-game privileged account. `.serv.savestatics` already proved that SERVER
+# verbs are reachable that way; this probe finds the equivalent for setting a
+# property on a character that is not the one speaking.
+#
+# Candidates, cheapest first. Each is read-only or self-targeted so a wrong
+# guess changes nothing.
+#
+# RevolutionWeaver and RevolutionMiner are the crafters whose STR we want to
+# raise; their UIDs are read from the world save and passed in below as literal
+# hex, because a command line cannot target a character who is offline.
+
+wait_world
+sleep 3000
+
+# 0. baseline: confirm the account is privileged at all
+say .show p
+sleep 2500
+
+# 1. read a property off SELF -- proves the .show <prop> form
+say .show str
+sleep 2500
+
+# 2. UID-addressed READ. If this echoes a number, the same path can write.
+say .show uid.063c.str
+sleep 2500
+
+# 3. the SERV.-prefixed form, which is what made savestatics work
+say .serv.uid.063c.str
+sleep 2500
+
+say probe done
+sleep 1500
+logout

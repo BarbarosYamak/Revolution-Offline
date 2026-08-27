@@ -1,0 +1,40 @@
+# M2 — banking.
+#
+# Sphere has no client-side "open bank" packet. A player walks to a banker and
+# says the keyword; the SPEECH script answers with src.BANKSELF, which opens
+# the player's own bank box (runtime/scripts/speech/jobs/job_banker.scp:132-138).
+# The client only recognises the container the server then sends.
+#
+# Banker spawn: Felucca 652,820 (Yew), from the shard's own worldgen.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+say walking to the bank
+
+# Walk to the banker. A* routes there through normal movement packets.
+goto 651 822
+wait_goto
+
+sleep 1500
+say hello
+
+# Speak the keyword. Confirmation is the bank container the server opens.
+bank 0 bank
+wait_action
+expect success
+
+sleep 1000
+
+# The bank box is a container like any other: read what the server put in it.
+open bank
+wait_action
+
+sleep 1500
+say bank ok
+sleep 1000
+logout

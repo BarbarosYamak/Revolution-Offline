@@ -1,0 +1,84 @@
+# M3.5 -- prove NPC Teaching live, and prove the price.
+#
+# Sphere's Teaching system is stock and real: CChar::NPC_OnTrainHear
+# (Source-X CCharNPCAct_Vendor.cpp:370) answers the speech verb TRAIN plus a
+# skill key, quotes a price and remembers the offer; handing over gold
+# completes it (NPC_OnTrainPay, :273).
+#
+# What this runtime will teach, from its own sphere.ini rather than from
+# folklore:
+#
+#   NPCTrainPercent=30   -> up to 30% of the TRAINER's own skill
+#   NPCTrainMax=420      -> never above 42.0, whatever the trainer knows
+#   NPCTrainCost=1       -> 1 gold per 0.1 skill
+#
+# So a GM trainer teaches to 30.0, and 0 -> 30.0 costs exactly 300 gold --
+# which is the project owner's memory of Revolution ("about 30.0, around
+# 300gp") reproduced to the digit by the stock defaults.
+#
+# The test: RevolutionFisher has Arms Lore 2.6. A blacksmith carries
+# ARMSLORE={50.0 75.0} (npcs/c_vendor_human.scp), so 30% of that is 15.0-22.5
+# and the trainer should be able to sell real points. Expected cost is the
+# point delta in tenths, one gold each.
+#
+# Proof is the server's numbers before and after -- skill AND gold -- not the
+# fact that a packet was sent.
+
+wait_world
+sleep 2000
+ensure_peace
+
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+mark_skill 4
+
+travel_service blacksmith
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember smith mobile_trade blacksmith
+require smith
+
+travel_entity @smith 1
+wait_travel
+
+# An NPC ignores a keyword until it is in conversation (M3, e_Human_HearUnk),
+# and CanTouch is two tiles against a vendor that wanders.
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @smith 1
+wait_travel
+npc_train @smith ArmsLore
+wait_action
+expect success
+sleep 1500
+
+# Pay. Gold is coin, so this is an ordinary lift-and-drop onto the trainer.
+remember gold pack_graphic 0x0EED
+require gold
+travel_entity @smith 1
+wait_travel
+give @smith @gold 250
+sleep 5000
+
+request_skills
+sleep 2000
+skill_report
+
+open @pack
+wait_action
+sleep 2000
+
+say the smith taught me something
+sleep 1000
+logout

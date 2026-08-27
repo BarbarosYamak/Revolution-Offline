@@ -1,0 +1,95 @@
+# M3.8 PHASE 2 -- passive perception must not change the world.
+#
+# RUN AS SESSION 12 (RevolutionTamer), which is standing in the horse pasture
+# at (985,1770) from the M3.7.1 mount work. That location is the point: it is
+# surrounded by rideable animals, which is exactly what broke before.
+#
+# THE BUG THIS GUARDS
+#
+# M3.7.1 found ActionScanMobiles double-clicking every nearby mobile to harvest
+# paperdoll trade titles. A double-click is not an inspection -- it is whatever
+# that mobile does when clicked -- and Source-X answers a click on a non-human
+# NPC by MOUNTING it (CClientEvent.cpp:2378):
+#
+#   if ( pChar->m_pNPC && (pChar->GetNPCBrainGroup() != NPCBRAIN_HUMAN) )
+#       if ( m_pChar->Horse_Mount(pChar) ) return true;
+#
+# Caught because a dismount would not stick:
+#
+#   event mount_state: dismounted     14:27:37.570
+#   event mount_state: mounted        14:27:40.604   <- scan_mobiles ran here
+#
+# The fix restricts the click to human bodies (sphere::IsHumanBody). Trade
+# titles only exist on humans, so nothing is lost.
+#
+# WHY A REGRESSION TEST AND NOT JUST THE FIX
+#
+# A bot is supposed to observe the world without altering it. That property is
+# invisible when it holds and catastrophic when it breaks: every behavioural
+# proof built on top of perception silently becomes a proof about a world the
+# bot was disturbing. It needs a test that fails loudly.
+#
+# The assertion is deliberately the strongest available: the character starts on
+# foot, scans repeatedly among horses, and must still be on foot afterwards.
+# Under the old code this fails on the first scan.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+
+# --------------------------------------------- 1. establish a known-foot state
+# Mounts survive logout, so the gait must be set, never assumed. dismount is a
+# no-op when already on foot.
+dismount
+sleep 3000
+expect_mounted 0
+
+say on foot among the horses
+
+# ------------------------------------------------- 2. scan, repeatedly, hard
+# Four passes. One scan mounting an animal was the original bug; repeating it
+# also catches a fix that only holds for the first call (a cached paperdoll
+# would mask the defect after pass one, so the animals must be re-scanned while
+# they wander in and out of range).
+scan_mobiles
+sleep 4000
+expect_mounted 0
+
+scan_mobiles
+sleep 4000
+expect_mounted 0
+
+scan_mobiles
+sleep 4000
+expect_mounted 0
+
+scan_mobiles
+sleep 4000
+expect_mounted 0
+
+say four scans, still on my own feet
+
+# ------------------------------------- 3. and the war state is untouched too
+# A scan must not toggle war mode either -- ensure_peace at the top means any
+# war state here came from the scanning itself.
+expect_peace
+
+# ------------------------------------------------------------ 4. and re-prove
+# Walk a short leg and scan again: a scan that mounts would also have changed
+# the step cadence, so an on-foot assertion after movement is a second,
+# independent witness to the same property.
+travel_point 1000 1764
+wait_travel
+expect_travel ok
+expect_mounted 0
+
+scan_mobiles
+sleep 4000
+expect_mounted 0
+expect_peace
+
+say perception left the world exactly as it found it
+sleep 1500
+logout

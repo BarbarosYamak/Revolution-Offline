@@ -1,0 +1,69 @@
+# M3.8 PHASE 3 -- plant the shard's own crop fields.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# WHY THIS IS NEEDED, AND WHY IT IS NOT A SHORTCUT
+#
+# Phase 3 is mandatory: cotton -> thread -> a stitched garment. Thread has never
+# been produced on this shard, so every stitched Tailoring recipe is unproven
+# and the cotton-grower -> Tailor dependency is asserted rather than shown.
+#
+# The blocker is that COTTON IS NOT REACHABLE. All 18 `i_cotton` items in the
+# world sit between (19,116) and (146,175) -- the far north-west map edge inside
+# a_Yew_Ter, on broken ground. A weaver sent there could not route to any of
+# three candidate tiles:
+#
+#   EXPECT travel ok but it failed (no walkable ground near the destination)
+#
+# and ended the run back near Britain, having never left. Those items are data,
+# not a resource.
+#
+# There are ZERO `t_crops` items in the world right now. Not few -- none. The
+# crop fields were never planted, exactly as the craft stations were never
+# placed before M3.7 ran the decorator. This is the same class of finding: the
+# shard ships the content and the generation step was never executed.
+#
+# f_worldgen_create_crops3k places 3,104 crops:
+#
+#   562 wheat3   423 corn    355 COTTON   313 carrot   294 turnip1
+#   169 vines    138 FLAX    117 onion     95 corn1     79 wheat4  ...
+#
+# The cotton goes to (816,2254) and neighbours -- open farmland, reachable,
+# nothing like the NW cliffs.
+#
+# BLAST RADIUS, checked before running. The function opens with
+#
+#   foritems 9999
+#     if (<type>==t_crops)
+#       remove
+#     endif
+#   endfor
+#
+# so it removes only t_crops and then plants. With zero crops in the world that
+# clause is a no-op today, and the whole operation is additive. It touches no
+# station, no vendor, no decorator static, and no character.
+#
+# PERSISTENCE: `.save`, NOT `.serv.savestatics`.
+#
+# The crops carry `new.attr=010`, and 0x0010 is ATTR_MOVE_NEVER (CItem.h:117) --
+# NOT ATTR_STATIC, which is 0x8000 (CItem.h:130). So these are ordinary dynamic
+# items that CSector::SaveSector writes to sphereworld.scp on a normal save.
+#
+# That distinction is worth stating because M3.7 got it wrong the other way
+# round: the decorator's items DO carry ATTR_STATIC, an ordinary `.save` wrote
+# none of them, and two verifications were reported as false negatives before
+# anyone noticed. Same question, opposite answer, and it has to be asked each
+# time rather than assumed.
+
+wait_world
+sleep 3000
+
+say .f_worldgen_create_crops3k
+sleep 60000
+
+say .save
+sleep 20000
+
+say crops planted
+sleep 1500
+logout

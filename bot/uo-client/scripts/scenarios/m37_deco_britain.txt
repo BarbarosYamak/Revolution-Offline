@@ -1,0 +1,70 @@
+# M3.7 -- run the SHARD'S OWN world decorator for Britain (Felucca).
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via
+# local/dev/run_admin.ps1. This is operator tooling, not gameplay, and it
+# touches no character's skills, stats, gold or inventory.
+#
+# WHY THIS EXISTS
+#
+# M3.7's vendor/production audit found that this world contains ZERO working
+# craft stations:
+#
+#   * Revolution's own map statics hold 2 forges, 1 anvil, 0 spinning wheels
+#     and 2 loom pieces on the whole of map0, none of them near a town --
+#     which is normal for UO, where shop forges and looms are server-placed
+#     ITEMS, not map art.
+#   * runtime/save/sphereworld.scp contains no forge, anvil, spinning wheel or
+#     loom at all: 9000 world items, not one station.
+#   * Source-X resolves a use-target with uid.ObjFind() (CClientEvent.cpp:2481),
+#     so a map static yields pItemTarg == nullptr and the IT_WOOL / IT_YARN /
+#     IT_THREAD cases in CClientTarg.cpp fall straight through. A static
+#     spinning wheel is inert BY CONSTRUCTION; only a dynamic item works.
+#   * Blacksmithy is kinder -- CWorldMap::FindItemTypeNearby does scan statics
+#     -- but with no forge static near any town it is unreachable anyway.
+#
+# So Tailoring and Blacksmithy are both unreachable on this shard today, and
+# nothing invented by this project is needed to fix that. Scripts-X ships the
+# placements itself, in the world decorator, and the decorator was never run:
+#
+#   functions/worldgen/decoration/felucca/city_britain_deco_felucca.scp
+#     spinning wheels  1545,1656,26 . 1390,1604,30 . 1473,1689,0 . 1475,1689,0
+#     upright looms    1545,1660,26 + 1545,1661,26 . 1392,1601,30 + 1393,1601,30
+#                      1473,1685,0  + 1474,1685,0
+#     forges           1355,1776,15 . 1361,1574,30 . 1424,1558,30
+#                      1356,1784,15 . 1344,1776,15 . 1353,1779,15 (bellows)
+#     anvils           1363,1574,30 . 1423,1556,30
+#                      1355,1786,21 . 1346,1782,21 . 1346,1774,21
+#
+# The ground-level pair at 1473,1689 (wheel) and 1473,1685 (loom) sits in the
+# Britain tailor shop the atlas already knows as britain_tailor_2 (1467,1686,0),
+# and 1545,1656/1660/1661 is britain_tailor (1547,1659,26) -- where Revolution's
+# own statics already put a decorative "loom bench" at 1546,1661,26.
+#
+# This is the shard's own data, at the decorator's own granularity (one city
+# function = one gump button). No coordinate here was chosen by this project.
+#
+# NOTE ON THE MOONGATES: the decorator's place_moongates step HAS already been
+# run -- 20 i_moongate items are in the save and m25_moongate passed live. Only
+# the per-city furniture pass was skipped.
+
+wait_world
+sleep 3000
+
+# ------------------------------------------------------ 1. confirm privilege
+# A command with visible output, so the log proves the account is privileged
+# before anything is placed. A non-GM account gets no reply at all.
+say .show p
+sleep 2500
+
+# --------------------------------------------------------- 2. run the pass
+# One synchronous pass over ~4000 serv.newitem lines. Give it room.
+say .deco_britain_felucca
+sleep 30000
+
+# ------------------------------------------------------------ 3. persist it
+say .save
+sleep 15000
+
+say britain decorated
+sleep 1500
+logout

@@ -1,0 +1,70 @@
+# M3.9 PHASE 13 -- prove the craft menu is the execution authority, live.
+#
+# RUN AS SESSION 8 (RevolutionTailor01).
+#
+# THE RULE THIS ENFORCES
+#
+# A bot may only attempt a recipe THE SERVER ACTUALLY OFFERED. Until now that
+# was a habit followed per scenario, not something the client could assert, and
+# M3.7 shows what the habit costs when it slips: a recipe was reported as
+# "not offered" when in truth the menu had never opened, which produced a false
+# claim about thread that survived into a milestone report.
+#
+# So `expect_menu_has` / `expect_menu_lacks` now distinguish those two cases,
+# and a CLOSED menu aborts instead of quietly reporting "not offered". That
+# distinction is the entire point of the phase.
+#
+# This scenario is deliberately read-only: it opens the sewing kit, dumps what
+# the server offers, and asserts against it. It crafts NOTHING, so it cannot
+# disturb the tailor's stock, which is still evidence for M3.7 slice A.
+
+wait_world
+sleep 2000
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# The sewing kit is the tool the cloth menu needs; NEWBIE TAILORING hands one to
+# every new tailor, so this character has had it since creation.
+remember kit carried_graphic 0x0F9D,0x0F9B
+require kit
+
+# THE KIT ALONE DOES NOT OPEN A MENU. It asks for a target first, and only after
+# the cloth is targeted does the server send the option list. The first run of
+# this scenario skipped the target and got:
+#
+#   live menu offers 0 option(s)
+#   ERROR expect_menu_has 'Shirt': no craft menu is open; aborting
+#
+# which is the guard working exactly as designed -- it refused to report "Shirt
+# is not offered" for a menu that had never opened. That refusal IS the Phase 13
+# behaviour, and it fired on its first real use. But the positive half of the
+# oracle still needs the menu genuinely open, so the target goes in here.
+remember cloth pack_graphic 0x175D
+require cloth
+
+use @kit
+wait_target
+target @cloth
+sleep 3000
+
+# ---------------------------------------------------------------- the oracle
+# What did the server ACTUALLY offer? This is the authority -- not our recipe
+# table, not the tailoring skill value, not what UO usually allows.
+menu_report
+
+# A tailor with a sewing kit is always offered the cloth categories. If the menu
+# is closed rather than merely lacking this entry, expect_menu_has ABORTS with a
+# different message -- which is the behaviour that was missing before.
+expect_menu_has Shirt
+
+# And the negative half: a sewing kit must never offer smithing work. If this
+# ever passes, either the menu is wrong or we are reading someone else's menu.
+expect_menu_lacks Platemail
+
+say the menu is the authority
+sleep 1500
+logout

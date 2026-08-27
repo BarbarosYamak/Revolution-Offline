@@ -1,0 +1,77 @@
+# M3.6 -- RevolutionUO Runebook, exercised through the real client.
+#
+# RUN ONLY AS SESSION 7 (RevolutionMageGM), the fenced mechanics probe. Its
+# skills were set by console; nothing here is a progression claim.
+#
+# What is being proven, against runtime/scripts/revolution/revolution_runebook.scp:
+#
+#   * the book opens as a generic gump (0xB0) with eight pages
+#   * a marked rune can be inserted into a chosen page ("rune ekle" targets the
+#     page you have open -- 12.05.2009)
+#   * the page records the destination and takes the rune's name
+#   * a Recall scroll adds a charge (13.05.2009)
+#   * travelling from a page casts the REAL [SPELL 32] Recall -- the book never
+#     moves anybody, so the skill check, the mana and every destination rule
+#     the server has still apply
+#
+# The rune this uses was marked in M3.5 and reads MOREP=1490,1555,30,
+# NAME=Britain.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember book pack_graphic 0x22C5
+require book
+remember rune pack_graphic 0x1F14
+require rune
+
+# ------------------------------------------------------------- 1. open the book
+use @book
+wait_action
+sleep 2000
+gump_report
+
+# --------------------------------------------------- 2. insert the rune, page 1
+# Button 21 = "add a rune to page 1".
+gump_button 21
+sleep 1500
+wait_target
+target @rune
+sleep 2500
+gump_report
+
+# ------------------------------------------------------------- 3. read it back
+use @book
+wait_action
+sleep 2000
+gump_report
+
+# --------------------------------------------------------- 4. walk off the tile
+goto 1480 1558
+wait_goto
+sleep 2000
+
+# ---------------------------------------------- 5. travel from page 1 by Recall
+# Button 11 = "travel from page 1". The book surfaces the page's rune and asks
+# the character to cast Recall at it.
+use @book
+wait_action
+sleep 2000
+gump_button 11
+sleep 2000
+wait_target
+target @rune
+sleep 8000
+
+say the book brought me back
+sleep 2000
+logout

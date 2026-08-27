@@ -1,0 +1,167 @@
+# M3.7 SLICE C, BUYER SIDE -- the smith buys ingots it did not mine, then
+# forges with them.
+#
+# RUN AS SESSION 9 (RevolutionSmith), created the ordinary way with
+#   --create-char --create-skills "Blacksmithing 50, Mining 20, Tinkering 30"
+#
+# THE DEMAND IS REAL, NOT STAGED. This character can forge (Blacksmithing 50)
+# and cannot supply itself: Mining 20.0 is exactly the smelt floor and it owns
+# no mine trip in this run. That is the whole point of the slice -- a crafter
+# whose bottleneck is a resource another player produces.
+#
+# THE NEWBIE-INGOT PROBLEM, and how it is removed rather than argued away.
+# NEWBIE BLACKSMITHING hands this character FIFTY iron ingots. A trade that
+# ends "the smith has ingots" would therefore prove nothing at all. So this
+# scenario BANKS every ingot it starts with BEFORE the trade opens, and the
+# pack is verified empty of them. Afterwards, any ingot in the pack came from
+# the miner over the wire.
+#
+# Banking is an ordinary player action -- "bank" to the banker, then move the
+# stack in -- and it neither creates nor destroys anything.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# --------------------------------------- 0. no banking; the DELTA is the proof
+#
+# An earlier revision walked to the bank to park the 50 newbie ingots so the
+# pack would start from zero. That is removed: mark_item is taken immediately
+# before the trade, so whatever the character already carries sits on both
+# sides of the subtraction and the gain is exactly what crossed the wire.
+#
+# It also avoids a real hazard. The miner's run that used the Minoc bank got
+# trapped inside the building -- "route exhausted ... escape 3/3 ... no path" --
+# because the world decorator's furniture made a pocket the M2.5 escape rung
+# could not leave. Fewer interiors, fewer pockets.
+
+# ------------------------------------------------------- 1. to the rendezvous
+travel_point 1451 1765 1
+wait_travel
+expect_travel ok
+
+open @pack
+wait_action
+sleep 1500
+mark_gold
+# BOTH baselines, not just gold. An earlier run marked only gold and then
+# asserted an item gain; ExpectItemGain compares its graphic list against the
+# list mark_item stored, so an unmarked list aborts EVEN WHEN THE COUNT ROSE.
+# That run logged "EXPECT item 0x1BEF to increase: 0 -> 51 ... aborting" -- the
+# ingots had in fact arrived. The assertion was wrong, not the trade.
+mark_item 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+say i need iron ingots for the forge
+sleep 2000
+
+# ------------------------------------------------------------- 2. the trade
+wait_trade_open
+# ONE stack. A revision that waited for 2 deadlocked: the seller's second stack
+# merged into the first, and wait_trade_offer counts stacks rather than amounts,
+# so the 2 could never arrive. The seller now puts its whole stack in with the
+# opening gesture, which means the offer is final the moment the window opens.
+wait_trade_offer 1
+
+remember coins pack_graphic 0x0EED
+require coins
+# 40 gold for the stack. A negotiated player price, not an itemdef VALUE and
+# not a historical forum figure -- econ::PriceBook keeps those apart on purpose.
+trade_offer @coins 40
+wait_action
+wait_trade_mine 1
+trade_accept
+wait_trade_closed
+expect_trade completed
+sleep 2500
+
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+# GOLD AFTER, on the buyer's side. There is no expect_gold_drop op, and the
+# slice is required to show gold before/after on BOTH sides. mark_gold prints
+# the value it stores, so calling it a second time reads the post-trade purse
+# out of the server's own state. Nothing downstream asserts a gold gain here,
+# so overwriting the baseline costs nothing.
+mark_gold
+
+# --------------------------------------------- 3. forge with the bought iron
+# The downstream half: the traded metal becomes a made thing. A dagger is
+# Blacksmithing 0.0 and 4 ingots, and RevolutionUO's own training guide puts
+# 0-70.1 on exactly that item (forum topic 59111).
+travel_point 1353 1780
+wait_travel
+expect_travel ok
+sleep 2500
+
+# Buy a hammer first. NEWBIE BLACKSMITHING gives tongs, and tongs are
+# unwearable (below), so the smith cannot forge with what it was issued. This
+# step is deliberately placed AFTER the trade has already been verified, so a
+# vendor that has no hammer in stock cannot cost us the trade proof.
+travel_service blacksmith
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember smithshop mobile_trade weaponsmith,blacksmith,armourer,smith
+require smithshop
+
+travel_entity @smithshop 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @smithshop 1
+wait_travel
+vendor_open @smithshop buy
+wait_action
+sleep 2000
+
+travel_entity @smithshop 1
+wait_travel
+vendor_buy @smithshop vendor_graphic:0x13E3 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+
+# TONGS ARE UNWEARABLE. Revolution's tiledata gives 0x0FBB equip layer 0, so
+# CClientUse.cpp:1273's LayerFind(LAYER_HAND1) can never find them. The newbie
+# kit's tongs are useless for smithing; a smith needs i_hammer_smith (0x13E3).
+remember hammer carried_graphic 0x13E3,0x13E4
+require hammer
+equip @hammer 1
+wait_action
+sleep 2000
+
+mark_item 0x0F51,0x0F52
+
+remember ingots pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require ingots
+use @hammer
+wait_target
+target @ingots
+sleep 2500
+gump_report
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+say another man's iron, my hammer
+sleep 1500
+logout

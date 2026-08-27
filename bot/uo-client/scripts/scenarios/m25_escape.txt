@@ -1,0 +1,29 @@
+# M2.5 debt #5 -- a character sealed into somewhere the router cannot plan out
+# of must fail BOUNDED, and must escape if any way out exists.
+#
+# The Britain Mage Tower has a storey the tile A* can climb into and not
+# climb out of. path_probe says the tile A* can reach 179 cells from there and
+# that none of them is the ground: every destination therefore produces
+# "unreachable", forever, which would kill any long-running M3 training loop.
+#
+# The requirement is not that it gets out. It is that it tries a bounded number
+# of ways out, reports plainly if there are none, and leaves the session usable.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# Climb into the pocket on purpose. travel_point pins no floor, so the tile A*
+# is free to finish on whichever storey of the Mage Tower it can reach.
+travel_point 1488 1548 1
+wait_travel
+
+# Now ask for something that requires leaving. If the bot is on the sealed
+# storey this is the failure mode under test; if it is on the ground it is an
+# ordinary trip. Either way it must END.
+travel_service banker Britain
+wait_travel
+
+say escape attempt finished
+sleep 1000
+logout

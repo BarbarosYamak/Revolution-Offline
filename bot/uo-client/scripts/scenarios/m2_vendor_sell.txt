@@ -1,0 +1,78 @@
+# M2 -- vendor SELL (0x9E / 0x9F).
+#
+# Sphere opens the sell half of a shop from SPEECH, not from a packet: the
+# player says "sell" and the NV_SELL handler answers with 0x9E, the list of
+# what that particular NPC will buy (its LAYER_VENDOR_BUYS box). Unlike the
+# 0x74 buy list, 0x9E carries item serials, so no positional join is needed.
+#
+# Which NPC matters: a vendor only buys from its own BUY template. 0x98 returns
+# an NPC's first name only ("Balayna"), but the trade is in the paperdoll title
+# ("Balayna, the provisioner") which arrives as 0x88 after a double-click --
+# exactly how a human tells one shopkeeper from another. scan_mobiles does that.
+#
+# Provisioner/cobbler spawn: Felucca 535,867 (Yew), from the shard's worldgen.
+# The item sold is a candle (0x0A28, VALUE=6) from the character's own newbie
+# kit -- named by graphic so the choice never depends on packet ordering.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+expect success
+
+say walking to the provisioner
+
+# Long haul from the Yew start point, in legs A* can plan reliably.
+goto 600 862
+wait_goto
+goto 560 866
+wait_goto
+goto 537 866
+wait_goto
+
+sleep 3000
+
+# Learn the nearby NPCs' trades, then bind the one that is actually a
+# provisioner. Anything else refuses: "You have nothing I'm interested in".
+scan_mobiles
+sleep 4000
+remember v mobile_name provisioner
+require v
+
+goto_mobile @v
+wait_goto
+sleep 1500
+
+say hello
+sleep 1000
+
+# Ask what it will buy. The 0x9E list is the confirmation.
+vendor_sell_open @v sell
+wait_action
+expect success
+
+sleep 500
+
+# Record what the server says we own now, so the assertions below compare
+# server state to server state.
+mark_gold
+mark_item 0x0a28
+
+# Sell exactly one candle. The scenario chooses the item; there is no
+# shopping or economy logic anywhere in the client.
+vendor_sell @v vendor_sell_graphic:0x0a28 1
+wait_action
+expect success
+
+sleep 2000
+
+# Server-confirmed outcome, not a cursor or an echo.
+expect_gold_gain
+expect_item_drop 0x0a28
+
+sleep 1000
+say vendor sell done
+sleep 1000
+logout

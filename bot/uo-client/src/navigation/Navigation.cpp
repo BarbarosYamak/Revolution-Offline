@@ -1,0 +1,1167 @@
+#include "Client.h"
+
+#include "bot/Pathfinding.h"
+#include "uo/builders.h"
+#include "uo/endian.h"
+#include "uo/map.h"
+#include "uo/tiledata.h"
+#include "uo/sphere_rules.h"
+#include "uo/world.h"
+
+#include <algorithm>
+#include <chrono>
+#include <cstdio>
+#include <random>
+#include <utility>
+#include <vector>
+
+namespace uo {
+
+namespace {
+
+// Pipelined ("fastwalk stack") movement. The server has no step-rate
+// anti-speedhack and ignores the fastwalk key, and its 0x21 reject carries the
+// authoritative x/y/z/facing -- so several 0x02 moves may be in flight at once
+// and a mid-pipeline rejection is fully recoverable (snap to the reject pose,
+// reset seq to 0, replan). The 0x22 ack carries no position, but we never need
+// it: position is predicted locally and only ever corrected by a reject. A
+// blocked step makes the server deny every queued move behind it (it holds
+// MovePrevented until we resend seq 0), so OnMoveReject de-dups the resulting
+// redundant rejects. The step throttle still paces *sends*, so a deeper queue
+// removes round-trip stalls (smoother travel) without moving illegally faster.
+// Matches the server's 5-slot movementTimers ring; 4 leaves headroom.
+constexpr usize kMaxInFlight = 4;
+// Canonical UO on-foot step intervals. Pacing at these rates, not faster,
+// is how the original client avoids fastwalk/speedhack checks.
+constexpr u32 kWalkThrottleMs = 400;
+constexpr u32 kRunThrottleMs = 200;
+constexpr u32 kAckWatchdogMs = 5000;
+// Per-trip A* replan budget -- bounds obstacle-avoidance loops on an
+// unreachable goal.
+constexpr u32 kMaxReplans = 128;
+// Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
+// base) -- biases travel toward roads/dirt where mobs are sparser.
+constexpr u32 kGrassPenalty = 14;
+// Extra A* cost for stepping into woods (a cell in/next to foliage). Heavier
+// than open grass so the bot skirts forests instead of threading the trees.
+constexpr u32 kForestPenalty = 15;
+// Mobile cache + stamina/shove handling: a tile holding a mobile, or a reject
+// right after a "too fatigued" message, is never blacklisted -- we wait and
+// retry (the mob moves, or stamina regenerates and the shove succeeds).
+constexpr i64   kFatigueWindowMs = 1500;  // a reject this soon after a fatigue msg = stamina
+constexpr i64   kStaminaWaitMs   = 2000;  // let stamina regen before retrying
+constexpr i64   kMobileWaitMs    = 500;   // let the mobile step aside / shove cooldown
+constexpr u32   kMobileRepathAfter = 15;  // after N mobile bumps, reroute around it
+constexpr u32   kMaxStuckWaits   = 25;    // give up the trip (no blacklist) after this
+// Consecutive rejects tolerated for a scripted/manual step before the queued
+// batch is abandoned (an A* path has its own richer recovery below).
+constexpr u32   kMaxStepRejects  = 3;
+constexpr i64   kFollowReplanMinMs = 120;
+constexpr i64   kFollowProbeMs     = 1200;
+constexpr usize kPathLookaheadScanSteps = 5;
+constexpr usize kPathLookaheadAnchorExtra = 5;
+constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr i64   kDoorRetryWaitMs = 700;
+constexpr i32   kGoalZPreferenceRadius = 24;
+constexpr i32   kRejectedEdgeZTolerance = 2;
+constexpr usize kNoPreviewStep = static_cast<usize>(-1);
+
+// Canonical openable door graphics (wood/metal/barred/gates, closed+open
+// states). Tunable; covers town/building doors a traveller meets.
+bool IsDoorGraphic(u16 id) { return id >= 0x0675 && id <= 0x06F6; }
+
+inline i32 AbsDiff(i32 a, i32 b) {
+    i32 d = a - b;
+    return d < 0 ? -d : d;
+}
+
+inline i32 ChebyshevDistance(i32 ax, i32 ay, i32 bx, i32 by) {
+    const i32 dx = AbsDiff(ax, bx);
+    const i32 dy = AbsDiff(ay, by);
+    return dx > dy ? dx : dy;
+}
+
+bool ShouldPreferBotGoalZ(bool hasGoalZ, i32 x, i32 y, i32 gx, i32 gy) {
+    if (!hasGoalZ) return false;
+    return ChebyshevDistance(x, y, gx, gy) <= kGoalZPreferenceRadius;
+}
+
+world::WalkQuery MakeWalkQuery(i32 x, i32 y, i8 fromZ) {
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(x);
+    q.y = static_cast<u32>(y);
+    q.fromZ = fromZ;
+    return q;
+}
+
+world::WalkQuery MakeGoalAwareWalkQuery(i32 x, i32 y, i8 fromZ,
+                                        bool hasGoalZ, i32 goalX, i32 goalY,
+                                        i32 goalZ) {
+    world::WalkQuery q = MakeWalkQuery(x, y, fromZ);
+    q.hasPreferredZ = ShouldPreferBotGoalZ(hasGoalZ, x, y, goalX, goalY);
+    q.preferredZ = static_cast<i8>(goalZ);
+    return q;
+}
+
+bool SameDirectedEdgeNearZ(i32 edgeFromX, i32 edgeFromY, i8 edgeFromZ,
+                           i32 edgeToX, i32 edgeToY, i8 edgeToZ,
+                           i32 fromX, i32 fromY, i8 fromZ,
+                           i32 toX, i32 toY, i8 toZ) {
+    if (edgeFromX != fromX || edgeFromY != fromY ||
+        edgeToX != toX || edgeToY != toY) {
+        return false;
+    }
+    return AbsDiff(fromZ, edgeFromZ) <= kRejectedEdgeZTolerance &&
+           AbsDiff(toZ, edgeToZ) <= kRejectedEdgeZTolerance;
+}
+
+}
+
+// ---------------------------------------------------------------------------
+// 0x21 Move Reject (8 bytes). Server rejected our move; here is your
+// authoritative position.
+//   [0]    cmd
+//   [1]    sequence (the move being rejected)
+//   [2-3]  x BE
+//   [4-5]  y BE
+//   [6]    direction
+//   [7]    z (signed)
+// ---------------------------------------------------------------------------
+void Client::OnMoveReject(const u8* data, usize size) {
+    if (size < 8) return;
+    const u8  seq     = data[1];
+    const u16 x       = LoadBE16(data + 2);
+    const u16 y       = LoadBE16(data + 4);
+    const u8  dirByte = data[6];
+    const i8  z       = static_cast<i8>(data[7]);
+
+    // Match the rejected sequence against the in-flight queue, and gather the
+    // steps we speculatively consumed from botPath_ while pipelining. With a
+    // pipeline depth > 1 a single blocked step makes the server deny every
+    // queued move behind it (it holds MovePrevented until we resend seq 0), so
+    // we receive several 0x21s for one obstacle. Only the first -- whose seq is
+    // still in `pending` -- is real; the rest are stale echoes of a block we
+    // already handled.
+    u8 rdir = dirByte & 0x07;
+    bool rejectedWasStep = false;
+    bool found = false;
+    std::vector<u8> inflightSteps;
+    for (const auto& pm : nav_.movement.pending) {
+        if (pm.seq == seq && !found) {
+            rdir = pm.dir;
+            rejectedWasStep = pm.wasStep;
+            found = true;
+        }
+        if (pm.wasStep) inflightSteps.push_back(pm.dir);
+    }
+
+    // Server is authoritative — snap prediction back to its reported pose. The
+    // pose is correct whether this reject is the real one or a stale echo.
+    playerX_ = static_cast<i32>(x);
+    playerY_ = static_cast<i32>(y);
+    playerZ_ = z;
+    playerFacing_ = dirByte & 0x07;
+    playerRunning_ = false;
+    player_.x = playerX_;
+    player_.y = playerY_;
+    player_.z = playerZ_;
+    player_.facing = playerFacing_;
+    player_.running = playerRunning_;
+
+    if (!found) {
+        // Stale echo: the real reject already reset the queue and rerouted.
+        // Resync the pose (done above) but don't double-count the obstacle.
+        LogInfo("[0x21] stale reject seq=%u (block already handled); pose resynced\n",
+                seq);
+        return;
+    }
+
+    LogWarn(
+        "[0x21] move REJECTED seq=%u; server says (%u,%u,%d) facing=%u\n",
+        seq, x, y, static_cast<int>(z), dirByte & 0x07);
+
+    // Drop the whole in-flight queue (anything predicted past the reject is
+    // stale). Classic UO: seq resets to 0, which is also the only sequence
+    // value Sphere validates (PacketMovementReq::onReceive,
+    // src/network/receive.cpp:270-273).
+    BotResetMovement();
+
+    if (!nav_.bot.active) {
+        // No A* path owns the movement: this was a scripted or manual step.
+        OnStepRejected(rdir);
+        return;
+    }
+
+    // Restore the steps popped from botPath_ during pipelining: we've snapped
+    // back to the pose *before* the oldest in-flight step, so the path must
+    // resume from there. Replanning branches clear the path anyway; the
+    // door-retry branch relies on this restored prefix.
+    for (auto it = inflightSteps.rbegin(); it != inflightSteps.rend(); ++it)
+        nav_.bot.path.push_front(*it);
+
+    // The cell we were blocked from entering, and its surface z.
+    i32 dx, dy;
+    bot::DirToDelta(rdir, &dx, &dy);
+    const i32 bx = playerX_ + dx;
+    const i32 by = playerY_ + dy;
+    i32 bz = playerZ_;
+    if (world_) {
+        const world::WalkQuery q = MakeWalkQuery(bx, by, playerZ_);
+        const auto r = world_->QueryCell(q);
+        if (r.walkable) bz = r.standZ;
+    }
+
+    // Track repeated bumps at the same cell (and the floor we're on).
+    // (0) Stamina: a reject right after a "too fatigued" message is not an
+    // obstacle — we're just spent. Wait for regen and retry; never blacklist.
+    const bool fatigued = nav_.lastFatigueMs != 0 &&
+                          (NowMs() - nav_.lastFatigueMs) < kFatigueWindowMs;
+
+    // (1) Is a mobile standing on the blocked cell? Walking into one is a
+    // shove (succeeds once rested), so a reject there is a moving/stamina
+    // obstacle, never a wall. Wait and retry; never blacklist.
+    const MobileObj* mob = FindMobileAt(bx, by, static_cast<i8>(bz));
+
+    if (mob && !fatigued) {
+        // The reject is positive proof the mobile is still on (bx,by) right now.
+        // Refresh its timestamp so the very next replan/lookahead routes around
+        // it instead of re-deriving the same straight path into it.
+        for (auto& m : mobileCache_) {
+            if (m.serial == mob->serial) { m.seenMs = NowMs(); break; }
+        }
+    }
+
+    if (fatigued || mob) {
+        const bool blockedByMobile = (mob != nullptr) && !fatigued;
+        if (++nav_.bot.stuckWaits > kMaxStuckWaits) {
+            LogWarn(
+                "[bot] (%d,%d) blocked by %s for too long; stopping (not blacklisted)\n",
+                bx, by, fatigued ? "fatigue" : "a mobile");
+            BotAbortPath("blocked too long");
+            return;
+        }
+        if (blockedByMobile && nav_.bot.stuckWaits >= kMobileRepathAfter) {
+            // Don't stall indefinitely behind another mover: avoid this cell
+            // for this trip and rebuild a full route around it.
+            nav_.bot.blacklist.AddTransient(bx, by, bz, 0);
+            LogInfo("[bot] mobile still blocks (%d,%d) after %u waits; rerouting now\n",
+                        bx, by, nav_.bot.stuckWaits);
+            nav_.bot.stuckWaits = 0;
+            if (BotReplanToGoal())
+                nav_.bot.resumeAtMs = NowMs() + 150;
+            return;
+        }
+        const i64 wait = fatigued ? kStaminaWaitMs : kMobileWaitMs;
+        LogInfo("[bot] reject at (%d,%d): %s — waiting %lldms, retrying (%u) [no blacklist]\n",
+                    bx, by, fatigued ? "fatigued (stamina)" : "mobile in the way",
+                    static_cast<long long>(wait), nav_.bot.stuckWaits);
+        if (BotReplanToGoal())
+            nav_.bot.resumeAtMs = NowMs() + wait;
+        return;
+    }
+
+    if (BotIsDynamicItemBlocking(bx, by, static_cast<i8>(bz))) {
+        LogInfo("[bot] dynamic item blocks (%d,%d,%d); rerouting\n",
+                    bx, by, static_cast<int>(bz));
+        if (BotReplanToGoal())
+            nav_.bot.resumeAtMs = NowMs() + 150;
+        return;
+    }
+
+    // Door handling uses the official macro: no door serial/static lookup.
+    // On the first reject of an edge, face is already set by the server's
+    // reject packet, so try OpenDoor once and then retry the same step. If
+    // the same edge rejects again, treat it as non-door geometry and reroute.
+    if (rejectedWasStep &&
+        !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
+                              bx, by, static_cast<i8>(bz))) {
+        BotRememberDoorRetry(playerX_, playerY_, playerZ_,
+                             bx, by, static_cast<i8>(bz));
+        u8 ob[8];
+        Send(ob, build::OpenDoor(ob), "0x12 OpenDoor (0x58 reject retry)");
+        // The rejected step is already restored at botPath_'s front by the
+        // pipeline-prefix reconstruction above; just OpenDoor and let it retry.
+        nav_.bot.resumeAtMs = NowMs() + kDoorRetryWaitMs;
+        LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; OpenDoor + retry\n",
+                    playerX_, playerY_, static_cast<int>(playerZ_),
+                    bx, by, static_cast<int>(bz));
+        return;
+    }
+
+    // A repeated reject means this exact directed step is not server-walkable
+    // now. Keep the directed edge fact, and preserve the existing transient
+    // cell block so A* does not immediately retry the same landing spot.
+    nav_.bot.rejectedEdges.push_back({playerX_, playerY_, playerZ_,
+                                      bx, by, static_cast<i8>(bz)});
+    nav_.bot.blacklist.AddTransient(bx, by, bz, 0);
+    LogInfo("[bot] step (%d,%d,%d)->(%d,%d,%d) rejected; avoiding edge + rerouting\n",
+                playerX_, playerY_, static_cast<int>(playerZ_),
+                bx, by, static_cast<int>(bz));
+    std::uniform_int_distribution<int> rd(200, 400);
+    if (BotReplanToGoal())
+        nav_.bot.resumeAtMs = NowMs() + rd(nav_.rng);
+}
+
+
+// ---------------------------------------------------------------------------
+// 0x22 Move Ack (3 bytes). Confirms the oldest in-flight move. Position was
+// already advanced when we sent it (prediction), so the ack just frees a
+// flight slot and lets the pipeline top up.
+//   [0]    cmd
+//   [1]    sequence (echoed)
+//   [2]    notoriety
+// ---------------------------------------------------------------------------
+void Client::OnMoveAck(const u8* data, usize size) {
+    if (size < 3) return;
+    const u8 seq = data[1];
+    if (nav_.movement.pending.empty()) {
+        LogWarn( "[0x22] unsolicited ack seq=%u\n", seq);
+        return;
+    }
+    const navigation::PendingMove pm = nav_.movement.pending.front();
+    nav_.movement.pending.pop_front();
+    nav_.movement.rejectStreak = 0;   // the server accepted a move
+    if (pm.seq != seq) {
+        // Acks should arrive in send order; a mismatch means we lost sync.
+        LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
+                     seq, pm.seq);
+    }
+    // Top up immediately rather than waiting for the next tick. Both movement
+    // sources funnel into SubmitStep, so whichever one owns the queue advances.
+    BotPumpMoves();
+    PumpDirectSteps();
+}
+
+
+// ---------------------------------------------------------------------------
+// Bot — A* + step pump
+// ---------------------------------------------------------------------------
+// Classic UO sequence: starts at 0, wraps 0xFF -> 1 (0 reserved for resync).
+u8 Client::NextSeq() {
+    const u8 s = nav_.movement.moveSeq;
+    nav_.movement.moveSeq = sphere::NextMoveSequence(s);
+    return s;
+}
+
+
+bool Client::EnsureWorldLoaded() {
+    if (worldLoaded_) return true;
+    if (!cfg_.tiledataPath || !cfg_.mapPath ||
+        !cfg_.staidxPath   || !cfg_.staticsPath) {
+        LogWarn(
+            "[bot] MUL paths not configured; goto disabled\n");
+        return false;
+    }
+    tileData_ = std::make_unique<tiledata::TileDataLoader>();
+    if (!tileData_->Load(cfg_.tiledataPath)) {
+        tileData_.reset();
+        return false;
+    }
+    worldMap_ = std::make_unique<map::Map>();
+    if (!worldMap_->Open(cfg_.mapPath, cfg_.staidxPath, cfg_.staticsPath,
+                         map::kBritWidthBlocks, map::kBritHeightBlocks,
+                         cfg_.verdataPath)) {
+        worldMap_.reset();
+        tileData_.reset();
+        return false;
+    }
+    world_ = std::make_unique<world::World>(*tileData_, *worldMap_);
+    world_->SetAcceptDoors(cfg_.acceptDoors);
+    worldLoaded_ = true;
+
+    // Learned static blocks persist in blacklist.mul (verdata format),
+    // layered on top of the base statics. Load them so A* avoids known bad
+    // tiles from the first step.
+    nav_.bot.blacklist.Load("blacklist.mul", worldMap_->HeightBlocks());
+    LogInfo("[bot] world data loaded (%zu blacklisted spot(s)).\n",
+                nav_.bot.blacklist.PersistentCount());
+    return true;
+}
+
+void Client::MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs) {
+    // Trees are two statics at the same cell: trunk (treeGraphic, Impassable)
+    // + canopy (treeGraphic+1, Foliage+Impassable). We replace the trunk with
+    // the "stump" graphic and the canopy with id=1 "nodraw" (invisible) so the
+    // crown disappears. The overlay is in-memory only (StumpOverlay); it reverts
+    // on its own when the TTL lapses, mirroring the server's regrowth cadence.
+    constexpr u16 kTreeStumpGraphic = 3670;   // "stump" (height=3, Impassable)
+    constexpr i64 kStumpTtlMs       = 10 * 60 * 1000;  // 10 minutes
+    if (!EnsureWorldLoaded() || !worldMap_) return;
+    const i64 expiry = NowMs() + ((ttlMs > 0) ? ttlMs : kStumpTtlMs);
+    // Trunk → stump
+    worldMap_->Stumps().Add(x, y, z, treeGraphic, kTreeStumpGraphic, expiry);
+    // Canopy (always trunk+1 in this art set) → remove entirely from the list
+    worldMap_->Stumps().Add(x, y, z, static_cast<u16>(treeGraphic + 1),
+                            map::StumpOverlay::kRemove, expiry);
+}
+
+
+void Client::BotPredictStep(u8 dir, bool run) {
+    i32 dx, dy;
+    bot::DirToDelta(dir, &dx, &dy);
+    prevPlayerX_ = playerX_;   // for the slide interpolation in the renderer
+    prevPlayerY_ = playerY_;
+    playerX_ += dx;
+    playerY_ += dy;
+    // Track the surface z so the next step's walk-check uses the right base.
+    if (world_) {
+        const world::WalkQuery q = MakeWalkQuery(playerX_, playerY_, playerZ_);
+        const auto r = world_->QueryCell(q);
+        if (r.walkable) playerZ_ = r.standZ;
+    }
+    player_.x = playerX_;
+    player_.y = playerY_;
+    player_.z = playerZ_;
+    player_.facing = static_cast<u8>(dir & 0x07);
+    // Mirror what the step we just sent told the server: Event_Walk sets
+    // STATF_FLY straight from the 0x80 bit of that step
+    // (src/game/clients/CClientEvent.cpp:904), so this is the same value the
+    // server now holds -- not the session gait, which a per-step Walk overrides.
+    player_.running = run;
+    lastStepMs_ = NowMs();          // real step -> walk/run anim (vs idle stand)
+}
+
+
+// Gait for one A* step. Auto is the answer for the overwhelming majority --
+// crossing a town, a road or open country is exactly what running is for.
+// The exceptions below are the cases where a human player would take their
+// finger off the run key, and each one has a Sphere reason:
+//
+//  - lastStep: final precise positioning. The last step lands us on the goal
+//    tile, and the server -- not us -- decides the destination z
+//    (CChar::CanMoveWalkTo writes ptDst.m_z, src/game/chars/CCharAct.cpp:4735-4739).
+//    Walking gives the 0x22 for that step 400ms to land and reconcile the
+//    predicted pose before anything is done at the destination.
+//  - doorStep: awkward door handling. We have just fired the 0x12/0x58 open-door
+//    macro and are stepping into the frame on the next tick; the server opens
+//    the door on its own tick, so the step is racing a world change.
+//  - shoveStep: a mobile is standing on the target tile, so this step is a
+//    shove -- and Source-X refuses a shove unless STAT_DEX is at its adjusted
+//    maximum (fRequireFullStamina, src/game/chars/CCharAct.cpp:4656,4683-4684).
+//    Running is what spends that stamina, so running into a body is the one
+//    reliable way to make the shove impossible.
+sphere::Gait Client::BotStepGait(bool lastStep, bool doorStep,
+                                 bool shoveStep) const {
+    if (lastStep || doorStep || shoveStep) return sphere::Gait::Walk;
+    return sphere::Gait::Auto;
+}
+
+
+u32 Client::BotMoveGapMs() const {
+    return GaitResolvesToRun(sphere::Gait::Auto) ? kRunThrottleMs
+                                                 : kWalkThrottleMs;
+}
+
+
+bool Client::BotIsMobileBlocking(i32 x, i32 y, i8 z) const {
+    for (const auto& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (m.x != x || m.y != y) continue;
+        // No time-freshness (see PathPlanner::IsMobileBlocking): a cached mobile
+        // is in range and present even if stationary/stale, so the lookahead
+        // must treat it as a blocker and patch around it before we bump.
+        if (AbsDiff(z, m.z) <= 8) return true;
+    }
+    return false;
+}
+
+
+bool Client::BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const {
+    if (!tileData_ || !world_) return false;
+    const i32 colLo = static_cast<i32>(z);
+    const i32 colHi = colLo + 16;
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        if (it.x != x || it.y != y) continue;
+
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = tileData_->Static(gid);
+        if (IsDoorGraphic(gid) || (st.flags & tiledata::kFlagDoor)) continue;
+        const bool isSurface =
+            (st.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
+        const bool blocksMovement =
+            world_->IsStaticBlocker(gid) ||
+            isSurface;
+        if (!blocksMovement) continue;
+
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo +
+            (isSurface ? st.height : (st.height ? st.height : 1));
+        // Dynamic server items are not part of World::QueryCell's standing
+        // surface stack, so movement-relevant items with real vertical volume
+        // must still block the body column. Height-only decor is ignored,
+        // matching the official client's path tile stack.
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+    return false;
+}
+
+
+bool Client::BotStepNeedsDoorOpen(i8 fromZ, i32 toX, i32 toY, i8 toZ) const {
+    if (!tileData_ || !world_) return false;
+
+    const i32 colLo = (fromZ > toZ) ? fromZ : toZ;
+    const i32 colHi = colLo + 16;
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        if (it.x != toX || it.y != toY) continue;
+
+        const u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const auto& st = tileData_->Static(gid);
+        if (!IsDoorGraphic(gid) && (st.flags & tiledata::kFlagDoor) == 0)
+            continue;
+
+        const i32 obsLo = static_cast<i32>(it.z);
+        const i32 obsHi = obsLo + (st.height ? st.height : 1);
+        if (obsHi > colLo && obsLo < colHi) return true;
+    }
+
+    return world_->HasDoorAt(static_cast<u32>(toX), static_cast<u32>(toY),
+                             fromZ, toZ);
+}
+
+
+bool Client::BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const {
+    if (nav_.bot.blacklist.IsBlocked(x, y, z)) return true;
+    // A transit pad the current trip did not choose. Stepping on one is not
+    // blocked by the server -- it works, and that is the problem: it silently
+    // moves the character somewhere else. Treating it as impassable is how a
+    // player who does not want to go to Heartwood walks around it.
+    if (TravelPadIsAvoided(x, y)) return true;
+    if (BotIsMobileBlocking(x, y, z)) return true;
+    return BotIsDynamicItemBlocking(x, y, z);
+}
+
+
+bool Client::BotIsRejectedEdge(i32 fromX, i32 fromY, i8 fromZ,
+                               i32 toX, i32 toY, i8 toZ) const {
+    for (const auto& e : nav_.bot.rejectedEdges) {
+        if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
+                                  fromX, fromY, fromZ, toX, toY, toZ)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool Client::BotDoorRetryWasTried(i32 fromX, i32 fromY, i8 fromZ,
+                                  i32 toX, i32 toY, i8 toZ) const {
+    for (const auto& e : nav_.bot.doorRetryEdges) {
+        if (SameDirectedEdgeNearZ(e.fromX, e.fromY, e.fromZ, e.toX, e.toY, e.toZ,
+                                  fromX, fromY, fromZ, toX, toY, toZ)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+void Client::BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
+                                  i32 toX, i32 toY, i8 toZ) {
+    nav_.bot.doorRetryEdges.push_back({fromX, fromY, fromZ, toX, toY, toZ});
+}
+
+
+bool Client::BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user) {
+    const auto* c = static_cast<const Client*>(user);
+    return c && (c->BotIsMobileBlocking(x, y, z) ||
+                 c->BotIsDynamicItemBlocking(x, y, z));
+}
+
+
+bool Client::BotRuntimeBlockedStepForPath(i32 fromX, i32 fromY, i8 fromZ,
+                                          i32 toX, i32 toY, i8 toZ,
+                                          void* user) {
+    const auto* c = static_cast<const Client*>(user);
+    return c && c->BotIsRejectedEdge(fromX, fromY, fromZ, toX, toY, toZ);
+}
+
+
+bool Client::BotLookaheadPatchPath() {
+    if (!world_ || nav_.bot.path.empty()) return false;
+
+    struct PreviewStep {
+        i32 x;
+        i32 y;
+        i8  z;
+        bool walkable;
+        bool blocked;
+    };
+
+    PreviewStep preview[kPathLookaheadScanSteps + kPathLookaheadAnchorExtra];
+    usize previewCount = 0;
+    usize firstBlocked = kNoPreviewStep;
+    i32 x = playerX_;
+    i32 y = playerY_;
+    i8 z = playerZ_;
+
+    const usize maxPreview = std::min<usize>(
+        nav_.bot.path.size(), kPathLookaheadScanSteps + kPathLookaheadAnchorExtra);
+    for (usize i = 0; i < maxPreview; ++i) {
+        i32 dx, dy;
+        bot::DirToDelta(nav_.bot.path[i], &dx, &dy);
+        const i32 nx = x + dx;
+        const i32 ny = y + dy;
+
+        const world::WalkQuery q = MakeGoalAwareWalkQuery(
+            nx, ny, z, nav_.bot.hasGoalZ, nav_.bot.goalX, nav_.bot.goalY,
+            nav_.bot.goalZ);
+        const auto wr = world_->QueryCell(q);
+
+        bool blocked = true;
+        bool walkable = wr.walkable;
+        i8 standZ = z;
+        if (wr.walkable) {
+            standZ = wr.standZ;
+            blocked = BotIsRuntimeBlocked(nx, ny, standZ) ||
+                      BotIsRejectedEdge(x, y, z, nx, ny, standZ);
+        }
+
+        if (i < kPathLookaheadScanSteps && (blocked || !walkable) &&
+            firstBlocked == kNoPreviewStep) {
+            firstBlocked = i;
+        }
+
+        preview[previewCount++] = {nx, ny, standZ, walkable, blocked};
+        x = nx;
+        y = ny;
+        z = standZ;
+    }
+
+    if (firstBlocked == kNoPreviewStep) return false;
+
+    const usize firstAnchor = std::min(kPathLookaheadScanSteps - 1, previewCount - 1);
+    for (usize anchor = firstAnchor; anchor < previewCount; ++anchor) {
+        const auto& target = preview[anchor];
+        if (!target.walkable || target.blocked) continue;
+
+        bot::PathOptions opts;
+        opts.blacklist = &nav_.bot.blacklist;
+        opts.hasGoalZ = true;
+        opts.goalZ = target.z;
+        opts.maxNodesExpanded = kLookaheadMaxNodesExpanded;
+        opts.extraBlocked = &Client::BotRuntimeBlockedForPath;
+        opts.extraBlockedStep = &Client::BotRuntimeBlockedStepForPath;
+        opts.extraBlockedUser = this;
+
+        const auto t0 = std::chrono::steady_clock::now();
+        auto patch = bot::FindPath(*world_, playerX_, playerY_, playerZ_,
+                                   target.x, target.y, opts);
+        const double searchUs = std::chrono::duration<double, std::micro>(
+            std::chrono::steady_clock::now() - t0).count();
+        if (patch.empty()) continue;
+
+        std::deque<u8> next;
+        for (u8 d : patch) next.push_back(d);
+        for (usize i = anchor + 1; i < nav_.bot.path.size(); ++i)
+            next.push_back(nav_.bot.path[i]);
+        nav_.bot.path.swap(next);
+        LogInfo("[bot] lookahead patched around block at step %zu: "
+                    "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
+                    firstBlocked + 1, anchor + 1, patch.size(), nav_.bot.path.size(),
+                    searchUs);
+        return true;
+    }
+
+    return false;
+}
+
+
+bool Client::BotReplanToGoal() {
+    if (!pathPlanner_) {
+        LogWarn("[bot] path worker is unavailable; stopping\n");
+        BotAbortPath("path worker unavailable");
+        return false;
+    }
+    if (++nav_.bot.replanCount > kMaxReplans) {
+        LogWarn( "[bot] giving up after %u replans (unreachable?)\n",
+                     nav_.bot.replanCount);
+        BotAbortPath("too many replans");
+        return false;
+    }
+    // Scale the node-expansion budget with goal distance. The grass penalty
+    // inflates step cost without the heuristic knowing, so on a long open
+    // route A* loses its straight-line guidance and expands ~O(distance^2)
+    // nodes — the fixed default cap then makes a reachable-but-far goal look
+    // unreachable. Budget quadratically (with headroom for detours) but bound
+    // it so a genuinely unreachable goal still fails in finite time/memory.
+    const u64 cheb = static_cast<u64>(
+        ChebyshevDistance(playerX_, playerY_, nav_.bot.goalX, nav_.bot.goalY));
+    u64 budget = cheb * cheb * 4 + 65536;
+    if (budget > 2000000) budget = 2000000;
+
+    navigation::PathRequest request;
+    request.requestId = nav_.bot.nextPlanRequestId++;
+    if (request.requestId == 0) request.requestId = nav_.bot.nextPlanRequestId++;
+    request.startX = playerX_;
+    request.startY = playerY_;
+    request.startZ = playerZ_;
+    request.goalX = nav_.bot.goalX;
+    request.goalY = nav_.bot.goalY;
+    request.goalZ = nav_.bot.goalZ;
+    request.hasGoalZ = nav_.bot.hasGoalZ;
+    request.maxNodesExpanded = static_cast<u32>(budget);
+    // For follow we want the shortest valid path to keep up with a moving
+    // target; road/grass bias only makes us lag behind. terrainBias=false
+    // (e.g. tree-to-tree hops) likewise drops the bias for direct short routes.
+    const bool bias = nav_.bot.terrainBias && !nav_.follow.active;
+    request.grassPenalty = bias ? kGrassPenalty : 0u;
+    request.foliagePenalty = bias ? kForestPenalty : 0u;
+    request.playerSerial = playerSerial_;
+    request.ignoreMobiles = nav_.bot.softMobileRetry;
+    request.blacklist = nav_.bot.blacklist;
+    request.rejectedEdges = nav_.bot.rejectedEdges;
+    request.mobiles.reserve(mobileCache_.size());
+    for (const auto& m : mobileCache_) {
+        request.mobiles.push_back({m.serial, m.x, m.y, m.z, m.seenMs});
+    }
+    request.dynamicItems.reserve(items_.size());
+    for (const auto& kv : items_) {
+        const ItemObj& it = kv.second;
+        request.dynamicItems.push_back({it.itemId, it.x, it.y, it.z, it.gfxOffset});
+    }
+
+    nav_.bot.path.clear();
+    nav_.bot.planning = true;
+    nav_.bot.planRequestId = request.requestId;
+    pathPlanner_->Request(std::move(request));
+    LogInfo("[bot] planning path to (%d,%d) in background\n",
+                nav_.bot.goalX, nav_.bot.goalY);
+    return true;
+}
+
+
+void Client::BotPollPathPlanner() {
+    if (!pathPlanner_) return;
+
+    navigation::PathResult result;
+    if (!pathPlanner_->Poll(&result)) return;
+
+    if (!nav_.bot.planning || result.requestId != nav_.bot.planRequestId) {
+        return;
+    }
+
+    nav_.bot.planning = false;
+    nav_.bot.planRequestId = 0;
+    // A plan that produced a path clears the latch, so the next failure is
+    // allowed its own single soft retry.
+    if (!result.path.empty()) nav_.bot.softMobileRetry = false;
+
+    if (!result.worldReady) {
+        LogWarn("[bot] path worker could not load MUL data; stopping\n");
+        BotAbortPath("path worker unavailable");
+        return;
+    }
+
+    if (!result.goalWalkable) {
+        LogWarn("[bot] goal (%d,%d) is not walkable; skipping A* and stopping\n",
+                    result.goalX, result.goalY);
+        BotAbortPath("goal not walkable");
+        return;
+    }
+
+    if (result.path.empty()) {
+        LogWarn(
+            "[bot] no path to (%d,%d) avoiding %zu block(s); stopping "
+            "(search %.1fus)\n",
+            result.goalX, result.goalY, result.blacklistCount, result.searchUs);
+        // WHY it failed, not just that it did. A search that expands almost
+        // nothing has usually been sealed in where it stands, and "openExits=0"
+        // plus the reason counts is the difference between a diagnosis and a
+        // guess. M3.7 lost a run inside the Minoc bank with no evidence at all.
+        if (result.hasEnclosure) {
+            const auto& e = result.enclosure;
+            LogWarn("[bot] start (%d,%d,%d) exits: open=%u terrain=%u mobile=%u "
+                    "dynamic=%u door=%u blacklist=%u "
+                    "(overlay saw %zu item(s), %zu mobile(s))\n",
+                    playerX_, playerY_, static_cast<int>(playerZ_),
+                    e.openExits, e.terrainBlocked, e.mobileBlocked,
+                    e.dynamicBlocked, e.doorBlocked, e.blacklistBlocked,
+                    result.dynamicItemCount, result.mobileCount);
+            if (e.openExits == 0 && e.doorBlocked > 0) {
+                LogWarn("[bot] every exit is a closed door -- this is a knock, "
+                        "not a trap\n");
+            }
+
+            // THE MINOC BANK FIX.
+            //
+            // Enclosed, and mobiles are part of the wall. A cached mobile never
+            // expires -- a stationary one never resends 0x77, so a stale seenMs
+            // does not mean it left. That is correct for a blocker still
+            // standing there and fatal for a bystander who wandered off.
+            //
+            // Being wrong about a mobile is CHEAP: the server rejects one step
+            // and the existing reject/reroute path absorbs it. Being wrong about
+            // a wall is not. So retry once treating mobiles as soft; terrain and
+            // furniture stay hard, so this can never walk the bot into a
+            // building.
+            //
+            // Once, not repeatedly: the latch clears only on a successful plan,
+            // so a genuinely unreachable goal still fails in finite time.
+            if (e.openExits == 0 && e.mobileBlocked > 0 &&
+                !nav_.bot.softMobileRetry) {
+                nav_.bot.softMobileRetry = true;
+                LogWarn("[bot] enclosed with %u mobile(s) in the wall; "
+                        "replanning with mobiles treated as soft\n",
+                        e.mobileBlocked);
+                LogEvent("path_soft_retry", "enclosed by mobiles");
+                if (BotReplanToGoal()) return;
+            }
+        }
+        BotAbortPath("no path");
+        return;
+    }
+
+    LogInfo("[bot] replan to (%d,%d): %zu steps in %.1fus\n",
+                result.goalX, result.goalY, result.path.size(), result.searchUs);
+    nav_.bot.path.assign(result.path.begin(), result.path.end());
+    BotPumpMoves();
+}
+
+
+// Combat-interrupt hook. Called when we detect we're under attack mid-travel.
+// For now it just halts the path safely so we don't blindly run on while being
+// hit. TODO: per-policy reaction — engage (war + attack), flee (path away from
+// the threat), or recall ("kal ort por"); see task #6.
+void Client::BotInterruptForThreat(const char* reason) {
+    LogWarn(
+        "[bot] THREAT (%s): halting travel (TODO engage/flee/recall)\n",
+        reason ? reason : "?");
+    LogEvent("threat", reason ? reason : "");
+    BotAbortPath(reason);
+    nav_.follow.active = false;
+    BotResetMovement();
+}
+
+
+void Client::BotNoteFatigueMessage() {
+    nav_.lastFatigueMs = NowMs();
+}
+
+
+void Client::BotAbortPath(const char* reason) {
+    nav_.bot.path.clear();
+    nav_.bot.active = false;
+    nav_.bot.planning = false;
+    nav_.bot.planRequestId = 0;
+    BotSignalDone(false, reason);  // reject any scripted `await goto()`
+}
+
+
+void Client::BotSetDoneCb(std::function<void(bool, const char*)> cb) {
+    // Supersede any still-pending scripted trip so its promise never hangs.
+    if (botDoneCb_) { auto old = std::move(botDoneCb_); old(false, "superseded"); }
+    botDoneCb_ = std::move(cb);
+}
+
+
+void Client::BotClearDoneCb() {
+    botDoneCb_ = nullptr;  // drop without firing (e.g. JS runtime torn down)
+}
+
+
+void Client::BotSignalDone(bool success, const char* reason) {
+    if (!botDoneCb_) return;
+    auto cb = std::move(botDoneCb_);  // one-shot: clear before calling
+    botDoneCb_ = nullptr;
+    cb(success, reason ? reason : "");
+}
+
+
+// A rejected step that did not belong to an A* path (scripted action or
+// manual key). The server has already been believed for the pose; decide
+// whether to keep retrying the queued steps or give up on the batch.
+void Client::OnStepRejected(u8 dir) {
+    if (directSteps_.empty()) return;
+
+    ++nav_.movement.rejectStreak;
+    if (nav_.movement.rejectStreak >= kMaxStepRejects) {
+        const usize dropped = directSteps_.size();
+        directSteps_.clear();
+        walkBatchActive_ = false;
+        nav_.movement.rejectStreak = 0;
+        LogWarn("[move] step dir=%u rejected %u times; abandoning %zu queued "
+                "step(s)\n", dir, kMaxStepRejects, dropped);
+        LogEvent("walk_batch_aborted", "server kept rejecting the step");
+        return;
+    }
+    // Otherwise keep the queue: the next SubmitStep restarts at sequence 0
+    // and the server re-evaluates the same step.
+    LogInfo("[move] step dir=%u rejected (%u/%u); retrying from seq 0\n",
+            dir, nav_.movement.rejectStreak, kMaxStepRejects);
+}
+
+void Client::BotResetMovement() {
+    nav_.movement.pending.clear();
+    nav_.movement.moveSeq = 0;
+}
+
+
+void Client::BotStopFollow(const char* reason) {
+    if (!nav_.follow.active) return;
+    LogInfo("[follow] stopped (%s)\n", reason ? reason : "off");
+    nav_.follow.active = false;
+    nav_.follow.serial = 0;
+    nav_.follow.distance = 1;
+    nav_.follow.lastReplanMs = 0;
+    nav_.follow.lastProbeMs = 0;
+    BotAbortPath(reason);
+    BotResetMovement();
+}
+
+
+void Client::BotStartFollow(u32 serial, u32 followDistance) {
+    if (!EnsureWorldLoaded()) return;
+    nav_.follow.active = true;
+    nav_.follow.serial = serial;
+    nav_.follow.distance = followDistance ? followDistance : 1;
+    nav_.follow.lastReplanMs = 0;
+    nav_.follow.lastProbeMs = 0;
+    BotAbortPath("follow start");
+    BotResetMovement();
+    const char* name = MobileName(serial);
+    LogInfo("[follow] tracking %s0x%08X (distance=%u)\n",
+                name ? name : "", serial, nav_.follow.distance);
+    u8 pkt[8];
+    const usize n = build::MobNameQuery(pkt, serial);
+    Send(pkt, n, "0x98 AllNames (follow start)");
+}
+
+
+bool Client::ChooseFollowGoal(i32* gx, i32* gy, i8* gz) const {
+    if (!nav_.follow.active || !gx || !gy || !gz || !world_) return false;
+    const MobileObj* t = FindMobileBySerial(nav_.follow.serial);
+    if (!t) return false;
+
+    const u8 behind = static_cast<u8>((t->dir + 4) & 0x07);
+    for (u8 rank = 0; rank < 8; ++rank) {
+        const u8 d = (rank == 0) ? behind : static_cast<u8>((behind + rank) & 0x07);
+        i32 dx, dy;
+        bot::DirToDelta(d, &dx, &dy);
+        const i32 tx = t->x + dx;
+        const i32 ty = t->y + dy;
+        if (FindMobileAt(tx, ty, t->z)) continue;
+
+        // Follow must stick to the target's floor. Using our current z here
+        // picks the wrong layer in multi-storey columns (e.g. target fell
+        // from a second floor and we're still above).
+        const world::WalkQuery q = MakeWalkQuery(tx, ty, t->z);
+        const auto wr = world_->QueryCell(q);
+        if (!wr.walkable) continue;
+
+        *gx = tx;
+        *gy = ty;
+        *gz = wr.standZ;
+        return true;
+    }
+    return false;
+}
+
+
+void Client::BotFollowTick() {
+    if (!nav_.follow.active) return;
+    const i64 now = NowMs();
+
+    const MobileObj* t = FindMobileBySerial(nav_.follow.serial);
+    if (!t) {
+        if (now - nav_.follow.lastProbeMs >= kFollowProbeMs) {
+            u8 pkt[8];
+            const usize n = build::MobNameQuery(pkt, nav_.follow.serial);
+            Send(pkt, n, "0x98 AllNames (follow probe)");
+            nav_.follow.lastProbeMs = now;
+            LogInfo("[follow] waiting for 0x%08X to appear in range\n",
+                    nav_.follow.serial);
+        }
+        return;
+    }
+
+    const i32 dx = AbsDiff(playerX_, t->x);
+    const i32 dy = AbsDiff(playerY_, t->y);
+    const i32 dz = AbsDiff(playerZ_, t->z);
+    if (dx <= static_cast<i32>(nav_.follow.distance) &&
+        dy <= static_cast<i32>(nav_.follow.distance) && dz <= 8) {
+        // Already inside follow radius: don't keep replanning. Let any
+        // in-flight move settle first to avoid stop/start jitter.
+        if (nav_.movement.pending.empty()) {
+            BotAbortPath("inside follow radius");
+        }
+        return;
+    }
+
+    if (now - nav_.follow.lastReplanMs < kFollowReplanMinMs) return;
+    i32 gx = 0, gy = 0;
+    i8 gz = 0;
+    if (!ChooseFollowGoal(&gx, &gy, &gz)) return;
+
+    const bool goalChanged = (gx != nav_.bot.goalX || gy != nav_.bot.goalY ||
+                              !nav_.bot.hasGoalZ ||
+                              gz != static_cast<i8>(nav_.bot.goalZ));
+    if (!goalChanged &&
+        (nav_.bot.active || nav_.bot.planning || !nav_.movement.pending.empty())) {
+        return;
+    }
+
+    nav_.bot.goalX = gx;
+    nav_.bot.goalY = gy;
+    nav_.bot.goalZ = gz;
+    nav_.bot.hasGoalZ = true;
+    nav_.bot.active = true;
+    nav_.bot.planning = false;
+    nav_.bot.replanCount = 0;
+    nav_.follow.lastReplanMs = now;
+    BotReplanToGoal();
+    BotPumpMoves();
+}
+
+
+void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
+    if (!EnsureWorldLoaded()) return;
+    nav_.follow.active = false;
+    if (!nav_.movement.pending.empty() || !nav_.bot.path.empty() || nav_.bot.planning) {
+        LogWarn(
+            "[bot] busy (inflight=%zu path=%zu planning=%s); type 'stop' first\n",
+            nav_.movement.pending.size(), nav_.bot.path.size(),
+            nav_.bot.planning ? "yes" : "no");
+        BotSignalDone(false, "busy");  // reject a scripted goto issued while busy
+        return;
+    }
+    nav_.bot.goalX = tx;
+    nav_.bot.goalY = ty;
+    nav_.bot.goalZ = tz;
+    nav_.bot.hasGoalZ = hasZ;
+    nav_.bot.terrainBias = terrainBias;
+    nav_.bot.active = true;
+    nav_.bot.planning = false;
+    nav_.bot.replanCount = 0;
+    nav_.bot.resumeAtMs = 0;
+    nav_.bot.stuckWaits = 0;
+    nav_.bot.blacklist.ClearTransient();
+    nav_.bot.rejectedEdges.clear();
+    nav_.bot.doorRetryEdges.clear();
+    BotResetMovement();  // fresh fastwalk sequence (0 = resync)
+
+    if (nav_.bot.hasGoalZ)
+        LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d,z%d)\n",
+                    GaitResolvesToRun(sphere::Gait::Auto) ? "running" : "walking",
+                    playerX_, playerY_, static_cast<int>(playerZ_), tx, ty, tz);
+    else
+        LogInfo("[bot] %s from (%d,%d,%d) to (%d,%d)\n",
+                    GaitResolvesToRun(sphere::Gait::Auto) ? "running" : "walking",
+                    playerX_, playerY_, static_cast<int>(playerZ_), tx, ty);
+    BotReplanToGoal();
+}
+
+
+// Sends queued steps while a flight slot is free and the step cadence has
+// elapsed. Each move is predicted immediately (pos for a step, facing for a
+// turn) and reconciled later by 0x22 / 0x21.
+void Client::BotPumpMoves() {
+    if (!nav_.bot.active) return;
+    if (nav_.bot.planning) return;
+
+    const i64 now_ms = NowMs();
+    if (now_ms < nav_.bot.resumeAtMs) return;  // human reaction pause after a bump
+
+    if (nav_.movement.pending.empty()) BotLookaheadPatchPath();
+
+    // Pacing and the outstanding-step limit live in SubmitStep; this loop just
+    // keeps offering the next desired step until the controller says "not yet".
+    while (nav_.movement.pending.size() < nav_.movement.maxInFlight &&
+           !nav_.bot.path.empty()) {
+        const u8 dir = nav_.bot.path.front();
+        const bool wasStep = (dir == playerFacing_);
+        // Per-step gait inputs, gathered while we already have the target cell
+        // in hand. `lastStep` is the arrival step; the other two are decided
+        // from the same world query the door lookahead uses.
+        const bool lastStep = (nav_.bot.path.size() == 1);
+        bool doorStep = false;
+        bool shoveStep = false;
+        if (wasStep) {
+            i32 dx, dy;
+            bot::DirToDelta(dir, &dx, &dy);
+            const i32 nx = playerX_ + dx;
+            const i32 ny = playerY_ + dy;
+
+            const world::WalkQuery q = MakeGoalAwareWalkQuery(
+                nx, ny, playerZ_, nav_.bot.hasGoalZ, nav_.bot.goalX,
+                nav_.bot.goalY, nav_.bot.goalZ);
+            const auto wr = world_->QueryCell(q);
+            if (wr.walkable) {
+                doorStep = BotStepNeedsDoorOpen(playerZ_, nx, ny, wr.standZ);
+                shoveStep = BotIsMobileBlocking(nx, ny, wr.standZ);
+            }
+            if (wr.walkable && doorStep &&
+                !BotDoorRetryWasTried(playerX_, playerY_, playerZ_,
+                                      nx, ny, wr.standZ)) {
+                if (!nav_.movement.pending.empty()) return;
+                {
+                    u8 ob[8];
+                    const usize on = build::OpenDoor(ob);
+                    Send(ob, on, "0x12 OpenDoor (0x58 lookahead)");
+                    BotRememberDoorRetry(playerX_, playerY_, playerZ_,
+                                         nx, ny, wr.standZ);
+                    nav_.bot.resumeAtMs = now_ms + kDoorRetryWaitMs;
+                    LogInfo("[bot] door ahead at (%d,%d,z%d); OpenDoor before step\n",
+                            nx, ny, static_cast<int>(wr.standZ));
+                }
+                return;
+            }
+        }
+
+        // A* never touches the socket: it offers the next desired step to the
+        // movement controller, which owns pacing, sequencing, the gait, the
+        // outstanding-step limit and the local prediction.
+        const StepSubmit res =
+            SubmitStep(dir, BotStepGait(lastStep, doorStep, shoveStep), "astar");
+        if (res == StepSubmit::Sent) {
+            nav_.bot.path.pop_front();
+        } else if (res == StepSubmit::Turned) {
+            lastStepMs_ = 0;     // same direction is offered again as a step
+        } else if (res == StepSubmit::Failed) {
+            BotAbortPath("send failed");
+            BotResetMovement();
+            return;
+        } else {
+            return;              // throttled or outstanding-step limit
+        }
+    }
+
+    if (nav_.bot.path.empty() && nav_.movement.pending.empty()) {
+        nav_.bot.active = false;
+        LogInfo("[bot] arrived at (%d,%d,%d)\n",
+                    playerX_, playerY_, static_cast<int>(playerZ_));
+        BotSignalDone(true, "arrived");  // resolve any scripted `await goto()`
+    }
+}
+
+
+void Client::BotTick() {
+    // Expire stump overlays and refresh the clock ReadStatics rewrites against.
+    if (worldMap_) worldMap_->Stumps().Update(NowMs());
+    if (mobilesListPending_ && NowMs() >= mobilesListDeadlineMs_) {
+        FlushPendingMobilesList();
+    }
+    if (nav_.follow.active) BotFollowTick();
+    BotPollPathPlanner();
+    if (!nav_.bot.active) return;
+    if (nav_.bot.planning) return;
+    if (!nav_.movement.pending.empty()) {
+        // Watchdog: the oldest in-flight move should ack quickly. If it
+        // never does, the move was silently dropped — abort the path.
+        const i64 now_ms = NowMs();
+        if (now_ms - nav_.movement.pending.front().sentMs >
+                static_cast<i64>(kAckWatchdogMs)) {
+            LogWarn(
+                "[bot] watchdog: oldest move unacked %llds; aborting path\n",
+                static_cast<long long>(
+                    (now_ms - nav_.movement.pending.front().sentMs) / 1000));
+            BotResetMovement();
+            BotAbortPath("move ack watchdog");
+            return;
+        }
+    }
+    BotPumpMoves();
+}
+
+} // namespace uo

@@ -1,0 +1,67 @@
+# M3.6 -- travel from a Runebook page, using the real Recall spell.
+#
+# RUN ONLY AS SESSION 7 (RevolutionMageGM), the fenced mechanics probe.
+#
+# Page 1 of this character's runebook already holds "Britain" (1490,1555,30).
+# It was put there in m36_rb5 by targeting a marked rune through the book's own
+# "add rune" button, and it is still there after a relog -- which is itself the
+# persistence proof: the rune lives inside the book, not in the backpack, so
+# `pack_graphic 0x1F14` no longer finds it and the earlier scenario aborted.
+#
+# The book does not move anybody. Pressing a page's travel button makes the
+# book surface that page's rune to the backpack and asks the character to cast
+# [SPELL 32] Recall at it, so the skill check, the 11 mana, the fizzle roll and
+# every destination rule the server has all still apply.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember book pack_graphic 0x22C5
+require book
+
+# ------------------------------------------------- 1. stand somewhere it isn't
+goto 1480 1558
+wait_goto
+sleep 2000
+
+# ------------------------------------------------------ 2. open and read page 1
+use @book
+wait_action
+sleep 2500
+gump_report
+
+# ---------------------------------------------------------- 3. travel, page 1
+# The book holds a charge now, so this takes the charged path: it surfaces a
+# stored Recall SCROLL and uses that instead of asking the character to cast.
+# That is what makes the historical "no Magery needed" rule real rather than
+# cosmetic -- a scroll cast never needed the caster's own skill.
+gump_button 11
+sleep 2500
+
+# Answer the spell's cursor with the page's rune, which the book has just moved
+# into the backpack.
+#
+# Resolved LIVE rather than by a fixed serial. Two live lessons forced this:
+# opening the backpack to search for the rune CANCELS the target cursor
+# ("Targeting cancelled"), and a fixed serial goes stale because Sphere runes
+# wear out and the book re-cuts them ("You can't see the target"). The pack was
+# opened earlier in this scenario, so the client already sees the rune arrive
+# and can resolve it without touching the cursor.
+remember rune pack_graphic 0x1F14
+require rune
+wait_target
+target @rune
+sleep 8000
+
+say the runebook brought me back
+sleep 2000
+logout

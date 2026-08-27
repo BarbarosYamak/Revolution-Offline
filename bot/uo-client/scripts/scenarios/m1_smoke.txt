@@ -1,0 +1,35 @@
+# M1 acceptance scenario — Revolution Offline.
+#
+# Proves the bot behaves as a real network player against Sphere Source-X:
+# enter world, open the backpack, speak, walk 10 legal tiles, stay connected
+# past the 10-minute mark, log out cleanly.
+#
+# Every line is a player action. No server state is touched directly.
+
+wait_world
+
+# Let the initial world burst land (0x78 mobiles, 0x1A items, 0x11 status,
+# 0x4E/0x4F light, 0x20 draw-player) before acting.
+sleep 3000
+
+backpack
+wait_backpack
+
+say selam
+sleep 1000
+
+# 10 legal tiles: 5 east, then 5 back west. The first move in a new facing is
+# a turn, which the server acks without moving; the step follows.
+walk e 5
+wait_walk
+sleep 500
+walk w 5
+wait_walk
+
+say selam
+
+# Stability window: stay connected and idle. The 0x73 keepalive is the only
+# traffic here, which is exactly what DeadSocketTime is about.
+hold 600000
+
+logout

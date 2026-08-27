@@ -1,0 +1,28 @@
+# M2.5 Scenario 4 -- run policy on a real journey.
+#
+# `gait auto` is the session default and resolves to Run. Nothing in this file
+# pins a gait per step: the point is that ordinary travel runs by itself, and
+# that the run bit and the 200 ms cadence are decided inside SubmitStep, which
+# is still the only place a 0x02 is built.
+#
+# PASS is read from the log: `[bot] running from ...` on every leg, and zero
+# 0x21 move rejects for the whole run.
+
+wait_world
+sleep 2000
+gait auto
+ensure_peace
+
+travel_place Yew healer
+wait_travel
+expect_travel ok
+expect_place Yew healer
+
+travel_place Yew banker
+wait_travel
+expect_travel ok
+expect_place Yew banker
+
+say ran the whole way
+sleep 1000
+logout

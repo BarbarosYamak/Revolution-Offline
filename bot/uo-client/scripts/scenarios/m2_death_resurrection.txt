@@ -1,0 +1,58 @@
+# M2 — death and resurrection, through real world mechanics only.
+#
+# Death: Source-X sends 0xAF to BYSTANDERS and explicitly excludes the dying
+# player's own client (src/game/chars/CCharAct.cpp:4446); the switch to the
+# ghost body emits no packet at all (:4493-4494). Our own death signal is the
+# 0x2C resurrect menu, which is what the client keys on.
+#
+# Resurrection: replying to 0x2C does NOT resurrect on this server -- both
+# choices take the same branch (src/network/receive.cpp:616-639). A healer NPC
+# resurrects a ghost on its own when it sees one
+# (src/game/chars/CCharNPCAct.cpp:895-937). So the ghost simply walks to where
+# the wandering healers spawn and waits.
+#
+# 689,753 is a worldgen wildlife spawn (bears, wolves, cougars) AND a wandering
+# healer spawn -- somewhere to die and someone to raise us, in one place.
+#
+# No admin commands, no forced damage, no local state changes.
+
+wait_world
+sleep 2000
+
+remember pack backpack
+open @pack
+wait_action
+
+say walking to the wilds
+goto 689 753
+wait_goto
+sleep 3000
+
+say looking for trouble
+remember foe mobile_nearest
+require foe
+
+# Close to melee range first: the client has no combat AI, so if the scenario
+# does not walk to the target nothing ever trades blows.
+goto_mobile @foe
+wait_goto
+sleep 1000
+
+war on
+attack @foe
+wait_action
+
+# Stand and take it. The character has 30 hit points and no combat AI, so a
+# bear settles this quickly. The server decides when we die.
+wait_dead
+
+say i am a ghost
+sleep 2000
+
+# Acknowledge the ghost state, then wait for a healer to do its work.
+resurrect
+wait_alive
+
+say i live again
+sleep 2000
+logout

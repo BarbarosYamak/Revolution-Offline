@@ -1,0 +1,7 @@
+wait_world
+sleep 3000
+say .serv.resync
+sleep 25000
+say resynced
+sleep 1500
+logout

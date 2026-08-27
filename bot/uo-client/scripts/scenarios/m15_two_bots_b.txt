@@ -1,0 +1,22 @@
+# M1.5 two-session acceptance — session B.
+#
+# Deliberately different from session A in direction, timing and speech, so the
+# server log and the per-session client logs show two independent players
+# rather than one duplicated stream.
+
+wait_world
+sleep 4500
+
+say bot02 online
+
+walk s 3
+wait_walk
+sleep 500
+walk n 3
+wait_walk
+
+say bot02 walk complete
+
+hold 330000
+
+logout

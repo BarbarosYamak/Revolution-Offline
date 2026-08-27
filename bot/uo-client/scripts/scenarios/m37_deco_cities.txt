@@ -1,0 +1,151 @@
+# M3.7 -- run every REMAINING Felucca city/dungeon decorator pass.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+# Operator tooling. Touches no character's skills, stats, gold or inventory.
+#
+# WHAT IS RUN, AND WHAT IS DELIBERATELY NOT
+#
+# The world decorator lists 40 Felucca entries (worlddecorator_facet_0_0..39).
+# This file calls 38 of them by name rather than calling `f_decorate_facet 0`,
+# for two reasons -- and both are omissions, not oversights:
+#
+#   * deco_britain_felucca is SKIPPED: it already ran at 01:26 and the
+#     decorator is NOT idempotent. Every function is a flat list of
+#     `serv.newitem` with no existence check, so a second pass would place a
+#     duplicate of all ~4500 Britain items on the same tiles.
+#
+#   * deco_magincia_ruined_felucca (16509 lines, the largest file in the set)
+#     is SKIPPED because it is MUTUALLY EXCLUSIVE with deco_magincia_felucca:
+#     they decorate the same tiles with the intact and the destroyed city. The
+#     decorator gump offers them as two separate buttons precisely because the
+#     operator is meant to pick one. Intact Magincia is chosen here so the city
+#     keeps working shops; whether RevolutionUO ran the 2007 ruined state is
+#     UNKNOWN and is recorded as an open question rather than guessed.
+#
+# Facets 1-5 are also not run:
+#
+#   * Trammel (facet 1) is enabled in sphere.ini but the atlas is map 0 only and
+#     the generator skips every non-map-0 row (M2.5 debt 9). Decorating it would
+#     add tens of thousands of items no bot can ever see.
+#   * Ilshenar / Malas / Tokuno / Ter Mur (facets 2-5) have NO client data --
+#     map2..map5 are commented out of spheretables.scp because Revolution ships
+#     no map2-5.mul, and Sphere auto-fixes an unsupported map onto MAP 0. Running
+#     them would scatter their furniture across Felucca. M0 disabled those maps
+#     for exactly this reason.
+#
+# f_stock_bookcases is not run either: it is `foritems 9999` around the caller
+# creating five books per bookcase, world-wide, and books are economically
+# irrelevant. Recorded as available, not needed.
+#
+# EXPECT tiledata errors in the server log, of the form
+#   ERROR:(<file>,<line>) ITEMDEF has invalid ID=NNNNN (0XXXX)
+#          (value is greater than the tiledata maximum index)
+# Scripts-X's decorator targets a modern SA/HS tiledata; Revolution's is
+# Renaissance-era. Britain produced exactly ONE across ~4500 placements. Sphere
+# logs the bad itemdef and continues, so these are data-era noise, not failures
+# -- but count them afterwards, because a large count would mean a city file is
+# mostly post-era art and its pass is not worth keeping.
+#
+# Sleeps are sized from each file's line count (Britain, 12798 lines, completed
+# inside 30s).
+
+wait_world
+sleep 3000
+say .show p
+sleep 2500
+
+# ------------------------------------------------------------ large cities
+say .deco_orc_cave_felucca
+sleep 30000
+say .deco_jhelom_felucca
+sleep 24000
+say .deco_yew_felucca
+sleep 20000
+say .deco_moonglow_felucca
+sleep 20000
+say .deco_nujelm_felucca
+sleep 20000
+say .deco_trinsic_felucca
+sleep 20000
+say .deco_skara_brae_felucca
+sleep 20000
+say .deco_vesper_felucca
+sleep 20000
+
+# ---------------------------------------- persist once mid-run, then carry on
+say .serv.savestatics
+sleep 25000
+
+# ----------------------------------------------------------- medium cities
+say .deco_hythloth_felucca
+sleep 14000
+say .deco_minoc_felucca
+sleep 14000
+say .deco_magincia_felucca
+sleep 12000
+say .deco_ocllo_felucca
+sleep 12000
+say .deco_serpents_hold_felucca
+sleep 10000
+say .deco_khaldun_felucca
+sleep 10000
+say .deco_shame_felucca
+sleep 10000
+say .deco_covetous_felucca
+sleep 10000
+say .deco_deceit_felucca
+sleep 10000
+say .deco_destard_felucca
+sleep 8000
+say .deco_wind_felucca
+sleep 8000
+say .deco_hedge_maze_felucca
+sleep 8000
+say .deco_buccaneers_den_felucca
+sleep 8000
+say .deco_despise_felucca
+sleep 7000
+say .deco_papua_felucca
+sleep 7000
+say .deco_wrong_felucca
+sleep 7000
+
+# ------------------------------------------------------------ small entries
+say .deco_cove_felucca
+sleep 6000
+say .deco_fire_dungeon_felucca
+sleep 5000
+say .deco_delucia_felucca
+sleep 5000
+say .deco_ice_dungeon_felucca
+sleep 5000
+say .deco_terathan_keep_felucca
+sleep 5000
+say .deco_sea_market_felucca
+sleep 5000
+say .deco_solen_hive_felucca
+sleep 5000
+say .deco_prism_of_light_felucca
+sleep 4000
+say .deco_sanctuary_felucca
+sleep 4000
+say .deco_heartwood_felucca
+sleep 4000
+say .deco_blighted_cove_magincia
+sleep 4000
+say .deco_palace_of_proxysmus_felucca
+sleep 4000
+say .deco_painted_cave_felucca
+sleep 4000
+say .place_terrain_fixes_felucca
+sleep 12000
+
+# ------------------------------------------------------- persist everything
+say .serv.savestatics
+sleep 40000
+say .save
+sleep 20000
+
+say felucca decorated
+sleep 1500
+logout

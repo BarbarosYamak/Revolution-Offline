@@ -1,0 +1,14 @@
+# Verify what the server's own newbie template handed the new character.
+# Nothing here grants anything: the client only asks, Source-X decides.
+wait_world
+sleep 3000
+
+remember pack backpack
+open @pack
+wait_action
+expect success
+sleep 2000
+
+say kit check
+sleep 1000
+logout

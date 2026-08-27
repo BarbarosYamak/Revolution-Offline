@@ -1,0 +1,89 @@
+# M3.7 SLICE A, LAST LINK -- sew a garment from cloth this character wove.
+#
+# RUN AS SESSION 11 (RevolutionWeaver).
+#
+# WHY THIS EXISTS SEPARATELY FROM m37_slice_a_finish.txt
+#
+# The finisher cuts a bolt AND sews. It ran once, cut the weaver's only bolt
+# into fifty cloth, and proved that half:
+#
+#   [scenario] item 0x175D gain confirmed: 0 -> 50
+#
+# Re-running it then aborted at `REQUIRED 'bolt' is not bound` -- correctly, and
+# for a reason that is not a bug: THE BOLT WAS ALREADY SPENT. A scenario that
+# consumes a non-renewable input cannot be idempotent, and pretending otherwise
+# would mean either re-walking to the sheep field (twelve minutes each way, and
+# it has twice failed to find a second woolly sheep) or quietly relaxing the
+# `require` that is doing its job. So the two links are split, and this file
+# starts from the cloth the cut produced.
+#
+# WHAT IT PROVES
+#
+#   sheep -> wool -> yarn -> bolt of cloth -> cloth -> A FINISHED GARMENT
+#
+# every step of which this character performed itself, on a live server.
+#
+# THE MENU IS THE EVIDENCE, and it corrected this milestone's own reading.
+# Sphere filters a craft menu to what the character can actually make right
+# now. sm_tailor_cloth DEFINES five entries; a weaver holding cloth and no
+# thread was shown two:
+#
+#   [0x7C] "Cloth" (2 options)
+#           1) Headwear
+#           2) bolt of cloth (50 folded cloth)
+#   [0x7C] "Headwear" (2 options)
+#           1) wide-brim hat (12 folded cloth)
+#           2) straw hat (10 folded cloth)
+#
+# Shirts, Pants and Misc. are gone because they stitch. Inside Headwear the
+# bandana (2 cloth + 1 THREAD) is gone for the same reason, while two hats
+# remain. So the earlier claim that EVERY tailoring garment needs thread was
+# wrong: i_hat_wide_brim (0x1714) is `RESOURCES=12 i_cloth`,
+# `SKILLMAKE=Tailoring 6.2` -- cloth only. A wool tailor is not shut out of
+# clothing; it is shut out of the recipes that stitch. Narrower, and truer.
+#
+# INDICES ARE INTO THE FILTERED MENU, not into the script file. Sending
+# `menu_choose 3` for Headwear because that is its position in
+# sm_tailor_cloth earned exactly what it deserved:
+#   [0x7D] dialog index 3 out of range (2 options)
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+mark_item 0x1714
+
+remember kit carried_graphic 0x0F9D,0x0F9B
+require kit
+
+remember cloth pack_graphic 0x175D
+require cloth
+
+use @kit
+wait_target
+target @cloth
+sleep 2500
+
+menu_choose 1
+sleep 2500
+menu_choose 1
+sleep 4000
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+expect_item_gain 0x1714
+
+say from the sheep's back to the hat on my head
+sleep 1500
+logout

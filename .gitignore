@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------- SECRETS
+# The shard runs Md5Passwords=0, so every password it stores is PLAINTEXT.
+# Nothing in these ever belongs in version control.
+*.env
+*credential*
+accounts/
+sphereaccu.scp
+
+# ------------------------------------------------- CLIENT DATA (copyright)
+# Ultima Online / Revolution client files. Redistributable by the rights
+# holders only. This project reads them; it does not own them.
+mul/
+*.mul
+*.idx
+client.dll
+*.exe
+
+# --------------------------------------------------------- CHURN / OUTPUT
+build*/
+save/
+logs/
+*.log
+*.console.txt
+*.err.txt
+save_backup_*/
+*.bak_*
+
+# ------------------------------------------------------------------ LOCAL
+# Runner output and the operator's own working files. The *.ps1 tooling in
+# local/dev IS committed; everything else it produces is not.
+local/dev/*.txt
+local/revolution-client/
+.idea/

@@ -1,0 +1,36 @@
+# GM TEST CHARACTER -- NOT AN M3 PROGRESSION PROOF.
+#
+# This creates the character the ordinary way and does nothing else. The
+# Magery 60, the stats and the full spellbook are applied afterwards by
+# SERVER CONSOLE commands, which is an operator action, not gameplay.
+#
+# It exists so spell behaviour can be tested now instead of after the ~17
+# hours of real training that docs/M3_PROGRESSION_ECONOMY.md 5.4 measured.
+# Nothing this character does may be cited as evidence of how a character
+# progresses on this shard.
+#
+# Creation asks for Magery 50 / Meditation 30 / EvalInt 20 -- the most a 0x00
+# packet is allowed (Source-X clamps each to 50 and the sum to 100 in
+# CChar::InitPlayer). The console raises it from there.
+
+wait_world
+sleep 3000
+request_skills
+sleep 2000
+skill_report
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# Report the UIDs the console needs. [NEWBIE MAGERY] hands every mage a
+# spellbook already (sp_tm_newbie.scp:451-453) with MORE1=0382a8c38 -- three
+# spells in each of circles 1-4 -- and the comment right beside it says how to
+# fill it: "to enable full spellbook just set MORE1=0ffffffff and
+# MORE2=0ffffffff". So no item needs creating, only editing.
+remember book pack_graphic 0x0EFA
+require book
+
+say gm test mage created
+sleep 1000
+logout

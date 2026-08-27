@@ -1,0 +1,37 @@
+# M2.5 Scenario 1 -- semantic local service.
+#
+# The point of this file is what it does NOT contain: there is no route, no
+# waypoint chain and no bank coordinate anywhere in it. It names a need
+# ("a banker, in Yew") and the travel layer resolves that against the world
+# atlas, plans the route and walks it.
+#
+# For reference only, not used by the scenario: the shard's own worldgen puts
+# the Yew banker spawner at 652,820
+# (functions/worldgen/spawns/felucca/Vendors_spawns_felucca.scp).
+
+wait_world
+sleep 2000
+
+# Travelling is a peaceful activity; make sure we are not carrying a weapon
+# from some earlier session.
+ensure_peace
+expect_peace
+
+travel_service banker Yew
+wait_travel
+expect_travel ok
+
+# Arrival is judged against the place's own interaction radius -- which is the
+# spawner's home range, i.e. how far the shard lets that banker wander.
+expect_place Yew banker
+expect_region Yew
+
+# Now the live half: find the actual banker standing there. A name is not
+# enough (0x98 returns first names only); the trade is in the paperdoll title.
+scan_mobiles
+sleep 4000
+expect_service_known banker
+
+say the bank is here
+sleep 1000
+logout

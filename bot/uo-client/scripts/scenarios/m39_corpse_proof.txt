@@ -1,0 +1,98 @@
+# M3.9 -- prove corpse recovery works, end to end, in ONE session.
+#
+# RUN AS SESSION 3 (RevolutionSpar).
+#
+# WHY THIS SCENARIO EXISTS
+#
+# travel_corpse has never worked. `knowledge_.NoteDeath()` was called only from
+# the body-change handler, but Source-X emits NO packet when the ghost body is
+# swapped in -- 0x2C is the only notification -- so the recording never ran and
+# every corpse run failed with "this character has not died", immediately after
+# dying. Corpse recovery was dead code from the day it was written, and nothing
+# caught it because until M3.9 populated the graveyards, nothing on this shard
+# had ever killed a bot outside a controlled M2 test.
+#
+# `Client::RecordOwnDeath()` is now called from both death paths. This is the
+# live proof.
+#
+# WHY IT HAS TO BE ONE SESSION
+#
+# The first re-test failed for an interesting reason that is NOT the bug: the
+# shard had been restarted, so the world rolled back to the last save and the
+# death was undone -- the character was alive, with its gear, and correctly
+# reported "has not died". The death record lives in per-run knowledge, so the
+# death and the corpse run must happen in the same login.
+#
+# THIS SCENARIO DELIBERATELY GETS THE BOT KILLED.
+#
+# That is the cost of the proof and it is accepted knowingly: death here is FULL
+# LOOT LOSS. RevolutionSpar is the M2 sparring fixture -- it carries no economy
+# evidence, unlike the miner or the weaver, which is exactly why it is the one
+# sent. If the recovery works, it gets its equipment back; if it does not, we
+# have learned something more important than a set of starter gear.
+
+wait_world
+sleep 2000
+ensure_peace
+gait run
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1200
+mark_gold
+
+use_moongates on
+
+# ------------------------------------------------------------ 1. go and die
+# The Britain cemetery, where three undead killed this character in 27 seconds
+# the first time. War mode is never entered: fighting back would only make the
+# outcome uncertain, and this scenario needs a death, not a fight.
+travel_point 1369 1475
+wait_travel
+expect_travel ok
+
+say I am here to die on purpose
+
+# The undead do the rest. If they somehow do not, this waits rather than
+# pretending: a scenario that continues past a death it never observed would
+# prove exactly nothing.
+wait_dead
+say I am a ghost
+
+# --------------------------------------------- 2. THE PROOF: find the corpse
+# Before the fix this line aborted the scenario with "this character has not
+# died" -- seconds after dying. It must now resolve.
+sleep 3000
+travel_corpse
+wait_travel
+expect_travel ok
+say my corpse is here
+
+# ------------------------------------------------------- 3. get raised again
+# A wandering healer is the ordinary player remedy; there are sixty of them in
+# the world and raising ghosts is what they do. Nothing privileged happens here.
+travel_service healer
+wait_travel
+sleep 4000
+resurrect
+wait_action
+sleep 2000
+wait_alive
+say alive again
+
+# ------------------------------------------- 4. and go back for the equipment
+# The full loop is what M4 actually needs: a bot that dies must be able to get
+# its gear back, or it degrades permanently on its first death -- and death is
+# now routine on this shard.
+travel_corpse
+wait_travel
+expect_travel ok
+sleep 2000
+say standing over my own corpse, alive
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout

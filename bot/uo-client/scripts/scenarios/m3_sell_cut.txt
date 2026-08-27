@@ -1,0 +1,162 @@
+# M3 -- the better half of the fishing economy: carve, then sell steaks.
+#
+# m3_sell2 already proved the plain loop live: sixteen fish caught by fishing,
+# four sold whole to Shika the fisherwoman for "Here you are, 4 gold coins."
+# 1gp apiece. This file takes the remaining catch through the processing step
+# and records what the shard actually pays for it.
+#
+# What the shard's own tables say, all of it checked rather than assumed:
+#
+#   i_fish_big_1..4   VALUE=2  WEIGHT=5.0    bought by fisher and cook
+#   i_fish_cut_raw    VALUE=3  WEIGHT=0.1    bought by COOK ONLY (tm_vend.scp:730)
+#   i_fish_cut_cooked VALUE=3  WEIGHT=0.1    bought by NOBODY -- it appears in
+#                                            no BUY= line in the whole ruleset
+#   i_fish_cooked_small VALUE=1               ditto, and worth LESS than raw
+#
+# and cutting a fish with any blade multiplies the stack by four:
+# CClientTarg.cpp:1950, `pItemTarg->SetAmount(4 * pItemTarg->GetAmount())`.
+# So one 2gp fish becomes four 3gp steaks -- and cooking them, which general
+# UO instinct says to do, would make them unsellable on this shard.
+#
+# The 5-stone fish weight is also why m3_income7 kept hearing "You put the
+# fish at your feet. It is too heavy." on a STR 30 character. Steaks weigh 0.1.
+#
+# Two further live lessons this file is shaped by:
+#
+#   a) An NPC must be IN CONVERSATION before a keyword registers. m3_income7
+#      arrived and said "sell" 25ms later and got Shika: "Hmm?" straight from
+#      e_Human_HearUnk. Stand there, let e_Human_ConvInit open, greet, trade.
+#   b) CChar::CanTouch is `iDist > 2` (CCharStatus.cpp:1423) and vendors wander
+#      (walkRange 5), so re-approach immediately before each exchange rather
+#      than trusting an arrival from ten seconds ago.
+#
+# Addressing the vendor by name is now done by the client itself
+# (Client::AddressMobile): a bare "buy" made m3_sell2 receive the shoemaker's
+# stock instead of the provisioner's.
+
+wait_world
+sleep 2000
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+
+# ------------------------------------------------------------------ 2. a blade
+#
+# Any bladed weapon carves a fish -- IT_WEAPON_FENCE/SWORD/AXE/MACE_SHARP or a
+# carpentry chop tool. The fishing pole will not: it is TYPE=t_fish_pole, not a
+# weapon type, which is why the fisherman needs something else in the pack.
+#
+# This leg turned out to be unnecessary and is kept because the trip is part of
+# the economy proof: `MALE_DEFAULT` already hands every new character a dagger
+# (templates_special/sp_tm_newbie.scp), so `require knife` below binds it
+# whether or not the purchase happened. In the live run the provisioner had no
+# daggers in stock and `vendor_buy` quietly did nothing -- a small defect in
+# its own right, recorded as debt: an item that is not in the offer should be
+# an explicit failure, not a no-op.
+
+travel_service provisioner
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember shop mobile_trade provisioner
+require shop
+
+travel_entity @shop 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @shop 1
+wait_travel
+vendor_open @shop buy
+wait_action
+expect success
+sleep 1500
+
+travel_entity @shop 1
+wait_travel
+vendor_buy @shop vendor_graphic:0x0F51 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+remember knife carried_graphic 0x0F51,0x0F52
+require knife
+
+# ------------------------------------------------------------------- 3. carving
+#
+# One cut per stack: the whole stack is multiplied at once.
+
+mark_item 0x097A
+
+remember f2 pack_graphic 0x09CD
+use @knife
+wait_target
+target @f2
+sleep 1500
+
+remember f3 pack_graphic 0x09CE
+use @knife
+wait_target
+target @f3
+sleep 1500
+
+remember f4 pack_graphic 0x09CF
+use @knife
+wait_target
+target @f4
+sleep 1500
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x097A
+
+# ------------------------------------------------------------------ 4. the cook
+
+travel_service cook
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+remember cook mobile_trade cook
+require cook
+
+travel_entity @cook 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @cook 1
+wait_travel
+vendor_sell_open @cook sell
+wait_action
+expect success
+sleep 1500
+
+mark_gold
+travel_entity @cook 1
+wait_travel
+vendor_sell @cook vendor_sell_graphic:0x097A 60
+wait_action
+sleep 2500
+expect_gold_gain
+
+open @pack
+wait_action
+sleep 1500
+skill_report
+
+say a fisherman's work
+sleep 1000
+logout

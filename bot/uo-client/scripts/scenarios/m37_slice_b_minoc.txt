@@ -1,0 +1,314 @@
+# M3.7 SLICE B -- mine -> ore -> smelt -> ingot -> forged dagger, at Minoc.
+#
+# RUN AS SESSION 10 (RevolutionMiner), created by an ordinary 0x00 packet:
+#   --create-skills 45:50,7:30,37:20   Mining 50 / Blacksmithy 30 / Tinkering 20
+#   --create-stats  50:20:10           STR 50 / DEX 20 / INT 10
+# The shard clamps each stat to 60 and the sum to 80, each skill to 50 and the
+# sum to 100, and picks the kit itself. Nothing is GM-provisioned.
+#
+# WHY STR 50, AND WHY NOT THE FISHER. This is the hardest constraint M3.7 found
+# and it took four failed runs to see:
+#
+#   Revolution's tiledata gives                 equip layer
+#       0x0F39 i_shovel                             0   <- UNWEARABLE
+#       0x0FBB i_tongs                              0   <- UNWEARABLE
+#       0x0E85 i_pickaxe                            1
+#       0x13E3 i_hammer_smith                       1
+#
+#   and skill45_mining.scp:30 gates @PreStart on <SRC.WEAPON.USESCUR>, where
+#   SRC.WEAPON is the EQUIPPED weapon. So the pickaxe is the ONLY digging tool
+#   that can go in a hand -- and it carries REQSTR=50.
+#
+#   A Fishing/Mining hybrid starts at STR 30 and therefore CANNOT MINE AT ALL on
+#   this shard, no matter its Mining skill. The shovel looks like the answer and
+#   is not: it has 50 charges and can never be worn, so every swing answers
+#   "The tool is out of charges."
+#
+#   The same applies to smithing: tongs are unwearable, so CClientUse.cpp:1273's
+#   LayerFind(LAYER_HAND1) can never find them. A smith needs i_hammer_smith.
+#
+#   Mining 50.0        >= the 20.0 floor iron smelting needs (i_ingot_iron TDATA1)
+#   Blacksmithing 30.0 >= the 0.0 a dagger needs
+#   pickaxe from NEWBIE MINING, and STR 50 to lift it
+#
+# WHY MINOC, AND NOT BRITAIN. Two live findings forced the move, and both are
+# worth keeping:
+#
+#   1. `i_pickaxe` carries REQSTR=50 and this character has STR 30. The first
+#      run died on "System: Not strong enough to equip pickaxe." -- the shard's
+#      own NEWBIE MINING / NEWBIE BLACKSMITHING kit hands out a tool its owner
+#      cannot lift. `i_shovel` is the same TYPE (t_weapon_mace_pick, so it
+#      mines) and has no REQSTR at all. Only the TINKER sells shovels.
+#   2. Britain's one tinker place is a GUILDMASTER -- the second run scanned it
+#      and found "Justine, the engineer guildmistress", who keeps no shop. Same
+#      trap M3 hit with "Caedmon, the mage guildmaster".
+#
+# Minoc is the mining town and has a real tinker. It also has what Britain does
+# not: a forge at the mine mouth. The decorator placed one at (2561,501,0) and
+# the rock at (2563,501) is TWO TILES away -- so the miner smelts where it digs,
+# which is exactly the geography a mining economy expects.
+#
+# COORDINATES, all read out of Revolution's own map0.mul and Scripts-X's own
+# decorator, none invented:
+#   Minoc tinker   (2461,457,15)   atlas PLACE, trade=tinker
+#   stand          (2562,501,0)    land tile, z=0, walkable
+#   rock           (2563,501,1)    tile 0x0234, inside t_rock's 021f-0243 range
+#   forge          (2561,501,0)    city_minoc_deco_felucca.scp
+#
+# ENGINE RULES BEING EXERCISED, read from Source-X first:
+#   mining    shovel is t_weapon_mace_pick; DClick opens a ground target
+#             (CClientUse.cpp:426)
+#   ore       r_default_rock = 50.0 mr_iron of ~99.9, REAPAMOUNT=1,3,
+#             SKILL=1.0,30.0, REGEN=60*60*10 -- ten hours per tile
+#   smelting  1 ore -> 1 INGOT, and the skill rolled is MINING, not Blacksmithy
+#             (CCharSkill.cpp:1154). Difficulty from TDATA1/TDATA2 = 20.0/50.0.
+#             ON FAILURE it consumes rand(amount/2)+1 ore -- up to HALF
+#   forge     CWorldMap::FindItemTypeNearby scans dynamics, terrain AND statics
+#   smithing  hammer EQUIPPED in HAND1, forge within 3 tiles
+#
+# THE STARTING-STOCK PROBLEM. NEWBIE BLACKSMITHING hands out FIFTY iron ingots,
+# so "the character has ingots" proves nothing. mark_item baselines the ingot
+# count before smelting and the proof is the DELTA -- nothing else in this
+# scenario creates one.
+#
+# Nothing here spawns ore, ingots or a dagger.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+mark_gold
+
+# The pickaxe comes from NEWBIE MINING; at STR 50 this character can hold it.
+remember pick carried_graphic 0x0E85,0x0E86
+require pick
+
+# ------------------------------------------- 1. a tool it can actually lift
+travel_point 2461 457
+wait_travel
+expect_travel ok
+sleep 2500
+
+scan_mobiles
+sleep 4000
+remember tink mobile_trade tinker,engineer
+require tink
+
+travel_entity @tink 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @tink 1
+wait_travel
+vendor_open @tink buy
+wait_action
+expect success
+sleep 2000
+
+travel_entity @tink 1
+wait_travel
+# A SMITH'S HAMMER, not tongs. Tongs are equip layer 0 in Revolution's tiledata
+# and can never satisfy CClientUse.cpp:1273's LayerFind(LAYER_HAND1), so the
+# newbie kit's tongs are useless for smithing. i_hammer_smith (0x13E3) is
+# layer 1. BasicCraftTool under the M3.7 vendor policy: expect the log to carry
+# "[policy] allowed NPC purchase of i_hammer_smith".
+vendor_buy @tink vendor_graphic:0x13E3 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+remember hammer carried_graphic 0x13E3,0x13E4
+require hammer
+
+# EQUIP IT. A live finding, and a script one rather than an engine one:
+# skills/skill45_mining.scp:30 guards @PreStart with
+#     IF (<SRC.WEAPON.USESCUR> < 1)  ->  "The tool is out of charges."
+# SRC.WEAPON is the EQUIPPED weapon, so a shovel sitting in the backpack reads
+# as zero charges and every swing is refused. The first Minoc run bought the
+# shovel, walked to the rock face and got that message fourteen times.
+#
+# The same script decrements USESCUR on every @Success and DESTROYS the tool at
+# zero, and i_shovel's @Create sets UsesMax=50 -- so a shovel is worth fifty
+# successful digs and then it is gone. That is a real consumable cost in the
+# mining economy, not a detail.
+#
+# AND FIRST UNEQUIP THE FISHING POLE. This character is a Fishing hybrid, and
+# M3 established that Sphere WEARS the pole rather than carrying it --
+# i_fishing_pole has SKILL=Fencing, so the engine treats it as a weapon and
+# equips it into LAYER_HAND1. The second Minoc run's `equip` timed out with no
+# server confirmation for exactly that reason: the layer was already occupied,
+# and the world save afterwards showed the shovel still in the backpack with a
+# full UsesCur=032 (50) -- charges it had all along.
+equip @pick 1
+wait_action
+sleep 2000
+
+# ------------------------------------ 1b. NO BANKING NEEDED ANY MORE
+#
+# An earlier revision walked to the Minoc bank to park the 50 newbie ingots,
+# because at STR 50 their 100 stones plus mined ore pushed the character over
+# its limit and the shard started dropping Iron Ore on the floor.
+#
+# That step is REMOVED for two reasons. The character now carries comfortably;
+# and the bank walk turned out to be actively harmful -- the run that used it
+# got trapped inside the Minoc bank building:
+#
+#     route exhausted at (2498,548,0) ... escape 3/3
+#     no path to (2504,536) avoiding 0 block(s); stopping
+#
+# All three M2.5 escape anchors failed. The world decorator's furniture made a
+# pocket inside that interior, which is a REAL regression worth recording: open
+# travel was unaffected (Britain->Yew ran 1104 tiles clean) but a decorated
+# building interior can still trap the walker.
+#
+# The smelt proof does not need the bank. mark_item baselines the ingot count
+# immediately before smelting, so the delta is the ore this run melted --
+# whatever the character was already carrying is on both sides of the
+# subtraction.
+
+# ----------------------------------------------------- 2. to the mine face
+# THE REGION BOUNDARY MATTERS, and this cost a run.
+#
+# The first attempt stood at (2562,501) and mined (2563,501) -- a tile whose
+# LAND type really is t_rock -- and got "Try mining elsewhere." fourteen times.
+# The terrain was never the problem: the REGION was.
+#
+# CWorldMap::CheckNaturalResource pulls the resource list from the AREADEF the
+# point falls in, and Minoc Mine 1 is
+#     [AREADEF a_minoc_mine_1_1]  EVENTS=r_default_rock
+#     RECT=2556,501,2562,504
+#     RECT=2556,474,2582,501
+# so (2563,501) lies on/outside both rectangles and carries no rock resource at
+# all. Rock outside a mining region is just scenery.
+#
+# (2563,499,z=20) is strictly inside the second rect, and (2564,499) is a
+# standable neighbour at the same z.
+travel_point 2564 499
+wait_travel
+expect_travel ok
+sleep 2500
+
+open @pack
+wait_action
+sleep 1200
+# NOTE: stacked resources CHANGE GRAPHIC with amount -- i_ore_iron carries
+# DUPELIST=019b8,019b9,019ba for the medium and large piles, and the same is
+# true of ingots, wool, yarn and bolts. A run died here on a bare 0x19B7:
+# seven "You put the Iron Ore in your pack" and the check still failed,
+# because the pile had grown into a different id. mark_item/expect_item_gain
+# take a comma list and compare it verbatim, so both must name every dupe.
+mark_item 0x19B7,0x19B8,0x19B9,0x19BA
+
+# ------------------------------------------------------------------ 3. mine
+# Sphere rolls 1-2 strokes per gather and a tile can answer "there is no metal
+# here" -- a 10.0/99.9 mr_nothing roll against a ten-hour REGEN, not a bot
+# failure. Repeat; the seam has several faces.
+loop 14
+    use @pick
+    wait_target
+    target_ground 2563 499 20
+    sleep 6000
+endloop
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x19B7,0x19B8,0x19B9,0x19BA
+
+# --------------------------------------------------------------- 4. smelt
+# Walk down off the rock face to the forge the decorator placed at (2561,501,0);
+# Source-X then finds it itself via FindItemTypeNearby within the Blacksmithing
+# skill's RANGE. No target needed.
+travel_point 2562 501
+wait_travel
+expect_travel ok
+sleep 2500
+
+open @pack
+wait_action
+sleep 1200
+mark_item 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+remember ore pack_graphic 0x19B7,0x19B8,0x19B9,0x19BA
+require ore
+use @ore
+wait_action
+sleep 4000
+use @ore
+wait_action
+sleep 4000
+use @ore
+wait_action
+sleep 4000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+
+# ------------------------------------------------------- 5. forge a dagger
+# The hammer must be WORN. LayerFind(LAYER_HAND1) is the check -- tongs in the
+# backpack are not tongs. This is exactly the distinction production.h models as
+# ToolNotEquipped rather than MissingTool.
+# Free HAND1 again before the hammer goes on -- same rule as above.
+unequip @pick
+wait_action
+sleep 2000
+
+equip @hammer 1
+wait_action
+sleep 2000
+
+mark_item 0x0F51,0x0F52
+
+remember ingots pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require ingots
+use @hammer
+wait_target
+target @ingots
+sleep 3000
+gump_report
+
+# Sphere's craft menus are 0x7C MENUS, not 0xB0 gumps, and are answered with
+# 0x7D by 1-based index -- proven in slice D, where the Carpentry menu opened
+# and nothing selected from it until `menu_choose` existed.
+#
+# At Blacksmithy 30 the top menu is, read live:
+#     [0x7C] menu=690 "Blacksmithing" (3 options)
+#         1) Repair   2) Shields   3) Weapons
+# The first attempt took index 1 and got REPAIR, which arms a target cursor
+# rather than opening a submenu -- hence "no active dialog to answer" three
+# seconds later. A dagger lives under WEAPONS.
+menu_choose 3
+sleep 4000
+gump_report
+
+# The submenu, read live:
+#     [0x7C] "Swords & Blades" (3 options)
+#         2) dagger (4 iron ingots)
+# The dagger is index TWO. Note the label carries the recipe -- "4 iron ingots"
+# is exactly what production.h records for i_dagger from the itemdef, so the
+# server's own menu corroborates the graph.
+menu_choose 2
+sleep 5000
+gump_report
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+say ore to iron to steel
+sleep 1500
+logout

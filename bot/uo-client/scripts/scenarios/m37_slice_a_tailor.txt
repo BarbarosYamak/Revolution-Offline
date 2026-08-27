@@ -1,0 +1,429 @@
+# M3.7 SLICE A -- sheep -> wool -> spinning wheel -> yarn -> loom -> bolt ->
+#                  scissors -> cloth -> a tailored item.
+#
+# RUN AS SESSION 11 (RevolutionWeaver), created the ordinary way with
+#   --create-skills 34:50,44:30,11:20    Tailoring 50 / Lumberjack 30 / Carpentry 20
+#   --create-stats  50:20:10             STR 50 / DEX 20 / INT 10
+# Source-X clamps each skill to 50 and the sum to 100, each stat to 60 and the
+# sum to 80, and picks the kit itself. Nothing is GM-provisioned.
+#
+# WHY STR 50 HERE TOO. A bolt of cloth is WEIGHT=50.0, and NEWBIE TAILORING
+# hands out one free -- so a STR-30 tailor is already half-loaded before it
+# weaves. The first run's loom DID produce a bolt and the shard answered
+# "You put the bolt of cloth at your feet. It is too heavy." The chain worked;
+# the character could not hold the result.
+#
+# WHY THE KIT MATTERS, item by item:
+#
+#   NEWBIE TAILORING      -> i_sewing_kit  (t_sewing_kit: the tool the cloth
+#                            menu opens from) and ONE i_cloth_bolt, which is
+#                            STARTING STOCK and is deliberately not used --
+#                            mark_item baselines it so the proof is a delta.
+#   NEWBIE LUMBERJACKING  -> i_hatchet (0x0F43), TYPE=t_weapon_axe, which is an
+#                            IT_WEAPON_AXE and therefore a legal shearing blade
+#                            (CClientTarg.cpp:1866-1890).
+#   MALE_DEFAULT          -> a dagger and starting gold.
+#
+# WHY THIS PROOF WAS IMPOSSIBLE BEFORE M3.7, twice over:
+#
+#   1. There was no spinning wheel and no loom anywhere in the world. Zero, on
+#      the whole shard.
+#   2. Even a MAP STATIC wheel would not have worked. CClient::Event_Target
+#      resolves the target with uid.ObjFind() (CClientEvent.cpp:2481); a static
+#      has no UID, so pItemTarg is nullptr and the IT_WOOL / IT_YARN cases in
+#      OnTarg_Use_Item break out having done nothing. The station MUST be a
+#      dynamic item, which is exactly what the shard's own world decorator
+#      places -- and which had never been run.
+#
+# THE STATIONS, from Scripts-X's own city_britain_deco_felucca.scp:
+#   spinning wheel  (1473,1689,0)
+#   upright loom    (1473,1685,0) + (1474,1685,0)
+# Both ground level, inside the Britain tailor shop the atlas calls
+# britain_tailor_2 (1467,1686,0). No coordinate here was invented.
+#
+# THE ENGINE NUMBERS BEING TESTED:
+#   shear         1 pile of wool, sheep -> CREID_SHEEP_SHORN, regrows in
+#                 WoolGrowthTime = 30 minutes (sphere.ini:399)
+#   wool -> yarn  1 pile yields THREE balls, and there is NO skill check at all
+#                 (CClientTarg.cpp:2066)
+#   yarn -> bolt  FOUR units accumulate in m_itLoom, then one bolt drops
+#                 (CClientTarg.cpp:2230)
+#   bolt -> cloth the bolt's own RESOURCES: FIFTY cloth (CItem.cpp:4287)
+#
+# ON THE SCISSORS. Bolt-to-cloth is IT_SCISSORS only -- a dagger will not do it
+# (CClientTarg.cpp:2147). Scissors are in no newbie kit, and this character's
+# Tinkering 30 cannot craft them without tinker tools it also lacks. They are
+# therefore BOUGHT from the Britain tailor for a few gold of the character's own
+# starting money. That is a TOOL purchase, not a resource purchase: it shortcuts
+# no chain -- the wool must still be sheared, spun and woven -- and it is
+# recorded explicitly rather than glossed over. See the vendor matrix's open
+# question on tool grading.
+#
+# Nothing here spawns wool, yarn, a bolt, cloth or a finished garment.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+mark_gold
+
+# --------------------------------------------------------------- 0. the kit
+remember hatchet carried_graphic 0x0F43,0x0F49,0x0F51
+require hatchet
+remember kit carried_graphic 0x0F9D
+require kit
+
+# Put the free newbie BOLT on the ground before starting. It is 50 stones of
+# starting stock this proof must not use, and carrying it is what pushed the
+# first run over its weight limit at the loom. Dropping it is also what makes
+# the later bolt count a clean delta: any bolt in the pack afterwards was woven
+# by this character.
+remember newbie_bolt pack_graphic 0x0F95,0x0F96,0x0F97,0x0F98,0x0F99,0x0F9A,0x0F9B,0x0F9C
+drop_ground @newbie_bolt 1
+wait_action
+sleep 2500
+open @pack
+wait_action
+sleep 1500
+
+# ---------------------------------------------------------- 1. find a FLOCK
+#
+# Two live corrections, in order.
+#
+# The first run went to the spawner at (1620,1586) -- amount=1, maxdist=5 --
+# and scanned five mobiles, every one of them tavern staff. A SPAWNER IS NOT A
+# SHEEP: that one had nothing alive on it.
+#
+# The second went to (1401,1893), where the world save really did list a live
+# c_sheep_woolly, arrived exactly on the tile, and found two mobiles and no
+# sheep. One animal with a wander radius is a coin flip: by the time you walk
+# 276 tiles it has moved or died.
+#
+# So: go where the FLOCK is. Counting live c_sheep_woolly in the world save by
+# 60-tile grid square gives 15 of them around (677,934) -- and that is ~80 tiles
+# from this character's own Yew start point, so it is also the first thing it
+# can reach. Shear first, carry the wool to Britain second.
+travel_point 677 934
+wait_travel
+expect_travel ok
+sleep 3000
+
+scan_mobiles
+sleep 3000
+remember sheep mobile_body 0x00CF
+require sheep
+
+travel_entity @sheep 1
+wait_travel
+sleep 2000
+
+# ------------------------------------------------------------------ 2. shear
+# NOTE: stacked resources CHANGE GRAPHIC with amount -- i_ore_iron carries
+# DUPELIST=019b8,019b9,019ba for the medium and large piles, and the same is
+# true of ingots, wool, yarn and bolts. A run died here on a bare 0x19B7:
+# seven "You put the Iron Ore in your pack" and the check still failed,
+# because the pile had grown into a different id. mark_item/expect_item_gain
+# take a comma list and compare it verbatim, so both must name every dupe.
+mark_item 0x0DF8,0x101F
+
+use @hatchet
+wait_target
+target @sheep
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x0DF8,0x101F
+
+# One pile is enough for three yarn, and the loom wants four. Find a second
+# sheep rather than waiting out the 30-minute regrowth on the first.
+scan_mobiles
+sleep 2500
+remember sheep2 mobile_body 0x00CF
+require sheep2
+travel_entity @sheep2 1
+wait_travel
+sleep 2000
+use @hatchet
+wait_target
+target @sheep2
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------- 3. to Britain, and a tool
+#
+# Go to the SHOP, not to "a tailor". The first run used `travel_service tailor`
+# from the Yew start point and the planner picked the Yew provisioner, which
+# also carries the tailor tag -- then spent its budget on escape rungs trying
+# to reach it. The stations are in Britain, so travel there directly.
+#
+# britain_tailor_2 (1467,1686,0) is the ground-floor shop that holds the
+# spinning wheel and loom. Its spawner is
+# functions/worldgen/spawns/felucca/Vendors_spawns_felucca.scp:53 and it seeds
+# tailor, weaver AND tailorguildmaster -- so two of the three keep a shop and
+# one does not. Match on the trades, and address the vendor BY NAME, because M3
+# learned that a bare "buy" gets whichever shopkeeper is nearest (once the
+# shoemaker, five tiles away).
+travel_point 1470 1687
+wait_travel
+expect_travel ok
+sleep 2500
+
+scan_mobiles
+sleep 4000
+remember shop mobile_trade tailor,weaver
+require shop
+
+travel_entity @shop 2
+wait_travel
+sleep 4000
+say hello
+sleep 3000
+
+travel_entity @shop 1
+wait_travel
+vendor_open @shop buy
+wait_action
+expect success
+sleep 1500
+
+travel_entity @shop 1
+wait_travel
+vendor_buy @shop vendor_graphic:0x0F9E 1
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+remember shears carried_graphic 0x0F9E
+require shears
+
+# ------------------------------------------------- 4. to the spinning wheel
+travel_point 1472 1689
+wait_travel
+expect_travel ok
+sleep 2500
+
+mark_item 0x0E1D,0x0E1E,0x0E1F
+remember wool pack_graphic 0x0DF8,0x101F
+require wool
+
+# TARGET THE WHEEL BY SERIAL, NOT BY GROUND.
+#
+# The first attempt used `target_ground 1473 1689 0` and the shard answered
+# "You can't think of a way to use that item." That is the same rule this whole
+# milestone turns on, seen from the other side: CClient::Event_Target resolves
+# with uid.ObjFind() (CClientEvent.cpp:2481), so a GROUND target arrives with
+# pObjTarg == nullptr, and `case IT_WOOL: if (pItemTarg == nullptr) break;`
+# does nothing at all.
+#
+# The decorator's spinning wheel is a dynamic world item with a real serial, so
+# resolve it from the client's own 0x1A cache and target the object.
+remember wheel world_graphic 0x1015,0x1016,0x1017,0x1019,0x101A,0x101B,0x101C,0x101D,0x101E
+require wheel
+
+use @wool
+wait_target
+target @wheel
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x0E1D,0x0E1E,0x0E1F
+
+# The second pile, for the fourth yarn the loom needs.
+#
+# THE RE-OPEN IS LOAD-BEARING. The resolver answers from the client's container
+# snapshot and only an 0x3C refills it, so without this `remember wool2` hands
+# back the uid of the pile the FIRST spin already consumed, `use` on a dead item
+# does nothing, and the run quietly ends up with three yarn instead of six. That
+# is exactly what happened: the loom then wanted a fourth yarn that never came.
+open @pack
+wait_action
+sleep 1500
+remember wool2 pack_graphic 0x0DF8,0x101F
+require wool2
+use @wool2
+wait_target
+target @wheel
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x0E1D,0x0E1E,0x0E1F
+
+# A third pile. Six yarn already covers one bolt, but the loom carries partial
+# state between users (m_itLoom.m_iClothQty persists on the item), so how much
+# yarn a public loom needs on any given day is not knowable in advance. Margin
+# is cheaper than another twenty-minute walk.
+scan_mobiles
+sleep 2500
+remember sheep3 mobile_body 0x00CF
+require sheep3
+travel_entity @sheep3 1
+wait_travel
+sleep 2000
+use @hatchet
+wait_target
+target @sheep3
+sleep 3000
+
+travel_point 1467 1686
+wait_travel
+expect_travel ok
+sleep 2000
+
+open @pack
+wait_action
+sleep 1500
+remember wool3 pack_graphic 0x0DF8,0x101F
+require wool3
+use @wool3
+wait_target
+target @wheel
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------- 5. the loom
+travel_point 1473 1686
+wait_travel
+expect_travel ok
+sleep 2500
+
+mark_item 0x0F95,0x0F96,0x0F97,0x0F98,0x0F99,0x0F9A,0x0F9B,0x0F9C
+
+remember loom world_graphic 0x105F,0x1060,0x1061,0x1062,0x1063,0x1064,0x1065,0x1066
+require loom
+
+# Four passes: m_itLoom accumulates and emits one bolt on the fourth.
+remember yarn pack_graphic 0x0E1D,0x0E1E,0x0E1F
+require yarn
+use @yarn
+wait_target
+target @loom
+sleep 2500
+
+# EVERY REPEAT PASS MUST RE-OPEN THE PACK FIRST, and must `require`.
+#
+# The resolver answers from the client's container snapshot, and only an 0x3C
+# refills it. Without the re-open, `remember yarn3` handed back the uid of the
+# yarn pass 2 had already CONSUMED; `use` on a dead item draws no target cursor
+# and `wait_target` then blocks forever. That is exactly how the previous run
+# died -- two bolts finished, then silence at line 285 until the harness
+# timeout. It never reached a single assertion.
+#
+# `require` is the second half of the fix: it turns "no yarn left" into a named
+# abort instead of a hang. A pass that cannot run should say so.
+open @pack
+wait_action
+sleep 1500
+remember yarn2 pack_graphic 0x0E1D,0x0E1E,0x0E1F
+require yarn2
+use @yarn2
+wait_target
+target @loom
+sleep 2500
+
+open @pack
+wait_action
+sleep 1500
+remember yarn3 pack_graphic 0x0E1D,0x0E1E,0x0E1F
+require yarn3
+use @yarn3
+wait_target
+target @loom
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x0F95,0x0F96,0x0F97,0x0F98,0x0F99,0x0F9A,0x0F9B,0x0F9C
+
+# ------------------------------------------------------------ 6. cut the bolt
+mark_item 0x175D
+
+remember bolt pack_graphic 0x0F95,0x0F96,0x0F97,0x0F98,0x0F99,0x0F9A,0x0F9B,0x0F9C
+require bolt
+use @shears
+wait_target
+target @bolt
+sleep 3000
+
+open @pack
+wait_action
+sleep 1500
+expect_item_gain 0x175D
+
+# -------------------------------------------------------- 7. tailor an item
+# The cloth menu opens by using the SEWING KIT on cloth (sm_tailor_cloth).
+# i_sash is Tailoring 4.5 and costs 4 cloth + 1 thread -- and note the thread:
+# a wool-only tailor can weave cloth and cannot sew it, because Tailoring
+# recipes consume THREAD (from cotton), never yarn. If the sash is refused for
+# want of thread that is a real finding, not a scenario bug.
+# THE TARGET IS A BANDANA, AND IT IS EXPECTED TO FAIL.
+#
+# i_bandana (0x153F) is Tailoring 0.1 -- the cheapest garment on the shard --
+# and it costs `RESOURCES=2 i_cloth,1 i_thread`. This character has cloth it
+# wove itself and no thread at all, so the shard should refuse it. That refusal
+# is the finding: 264 recipes in runtime/scripts spend i_cloth, and every one
+# that a tailoring menu can reach also spends i_thread.
+#
+# WHERE THREAD ACTUALLY COMES FROM is engine-decided, not script-decided.
+# CClientTarg.cpp:2053 handles IT_WOOL and IT_COTTON on a spinning wheel:
+# "1 pile of wool yields three balls of yarn" (this run measured exactly 0 -> 3)
+# and "1 pile of cotton yields six spools of thread". i_thread's own script line
+# `RESOURCES=1 i_flax_bundle` is a value declaration for <resmake>, NOT a
+# production path -- the engine never reads it to make thread.
+#
+# So a wool tailor cannot sew. Cloth and thread come from DIFFERENT crops, and
+# a self-sufficient tailor needs sheep AND a cotton field.
+mark_item 0x153F
+
+remember cloth pack_graphic 0x175D
+require cloth
+use @kit
+wait_target
+target @cloth
+sleep 2500
+
+# Sphere craft menus are 0x7C MENUS answered with 0x7D -- not 0xB0 gumps, which
+# is why an earlier revision's gump_report saw nothing here. sm_tailor_cloth is
+# 1) Shirts 2) Pants 3) Headwear 4) Misc. 5) bolt of cloth, and sm_cloth_headwear
+# opens 1) bandana.
+menu_choose 3
+sleep 2000
+menu_choose 1
+sleep 3000
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+
+# NO BANDANA. Asserting "unchanged" rather than "gained" is the whole point:
+# the chain is proven up to cloth and provably stops at thread. If this ever
+# starts FAILING -- if a bandana really is produced -- then thread came from
+# somewhere this scenario did not account for, and that is worth the abort.
+expect_item_same 0x153F
+
+say wool to cloth i can do; without thread i sew nothing
+sleep 1500
+logout

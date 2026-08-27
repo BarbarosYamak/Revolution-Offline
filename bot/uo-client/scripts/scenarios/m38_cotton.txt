@@ -1,0 +1,176 @@
+# M3.8 PHASE 3 -- cotton -> thread -> a STITCHED garment. The half of textile
+# that has never run.
+#
+# RUN AS SESSION 11 (RevolutionWeaver): Tailoring 50, and the character that
+# already took wool all the way to a wide-brim hat in M3.7.
+#
+# WHAT M3.7 PROVED, AND WHERE IT STOPPED
+#
+#   sheep -> wool -> 3 yarn -> bolt of cloth -> 50 cloth -> wide-brim hat
+#
+# Every link live. And not one spool of thread, because cloth and thread come
+# from DIFFERENT crops:
+#
+#   CClientTarg.cpp:2053, IT_WOOL and IT_COTTON on a spinning wheel --
+#     "1 pile of wool yields three balls of yarn"
+#     "1 pile of cotton yields six spools of thread"
+#
+# i_thread's own itemdef says `RESOURCES=1 i_flax_bundle`, and that line is a
+# value declaration for <resmake>, NOT a production path. Believing it cost M3.7
+# a wrong claim in a published report.
+#
+# WHY THIS COULD NOT RUN UNTIL NOW
+#
+# There were ZERO t_crops in the world. Not few -- none. The shard ships
+# f_worldgen_create_crops3k and it had never been executed, exactly as the
+# decorator had never been executed before M3.7. The only cotton was 18 stray
+# `i_cotton` piles between (19,116) and (146,175), on unreachable NW cliffs; a
+# weaver sent there could not route to any of three candidate tiles and ended
+# the run back near Britain having never left.
+#
+# The crops pass planted 3,104 crops including 355 cotton. The nearest is
+# (1221,1718) -- 229 tiles from Britain, ordinary farmland.
+#
+# THE TARGET IS THE ITEM M3.7 WAS REFUSED
+#
+# i_bandana is `RESOURCES=2 i_cloth,1 i_thread`, Tailoring 0.1 -- the cheapest
+# garment on the shard. M3.7 watched Sphere filter it OUT of the live menu for a
+# weaver holding 50 cloth and no thread, while leaving the two cloth-only hats
+# in. That filtered menu is the server stating a requirement.
+#
+# So the proof is not merely "a stitched item was made". It is that THE SAME
+# MENU, for THE SAME CHARACTER, now offers what it previously withheld -- and
+# the only thing that changed is a spool of thread.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+use_moongates on
+
+# ------------------------------------------------------------ 1. the cotton
+mark_item 0x0DF9,0x0DEF
+
+travel_point 1221 1718
+wait_travel
+expect_travel ok
+sleep 2500
+
+say standing in cotton that did not exist an hour ago
+
+# Crops are picked by using them, like any world resource. Several passes: one
+# plant does not yield a pile every time, and a spinning wheel wants a pile.
+remember crop world_graphic 0x0C4F,0x0C50,0x0C51,0x0C52,0x0C53,0x0C54,0x0DF9,0x0DEF
+require crop
+
+use @crop
+wait_action
+sleep 2500
+
+scan_mobiles
+sleep 1500
+
+remember crop2 world_graphic 0x0C4F,0x0C50,0x0C51,0x0C52,0x0C53,0x0C54,0x0DF9,0x0DEF
+use @crop2
+wait_action
+sleep 2500
+
+remember crop3 world_graphic 0x0C4F,0x0C50,0x0C51,0x0C52,0x0C53,0x0C54,0x0DF9,0x0DEF
+use @crop3
+wait_action
+sleep 2500
+
+open @pack
+wait_action
+sleep 2000
+say cotton in hand
+
+# ------------------------------------------------- 2. spin it into THREAD
+# britain_tailor_2 (1467,1686) is the ground-floor shop holding the spinning
+# wheel and loom the decorator placed.
+# STAND ON THE WHEEL, not near the shop.
+#
+# A first run travelled to (1467,1686) -- the door of britain_tailor_2, which is
+# where M3.7's slice A went -- arrived exactly, and resolved
+# `remember wheel = 0x00000000`. M3.7 got 0x40000478 from the same spot.
+#
+# The wheels are at (1473,1689) and (1475,1689), six and eight tiles away, and
+# `world_graphic` reads the client's OWN object cache: an item the server has
+# not sent yet is an item that does not exist. Six tiles through a shop wall is
+# apparently enough to miss it, and the difference between the two runs is
+# whichever objects happened to be in cache after a long walk.
+#
+# So do not stand at the door and hope. (1472,1689) is adjacent to the nearer
+# wheel, and the extra sleep gives the 0x1A object packets time to land.
+travel_point 1472 1689
+wait_travel
+expect_travel ok
+sleep 4000
+
+mark_item 0x0FA0,0x0FA1
+
+# The wheel must be a DYNAMIC item with a real serial: Event_Target resolves
+# with uid.ObjFind(), so a map static arrives as pObjTarg == nullptr and the
+# IT_COTTON case does nothing at all.
+remember wheel world_graphic 0x1015,0x1016,0x1017,0x1019,0x101A,0x101B,0x101C,0x101D,0x101E
+require wheel
+
+remember cotton pack_graphic 0x0DF9,0x0DEF
+require cotton
+
+use @cotton
+wait_target
+target @wheel
+sleep 3000
+
+open @pack
+wait_action
+sleep 2000
+
+# ONE PILE OF COTTON YIELDS SIX SPOOLS. If this reports anything other than a
+# rise of six, the engine reading in every chains document is wrong.
+expect_item_gain 0x0FA0,0x0FA1
+
+say thread exists on this shard for the first time
+
+# --------------------------------------------- 3. the garment that was refused
+mark_item 0x153F
+
+remember kit carried_graphic 0x0F9D,0x0F9B
+require kit
+
+open @pack
+wait_action
+sleep 1500
+remember cloth pack_graphic 0x175D
+require cloth
+
+use @kit
+wait_target
+target @cloth
+sleep 2500
+
+# sm_tailor_cloth, filtered. With thread in the pack the stitched branches
+# should come back -- Shirts, Pants and Misc. were absent before, and Headwear
+# offered only the two cloth-only hats.
+menu_choose 1
+sleep 2500
+menu_choose 1
+sleep 4000
+
+open @pack
+wait_action
+sleep 2000
+skill_report
+
+say cotton to thread to a stitched thing
+sleep 1500
+logout

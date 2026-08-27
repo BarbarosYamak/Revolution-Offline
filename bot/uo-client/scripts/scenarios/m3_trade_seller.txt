@@ -1,0 +1,58 @@
+# M3 secure trade -- the seller's half.
+#
+# A trade is OPENED by dropping an item on the other player: that is the only
+# way a 2.0.x client has (Source-X CClient::Event_Item_Drop ->
+# Cmd_SecureTrade). So the stack of steaks is both the offer and the request.
+#
+# The seller waits for the buyer's coins to appear before accepting, and the
+# buyer waits for the steaks before paying, so neither side can be left holding
+# an accepted-but-empty window and neither needs a timer.
+
+wait_world
+sleep 2000
+ensure_peace
+
+travel_point 1453 1765 1
+wait_travel
+expect_travel ok
+
+remember pack backpack
+open @pack
+wait_action
+mark_gold
+mark_item 0x097A
+
+scan_mobiles
+sleep 4000
+remember buyer mobile_name RevolutionMedic
+require buyer
+
+# Raw fish steaks: what the character actually has after m3_cut1 carved
+# the catch. One fish cuts into four of these (CClientTarg.cpp:1950).
+remember steaks carried_graphic 0x097A
+require steaks
+
+# Dropping the fish on them IS the trade request.
+trade_start @buyer @steaks
+wait_action
+expect success
+wait_trade_open
+wait_trade_mine 1
+
+# Their coin before our signature.
+wait_trade_offer 1
+trade_accept
+
+wait_trade_closed
+expect_trade completed
+
+sleep 2500
+open @pack
+wait_action
+sleep 2000
+expect_gold_gain
+expect_item_drop 0x097A
+
+say sold
+sleep 1000
+logout

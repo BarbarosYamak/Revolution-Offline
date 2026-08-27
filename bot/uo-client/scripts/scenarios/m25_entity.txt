@@ -1,0 +1,28 @@
+# M2.5 Scenario 8 -- semantic entity approach.
+#
+# Walk to a mobile the server has shown us, named by who it is rather than by
+# where it is. NPCs wander, so the destination is re-aimed at the live position
+# as the bot closes in.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# Get into a part of town where there are people to talk to.
+travel_service banker Yew
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+
+remember who mobile_name the
+require who
+
+travel_entity @who 2
+wait_travel
+expect_travel ok
+
+say found you
+sleep 1000
+logout

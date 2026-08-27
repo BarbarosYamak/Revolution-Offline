@@ -1,0 +1,70 @@
+// ---------------------------------------------------------------------------
+// M3.9 -- populate the Felucca graveyards.
+//
+// WHY THIS EXISTS RATHER THAN A CALL TO spawn_graveyards_felucca
+//
+// The stock Nerun function places EIGHT graveyards. Seven are classic Britannia
+// towns that existed on Felucca throughout the 2008-2010 window this project
+// targets. The eighth is "Haven Graveyard" at 3407,2652 -- Haven was a
+// TRAMMEL-only settlement, and those Felucca coordinates are Ocllo island. It
+// would drop zombies on the wrong continent.
+//
+// That single bad entry is the whole reason this file exists. M3.8 ran an
+// aggregate spawn function without reading it first and placed eleven
+// Mondain's Legacy spawners that had to be pruned afterwards
+// (see f_m39_prune_ml). The lesson taken from that was not "prune faster", it
+// was AUDIT THE LIST BEFORE RUNNING IT -- so this is the audited subset, copied
+// line-for-line from the original with the Haven entry removed and nothing else
+// changed.
+//
+// WHAT THE CREATURES ARE
+//
+// Spectre, Wraith, Shade, Skeleton, Zombie, Lich -- all classic pre-T2A undead.
+// Every one has an AnimID in Revolution's tiledata, which matters: M3.6
+// established that post-era bodies without one CRASH third-party clients.
+// These render.
+//
+// WHY GRAVEYARDS AND NOT MORE WILDLIFE
+//
+// The world already has fauna -- 64 grey wolves, 54 timber wolves, 50 brown
+// bears, 44 cougars, 42 panthers -- but fauna WANDERS, so a saved coordinate is
+// only a hint about where an animal will be minutes later. A graveyard spawner
+// is fixed, always hostile, and always at a known place. For a bot that must
+// find a fight without being handed one, that is the difference between a
+// repeatable test and a lucky one.
+//
+// Before this ran, the entire world contained exactly ONE undead (a mummy).
+//
+// ARG LAYOUT (from spawner_functions.scp):
+//   0-5 creature lists | 6,7,8 x,y,z | 9 facet | 10,11 min,max time
+//   12 walking range | 13 home range | 14 spawn id | 15-20 per-list counts
+// Facet comes from VAR0.spawner_facet, which is empty here and evaluates to 0 =
+// Felucca. That is the same path M3.8's dungeon spawns took, and they landed
+// correctly.
+//
+// Safe to run twice ONLY in the sense that it will not error -- it WILL place a
+// second set of spawners. Verify by SPAWNID count in the world save before and
+// after, the same way the ML prune was verified, and do not re-run casually.
+// ---------------------------------------------------------------------------
+
+[function f_m39_graveyards]
+// Britain -- the one the shard owner asked for first, and the closest graveyard
+// to where bots actually live.
+f_create_spawner,Spectre:Wraith,Skeleton,Zombie,,,,1369,1475,10,2,5,10,30,20,1,2,3,4,0,0,0
+// Jhelom
+f_create_spawner,Spectre:Wraith:Shade,Skeleton,Zombie,,,,1285,3731,0,2,5,10,15,10,1,2,3,4,0,0,0
+// Cove
+f_create_spawner,Spectre:Shade:Wraith,Lich,Skeleton,Zombie,,,2438,1100,8,2,5,10,20,10,1,1,1,1,1,0,0
+// Moonglow
+f_create_spawner,Spectre:Shade:Wraith,Skeleton,Zombie,,,,4545,1317,8,2,5,10,20,10,1,1,1,2,0,0,0
+f_create_spawner,Lich,,,,,,4543,1314,8,2,5,10,20,10,1,1,0,0,0,0,0
+// Vesper
+f_create_spawner,Spectre:Wraith,Skeleton,Zombie,,,,2758,867,0,2,5,10,20,20,1,2,3,4,0,0,0
+// Yew
+f_create_spawner,Skeleton,,,,,,722,1119,0,2,5,10,20,20,1,10,0,0,0,0,0
+// Haven DELIBERATELY OMITTED -- Trammel settlement, Felucca coordinates land on
+// Ocllo. See the header.
+SRC.SYSMESSAGE @,,1 m39 graveyards placed -- 7 spawners, Haven skipped
+RETURN 1
+
+[eof]

@@ -1,0 +1,364 @@
+# M3.9 -- prove a bot can kill something AND LOOT ITS CORPSE.
+#
+# COPY of m39_hunt_armed.txt (do not edit that file) with a looting attempt
+# appended after the kill. Everything through "say the fight is over" is
+# unchanged from m39_hunt_armed.txt; see that file's comments for why an
+# armed fresh fighter, why real wilderness and not a farm, and why the wolf
+# body ids below are read from the CHARDEF headers rather than generic UO
+# documentation.
+#
+# RUN AS AN ARMED FIGHTER SESSION (53+ / RevolutionFighter03+).
+#
+# ============================================================================
+# A CORRECTION TO THE PREVIOUS DRAFT OF THIS FILE, FOUND BY READING THE
+# SERVER, NOT JUST THE CLIENT
+#
+# The previous draft (and the milestone brief itself) assumed a wolf corpse
+# simply "holds" its RESOURCES=1 i_ribs_raw,6 i_hide the moment it dies. That
+# is wrong, and a live run (loot7, 2026-08-27 22:50:18) caught it in the act:
+# `open @corpse` right after the kill answered
+#     [0x3C] container contents: 0 item(s)
+# on a corpse that had just been created by a fame-granting kill seconds
+# earlier. That is not a bug in the client or a wrong-corpse mixup -- it is
+# Source-X's own carving rule, read from the server source itself:
+#
+#   CChar::MakeCorpse (server/Source-X/src/game/items/CItemCorpse.cpp:168)
+#   only calls DropAll(pCorpse) -- it moves whatever the CREATURE was
+#   physically carrying into the corpse. RESOURCES is never touched here.
+#
+#   RESOURCES only materializes via CChar::Use_CarveCorpse
+#   (server/Source-X/src/game/chars/CCharUse.cpp:49), which is reached by
+#   double-clicking a bladed weapon/tool (armed the "use item -> target"
+#   cursor) and then targeting the corpse:
+#   CClient::OnTarg_Use_Item's big switch on the USED item's type
+#   (server/Source-X/src/game/clients/CClientTarg.cpp:1691) has
+#     case IT_WEAPON_MACE_SHARP: case IT_WEAPON_FENCE:
+#     case IT_WEAPON_AXE: case IT_WEAPON_SWORD:   // ~line 1885
+#   falling through (when the target isn't a char) to
+#     switch (m_pChar->CanTouchStatic(&pt, id, pItemTarg)) { case IT_CORPSE:
+#         m_pChar->Use_CarveCorpse(pCorpse, pItemUse); }   // ~line 1957
+#   which walks CCharBase::m_BaseResources (i.e. the CHARDEF's RESOURCES=
+#   line) and calls pCorpse->ContentAdd(pPart) for each part -- ONLY THEN do
+#   the meat and hide actually exist as items inside the corpse container.
+#
+# i_katana (ITEMDEF 013fe, items/weapons/i_weapons.scp:966) is
+# TYPE=t_weapon_sword, which is exactly IT_WEAPON_SWORD -- the same weapon
+# this fighter is already carrying to fight with is also the tool that
+# carves the kill. No new equipment, no new mechanic outside what a real
+# player does: a sword doubles as a knife for this purpose on Source-X.
+#
+# So this scenario now does what m39_hunt_armed.txt's draft sibling did not:
+# it OPENS the corpse once to show it is empty on arrival (a real, provable
+# fact about this shard, not an oversight), CARVES it with the same blade
+# that made the kill (`use @blade` / `wait_target` / `target @corpse`,
+# structurally identical to m37_slice_b_minoc.txt's `use @hammer` /
+# `wait_target` / `target @ingots` forging step -- both are
+# "use-an-equipped-tool-then-target-something" through the same client
+# ActionUseObject -> wait_target -> ActionTargetObject path), then re-opens
+# it to prove RESOURCES now exist as real, serialised items.
+#
+# THE GAP THAT STILL STANDS AFTER THIS FIX
+#
+# Carving solves "does the loot exist" but not "can THIS scenario file get it
+# into the bot's pack". That second problem is real and is exactly what the
+# previous draft found, unchanged by the carving discovery above -- read
+# src/bot/Scenario.cpp's `remember` handling (the pack_graphic /
+# carried_graphic / world_graphic / mobile_* branches, Scenario.cpp:1055-
+# 1130) and Client::FindItem's SearchZone enum (Client.h:1154) end to end:
+#
+#   kZoneBackpack -- ALWAYS PlayerEquipSerialAt(kLayerBackpack), i.e. the
+#                    bot's OWN worn backpack. Never an arbitrary container.
+#   kZoneEquip    -- the bot's own worn gear.
+#   kZoneWorld    -- top-level dynamic items_ (things lying directly on the
+#                    ground), which is how `world_graphic` finds the corpse
+#                    ITSELF -- but a corpse's CONTENTS (raw meat, hide, once
+#                    carved) live in a second map keyed by container serial
+#                    (containerItems_[corpse_serial], populated by the 0x3C
+#                    handler, Client.cpp:1398-1435) that nothing in the
+#                    scenario Op set can search.
+#
+# `pack_graphic`/`carried_graphic` are hard-wired to the PLAYER's own
+# backpack serial specifically (Client::FindBackpackItemByGraphic,
+# Client::FindItemByGraphic both call PlayerEquipSerialAt(kLayerBackpack)
+# directly, confirmed at Client.cpp:2577-2585 and the equivalent
+# FindItemByGraphic) -- there is no "pack_graphic, but for THIS container"
+# variant, and Scenario::Resolve()'s token grammar (Scenario.cpp:147-195:
+# @name, self, backpack, bank, vendor*, vendor_sell_graphic:<hex>,
+# vendor_graphic:<hex>, a bare hex/decimal literal) has nothing that reads
+# containerItems_ for a bound-but-not-the-backpack serial either. A corpse's
+# item serials are assigned by the server at carve time, so they cannot be
+# hardcoded as a literal the way a vendor's stock can be named by graphic.
+#
+# THIS IS DOUBLY BLOCKED, WORSE THAN THE PREVIOUS DRAFT REALISED. The
+# capability to do this DOES exist in this codebase --
+# Client::SendTakeToBackpack(serial, qty) (Client.h:684, "lift item from ANY
+# open container -> backpack") and the containerItems_ map itself -- but
+# BOTH are declared in the PRIVATE section of class Client (past the
+# `private:` at Client.h:568; the only access is `friend struct
+# js::ClientBindings`, Client.h:571, which is how the JS scripting layer's
+# Player.take(serial, qty) / Player.containerItems(serial)
+# (src/js/ClientBindings.cpp:524-556) reaches them). Scenario (bot::Scenario)
+# is not that friend. So even the smallest possible fix -- a new `remember
+# container_graphic <bind> <graphic-list>` op living entirely inside
+# Scenario.cpp, reading only Client's already-public surface -- CANNOT be
+# written today: there is no public Client method that exposes an arbitrary
+# container's contents, and adding one means touching Client.h, which this
+# milestone's brief says is locked ("I am editing src/Client.h ... RIGHT
+# NOW. Do not touch those."). And the JS scripting path that already has the
+# capability is never wired to a launch route: local/dev/run_m25.ps1 only
+# ever passes `--scenario X.txt`.
+#
+# So this file proves everything that CAN be proven with the existing Op set
+# -- kill, corpse, empty-on-arrival, carve, corpse now non-empty with the
+# right graphics inside it -- and stops, deliberately, at the one line that
+# would require editing a file this task was told not to touch.
+# ============================================================================
+
+wait_world
+sleep 2500
+
+# --------------------------------------------------------- 0. resurrect if dead
+# CORRECTION: the brief describes m39_hunt_armed.txt as "resurrects at a
+# healer if needed", but that file (read in full before writing this copy)
+# has no such step -- it assumes a living character. Fighter03 was in fact
+# dead on disk when this file was first run (loot8, 2026-08-27 23:17: login
+# arrived as body 0x0192 with "Your ghostly hand passes through the
+# object.", i.e. still a ghost from an earlier fight this same session), so
+# this scenario cannot skip the step the way its namesake does.
+#
+# The established idiom for this, used identically in m39_hunt.txt and
+# m39_pvm_recover.txt: walk to a wandering healer and acknowledge the 0x2C
+# ghost menu. Replying to 0x2C does not resurrect by itself
+# (src/network/receive.cpp:616-639) -- a healer NPC raises a ghost it
+# notices on its own (CChar::NPC_LookAtCharHealer,
+# server/Source-X/src/game/chars/CCharNPCAct.cpp:895-937). If the character
+# is already alive these three steps are harmless: `resurrect` returns
+# invalid_state and `wait_alive` passes immediately (documented in
+# m39_hunt.txt's own header).
+travel_service healer
+wait_travel
+sleep 4000
+resurrect
+wait_action
+sleep 2000
+wait_alive
+say alive and ready to hunt
+
+ensure_peace
+gait run
+
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------- 1. arm ourself
+remember blade pack_graphic 0x13FE,0x13FF
+require blade
+equip @blade 1
+wait_action
+sleep 2000
+say armed
+
+# --------------------------------------------------- 2. out to REAL wilderness
+use_moongates on
+travel_point 1265 1612
+wait_travel
+expect_travel ok
+sleep 2000
+
+say hunting wolves
+
+# --------------------------------------------------------------- 3. find prey
+# 0x0019 grey wolf  0x00E1 timber wolf  0x0017 dire wolf  0x0025 white wolf
+# 0x003F cougar     0x00D6 panther -- read off the CHARDEF headers, see
+# m39_hunt_armed.txt for the full history of why.
+#
+# CHASE-AS-YOU-GO, unlike m39_hunt_armed.txt's own sweep. loot9
+# (2026-08-27 23:30) proved live why this matters even though the base file
+# gets away with a single remember at the end of the sweep: a Cougar
+# (0x0000B474, body 0x003F -- a valid prey id) was sighted at (1229,1655)
+# and again at (1210,1680), but the ONE `remember prey` this file used to
+# run only after the LAST waypoint (1185,1698, which is farm/NPC territory --
+# "Ledah", "Tano, the rancher", "Cat", "Rat") saw nothing eligible nearby and
+# bound 0x00000000, discarding an animal that had been in view twice. So:
+# after every scan, try to bind prey and immediately try goto_mobile toward
+# it. goto_mobile on an unbound (0x00000000) serial is a documented no-op
+# (Client::ActionGotoMobile logs "not in the mobile cache" and returns false
+# without starting an action), so this costs nothing on legs where nothing
+# is sighted, and on the leg where something IS sighted it turns the bot
+# toward it instead of continuing away.
+scan_mobiles
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1265 1612
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1272 1607
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1229 1655
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1210 1680
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+goto 1185 1698
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+goto_mobile @prey
+wait_action
+
+# The sweep is done. If something was ever sighted, the chases above have
+# been closing on it the whole time; give it a few more scan/chase cycles to
+# close the last distance and settle in the mobile cache before the hard
+# `require`.
+loop 4
+  scan_mobiles
+  sleep 1200
+  remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
+  goto_mobile @prey
+  wait_action
+endloop
+
+require prey
+
+goto_mobile @prey
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------------ 4. kill it
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+
+loop 20
+  goto_mobile @prey
+  wait_action
+  sleep 2500
+endloop
+
+scan_mobiles
+sleep 2500
+
+war off
+sleep 1200
+say the fight is over
+
+# --------------------------------------------------------- 5. find the corpse
+# i_corpse is ITEMDEF 02006 (runtime/scripts/items/i_char_icons.scp:20-27),
+# and every corpse in the shard is created from this ONE item, so 0x2006 is
+# not a guess and not per-creature the way the wolf body ids above are.
+#
+# No travel step here on purpose: the attack loop above re-issued
+# goto_mobile every 2.5s to stay in melee range for the whole fight, so the
+# corpse should spawn within container-open range of wherever the bot is
+# standing when the loop ends. goto takes a literal x/y and travel_entity
+# resolves only MOBILE serials via Client::MobilePosition
+# (ClientTravel.cpp:254-265) -- a corpse is a world item, not in
+# mobileCache_, so neither could get us there if this open failed on range.
+open @pack
+wait_action
+sleep 1000
+
+remember corpse world_graphic 0x2006
+require corpse
+
+open @corpse
+wait_action
+sleep 2000
+say corpse found, checking it before carving
+
+# -------------------------------------------- 6. PROVE it is empty on arrival
+# This is the finding the previous draft of this file missed: nothing has
+# touched RESOURCES yet, so the corpse should currently be reported as
+# holding 0 (or, at most, whatever loose junk the wolf happened to be
+# "wearing", which for a wild animal is nothing) items. The evidence is the
+# unconditional log line from Client::OnContainerContents:
+#     [0x3C] container contents: N item(s)
+# Read N here in the log; it is expected to be 0.
+
+# ------------------------------------------------- 7. CARVE IT WITH THE BLADE
+# The katana that made the kill (TYPE=t_weapon_sword, ITEMDEF 013fe) is also
+# a valid carving tool on Source-X: CClientTarg.cpp's OnTarg_Use_Item routes
+# IT_WEAPON_SWORD (falling through when the target is not a char) into
+# CanTouchStatic's IT_CORPSE case, which calls Use_CarveCorpse(pCorpse,
+# pItemUse) -- pItemUse being whatever was double-clicked, here the blade.
+# This is structurally the same "use an equipped tool, then target
+# something" sequence m37_slice_b_minoc.txt already proved with the smith's
+# hammer (`use @hammer` / `wait_target` / `target @ingots`), just aimed at a
+# corpse instead of a pile of ingots.
+use @blade
+wait_target
+target @corpse
+sleep 3000
+say carved
+
+# ------------------------------------------ 8. RE-OPEN AND PROVE IT IS FULL
+# Use_CarveCorpse walks the wolf's own CHARDEF RESOURCES=1 i_ribs_raw,6
+# i_hide (npcs/c_monster_classic.scp:1215) and ContentAdd()s each part
+# straight into the corpse container. Re-opening (the same pattern
+# m37_slice_b_minoc.txt uses after mining/smelting to force a fresh 0x3C
+# dump rather than trust a stale one) should now show a non-zero count, and
+# graphically the new items should be 0x09F1 (i_ribs_raw,
+# items/i_profession_cook_barkeep_baker.scp:990) and 0x1078/0x1079
+# (i_hide/its pile DUPELIST, items/i_profession_tailor_tanner.scp:348).
+open @corpse
+wait_action
+sleep 2000
+
+say corpse carved, meat and hide should now be inside it -- reachable by no scenario op
+
+# --------------------------------------------------- 9. THE STEP THAT STILL DOES NOT EXIST
+#
+# The brief's own instruction: prove the transfer with mark_item before and
+# expect_item_gain after, the way m37_slice_b_minoc.txt does for smelted
+# ingots. That pattern needs a `move <item-in-corpse> <amount> @pack` line,
+# and <item-in-corpse> needs a `remember` mode that searches
+# containerItems_[@corpse] by graphic (0x09F1 ribs, 0x1078/0x1079 hide) the
+# same way `pack_graphic` searches containerItems_[player's own backpack].
+# That remember mode does not exist, and per the header above, it cannot be
+# added without touching Client.h (to expose containerItems_ or
+# SendTakeToBackpack beyond the js::ClientBindings friend), which this
+# milestone explicitly forbids editing right now. Writing
+#     remember loot pack_graphic 0x09F1,0x1078,0x1079
+# here would not be that mode; pack_graphic ignores @corpse entirely and
+# would search the PLAYER'S OWN backpack, silently binding whatever ribs/
+# hide the bot happens to already be carrying (nothing, for this fighter) --
+# exactly the kind of invented, misleading workaround the brief said not to
+# build. So this scenario stops here, deliberately, with the fight, the
+# empty corpse, the carve, and the now-full corpse all proven, and only the
+# final pack-transfer left undone because the file it needs touched is
+# locked for this task.
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout

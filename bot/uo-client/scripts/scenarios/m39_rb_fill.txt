@@ -1,0 +1,68 @@
+# M3.9 -- put a real destination into the Runebook, then read it back.
+#
+# RUN AS SESSION 7 (RevolutionMageGM). That character is GM-PROVISIONED and is
+# NOT evidence about ordinary progression -- it is used here only because it
+# already owns a runebook and enough Magery to cast Mark. The MECHANIC is what
+# is being proven, not the progression.
+#
+# WHY: the probe run (m39_rb_probe) found session 7's book completely empty --
+# every page "(empty)", "Charges: 00". The pages M3.6 stored were lost to a
+# world rollback. Recall execution cannot be wired against an empty book, so
+# this fills page 1 the ordinary way: cast Mark on a blank rune, then use the
+# book's own "add a rune to page 1" button (21) and answer its target cursor.
+#
+# Button numbering, confirmed live in M3.6 and again by the probe:
+#   travel to page N  = button 10 + N   (11..18)
+#   add a rune page N = button 20 + N   (21..28)
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember book pack_graphic 0x22C5
+require book
+remember rune pack_graphic 0x1F14
+require rune
+
+# ------------------------------------------------------------- 1. mark the rune
+# Mark stores WHERE WE ARE STANDING into the rune, so the page's name and point
+# come from the world, not from anything we assert.
+# `cast` takes a NUMERIC spell id, not a name: the first version wrote
+# `cast Mark`, which parsed as id 0, timed out on wait_target, and left NPCs
+# answering "I am listening to thee" because the word had been spoken aloud.
+# Mark is 45 and Recall is 32 (both proven in m25_rune.txt).
+cast 45 @rune
+wait_action
+sleep 6000
+
+# ------------------------------------------------- 2. file it as the book's page 1
+use @book
+wait_action
+sleep 2500
+
+gump_button 21
+sleep 1500
+wait_target
+target @rune
+sleep 3000
+
+# --------------------------------------------------------- 3. read the book back
+# Re-open so the gump is rebuilt with the page filled in. The client now parses
+# the page names out of the gump's TEXT TABLE -- they are DText captions, not
+# button labels, which is why every travel button reads as ''.
+use @book
+wait_action
+sleep 2500
+gump_report
+
+say the book has a page
+sleep 1500
+logout

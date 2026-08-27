@@ -1,0 +1,19 @@
+creature	body	taming_min	taming_max	lore_min	lore_max	random_range	reliable_cost	runtime_taming	runtime_laxer	era	bot_legal	weekly_supply	source
+c_horse_tan	0x00C8	53.1	53.1	53.1	53.1	0	106.2	29.1	1	TARGET_ERA	1	0	REV 53.1 taming + 53.1 lore; runtime TAMING=29.1; not on supply calendar
+c_horse_brown_dk	0x00CC	53.1	53.1	53.1	53.1	0	106.2	29.1	1	TARGET_ERA	1	0	REV 53.1 + 53.1; runtime TAMING=29.1; not on supply calendar
+c_horse_gray	0x00E2	53.1	53.1	53.1	53.1	0	106.2	29.1	1	TARGET_ERA	1	0	REV 53.1 + 53.1; runtime c_monster_classic.scp:5063 TAMING=29.1
+c_horse_brown_lt	0x00E4	53.1	53.1	53.1	53.1	0	106.2	29.1	1	TARGET_ERA	1	0	REV 53.1 + 53.1; runtime TAMING=29.1
+c_llama	0x00DC	55.1	55.1	55.1	55.1	0	110.2	35.1	1	TARGET_ERA	1	0	REV 55.1 + 55.1; runtime TAMING=35.1; not on supply calendar
+c_ostard_desert	0x00D2	65.1	65.1	65.1	65.1	0	130.2	29.1	1	TARGET_ERA	1	10	REV 65.1 + 65.1; runtime TAMING=29.1 (36-point gap, widest here); supply 10/wk
+c_ostard_forest	0x00DB	65.1	65.1	65.1	65.1	0	130.2	UNKNOWN	0	TARGET_ERA	1	10	REV 65.1 + 65.1, same as desert; runtime has NO TAMING line; supply 10/wk
+c_ostard_frenzied	0x00D3	77.1	77.1	77.1	77.1	0	154.2	UNKNOWN	0	TARGET_ERA	1	7	REV 77.1 + 77.1; runtime has NO TAMING line; supply 7/wk
+c_ostard_mid	0x00D4	80.0	80.0	80.0	80.0	0	160.0	UNKNOWN	0	TARGET_ERA	1	7	REV 80.0 + 80.0; runtime has NO TAMING line; supply 7/wk
+c_horse_mustang	0x0000	65.0	80.0	65.0	80.0	1	160.0	UNKNOWN	0	TARGET_ERA	1	5	REV 65.0-80.0 RANDOM per animal, taming and lore alike; not in runtime; supply 5/wk
+c_horse_shire	0x0000	65.0	95.0	65.0	95.0	1	190.0	UNKNOWN	0	TARGET_ERA	1	5	REV 65.0-95.0 RANDOM per animal, taming and lore alike; not in runtime; supply 5/wk
+c_kirin	0x0084	90.0	90.0	90.0	90.0	0	180.0	105.0	0	TARGET_ERA	1	2	REV 90.0 + 90.0; runtime TAMING=105.0 -- runtime is STRICTER; supply 2/wk
+c_unicorn	0x0007	98.1	98.1	98.1	98.1	0	196.2	80.0	1	TARGET_ERA	1	1	REV 98.1 + 98.1; runtime TAMING=80.0; supply 1/wk
+c_steed	0x0000	99.9	99.9	99.9	99.9	0	199.8	UNKNOWN	0	TARGET_ERA	1	1	REV 99.9 + 99.9; not found in runtime; supply 1/wk -- rarest tier
+c_nightmare	0x0074	99.9	99.9	99.9	99.9	0	199.8	UNKNOWN	0	TARGET_ERA	1	1	REV 99.9 + 99.9; runtime has NO TAMING line; supply 1/wk -- rarest tier
+c_horse_pack	0x0123	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	0	UNKNOWN	29.1	0	STOCK_SPHERE_ONLY	0	0	no /binek_bilgileri entry; runtime TAMING=29.1 -- historical gate UNKNOWN
+c_llama_pack	0x0124	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	0	UNKNOWN	29.1	0	STOCK_SPHERE_ONLY	0	0	no /binek_bilgileri entry; runtime TAMING=29.1 -- historical gate UNKNOWN
+c_ridgeback	0x00BB	UNKNOWN	UNKNOWN	UNKNOWN	UNKNOWN	0	UNKNOWN	80.0	0	STOCK_SPHERE_ONLY	0	0	not on /binek_bilgileri; runtime TAMING=80.0 -- no Revolution evidence

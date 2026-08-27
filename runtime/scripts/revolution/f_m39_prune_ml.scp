@@ -1,0 +1,67 @@
+// ---------------------------------------------------------------------------
+// M3.9 -- remove the Mondain's Legacy spawners that M3.8 placed by accident.
+//
+// WHAT WENT WRONG, recorded because the mistake is more instructive than the fix.
+//
+// M3.8 ran the aggregate `spawn_dungeons_felucca` to give the shard a hostile
+// population. The report said it placed "fourteen dungeons". It places
+// EIGHTEEN -- the list was read from a truncated terminal output and the last
+// four were never seen:
+//
+//   spawn_blighted_grove_felucca
+//   spawn_painted_caves_felucca
+//   spawn_palace_of_paroxysmus_felucca
+//   spawn_prism_of_light_felucca
+//
+// All four are Mondain's Legacy (2005) content. This project targets the
+// RevolutionUO window of 2008-2010 on a client that ships skills 0-48, and M3.6
+// already established that post-era bodies with no AnimID in Revolution's
+// tiledata CRASH third-party clients -- a unicorn mount took down ClassicUO on
+// every launch. Unrenderable creatures are not a cosmetic problem.
+//
+// It also inverted the order the work should have been done in: M3.9's brief
+// says audit the evidence FIRST, then populate selectively, and never run
+// "all spawns" as one irreversible operation. M3.8 populated first.
+//
+// WHAT THIS REMOVES: only the eleven spawners whose SPAWNID names an ML
+// creature, verified present in the world save:
+//
+//   c_abscess                     1
+//   c_hydra_crystal               1
+//   c_monstrous_interred_grizzle  3
+//   c_slime_corrosive             6
+//
+// It does NOT touch the twelve classic dungeons (Covetous, Deceit, Despise,
+// Destard, Fire, Hythloth, Ice, Khaldun, Orc Caves, Shame, Solen Hive,
+// Terathan Keep, Wrong, Britain Sewer), which are acceptable generic Sphere
+// bases for the era, nor any fauna, vendor or decorator content.
+//
+// Reproducible by construction: it names creatures, not coordinates, so it is
+// correct wherever those spawners ended up and is safe to run twice.
+// ---------------------------------------------------------------------------
+
+[function f_m39_prune_ml]
+FORITEMS 250
+  IF (<BASEID>==i_worldgem_bit)
+    IF (<SPAWNID>==c_abscess) || (<SPAWNID>==c_hydra_crystal) || (<SPAWNID>==c_monstrous_interred_grizzle) || (<SPAWNID>==c_slime_corrosive)
+      // REMOVE alone is correct here, and that was checked rather than assumed.
+      //
+      // A first revision called SPAWNKILL first, reasoning that removing the
+      // gem would strand its children. Two things were wrong with that. The
+      // engine has no SPAWNKILL verb at all -- these are SCRIPT spawners
+      // (EVENTS=t_custom_spawner_char, spawner_functions.scp), not the engine's
+      // IT_SPAWN_CHAR -- and the world save shows ZERO living ML creatures:
+      // every one of these spawners is still on its first timer. There is
+      // nothing to strand.
+      REMOVE
+      // NOTE: the obvious `LOCAL.removed += 1` here does NOT work, and the
+      // first run proved it by reporting "removed 00" while actually deleting
+      // nine spawners. Inside FORITEMS the default object is the ITEM, so
+      // LOCAL. addresses the item's own variables -- which are then destroyed
+      // along with it. Verify this prune by counting SPAWNIDs in the world save
+      // before and after, not by trusting a number the loop cannot carry out.
+    ENDIF
+  ENDIF
+ENDFOR
+SRC.SYSMESSAGE @,,1 m39 prune swept this area -- verify by SPAWNID count in the world save
+RETURN 1

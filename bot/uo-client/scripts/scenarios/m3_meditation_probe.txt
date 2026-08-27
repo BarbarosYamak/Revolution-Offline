@@ -1,0 +1,38 @@
+# M3 -- how fast does mana actually come back?
+#
+# The first training block measured 80 s to regain 4 mana: a flat 1 point per
+# 20 s, which is exactly sphere.ini's Regen1=20 and, per
+# CChar::Stats_GetRegenVal, is independent of INT. At that rate Magery 50->60
+# is tens of hours of waiting.
+#
+# Meditation is the intended way out: CChar::Skill_Meditation adds a mana point
+# per stroke and the skill's DELAY is 2.0,1.0 seconds. This times it.
+#
+# (Note for the record: the OSI passive-meditation bonus in
+# skills/skill46_meditation.scp is commented out at every call site, so the
+# only meditation effect on this shard is the active one.)
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 2000
+skill_report
+
+# Drain the pool.
+loop 5
+  cast 6 self
+  wait_action
+  sleep 300
+endloop
+say drained
+
+# Time the refill under meditation.
+skill 46
+wait_action
+say meditating
+wait_mana 20
+say mana full
+
+sleep 500
+logout

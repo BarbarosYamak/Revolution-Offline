@@ -1,0 +1,164 @@
+# M3.9 -- prove a bot can WIN a fight and stand over what it killed.
+#
+# RUN AS SESSION 3 (RevolutionSpar).
+#
+# WHY THIS IS A RABBIT AND NOT A MONSTER
+#
+# Phase 9 asked for a real creature, real damage, real death, real loot. Two runs
+# at the Britain cemetery delivered every part of that except the one that
+# matters for an autonomous character: the bot was the one who died, twice.
+# Three undead beat it to death in 27 seconds the first time.
+#
+# So this run inverts the difficulty deliberately. RevolutionSpar currently has
+# NO EQUIPMENT -- it died at the cemetery and full loot loss put its gear on a
+# corpse -- so it is fighting bare-handed on Wrestling alone. A rabbit
+# (CHARDEF 0cd) is a creature it can actually beat in that state.
+#
+# That is not a soft target chosen to manufacture a pass. It is the smallest
+# honest question that has never been answered on this shard: CAN A BOT KILL
+# ANYTHING AT ALL? Everything about autonomous life -- income, replacing
+# equipment, surviving risk -- rests on the answer being yes, and until now the
+# only evidence pointed the other way.
+#
+# The coordinate is read out of the world save (a rabbit at 1396,1865), not
+# guessed. That correction has now been made three times in this milestone.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# ------------------------------------------------- 0. BE ALIVE BEFORE HUNTING
+#
+# The first two attempts at this scenario both failed to land a single blow, and
+# for a while that looked like a combat bug. It was not. The log said:
+#
+#   System: Your ghostly hand passes through the object.
+#   [travel] mode moongate no: dead characters cannot use gates
+#   [0xAA] attacking 0x4FFFFFFF
+#
+# The character was a GHOST the whole time. `m39_corpse_proof` had resurrected it
+# correctly -- and then left it standing in a graveyard full of hostile undead,
+# freshly raised and stripped of equipment, where it was promptly killed again
+# after logout. A scenario that ENDS in a hostile place undoes its own result.
+#
+# So this makes no assumption about what state the previous run left behind.
+# If the character is already alive these three steps are harmless: `resurrect`
+# returns invalid_state and `wait_alive` passes immediately.
+travel_service healer
+wait_travel
+sleep 4000
+resurrect
+wait_action
+sleep 2000
+wait_alive
+say alive and ready to hunt
+
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1200
+mark_gold
+
+use_moongates on
+
+# -------------------------------------------------------- 1. out to the farms
+# South-west of Britain: open farmland, ordinary fauna, no undead, and far
+# enough from the cemetery that nothing there will wander over and join in.
+travel_point 1378 1819
+wait_travel
+expect_travel ok
+sleep 2000
+
+say looking for something I can actually beat
+
+# --------------------------------------------------------------- 2. find prey
+# Bodies read from the CHARDEF headers, not guessed:
+#   0x00D0 chicken 0x00CF sheep   0x00CB pig    0x00D1 goat
+#   0x00CD rabbit  0x0006 bird    0x00EE rat    0x00C9 cat
+#   0x00D9 dog     0x0005 eagle   0x011B crow
+#
+# LIVESTOCK ADDED, and the destination moved to a Britain farm at 1378,1819
+# where the world save shows chickens. The previous coordinate (1396,1865) held
+# only Bull, Grizzly Bear, Horse, Llama and Timber Wolf on arrival -- every one
+# of them excluded on purpose as something that can win against an unarmed
+# character. A target list and a destination have to agree with each other.
+#
+# All harmless: none of them fights back hard enough to kill an unarmed
+# character. Wolves, bears and harts are deliberately NOT on this list even
+# though they are commonly here -- a Great Hart can win, and the question being
+# asked is whether the bot can kill ANYTHING, not whether it can win a hard fight.
+#
+# Three scans, not one. The previous run resurrected correctly, walked to the
+# farms, scanned once and found nothing -- the fauna had simply wandered. It
+# aborted on `require prey` with the world working perfectly. Fauna moves; one
+# scan samples one instant.
+scan_mobiles
+sleep 4000
+scan_mobiles
+sleep 4000
+scan_mobiles
+sleep 1500
+remember prey mobile_body 0x00D0,0x00CF,0x00CB,0x00D1,0x00CD,0x0006,0x00EE,0x00C9,0x00D9,0x0005,0x011B
+require prey
+
+# CLOSE WITH goto_mobile, NOT travel_entity.
+#
+# The first attempt used `travel_entity @prey 1` and it FAILED with why='none':
+# travel plans a route to the mobile's position AT THE MOMENT OF PLANNING, and a
+# rabbit does not stay there. The bot ended up several tiles away, and the swing
+# was rejected -- `[0xAA] attacking 0x4FFFFFFF` is Sphere's "target cleared", not
+# a miss.
+#
+# goto_mobile re-resolves the mobile as it moves, which is what chasing an animal
+# actually requires.
+goto_mobile @prey
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------------ 3. kill it
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+
+# STAY IN RANGE, BUT DO NOT RE-ISSUE THE ATTACK.
+#
+# The previous run finally got the target ACCEPTED -- `[0xAA] attacking
+# 0x000008BC` and `attack success ... server accepted the target`, five times
+# over -- and the chicken was still alive in the final scan.
+#
+# Re-sending `attack` every ~4.7 seconds is the most likely reason. In UO the
+# server swings on its own timer once a target is set; re-issuing the command
+# against a fleeing bird plausibly resets that timer before any swing lands, so
+# the bot spends the whole fight starting fights it never finishes.
+#
+# So the attack is now sent ONCE, above, and this loop does nothing but keep the
+# bot next to its target. Chasing is the bot's job; swinging is the server's.
+loop 8
+  goto_mobile @prey
+  wait_action
+  sleep 2500
+endloop
+
+# The evidence: if the prey is gone from this scan, it died. A corpse container
+# appears where it stood. There is no scenario op that asserts "that mobile no
+# longer exists", so this is read from the log rather than asserted -- and it is
+# reported as observed evidence, not as a passing assertion.
+scan_mobiles
+sleep 2000
+
+war off
+sleep 1000
+say the fight is over
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout

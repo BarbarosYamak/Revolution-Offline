@@ -1,0 +1,141 @@
+# M3.9 PHASES 7+9 -- the first PvM proof on this shard.
+#
+# RUN AS SESSION 3 (RevolutionSpar), the sparring character built in M2 for
+# PvP wound testing -- the only bot on the shard with real combat skill.
+#
+# WHY A WILDERNESS ANIMAL AND NOT A DUNGEON
+#
+# The dungeon spawners M3.8 placed sit in the dungeon coordinate block
+# (x > 5000) and are reached through entrances, not overland. More importantly
+# they are ASLEEP: sphere.ini:981 sets SectorSleep=10, so a sector with no
+# player in it stops ticking and its spawners never fire
+# (CSector.cpp:279,373 gate on IsSleeping). An empty dungeon is not broken --
+# it is waiting -- but it is a poor first proof, because a failure there could
+# mean "no monsters exist", "the sector was asleep", or "we never found the
+# entrance", and those are three different bugs.
+#
+# A wilderness predator is unambiguous: it is already alive, already hostile,
+# and already in a sector a bot can walk to. Wolves, bears, cougars and panthers
+# are base fauna this world has always had -- 60 grey wolves, 52 timber wolves,
+# 47 brown bears, 42 grizzlies, 39 cougars, 38 panthers -- and they fight back.
+#
+# WHAT THIS MUST PROVE (Phase 9, and nothing may be faked):
+#   a real creature, real damage taken, real death, real loot, real deltas.
+#   No GM kill. No spawned loot. Ordinary client actions only.
+#
+# THE RISK IS REAL. Death on this shard is FULL LOOT LOSS -- M2 proved that the
+# hard way. This is why the sparring character goes and not the miner or the
+# weaver, who between them carry M3.7's economy proofs. Losing Spar costs a
+# test fixture; losing the miner costs the milestone.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# Baseline BEFORE the fight. Gold is the cleanest economic delta a corpse can
+# produce, and hides/meat prove the creature was really butchered rather than
+# merely despawned.
+mark_gold
+
+use_moongates on
+
+# ------------------------------------------------- 1. out to open country
+#
+# THE FIRST ATTEMPT WENT TO (1420,1560) AND FOUND NOTHING. That spot was chosen
+# by reasoning -- "north of Britain is wilderness" -- rather than by looking, and
+# the scan returned four humans (Observer, Rhett, Mathea, Thora) and no animal.
+# The world is not monsterless: the save holds 64 grey wolves, 54 timber wolves,
+# 50 brown bears, 44 grizzlies, 44 cougars, 42 panthers. They were simply not
+# THERE.
+#
+# The second target was that cluster's coordinates, read out of the save rather
+# than guessed. It is still a poor choice, for a reason the shard owner pointed
+# at directly: go to the Britain cemetery instead.
+#
+# Fauna WANDER. A saved coordinate is where an animal was at the last world save,
+# not where it is now, so hunting one is a test of luck as much as of the bot.
+# A graveyard spawner is FIXED, always hostile, and always in the same place --
+# the difference between a repeatable proof and a lucky one.
+#
+# The cemetery was empty when this milestone started: the whole world held
+# exactly ONE undead (a mummy), because M3.8 populated dungeons and nobody had
+# ever run the graveyards. f_m39_graveyards now puts spectre, skeleton and zombie
+# spawners at 1369,1475, verified present in the world save.
+travel_point 1369 1475
+wait_travel
+expect_travel ok
+
+say hunting in the cemetery
+
+# ------------------------------------------------------- 2. find a predator
+#
+# ENGAGE IMMEDIATELY. The previous revision waited 60 seconds here, scanning
+# three times, because the graveyard had never been visited and SectorSleep=10
+# meant arriving was what woke the sector.
+#
+# That got the bot KILLED. Zombie, Spectre and Skeletal Mage all aggroed within
+# eight seconds of arrival and beat a stationary character to death in 27, while
+# the scenario was still politely sleeping between scans. The dwell that was
+# necessary when the world was empty became a death sentence the moment it
+# wasn't -- and death here is FULL LOOT LOSS.
+#
+# The dwell is no longer needed anyway: the spawners have now fired at least
+# once and the undead are confirmed live in the world save. One scan, one
+# second, then fight.
+#
+# Bodies, read from the CHARDEF headers rather than assumed:
+#   0x0003 zombie, 0x001A spectre, 0x0032 skeleton, 0x0094 skeletal mage,
+#   0x0099 ghoul, 0x02EC wraith.
+# Wolves and bears stay as a fallback -- the cemetery sits in open country and
+# the Outdoors set just added harpies a few tiles north of it.
+scan_mobiles
+sleep 1000
+remember prey mobile_body 0x0003,0x001A,0x0032,0x0094,0x0099,0x02EC,0x001C,0x00E1,0x00D3,0x00D4,0x00D6,0x003F,0x00D5
+require prey
+
+travel_entity @prey 1
+wait_travel
+sleep 1500
+
+mark_hp
+
+# ------------------------------------------------------------ 3. fight it
+# war mode, then attack. The M2 combat layer does the rest; nothing here is a
+# PvM AI, which is deliberate -- Phase 9 asks for a proof that the world can be
+# fought, not for a fighter.
+war on
+sleep 1000
+attack @prey
+wait_action
+sleep 30000
+
+# Did it hurt us? A fight in which the bot takes no damage is a fight against
+# something that was not really fighting back.
+skill_report
+say the animal fought back
+
+# ------------------------------------------------- 4. the corpse and the loot
+# A corpse is the proof of a real death: the server makes one, and it holds what
+# the creature carried. Butchering it with a blade is the ordinary player action.
+sleep 5000
+scan_mobiles
+sleep 2000
+
+war off
+sleep 1500
+
+travel_corpse
+wait_travel
+sleep 2500
+
+say standing over what is left
+sleep 2000
+logout

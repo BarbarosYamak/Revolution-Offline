@@ -1,0 +1,88 @@
+# M2.5 -- runes, Mark and Recall, against the shard's actual rules.
+#
+# What the audit found (docs/M2_5_WORLD_NAVIGATION.md has the citations):
+#
+#   * A recall rune is `i_rune_marker`, graphic 0x1F14, TYPE=t_rune
+#     (runtime/scripts/items/i_magic_magery.scp:154). It is created blank
+#     (MOREP=-1,-1) with ten charges, and only the Mark spell fills it in
+#     (Source-X src/game/items/CItem.cpp:5721-5745).
+#   * Only the mage vendor template sells blank runes
+#     (templates/tm_vend.scp: VENDOR_S_MAGE_SHOP), and Yew has no mage --
+#     the nearest one the shard spawns is in Britain. So this scenario asks
+#     for "a mage" and lets the travel layer work out that it means a trip.
+#   * Mark is SPELL 45, SKILLREQ MAGERY 60.0. Character creation clamps any
+#     one skill to 50 (CChar::InitPlayer), the newbie spellbook holds three
+#     spells per circle 1-4 and no Mark, and no vendor on this shard sells a
+#     6th-circle scroll. So a freshly created character CANNOT cast Mark, and
+#     this scenario does not pretend otherwise: it asks, and records what the
+#     server says.
+#
+# The point is to prove the rune half is real gameplay -- a rune bought with
+# gold from a vendor the bot found by itself -- and to capture Sphere's own
+# refusals rather than inventing a marked rune.
+
+wait_world
+sleep 2000
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+
+# "I need a mage." Nothing here says where one is -- and on foot from Yew it
+# is about 1800 tiles, so let the planner weigh the public gates too.
+use_moongates on
+travel_service mage
+wait_travel
+expect_travel ok
+
+scan_mobiles
+sleep 4000
+expect_service_known mage
+
+# Bind by the exact TRADE from the paperdoll title. Not a substring:
+# the mage guildmaster next door reads as "the mage guildmaster" and
+# keeps no shop at all.
+remember shop mobile_trade mage
+require shop
+
+# Stand next to the mage before speaking. Asking to shop is speech and Sphere's
+# shop keyword only carries three tiles, so arriving at "the mage shop" is not
+# the same as being close enough for the MAGE to hear -- the alchemist next
+# door will happily answer instead.
+travel_entity @shop 2
+wait_travel
+expect_travel ok
+sleep 1000
+
+vendor_open @shop buy
+wait_action
+expect success
+sleep 1000
+
+# A blank recall rune, named by graphic so the choice never depends on the
+# order Sphere happens to send its stock in.
+mark_gold
+vendor_buy @shop vendor_graphic:0x1F14 1
+wait_action
+sleep 2000
+
+remember rune pack_graphic 0x1F14
+require rune
+
+# Mark: the spell that would make this rune a destination. Expected to be
+# refused -- the character has Magery 50 and Mark needs 60.
+cast 45 @rune
+wait_action
+
+sleep 2000
+
+# Recall on a rune that was never marked. Sphere answers "that rune is blank"
+# (DEFMSG_SPELL_RECALL_BLANK, CChar::Spell_Recall).
+cast 32 @rune
+wait_action
+
+sleep 2000
+say rune bought, mark and recall attempted
+sleep 1000
+logout

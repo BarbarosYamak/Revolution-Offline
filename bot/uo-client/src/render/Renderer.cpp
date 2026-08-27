@@ -1,0 +1,836 @@
+#include "render/Renderer.h"
+
+#include <algorithm>
+#include <climits>
+#include <cmath>
+#include <cstdlib>
+#include <ranges>
+#include <unordered_set>
+
+namespace uo::render {
+
+namespace {
+
+// Isometric tile geometry. A cell's diamond is 44 wide, 44 tall, stepping 22px
+// per cell on each screen axis; z raises by 4px per unit.
+constexpr int kHalfTile = 22;
+constexpr int kTile     = 44;
+constexpr int kZStep    = 4;
+
+constexpr u16 kBackground = 0;   // black
+
+// Mouse-over highlight hue (client draw-hue chain, Mobile_OnRender @0x406FE0:
+// serial == g_ContextActionTargetSerial -> hue 53), applied to every layer of a
+// highlighted mobile.
+constexpr u16 kHighlightHue = 53;
+
+// One draw command — land, static, item or mobile. All share one list, ordered
+// exactly like the client (World_RenderEntities @0x401E90 + CDrawItem_AddToDrawList
+// @0x403B50): cells back-to-front (depth, then column), and WITHIN a cell by
+// drawCellZ ascending, with PRIORITY items inserted before non-priority on a
+// z-tie. Verified in the IDB: the ONLY priority class is LAND (flat & stretched
+// both return 1 from UsePrioritySortTieBreaker @vtable+0x1C); statics, items,
+// mobiles, multis and corpses are all non-priority. So at equal z, land draws
+// first (it is the ground) and everything else keeps insertion order via a
+// stable sort (statics0.mul order: trunk under crown).
+struct Draw {
+    i32 depth;          // x + y  — far-to-near tile depth
+    i32 col;            // x - y  — orders cells on the same diagonal
+    i32 z;              // within-cell sort key = drawCellZ (the tile's BASE z).
+                        // Land = north corner (flat) or (c0+c1+c2+c3)>>2 average
+                        // (stretched) per LandObject_CreateForCell; static/item/mob
+                        // = base z. NOT z+height: a tall wall must sort BELOW the
+                        // higher floor it supports so the floor covers it (else the
+                        // wall top pokes up through the floor).
+    bool foliage;       // tiledata Foliage flag (0x20000) — tree/bush leaf canopy.
+                        // The client links these into a SEPARATE list
+                        // (pActiveDrawListHead, Entity_OnAddToWorld @0x4C3C30) drawn
+                        // in a later pass so the canopy sits over its trunk. We sort
+                        // it last WITHIN its cell (after depth/col) — same effect for
+                        // the canopy/trunk pair, but the cell walk still lets a nearer
+                        // trunk occlude a farther canopy.
+    bool priority;      // client UsePrioritySortTieBreaker: true only for land
+    bool mobile;        // mobiles use Entity_InsertIntoDrawCellBucket: at equal z
+                        // they are appended after existing land/statics/items.
+    bool surface;       // floor/bridge static that can be visually occluded by walls
+    bool occluder;      // wall/blocking static with vertical volume
+    int height;         // tiledata height. On an exact z-TIE the SHORTER tile draws
+                        // first and the taller one on top: a table (z20/h6) or a
+                        // wall-top (z30/h3) sits over the floor (h0) it shares the
+                        // cell+z with, instead of the floor bleeding over them.
+    bool quad;          // true: stretched/texmap quad; false: flat blit
+    const u16* src;     // source pixels (art sprite or texmap)
+    int sw, sh;         // source dimensions
+    bool transparent;   // skip 0 texels (art) vs draw all (texmap)
+    u16 hue;            // 0 = original pixels; nonzero = whole-sprite hue ramp
+    int dx, dy;                   // flat-blit top-left (when !quad)
+    Renderer::TexVert N, E, S, W; // quad corners (when quad)
+    u32 serial = 0;     // owning entity serial when pickable (0 otherwise)
+    bool pickable = false; // server item / mobile sprite — hit-testable by PickObject
+};
+
+}  // namespace
+
+Renderer::Renderer(int width, int height)
+    : w_(width), h_(height), fb_(static_cast<usize>(width) * height, kBackground) {}
+
+void Renderer::RenderWorld(map::Map& map, art::ArtLoader& art,
+                           const tiledata::TileDataLoader& td, texmap::TexmapLoader& tex,
+                           i32 camX, i32 camY, i32 camZ,
+                           const DynItem* items, usize nItems,
+                           animdata::AnimDataLoader* animData, u32 animTick,
+                           hues::HuesLoader* hues,
+                           anim::AnimLoader* anim,
+                           const Mob* mobs, usize nMobs,
+                           int ambientDarkness) {
+    std::fill(fb_.begin(), fb_.end(), kBackground);
+    std::vector<LightSrc> lightSrcs;
+    const bool collectLights = ambientDarkness > 0;
+
+    // Cells whose screen position can land on-screen. The margin pads for tall
+    // statics anchored below the window and for elevation offsets.
+    const int R = (w_ + h_) / kTile + 48;
+
+    const i32 wc = static_cast<i32>(map.WidthCells());
+    const i32 hc = static_cast<i32>(map.HeightCells());
+    const i32 minX = std::max<i32>(0, camX - R), maxX = std::min<i32>(wc - 1, camX + R);
+    const i32 minY = std::max<i32>(0, camY - R), maxY = std::min<i32>(hc - 1, camY + R);
+    if (minX > maxX || minY > maxY) return;
+
+    const u32 bx0 = static_cast<u32>(minX) / 8, bx1 = static_cast<u32>(maxX) / 8;
+    const u32 by0 = static_cast<u32>(minY) / 8, by1 = static_cast<u32>(maxY) / 8;
+
+    // Smooth movement: the local player's per-step interpolation (ddx,ddy in
+    // cells) scrolls the whole scene so the player stays centred; other mobiles
+    // slide by their own offset on top (mobile loop below). Horizontal only.
+    double camOffX = 0.0, camOffY = 0.0;
+    for (usize mi = 0; mi < nMobs; ++mi) {
+        if (mobs[mi].isPlayer) {
+            const double ddx = mobs[mi].ddx, ddy = mobs[mi].ddy;
+            camOffX = -(ddx - ddy) * kHalfTile;
+            camOffY = -(ddx + ddy) * kHalfTile;
+            break;
+        }
+    }
+
+    const int originX = w_ / 2 + static_cast<int>(std::lround(camOffX));
+    // Centre on the player INCLUDING his z. (sx,sy) is a cell's NORTH vertex,
+    // but the player stands at the cell CENTRE (kHalfTile below the vertex), so
+    // we centre the cell centre of (camX,camY,camZ): +camZ*kZStep accounts for
+    // his elevation, -kHalfTile for the vertex->centre offset. Without this the
+    // z=0 vertex is centred and an elevated player sits high with extra tiles
+    // drawn below him.
+    const int originY = h_ / 2 + camZ * kZStep - kHalfTile + static_cast<int>(std::lround(camOffY));
+
+    std::vector<Draw> draws;
+    std::vector<map::StaticItem> statics(2048);
+
+    // Roof/floor cutoff (Visibility_ComputeFogDistance @0x404A00 +
+    // RoofVisibility_FloodFillConnectedRoofs @0x404900). When the player is
+    // under a roof the client hides the WHOLE connected roof, not just the
+    // tiles right above his head: it flood-fills the connected roof and takes
+    // its MINIMUM z as the ceiling, then culls everything at/above that z
+    // (WorldObject_IsVisible @0x404CA0). 127/none => draw everything (outdoors).
+    //
+    // Roof/canopy tiles (thatch, shingles, tent) carry the Roof flag
+    // (0x10000000 in this client era; see tiledata.h). Upper-floor surfaces
+    // carry the Surface flag (0x200).
+    constexpr u32 kRoofOverhead = tiledata::kFlagRoof;
+    int ceilingZ = INT_MAX;
+    const Mob* player = nullptr;
+    for (usize i = 0; i < nMobs; ++i)
+        if (mobs[i].isPlayer) { player = &mobs[i]; break; }
+    if (player) {
+        const int pz = player->z;
+        std::vector<map::StaticItem> rbuf(2048);
+
+        // Lowest roof tile (bit 0x10000000) in a cell; if ref != INT_MIN, only
+        // tiles within 6 z of it count (so the fill follows one sloped roof and
+        // won't jump to a taller neighbouring structure). INT_MIN = none.
+        auto roofZAt = [&](i32 cx, i32 cy, int ref) -> int {
+            if (cx < 0 || cy < 0) return INT_MIN;
+            u32 nn = 0;
+            if (!map.ReadStatics(static_cast<u32>(cx) / 8, static_cast<u32>(cy) / 8,
+                                 rbuf.data(), static_cast<u32>(rbuf.size()), &nn))
+                return INT_MIN;
+            const u8 lx = static_cast<u8>(cx & 7), ly = static_cast<u8>(cy & 7);
+            int best = INT_MIN;
+            for (u32 i = 0; i < nn; ++i) {
+                const map::StaticItem& s = rbuf[i];
+                if (s.cellX != lx || s.cellY != ly) continue;
+                if (!(td.Static(s.itemId).flags & kRoofOverhead)) continue;
+                if (ref != INT_MIN && std::abs(static_cast<int>(s.z) - ref) > 6) continue;
+                if (best == INT_MIN || s.z < best) best = s.z;
+            }
+            return best;
+        };
+
+        // Flood-fill the connected roof (4-neighbour, each step within 6 z),
+        // seeded from the player's own + SE cell, accumulating the minimum z.
+        struct Cell { i32 x, y; int ref; };
+        std::vector<Cell> stack;
+        std::unordered_set<u64> visited;
+        auto seed = [&](i32 cx, i32 cy) {
+            const int rz = roofZAt(cx, cy, INT_MIN);
+            if (rz != INT_MIN && rz > pz + 14) stack.push_back({cx, cy, INT_MIN});
+        };
+        seed(player->x, player->y);
+        seed(player->x + 1, player->y + 1);
+
+        int minRoof = INT_MAX;
+        usize guard = 0;
+        while (!stack.empty() && guard++ < 16384u) {
+            const Cell c = stack.back();
+            stack.pop_back();
+            const u64 key = (static_cast<u64>(static_cast<u32>(c.x)) << 32) |
+                            static_cast<u32>(c.y);
+            if (!visited.insert(key).second) continue;
+            const int rz = roofZAt(c.x, c.y, c.ref);
+            if (rz == INT_MIN) continue;
+            if (rz < minRoof) minRoof = rz;
+            stack.push_back({c.x - 1, c.y, rz});
+            stack.push_back({c.x + 1, c.y, rz});
+            stack.push_back({c.x, c.y - 1, rz});
+            stack.push_back({c.x, c.y + 1, rz});
+        }
+        if (minRoof != INT_MAX) ceilingZ = std::max(minRoof, pz + 16);
+
+        // Plain upper floor directly overhead (multi-storey): lowest Surface
+        // tile in the player's own cell above his head lowers the ceiling too.
+        u32 n = 0;
+        if (map.ReadStatics(static_cast<u32>(player->x) / 8, static_cast<u32>(player->y) / 8,
+                            statics.data(), static_cast<u32>(statics.size()), &n)) {
+            const u8 lx = static_cast<u8>(player->x & 7), ly = static_cast<u8>(player->y & 7);
+            for (u32 i = 0; i < n; ++i) {
+                const map::StaticItem& s = statics[i];
+                if (s.cellX != lx || s.cellY != ly) continue;
+                if (s.z <= pz + 14) continue;
+                if ((td.Static(s.itemId).flags & tiledata::kFlagSurface) &&
+                    std::max(static_cast<int>(s.z), pz + 16) < ceilingZ)
+                    ceilingZ = std::max(static_cast<int>(s.z), pz + 16);
+            }
+        }
+
+        // Some interiors sit below the terrain land tile: the floor is a
+        // static at negative z while the raw land at the same x/y remains
+        // above it. Treat that terrain as the overhead cut plane too, or the
+        // land is drawn over the room.
+        map::LandCell ownLand{};
+        if (map.ReadCell(static_cast<u32>(player->x), static_cast<u32>(player->y), &ownLand) &&
+            ownLand.z > pz + 14 && pz + 16 < ceilingZ) {
+            ceilingZ = pz + 16;
+        }
+    }
+    auto culled = [&](int z) { return z >= ceilingZ; };
+
+    // Vertical reach of z offsets, for the per-tile cull (z is a signed byte).
+    const int kZPad = 128 * kZStep;
+
+    // Per-frame heightmap over the visible range + a 2-cell margin (the
+    // land-stretch model needs the +1 corner neighbors, and the official's
+    // flat-vs-texmap test scans a small neighborhood). One block read per
+    // covering block; lookups are then O(1).
+    const i32 gx0 = std::max<i32>(0, minX - 2), gx1 = std::min<i32>(wc - 1, maxX + 2);
+    const i32 gy0 = std::max<i32>(0, minY - 2), gy1 = std::min<i32>(hc - 1, maxY + 2);
+    const int gw = gx1 - gx0 + 1, gh = gy1 - gy0 + 1;
+    std::vector<i8> zmap(static_cast<usize>(gw) * gh, 0);
+    {
+        map::MapBlock zb{};
+        for (u32 by = static_cast<u32>(gy0)/8; by <= static_cast<u32>(gy1)/8; ++by) {
+            for (u32 bx = static_cast<u32>(gx0)/8; bx <= static_cast<u32>(gx1)/8; ++bx) {
+                if (!map.ReadBlock(bx, by, &zb)) continue;
+                for (int cy = 0; cy < 8; ++cy) {
+                    for (int cx = 0; cx < 8; ++cx) {
+                        const i32 wx = static_cast<i32>(bx)*8 + cx;
+                        const i32 wy = static_cast<i32>(by)*8 + cy;
+                        if (wx < gx0 || wx > gx1 || wy < gy0 || wy > gy1) continue;
+                        zmap[static_cast<usize>(wy - gy0) * gw + (wx - gx0)] = zb.cells[cy*8 + cx].z;
+                    }
+                }
+            }
+        }
+    }
+    auto zAt = [&](i32 x, i32 y) -> int {
+        if (x < gx0 || x > gx1 || y < gy0 || y > gy1) return 0;
+        return zmap[static_cast<usize>(y - gy0) * gw + (x - gx0)];
+    };
+
+    // Light occlusion, mirroring the client's light pass: a light is suppressed
+    // when the draw cell diagonally toward the camera (x+1,y+1) holds a solid
+    // tile (wall/roof) above it — so a building's own wall/roof blocks its
+    // interior and window light from outside, instead of blazing through.
+    std::vector<map::StaticItem> occBuf(2048);
+    auto lightOccluded = [&](i32 wx, i32 wy, int z) -> bool {
+        const i32 cx = wx + 1, cy = wy + 1;
+        if (cx < 0 || cy < 0) return false;
+        u32 n = 0;
+        if (!map.ReadStatics(static_cast<u32>(cx) / 8, static_cast<u32>(cy) / 8,
+                             occBuf.data(), static_cast<u32>(occBuf.size()), &n))
+            return false;
+        const u8 lx = static_cast<u8>(cx & 7), ly = static_cast<u8>(cy & 7);
+        for (u32 i = 0; i < n; ++i) {
+            const map::StaticItem& s = occBuf[i];
+            if (s.cellX != lx || s.cellY != ly) continue;
+            if (s.z <= z + 4) continue;                 // not above the light
+            if (culled(s.z)) continue;                  // hidden by the roof
+                                                        // cutoff (we're inside)
+                                                        // -> it can't occlude
+            if (td.Static(s.itemId).flags &
+                (tiledata::kFlagWall | tiledata::kFlagImpassable | tiledata::kFlagRoof))
+                return true;
+        }
+        return false;
+    };
+
+    for (u32 by = by0; by <= by1; ++by) {
+        for (u32 bx = bx0; bx <= bx1; ++bx) {
+            // --- Land (drawn immediately; always under statics) ------------
+            map::MapBlock mb{};
+            if (map.ReadBlock(bx, by, &mb)) {
+                for (int cy = 0; cy < 8; ++cy) {
+                    for (int cx = 0; cx < 8; ++cx) {
+                        const i32 wx = static_cast<i32>(bx) * 8 + cx;
+                        const i32 wy = static_cast<i32>(by) * 8 + cy;
+                        const map::LandCell& c = mb.cells[cy * 8 + cx];
+                        const art::Sprite* sp = art.Land(c.tileId);
+                        if (!sp) continue;
+
+                        const i32 dxw = wx - camX, dyw = wy - camY;
+                        const int sx = originX + (dxw - dyw) * kHalfTile;
+                        const int sy = originY + (dxw + dyw) * kHalfTile;
+                        if (sx + kHalfTile < 0 || sx - kHalfTile >= w_) continue;
+                        if (sy + kTile + kZPad < 0 || sy - kZPad >= h_) continue;
+
+                        // Four corner z's: own cell (north), +x (east),
+                        // +x+y (south), +y (west) — the UO land-stretch model.
+                        const int z0 = c.z;             // N
+                        const int z1 = zAt(wx + 1, wy);     // E
+                        const int z2 = zAt(wx + 1, wy + 1); // S
+                        const int z3 = zAt(wx,     wy + 1); // W
+
+                        // Faithful to the client's land factory (sub_4B74E0 @0x4B74E0):
+                        //   textureId == 0                         -> 44x44 art
+                        //   textured, corners equal AND neighborhood
+                        //     uniform in z                          -> 44x44 art
+                        //   otherwise                               -> stretched texmap
+                        // The neighborhood test is why a flat water tile *beside*
+                        // the sloped shore is texmapped (wavy) — smoothing the coast.
+                        const texmap::Texture* t =
+                            tex.Get(td.Land(c.tileId).textureId);
+                        bool useArt = (z0 == z1 && z1 == z2 && z2 == z3);
+                        if (useArt && t) {
+                            for (i32 ny = wy - 1; ny <= wy + 2 && useArt; ++ny)
+                                for (i32 nx = wx - 1; nx <= wx + 2 && useArt; ++nx)
+                                    if (zAt(nx, ny) != z0) useArt = false;
+                        }
+                        // drawCellZ (LandObject_CreateForCell @0x4B74E0): flat tile
+                        // sorts by its north-corner z; a stretched tile sorts by the
+                        // average of its four corners ((c0+c1+c2+c3)>>2). Using the
+                        // north corner for stretched tiles mis-sorts sloped land vs.
+                        // its neighbours — the cause of the saw-tooth coastline.
+                        const int avgZ = (z0 + z1 + z2 + z3) >> 2;
+                        if (culled(avgZ)) continue;
+                        const i32 depth = wx + wy, col = wx - wy;
+                        Draw d{};
+                        d.depth = depth; d.col = col; d.z = z0; d.priority = true;
+                        if (!t || useArt) {
+                            if (z0 == z1 && z1 == z2 && z2 == z3) {
+                                d.quad = false;
+                                d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
+                                d.transparent = true;
+                                d.dx = sx - kHalfTile; d.dy = sy - z0 * kZStep;
+                            } else {
+                                // Textureless sloped tile: stretch the art so it
+                                // still meets its neighbors (avoids a crack).
+                                d.z = avgZ;
+                                d.quad = true;
+                                d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
+                                d.transparent = true;
+                                d.N = {sx,             sy            - z0 * kZStep, 22,  0};
+                                d.E = {sx + kHalfTile, sy + kHalfTile - z1 * kZStep, 43, 22};
+                                d.S = {sx,             sy + kTile     - z2 * kZStep, 22, 43};
+                                d.W = {sx - kHalfTile, sy + kHalfTile - z3 * kZStep,  0, 22};
+                            }
+                        } else {
+                            const int hi = t->size - 1;
+                            d.z = avgZ;
+                            d.quad = true;
+                            d.src = t->px.data(); d.sw = t->size; d.sh = t->size;
+                            d.transparent = false;
+                            d.N = {sx,             sy            - z0 * kZStep, 0,  0 };
+                            d.E = {sx + kHalfTile, sy + kHalfTile - z1 * kZStep, hi, 0 };
+                            d.S = {sx,             sy + kTile     - z2 * kZStep, hi, hi};
+                            d.W = {sx - kHalfTile, sy + kHalfTile - z3 * kZStep, 0,  hi};
+                        }
+                        draws.push_back(d);
+                    }
+                }
+            }
+
+            // --- Statics (deferred to the painter's pass) ------------------
+            u32 n = 0;
+            if (map.ReadStatics(bx, by, statics.data(),
+                                static_cast<u32>(statics.size()), &n)) {
+                for (u32 i = 0; i < n; ++i) {
+                    const map::StaticItem& s = statics[i];
+                    if (culled(s.z)) continue;   // hidden by the roof cutoff
+                    const i32 wx = static_cast<i32>(bx) * 8 + s.cellX;
+                    const i32 wy = static_cast<i32>(by) * 8 + s.cellY;
+                    const tiledata::StaticTile& baseStt = td.Static(s.itemId);
+                    u16 gid = s.itemId;
+                    if (animData && (baseStt.flags & tiledata::kFlagAnimation))
+                        gid = static_cast<u16>(gid + animData->FrameOffset(gid, animTick));
+                    const art::Sprite* sp = art.Static(gid);
+                    if (!sp) continue;
+                    const tiledata::StaticTile& stt = td.Static(gid);
+                    const i32 dxw = wx - camX, dyw = wy - camY;
+                    const int sx = originX + (dxw - dyw) * kHalfTile;
+                    const int sy = originY + (dxw + dyw) * kHalfTile - s.z * kZStep;
+                    Draw d{};
+                    d.depth = wx + wy; d.col = wx - wy;
+                    d.z = s.z; d.priority = false; d.height = stt.height;
+                    d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
+                    d.surface = (stt.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
+                    d.occluder = !d.surface && (stt.flags & (tiledata::kFlagWall |
+                                   tiledata::kFlagImpassable | tiledata::kFlagWindow)) != 0;
+                    d.quad = false;
+                    d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
+                    d.transparent = true;
+                    d.hue = s.hue;
+                    d.dx = sx - sp->width / 2;
+                    d.dy = sy + kTile - sp->height;   // bottom-anchored
+                    draws.push_back(d);
+
+                    // Classify by the BASE graphic (the client stores the lit
+                    // object by bodyType, not the animated frame) — so a flame
+                    // keeps a steady pool instead of blinking with its anim.
+                    if (collectLights && (baseStt.flags & tiledata::kFlagLightSource) &&
+                        !lightOccluded(wx, wy, s.z))
+                        lightSrcs.push_back({sx, sy + kHalfTile, s.itemId});
+                }
+            }
+        }
+    }
+
+    // Dynamic server items (lamp posts, doors, ...) — drawn as static art,
+    // interleaved into the same painter's order as map statics. The drawn
+    // graphic is itemId + gfxOffset: a door stores a base graphic plus a
+    // graphic-increment that selects its open/closed/hinge frame (sub_405290).
+    for (usize ii = 0; ii < nItems; ++ii) {
+        const DynItem& it = items[ii];
+        if (culled(it.z)) continue;
+        u16 gid = static_cast<u16>(it.itemId + it.gfxOffset);
+        const tiledata::StaticTile& baseStt = td.Static(gid);
+        if (animData && (baseStt.flags & tiledata::kFlagAnimation))
+            gid = static_cast<u16>(gid + animData->FrameOffset(gid, animTick));
+        const art::Sprite* sp = art.Static(gid);
+        if (!sp) continue;
+        const tiledata::StaticTile& stt = td.Static(gid);
+        const i32 dxw = it.x - camX, dyw = it.y - camY;
+        const int sx = originX + (dxw - dyw) * kHalfTile;
+        const int sy = originY + (dxw + dyw) * kHalfTile - it.z * kZStep;
+        Draw d{};
+        d.depth = it.x + it.y; d.col = it.x - it.y;
+        d.z = it.z; d.priority = false; d.height = stt.height;
+        d.foliage = (stt.flags & tiledata::kFlagFoliage) != 0;
+        d.surface = (stt.flags & (tiledata::kFlagSurface | tiledata::kFlagBridge)) != 0;
+        d.occluder = !d.surface && (stt.flags & (tiledata::kFlagWall |
+                     tiledata::kFlagImpassable | tiledata::kFlagWindow)) != 0;
+        d.quad = false;
+        d.src = sp->px.data(); d.sw = sp->width; d.sh = sp->height;
+        d.transparent = true;
+        d.hue = it.hue;
+        d.dx = sx - sp->width / 2;
+        d.dy = sy + kTile - sp->height;
+        d.serial = it.serial; d.pickable = it.serial != 0;
+        draws.push_back(d);
+
+        if (collectLights && (baseStt.flags & tiledata::kFlagLightSource) &&
+            !lightOccluded(it.x, it.y, it.z))
+            lightSrcs.push_back({sx, sy + kHalfTile, static_cast<u16>(it.itemId + it.gfxOffset)});
+    }
+
+    // Mobiles (players/NPCs) — the body frame for the chosen action/frame.
+    // Interleaved by z with statics, like the client's draw buckets. Each frame
+    // is fitted to its content; we place its command origin (anchorX/anchorY)
+    // at the tile floor (cell centre). A mount/seat body (when present) is drawn
+    // first so the rider sits on top.
+    if (anim) {
+        for (usize mi = 0; mi < nMobs; ++mi) {
+            const Mob& m = mobs[mi];
+            if (culled(m.z)) continue;
+            const anim::Frame* fr = anim->Body(m.body, m.dir, m.action, m.frame);
+            if (!fr) continue;
+            const i32 dxw = m.x - camX, dyw = m.y - camY;
+            // Per-sprite slide between previous and current cell. The player's
+            // offset cancels the camera shift above, leaving it centred.
+            const int mobOffX = static_cast<int>(std::lround((m.ddx - m.ddy) * kHalfTile));
+            const int mobOffY = static_cast<int>(std::lround((m.ddx + m.ddy) * kHalfTile));
+            const int sx = originX + (dxw - dyw) * kHalfTile + mobOffX;
+            const int sy = originY + (dxw + dyw) * kHalfTile - m.z * kZStep + mobOffY;
+
+            // Mount/seat body under the rider (same sort key; pushed first so the
+            // stable sort keeps it below the rider).
+            if (m.mountBody) {
+                const anim::Frame* mf = anim->Body(m.mountBody, m.dir, m.mountAction, m.mountFrame);
+                if (mf) {
+                    Draw md{};
+                    md.depth = m.x + m.y; md.col = m.x - m.y; md.z = m.z; md.priority = false;
+                    md.mobile = true;
+                    md.quad = false;
+                    md.src = mf->px.data(); md.sw = mf->width; md.sh = mf->height;
+                    md.transparent = true;
+                    if (m.highlight) md.hue = kHighlightHue;
+                    md.dx = sx - mf->anchorX;
+                    md.dy = sy + kHalfTile - mf->anchorY;
+                    md.serial = m.serial; md.pickable = m.serial != 0;
+                    draws.push_back(md);
+                }
+            }
+
+            Draw d{};
+            d.depth = m.x + m.y; d.col = m.x - m.y; d.z = m.z; d.priority = false;
+            d.mobile = true;
+            d.quad = false;
+            d.src = fr->px.data(); d.sw = fr->width; d.sh = fr->height;
+            d.transparent = true;
+            d.hue = m.highlight ? kHighlightHue : m.hue;
+            const int seatY = m.sitting ? m.sitOffsetY : 0;  // chair seat shift
+            d.dx = sx - fr->anchorX;
+            d.dy = sy + kHalfTile - fr->anchorY + seatY;  // command origin at cell centre
+            d.serial = m.serial; d.pickable = m.serial != 0;
+            draws.push_back(d);
+
+            if (collectLights && m.light >= 0 && !lightOccluded(m.x, m.y, m.z))
+                lightSrcs.push_back({sx, sy + kHalfTile, static_cast<u16>(m.light)});
+
+            // Worn gear over the body. Each equip frame is a body-like anim with
+            // its own anchor, so it lines up at the same floor point. They share
+            // this mobile's sort key, so stable_sort keeps body-then-layer order.
+            for (const EquipAnim& ea : m.equipAnims) {
+                const anim::Frame* ef = anim->Body(ea.anim, m.dir, m.action, m.frame);
+                if (!ef) continue;
+                Draw e{};
+                e.depth = m.x + m.y; e.col = m.x - m.y; e.z = m.z; e.priority = false;
+                e.mobile = true;
+                e.quad = false;
+                e.src = ef->px.data(); e.sw = ef->width; e.sh = ef->height;
+                e.transparent = true;
+                e.hue = m.highlight ? kHighlightHue : ea.hue;
+                e.dx = sx - ef->anchorX;
+                e.dy = sy + kHalfTile - ef->anchorY + seatY;
+                e.serial = m.serial; e.pickable = m.serial != 0;
+                draws.push_back(e);
+            }
+        }
+    }
+
+    // Order like the client. World_RenderEntities @0x401E90 walks the visible
+    // cells back-to-front (depth = x+y, then column = x-y); within a cell
+    // CDrawItem_AddToDrawList @0x403B50 keeps the bucket sorted by drawCellZ (the
+    // tile's BASE z) ascending, with a PRIORITY item inserted ahead of a
+    // non-priority one on a z-tie. Verified in the IDB: land (flat & stretched) is
+    // the ONLY priority class — so land draws first on a z-tie (it is the ground).
+    // Statics sort by base z so a tall wall stays BELOW the higher floor it
+    // supports (a wooden battlement floor covers the sandstone wall beneath it);
+    // sorting by the tile TOP instead made tall walls poke up through the floor.
+    // Mobiles are appended after same-z world draw items by
+    // Entity_InsertIntoDrawCellBucket (they do not use the CDrawItem priority
+    // tie path), so a seated body draws over the chair at the same cell/z.
+    // On an exact z-tie between world items the SHORTER tile draws first and
+    // the taller one on top (by tiledata height): a table (z20/h6) or a
+    // wall-top (z30/h3) draws over the floor (h0) it shares a cell+z with,
+    // instead of the floor bleeding over them.
+    // Stretched land uses its average-corner z (LandObject_CreateForCell) for a
+    // smooth coast. Stable so equal-key statics keep statics0.mul order.
+    std::ranges::stable_sort(draws, [](const Draw& a, const Draw& b) {
+        if (a.depth != b.depth) return a.depth < b.depth;
+        if (a.col   != b.col)   return a.col   < b.col;
+        // Foliage (tree/bush canopies) draws after everything else IN ITS CELL,
+        // like the client's separate pActiveDrawListHead pass (Entity_OnAddToWorld
+        // @0x4C3C30, gated on the Foliage flag 0x20000) — so the leaf crown sits
+        // over its own trunk. Kept per-cell (not global) so the back-to-front cell
+        // walk still lets a nearer trunk occlude a farther canopy.
+        if (a.foliage != b.foliage) return a.foliage < b.foliage;
+        auto surfaceInsideOccluder = [](const Draw& floor, const Draw& wall) {
+            return floor.surface && wall.occluder && wall.height > 0 &&
+                   floor.z > wall.z && floor.z < wall.z + wall.height;
+        };
+        if (surfaceInsideOccluder(a, b)) return true;
+        if (surfaceInsideOccluder(b, a)) return false;
+        if (a.z     != b.z)     return a.z     < b.z;       // base drawCellZ
+        if (a.mobile != b.mobile) return a.mobile < b.mobile; // world under mobiles
+        if (a.priority != b.priority) return a.priority > b.priority;  // land under objects
+        if (a.height != b.height) return a.height < b.height;          // shorter under taller
+        return false;                                       // else: insertion order
+    });
+
+    // Record pickable sprites in final draw order (back-to-front) so PickObject
+    // can hit-test the cursor against the same pixels we draw. Only flat-blit
+    // items/mobiles are pickable (land/static quads have no serial).
+    picks_.clear();
+    for (const Draw& d : draws) {
+        if (d.quad) {
+            TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.E, d.S);
+            TexTri(d.src, d.sw, d.sh, d.transparent, d.N, d.S, d.W);
+        } else {
+            BlitRaw(d.src, d.sw, d.sh, d.dx, d.dy, d.transparent, hues, d.hue);
+            if (d.pickable)
+                picks_.push_back({d.serial, d.mobile, d.dx, d.dy, d.sw, d.sh, d.src});
+        }
+    }
+
+    ApplyLighting(ambientDarkness, lightSrcs);
+}
+
+void Renderer::Overlay(const u16* src, int sw, int sh, int dx, int dy) {
+    if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        const u16* srow = &src[static_cast<usize>(row) * sw];
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            drow[px] = srow[col];
+        }
+    }
+}
+
+void Renderer::FillRect(int x, int y, int rw, int rh, u16 color) {
+    if (rw <= 0 || rh <= 0 || x >= w_ || y >= h_ || x + rw <= 0 || y + rh <= 0) return;
+    const int x0 = std::max(0, x);
+    const int y0 = std::max(0, y);
+    const int x1 = std::min(w_, x + rw);
+    const int y1 = std::min(h_, y + rh);
+    for (int py = y0; py < y1; ++py) {
+        u16* row = &fb_[static_cast<usize>(py) * w_];
+        for (int px = x0; px < x1; ++px) row[px] = color;
+    }
+}
+
+void Renderer::BlendRGBA(const u32* bgra, int sw, int sh, int dx, int dy) {
+    if (!bgra || sw <= 0 || sh <= 0 || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            const u32 s = bgra[static_cast<usize>(row) * sw + col];
+            const u32 a = (s >> 24) & 0xFFu;
+            if (a == 0) continue;
+
+            const u16 d = drow[px];
+            const u32 sr = ((s >> 16) & 0xFFu) * 31u / 255u;
+            const u32 sg = ((s >> 8) & 0xFFu) * 31u / 255u;
+            const u32 sb = (s & 0xFFu) * 31u / 255u;
+            const u32 dr = (d >> 10) & 31u;
+            const u32 dg = (d >> 5) & 31u;
+            const u32 db = d & 31u;
+            const u32 r = (sr * a + dr * (255u - a) + 127u) / 255u;
+            const u32 g = (sg * a + dg * (255u - a) + 127u) / 255u;
+            const u32 b = (sb * a + db * (255u - a) + 127u) / 255u;
+            drow[px] = static_cast<u16>(0x8000u | (r << 10) | (g << 5) | b);
+        }
+    }
+}
+
+void Renderer::BlitSpriteKeyed(const u16* src, int sw, int sh, int dx, int dy, u16 key,
+                               bool skipHotspotMarker) {
+    if (!src || dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        const u16* srow = &src[static_cast<usize>(row) * sw];
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const u16 p = srow[col];
+            if (!p || p == key) continue;
+            if (skipHotspotMarker && (p & 0x7FFF) == 0x03E0) continue;  // green hotspot dot
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            drow[px] = p;
+        }
+    }
+}
+
+void Renderer::ScreenToWorld(int sx, int sy, i32 camX, i32 camY,
+                             i32* outX, i32* outY) const {
+    // RenderWorld places the player's cell centre (feet) at the screen centre
+    // (w/2, h/2): the +camZ*kZStep in originY and the per-tile -z*kZStep offset
+    // cancel for the player's own elevation. A cell at (camX+dx, camY+dy) on the
+    // same floor lands at screen (w/2 + (dx-dy)*kHalfTile, h/2 + (dx+dy)*kHalfTile).
+    // Invert that:
+    const double dsx = sx - w_ / 2.0;
+    const double dsy = sy - h_ / 2.0;
+    const double dx = (dsx + dsy) / (2.0 * kHalfTile);   // (dx-dy)+(dx+dy) = 2dx
+    const double dy = (dsy - dsx) / (2.0 * kHalfTile);   // (dx+dy)-(dx-dy) = 2dy
+    if (outX) *outX = camX + static_cast<i32>(std::lround(dx));
+    if (outY) *outY = camY + static_cast<i32>(std::lround(dy));
+}
+
+u32 Renderer::PickObject(int sx, int sy, bool* mobile) const {
+    // Walk front-to-back (picks_ is back-to-front draw order) and return the
+    // first object whose sprite has a non-transparent texel under the cursor —
+    // the topmost visible hit, like the client's far->near cell walk.
+    for (const auto & pick : std::views::reverse(picks_)) {
+        const int lx = sx - pick.dx, ly = sy - pick.dy;
+        if (lx < 0 || ly < 0 || lx >= pick.sw || ly >= pick.sh) continue;
+        if (!pick.src[static_cast<usize>(ly) * pick.sw + lx]) continue;  // see-through
+        if (mobile) *mobile = pick.mobile;
+        return pick.serial;
+    }
+    if (mobile) *mobile = false;
+    return 0;
+}
+
+void Renderer::WorldToScreen(i32 worldX, i32 worldY, i8 z,
+                             i32 camX, i32 camY, i32 camZ,
+                             int* outSx, int* outSy) const {
+    const i32 dxw = worldX - camX;
+    const i32 dyw = worldY - camY;
+    const int sx = w_ / 2 + (dxw - dyw) * kHalfTile;
+    const int sy = (h_ / 2 + camZ * kZStep - kHalfTile) +
+                   (dxw + dyw) * kHalfTile -
+                   static_cast<int>(z) * kZStep +
+                   kHalfTile;
+    if (outSx) *outSx = sx;
+    if (outSy) *outSy = sy;
+}
+
+namespace {
+
+// Per-light look: corona radius (screen px) + color weights (0..255 per
+// channel). A light cancels ambient darkness scaled by these weights, so a
+// warm weight (low G/B) leaves a reddish pool, white leaves a neutral pool.
+// Ranges are this shard's graphics — tune freely; unknown lights default white.
+struct LightStyle { int radius; u8 wr, wg, wb; };
+
+LightStyle ClassifyLight(u16 g) {
+    auto in = [&](u16 a, u16 b) { return g >= a && g <= b; };
+    if (in(0x3E02, 0x3E0B))                       // campfire / fire field
+        return {120, 255, 130,  55};
+    if (in(0x3914, 0x3929))                       // torches (wall / held)
+        return { 78, 255, 140,  60};
+    if (in(0x1ECD, 0x1ED2))                       // magic fire orbs
+        return { 70, 255, 120,  60};
+    if (in(0x0A0F, 0x0A1C) || in(0x09FB, 0x0A29)) // candles / candelabra
+        return { 46, 255, 150,  80};
+    return {140, 255, 250, 235};                  // lamps / lanterns / windows
+}
+
+}  // namespace
+
+void Renderer::ApplyLighting(int ambientDarkness, const std::vector<LightSrc>& srcs) {
+    if (ambientDarkness <= 0) return;             // full daylight: nothing to do
+    if (ambientDarkness > 31) ambientDarkness = 31;
+
+    // Per-pixel RGB darkness map seeded with the (neutral) ambient term.
+    dark_.assign(static_cast<usize>(w_) * h_ * 3u, static_cast<u8>(ambientDarkness));
+
+    // Carve out lit pools: a smooth radial corona reduces darkness per channel
+    // by the light's color weight, clamped at 0 (= fully lit). Quadratic
+    // falloff (1 - d^2/r^2)^2 — soft edge, no sqrt.
+    for (const LightSrc& ls : srcs) {
+        const LightStyle st = ClassifyLight(ls.graphic);
+        const int r = st.radius;
+        if (r <= 0) continue;
+        const i64 r2 = static_cast<i64>(r) * r;
+        const int x0 = std::max(0, ls.sx - r), x1 = std::min(w_ - 1, ls.sx + r);
+        const int y0 = std::max(0, ls.sy - r), y1 = std::min(h_ - 1, ls.sy + r);
+        for (int py = y0; py <= y1; ++py) {
+            const i64 dy = py - ls.sy;
+            u8* drow = &dark_[(static_cast<usize>(py) * w_) * 3u];
+            for (int px = x0; px <= x1; ++px) {
+                const i64 dx = px - ls.sx;
+                const i64 d2 = dx * dx + dy * dy;
+                if (d2 >= r2) continue;
+                const float f = 1.0f - static_cast<float>(d2) / static_cast<float>(r2);
+                const float fall = f * f;             // soft edge
+                u8* dp = &drow[static_cast<usize>(px) * 3u];
+                const int sr = static_cast<int>(fall * st.wr / 255.0f * ambientDarkness + 0.5f);
+                const int sg = static_cast<int>(fall * st.wg / 255.0f * ambientDarkness + 0.5f);
+                const int sb = static_cast<int>(fall * st.wb / 255.0f * ambientDarkness + 0.5f);
+                dp[0] = static_cast<u8>(std::max(0, dp[0] - sr));
+                dp[1] = static_cast<u8>(std::max(0, dp[1] - sg));
+                dp[2] = static_cast<u8>(std::max(0, dp[2] - sb));
+            }
+        }
+    }
+
+    // Composite: darken each 5-bit channel by its per-pixel darkness via the
+    // linear curve `ch*(32-d)/32`. Alpha bit preserved.
+    for (usize i = 0; i < fb_.size(); ++i) {
+        const u8* dp = &dark_[i * 3u];
+        if (dp[0] == 0 && dp[1] == 0 && dp[2] == 0) continue;   // fully lit
+        const u16 p = fb_[i];
+        const u16 a = p & 0x8000;
+        const int r = ((p >> 10) & 0x1F) * (32 - dp[0]) / 32;
+        const int g = ((p >> 5)  & 0x1F) * (32 - dp[1]) / 32;
+        const int b = ( p        & 0x1F) * (32 - dp[2]) / 32;
+        fb_[i] = static_cast<u16>(a | (r << 10) | (g << 5) | b);
+    }
+}
+
+void Renderer::Blit(const art::Sprite& s, int dx, int dy) {
+    BlitRaw(s.px.data(), s.width, s.height, dx, dy, true);
+}
+
+void Renderer::BlitRaw(const u16* src, int sw, int sh, int dx, int dy,
+                       bool skipTransparent, hues::HuesLoader* hues, u16 hue) {
+    if (dx >= w_ || dy >= h_ || dx + sw <= 0 || dy + sh <= 0) return;
+
+    for (int row = 0; row < sh; ++row) {
+        const int py = dy + row;
+        if (py < 0 || py >= h_) continue;
+        const u16* srow = &src[static_cast<usize>(row) * sw];
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int col = 0; col < sw; ++col) {
+            const u16 p = srow[col];
+            if (!p && skipTransparent) continue;
+            const int px = dx + col;
+            if (px < 0 || px >= w_) continue;
+            drow[px] = hues ? hues->Remap(p, hue) : p;
+        }
+    }
+}
+
+void Renderer::TexTri(const u16* src, int texW, int texH, bool skipTransparent,
+                      TexVert a, TexVert b, TexVert c) {
+    const int area = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+    if (area == 0) return;
+
+    int minx = std::max(0,      std::min(a.x, std::min(b.x, c.x)));
+    int maxx = std::min(w_ - 1, std::max(a.x, std::max(b.x, c.x)));
+    int miny = std::max(0,      std::min(a.y, std::min(b.y, c.y)));
+    int maxy = std::min(h_ - 1, std::max(a.y, std::max(b.y, c.y)));
+    if (minx > maxx || miny > maxy) return;
+
+    const float inv = 1.0f / static_cast<float>(area);
+    const int maxU = texW - 1, maxV = texH - 1;
+
+    for (int py = miny; py <= maxy; ++py) {
+        u16* drow = &fb_[static_cast<usize>(py) * w_];
+        for (int px = minx; px <= maxx; ++px) {
+            // Edge functions: w0 opposite a (edge b->c), etc.
+            const int w0 = (c.x - b.x) * (py - b.y) - (c.y - b.y) * (px - b.x);
+            const int w1 = (a.x - c.x) * (py - c.y) - (a.y - c.y) * (px - c.x);
+            const int w2 = (b.x - a.x) * (py - a.y) - (b.y - a.y) * (px - a.x);
+            if (area > 0) { if (w0 < 0 || w1 < 0 || w2 < 0) continue; }
+            else          { if (w0 > 0 || w1 > 0 || w2 > 0) continue; }
+
+            int u = static_cast<int>((w0 * a.u + w1 * b.u + w2 * c.u) * inv + 0.5f);
+            int v = static_cast<int>((w0 * a.v + w1 * b.v + w2 * c.v) * inv + 0.5f);
+            u = u < 0 ? 0 : (u > maxU ? maxU : u);
+            v = v < 0 ? 0 : (v > maxV ? maxV : v);
+
+            const u16 p = src[static_cast<usize>(v) * texW + u];
+            if (p || !skipTransparent) drow[px] = p;
+        }
+    }
+}
+
+}

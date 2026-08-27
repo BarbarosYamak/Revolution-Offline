@@ -1,0 +1,526 @@
+#include "uo/vendor_policy.h"
+
+#include <algorithm>
+#include <cstring>
+
+namespace uo::econ {
+
+namespace {
+
+bool Same(const char* a, const char* b) {
+    if (!a || !b) return false;
+    return std::strcmp(a, b) == 0;
+}
+
+// ---------------------------------------------------------------------------
+// THE MATRIX
+//
+// Every row is a grading from docs/REVOLUTION_VENDOR_MATRIX.md, which was built
+// by extracting c_vendor_human.scp -> tm_vend.scp mechanically and then
+// checking each item against the RevolutionUO archive.
+//
+// Only economically load-bearing items are listed. Anything absent grades as
+// Unknown, which refuses -- so the table failing to mention something can never
+// accidentally PERMIT it.
+// ---------------------------------------------------------------------------
+struct Row { const char* item; VendorClass klass; };
+
+const Row kMatrix[] = {
+    // --- the one dated NPC permission in the whole archive -------------------
+    // 03.11.2010: "Pack horse ve pack llama artik animal trainer tezgahtarlari
+    // tarafindan satilmaktadir." Ten days inside the profile window. An update
+    // announcing that an NPC STARTED selling something is also evidence that
+    // NPC stock lists were curated and narrow.
+    {"i_pet_horse_pack",  VendorClass::RevolutionNpcVerified},
+    {"i_pet_llama_pack",  VendorClass::RevolutionNpcVerified},
+
+    // --- named cooperative categories (08.11.2008, 19.12.2008) --------------
+    // These are PLAYER goods by Revolution's own word. Ammunition is the
+    // exception that proves the rule: the Bowcraft guide says bows are sold
+    // "diger oyunculara ya da TEZGAHTARLARA" -- to players OR to NPC vendors --
+    // so a player market and an NPC floor demonstrably coexisted. See §3.2 of
+    // the matrix; blocking arrows would INVENT a restriction.
+    {"i_cloth_bolt",      VendorClass::PlayerMarketGood},
+    {"i_ingot_iron",      VendorClass::PlayerMarketGood},
+    {"i_arrow",           VendorClass::PlayerMarketGood},
+    {"i_xbolt",           VendorClass::PlayerMarketGood},
+    {"i_keg_potion",      VendorClass::PlayerMarketGood},
+    {"i_spellbook",       VendorClass::PlayerMarketGood},
+    {"i_spellbook_runebook", VendorClass::PlayerMarketGood},
+
+    // --- basic craft tools: permitted, see the header for why ----------------
+    // Note that several of these are ALSO PlayerCrafted. The tool grading wins,
+    // because the alternative is a bootstrap deadlock: tinker tools need
+    // Tinkering 35 and four ingots, ingots need a forge, and a forge needs a
+    // smith hammer. Somebody has to be able to buy the first tool.
+    {"i_shovel",        VendorClass::BasicCraftTool},   // REQSTR none; the STR-30 miner's pickaxe
+    {"i_pickaxe",       VendorClass::BasicCraftTool},   // REQSTR 50
+    {"i_hatchet",       VendorClass::BasicCraftTool},
+    {"i_axe",           VendorClass::BasicCraftTool},
+    {"i_scissors",      VendorClass::BasicCraftTool},
+    {"i_sewing_kit",    VendorClass::BasicCraftTool},
+    {"i_tongs",         VendorClass::BasicCraftTool},
+    {"i_hammer_smith",  VendorClass::BasicCraftTool},
+    {"i_tinker_tools",  VendorClass::BasicCraftTool},
+    // Staples. See VendorClass::BasicFood -- a bot with hunger enabled must be
+    // able to eat, and Revolution's own cooking economy shows food was not an
+    // income good.
+    {"i_bread_loaf",    VendorClass::BasicFood},
+    {"i_food_bread_fr", VendorClass::BasicFood},
+    {"i_ribs_cooked",   VendorClass::BasicFood},
+    {"i_food_cookies",  VendorClass::BasicFood},
+    {"i_saw",           VendorClass::BasicCraftTool},
+    {"i_mortar_pestle", VendorClass::BasicCraftTool},
+    {"i_fishing_pole",  VendorClass::BasicCraftTool},
+    {"i_pen_and_ink",   VendorClass::BasicCraftTool},
+
+    // --- world-gathered: the shortcuts M3.7 exists to close ------------------
+    {"i_ore_iron",        VendorClass::WorldGathered},
+    {"i_log",             VendorClass::WorldGathered},
+    {"i_wool",            VendorClass::WorldGathered},
+    {"i_cotton",          VendorClass::WorldGathered},
+    {"i_flax_bundle",     VendorClass::WorldGathered},
+    {"i_hide",            VendorClass::WorldGathered},
+    {"i_feather",         VendorClass::WorldGathered},
+    {"i_fish_big_1",      VendorClass::WorldGathered},
+
+    // --- world-processed: a station did this, not a shopkeeper ---------------
+    {"i_yarn_ball",       VendorClass::WorldProcessed},
+    {"i_thread",          VendorClass::WorldProcessed},
+    {"i_cloth",           VendorClass::WorldProcessed},
+    {"i_hides_cut",       VendorClass::WorldProcessed},
+    {"i_fish_cut_raw",    VendorClass::WorldProcessed},
+
+    // --- player-crafted ------------------------------------------------------
+    {"i_board",           VendorClass::PlayerCrafted},
+    {"i_gears",           VendorClass::PlayerCrafted},
+    {"i_nails",           VendorClass::PlayerCrafted},
+    {"i_lockpick",        VendorClass::PlayerCrafted},
+    {"i_dagger",          VendorClass::PlayerCrafted},
+    {"i_sash",            VendorClass::PlayerCrafted},
+    {"i_robe",            VendorClass::PlayerCrafted},
+    {"i_leather_tunic",   VendorClass::PlayerCrafted},
+    {"i_parchment",       VendorClass::PlayerCrafted},
+
+    // --- stock Sphere only ---------------------------------------------------
+    // Revolution players MARKED runes; that a stock vendor sells blanks is a
+    // Sphere fact, not a Revolution one.
+    {"i_rune_marker",     VendorClass::StockSphereOnly},
+
+    // --- era conflicts: Necromancy reagents on a Renaissance mage shop -------
+    // Necromancy is skill 49. This client ships skills 0-48 and cannot display
+    // it. Eighteen of these sit in VENDOR_S_MAGE_SHOP today.
+    // ---- the eight ordinary Magery reagents ---------------------------------
+    //
+    // M3.8: RESOLVED, and by the only source that could resolve it.
+    //
+    // M3.7 searched revolutionuo.net's guides, the full 1200-entry changelog and
+    // forum topics 59111 and 54978, and deliberately recorded UNKNOWN. The
+    // evidence proved a real reagent ECONOMY -- a dedicated Reagent Crystal
+    // (07.11.2008), Recall cut from 3 reagents to 1 (14.05.2009), Gate Travel at
+    // 6 each -- but not where the reagents came from. Two readings survived:
+    // mage shops stocked them, or reagent fields were gathered. Forum SEARCH
+    // required a login and was unavailable.
+    //
+    // The project owner played RevolutionUO and states directly that MAGE SHOPS
+    // AND ALCHEMISTS SOLD REAGENTS. First-hand testimony is the strongest source
+    // available here, and it reaches exactly what the archive could not.
+    //
+    // This is the single most consequential UNKNOWN in the matrix closing:
+    // Magery training consumes reagents continuously, and with ReagentsRequired
+    // restored to 1 (M3.8 Phase 6) a Mage that may not buy reagents cannot
+    // train at all. Consumption and sourcing are now both answered, so the
+    // Mage/Warlock archetype is no longer blocked.
+    //
+    // NOTE WHAT IS *NOT* COVERED: the eighteen Necromancy reagents above stay
+    // EraConflict. Necromancy is skill 49 and this client ships 0-48; a mage
+    // shop selling batwing and daemon bone in 2010 is stock Sphere leaking a
+    // later era, and owner testimony about ordinary regs says nothing about it.
+    {"i_reag_black_pearl",      VendorClass::RevolutionNpcVerified},
+    {"i_reag_blood_moss",       VendorClass::RevolutionNpcVerified},
+    {"i_reag_garlic",           VendorClass::RevolutionNpcVerified},
+    {"i_reag_ginseng",          VendorClass::RevolutionNpcVerified},
+    {"i_reag_mandrake_root",    VendorClass::RevolutionNpcVerified},
+    {"i_reag_nightshade",       VendorClass::RevolutionNpcVerified},
+    {"i_reag_spider_silk",      VendorClass::RevolutionNpcVerified},
+    {"i_reag_sulfur_ash",       VendorClass::RevolutionNpcVerified},
+
+    {"i_reag_batwing",          VendorClass::EraConflict},
+    {"i_reag_blackmoor",        VendorClass::EraConflict},
+    {"i_reag_blood_spawn",      VendorClass::EraConflict},
+    {"i_reag_blood_vial",       VendorClass::EraConflict},
+    {"i_reag_bone",             VendorClass::EraConflict},
+    {"i_reag_brimstone",        VendorClass::EraConflict},
+    {"i_reag_daemon_bone",      VendorClass::EraConflict},
+    {"i_reag_fertile_dirt",     VendorClass::EraConflict},
+    {"i_reag_dragon_blood",     VendorClass::EraConflict},
+    {"i_reag_executioners_cap", VendorClass::EraConflict},
+    {"i_reag_eye_of_newt",      VendorClass::EraConflict},
+    {"i_reag_obsidian",         VendorClass::EraConflict},
+    {"i_reag_pig_iron",         VendorClass::EraConflict},
+    {"i_reag_pumice",           VendorClass::EraConflict},
+    {"i_reag_nox_crystal",      VendorClass::EraConflict},
+    {"i_reag_grave_dust",       VendorClass::EraConflict},
+    {"i_reag_dead_wood",        VendorClass::EraConflict},
+    {"i_reag_wyrm_heart",       VendorClass::EraConflict},
+
+    // --- the eight Magery reagents: the biggest UNKNOWN in the audit ---------
+    // Listed EXPLICITLY as Unknown rather than omitted, so that a reader of
+    // this table sees the gap instead of inferring one from silence. The
+    // archive proves a real reagent economy -- a dedicated Reagent Crystal
+    // (07.11.2008) and Recall's cost cut from three to one (14.05.2009) -- but
+    // never says where the reagents came from.
+    {"i_reag_black_pearl",   VendorClass::Unknown},
+    {"i_reag_blood_moss",    VendorClass::Unknown},
+    {"i_reag_garlic",        VendorClass::Unknown},
+    {"i_reag_ginseng",       VendorClass::Unknown},
+    {"i_reag_mandrake_root", VendorClass::Unknown},
+    {"i_reag_nightshade",    VendorClass::Unknown},
+    {"i_reag_spider_silk",   VendorClass::Unknown},
+    {"i_reag_sulfur_ash",    VendorClass::Unknown},
+    // Both gate an entire craft, and neither is attested.
+    {"i_scroll_blank",       VendorClass::Unknown},
+    {"i_bottle_empty",       VendorClass::Unknown},
+};
+
+// Graphic -> defname, for the live buy path. A vendor offer on the wire carries
+// a graphic, never a defname, so the policy has to be reachable from one. Only
+// the audited, economically load-bearing items are here; anything else falls
+// through to Unknown and is refused, which is the same fail-safe as an unlisted
+// defname. Ids read from the runtime's own ITEMDEFs.
+struct GraphicRow { u16 graphic; const char* item; };
+
+const GraphicRow kGraphics[] = {
+    {0x0DF8, "i_wool"},          {0x101F, "i_wool"},
+    {0x0E1D, "i_yarn_ball"},     {0x0E1E, "i_yarn_ball"},  {0x0E1F, "i_yarn_ball"},
+    {0x0FA0, "i_thread"},        {0x0FA1, "i_thread"},
+    {0x175D, "i_cloth"},
+    {0x0F95, "i_cloth_bolt"},    {0x0F96, "i_cloth_bolt"}, {0x0F97, "i_cloth_bolt"},
+    {0x0DF9, "i_cotton"},        {0x0DEF, "i_cotton"},
+    {0x1A9C, "i_flax_bundle"},   {0x1A9D, "i_flax_bundle"},
+    {0x19B7, "i_ore_iron"},      {0x19B8, "i_ore_iron"},   {0x19B9, "i_ore_iron"},
+    {0x1BEF, "i_ingot_iron"},    {0x1BF0, "i_ingot_iron"}, {0x1BF1, "i_ingot_iron"},
+    {0x1BDD, "i_log"},
+    {0x1BD7, "i_board"},
+    {0x1078, "i_hide"},
+    {0x1067, "i_hides_cut"},
+    {0x0E34, "i_scroll_blank"},
+    {0x0F0E, "i_bottle_empty"},
+    {0x1BD1, "i_feather"},
+    {0x0F3F, "i_arrow"},
+    {0x1BFB, "i_xbolt"},
+    {0x102E, "i_nails"},
+    {0x1053, "i_gears"},
+    {0x14FB, "i_lockpick"},
+    {0x0F51, "i_dagger"},        {0x0F52, "i_dagger"},
+    {0x1541, "i_sash"},
+    {0x1F03, "i_robe"},          {0x1F04, "i_robe"},
+    {0x1F14, "i_rune_marker"},
+    {0x09CC, "i_fish_big_1"},
+    {0x097A, "i_fish_cut_raw"},
+    // the eight Magery reagents -- UNKNOWN, and therefore refused
+    {0x0F7A, "i_reag_black_pearl"},   {0x0F7B, "i_reag_blood_moss"},
+    {0x0F84, "i_reag_garlic"},        {0x0F85, "i_reag_ginseng"},
+    {0x0F86, "i_reag_mandrake_root"}, {0x0F88, "i_reag_nightshade"},
+    {0x0F8D, "i_reag_spider_silk"},   {0x0F8C, "i_reag_sulfur_ash"},
+    // basic craft tools -- permitted
+    {0x0F39, "i_shovel"},        {0x0F3A, "i_shovel"},
+    {0x0E85, "i_pickaxe"},       {0x0E86, "i_pickaxe"},
+    {0x0F43, "i_hatchet"},       {0x0F44, "i_hatchet"},
+    {0x0F49, "i_axe"},           {0x0F4A, "i_axe"},
+    {0x0F9E, "i_scissors"},      {0x0F9F, "i_scissors"},
+    {0x0F9D, "i_sewing_kit"},
+    {0x0FBB, "i_tongs"},         {0x0FBC, "i_tongs"},
+    {0x13E3, "i_hammer_smith"},  {0x13E4, "i_hammer_smith"},
+    {0x1EBC, "i_tinker_tools"},
+    {0x103B, "i_bread_loaf"},
+    {0x0F7A, "i_reag_black_pearl"},
+    {0x0F7B, "i_reag_blood_moss"},
+    {0x0F84, "i_reag_garlic"},
+    {0x0F85, "i_reag_ginseng"},
+    {0x0F86, "i_reag_mandrake_root"},
+    {0x0F88, "i_reag_nightshade"},
+    {0x0F8D, "i_reag_spider_silk"},
+    {0x0F8C, "i_reag_sulfur_ash"},
+    {0x09EB, "i_food_bread_fr"},
+    {0x09F2, "i_ribs_cooked"},
+    {0x1034, "i_saw"},           {0x1035, "i_saw"},
+    {0x0E9B, "i_mortar_pestle"},
+    {0x0DBF, "i_fishing_pole"},  {0x0DC0, "i_fishing_pole"},
+    {0x0FBF, "i_pen_and_ink"},   {0x0FC0, "i_pen_and_ink"},
+};
+
+const std::vector<std::pair<const char*, VendorClass>>& Matrix() {
+    static const std::vector<std::pair<const char*, VendorClass>> kV = [] {
+        std::vector<std::pair<const char*, VendorClass>> v;
+        v.reserve(sizeof(kMatrix) / sizeof(kMatrix[0]));
+        for (const Row& r : kMatrix) v.emplace_back(r.item, r.klass);
+        return v;
+    }();
+    return kV;
+}
+
+} // namespace
+
+const char* VendorClassName(VendorClass c) {
+    switch (c) {
+        case VendorClass::Unknown:               return "UNKNOWN";
+        case VendorClass::BasicCraftTool:        return "BASIC_CRAFT_TOOL";
+        case VendorClass::BasicFood:             return "BASIC_FOOD";
+        case VendorClass::RevolutionNpcVerified: return "REVOLUTION_NPC_VERIFIED";
+        case VendorClass::PlayerMarketGood:      return "PLAYER_MARKET_GOOD";
+        case VendorClass::WorldGathered:         return "WORLD_GATHERED";
+        case VendorClass::WorldProcessed:        return "WORLD_PROCESSED";
+        case VendorClass::PlayerCrafted:         return "PLAYER_CRAFTED";
+        case VendorClass::PvmTreasure:           return "PVM_TREASURE";
+        case VendorClass::StockSphereOnly:       return "STOCK_SPHERE_ONLY";
+        case VendorClass::EraConflict:           return "ERA_CONFLICT";
+        default:                                 return "?";
+    }
+}
+
+const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix() { return Matrix(); }
+
+const char* ItemNameForGraphic(u16 graphic) {
+    for (const GraphicRow& g : kGraphics) {
+        if (g.graphic == graphic) return g.item;
+    }
+    return nullptr;
+}
+
+VendorClass ClassifyForVendorGraphic(u16 graphic) {
+    const char* item = ItemNameForGraphic(graphic);
+    return item ? ClassifyForVendor(item) : VendorClass::Unknown;
+}
+
+VendorRuling CanUseNPCVendorForGraphic(u16 graphic) {
+    const char* item = ItemNameForGraphic(graphic);
+    if (!item) {
+        VendorRuling out;
+        out.klass  = VendorClass::Unknown;
+        out.reason = "graphic is not in the audited vendor matrix; refusing and "
+                     "recording an authenticity gap";
+        out.authenticityGap = true;
+        return out;
+    }
+    return CanUseNPCVendorFor(item);
+}
+
+VendorClass ClassifyForVendor(const char* item) {
+    for (const Row& r : kMatrix) {
+        if (Same(r.item, item)) return r.klass;
+    }
+    return VendorClass::Unknown;
+}
+
+VendorRuling CanUseNPCVendorFor(const char* item) {
+    VendorRuling out;
+    out.klass = ClassifyForVendor(item);
+    switch (out.klass) {
+        case VendorClass::RevolutionNpcVerified:
+            out.allowed = true;
+            out.reason  = "a dated Revolution update records an NPC selling this";
+            break;
+        case VendorClass::BasicFood:
+            out.allowed = true;
+            out.reason = "basic food: a character with hunger enabled must be "
+                         "able to eat, and Revolution's cooking economy shows "
+                         "food was not an income good";
+            break;
+        case VendorClass::BasicCraftTool:
+            out.allowed = true;
+            out.reason  = "a basic craft tool: a tool is not a resource, it "
+                          "shortcuts no chain, and without a purchasable first "
+                          "tool the craft tree cannot be bootstrapped at all";
+            break;
+        case VendorClass::PlayerMarketGood:
+            // Permitted because the Bowcraft guide documents an NPC floor
+            // alongside the player market. Narrow, and evidence-backed.
+            out.allowed = true;
+            out.reason  = "a player-market good with a documented NPC floor "
+                          "(guide: sell to other players OR to vendors)";
+            break;
+        case VendorClass::WorldGathered:
+            out.reason = "a gathering skill produces this; go and get it";
+            break;
+        case VendorClass::WorldProcessed:
+            out.reason = "a station produces this; go and process it";
+            break;
+        case VendorClass::PlayerCrafted:
+            out.reason = "a player craft produces this; craft it or buy from a player";
+            break;
+        case VendorClass::PvmTreasure:
+            out.reason = "this comes from a corpse or a chest";
+            break;
+        case VendorClass::StockSphereOnly:
+            out.reason = "on a stock Sphere vendor with no Revolution evidence";
+            break;
+        case VendorClass::EraConflict:
+            out.reason = "belongs to a later era than revolution_2009_2010";
+            break;
+        case VendorClass::Unknown:
+        default:
+            out.reason = "no Revolution evidence either way; refusing and "
+                         "recording an authenticity gap";
+            out.authenticityGap = true;
+            break;
+    }
+    return out;
+}
+
+const char* AcquisitionName(Acquisition a) {
+    switch (a) {
+        case Acquisition::None:           return "none";
+        case Acquisition::AlreadyHeld:    return "already held";
+        case Acquisition::Gather:         return "gather";
+        case Acquisition::Process:        return "process";
+        case Acquisition::Craft:          return "craft";
+        case Acquisition::NpcPurchase:    return "buy from NPC";
+        case Acquisition::PlayerPurchase: return "buy from player vendor";
+        case Acquisition::DirectTrade:    return "direct player trade";
+        case Acquisition::Pvm:            return "PvM";
+        case Acquisition::Treasure:       return "treasure";
+        case Acquisition::Tame:           return "tame";
+        default:                          return "?";
+    }
+}
+
+namespace {
+
+i32 Held(const std::vector<prod::Ingredient>& inv, const char* item) {
+    i32 n = 0;
+    for (const prod::Ingredient& i : inv) {
+        if (Same(i.item, item)) n += i.qty;
+    }
+    return n;
+}
+
+} // namespace
+
+AcquisitionPlan ChooseAcquisitionMethod(const char* item,
+                                        const AcquisitionContext& ctx) {
+    AcquisitionPlan plan;
+
+    if (Held(ctx.inventory, item) > 0) {
+        plan.method = Acquisition::AlreadyHeld;
+        plan.reason = "already in the pack";
+        return plan;
+    }
+
+    // Self-production first, always. That ordering IS the milestone's thesis:
+    // a Revolution character reaches for the world before the shop.
+    const std::vector<prod::Requirement> blockers =
+        prod::MissingInputs(item, ctx.capability, ctx.inventory);
+    const prod::Recipe* recipe = prod::FindRecipe(item);
+
+    if (blockers.empty() && recipe) {
+        switch (recipe->provenance) {
+            case prod::Provenance::WorldGathered:
+            case prod::Provenance::AnimalHarvested:
+                plan.method = Acquisition::Gather;
+                plan.reason = "the character can gather this itself";
+                return plan;
+            case prod::Provenance::WorldProcessed:
+                plan.method = Acquisition::Process;
+                plan.reason = "the character holds the input and can reach the station";
+                return plan;
+            case prod::Provenance::PvmDrop:
+                plan.method = Acquisition::Pvm;
+                plan.reason = "carved from a corpse";
+                return plan;
+            case prod::Provenance::TreasureDrop:
+                plan.method = Acquisition::Treasure;
+                plan.reason = "from a chest or a map";
+                return plan;
+            default:
+                plan.method = Acquisition::Craft;
+                plan.reason = "the character has the skill, tool, station and inputs";
+                return plan;
+        }
+    }
+
+    // Cannot self-produce yet. Report exactly why, then look at buying.
+    plan.blockers = blockers;
+
+    const i32 spendable = ctx.gold - ctx.goldReserve;
+
+    // A player is always a legitimate counterparty for anything -- that is the
+    // point of a player economy -- so it is tried before an NPC even when both
+    // are possible.
+    if (ctx.observedPlayerPrice >= 0 && ctx.observedPlayerPrice <= spendable) {
+        plan.method        = Acquisition::PlayerPurchase;
+        plan.reason        = "another player is selling it at an observed price";
+        plan.estimatedCost = ctx.observedPlayerPrice;
+        return plan;
+    }
+
+    const VendorRuling ruling = CanUseNPCVendorFor(item);
+    if (ruling.allowed) {
+        if (ctx.observedNpcPrice < 0) {
+            plan.method = Acquisition::NpcPurchase;
+            plan.reason = "NPC purchase is permitted, but no price has been "
+                          "observed yet -- open the vendor and read one";
+            plan.estimatedCost = 0;
+            return plan;
+        }
+        if (ctx.observedNpcPrice <= spendable) {
+            plan.method        = Acquisition::NpcPurchase;
+            plan.reason        = ruling.reason;
+            plan.estimatedCost = ctx.observedNpcPrice;
+            return plan;
+        }
+    }
+
+    // Nothing legal is available. Say so rather than improvising: a bot that
+    // quietly substitutes an illegal route is exactly what M3.7 forbids.
+    plan.blocked = true;
+    plan.method  = Acquisition::None;
+    plan.reason  = ruling.allowed
+                       ? "cannot self-produce, and cannot afford the observed price"
+                       : ruling.reason;
+    return plan;
+}
+
+std::vector<Match> MatchNeeds(const std::vector<ResourceNeed>& needs,
+                              const std::vector<SellOffer>& offers,
+                              std::vector<usize>* unmatched) {
+    std::vector<Match> out;
+    // Copy the remaining quantities so one offer cannot be sold twice.
+    std::vector<i32> left;
+    left.reserve(offers.size());
+    for (const SellOffer& o : offers) left.push_back(o.qty);
+
+    // Most urgent first; ties broken by index so the result is deterministic.
+    std::vector<usize> order(needs.size());
+    for (usize i = 0; i < order.size(); ++i) order[i] = i;
+    std::stable_sort(order.begin(), order.end(), [&](usize a, usize b) {
+        return needs[a].urgency > needs[b].urgency;
+    });
+
+    for (usize ni : order) {
+        i32 want = needs[ni].qty;
+        bool any = false;
+        // Cheapest offer of the right item wins.
+        while (want > 0) {
+            usize best = offers.size();
+            for (usize oi = 0; oi < offers.size(); ++oi) {
+                if (left[oi] <= 0) continue;
+                if (offers[oi].item != needs[ni].item) continue;
+                if (best == offers.size() ||
+                    offers[oi].askPerUnit < offers[best].askPerUnit) {
+                    best = oi;
+                }
+            }
+            if (best == offers.size()) break;
+            const i32 take = std::min(want, left[best]);
+            out.push_back({ni, best, take, offers[best].askPerUnit});
+            left[best] -= take;
+            want       -= take;
+            any = true;
+        }
+        if (!any && unmatched) unmatched->push_back(ni);
+    }
+    return out;
+}
+
+} // namespace uo::econ

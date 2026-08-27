@@ -1,0 +1,36 @@
+# GM TEST CHARACTER -- verification only. NOT an M3 progression proof.
+#
+# Confirms what the server console applied to RevolutionMageGM (UID 0x00000F6A):
+#   STR 100 / DEX 25 / INT 100, Magery 60.0, spellbook MORE1=MORE2=0ffffffff
+#   (all 64 spells -- the fill the shard's own sp_tm_newbie.scp:453 documents),
+#   and 200 of each of the eight Magery reagents.
+#
+# The proof that Magery really is 60 is casting a SIXTH CIRCLE spell, which the
+# character could not do at 50: Invisibility, [SPELL 44]. Night Sight first as
+# a cheap check that reagents and the book are readable at all.
+
+wait_world
+sleep 2500
+ensure_peace
+request_skills
+sleep 2000
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1000
+
+# First circle, self-target: does it cast at all?
+cast 6 self
+wait_action
+sleep 3000
+
+# Sixth circle. Magery 50 cannot reach this; 60 can.
+cast 44 self
+wait_action
+sleep 3000
+
+say gm test mage online
+sleep 1500
+logout

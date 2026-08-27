@@ -1,0 +1,494 @@
+// ****************************************************************************
+// RevolutionUO Runebook restoration.
+//
+// Profile: revolution_2009_2010   (docs/REVOLUTION_RULESET_PROFILE.md)
+// Spec:    docs/REVOLUTION_RUNBOOK_SPEC.md
+//
+// WHY THIS FILE EXISTS
+//
+// RevolutionUO had a substantial custom Runebook system. It is documented in
+// the shard's own dated change log:
+//
+//   15.08.2007  "Runebook kullanarak havada asili kalma acigi kapatildi."
+//               -> runebooks already existed and were already exploited
+//   06.04.2008  no travelling/gating onto water; the destination must not hold
+//               another player or a magically created item
+//   12.05.2009  "Sayfa sayisi 8'e yukseltildi, her sayfaya ayri ad
+//               verilebilmesi saglandi"  -> EIGHT pages, each separately named
+//   12.05.2009  "rune ekle tusu bulundugu sayfa uzerine ekleme yapilacak
+//               sekilde duzenlendi"      -> insertion targets the OPEN page
+//   13.05.2009  "Runebook kopyalama inscription menusune eklendi."
+//   13.05.2009  "Sarj (recall scroll ekleyerek) ile runebook kullanirsaniz
+//               magery yetenegine ihtiyaciniz olmayacaktir."
+//                                        -> Recall-scroll CHARGES, and a
+//                                           charged use needs no Magery
+//   07.01.2012  guild runebooks -- OUTSIDE this profile, NOT implemented
+//
+// Source-X has no IT_RUNEBOOK and no t_runebook, and no Revolution client
+// binary contains the string "runebook" -- so the historical book cannot have
+// been a client feature. It must have been a server-side generic gump, which
+// is what this is. No Source-X change is needed or made.
+//
+// WHAT IS EVIDENCE AND WHAT IS RECONSTRUCTION
+//
+// Evidence-backed: 8 pages, per-page names, insertion onto the open page,
+// charging with Recall scrolls, charged use bypassing Magery, and the
+// destination restrictions.
+//
+// Reconstructed, and marked as such because the archive does not say:
+//   * the rune is STORED in the book rather than destroyed. Chosen because
+//     page-to-page transfer (13.05.2009) implies the destination survives
+//     being moved about, and because destroying a player's rune on a guess is
+//     the more damaging error.
+//   * the gump's layout, button numbering and art ids.
+//   * charges added per scroll (1) and the maximum (none enforced).
+//
+// TRAVEL IS THE REAL SPELL. The book never moves anybody. It asks the player
+// to cast [SPELL 32] Recall (CClient CV_CAST -> Cmd_Skill_Magery), so the
+// skill check, the mana cost, the fizzle roll and every destination rule the
+// server has are applied exactly as they are for a hand-cast Recall. There is
+// no scripted teleport anywhere in this file.
+// ****************************************************************************
+
+[DEFNAME revolution_runebook]
+rb_pages          8
+rb_charge_scroll  i_scroll_recall
+
+[ITEMDEF 022c5]
+DEFNAME=i_spellbook_runebook
+NAME=Runebook
+// A container so an inserted rune is genuinely kept rather than conjured back
+// later from a number in a tag. Eight pages, eight runes.
+TYPE=t_container
+// A container needs its gump and its capacity declared, or Source-X warns
+// "Container 022c5 with gump 0 doesn't have TDATA3/4 defined" and refuses to
+// behave. TDATA3 is the container gump; TDATA4 is the maximum item count --
+// EIGHT, which is the historical page count (12.05.2009).
+TDATA3=03e //gump: a small book-sized container
+TDATA4=20   //8 pages of runes, plus room for stored charge scrolls
+WEIGHT=1.0
+VALUE=100
+// Stock recipe, left exactly as Scripts-X already had it. Note it already
+// asks for EIGHT blank scrolls, which is Revolution's own 2009 page count.
+RESOURCES=8 i_scroll_blank,1 i_rune_marker,1 i_scroll_recall,1 i_scroll_gate_travel
+SKILLMAKE=Inscription 45.0,i_pen_and_ink
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Books
+DESCRIPTION=Runebook
+
+ON=@Create
+    ATTR=attr_magic
+    TAG.charges=0
+
+ON=@DClick
+    // Inside a DIALOG (display or BUTTON handler) the script object is the
+    // PLAYER, not the item that opened it -- proven by a first attempt whose
+    // page tags all landed on the character (TAG.rb_book=0f6a, the char's own
+    // uid). So the book records WHICH book it is on the player before opening,
+    // and every handler works through that reference.
+    SRC.TAG.rb_book=<UID>
+    f_revolution_runebook_sync
+    SRC.DIALOG=d_revolution_runebook
+    RETURN 1
+
+// ---------------------------------------------------------------------------
+// The book gump. Eight rows, each showing its page name and destination, with
+// a travel button and an "add rune" button -- the two controls the 2009
+// updates describe.
+// ---------------------------------------------------------------------------
+[DIALOG d_revolution_runebook]
+40,40
+
+Page 0
+Resizepic 0 0 5054 420 330
+Gumppictiled 10 10 400 310 2624
+Checkertrans 10 10 400 310
+
+DText 20 14 0481 Runebook
+DText 250 14 0481 Charges: <TAG0.rb_charges>
+Button 395 8 4017 4018 1 0 0
+
+DText 20 38 0480 Page
+DText 60 38 0480 Name
+DText 200 38 0480 Destination
+DText 320 38 0480 Travel
+DText 365 38 0480 Rune
+
+// Page rows. Button ids: 10+N travels from page N, 20+N inserts into page N.
+//
+// M3.9 BUGFIX -- the name cells test <STRLEN ...>, not the name itself.
+// QVAL evaluates its condition NUMERICALLY, so a page named "Britain" scored 0
+// and every filled page rendered as "(empty)". The destination cell beside it
+// looked fine purely by luck: "1490,1555,30" evaluates to 1490, which is true.
+// A page name only displayed if it happened to begin with a digit.
+//
+// This cost a whole milestone of confusion. M3.6 concluded its stored pages had
+// been lost, and M3.9 re-concluded the same thing after a world rollback --
+// both times the book was holding the page perfectly and merely refusing to
+// admit it. TRAVEL always worked, because the travel handler reads the tag
+// directly instead of asking QVAL whether it is truthy.
+//
+// Verified on the live shard before and after: uid.<book>.show tag.p1.name
+// answered 'Britain' while the gump was still drawing "(empty)".
+//
+// Two wrong fixes came first, and both are worth recording. <STRLEN ...> is
+// not provided by this engine: it evaluated to 0, so every page still read
+// "(empty)" and the run looked identical to the original bug. <ISEMPTY ...>
+// does exist (spawner_functions.scp uses it) but returned 0 for an UNSET
+// tag here, so page 1 came right while pages 2-8 started rendering "00".
+//
+// The condition now tests the POINT, not the name. The point is numeric, so
+// QVAL's numeric truthiness -- the very thing that broke the name test -- is
+// exactly right for it, and a page has a point if and only if it has a rune.
+// Testing the field that suits the predicate beats hunting for a predicate
+// that suits the field.
+DText 20 60  0384 1
+DText 60 60  0384 <QVAL <TAG0.rb_d1_pt> ? <TAG0.rb_d1_name> : (empty)>
+DText 200 60 0384 <QVAL <TAG0.rb_d1_pt> ? <TAG0.rb_d1_pt> : ->
+Button 325 58 4005 4006 1 0 11
+Button 370 58 4011 4012 1 0 21
+
+DText 20 82  0384 2
+DText 60 82  0384 <QVAL <TAG0.rb_d2_pt> ? <TAG0.rb_d2_name> : (empty)>
+DText 200 82 0384 <QVAL <TAG0.rb_d2_pt> ? <TAG0.rb_d2_pt> : ->
+Button 325 80 4005 4006 1 0 12
+Button 370 80 4011 4012 1 0 22
+
+DText 20 104  0384 3
+DText 60 104  0384 <QVAL <TAG0.rb_d3_pt> ? <TAG0.rb_d3_name> : (empty)>
+DText 200 104 0384 <QVAL <TAG0.rb_d3_pt> ? <TAG0.rb_d3_pt> : ->
+Button 325 102 4005 4006 1 0 13
+Button 370 102 4011 4012 1 0 23
+
+DText 20 126  0384 4
+DText 60 126  0384 <QVAL <TAG0.rb_d4_pt> ? <TAG0.rb_d4_name> : (empty)>
+DText 200 126 0384 <QVAL <TAG0.rb_d4_pt> ? <TAG0.rb_d4_pt> : ->
+Button 325 124 4005 4006 1 0 14
+Button 370 124 4011 4012 1 0 24
+
+DText 20 148  0384 5
+DText 60 148  0384 <QVAL <TAG0.rb_d5_pt> ? <TAG0.rb_d5_name> : (empty)>
+DText 200 148 0384 <QVAL <TAG0.rb_d5_pt> ? <TAG0.rb_d5_pt> : ->
+Button 325 146 4005 4006 1 0 15
+Button 370 146 4011 4012 1 0 25
+
+DText 20 170  0384 6
+DText 60 170  0384 <QVAL <TAG0.rb_d6_pt> ? <TAG0.rb_d6_name> : (empty)>
+DText 200 170 0384 <QVAL <TAG0.rb_d6_pt> ? <TAG0.rb_d6_pt> : ->
+Button 325 168 4005 4006 1 0 16
+Button 370 168 4011 4012 1 0 26
+
+DText 20 192  0384 7
+DText 60 192  0384 <QVAL <TAG0.rb_d7_pt> ? <TAG0.rb_d7_name> : (empty)>
+DText 200 192 0384 <QVAL <TAG0.rb_d7_pt> ? <TAG0.rb_d7_pt> : ->
+Button 325 190 4005 4006 1 0 17
+Button 370 190 4011 4012 1 0 27
+
+DText 20 214  0384 8
+DText 60 214  0384 <QVAL <TAG0.rb_d8_pt> ? <TAG0.rb_d8_name> : (empty)>
+DText 200 214 0384 <QVAL <TAG0.rb_d8_pt> ? <TAG0.rb_d8_pt> : ->
+Button 325 212 4005 4006 1 0 18
+Button 370 212 4011 4012 1 0 28
+
+DText 20 250 0481 Add a Recall scroll as a charge:
+Button 325 248 4005 4006 1 0 40
+DText 20 272 0384 A charged page travels without Magery.
+
+[DIALOG d_revolution_runebook BUTTON]
+
+// --- travel from a page ---------------------------------------------------
+// One handler per page: a range with arithmetic produced "01" rather than
+// "1" and silently wrote tags nobody read.
+ON=11
+    f_revolution_runebook_travel 1
+
+ON=12
+    f_revolution_runebook_travel 2
+
+ON=13
+    f_revolution_runebook_travel 3
+
+ON=14
+    f_revolution_runebook_travel 4
+
+ON=15
+    f_revolution_runebook_travel 5
+
+ON=16
+    f_revolution_runebook_travel 6
+
+ON=17
+    f_revolution_runebook_travel 7
+
+ON=18
+    f_revolution_runebook_travel 8
+
+// --- insert a rune into a page ---------------------------------------------
+ON=21
+    LOCAL.page=1
+    SRC.TAG.rb_page=1
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 1?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=22
+    LOCAL.page=2
+    SRC.TAG.rb_page=2
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 2?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=23
+    LOCAL.page=3
+    SRC.TAG.rb_page=3
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 3?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=24
+    LOCAL.page=4
+    SRC.TAG.rb_page=4
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 4?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=25
+    LOCAL.page=5
+    SRC.TAG.rb_page=5
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 5?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=26
+    LOCAL.page=6
+    SRC.TAG.rb_page=6
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 6?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=27
+    LOCAL.page=7
+    SRC.TAG.rb_page=7
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 7?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+ON=28
+    LOCAL.page=8
+    SRC.TAG.rb_page=8
+    SRC.SYSMESSAGE=Which rune do you wish to add to page 8?
+    SRC.TARGETF=f_revolution_runebook_insert
+
+// --- charge the book with a Recall scroll ----------------------------------
+ON=40
+    SRC.SYSMESSAGE=Which Recall scroll do you wish to add?
+    SRC.TARGETF=f_revolution_runebook_charge
+
+// ---------------------------------------------------------------------------
+// Insertion. "rune ekle" adds onto the page you have open (12.05.2009), so the
+// page number is carried from the button that started the target.
+// ---------------------------------------------------------------------------
+[FUNCTION f_revolution_runebook_insert]
+    IF (!<SRC.ACT.UID>)
+        SRC.SYSMESSAGE=That is not a rune.
+        RETURN 1
+    ENDIF
+    REF1=<SRC.ACT>
+    IF (<REF1.TYPE> != t_rune)
+        SRC.SYSMESSAGE=That is not a rune.
+        RETURN 1
+    ENDIF
+    // MOREX/MOREY/MOREZ are the component accessors Source-X exposes for a
+    // point (CItem.cpp:2930-2941); MOREP itself is only the formatted string.
+    IF (<REF1.MOREX> <= 0)
+        SRC.SYSMESSAGE=That rune is not yet marked.
+        RETURN 1
+    ENDIF
+    REF2=<SRC.TAG0.rb_book>
+    IF (!<REF2.UID>)
+        SRC.SYSMESSAGE=You are not using a runebook.
+        RETURN 1
+    ENDIF
+    LOCAL.page=<SRC.TAG.rb_page>
+    IF (<LOCAL.page> < 1) || (<LOCAL.page> > <DEF.rb_pages>)
+        RETURN 1
+    ENDIF
+
+    // The rune is KEPT, not consumed -- see the header. It moves into the
+    // book, which is why the book is a container.
+    REF1.CONT=<REF2.UID>
+    REF2.TAG.p<EVAL <LOCAL.page>>.pt=<REF1.MOREP>
+    REF2.TAG.p<EVAL <LOCAL.page>>.rune=<REF1.UID>
+    // The rune's own name is the page name. Sphere names a rune after the
+    // region when Mark succeeds, so this reproduces the historical
+    // "each page can be given its own name" with a name the player recognises
+    // rather than an invented one.
+    REF2.TAG.p<EVAL <LOCAL.page>>.name=<REF1.NAME>
+    SRC.SYSMESSAGE=Page <LOCAL.page> now holds <REF1.NAME>.
+    SRC.TAG.rb_page=
+    f_revolution_runebook_sync
+    SRC.DIALOGCLOSE=d_revolution_runebook
+    SRC.DIALOG=d_revolution_runebook
+    RETURN 1
+
+// ---------------------------------------------------------------------------
+// Charging. 13.05.2009: adding Recall scrolls charges the book, and a charged
+// use does not need Magery.
+// ---------------------------------------------------------------------------
+[FUNCTION f_revolution_runebook_charge]
+    REF1=<SRC.ACT>
+    IF (!<REF1.UID>)
+        RETURN 1
+    ENDIF
+    // BASEID is a STRING -- Source-X returns g_Cfg.ResourceGetName(...)
+    // (CBase.cpp:183) -- so it must be compared with STRCMP, not with != .
+    // Both a defname compare and a numeric compare failed live with
+    // "Only a Recall scroll will charge a runebook" on an actual Recall scroll.
+    IF (<STRCMP <REF1.BASEID> i_scroll_recall> != 0)
+        SRC.SYSMESSAGE=Only a Recall scroll will charge a runebook.
+        RETURN 1
+    ENDIF
+    REF2=<SRC.TAG0.rb_book>
+    IF (!<REF2.UID>)
+        RETURN 1
+    ENDIF
+    // A charge IS the scroll. The 13.05.2009 rule -- "if you use the runebook
+    // with charges (by adding recall scrolls) you will not need the magery
+    // skill" -- makes sense precisely because using a charge means casting
+    // from one of the stored scrolls, and a scroll cast has never needed the
+    // caster's own skill. So the scroll is KEPT in the book, not consumed into
+    // a number; the counter is only a convenience for the gump.
+    //
+    // One scroll = one charge, and no maximum is enforced: the archive states
+    // neither, and both are marked as reconstruction.
+    REF1.CONT=<REF2.UID>
+    REF2.TAG.charges=<EVAL (<REF2.TAG0.charges> + 1)>
+    SRC.SYSMESSAGE=The runebook now holds <REF2.TAG0.charges> charge(s).
+    f_revolution_runebook_sync
+    SRC.DIALOGCLOSE=d_revolution_runebook
+    SRC.DIALOG=d_revolution_runebook
+    RETURN 1
+
+// ---------------------------------------------------------------------------
+// Travel.
+//
+// The book does NOT move the character. It surfaces the page's rune and asks
+// the player to cast the real Recall spell at it, so every server rule --
+// Magery 40.0, 11 mana, the fizzle roll, and the destination checks -- applies
+// unchanged. A charge is spent instead of the Magery requirement when one is
+// available, which is the 13.05.2009 rule.
+// ---------------------------------------------------------------------------
+[FUNCTION f_revolution_runebook_travel]
+    // The page number arrives as an ARGUMENT. A LOCAL set in the dialog's
+    // button handler does NOT reach here -- Sphere gives every function its own
+    // LOCAL scope, which showed up live as "Runebook: opening page 0."
+    LOCAL.page=<ARGN>
+    REF2=<SRC.TAG0.rb_book>
+    IF (!<REF2.UID>)
+        SRC.SYSMESSAGE=You are not holding a runebook.
+        RETURN 1
+    ENDIF
+    SRC.SYSMESSAGE=Runebook: opening page <LOCAL.page>.
+    IF (<LOCAL.page> < 1) || (<LOCAL.page> > <DEF.rb_pages>)
+        RETURN 1
+    ENDIF
+    IF (!<REF2.TAG0.p<EVAL <LOCAL.page>>.pt>)
+        SRC.SYSMESSAGE=That page is empty.
+        RETURN 1
+    ENDIF
+    // THE PAGE IS THE DESTINATION OF RECORD, NOT THE RUNE.
+    //
+    // Sphere's recall runes wear out: MORE1 counts down per use, the server
+    // warns "The recall rune is starting to fade", and then the rune is
+    // destroyed. That happened live -- after one successful runebook travel the
+    // rune was gone from the world save while the page's point survived.
+    //
+    // A historical Revolution runebook page did not evaporate after six uses;
+    // that permanence is most of why players carried books instead of pockets
+    // full of runes. So when the page's rune is missing or worn out, the book
+    // re-cuts one from the point it stored. The destination still came from a
+    // rune the player marked and inserted -- nothing is invented here except
+    // the physical stationery.
+    REF1=<REF2.TAG0.p<EVAL <LOCAL.page>>.rune>
+    IF (!<REF1.UID>)
+        SERV.NEWITEM=i_rune_marker
+        REF1=<NEW.UID>
+        REF1.MOREP=<REF2.TAG0.p<EVAL <LOCAL.page>>.pt>
+        REF1.NAME=<REF2.TAG0.p<EVAL <LOCAL.page>>.name>
+        REF1.CONT=<REF2.UID>
+        REF2.TAG.p<EVAL <LOCAL.page>>.rune=<REF1.UID>
+    ENDIF
+
+    SRC.DIALOGCLOSE=d_revolution_runebook
+
+    // Bring the page's rune to hand so the spell has something to target.
+    REF1.CONT=<SRC.FINDLAYER.21.UID>
+
+    // A charged book casts from a stored Recall scroll, which is why the
+    // historical rule says no Magery is needed: the scroll supplies it. An
+    // uncharged book asks the character to cast it themselves, and then the
+    // Magery 40.0 requirement applies exactly as it always does.
+    IF (<REF2.TAG0.charges> > 0)
+        REF3=<REF2.FINDID.i_scroll_recall.UID>
+        IF (<REF3.UID>)
+            REF3.CONT=<SRC.FINDLAYER.21.UID>
+            REF2.TAG.charges=<EVAL (<REF2.TAG0.charges> - 1)>
+            f_revolution_runebook_sync
+            SRC.SYSMESSAGE=The runebook spends a charge (<REF2.TAG0.charges> left): target the rune.
+            SRC.USE=<REF3.UID>
+            RETURN 1
+        ENDIF
+        // The counter disagreed with the contents. Trust the contents.
+        REF2.TAG.charges=0
+        f_revolution_runebook_sync
+    ENDIF
+
+    SRC.SYSMESSAGE=Recall to <REF2.TAG0.p<EVAL <LOCAL.page>>.name>: target the rune.
+    SRC.CAST=s_recall
+    RETURN 1
+
+// ---------------------------------------------------------------------------
+// Mirror the book's pages onto the player as display-only tags. The dialog
+// renders in the PLAYER's context, so this is what lets it show the book's
+// contents without nested tag evaluation.
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// M3.9 BUGFIX. This function reads TAG0.p1.name .. p8.name, but the insert and
+// travel handlers built their tag names as `p<LOCAL.page>` -- and Sphere
+// renders a numeric value in HEX WITH A LEADING ZERO, so <LOCAL.page> for page
+// one is the string "01", not "1". The book therefore stored TAG.p01.name while
+// this function looked up TAG.p1.name and always found nothing.
+//
+// It hid for a whole milestone because TRAVEL still worked: the travel handler
+// builds the name with the same padded expression, so it read back exactly what
+// insert wrote. Only the DISPLAY was broken, and a book that shows "(empty)"
+// beside a page that travels correctly is easy to read as "the page was lost".
+// M3.6 concluded exactly that, and M3.9 re-concluded it after a world rollback.
+//
+// The symptom that finally gave it away: the server answered
+// "Page 01 now holds Britain." -- with the padded 01 sitting in plain sight in
+// the message text.
+//
+// Fixed by making every page tag use <EVAL <LOCAL.page>>, which renders decimal,
+// so writer and reader agree on p1..p8. Books written before this fix keep
+// their old p01-style tags and will read as empty until their pages are
+// re-added; nothing is lost, because the rune itself is stored in the book.
+// ---------------------------------------------------------------------------
+[FUNCTION f_revolution_runebook_sync]
+    REF2=<SRC.TAG0.rb_book>
+    IF (!<REF2.UID>)
+        RETURN 1
+    ENDIF
+    SRC.TAG.rb_charges=<REF2.TAG0.charges>
+    SRC.TAG.rb_d1_name=<REF2.TAG0.p1.name>
+    SRC.TAG.rb_d1_pt=<REF2.TAG0.p1.pt>
+    SRC.TAG.rb_d2_name=<REF2.TAG0.p2.name>
+    SRC.TAG.rb_d2_pt=<REF2.TAG0.p2.pt>
+    SRC.TAG.rb_d3_name=<REF2.TAG0.p3.name>
+    SRC.TAG.rb_d3_pt=<REF2.TAG0.p3.pt>
+    SRC.TAG.rb_d4_name=<REF2.TAG0.p4.name>
+    SRC.TAG.rb_d4_pt=<REF2.TAG0.p4.pt>
+    SRC.TAG.rb_d5_name=<REF2.TAG0.p5.name>
+    SRC.TAG.rb_d5_pt=<REF2.TAG0.p5.pt>
+    SRC.TAG.rb_d6_name=<REF2.TAG0.p6.name>
+    SRC.TAG.rb_d6_pt=<REF2.TAG0.p6.pt>
+    SRC.TAG.rb_d7_name=<REF2.TAG0.p7.name>
+    SRC.TAG.rb_d7_pt=<REF2.TAG0.p7.pt>
+    SRC.TAG.rb_d8_name=<REF2.TAG0.p8.name>
+    SRC.TAG.rb_d8_pt=<REF2.TAG0.p8.pt>
+    RETURN 1
+
+[EOF]

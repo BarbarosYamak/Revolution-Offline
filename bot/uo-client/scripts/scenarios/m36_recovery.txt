@@ -1,0 +1,40 @@
+# M3.6 Phase 1 -- the Mage Tower recovery, reproduced exactly.
+#
+# THE BUG THIS PROVES FIXED
+#
+# M2.5 classified "sealed into an upper storey" as a BLOCKS_M3 blocker and
+# fixed it. M3.5 found the fix did not cover its own primary case: a sealed-in
+# character fails at PLAN time with Failure::NoRoute, the escape rung only
+# fired on Failure::Unreachable, and TravelPlanRoute called TravelFinish
+# directly anyway -- so the parent journey died while the escape walk was still
+# being planned, leaving an orphaned recovery.
+#
+# The exact live signature was:
+#     [travel] plan Britain banker: no world route to the destination
+#              legs=0 ~0 tiles transit=0 nodes=1
+#     [travel] Britain banker FAILED at (1490,1555,30)
+# from the Mage Tower's upper storey at z=30, with no escape attempt at all.
+#
+# WHAT SHOULD HAPPEN NOW
+#
+#   plan fails (NoRoute)
+#     -> journey PARKS in Phase::Recovering and stays Active
+#     -> the client owns movement and walks to a navgrid anchor
+#     -> recovery reports back with an explicit event
+#     -> the journey re-plans for the SAME destination and resumes
+#     -> or, after three anchors, fails cleanly carrying the original reason
+#
+# Run as session 7, which is standing on that floor.
+
+wait_world
+sleep 2500
+ensure_peace
+
+# The destination that used to be unreachable from here.
+travel_service banker
+wait_travel
+expect_travel ok
+
+say the tower let me out
+sleep 1500
+logout

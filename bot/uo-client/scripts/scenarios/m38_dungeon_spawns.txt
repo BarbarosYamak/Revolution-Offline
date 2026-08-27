@@ -1,0 +1,55 @@
+# M3.8 -- populate the dungeons. The third thing this shard shipped and never ran.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# WHAT WAS MISSING
+#
+# 1,479 creatures and 1,914 spawners in the world, and all of it peaceful fauna
+# and town NPCs. TWO hostile spawners in the entire world -- one red dragon, one
+# balron. Zero orc, skeleton, lizardman, ratman, elemental or spider spawners.
+#
+# So PvM, treasure hunting and every combat archetype were not "unproven": they
+# were IMPOSSIBLE. A PK or a warrior had nothing to fight.
+#
+# The shard ships 28 Felucca spawn files -- Covetous, Deceit, Despise, Destard,
+# Fire, Hythloth, Ice, Khaldun, OrcCaves, Graveyards, the Lost Lands -- and
+# spheretables.scp:151 loads them, so every function was callable the whole
+# time. Same shape as the decorator before M3.7 and the crops before M3.8: the
+# content was there and the generation step had never been executed.
+#
+# WHY spawn_dungeons_felucca AND NOT THE WHOLE FAMILY
+#
+# This aggregate (Groups_spawns_felucca.scp) calls the fourteen DUNGEON spawns
+# and nothing else. Deliberately excluded:
+#
+#   Outdoors_spawns_felucca  -- would put monsters on the roads
+#   Reagents_spawns_felucca  -- reagent nodes; sourcing is still an open
+#                               authenticity question and planting them would
+#                               quietly answer it
+#
+# Monsters belong in dungeons; monsters on the Britain-Minoc road would kill the
+# crafter characters carrying this project's economy proofs, on a shard where
+# death is full loot loss. Containment is the whole reason for choosing the
+# aggregate over `f_create_spawner` sweeps.
+#
+# DENSITY IS STILL AN OPEN AUTHENTICITY QUESTION. These are Nerun's stock UO
+# spawn rates, not Revolution's. Running them makes PvM possible; it does not
+# make it authentic, and the rates are recorded as debt rather than endorsed.
+#
+# PERSISTENCE: `.save`. Spawners are ordinary dynamic items (i_worldgem_bit with
+# TIMELO/TIMEHI), not ATTR_STATIC, so CSector::SaveSector writes them to
+# sphereworld.scp. This is the opposite of the decorator, whose ATTR_STATIC
+# items needed `.serv.savestatics` -- the question has to be asked each time.
+
+wait_world
+sleep 3000
+
+say .spawn_dungeons_felucca
+sleep 90000
+
+say .save
+sleep 25000
+
+say dungeons populated
+sleep 1500
+logout

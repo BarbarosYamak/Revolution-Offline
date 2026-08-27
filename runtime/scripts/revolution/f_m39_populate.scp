@@ -1,0 +1,57 @@
+// ---------------------------------------------------------------------------
+// M3.9 -- populate the rest of the Felucca world.
+//
+// The shard owner asked for the whole world: "graveyards, destard, ice area,
+// deceit etc". The dungeons were already placed in M3.8 (twelve classic ones
+// survive after f_m39_prune_ml removed the Mondain's Legacy strays), and
+// Vendors, Towns Life and Wild Life were placed in earlier milestones. What was
+// still missing is everything below.
+//
+// EVERY SET HERE WAS AUDITED BEFORE BEING RUN. That ordering is the whole point:
+// M3.8 ran an aggregate spawn function without reading it and placed eleven
+// unrenderable ML spawners that had to be pruned afterwards. The audit resolved
+// all 787 creature tokens in these sets through spawner_defs.scp to a CHARDEF
+// and then to the file defining it, flagging anything from aos/se/ml/sa/hs/tol.
+//
+//   Graveyards   CLEAN, but replaced by f_m39_graveyards -- the stock function
+//                puts a graveyard at "Haven", a TRAMMEL settlement whose
+//                Felucca coordinates land on Ocllo island.
+//   Outdoors     TWO ML creatures (changeling, plaguespawn) out of 445
+//                spawners -- replaced by f_m39_outdoors, which drops those two
+//                tokens and changes nothing else.
+//   Sea Life     CLEAN. Dolphin, sea serpent, deep sea serpent, kraken,
+//                sea horse, water elemental -- all classic.
+//   Reagents     CLEAN. Item spawners for the eight ordinary reagents, which
+//                also matters for M3.9's reagent-sourcing debt: with
+//                ReagentsRequired=1 a mage must actually find these.
+//   Lost Lands   CLEAN. T2A (1998) content -- Ophidians, Terathans, ostards,
+//                Efreet. Comfortably inside the 2008-2010 window.
+//
+// NOT RUN, and deliberately so:
+//   spawn_quest_npcs_felucca      327 ML Heartwood elves + a necromancer
+//                                 trainer; the client cannot render elves
+//   everything under trammel/     Revolution had no second facet
+//   malas/ tokuno/ termur/        AoS / SE / SA
+//   spawn_uoclassic               1,770 duplicates of the Nerun set
+//
+// RUN ONCE. f_create_spawner has no idempotency -- running this twice places a
+// second full set of spawners on top of the first. Verify by counting
+// i_worldgem_bit in the world save before and after, the same way the ML prune
+// was verified, and not by trusting any number this function prints.
+// ---------------------------------------------------------------------------
+
+[function f_m39_populate]
+SRC.SYSMESSAGE @,,1 m39 populate: graveyards...
+f_m39_graveyards
+SRC.SYSMESSAGE @,,1 m39 populate: outdoors (445 spawners, this takes a moment)...
+f_m39_outdoors
+SRC.SYSMESSAGE @,,1 m39 populate: sea life...
+spawn_sea_life_felucca
+SRC.SYSMESSAGE @,,1 m39 populate: reagents...
+spawn_reagents_felucca
+SRC.SYSMESSAGE @,,1 m39 populate: lost lands...
+spawn_lost_lands_felucca
+SRC.SYSMESSAGE @,,1 m39 populate COMPLETE -- verify by spawner count in the world save
+RETURN 1
+
+[eof]

@@ -1,0 +1,152 @@
+# M3.7 SLICE A, CLOSING LINKS -- cut the bolt, open the tailoring menu, and be
+# refused for want of thread.
+#
+# RUN AS SESSION 11 (RevolutionWeaver).
+#
+# WHY THIS IS A SEPARATE FILE FROM m37_slice_a_tailor.txt
+#
+# The full slice walks to the sheep field and back -- twelve minutes of road
+# each way -- and then depends on finding TWO woolly sheep standing near each
+# other. It does not reliably find them:
+#
+#   m37a8  wool 0 -> 1, yarn 0 -> 3, one bolt finished, then out of yarn
+#   m37a9  wool 0 -> 1, second shear yielded nothing at all, and the run ended
+#          at `REQUIRED 'wool2' is not bound`
+#
+# Shearing turns a sheep into CREID_SHEEP_SHORN, so the flock thins as you work
+# it, and a second scan can come back with the animal you have already sheared
+# or with nothing in range. That is a real fact about the world and it is worth
+# knowing -- but it is a FORAGING problem, and re-proving it costs half an hour
+# per attempt while proving nothing new about textiles.
+#
+# The chain up to the bolt is already proven live (m37a8: "The bolt of cloth is
+# finished", twice). What is NOT yet proven is what happens after it. So this
+# file starts from the bolts the weaver is already carrying and does only the
+# two remaining links, in Britain, in about two minutes.
+#
+# WHAT IT PROVES
+#
+#   1. scissors on a bolt -> cloth. i_cloth_bolt carries RESOURCES=50 i_cloth
+#      and CItem.cpp:4287 pays that out, so one bolt should become FIFTY cloth.
+#   2. the sewing kit opens sm_tailor_cloth, and the cheapest garment on the
+#      shard is refused. i_bandana is Tailoring 0.1 and costs
+#      `RESOURCES=2 i_cloth,1 i_thread`. This character has cloth it wove
+#      itself and no thread whatsoever.
+#
+# AND WHY THE REFUSAL IS THE POINT, not a failure. Thread is not made from
+# wool. CClientTarg.cpp:2053 handles IT_WOOL and IT_COTTON on a spinning wheel
+# and nothing else -- "1 pile of wool yields three balls of yarn", "1 pile of
+# cotton yields six spools of thread". i_thread's own itemdef line
+# `RESOURCES=1 i_flax_bundle` is a value declaration for <resmake>, never a
+# production path. So cloth and thread come from DIFFERENT CROPS, and a
+# self-sufficient tailor needs sheep AND a cotton field. 264 recipes under
+# runtime/scripts spend i_cloth; every one a tailoring menu can reach also
+# spends i_thread.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ---------------------------------------------------------- 1. cut the bolt
+# Stacked resources CHANGE GRAPHIC with amount, so every dupe id must be named
+# -- i_cloth_bolt's DUPELIST spans 0x0F95..0x0F9C. A bare first id has already
+# cost this milestone one false failure.
+mark_item 0x175D
+
+remember shears carried_graphic 0x0F9E,0x0F9F
+require shears
+
+remember bolt pack_graphic 0x0F95,0x0F96,0x0F97,0x0F98,0x0F99,0x0F9A,0x0F9B,0x0F9C
+require bolt
+
+use @shears
+wait_target
+target @bolt
+sleep 3000
+
+open @pack
+wait_action
+sleep 2000
+expect_item_gain 0x175D
+
+# ----------------------------------------------------------- 2. sew a hat
+# The sewing kit is used ON cloth, which opens sm_tailor_cloth. These are 0x7C
+# MENUS answered with 0x7D -- NOT 0xB0 gumps, which is why an earlier revision
+# watched for a gump here and saw nothing at all.
+#
+# SPHERE FILTERS THE MENU TO WHAT YOU CAN ACTUALLY MAKE, and that filtering is
+# itself the cleanest evidence in this slice. sm_tailor_cloth DEFINES five
+# entries -- Shirts, Pants, Headwear, Misc., bolt of cloth -- but a character
+# holding 50 cloth and no thread is shown two:
+#
+#   [0x7C] "Cloth" (2 options)
+#           1) Headwear
+#           2) bolt of cloth (50 folded cloth)
+#   [0x7C] "Headwear" (2 options)
+#           1) wide-brim hat (12 folded cloth)
+#           2) straw hat (10 folded cloth)
+#
+# Every branch that needs thread has vanished, and inside Headwear the bandana
+# (2 cloth + 1 THREAD) is gone while the two cloth-only hats remain. The server
+# is telling us the recipe requirements directly.
+#
+# THIS CORRECTS AN EARLIER CLAIM IN THIS MILESTONE. §13a said every garment a
+# tailoring menu can reach spends thread. It does not: i_hat_wide_brim (0x1714)
+# is `RESOURCES=12 i_cloth`, `SKILLMAKE=Tailoring 6.2` -- cloth only. A wool
+# tailor is not locked out of clothing after all; it is locked out of the
+# recipes that stitch, which is a narrower and more interesting statement.
+mark_item 0x1714
+
+remember kit carried_graphic 0x0F9D,0x0F9B
+require kit
+
+# THE RE-OPEN IS LOAD-BEARING. The resolver answers from the client's container
+# snapshot and only an 0x3C refills it; the scissors step just changed the pack.
+open @pack
+wait_action
+sleep 1500
+remember cloth pack_graphic 0x175D
+require cloth
+
+use @kit
+wait_target
+target @cloth
+sleep 2500
+
+# Indices are into the FILTERED menu, not into the script file. An earlier
+# revision sent `menu_choose 3` for Headwear because that is its position in
+# sm_tailor_cloth, and the client answered
+# "[0x7D] dialog index 3 out of range (2 options)" -- the shard had already
+# removed the three thread-bearing branches above it.
+menu_choose 1
+sleep 2500
+menu_choose 1
+sleep 3500
+
+open @pack
+wait_action
+sleep 2000
+
+skill_report
+
+# A FINISHED GARMENT, from a sheep this character sheared itself.
+#   sheep -> wool -> yarn -> bolt of cloth -> cloth -> wide-brim hat
+expect_item_gain 0x1714
+
+# The bandana is NOT asserted here, and deliberately so: mark_item keeps ONE
+# baseline list, and ExpectItemSame compares against exactly the list that was
+# marked. Asserting a second graphic would fail on the list check rather than
+# on the game. The bandana's absence is already recorded where it is actually
+# observable -- in the filtered menu above, which never offers it.
+
+say from the sheep's back to the hat on my head
+sleep 1500
+logout
