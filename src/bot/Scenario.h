@@ -107,7 +107,34 @@ namespace bot {
 //   vendor_graphic:<hex>          the offered item with that graphic id
 //   vendor_sell_first             first item the vendor offered to buy
 //   vendor_sell_graphic:<hex>     the offered item with that graphic id
+//   container_graphic <container> <hex,...>
+//                                 first item with any of those graphics inside
+//                                 an ARBITRARY open container (e.g. a carved
+//                                 corpse) -- <container> is itself resolved as
+//                                 an operand (@name, self, backpack, ... or a
+//                                 literal serial), then Client::
+//                                 FindContainerItemByGraphic searches that
+//                                 container's own cached contents. Unlike
+//                                 pack_graphic/carried_graphic, which are
+//                                 hard-wired to the player's own worn
+//                                 backpack, this can look inside anything the
+//                                 client has an open 0x3C for.
 //   0x1234ABCD                    a literal serial
+//
+// Container verbs, added alongside container_graphic above so a corpse's
+// contents (or any other open container's) can be asserted and moved, not
+// just found:
+//   expect_container_count <container> <n>
+//                                 fail unless that container's cached item
+//                                 count is exactly n (e.g. 0 right after a
+//                                 kill, before carving)
+//   container_report <container> log every item currently cached for that
+//                                 container (serial, graphic, amount)
+//   take <item> <amount>         lift an item out of whatever open container
+//                                 it is in and drop it into our own backpack
+//                                 (0x07 lift + 0x08 drop, Client::
+//                                 TakeFromContainer) -- <item> is typically a
+//                                 name bound by `remember ... container_graphic`
 // ---------------------------------------------------------------------------
 class Scenario {
 public:
@@ -184,9 +211,13 @@ private:
         MenuPick,
         ExpectMenuHas,
         MenuReport,
+        Survival,
         // Read-only position probe (see mobile_pos above). Appended last, like
         // every op before it: kOpNames is indexed by this enum.
         MobilePos,
+        // M3.9.2 loot pull. See the container verbs above the class comment
+        // block. Appended last, like every op before it.
+        ExpectContainerCount, ContainerReport, Take,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

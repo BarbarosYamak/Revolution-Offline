@@ -1,0 +1,121 @@
+# M3.9.1 -- prove a bot BREAKS OFF a fight instead of dying in it.
+#
+# RUN AS A FIGHTER SESSION (see bot-credentials.env).
+#
+# WHAT THIS IS FOR
+#
+# Every fighter this project ran fought to the death, because nothing ever told
+# it to stop. RevolutionSpar was beaten to death by three undead in 27 seconds
+# without disengaging once; a later fighter traded blows with a wolf down to
+# 17 HP with ten bandages still in its pack.
+#
+# combat_policy.h now decides (potion first, because it is instant; disengage
+# before bandaging, because a bandage is SKILL 17 DELAY=3.0 and three seconds
+# standing still next to something that hits is how a bot dies), and the client
+# applies it in SurvivalTick.
+#
+# `survival on` is OPT-IN on purpose: dozens of existing scenarios script their
+# own fights and would be disrupted by the client retreating on their behalf.
+#
+# WHAT COUNTS AS PROOF
+#
+# Not "the bot won". A bot that wins an easy fight proves nothing about
+# survival. The evidence is in the log:
+#
+#   [survival] hp N/M (P%) -> disengage      the decision was taken
+#   event survival_disengage                 war mode actually dropped
+#   event survival_bandage                   it healed once out of contact
+#   and the character is ALIVE at the end
+#
+# A run where the bot kills the wolf outright at full health is INCONCLUSIVE,
+# not a pass -- say so rather than claiming the feature works.
+
+wait_world
+sleep 2500
+ensure_peace
+
+# Be alive and armed before hunting. A previous scenario left a character
+# logged out in a graveyard and every later run began as a ghost.
+travel_service healer
+wait_travel
+sleep 4000
+resurrect
+wait_action
+sleep 2000
+wait_alive
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+remember blade pack_graphic 0x13FE,0x13FF
+require blade
+equip @blade 1
+wait_action
+sleep 1500
+
+request_skills
+sleep 1500
+skill_report
+
+# ------------------------------------------------------- turn survival on
+survival on
+sleep 500
+say I will not fight to the death
+
+# ------------------------------------------------------- find a lawful fight
+#
+# THE BRITAIN CEMETERY, on purpose. This is where RevolutionSpar was beaten to
+# death by a Zombie, a Spectre and a Skeletal Mage in 27 seconds -- the run that
+# started this whole line of work. Undead are FIXED spawners, always hostile,
+# and always there, so unlike wandering wolves they cannot simply be absent.
+#
+# A first attempt at this proof went to open country at 1252,1613 and found no
+# wolf at all: the tick decided "fight" 51 times at 100% health and the run
+# proved nothing except that the decision loop runs. Fauna wander, and the world
+# now holds 13,345 creatures spread over the whole map.
+#
+# Fighting undead is lawful -- they are hostile already, so no criminal flag is
+# incurred, unlike the farm livestock that got an earlier bot executed by a
+# guard.
+#
+# THIS IS THE REAL TEST: survive where an earlier bot died. If the character
+# comes home alive having disengaged and bandaged, survival works. If it dies,
+# it does not, and that is the honest answer.
+use_moongates on
+travel_point 1369 1475
+wait_travel
+expect_travel ok
+sleep 1500
+
+scan_mobiles
+sleep 1000
+remember prey mobile_body 0x0003,0x001A,0x0032,0x0094,0x0099,0x02EC
+require prey
+
+goto_mobile @prey
+wait_action
+sleep 1500
+
+mark_hp
+war on
+sleep 800
+attack @prey
+wait_action
+
+# Let the fight run long enough for the policy to matter. SurvivalTick is
+# deciding throughout; the scenario deliberately does NOT micromanage it.
+loop 20
+  sleep 2500
+endloop
+
+war off
+sleep 1500
+say the fight is over and I am still here
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout

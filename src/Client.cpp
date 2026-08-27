@@ -441,6 +441,7 @@ void Client::Tick(int waitMs) {
             // before BotTick pumps the steps it queued.
             TravelTick();
             WarModeTick();
+            SurvivalTick();
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts

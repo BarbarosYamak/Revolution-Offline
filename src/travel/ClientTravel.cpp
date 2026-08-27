@@ -12,6 +12,7 @@
 #include "Client.h"
 
 #include "uo/travel_mode.h"
+#include "uo/combat_policy.h"
 #include "uo/rules.h"
 
 #include "uo/endian.h"
@@ -960,6 +961,112 @@ void Client::ExitWarMode() {
 void Client::EnsurePeaceMode() {
     war_.OnPeacefulIntent(NowMs());
     if (playerWarMode_) ExitWarMode();
+}
+
+void Client::SetSurvivalEnabled(bool on) {
+    survivalEnabled_ = on;
+    survivalNextActionMs_ = 0;
+    survivalLastTactic_ = -1;
+    LogInfo("[survival] %s\n", on ? "on" : "off");
+    LogEvent("survival_mode", on ? "on" : "off");
+}
+
+// Apply combat_policy's decision. The policy is pure and unit-tested; this is
+// only the hands.
+//
+// Everything here is an ordinary client action a player could take: drink a
+// potion, leave war mode, walk away, bandage yourself. Nothing reaches past the
+// protocol.
+void Client::SurvivalTick() {
+    if (!survivalEnabled_ || !IsInWorld() || IsDead()) return;
+    const i64 now = NowMs();
+    if (now < survivalNextActionMs_) return;
+
+    combat::Vitals v;
+    v.hpNow    = PlayerHp();
+    v.hpMax    = PlayerHpMax();
+    v.inCombat = WarModeOn();
+
+    // "Adjacent" means something we are actually fighting is within a tile.
+    // A bandage takes ~3 seconds (SKILL 17 DELAY=3.0); that is the whole reason
+    // the policy cares.
+    const u32 target = war_.TargetSerial();
+    if (target) {
+        i32 tx = 0, ty = 0;
+        if (MobilePosition(target, &tx, &ty)) {
+            const i32 dx = tx > playerX_ ? tx - playerX_ : playerX_ - tx;
+            const i32 dy = ty > playerY_ ? ty - playerY_ : playerY_ - ty;
+            v.enemyAdjacent = (dx <= 1 && dy <= 1);
+        }
+    }
+
+    // Count what we can actually heal with, from the pack we can actually see.
+    // A supply we cannot find is a supply we do not have -- claiming otherwise
+    // is how a policy decides to bandage with nothing to bandage with.
+    // Graphics from the runtime, not from generic UO: i_bandage is [ITEMDEF
+    // 0e21], and every heal potion (HealLess/Heal/HealGreat) is ID=i_bottle_
+    // yellow = 0x0F0C. That last one means the client cannot tell a heal potion
+    // from any other yellow-bottle potion by graphic alone -- so the count below
+    // is "a yellow bottle is present", which is honest but not precise, and is
+    // why DrinkPotion is attempted rather than assumed to work.
+    constexpr u16 kBandageGraphic = 0x0E21;
+    constexpr u16 kYellowPotionGraphic = 0x0F0C;
+    const u32 bandage = FindBackpackItemByGraphic(kBandageGraphic);
+    const u32 potion  = FindBackpackItemByGraphic(kYellowPotionGraphic);
+    v.bandages    = bandage ? 1 : 0;
+    v.healPotions = potion ? 1 : 0;
+
+    const combat::Tactic t = combat::Decide(v);
+    if (static_cast<int>(t) != survivalLastTactic_ || now - survivalLastLogMs_ > 5000) {
+        LogInfo("[survival] hp %d/%d (%d%%) -> %s\n", v.hpNow, v.hpMax,
+                combat::HealthPercent(v), combat::TacticName(t));
+        survivalLastTactic_ = static_cast<int>(t);
+        survivalLastLogMs_ = now;
+    }
+
+    switch (t) {
+        case combat::Tactic::Fight:
+            break;   // nothing to do; the fight is already happening
+
+        case combat::Tactic::DrinkPotion: {
+            if (potion) {
+                LogEvent("survival_potion", "");
+                ActionUseObject(potion);
+                survivalNextActionMs_ = now + 2000;
+            }
+            break;
+        }
+
+        case combat::Tactic::Disengage:
+        case combat::Tactic::Flee:
+            // Leaving war mode is the disengage. Walking away is the travel
+            // layer's job, not this tick's -- issuing steps from here would
+            // fight whatever journey is already running.
+            if (WarModeOn()) {
+                LogEvent("survival_disengage", combat::TacticName(t));
+                ExitWarMode();
+            }
+            survivalNextActionMs_ = now + 1500;
+            break;
+
+        case combat::Tactic::Bandage: {
+            if (bandage && !action_.Active()) {
+                LogEvent("survival_bandage", "");
+                ActionUseBandage(bandage, playerSerial_);
+                // A bandage is ~3 seconds; do not stack another decision on top
+                // of one already in flight.
+                survivalNextActionMs_ = now + 4000;
+            }
+            break;
+        }
+
+        case combat::Tactic::Rest:
+            survivalNextActionMs_ = now + 3000;
+            break;
+
+        case combat::Tactic::Count:
+            break;
+    }
 }
 
 void Client::WarModeTick() {
