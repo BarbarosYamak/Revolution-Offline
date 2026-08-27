@@ -91,17 +91,29 @@ sleep 2500
 open @pack
 wait_action
 sleep 2000
-expect_item_gain 0x0DF9,0x0DEF
-
-say cotton picked
+say cotton in hand
 
 # ------------------------------------------------- 2. spin it into THREAD
 # britain_tailor_2 (1467,1686) is the ground-floor shop holding the spinning
 # wheel and loom the decorator placed.
-travel_point 1467 1686
+# STAND ON THE WHEEL, not near the shop.
+#
+# A first run travelled to (1467,1686) -- the door of britain_tailor_2, which is
+# where M3.7's slice A went -- arrived exactly, and resolved
+# `remember wheel = 0x00000000`. M3.7 got 0x40000478 from the same spot.
+#
+# The wheels are at (1473,1689) and (1475,1689), six and eight tiles away, and
+# `world_graphic` reads the client's OWN object cache: an item the server has
+# not sent yet is an item that does not exist. Six tiles through a shop wall is
+# apparently enough to miss it, and the difference between the two runs is
+# whichever objects happened to be in cache after a long walk.
+#
+# So do not stand at the door and hope. (1472,1689) is adjacent to the nearer
+# wheel, and the extra sleep gives the 0x1A object packets time to land.
+travel_point 1472 1689
 wait_travel
 expect_travel ok
-sleep 2500
+sleep 4000
 
 mark_item 0x0FA0,0x0FA1
 

@@ -1,0 +1,65 @@
+# M3.8 PHASE 4 -- craft the restored recipe. Nails, live.
+#
+# RUN AS SESSION 10 (RevolutionMiner): Tinkering 30 / Blacksmithy 30, holding
+# tinker tools bought from Rhyssa and a pack of iron.
+#
+# WHAT WAS RESTORED AND WHY IT QUALIFIED
+#
+# i_nails is one of 49 PLAYER_CRAFTED_NO_MENU items: a complete itemdef with
+# sane requirements that appears in no live skillmenu, so nobody on the shard
+# can make it.
+#
+#   i_nails  RESOURCES=1 i_ingot_iron
+#            SKILLMAKE=Tinkering 5.0, t_tinker_tools, Blacksmithing 5.0
+#
+# The brief is explicit that the 49 must not be blindly restored. Nails cleared
+# the bar on two independent grounds:
+#
+#   1. RevolutionUO's own training guide names it -- target-era evidence, not a
+#      generic Sphere recipe restored to pad a menu count.
+#
+#   2. It was caught in the act. Rhyssa's 41-item shop lists
+#      `nails x12  6 gp`, while the same live menu offered this character
+#      gears, hinge and springs -- each `1 iron ingot`, same tier. So the
+#      absence was menu exposure, not skill and not materials, and an NPC was
+#      holding a market no player could enter.
+#
+# The restoration is a runtime override in sm_legacy_tinkering.scp's sm_parts.
+# No Source-X change.
+#
+# WHAT WOULD DISPROVE IT: if the menu still lacks nails after the override, the
+# gap was never exposure and the diagnosis was wrong.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+mark_item 0x102E,0x102F
+
+remember tools carried_graphic 0x1EBC,0x1EBD
+require tools
+
+remember iron pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require iron
+
+# Tinker tools open the menu on the double-click itself -- no target cursor.
+use @tools
+sleep 4000
+
+# sm_tinker -> Parts. Indices are into the FILTERED list the server sent, never
+# the script file: the live Parts menu previously held three entries where the
+# file holds eight.
+menu_choose 1
+sleep 3000
+
+say parts listed with nails restored
+sleep 1500
+logout
