@@ -1862,6 +1862,39 @@ void Client::SendDialogResponse(u32 id, u16 menuId, u16 index, u16 model, u16 hu
 // Answer the active dialog by 1-based option index (0 = cancel). Pulls model/hue
 // from the stored option, sends 0x7D, and clears the dialog. Returns false if
 // there is no active dialog or the index is out of range.
+// ---- M3.8 Phase 10: resolve a craft menu entry by NAME, never by index -----
+//
+// Case-insensitive substring, because the server's labels carry their cost --
+// "nails (1 iron ingot)", "shirt (8 folded cloth, 1 spool of thread)" -- and a
+// caller should ask for the thing, not for the whole rendered line.
+usize Client::DialogIndexOf(const char* substring) const {
+    if (!substring || !*substring || !activeDialog_.active) return 0;
+    std::string want(substring);
+    for (char& c : want) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+
+    for (usize i = 0; i < activeDialog_.options.size(); ++i) {
+        std::string have = activeDialog_.options[i].text;
+        for (char& c : have) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        if (have.find(want) != std::string::npos) return i + 1;   // 1-based on the wire
+    }
+    return 0;
+}
+
+bool Client::ChooseDialogByName(const char* substring) {
+    const usize idx = DialogIndexOf(substring);
+    if (idx != 0) return AnswerDialog(static_cast<u16>(idx));
+
+    // A miss must be DIAGNOSABLE. The interesting question is never "it failed"
+    // but "what was actually on offer", because the answer is usually that the
+    // character lacks a material and the server quietly filtered the entry out.
+    LogWarn("[menu] '%s' is not in the live menu \"%s\" (%zu option(s)):\n",
+            substring ? substring : "",
+            activeDialog_.question.c_str(), activeDialog_.options.size());
+    for (usize i = 0; i < activeDialog_.options.size(); ++i)
+        LogWarn("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
+    return false;
+}
+
 bool Client::AnswerDialog(u16 index) {
     if (!activeDialog_.active) {
         LogWarn("[0x7D] no active dialog to answer\n");

@@ -17,6 +17,10 @@ i_sewing_kit	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, 
 i_tongs	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
 i_hammer_smith	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
 i_tinker_tools	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
+i_bread_loaf	BASIC_FOOD	1	0	basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good
+i_food_bread_fr	BASIC_FOOD	1	0	basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good
+i_ribs_cooked	BASIC_FOOD	1	0	basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good
+i_food_cookies	BASIC_FOOD	1	0	basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good
 i_saw	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
 i_mortar_pestle	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
 i_fishing_pole	BASIC_CRAFT_TOOL	1	0	a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all
@@ -44,6 +48,14 @@ i_robe	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a p
 i_leather_tunic	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_parchment	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_rune_marker	STOCK_SPHERE_ONLY	0	0	on a stock Sphere vendor with no Revolution evidence
+i_reag_black_pearl	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_blood_moss	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_garlic	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_ginseng	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_mandrake_root	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_nightshade	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_spider_silk	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_reag_sulfur_ash	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_reag_batwing	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_blackmoor	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_blood_spawn	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
@@ -62,13 +74,13 @@ i_reag_nox_crystal	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_
 i_reag_grave_dust	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_dead_wood	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_wyrm_heart	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
-i_reag_black_pearl	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_blood_moss	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_garlic	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_ginseng	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_mandrake_root	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_nightshade	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_spider_silk	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
-i_reag_sulfur_ash	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
+i_reag_black_pearl	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_blood_moss	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_garlic	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_ginseng	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_mandrake_root	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_nightshade	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_spider_silk	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
+i_reag_sulfur_ash	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
 i_scroll_blank	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
 i_bottle_empty	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap

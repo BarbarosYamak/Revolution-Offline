@@ -62,6 +62,13 @@ const Row kMatrix[] = {
     {"i_tongs",         VendorClass::BasicCraftTool},
     {"i_hammer_smith",  VendorClass::BasicCraftTool},
     {"i_tinker_tools",  VendorClass::BasicCraftTool},
+    // Staples. See VendorClass::BasicFood -- a bot with hunger enabled must be
+    // able to eat, and Revolution's own cooking economy shows food was not an
+    // income good.
+    {"i_bread_loaf",    VendorClass::BasicFood},
+    {"i_food_bread_fr", VendorClass::BasicFood},
+    {"i_ribs_cooked",   VendorClass::BasicFood},
+    {"i_food_cookies",  VendorClass::BasicFood},
     {"i_saw",           VendorClass::BasicCraftTool},
     {"i_mortar_pestle", VendorClass::BasicCraftTool},
     {"i_fishing_pole",  VendorClass::BasicCraftTool},
@@ -103,6 +110,41 @@ const Row kMatrix[] = {
     // --- era conflicts: Necromancy reagents on a Renaissance mage shop -------
     // Necromancy is skill 49. This client ships skills 0-48 and cannot display
     // it. Eighteen of these sit in VENDOR_S_MAGE_SHOP today.
+    // ---- the eight ordinary Magery reagents ---------------------------------
+    //
+    // M3.8: RESOLVED, and by the only source that could resolve it.
+    //
+    // M3.7 searched revolutionuo.net's guides, the full 1200-entry changelog and
+    // forum topics 59111 and 54978, and deliberately recorded UNKNOWN. The
+    // evidence proved a real reagent ECONOMY -- a dedicated Reagent Crystal
+    // (07.11.2008), Recall cut from 3 reagents to 1 (14.05.2009), Gate Travel at
+    // 6 each -- but not where the reagents came from. Two readings survived:
+    // mage shops stocked them, or reagent fields were gathered. Forum SEARCH
+    // required a login and was unavailable.
+    //
+    // The project owner played RevolutionUO and states directly that MAGE SHOPS
+    // AND ALCHEMISTS SOLD REAGENTS. First-hand testimony is the strongest source
+    // available here, and it reaches exactly what the archive could not.
+    //
+    // This is the single most consequential UNKNOWN in the matrix closing:
+    // Magery training consumes reagents continuously, and with ReagentsRequired
+    // restored to 1 (M3.8 Phase 6) a Mage that may not buy reagents cannot
+    // train at all. Consumption and sourcing are now both answered, so the
+    // Mage/Warlock archetype is no longer blocked.
+    //
+    // NOTE WHAT IS *NOT* COVERED: the eighteen Necromancy reagents above stay
+    // EraConflict. Necromancy is skill 49 and this client ships 0-48; a mage
+    // shop selling batwing and daemon bone in 2010 is stock Sphere leaking a
+    // later era, and owner testimony about ordinary regs says nothing about it.
+    {"i_reag_black_pearl",      VendorClass::RevolutionNpcVerified},
+    {"i_reag_blood_moss",       VendorClass::RevolutionNpcVerified},
+    {"i_reag_garlic",           VendorClass::RevolutionNpcVerified},
+    {"i_reag_ginseng",          VendorClass::RevolutionNpcVerified},
+    {"i_reag_mandrake_root",    VendorClass::RevolutionNpcVerified},
+    {"i_reag_nightshade",       VendorClass::RevolutionNpcVerified},
+    {"i_reag_spider_silk",      VendorClass::RevolutionNpcVerified},
+    {"i_reag_sulfur_ash",       VendorClass::RevolutionNpcVerified},
+
     {"i_reag_batwing",          VendorClass::EraConflict},
     {"i_reag_blackmoor",        VendorClass::EraConflict},
     {"i_reag_blood_spawn",      VendorClass::EraConflict},
@@ -191,6 +233,17 @@ const GraphicRow kGraphics[] = {
     {0x0FBB, "i_tongs"},         {0x0FBC, "i_tongs"},
     {0x13E3, "i_hammer_smith"},  {0x13E4, "i_hammer_smith"},
     {0x1EBC, "i_tinker_tools"},
+    {0x103B, "i_bread_loaf"},
+    {0x0F7A, "i_reag_black_pearl"},
+    {0x0F7B, "i_reag_blood_moss"},
+    {0x0F84, "i_reag_garlic"},
+    {0x0F85, "i_reag_ginseng"},
+    {0x0F86, "i_reag_mandrake_root"},
+    {0x0F88, "i_reag_nightshade"},
+    {0x0F8D, "i_reag_spider_silk"},
+    {0x0F8C, "i_reag_sulfur_ash"},
+    {0x09EB, "i_food_bread_fr"},
+    {0x09F2, "i_ribs_cooked"},
     {0x1034, "i_saw"},           {0x1035, "i_saw"},
     {0x0E9B, "i_mortar_pestle"},
     {0x0DBF, "i_fishing_pole"},  {0x0DC0, "i_fishing_pole"},
@@ -213,6 +266,7 @@ const char* VendorClassName(VendorClass c) {
     switch (c) {
         case VendorClass::Unknown:               return "UNKNOWN";
         case VendorClass::BasicCraftTool:        return "BASIC_CRAFT_TOOL";
+        case VendorClass::BasicFood:             return "BASIC_FOOD";
         case VendorClass::RevolutionNpcVerified: return "REVOLUTION_NPC_VERIFIED";
         case VendorClass::PlayerMarketGood:      return "PLAYER_MARKET_GOOD";
         case VendorClass::WorldGathered:         return "WORLD_GATHERED";
@@ -266,6 +320,12 @@ VendorRuling CanUseNPCVendorFor(const char* item) {
         case VendorClass::RevolutionNpcVerified:
             out.allowed = true;
             out.reason  = "a dated Revolution update records an NPC selling this";
+            break;
+        case VendorClass::BasicFood:
+            out.allowed = true;
+            out.reason = "basic food: a character with hunger enabled must be "
+                         "able to eat, and Revolution's cooking economy shows "
+                         "food was not an income good";
             break;
         case VendorClass::BasicCraftTool:
             out.allowed = true;

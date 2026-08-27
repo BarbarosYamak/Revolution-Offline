@@ -494,6 +494,30 @@ public:
     // cannot reach them. Public face of the private AnswerDialog.
     bool ActionMenuChoose(u16 index);
 
+    // ---- M3.8 Phase 10: the live menu is the execution oracle ---------------
+    //
+    // Sphere filters a craft menu to what the character can make RIGHT NOW --
+    // by skill and by what is in the pack. So a script position is not a menu
+    // position, and assuming otherwise is how M3.7 earned
+    // "dialog index 3 out of range (2 options)": sm_tailor_cloth defines five
+    // entries and a weaver with no thread was shown two.
+    //
+    // The filtering is a feature, not an obstacle. It is the server stating its
+    // own requirements, and it caught a wrong claim in a published report --
+    // §13b of the M3.7 write-up exists because a filtered menu disproved it.
+    //
+    // These resolve by NAME against the list the server actually sent:
+    //   DialogIndexOf("nails")  -> 1-based index, or 0 if absent
+    //   DialogHasOption("nails")
+    //   ChooseDialogByName("nails")  -> answers it, or false and logs the whole
+    //                                   menu so a miss is diagnosable
+    //
+    // A crafter that plans with the production graph and EXECUTES through these
+    // cannot invent a recipe the server never offered.
+    usize DialogIndexOf(const char* substring) const;
+    bool  DialogHasOption(const char* substring) const { return DialogIndexOf(substring) != 0; }
+    bool  ChooseDialogByName(const char* substring);
+
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
     void ActionLogout();                 // 0xD1 + socket close
@@ -647,6 +671,7 @@ private:
     const ActiveDialog& Dialog() const { return activeDialog_; }
     void SendDialogResponse(u32 id, u16 menuId, u16 index, u16 model, u16 hue); // 0x7D
     bool AnswerDialog(u16 index);      // answer activeDialog_ by 1-based index (0 = cancel)
+
     void OpenBackpack();               // 0x06 double-click the worn backpack
     void TryOpenBackpackOnLogin();     // open it once, as soon as its serial is known
 

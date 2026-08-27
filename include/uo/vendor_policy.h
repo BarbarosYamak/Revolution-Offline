@@ -65,6 +65,24 @@ enum class VendorClass : u8 {
     // has no REQSTR and is the same t_weapon_mace_pick. Without a purchasable
     // tool, a legitimately-built miner simply cannot mine.
     BasicCraftTool,
+    // BASIC FOOD. Permitted, and forced into existence by M3.8 enabling hunger.
+    //
+    // With HitsHungerLoss=1 a character that cannot buy food eventually dies,
+    // and death on this shard is full loot loss. The first hunger run proved the
+    // problem exactly: a bot stood in front of a baker holding 39 sacks of
+    // flour and 32 french breads and was refused, because a loaf is not in the
+    // audited matrix and Unknown fails safe.
+    //
+    // The permission is EVIDENCED, not convenient. M3 measured the cooking
+    // economy and found "Cooking is a food and skill-gain activity, not an
+    // income multiplier" -- cooked fish is worth LESS than raw and loses every
+    // buyer. So a baker selling bread undercuts no real player market, which is
+    // the whole test this class exists to apply. Compare BasicCraftTool: a tool
+    // is not a resource, and food is not a trade good.
+    //
+    // It stays narrow deliberately: staples a character eats, not prepared
+    // goods a cook would sell for profit.
+    BasicFood,
     WorldGathered,        // a gathering skill produces it
     WorldProcessed,       // a station transforms it
     PlayerCrafted,        // a live skill menu makes it

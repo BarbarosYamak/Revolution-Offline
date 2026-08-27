@@ -374,11 +374,41 @@ void TestVendorPolicy() {
     Check(!r.authenticityGap,
           "an era conflict is a DECISION, not a research gap");
 
-    // UNKNOWN refuses AND flags. This is the property that turns the refusal
-    // list into a research backlog rather than a mystery.
+    // THE EIGHT ORDINARY MAGERY REAGENTS ARE NOW PERMITTED, and this assertion
+    // is the record of why it changed.
+    //
+    // M3.7 classed them UNKNOWN after searching revolutionuo.net's guides, the
+    // 1200-entry changelog and forums 59111/54978. That research proved a real
+    // reagent ECONOMY -- a dedicated Reagent Crystal (07.11.2008), Recall cut
+    // from 3 reagents to 1 (14.05.2009) -- but could not establish the SOURCE,
+    // because forum search required a login. Both readings survived.
+    //
+    // M3.8 closed it on first-hand testimony: the project owner played
+    // RevolutionUO and states that mage shops and alchemists sold reagents.
+    // That is the strongest source available for a shard that no longer runs,
+    // and it reaches exactly what the archive could not.
+    //
+    // It matters because it unblocks an archetype. With ReagentsRequired
+    // restored to 1, a Mage that may not buy reagents cannot train at all.
     r = econ::CanUseNPCVendorFor("i_reag_garlic");
+    Check(r.allowed && r.klass == econ::VendorClass::RevolutionNpcVerified,
+          "ordinary Magery reagents are NPC-verified and permitted");
+    Check(!r.authenticityGap,
+          "a resolved question is a decision, not a gap");
+
+    // ...and the Necromancy set is untouched by that testimony. Skill 49 on a
+    // client that ships 0-48 is an era conflict whatever the shops sold.
+    r = econ::CanUseNPCVendorFor("i_reag_daemon_bone");
+    Check(!r.allowed && r.klass == econ::VendorClass::EraConflict,
+          "Necromancy reagents stay an era conflict");
+
+    // UNKNOWN still refuses AND flags -- the property that turns the refusal
+    // list into a research backlog rather than a mystery. Asserted against an
+    // item that is in no matrix at all, so it cannot be invalidated by a future
+    // reclassification the way garlic just was.
+    r = econ::CanUseNPCVendorFor("i_not_a_real_item_at_all");
     Check(!r.allowed && r.klass == econ::VendorClass::Unknown,
-          "Magery reagents are UNKNOWN and therefore refused");
+          "an unmapped item is UNKNOWN and therefore refused");
     Check(r.authenticityGap, "an UNKNOWN refusal is flagged as an authenticity gap");
 
     // Basic craft tools are permitted, and the reasoning is load-bearing enough

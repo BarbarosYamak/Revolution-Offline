@@ -174,6 +174,7 @@ private:
         WaitMounted,
         ExpectMounted,
         Dismount,
+        MenuPick,
         Count,   // keep last: OpName() static_asserts its table against this
     };
     struct Step {

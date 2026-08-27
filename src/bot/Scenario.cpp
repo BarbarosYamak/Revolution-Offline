@@ -55,7 +55,7 @@ const char* const kOpNames[] = {
     "npc_train", "give",
     "wait_gump", "gump_button", "gump_report",
     "target_static", "menu_choose", "expect_item_same",
-    "mount", "wait_mounted", "expect_mounted", "dismount",
+    "mount", "wait_mounted", "expect_mounted", "dismount", "menu_pick",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -423,6 +423,18 @@ bool Scenario::Load(const char* path, std::string* err) {
         }
         else if (verb == "dismount") {
             st.op = Op::Dismount;
+        }
+        else if (verb == "menu_pick") {
+            // M3.8 Phase 10: pick a craft-menu entry BY NAME from the list the
+            // server actually sent. `menu_choose 3` names a position in the
+            // .scp; this names the thing. Sphere filters menus by skill and
+            // inventory, so the two are routinely different -- and when they
+            // differ, the index is wrong and the name is right.
+            std::getline(ls, st.text);
+            const auto s0 = st.text.find_first_not_of(" 	");
+            st.text = (s0 == std::string::npos) ? std::string() : st.text.substr(s0);
+            if (!need(st.a, "<name>")) { steps_.clear(); return false; }
+            st.op = Op::MenuPick;
         }
         else if (verb == "wait_mounted") {
             st.op = Op::WaitMounted;
@@ -815,6 +827,18 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::Dismount:
                     client.ActionDismount();
                     break;
+                case Op::MenuPick: {
+                    // The whole label, so "iron ingot" works as well as "nails".
+                    const std::string want =
+                        st.text.empty() ? st.a : (st.a + " " + st.text);
+                    if (!client.ChooseDialogByName(want.c_str())) {
+                        LogError("[scenario] menu_pick '%s' not offered by the "
+                                 "server (line %d); aborting\n",
+                                 want.c_str(), st.line);
+                        failed_ = true;
+                    }
+                    break;
+                }
                 case Op::Mount:
                     // A player mounts by double-clicking the animal. There is
                     // no mount packet; the server answers by deleting the
