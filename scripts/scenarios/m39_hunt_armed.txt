@@ -1,0 +1,126 @@
+# M3.9 -- prove a bot can kill something, WITH A WEAPON.
+#
+# RUN AS SESSION 51 (RevolutionFighter01), created for this run.
+#
+# WHY A NEW CHARACTER INSTEAD OF RevolutionSpar
+#
+# Six runs proved that targeting works and the server accepts it --
+# `[0xAA] attacking 0x00000856`, `attack success ... server accepted the target`
+# -- and that nothing ever died. Attempt 6 also disproved the obvious mechanical
+# explanation: the attack was sent ONCE and the bot merely kept in range, so the
+# swing timer was never reset, and the dog lived anyway.
+#
+# The remaining explanation was mundane. Spar died at the Britain cemetery and
+# FULL LOOT LOSS took its weapon, so it had been punching with Wrestling at
+# STR 30. It could not buy a replacement either: `mark_gold = 0`. Full loot loss
+# means exactly that.
+#
+# So this is a fresh character built the ordinary way. The Swordsmanship request
+# is not about the skill, it is about the KIT: [NEWBIE SWORDSMANSHIP] in
+# sp_tm_newbie.scp grants i_katana -- 0x13FE, DAM 11-13, ReqStr 25, DUPELIST
+# 013FF for the flipped graphic. Against unarmed Wrestling that is the whole
+# difference. Source-X clamps the requested skills and stats itself
+# (CChar::InitPlayer), so nothing here is granted beyond what the shard hands
+# any new player.
+
+wait_world
+sleep 2500
+ensure_peace
+gait run
+
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------- 1. arm ourself
+# The katana arrives in the pack from the newbie kit; it has to be equipped
+# before it does anything. Both graphics are listed because FLIP=1 items carry a
+# DUPELIST and a single-id lookup silently misses the flipped one -- the same
+# trap that made a miner's own ore stack invisible in M3.7.
+remember blade pack_graphic 0x13FE,0x13FF
+require blade
+
+# Layer 1 is LAYER_HAND1 -- the weapon hand. `equip` takes <item> <layer>; the
+# first run of this scenario omitted the layer and failed at load with
+# "equip needs <layer>", which is the parser doing its job.
+equip @blade 1
+wait_action
+sleep 2000
+say armed
+
+# ------------------------------------------------------------ 2. out to a farm
+# A Britain farm where the world save shows chickens. The coordinate is read out
+# of the save, not reasoned about -- the previous target held only Bull, Grizzly
+# Bear, Horse, Llama and Timber Wolf, every one of them excluded on purpose.
+use_moongates on
+travel_point 1378 1819
+wait_travel
+expect_travel ok
+sleep 2000
+
+say looking for something to kill
+
+# --------------------------------------------------------------- 3. find prey
+# 0x00D0 chicken  0x00CF sheep  0x00CB pig   0x00D1 goat
+# 0x00CD rabbit   0x0006 bird   0x00EE rat   0x00C9 cat
+# 0x00D9 dog      0x0005 eagle  0x011B crow
+#
+# Wolves, bears and harts stay off the list even armed. The question is whether
+# a bot can kill anything at all, and a clean answer to the small question beats
+# an ambiguous one to a bigger question.
+#
+# Three scans: fauna wander, and one scan samples one instant. A previous run
+# arrived correctly and aborted on `require prey` with the world working fine.
+scan_mobiles
+sleep 4000
+scan_mobiles
+sleep 4000
+scan_mobiles
+sleep 1500
+remember prey mobile_body 0x00D0,0x00CF,0x00CB,0x00D1,0x00CD,0x0006,0x00EE,0x00C9,0x00D9,0x0005,0x011B
+require prey
+
+# goto_mobile, not travel_entity: travel plans a route to where the mobile was
+# AT PLANNING TIME, and animals do not wait there.
+goto_mobile @prey
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------------ 4. kill it
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+
+# Send the attack ONCE, then only stay in range -- chasing is the bot's job,
+# swinging is the server's. Longer than before: 12 x ~2.5s rather than 8, since
+# the earlier windows may simply have been too short to finish a fight.
+loop 12
+  goto_mobile @prey
+  wait_action
+  sleep 2500
+endloop
+
+# The evidence. If the prey is gone from this scan it died, and a corpse
+# container is left where it stood. No scenario op asserts "that mobile no
+# longer exists", so this is reported as observed evidence read from the log,
+# not as a passing assertion.
+scan_mobiles
+sleep 2500
+
+war off
+sleep 1200
+say the fight is over
+
+request_skills
+sleep 1500
+skill_report
+sleep 1500
+logout
