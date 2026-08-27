@@ -1262,10 +1262,32 @@ void Client::OnDeleteObject(const u8* data, usize size) {
 // back as exists=false; we also emit a leave/close event for prompt cleanup.
 void Client::PurgeOutOfRange() {
     if (state_ != State::InWorld) return;
-    // Self-gate: only when the player has actually changed tile since last run.
-    if (playerX_ == lastPurgeX_ && playerY_ == lastPurgeY_) return;
+
+    // Self-gate: normally only when the player has changed tile, because the
+    // set of things in range cannot change if nothing moved... except that it
+    // can, and assuming otherwise was a REAL BUG.
+    //
+    // THE STUCK-BOT DEADLOCK (M3.9 Phase 1). Mobiles move on their own. A bot
+    // that is standing still -- crafting at a forge, waiting on a vendor, or
+    // ALREADY TRAPPED -- never advances lastPurge, so this never runs, so a
+    // mobile that has since walked away keeps its cached tile forever. A*
+    // treats that tile as a wall.
+    //
+    // The failure is self-reinforcing, which is what made it so hard to see:
+    // a bot that cannot move cannot purge, and cannot purge the very entry
+    // preventing it from moving. M3.7 lost a miner inside the Minoc bank to
+    // this and M3.8 papered over it with a one-shot "ignore mobiles" replan.
+    //
+    // So the gate now also expires. Standing still is cheap to poll -- the
+    // scan is a single pass over a cache bounded by view range -- and the cost
+    // of NOT polling is a permanent wall.
+    const i64 nowMs = NowMs();
+    const bool moved = (playerX_ != lastPurgeX_ || playerY_ != lastPurgeY_);
+    const bool overdue = (nowMs - lastPurgeMs_) >= kStationaryPurgeMs;
+    if (!moved && !overdue) return;
     lastPurgeX_ = playerX_;
     lastPurgeY_ = playerY_;
+    lastPurgeMs_ = nowMs;
 
     const i32 r  = viewRange_ > 0 ? viewRange_ : 18;
     const i32 px = playerX_, py = playerY_;

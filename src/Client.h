@@ -1088,6 +1088,12 @@ private:
     // around us" instead of growing stale. Self-gated on player movement via
     // lastPurgeX_/Y_; called once per pump iteration.
     void PurgeOutOfRange();
+    // How often the out-of-range purge runs when the player has NOT moved.
+    // Mobiles move on their own, so a stationary bot must still expire what it
+    // can no longer see; without this a stuck bot can never clear the stale
+    // entry that is keeping it stuck.
+    static constexpr i64 kStationaryPurgeMs = 2000;
+    i64 lastPurgeMs_ = 0;
     i32 lastPurgeX_ = 0x7FFFFFFF, lastPurgeY_ = 0x7FFFFFFF;
     void UpdateMobile(u32 serial, i32 x, i32 y, i8 z, u8 dir, u16 body,
                       u16 hue = 0, bool hasHue = false,
