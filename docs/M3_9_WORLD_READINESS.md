@@ -1086,3 +1086,54 @@ impossible.
 
 No skill gain on this one (6871 → 6871). Skill gain is probabilistic; the first
 kill gained 0.1. Reporting it rather than quietly picking the run that gained.
+
+---
+
+# M3.9 Superseding Final State
+
+**Read this before acting on anything above.**
+
+The sections above are the investigation as it happened, and several of their
+interim conclusions were overturned *later in the same investigation*. They are
+kept because the reasoning is instructive — but an agent reading §5 or §12 in
+isolation would rebuild things that already work.
+
+| Capability | Historical intermediate state | **Final state** |
+|---|---|---|
+| Wild PvM kill | "the bot lost both fights", OPEN | **PROVEN** — Timber Wolf `0xA01C` and a grey wolf, both killed, fame gained |
+| War-mode watchdog | assumed a missing `0x2F` meant no swings | **FIXED + PROVEN** — Source-X sends `0x2F` once per FIGHT, not per swing; watchdog now fed by `0xA1`/`0x2D`/`0x6E` |
+| Sleeping NPCs | unknown; combat "silently failed" | **ROOT-CAUSED** — objects are born sleeping and `Fight_CanHit` rejects a sleeping target before checking range; `SectorSleep=0` |
+| Corpse recovery | "broken", `travel_corpse` always failed | **PROVEN** — died, found corpse, raised by an NPC healer, returned |
+| Multi-bot travel spin | FOUND, "blocks M4", 99,290 failures | **FIXED + RE-PROVEN LIVE** in M3.9.1: bounded, truthful failures, no spin |
+| Supplier resolution | profession/atlas tags → wrong NPC | **CONCRETE** — vendor `0x000012C5` with 41 observed stock entries |
+| World population | "effectively monsterless", 1 undead | **POPULATED** — 5,049 spawners, 13,345 creatures |
+| Era-invalid spawns | 11 ML spawners live | **PRUNED**, and the world audited: 1 unrenderable item placed, not 24 |
+| Craft-menu oracle | guard only; positive half unproven | **PROVEN** — `expect_menu_has` true, craft driven by name, item created |
+| Corpse looting | "structurally impossible" | **PROVEN** — carve, then take; hides and ribs into the pack |
+| Combat survival | bots fought to the death | **PROVEN** — disengage at 32%, bandage, walk away alive |
+
+### Specific claims above that are now WRONG
+
+* **§14.4 "no 0x2F means no swings."** False. Source-X emits `0x2F` once per
+  fight at fight-memory creation (`CCharMemory.cpp:506`), only to the attacker.
+  Zero `0x2F` during a fight is normal. That whole paragraph reasoned from a
+  packet that was never going to arrive.
+* **§13 "the travel layer has no failure budget… blocks M4."** Fixed, and
+  re-measured live in M3.9.1: 4 failures at first read, all with real reasons,
+  none repeating.
+* **§3.2 "Sosaria + Ilshenar."** The Revolution client ships only `map0.mul`;
+  Ilshenar cannot load and never existed on this shard.
+* **§12 "0 failures" in the running soak.** That was a miscount — failures emit
+  `travel_failed`, not `travel_done ok=0`. The real figure was 99,290.
+
+### The habit behind most of these
+
+Six times in M3.9 and three more in M3.9.1, a fact was concluded from a **failed
+or truncated lookup** rather than from data: a body id taken from generic UO docs
+(`0x001C` for a grey wolf that is `0x0019` here), heal potions declared absent
+because their defname sits in the `[ITEMDEF …]` section header, a vendor recorded
+as stocking no cloth when the log printed only 8 of 41 items.
+
+**A negative result from one query is not a finding.** Confirm absence from a
+second angle before recording it — especially when the thing is something the
+game obviously ought to have.

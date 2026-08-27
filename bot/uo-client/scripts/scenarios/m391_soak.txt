@@ -1,0 +1,97 @@
+# M3.9.1 -- the launch-gate soak. THE headline gate for M4.
+#
+# Run as MANY SESSIONS AT ONCE (the gate asks for 30-50; 38 is what the account
+# set supports). Same script for every bot on purpose: the question is not what
+# one bot achieves, it is whether the travel layer stays truthful while dozens
+# of them contend for the same tiles.
+#
+# WHAT THIS IS RE-TESTING
+#
+# The M3.9 soak logged 99,290 `travel_failed` events against 731 successes, with
+# only 11/38 bots finishing. The cause was NOT crowding by itself -- it was a
+# terminal-state hole: a leg counted as arrived at Chebyshev 3 (exactly
+# kLegArriveSlack), Journey::Advance ran off the end of the route, and
+# NextCommand returned Fail WITHOUT setting failure_ or moving the phase to
+# Failed. The journey stayed Active and TravelFinish(false,"none") re-fired every
+# client tick -- about 16 times a second, forever. Two tiles adjacent to one
+# waypoint produced 99,266 of the 99,290 events.
+#
+# The fix is in and unit-tested. This proves it live, or it does not.
+#
+# THE WAYPOINT LIST DELIBERATELY INCLUDES THE ONE THAT BROKE IT.
+# 1336,1928 is the coordinate whose neighbours logged 59,249 and 40,017 failures.
+# Leaving it out would be testing the easy case.
+#
+# WHAT COUNTS AS PASS
+#
+# NOT 100% completion. A bot that gives up on an occupied tile after a bounded
+# ladder is CORRECT. The gate fails only on:
+#   - a terminally failed journey still Active
+#   - the same failure re-firing every tick (the ~16 Hz signature)
+#   - why='none'
+#   - anti-flood bans
+#   - protocol desync or crashes
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1000
+mark_gold
+
+gait run
+
+# Five laps of a contested circuit. Every stop is somewhere bots converge, which
+# is the point: banks, a smith, the road, and the tile that used to poison the
+# whole run.
+loop 5
+
+  # A service destination -- resolved by the world model, not a raw coordinate.
+  travel_service banker
+  wait_travel
+  sleep 1200
+  scan_mobiles
+
+  # Road waypoints, all read out of earlier runs' own arrival logs, so they are
+  # known-walkable rather than reasoned about.
+  travel_point 1416 1688
+  wait_travel
+  sleep 1000
+
+  travel_point 1386 1728
+  wait_travel
+  sleep 1000
+  scan_mobiles
+
+  # A second service, so contention is not all on one tile.
+  travel_service blacksmith
+  wait_travel
+  sleep 1200
+
+  travel_point 1336 1832
+  wait_travel
+  sleep 1000
+
+  # THE ONE THAT BROKE M3.9. Walkable, but not shareable by 38 bots at once.
+  # Bounded, truthful failure here is a PASS; an endless retry is the blocker.
+  travel_point 1336 1928
+  wait_travel
+  sleep 1200
+  scan_mobiles
+
+  open @pack
+  wait_action
+  sleep 800
+
+endloop
+
+skill_report
+say soak circuit complete
+sleep 2000
+logout

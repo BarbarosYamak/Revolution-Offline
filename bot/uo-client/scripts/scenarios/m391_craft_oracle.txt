@@ -1,0 +1,105 @@
+# M3.9.1 -- prove the POSITIVE half of the craft-menu oracle, live.
+#
+# RUN AS SESSION 10 (RevolutionMiner), an ordinary character holding its own
+# tinker tools and iron. Adapted from the PROVEN m38_tinker_craft.txt.
+#
+# THE RULE BEING PROVEN
+#
+#   A bot may only attempt a recipe THE LIVE SPHERE MENU ACTUALLY OFFERED.
+#
+# The negative half is already proven: with no menu open, expect_menu_has
+# ABORTS rather than reporting "not offered". That guard exists because M3.7
+# concluded a recipe needed thread from a gump_report that saw nothing -- a
+# false negative dressed up as a finding.
+#
+# Never shown until now: expect_menu_has returning TRUE against a real menu,
+# and a craft driven BY NAME instead of by a hard-coded index. Sphere filters
+# menus by skill and inventory, so the index and the name are routinely
+# different -- and when they differ, the index is wrong.
+#
+# WHY TINKERING AND NOT TAILORING
+#
+# The gate suggested a Shirt. That turned out to need materials a bot may not
+# buy: i_shirt_plain needs 8 i_cloth, and i_cloth is classified WorldProcessed
+# in our own vendor policy, so an NPC purchase is refused BY DESIGN -- cloth is
+# a player-processed good (wool -> yarn -> bolt -> cloth). The refusal was
+# correct; the recipe was the wrong choice for a short gate.
+#
+# Two other things were learned trying it, both worth keeping:
+#   - travel_service found the tailor SHOP, but the NPCs there are named
+#     Felicite, Kyler, Kaysa. `mobile_name` cannot find a vendor; the trade is
+#     in the paperdoll title, so `mobile_trade` is the resolver.
+#   - the vendor's 41-item offer was LOGGED ONLY 8 DEEP, and the missing 33
+#     were briefly recorded as "this shop stocks no cloth". A truncated view is
+#     not an absence.
+#
+# Tinkering needs iron ingots, which this character mined and owns.
+
+wait_world
+sleep 2000
+ensure_peace
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+
+# ------------------------------------------------------------ 1. open the menu
+remember tools carried_graphic 0x1EBC,0x1EBD
+require tools
+
+remember iron pack_graphic 0x1BEF,0x1BF0,0x1BF1,0x1BF2,0x1BF3,0x1BF4
+require iron
+
+mark_item 0x1053,0x1054
+
+# NO TARGET STEP. Tinker tools open the craft menu on the DOUBLE-CLICK itself --
+# there is no 0x6C cursor to answer, unlike a smith hammer (which asks what to
+# smelt) or a sewing kit (which asks which cloth). A revision that wrote
+#
+#   use @tools / wait_target / target @iron
+#
+# hung forever at wait_target while the menu sat open on screen, because the
+# cursor it was waiting for never comes. The baseline run showed the same thing
+# more politely: the menu appeared and the use-action later reported
+# `use_object timeout`.
+#
+# @iron is still resolved above, and deliberately: it is what makes the menu
+# non-empty. Sphere filters the list by what the character can actually make,
+# so a tinker with no ingots would be offered nothing at all.
+use @tools
+sleep 4000
+
+# ---------------------------------------------------- 2. read category 1: Parts
+# Every option is logged with its resource cost, and that listing IS the Phase 4
+# evidence -- it says which of the 49 PLAYER_CRAFTED_NO_MENU items are genuinely
+# absent rather than merely unfound.
+menu_report
+expect_menu_has Parts
+expect_menu_lacks Platemail
+menu_pick Parts
+sleep 3000
+
+say parts listed
+sleep 1500
+
+# ------------------------------------------------------- 3. make the first one
+# Index 1 of the filtered list, whatever the server put there. Naming a script
+# position instead would repeat the mistake that earned
+# "dialog index 3 out of range (2 options)" in M3.7.
+menu_report
+expect_menu_has Nails
+menu_pick Nails
+sleep 4000
+
+open @pack
+wait_action
+sleep 2000
+skill_report
+
+say tinkering exercised for the first time on this shard
+sleep 1500
+logout

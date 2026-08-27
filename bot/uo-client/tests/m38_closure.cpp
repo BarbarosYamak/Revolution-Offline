@@ -11,6 +11,7 @@
 #include "uo/mount_policy.h"
 #include "uo/supplier.h"
 #include "uo/pet.h"
+#include "uo/combat_policy.h"
 #include "uo/production.h"
 #include "uo/vendor_policy.h"
 
@@ -507,6 +508,95 @@ void TestPetSemantics() {
     Check(!IsUnobservableBecauseMounted(onFoot), "an unridden pet should be findable");
 }
 
+
+// ---------------------------------------------------------------------------
+// M3.9: combat survival. Every fighter this project ran fought to the death,
+// because nothing told it to stop -- one traded blows down to 17 HP with
+// bandages still in its pack. These pin the decision, not the outcome.
+// ---------------------------------------------------------------------------
+void TestCombatSurvival() {
+    using namespace uo::combat;
+
+    // Healthy: fight, and do not waste a potion doing it.
+    {
+        Vitals v; v.hpNow = 55; v.hpMax = 55; v.inCombat = true;
+        v.healPotions = 2; v.bandages = 10;
+        Check(HealthPercent(v) == 100, "full health reads as 100%");
+        Check(Decide(v) == Tactic::Fight, "a healthy fighter keeps fighting");
+    }
+
+    // UNKNOWN HEALTH IS NOT GOOD HEALTH. pet.h learned this first: a cheerful
+    // default is the one wrong answer that gets something killed.
+    {
+        Vitals v; v.hpNow = -1; v.hpMax = -1; v.inCombat = true;
+        Check(HealthPercent(v) == -1, "unknown health reports -1, never 100");
+        Check(Decide(v) == Tactic::Disengage,
+              "unknown health in combat breaks contact rather than hoping");
+        Check(!ReadyToResume(v), "unknown health is never ready to resume");
+    }
+
+    // A potion is instant, so it is tried BEFORE giving ground -- retreating
+    // from a fight you could have won by drinking is its own failure.
+    {
+        Vitals v; v.hpNow = 25; v.hpMax = 55; v.inCombat = true;
+        v.enemyAdjacent = true; v.healPotions = 1; v.bandages = 10;
+        Check(Decide(v) == Tactic::DrinkPotion,
+              "hurt with a potion in hand: drink, do not retreat");
+    }
+
+    // THE CASE THAT KILLED A REAL BOT: badly hurt, enemy adjacent, bandages
+    // available. A bandage is SKILL 17 DELAY=3.0 -- three seconds standing
+    // still next to something that hits. Disengage first.
+    {
+        Vitals v; v.hpNow = 17; v.hpMax = 55; v.inCombat = true;
+        v.enemyAdjacent = true; v.healPotions = 0; v.bandages = 10;
+        Check(Decide(v) != Tactic::Bandage,
+              "never bandage with an enemy adjacent -- it takes 3 seconds");
+        Check(Decide(v) == Tactic::Disengage,
+              "badly hurt in contact with no potion: break contact");
+    }
+
+    // Out of contact and hurt is exactly when three seconds is affordable.
+    {
+        Vitals v; v.hpNow = 17; v.hpMax = 55; v.inCombat = false;
+        v.enemyAdjacent = false; v.bandages = 10;
+        Check(Decide(v) == Tactic::Bandage,
+              "hurt and safe: bandage");
+    }
+
+    // Nothing left to heal with, still in contact, badly hurt: run. Fleeing is
+    // not failure; dying with unused options is.
+    {
+        Vitals v; v.hpNow = 8; v.hpMax = 55; v.inCombat = true;
+        v.enemyAdjacent = true; v.healPotions = 0; v.bandages = 0;
+        Check(Decide(v) == Tactic::Flee, "no heals, badly hurt, in contact: flee");
+    }
+
+    // Safe, hurt, and nothing to heal with: wait rather than walk into another
+    // fight at low health.
+    {
+        Vitals v; v.hpNow = 10; v.hpMax = 55; v.bandages = 0; v.healPotions = 0;
+        Check(Decide(v) == Tactic::Rest, "safe and hurt with no supplies: rest");
+    }
+
+    // Resuming is a separate, stricter question than "stop healing".
+    {
+        Vitals v; v.hpMax = 100;
+        v.hpNow = kResumePercent - 1;
+        Check(!ReadyToResume(v), "just below the resume line is not ready");
+        v.hpNow = kResumePercent;
+        Check(ReadyToResume(v), "at the resume line is ready");
+    }
+
+    // The thresholds have to stay in a sane order or the policy contradicts
+    // itself: you cannot flee below the level at which you disengage.
+    Check(kFleePercent < kDisengagePercent, "flee threshold is below disengage");
+    Check(kDisengagePercent < kPotionPercent, "disengage is below the potion sip");
+    Check(kPotionPercent < kResumePercent, "resume is the highest bar");
+    Check(kBandageSeconds == 3,
+          "bandage cost matches SKILL 17 DELAY=3.0 in skill17_healing.scp");
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -523,6 +613,7 @@ int main(int argc, char** argv) {
     TestMountPolicy();
     TestSupplierResolution();
     TestPetSemantics();
+    TestCombatSurvival();
     TestExportsNotStale(dataDir);
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

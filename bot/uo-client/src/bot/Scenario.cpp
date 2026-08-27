@@ -60,8 +60,11 @@ const char* const kOpNames[] = {
     // which way round), not a separate Op -- this table is indexed BY the enum,
     // so listing both put it permanently out of step. The static_assert below
     // caught that immediately, which is exactly why it exists.
-    "expect_menu_has", "menu_report",
+    "expect_menu_has", "menu_report", "survival",
     "mobile_pos",
+    // M3.9.2 loot pull. Index-aligned with Scenario::Op -- append here, never
+    // insert.
+    "expect_container_count", "container_report", "take",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -457,6 +460,14 @@ bool Scenario::Load(const char* path, std::string* err) {
         else if (verb == "menu_report") {
             st.op = Op::MenuReport;
         }
+        else if (verb == "survival") {
+            // `survival on|off` -- let the client look after itself in a fight.
+            // OFF by default: dozens of existing scenarios script their own
+            // combat and would be disrupted by the client retreating on their
+            // behalf. M4's autonomous characters turn it on and leave it on.
+            if (!need(st.a, "<on|off>")) { steps_.clear(); return false; }
+            st.op = Op::Survival;
+        }
         else if (verb == "menu_pick") {
             // M3.8 Phase 10: pick a craft-menu entry BY NAME from the list the
             // server actually sent. `menu_choose 3` names a position in the
@@ -695,6 +706,26 @@ bool Scenario::Load(const char* path, std::string* err) {
             if (!need(st.a, "<serial|@name>")) { steps_.clear(); return false; }
             st.op = Op::MobilePos;
         }
+        else if (verb == "expect_container_count") {
+            // expect_container_count <container> <n> -- e.g. `@corpse 0`
+            // right after a kill, before anything has carved it.
+            if (!need(st.a, "<container>")) { steps_.clear(); return false; }
+            ls >> st.count;
+            st.op = Op::ExpectContainerCount;
+        }
+        else if (verb == "container_report") {
+            if (!need(st.a, "<container>")) { steps_.clear(); return false; }
+            st.op = Op::ContainerReport;
+        }
+        else if (verb == "take") {
+            // take <item> <amount> -- <item> is usually a name bound by
+            // `remember ... container_graphic`, but any operand Resolve()
+            // understands works.
+            if (!need(st.a, "<item>") || !need(st.b, "<amount>")) {
+                steps_.clear(); return false;
+            }
+            st.op = Op::Take;
+        }
         else {
             if (err) *err = "line " + std::to_string(lineNo) +
                             ": unknown command '" + verb + "'";
@@ -869,6 +900,9 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     break;
                 case Op::Dismount:
                     client.ActionDismount();
+                    break;
+                case Op::Survival:
+                    client.SetSurvivalEnabled(st.a == "on");
                     break;
                 case Op::MenuReport: {
                     const auto opts = client.CraftableNow();
@@ -1126,6 +1160,31 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                             if (comma == std::string::npos) break;
                             start = comma + 1;
                         }
+                    } else if (st.b == "container_graphic") {
+                        // container_graphic <container> <hex,...> -- the same
+                        // graphic-list search pack_graphic does, but against
+                        // an ARBITRARY open container instead of the player's
+                        // own worn backpack. This is what makes a carved
+                        // corpse's contents reachable: <container> is itself
+                        // an operand (typically @corpse, from an earlier
+                        // `remember corpse world_graphic 0x2006`), resolved
+                        // the normal way, then Client::
+                        // FindContainerItemByGraphic searches THAT container's
+                        // cached 0x3C contents.
+                        std::istringstream cs(st.c);
+                        std::string containerTok, listTok;
+                        cs >> containerTok >> listTok;
+                        const u32 container = Resolve(client, containerTok);
+                        if (!container) {
+                            LogWarn("[scenario] remember %s container_graphic: "
+                                    "'%s' did not resolve to a container\n",
+                                    st.a.c_str(), containerTok.c_str());
+                        } else {
+                            u16 list[8];
+                            const usize n = ParseGraphicList(listTok, list, 8);
+                            serial = client.FindContainerItemByGraphic(
+                                container, list, n);
+                        }
                     } else {
                         serial = Resolve(client, st.b);
                     }
@@ -1167,6 +1226,31 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     }
                     break;
                 }
+                case Op::ContainerReport: {
+                    // Read-only dump of everything the client currently
+                    // believes is inside a container -- the corpse-carving
+                    // equivalent of skill_report/menu_report: makes "empty
+                    // before, full after" a logged fact instead of an
+                    // assumption.
+                    const u32 container = Resolve(client, st.a);
+                    const usize n = client.ContainerItemCount(container);
+                    LogInfo("[scenario] container_report %s (0x%08X): %zu "
+                            "item(s)\n", st.a.c_str(), container, n);
+                    for (usize i = 0; i < n; ++i) {
+                        u32 serial = 0; u16 graphic = 0, amount = 0;
+                        if (client.ContainerItemAt(container, i, &serial,
+                                                   &graphic, &amount)) {
+                            LogInfo("        [%zu] serial=0x%08X graphic=0x%04X "
+                                    "amount=%u\n", i, serial, graphic, amount);
+                        }
+                    }
+                    break;
+                }
+                case Op::Take:
+                    client.TakeFromContainer(
+                        Resolve(client, st.a),
+                        static_cast<u16>(std::atoi(st.b.c_str())));
+                    break;
                 default: break;
             }
         }
@@ -1290,6 +1374,25 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogInfo("[scenario] item 0x%04X unchanged at %u, "
                             "as expected\n", g, now);
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectContainerCount: {
+                const u32 container = Resolve(client, st.a);
+                const usize now = client.ContainerItemCount(container);
+                const usize want = st.count < 0 ? 0
+                                                 : static_cast<usize>(st.count);
+                if (now != want) {
+                    LogError("[scenario] EXPECT container %s (0x%08X) to hold "
+                             "%zu item(s) but it holds %zu (line %d); "
+                             "aborting\n", st.a.c_str(), container, want, now,
+                             st.line);
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] container %s (0x%08X) holds %zu "
+                            "item(s), as expected\n", st.a.c_str(), container,
+                            now);
                 }
                 done = true;
                 break;

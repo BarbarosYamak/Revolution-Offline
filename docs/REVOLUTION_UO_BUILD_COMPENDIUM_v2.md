@@ -127,7 +127,7 @@ and should be enforced by the build generator rather than trusted to templates.
 | L7 | Cures poison by bandage ⇒ Healing ≥ **60.0**; resurrects ⇒ ≥ **80.0** | `OFFICIAL_REVOLUTION_GUIDE` | HIGH |
 | L8 | Uses fishing nets ⇒ Fishing ≥ **80.0** | `OFFICIAL_REVOLUTION_GUIDE` | HIGH |
 | L9 | Crafts Runebooks ⇒ Inscription high (stock recipe says 45.0; the guide says "high") | mixed | MEDIUM |
-| L10 | Stat allocation | **UNSPECIFIED** — no historical source. Do not encode a stat cap. | — |
+| L10 | Stat allocation | **SUPERSEDED — see note below.** Resolved in M3.8 as **225 total / 100 per stat**. | DERIVED |
 
 ### 3.1 L4, corrected — this document had it wrong
 
@@ -182,7 +182,7 @@ the only thing denied. Enforced as four separate predicates in
 | Resist | inactive | **enabled** | Generator must exclude it (L3) whatever the server offers. |
 | Active skills | 38 | 58 | Generator must draw from the 38-skill list, not the server's. |
 | Per-skill cap | 100 | 100 | match |
-| Stat cap | unknown | 300 | leave alone |
+| Stat cap | **225 total / 100 per stat** (DERIVED, M3.8) | 300 | runtime allows 300; the cap is enforced BOT-SIDE |
 
 **This is the single most important line in the document:** the runtime is more
 permissive than Revolution was, so authenticity here is the *generator's*
@@ -235,3 +235,30 @@ Two rules that keep a population from collapsing into one optimum:
 * Whether `.skilldusur`'s 670 floor implies a 700 cap or a 670 one — the
   30-point gap is unexplained.
 * Weapon-family balance per era (Katana vs Spear vs Black Staff).
+
+
+---
+
+## SUPERSEDED: stat allocation is no longer UNSPECIFIED
+
+This document twice recorded the stat cap as unknown and told future readers not
+to encode one. **That is out of date.** M3.8 resolved it as **225 total / 100 per
+stat**, and `bot/uo-client/include/uo/rules.h` has encoded it since
+(`totalStatCap = 225`, `perStatCap = 100`).
+
+It was DERIVED, not quoted: ten player builds across two unrelated forum threads
+and two different classes (a warlock and a thief), every one summing to exactly
+225. Nobody ever states what everyone already knows, which is why three
+milestones of looking for a *statement* found nothing while the evidence sat in
+plain sight in the builds themselves.
+
+The runtime still allows 300, so the cap is enforced **bot-side** rather than by
+the server.
+
+Two separate things that are easy to confuse:
+
+* **The long-term cap** — 225 total / 100 per stat. This is what a finished
+  build is planned against.
+* **Character creation** — Source-X clamps each requested stat to 60 and the sum
+  to 80 in `CChar::InitPlayer`. A creation split is a *request*, and it is not
+  the same number as the cap.

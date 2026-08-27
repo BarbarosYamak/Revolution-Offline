@@ -57,7 +57,22 @@
 # ActionUseObject -> wait_target -> ActionTargetObject path), then re-opens
 # it to prove RESOURCES now exist as real, serialised items.
 #
-# THE GAP THAT STILL STANDS AFTER THIS FIX
+# UPDATE (M3.9.2): THE GAP DESCRIBED BELOW IS NOW CLOSED.
+#
+# Client (src/Client.h, committed 3d8f363) now exposes
+# FindContainerItemByGraphic / ContainerItemCount / ContainerItemAt /
+# TakeFromContainer on its PUBLIC surface, and Scenario has
+# `remember <name> container_graphic <container> <hex,...>`,
+# `expect_container_count`, `container_report` and `take` built on top of it
+# (Scenario.h/.cpp, this task). Step 9 below, after the carve, now actually
+# pulls the hide and ribs out of @corpse and into this fighter's own
+# backpack, and proves it with mark_item/expect_item_gain against the
+# player's own BackpackItemCount -- not just "the corpse looks non-empty".
+# The paragraphs immediately below are kept verbatim as the historical
+# record of WHY this was blocked; they no longer describe the current state
+# of Client.h or Scenario.cpp.
+#
+# THE GAP THAT STILL STOOD BEFORE THIS FIX
 #
 # Carving solves "does the loot exist" but not "can THIS scenario file get it
 # into the bot's pack". That second problem is real and is exactly what the
@@ -299,10 +314,12 @@ say corpse found, checking it before carving
 # This is the finding the previous draft of this file missed: nothing has
 # touched RESOURCES yet, so the corpse should currently be reported as
 # holding 0 (or, at most, whatever loose junk the wolf happened to be
-# "wearing", which for a wild animal is nothing) items. The evidence is the
-# unconditional log line from Client::OnContainerContents:
-#     [0x3C] container contents: N item(s)
-# Read N here in the log; it is expected to be 0.
+# "wearing", which for a wild animal is nothing) items. The unconditional log
+# line from Client::OnContainerContents ([0x3C] container contents: N
+# item(s)) already shows this, but expect_container_count makes it a real
+# assertion that aborts the scenario instead of something only a human
+# reading the log would notice.
+expect_container_count @corpse 0
 
 # ------------------------------------------------- 7. CARVE IT WITH THE BLADE
 # The katana that made the kill (TYPE=t_weapon_sword, ITEMDEF 013fe) is also
@@ -333,29 +350,49 @@ open @corpse
 wait_action
 sleep 2000
 
-say corpse carved, meat and hide should now be inside it -- reachable by no scenario op
+container_report @corpse
+say corpse carved, meat and hide should now be inside it
 
-# --------------------------------------------------- 9. THE STEP THAT STILL DOES NOT EXIST
+# --------------------------------------------------------------- 9. TAKE IT
 #
-# The brief's own instruction: prove the transfer with mark_item before and
-# expect_item_gain after, the way m37_slice_b_minoc.txt does for smelted
-# ingots. That pattern needs a `move <item-in-corpse> <amount> @pack` line,
-# and <item-in-corpse> needs a `remember` mode that searches
-# containerItems_[@corpse] by graphic (0x09F1 ribs, 0x1078/0x1079 hide) the
-# same way `pack_graphic` searches containerItems_[player's own backpack].
-# That remember mode does not exist, and per the header above, it cannot be
-# added without touching Client.h (to expose containerItems_ or
-# SendTakeToBackpack beyond the js::ClientBindings friend), which this
-# milestone explicitly forbids editing right now. Writing
-#     remember loot pack_graphic 0x09F1,0x1078,0x1079
-# here would not be that mode; pack_graphic ignores @corpse entirely and
-# would search the PLAYER'S OWN backpack, silently binding whatever ribs/
-# hide the bot happens to already be carrying (nothing, for this fighter) --
-# exactly the kind of invented, misleading workaround the brief said not to
-# build. So this scenario stops here, deliberately, with the fight, the
-# empty corpse, the carve, and the now-full corpse all proven, and only the
-# final pack-transfer left undone because the file it needs touched is
-# locked for this task.
+# THE BLOCKER ABOVE IS NOW REMOVED. Client (src/Client.h, committed 3d8f363)
+# now exposes, on its PUBLIC surface:
+#   FindContainerItemByGraphic(container, graphics, count) -- the same lookup
+#     pack_graphic does, but against ANY open container, not just the
+#     player's own worn backpack.
+#   ContainerItemCount / ContainerItemAt -- enough to assert what a container
+#     holds without guessing.
+#   TakeFromContainer(serial, qty) -- the 0x07 lift + 0x08 drop pair a real
+#     client sends to move an item from an open container into the backpack.
+#
+# Scenario now has `remember <name> container_graphic <container> <hex,...>`,
+# `expect_container_count <container> <n>`, `container_report <container>`
+# and `take <item> <amount>` wired on top of that surface (Scenario.cpp,
+# this task). container_report right after the carve (step 8 above) already
+# logged what is really inside @corpse; bind and pull it here.
+container_report @corpse
+
+remember hide container_graphic @corpse 0x1078,0x1079
+remember ribs container_graphic @corpse 0x09F1
+
+# mark_item reads OUR OWN backpack's count for these graphics (Client::
+# BackpackItemCount), which should be 0 here -- this fighter never carried
+# hide or raw ribs. expect_item_gain below compares against this mark AFTER
+# the takes and the re-open, proving the count rose in OUR pack specifically,
+# not just that the corpse emptied.
+mark_item 0x1078,0x1079,0x09F1
+
+take @hide 6
+sleep 1500
+take @ribs 1
+sleep 1500
+
+open @pack
+wait_action
+sleep 1000
+
+expect_item_gain 0x1078,0x1079,0x09F1
+say loot pulled from the corpse into my own pack
 
 request_skills
 sleep 1500

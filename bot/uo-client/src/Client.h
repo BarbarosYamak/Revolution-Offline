@@ -313,6 +313,27 @@ public:
     // whatever happens to be closest.
     u32  NearestMobileWithBody(u16 body, int maxDist) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
+
+    // The same lookup for ANY open container, which is what looting a corpse
+    // needs. FindBackpackItemByGraphic hard-codes the player's own pack, so
+    // until now nothing outside the JS bindings could see inside a corpse: the
+    // container cache and SendTakeToBackpack are private, and a scenario could
+    // therefore kill a creature and then not touch what it dropped.
+    //
+    // `graphics` is a list because a stacked resource CHANGES GRAPHIC as the
+    // pile grows (i_ore_iron carries DUPELIST=019b8,019b9,019ba) -- the trap
+    // that made a miner's own ore invisible to it in M3.7.
+    u32  FindContainerItemByGraphic(u32 container, const u16* graphics,
+                                    usize count) const;
+    // How many items the client currently believes are in a container, and the
+    // graphic of one by index -- enough for a scenario to assert "the corpse is
+    // empty" or "the corpse now holds something" without guessing what.
+    usize ContainerItemCount(u32 container) const;
+    bool  ContainerItemAt(u32 container, usize index, u32* serial,
+                          u16* graphic, u16* amount) const;
+    // Move an item from an open container into the backpack: 0x07 lift + 0x08
+    // drop, the same pair a player's client sends.
+    void TakeFromContainer(u32 serial, u16 quantity);
     // The nearest WORLD item with this graphic, or 0. Needed because a craft
     // STATION is a dynamic world item and must be targeted by SERIAL: Source-X
     // resolves a use-target with uid.ObjFind() (CClientEvent.cpp:2481), so a
@@ -1225,6 +1246,25 @@ private:
     // immutable SharedWorld; everything else here is this character's alone.
     void TravelTick();
     void WarModeTick();
+
+    // --- combat survival (M3.9.1) -------------------------------------------
+    // Every fighter this project ran fought to the death because nothing told
+    // it to stop: one traded blows down to 17 HP with ten bandages in its pack.
+    // combat_policy.h decides; this applies the decision.
+    //
+    // OPT-IN, and deliberately so. Dozens of existing scenarios script their
+    // own fights and would be disrupted by the client suddenly retreating on
+    // their behalf, so it is off unless a scenario says `survival on`. M4's
+    // autonomous characters will turn it on and leave it on.
+    bool survivalEnabled_ = false;
+    i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
+    i64  survivalLastLogMs_ = 0;
+    int  survivalLastTactic_ = -1;
+    void SurvivalTick();
+public:
+    void SetSurvivalEnabled(bool on);
+    bool SurvivalEnabled() const { return survivalEnabled_; }
+private:
     bool EnsureWorldKnowledge();
     bool TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
                      bool hasZ = false, i8 z = 0);
