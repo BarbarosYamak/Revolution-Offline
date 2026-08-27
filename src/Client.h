@@ -518,6 +518,35 @@ public:
     bool  DialogHasOption(const char* substring) const { return DialogIndexOf(substring) != 0; }
     bool  ChooseDialogByName(const char* substring);
 
+    // ---- M3.9 Phase 13: the menu as a general execution oracle -------------
+    //
+    // The production graph is for PLANNING -- what a recipe needs, where its
+    // inputs come from, what it is evidence for. The live filtered menu is for
+    // EXECUTION -- what this character can make, on this server, right now.
+    // They disagree constantly and the menu is always right:
+    //
+    //   sm_tailor_cloth defines 5 entries; a weaver with no thread saw 2
+    //   sm_parts defines 8; a Tinkering-30 character with iron saw 3
+    //   sm_legacy_tinkering has 68 MAKEITEMs; the top menu offered 2 categories
+    //
+    // That is not a bug to route around. Sphere filters by skill AND by what is
+    // in the pack, so the menu is the server stating its own requirements --
+    // which is how M3.7's claim that "every tailoring garment needs thread" was
+    // disproved, and how nails were shown to be a menu-exposure gap rather than
+    // a skill or material one.
+    //
+    // These make that the RULE rather than a per-scenario habit. A crafter that
+    // plans with the graph and executes through these cannot attempt a recipe
+    // the server never offered.
+    //
+    // CraftableNow() is the honest answer to "what can I make?" -- it reports
+    // the live list, not the compiled one.
+    std::vector<std::string> CraftableNow() const;
+    // True when the live menu is currently showing anything at all. A closed
+    // menu answering "no" is different from an open menu answering "no", and a
+    // caller that cannot tell them apart will retry forever.
+    bool CraftMenuOpen() const { return activeDialog_.active; }
+
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
     void ActionLogout();                 // 0xD1 + socket close
@@ -612,6 +641,13 @@ private:
     void OnCharacterAnimation (const u8* data, usize size);  // 0x6E
     void OnWarMode            (const u8* data, usize size);  // 0x72
     void OnResurrectionMenu   (const u8* data, usize size);  // 0x2C
+
+    // Record where we fell. MUST be called from every path that can discover
+    // our own death, which is why it is a function and not inline code: it was
+    // originally only in the body-change handler, while the packet that
+    // actually reports our death is 0x2C -- so the death location was never
+    // recorded and travel_corpse could never resolve a destination.
+    void RecordOwnDeath(const char* how);
     void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98

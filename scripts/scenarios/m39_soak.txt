@@ -1,0 +1,92 @@
+# M3.9 PHASE 14 -- multi-bot soak.
+#
+# Run this as MANY SESSIONS AT ONCE (the milestone asks for 5-10) for 30-60
+# minutes. It is the same script for every bot on purpose: the point is not what
+# any one of them achieves, it is whether the client, the travel layer and the
+# shard stay correct while several of them move around the same tiles at once.
+#
+# WHAT THIS IS LOOKING FOR
+#
+# Phase 1 fixed stale mobile occupancy -- `IsMobileBlocking` had no expiry, so a
+# mobile seen once could wall a tile forever, and the purge only ran when the bot
+# MOVED. That is exactly the bug that hides until several bots crowd a bank
+# doorway, which is why the soak walks them repeatedly through the busiest tiles
+# in Britain rather than out in open country.
+#
+# It is also the first sustained run against a world that has 5,049 spawners
+# instead of 3,024, so the perception layer is seeing far more mobiles than any
+# earlier milestone tested.
+#
+# WHY IT STAYS IN TOWN
+#
+# Death on this shard is FULL LOOT LOSS. The soak bots include the miner, the
+# weaver and the smith, who carry M3.7's economy proofs in their packs. Losing
+# one to a wandering orc would cost a milestone's evidence to prove a
+# concurrency point that town tiles prove just as well. The route below stays
+# inside Britain's guard zone; `ensure_peace` runs first and war mode is never
+# entered.
+
+wait_world
+sleep 2000
+ensure_peace
+
+# Baseline, so the report at the end has something to compare against.
+request_skills
+sleep 1500
+skill_report
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1000
+mark_gold
+
+# Running is the normal gait for a player, and it is what the occupancy code
+# sees the most of.
+gait run
+
+# ---------------------------------------------------------------- the circuit
+# Six laps of a five-stop route through the parts of Britain where bots actually
+# collide: the bank steps, the smith, the market, the moongate and the graveyard
+# road. Each `travel_*` re-plans from scratch, so any tile that has been poisoned
+# by a stale mobile shows up as a travel failure rather than as a silent detour.
+loop 6
+
+  travel_service banker
+  wait_travel
+  sleep 1500
+  scan_mobiles
+
+  travel_point 1416 1638
+  wait_travel
+  sleep 1200
+
+  travel_service blacksmith
+  wait_travel
+  sleep 1500
+  scan_mobiles
+
+  travel_point 1336 1997
+  wait_travel
+  sleep 1200
+
+  travel_point 1495 1630
+  wait_travel
+  sleep 1200
+  scan_mobiles
+
+  # Re-opening the pack each lap keeps the container cache honest. M3.7 lost
+  # time twice to a resolver reading a client cache that only 0x3C/0x1A refill.
+  open @pack
+  wait_action
+  sleep 1000
+
+endloop
+
+# ------------------------------------------------------------------ the report
+# Gold must not have changed: nothing in this circuit spends or earns. A drift
+# here means something did an action nobody asked for.
+skill_report
+say soak circuit complete
+sleep 2000
+logout

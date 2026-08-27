@@ -1809,6 +1809,25 @@ void Client::OnWarMode(const u8* data, usize size) {
 // (ghost). Mirrors Packet_HandleResurrectionMenu @0x419080. We don't auto-reply
 // here — the action is forwarded to JS so the bot decides (e.g. confirm a
 // resurrection after asking a healer).
+void Client::RecordOwnDeath(const char* how) {
+    // Where we fell is where the corpse will be. Recorded now because the ghost
+    // is about to walk away from it, and a later corpse run needs a destination
+    // it did not have to guess.
+    //
+    // Idempotent by intent: if both death paths fire, the second call records
+    // the same spot, because the ghost has not moved yet at the moment either
+    // one arrives.
+    const wm::Region* r = CurrentRegion();
+    knowledge_.NoteDeath(playerX_, playerY_, playerZ_,
+                         r ? r->id.c_str() : "", NowMs());
+    char ev[192];
+    std::snprintf(ev, sizeof(ev), "at=(%d,%d,%d) region=%s via=%s",
+                  playerX_, playerY_, static_cast<int>(playerZ_),
+                  r ? r->id.c_str() : "?", how ? how : "?");
+    LogEvent("death_location", ev);
+    if (journey_.Active()) TravelAbort("died");
+}
+
 void Client::OnResurrectionMenu(const u8* data, usize size) {
     if (size < 2) return;
     const u8 action = data[1];
@@ -1823,6 +1842,17 @@ void Client::OnResurrectionMenu(const u8* data, usize size) {
         life_ = act::LifeState::Dead;
         LogInfo("[STATE] dead (0x2C resurrect menu)\n");
         LogEvent("state_dead", "0x2C received");
+        // Record the corpse location HERE too. This line is the whole fix for a
+        // bug that made travel_corpse permanently unusable: the death location
+        // was only recorded in the body-change handler, but as the comment above
+        // says, the ghost-body switch emits no packet, so that handler never
+        // fires for our own death. Every corpse run therefore failed with "this
+        // character has not died" -- immediately after dying.
+        //
+        // It took a lethal world to surface it. Until M3.9 populated the
+        // graveyards nothing on this shard had ever killed a bot outside a
+        // controlled M2 test, so the corpse path was never exercised for real.
+        RecordOwnDeath("0x2C resurrect menu");
     }
 
     uo::js::EmitResurrectMenu(action);  // -> Player 'resurrect_menu' ({action})
@@ -1900,6 +1930,14 @@ usize Client::DialogIndexOf(const char* substring) const {
         if (have.find(want) != std::string::npos) return i + 1;   // 1-based on the wire
     }
     return 0;
+}
+
+std::vector<std::string> Client::CraftableNow() const {
+    std::vector<std::string> out;
+    if (!activeDialog_.active) return out;
+    out.reserve(activeDialog_.options.size());
+    for (const auto& o : activeDialog_.options) out.push_back(o.text);
+    return out;
 }
 
 bool Client::ChooseDialogByName(const char* substring) {
@@ -3154,20 +3192,7 @@ void Client::ActionOnBodyChange(u16 body) {
     LogInfo("[STATE] %s (body 0x%04X)\n", act::LifeStateName(life_), body);
     LogEvent(life_ == act::LifeState::Dead ? "state_dead" : "state_resurrected",
              "server body change");
-    if (life_ == act::LifeState::Dead) {
-        // Where we fell is where the corpse will be. Recorded now because the
-        // ghost is about to walk away from it, and a later corpse run needs a
-        // destination it did not have to guess.
-        const wm::Region* r = CurrentRegion();
-        knowledge_.NoteDeath(playerX_, playerY_, playerZ_,
-                             r ? r->id.c_str() : "", NowMs());
-        char ev[160];
-        std::snprintf(ev, sizeof(ev), "at=(%d,%d,%d) region=%s",
-                      playerX_, playerY_, static_cast<int>(playerZ_),
-                      r ? r->id.c_str() : "?");
-        LogEvent("death_location", ev);
-        if (journey_.Active()) TravelAbort("died");
-    }
+    if (life_ == act::LifeState::Dead) RecordOwnDeath("body change");
     if (life_ == act::LifeState::Alive && action_.Active() &&
         action_.kind == act::Kind::Resurrect) {
         FinishAction(act::Result::Success, "character is alive again");

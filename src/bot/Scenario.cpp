@@ -56,6 +56,11 @@ const char* const kOpNames[] = {
     "wait_gump", "gump_button", "gump_report",
     "target_static", "menu_choose", "expect_item_same",
     "mount", "wait_mounted", "expect_mounted", "dismount", "menu_pick",
+    // "expect_menu_lacks" is a VERB ALIAS of expect_menu_has (st.count carries
+    // which way round), not a separate Op -- this table is indexed BY the enum,
+    // so listing both put it permanently out of step. The static_assert below
+    // caught that immediately, which is exactly why it exists.
+    "expect_menu_has", "menu_report",
 };
 
 constexpr usize kOpNameCount = sizeof(kOpNames) / sizeof(kOpNames[0]);
@@ -423,6 +428,21 @@ bool Scenario::Load(const char* path, std::string* err) {
         }
         else if (verb == "dismount") {
             st.op = Op::Dismount;
+        }
+        else if (verb == "expect_menu_has" || verb == "expect_menu_lacks") {
+            // M3.9 Phase 13. Assert what the SERVER is currently offering.
+            // "missing material -> hidden" and "acquire it -> appears" are the
+            // two halves of the oracle, and both must be assertable or the
+            // filtering is only ever observed anecdotally.
+            std::getline(ls, st.text);
+            const auto s0 = st.text.find_first_not_of(" \t");
+            st.text = (s0 == std::string::npos) ? std::string() : st.text.substr(s0);
+            if (!need(st.a, "<name>")) { steps_.clear(); return false; }
+            st.count = (verb == "expect_menu_has") ? 1 : 0;
+            st.op = Op::ExpectMenuHas;
+        }
+        else if (verb == "menu_report") {
+            st.op = Op::MenuReport;
         }
         else if (verb == "menu_pick") {
             // M3.8 Phase 10: pick a craft-menu entry BY NAME from the list the
@@ -827,6 +847,14 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 case Op::Dismount:
                     client.ActionDismount();
                     break;
+                case Op::MenuReport: {
+                    const auto opts = client.CraftableNow();
+                    LogInfo("[scenario] live menu offers %zu option(s):\n",
+                            opts.size());
+                    for (usize i = 0; i < opts.size(); ++i)
+                        LogInfo("        %zu) %s\n", i + 1, opts[i].c_str());
+                    break;
+                }
                 case Op::MenuPick: {
                     // The whole label, so "iron ingot" works as well as "nails".
                     const std::string want =
@@ -1164,6 +1192,39 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogInfo("[scenario] expect %s: ok\n",
                             want ? "mounted" : "on foot");
+                }
+                done = true;
+                break;
+            }
+            case Op::ExpectMenuHas: {
+                const std::string want =
+                    st.text.empty() ? st.a : (st.a + " " + st.text);
+                const bool wantPresent = (st.count != 0);
+                // A CLOSED menu cannot answer either question. Reporting "not
+                // offered" for a menu that never opened would turn a sequencing
+                // bug into a false authenticity finding -- exactly the mistake
+                // M3.7 made when it concluded a recipe needed thread because a
+                // gump_report saw nothing.
+                if (!client.CraftMenuOpen()) {
+                    LogError("[scenario] expect_menu_%s '%s': no craft menu is "
+                             "open (line %d); aborting\n",
+                             wantPresent ? "has" : "lacks", want.c_str(), st.line);
+                    failed_ = true;
+                    done = true;
+                    break;
+                }
+                const bool present = client.DialogHasOption(want.c_str());
+                if (present != wantPresent) {
+                    LogError("[scenario] EXPECT the menu to %s '%s' but it does "
+                             "%s (line %d); aborting\n",
+                             wantPresent ? "offer" : "hide", want.c_str(),
+                             present ? "offer it" : "not", st.line);
+                    for (const auto& o : client.CraftableNow())
+                        LogError("        offered: %s\n", o.c_str());
+                    failed_ = true;
+                } else {
+                    LogInfo("[scenario] menu %s '%s', as expected\n",
+                            wantPresent ? "offers" : "hides", want.c_str());
                 }
                 done = true;
                 break;

@@ -1,0 +1,54 @@
+# M3.9 -- populate the rest of the Felucca world.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1, and
+# RUN IT ONLY ONCE. f_create_spawner is not idempotent: a second run places a
+# second full set of spawners on top of the first.
+#
+# The shard owner asked for the whole world -- graveyards, Destard, the ice
+# area, Deceit and the rest. The dungeons were already placed in M3.8 (twelve
+# classic ones survive after f_m39_prune_ml took out the Mondain's Legacy
+# strays), and Vendors, Towns Life and Wild Life went in during earlier
+# milestones. This is everything that was still missing:
+#
+#   Graveyards   f_m39_graveyards -- 7 spawners. NOT the stock function, which
+#                also places one at "Haven", a Trammel settlement whose Felucca
+#                coordinates land on Ocllo island.
+#   Outdoors     f_m39_outdoors   -- 445 spawners, the stock list minus two ML
+#                creatures (changeling, plaguespawn).
+#   Sea Life     stock, audited CLEAN -- 115 spawners.
+#   Reagents     stock, audited CLEAN -- 60 item spawners. These matter beyond
+#                decoration: ReagentsRequired=1, so a mage has to find them.
+#   Lost Lands   stock, audited CLEAN -- 167 spawners of T2A (1998) content.
+#
+# WHY THE AUDIT CAME FIRST THIS TIME
+#
+# M3.8 ran an aggregate spawn function without reading it and placed eleven
+# unrenderable ML spawners that had to be pruned afterwards. Every creature
+# token in all five sets -- 787 spawners' worth -- was resolved through
+# spawner_defs.scp to a CHARDEF and then to the file defining it, and anything
+# from aos/se/ml/sa/hs/tol was flagged. That found exactly two bad creatures,
+# both in Outdoors.
+#
+# The move that made the world worth populating at all: before this, the Britain
+# to Yew corridor held nothing but fauna and wandering healers. Outdoors gives
+# it 37 orcs, 34 trolls, 27 lizardmen, ogres, ettins, ratmen, harpies, an orc
+# camp and an orc captain.
+
+wait_world
+sleep 3000
+
+# Spawn functions place by absolute coordinate (f_create_spawner takes x,y,z),
+# so unlike the ML prune this does not need the admin to stand anywhere in
+# particular. The facet comes from VAR0.spawner_facet, which is empty and
+# evaluates to 0 = Felucca -- the same path M3.8's dungeon spawns took.
+say .f_m39_populate
+sleep 45000
+
+# Persist it. Without this the whole population is lost on the next restart, and
+# the verification step reads the world save.
+say .serv.save
+sleep 40000
+
+say m39 populate complete
+sleep 2000
+logout

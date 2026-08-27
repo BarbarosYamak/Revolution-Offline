@@ -1,0 +1,90 @@
+# M3.9 PHASES 7+9 -- recover from the death, then finish the PvM proof.
+#
+# RUN AS SESSION 3 (RevolutionSpar).
+#
+# WHAT HAPPENED
+#
+# The first cemetery run proved the world is hostile in the most direct way
+# available: Zombie, Spectre and Skeletal Mage all aggroed within eight seconds
+# of arrival and killed the bot in twenty-seven. The cause was the scenario, not
+# the shard -- it slept sixty seconds scanning for targets before engaging,
+# because the graveyard had been empty when that dwell was written.
+#
+# Death on this shard is FULL LOOT LOSS, so RevolutionSpar is a ghost with an
+# empty pack and its equipment is on a corpse at 1369,1475.
+#
+# WHAT THIS RUN DOES, IN ORDER
+#
+#   1. resurrect at a healer -- the ordinary player remedy, not a GM raise
+#   2. walk back to its own corpse and prove the corpse path works
+#   3. fight ONE undead, engaging immediately this time
+#
+# Step 2 is the one that matters most, because the first run exposed a client
+# bug that had been invisible until something finally killed a bot:
+# travel_corpse failed with "this character has not died" TWENTY-SEVEN SECONDS
+# AFTER DYING. The death location was recorded only in the body-change handler,
+# but Source-X sends no packet when the ghost body is swapped in -- 0x2C is the
+# only notification -- so the recording never ran and corpse recovery was dead
+# code. Both paths now call RecordOwnDeath(). This run is the proof.
+
+wait_world
+sleep 2000
+
+# -------------------------------------------------------------- 1. resurrect
+# The wandering healers are ordinary NPCs -- there are sixty of them in the
+# world -- and raising a ghost is what they do. Nothing privileged happens here.
+travel_service healer
+wait_travel
+sleep 4000
+
+# Acknowledge the ghost state so the server can raise us. This op only answers
+# the 0x2C menu; it cannot resurrect by itself, which is exactly why the healer
+# comes first.
+resurrect
+wait_action
+sleep 3000
+wait_alive
+sleep 2000
+
+say alive again
+
+request_skills
+sleep 1500
+skill_report
+
+# ------------------------------------------------------ 2. back to the corpse
+# THE REGRESSION TEST FOR THE FIX. Before it, this line aborted the scenario.
+travel_corpse
+wait_travel
+expect_travel ok
+sleep 2000
+say standing over my own corpse
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1500
+mark_gold
+
+# ------------------------------------------------------------- 3. fight once
+# Engage on sight. No dwell -- that is what killed it last time.
+scan_mobiles
+sleep 1000
+remember prey mobile_body 0x0003,0x001A,0x0032,0x0094,0x0099,0x02EC
+require prey
+
+mark_hp
+
+war on
+sleep 800
+attack @prey
+wait_action
+
+# Long enough for a real fight to resolve, short enough that a losing fight is
+# not fought to the death a second time.
+sleep 25000
+
+skill_report
+say the fight is over
+sleep 2000
+logout

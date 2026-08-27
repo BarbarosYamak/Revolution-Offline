@@ -1,0 +1,66 @@
+# M3.9 -- prune the Mondain's Legacy spawners M3.8 placed by accident.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# THE MISTAKE BEING CORRECTED
+#
+# M3.8 ran `spawn_dungeons_felucca` to give the shard a hostile population and
+# reported it as "fourteen dungeons". It calls EIGHTEEN functions -- the list was
+# read from a truncated terminal output and the last four were never seen. Four
+# of them are Mondain's Legacy (2005) content:
+#
+#   Blighted Grove   Painted Caves   Palace of Paroxysmus   Prism of Light
+#
+# This project targets 2008-2010 on a client shipping skills 0-48, and M3.6
+# already established that post-era bodies with no AnimID in Revolution's
+# tiledata CRASH third-party clients. Unrenderable creatures are not cosmetic.
+#
+# It also inverted the order: M3.9's brief says audit FIRST, populate
+# selectively, and never run "all spawns" as one irreversible operation. M3.8
+# populated first and audited afterwards. This is the afterwards.
+#
+# WHAT IS REMOVED: eleven spawners, named by CREATURE rather than coordinate so
+# the prune is correct wherever they landed and safe to run twice.
+#
+#   c_abscess 1 . c_hydra_crystal 1 . c_monstrous_interred_grizzle 3
+#   c_slime_corrosive 6
+#
+# The twelve classic dungeons stay. They are generic Sphere rather than
+# Revolution-verified, which is recorded as density/composition debt -- but
+# classic Felucca dungeons in 2009 are a defensible base, and an empty PvM world
+# is definitely wrong.
+#
+# The ML spawners sit in the far-east block at x 6384-6572, so the admin visits
+# each cluster and prunes within a 250-tile radius.
+
+wait_world
+sleep 3000
+
+say .go 6535,848
+sleep 6000
+say .f_m39_prune_ml
+sleep 5000
+
+say .go 6572,89
+sleep 6000
+say .f_m39_prune_ml
+sleep 5000
+
+say .go 6384,580
+sleep 6000
+say .f_m39_prune_ml
+sleep 5000
+
+# A wide sweep from the middle of the block, in case any strays sit outside the
+# three clusters. Naming creatures rather than coordinates makes this safe.
+say .go 6480,500
+sleep 6000
+say .f_m39_prune_ml
+sleep 5000
+
+say .save
+sleep 25000
+
+say ml prune complete
+sleep 1500
+logout
