@@ -1,6 +1,11 @@
 # M3.9 -- prove a bot can kill something, WITH A WEAPON.
 #
-# RUN AS SESSION 51 (RevolutionFighter01), created for this run.
+# RUN AS AN ARMED FIGHTER SESSION (53+ / RevolutionFighter03+). Sessions 51 and
+# 52 are dead and stripped: 51 was executed by guards for hunting livestock,
+# 52 lost a fair fight to an awake grey wolf after standing through 12s of
+# free hits (see the scan-wait note below). Each new fighter is created the
+# ordinary way with -CreateSkills 'Swordsmanship=50,Tactics=30,Anatomy=20'
+# -CreateStats '55:15:10'.
 #
 # WHY A NEW CHARACTER INSTEAD OF RevolutionSpar
 #
@@ -53,36 +58,106 @@ wait_action
 sleep 2000
 say armed
 
-# ------------------------------------------------------------ 2. out to a farm
-# A Britain farm where the world save shows chickens. The coordinate is read out
-# of the save, not reasoned about -- the previous target held only Bull, Grizzly
-# Bear, Horse, Llama and Timber Wolf, every one of them excluded on purpose.
+# --------------------------------------------------- 2. out to REAL wilderness
+#
+# NOT A FARM. The previous run went to a Britain farm and the log answered a
+# question nobody had asked:
+#
+#   System: Guards can now be called on you!
+#   Basia: Help! Guards a Criminal!
+#   Dog: *Dog is attacking you!*
+#
+# Chickens, dogs and sheep on a farm beside a town are INNOCENT, OWNED animals
+# inside a guard zone. Attacking one flags the character CRIMINAL and an NPC
+# calls the guards. The bot was not failing to fight -- it was committing a
+# crime, and a bot population that hunts livestock would be executed by guards
+# rather than fed by them.
+#
+# That is a behavioural constraint worth more than this proof: legitimate
+# hunting means WILD, already-hostile creatures, away from guard protection.
+#
+# So: open country west of Britain where the world save puts grey and timber
+# wolves, well outside the guard zone. A wolf fights back, which is the point --
+# it is hostile ALREADY, so no crime is committed and the server has every
+# reason to swing.
+#
+# (1230,1660), not the earlier (1252,1613): the wolf that used to sit at
+# (1252,1614) was ENGINE-ASLEEP -- Source-X sector sleep had left it catatonic
+# beside the bot, and Fight_CanHit returns WAR_SWING_INVALID for a sleeping
+# target, so the server silently dropped every accepted attack (that was the
+# whole "ten runs, zero swings" mystery; see huntdbg3 for the awake-wolf
+# counterexample). It has since despawned. The wolves the live world holds now
+# wander this stretch (console-checked at run time: timber ~(1231,1630), grey
+# ~(1256,1690)), and the fact that they MOVE is the proof they tick -- a
+# stationary animal in this world is suspect.
 use_moongates on
-travel_point 1378 1819
+travel_point 1265 1612
 wait_travel
 expect_travel ok
 sleep 2000
 
-say looking for something to kill
+say hunting wolves
 
 # --------------------------------------------------------------- 3. find prey
-# 0x00D0 chicken  0x00CF sheep  0x00CB pig   0x00D1 goat
-# 0x00CD rabbit   0x0006 bird   0x00EE rat   0x00C9 cat
-# 0x00D9 dog      0x0005 eagle  0x011B crow
+# 0x0019 grey wolf  0x00E1 timber wolf  0x0017 dire wolf  0x0025 white wolf
+# 0x003F cougar     0x00D6 panther
 #
-# Wolves, bears and harts stay off the list even armed. The question is whether
-# a bot can kill anything at all, and a clean answer to the small question beats
-# an ambiguous one to a bigger question.
+# THESE ARE READ FROM THE CHARDEF HEADERS, and the previous list was not. It
+# said 0x001C for a grey wolf, which is the value generic UO documentation
+# gives; this runtime's c_wolf_grey is [CHARDEF 019]. A grey wolf was standing
+# next to the bot, attacking it, and `remember prey` bound 0x00000000 because
+# the body id never matched. The same guessing put panther at 0x00D5 (really
+# 0x00D6) and brown bear at 0x00D3 (really 0x00A7 -- 0x00D3 is a BLACK bear).
 #
-# Three scans: fauna wander, and one scan samples one instant. A previous run
-# arrived correctly and aborted on `require prey` with the world working fine.
+# Fifth time this milestone that a constant taken from reasoning rather than
+# from the shard's own data has cost a run.
+#
+# Wild predators only, and NOT the farm livestock the previous run chose. These
+# are hostile on sight, so attacking one is ordinary hunting rather than a crime.
+# Bears are still excluded: a grizzly can beat a fresh character even armed, and
+# the question being answered is whether a bot can kill ANYTHING, not whether it
+# can win a hard fight.
+#
+# PATROL, do not stand and scan. Two lessons paid for in characters:
+#   - Fighter02 died because an awake wolf chewed on it through three
+#     stationary 4-second scan waits (mark_hp read 17 before war even went
+#     on). Standing still in predator country is exposure, not patience.
+#   - killrun1 aborted on `require prey` while both live wolves were healthy
+#     30 tiles away: they wander a HOMEDIST=50 box around their spawn at
+#     (1229,1655) (read from the wolf's own save block), and an 18-tile view
+#     from one fixed point samples a fraction of that box.
+# So sweep the home range and scan at each corner. An awake wolf aggros on
+# sight and comes to us, which is the other half of why patrolling works.
+# The winning run (killrun3, 2026-08-27 22:09) aimed the first leg at the
+# timber wolf's LIVE position read off the server console seconds before
+# launch; blind single-point scans had missed wandering wolves twice. This
+# committed version sweeps the whole beat instead: the wolves' spawn worldgem
+# sits at (1229,1655) with HOMEDIST=50 (read from the wolf's own save block),
+# and these legs cross the north-east beat, the home point and the south-west
+# beat, so a wolf anywhere in the box passes within view of one leg. An awake
+# wolf also aggros on sight and comes to us -- the scan only has to get close.
 scan_mobiles
-sleep 4000
+goto 1265 1612
+wait_goto
 scan_mobiles
-sleep 4000
+sleep 800
+goto 1272 1607
+wait_goto
 scan_mobiles
-sleep 1500
-remember prey mobile_body 0x00D0,0x00CF,0x00CB,0x00D1,0x00CD,0x0006,0x00EE,0x00C9,0x00D9,0x0005,0x011B
+sleep 800
+goto 1229 1655
+wait_goto
+scan_mobiles
+sleep 800
+goto 1210 1680
+wait_goto
+scan_mobiles
+sleep 800
+goto 1185 1698
+wait_goto
+scan_mobiles
+sleep 800
+remember prey mobile_body 0x0019,0x00E1,0x0017,0x0025,0x003F,0x00D6
 require prey
 
 # goto_mobile, not travel_entity: travel plans a route to where the mobile was
@@ -100,9 +175,12 @@ attack @prey
 wait_action
 
 # Send the attack ONCE, then only stay in range -- chasing is the bot's job,
-# swinging is the server's. Longer than before: 12 x ~2.5s rather than 8, since
-# the earlier windows may simply have been too short to finish a fight.
-loop 12
+# swinging is the server's. 20 x ~2.5s: a katana (11-13) against a 43-HP wolf
+# needs ~7 landed hits at Sphere swing speed, and the huntdbg3 run showed a
+# full fight resolves in well under a minute once the target actually ticks.
+# The window was never the problem in the silent runs -- the target being
+# engine-asleep was -- but a real, mutual fight deserves the full minute.
+loop 20
   goto_mobile @prey
   wait_action
   sleep 2500

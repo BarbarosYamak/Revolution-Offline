@@ -1041,19 +1041,35 @@ void Client::OnMobileHp(const u8* data, usize size) {
         // bot can judge whether a fight is winnable. Often a 0..max ratio.
         for (auto& m : mobileCache_) {
             if (m.serial == serial) {
+                const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                // Source-X sends NO per-swing packet during a fight (0x2F is
+                // emitted once, when the fight memory is created -- see
+                // CCharMemory.cpp Memory_Fight_Start), so a watchdog fed only
+                // by 0x2F starves mid-fight and sheathes the weapon. A health
+                // change on the char we are attacking is proof the fight is
+                // still happening; WarMode.h always promised this counted.
+                if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
+                    war_.OnCombatEvent(NowMs());
                 break;
             }
         }
         return;
     }
     const i32 curHp = static_cast<i32>(LoadBE16(data + 7));
-    if (player_.hpCur >= 0 && curHp < player_.hpCur &&
-        (nav_.bot.active || !nav_.movement.pending.empty())) {
-        char reason[48];
-        std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
-        BotInterruptForThreat(reason);
+    if (player_.hpCur >= 0 && curHp < player_.hpCur) {
+        // Our own health dropping is combat evidence whoever caused it (the
+        // 15s idle window absorbs the rare poison/hunger ticks that also land
+        // here). This must fire even when the bot is standing still -- in the
+        // 21:53 huntdbg3 run the wolf killed a stationary bot without the
+        // watchdog ever seeing one combat event.
+        war_.OnCombatEvent(NowMs());
+        if (nav_.bot.active || !nav_.movement.pending.empty()) {
+            char reason[48];
+            std::snprintf(reason, sizeof(reason), "HP %d -> %d", player_.hpCur, curHp);
+            BotInterruptForThreat(reason);
+        }
     }
     player_.serial = serial;
     player_.hpCur = curHp;
@@ -1087,12 +1103,21 @@ void Client::OnMobileAttributes(const u8* data, usize size) {
     if (serial != playerSerial_) {
         for (auto& m : mobileCache_) {
             if (m.serial == serial) {
+                const i32 oldCur = m.hpCur;
                 m.hpMax = static_cast<i32>(LoadBE16(data + 5));
                 m.hpCur = static_cast<i32>(LoadBE16(data + 7));
+                // Same rule as OnMobileHp: our target's health moving is the
+                // fight still happening (Source-X sends no per-swing packet).
+                if (serial == war_.TargetSerial() && oldCur >= 0 && m.hpCur != oldCur)
+                    war_.OnCombatEvent(NowMs());
                 break;
             }
         }
         return;
+    }
+    if (player_.hpCur >= 0 &&
+        static_cast<i32>(LoadBE16(data + 7)) < player_.hpCur) {
+        war_.OnCombatEvent(NowMs());  // being hit, via the compact refresh
     }
     player_.serial = serial;
     player_.hpMax = static_cast<i32>(LoadBE16(data + 5));
@@ -1696,14 +1721,20 @@ void Client::OnMobileIncoming(const u8* data, usize size) {
 }
 
 // 0x2F Swing / fight-occurring (10B): cmd, flag, attacker(4 BE), defender(4 BE).
-// Server sends this on every weapon swing (combat.c PlaySwingAnimation). It is
-// the earliest serial-bearing combat signal (long before HP changes), in EITHER
-// direction:
+//
+// WRONG ASSUMPTION, KEPT AS A WARNING: this comment used to claim the server
+// sends 0x2F "on every weapon swing (combat.c PlaySwingAnimation)". That is
+// Sphere 0.56b. Source-X sends 0x2F exactly ONCE per fight, when the fight
+// memory is created (CCharMemory.cpp Memory_Fight_Start -> new PacketSwing),
+// and only to the ATTACKER's client when its bound target matches -- an NPC
+// beating on us produces none at all. Ten M3.9 hunt runs were misread as "the
+// server never swings" partly because this handler was the war watchdog's only
+// combat-event source. Per-blow evidence actually arrives as 0x6E swing/get-hit
+// animations and as HP updates (0xA1/0x2D), which now also feed the watchdog.
+//
+// When 0x2F does arrive:
 //   - defender == us  -> a mob swung at us       -> 'attacked' (attacker serial)
 //   - attacker == us  -> we are swinging at a foe -> 'combat'   (defender serial)
-// The second case matters because this server surfaces an aggro'd fight as our
-// own swings (also confirmed by 0xAA attack-approved); without it the bot would
-// stand and trade blows while the script never noticed it was fighting.
 void Client::OnSwing(const u8* data, usize size) {
     if (size < 10) return;
     const u32 attacker = LoadBE32(data + 2);
@@ -1779,6 +1810,16 @@ void Client::OnCharacterAnimation(const u8* data, usize size) {
             }
         }
     }
+
+    // Swing and get-hit animations are the liveliest per-blow signal Source-X
+    // gives a client (UpdateAnimate in Fight_Hit broadcasts 0x6E; the 0x2F
+    // swing packet fires only once per fight). An animation on us, or on the
+    // char we are attacking, refreshes the war watchdog. Counting the target's
+    // idle fidgets too is deliberate: while it is alive, bound and in view the
+    // bot is still hunting it, and target death/absence is what ends war mode.
+    if (serial == playerSerial_ ||
+        (war_.TargetSerial() != 0 && serial == war_.TargetSerial()))
+        war_.OnCombatEvent(NowMs());
 
     if (verboseConsole_) {
         LogInfo("[0x6E] anim serial=0x%08X action=%u frames=%u duration=%u rev=%u bounce=%u delay=%u\n",
