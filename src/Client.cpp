@@ -2560,6 +2560,12 @@ u32 Client::NearestMobileWithBody(u16 body, int maxDist) const {
 }
 
 u32 Client::NearestMobileWithTrade(const char* trade) const {
+    static const std::vector<u32> kNone;
+    return NearestMobileWithTrade(trade, kNone);
+}
+
+u32 Client::NearestMobileWithTrade(const char* trade,
+                                   const std::vector<u32>& skip) const {
     if (!trade || !trade[0]) return 0;
     auto lower = [](std::string s) {
         for (char& c : s)
@@ -2572,6 +2578,9 @@ u32 Client::NearestMobileWithTrade(const char* trade) const {
     int bestD = 0;
     for (const MobileObj& m : mobileCache_) {
         if (m.serial == playerSerial_) continue;
+        bool skipped = false;
+        for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
+        if (skipped) continue;
         const char* title = PaperdollTitle(m.serial);
         if (!title || !*title) continue;
         const std::string t = lower(title);

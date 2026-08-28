@@ -293,6 +293,12 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "alchemist";
+            // Meditation begins at LITERALLY 0.0, not at the 0-19.9 the
+            // server rolls for everything else. It is the one plan skill on
+            // this shard with no [NEWBIE] section, so claiming the third
+            // creation slot for it costs the character nothing it did not
+            // earn -- and gives it a skill it must buy or grind from nothing.
+            p.startZeroSkill = rules::kMeditation;
             p.label = "Alchemist";
             p.startSkillA = rules::kAlchemy;
             p.startSkillB = rules::kMagery;
@@ -563,6 +569,12 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "warlock";
+            // Meditation begins at LITERALLY 0.0, not at the 0-19.9 the
+            // server rolls for everything else. It is the one plan skill on
+            // this shard with no [NEWBIE] section, so claiming the third
+            // creation slot for it costs the character nothing it did not
+            // earn -- and gives it a skill it must buy or grind from nothing.
+            p.startZeroSkill = rules::kMeditation;
             p.label = "Warlock";
             p.startSkillA = rules::kMagery;
             p.startSkillB = rules::kSwordsmanship;
@@ -662,6 +674,12 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "treasure_hunter";
+            // Meditation begins at LITERALLY 0.0, not at the 0-19.9 the
+            // server rolls for everything else. It is the one plan skill on
+            // this shard with no [NEWBIE] section, so claiming the third
+            // creation slot for it costs the character nothing it did not
+            // earn -- and gives it a skill it must buy or grind from nothing.
+            p.startZeroSkill = rules::kMeditation;
             p.label = "Treasure Hunter";
             p.startSkillA = rules::kLockpicking;
             p.startSkillB = rules::kCartography;
@@ -944,6 +962,12 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "scribe";
+            // Meditation begins at LITERALLY 0.0, not at the 0-19.9 the
+            // server rolls for everything else. It is the one plan skill on
+            // this shard with no [NEWBIE] section, so claiming the third
+            // creation slot for it costs the character nothing it did not
+            // earn -- and gives it a skill it must buy or grind from nothing.
+            p.startZeroSkill = rules::kMeditation;
             p.label = "Scribe";
             p.startSkillA = rules::kInscription;
             p.startSkillB = rules::kMagery;

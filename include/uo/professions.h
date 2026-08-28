@@ -127,6 +127,26 @@ struct Profession {
     // as a sentinel silently rejected the alchemist archetype.
     int startSkillA = -1;
     int startSkillB = -1;
+    // THE THIRD CREATION SLOT, which this shard sets to exactly 0.0.
+    //
+    // Source-X randomises EVERY skill at creation to a value in [0, 19.9)
+    // (CChar.cpp:1768-1772 with sphere.ini MaxBaseSkill=200) and then writes
+    // the three requested skills over the top (CChar.cpp:1803-1808). So the
+    // ONLY skill a new character can hold at literal 0.0 is whichever one
+    // occupies this slot -- which is why every bot so far has Remove Trap at
+    // 0.0 and nothing else.
+    //
+    // Naming a skill the build actually intends to learn turns that inert
+    // slot into an honest starting point: the character begins knowing
+    // nothing of it and must buy or grind every tenth. It stays 0 points, so
+    // Revolution's rule -- exactly two skills at 50.0 -- is untouched.
+    //
+    // CONSTRAINT: Source-X applies [NEWBIE <skill>] for every requested slot
+    // WITHOUT checking its value (CChar.cpp:2117-2143), so a skill named here
+    // must have no [NEWBIE] section on this shard or the character is handed
+    // a kit it did not earn. Meditation is the only plan skill that
+    // qualifies; Remove Trap remains the default for everyone else.
+    int startZeroSkill = -1;
     // The stat split this life wants at creation. Must total
     // kRevolutionStartStatTotal.
     i32 startStr = 0, startDex = 0, startInt = 0;

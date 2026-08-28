@@ -1,0 +1,453 @@
+[18:33:03.820] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='zero4'
+[18:33:03.821] LOG   [zero4] event session_start: text log opened
+[18:33:03.821] LOG   [zero4] event net_connect_begin: connect 127.0.0.1:2593
+[18:33:03.821] INFO  [zero4] [net] connecting to 127.0.0.1:2593 ...
+[18:33:03.822] LOG   [zero4] event net_connected: connect 127.0.0.1:2593
+[18:33:03.822] INFO  [zero4] [net] connected.
+[18:33:03.822] INFO  [zero4] [seed] sent 0x7F000001 (plaintext)
+[18:33:03.822] LOG   [zero4] event seed_out: 0x7F000001 hex=7f000001
+[18:33:03.823] INFO  [life] loaded persistent state for Ysolde (0 places, 0 suppliers, 0 events, 0 prior sessions)
+[18:33:03.823] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[18:33:03.823] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[18:33:03.823] INFO  [zero4] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:33:03.857] INFO  [zero4] [0xA8] 1 server(s):
+[18:33:03.858] INFO  [zero4]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[18:33:03.872] INFO  [zero4] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[18:33:03.872] LOG   [zero4] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[18:33:03.872] INFO  [zero4] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:33:03.872] LOG   [zero4] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:33:03.873] INFO  [zero4] [0xB9] server features = 0x0005
+[18:33:03.873] INFO  [zero4] [0xA9] 5 slot(s) (populated 1):
+[18:33:03.873] INFO  [zero4]   [0] Ysolde
+[18:33:03.873] INFO  [zero4]   [1] <empty>
+[18:33:03.873] INFO  [zero4]   [2] <empty>
+[18:33:03.873] INFO  [zero4]   [3] <empty>
+[18:33:03.873] INFO  [zero4]   [4] <empty>
+[18:33:03.873] INFO  [zero4] [ui] playing slot 0 ('Ysolde')
+[18:33:03.888] INFO  [zero4] [0x1B] serial=0x00014261 body=0x0190 pos=(1464,1620,20)
+[18:33:03.888] LOG   [zero4] event login_confirm: serial=0x00014261 body=0x0190 pos=(1464,1620,20)
+[18:33:03.888] INFO  [zero4] [0x20] player @(1464,1620,20) facing=0
+[18:33:03.888] INFO  [zero4] [0x55] login complete — entering world
+[18:33:03.888] LOG   [zero4] event in_world: 0x55 received
+[18:33:03.888] INFO  [zero4] [backpack] opening 0x4001425D
+[18:33:03.888] INFO  [zero4] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:33:03.888] INFO  [zero4] [chat ascii] System: There are 2 other players here.
+[18:33:03.888] INFO  [zero4] [chat ascii] System: Last logged: 2026/08/28 03:11:07
+[18:33:03.888] INFO  [zero4] [chat ascii] System: You are under the protection of the city guards
+[18:33:03.892] INFO  [zero4] [action] requesting the skill list
+[18:33:03.892] INFO  [life] in world; asked the server for the skill list
+[18:33:03.892] INFO  [zero4] [0x24] open container 0x4001425D gump=60
+[18:33:03.892] INFO  [zero4] [0x3C] container contents: 9 item(s)
+[18:33:03.892] LOG   [zero4] event backpack_contents: serial=0x4001425D items=9
+[18:33:06.514] INFO  [zero4] [bot] world data loaded (0 blacklisted spot(s)).
+[18:33:06.514] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[18:33:06.514] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:33:06.514] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[18:33:06.514] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[18:33:06.514] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[18:33:06.514] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[18:33:06.514] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[18:33:06.514] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[18:33:06.514] INFO  [life]   position     persisted=1416,1692  server=1464,1620  -> server value accepted
+[18:33:06.514] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:33:06.514] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[18:33:06.514] INFO  [zero4] [survival] on
+[18:33:06.514] LOG   [zero4] event survival_mode: on
+[18:33:06.516] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:33:06.516] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:06.569] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[18:33:06.569] INFO  [zero4] [travel] Britain mage -> (1485,1550) r=5 from (1464,1620)
+[18:33:06.569] LOG   [zero4] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1464,1620)
+[18:33:06.569] INFO  [zero4] [travel] mode moongate         usable   <- chosen
+[18:33:06.569] INFO  [zero4] [travel] mode walk             usable
+[18:33:06.569] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:06.569] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:06.569] LOG   [zero4] event travel_mode: moongate
+[18:33:06.569] INFO  [zero4] [travel] plan Britain mage: ok legs=3 ~88 tiles transit=0 nodes=23
+[18:33:06.629] INFO  [zero4] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:33:06.629] INFO  [zero4] [action] goto (1464,1592) from (1464,1620,20)
+[18:33:06.629] LOG   [zero4] event goto_start: target=(1464,1592) from=(1464,1620)
+[18:33:06.629] INFO  [zero4] [bot] running from (1464,1620,20) to (1464,1592)
+[18:33:06.629] INFO  [zero4] [bot] planning path to (1464,1592) in background
+[18:33:06.690] INFO  [zero4] [bot] replan to (1464,1592): 28 steps in 167.2us
+[18:33:11.561] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:13.414] INFO  [zero4] [bot] arrived at (1464,1592,20)
+[18:33:13.415] INFO  [zero4] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[18:33:13.415] LOG   [zero4] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[18:33:13.415] INFO  [zero4] [action] goto (1480,1558) from (1464,1592,20)
+[18:33:13.415] LOG   [zero4] event goto_start: target=(1480,1558) from=(1464,1592)
+[18:33:13.415] INFO  [zero4] [bot] running from (1464,1592,20) to (1480,1558)
+[18:33:13.415] INFO  [zero4] [bot] planning path to (1480,1558) in background
+[18:33:13.474] INFO  [zero4] [bot] replan to (1480,1558): 41 steps in 3679.6us
+[18:33:16.604] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:19.597] INFO  [zero4] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 126.5us
+[18:33:21.653] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:26.461] INFO  [zero4] [bot] arrived at (1480,1558,30)
+[18:33:26.461] INFO  [zero4] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[18:33:26.461] LOG   [zero4] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[18:33:26.461] INFO  [zero4] [action] goto (1485,1550) from (1480,1558,30)
+[18:33:26.461] LOG   [zero4] event goto_start: target=(1485,1550) from=(1480,1558)
+[18:33:26.461] INFO  [zero4] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[18:33:26.461] INFO  [zero4] [bot] planning path to (1485,1550) in background
+[18:33:26.521] INFO  [zero4] [bot] replan to (1485,1550): 47 steps in 5196.6us
+[18:33:26.703] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:31.755] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:36.813] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:38.847] INFO  [zero4] [travel] Britain mage ARRIVED at (1490,1555,30)
+[18:33:38.847] LOG   [zero4] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=3 plans=1 why=''
+[18:33:38.909] INFO  [life] training: arrived at 1490,1555 -- asking who is here
+[18:33:38.909] INFO  [zero4] [action] scanning nearby mobiles for names
+[18:33:38.909] INFO  [zero4] [action] requested 2 paperdoll(s) for trade titles
+[18:33:38.925] INFO  [zero4] [mobiles] nearby (3):
+[18:33:38.925] INFO  [zero4]   Xanthe 0x00001211
+[18:33:38.925] INFO  [zero4]   Alenne 0x00001145
+[18:33:38.925] INFO  [zero4]   Caedmon 0x000012EE
+[18:33:38.925] INFO  [zero4] [0x20] player @(1490,1555,30) facing=0
+[18:33:38.925] INFO  [zero4] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[18:33:38.925] INFO  [zero4] [world] Xanthe, the alchemist is a alchemist at (1488,1550)
+[18:33:38.925] INFO  [zero4] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[18:33:38.925] INFO  [zero4] [world] Alenne, the mage is a mage at (1490,1547)
+[18:33:39.343] INFO  [zero4] [chat ascii] Xanthe: I am listening to thee.
+[18:33:41.416] INFO  [life] training: 'mage' is 7 tiles and 2 z away -- walking to them before speaking
+[18:33:41.416] INFO  [zero4] [travel] trainer -> (1489,1548) r=1 from (1490,1555)
+[18:33:41.416] LOG   [zero4] event travel_start: label='trainer' target=(1489,1548) radius=1 from=(1490,1555)
+[18:33:41.416] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:33:41.416] INFO  [zero4] [travel] mode moongate         usable
+[18:33:41.416] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:33:41.416] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:33:41.416] LOG   [zero4] event travel_mode: walk
+[18:33:41.416] INFO  [zero4] [travel] plan trainer: ok legs=1 ~7 tiles transit=0 nodes=0
+[18:33:41.477] INFO  [zero4] [action] goto finished at (1490,1555,30); target (1485,1550); stopped short (off by 10 tile(s))
+[18:33:41.477] LOG   [zero4] event goto_done: at=(1490,1555) target=(1485,1550) arrived=0 off=10
+[18:33:41.477] INFO  [zero4] [action] goto (1489,1548) from (1490,1555,30)
+[18:33:41.477] LOG   [zero4] event goto_start: target=(1489,1548) from=(1490,1555)
+[18:33:41.477] INFO  [zero4] [bot] running from (1490,1555,30) to (1489,1548)
+[18:33:41.477] INFO  [zero4] [bot] planning path to (1489,1548) in background
+[18:33:41.539] INFO  [zero4] [bot] replan to (1489,1548): 21 steps in 2918.1us
+[18:33:41.848] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:42.259] INFO  [zero4] [chat ascii] Alenne: I am listening to thee.
+[18:33:46.863] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:47.504] INFO  [zero4] [bot] step (1490,1545,70)->(1490,1546,70) rejected; OpenDoor + retry
+[18:33:48.225] INFO  [zero4] [bot] lookahead patched around block at step 1: anchor=3 new segment=6 path=6 in 191.0us
+[18:33:50.249] INFO  [zero4] [travel] trainer ARRIVED at (1489,1547,70)
+[18:33:50.249] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1489,1547) legs=1 plans=1 why=''
+[18:33:50.311] INFO  [life] training: asking the trainer about Meditation
+[18:33:50.311] INFO  [zero4] [ACTION] npc_train start
+[18:33:50.311] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:33:50.311] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:33:50.326] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:33:50.402] INFO  [zero4] [bot] arrived at (1488,1547,70)
+[18:33:51.914] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:56.925] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:33:58.361] LOG   [zero4] event action_result: npc_train timeout
+[18:34:01.932] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:03.628] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:34:05.164] INFO  [life] training: asking the trainer about Meditation
+[18:34:05.164] INFO  [zero4] [ACTION] npc_train start
+[18:34:05.164] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:34:05.164] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:34:05.164] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:34:06.514] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:34:06.943] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:12.004] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:13.186] LOG   [zero4] event action_result: npc_train timeout
+[18:34:17.056] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:18.371] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:34:19.914] INFO  [life] training: asking the trainer about Meditation
+[18:34:19.914] INFO  [zero4] [ACTION] npc_train start
+[18:34:19.914] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:34:19.915] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:34:19.931] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:34:22.077] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:27.081] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:27.974] LOG   [zero4] event action_result: npc_train timeout
+[18:34:32.103] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:33.211] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[18:34:33.211] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'mage' never answered about Meditation"
+[18:34:33.271] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer never answered"
+[18:34:33.271] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:34:33.271] INFO  [life]   score=110.0
+[18:34:33.271] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:34:33.271] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:34:33.271] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:34:34.743] INFO  [life] training: 'mage' is 5 tiles and 40 z away -- walking to them before speaking
+[18:34:34.744] INFO  [zero4] [travel] trainer -> (1488,1552) r=1 from (1488,1547)
+[18:34:34.744] LOG   [zero4] event travel_start: label='trainer' target=(1488,1552) radius=1 from=(1488,1547)
+[18:34:34.744] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:34:34.744] INFO  [zero4] [travel] mode moongate         usable
+[18:34:34.744] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:34:34.744] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:34:34.744] LOG   [zero4] event travel_mode: walk
+[18:34:34.744] INFO  [zero4] [travel] plan trainer: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:34:34.806] INFO  [zero4] [action] goto finished at (1488,1547,70); target (1489,1548); stopped short (off by 2 tile(s))
+[18:34:34.806] LOG   [zero4] event goto_done: at=(1488,1547) target=(1489,1548) arrived=0 off=2
+[18:34:34.806] INFO  [zero4] [action] goto (1488,1552) from (1488,1547,70)
+[18:34:34.806] LOG   [zero4] event goto_start: target=(1488,1552) from=(1488,1547)
+[18:34:34.806] INFO  [zero4] [bot] running from (1488,1547,70) to (1488,1552)
+[18:34:34.806] INFO  [zero4] [bot] planning path to (1488,1552) in background
+[18:34:34.867] INFO  [zero4] [bot] replan to (1488,1552): 6 steps in 513.2us
+[18:34:35.607] INFO  [zero4] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[18:34:35.608] INFO  [zero4] [chat ascii] System: Opening door...
+[18:34:37.125] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:37.324] INFO  [zero4] [travel] trainer ARRIVED at (1487,1551,70)
+[18:34:37.324] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1487,1551) legs=1 plans=1 why=''
+[18:34:37.386] INFO  [life] training: asking the trainer about Meditation
+[18:34:37.386] INFO  [zero4] [ACTION] npc_train start
+[18:34:37.386] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:34:37.386] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:34:37.401] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:34:38.062] INFO  [zero4] [bot] arrived at (1488,1552,70)
+[18:34:42.162] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:45.408] LOG   [zero4] event action_result: npc_train timeout
+[18:34:47.216] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:50.615] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:34:52.156] INFO  [life] training: asking the trainer about Meditation
+[18:34:52.156] INFO  [zero4] [ACTION] npc_train start
+[18:34:52.156] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:34:52.156] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:34:52.156] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:34:52.217] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:34:57.269] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:00.164] LOG   [zero4] event action_result: npc_train timeout
+[18:35:02.292] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:05.387] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:35:06.555] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:35:06.921] INFO  [life] training: asking the trainer about Meditation
+[18:35:06.921] INFO  [zero4] [ACTION] npc_train start
+[18:35:06.921] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:35:06.921] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:35:06.922] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:35:07.348] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:12.395] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:14.966] LOG   [zero4] event action_result: npc_train timeout
+[18:35:17.456] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:20.129] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[18:35:20.130] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'mage' never answered about Meditation"
+[18:35:20.192] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer never answered"
+[18:35:20.192] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:35:20.192] INFO  [life]   score=110.0
+[18:35:20.192] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:35:20.192] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:35:20.192] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:35:21.646] INFO  [life] training: 'mage' is 3 tiles and 40 z away -- walking to them before speaking
+[18:35:21.646] INFO  [zero4] [travel] trainer -> (1485,1551) r=1 from (1488,1552)
+[18:35:21.646] LOG   [zero4] event travel_start: label='trainer' target=(1485,1551) radius=1 from=(1488,1552)
+[18:35:21.646] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:35:21.646] INFO  [zero4] [travel] mode moongate         usable
+[18:35:21.646] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:35:21.646] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:35:21.646] LOG   [zero4] event travel_mode: walk
+[18:35:21.646] INFO  [zero4] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[18:35:21.707] INFO  [zero4] [action] goto finished at (1488,1552,70); target (1488,1552); ARRIVED (off by 0 tile(s))
+[18:35:21.707] LOG   [zero4] event goto_done: at=(1488,1552) target=(1488,1552) arrived=1 off=0
+[18:35:21.707] INFO  [zero4] [action] goto (1485,1551) from (1488,1552,70)
+[18:35:21.707] LOG   [zero4] event goto_start: target=(1485,1551) from=(1488,1552)
+[18:35:21.707] INFO  [zero4] [bot] running from (1488,1552,70) to (1485,1551)
+[18:35:21.707] INFO  [zero4] [bot] planning path to (1485,1551) in background
+[18:35:21.769] INFO  [zero4] [bot] replan to (1485,1551): 3 steps in 65.3us
+[18:35:22.473] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:22.671] INFO  [zero4] [bot] door ahead at (1485,1551,z70); OpenDoor before step
+[18:35:22.672] INFO  [zero4] [travel] trainer ARRIVED at (1486,1552,70)
+[18:35:22.672] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1486,1552) legs=1 plans=1 why=''
+[18:35:22.672] INFO  [zero4] [chat ascii] System: Opening door...
+[18:35:23.392] INFO  [zero4] [bot] arrived at (1485,1551,70)
+[18:35:23.698] INFO  [life] training: asking the trainer about Meditation
+[18:35:23.698] INFO  [zero4] [ACTION] npc_train start
+[18:35:23.698] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:35:23.698] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:35:23.699] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:35:27.481] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:31.713] LOG   [zero4] event action_result: npc_train timeout
+[18:35:32.511] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:36.976] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:35:37.556] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:38.476] INFO  [life] training: asking the trainer about Meditation
+[18:35:38.476] INFO  [zero4] [ACTION] npc_train start
+[18:35:38.476] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:35:38.476] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:35:38.476] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:35:42.566] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:46.494] LOG   [zero4] event action_result: npc_train timeout
+[18:35:47.593] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:51.763] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:35:52.594] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:35:53.282] INFO  [life] training: asking the trainer about Meditation
+[18:35:53.282] INFO  [zero4] [ACTION] npc_train start
+[18:35:53.282] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:35:53.282] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:35:53.283] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:35:57.630] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:01.285] LOG   [zero4] event action_result: npc_train timeout
+[18:36:02.675] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:06.519] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[18:36:06.519] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'mage' never answered about Meditation"
+[18:36:06.580] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer never answered"
+[18:36:06.580] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:36:06.580] INFO  [life]   score=110.0
+[18:36:06.580] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:36:06.580] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:36:06.580] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:36:06.582] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:36:07.723] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:08.029] INFO  [life] training: 'mage' is 3 tiles and 40 z away -- walking to them before speaking
+[18:36:08.029] INFO  [zero4] [travel] trainer -> (1488,1553) r=1 from (1485,1551)
+[18:36:08.029] LOG   [zero4] event travel_start: label='trainer' target=(1488,1553) radius=1 from=(1485,1551)
+[18:36:08.029] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:36:08.029] INFO  [zero4] [travel] mode moongate         usable
+[18:36:08.029] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:36:08.029] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:36:08.029] LOG   [zero4] event travel_mode: walk
+[18:36:08.029] INFO  [zero4] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[18:36:08.089] INFO  [zero4] [action] goto finished at (1485,1551,70); target (1485,1551); ARRIVED (off by 0 tile(s))
+[18:36:08.089] LOG   [zero4] event goto_done: at=(1485,1551) target=(1485,1551) arrived=1 off=0
+[18:36:08.089] INFO  [zero4] [action] goto (1488,1553) from (1485,1551,70)
+[18:36:08.089] LOG   [zero4] event goto_start: target=(1488,1553) from=(1485,1551)
+[18:36:08.089] INFO  [zero4] [bot] running from (1485,1551,70) to (1488,1553)
+[18:36:08.089] INFO  [zero4] [bot] planning path to (1488,1553) in background
+[18:36:08.152] INFO  [zero4] [bot] replan to (1488,1553): 3 steps in 64.0us
+[18:36:09.042] INFO  [zero4] [travel] trainer ARRIVED at (1487,1552,70)
+[18:36:09.042] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1487,1552) legs=1 plans=1 why=''
+[18:36:09.287] INFO  [zero4] [bot] arrived at (1488,1553,70)
+[18:36:10.069] INFO  [life] training: asking the trainer about Meditation
+[18:36:10.070] INFO  [zero4] [ACTION] npc_train start
+[18:36:10.070] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:36:10.070] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:36:10.070] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:36:12.761] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:17.776] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:18.129] LOG   [zero4] event action_result: npc_train timeout
+[18:36:22.825] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:23.227] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:36:24.744] INFO  [life] training: asking the trainer about Meditation
+[18:36:24.744] INFO  [zero4] [ACTION] npc_train start
+[18:36:24.744] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:36:24.744] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:36:24.744] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:36:27.864] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:32.786] LOG   [zero4] event action_result: npc_train timeout
+[18:36:32.908] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:37.937] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:37.998] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:36:39.521] INFO  [life] training: asking the trainer about Meditation
+[18:36:39.521] INFO  [zero4] [ACTION] npc_train start
+[18:36:39.521] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:36:39.521] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:36:39.521] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:36:42.950] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:47.540] LOG   [zero4] event action_result: npc_train timeout
+[18:36:47.970] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:52.721] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[18:36:52.721] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'mage' never answered about Meditation"
+[18:36:52.780] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer never answered"
+[18:36:52.780] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:36:52.780] INFO  [life]   score=110.0
+[18:36:52.780] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:36:52.780] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:36:52.780] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:36:52.980] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:36:54.234] INFO  [life] training: 'mage' is 6 tiles and 35 z away -- walking to them before speaking
+[18:36:54.234] INFO  [zero4] [travel] trainer -> (1488,1547) r=1 from (1488,1553)
+[18:36:54.234] LOG   [zero4] event travel_start: label='trainer' target=(1488,1547) radius=1 from=(1488,1553)
+[18:36:54.234] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:36:54.234] INFO  [zero4] [travel] mode moongate         usable
+[18:36:54.234] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:36:54.234] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:36:54.234] LOG   [zero4] event travel_mode: walk
+[18:36:54.234] INFO  [zero4] [travel] plan trainer: ok legs=1 ~6 tiles transit=0 nodes=0
+[18:36:54.296] INFO  [zero4] [action] goto finished at (1488,1553,70); target (1488,1553); ARRIVED (off by 0 tile(s))
+[18:36:54.296] LOG   [zero4] event goto_done: at=(1488,1553) target=(1488,1553) arrived=1 off=0
+[18:36:54.296] INFO  [zero4] [action] goto (1488,1547) from (1488,1553,70)
+[18:36:54.296] LOG   [zero4] event goto_start: target=(1488,1547) from=(1488,1553)
+[18:36:54.296] INFO  [zero4] [bot] running from (1488,1553,70) to (1488,1547)
+[18:36:54.296] INFO  [zero4] [bot] planning path to (1488,1547) in background
+[18:36:54.359] INFO  [zero4] [bot] replan to (1488,1547): 6 steps in 139.1us
+[18:36:55.139] INFO  [zero4] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[18:36:55.139] INFO  [zero4] [chat ascii] System: Opening door...
+[18:36:56.881] INFO  [zero4] [travel] trainer ARRIVED at (1487,1548,70)
+[18:36:56.881] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1487,1548) legs=1 plans=1 why=''
+[18:36:56.944] INFO  [life] training: asking the trainer about Meditation
+[18:36:56.944] INFO  [zero4] [ACTION] npc_train start
+[18:36:56.944] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:36:56.944] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:36:56.944] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:36:57.006] INFO  [zero4] [bot] arrived at (1488,1547,70)
+[18:36:58.002] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:03.004] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:04.977] LOG   [zero4] event action_result: npc_train timeout
+[18:37:06.591] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:37:08.041] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:10.191] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:37:11.712] INFO  [life] training: asking the trainer about Meditation
+[18:37:11.712] INFO  [zero4] [ACTION] npc_train start
+[18:37:11.712] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:37:11.712] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:37:11.727] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:37:13.049] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:18.053] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:19.765] LOG   [zero4] event action_result: npc_train timeout
+[18:37:23.101] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:24.925] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:37:26.440] INFO  [life] training: asking the trainer about Meditation
+[18:37:26.440] INFO  [zero4] [ACTION] npc_train start
+[18:37:26.440] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:37:26.440] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:37:26.456] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:37:28.108] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:33.108] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:34.485] LOG   [zero4] event action_result: npc_train timeout
+[18:37:38.156] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:39.674] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[18:37:39.674] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'mage' never answered about Meditation"
+[18:37:39.735] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer never answered"
+[18:37:39.735] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedTraining(Meditation BLOCKED 0.40) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:37:39.735] INFO  [life]   score=110.0
+[18:37:39.735] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[18:37:39.735] INFO  [life]   reason: Meditation 0.0 -> 40.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[18:37:39.735] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Meditation 0.0 -> 40.0)
+[18:37:41.175] INFO  [life] training: 'mage' is 2 tiles and 40 z away -- walking to them before speaking
+[18:37:41.175] INFO  [zero4] [travel] trainer -> (1487,1549) r=1 from (1488,1547)
+[18:37:41.175] LOG   [zero4] event travel_start: label='trainer' target=(1487,1549) radius=1 from=(1488,1547)
+[18:37:41.175] INFO  [zero4] [travel] mode walk             usable   <- chosen
+[18:37:41.175] INFO  [zero4] [travel] mode moongate         usable
+[18:37:41.175] INFO  [zero4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:37:41.175] INFO  [zero4] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:37:41.175] LOG   [zero4] event travel_mode: walk
+[18:37:41.175] INFO  [zero4] [travel] plan trainer: ok legs=1 ~2 tiles transit=0 nodes=0
+[18:37:41.237] INFO  [zero4] [action] goto finished at (1488,1547,70); target (1488,1547); ARRIVED (off by 0 tile(s))
+[18:37:41.237] LOG   [zero4] event goto_done: at=(1488,1547) target=(1488,1547) arrived=1 off=0
+[18:37:41.237] INFO  [zero4] [action] goto (1487,1549) from (1488,1547,70)
+[18:37:41.237] LOG   [zero4] event goto_start: target=(1487,1549) from=(1488,1547)
+[18:37:41.237] INFO  [zero4] [bot] running from (1488,1547,70) to (1487,1549)
+[18:37:41.237] INFO  [zero4] [bot] planning path to (1487,1549) in background
+[18:37:41.298] INFO  [zero4] [bot] replan to (1487,1549): 2 steps in 70.8us
+[18:37:41.712] INFO  [zero4] [travel] trainer ARRIVED at (1488,1548,70)
+[18:37:41.712] LOG   [zero4] event travel_done: label='trainer' ok=1 at=(1488,1548) legs=1 plans=1 why=''
+[18:37:42.416] INFO  [zero4] [bot] arrived at (1487,1549,70)
+[18:37:43.162] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:43.224] INFO  [life] training: asking the trainer about Meditation
+[18:37:43.224] INFO  [zero4] [ACTION] npc_train start
+[18:37:43.224] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:37:43.224] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:37:43.239] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:37:48.200] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:51.252] LOG   [zero4] event action_result: npc_train timeout
+[18:37:53.217] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:37:56.465] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[18:37:57.996] INFO  [life] training: asking the trainer about Meditation
+[18:37:57.996] INFO  [zero4] [ACTION] npc_train start
+[18:37:57.996] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:37:57.996] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:37:58.011] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:37:58.258] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:38:03.308] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:38:06.016] LOG   [zero4] event action_result: npc_train timeout
+[18:38:06.643] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:38:08.361] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:38:11.343] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[18:38:12.854] INFO  [life] training: asking the trainer about Meditation
+[18:38:12.854] INFO  [zero4] [ACTION] npc_train start
+[18:38:12.854] INFO  [zero4] [TRAIN] ask 0x00001145 say='Alenne train Meditation'
+[18:38:12.855] LOG   [zero4] event npc_train_ask: Alenne train Meditation
+[18:38:12.855] INFO  [zero4] [chat uni  ] : Alenne train Meditation
+[18:38:13.383] INFO  [zero4] [survival] hp 10/10 (100%) -> fight
+[18:38:18.424] INFO  [zero4] [survival] hp 10/10 (100%) -> fight

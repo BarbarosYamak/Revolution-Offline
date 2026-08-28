@@ -272,6 +272,11 @@ public:
     void   ExpireDanger(i64 nowMs, double floorHeat = 0.05);
 
     const KnownPlace*          BestPlace(const char* kind) const;
+    // Unlearn a place that turned out not to be one. Belief that survives
+    // being disproved is not memory, it is a loop: a "bank" recorded on the
+    // Britain dock sent one character on the same futile walk three times a
+    // minute, and it would have done so forever.
+    bool                       ForgetPlace(const char* kind, i32 x, i32 y);
     const KnownResourceSource* BestResource(const char* resource, i32 fromX, i32 fromY,
                                             i64 nowMs) const;
     const KnownSupplier*       BestSupplier(const char* need) const;

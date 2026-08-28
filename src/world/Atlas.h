@@ -71,6 +71,13 @@ public:
     // returned only when no guarded one exists at all.
     const wm::Place* NearestPlaceWithService(wm::Service s, i32 x, i32 y,
                                              i32 maxDist = 0) const;
+    // Same, skipping places already tried and found useless. Britain has
+    // three mage shops in this atlas and a character that struck out at the
+    // nearest has to be able to walk to the next one -- which is what a
+    // player does, and what "no known provider" wrongly reported before.
+    const wm::Place* NearestPlaceWithServiceSkipping(
+        wm::Service s, i32 x, i32 y,
+        const std::vector<std::string>& skipIds, i32 maxDist = 0) const;
     const wm::Place* NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,
                                               i32 maxDist = 0) const;
     const wm::Place* NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,

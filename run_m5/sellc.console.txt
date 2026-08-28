@@ -1,0 +1,232 @@
+[18:23:00.190] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='sellc'
+[18:23:00.192] LOG   [sellc] event session_start: text log opened
+[18:23:00.192] LOG   [sellc] event net_connect_begin: connect 127.0.0.1:2593
+[18:23:00.192] INFO  [sellc] [net] connecting to 127.0.0.1:2593 ...
+[18:23:00.193] LOG   [sellc] event net_connected: connect 127.0.0.1:2593
+[18:23:00.193] INFO  [sellc] [net] connected.
+[18:23:00.193] INFO  [sellc] [seed] sent 0x7F000001 (plaintext)
+[18:23:00.193] LOG   [sellc] event seed_out: 0x7F000001 hex=7f000001
+[18:23:00.193] INFO  [life] loaded persistent state for Bryn (1 places, 0 suppliers, 3 events, 0 prior sessions)
+[18:23:00.193] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:23:00.194] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:23:00.194] INFO  [sellc] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[18:23:00.236] INFO  [sellc] [0xA8] 1 server(s):
+[18:23:00.236] INFO  [sellc]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:23:00.250] INFO  [sellc] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:23:00.250] LOG   [sellc] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:23:00.250] INFO  [sellc] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:23:00.250] LOG   [sellc] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:23:00.251] INFO  [sellc] [0xB9] server features = 0x0005
+[18:23:00.251] INFO  [sellc] [0xA9] 5 slot(s) (populated 1):
+[18:23:00.251] INFO  [sellc]   [0] Bryn
+[18:23:00.251] INFO  [sellc]   [1] <empty>
+[18:23:00.251] INFO  [sellc]   [2] <empty>
+[18:23:00.251] INFO  [sellc]   [3] <empty>
+[18:23:00.251] INFO  [sellc]   [4] <empty>
+[18:23:00.251] INFO  [sellc] [ui] playing slot 0 ('Bryn')
+[18:23:00.267] INFO  [sellc] [0x1B] serial=0x00012E10 body=0x0190 pos=(1430,1690,0)
+[18:23:00.267] LOG   [sellc] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1430,1690,0)
+[18:23:00.267] INFO  [sellc] [0x20] player @(1430,1690,0) facing=7
+[18:23:00.267] INFO  [sellc] [0x55] login complete — entering world
+[18:23:00.267] LOG   [sellc] event in_world: 0x55 received
+[18:23:00.267] INFO  [sellc] [backpack] opening 0x40012DD6
+[18:23:00.267] INFO  [sellc] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:23:00.267] INFO  [sellc] [chat ascii] System: There is 1 other player here.
+[18:23:00.267] INFO  [sellc] [chat ascii] System: Last logged: 2026/08/28 18:20:08
+[18:23:00.267] INFO  [sellc] [chat ascii] System: You are under the protection of the city guards
+[18:23:00.270] INFO  [sellc] [action] requesting the skill list
+[18:23:00.270] INFO  [life] in world; asked the server for the skill list
+[18:23:00.270] INFO  [sellc] [0x24] open container 0x40012DD6 gump=60
+[18:23:00.270] INFO  [sellc] [0x3C] container contents: 10 item(s)
+[18:23:00.270] LOG   [sellc] event backpack_contents: serial=0x40012DD6 items=10
+[18:23:02.863] INFO  [sellc] [bot] world data loaded (0 blacklisted spot(s)).
+[18:23:02.863] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:23:02.863] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:23:02.863] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[18:23:02.863] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[18:23:02.863] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:23:02.863] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[18:23:02.863] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[18:23:02.863] INFO  [life]   position     persisted=1430,1690  server=1430,1690  -> server value accepted
+[18:23:02.863] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:23:02.863] INFO  [sellc] [survival] on
+[18:23:02.863] LOG   [sellc] event survival_mode: on
+[18:23:02.865] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:23:02.865] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:02.919] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[18:23:02.919] INFO  [life] needs considered: NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[18:23:02.919] INFO  [life]   score=67.5
+[18:23:02.919] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[18:23:02.919] INFO  [life]   reason: 15 x i_fish_big_3 spare, a load is 20, buyer: an NPC
+[18:23:02.919] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:23:02.919] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:02.919] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:02.919] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:02.919] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:02.919] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:04.535] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:04.535] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:04.535] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:04.535] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:04.535] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:06.098] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:06.098] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:06.098] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:06.098] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:06.098] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:07.666] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:07.666] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:07.666] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:07.666] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:07.666] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:07.913] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:09.246] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:09.246] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:09.246] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:09.246] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:09.246] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:10.860] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:10.860] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:10.860] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:10.861] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:10.861] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:11.978] INFO  [sellc] [chat ascii] System: Kestrel has arrived in Yew.
+[18:23:12.407] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:12.407] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:12.407] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:12.407] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:12.407] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:12.962] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:14.004] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:14.004] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:14.004] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:14.004] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:14.004] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:15.601] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:15.601] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:15.601] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:15.601] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:15.601] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:17.177] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:17.177] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:17.177] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:17.177] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:17.177] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:17.970] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:18.771] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:18.771] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:18.771] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:18.771] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:18.771] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:20.344] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:20.344] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:20.344] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:20.344] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:20.344] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:21.950] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:21.951] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:21.951] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:21.951] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:21.951] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:23.014] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:23.564] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:23.564] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:23.564] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:23.564] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:23.564] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:25.149] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:25.149] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:25.149] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:25.149] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:25.149] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:26.738] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:26.738] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:26.738] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:26.738] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:26.738] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:28.052] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:28.265] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:28.265] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:28.265] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:28.265] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:28.265] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:29.839] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:29.839] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:29.839] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:29.839] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:29.839] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:31.439] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:31.439] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:31.439] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:31.439] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:31.439] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:33.001] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:33.001] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:33.001] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:33.001] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:33.001] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:33.061] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:34.592] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:34.592] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:34.592] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:34.592] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:34.592] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:36.155] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:36.156] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:36.156] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:36.156] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:36.156] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:37.747] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:37.748] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:37.748] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:37.748] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:37.748] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:38.072] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:39.358] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:39.358] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:39.358] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:39.358] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:39.358] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:40.936] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:40.936] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:40.936] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:40.936] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:40.937] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:42.514] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:42.514] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:42.514] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:42.514] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:42.514] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:43.125] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:44.102] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:44.103] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:44.103] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:44.103] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:44.103] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:45.686] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:45.687] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:45.687] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:45.687] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:45.687] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:47.281] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:47.281] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:47.281] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:47.281] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:47.281] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:48.142] INFO  [sellc] [survival] hp 25/25 (100%) -> fight
+[18:23:48.877] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:48.877] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:48.877] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:48.877] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:48.877] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:50.465] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:50.465] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:50.465] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:50.465] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:50.465] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:52.045] INFO  [life] earn_gold: the stock is in the bank (15 i_fish_big_3) -- going to fetch it
+[18:23:52.045] INFO  [sellc] [travel] Britain banker -> (1425,1690) r=5 from (1430,1690)
+[18:23:52.045] LOG   [sellc] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1690)
+[18:23:52.045] INFO  [sellc] [travel] Britain banker ARRIVED at (1430,1690,0)
+[18:23:52.045] LOG   [sellc] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=0 plans=0 why=''
+[18:23:53.148] INFO  [sellc] [survival] hp 25/25 (100%) -> fight

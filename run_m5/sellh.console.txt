@@ -1,0 +1,209 @@
+[18:43:25.974] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='sellh'
+[18:43:25.975] LOG   [sellh] event session_start: text log opened
+[18:43:25.975] LOG   [sellh] event net_connect_begin: connect 127.0.0.1:2593
+[18:43:25.976] INFO  [sellh] [net] connecting to 127.0.0.1:2593 ...
+[18:43:25.977] LOG   [sellh] event net_connected: connect 127.0.0.1:2593
+[18:43:25.977] INFO  [sellh] [net] connected.
+[18:43:25.977] INFO  [sellh] [seed] sent 0x7F000001 (plaintext)
+[18:43:25.977] LOG   [sellh] event seed_out: 0x7F000001 hex=7f000001
+[18:43:25.977] INFO  [life] loaded persistent state for Bryn (1 places, 0 suppliers, 8 events, 0 prior sessions)
+[18:43:25.977] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:43:25.977] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:43:25.977] INFO  [sellh] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:43:25.993] INFO  [sellh] [0xA8] 1 server(s):
+[18:43:25.993] INFO  [sellh]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:43:26.009] INFO  [sellh] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:43:26.009] LOG   [sellh] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:43:26.009] INFO  [sellh] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:43:26.009] LOG   [sellh] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:43:26.009] INFO  [sellh] [0xB9] server features = 0x0005
+[18:43:26.009] INFO  [sellh] [0xA9] 5 slot(s) (populated 1):
+[18:43:26.009] INFO  [sellh]   [0] Bryn
+[18:43:26.009] INFO  [sellh]   [1] <empty>
+[18:43:26.009] INFO  [sellh]   [2] <empty>
+[18:43:26.009] INFO  [sellh]   [3] <empty>
+[18:43:26.009] INFO  [sellh]   [4] <empty>
+[18:43:26.009] INFO  [sellh] [ui] playing slot 0 ('Bryn')
+[18:43:26.025] INFO  [sellh] [0x1B] serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:43:26.025] LOG   [sellh] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:43:26.025] INFO  [sellh] [0x20] player @(1440,1754,-2) facing=0
+[18:43:26.025] INFO  [sellh] [0x55] login complete — entering world
+[18:43:26.025] LOG   [sellh] event in_world: 0x55 received
+[18:43:26.025] INFO  [sellh] [backpack] opening 0x40012DD6
+[18:43:26.025] INFO  [sellh] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:43:26.025] INFO  [sellh] [chat ascii] System: There is 1 other player here.
+[18:43:26.025] INFO  [sellh] [chat ascii] System: Last logged: 2026/08/28 18:38:42
+[18:43:26.025] INFO  [sellh] [chat ascii] System: You are under the protection of the city guards
+[18:43:26.029] INFO  [sellh] [action] requesting the skill list
+[18:43:26.029] INFO  [life] in world; asked the server for the skill list
+[18:43:26.029] INFO  [sellh] [0x24] open container 0x40012DD6 gump=60
+[18:43:26.029] INFO  [sellh] [0x3C] container contents: 11 item(s)
+[18:43:26.029] LOG   [sellh] event backpack_contents: serial=0x40012DD6 items=11
+[18:43:28.644] INFO  [sellh] [bot] world data loaded (0 blacklisted spot(s)).
+[18:43:28.645] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:43:28.645] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:43:28.645] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[18:43:28.645] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[18:43:28.645] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:43:28.645] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[18:43:28.645] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[18:43:28.645] INFO  [life]   position     persisted=1440,1754  server=1440,1754  -> server value accepted
+[18:43:28.645] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:43:28.645] INFO  [life]   restored objective KEPT: BANK (progress 86)
+[18:43:28.645] INFO  [sellh] [survival] on
+[18:43:28.645] LOG   [sellh] event survival_mode: on
+[18:43:28.646] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:43:28.647] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:28.699] INFO  [life] bank: returning to a remembered bank at 1430,1690 (trip 1)
+[18:43:28.699] INFO  [sellh] [travel] bank -> (1430,1690) r=2 from (1440,1754)
+[18:43:28.699] LOG   [sellh] event travel_start: label='bank' target=(1430,1690) radius=2 from=(1440,1754)
+[18:43:28.699] INFO  [sellh] [travel] mode moongate         usable   <- chosen
+[18:43:28.699] INFO  [sellh] [travel] mode walk             usable
+[18:43:28.699] INFO  [sellh] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:43:28.699] INFO  [sellh] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:43:28.699] LOG   [sellh] event travel_mode: moongate
+[18:43:28.699] INFO  [sellh] [travel] plan bank: ok legs=2 ~72 tiles transit=0 nodes=15
+[18:43:28.760] INFO  [sellh] [action] goto (1448,1718) from (1440,1754,-2)
+[18:43:28.760] LOG   [sellh] event goto_start: target=(1448,1718) from=(1440,1754)
+[18:43:28.760] INFO  [sellh] [bot] running from (1440,1754,-2) to (1448,1718)
+[18:43:28.760] INFO  [sellh] [bot] planning path to (1448,1718) in background
+[18:43:28.822] INFO  [sellh] [bot] replan to (1448,1718): 46 steps in 1159.9us
+[18:43:28.975] INFO  [sellh] [chat ascii] System: Ysolde has arrived in Britain.
+[18:43:33.674] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:38.698] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:42.649] INFO  [sellh] [bot] arrived at (1448,1718,0)
+[18:43:42.650] INFO  [sellh] [action] goto finished at (1448,1718,0); target (1448,1718); ARRIVED (off by 0 tile(s))
+[18:43:42.650] LOG   [sellh] event goto_done: at=(1448,1718) target=(1448,1718) arrived=1 off=0
+[18:43:42.650] INFO  [sellh] [action] goto (1430,1690) from (1448,1718,0)
+[18:43:42.650] LOG   [sellh] event goto_start: target=(1430,1690) from=(1448,1718)
+[18:43:42.650] INFO  [sellh] [bot] running from (1448,1718,0) to (1430,1690)
+[18:43:42.650] INFO  [sellh] [bot] planning path to (1430,1690) in background
+[18:43:42.710] INFO  [sellh] [bot] replan to (1430,1690): 35 steps in 2286.0us
+[18:43:43.748] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:48.750] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:49.701] INFO  [sellh] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[18:43:49.701] INFO  [sellh] [chat ascii] System: Opening door...
+[18:43:52.705] INFO  [sellh] [chat ascii] Lyndon: Hmm?
+[18:43:53.147] INFO  [sellh] [travel] bank ARRIVED at (1432,1690,0)
+[18:43:53.147] LOG   [sellh] event travel_done: label='bank' ok=1 at=(1432,1690) legs=2 plans=1 why=''
+[18:43:53.208] INFO  [life] bank: arrived at 1432,1690 -- asking who is here
+[18:43:53.208] INFO  [sellh] [action] scanning nearby mobiles for names
+[18:43:53.208] INFO  [sellh] [action] requested 2 paperdoll(s) for trade titles
+[18:43:53.223] INFO  [sellh] [mobiles] nearby (2):
+[18:43:53.223] INFO  [sellh]   Lyndon 0x0000124E
+[18:43:53.223] INFO  [sellh]   Hyman 0x00001033
+[18:43:53.223] INFO  [sellh] [0x20] player @(1432,1690,0) facing=7
+[18:43:53.223] INFO  [sellh] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[18:43:53.223] INFO  [sellh] [world] Lyndon, the minter is a banker at (1429,1687)
+[18:43:53.223] INFO  [sellh] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[18:43:53.223] INFO  [sellh] [world] Hyman, the banker is a banker at (1428,1685)
+[18:43:53.223] INFO  [sellh] [0x21] stale reject seq=41 (block already handled); pose resynced
+[18:43:53.776] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:55.737] INFO  [sellh] [ACTION] open_bank start
+[18:43:55.738] INFO  [sellh] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[18:43:55.738] INFO  [sellh] [chat uni  ] : bank
+[18:43:55.738] INFO  [sellh] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[18:43:55.738] INFO  [sellh] [chat ascii] System: You have 0 stones in your Bank Box
+[18:43:55.738] INFO  [sellh] [0x24] open container 0x40012E05 gump=74
+[18:43:55.738] INFO  [sellh] [STATE] bank container=0x40012E05 gump=0x004A
+[18:43:55.738] LOG   [sellh] event bank_opened: container recognised
+[18:43:55.738] INFO  [sellh] [ACTION_RESULT] open_bank success (1ms) bank container opened
+[18:43:55.738] LOG   [sellh] event action_result: open_bank success took=1ms bank container opened
+[18:43:55.738] INFO  [sellh] [0x3C] container contents: 0 item(s)
+[18:43:58.259] INFO  [life] banking 15 i_fish_big_3
+[18:43:58.259] INFO  [sellh] [ACTION] move_item start
+[18:43:58.259] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:43:58.259] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:43:58.259] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:43:58.259] INFO  [sellh] [ACTION_RESULT] move_item success (0ms) item is in the destination
+[18:43:58.259] LOG   [sellh] event action_result: move_item success took=0ms item is in the destination
+[18:43:58.288] INFO  [life] goal_changed=EARN_GOLD from=BANK reason="EARN_GOLD 67.5 superseded BANK 0.0"
+[18:43:58.289] INFO  [life] needs considered: NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:43:58.289] INFO  [life]   score=67.5
+[18:43:58.289] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[18:43:58.289] INFO  [life]   reason: 15 x i_fish_big_3 spare, a load is 20, buyer: an NPC
+[18:43:58.289] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:43:58.780] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:43:59.764] INFO  [life] earn_gold: withdrawing 15 i_fish_big_3 to sell
+[18:44:01.820] INFO  [life] earn_gold: looking for a 'fisher' to buy 15 i_fish_big_3 (trip 1)
+[18:44:01.821] INFO  [sellh] [travel] Britain fisherman -> (1438,1761) r=6 from (1432,1690)
+[18:44:01.821] LOG   [sellh] event travel_start: label='Britain fisherman' target=(1438,1761) radius=6 from=(1432,1690)
+[18:44:01.821] INFO  [sellh] [travel] mode moongate         usable   <- chosen
+[18:44:01.821] INFO  [sellh] [travel] mode walk             usable
+[18:44:01.821] INFO  [sellh] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:44:01.821] INFO  [sellh] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:44:01.821] LOG   [sellh] event travel_mode: moongate
+[18:44:01.821] INFO  [sellh] [travel] plan Britain fisherman: ok legs=3 ~96 tiles transit=0 nodes=23
+[18:44:01.882] INFO  [sellh] [action] goto finished at (1432,1690,0); target (1430,1690); stopped short (off by 2 tile(s))
+[18:44:01.883] LOG   [sellh] event goto_done: at=(1432,1690) target=(1430,1690) arrived=0 off=2
+[18:44:01.883] INFO  [sellh] [action] goto (1448,1718) from (1432,1690,0)
+[18:44:01.883] LOG   [sellh] event goto_start: target=(1448,1718) from=(1432,1690)
+[18:44:01.883] INFO  [sellh] [bot] running from (1432,1690,0) to (1448,1718)
+[18:44:01.883] INFO  [sellh] [bot] planning path to (1448,1718) in background
+[18:44:01.944] INFO  [sellh] [bot] replan to (1448,1718): 33 steps in 914.7us
+[18:44:03.807] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:44:05.130] INFO  [sellh] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[18:44:05.130] INFO  [sellh] [chat ascii] System: Opening door...
+[18:44:05.130] INFO  [sellh] [0x20] player @(1439,1693,0) facing=2
+[18:44:05.130] INFO  [sellh] [action] goto finished at (1439,1693,0); target (1448,1718); stopped short (off by 34 tile(s))
+[18:44:05.130] LOG   [sellh] event goto_done: at=(1439,1693) target=(1448,1718) arrived=0 off=34
+[18:44:06.372] INFO  [sellh] [action] goto (1448,1718) from (1439,1693,0)
+[18:44:06.372] LOG   [sellh] event goto_start: target=(1448,1718) from=(1439,1693)
+[18:44:06.373] INFO  [sellh] [bot] running from (1439,1693,0) to (1448,1718)
+[18:44:06.373] INFO  [sellh] [bot] planning path to (1448,1718) in background
+[18:44:06.433] INFO  [sellh] [bot] replan to (1448,1718): 25 steps in 800.8us
+[18:44:08.827] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:44:13.874] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:44:15.186] INFO  [sellh] [bot] arrived at (1448,1718,0)
+[18:44:15.187] INFO  [sellh] [action] goto finished at (1448,1718,0); target (1448,1718); ARRIVED (off by 0 tile(s))
+[18:44:15.187] LOG   [sellh] event goto_done: at=(1448,1718) target=(1448,1718) arrived=1 off=0
+[18:44:15.187] INFO  [sellh] [action] goto (1440,1754) from (1448,1718,0)
+[18:44:15.187] LOG   [sellh] event goto_start: target=(1440,1754) from=(1448,1718)
+[18:44:15.187] INFO  [sellh] [bot] running from (1448,1718,0) to (1440,1754)
+[18:44:15.187] INFO  [sellh] [bot] planning path to (1440,1754) in background
+[18:44:15.248] INFO  [sellh] [bot] replan to (1440,1754): 46 steps in 4787.4us
+[18:44:18.327] INFO  [life] goal_changed=BANK from=EARN_GOLD reason="BANK 238.1 superseded EARN_GOLD 67.5"
+[18:44:18.327] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:44:18.327] INFO  [life]   score=238.1
+[18:44:18.327] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:44:18.327] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:44:18.327] INFO  [life]   reason: already standing at the bank +60
+[18:44:18.327] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:44:18.327] INFO  [life] banking 15 i_fish_big_3
+[18:44:18.327] INFO  [sellh] [ACTION] move_item start
+[18:44:18.327] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:18.327] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:18.327] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:18.342] LOG   [sellh] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:44:18.895] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:44:19.827] INFO  [life] banking 15 i_fish_big_3
+[18:44:19.827] INFO  [sellh] [ACTION] move_item start
+[18:44:19.827] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:19.827] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:19.827] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:19.844] LOG   [sellh] event action_result: move_item server_failure took=16ms item landed in a different container
+[18:44:21.329] INFO  [life] banking 15 i_fish_big_3
+[18:44:21.329] INFO  [sellh] [ACTION] move_item start
+[18:44:21.329] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:21.329] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:21.329] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:21.344] LOG   [sellh] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:44:22.849] INFO  [life] banking 15 i_fish_big_3
+[18:44:22.849] INFO  [sellh] [ACTION] move_item start
+[18:44:22.849] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:22.849] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:22.849] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:22.849] LOG   [sellh] event action_result: move_item server_failure took=0ms item landed in a different container
+[18:44:23.952] INFO  [sellh] [survival] hp 25/25 (100%) -> fight
+[18:44:24.349] INFO  [life] banking 15 i_fish_big_3
+[18:44:24.349] INFO  [sellh] [ACTION] move_item start
+[18:44:24.349] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:24.349] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:24.349] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:24.364] LOG   [sellh] event action_result: move_item server_failure took=15ms item landed in a different container
+[18:44:25.899] INFO  [life] banking 15 i_fish_big_3
+[18:44:25.899] INFO  [sellh] [ACTION] move_item start
+[18:44:25.899] INFO  [sellh] [ACTION] move_item serial=0x4001032F amount=15 dest=0x40012E05
+[18:44:25.899] INFO  [sellh] [ITEM] drag serial=0x4001032F amount=15
+[18:44:25.899] INFO  [sellh] [ITEM] drop container=0x40012E05
+[18:44:25.915] LOG   [sellh] event action_result: move_item server_failure took=16ms item landed in a different container

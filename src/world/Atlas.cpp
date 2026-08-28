@@ -378,6 +378,29 @@ const Place* Atlas::NearestPlaceWithService(wm::Service s, i32 x, i32 y,
     return best;
 }
 
+const Place* Atlas::NearestPlaceWithServiceSkipping(
+    wm::Service s, i32 x, i32 y, const std::vector<std::string>& skipIds,
+    i32 maxDist) const {
+    const Place* best = nullptr;
+    i32 bestD = 0;
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            bool skipped = false;
+            for (const std::string& id : skipIds) {
+                if (p.id == id) { skipped = true; break; }
+            }
+            if (skipped) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (maxDist > 0 && d > maxDist) continue;
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
+    }
+    return best;
+}
+
 const Place* Atlas::NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,
                                              i32 maxDist) const {
     const Place* best = nullptr;

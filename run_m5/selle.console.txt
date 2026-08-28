@@ -1,0 +1,884 @@
+[18:29:04.319] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='selle'
+[18:29:04.321] LOG   [selle] event session_start: text log opened
+[18:29:04.321] LOG   [selle] event net_connect_begin: connect 127.0.0.1:2593
+[18:29:04.321] INFO  [selle] [net] connecting to 127.0.0.1:2593 ...
+[18:29:04.322] LOG   [selle] event net_connected: connect 127.0.0.1:2593
+[18:29:04.322] INFO  [selle] [net] connected.
+[18:29:04.322] INFO  [selle] [seed] sent 0x7F000001 (plaintext)
+[18:29:04.322] LOG   [selle] event seed_out: 0x7F000001 hex=7f000001
+[18:29:04.322] INFO  [life] loaded persistent state for Bryn (11 places, 0 suppliers, 3 events, 0 prior sessions)
+[18:29:04.322] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:29:04.323] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:29:04.323] INFO  [selle] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 22 min)
+[18:29:04.330] INFO  [selle] [0xA8] 1 server(s):
+[18:29:04.330] INFO  [selle]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:29:04.345] INFO  [selle] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:29:04.345] LOG   [selle] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:29:04.345] INFO  [selle] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:29:04.345] LOG   [selle] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:29:04.346] INFO  [selle] [0xB9] server features = 0x0005
+[18:29:04.346] INFO  [selle] [0xA9] 5 slot(s) (populated 1):
+[18:29:04.346] INFO  [selle]   [0] Bryn
+[18:29:04.346] INFO  [selle]   [1] <empty>
+[18:29:04.346] INFO  [selle]   [2] <empty>
+[18:29:04.346] INFO  [selle]   [3] <empty>
+[18:29:04.346] INFO  [selle]   [4] <empty>
+[18:29:04.346] INFO  [selle] [ui] playing slot 0 ('Bryn')
+[18:29:04.361] INFO  [selle] [0x1B] serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:29:04.361] LOG   [selle] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1440,1754,-2)
+[18:29:04.361] INFO  [selle] [0x20] player @(1440,1754,-2) facing=0
+[18:29:04.361] INFO  [selle] [0x55] login complete — entering world
+[18:29:04.361] LOG   [selle] event in_world: 0x55 received
+[18:29:04.361] INFO  [selle] [backpack] opening 0x40012DD6
+[18:29:04.361] INFO  [selle] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:29:04.361] INFO  [selle] [chat ascii] System: There is 1 other player here.
+[18:29:04.361] INFO  [selle] [chat ascii] System: Last logged: 2026/08/28 18:24:33
+[18:29:04.361] INFO  [selle] [chat ascii] System: You are under the protection of the city guards
+[18:29:04.365] INFO  [selle] [action] requesting the skill list
+[18:29:04.365] INFO  [life] in world; asked the server for the skill list
+[18:29:04.365] INFO  [selle] [0x24] open container 0x40012DD6 gump=60
+[18:29:04.365] INFO  [selle] [0x3C] container contents: 11 item(s)
+[18:29:04.365] LOG   [selle] event backpack_contents: serial=0x40012DD6 items=11
+[18:29:06.950] INFO  [selle] [bot] world data loaded (0 blacklisted spot(s)).
+[18:29:06.950] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:29:06.950] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[18:29:06.950] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[18:29:06.950] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[18:29:06.950] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:29:06.950] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[18:29:06.950] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[18:29:06.950] INFO  [life]   position     persisted=1440,1754  server=1440,1754  -> server value accepted
+[18:29:06.950] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:29:06.950] INFO  [life]   restored objective KEPT: BANK (progress 105)
+[18:29:06.950] INFO  [selle] [survival] on
+[18:29:06.950] LOG   [selle] event survival_mode: on
+[18:29:06.952] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:29:06.952] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:07.004] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 1)
+[18:29:07.004] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:29:07.004] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:29:07.004] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:07.004] INFO  [selle] [travel] mode moongate         usable
+[18:29:07.004] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:07.004] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:07.004] LOG   [selle] event travel_mode: walk
+[18:29:07.004] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:07.066] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:07.066] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:07.066] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:07.066] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:07.189] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:07.189] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:07.378] INFO  [selle] [chat ascii] System: Ysolde has arrived in Yew.
+[18:29:08.419] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:08.419] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:08.419] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:08.419] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:08.541] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:08.541] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:09.770] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:09.770] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:09.770] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:09.770] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:09.892] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:09.892] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:11.111] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:11.111] INFO  [selle] [travel] mode moongate         usable
+[18:29:11.111] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:11.111] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:11.111] LOG   [selle] event travel_mode: walk
+[18:29:11.111] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:11.972] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:12.644] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:12.644] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:12.644] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:12.644] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:12.765] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:12.765] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:13.991] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:13.991] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:13.991] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:13.991] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:14.113] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:14.113] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:15.325] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:15.325] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:15.325] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:15.325] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:15.448] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:15.448] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:16.675] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:16.675] INFO  [selle] [travel] mode moongate         usable
+[18:29:16.675] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:16.675] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:16.675] LOG   [selle] event travel_mode: walk
+[18:29:16.675] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:17.012] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:19.680] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:19.680] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:19.680] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:19.680] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:19.805] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:19.805] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:21.020] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:21.020] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:21.020] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:21.020] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:21.110] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:21.110] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:22.028] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:22.317] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:22.317] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:22.317] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:22.317] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:22.439] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:22.439] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:23.660] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:23.660] INFO  [selle] [travel] mode moongate         usable
+[18:29:23.660] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:23.660] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:23.660] LOG   [selle] event travel_mode: walk
+[18:29:23.660] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:27.062] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:28.193] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:28.193] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:28.193] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:28.193] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:28.254] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:28.254] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:29.480] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:29.480] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:29.480] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:29.480] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:29.542] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:29.542] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:30.800] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:30.800] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:30.800] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:30.800] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:30.921] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:30.921] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:30.921] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:29:30.921] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:29:30.982] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:29:30.982] INFO  [selle] [action] scanning nearby mobiles for names
+[18:29:30.982] INFO  [selle] [action] requested 2 paperdoll(s) for trade titles
+[18:29:30.997] INFO  [selle] [mobiles] nearby (6):
+[18:29:30.997] INFO  [selle]   Rat 0x00000FAB
+[18:29:30.997] INFO  [selle]   Rat 0x00000A46
+[18:29:30.997] INFO  [selle]   Lulu 0x00000A87
+[18:29:30.997] INFO  [selle]   Kintan 0x00000AAB
+[18:29:30.997] INFO  [selle]   Shika 0x00000A93
+[18:29:30.997] INFO  [selle]   Cat 0x00002663
+[18:29:30.997] INFO  [selle] [0x20] player @(1440,1754,-2) facing=5
+[18:29:30.997] INFO  [selle] [0x88] paperdoll 0x00000AAB: "Kintan, the sailor"
+[18:29:30.997] INFO  [selle] [0x20] player @(1440,1754,-2) facing=6
+[18:29:30.997] INFO  [selle] [0x88] paperdoll 0x00000A87: "Lulu, the sailor"
+[18:29:32.102] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:33.497] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 2)
+[18:29:33.497] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:29:33.497] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:29:33.497] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:33.497] INFO  [selle] [travel] mode moongate         usable
+[18:29:33.497] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:33.497] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:33.498] LOG   [selle] event travel_mode: walk
+[18:29:33.498] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:33.558] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:33.558] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:33.558] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:33.558] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:33.619] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:33.619] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:34.843] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:34.843] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:34.843] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:34.843] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:34.965] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:34.965] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:36.192] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:36.192] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:36.192] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:36.192] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:36.251] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:36.251] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:37.123] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:37.496] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:37.496] INFO  [selle] [travel] mode moongate         usable
+[18:29:37.496] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:37.496] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:37.496] LOG   [selle] event travel_mode: walk
+[18:29:37.496] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:39.056] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:39.056] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:39.056] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:39.056] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:39.179] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:39.179] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:40.435] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:40.435] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:40.435] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:40.435] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:40.497] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:40.497] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:41.721] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:41.721] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:41.722] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:41.722] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:41.845] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:41.845] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:42.150] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:43.081] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:43.081] INFO  [selle] [travel] mode moongate         usable
+[18:29:43.081] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:43.081] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:43.081] LOG   [selle] event travel_mode: walk
+[18:29:43.081] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:46.083] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:46.083] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:46.083] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:46.083] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:46.207] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:46.207] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:47.156] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:47.463] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:47.463] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:47.463] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:47.463] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:47.588] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:47.588] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:48.816] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:48.816] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:48.816] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:48.816] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:48.939] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:48.939] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:50.185] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:29:50.185] INFO  [selle] [travel] mode moongate         usable
+[18:29:50.185] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:29:50.185] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:29:50.185] LOG   [selle] event travel_mode: walk
+[18:29:50.185] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:29:52.170] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:54.712] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:54.712] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:54.712] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:54.712] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:54.833] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:54.833] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:56.056] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:56.057] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:56.057] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:56.057] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:56.118] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:56.118] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:57.188] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:29:57.370] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:29:57.370] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:29:57.370] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:29:57.370] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:29:57.492] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:29:57.493] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:29:57.493] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:29:57.493] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:29:57.553] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:29:57.553] INFO  [selle] [action] scanning nearby mobiles for names
+[18:29:57.568] INFO  [selle] [mobiles] nearby (5):
+[18:29:57.568] INFO  [selle]   Rat 0x00000A46
+[18:29:57.568] INFO  [selle]   Rat 0x00000FAB
+[18:29:57.568] INFO  [selle]   Lulu 0x00000A87
+[18:29:57.568] INFO  [selle]   Kintan 0x00000AAB
+[18:29:57.568] INFO  [selle]   Shika 0x00000A93
+[18:30:00.067] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 3)
+[18:30:00.067] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:30:00.067] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:30:00.067] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:00.067] INFO  [selle] [travel] mode moongate         usable
+[18:30:00.067] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:00.067] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:00.067] LOG   [selle] event travel_mode: walk
+[18:30:00.067] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:00.128] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:00.128] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:00.128] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:00.128] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:00.204] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:00.204] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:01.442] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:01.442] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:01.442] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:01.442] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:01.504] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:01.504] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:02.224] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:02.714] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:02.714] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:02.714] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:02.714] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:02.836] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:02.836] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:04.075] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:04.075] INFO  [selle] [travel] mode moongate         usable
+[18:30:04.075] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:04.075] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:04.075] LOG   [selle] event travel_mode: walk
+[18:30:04.075] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:05.617] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:05.617] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:05.617] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:05.617] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:05.678] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:05.678] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:06.926] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:06.926] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:06.926] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:06.926] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:06.989] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:30:06.989] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:06.989] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:07.234] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:08.210] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:08.210] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:08.210] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:08.210] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:08.331] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:08.331] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:09.547] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:09.547] INFO  [selle] [travel] mode moongate         usable
+[18:30:09.547] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:09.547] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:09.547] LOG   [selle] event travel_mode: walk
+[18:30:09.547] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:12.290] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:12.599] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:12.599] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:12.599] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:12.599] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:12.660] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:12.660] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:13.920] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:13.920] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:13.920] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:13.920] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:14.044] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:14.044] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:15.298] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:15.298] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:15.298] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:15.298] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:15.421] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:15.421] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:16.668] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:16.668] INFO  [selle] [travel] mode moongate         usable
+[18:30:16.668] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:16.668] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:16.668] LOG   [selle] event travel_mode: walk
+[18:30:16.668] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:17.344] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:21.209] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:21.209] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:21.209] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:21.209] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:21.331] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:21.331] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:22.368] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:22.536] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:22.536] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:22.536] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:22.536] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:22.658] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:22.658] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:23.886] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:23.886] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:23.886] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:23.886] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:24.007] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:24.007] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:24.007] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:30:24.007] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:30:24.069] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:30:24.069] INFO  [selle] [action] scanning nearby mobiles for names
+[18:30:24.069] INFO  [selle] [mobiles] nearby (5):
+[18:30:24.069] INFO  [selle]   Rat 0x00000A46
+[18:30:24.069] INFO  [selle]   Lulu 0x00000A87
+[18:30:24.069] INFO  [selle]   Kintan 0x00000AAB
+[18:30:24.069] INFO  [selle]   Rat 0x00000FAB
+[18:30:24.069] INFO  [selle]   Shika 0x00000A93
+[18:30:26.579] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 4)
+[18:30:26.579] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:30:26.579] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:30:26.579] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:26.579] INFO  [selle] [travel] mode moongate         usable
+[18:30:26.579] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:26.579] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:26.579] LOG   [selle] event travel_mode: walk
+[18:30:26.579] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:26.642] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:26.642] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:26.642] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:26.642] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:26.764] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:26.764] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:27.394] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:27.990] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:27.990] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:27.990] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:27.990] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:28.111] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:28.111] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:29.366] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:29.366] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:29.366] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:29.366] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:29.489] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:29.489] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:30.744] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:30.744] INFO  [selle] [travel] mode moongate         usable
+[18:30:30.744] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:30.744] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:30.744] LOG   [selle] event travel_mode: walk
+[18:30:30.744] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:32.262] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:32.262] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:32.262] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:32.262] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:32.324] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:32.324] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:32.447] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:33.529] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:33.529] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:33.529] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:33.529] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:33.649] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:33.649] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:34.856] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:34.856] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:34.856] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:34.856] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:34.978] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:34.978] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:36.206] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:36.206] INFO  [selle] [travel] mode moongate         usable
+[18:30:36.206] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:36.206] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:36.206] LOG   [selle] event travel_mode: walk
+[18:30:36.206] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:37.448] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:39.234] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:39.234] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:39.234] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:39.234] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:39.356] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:39.356] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:40.562] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:40.562] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:40.562] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:40.562] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:40.623] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:40.623] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:41.869] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:41.869] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:41.869] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:41.869] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:41.991] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:41.991] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:42.482] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:43.216] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:30:43.216] INFO  [selle] [travel] mode moongate         usable
+[18:30:43.216] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:30:43.216] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:30:43.216] LOG   [selle] event travel_mode: walk
+[18:30:43.216] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:30:47.515] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:47.759] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:47.759] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:47.759] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:47.759] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:47.881] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:47.881] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:49.136] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:49.136] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:49.136] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:49.136] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:49.257] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:49.257] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:50.480] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:30:50.480] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:30:50.480] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:30:50.480] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:30:50.602] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:30:50.602] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:30:50.602] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:30:50.602] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:30:50.662] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:30:50.663] INFO  [selle] [action] scanning nearby mobiles for names
+[18:30:50.663] INFO  [selle] [mobiles] nearby (5):
+[18:30:50.663] INFO  [selle]   Rat 0x00000A46
+[18:30:50.663] INFO  [selle]   Lulu 0x00000A87
+[18:30:50.663] INFO  [selle]   Kintan 0x00000AAB
+[18:30:50.663] INFO  [selle]   Shika 0x00000A93
+[18:30:50.663] INFO  [selle]   Rat 0x00000FAB
+[18:30:52.560] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:30:53.173] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[18:30:53.235] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[18:30:53.235] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedGold(sell surplus 0.45) NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:30:53.235] INFO  [life]   score=178.1
+[18:30:53.235] INFO  [life]   reason: NeedBank urgency 0.74 x 240 = 178.1
+[18:30:53.235] INFO  [life]   reason: weight=126/127 (99%) logs=0
+[18:30:53.235] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[18:30:57.584] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:02.589] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:07.038] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:31:07.601] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:12.658] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:17.681] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:22.685] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:23.175] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 1)
+[18:31:23.175] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:31:23.175] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:31:23.175] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:23.175] INFO  [selle] [travel] mode moongate         usable
+[18:31:23.175] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:23.175] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:23.175] LOG   [selle] event travel_mode: walk
+[18:31:23.175] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:23.237] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:23.237] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:23.237] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:23.237] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:23.298] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:23.298] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:24.526] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:24.526] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:24.526] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:24.526] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:24.587] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:24.587] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:25.816] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:25.816] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:25.816] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:25.816] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:25.940] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:25.940] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:27.148] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:27.148] INFO  [selle] [travel] mode moongate         usable
+[18:31:27.148] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:27.148] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:27.148] LOG   [selle] event travel_mode: walk
+[18:31:27.148] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:27.700] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:28.689] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:28.689] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:28.689] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:28.689] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:28.810] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:28.810] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:30.033] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:30.033] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:30.033] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:30.033] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:30.156] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:30.156] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:31.408] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:31.408] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:31.408] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:31.408] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:31.530] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:31.530] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:32.735] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:32.735] INFO  [selle] [travel] mode moongate         usable
+[18:31:32.735] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:32.735] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:32.735] LOG   [selle] event travel_mode: walk
+[18:31:32.735] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:32.735] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:35.742] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:35.742] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:35.742] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:35.742] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:35.834] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:35.834] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:37.045] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:37.045] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:37.045] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:37.045] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:37.168] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:37.168] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:37.780] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:38.384] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:38.384] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:38.384] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:38.384] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:38.507] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:38.507] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:39.729] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:39.729] INFO  [selle] [travel] mode moongate         usable
+[18:31:39.729] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:39.729] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:39.729] LOG   [selle] event travel_mode: walk
+[18:31:39.729] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:42.836] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:44.263] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:44.263] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:44.263] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:44.263] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:44.324] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:44.324] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:45.566] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:45.566] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:45.566] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:45.566] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:45.688] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:45.689] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:46.899] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:46.899] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:46.899] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:46.899] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:47.022] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:47.022] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:47.022] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:31:47.022] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:31:47.022] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:31:47.022] INFO  [selle] [action] scanning nearby mobiles for names
+[18:31:47.037] INFO  [selle] [mobiles] nearby (5):
+[18:31:47.037] INFO  [selle]   Rat 0x00000A46
+[18:31:47.037] INFO  [selle]   Lulu 0x00000A87
+[18:31:47.037] INFO  [selle]   Kintan 0x00000AAB
+[18:31:47.037] INFO  [selle]   Shika 0x00000A93
+[18:31:47.037] INFO  [selle]   Rat 0x00000FAB
+[18:31:47.897] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:49.557] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 2)
+[18:31:49.557] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:31:49.557] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:31:49.557] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:49.557] INFO  [selle] [travel] mode moongate         usable
+[18:31:49.557] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:49.557] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:49.557] LOG   [selle] event travel_mode: walk
+[18:31:49.557] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:49.618] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:49.618] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:49.618] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:49.618] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:49.739] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:49.739] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:50.968] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:50.968] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:50.968] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:50.968] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:51.092] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:51.092] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:52.327] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:52.327] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:52.327] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:52.327] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:52.448] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:52.448] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:52.954] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:53.688] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:53.688] INFO  [selle] [travel] mode moongate         usable
+[18:31:53.688] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:53.688] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:53.688] LOG   [selle] event travel_mode: walk
+[18:31:53.688] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:31:55.241] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:55.241] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:55.241] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:55.241] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:55.363] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:55.363] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:56.574] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:56.574] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:56.574] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:56.574] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:56.697] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:56.697] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:57.938] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:31:57.938] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:31:57.938] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:31:57.938] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:31:57.999] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:31:57.999] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:31:57.999] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:31:59.230] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:31:59.231] INFO  [selle] [travel] mode moongate         usable
+[18:31:59.231] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:31:59.231] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:31:59.231] LOG   [selle] event travel_mode: walk
+[18:31:59.231] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:02.280] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:02.280] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:02.280] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:02.280] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:02.340] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:02.340] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:03.014] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:03.566] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:03.566] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:03.566] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:03.566] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:03.688] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:03.688] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:04.934] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:04.934] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:04.934] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:04.934] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:05.055] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:05.055] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:06.279] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:32:06.279] INFO  [selle] [travel] mode moongate         usable
+[18:32:06.279] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:32:06.279] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:32:06.279] LOG   [selle] event travel_mode: walk
+[18:32:06.279] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:07.064] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:32:08.041] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:10.801] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:10.801] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:10.801] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:10.801] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:10.924] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:10.924] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:12.149] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:12.149] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:12.149] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:12.149] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:12.273] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:12.273] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:13.069] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:13.529] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:13.529] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:13.529] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:13.529] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:13.651] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:13.651] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:13.651] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:32:13.651] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:32:13.712] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:32:13.712] INFO  [selle] [action] scanning nearby mobiles for names
+[18:32:13.728] INFO  [selle] [mobiles] nearby (6):
+[18:32:13.728] INFO  [selle]   Rat 0x00000A46
+[18:32:13.728] INFO  [selle]   Lulu 0x00000A87
+[18:32:13.728] INFO  [selle]   Kintan 0x00000AAB
+[18:32:13.728] INFO  [selle]   Shika 0x00000A93
+[18:32:13.728] INFO  [selle]   Rat 0x00000FAB
+[18:32:13.728] INFO  [selle]   Cat 0x00002663
+[18:32:16.245] INFO  [life] bank: returning to a remembered bank at 1435,1754 (trip 3)
+[18:32:16.245] INFO  [selle] [travel] bank -> (1435,1754) r=2 from (1440,1754)
+[18:32:16.245] LOG   [selle] event travel_start: label='bank' target=(1435,1754) radius=2 from=(1440,1754)
+[18:32:16.245] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:32:16.245] INFO  [selle] [travel] mode moongate         usable
+[18:32:16.245] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:32:16.245] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:32:16.245] LOG   [selle] event travel_mode: walk
+[18:32:16.245] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:16.307] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:16.307] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:16.307] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:16.307] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:16.429] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:16.429] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:17.685] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:17.685] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:17.685] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:17.685] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:17.746] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:17.746] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:18.115] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:18.976] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:18.977] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:18.977] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:18.977] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:19.100] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:19.100] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:20.350] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:32:20.350] INFO  [selle] [travel] mode moongate         usable
+[18:32:20.350] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:32:20.350] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:32:20.350] LOG   [selle] event travel_mode: walk
+[18:32:20.350] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:21.883] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:21.883] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:21.883] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:21.883] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:22.005] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:22.005] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:23.167] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:23.229] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:23.229] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:23.229] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:23.229] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:23.353] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:23.353] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:24.604] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:24.604] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:24.605] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:24.605] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:24.726] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:24.726] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:25.948] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:32:25.948] INFO  [selle] [travel] mode moongate         usable
+[18:32:25.948] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:32:25.948] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:32:25.948] LOG   [selle] event travel_mode: walk
+[18:32:25.948] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:28.213] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:29.008] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:29.008] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:29.008] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:29.008] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:29.131] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:29.131] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:30.384] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:30.384] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:30.384] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:30.384] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:30.507] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:30.507] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:31.746] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:31.746] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:31.746] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:31.746] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:31.868] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:31.868] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:33.078] INFO  [selle] [travel] mode walk             usable   <- chosen
+[18:32:33.078] INFO  [selle] [travel] mode moongate         usable
+[18:32:33.078] INFO  [selle] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:32:33.078] INFO  [selle] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:32:33.078] LOG   [selle] event travel_mode: walk
+[18:32:33.078] INFO  [selle] [travel] plan bank: ok legs=1 ~5 tiles transit=0 nodes=0
+[18:32:33.264] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:37.637] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:37.637] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:37.637] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:37.637] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:37.760] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:37.760] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:38.293] INFO  [selle] [survival] hp 25/25 (100%) -> fight
+[18:32:38.970] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:38.970] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:38.970] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:38.970] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:39.093] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:39.093] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:40.348] INFO  [selle] [action] goto (1435,1754) from (1440,1754,-2)
+[18:32:40.348] LOG   [selle] event goto_start: target=(1435,1754) from=(1440,1754)
+[18:32:40.348] INFO  [selle] [bot] running from (1440,1754,-2) to (1435,1754)
+[18:32:40.348] INFO  [selle] [bot] planning path to (1435,1754) in background
+[18:32:40.471] INFO  [selle] [action] goto finished at (1440,1754,-2); target (1435,1754); stopped short (off by 5 tile(s))
+[18:32:40.471] LOG   [selle] event goto_done: at=(1440,1754) target=(1435,1754) arrived=0 off=5
+[18:32:40.471] INFO  [selle] [travel] bank ARRIVED at (1440,1754,-2) -- arrived nearby; the destination tile was not free
+[18:32:40.471] LOG   [selle] event travel_done: label='bank' ok=1 at=(1440,1754) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[18:32:40.532] INFO  [life] bank: arrived at 1440,1754 -- asking who is here
+[18:32:40.532] INFO  [selle] [action] scanning nearby mobiles for names
+[18:32:40.532] INFO  [selle] [action] requested 1 paperdoll(s) for trade titles
+[18:32:40.547] INFO  [selle] [mobiles] nearby (6):
+[18:32:40.547] INFO  [selle]   Rat 0x00000A46
+[18:32:40.548] INFO  [selle]   Lulu 0x00000A87
+[18:32:40.548] INFO  [selle]   Rat 0x00000FAB
+[18:32:40.548] INFO  [selle]   Shika 0x00000A93
+[18:32:40.548] INFO  [selle]   Kintan 0x00000AAB
+[18:32:40.548] INFO  [selle]   Cat 0x00002663
+[18:32:40.548] INFO  [selle] [0x20] player @(1440,1754,-2) facing=4
+[18:32:40.548] INFO  [selle] [0x88] paperdoll 0x00000A93: "Shika, the fisherwoman"
+[18:32:40.548] INFO  [selle] [world] Shika, the fisherwoman is a fisherman at (1439,1764)

@@ -318,6 +318,12 @@ public:
     // the guildmaster keeps no shop, so a bot shopping for reagents would
     // stand in front of him saying "buy" to no answer.
     u32  NearestMobileWithTrade(const char* trade) const;
+    // Same scan, skipping mobiles already tried and found useless. Sphere
+    // gives no way to ask "will you teach me" except to ask, and some NPCs of
+    // the right trade simply never answer -- so the only way past one is to go
+    // and find another, which is what a player does.
+    u32  NearestMobileWithTrade(const char* trade,
+                                const std::vector<u32>& skip) const;
     // "<name> <phrase>" when the mobile's paperdoll name is known, so exactly
     // one NPC in earshot answers (Source-X CClientEvent.cpp:1962).
     std::string AddressMobile(u32 serial, const char* phrase) const;
@@ -471,6 +477,12 @@ public:
     // `regionHint` narrows the search to one region ("the bank in Yew");
     // nullptr means the nearest one anywhere.
     bool TravelToService(wm::Service s, const char* regionHint = nullptr);
+    // Travel to a provider of this service, ignoring mobiles already tried
+    // (`skipSerials`) and shops already tried (`skipPlaceIds`, filled in with
+    // the place actually chosen so the caller can advance next time).
+    bool TravelToServiceSkipping(wm::Service s, const char* regionHint,
+                                 const std::vector<u32>& skipSerials,
+                                 std::vector<std::string>* skipPlaceIds);
     bool TravelToResource(wm::ResourceKind r);
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.

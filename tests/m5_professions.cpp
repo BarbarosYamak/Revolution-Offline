@@ -510,10 +510,44 @@ void TestTierIsObservedNotAssigned() {
 
 }  // namespace
 
+// --------------------------------------------------------------------------
+// THE THIRD CREATION SLOT. Source-X randomises every skill at creation into
+// [0.0, 19.9) (CChar.cpp:1768-1772, sphere.ini MaxBaseSkill=200) and then
+// overwrites the three requested slots, so the only skill a new character can
+// hold at LITERALLY 0.0 is whichever one occupies this slot. Naming a plan
+// skill there is what makes "learns a previously-zero skill" reachable at all.
+//
+// Two things must stay true or it stops being honest:
+//   * the zero skill is never one of the two 50.0 skills -- that would throw
+//     away half the creation budget;
+//   * it is a skill this build actually MEANS to train, never a filler.
+// The [NEWBIE] constraint (a skill named here must grant no kit) cannot be
+// asserted without the shard's scripts, so it is recorded in professions.h
+// and checked by hand -- Meditation is the only qualifying plan skill.
+void TestTheZeroSkillSlot() {
+    Section("creation: the third slot starts a real plan skill at 0.0");
+    int withZero = 0;
+    for (const prof::Profession& p : prof::All()) {
+        if (p.startZeroSkill < 0) continue;
+        ++withZero;
+        Check(p.startZeroSkill != p.startSkillA &&
+              p.startZeroSkill != p.startSkillB,
+              "the zero skill is not one of the two starting fifties");
+        bool planned = false;
+        for (const prof::SkillTargetSpec& t : p.targets) {
+            if (t.skillId == p.startZeroSkill) { planned = true; break; }
+        }
+        Check(planned, "the zero skill is a skill this build intends to earn");
+    }
+    Check(withZero > 0,
+          "at least one build starts a skill from literally nothing");
+}
+
 int main() {
     std::printf("m5_professions\n");
     TestEveryEntryIsLegal();
     TestCreationFitsTheServer();
+    TestTheZeroSkillSlot();
     TestBuildsAreEarnedNotGranted();
     TestRefusals();
     TestArchetypesDiffer();

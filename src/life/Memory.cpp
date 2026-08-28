@@ -238,6 +238,17 @@ const KnownPlace* Memory::BestPlace(const char* kind) const {
     return best;
 }
 
+bool Memory::ForgetPlace(const char* kind, i32 x, i32 y) {
+    if (!kind) return false;
+    for (usize i = 0; i < places_.size(); ++i) {
+        if (places_[i].kind != kind) continue;
+        if (places_[i].x != x || places_[i].y != y) continue;
+        places_.erase(places_.begin() + static_cast<std::ptrdiff_t>(i));
+        return true;
+    }
+    return false;
+}
+
 const KnownResourceSource* Memory::BestResource(const char* resource, i32 fromX,
                                                 i32 fromY, i64 nowMs) const {
     if (!resource) return nullptr;

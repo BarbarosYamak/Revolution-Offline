@@ -219,6 +219,13 @@ bool Client::TravelToRegion(const char* nameOrId) {
 }
 
 bool Client::TravelToService(wm::Service s, const char* regionHint) {
+    static const std::vector<u32> kNoSerials;
+    return TravelToServiceSkipping(s, regionHint, kNoSerials, nullptr);
+}
+
+bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
+                                     const std::vector<u32>& skipSerials,
+                                     std::vector<std::string>* skipPlaceIds) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();
         return false;
@@ -229,6 +236,17 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
     // where the shard's spawner table says the shop is.
     if (const travel::ServiceSighting* seen =
             knowledge_.RecentService(s, NowMs(), kServiceSightingMaxAgeMs)) {
+        bool skipped = false;
+        for (u32 sk : skipSerials) {
+            if (sk == seen->serial) { skipped = true; break; }
+        }
+        if (skipped) {
+            // The one this character has actually seen is the one it has
+            // already given up on. Fall through to the atlas rather than walk
+            // back to it -- otherwise a sighting pins the character to a
+            // single NPC for the whole session.
+            goto try_atlas;
+        }
         travelEntitySerial_ = seen->serial;
         travelEntityWithin_ = 2;
         char label[96];
@@ -237,17 +255,21 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
                            seen->z);
     }
 
+try_atlas:
     // HOME FIRST, then anywhere. A region hint that finds nothing must not
     // strand the character: a mage living in Moonglow still needs a banker
     // when it is standing in Britain.
     const wm::Place* p = nullptr;
-    if (regionHint && *regionHint) {
+    const std::vector<std::string> noPlaces;
+    const std::vector<std::string>& skipPlaces =
+        skipPlaceIds ? *skipPlaceIds : noPlaces;
+    if (regionHint && *regionHint && skipPlaces.empty()) {
         p = world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
                 s, regionHint, playerX_, playerY_);
     }
     if (!p) {
-        p = world_knowledge_->atlas.NearestPlaceWithService(s, playerX_,
-                                                            playerY_);
+        p = world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
+                s, playerX_, playerY_, skipPlaces);
     }
     if (!p) {
         travelFailure_ = "no known provider of that service";
@@ -257,6 +279,9 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
         return false;
     }
     travelEntitySerial_ = 0;
+    // Record which shop this was, so a caller that strikes out here asks
+    // for a different one next time instead of walking the same road again.
+    if (skipPlaceIds) skipPlaceIds->push_back(p->id);
     return TravelBegin(p->name.c_str(), p->position.x, p->position.y,
                        p->radius, /*hasZ=*/true, p->position.z);
 }

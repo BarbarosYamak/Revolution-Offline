@@ -1,0 +1,120 @@
+[18:23:11.907] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak40' char=Kestrel tag='zero1'
+[18:23:11.908] LOG   [zero1] event session_start: text log opened
+[18:23:11.908] LOG   [zero1] event net_connect_begin: connect 127.0.0.1:2593
+[18:23:11.908] INFO  [zero1] [net] connecting to 127.0.0.1:2593 ...
+[18:23:11.909] LOG   [zero1] event net_connected: connect 127.0.0.1:2593
+[18:23:11.909] INFO  [zero1] [net] connected.
+[18:23:11.909] INFO  [zero1] [seed] sent 0x7F000001 (plaintext)
+[18:23:11.909] LOG   [zero1] event seed_out: 0x7F000001 hex=7f000001
+[18:23:11.909] INFO  [life] no prior state for revolutionsoak40.kestrel: a new Miner / Blacksmith
+[18:23:11.909] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 35/10/5 = 50
+[18:23:11.909] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[18:23:11.909] INFO  [life] home: Kestrel lives in Britain
+[18:23:11.909] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[18:23:11.909] INFO  [zero1] [life] autonomous player active for 'Kestrel' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[18:23:11.945] INFO  [zero1] [0xA8] 1 server(s):
+[18:23:11.945] INFO  [zero1]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[18:23:11.961] INFO  [zero1] [0x8C] game server = 127.0.0.1:2593  seed=0x1EBAA6EB
+[18:23:11.961] LOG   [zero1] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x1EBAA6EB
+[18:23:11.961] INFO  [zero1] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:23:11.961] LOG   [zero1] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:23:11.961] INFO  [zero1] [0xB9] server features = 0x0005
+[18:23:11.961] INFO  [zero1] [0xA9] 5 slot(s) (populated 0):
+[18:23:11.961] INFO  [zero1]   [0] <empty>
+[18:23:11.961] INFO  [zero1]   [1] <empty>
+[18:23:11.961] INFO  [zero1]   [2] <empty>
+[18:23:11.961] INFO  [zero1]   [3] <empty>
+[18:23:11.961] INFO  [zero1]   [4] <empty>
+[18:23:11.961] INFO  [zero1] [0x00] requested skills 45:50 7:50 48:0
+[18:23:11.961] INFO  [zero1] [0x00] requested stats STR 35 DEX 10 INT 5
+[18:23:11.961] INFO  [zero1] [0x00] creating character 'Kestrel' in slot 0
+[18:23:11.961] LOG   [zero1] event char_create_sent: Kestrel
+[18:23:11.978] INFO  [zero1] [0x1B] serial=0x0000EB13 body=0x0190 pos=(633,858,0)
+[18:23:11.978] LOG   [zero1] event login_confirm: serial=0x0000EB13 body=0x0190 pos=(633,858,0)
+[18:23:11.978] INFO  [zero1] [0x20] player @(633,858,0) facing=3
+[18:23:11.978] INFO  [zero1] [0x55] login complete — entering world
+[18:23:11.978] LOG   [zero1] event in_world: 0x55 received
+[18:23:11.978] INFO  [zero1] [backpack] opening 0x4000EB11
+[18:23:11.978] INFO  [zero1] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:23:11.978] INFO  [zero1] [chat ascii] System: There are 2 other players here.
+[18:23:11.978] INFO  [zero1] [chat ascii] System: You are under the protection of the town guards
+[18:23:11.982] INFO  [zero1] [action] requesting the skill list
+[18:23:11.982] INFO  [life] in world; asked the server for the skill list
+[18:23:11.982] INFO  [zero1] [0x24] open container 0x4000EB11 gump=60
+[18:23:11.982] INFO  [zero1] [0x3C] container contents: 7 item(s)
+[18:23:11.982] LOG   [zero1] event backpack_contents: serial=0x4000EB11 items=7
+[18:23:14.608] INFO  [zero1] [bot] world data loaded (0 blacklisted spot(s)).
+[18:23:14.609] INFO  [life] common knowledge: Britain Mining Cooperative at 1426,1581 (793 tiles away)
+[18:23:14.609] INFO  [life] common knowledge: Brit Mine1 at 1443,1228 (810 tiles away)
+[18:23:14.609] INFO  [life] common knowledge: Yew Cave1 at 773,1684 (826 tiles away)
+[18:23:14.609] INFO  [life] seeded 3 ore hint(s) of 29 the atlas knows -- everything else is earned
+[18:23:14.609] INFO  [life] reconciliation: first ever login, 9 field(s) differed
+[18:23:14.609] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[18:23:14.609] INFO  [life]   str          persisted=0          server=35         -> server value accepted
+[18:23:14.609] INFO  [life]   dex          persisted=0          server=10         -> server value accepted
+[18:23:14.609] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[18:23:14.609] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[18:23:14.609] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[18:23:14.609] INFO  [life]   skill_37     persisted=0.0        server=7.1        -> server value accepted
+[18:23:14.609] INFO  [life]   skill_4      persisted=0.0        server=4.2        -> server value accepted
+[18:23:14.609] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[18:23:14.609] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:23:14.609] INFO  [zero1] [survival] on
+[18:23:14.609] LOG   [zero1] event survival_mode: on
+[18:23:14.611] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak40.kestrel/state.json
+[18:23:14.611] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:14.664] INFO  [life] goal=BANK reason="no goal was running"
+[18:23:14.664] INFO  [life] needs considered: NeedBank(deposit carried load 0.66) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(Arms Lore BLOCKED 0.38) NeedTraining(Tinkering BLOCKED 0.36) NeedSkillTraining(Tinkering 0.30) NeedTraining(Blacksmithing BLOCKED 0.28) NeedTraining(Mining BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,tongs,]
+[18:23:14.664] INFO  [life]   score=129.3
+[18:23:14.664] INFO  [life]   reason: NeedBank urgency 0.66 x 240 = 159.3
+[18:23:14.664] INFO  [life]   reason: weight=148/162 (91%) logs=0
+[18:23:14.664] INFO  [life]   reason: no bank learned yet -30
+[18:23:14.664] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[18:23:14.664] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[18:23:14.664] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Arms Lore 4.2 -> 50.0)
+[18:23:14.664] INFO  [life] bank: no bank learned yet; asking the world model for one (trip 1)
+[18:23:14.664] INFO  [zero1] [travel] Britain banker -> (1425,1690) r=5 from (633,858)
+[18:23:14.664] LOG   [zero1] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(633,858)
+[18:23:14.664] INFO  [zero1] [travel] mode moongate         usable   <- chosen
+[18:23:14.664] INFO  [zero1] [travel] mode walk             usable
+[18:23:14.664] INFO  [zero1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:23:14.664] INFO  [zero1] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:23:14.664] LOG   [zero1] event travel_mode: moongate
+[18:23:14.664] INFO  [zero1] [travel] plan Britain banker: ok legs=17 ~664 tiles transit=1 nodes=1132
+[18:23:14.725] INFO  [zero1] [action] goto (664,856) from (633,858,0)
+[18:23:14.725] LOG   [zero1] event goto_start: target=(664,856) from=(633,858)
+[18:23:14.725] INFO  [zero1] [bot] running from (633,858,0) to (664,856)
+[18:23:14.725] INFO  [zero1] [bot] planning path to (664,856) in background
+[18:23:14.786] INFO  [zero1] [bot] replan to (664,856): 31 steps in 5987.8us
+[18:23:19.625] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:24.378] INFO  [zero1] [bot] arrived at (664,856,0)
+[18:23:24.379] INFO  [zero1] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[18:23:24.379] LOG   [zero1] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[18:23:24.379] INFO  [zero1] [action] goto (696,840) from (664,856,0)
+[18:23:24.379] LOG   [zero1] event goto_start: target=(696,840) from=(664,856)
+[18:23:24.379] INFO  [zero1] [bot] running from (664,856,0) to (696,840)
+[18:23:24.379] INFO  [zero1] [bot] planning path to (696,840) in background
+[18:23:24.441] INFO  [zero1] [bot] replan to (696,840): 36 steps in 8908.5us
+[18:23:24.686] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:29.702] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:31.024] INFO  [zero1] [chat ascii] System: You have left the protection of the town guards
+[18:23:34.762] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:37.197] INFO  [zero1] [bot] arrived at (696,840,0)
+[18:23:37.197] INFO  [zero1] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[18:23:37.197] LOG   [zero1] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[18:23:37.197] INFO  [zero1] [action] goto (728,808) from (696,840,0)
+[18:23:37.197] LOG   [zero1] event goto_start: target=(728,808) from=(696,840)
+[18:23:37.197] INFO  [zero1] [bot] running from (696,840,0) to (728,808)
+[18:23:37.197] INFO  [zero1] [bot] planning path to (728,808) in background
+[18:23:37.257] INFO  [zero1] [bot] replan to (728,808): 40 steps in 11398.8us
+[18:23:39.771] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:44.802] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:49.838] INFO  [zero1] [survival] hp 35/35 (100%) -> fight
+[18:23:51.477] INFO  [zero1] [bot] arrived at (728,808,0)
+[18:23:51.478] INFO  [zero1] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[18:23:51.478] LOG   [zero1] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[18:23:51.478] INFO  [zero1] [action] goto (760,776) from (728,808,0)
+[18:23:51.478] LOG   [zero1] event goto_start: target=(760,776) from=(728,808)
+[18:23:51.478] INFO  [zero1] [bot] running from (728,808,0) to (760,776)
+[18:23:51.478] INFO  [zero1] [bot] planning path to (760,776) in background
+[18:23:51.539] INFO  [zero1] [bot] replan to (760,776): 37 steps in 14841.1us

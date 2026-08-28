@@ -734,7 +734,8 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
         bankTrips_ = 0;
         // Pack emptied: stop reacting to the overflow message that got us here.
         overloadWatchMs_ = client.JournalNowMs() + 1;
-        state_.memory.NotePlace("bank", "bank", obs.x, obs.y, obs.z, obs.nowMs);
+        // (The place itself was recorded when the box was opened, from the
+        // banker's own position -- see above.)
         if (!state_.memory.HasEvent("bank_learned")) {
             state_.memory.NoteEvent("bank_learned", "opened a bank box", "bank",
                                     obs.x, obs.y, obs.nowMs);
@@ -1769,7 +1770,8 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 1500;
             return false;
         }
-        state_.memory.NotePlace("bank", "bank", obs.x, obs.y, obs.z, obs.nowMs);
+        // (Recorded at box-open from the banker's own position, not here:
+        // where the character stands after the last deposit is not the bank.)
         if (!state_.memory.HasEvent("first_bank_deposit") && planner_.Current().progress > 0) {
             state_.memory.NoteEvent("first_bank_deposit", "logs", "bank", obs.x,
                                     obs.y, obs.nowMs);
@@ -1781,6 +1783,17 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     const u32 banker = client.NearestMobileWithTrade("banker");
     if (banker) {
         client.ActionOpenBank(banker);
+        // REMEMBER WHERE THE BANKER STANDS, not where we happened to be when
+        // the last item went into the box. Recording the player's position at
+        // deposit time put Bryn's "bank" on the Britain dock, seventy tiles
+        // from Hyman, and every later trip walked confidently to a spot with
+        // no banker in it -- three round trips in one minute before the trip
+        // counter gave up. A remembered place is only useful if it is the
+        // thing, not a place the thing was once near.
+        i32 bx = 0, by = 0; i8 bz = 0;
+        if (client.MobilePosition(banker, &bx, &by, &bz)) {
+            state_.memory.NotePlace("bank", "bank", bx, by, bz, obs.nowMs);
+        }
         bankOpenedMs_ = obs.nowMs;
         nextActionMs_ = obs.nowMs + 2500;
         planner_.NoteProgress();
@@ -1803,6 +1816,20 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             return false;
         }
         const KnownPlace* known = state_.memory.BestPlace("bank");
+        // A REMEMBERED PLACE THAT KEEPS BEING WRONG IS NOT A MEMORY.
+        //
+        // Bryn walked to a "bank" on the Britain dock, found nobody, walked
+        // back, and did it again -- three round trips a minute, and the trip
+        // counter reset every time the goal was re-picked, so it never ran
+        // out. Two failed arrivals at the same spot is enough: unlearn it and
+        // ask the world model instead. The place that replaces it is recorded
+        // from the BANKER's own position when a box actually opens.
+        if (known && bankTrips_ > 2) {
+            LogLine("bank: two trips to %d,%d found no banker -- forgetting "
+                    "that place", known->x, known->y);
+            state_.memory.ForgetPlace("bank", known->x, known->y);
+            known = state_.memory.BestPlace("bank");
+        }
         if (known) {
             LogLine("bank: returning to a remembered bank at %d,%d (trip %d)",
                     known->x, known->y, bankTrips_);
@@ -2237,9 +2264,125 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     const std::vector<market::Offer> offers =
         market::Surplus(*me, obs.pack, tp);
     if (offers.empty()) {
-        LogLine("earn_gold: nothing spare to sell (the pack holds no surplus "
-                "of what this life makes)");
-        return true;
+        // THE STOCK MAY BE IN THE BOX. The need layer scores this errand from
+        // pack AND bank on purpose -- goods in the bank are still this
+        // character's stock, "it just has to go and fetch them, which is a
+        // step in the errand" (Needs.cpp) -- but this goal counted the pack
+        // alone. A fisher with fish in the bank therefore scored NeedGold at
+        // 0.45, won the scoring, entered here, found the pack empty, completed
+        // with progress 0, and was re-picked sixty milliseconds later. It did
+        // that for the whole session and never fished once, because the errand
+        // that outranked fishing could never finish.
+        //
+        // Fetching the stock IS the errand, so do that rather than refuse.
+        std::vector<market::Stock> holdings = obs.pack;
+        for (const market::Stock& b : obs.bank) {
+            bool merged = false;
+            for (market::Stock& h : holdings) {
+                if (h.item == b.item) { h.qty += b.qty; merged = true; break; }
+            }
+            if (!merged) holdings.push_back(b);
+        }
+        const std::vector<market::Offer> banked =
+            market::Surplus(*me, holdings, tp);
+        if (banked.empty()) {
+            LogLine("earn_gold: nothing spare to sell (neither the pack nor "
+                    "the bank holds a surplus of what this life makes)");
+            return true;
+        }
+
+        // Only chase stock a buyer would actually take; a bank full of
+        // player-market goods is not a reason to walk to the bank.
+        const market::Offer* fetch = nullptr;
+        for (const market::Offer& o : banked) {
+            if (market::QtyOf(obs.bank, o.item) <= 0) continue;
+            if (market::MaySellToNpc(*me, o.item.c_str(), state_.ledger).allowed) {
+                fetch = &o;
+                break;
+            }
+        }
+        if (!fetch) {
+            LogLine("earn_gold: the bank holds a surplus but no NPC route for "
+                    "it -- that is the player market's job, not this goal's");
+            return true;
+        }
+
+        if (client.BankContainer() == 0) {
+            // ARRIVING IS NOT ENOUGH -- the box has to be OPENED, by asking a
+            // banker for it. Travelling and then re-testing "am I at the bank"
+            // loops forever the moment the trip completes instantly because
+            // the character is already standing there, which is exactly what
+            // it did: eight identical "going to fetch it" lines in twelve
+            // seconds, never once opening the box. Same shape as the no-op
+            // travel loop that pinned GATHER_LOGS.
+            if (client.TravelBusy()) return false;
+            const u32 banker = client.NearestMobileWithTrade("banker");
+            if (banker) {
+                LogLine("earn_gold: the stock is in the bank (%d %s) -- opening "
+                        "the box", market::QtyOf(obs.bank, fetch->item),
+                        fetch->item.c_str());
+                client.ActionOpenBank(banker);
+                i32 bx = 0, by = 0; i8 bz = 0;
+                if (client.MobilePosition(banker, &bx, &by, &bz)) {
+                    state_.memory.NotePlace("bank", "bank", bx, by, bz,
+                                            obs.nowMs);
+                }
+                bankOpenedMs_ = obs.nowMs;
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+            if (!travelInFlight_) {
+                if (++bankTrips_ > kMaxBankTrips) {
+                    LogLine("goal_failed=EARN_GOLD reason=\"%d trips and still "
+                            "no banker in reach\"", bankTrips_);
+                    planner_.Finish(false, "no banker reachable", obs.nowMs);
+                    bankTrips_ = 0;
+                    nextActionMs_ = obs.nowMs + 30000;
+                    return false;
+                }
+                const KnownPlace* known = state_.memory.BestPlace("bank");
+                LogLine("earn_gold: the stock is in the bank (%d %s) -- going "
+                        "to fetch it (trip %d)",
+                        market::QtyOf(obs.bank, fetch->item),
+                        fetch->item.c_str(), bankTrips_);
+                travelInFlight_ =
+                    known ? client.TravelToPoint(known->x, known->y, 2, "bank")
+                          : client.TravelToService(wm::Service::Banker,
+                                                   state_.homeCity.c_str());
+                if (!travelInFlight_) {
+                    LogLine("goal_blocked=EARN_GOLD reason=\"%s\" (%s)",
+                            faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                            client.TravelFailureText());
+                    planner_.NoteAttempt(obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 15000;
+                }
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            travelInFlight_ = false;
+            // Arrived. A title only exists after a name request, so ask who is
+            // here before concluding no banker is.
+            client.ActionScanMobiles();
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        bankTrips_ = 0;
+
+        const std::vector<u16> gfx = econ::GraphicsForItem(fetch->item.c_str());
+        const u32 serial = client.FindContainerItemByGraphic(
+            client.BankContainer(), gfx.data(), gfx.size());
+        if (!serial) {
+            LogLine("earn_gold: the bank ledger says %s but the open box does "
+                    "not show it -- the ledger is stale", fetch->item.c_str());
+            return true;
+        }
+        const i32 take = market::QtyOf(obs.bank, fetch->item);
+        LogLine("earn_gold: withdrawing %d %s to sell", take,
+                fetch->item.c_str());
+        client.TakeFromContainer(serial, static_cast<u16>(take));
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
     }
 
     // Take the first offer this life may legitimately sell.
@@ -2534,7 +2677,14 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     if (client.TravelBusy()) return false;
 
     // --- get to a trainer --------------------------------------------------
-    const u32 trainer = client.NearestMobileWithTrade(trainerTrade_.c_str());
+    // Skip anyone of this trade who has already been asked three times and
+    // never said a word. Alenne the mage stood one tile away and answered
+    // nothing about Meditation across two sessions and seven asks, while Alek
+    // -- also "the mage", in a different Britain shop -- quoted 184 gold for
+    // the same skill on the first ask. Why one answers and the other does not
+    // is UNKNOWN; what a player does about it is not, and is what this does.
+    const u32 trainer = client.NearestMobileWithTrade(trainerTrade_.c_str(),
+                                                      trainerSilent_);
     if (!trainer) {
         if (trainTrips_ >= kMaxTrainTrips) {
             LogLine("goal_failed=TRAIN_AT_NPC reason=\"no '%s' reachable after "
@@ -2557,7 +2707,9 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             } else {
                 LogLine("training: looking for a '%s' to teach %s (trip %d)",
                         trainerTrade_.c_str(), rules::SkillName(skillId), trainTrips_);
-                travelInFlight_ = client.TravelToService(trainerService_, state_.homeCity.c_str());
+                travelInFlight_ = client.TravelToServiceSkipping(
+                    trainerService_, state_.homeCity.c_str(), trainerSilent_,
+                    &trainerShopsTried_);
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=TRAIN_AT_NPC reason=\"%s\"",
@@ -2588,6 +2740,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         // never answered" about a conversation that never happened.
         trainerSerial_ = trainer;
         trainerApproached_ = false;
+        trainApproaches_ = 0;
         trainSilentAsks_ = 0;
         trainAsked_ = false;
     }
@@ -2598,12 +2751,28 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             const i32 dz = (obs.z > tz) ? (obs.z - tz) : (tz - obs.z);
             if (d > 2 || dz > 3) {
                 LogLine("training: '%s' is %d tiles and %d z away -- walking to "
-                        "them before speaking", trainerTrade_.c_str(), d, dz);
+                        "them before speaking (approach %d of %d)",
+                        trainerTrade_.c_str(), d, dz, trainApproaches_ + 1,
+                        kMaxTrainApproaches);
                 travelInFlight_ = client.TravelToPoint(tx, ty, 1, "trainer");
-                trainerApproached_ = true;   // one approach, then talk regardless
+                // ONE APPROACH WAS NOT ENOUGH, and the cost of that was a
+                // whole session. Ysolde stood 7 tiles and 2 z from Alenne,
+                // gave up closing after a single attempt, and then asked about
+                // Meditation seven times from outside the shop. Every ask went
+                // unheard, every timeout read as "the trainer never answered",
+                // and the character concluded a perfectly good trainer was
+                // useless. The very next session it walked all the way in,
+                // asked once, and was quoted 219 gold.
+                //
+                // Speech is heard by POSITION. Keep closing until we are
+                // actually in earshot, and only then talk regardless.
+                if (++trainApproaches_ >= kMaxTrainApproaches) {
+                    trainerApproached_ = true;
+                }
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
             }
+            trainApproaches_ = 0;
         }
         trainerApproached_ = true;
     }
@@ -2667,6 +2836,9 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                     trainSilentAsks_, kMaxSilentAsks);
             planner_.NoteAttempt(obs.nowMs);
             trainAsked_ = false;
+            // Silence is most often distance. Try to close it again before
+            // repeating the same words from the same spot.
+            trainerApproached_ = false;
             if (trainSilentAsks_ >= kMaxSilentAsks) {
                 // Give up on this NPC for now. Deliberately NOT written as a
                 // trainer verdict: a verdict is what an NPC SAID, and this one
@@ -2680,6 +2852,17 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                                         trainerTrade_.c_str(), obs.x, obs.y,
                                         obs.nowMs);
                 planner_.Finish(false, "the trainer never answered", obs.nowMs);
+                // Do not walk back to this same silent NPC next time. Held for
+                // the session only, and not written to memory: silence is not
+                // something the world told the character, so it is not a
+                // belief -- it is just somewhere already tried today.
+                bool listed = false;
+                for (u32 sk : trainerSilent_) {
+                    if (sk == trainerSerial_) { listed = true; break; }
+                }
+                if (!listed && trainerSerial_) {
+                    trainerSilent_.push_back(trainerSerial_);
+                }
                 trainSilentAsks_ = 0;
                 trainerSerial_ = 0;
                 trainerApproached_ = false;

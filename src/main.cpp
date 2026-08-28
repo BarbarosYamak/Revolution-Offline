@@ -275,7 +275,11 @@ int main(int argc, char** argv) {
             // ResourceLock fails and Sphere skips the slot entirely. It is
             // also INACTIVE on Revolution (M3.6), so it can never be mistaken
             // for a real third choice at a glance.
-            base.createSkill[2]    = uo::rules::kRemoveTrap;
+            // A build may claim this slot for a skill it means to learn from
+            // nothing (professions.h, startZeroSkill). Remove Trap otherwise.
+            base.createSkill[2]    = (pr->startZeroSkill >= 0)
+                                         ? pr->startZeroSkill
+                                         : uo::rules::kRemoveTrap;
             base.createSkillVal[2] = 0;
         }
         if (base.createStr == 0) {
@@ -397,7 +401,11 @@ int main(int argc, char** argv) {
                 cfg.createSkill[1]    = pr->startSkillB;
                 cfg.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
                 // Same trap as above: 0 is Alchemy, not "none".
-                cfg.createSkill[2]    = uo::rules::kRemoveTrap;
+                // A build may claim this slot for a skill it means to learn from
+                // nothing (professions.h, startZeroSkill). Remove Trap otherwise.
+                cfg.createSkill[2]    = (pr->startZeroSkill >= 0)
+                                             ? pr->startZeroSkill
+                                             : uo::rules::kRemoveTrap;
                 cfg.createSkillVal[2] = 0;
             }
             if (cfg.createStr == 0) {

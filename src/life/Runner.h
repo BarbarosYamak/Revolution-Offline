@@ -228,6 +228,19 @@ private:
     i32  trainSilentAsks_ = 0;
     u32  trainerSerial_ = 0;
     bool trainerApproached_ = false;
+    // How many times we have tried to close the distance to THIS trainer.
+    // One attempt was the old behaviour and it cost a whole session of
+    // shouting at a shop from the street.
+    int  trainApproaches_ = 0;
+    static constexpr int kMaxTrainApproaches = 3;
+    // NPCs of the right trade that were asked and never answered. Session-only
+    // and never persisted: silence is not a fact the world stated, so it is
+    // not a belief worth keeping -- only somewhere already tried today.
+    std::vector<u32> trainerSilent_;
+    // Shops of the trade already walked to this session. Britain has three
+    // mage shops in the atlas; without this the character walks to the
+    // nearest one forever, however many times it comes away with nothing.
+    std::vector<std::string> trainerShopsTried_;
     // Gold-stack serials go stale the moment Sphere splits a stack to make
     // change, and a give to a dead serial is a silent no-op. One refresh
     // before paying, and a bounded number of attempts.
