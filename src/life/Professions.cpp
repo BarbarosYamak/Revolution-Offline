@@ -93,14 +93,31 @@ const std::vector<Profession>& All() {
     static const std::vector<Profession> kAll = [] {
         std::vector<Profession> v;
 
-        // --- 1. Frontier Lumberjack / Swordsman -------------------------------
-        // The M4 character, restated under the Revolution creation rule. M4
-        // asked for three skills (40/40/20) and 80 stat points; that was legal
-        // but not the rule, and this is the corrected form.
+        // --- 1. Lumberjack / Carpenter ----------------------------------------
+        // The M4 character, restated twice: once under the Revolution creation
+        // rule (M4 asked for three skills at 40/40/20 and 80 stat points --
+        // legal, but not the rule), and once under what this life is actually
+        // FOR.
+        //
+        // Project owner, 2026-08-28, describing the Revolution loop:
+        //
+        //   "you farm wood skill up your lumber jack then you can craft as
+        //    carpenter and sell stuff to other players"
+        //   "one character, lumberjack carpenter same guy crafter"
+        //
+        // That matters because logs cannot be sold to an NPC on this shard, so
+        // without a crafting skill this life has NO income at all -- it can
+        // only pile up a resource nobody will buy. Carpentry is what turns the
+        // wood into something a player wants, and it comes out of the 200.0
+        // this build had deliberately left unspent.
+        //
+        // The ID IS DELIBERATELY UNCHANGED. It is the persistence key: a live
+        // character's state.json names it, and renaming would orphan Brannoc
+        // into "not in the catalogue" and silently revert it to the M4 needs.
         {
             Profession p;
             p.id = "lumberjack_swordsman";
-            p.label = "Frontier Lumberjack / Swordsman";
+            p.label = "Lumberjack / Carpenter";
             p.startSkillA = rules::kLumberjacking;
             p.startSkillB = rules::kSwordsmanship;
             // DEX-weighted: six characters died on a STR-heavy split and one
@@ -112,12 +129,24 @@ const std::vector<Profession>& All() {
                 {rules::kTactics,       1000, 3, true,  SkillRole::Secondary},
                 {rules::kAnatomy,       1000, 2, true,  SkillRole::Secondary},
                 {rules::kHealing,       1000, 2, true,  SkillRole::Secondary},
+                // The half that makes it a living. Carpentry 25.7 is where
+                // blank scrolls start (Production.cpp:123), which is also the
+                // input the mage cannot make for itself.
+                {rules::kCarpentry,     1000, 4, true,  SkillRole::Secondary},
             };
-            p.unresolvedTenths = 2000;   // 200.0 deliberately unspent
+            p.unresolvedTenths = 1000;   // 100.0 still deliberately unspent
             p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;
-            p.income = {Income::Gather, Income::Hunt};
+            p.income = {Income::Craft, Income::Gather, Income::Hunt};
             p.gathers = "logs";
-            p.produces = {"i_log"};
+            // Logs stay in `produces` even though they are the character's own
+            // input: a smith needs one per spear, so a log is a real trade
+            // good between PLAYERS. The reserve rule handles the rest -- it
+            // sees i_log feeding i_board and holds a working stock back.
+            // i_club is what actually pays: logs, boards and blank scrolls
+            // are all MATERIALS and go to players, while a club is a finished
+            // weapon the blunt weaponsmith buys. Without it this life crafts
+            // all day and has no income at all.
+            p.produces = {"i_log", "i_board", "i_scroll_blank", "i_club"};
             p.tools = {{"hatchet", V(kHatchet, 2), true}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.55;

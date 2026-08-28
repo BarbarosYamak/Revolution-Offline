@@ -17,6 +17,7 @@ i_log	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT r_default_tree 40.0 mr_tree; mr_tre
 i_board	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
 i_parchment	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7
 i_scroll_blank	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7
+i_club	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT def_carpentry.scp:41 menu entry; SKILLMAKE and log count UNKNOWN; buyer tm_vend.scp:1710 VENDOR_B_WEAPONS_BLUNT {10 15}
 i_model_ship	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100
 i_arrow_shaft	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT sm_bowcraft; i_arrow_shaft SKILLMAKE=9.8 Bowcraft; REVOLUTION forum 59111 band 0-100 Shaft
 i_arrow	PLAYER_MARKET	PLAYER_MARKET_GOOD	0	SCRIPT i_arrow SKILLMAKE=Bowcraft 0.0; REVOLUTION cooperative category 08.11.2008

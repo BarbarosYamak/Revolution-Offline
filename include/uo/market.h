@@ -111,15 +111,38 @@ struct SellRuling {
 // not listed is UNKNOWN and refused, and the accumulated refusals are the
 // research backlog -- the same discipline the buying side has followed since
 // M3.7.
+// THE LINE, as the owner drew it (2026-08-28): MATERIALS go to players,
+// FINISHED GOODS may go to an NPC.
+//
+// That is a coherent rule rather than a list of exceptions. A crafted item
+// carries player labour -- gathering, a skill, a failure rate -- so the gold an
+// NPC pays for it is bought with real time. A raw material carries none, and an
+// NPC price for it just sets a floor that kills the player market underneath.
+//
+// Owner's research table, same date, with the ALLOW column as decided:
+//
+//   raw fish, cooked fish        ALLOW  Revolution guide, explicit
+//   cooked animal food products  ALLOW  14 Apr 2008 update
+//   crafted bows                 ALLOW  guide: "players or NPC vendors"
+//   scrolls                      ALLOW  proven live on this shard
+//   carpentry, smithing,
+//   tailoring, tinkering,
+//   alchemy                      ALLOW  owner decision; the historical NPC
+//                                       channel is NOT confirmed, and that is
+//                                       recorded rather than dressed up
+//   raw logs, iron ingots        REFUSE Revolution listed both as player-market
 enum class NpcSellClass : u8 {
-    Unknown = 0,      // no Revolution evidence. Refused.
-    // The taps, per the statement above.
-    Fish,             // caught, or cooked and then sold
+    Unknown = 0,      // no evidence and no decision. Refused.
+    // --- taps: an NPC pays, and new gold enters the shard ---------------
+    Fish,             // raw or cooked; the fisher takes both
+    CookedFood,       // animal food products (14 Apr 2008)
     MobLoot,          // what a corpse yielded
     ScribedScroll,    // a scribe's stock in trade
-    // Refused for a reason, so the refusal can say which reason.
-    RawResource,      // logs, ore -- an NPC price would floor the player market
-    PlayerMarketGood, // ingots, crafted goods players trade between themselves
+    CraftedGood,      // carpentry, smithing, tailoring, tinkering, alchemy,
+                      // bowcraft -- a finished item, not a material
+    // --- refused, and the refusal says which kind ------------------------
+    RawResource,      // logs, boards, ore, hides -- materials, not goods
+    PlayerMarketGood, // ingots and anything Revolution named as player-traded
     Count,
 };
 

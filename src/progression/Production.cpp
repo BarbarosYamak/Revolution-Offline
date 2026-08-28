@@ -123,6 +123,22 @@ const std::vector<Recipe>& Table() {
     {"i_scroll_blank", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
      kCarpentry, 257, kNoSkill, 0, {{"i_parchment", 1}},
      "SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7"},
+    // The carpenter's one verified SELLABLE good below the endgame. Two of its
+    // three numbers are UNKNOWN and are marked rather than invented:
+    //   - our runtime carries NO [ITEMDEF i_club] and therefore no SKILLMAKE;
+    //     i_club is a base Sphere item. The carpentry menu's default material
+    //     tier is "Carpentry 0.0" (def_carpentry.scp:200), so 0 is the
+    //     best-supported reading of the gate, NOT a measured one.
+    //   - the log count is UNKNOWN. The magic variant i_club_ruin takes
+    //     "RESOURCES=4 i_log, i_club" (i_magic_weapon.scp:2279), which is the
+    //     ENCHANT cost, not the craft cost. 1 is a placeholder.
+    // What IS verified: our own carpentry menu offers it
+    // (def_carpentry.scp:41, category 1 "Weapons and Armor"), and the blunt
+    // weaponsmith buys it at {10 15} (tm_vend.scp:1710).
+    {"i_club", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
+     kCarpentry, 0, kNoSkill, 0, {{"i_log", 1}},
+     "SCRIPT def_carpentry.scp:41 menu entry; SKILLMAKE and log count UNKNOWN; "
+     "buyer tm_vend.scp:1710 VENDOR_B_WEAPONS_BLUNT {10 15}"},
     {"i_model_ship", 1, Provenance::PlayerCrafted, Station::None, Tool::CarpentryTool,
      kCarpentry, 950, kNoSkill, 0, {{"i_board", 10}},
      "SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100"},

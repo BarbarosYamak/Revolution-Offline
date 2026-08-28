@@ -185,8 +185,10 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     // else was players trading with players.
     switch (ClassifyForNpcSale(item)) {
         case NpcSellClass::Fish:
+        case NpcSellClass::CookedFood:
         case NpcSellClass::MobLoot:
         case NpcSellClass::ScribedScroll:
+        case NpcSellClass::CraftedGood:
             break;   // a tap. Carry on to the arbitrage test.
         case NpcSellClass::RawResource:
             out.reason = "a raw resource: an NPC price would set a floor and "
@@ -256,10 +258,29 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_scroll_resurrection","mage"},
     // Fish: tm_vend.scp:730 (VENDOR_B_COOK) and :1022 (VENDOR_B_FISHER),
     // both {4 24}.
+    // The fisher is named first because the owner named it: it buys fish
+    // steaks and raw fish both. The cook's list (tm_vend.scp:730) overlaps.
+    {"i_fish_small",         "fisher"},
     {"i_fish_big_1",         "fisher"},
-    {"i_fish_big_1",         "cook"},
-    {"i_fish_cut_raw",       "cook"},
+    {"i_fish_big_2",         "fisher"},
+    {"i_fish_big_3",         "fisher"},
+    {"i_fish_big_4",         "fisher"},
     {"i_fish_cut_raw",       "fisher"},
+    {"i_fish_cut_raw",       "cook"},
+    {"i_fish_cut_cooked",    "fisher"},
+    {"i_fish_cut_cooked",    "cook"},
+
+    // Crafted goods, with the template that actually carries the BUY row.
+    // Verified per item -- i_tunic_leather has NO buy row anywhere, so leather
+    // armour genuinely has no NPC channel on this shard whatever the policy
+    // permits, and NpcBuyersFor correctly returns nothing for it.
+    {"i_spear_short",        "weaponsmith"},   // tm_vend.scp:1716 WEAPONS_BLUNT
+    {"i_club",               "weaponsmith"},   // tm_vend.scp:1710 {10 15}
+    {"i_robe",               "tailor"},        // tm_vend.scp:865  TAILOR
+    {"i_potion_cure",        "alchemist"},     // tm_vend.scp:510  ALCHEMIST
+    {"i_potion_refresh",     "alchemist"},
+    {"i_crossbow",           "bowyer"},        // tm_vend.scp:1444 BOWYER
+    {"i_bow",                "bowyer"},
 
     // --- refused by policy, kept for the record -----------------------------
     // The rows below describe what the STOCK SCRIPTS allow. NpcBuyersFor
@@ -292,8 +313,10 @@ std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
     // refuse on arrival is a 224-tile walk to say no.
     switch (ClassifyForNpcSale(item)) {
         case NpcSellClass::Fish:
+        case NpcSellClass::CookedFood:
         case NpcSellClass::MobLoot:
         case NpcSellClass::ScribedScroll:
+        case NpcSellClass::CraftedGood:
             break;
         default:
             return out;   // no legitimate NPC buyer for this
@@ -310,6 +333,8 @@ const char* NpcSellClassName(NpcSellClass c) {
     switch (c) {
         case NpcSellClass::Unknown:          return "UNKNOWN";
         case NpcSellClass::Fish:             return "FISH";
+        case NpcSellClass::CookedFood:       return "COOKED_FOOD";
+        case NpcSellClass::CraftedGood:      return "CRAFTED_GOOD";
         case NpcSellClass::MobLoot:          return "MOB_LOOT";
         case NpcSellClass::ScribedScroll:    return "SCRIBED_SCROLL";
         case NpcSellClass::RawResource:      return "RAW_RESOURCE";
@@ -328,7 +353,15 @@ struct SellRow { const char* item; NpcSellClass klass; };
 // left off the table entirely, which refuses it as UNKNOWN.
 const SellRow kSellMatrix[] = {
     // --- the taps: where gold enters the shard ---------------------------
+    // The fisher buys raw fish AND fish steaks (owner, 2026-08-28). Cooked is
+    // worth about 1 gp more -- roughly 5 against 4 -- which matches TNS's own
+    // saturating buyer exactly: System_SellerBuro.scp:426-440 pays 5 gp for
+    // cooked fish until the day's shard-wide volume passes 500,000.
+    {"i_fish_small",        NpcSellClass::Fish},
     {"i_fish_big_1",        NpcSellClass::Fish},
+    {"i_fish_big_2",        NpcSellClass::Fish},
+    {"i_fish_big_3",        NpcSellClass::Fish},
+    {"i_fish_big_4",        NpcSellClass::Fish},
     {"i_fish_cut_raw",      NpcSellClass::Fish},
     {"i_fish_cut_cooked",   NpcSellClass::Fish},
     {"i_scroll_poison",     NpcSellClass::ScribedScroll},
@@ -345,12 +378,35 @@ const SellRow kSellMatrix[] = {
     {"i_wool",              NpcSellClass::RawResource},
     // Player-market: what players buy from each other.
     {"i_ingot_iron",        NpcSellClass::PlayerMarketGood},
-    {"i_spear_short",       NpcSellClass::PlayerMarketGood},
+    {"i_spear_short",       NpcSellClass::CraftedGood},   // smithing
+    // A carpenter's club. It is a WEAPON, so the blunt weaponsmith buys it,
+    // not the carpenter (owner, 2026-08-28: "since it is weapon sell it
+    // weaponsmith").
+    {"i_club",              NpcSellClass::CraftedGood},   // carpentry
     {"i_scroll_blank",      NpcSellClass::PlayerMarketGood},
-    {"i_potion_refresh",    NpcSellClass::PlayerMarketGood},
-    {"i_potion_cure",       NpcSellClass::PlayerMarketGood},
-    {"i_cloth",             NpcSellClass::PlayerMarketGood},
-    {"i_robe",              NpcSellClass::PlayerMarketGood},
+    {"i_potion_refresh",    NpcSellClass::CraftedGood},   // alchemy
+    {"i_potion_cure",       NpcSellClass::CraftedGood},
+    {"i_cloth",             NpcSellClass::RawResource},   // a material
+    {"i_robe",              NpcSellClass::CraftedGood},   // tailoring
+    // Leather and armour go to PLAYERS (owner, 2026-08-28: "leather and armor
+    // to the players"). This closes the UNKNOWN that stood here -- the earlier
+    // quote listed "collect leather crafting leather or armor set or mage robe
+    // and selling those too" without naming the buyer.
+    {"i_hides_cut",         NpcSellClass::RawResource},   // a material
+    {"i_leather",           NpcSellClass::RawResource},
+    // Finished leather armour is a TAILORING good, so it may go to an NPC --
+    // even though the owner's preference is that it goes to players. Allowing
+    // the NPC channel does not forbid the player one; it is a floor, and once
+    // player trade exists the sale path should prefer a player.
+    {"i_boots_thigh",       NpcSellClass::CraftedGood},
+    {"i_tunic_leather",     NpcSellClass::CraftedGood},
+    {"i_leggings_leather",  NpcSellClass::CraftedGood},
+    {"i_gorget_leather",    NpcSellClass::CraftedGood},
+    {"i_cap_leather",       NpcSellClass::CraftedGood},
+    {"i_sleeves_leather",   NpcSellClass::CraftedGood},
+    // Bowcraft: the guide says explicitly "players or NPC vendors".
+    {"i_bow",               NpcSellClass::CraftedGood},
+    {"i_crossbow",          NpcSellClass::CraftedGood},
 };
 
 }  // namespace

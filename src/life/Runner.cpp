@@ -80,6 +80,7 @@ const TrainerFor kTrainers[] = {
     {rules::kAnimalLore,      "animal",      wm::Service::Stablemaster},
     {rules::kVeterinary,      "animal",      wm::Service::Stablemaster},
     {rules::kLumberjacking,   "carpenter",   wm::Service::Carpenter},
+    {rules::kCarpentry,       "carpenter",   wm::Service::Carpenter},
 };
 
 const TrainerFor* TrainerForSkill(int id) {
@@ -108,6 +109,7 @@ wm::Service ServiceForTrade(const char* trade) {
         {"mage",        wm::Service::Mage},
         {"fisher",      wm::Service::Fisherman},
         {"cook",        wm::Service::Cook},
+        {"weaponsmith", wm::Service::Blacksmith},
     };
     for (const Row& r : kRows) {
         if (std::strcmp(r.trade, trade) == 0) return r.service;

@@ -12,6 +12,7 @@
 #include "uo/professions.h"
 
 #include <cstdio>
+#include <set>
 #include <string>
 
 namespace {
@@ -282,12 +283,21 @@ void TestReserveOnlyForOwnInputs() {
     // of this rule did, because it keyed off the catalogue's `consumes`
     // field. That field means "obtain from someone else", so a smith's own
     // ingots are correctly absent from it even though every weapon eats six.
+    // The lumberjack is a CARPENTER too now (owner: "one character,
+    // lumberjack carpenter same guy crafter"), so its logs feed its own board
+    // recipe and the reserve applies to them as well. Before that change it
+    // held nothing back, correctly, because it had no use for a log.
     const std::vector<Offer> woodcutter = Surplus(*lj, {{"i_log", 25}}, pol);
     Check(woodcutter.size() == 1, "25 logs is one offer");
     if (!woodcutter.empty()) {
-        Check(woodcutter[0].qty == 25,
-              "and ALL of them -- a lumberjack has no use for a log reserve");
+        Check(woodcutter[0].qty == 5,
+              "holding 20 back, because a carpenter needs logs to make boards");
     }
+
+    // Something it makes and does NOT feed back in: no reserve.
+    const std::vector<Offer> boards = Surplus(*lj, {{"i_board", 25}}, pol);
+    Check(boards.size() == 1 && boards[0].qty == 25,
+          "boards are an output, not an input, so all 25 are spare");
 }
 
 // --------------------------------------------------------------------------
@@ -407,25 +417,51 @@ void TestWhatAnNpcMayStillBuy() {
               econ::VendorClass::RevolutionNpcVerified,
           "reagents carry a dated Revolution NPC entry");
 
-    // Exactly ONE life in the catalogue currently makes something an NPC will
-    // buy: the mage, whose spell scrolls are a scribe's stock in trade. Every
-    // other life's output is a player-market good, which is why M7's real
-    // target is player-to-player trade and not a vendor errand.
+    // WHICH LIVES HAVE AN NPC INCOME, computed rather than asserted from
+    // memory, because the answer moved twice while this was being written.
     Ledger clean;
-    std::vector<std::string> sellers;
+    std::set<std::string> withNpcIncome;
     for (const prof::Profession& p : prof::All()) {
         for (const std::string& made : p.produces) {
             if (MaySellToNpc(p, made.c_str(), clean).allowed) {
-                sellers.push_back(p.id);
+                withNpcIncome.insert(p.id);
                 break;
             }
         }
     }
-    Check(sellers.size() == 1, "exactly one life has an NPC income today");
-    if (!sellers.empty()) {
-        Check(sellers.front() == "mage",
-              "and it is the scroll-writer -- scribing was one of the taps");
+
+    // The owner's line: MATERIALS to players, FINISHED GOODS may go to an NPC.
+    // A smith's spear, an alchemist's potions and a mage's scrolls are
+    // finished; everything the lumberjack/carpenter makes below Carpentry 95
+    // is a material -- boards, parchment, blank scrolls.
+    Check(withNpcIncome.count("miner_smith") == 1, "a smith sells its spears");
+    Check(withNpcIncome.count("alchemist") == 1, "an alchemist sells potions");
+    Check(withNpcIncome.count("mage") == 1, "a mage sells scrolls");
+
+    // And the one that is NOT a gap. The owner said it directly -- "craft as
+    // carpenter and sell stuff to other players" -- so a carpenter with no NPC
+    // channel is the intended design, not a missing table row. Its only
+    // non-material product in the graph is i_model_ship at Carpentry 95.0
+    // (Production.cpp:127), which is endgame.
+    // The carpenter DOES have one, and it is a club: a finished weapon, so
+    // the blunt weaponsmith buys it (tm_vend.scp:1710) rather than the
+    // carpenter. Its materials -- logs, boards, blank scrolls -- still go to
+    // players only, which is the line holding.
+    Check(withNpcIncome.count("lumberjack_swordsman") == 1,
+          "the lumberjack/carpenter earns from clubs");
+    Ledger fresh;
+    const prof::Profession* ljp = prof::Find("lumberjack_swordsman");
+    if (ljp) {
+        Check(MaySellToNpc(*ljp, "i_club", fresh).allowed, "a club may be sold");
+        Check(!MaySellToNpc(*ljp, "i_log", fresh).allowed, "a log may not");
+        Check(!MaySellToNpc(*ljp, "i_board", fresh).allowed, "nor a board");
+        Check(!MaySellToNpc(*ljp, "i_scroll_blank", fresh).allowed,
+              "nor a blank scroll -- that one goes to a mage, player to player");
     }
+    const std::vector<const NpcBuyer*> clubBuyers = NpcBuyersFor("i_club");
+    Check(!clubBuyers.empty() &&
+          std::string(clubBuyers.front()->trade) == "weaponsmith",
+          "and the buyer is the weaponsmith, because a club is a weapon");
 
     Check(ClassifyForNpcSale("i_log") == NpcSellClass::RawResource,
           "a log is a raw resource, not a tap");
