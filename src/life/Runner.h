@@ -113,6 +113,9 @@ private:
     bool DoEarnGold(Client& client, const Observation& obs);
     bool DoTravel(Client& client, const Observation& obs);
     bool DoTrainAtNpc(Client& client, const Observation& obs);
+    bool DoTradeWithPlayer(Client& client, const Observation& obs);
+    bool DriveOpenTrade(Client& client, const Observation& obs);
+    void ResetTradeState();
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -244,6 +247,30 @@ private:
     bool  sellSent_ = false;           // ActionVendorSell issued
     u32   sellVendorSerial_ = 0;       // the vendor we mean to deal with
     bool  sellApproached_ = false;     // walked to them before speaking
+
+    // --- TRADE_WITH_PLAYER ------------------------------------------------
+    // How often to repeat an offer. Every tick would be spam a human watching
+    // the shard would read as broken, and players do not shout continuously.
+    static constexpr i64 kAnnounceIntervalMs = 8000;
+    static constexpr i32 kMaxAnnounces = 6;
+    // A partner that opens a window and puts nothing in is either stuck or
+    // gone; either way this side must not wait on it forever.
+    static constexpr i64 kTradeGiveUpMs = 25000;
+    market::TradePolicy tradePolicy_;
+    market::TradeIntent tradeOffer_;      // what we are announcing
+    u32         tradePartner_ = 0;
+    std::string tradePartnerName_;
+    std::string tradeItem_;
+    i32  tradeSellingQty_ = 0;   // >0 = we are the SELLER
+    i32  tradeWantQty_ = 0;      // buyer: how many we want
+    i32  tradeOfferPrice_ = 0;   // buyer: the price the seller named
+    bool tradeOffered_ = false;
+    i32  tradePackBefore_ = 0;   // the PACK is the proof, not the packet
+    i32  tradeGoldBefore_ = 0;
+    i64  tradeHeardMs_ = 0;
+    i64  tradeAnnouncedMs_ = 0;
+    i64  tradeOpenedMs_ = 0;
+    i32  tradeAnnounceCount_ = 0;
 
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;

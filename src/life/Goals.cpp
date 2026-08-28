@@ -19,6 +19,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::EarnGold:              return "EARN_GOLD";
         case GoalKind::TravelToRequiredPlace: return "TRAVEL_TO_REQUIRED_PLACE";
         case GoalKind::TrainAtNpc:            return "TRAIN_AT_NPC";
+        case GoalKind::TradeWithPlayer:       return "TRADE_WITH_PLAYER";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -74,6 +75,9 @@ const GoalSpec kGoals[] = {
     // character can do, and the gold is already saved by the time the need
     // fires. Below housekeeping, because a full pack still comes first.
     {GoalKind::TrainAtNpc,            NeedKind::NeedSkillTraining, 200.0},
+    // Just under EARN_GOLD: when a vendor will take the goods that is the
+    // shorter errand, and the player market is for what it refuses.
+    {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},
 };
 
 }  // namespace

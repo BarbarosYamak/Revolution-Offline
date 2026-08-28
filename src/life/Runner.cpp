@@ -4,6 +4,7 @@
 #include "uo/log.h"
 #include "uo/builders.h"
 #include "uo/market.h"
+#include "uo/trade.h"
 #include "uo/professions.h"
 #include "uo/vendor_policy.h"
 #include "uo/world_model.h"
@@ -1038,6 +1039,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::EarnGold:              done = DoEarnGold(client, obs); break;
         case GoalKind::TravelToRequiredPlace: done = DoTravel(client, obs); break;
         case GoalKind::TrainAtNpc:            done = DoTrainAtNpc(client, obs); break;
+        case GoalKind::TradeWithPlayer:       done = DoTradeWithPlayer(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -2461,6 +2463,308 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     trainPaid_ = true;
     nextActionMs_ = obs.nowMs + 4000;
     return false;
+}
+
+// ---------------------------------------------------------------------------
+// TRADE_WITH_PLAYER -- the only goal that needs somebody else to exist.
+//
+// Both halves run in the same body, because a character is whichever one the
+// situation makes it: it announces what it has spare, and it answers what it
+// hears. A fleet of twenty is mostly listeners at any moment.
+//
+//   stand where players gather (the home bank)
+//   -> announce "WTS 20 i_log 2gp", occasionally, not every tick
+//   -> hear "WTB i_log" -> walk to the speaker -> open the trade window
+//   -> put the goods in -> accept -> verify against the PACK, not the packet
+//
+// The listener half is symmetrical: hear a WTS, decide with ConsiderOffer,
+// answer with WTB, and wait to be traded with.
+// ---------------------------------------------------------------------------
+bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return true;
+
+    // --- a trade is already open: drive it to a conclusion ------------------
+    const trade::TradeState& tr = client.Trade();
+    if (tr.Active()) {
+        return DriveOpenTrade(client, obs);
+    }
+    if (tr.CurrentPhase() == trade::Phase::Completed) {
+        LogLine("trade: window closed complete with %s", tradePartnerName_.c_str());
+        // The PACK is the proof. A completed window means the server moved
+        // the goods; believing the packet without checking is how a "sale"
+        // that moved nothing gets recorded as income.
+        const i32 now = market::QtyOf(obs.pack, tradeItem_);
+        if (tradeSellingQty_ > 0 && now < tradePackBefore_) {
+            const i32 moved = tradePackBefore_ - now;
+            const i32 paid = obs.gold - tradeGoldBefore_;
+            LogLine("trade: gave %d %s to %s for %d gold", moved,
+                    tradeItem_.c_str(), tradePartnerName_.c_str(), paid);
+            if (paid > 0) {
+                market::PriceObservation po;
+                po.item = tradeItem_;
+                po.pricePerUnit = paid / moved;
+                po.source = market::PriceSource::PlayerTraded;
+                po.who = tradePartnerName_;
+                po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+                state_.prices.Note(po);
+                state_.ledger.Note(market::GoldFlow::SoldToPlayer, paid,
+                                   tradeItem_.c_str(), obs.nowMs);
+            }
+            state_.memory.NoteEvent("traded_with_player", tradeItem_.c_str(),
+                                    tradePartnerName_.c_str(), obs.x, obs.y,
+                                    obs.nowMs);
+            planner_.NoteProgress();
+        } else if (tradeSellingQty_ == 0 && now > tradePackBefore_) {
+            const i32 got = now - tradePackBefore_;
+            const i32 spent = tradeGoldBefore_ - obs.gold;
+            LogLine("trade: got %d %s from %s for %d gold", got,
+                    tradeItem_.c_str(), tradePartnerName_.c_str(), spent);
+            if (spent > 0) {
+                market::PriceObservation po;
+                po.item = tradeItem_;
+                po.pricePerUnit = spent / got;
+                po.source = market::PriceSource::PlayerTraded;
+                po.who = tradePartnerName_;
+                po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+                state_.prices.Note(po);
+                state_.ledger.Note(market::GoldFlow::BoughtFromPlayer, spent,
+                                   tradeItem_.c_str(), obs.nowMs);
+            }
+            planner_.NoteProgress();
+        } else {
+            LogLine("trade: window completed but nothing moved");
+        }
+        ResetTradeState();
+        Checkpoint(client, obs.nowMs, "traded with a player");
+        return true;
+    }
+    if (tr.CurrentPhase() == trade::Phase::Cancelled) {
+        LogLine("trade: %s cancelled (%s)", tradePartnerName_.c_str(),
+                trade::CloseReasonName(tr.Reason()));
+        state_.memory.NoteEvent("trade_cancelled", tradeItem_.c_str(),
+                                tradePartnerName_.c_str(), obs.x, obs.y,
+                                obs.nowMs);
+        ResetTradeState();
+        return false;
+    }
+
+    // --- listen ------------------------------------------------------------
+    //
+    // Done BEFORE announcing, so a character that can answer somebody else's
+    // offer does that rather than adding its own to the noise.
+    std::vector<Client::Heard> heard;
+    client.JournalHeardSince(tradeHeardMs_, heard);
+    if (!heard.empty()) tradeHeardMs_ = heard.back().timeMs;
+
+    for (const Client::Heard& h : heard) {
+        // Somebody answered OUR offer.
+        std::string wanted;
+        if (!tradeOffer_.item.empty() &&
+            market::ParseBuyReply(h.text, &wanted) && wanted == tradeOffer_.item) {
+            LogLine("trade: %s wants our %s", h.name.c_str(), wanted.c_str());
+            tradePartner_ = h.speaker;
+            tradePartnerName_ = h.name;
+            tradeItem_ = tradeOffer_.item;
+            tradeSellingQty_ = tradeOffer_.qty;
+            return false;   // next tick walks over and opens the window
+        }
+        // Somebody is selling something we need.
+        market::TradeIntent offer;
+        if (!market::ParseSellOffer(h.text, &offer)) continue;
+        const market::BuyDecision d =
+            market::ConsiderOffer(*me, obs.pack, obs.gold, tradePolicy_, offer);
+        LogLine("trade: heard '%s' from %s -> %s (%s)", h.text.c_str(),
+                h.name.c_str(), d.accept ? "want it" : "no", d.reason);
+        if (!d.accept) continue;
+        // Say so out loud. The seller is listening for exactly this, and
+        // saying it is also what makes the deal visible to a human watching.
+        client.ActionSay(market::FormatBuyReply(offer.item).c_str());
+        tradePartner_ = h.speaker;
+        tradePartnerName_ = h.name;
+        tradeItem_ = offer.item;
+        tradeSellingQty_ = 0;            // we are the BUYER
+        tradeWantQty_ = d.qty;
+        tradeOfferPrice_ = offer.pricePerUnit;
+        return false;
+    }
+
+    // --- a partner is named: go and open the window -------------------------
+    if (tradePartner_ != 0) {
+        if (client.TravelBusy()) return false;
+        i32 px = 0, py = 0; i8 pz = 0;
+        if (!client.MobilePosition(tradePartner_, &px, &py, &pz)) {
+            LogLine("trade: lost sight of %s", tradePartnerName_.c_str());
+            ResetTradeState();
+            return false;
+        }
+        if (TileDist(obs.x, obs.y, px, py) > 2) {
+            if (!travelInFlight_) {
+                travelInFlight_ = client.TravelToPoint(px, py, 1, "trade partner");
+                nextActionMs_ = obs.nowMs + 1500;
+            } else {
+                travelInFlight_ = false;
+            }
+            return false;
+        }
+        // Only the SELLER opens the window, so both sides do not race to open
+        // one and cancel each other. Sphere opens a trade by dropping an item
+        // on the partner, which the buyer has nothing to do with yet.
+        if (tradeSellingQty_ > 0) {
+            const std::vector<u16> gfx = econ::GraphicsForItem(tradeItem_.c_str());
+            u32 serial = 0;
+            for (u16 g : gfx) {
+                serial = client.FindBackpackItemByGraphic(g);
+                if (serial) break;
+            }
+            if (!serial) {
+                LogLine("trade: no %s in the pack after all", tradeItem_.c_str());
+                ResetTradeState();
+                return false;
+            }
+            tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
+            tradeGoldBefore_ = obs.gold;
+            LogLine("trade: opening a window with %s for %d %s",
+                    tradePartnerName_.c_str(), tradeSellingQty_,
+                    tradeItem_.c_str());
+            client.ActionTradeStart(tradePartner_, serial);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        // Buyer: stand there and wait for the seller to open it.
+        tradePackBefore_ = market::QtyOf(obs.pack, tradeItem_);
+        tradeGoldBefore_ = obs.gold;
+        if (obs.nowMs - tradeAnnouncedMs_ > 20000) {
+            LogLine("trade: %s never opened a window", tradePartnerName_.c_str());
+            ResetTradeState();
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    // --- nothing heard: stand where players are and announce ----------------
+    market::TradeIntent offer;
+    if (!market::ChooseSellOffer(*me, obs.pack, state_.prices, tradePolicy_,
+                                 &offer)) {
+        // Nothing worth announcing -- most often because this character has
+        // never seen a price for what it carries and refuses to invent one.
+        LogLine("trade: nothing to announce (no observed price for what is spare)");
+        return true;
+    }
+    tradeOffer_ = offer;
+
+    // A market needs a marketplace. The bank is where players actually stand,
+    // and going there is also what makes the fleet visibly congregate instead
+    // of shouting into an empty forest.
+    if (!obs.atBank && client.BankContainer() == 0) {
+        if (client.TravelBusy()) return false;
+        if (!travelInFlight_) {
+            LogLine("trade: taking %d %s to the %s market",
+                    offer.qty, offer.item.c_str(),
+                    state_.homeCity.empty() ? "nearest" : state_.homeCity.c_str());
+            travelInFlight_ =
+                client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"%s\"",
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        travelInFlight_ = false;
+        return false;
+    }
+
+    if (obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
+        const std::string line = market::FormatSellOffer(offer);
+        LogLine("trade: announcing '%s'", line.c_str());
+        client.ActionSay(line.c_str());
+        tradeAnnouncedMs_ = obs.nowMs;
+        ++tradeAnnounceCount_;
+    }
+    if (tradeAnnounceCount_ >= kMaxAnnounces) {
+        LogLine("trade: nobody answered %d offers of %s -- back to work",
+                tradeAnnounceCount_, offer.item.c_str());
+        state_.memory.NoteEvent("no_player_buyer", offer.item.c_str(), "",
+                                obs.x, obs.y, obs.nowMs);
+        tradeAnnounceCount_ = 0;
+        planner_.Finish(false, "nobody wanted it", obs.nowMs);
+        return false;
+    }
+    nextActionMs_ = obs.nowMs + 2000;
+    return false;
+}
+
+// Put the goods (or the gold) in the window, then accept. Kept separate
+// because it is the half that runs on BOTH sides of the same deal.
+bool Runner::DriveOpenTrade(Client& client, const Observation& obs) {
+    const trade::TradeState& tr = client.Trade();
+
+    if (!tradeOffered_) {
+        if (tradeSellingQty_ > 0) {
+            const std::vector<u16> gfx = econ::GraphicsForItem(tradeItem_.c_str());
+            for (u16 g : gfx) {
+                const u32 serial = client.FindBackpackItemByGraphic(g);
+                if (!serial) continue;
+                client.ActionTradeOffer(serial,
+                                        static_cast<u16>(tradeSellingQty_));
+                break;
+            }
+        } else {
+            const i32 owed = tradeWantQty_ * tradeOfferPrice_;
+            const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
+            if (gold && owed > 0) {
+                client.ActionTradeOffer(gold, static_cast<u16>(owed));
+                LogLine("trade: offering %d gold for %d %s", owed,
+                        tradeWantQty_, tradeItem_.c_str());
+            }
+        }
+        tradeOffered_ = true;
+        tradeOpenedMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    // Accept once the partner has put something in. Accepting an EMPTY window
+    // is how a character gives its goods away for nothing.
+    if (tr.CurrentPhase() == trade::Phase::Open && !tr.TheirOffer().empty() &&
+        !tr.CheckSent()) {
+        LogLine("trade: partner offered %zu line(s); accepting",
+                tr.TheirOffer().size());
+        client.ActionTradeAccept(true);
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    if (obs.nowMs - tradeOpenedMs_ > kTradeGiveUpMs) {
+        LogLine("trade: %s put nothing in after %llds -- cancelling",
+                tradePartnerName_.c_str(),
+                static_cast<long long>(kTradeGiveUpMs / 1000));
+        client.ActionTradeCancel();
+        state_.memory.NoteEvent("trade_timeout", tradeItem_.c_str(),
+                                tradePartnerName_.c_str(), obs.x, obs.y,
+                                obs.nowMs);
+        ResetTradeState();
+        return false;
+    }
+    nextActionMs_ = obs.nowMs + 1000;
+    return false;
+}
+
+void Runner::ResetTradeState() {
+    tradePartner_ = 0;
+    tradePartnerName_.clear();
+    tradeItem_.clear();
+    tradeOffer_ = market::TradeIntent{};
+    tradeSellingQty_ = 0;
+    tradeWantQty_ = 0;
+    tradeOfferPrice_ = 0;
+    tradeOffered_ = false;
+    tradePackBefore_ = 0;
+    tradeGoldBefore_ = 0;
+    tradeAnnounceCount_ = 0;
+    travelInFlight_ = false;
 }
 
 bool Runner::DoTravel(Client& client, const Observation& obs) {

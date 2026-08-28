@@ -555,6 +555,28 @@ public:
     // how this project lost a character in M3.9.
     int ScanHostiles(int maxDist, std::vector<HostileHit>& out) const;
 
+    // M7: what OTHER CHARACTERS have said since `sinceMs`, with who said it
+    // and where they were standing.
+    //
+    // Player trade is negotiated out loud, so this is the whole discovery
+    // mechanism: a character learns somebody wants boards by hearing them say
+    // so, and one out of earshot simply does not know. Returning the speaker's
+    // serial and position is what lets the listener walk over and answer --
+    // without it a bot would have to look the speaker up in some global
+    // registry, which is exactly the omniscience M7 forbids.
+    struct Heard {
+        u32         speaker = 0;
+        std::string name;
+        std::string text;
+        i32         x = 0, y = 0;
+        i8          z = 0;
+        bool        hasPosition = false;
+        i64         timeMs = 0;
+    };
+    // Lines spoken by somebody else (our own speech is excluded) since
+    // `sinceMs`. Oldest first.
+    void JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const;
+
     // M4: has the server said `needle` since `sinceMs`? Case-insensitive
     // substring over the journal this client already keeps.
     //

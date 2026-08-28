@@ -407,6 +407,10 @@ enum class NeedKind : u8 {
     // that ties M5 progression to the M7 economy.
     NeedSkillTraining,
     NeedTravel,
+    // Goods this life cannot use and no NPC will buy. The ONLY market for
+    // them is other characters, so this is what sends a bot to where players
+    // gather to announce what it has.
+    NeedTrade,
     Count,
 };
 
@@ -477,6 +481,9 @@ enum class GoalKind : u8 {
     TravelToRequiredPlace,
     // Find a trainer, ask the price, pay it, and verify the skill moved.
     TrainAtNpc,
+    // Stand where players gather, announce what is spare, and answer anybody
+    // who wants it. The one goal that needs another character to exist.
+    TradeWithPlayer,
     IdleBriefly,
     Count,
 };

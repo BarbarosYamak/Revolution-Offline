@@ -1654,4 +1654,25 @@ int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {
     return static_cast<int>(out.size());
 }
 
+
+void Client::JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const {
+    out.clear();
+    for (const JournalEntry& e : journal_) {
+        if (e.timeMs <= sinceMs) continue;
+        // Our own speech is not news. Without this a seller answers its own
+        // WTS and opens a trade window with itself.
+        if (e.sourceSerial == playerSerial_) continue;
+        // System messages carry no speaker to walk to.
+        if (e.sourceSerial == 0 || e.sourceSerial == 0xFFFFFFFFu) continue;
+        Heard h;
+        h.speaker = e.sourceSerial;
+        h.text = e.text;
+        h.timeMs = e.timeMs;
+        h.hasPosition = e.hasPosition;
+        h.x = e.x; h.y = e.y; h.z = e.z;
+        if (const char* n = MobileName(e.sourceSerial)) h.name = n;
+        out.push_back(std::move(h));
+    }
+}
+
 } // namespace uo

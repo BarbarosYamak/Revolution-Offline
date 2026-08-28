@@ -22,6 +22,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedTraining:  return "NeedTraining";
         case NeedKind::NeedSkillTraining: return "NeedSkillTraining";
         case NeedKind::NeedTravel:    return "NeedTravel";
+        case NeedKind::NeedTrade:     return "NeedTrade";
         case NeedKind::Count:         break;
     }
     return "?";
@@ -287,6 +288,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 const KnownSupplier* buyer =
                     mem.BestSupplier((std::string("buyer:") + o.item).c_str());
                 if (buyer) { route = buyer->name; break; }
+            }
+            // No NPC route, but a PLAYER might want it. That is a real
+            // errand rather than a blocked state, and it is the only market a
+            // gatherer has left once materials stopped being NPC-sellable.
+            if (route.empty()) {
+                add(NeedKind::NeedTrade, urgency, "sell to a player",
+                    "carrying goods no vendor will take, which is what the "
+                    "player market is for",
+                    Fmt("%d x %s spare", biggest, spare.front().item.c_str()));
             }
             add(NeedKind::NeedGold, urgency, "sell surplus",
                 route.empty()
