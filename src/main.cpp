@@ -81,7 +81,7 @@ bool ArgIs(const char* a, const char* name) { return std::strcmp(a, name) == 0; 
 // buffer for MUL paths, which aliased as soon as a second config existed --
 // M1.5 state audit item 10.)
 struct SessionStrings {
-    std::string user, pass, charName, scenario, tag, logFile;
+    std::string user, pass, charName, scenario, tag, logFile, profession;
     std::vector<std::string> mulPaths;
 
     const char* Mul(const std::string& dir, const char* name) {
@@ -317,12 +317,17 @@ int main(int argc, char** argv) {
         st->charName = field(2);
         st->scenario = field(3);
         st->tag      = field(4);
+        // Field 5: the profession, so ONE process can run a mixed population.
+        // Without it every session in a process shares --profession, and a
+        // fleet of sixteen identical lumberjacks is not an economy.
+        st->profession = field(5);
 
         uo::Client::Config cfg = base;
 
         if (!st->user.empty()) cfg.username = st->user.c_str();
         if (!st->charName.empty()) cfg.charName = st->charName.c_str();
         if (!st->scenario.empty()) cfg.scenarioPath = st->scenario.c_str();
+        if (!st->profession.empty()) cfg.professionId = st->profession.c_str();
 
         // Tag defaults to the account name, so logs are attributable even
         // when --tag is not given.
@@ -354,6 +359,37 @@ int main(int argc, char** argv) {
                 "--session user:pass:..., or UO_BOT_USER / UO_BOT_PASS "
                 "(per session: UO_BOT_PASS_<TAG>).\n", si);
             return 64;
+        }
+
+        // The creation request follows the SESSION's profession, not the
+        // process-wide one. Resolved here rather than in Client so an unknown
+        // id fails at startup with a list of the real ones, instead of at
+        // character creation on a live shard.
+        if (cfg.professionId && cfg.professionId[0]) {
+            const uo::prof::Profession* pr = uo::prof::Find(cfg.professionId);
+            if (!pr) {
+                std::fprintf(stderr,
+                    "error: session %zu names unknown profession '%s'. Known:",
+                    si, cfg.professionId);
+                for (const uo::prof::Profession& q : uo::prof::All()) {
+                    std::fprintf(stderr, " %s", q.id.c_str());
+                }
+                std::fprintf(stderr, "\n");
+                return 64;
+            }
+            if (cfg.createSkillVal[0] == 0) {
+                cfg.createSkill[0]    = pr->startSkillA;
+                cfg.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
+                cfg.createSkill[1]    = pr->startSkillB;
+                cfg.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
+                cfg.createSkill[2]    = 0;
+                cfg.createSkillVal[2] = 0;
+            }
+            if (cfg.createStr == 0) {
+                cfg.createStr = pr->startStr;
+                cfg.createDex = pr->startDex;
+                cfg.createInt = pr->startInt;
+            }
         }
 
         // One log file per session so two sessions never interleave.
