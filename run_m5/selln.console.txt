@@ -145,3 +145,31 @@
 [19:20:55.719] INFO  [selln] [survival] hp 25/25 (100%) -> fight
 [19:20:55.782] INFO  [selln] [bot] replan to (1468,1750): 60 steps in 3383.7us
 [19:21:00.757] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:05.783] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:10.096] INFO  [selln] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 207.0us
+[19:21:10.802] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:11.318] INFO  [selln] [travel] fishing spot ARRIVED at (1464,1746,0)
+[19:21:11.318] LOG   [selln] event travel_done: label='fishing spot' ok=1 at=(1464,1746) legs=1 plans=1 why=''
+[19:21:11.378] INFO  [life] fish: at the water's edge (1464,1746), shore 1464,1746
+[19:21:11.393] INFO  [selln] [ACTION] use_object start
+[19:21:11.393] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:21:11.393] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:21:11.393] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[19:21:11.393] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[19:21:11.393] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:21:11.393] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:21:12.203] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=1
+[19:21:12.204] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:21:12.204] INFO  [selln] [0x20] player @(1466,1746,0) facing=5
+[19:21:15.834] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:20.892] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:25.944] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:28.258] INFO  [selln] [chat ascii] System: You pull out a fish!
+[19:21:28.606] INFO  [life] fish: caught one at 1463,1749 (journal)
+[19:21:28.606] INFO  [selln] [ACTION] use_object start
+[19:21:28.606] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:21:28.607] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:21:28.607] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[19:21:28.607] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[19:21:28.607] INFO  [selln] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[19:21:28.607] LOG   [selln] event action_result: use_object success took=1ms server armed a target cursor

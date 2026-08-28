@@ -1,0 +1,65 @@
+[19:21:49.161] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='scribe1'
+[19:21:49.162] LOG   [scribe1] event session_start: text log opened
+[19:21:49.162] LOG   [scribe1] event net_connect_begin: connect 127.0.0.1:2593
+[19:21:49.163] INFO  [scribe1] [net] connecting to 127.0.0.1:2593 ...
+[19:21:49.164] LOG   [scribe1] event net_connected: connect 127.0.0.1:2593
+[19:21:49.164] INFO  [scribe1] [net] connected.
+[19:21:49.164] INFO  [scribe1] [seed] sent 0x7F000001 (plaintext)
+[19:21:49.164] LOG   [scribe1] event seed_out: 0x7F000001 hex=7f000001
+[19:21:49.164] INFO  [life] loaded persistent state for Ysolde (0 places, 1 suppliers, 7 events, 0 prior sessions)
+[19:21:49.164] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[19:21:49.164] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[19:21:49.164] INFO  [scribe1] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[19:21:49.176] INFO  [scribe1] [0xA8] 1 server(s):
+[19:21:49.176] INFO  [scribe1]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[19:21:49.191] INFO  [scribe1] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[19:21:49.191] LOG   [scribe1] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[19:21:49.191] INFO  [scribe1] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[19:21:49.191] LOG   [scribe1] event relay_same_socket: no seed re-sent; 0x91 follows
+[19:21:49.192] INFO  [scribe1] [0xB9] server features = 0x0005
+[19:21:49.192] INFO  [scribe1] [0xA9] 5 slot(s) (populated 1):
+[19:21:49.192] INFO  [scribe1]   [0] Ysolde
+[19:21:49.192] INFO  [scribe1]   [1] <empty>
+[19:21:49.192] INFO  [scribe1]   [2] <empty>
+[19:21:49.192] INFO  [scribe1]   [3] <empty>
+[19:21:49.192] INFO  [scribe1]   [4] <empty>
+[19:21:49.192] INFO  [scribe1] [ui] playing slot 0 ('Ysolde')
+[19:21:49.207] INFO  [scribe1] [0x1B] serial=0x00014261 body=0x0190 pos=(1485,1549,32)
+[19:21:49.207] LOG   [scribe1] event login_confirm: serial=0x00014261 body=0x0190 pos=(1485,1549,32)
+[19:21:49.207] INFO  [scribe1] [0x20] player @(1485,1549,32) facing=3
+[19:21:49.207] INFO  [scribe1] [0x55] login complete — entering world
+[19:21:49.207] LOG   [scribe1] event in_world: 0x55 received
+[19:21:49.207] INFO  [scribe1] [backpack] opening 0x4001425D
+[19:21:49.207] INFO  [scribe1] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[19:21:49.207] INFO  [scribe1] [chat ascii] System: There are 2 other players here.
+[19:21:49.207] INFO  [scribe1] [chat ascii] System: Last logged: 2026/08/28 18:43:28
+[19:21:49.207] INFO  [scribe1] [chat ascii] System: You are under the protection of the city guards
+[19:21:49.211] INFO  [scribe1] [action] requesting the skill list
+[19:21:49.211] INFO  [life] in world; asked the server for the skill list
+[19:21:49.211] INFO  [scribe1] [0x24] open container 0x4001425D gump=60
+[19:21:49.211] INFO  [scribe1] [0x3C] container contents: 9 item(s)
+[19:21:49.211] LOG   [scribe1] event backpack_contents: serial=0x4001425D items=9
+[19:21:51.804] INFO  [scribe1] [bot] world data loaded (0 blacklisted spot(s)).
+[19:21:51.804] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[19:21:51.804] INFO  [life]   gold         persisted=781        server=781        -> server value accepted
+[19:21:51.804] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[19:21:51.804] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[19:21:51.804] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[19:21:51.804] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[19:21:51.804] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[19:21:51.804] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[19:21:51.804] INFO  [life]   position     persisted=1485,1549  server=1485,1549  -> server value accepted
+[19:21:51.804] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[19:21:51.804] INFO  [scribe1] [survival] on
+[19:21:51.804] LOG   [scribe1] event survival_mode: on
+[19:21:51.806] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[19:21:51.806] INFO  [scribe1] [survival] hp 10/10 (100%) -> fight
+[19:21:51.860] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[19:21:51.860] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[19:21:51.860] INFO  [life]   score=10.0
+[19:21:51.860] INFO  [life]   reason: fallback: nothing else scored
+[19:21:51.860] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[19:21:52.813] INFO  [scribe1] [chat ascii] Alenne: Thou wishest to speak with me?
+[19:21:56.816] INFO  [scribe1] [survival] hp 10/10 (100%) -> fight
+[19:22:01.843] INFO  [scribe1] [survival] hp 10/10 (100%) -> fight
+[19:22:06.847] INFO  [scribe1] [survival] hp 10/10 (100%) -> fight
