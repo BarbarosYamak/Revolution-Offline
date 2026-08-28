@@ -173,3 +173,104 @@
 [19:21:28.607] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
 [19:21:28.607] INFO  [selln] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
 [19:21:28.607] LOG   [selln] event action_result: use_object success took=1ms server armed a target cursor
+[19:21:29.424] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=2
+[19:21:29.424] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:21:30.945] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:35.972] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:40.986] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:45.453] INFO  [selln] [chat ascii] System: You fish a while, but fail to catch anything.
+[19:21:45.821] INFO  [selln] [ACTION] use_object start
+[19:21:45.821] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:21:45.821] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:21:45.822] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[19:21:45.822] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[19:21:45.822] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:21:45.822] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:21:46.004] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:46.675] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=3
+[19:21:46.675] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:21:49.207] INFO  [selln] [chat ascii] System: Ysolde has arrived in Britain.
+[19:21:51.031] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:21:55.608] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[19:21:56.068] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:01.104] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:02.716] INFO  [selln] [chat ascii] System: You pull out a fish!
+[19:22:02.992] INFO  [life] fish: caught one at 1463,1749 (journal)
+[19:22:02.992] INFO  [selln] [ACTION] use_object start
+[19:22:02.992] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:22:02.992] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:22:02.992] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[19:22:02.992] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[19:22:02.992] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:22:02.992] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:22:03.819] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=4
+[19:22:03.819] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:22:06.110] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:11.140] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:16.158] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:19.901] INFO  [selln] [chat ascii] System: You fish a while, but fail to catch anything.
+[19:22:20.267] INFO  [selln] [ACTION] use_object start
+[19:22:20.267] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:22:20.267] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:22:20.267] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[19:22:20.267] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[19:22:20.267] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:22:20.267] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:22:21.127] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=5
+[19:22:21.127] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:22:21.188] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:26.214] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:31.250] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:36.256] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:37.176] INFO  [selln] [chat ascii] System: You fish a while, but fail to catch anything.
+[19:22:37.238] INFO  [selln] [ACTION] use_object start
+[19:22:37.238] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:22:37.254] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:22:37.254] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=6
+[19:22:37.254] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=6
+[19:22:37.254] INFO  [selln] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[19:22:37.254] LOG   [selln] event action_result: use_object success took=16ms server armed a target cursor
+[19:22:38.048] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=6
+[19:22:38.048] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:22:41.277] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:46.095] INFO  [selln] [chat ascii] System: You fish a while, but fail to catch anything.
+[19:22:46.277] INFO  [selln] [ACTION] use_object start
+[19:22:46.277] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:22:46.277] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:22:46.277] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=7
+[19:22:46.277] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=7
+[19:22:46.277] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:22:46.277] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:22:46.338] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:47.088] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=7
+[19:22:47.088] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:22:51.367] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:22:55.665] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[19:22:56.414] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:01.432] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:03.152] INFO  [selln] [chat ascii] System: You pull out a fish!
+[19:23:03.489] INFO  [life] fish: caught one at 1463,1749 (journal)
+[19:23:03.489] INFO  [selln] [ACTION] use_object start
+[19:23:03.489] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:23:03.505] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:23:03.505] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=8
+[19:23:03.505] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=8
+[19:23:03.505] INFO  [selln] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[19:23:03.505] LOG   [selln] event action_result: use_object success took=16ms server armed a target cursor
+[19:23:04.315] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=8
+[19:23:04.315] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:23:06.453] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:11.456] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:16.482] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:20.369] INFO  [selln] [chat ascii] System: You fish a while, but fail to catch anything.
+[19:23:20.674] INFO  [selln] [ACTION] use_object start
+[19:23:20.674] INFO  [selln] [ACTION] use_object serial=0x40012D7B
+[19:23:20.674] INFO  [selln] [chat ascii] System: Where would you like to fish?
+[19:23:20.674] INFO  [selln] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=9
+[19:23:20.674] LOG   [selln] event target_requested: id=0x000002CE type=1 subtype=0 gen=9
+[19:23:20.674] INFO  [selln] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[19:23:20.674] LOG   [selln] event action_result: use_object success took=0ms server armed a target cursor
+[19:23:21.532] INFO  [selln] [TARGET] reply static=(1463,1749,-5) gfx=0x17A5 gen=9
+[19:23:21.532] INFO  [selln] [target] static 0x17A5 (1463,1749,-5)
+[19:23:21.532] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:23:26.543] INFO  [selln] [survival] hp 25/25 (100%) -> fight
