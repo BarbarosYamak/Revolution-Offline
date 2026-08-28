@@ -242,6 +242,8 @@ private:
     bool  sellAsked_ = false;          // 0x9E requested
     i64   sellAskedMs_ = 0;
     bool  sellSent_ = false;           // ActionVendorSell issued
+    u32   sellVendorSerial_ = 0;       // the vendor we mean to deal with
+    bool  sellApproached_ = false;     // walked to them before speaking
 
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;

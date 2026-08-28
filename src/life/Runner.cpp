@@ -2046,6 +2046,35 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         return false;
     }
 
+    // --- stand next to the one we mean to deal with -------------------------
+    //
+    // Sphere routes a vendor keyword to whoever is NEAREST in earshot, not to
+    // the name spoken. The first live sale said "Weston sell" three tiles from
+    // Weston the carpenter, and JOSHUA THE ARCHITECT answered -- with "You
+    // have nothing I'm interested in", because architects do not buy logs.
+    // Walking up first is what makes the intended vendor the nearest listener.
+    if (sellVendorSerial_ != vendor) {
+        sellVendorSerial_ = vendor;
+        sellApproached_ = false;
+    }
+    if (!sellApproached_) {
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
+            const i32 d = TileDist(obs.x, obs.y, vx, vy);
+            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+            if (d > 1 || dz > 3) {
+                LogLine("earn_gold: the '%s' is %d tiles and %d z away -- "
+                        "walking up before speaking, or the nearest other "
+                        "vendor answers instead", sellTrade_.c_str(), d, dz);
+                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                sellApproached_ = true;   // one approach, then talk regardless
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        sellApproached_ = true;
+    }
+
     // --- ask what it will take ---------------------------------------------
     if (!sellAsked_) {
         LogLine("earn_gold: asking the '%s' what it buys", sellTrade_.c_str());
@@ -2063,6 +2092,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             ++sellBuyerIndex_;
             sellTrade_.clear();
             sellAsked_ = false;
+            sellVendorSerial_ = 0;
+            sellApproached_ = false;
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
