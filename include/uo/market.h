@@ -52,6 +52,14 @@ struct Want {
 struct TradePolicy {
     i32 keepOfOwnOutput = 20;
     i32 restockConsumablesTo = 20;
+    // Never pay more than this multiple of what the character believes the
+    // thing is worth. Without a ceiling a bot with 1000gp will accept any
+    // number, and one greedy seller drains the fleet.
+    double maxOverBelief = 2.0;
+    // With no belief at all, this is the most a character will pay per unit
+    // for something it genuinely needs. Small on purpose: a first purchase is
+    // how you LEARN a price, not where you spend a fortune.
+    i32 blindPriceCeiling = 12;
     // Below this, gathering more of something to sell is pointless -- it will
     // all be eaten by the character's own work.
     i32 minimumSurplusToOffer = 5;
@@ -246,6 +254,73 @@ public:
 private:
     std::vector<PriceObservation> obs_;
 };
+
+// ---------------------------------------------------------------------------
+// Player-to-player trade.
+//
+// This is what the milestone is actually for. Once materials stopped being
+// NPC-sellable, a lumberjack's logs and a smith's ingots have exactly one
+// market: other characters. A twenty-bot fleet spent a whole session with
+// EARN_GOLD blocked 3,297 times for want of a buyer, which is the correct
+// behaviour and also a dead end until this exists.
+//
+// THE NON-OMNISCIENCE RULE APPLIES HERE HARDEST. There is no "who needs
+// boards" query and no shard-wide want list. A character learns that someone
+// wants something the way a player does: it HEARS them say so. So the wire
+// format below is a spoken line, parsed out of the journal, and a bot that was
+// not in earshot simply does not know.
+// ---------------------------------------------------------------------------
+
+// One side of a proposed deal, as announced out loud.
+struct TradeIntent {
+    std::string item;
+    i32         qty = 0;
+    i32         pricePerUnit = 0;   // the seller's own claim, not a fact
+
+    bool Valid() const { return !item.empty() && qty > 0 && pricePerUnit >= 0; }
+    i32  Total() const { return qty * pricePerUnit; }
+};
+
+// The spoken forms. Deliberately terse and machine-parseable in both
+// directions, because both ends are bots -- but shaped like the WTS/WTB
+// shorthand players actually used, so a human watching the shard reads
+// something familiar rather than a protocol.
+//
+//   "WTS 20 i_board 4gp"      <- a seller announcing
+//   "WTB i_board"             <- a buyer answering
+std::string FormatSellOffer(const TradeIntent& t);
+std::string FormatBuyReply(const std::string& item);
+
+// Parse a heard line. Returns false when it is not an offer at all, which is
+// the common case: most of what a character hears is not addressed to it.
+bool ParseSellOffer(const std::string& said, TradeIntent* out);
+bool ParseBuyReply(const std::string& said, std::string* itemOut);
+
+// What this life should announce, or nothing. Reads the same Surplus() the NPC
+// path reads, then keeps only what NO NPC will buy -- because if an NPC takes
+// it, that is a shorter errand and the player market does not need to carry it.
+//
+// `book` supplies the asking price. With no observation the character has no
+// basis for a number and announces nothing rather than inventing one; that is
+// the same rule BelievedSalePrice follows.
+bool ChooseSellOffer(const prof::Profession& p,
+                     const std::vector<Stock>& pack,
+                     const PriceBook& book,
+                     const TradePolicy& policy,
+                     TradeIntent* out);
+
+// Should this life answer an offer it just heard?
+struct BuyDecision {
+    bool        accept = false;
+    i32         qty = 0;           // how many we actually want
+    const char* reason = nullptr;  // always populated
+};
+
+BuyDecision ConsiderOffer(const prof::Profession& p,
+                          const std::vector<Stock>& pack,
+                          i32 gold,
+                          const TradePolicy& policy,
+                          const TradeIntent& offer);
 
 // ---------------------------------------------------------------------------
 // Where the gold went. Telemetry, not a rule.

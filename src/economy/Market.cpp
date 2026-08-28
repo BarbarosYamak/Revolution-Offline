@@ -469,6 +469,163 @@ void PriceBook::Expire(i64 nowMs, i64 maxAgeMs) {
 }
 
 // ---------------------------------------------------------------------------
+// Player-to-player trade
+// ---------------------------------------------------------------------------
+namespace {
+
+std::string Lower(const std::string& s) {
+    std::string out(s);
+    for (char& c : out) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    return out;
+}
+
+// Read a run of digits at `i`, advancing it. -1 when there are none.
+i32 ReadInt(const std::string& s, usize& i) {
+    if (i >= s.size() || s[i] < '0' || s[i] > '9') return -1;
+    i64 v = 0;
+    while (i < s.size() && s[i] >= '0' && s[i] <= '9') {
+        v = v * 10 + (s[i] - '0');
+        if (v > 1000000) return -1;   // not a quantity anybody means
+        ++i;
+    }
+    return static_cast<i32>(v);
+}
+
+void SkipSpace(const std::string& s, usize& i) {
+    while (i < s.size() && s[i] == ' ') ++i;
+}
+
+std::string ReadWord(const std::string& s, usize& i) {
+    SkipSpace(s, i);
+    const usize start = i;
+    while (i < s.size() && s[i] != ' ') ++i;
+    return s.substr(start, i - start);
+}
+
+}  // namespace
+
+std::string FormatSellOffer(const TradeIntent& t) {
+    return "WTS " + std::to_string(t.qty) + " " + t.item + " " +
+           std::to_string(t.pricePerUnit) + "gp";
+}
+
+std::string FormatBuyReply(const std::string& item) {
+    return "WTB " + item;
+}
+
+bool ParseSellOffer(const std::string& said, TradeIntent* out) {
+    if (!out) return false;
+    const std::string low = Lower(said);
+    const usize at = low.find("wts ");
+    if (at == std::string::npos) return false;
+
+    usize i = at + 4;
+    const i32 qty = ReadInt(low, i);
+    if (qty <= 0) return false;
+    const std::string item = ReadWord(low, i);
+    if (item.empty()) return false;
+    SkipSpace(low, i);
+    const i32 price = ReadInt(low, i);
+    if (price < 0) return false;
+
+    out->item = item;
+    out->qty = qty;
+    out->pricePerUnit = price;
+    return out->Valid();
+}
+
+bool ParseBuyReply(const std::string& said, std::string* itemOut) {
+    if (!itemOut) return false;
+    const std::string low = Lower(said);
+    const usize at = low.find("wtb ");
+    if (at == std::string::npos) return false;
+    usize i = at + 4;
+    const std::string item = ReadWord(low, i);
+    if (item.empty()) return false;
+    *itemOut = item;
+    return true;
+}
+
+bool ChooseSellOffer(const prof::Profession& p,
+                     const std::vector<Stock>& pack,
+                     const PriceBook& book,
+                     const TradePolicy& policy,
+                     TradeIntent* out) {
+    if (!out) return false;
+    for (const Offer& o : Surplus(p, pack, policy)) {
+        // If an NPC will take it, that is a shorter errand and the player
+        // market does not need to carry it. This is the whole reason the
+        // player path exists: it is for what the NPCs refuse.
+        if (HasNpcBuyer(o.item.c_str())) continue;
+
+        const i32 believed = book.BelievedSalePrice(o.item.c_str());
+        if (believed < 0) {
+            // No basis for a number. A character that invents one is guessing
+            // at a market it has never seen, which is exactly what M7 forbids.
+            // It stays quiet and waits to hear a price from somebody else.
+            continue;
+        }
+        out->item = o.item;
+        out->qty = o.qty;
+        out->pricePerUnit = believed;
+        return out->Valid();
+    }
+    return false;
+}
+
+BuyDecision ConsiderOffer(const prof::Profession& p,
+                          const std::vector<Stock>& pack,
+                          i32 gold,
+                          const TradePolicy& policy,
+                          const TradeIntent& offer) {
+    BuyDecision d;
+    if (!offer.Valid()) {
+        d.reason = "not a well-formed offer";
+        return d;
+    }
+
+    // Do I actually want it? Shortfall answers from the catalogue, so a bot
+    // never buys something its life has no use for -- which is what stops a
+    // fleet turning into a room full of speculators.
+    i32 want = 0;
+    for (const Want& w : Shortfall(p, pack, policy)) {
+        if (w.item == offer.item) { want = w.qty; break; }
+    }
+    if (want <= 0) {
+        d.reason = "this life has no use for it";
+        return d;
+    }
+
+    const i32 qty = std::min(want, offer.qty);
+    const i32 cost = qty * offer.pricePerUnit;
+    if (cost > gold) {
+        d.reason = "cannot afford it";
+        return d;
+    }
+    // Never spend the reserve. It is what buys a replacement tool after a
+    // death, and a character that trades it away is one bad fight from
+    // unemployable.
+    if (gold - cost < p.goldReserve) {
+        d.reason = "would eat into the reserve this life keeps for tools";
+        return d;
+    }
+
+    // A price ceiling, because a bot with a full purse will otherwise accept
+    // any number a seller says and one greedy seller drains the fleet.
+    if (offer.pricePerUnit > policy.blindPriceCeiling) {
+        d.reason = "more than this life will pay sight unseen";
+        return d;
+    }
+
+    d.accept = true;
+    d.qty = qty;
+    d.reason = "needed, affordable, and within the price ceiling";
+    return d;
+}
+
+// ---------------------------------------------------------------------------
 // Ledger
 // ---------------------------------------------------------------------------
 void Ledger::Note(GoldFlow f, i32 amount, const char* detail, i64 whenMs) {

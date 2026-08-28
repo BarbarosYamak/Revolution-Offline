@@ -495,6 +495,176 @@ void TestArbitrageGuardStillApplies() {
           "and a life still may not sell what it does not produce");
 }
 
+// --------------------------------------------------------------------------
+void TestSpokenOffers() {
+    Section("trade: an offer is something you SAY, and might mishear");
+
+    // The wire format is a spoken line on purpose. There is no shard-wide
+    // want list to query -- a character learns somebody wants boards by
+    // HEARING them say so, and one out of earshot simply does not know.
+    TradeIntent t;
+    t.item = "i_board"; t.qty = 20; t.pricePerUnit = 4;
+    const std::string said = FormatSellOffer(t);
+    Check(said == "WTS 20 i_board 4gp", "the offer reads like a player's WTS");
+
+    TradeIntent heard;
+    Check(ParseSellOffer(said, &heard), "and parses back");
+    Check(heard.item == "i_board" && heard.qty == 20 &&
+          heard.pricePerUnit == 4, "to the same deal");
+    Check(heard.Total() == 80, "with a total anybody can check");
+
+    // Heard inside ordinary chatter, and in the wrong case.
+    Check(ParseSellOffer("Galrin: wts 5 i_log 2gp anyone?", &heard),
+          "an offer buried in a sentence is still an offer");
+    Check(heard.qty == 5 && heard.item == "i_log", "and reads correctly");
+
+    // Things that are NOT offers. Most of what a character hears is not
+    // addressed to it, so the common case must be a clean false.
+    Check(!ParseSellOffer("hello there", &heard), "chatter is not an offer");
+    Check(!ParseSellOffer("WTS", &heard), "a bare keyword is not an offer");
+    Check(!ParseSellOffer("WTS lots of boards", &heard),
+          "no quantity, no deal");
+    Check(!ParseSellOffer("WTS 20 i_board", &heard),
+          "no price, no deal -- a bot must not fill in a number for a seller");
+    Check(!ParseSellOffer("", &heard), "an empty line is not an offer");
+    Check(!ParseSellOffer(said, nullptr), "a null out is refused, not a crash");
+
+    std::string item;
+    Check(ParseBuyReply(FormatBuyReply("i_board"), &item) && item == "i_board",
+          "a buy reply round-trips");
+    Check(!ParseBuyReply("WTS 20 i_board 4gp", &item),
+          "a sell offer is not mistaken for a buy reply");
+}
+
+// --------------------------------------------------------------------------
+void TestWhatToAnnounce() {
+    Section("trade: a seller announces only what NPCs refuse, at a seen price");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(lj != nullptr, "the carpenter exists");
+    if (!lj) return;
+
+    TradePolicy pol;
+    PriceBook empty;
+    TradeIntent out;
+
+    // 40 boards and no idea what a board is worth. It says NOTHING. Inventing
+    // a price is guessing at a market it has never seen, which is the one
+    // thing this milestone forbids.
+    const std::vector<Stock> boards = {{"i_board", 40}};
+    Check(!ChooseSellOffer(*lj, boards, empty, pol, &out),
+          "with no observed price the character stays quiet");
+
+    // Now it has heard one.
+    PriceBook book;
+    PriceObservation po;
+    po.item = "i_board"; po.pricePerUnit = 4;
+    po.source = PriceSource::PlayerTraded; po.who = "Aeryn"; po.whenMs = 1000;
+    book.Note(po);
+    Check(ChooseSellOffer(*lj, boards, book, pol, &out),
+          "with a price it has seen, it announces");
+    Check(out.item == "i_board" && out.pricePerUnit == 4,
+          "at the price it saw, not a markup it invented");
+
+    // A club HAS an NPC buyer, so the player market does not need to carry it
+    // -- that is a shorter errand and the announcement would be noise.
+    PriceBook clubBook;
+    PriceObservation cp;
+    cp.item = "i_club"; cp.pricePerUnit = 12;
+    cp.source = PriceSource::NpcVendorBuys; cp.who = "weaponsmith"; cp.whenMs = 1;
+    clubBook.Note(cp);
+    const std::vector<Stock> clubs = {{"i_club", 40}};
+    Check(!ChooseSellOffer(*lj, clubs, clubBook, pol, &out),
+          "what an NPC will buy is not announced to players");
+}
+
+// --------------------------------------------------------------------------
+void TestWhetherToAnswer() {
+    Section("trade: a buyer answers only for what its own life needs");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    const prof::Profession* mg = prof::Find("mage");
+    Check(ms && mg, "the smith and the mage exist");
+    if (!ms || !mg) return;
+
+    TradePolicy pol;
+    TradeIntent logs;
+    logs.item = "i_log"; logs.qty = 20; logs.pricePerUnit = 2;
+
+    // A smith needs logs -- i_spear_short is 6 ingots plus one log.
+    const BuyDecision yes = ConsiderOffer(*ms, {}, 1000, pol, logs);
+    Check(yes.accept, "a smith answers an offer of logs");
+    Check(yes.qty > 0 && yes.qty <= logs.qty, "for no more than is on offer");
+    Check(yes.reason != nullptr, "and says why");
+
+    // A mage has no use for a log. This is what stops a fleet becoming a room
+    // full of speculators buying whatever is cheap.
+    const BuyDecision no = ConsiderOffer(*mg, {}, 1000, pol, logs);
+    Check(!no.accept, "a mage does not buy logs");
+    Check(no.reason != nullptr, "and says why not");
+
+    // Already stocked -> no longer a want.
+    std::vector<Stock> full;
+    for (const std::string& c : ms->consumes) full.push_back({c, 500});
+    Check(!ConsiderOffer(*ms, full, 1000, pol, logs).accept,
+          "a smith with a full stock of logs stops buying them");
+
+    // Broke.
+    Check(!ConsiderOffer(*ms, {}, 5, pol, logs).accept,
+          "a character that cannot afford it declines");
+
+    // The reserve is not spendable: it is what buys a replacement tool after
+    // a death, and trading it away leaves the character unemployable.
+    const i32 justOverReserve = ms->goldReserve + 10;
+    Check(!ConsiderOffer(*ms, {}, justOverReserve, pol, logs).accept,
+          "and it will not eat into the tool reserve to buy stock");
+
+    // A greedy seller. Without a ceiling a bot with a full purse accepts any
+    // number, and one seller drains the fleet.
+    TradeIntent gouge = logs;
+    gouge.pricePerUnit = 500;
+    Check(!ConsiderOffer(*ms, {}, 100000, pol, gouge).accept,
+          "an absurd price is refused however rich the buyer is");
+
+    TradeIntent junk;
+    Check(!ConsiderOffer(*ms, {}, 1000, pol, junk).accept,
+          "a malformed offer is refused, not acted on");
+}
+
+// --------------------------------------------------------------------------
+void TestTheChainCanActuallyClose() {
+    Section("trade: the lumberjack -> smith chain has both ends");
+
+    // The M7 claim in one test. A carpenter with surplus logs and an observed
+    // price announces; a smith that needs logs answers. If either half fails
+    // the fleet is a set of solo players sharing a map.
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(lj && ms, "both lives exist");
+    if (!lj || !ms) return;
+
+    PriceBook book;
+    PriceObservation po;
+    po.item = "i_log"; po.pricePerUnit = 2;
+    po.source = PriceSource::PlayerTraded; po.who = "Dorthor"; po.whenMs = 1;
+    book.Note(po);
+
+    TradePolicy pol;
+    TradeIntent announced;
+    const std::vector<Stock> logs = {{"i_log", 60}};
+    Check(ChooseSellOffer(*lj, logs, book, pol, &announced),
+          "the carpenter announces its spare logs");
+    Check(announced.item == "i_log", "and it is logs it is offering");
+
+    // The smith hears the SPOKEN LINE -- not a struct handed to it.
+    TradeIntent heard;
+    Check(ParseSellOffer(FormatSellOffer(announced), &heard),
+          "the smith parses what it heard");
+    const BuyDecision d = ConsiderOffer(*ms, {}, 1000, pol, heard);
+    Check(d.accept, "and takes the deal");
+    Check(d.qty > 0, "for a real quantity");
+}
+
 }  // namespace
 
 int main() {
@@ -510,6 +680,10 @@ int main() {
     TestNpcsMayNotBuyPlayerMarketGoods();
     TestWhatAnNpcMayStillBuy();
     TestArbitrageGuardStillApplies();
+    TestSpokenOffers();
+    TestWhatToAnnounce();
+    TestWhetherToAnswer();
+    TestTheChainCanActuallyClose();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }
