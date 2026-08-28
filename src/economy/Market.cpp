@@ -1,6 +1,7 @@
 #include "uo/market.h"
 
 #include "uo/production.h"
+#include "uo/faucets.h"
 #include "uo/vendor_policy.h"
 
 #include <algorithm>
@@ -27,35 +28,62 @@ const char* PriceSourceName(PriceSource s) {
 
 const char* GoldFlowName(GoldFlow f) {
     switch (f) {
-        case GoldFlow::LootedFromCorpse:    return "looted_from_corpse";
-        case GoldFlow::SoldToNpcVendor:     return "sold_to_npc_vendor";
-        case GoldFlow::SoldToPlayer:        return "sold_to_player";
-        case GoldFlow::StartingKit:         return "starting_kit";
-        case GoldFlow::BoughtFromNpcVendor: return "bought_from_npc_vendor";
-        case GoldFlow::BoughtFromPlayer:    return "bought_from_player";
-        case GoldFlow::PaidTrainer:         return "paid_trainer";
-        case GoldFlow::Count:               break;
+        case GoldFlow::CreatedVendor:           return "GOLD_CREATED_VENDOR";
+        case GoldFlow::CreatedPvmLoot:          return "GOLD_CREATED_PVM_LOOT";
+        case GoldFlow::CreatedTreasure:         return "GOLD_CREATED_TREASURE";
+        case GoldFlow::CreatedBounty:           return "GOLD_CREATED_BOUNTY";
+        case GoldFlow::CreatedBegging:          return "GOLD_CREATED_BEGGING";
+        case GoldFlow::StartingKit:             return "GOLD_CREATED_STARTING_KIT";
+        case GoldFlow::DestroyedVendorPurchase: return "GOLD_DESTROYED_VENDOR_PURCHASE";
+        case GoldFlow::DestroyedTrainer:        return "GOLD_DESTROYED_TRAINER";
+        case GoldFlow::DestroyedService:        return "GOLD_DESTROYED_SERVICE";
+        case GoldFlow::TransferPlayerTrade:     return "GOLD_TRANSFER_PLAYER_TRADE";
+        case GoldFlow::TransferPlayerTradeOut:  return "GOLD_TRANSFER_PLAYER_TRADE_OUT";
+        case GoldFlow::Count:                   break;
     }
     return "?";
 }
 
-bool IsGoldSource(GoldFlow f) {
-    switch (f) {
-        // Only these three put gold that did not exist before into a player's
-        // hands. A sale to another PLAYER is not a source -- it moves gold
-        // sideways, which is the whole point of a player economy.
-        case GoldFlow::LootedFromCorpse:
-        case GoldFlow::SoldToNpcVendor:
-        case GoldFlow::StartingKit:
-            return true;
-        default:
-            return false;
+const char* GoldEffectName(GoldEffect e) {
+    switch (e) {
+        case GoldEffect::Created:     return "CREATED";
+        case GoldEffect::Destroyed:   return "DESTROYED";
+        case GoldEffect::Transferred: return "TRANSFERRED";
+        case GoldEffect::Count:       break;
     }
+    return "?";
 }
+
+GoldEffect EffectOf(GoldFlow f) {
+    switch (f) {
+        case GoldFlow::CreatedVendor:
+        case GoldFlow::CreatedPvmLoot:
+        case GoldFlow::CreatedTreasure:
+        case GoldFlow::CreatedBounty:
+        case GoldFlow::CreatedBegging:
+        case GoldFlow::StartingKit:
+            return GoldEffect::Created;
+        case GoldFlow::DestroyedVendorPurchase:
+        case GoldFlow::DestroyedTrainer:
+        case GoldFlow::DestroyedService:
+            return GoldEffect::Destroyed;
+        case GoldFlow::TransferPlayerTrade:
+        case GoldFlow::TransferPlayerTradeOut:
+        case GoldFlow::Count:
+            break;
+    }
+    return GoldEffect::Transferred;
+}
+
+bool IsGoldSource(GoldFlow f) { return EffectOf(f) == GoldEffect::Created; }
 
 namespace {
 
-// Does this life feed `item` back into something else it makes?
+// Does this life feed `item` back into something else it makes? The reserve
+// exists to protect tomorrow's work, so it applies only to output the
+// character consumes itself -- and the production graph knows that, while the
+// catalogue's `consumes` field does not (it means "obtain from someone else",
+// so a smith's own ingots are correctly absent from it).
 bool IsOwnInput(const prof::Profession& p, const std::string& item) {
     for (const std::string& made : p.produces) {
         if (made == item) continue;
@@ -167,7 +195,11 @@ bool CanSupply(const prof::Profession& producer,
 SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
                         const Ledger& ledger) {
     SellRuling out;
-    if (!item) { out.reason = "no item named"; return out; }
+    if (!item) {
+        out.refusal = faucet::Refusal::NotSellable;
+        out.reason = "no item named";
+        return out;
+    }
 
     // A life sells what it MAKES. Selling something it merely picked up turns
     // a character into a fence, and there is no world contact behind the sale.
@@ -176,32 +208,46 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
         if (made == item) { mine = true; break; }
     }
     if (!mine) {
+        out.refusal = faucet::Refusal::NotSellable;
         out.reason = "this life does not produce it";
         return out;
     }
 
-    // WHICH TAP IS THIS? Selling to an NPC is the one flow that CREATES gold,
-    // and on Revolution only a few narrow kinds of good did it. Everything
-    // else was players trading with players.
-    switch (ClassifyForNpcSale(item)) {
-        case NpcSellClass::Fish:
-        case NpcSellClass::CookedFood:
-        case NpcSellClass::MobLoot:
-        case NpcSellClass::ScribedScroll:
-        case NpcSellClass::CraftedGood:
-            break;   // a tap. Carry on to the arbitrage test.
-        case NpcSellClass::RawResource:
-            out.reason = "a raw resource: an NPC price would set a floor and "
-                         "no player would pay more than the floor";
-            return out;
-        case NpcSellClass::PlayerMarketGood:
-            out.reason = "a player-market good: this is what players buy from "
-                         "each other, and an NPC buyer replaces that";
-            return out;
-        default:
-            out.reason = "no Revolution evidence that an NPC bought this";
-            return out;
+    // THE REGISTRY DECIDES, not a branch here. Every route carries its own
+    // evidence -- separately for history and for this runtime -- and the
+    // refusal names which kind of no it is.
+    const std::vector<const faucet::GoldFaucet*> routes = faucet::ForItem(item);
+    const faucet::GoldFaucet* allowedRoute = nullptr;
+    for (const faucet::GoldFaucet* f : routes) {
+        if (faucet::Allowed(f->policy)) { allowedRoute = f; break; }
     }
+    if (!allowedRoute) {
+        if (routes.empty()) {
+            out.refusal = faucet::Refusal::NoKnownBuyer;
+            out.reason = "no faucet in the registry pays for this";
+            return out;
+        }
+        // Report the FIRST considered route, so the log says which verdict
+        // and on what grounds rather than a generic denial.
+        const faucet::GoldFaucet* f = routes.front();
+        out.via = f;
+        out.reason = f->reason;
+        switch (f->policy) {
+            case faucet::Policy::RefusePlayerMarket:
+                out.refusal = faucet::Refusal::PlayerMarketGood;
+                break;
+            case faucet::Policy::BlockedRuntime:
+                out.refusal = faucet::Refusal::EconomicRouteBlocked;
+                break;
+            case faucet::Policy::RefuseAuthenticity:
+            case faucet::Policy::Unknown:
+            default:
+                out.refusal = faucet::Refusal::RevolutionAuthenticityUnknown;
+                break;
+        }
+        return out;
+    }
+    out.via = allowedRoute;
 
     // The arbitrage test. Every RAW input of the item -- the leaves of the
     // production graph, not the intermediate steps -- checked against what
@@ -225,8 +271,9 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
 
     for (const std::string& needed : inputs) {
         for (const GoldEntry& e : ledger.entries) {
-            if (e.flow != GoldFlow::BoughtFromNpcVendor) continue;
+            if (e.flow != GoldFlow::DestroyedVendorPurchase) continue;
             if (e.detail != needed) continue;
+            out.refusal = faucet::Refusal::EconomicRouteBlocked;
             out.reason = "its inputs were bought from an NPC -- selling the "
                          "result back to one would be a closed vendor loop";
             return out;
@@ -311,16 +358,9 @@ std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
     // stock scripts allow; the policy decides what Revolution permits, and it
     // is the policy that answers. Returning a buyer the character would then
     // refuse on arrival is a 224-tile walk to say no.
-    switch (ClassifyForNpcSale(item)) {
-        case NpcSellClass::Fish:
-        case NpcSellClass::CookedFood:
-        case NpcSellClass::MobLoot:
-        case NpcSellClass::ScribedScroll:
-        case NpcSellClass::CraftedGood:
-            break;
-        default:
-            return out;   // no legitimate NPC buyer for this
-    }
+    // Only routes the REGISTRY allows. Returning a buyer the character would
+    // then refuse on arrival is a walk across town to say no.
+    if (!faucet::AllowedForItem(item)) return out;
     for (const NpcBuyer& b : kNpcBuyers) {
         if (std::strcmp(b.item, item) == 0) out.push_back(&b);
     }
@@ -639,7 +679,7 @@ void Ledger::Note(GoldFlow f, i32 amount, const char* detail, i64 whenMs) {
 i32 Ledger::TotalIn() const {
     i32 n = 0;
     for (const GoldEntry& e : entries) {
-        if (IsGoldSource(e.flow) || e.flow == GoldFlow::SoldToPlayer) n += e.amount;
+        if (IsGoldSource(e.flow) || e.flow == GoldFlow::TransferPlayerTrade) n += e.amount;
     }
     return n;
 }
@@ -647,7 +687,7 @@ i32 Ledger::TotalIn() const {
 i32 Ledger::TotalOut() const {
     i32 n = 0;
     for (const GoldEntry& e : entries) {
-        if (!IsGoldSource(e.flow) && e.flow != GoldFlow::SoldToPlayer) n += e.amount;
+        if (!IsGoldSource(e.flow) && e.flow != GoldFlow::TransferPlayerTrade) n += e.amount;
     }
     return n;
 }

@@ -98,6 +98,7 @@ set(UO_CLIENT_SOURCES
     src/combat/Targeting.cpp
     # M7 -- surplus, shortfall, observed prices and the gold ledger.
     src/economy/Market.cpp
+    src/economy/Faucets.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp

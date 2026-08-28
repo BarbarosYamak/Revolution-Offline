@@ -1988,7 +1988,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
 
             // Selling to an NPC CREATES gold. Recording it as a source is what
             // makes the anti-arbitrage invariant checkable afterwards.
-            state_.ledger.Note(market::GoldFlow::SoldToNpcVendor, paid,
+            state_.ledger.Note(market::GoldFlow::CreatedVendor, paid,
                                sellItem_.c_str(), obs.nowMs);
 
             KnownSupplier sup;
@@ -2575,7 +2575,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                 po.who = tradePartnerName_;
                 po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
                 state_.prices.Note(po);
-                state_.ledger.Note(market::GoldFlow::SoldToPlayer, paid,
+                state_.ledger.Note(market::GoldFlow::TransferPlayerTrade, paid,
                                    tradeItem_.c_str(), obs.nowMs);
             }
             state_.memory.NoteEvent("traded_with_player", tradeItem_.c_str(),
@@ -2595,7 +2595,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                 po.who = tradePartnerName_;
                 po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
                 state_.prices.Note(po);
-                state_.ledger.Note(market::GoldFlow::BoughtFromPlayer, spent,
+                state_.ledger.Note(market::GoldFlow::TransferPlayerTradeOut, spent,
                                    tradeItem_.c_str(), obs.nowMs);
             }
             planner_.NoteProgress();

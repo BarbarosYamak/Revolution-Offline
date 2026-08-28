@@ -7,6 +7,7 @@
 //
 // No server, no MULs, no world data.
 
+#include "uo/faucets.h"
 #include "uo/market.h"
 #include "uo/vendor_policy.h"
 #include "uo/professions.h"
@@ -225,34 +226,34 @@ void TestGoldLedger() {
     Section("ledger: which flows actually create gold");
 
     // The anti-arbitrage invariant in one line: only the shard can MAKE gold.
-    Check(IsGoldSource(GoldFlow::LootedFromCorpse), "loot creates gold");
-    Check(IsGoldSource(GoldFlow::SoldToNpcVendor),
+    Check(IsGoldSource(GoldFlow::CreatedPvmLoot), "loot creates gold");
+    Check(IsGoldSource(GoldFlow::CreatedVendor),
           "an NPC vendor creates gold -- it pays from nowhere");
     Check(IsGoldSource(GoldFlow::StartingKit),
           "the newbie kit's 1000gp creates gold");
-    Check(!IsGoldSource(GoldFlow::SoldToPlayer),
+    Check(!IsGoldSource(GoldFlow::TransferPlayerTrade),
           "selling to a PLAYER creates none -- it moves sideways, which is "
           "the entire point of a player economy");
-    Check(!IsGoldSource(GoldFlow::PaidTrainer), "a trainer fee is a sink");
-    Check(!IsGoldSource(GoldFlow::BoughtFromNpcVendor), "so is a purchase");
+    Check(!IsGoldSource(GoldFlow::DestroyedTrainer), "a trainer fee is a sink");
+    Check(!IsGoldSource(GoldFlow::DestroyedVendorPurchase), "so is a purchase");
 
     Ledger led;
     led.Note(GoldFlow::StartingKit, 1000, "newbie kit", 0);
-    led.Note(GoldFlow::PaidTrainer, 93, "Evaluating Intelligence", 1000);
-    led.Note(GoldFlow::PaidTrainer, 108, "Inscription", 2000);
-    led.Note(GoldFlow::SoldToPlayer, 50, "ingots", 3000);
-    led.Note(GoldFlow::BoughtFromPlayer, 50, "ingots", 3000);
+    led.Note(GoldFlow::DestroyedTrainer, 93, "Evaluating Intelligence", 1000);
+    led.Note(GoldFlow::DestroyedTrainer, 108, "Inscription", 2000);
+    led.Note(GoldFlow::TransferPlayerTrade, 50, "ingots", 3000);
+    led.Note(GoldFlow::TransferPlayerTradeOut, 50, "ingots", 3000);
 
-    Check(led.TotalFor(GoldFlow::PaidTrainer) == 201,
+    Check(led.TotalFor(GoldFlow::DestroyedTrainer) == 201,
           "the two live trainer fees add up: 93 + 108");
     Check(led.TotalIn() == 1050, "in = kit + the player sale");
     Check(led.TotalOut() == 251, "out = both fees + the player purchase");
     Check(led.Net() == 799,
           "which leaves exactly the purse the live mage ended with");
 
-    led.Note(GoldFlow::PaidTrainer, 0, "a free lesson", 4000);
-    led.Note(GoldFlow::PaidTrainer, -5, "impossible", 4000);
-    Check(led.TotalFor(GoldFlow::PaidTrainer) == 201,
+    led.Note(GoldFlow::DestroyedTrainer, 0, "a free lesson", 4000);
+    led.Note(GoldFlow::DestroyedTrainer, -5, "impossible", 4000);
+    Check(led.TotalFor(GoldFlow::DestroyedTrainer) == 201,
           "zero and negative amounts are not entries");
 }
 
@@ -333,14 +334,14 @@ void TestNoClosedVendorLoop() {
     // vendor touches the world nowhere; economy_arbitrage.py finds 66 such
     // loops on this shard. Refused.
     Ledger dirty = clean;
-    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_scroll_blank", 1000);
+    dirty.Note(GoldFlow::DestroyedVendorPurchase, 40, "i_scroll_blank", 1000);
     const SellRuling bad = MaySellToNpc(*mage, "i_scroll_poison", dirty);
     Check(!bad.allowed, "a scroll written on an NPC-bought blank may NOT be sold");
     Check(bad.reason != nullptr, "and the refusal says why");
 
     // Buying something UNRELATED does not poison the sale.
     Ledger unrelated = clean;
-    unrelated.Note(GoldFlow::BoughtFromNpcVendor, 30, "i_bandage", 1000);
+    unrelated.Note(GoldFlow::DestroyedVendorPurchase, 30, "i_bandage", 1000);
     Check(MaySellToNpc(*mage, "i_scroll_poison", unrelated).allowed,
           "buying bandages does not block selling a scroll");
 
@@ -353,7 +354,7 @@ void TestNoClosedVendorLoop() {
     // A trainer fee is a SINK, not a purchase of inputs, so it must not
     // block anything.
     Ledger trained = clean;
-    trained.Note(GoldFlow::PaidTrainer, 108, "i_scroll_blank", 1000);
+    trained.Note(GoldFlow::DestroyedTrainer, 108, "i_scroll_blank", 1000);
     Check(MaySellToNpc(*mage, "i_scroll_poison", trained).allowed,
           "only a PURCHASE poisons the cycle, not any ledger entry that "
           "happens to name the same item");
@@ -418,7 +419,7 @@ void TestWhatAnNpcMayStillBuy() {
           "reagents carry a dated Revolution NPC entry");
 
     // WHICH LIVES HAVE AN NPC INCOME, computed rather than asserted from
-    // memory, because the answer moved twice while this was being written.
+    // memory, because the answer has moved three times.
     Ledger clean;
     std::set<std::string> withNpcIncome;
     for (const prof::Profession& p : prof::All()) {
@@ -430,38 +431,43 @@ void TestWhatAnNpcMayStillBuy() {
         }
     }
 
-    // The owner's line: MATERIALS to players, FINISHED GOODS may go to an NPC.
-    // A smith's spear, an alchemist's potions and a mage's scrolls are
-    // finished; everything the lumberjack/carpenter makes below Carpentry 95
-    // is a material -- boards, parchment, blank scrolls.
-    Check(withNpcIncome.count("miner_smith") == 1, "a smith sells its spears");
-    Check(withNpcIncome.count("alchemist") == 1, "an alchemist sells potions");
-    Check(withNpcIncome.count("mage") == 1, "a mage sells scrolls");
+    // ONLY the mage, from scrolls. The registry refuses smith, carpentry,
+    // tailoring, tinkering and alchemy output as NPC faucets -- the stock
+    // templates buy all of them, and that is a fact about Sphere.
+    //
+    // THE ASYMMETRY IS THE POINT. A smith with no NPC faucet has to reach
+    // players, hunt, or find another route, and that is the intended shape of
+    // a shard economy rather than a gap to be filled in.
+    Check(withNpcIncome.count("mage") == 1,
+          "a scribe has an NPC income -- live-proven on this shard");
+    Check(withNpcIncome.count("miner_smith") == 0,
+          "a smith does NOT: mine -> smith -> dump to NPC would print gold");
+    Check(withNpcIncome.count("alchemist") == 0,
+          "nor an alchemist: potions are player goods");
+    Check(withNpcIncome.count("lumberjack_swordsman") == 0,
+          "nor the carpenter, whose market is players");
 
-    // And the one that is NOT a gap. The owner said it directly -- "craft as
-    // carpenter and sell stuff to other players" -- so a carpenter with no NPC
-    // channel is the intended design, not a missing table row. Its only
-    // non-material product in the graph is i_model_ship at Carpentry 95.0
-    // (Production.cpp:127), which is endgame.
-    // The carpenter DOES have one, and it is a club: a finished weapon, so
-    // the blunt weaponsmith buys it (tm_vend.scp:1710) rather than the
-    // carpenter. Its materials -- logs, boards, blank scrolls -- still go to
-    // players only, which is the line holding.
-    Check(withNpcIncome.count("lumberjack_swordsman") == 1,
-          "the lumberjack/carpenter earns from clubs");
-    Ledger fresh;
+    // The club, named, because this row REVERSES an earlier allowance in this
+    // repository and the reversal should fail loudly if it is undone.
     const prof::Profession* ljp = prof::Find("lumberjack_swordsman");
     if (ljp) {
-        Check(MaySellToNpc(*ljp, "i_club", fresh).allowed, "a club may be sold");
-        Check(!MaySellToNpc(*ljp, "i_log", fresh).allowed, "a log may not");
-        Check(!MaySellToNpc(*ljp, "i_board", fresh).allowed, "nor a board");
-        Check(!MaySellToNpc(*ljp, "i_scroll_blank", fresh).allowed,
-              "nor a blank scroll -- that one goes to a mage, player to player");
+        const SellRuling club = MaySellToNpc(*ljp, "i_club", clean);
+        Check(!club.allowed, "a carpenter's club may NOT be dumped on an NPC");
+        Check(club.refusal == faucet::Refusal::RevolutionAuthenticityUnknown,
+              "and the refusal names WHICH kind of no it is");
+        Check(club.via != nullptr, "traceable to the registry row that decided it");
     }
-    const std::vector<const NpcBuyer*> clubBuyers = NpcBuyersFor("i_club");
-    Check(!clubBuyers.empty() &&
-          std::string(clubBuyers.front()->trade) == "weaponsmith",
-          "and the buyer is the weaponsmith, because a club is a weapon");
+
+    // Every refusal must carry a typed reason. "cannot earn gold" is never an
+    // acceptable answer when the truth is "this is a player-market good".
+    const prof::Profession* ms2 = prof::Find("miner_smith");
+    if (ms2) {
+        const SellRuling ingot = MaySellToNpc(*ms2, "i_ingot_iron", clean);
+        Check(ingot.refusal == faucet::Refusal::PlayerMarketGood,
+              "an ingot is refused as a PLAYER MARKET GOOD, not vaguely");
+        Check(ingot.reason != nullptr && ingot.reason[0] != 0,
+              "with prose a human can read");
+    }
 
     Check(ClassifyForNpcSale("i_log") == NpcSellClass::RawResource,
           "a log is a raw resource, not a tap");
@@ -484,7 +490,7 @@ void TestArbitrageGuardStillApplies() {
     if (!mg) return;
 
     Ledger dirty;
-    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_reag_nightshade", 1000);
+    dirty.Note(GoldFlow::DestroyedVendorPurchase, 40, "i_reag_nightshade", 1000);
     // The mage produces spell scrolls, which are PlayerCrafted, so this is
     // refused on the POLICY gate before the ledger is even consulted -- and
     // that ordering is deliberate: the cheaper, more fundamental test first.
@@ -575,16 +581,20 @@ void TestWhatToAnnounce() {
     Check(out.item == "i_board" && out.pricePerUnit == 4,
           "at the price it saw, not a markup it invented");
 
-    // A club HAS an NPC buyer, so the player market does not need to carry it
-    // -- that is a shorter errand and the announcement would be noise.
-    PriceBook clubBook;
-    PriceObservation cp;
-    cp.item = "i_club"; cp.pricePerUnit = 12;
-    cp.source = PriceSource::NpcVendorBuys; cp.who = "weaponsmith"; cp.whenMs = 1;
-    clubBook.Note(cp);
-    const std::vector<Stock> clubs = {{"i_club", 40}};
-    Check(!ChooseSellOffer(*lj, clubs, clubBook, pol, &out),
-          "what an NPC will buy is not announced to players");
+    // A SCROLL has an allowed NPC route, so the player market need not carry
+    // it -- that is a shorter errand and the announcement would be noise.
+    const prof::Profession* mg2 = prof::Find("mage");
+    if (mg2) {
+        PriceBook scrollBook;
+        PriceObservation cp;
+        cp.item = "i_scroll_poison"; cp.pricePerUnit = 12;
+        cp.source = PriceSource::NpcVendorBuys; cp.who = "mage"; cp.whenMs = 1;
+        scrollBook.Note(cp);
+        const std::vector<Stock> scrolls = {{"i_scroll_poison", 40}};
+        TradeIntent unused;
+        Check(!ChooseSellOffer(*mg2, scrolls, scrollBook, pol, &unused),
+              "what an NPC will buy is not announced to players");
+    }
 }
 
 // --------------------------------------------------------------------------

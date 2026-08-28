@@ -138,6 +138,7 @@ add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Json.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
@@ -205,6 +206,7 @@ add_test(NAME m6_targeting COMMAND m6_targeting)
 # copy of the recipe list for the economy layer to consult.
 add_executable(m7_market m7_market.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
@@ -214,3 +216,16 @@ target_include_directories(m7_market PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m7_market COMMAND m7_market)
+
+# --- M7: the Gold Faucet Registry ------------------------------------------
+# The rule: technical vendor acceptance is not Revolution authenticity. Stock
+# Scripts-X buys hundreds of player-crafted goods, and this suite checks the
+# registry keeps that apart from what the shard actually intended -- including
+# that BLOCKED, UNKNOWN and REFUSED stay three distinct answers.
+add_executable(m7_faucets m7_faucets.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp)
+target_include_directories(m7_faucets PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m7_faucets COMMAND m7_faucets)

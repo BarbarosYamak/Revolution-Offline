@@ -11,6 +11,7 @@
 // Everything here is a pure function of a profession record and what the
 // character is carrying, so it runs under ctest with no server.
 
+#include "uo/faucets.h"
 #include "uo/professions.h"
 #include "uo/types.h"
 
@@ -113,6 +114,12 @@ struct Ledger;   // defined below
 struct SellRuling {
     bool        allowed = false;
     const char* reason  = nullptr;   // always populated, allowed or not
+    // WHICH KIND of no. "cannot earn gold" is never an acceptable answer when
+    // the truth is "found a buyer, but this is a player-market good".
+    faucet::Refusal refusal = faucet::Refusal::None;
+    // The registry row that decided it, allowed or refused, so the reasoning
+    // is traceable to its evidence rather than to a branch in the code.
+    const faucet::GoldFaucet* via = nullptr;
 };
 
 // WHERE NEW GOLD ENTERS THE SHARD.
@@ -343,25 +350,47 @@ BuyDecision ConsiderOffer(const prof::Profession& p,
 // Where the gold went. Telemetry, not a rule.
 // ---------------------------------------------------------------------------
 
+// SERVER-WIDE ACCOUNTING, and the three cases must never blur:
+//
+//   creation    raises the shard's total player gold
+//   destruction lowers it
+//   transfer    leaves it exactly where it was
+//
+// This is what makes inflation telemetry possible later, and it is why a sale
+// to a PLAYER is not a source however much gold arrives in the purse.
 enum class GoldFlow : u8 {
-    // Sources
-    LootedFromCorpse = 0,
-    SoldToNpcVendor,
-    SoldToPlayer,
-    StartingKit,
-    // Sinks
-    BoughtFromNpcVendor,
-    BoughtFromPlayer,
-    PaidTrainer,
+    // --- created: gold that did not exist before -------------------------
+    CreatedVendor = 0,    // an NPC paid for goods
+    CreatedPvmLoot,       // gold that was in a corpse
+    CreatedTreasure,      // a map or chest
+    CreatedBounty,        // Revolution's Head Hunter
+    CreatedBegging,       // begging an NPC (begging a PLAYER is a transfer)
+    StartingKit,          // the shard handed it over at creation
+
+    // --- destroyed: gold that left the economy ---------------------------
+    DestroyedVendorPurchase,
+    DestroyedTrainer,
+    DestroyedService,     // healers, stablemasters, dues
+
+    // --- transferred: total unchanged ------------------------------------
+    TransferPlayerTrade,      // we received from a player
+    TransferPlayerTradeOut,   // we paid a player
     Count,
 };
+
+// Which of the three an entry is. Kept as an enum rather than three bools so
+// a flow cannot accidentally be none of them or two of them.
+enum class GoldEffect : u8 { Created = 0, Destroyed, Transferred, Count };
+
+GoldEffect EffectOf(GoldFlow f);
+const char* GoldEffectName(GoldEffect e);
 
 const char* GoldFlowName(GoldFlow f);
 // True for the entries that ADD gold to the shard's player economy.
 bool IsGoldSource(GoldFlow f);
 
 struct GoldEntry {
-    GoldFlow    flow = GoldFlow::LootedFromCorpse;
+    GoldFlow    flow = GoldFlow::CreatedPvmLoot;
     i32         amount = 0;      // always positive; the flow says the direction
     std::string detail;          // what was bought/sold/trained
     i64         whenMs = 0;
