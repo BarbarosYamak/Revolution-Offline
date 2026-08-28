@@ -200,10 +200,21 @@ private:
     i32  trainTrips_ = 0;
     bool trainAsked_ = false;
     bool trainPaid_ = false;
-    i64  trainAskedMs_ = 0;
+    i64  trainAskedMs_ = 0;       // journal mark: read replies after this
+    i64  trainAskedTickMs_ = 0;   // tick mark: how long have we waited
     i64  trainPaidMs_ = 0;
     i32  trainQuoted_ = 0;
     i32  trainSkillBefore_ = 0;
+    // Sphere does not push a new skill number after training; a player's
+    // client asks for one. Until it does, the old value is all we can see.
+    bool trainSkillsAsked_ = false;
+    // Asks that got no answer at all. Bounded, and NOT persisted: silence is
+    // not evidence about the NPC -- the first live case was the character
+    // standing seven z below a scribe on another floor of the castle.
+    static constexpr i32 kMaxSilentAsks = 3;
+    i32  trainSilentAsks_ = 0;
+    u32  trainerSerial_ = 0;
+    bool trainerApproached_ = false;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;

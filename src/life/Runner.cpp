@@ -211,6 +211,29 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 chosen->startStr + chosen->startDex + chosen->startInt);
     }
 
+    // Which life is asking. Resolved from the plan's family so it works the
+    // same for a fresh character and for one reloaded from disk. A plan family
+    // with no catalogue entry -- the M4 lumberjack, saved before the catalogue
+    // existed -- leaves this null and keeps the old lumberjack needs.
+    needCfg_.profession = prof::Find(state_.plan.family.c_str());
+    if (needCfg_.profession) {
+        // THE CATALOGUE IS THE INTENTION; the save file only records which
+        // life this is. Re-deriving here is not tidiness -- the saved plan
+        // carries skills and targets but not the per-target `viaTrainer` and
+        // `priority` fields, so a reloaded character silently had nothing it
+        // was willing to buy from a trainer, and simply never trained. It
+        // logged no error: NextSkillToBuy just returned -1 forever.
+        //
+        // Anything the character has actually EARNED lives on the server or
+        // in Memory, never in the plan, so nothing is lost by rebuilding it.
+        state_.plan = PlanFromProfession(*needCfg_.profession);
+        LogLine("needs: reading '%s' from the profession catalogue",
+                needCfg_.profession->id.c_str());
+    } else {
+        LogLine("needs: plan family '%s' is not in the catalogue -- using the "
+                "original lumberjack needs", state_.plan.family.c_str());
+    }
+
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
     // to be a legal Revolution build before the character acts on it.
     const PlanCheck check = ValidatePlan(rules::Revolution(), state_.plan);
@@ -231,19 +254,6 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
             rules::Revolution().totalSkillCapTenths / 10.0,
             state_.plan.targetStr, state_.plan.targetDex, state_.plan.targetInt,
             check.statTotal);
-
-    // Which life is asking. Resolved from the plan's family so it works the
-    // same for a fresh character and for one reloaded from disk. A plan family
-    // with no catalogue entry -- the M4 lumberjack, saved before the catalogue
-    // existed -- leaves this null and keeps the old lumberjack needs.
-    needCfg_.profession = prof::Find(state_.plan.family.c_str());
-    if (needCfg_.profession) {
-        LogLine("needs: reading '%s' from the profession catalogue",
-                needCfg_.profession->id.c_str());
-    } else {
-        LogLine("needs: plan family '%s' is not in the catalogue -- using the "
-                "original lumberjack needs", state_.plan.family.c_str());
-    }
 
     // The goal that came back from disk is an INTENTION. Its clock and
     // counters are transient and are rebuilt at reconciliation.
@@ -1823,16 +1833,33 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             state_.memory.NoteTrainerVerdict(v);
             trainPaid_ = false;
             trainAsked_ = false;
+            trainSkillsAsked_ = false;
             trainTrips_ = 0;
+            Checkpoint(client, obs.nowMs, "skill bought from a trainer");
             return true;
         }
-        if (obs.nowMs - trainPaidMs_ > 10000) {
-            LogLine("training: paid but %s has not moved after 10s (still %.1f)",
-                    rules::SkillName(skillId), have / 10.0);
+        // The server does not push the new number, so ASK for it -- once,
+        // promptly. The first version only asked after a ten-second timeout
+        // had already declared failure, so a purchase that actually worked
+        // (11.8 -> 21.1 for 93 gold, live) was recorded as "has not moved".
+        if (!trainSkillsAsked_ && obs.nowMs - trainPaidMs_ > 1500) {
             client.ActionRequestSkills();
+            trainSkillsAsked_ = true;
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+        if (obs.nowMs - trainPaidMs_ > 15000) {
+            LogLine("training: paid %d for %s but the server still reports "
+                    "%.1f after 15s", trainQuoted_, rules::SkillName(skillId),
+                    have / 10.0);
+            state_.memory.NoteEvent("training_unverified",
+                                    rules::SkillName(skillId),
+                                    trainerTrade_.c_str(), obs.x, obs.y,
+                                    obs.nowMs);
             planner_.NoteAttempt(obs.nowMs);
             trainPaid_ = false;
             trainAsked_ = false;
+            trainSkillsAsked_ = false;
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
@@ -1887,9 +1914,42 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         return false;
     }
 
+    // --- stand where a player would stand ---------------------------------
+    //
+    // Speech is heard by position, not by intent. The first live attempt at a
+    // castle scribe stood 3 tiles away in 2D but SEVEN z below her -- another
+    // floor -- and got a greeting but no training reply, three times, silently.
+    // Close the distance in three dimensions before talking.
+    if (trainerSerial_ != trainer) {
+        trainerSerial_ = trainer;
+        trainerApproached_ = false;
+        trainSilentAsks_ = 0;
+    }
+    if (!trainerApproached_) {
+        i32 tx = 0, ty = 0; i8 tz = 0;
+        if (client.MobilePosition(trainer, &tx, &ty, &tz)) {
+            const i32 d = TileDist(obs.x, obs.y, tx, ty);
+            const i32 dz = (obs.z > tz) ? (obs.z - tz) : (tz - obs.z);
+            if (d > 2 || dz > 3) {
+                LogLine("training: '%s' is %d tiles and %d z away -- walking to "
+                        "them before speaking", trainerTrade_.c_str(), d, dz);
+                travelInFlight_ = client.TravelToPoint(tx, ty, 1, "trainer");
+                trainerApproached_ = true;   // one approach, then talk regardless
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        trainerApproached_ = true;
+    }
+
     // --- ask, then read what the NPC actually says -------------------------
     if (!trainAsked_) {
+        // TWO marks, on two clocks, because they answer different questions:
+        // the journal mark says "read replies after this point", the tick mark
+        // says "how long have I waited". Using the journal clock for both made
+        // a 12-second window expire in 2.5 seconds.
         trainAskedMs_ = client.JournalNowMs();
+        trainAskedTickMs_ = obs.nowMs;
         trainAsked_ = true;
         LogLine("training: asking the trainer about %s", rules::SkillName(skillId));
         client.ActionNpcTrain(trainer, SkillKey(skillId));
@@ -1935,11 +1995,29 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
 
     const i32 quoted = client.JournalNumberSince("i will train you", trainAskedMs_);
     if (quoted <= 0) {
-        if (obs.nowMs - trainAskedMs_ > 12000) {
-            LogLine("training: no quote and no refusal after 12s; giving up on "
-                    "this trainer");
+        if (obs.nowMs - trainAskedTickMs_ > 12000) {
+            ++trainSilentAsks_;
+            LogLine("training: no quote and no refusal after 12s (ask %d of %d)",
+                    trainSilentAsks_, kMaxSilentAsks);
             planner_.NoteAttempt(obs.nowMs);
             trainAsked_ = false;
+            if (trainSilentAsks_ >= kMaxSilentAsks) {
+                // Give up on this NPC for now. Deliberately NOT written as a
+                // trainer verdict: a verdict is what an NPC SAID, and this one
+                // said nothing. Recording silence as a refusal would teach the
+                // character something the world never told it.
+                LogLine("goal_failed=TRAIN_AT_NPC reason=\"'%s' never answered "
+                        "about %s\"", trainerTrade_.c_str(),
+                        rules::SkillName(skillId));
+                state_.memory.NoteEvent("trainer_silent",
+                                        rules::SkillName(skillId),
+                                        trainerTrade_.c_str(), obs.x, obs.y,
+                                        obs.nowMs);
+                planner_.Finish(false, "the trainer never answered", obs.nowMs);
+                trainSilentAsks_ = 0;
+                trainerSerial_ = 0;
+                trainerApproached_ = false;
+            }
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
@@ -1967,7 +2045,10 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             quoted, rules::SkillName(skillId), obs.gold);
     trainSkillBefore_ = have;
     trainQuoted_ = quoted;
-    trainPaidMs_ = client.JournalNowMs();
+    // The TICK clock, not the journal clock. These are different clocks and
+    // mixing them made the ten-second verification window expire in 8.7s.
+    trainPaidMs_ = obs.nowMs;
+    trainSkillsAsked_ = false;
     client.ActionNpcGive(trainer, gold, static_cast<u16>(quoted));
     trainPaid_ = true;
     nextActionMs_ = obs.nowMs + 4000;

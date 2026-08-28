@@ -1,0 +1,85 @@
+[14:01:20.978] INFO  session 0: 127.0.0.1:2593 user='revolutionmage01' char=Ilyandra tag='m5c'
+[14:01:20.979] LOG   [m5c] event session_start: text log opened
+[14:01:20.979] LOG   [m5c] event net_connect_begin: connect 127.0.0.1:2593
+[14:01:20.979] INFO  [m5c] [net] connecting to 127.0.0.1:2593 ...
+[14:01:20.980] LOG   [m5c] event net_connected: connect 127.0.0.1:2593
+[14:01:20.980] INFO  [m5c] [net] connected.
+[14:01:20.980] INFO  [m5c] [seed] sent 0x7F000001 (plaintext)
+[14:01:20.980] LOG   [m5c] event seed_out: 0x7F000001 hex=7f000001
+[14:01:20.981] INFO  [life] loaded persistent state for Ilyandra (0 places, 0 suppliers, 1 events, 0 prior sessions)
+[14:01:20.981] INFO  [life] build plan 'mage': 350.0 resolved + 350.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[14:01:20.981] INFO  [life] needs: reading 'mage' from the profession catalogue
+[14:01:20.981] INFO  [m5c] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 15 min)
+[14:01:21.004] INFO  [m5c] [0xA8] 1 server(s):
+[14:01:21.005] INFO  [m5c]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:01:21.019] INFO  [m5c] [0x8C] game server = 127.0.0.1:2593  seed=0xB45B826E
+[14:01:21.019] LOG   [m5c] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB45B826E
+[14:01:21.019] INFO  [m5c] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:01:21.019] LOG   [m5c] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:01:21.020] INFO  [m5c] [0xB9] server features = 0x0005
+[14:01:21.020] INFO  [m5c] [0xA9] 5 slot(s) (populated 1):
+[14:01:21.020] INFO  [m5c]   [0] Ilyandra
+[14:01:21.020] INFO  [m5c]   [1] <empty>
+[14:01:21.020] INFO  [m5c]   [2] <empty>
+[14:01:21.020] INFO  [m5c]   [3] <empty>
+[14:01:21.020] INFO  [m5c]   [4] <empty>
+[14:01:21.020] INFO  [m5c] [ui] playing slot 0 ('Ilyandra')
+[14:01:21.035] INFO  [m5c] [0x1B] serial=0x0001616F body=0x0190 pos=(1488,1553,30)
+[14:01:21.035] LOG   [m5c] event login_confirm: serial=0x0001616F body=0x0190 pos=(1488,1553,30)
+[14:01:21.035] INFO  [m5c] [0x20] player @(1488,1553,30) facing=7
+[14:01:21.035] INFO  [m5c] [0x55] login complete — entering world
+[14:01:21.035] LOG   [m5c] event in_world: 0x55 received
+[14:01:21.035] INFO  [m5c] [backpack] opening 0x4001606B
+[14:01:21.035] INFO  [m5c] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:01:21.035] INFO  [m5c] [chat ascii] System: There is 1 other player here.
+[14:01:21.035] INFO  [m5c] [chat ascii] System: Last logged: 2026/08/28 13:52:02
+[14:01:21.035] INFO  [m5c] [chat ascii] System: You are under the protection of the city guards
+[14:01:21.039] INFO  [m5c] [action] requesting the skill list
+[14:01:21.039] INFO  [life] in world; asked the server for the skill list
+[14:01:21.039] INFO  [m5c] [0x24] open container 0x4001606B gump=60
+[14:01:21.039] INFO  [m5c] [0x3C] container contents: 10 item(s)
+[14:01:21.039] LOG   [m5c] event backpack_contents: serial=0x4001606B items=10
+[14:01:23.660] INFO  [m5c] [bot] world data loaded (0 blacklisted spot(s)).
+[14:01:23.661] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[14:01:23.661] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[14:01:23.661] INFO  [life]   str          persisted=15         server=15         -> server value accepted
+[14:01:23.661] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[14:01:23.661] INFO  [life]   int          persisted=25         server=25         -> server value accepted
+[14:01:23.661] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[14:01:23.661] INFO  [life]   skill_46     persisted=50.0       server=50.0       -> server value accepted
+[14:01:23.661] INFO  [life]   skill_16     persisted=11.8       server=11.8       -> server value accepted
+[14:01:23.661] INFO  [life]   skill_23     persisted=7.7        server=7.7        -> server value accepted
+[14:01:23.661] INFO  [life]   position     persisted=1482,1572  server=1488,1553  -> server value accepted
+[14:01:23.661] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:01:23.661] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[14:01:23.661] INFO  [m5c] [survival] on
+[14:01:23.661] LOG   [m5c] event survival_mode: on
+[14:01:23.662] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:01:23.662] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:23.716] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[14:01:23.718] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:01:23.777] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:01:23.777] INFO  [life]   score=10.0
+[14:01:23.777] INFO  [life]   reason: fallback: nothing else scored
+[14:01:23.777] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[14:01:24.360] INFO  [m5c] [chat ascii] Xanthe: I am listening to thee.
+[14:01:28.665] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:33.722] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:38.774] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:38.896] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:01:38.898] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:01:38.958] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:01:38.958] INFO  [life]   score=10.0
+[14:01:38.958] INFO  [life]   reason: fallback: nothing else scored
+[14:01:38.958] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[14:01:43.820] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:48.827] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:53.863] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:01:53.986] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:01:53.988] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:01:54.047] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:01:54.047] INFO  [life]   score=10.0
+[14:01:54.047] INFO  [life]   reason: fallback: nothing else scored
+[14:01:54.048] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[14:01:58.901] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
+[14:02:03.935] INFO  [m5c] [survival] hp 15/15 (100%) -> fight
