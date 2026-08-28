@@ -1,0 +1,147 @@
+[19:20:37.952] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='selln'
+[19:20:37.953] LOG   [selln] event session_start: text log opened
+[19:20:37.953] LOG   [selln] event net_connect_begin: connect 127.0.0.1:2593
+[19:20:37.953] INFO  [selln] [net] connecting to 127.0.0.1:2593 ...
+[19:20:37.954] LOG   [selln] event net_connected: connect 127.0.0.1:2593
+[19:20:37.954] INFO  [selln] [net] connected.
+[19:20:37.954] INFO  [selln] [seed] sent 0x7F000001 (plaintext)
+[19:20:37.954] LOG   [selln] event seed_out: 0x7F000001 hex=7f000001
+[19:20:37.955] INFO  [life] loaded persistent state for Bryn (1 places, 0 suppliers, 9 events, 0 prior sessions)
+[19:20:37.955] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[19:20:37.955] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[19:20:37.955] INFO  [selln] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[19:20:37.994] INFO  [selln] [0xA8] 1 server(s):
+[19:20:37.995] INFO  [selln]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[19:20:38.011] INFO  [selln] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[19:20:38.011] LOG   [selln] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[19:20:38.011] INFO  [selln] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[19:20:38.011] LOG   [selln] event relay_same_socket: no seed re-sent; 0x91 follows
+[19:20:38.011] INFO  [selln] [0xB9] server features = 0x0005
+[19:20:38.011] INFO  [selln] [0xA9] 5 slot(s) (populated 1):
+[19:20:38.011] INFO  [selln]   [0] Bryn
+[19:20:38.011] INFO  [selln]   [1] <empty>
+[19:20:38.011] INFO  [selln]   [2] <empty>
+[19:20:38.011] INFO  [selln]   [3] <empty>
+[19:20:38.011] INFO  [selln]   [4] <empty>
+[19:20:38.011] INFO  [selln] [ui] playing slot 0 ('Bryn')
+[19:20:38.027] INFO  [selln] [0x1B] serial=0x00012E10 body=0x0190 pos=(1438,1761,-2)
+[19:20:38.027] LOG   [selln] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1438,1761,-2)
+[19:20:38.027] INFO  [selln] [0x20] player @(1438,1761,-2) facing=0
+[19:20:38.027] INFO  [selln] [0x55] login complete — entering world
+[19:20:38.027] LOG   [selln] event in_world: 0x55 received
+[19:20:38.027] INFO  [selln] [backpack] opening 0x40012DD6
+[19:20:38.027] INFO  [selln] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[19:20:38.027] INFO  [selln] [chat ascii] System: There is 1 other player here.
+[19:20:38.027] INFO  [selln] [chat ascii] System: Last logged: 2026/08/28 19:10:50
+[19:20:38.027] INFO  [selln] [chat ascii] System: You are under the protection of the city guards
+[19:20:38.031] INFO  [selln] [action] requesting the skill list
+[19:20:38.031] INFO  [life] in world; asked the server for the skill list
+[19:20:38.031] INFO  [selln] [0x24] open container 0x40012DD6 gump=60
+[19:20:38.031] INFO  [selln] [0x3C] container contents: 11 item(s)
+[19:20:38.031] LOG   [selln] event backpack_contents: serial=0x40012DD6 items=11
+[19:20:40.650] INFO  [selln] [bot] world data loaded (0 blacklisted spot(s)).
+[19:20:40.651] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[19:20:40.651] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[19:20:40.651] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[19:20:40.651] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[19:20:40.651] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[19:20:40.651] INFO  [life]   skill_18     persisted=50.4       server=50.4       -> server value accepted
+[19:20:40.651] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[19:20:40.651] INFO  [life]   position     persisted=1438,1761  server=1438,1761  -> server value accepted
+[19:20:40.651] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[19:20:40.651] INFO  [life]   restored objective KEPT: EARN_GOLD (progress 0)
+[19:20:40.651] INFO  [selln] [survival] on
+[19:20:40.651] LOG   [selln] event survival_mode: on
+[19:20:40.652] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[19:20:40.652] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:20:40.705] INFO  [life] earn_gold: looking for a 'fisher' to buy 15 i_fish_big_3 (trip 1)
+[19:20:40.705] INFO  [selln] [travel] Britain fisherman -> (1438,1761) r=6 from (1438,1761)
+[19:20:40.705] LOG   [selln] event travel_start: label='Britain fisherman' target=(1438,1761) radius=6 from=(1438,1761)
+[19:20:40.705] INFO  [selln] [travel] Britain fisherman ARRIVED at (1438,1761,-2)
+[19:20:40.705] LOG   [selln] event travel_done: label='Britain fisherman' ok=1 at=(1438,1761) legs=0 plans=0 why=''
+[19:20:42.712] INFO  [life] earn_gold: arrived at 1438,1761 -- asking who is here
+[19:20:42.712] INFO  [selln] [action] scanning nearby mobiles for names
+[19:20:42.712] INFO  [selln] [action] requested 3 paperdoll(s) for trade titles
+[19:20:42.727] INFO  [selln] [mobiles] nearby (6):
+[19:20:42.727] INFO  [selln]   Shika 0x00000A93
+[19:20:42.727] INFO  [selln]   Rat 0x00000FAB
+[19:20:42.727] INFO  [selln]   Lulu 0x00000A87
+[19:20:42.727] INFO  [selln]   Kintan 0x00000AAB
+[19:20:42.727] INFO  [selln]   Rat 0x00000A46
+[19:20:42.727] INFO  [selln]   Bess 0x00000A6D
+[19:20:42.727] INFO  [selln] [0x88] paperdoll 0x00000AAB: "Kintan, the sailor"
+[19:20:42.727] INFO  [selln] [0x20] player @(1438,1761,-2) facing=2
+[19:20:42.727] INFO  [selln] [0x88] paperdoll 0x00000A93: "Shika, the fisherwoman"
+[19:20:42.727] INFO  [selln] [world] Shika, the fisherwoman is a fisherman at (1444,1762)
+[19:20:42.727] INFO  [selln] [0x20] player @(1438,1761,-2) facing=0
+[19:20:42.727] INFO  [selln] [0x88] paperdoll 0x00000A87: "Lulu, the sailor"
+[19:20:45.270] INFO  [life] earn_gold: the 'fisher' is 6 tiles and 0 z away -- walking up before speaking, or the nearest other vendor answers instead
+[19:20:45.270] INFO  [selln] [travel] vendor -> (1444,1763) r=1 from (1438,1761)
+[19:20:45.270] LOG   [selln] event travel_start: label='vendor' target=(1444,1763) radius=1 from=(1438,1761)
+[19:20:45.270] INFO  [selln] [travel] mode walk             usable   <- chosen
+[19:20:45.270] INFO  [selln] [travel] mode moongate         usable
+[19:20:45.270] INFO  [selln] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:20:45.270] INFO  [selln] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:20:45.270] LOG   [selln] event travel_mode: walk
+[19:20:45.270] INFO  [selln] [travel] plan vendor: ok legs=1 ~6 tiles transit=0 nodes=0
+[19:20:45.299] INFO  [selln] [action] goto (1444,1763) from (1438,1761,-2)
+[19:20:45.299] LOG   [selln] event goto_start: target=(1444,1763) from=(1438,1761)
+[19:20:45.299] INFO  [selln] [bot] running from (1438,1761,-2) to (1444,1763)
+[19:20:45.299] INFO  [selln] [bot] planning path to (1444,1763) in background
+[19:20:45.669] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:20:46.344] INFO  [selln] [action] goto finished at (1438,1761,-2); target (1444,1763); stopped short (off by 8 tile(s))
+[19:20:46.344] LOG   [selln] event goto_done: at=(1438,1761) target=(1444,1763) arrived=0 off=8
+[19:20:47.556] INFO  [selln] [action] goto (1444,1763) from (1438,1761,-2)
+[19:20:47.556] LOG   [selln] event goto_start: target=(1444,1763) from=(1438,1761)
+[19:20:47.556] INFO  [selln] [bot] running from (1438,1761,-2) to (1444,1763)
+[19:20:47.556] INFO  [selln] [bot] planning path to (1444,1763) in background
+[19:20:47.618] INFO  [selln] [bot] replan to (1444,1763): 8 steps in 103.1us
+[19:20:49.960] INFO  [selln] [bot] arrived at (1444,1763,-2)
+[19:20:49.960] INFO  [selln] [action] goto finished at (1444,1763,-2); target (1444,1763); ARRIVED (off by 0 tile(s))
+[19:20:49.960] LOG   [selln] event goto_done: at=(1444,1763) target=(1444,1763) arrived=1 off=0
+[19:20:49.960] INFO  [selln] [travel] vendor ARRIVED at (1444,1763,-2)
+[19:20:49.960] LOG   [selln] event travel_done: label='vendor' ok=1 at=(1444,1763) legs=1 plans=1 why=''
+[19:20:50.020] INFO  [life] earn_gold: asking the 'fisher' what it buys
+[19:20:50.020] INFO  [selln] [ACTION] vendor_sell start
+[19:20:50.020] INFO  [selln] [VENDOR] open sell vendor=0x00000A93 say='Shika sell'
+[19:20:50.037] INFO  [selln] [chat uni  ] : Shika sell
+[19:20:50.037] INFO  [selln] [chat ascii] Shika: I could purchase those things that I supply.
+[19:20:50.037] INFO  [selln] [VENDOR] sell list from 0x00000A93: 1 item(s)
+[19:20:50.037] INFO  [selln] [VENDOR]   0x4001032F fish                   x15  1 gp
+[19:20:50.037] LOG   [selln] event vendor_sell_list: vendor=0x00000A93 items=1
+[19:20:50.037] INFO  [selln] [ACTION_RESULT] vendor_sell success (17ms) vendor sell list received
+[19:20:50.037] LOG   [selln] event action_result: vendor_sell success took=17ms vendor sell list received
+[19:20:50.710] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:20:52.557] INFO  [life] earn_gold: 'fisher' offers 1 gold each for i_fish_big_3; selling 15
+[19:20:52.557] INFO  [selln] [ACTION] vendor_sell start
+[19:20:52.557] INFO  [selln] [VENDOR] sell item=0x4001032F qty=15 to vendor=0x00000A93 gold=1000
+[19:20:52.558] INFO  [selln] [chat ascii] Shika: Here you are, 15 gold coins. I thank thee for thy business.
+[19:20:52.558] INFO  [selln] [0x3B] vendor transaction closed: vendor=0x00000A93 flag=0
+[19:20:52.603] INFO  [selln] [ACTION_RESULT] vendor_sell success (46ms) gold 1000 -> 1015
+[19:20:52.603] LOG   [selln] event action_result: vendor_sell success took=46ms gold 1000 -> 1015
+[19:20:55.596] INFO  [life] earn_gold: sold 15 i_fish_big_3 for 15 gold (1 each) to a 'fisher'
+[19:20:55.598] INFO  [life] checkpoint (sold to a vendor) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[19:20:55.598] INFO  [life] goal_completed=EARN_GOLD progress=1
+[19:20:55.600] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[19:20:55.658] INFO  [life] goal=FISH reason="no goal was running"
+[19:20:55.658] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[19:20:55.658] INFO  [life]   score=58.5
+[19:20:55.658] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[19:20:55.658] INFO  [life]   reason: carrying 0
+[19:20:55.658] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.4 -> 100.0)
+[19:20:55.658] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[19:20:55.658] INFO  [selln] [travel] fishing spot -> (1468,1750) r=4 from (1444,1763)
+[19:20:55.658] LOG   [selln] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1444,1763)
+[19:20:55.658] INFO  [selln] [travel] mode walk             usable   <- chosen
+[19:20:55.658] INFO  [selln] [travel] mode moongate         usable
+[19:20:55.658] INFO  [selln] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:20:55.658] INFO  [selln] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:20:55.658] LOG   [selln] event travel_mode: walk
+[19:20:55.658] INFO  [selln] [travel] plan fishing spot: ok legs=1 ~24 tiles transit=0 nodes=0
+[19:20:55.719] INFO  [selln] [action] goto (1468,1750) from (1444,1763,-2)
+[19:20:55.719] LOG   [selln] event goto_start: target=(1468,1750) from=(1444,1763)
+[19:20:55.719] INFO  [selln] [bot] running from (1444,1763,-2) to (1468,1750)
+[19:20:55.719] INFO  [selln] [bot] planning path to (1468,1750) in background
+[19:20:55.719] INFO  [selln] [survival] hp 25/25 (100%) -> fight
+[19:20:55.782] INFO  [selln] [bot] replan to (1468,1750): 60 steps in 3383.7us
+[19:21:00.757] INFO  [selln] [survival] hp 25/25 (100%) -> fight

@@ -61,6 +61,11 @@ namespace js { struct ClientBindings; }  // friend: live JS bindings (ClientBind
 namespace bot { class Scenario; }        // M1 scripted action runner (bot/Scenario.h)
 namespace life { class Runner; }        // M4 autonomous player (life/Runner.h)
 
+// A paperdoll job word ("fisherwoman", "minter", "seamstress") as a service.
+// Sphere's titles are gendered and English where the atlas is neither, so the
+// two vocabularies have to be reconciled in exactly one place.
+wm::Service ServiceForPaperdollJob(const char* job);
+
 class Client {
 public:
     struct Config {
@@ -318,6 +323,7 @@ public:
     // the guildmaster keeps no shop, so a bot shopping for reagents would
     // stand in front of him saying "buy" to no answer.
     u32  NearestMobileWithTrade(const char* trade) const;
+    void ServiceSightingTail(u32 serial, const char* title, wm::Service svc);
     // Same scan, skipping mobiles already tried and found useless. Sphere
     // gives no way to ask "will you teach me" except to ask, and some NPCs of
     // the right trade simply never answer -- so the only way past one is to go
@@ -429,6 +435,11 @@ public:
     void ActionDismount();
     bool ContainerKnown(u32 serial) const;
     u32  BankContainer() const { return bankContainer_; }
+    // Drop the cached box. The serial survives walking away from the banker,
+    // so a character can believe its bank is open from the far side of town
+    // and push items into a container the server will not accept -- forget it
+    // and the next deposit has to go and open a real one.
+    void ForgetBankContainer() { bankContainer_ = 0; }
 
     // Ask the server for the names of nearby mobiles (0x98 per mobile). NPC
     // names carry their trade ("<name> the provisioner"), which is the only

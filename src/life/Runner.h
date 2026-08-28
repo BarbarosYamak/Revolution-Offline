@@ -227,6 +227,10 @@ private:
     static constexpr i32 kMaxSilentAsks = 3;
     i32  trainSilentAsks_ = 0;
     u32  trainerSerial_ = 0;
+    // Deposits of one item that keep failing. See DoBank.
+    std::string bankDepositItem_;
+    int         bankDepositTries_ = 0;
+    static constexpr int kMaxBankDepositTries = 5;
     bool trainerApproached_ = false;
     // How many times we have tried to close the distance to THIS trainer.
     // One attempt was the old behaviour and it cost a whole session of

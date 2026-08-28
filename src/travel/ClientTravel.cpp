@@ -925,8 +925,25 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
     if (sp != std::string::npos) job.resize(sp);
     if (job.empty()) return;
 
-    // The atlas speaks Sphere's job defnames; a paperdoll speaks English. They
-    // agree for most trades, and the few that differ are spelled out here.
+    const wm::Service svcFromJob = ServiceForPaperdollJob(job.c_str());
+    if (svcFromJob == wm::Service::None) return;
+    wm::Service svc = svcFromJob;
+    ServiceSightingTail(serial, title, svc);
+}
+
+// The atlas speaks Sphere's job defnames; a paperdoll speaks English. They
+// agree for most trades, and the few that differ are spelled out here.
+//
+// This lives on its own because more than the sighting recorder needs it: a
+// character looking for someone of a trade has to know that "fisherwoman" is
+// a fisherman. It did not, and a fisher stood three tiles from Shika the
+// fisherwoman with fifteen fish to sell and reported no buyer reachable,
+// three trips running, twice over.
+wm::Service ServiceForPaperdollJob(const char* jobRaw) {
+    if (!jobRaw || !*jobRaw) return wm::Service::None;
+    std::string job(jobRaw);
+    for (char& c : job)
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
     struct Alias { const char* title; wm::Service svc; };
     static const Alias kAliases[] = {
         {"banker",       wm::Service::Banker},
@@ -958,6 +975,12 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
         {"shipwright",   wm::Service::Shipwright},
         {"mapmaker",     wm::Service::Mapmaker},
         {"fisherman",    wm::Service::Fisherman},
+        // The vendor tables ask for a "fisher"; nobody on this shard wears
+        // that word. Sphere's titles are "fisherman" and "fisherwoman", and
+        // without this row the short name resolves to no service at all, so
+        // the service match never even ran and the literal match could never
+        // succeed. Shika stood three tiles away through six trips.
+        {"fisher",       wm::Service::Fisherman},
         // Sphere's paperdoll titles are gendered (CNPC_PaperdollTitle_VT), so
         // the same trade reaches us under two names.
         {"fisherwoman",  wm::Service::Fisherman},
@@ -971,12 +994,13 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
         {"veterinarian", wm::Service::Veterinarian},
     };
 
-    wm::Service svc = wm::Service::None;
     for (const Alias& a : kAliases)
-        if (job == a.title) { svc = a.svc; break; }
-    if (svc == wm::Service::None) svc = wm::ServiceFromName(job.c_str());
-    if (svc == wm::Service::None) return;
+        if (job == a.title) return a.svc;
+    return wm::ServiceFromName(job.c_str());
+}
 
+void Client::ServiceSightingTail(u32 serial, const char* title,
+                                 wm::Service svc) {
     i32 mx = 0, my = 0;
     if (!MobilePosition(serial, &mx, &my)) return;
     const MobileObj* m = FindMobileBySerial(serial);

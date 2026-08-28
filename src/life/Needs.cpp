@@ -272,6 +272,29 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
     // --- weight and banking ------------------------------------------------
     const double weightFrac = obs.WeightFraction();
+
+    // IS THE LOAD ITSELF THE INCOME? A character at its carry limit holding
+    // fifteen fish has two ways to put the weight down, and only one of them
+    // pays. Ranking the bank above the buyer produced a perfect oscillation:
+    // walk eighty tiles to the bank, deposit the catch, EARN_GOLD withdraws it
+    // two seconds later, weight is back at the cap, bank wins again. Six round
+    // trips in one session and not one fish sold.
+    //
+    // Only suppresses banking when there is somewhere to actually take it:
+    // a load with no buyer is exactly what the bank is for.
+    bool loadIsSellable = false;
+    if (cfg.profession) {
+        const std::vector<market::Offer> onHand =
+            market::Surplus(*cfg.profession, obs.pack, market::TradePolicy{});
+        for (const market::Offer& o : onHand) {
+            if (market::HasNpcBuyer(o.item.c_str()) ||
+                mem.BestSupplier((std::string("buyer:") + o.item).c_str())) {
+                loadIsSellable = true;
+                break;
+            }
+        }
+    }
+
     if (obs.overloaded) {
         // Already spilling onto the ground. Nothing else matters about the
         // pack: every further log is dropped where anyone can take it.
@@ -279,7 +302,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             "the pack has overflowed and logs are going on the floor",
             Fmt("server said 'it is too heavy'; weight=%d/%d logs=%d",
                 obs.weight, obs.maxWeight, obs.logs));
-    } else if (weightFrac >= cfg.bankWeightFrac) {
+    } else if (weightFrac >= cfg.bankWeightFrac && !loadIsSellable) {
         add(NeedKind::NeedBank, 0.6 + (weightFrac - cfg.bankWeightFrac),
             "deposit carried load",
             "close to the carry limit; further gathering is wasted",

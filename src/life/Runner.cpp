@@ -1741,7 +1741,22 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         //
         // One item per tick: each move is a separate action the server may
         // refuse, and batching them hides which one failed.
-        if (needCfg_.profession) {
+        // DO NOT BANK WHAT THIS LIFE IS ABOUT TO SELL.
+        //
+        // The need model already refuses to schedule a deposit for sellable
+        // output (Needs.cpp, SellableInstead), but a BANK objective restored
+        // from a previous session bypasses that reasoning entirely: Bryn
+        // reached the bank carrying 15 fish, deposited all 15, and EARN_GOLD
+        // pulled the same 15 straight back out two seconds later. A player
+        // does not put its stock in the box on the way to the shop.
+        //
+        // Weight is the exception the need model already makes, and it is the
+        // real reason to bank: a load too heavy to carry to a buyer has to go
+        // somewhere.
+        const bool loadDemandsIt =
+            obs.WeightFraction() >= needCfg_.bankWeightFrac;
+        if (needCfg_.profession && (loadDemandsIt ||
+                                    needCfg_.profession->produces.empty())) {
             for (const std::string& made : needCfg_.profession->produces) {
                 const std::vector<u16> gfx = econ::GraphicsForItem(made.c_str());
                 u32 serial = 0;
@@ -1754,6 +1769,30 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     break;
                 }
                 if (!serial || amount <= 0) continue;
+                // A DEPOSIT THAT NEVER LANDS MUST NOT BE RETRIED FOREVER.
+                //
+                // The bank serial outlives the visit: Bryn stood on the
+                // Britain dock, seventy tiles from any banker, and pushed the
+                // same fifteen fish at a box it could not reach once a second
+                // for the rest of the session -- every attempt answered
+                // "item landed in a different container", none of them
+                // counted, and nothing else could run.
+                if (bankDepositItem_ == made) {
+                    if (++bankDepositTries_ > kMaxBankDepositTries) {
+                        LogLine("bank: %d attempts to deposit %s all landed "
+                                "elsewhere -- this box is not really open",
+                                bankDepositTries_, made.c_str());
+                        client.ForgetBankContainer();
+                        bankDepositTries_ = 0;
+                        bankDepositItem_.clear();
+                        planner_.NoteAttempt(obs.nowMs);
+                        nextActionMs_ = obs.nowMs + 3000;
+                        return false;
+                    }
+                } else {
+                    bankDepositItem_ = made;
+                    bankDepositTries_ = 1;
+                }
                 LogLine("banking %d %s", amount, made.c_str());
                 client.ActionMoveItem(serial, static_cast<u16>(amount), box);
                 planner_.NoteProgress();
@@ -1761,7 +1800,9 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 return false;
             }
         }
-        const u32 logs = client.FindBackpackItemByGraphic(kLog);
+        const u32 logs = loadDemandsIt || !needCfg_.profession
+                             ? client.FindBackpackItemByGraphic(kLog)
+                             : 0;
         if (logs) {
             const u16 amount = static_cast<u16>(client.BackpackItemCount(kLog));
             LogLine("banking %u logs", amount);

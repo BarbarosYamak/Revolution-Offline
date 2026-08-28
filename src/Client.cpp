@@ -2573,6 +2573,11 @@ u32 Client::NearestMobileWithTrade(const char* trade,
         return s;
     };
     const std::string want = lower(trade);
+    // A trade is asked for by ONE name but worn under several: Shika is "the
+    // fisherwoman", not "the fisher", and a literal title match walked a
+    // fisher past its own buyer three times. Match the SERVICE where both
+    // sides name one.
+    const wm::Service wantSvc = ServiceForPaperdollJob(want.c_str());
 
     u32 best = 0;
     int bestD = 0;
@@ -2586,7 +2591,13 @@ u32 Client::NearestMobileWithTrade(const char* trade,
         const std::string t = lower(title);
         const usize the = t.rfind(" the ");
         if (the == std::string::npos) continue;
-        if (t.substr(the + 5) != want) continue;
+        std::string job = t.substr(the + 5);
+        const usize sp = job.find_first_of(" ,.");
+        if (sp != std::string::npos) job.resize(sp);
+        if (job != want) {
+            if (wantSvc == wm::Service::None) continue;
+            if (ServiceForPaperdollJob(job.c_str()) != wantSvc) continue;
+        }
 
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
