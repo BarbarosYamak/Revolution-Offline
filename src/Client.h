@@ -519,7 +519,13 @@ public:
     // statics, exactly as every human client does. What a character has
     // LEARNED about a stand lives in its own memory and is never shared.
     struct TreeHit { i32 x = 0; i32 y = 0; i8 z = 0; u16 graphic = 0; };
-    bool NearestTree(i32 x, i32 y, int radius, TreeHit* out);
+    // `exclude` lets the caller ask for the SECOND-nearest tree, and the
+    // third. Without it a caller that has worked one tree out can never move
+    // to the next: it asks for "the nearest" at ever-wider radii and is handed
+    // the same tree every time, concludes the whole area is exhausted, and
+    // loops. One live session swung at a single tree 231 times that way.
+    bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
+                     const std::vector<std::pair<i32, i32>>* exclude = nullptr);
     // How many trees are within `radius`. Used to answer "am I actually
     // standing where the work is", which travel success does not answer.
     int  TreeCount(i32 x, i32 y, int radius);
@@ -543,6 +549,18 @@ public:
     // the flag persists across sessions, and a guard executes it -- which is
     // how this project lost a character in M3.9.
     int ScanHostiles(int maxDist, std::vector<HostileHit>& out) const;
+
+    // M4: has the server said `needle` since `sinceMs`? Case-insensitive
+    // substring over the journal this client already keeps.
+    //
+    // This is the honest way to know how an action turned out. Sphere answers
+    // a chop with "You put the logs in your pack", "You hack at the tree for a
+    // while, but fail to produce any useable wood", "There is nothing here to
+    // chop", or "You decide not to chop wood for now" -- four outcomes a timer
+    // cannot tell apart. Reading them is exactly what a player does.
+    bool JournalSaidSince(const char* needle, i64 sinceMs) const;
+    // Timestamp of the newest journal entry, for taking a "before" mark.
+    i64  JournalNowMs() const;
 
     // Per-character knowledge. Session-owned: never shared, never static.
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }

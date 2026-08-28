@@ -150,6 +150,10 @@ private:
     // already wasted work -- and with 60% of trees barren by the shard's own
     // resource table, wasted swings dominate the loop.
     static constexpr i32 kMaxSwingsPerTree = 2;
+    // One chop is DELAY=1.6 x rand(5)+2 strokes = 3.2 to 9.6 seconds. Swinging
+    // again inside that window fires the skill's @Abort trigger and throws the
+    // whole attempt away. Wait out the worst case; a yield cuts it short.
+    static constexpr i64 kChopResolveMs = 10000;
     i32  swingsOnTree_ = 0;
     i32  approachCell_ = 0;   // which of the tree's eight neighbours we have tried
     i32  logsSeen_ = 0;

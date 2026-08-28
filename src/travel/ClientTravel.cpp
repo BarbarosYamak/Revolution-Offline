@@ -1521,7 +1521,8 @@ bool GraphicIsTree(u16 graphic) {
 
 }  // namespace
 
-bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out) {
+bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
+                         const std::vector<std::pair<i32, i32>>* exclude) {
     if (!out) return false;
     if (!EnsureWorldLoaded() || !world_) return false;
     if (radius < 0) radius = 0;
@@ -1533,6 +1534,13 @@ bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out) {
     i32 bestDist = 0;
     for (const world::StaticHit& h : hits) {
         if (!GraphicIsTree(h.itemId)) continue;
+        if (exclude) {
+            bool skip = false;
+            for (const auto& e : *exclude) {
+                if (e.first == h.x && e.second == h.y) { skip = true; break; }
+            }
+            if (skip) continue;
+        }
         const i32 dx = h.x > x ? h.x - x : x - h.x;
         const i32 dy = h.y > y ? h.y - y : y - h.y;
         const i32 d = dx > dy ? dx : dy;
@@ -1557,6 +1565,27 @@ int Client::TreeCount(i32 x, i32 y, int radius) {
         if (GraphicIsTree(h.itemId)) ++n;
     }
     return n;
+}
+
+bool Client::JournalSaidSince(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return false;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;   // journal is in time order
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) != std::string::npos) return true;
+    }
+    return false;
+}
+
+i64 Client::JournalNowMs() const {
+    return journal_.empty() ? NowMs() : journal_.back().timeMs;
 }
 
 int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {

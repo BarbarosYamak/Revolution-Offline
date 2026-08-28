@@ -1397,25 +1397,13 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     // --- pick a tree and stand next to it ---------------------------------
     if (!chopTargetValid_) {
         Client::TreeHit tree;
-        // MarkStump already hides a worked-out tree from the statics, but the
-        // overlay has a TTL and this list does not: within one goal, a tree we
-        // proved barren must not come back as "the nearest one".
-        bool found = false;
-        for (int radius = 4; radius <= cfg_.searchRadius && !found; radius *= 2) {
-            if (!client.NearestTree(obs.x, obs.y, radius, &tree)) continue;
-            bool skip = false;
-            for (const auto& v : visitedTrees_) {
-                if (v.first == tree.x && v.second == tree.y) { skip = true; break; }
-            }
-            if (!skip) found = true;
-        }
-        if (!found && client.NearestTree(obs.x, obs.y, cfg_.searchRadius, &tree)) {
-            bool skip = false;
-            for (const auto& v : visitedTrees_) {
-                if (v.first == tree.x && v.second == tree.y) { skip = true; break; }
-            }
-            found = !skip;
-        }
+        // Ask for the nearest tree we have NOT already worked. The exclusion
+        // is the whole point: without it every widening radius hands back the
+        // same tree, the area reads as exhausted after ONE tree, and the
+        // character loops on it -- 231 swings at a single trunk in one live
+        // session.
+        const bool found =
+            client.NearestTree(obs.x, obs.y, cfg_.searchRadius, &tree, &visitedTrees_);
         if (!found) {
             LogLine("gather: every tree within %d tiles is worked out -> "
                     "this area is done for now", cfg_.searchRadius);
@@ -1481,7 +1469,16 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
             client.ActionTargetStatic(chopX_, chopY_, chopZ_, chopGraphic_);
             chopCursorPending_ = false;
             lastChopMs_ = obs.nowMs;
-            nextActionMs_ = obs.nowMs + 2500;
+            // LET THE CHOP FINISH. skill44_lumberjacking.scp is DELAY=1.6 and
+            // Source-X rolls rand(5)+2 strokes per attempt (CCharSkill.cpp),
+            // so one chop runs 3.2 to 9.6 seconds. Re-using the axe before it
+            // resolves fires @Abort -- "You decide not to chop wood for now."
+            // A live session threw away 191 of 240 swings that way, an 80%
+            // loss that looked like bad luck rather than a bug.
+            //
+            // The wait is cut short the moment the pack gains a log, so a
+            // fast success is not paid for twice (see the yield check below).
+            nextActionMs_ = obs.nowMs + kChopResolveMs;
             return false;
         }
         if (obs.nowMs - lastChopMs_ > 6000) {
@@ -1499,6 +1496,9 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     // the next swing kept resetting. Count swings instead of watching a clock:
     // a counter cannot be reset by the thing it is counting.
     if (obs.logs > logsSeen_) {
+        // The chop resolved early and paid out -- stop waiting out the stroke
+        // window and swing again.
+        nextActionMs_ = obs.nowMs;
         logsSeen_ = obs.logs;
         swingsOnTree_ = 0;
         planner_.NoteProgress();

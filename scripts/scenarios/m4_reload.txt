@@ -1,0 +1,45 @@
+# M4 -- save the world, then reload the scripts.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT, via local/dev/run_admin.ps1. This is operator
+# tooling, not gameplay: it touches no character's skills, stats, gold or
+# inventory, and it creates nothing.
+#
+# WHY
+#
+# Two runtime/scripts edits landed in commit 7c71d66 (audit decisions D9 and
+# D3): REGION_FLAG_GUARDED cleared on eight over-guarded AREADEFs, and every
+# REGIONRESOURCE regen brought from ten hours to TNS timing. A running Sphere
+# holds its parsed script definitions in memory, so neither change is live
+# until the server re-reads them.
+#
+# RESYNC is the re-read. Source-X CServer.cpp:2489-2498 does
+# `g_Cfg.Unload(true)` then `g_Cfg.Load(true)`, which is a full definition
+# reload -- AREADEF and REGIONRESOURCE included. It sets m_fResyncRequested and
+# performs the work on the next server tick rather than mid-script, so it is
+# safe to request from a client.
+#
+# SAVE FIRST. A resync unloads and reloads definitions while the world stays
+# in memory; it is not a restart and should not lose anything. Saving first is
+# cheap insurance, and it means the on-disk world matches what the reloaded
+# definitions will govern. `.save` is the same command the M3.7 decorator runs
+# after it places items.
+#
+# The 30-second wait after the resync is deliberate: this world is 79k items
+# and 14k characters, and the earlier M3.8/M3.9 resync runs needed ~25s before
+# the server answered again.
+
+wait_world
+sleep 3000
+
+say .save
+sleep 20000
+
+say .serv.resync
+sleep 30000
+
+# If the server is answering speech again, the reload completed and the
+# session survived it -- which is the only confirmation a client can give.
+say reload complete
+sleep 2000
+
+logout
