@@ -191,3 +191,17 @@ target_include_directories(m6_targeting PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m6_targeting COMMAND m6_targeting)
+
+# --- M7.1: producer/consumer, observed prices, gold ledger ------------------
+# The rule this suite exists for is the easy one to break by accident: a bot
+# may not know the market. A character with no observation of a price must
+# answer "I do not know", not a plausible number.
+add_executable(m7_market m7_market.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(m7_market PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m7_market COMMAND m7_market)

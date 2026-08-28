@@ -1834,6 +1834,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             trainPaid_ = false;
             trainAsked_ = false;
             trainSkillsAsked_ = false;
+            trainPackRefreshed_ = false;
+            trainPayAttempts_ = 0;
             trainTrips_ = 0;
             Checkpoint(client, obs.nowMs, "skill bought from a trainer");
             return true;
@@ -1860,6 +1862,9 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             trainPaid_ = false;
             trainAsked_ = false;
             trainSkillsAsked_ = false;
+            // Ask for the pack again: the most likely reason a give did
+            // nothing is that the serial it named no longer exists.
+            trainPackRefreshed_ = false;
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
@@ -2034,6 +2039,28 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     }
 
     // --- pay exactly what was quoted ---------------------------------------
+    //
+    // Ask for the pack's contents FIRST. Sphere splits a gold stack to make
+    // change, which retires the old serial, and a give addressed to a retired
+    // serial is a silent no-op: no gold moves, the NPC says nothing, and
+    // nothing anywhere reports an error. That is exactly what happened on the
+    // second purchase of the first successful live run -- the first 108gp
+    // give did nothing and only the retry landed.
+    if (!trainPackRefreshed_) {
+        client.ActionOpenBackpack();
+        trainPackRefreshed_ = true;
+        nextActionMs_ = obs.nowMs + 1200;
+        return false;
+    }
+    if (trainPayAttempts_ >= kMaxPayAttempts) {
+        LogLine("goal_failed=TRAIN_AT_NPC reason=\"%d attempts to hand over %d "
+                "gold all failed\"", trainPayAttempts_, quoted);
+        planner_.Finish(false, "could not hand over the fee", obs.nowMs);
+        trainAsked_ = false;
+        trainPackRefreshed_ = false;
+        trainPayAttempts_ = 0;
+        return false;
+    }
     const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
     if (!gold) {
         LogLine("training: quoted %d but no gold stack found in the pack", quoted);
@@ -2049,6 +2076,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     // mixing them made the ten-second verification window expire in 8.7s.
     trainPaidMs_ = obs.nowMs;
     trainSkillsAsked_ = false;
+    ++trainPayAttempts_;
     client.ActionNpcGive(trainer, gold, static_cast<u16>(quoted));
     trainPaid_ = true;
     nextActionMs_ = obs.nowMs + 4000;

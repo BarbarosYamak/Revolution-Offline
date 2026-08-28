@@ -160,8 +160,13 @@ const std::vector<Profession>& All() {
             p.targetStr = 100; p.targetDex = 45; p.targetInt = 80;
             p.income = {Income::Craft, Income::Process, Income::Gather};
             p.gathers = "ore";
-            p.produces = {"i_ingot_iron"};
-            p.consumes = {"i_ore_iron"};
+            p.produces = {"i_ingot_iron", "i_spear_short"};
+            // Ore comes out of the world, but the SPEAR does not: it is
+            // 6 ingots plus one LOG (Production.cpp:107, script SKILLMAKE
+            // Blacksmithing 45.3). That single log is the first real
+            // producer-to-consumer link in the catalogue -- the smith cannot
+            // make it without something a lumberjack pulls out of a tree.
+            p.consumes = {"i_ore_iron", "i_log"};
             // The pickaxe is listed even though a new character cannot lift it:
             // the need model must SAY that, not hide it.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
@@ -194,11 +199,20 @@ const std::vector<Profession>& All() {
             p.unresolvedTenths = 3500;
             p.targetStr = 25; p.targetDex = 25; p.targetInt = 100;
             p.income = {Income::Craft, Income::Hunt};
-            p.produces = {"i_scroll_blank"};
+            // What a mage actually MAKES. Blank scrolls are Carpentry 25.7
+            // (Production.cpp:123) -- wood, not magic -- so listing them as
+            // the mage's output was backwards. It makes SPELL scrolls out of
+            // them.
+            p.produces = {"i_scroll_poison", "i_scroll_recall"};
             // Reagents are bought, never gathered -- the ground-reagent spawns
             // exist but a mage buying from a mage shop is the era behaviour.
-            p.consumes = {"i_reag_black_pearl", "i_reag_blood_moss",
-                          "i_reag_mandrake_root", "i_reag_nightshade"};
+            // Blank scrolls are the mage's real bottleneck and it cannot make
+            // them: no profession in this catalogue has Carpentry, so today
+            // they come from a vendor. That is a KNOWN GAP, not a solved
+            // chain -- see docs/M7.md.
+            p.consumes = {"i_scroll_blank", "i_reag_black_pearl",
+                          "i_reag_blood_moss", "i_reag_mandrake_root",
+                          "i_reag_nightshade"};
             p.tools = {{"spellbook", {kSpellbook}, false}};
             p.consumables = {Food()};
             p.riskTolerance = 0.30;      // squishy; disengages early
@@ -224,8 +238,12 @@ const std::vector<Profession>& All() {
             p.unresolvedTenths = 4500;
             p.targetStr = 50; p.targetDex = 25; p.targetInt = 100;
             p.income = {Income::Craft};
-            p.consumes = {"i_bottle_empty", "i_reag_black_pearl",
-                          "i_reag_garlic", "i_reag_ginseng"};
+            // Bottles are NOT bought: i_bottle_empty is Alchemy 25.0 with a
+            // glassblowing tool (Production.cpp:178), so an alchemist makes
+            // its own. It buys reagents and nothing else.
+            p.produces = {"i_potion_refresh", "i_potion_cure"};
+            p.consumes = {"i_reag_black_pearl", "i_reag_garlic",
+                          "i_reag_ginseng"};
             p.tools = {{"mortar", {kMortar}, false}};
             p.consumables = {Food()};
             p.riskTolerance = 0.25;

@@ -215,6 +215,12 @@ private:
     i32  trainSilentAsks_ = 0;
     u32  trainerSerial_ = 0;
     bool trainerApproached_ = false;
+    // Gold-stack serials go stale the moment Sphere splits a stack to make
+    // change, and a give to a dead serial is a silent no-op. One refresh
+    // before paying, and a bounded number of attempts.
+    static constexpr i32 kMaxPayAttempts = 3;
+    bool trainPackRefreshed_ = false;
+    i32  trainPayAttempts_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;

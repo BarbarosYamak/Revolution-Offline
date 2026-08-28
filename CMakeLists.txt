@@ -96,6 +96,8 @@ set(UO_CLIENT_SOURCES
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.
     src/combat/Targeting.cpp
+    # M7 -- surplus, shortfall, observed prices and the gold ledger.
+    src/economy/Market.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp

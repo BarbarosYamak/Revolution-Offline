@@ -1,0 +1,237 @@
+[14:07:27.728] INFO  session 0: 127.0.0.1:2593 user='revolutionmage01' char=Ilyandra tag='m5e'
+[14:07:27.729] LOG   [m5e] event session_start: text log opened
+[14:07:27.729] LOG   [m5e] event net_connect_begin: connect 127.0.0.1:2593
+[14:07:27.729] INFO  [m5e] [net] connecting to 127.0.0.1:2593 ...
+[14:07:27.731] LOG   [m5e] event net_connected: connect 127.0.0.1:2593
+[14:07:27.731] INFO  [m5e] [net] connected.
+[14:07:27.731] INFO  [m5e] [seed] sent 0x7F000001 (plaintext)
+[14:07:27.731] LOG   [m5e] event seed_out: 0x7F000001 hex=7f000001
+[14:07:27.731] INFO  [life] loaded persistent state for Ilyandra (0 places, 0 suppliers, 2 events, 0 prior sessions)
+[14:07:27.731] INFO  [life] needs: reading 'mage' from the profession catalogue
+[14:07:27.731] INFO  [life] build plan 'mage': 350.0 resolved + 350.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[14:07:27.731] INFO  [m5e] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[14:07:27.732] INFO  [m5e] [0xA8] 1 server(s):
+[14:07:27.732] INFO  [m5e]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:07:27.747] INFO  [m5e] [0x8C] game server = 127.0.0.1:2593  seed=0xB45B826E
+[14:07:27.747] LOG   [m5e] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB45B826E
+[14:07:27.748] INFO  [m5e] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:07:27.748] LOG   [m5e] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:07:27.748] INFO  [m5e] [0xB9] server features = 0x0005
+[14:07:27.748] INFO  [m5e] [0xA9] 5 slot(s) (populated 1):
+[14:07:27.748] INFO  [m5e]   [0] Ilyandra
+[14:07:27.748] INFO  [m5e]   [1] <empty>
+[14:07:27.748] INFO  [m5e]   [2] <empty>
+[14:07:27.748] INFO  [m5e]   [3] <empty>
+[14:07:27.748] INFO  [m5e]   [4] <empty>
+[14:07:27.748] INFO  [m5e] [ui] playing slot 0 ('Ilyandra')
+[14:07:27.763] INFO  [m5e] [0x1B] serial=0x0001616F body=0x0190 pos=(1413,1593,30)
+[14:07:27.763] LOG   [m5e] event login_confirm: serial=0x0001616F body=0x0190 pos=(1413,1593,30)
+[14:07:27.763] INFO  [m5e] [0x20] player @(1413,1593,30) facing=0
+[14:07:27.763] INFO  [m5e] [0x55] login complete — entering world
+[14:07:27.763] LOG   [m5e] event in_world: 0x55 received
+[14:07:27.763] INFO  [m5e] [backpack] opening 0x4001606B
+[14:07:27.763] INFO  [m5e] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:07:27.763] INFO  [m5e] [chat ascii] System: There is 1 other player here.
+[14:07:27.763] INFO  [m5e] [chat ascii] System: Last logged: 2026/08/28 14:02:40
+[14:07:27.763] INFO  [m5e] [chat ascii] System: You are under the protection of the city guards
+[14:07:27.767] INFO  [m5e] [action] requesting the skill list
+[14:07:27.767] INFO  [life] in world; asked the server for the skill list
+[14:07:27.767] INFO  [m5e] [0x24] open container 0x4001606B gump=60
+[14:07:27.767] INFO  [m5e] [0x3C] container contents: 11 item(s)
+[14:07:27.767] LOG   [m5e] event backpack_contents: serial=0x4001606B items=11
+[14:07:30.355] INFO  [m5e] [bot] world data loaded (0 blacklisted spot(s)).
+[14:07:30.355] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[14:07:30.355] INFO  [life]   gold         persisted=907        server=907        -> server value accepted
+[14:07:30.355] INFO  [life]   str          persisted=15         server=15         -> server value accepted
+[14:07:30.355] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[14:07:30.355] INFO  [life]   int          persisted=25         server=25         -> server value accepted
+[14:07:30.355] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[14:07:30.355] INFO  [life]   skill_46     persisted=50.0       server=50.0       -> server value accepted
+[14:07:30.355] INFO  [life]   skill_16     persisted=21.1       server=21.1       -> server value accepted
+[14:07:30.355] INFO  [life]   skill_23     persisted=7.7        server=7.7        -> server value accepted
+[14:07:30.355] INFO  [life]   position     persisted=1413,1593  server=1413,1593  -> server value accepted
+[14:07:30.355] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:07:30.355] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[14:07:30.355] INFO  [m5e] [survival] on
+[14:07:30.355] LOG   [m5e] event survival_mode: on
+[14:07:30.357] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:07:30.357] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:30.410] INFO  [life] training: looking for a 'scribe' to teach Inscription (trip 1)
+[14:07:30.410] INFO  [m5e] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1413,1593)
+[14:07:30.410] LOG   [m5e] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1413,1593)
+[14:07:30.410] INFO  [m5e] [travel] Lord British's Castle scribe ARRIVED at (1413,1593,30)
+[14:07:30.410] LOG   [m5e] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1413,1593) legs=0 plans=0 why=''
+[14:07:32.430] INFO  [life] training: arrived at 1413,1593 -- asking who is here
+[14:07:32.430] INFO  [m5e] [action] scanning nearby mobiles for names
+[14:07:32.430] INFO  [m5e] [action] requested 1 paperdoll(s) for trade titles
+[14:07:32.445] INFO  [m5e] [mobiles] nearby (5):
+[14:07:32.445] INFO  [m5e]   Raisa 0x0000103B
+[14:07:32.445] INFO  [m5e]   Mathea 0x00001242
+[14:07:32.445] INFO  [m5e]   Shandy 0x0000108C
+[14:07:32.445] INFO  [m5e]   Coleen 0x00001099
+[14:07:32.445] INFO  [m5e]   Grear 0x00001126
+[14:07:32.445] INFO  [m5e] [0x20] player @(1413,1593,30) facing=7
+[14:07:32.445] INFO  [m5e] [0x88] paperdoll 0x0000103B: "Raisa, the scribe"
+[14:07:32.445] INFO  [m5e] [world] Raisa, the scribe is a scribe at (1410,1589)
+[14:07:34.951] INFO  [life] training: 'scribe' is 3 tiles and 0 z away -- walking to them before speaking
+[14:07:34.951] INFO  [m5e] [travel] trainer -> (1410,1590) r=1 from (1413,1593)
+[14:07:34.951] LOG   [m5e] event travel_start: label='trainer' target=(1410,1590) radius=1 from=(1413,1593)
+[14:07:34.951] INFO  [m5e] [travel] mode walk             usable   <- chosen
+[14:07:34.952] INFO  [m5e] [travel] mode moongate         usable
+[14:07:34.952] INFO  [m5e] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:07:34.952] INFO  [m5e] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:07:34.952] LOG   [m5e] event travel_mode: walk
+[14:07:34.952] INFO  [m5e] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:07:35.011] INFO  [m5e] [action] goto (1410,1590) from (1413,1593,30)
+[14:07:35.011] LOG   [m5e] event goto_start: target=(1410,1590) from=(1413,1593)
+[14:07:35.011] INFO  [m5e] [bot] running from (1413,1593,30) to (1410,1590)
+[14:07:35.011] INFO  [m5e] [bot] planning path to (1410,1590) in background
+[14:07:35.380] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:36.150] INFO  [m5e] [action] goto finished at (1413,1593,30); target (1410,1590); stopped short (off by 6 tile(s))
+[14:07:36.150] LOG   [m5e] event goto_done: at=(1413,1593) target=(1410,1590) arrived=0 off=6
+[14:07:37.371] INFO  [m5e] [travel] mode walk             usable   <- chosen
+[14:07:37.371] INFO  [m5e] [travel] mode moongate         usable
+[14:07:37.371] INFO  [m5e] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:07:37.371] INFO  [m5e] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:07:37.371] LOG   [m5e] event travel_mode: walk
+[14:07:37.371] INFO  [m5e] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:07:38.906] INFO  [m5e] [action] goto (1410,1590) from (1413,1593,30)
+[14:07:38.906] LOG   [m5e] event goto_start: target=(1410,1590) from=(1413,1593)
+[14:07:38.906] INFO  [m5e] [bot] running from (1413,1593,30) to (1410,1590)
+[14:07:38.906] INFO  [m5e] [bot] planning path to (1410,1590) in background
+[14:07:40.152] INFO  [m5e] [action] goto finished at (1413,1593,30); target (1410,1590); stopped short (off by 6 tile(s))
+[14:07:40.152] LOG   [m5e] event goto_done: at=(1413,1593) target=(1410,1590) arrived=0 off=6
+[14:07:40.397] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:41.392] INFO  [m5e] [travel] mode walk             usable   <- chosen
+[14:07:41.392] INFO  [m5e] [travel] mode moongate         usable
+[14:07:41.392] INFO  [m5e] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:07:41.392] INFO  [m5e] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:07:41.392] LOG   [m5e] event travel_mode: walk
+[14:07:41.392] INFO  [m5e] [travel] plan trainer: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:07:44.434] INFO  [m5e] [action] goto (1410,1590) from (1413,1593,30)
+[14:07:44.434] LOG   [m5e] event goto_start: target=(1410,1590) from=(1413,1593)
+[14:07:44.434] INFO  [m5e] [bot] running from (1413,1593,30) to (1410,1590)
+[14:07:44.434] INFO  [m5e] [bot] planning path to (1410,1590) in background
+[14:07:44.495] INFO  [m5e] [bot] replan to (1410,1590): 4 steps in 88.7us
+[14:07:44.756] INFO  [m5e] [chat ascii] Raisa: Don't stand so close.
+[14:07:44.756] INFO  [m5e] [chat ascii] System: You shove Raisa out of the way.
+[14:07:45.401] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:45.600] INFO  [m5e] [chat ascii] System: You are too fatigued to move.
+[14:07:45.600] INFO  [m5e] [bot] fatigue detected; rejects will wait for stamina regen
+[14:07:45.600] INFO  [m5e] [bot] reject at (1412,1592): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:07:45.600] INFO  [m5e] [bot] planning path to (1410,1590) in background
+[14:07:45.601] INFO  [m5e] [bot] replan to (1410,1590): 3 steps in 84.4us
+[14:07:47.608] INFO  [m5e] [chat ascii] System: You are too fatigued to move.
+[14:07:47.608] INFO  [m5e] [bot] fatigue detected; rejects will wait for stamina regen
+[14:07:47.608] INFO  [m5e] [bot] reject at (1412,1592): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:07:47.608] INFO  [m5e] [bot] planning path to (1410,1590) in background
+[14:07:47.609] INFO  [m5e] [bot] replan to (1410,1590): 3 steps in 51.9us
+[14:07:50.415] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:50.614] INFO  [m5e] [travel] trainer ARRIVED at (1411,1591,30)
+[14:07:50.614] LOG   [m5e] event travel_done: label='trainer' ok=1 at=(1411,1591) legs=1 plans=3 why=''
+[14:07:50.675] INFO  [life] training: asking the trainer about Inscription
+[14:07:50.675] INFO  [m5e] [ACTION] npc_train start
+[14:07:50.675] INFO  [m5e] [TRAIN] ask 0x0000103B say='Raisa train Inscription'
+[14:07:50.675] LOG   [m5e] event npc_train_ask: Raisa train Inscription
+[14:07:50.675] INFO  [m5e] [chat uni  ] : Raisa train Inscription
+[14:07:50.675] INFO  [m5e] [chat ascii] Raisa: For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:07:50.675] INFO  [m5e] [ACTION_RESULT] npc_train success (0ms) For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:07:50.675] LOG   [m5e] event action_result: npc_train success took=0ms For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:07:50.918] INFO  [m5e] [bot] arrived at (1410,1590,30)
+[14:07:53.191] INFO  [life] training: paying the quoted 108 gold for Inscription (purse 907)
+[14:07:53.191] INFO  [m5e] [GIVE] 0x40012F08 x108 -> 0x0000103B (gold 907)
+[14:07:53.191] INFO  [m5e] [ITEM] drag serial=0x40012F08 amount=108
+[14:07:53.191] INFO  [m5e] [ITEM] drop container=0x0000103B
+[14:07:53.191] LOG   [m5e] event npc_give: item=0x40012F08 amount=108 to=0x0000103B
+[14:07:55.418] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:07:57.194] INFO  [m5e] [action] requesting the skill list
+[14:08:00.432] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:05.455] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:09.443] INFO  [life] training: paid 108 for Inscription but the server still reports 7.7 after 15s
+[14:08:10.461] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:10.951] INFO  [life] training: asking the trainer about Inscription
+[14:08:10.951] INFO  [m5e] [ACTION] npc_train start
+[14:08:10.951] INFO  [m5e] [TRAIN] ask 0x0000103B say='Raisa train Inscription'
+[14:08:10.951] LOG   [m5e] event npc_train_ask: Raisa train Inscription
+[14:08:10.966] INFO  [m5e] [chat uni  ] : Raisa train Inscription
+[14:08:10.966] INFO  [m5e] [chat ascii] Raisa: For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:08:10.966] INFO  [m5e] [ACTION_RESULT] npc_train success (15ms) For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:08:10.966] LOG   [m5e] event action_result: npc_train success took=15ms For 108 gold I will train you in all I know of Inscription. For less gold I will teach you less
+[14:08:13.452] INFO  [life] training: paying the quoted 108 gold for Inscription (purse 907)
+[14:08:13.452] INFO  [m5e] [GIVE] 0x4001569E x108 -> 0x0000103B (gold 907)
+[14:08:13.452] INFO  [m5e] [ITEM] drag serial=0x4001569E amount=108
+[14:08:13.452] INFO  [m5e] [ITEM] drop container=0x0000103B
+[14:08:13.452] LOG   [m5e] event npc_give: item=0x4001569E amount=108 to=0x0000103B
+[14:08:13.467] INFO  [m5e] [chat ascii] Raisa: Let me show you something of how this is done
+[14:08:13.467] INFO  [m5e] [chat ascii] Raisa: That is all I can teach.
+[14:08:15.480] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:17.505] INFO  [m5e] [action] requesting the skill list
+[14:08:19.058] INFO  [life] training: Inscription 7.7 -> 18.5, bought from a trainer
+[14:08:19.060] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:08:19.060] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[14:08:19.062] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:08:19.120] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[14:08:19.120] INFO  [life]   score=60.0
+[14:08:19.120] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[14:08:19.120] INFO  [life]   reason: Inscription 18.5 -> 50.0, gold 799 (fee is quoted on arrival, roughly 300)
+[14:08:19.120] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:08:19.120] INFO  [life] training: asking the trainer about Inscription
+[14:08:19.120] INFO  [m5e] [ACTION] npc_train start
+[14:08:19.120] INFO  [m5e] [TRAIN] ask 0x0000103B say='Raisa train Inscription'
+[14:08:19.120] LOG   [m5e] event npc_train_ask: Raisa train Inscription
+[14:08:19.120] INFO  [m5e] [chat uni  ] : Raisa train Inscription
+[14:08:19.120] INFO  [m5e] [chat ascii] Raisa: You already know as much as I can teach of Inscription
+[14:08:19.120] LOG   [m5e] event action_result: npc_train invalid_state took=0ms You already know as much as I can teach of Inscription
+[14:08:20.485] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:21.658] INFO  [life] training: scribe refused to teach Inscription at 18.5 -- the trainer has nothing left to give
+[14:08:21.660] INFO  [life] checkpoint (trainer refusal) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:08:21.720] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: the trainer has nothing left to give"
+[14:08:21.720] INFO  [life]   score=10.0
+[14:08:21.720] INFO  [life]   reason: fallback: nothing else scored
+[14:08:21.720] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:08:25.541] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:30.569] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:35.594] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:36.824] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:36.826] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:08:36.886] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:08:36.886] INFO  [life]   score=10.0
+[14:08:36.886] INFO  [life]   reason: fallback: nothing else scored
+[14:08:36.886] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:08:40.639] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:45.700] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:50.727] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:55.761] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:08:56.927] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:56.928] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:08:56.987] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:08:56.987] INFO  [life]   score=10.0
+[14:08:56.987] INFO  [life]   reason: fallback: nothing else scored
+[14:08:56.987] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:09:00.788] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:05.833] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:10.893] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:11.995] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:09:11.997] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:09:12.056] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:09:12.056] INFO  [life]   score=10.0
+[14:09:12.057] INFO  [life]   reason: fallback: nothing else scored
+[14:09:12.057] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:09:15.910] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:20.926] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:25.947] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:27.081] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:09:27.083] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:09:27.142] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:09:27.142] INFO  [life]   score=10.0
+[14:09:27.142] INFO  [life]   reason: fallback: nothing else scored
+[14:09:27.142] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)
+[14:09:30.956] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:35.986] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:41.042] INFO  [m5e] [survival] hp 15/15 (100%) -> fight
+[14:09:42.191] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:09:42.193] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[14:09:42.253] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:09:42.253] INFO  [life]   score=10.0
+[14:09:42.253] INFO  [life]   reason: fallback: nothing else scored
+[14:09:42.253] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 21.1 -> 100.0)

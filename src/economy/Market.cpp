@@ -1,0 +1,218 @@
+#include "uo/market.h"
+
+#include <algorithm>
+
+namespace uo::market {
+
+i32 QtyOf(const std::vector<Stock>& pack, const std::string& item) {
+    for (const Stock& s : pack) {
+        if (s.item == item) return s.qty;
+    }
+    return 0;
+}
+
+const char* PriceSourceName(PriceSource s) {
+    switch (s) {
+        case PriceSource::NpcVendorSells: return "npc_sells";
+        case PriceSource::NpcVendorBuys:  return "npc_buys";
+        case PriceSource::PlayerQuoted:   return "player_quoted";
+        case PriceSource::PlayerTraded:   return "player_traded";
+    }
+    return "?";
+}
+
+const char* GoldFlowName(GoldFlow f) {
+    switch (f) {
+        case GoldFlow::LootedFromCorpse:    return "looted_from_corpse";
+        case GoldFlow::SoldToNpcVendor:     return "sold_to_npc_vendor";
+        case GoldFlow::SoldToPlayer:        return "sold_to_player";
+        case GoldFlow::StartingKit:         return "starting_kit";
+        case GoldFlow::BoughtFromNpcVendor: return "bought_from_npc_vendor";
+        case GoldFlow::BoughtFromPlayer:    return "bought_from_player";
+        case GoldFlow::PaidTrainer:         return "paid_trainer";
+        case GoldFlow::Count:               break;
+    }
+    return "?";
+}
+
+bool IsGoldSource(GoldFlow f) {
+    switch (f) {
+        // Only these three put gold that did not exist before into a player's
+        // hands. A sale to another PLAYER is not a source -- it moves gold
+        // sideways, which is the whole point of a player economy.
+        case GoldFlow::LootedFromCorpse:
+        case GoldFlow::SoldToNpcVendor:
+        case GoldFlow::StartingKit:
+            return true;
+        default:
+            return false;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Surplus and shortfall
+// ---------------------------------------------------------------------------
+std::vector<Offer> Surplus(const prof::Profession& p,
+                           const std::vector<Stock>& pack,
+                           const TradePolicy& policy) {
+    std::vector<Offer> out;
+    // A life offers only what its own profession makes. It does not become a
+    // trader in something it happened to pick up: that is how a "miner" turns
+    // into an omniscient reseller, which is exactly what M7 forbids.
+    for (const std::string& item : p.produces) {
+        const i32 have = QtyOf(pack, item);
+        const i32 spare = have - policy.keepOfOwnOutput;
+        if (spare < policy.minimumSurplusToOffer) continue;
+        Offer o;
+        o.item = item;
+        o.qty = spare;
+        o.reason = "own output beyond the working reserve";
+        out.push_back(std::move(o));
+    }
+    return out;
+}
+
+std::vector<Want> Shortfall(const prof::Profession& p,
+                            const std::vector<Stock>& pack,
+                            const TradePolicy& policy) {
+    std::vector<Want> out;
+
+    // Inputs the profession's own recipes eat.
+    for (const std::string& item : p.consumes) {
+        const i32 have = QtyOf(pack, item);
+        if (have >= policy.restockConsumablesTo) continue;
+        Want w;
+        w.item = item;
+        w.qty = policy.restockConsumablesTo - have;
+        w.rawResource = WhoProduces(item.c_str()).empty();
+        w.reason = w.rawResource
+            ? "an input no profession makes -- the world does, so this is a "
+              "vendor or a gathering trip, not a player supplier"
+            : "an input another character's profession produces";
+        out.push_back(std::move(w));
+    }
+
+    // Consumables the catalogue names with their own floors.
+    for (const prof::ConsumableNeed& c : p.consumables) {
+        const i32 have = QtyOf(pack, c.name);
+        if (have >= c.low) continue;
+        Want w;
+        w.item = c.name;
+        w.qty = std::max(1, c.restockTo - have);
+        w.rawResource = WhoProduces(c.name.c_str()).empty();
+        w.reason = "below this life's own floor for it";
+        out.push_back(std::move(w));
+    }
+    return out;
+}
+
+std::vector<const prof::Profession*> WhoProduces(const char* item) {
+    std::vector<const prof::Profession*> out;
+    if (!item) return out;
+    for (const prof::Profession& p : prof::All()) {
+        for (const std::string& made : p.produces) {
+            if (made == item) { out.push_back(&p); break; }
+        }
+    }
+    return out;
+}
+
+bool CanSupply(const prof::Profession& producer,
+               const prof::Profession& consumer, std::string* itemOut) {
+    for (const std::string& made : producer.produces) {
+        for (const std::string& eaten : consumer.consumes) {
+            if (made != eaten) continue;
+            if (itemOut) *itemOut = made;
+            return true;
+        }
+    }
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// PriceBook
+// ---------------------------------------------------------------------------
+void PriceBook::Note(const PriceObservation& o) {
+    for (PriceObservation& e : obs_) {
+        if (e.item == o.item && e.source == o.source && e.who == o.who) {
+            e = o;
+            return;
+        }
+    }
+    obs_.push_back(o);
+}
+
+const PriceObservation* PriceBook::Latest(const char* item,
+                                          PriceSource source) const {
+    if (!item) return nullptr;
+    const PriceObservation* best = nullptr;
+    for (const PriceObservation& e : obs_) {
+        if (e.item != item || e.source != source) continue;
+        if (!best || e.whenMs > best->whenMs) best = &e;
+    }
+    return best;
+}
+
+i32 PriceBook::BelievedSalePrice(const char* item) const {
+    // In order of how much each one actually proves. A completed trade is a
+    // fact; a quote is a claim; an NPC's buy price is only a floor, and using
+    // it as a belief about player prices is how a bot ends up undercutting
+    // the whole shard on nothing but vendor data.
+    static const PriceSource kOrder[] = {
+        PriceSource::PlayerTraded,
+        PriceSource::PlayerQuoted,
+        PriceSource::NpcVendorBuys,
+    };
+    for (PriceSource s : kOrder) {
+        if (const PriceObservation* o = Latest(item, s)) return o->pricePerUnit;
+    }
+    return -1;   // never seen one. Not zero, and not a guess.
+}
+
+void PriceBook::Expire(i64 nowMs, i64 maxAgeMs) {
+    std::vector<PriceObservation> keep;
+    keep.reserve(obs_.size());
+    for (const PriceObservation& e : obs_) {
+        if (nowMs - e.whenMs <= maxAgeMs) keep.push_back(e);
+    }
+    obs_.swap(keep);
+}
+
+// ---------------------------------------------------------------------------
+// Ledger
+// ---------------------------------------------------------------------------
+void Ledger::Note(GoldFlow f, i32 amount, const char* detail, i64 whenMs) {
+    if (amount <= 0) return;
+    GoldEntry e;
+    e.flow = f;
+    e.amount = amount;
+    e.detail = detail ? detail : "";
+    e.whenMs = whenMs;
+    entries.push_back(std::move(e));
+}
+
+i32 Ledger::TotalIn() const {
+    i32 n = 0;
+    for (const GoldEntry& e : entries) {
+        if (IsGoldSource(e.flow) || e.flow == GoldFlow::SoldToPlayer) n += e.amount;
+    }
+    return n;
+}
+
+i32 Ledger::TotalOut() const {
+    i32 n = 0;
+    for (const GoldEntry& e : entries) {
+        if (!IsGoldSource(e.flow) && e.flow != GoldFlow::SoldToPlayer) n += e.amount;
+    }
+    return n;
+}
+
+i32 Ledger::TotalFor(GoldFlow f) const {
+    i32 n = 0;
+    for (const GoldEntry& e : entries) {
+        if (e.flow == f) n += e.amount;
+    }
+    return n;
+}
+
+}  // namespace uo::market
