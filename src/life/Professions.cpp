@@ -43,6 +43,7 @@ namespace {
 constexpr u16 kHatchet[]  = {0x0F43, 0x0F44};   // i_hatchet, layer 2
 constexpr u16 kPickaxe[]  = {0x0E85, 0x0E86};   // i_pickaxe, layer 1, ReqStr=50
 constexpr u16 kBandage    = 0x0E21;
+constexpr u16 kFishingPole[] = {0x0DBF, 0x0DC0};
 constexpr u16 kMortar     = 0x0E9B;             // i_mortar_pestle
 constexpr u16 kBottle     = 0x0F0E;             // i_bottle_empty
 constexpr u16 kSpellbook  = 0x0EFA;             // i_spellbook
@@ -288,6 +289,47 @@ const std::vector<Profession>& All() {
             p.goldReserve = 600;
                         // Reagents and a mortar; Britain has the deepest reagent supply.
             p.homeCities = {"Britain", "Vesper", "Moonglow"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 5. Fisher ---------------------------------------------------------
+        //
+        // THE ONLY LIFE IN THE CATALOGUE THAT CAN EARN ON DAY ONE.
+        //
+        // Fishing is the strongest row in the Gold Faucet Registry: Revolution
+        // documented fish as sellable to NPC vendors, this shard's
+        // VENDOR_B_FISHER carries the BUY rows (tm_vend.scp:1022-1027, {4 24}),
+        // and [NEWBIE FISHING] hands over a pole. Nothing else in the
+        // catalogue has all three.
+        //
+        // It exists precisely because the registry refuses smith, carpentry,
+        // tailoring, tinkering and alchemy output as faucets. Without a life
+        // that can legitimately earn, "a bot funds its own training" is not
+        // demonstrable at all.
+        {
+            Profession p;
+            p.id = "fisher";
+            p.label = "Fisher";
+            p.startSkillA = rules::kFishing;
+            p.startSkillB = rules::kCooking;
+            // Fishing pulls against STR for the catch and the carry; cooking
+            // needs nothing. A fisher is not a fighter and does not pretend.
+            p.startStr = 25; p.startDex = 15; p.startInt = 10;
+            p.targets = {
+                {rules::kFishing,   1000, 5, true,  SkillRole::Primary},
+                {rules::kCooking,    500, 3, true,  SkillRole::Utility},
+            };
+            p.unresolvedTenths = 5500;
+            p.targetStr = 80; p.targetDex = 50; p.targetInt = 45;
+            p.income = {Income::Gather, Income::Craft};
+            p.gathers = "fish";
+            // Cooked fish is worth about 1gp more than raw, so the cooking
+            // half is a real if small margin rather than decoration.
+            p.produces = {"i_fish_big_1", "i_fish_cut_raw", "i_fish_cut_cooked"};
+            p.tools = {{"fishing pole", V(kFishingPole, 2), true}};
+            p.consumables = {Food()};
+            p.riskTolerance = 0.20;      // stands on a dock; avoids everything
+            p.goldReserve = 150;         // a replacement pole
             v.push_back(std::move(p));
         }
 

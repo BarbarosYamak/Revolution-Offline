@@ -266,6 +266,41 @@ void TestLookups() {
 }
 
 // --------------------------------------------------------------------------
+void TestEnumNamesDoNotCollide() {
+    Section("registry: no two enum values print the same string");
+
+    // Policy::BlockedRuntime and RuntimeEvidence::Blocked both printed
+    // "BLOCKED_RUNTIME". They are different enums meaning different things --
+    // "authentic but not usable here" versus "we tried and it does not work"
+    // -- and a log or a report showing one string for both cannot tell them
+    // apart. It was latent because no row uses the runtime value yet, which
+    // is exactly the kind of collision that surfaces only once it matters.
+    std::set<std::string> seen;
+    for (int i = 0; i < static_cast<int>(Policy::Count); ++i) {
+        seen.insert(PolicyName(static_cast<Policy>(i)));
+    }
+    for (int i = 0; i < static_cast<int>(RuntimeEvidence::Count); ++i) {
+        const char* n = RuntimeEvidenceName(static_cast<RuntimeEvidence>(i));
+        if (!seen.insert(n).second) {
+            std::printf("  FAIL: '%s' printed by two enums\n", n);
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+    for (int i = 0; i < static_cast<int>(HistoryEvidence::Count); ++i) {
+        const char* n = HistoryEvidenceName(static_cast<HistoryEvidence>(i));
+        // UNKNOWN legitimately appears in more than one enum -- it means the
+        // same thing in each -- so it is the one allowed overlap.
+        if (std::strcmp(n, "UNKNOWN") == 0) continue;
+        if (!seen.insert(n).second) {
+            std::printf("  FAIL: '%s' printed by two enums\n", n);
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+}
+
+// --------------------------------------------------------------------------
 void TestRefusalReasonsAreSpecific() {
     Section("refusals: every code is distinct and printable");
 
@@ -292,6 +327,7 @@ int main() {
     TestTheRefusedFaucets();
     TestBlockedAndUnknownAreDifferent();
     TestLookups();
+    TestEnumNamesDoNotCollide();
     TestRefusalReasonsAreSpecific();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

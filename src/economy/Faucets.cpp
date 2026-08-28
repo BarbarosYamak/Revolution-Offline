@@ -31,7 +31,14 @@ const char* RuntimeEvidenceName(RuntimeEvidence e) {
         case RuntimeEvidence::Unverified:      return "RUNTIME_UNVERIFIED";
         case RuntimeEvidence::ScriptSupported: return "SCRIPT_SUPPORTED";
         case RuntimeEvidence::LiveProven:      return "LIVE_PROVEN";
-        case RuntimeEvidence::Blocked:         return "BLOCKED_RUNTIME";
+        // Distinct from Policy::BlockedRuntime, which prints
+        // "BLOCKED_RUNTIME". These are different enums with different
+        // meanings -- one is "we tried and the runtime does not support
+        // it", the other is "authentic, but not usable here" -- and a
+        // log that showed the same string for both could not tell them
+        // apart. No row uses this value yet, so the collision was
+        // latent rather than active.
+        case RuntimeEvidence::Blocked:         return "RUNTIME_TRIED_AND_BLOCKED";
         case RuntimeEvidence::Count:           break;
     }
     return "?";
