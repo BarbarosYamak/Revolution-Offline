@@ -1523,6 +1523,36 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     // something into it.
     if (box) {
         if (client.ActionBusy()) return false;
+        // Deposit whatever THIS LIFE produces, not just logs.
+        //
+        // This used to be hardcoded to kLog, which is the same lumberjack
+        // assumption that made a mage want a hatchet. A smith carrying fifty
+        // iron ingots reached the bank and deposited nothing, stayed at
+        // 165/162 stones, and crawled through hundreds of fatigue rejects for
+        // the rest of its life. Five of twenty bots were immobilised by it.
+        //
+        // One item per tick: each move is a separate action the server may
+        // refuse, and batching them hides which one failed.
+        if (needCfg_.profession) {
+            for (const std::string& made : needCfg_.profession->produces) {
+                const std::vector<u16> gfx = econ::GraphicsForItem(made.c_str());
+                u32 serial = 0;
+                i32 amount = 0;
+                for (u16 g : gfx) {
+                    const u32 found = client.FindBackpackItemByGraphic(g);
+                    if (!found) continue;
+                    serial = found;
+                    amount = static_cast<i32>(client.BackpackItemCount(g));
+                    break;
+                }
+                if (!serial || amount <= 0) continue;
+                LogLine("banking %d %s", amount, made.c_str());
+                client.ActionMoveItem(serial, static_cast<u16>(amount), box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
         const u32 logs = client.FindBackpackItemByGraphic(kLog);
         if (logs) {
             const u16 amount = static_cast<u16>(client.BackpackItemCount(kLog));
