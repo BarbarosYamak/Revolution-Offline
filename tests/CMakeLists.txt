@@ -147,3 +147,16 @@ target_include_directories(m4_life PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m4_life COMMAND m4_life ${CMAKE_CURRENT_BINARY_DIR})
+
+# --- M4 economy invariant: the anti-arbitrage ratchet ----------------------
+# Asserts on the committed output of tools/economy_arbitrage.py, which
+# recomputes the NPC craft loops from the shard's own itemdefs. The profitable
+# count may only go DOWN; a rise fails loudly with the offending loop named.
+# Pure data plus arithmetic -- no server, no MULs, no world data.
+add_executable(m4_economy_invariant m4_economy_invariant.cpp)
+target_include_directories(m4_economy_invariant PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m4_economy_invariant COMMAND m4_economy_invariant
+         ${CMAKE_SOURCE_DIR}/../../docs/tns_exports/economy_arbitrage_loops.tsv)
