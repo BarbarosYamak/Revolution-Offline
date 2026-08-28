@@ -118,3 +118,367 @@
 [14:55:57.845] INFO  [m5k] [bot] planning path to (634,809) in background
 [14:55:58.154] INFO  [m5k] [bot] replan to (634,809): 160 steps in 284384.5us
 [14:55:59.578] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:04.598] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:07.670] INFO  [m5k] [bot] door ahead at (635,855,z0); OpenDoor before step
+[14:56:07.684] INFO  [m5k] [chat ascii] System: Opening door...
+[14:56:08.928] INFO  [m5k] [bot] door ahead at (636,856,z0); OpenDoor before step
+[14:56:08.929] INFO  [m5k] [chat ascii] System: Opening door...
+[14:56:09.599] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:14.652] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:19.656] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:24.694] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:28.245] INFO  [m5k] [chat ascii] System: You have left the protection of the town guards
+[14:56:29.707] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:31.173] INFO  [m5k] [chat ascii] System: You are now under the protection of the town guards
+[14:56:32.906] INFO  [m5k] [chat ascii] System: You have left the protection of the town guards
+[14:56:34.379] INFO  [m5k] [chat ascii] System: You are now under the protection of the town guards
+[14:56:34.747] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:39.753] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:44.803] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:46.507] INFO  [m5k] [ACTION] use_object start
+[14:56:46.507] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:46.508] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:46.508] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[14:56:46.508] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[14:56:46.508] INFO  [m5k] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[14:56:46.508] LOG   [m5k] event action_result: use_object success took=1ms server armed a target cursor
+[14:56:47.316] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=1
+[14:56:47.317] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:47.317] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:47.393] INFO  [m5k] [bot] arrived at (634,809,0)
+[14:56:47.765] INFO  [m5k] [ACTION] use_object start
+[14:56:47.765] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:47.765] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:47.765] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[14:56:47.765] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[14:56:47.765] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:56:47.765] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:56:48.618] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=2
+[14:56:48.618] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:48.618] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:49.045] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:56:49.107] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:56:49.107] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:56:49.109] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:56:49.166] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:56:49.166] INFO  [life]   score=97.0
+[14:56:49.166] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:56:49.166] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:56:49.166] INFO  [life]   reason: axe already in hand +20
+[14:56:49.166] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:56:49.166] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:56:49.166] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:56:49.166] INFO  [m5k] [ACTION] use_object start
+[14:56:49.166] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:49.180] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:49.180] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[14:56:49.180] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[14:56:49.180] INFO  [m5k] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:56:49.180] LOG   [m5k] event action_result: use_object success took=14ms server armed a target cursor
+[14:56:49.837] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:50.021] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=3
+[14:56:50.021] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:50.037] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:50.468] INFO  [m5k] [ACTION] use_object start
+[14:56:50.468] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:50.482] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:50.482] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[14:56:50.482] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[14:56:50.482] INFO  [m5k] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:56:50.482] LOG   [m5k] event action_result: use_object success took=15ms server armed a target cursor
+[14:56:51.314] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=4
+[14:56:51.314] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:51.314] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:51.738] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:56:51.800] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:56:51.800] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:56:51.802] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:56:51.861] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:56:51.861] INFO  [life]   score=97.0
+[14:56:51.861] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:56:51.861] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:56:51.861] INFO  [life]   reason: axe already in hand +20
+[14:56:51.861] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:56:51.861] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:56:51.861] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:56:51.862] INFO  [m5k] [ACTION] use_object start
+[14:56:51.862] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:51.874] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:51.875] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[14:56:51.875] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[14:56:51.875] INFO  [m5k] [ACTION_RESULT] use_object success (12ms) server armed a target cursor
+[14:56:51.875] LOG   [m5k] event action_result: use_object success took=12ms server armed a target cursor
+[14:56:52.668] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=5
+[14:56:52.668] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:52.683] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:53.111] INFO  [m5k] [ACTION] use_object start
+[14:56:53.111] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:53.126] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:53.126] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[14:56:53.126] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[14:56:53.126] INFO  [m5k] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:56:53.126] LOG   [m5k] event action_result: use_object success took=15ms server armed a target cursor
+[14:56:53.923] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=6
+[14:56:53.923] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:53.939] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:54.372] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:56:54.436] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:56:54.436] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:56:54.438] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:56:54.496] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:56:54.496] INFO  [life]   score=97.0
+[14:56:54.496] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:56:54.496] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:56:54.496] INFO  [life]   reason: axe already in hand +20
+[14:56:54.496] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:56:54.496] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:56:54.496] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:56:54.497] INFO  [m5k] [ACTION] use_object start
+[14:56:54.497] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:54.498] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:54.498] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[14:56:54.498] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[14:56:54.498] INFO  [m5k] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[14:56:54.498] LOG   [m5k] event action_result: use_object success took=1ms server armed a target cursor
+[14:56:54.863] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:56:55.296] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=7
+[14:56:55.296] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:55.296] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:55.711] INFO  [m5k] [ACTION] use_object start
+[14:56:55.711] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:55.712] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:55.712] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[14:56:55.712] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[14:56:55.712] INFO  [m5k] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[14:56:55.712] LOG   [m5k] event action_result: use_object success took=1ms server armed a target cursor
+[14:56:56.511] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=8
+[14:56:56.511] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:56.511] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:56.937] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:56:56.999] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:56:56.999] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:56:57.000] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:56:57.059] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:56:57.059] INFO  [life]   score=97.0
+[14:56:57.059] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:56:57.059] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:56:57.059] INFO  [life]   reason: axe already in hand +20
+[14:56:57.059] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:56:57.059] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:56:57.059] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:56:57.060] INFO  [m5k] [ACTION] use_object start
+[14:56:57.060] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:57.060] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:57.060] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
+[14:56:57.060] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
+[14:56:57.060] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:56:57.060] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:56:57.902] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=9
+[14:56:57.902] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:57.903] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:58.330] INFO  [m5k] [ACTION] use_object start
+[14:56:58.330] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:58.330] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:58.330] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[14:56:58.330] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[14:56:58.330] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:56:58.330] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:56:59.131] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=10
+[14:56:59.131] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:56:59.132] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:56:59.559] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:56:59.622] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:56:59.622] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:56:59.623] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:56:59.682] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:56:59.682] INFO  [life]   score=97.0
+[14:56:59.682] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:56:59.682] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:56:59.682] INFO  [life]   reason: axe already in hand +20
+[14:56:59.682] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:56:59.682] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:56:59.682] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:56:59.683] INFO  [m5k] [ACTION] use_object start
+[14:56:59.683] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:56:59.683] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:56:59.683] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
+[14:56:59.683] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
+[14:56:59.683] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:56:59.683] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:56:59.925] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:57:00.536] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=11
+[14:57:00.536] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:00.536] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:00.966] INFO  [m5k] [ACTION] use_object start
+[14:57:00.966] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:00.966] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:00.966] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[14:57:00.966] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[14:57:00.966] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:00.966] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:01.818] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=12
+[14:57:01.818] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:01.818] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:02.246] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:57:02.309] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:57:02.309] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:57:02.310] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:57:02.368] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:57:02.368] INFO  [life]   score=97.0
+[14:57:02.368] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:57:02.368] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:57:02.368] INFO  [life]   reason: axe already in hand +20
+[14:57:02.368] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:57:02.368] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:57:02.368] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:57:02.369] INFO  [m5k] [ACTION] use_object start
+[14:57:02.369] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:02.369] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:02.369] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=13
+[14:57:02.369] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=13
+[14:57:02.369] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:02.369] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:03.219] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=13
+[14:57:03.219] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:03.220] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:03.647] INFO  [m5k] [ACTION] use_object start
+[14:57:03.647] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:03.647] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:03.647] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
+[14:57:03.647] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
+[14:57:03.647] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:03.647] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:04.503] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=14
+[14:57:04.503] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:04.503] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:04.933] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:57:04.933] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:57:04.994] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:57:04.994] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:57:04.996] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:57:05.053] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:57:05.053] INFO  [life]   score=97.0
+[14:57:05.053] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:57:05.053] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:57:05.053] INFO  [life]   reason: axe already in hand +20
+[14:57:05.053] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:57:05.053] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:57:05.053] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:57:05.054] INFO  [m5k] [ACTION] use_object start
+[14:57:05.054] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:05.054] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:05.054] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=15
+[14:57:05.054] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=15
+[14:57:05.054] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:05.054] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:05.906] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=15
+[14:57:05.906] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:05.906] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:06.333] INFO  [m5k] [ACTION] use_object start
+[14:57:06.333] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:06.333] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:06.333] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=16
+[14:57:06.333] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=16
+[14:57:06.333] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:06.333] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:07.192] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=16
+[14:57:07.192] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:07.192] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:07.625] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:57:07.687] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:57:07.687] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:57:07.689] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:57:07.747] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:57:07.747] INFO  [life]   score=97.0
+[14:57:07.747] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:57:07.747] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:57:07.747] INFO  [life]   reason: axe already in hand +20
+[14:57:07.747] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:57:07.747] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:57:07.747] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:57:07.748] INFO  [m5k] [ACTION] use_object start
+[14:57:07.748] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:07.762] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:07.762] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=17
+[14:57:07.762] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=17
+[14:57:07.762] INFO  [m5k] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:57:07.762] LOG   [m5k] event action_result: use_object success took=14ms server armed a target cursor
+[14:57:08.554] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=17
+[14:57:08.554] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:08.568] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:08.993] INFO  [m5k] [ACTION] use_object start
+[14:57:08.993] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:09.008] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:09.008] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=18
+[14:57:09.008] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=18
+[14:57:09.008] INFO  [m5k] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:57:09.008] LOG   [m5k] event action_result: use_object success took=15ms server armed a target cursor
+[14:57:09.801] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=18
+[14:57:09.801] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:09.817] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:09.942] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:57:10.250] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:57:10.282] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:57:10.282] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:57:10.284] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:57:10.344] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:57:10.344] INFO  [life]   score=97.0
+[14:57:10.344] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:57:10.344] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:57:10.344] INFO  [life]   reason: axe already in hand +20
+[14:57:10.344] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:57:10.344] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:57:10.344] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:57:10.345] INFO  [m5k] [ACTION] use_object start
+[14:57:10.345] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:10.360] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:10.360] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=19
+[14:57:10.360] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=19
+[14:57:10.360] INFO  [m5k] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:57:10.360] LOG   [m5k] event action_result: use_object success took=15ms server armed a target cursor
+[14:57:11.156] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=19
+[14:57:11.156] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:11.170] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:11.601] INFO  [m5k] [ACTION] use_object start
+[14:57:11.601] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:11.616] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:11.616] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=20
+[14:57:11.616] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=20
+[14:57:11.616] INFO  [m5k] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[14:57:11.616] LOG   [m5k] event action_result: use_object success took=16ms server armed a target cursor
+[14:57:12.418] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=20
+[14:57:12.419] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:12.433] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:12.863] INFO  [life] tree at 633,809 holds no wood -> next tree (1 tried this stand)
+[14:57:12.925] INFO  [life] gather: every tree within 24 tiles is worked out -> this area is done for now
+[14:57:12.925] INFO  [life] goal_completed=GATHER_LOGS progress=0
+[14:57:12.927] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:57:12.986] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:57:12.986] INFO  [life]   score=97.0
+[14:57:12.986] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:57:12.986] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:57:12.986] INFO  [life]   reason: axe already in hand +20
+[14:57:12.986] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:57:12.986] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:57:12.986] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:57:12.987] INFO  [m5k] [ACTION] use_object start
+[14:57:12.987] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:12.987] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:12.987] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=21
+[14:57:12.987] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=21
+[14:57:12.987] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:12.987] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:13.812] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=21
+[14:57:13.812] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:13.827] INFO  [m5k] [chat ascii] System: There is nothing here to chop.
+[14:57:14.242] INFO  [m5k] [ACTION] use_object start
+[14:57:14.242] INFO  [m5k] [ACTION] use_object serial=0x4000CBEF
+[14:57:14.243] INFO  [m5k] [chat ascii] System: What do you want to use this on?
+[14:57:14.243] INFO  [m5k] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=22
+[14:57:14.243] LOG   [m5k] event target_requested: id=0x000002CE type=0 subtype=1 gen=22
+[14:57:14.243] INFO  [m5k] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:57:14.243] LOG   [m5k] event action_result: use_object success took=0ms server armed a target cursor
+[14:57:14.974] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:57:15.097] INFO  [m5k] [TARGET] reply static=(633,809,0) gfx=0x0CE0 gen=22
+[14:57:15.097] INFO  [m5k] [target] static 0x0CE0 (633,809,0)
+[14:57:15.097] INFO  [m5k] [chat ascii] System: There is nothing here to chop.

@@ -1571,7 +1571,12 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     }
 
     // --- am I actually where the work is? ---------------------------------
-    if (!obs.atWorkSite) {
+    //
+    // `areaExhausted_` overrides the census: TreeCount can still see trunks
+    // here while NearestTree has none left to offer, because every one of them
+    // has already been worked this visit. Believing the census in that state
+    // is what kept the character standing in a clearing it had finished.
+    if (!obs.atWorkSite || areaExhausted_) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
             // Earned knowledge first, then common knowledge, then go looking.
@@ -1614,6 +1619,9 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
+        // A completed journey is a new place, so the exhaustion verdict about
+        // the OLD one no longer applies.
+        areaExhausted_ = false;
         // ARRIVAL IS A CLAIM ABOUT THE TILE. A journey that reports success
         // and leaves us six tiles short of the trees is a failure here, and
         // saying so is what keeps it out of the "worked fine" column.
@@ -1660,7 +1668,22 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
                 lastHintX_ = lastHintY_ = 0;
             }
             visitedTrees_.clear();
-            return true;   // the goal completed what this area could give
+            // DO NOT complete the goal here. "This area is done" is a reason
+            // to GO SOMEWHERE ELSE, not a reason to hand control back -- and
+            // handing it back put the character in a 2.5-second loop: the
+            // planner re-picked GATHER_LOGS (still the top need), the
+            // character was still standing in the same worked-out clearing,
+            // and it said the same sentence again. Forty completions with
+            // progress=0 in under two minutes, live.
+            //
+            // This is also the M4 Session L churn -- 22 goals attempted, 1
+            // completed -- finally visible.
+            deadTargets_.emplace_back(obs.x, obs.y);
+            if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+            areaExhausted_ = true;
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
         }
         chopX_ = tree.x; chopY_ = tree.y; chopZ_ = tree.z;
         chopGraphic_ = tree.graphic;

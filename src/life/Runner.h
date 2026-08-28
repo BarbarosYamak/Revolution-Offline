@@ -177,6 +177,9 @@ private:
     // world regenerates, so this must not persist.
     std::vector<std::pair<i32, i32>> deadTargets_;
     bool IsDeadTarget(i32 x, i32 y) const;
+    // Set when every tree in range has been worked. Forces the next tick to
+    // TRAVEL rather than re-survey the same ground; cleared on arrival.
+    bool areaExhausted_ = false;
     i32  logsAtGoalStart_ = 0;
     i32  logsAtSessionStart_ = -1;
     u32  currentFoe_ = 0;
