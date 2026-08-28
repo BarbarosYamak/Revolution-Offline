@@ -60,6 +60,23 @@ struct TradePolicy {
     // for something it genuinely needs. Small on purpose: a first purchase is
     // how you LEARN a price, not where you spend a fortune.
     i32 blindPriceCeiling = 12;
+    // What a seller asks when it has NEVER seen a price for the thing.
+    //
+    // This is NOT a claim to know a value, and the distinction matters because
+    // the rest of this file is built on refusing to invent one.
+    // BelievedSalePrice still returns -1 with no observation, because a belief
+    // without evidence is a lie. An OPENING ASK is different: it is an offer,
+    // and the market either takes it or does not.
+    //
+    // Without it nothing can bootstrap. Every price in a PriceBook arrives by
+    // a trade completing, no trade completes without somebody naming a number
+    // first, and a fleet where nobody will ever name one has no market at all
+    // -- which is precisely what the first implementation produced.
+    //
+    // Deliberately LOW. A first sale is how you learn a price, not where you
+    // make your money, and asking under the odds is the fast way to find the
+    // real number.
+    i32 openingAsk = 2;
     // Below this, gathering more of something to sell is pointless -- it will
     // all be eaten by the character's own work.
     i32 minimumSurplusToOffer = 5;

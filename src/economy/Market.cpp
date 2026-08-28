@@ -561,15 +561,13 @@ bool ChooseSellOffer(const prof::Profession& p,
         if (HasNpcBuyer(o.item.c_str())) continue;
 
         const i32 believed = book.BelievedSalePrice(o.item.c_str());
-        if (believed < 0) {
-            // No basis for a number. A character that invents one is guessing
-            // at a market it has never seen, which is exactly what M7 forbids.
-            // It stays quiet and waits to hear a price from somebody else.
-            continue;
-        }
+        // No belief is not silence. See TradePolicy::openingAsk: a belief
+        // without evidence would be a lie, but an OPENING ASK is just an
+        // offer, and somebody has to name a number first or no price is ever
+        // discovered and the market never starts.
         out->item = o.item;
         out->qty = o.qty;
-        out->pricePerUnit = believed;
+        out->pricePerUnit = (believed >= 0) ? believed : policy.openingAsk;
         return out->Valid();
     }
     return false;

@@ -548,12 +548,21 @@ void TestWhatToAnnounce() {
     PriceBook empty;
     TradeIntent out;
 
-    // 40 boards and no idea what a board is worth. It says NOTHING. Inventing
-    // a price is guessing at a market it has never seen, which is the one
-    // thing this milestone forbids.
+    // 40 boards and no idea what a board is worth. It announces anyway, at
+    // the OPENING ASK.
+    //
+    // The first version of this stayed silent, and that was wrong in a way
+    // worth recording: every price in a PriceBook arrives by a trade
+    // completing, no trade completes until somebody names a number, so a fleet
+    // where nobody will ever name one has no market at all. Refusing to invent
+    // a BELIEF is right; refusing to make an OFFER is paralysis.
     const std::vector<Stock> boards = {{"i_board", 40}};
-    Check(!ChooseSellOffer(*lj, boards, empty, pol, &out),
-          "with no observed price the character stays quiet");
+    Check(ChooseSellOffer(*lj, boards, empty, pol, &out),
+          "with no price seen it still makes an opening offer");
+    Check(out.pricePerUnit == pol.openingAsk,
+          "at the opening ask, which is deliberately low");
+    Check(empty.BelievedSalePrice("i_board") == -1,
+          "and its BELIEF is still -1: an offer is not knowledge");
 
     // Now it has heard one.
     PriceBook book;
