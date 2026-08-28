@@ -548,6 +548,20 @@ public:
     struct WaterHit { i32 x = 0, y = 0; i8 z = 0; };
     bool NearestWater(i32 x, i32 y, int radius, WaterHit* out);
 
+    // A place to FISH FROM: somewhere to stand, and the water to cast at.
+    //
+    // NearestWater alone is not enough and the difference cost a whole live
+    // session. A pathfinder cannot route to a water tile -- water is not
+    // walkable -- so a character told to walk to the sea walks at it, fails,
+    // and picks again, drifting further out each time. What it needs is the
+    // SHORE: a dry tile beside the wet one.
+    struct FishingSpot {
+        i32 standX = 0, standY = 0;   // walk here
+        i32 waterX = 0, waterY = 0;   // cast at this
+        i8  waterZ = 0;
+    };
+    bool NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out);
+
     // How many trees are within `radius`. Used to answer "am I actually
     // standing where the work is", which travel success does not answer.
     int  TreeCount(i32 x, i32 y, int radius);

@@ -290,6 +290,7 @@ private:
     // does, so it walks toward a spot it never reaches.
     i32  fishTargetX_ = 0, fishTargetY_ = 0;
     bool fishTargetSet_ = false;
+    i64  fishWalkMs_ = 0;
 
     i32  toolGoldBefore_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for

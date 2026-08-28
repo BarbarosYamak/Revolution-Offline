@@ -1722,4 +1722,61 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
     return false;
 }
 
+
+bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
+    if (radius < 0) radius = 0;
+
+    auto isWet = [&](i32 tx, i32 ty) -> bool {
+        if (tx < 0 || ty < 0) return false;
+        map::LandCell c{};
+        if (!worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty), &c))
+            return false;
+        return (tileData_->Land(c.tileId).flags & tiledata::kFlagWet) != 0;
+    };
+
+    // Search outward from where the character stands, so it fishes from the
+    // nearest bank rather than hiking to the far side of the bay.
+    for (int r = 0; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 sx = x + dx, sy = y + dy;
+                if (sx < 0 || sy < 0) continue;
+
+                // The STANDING tile must be dry. A wet one cannot be walked to,
+                // which is the whole reason this function exists.
+                if (isWet(sx, sy)) continue;
+                map::LandCell stand{};
+                if (!worldMap_->ReadCell(static_cast<u32>(sx),
+                                         static_cast<u32>(sy), &stand)) {
+                    continue;
+                }
+
+                // ...and water has to be in casting reach of it. RANGE=4 in
+                // skill18_fishing.scp, so anything inside that works; adjacent
+                // is checked first because it is the most reliable.
+                for (int wr = 1; wr <= 4; ++wr) {
+                    for (i32 wy = -wr; wy <= wr; ++wy) {
+                        for (i32 wx = -wr; wx <= wr; ++wx) {
+                            if (std::max(std::abs(wx), std::abs(wy)) != wr) continue;
+                            const i32 tx = sx + wx, ty = sy + wy;
+                            if (!isWet(tx, ty)) continue;
+                            map::LandCell w{};
+                            worldMap_->ReadCell(static_cast<u32>(tx),
+                                                static_cast<u32>(ty), &w);
+                            out->standX = sx; out->standY = sy;
+                            out->waterX = tx; out->waterY = ty;
+                            out->waterZ = w.z;
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
 } // namespace uo

@@ -394,6 +394,588 @@ const std::vector<Profession>& All() {
             v.push_back(std::move(p));
         }
 
+        // --- 7. Fencer -----------------------------------------------------
+        //
+        // The PW-03 "Fencing Poison Warrior" family (compendium v1, section
+        // 6): FENC 100 / TACT 100 / ANAT 100 core, plus "HEAL high", "POI
+        // high" and "PARRY or second combat/utility" -- HISTORICAL_FAMILY,
+        // no single posted total. The split below follows PW-01's exact
+        // all-100 shape (the one HISTORICAL_EXACT sibling in the same
+        // section) with Swordsmanship and Archery swapped for Fencing, and
+        // 100.0 left deliberately open rather than invented.
+        //
+        // [NEWBIE FENCING] hands over i_kryss; [NEWBIE TACTICS] hands over
+        // i_katana (sp_tm_newbie.scp) -- an odd pairing on paper, a spare
+        // blade to sell or dual-carry in practice.
+        {
+            Profession p;
+            p.id = "fencer";
+            p.label = "Fencer";
+            p.startSkillA = kFencing;
+            p.startSkillB = rules::kTactics;
+            p.startStr = 20; p.startDex = 25; p.startInt = 5;
+            p.targets = {
+                {kFencing,             1000, 6, false, SkillRole::Primary},
+                {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
+                {rules::kAnatomy,      1000, 4, true,  SkillRole::Secondary},
+                {rules::kHealing,      1000, 3, true,  SkillRole::Secondary},
+                {rules::kPoisoning,    1000, 2, false, SkillRole::Secondary},
+                {kParrying,            1000, 1, true,  SkillRole::Secondary},
+            };
+            p.unresolvedTenths = 1000;   // the PW family's open seventh slot
+            p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;
+            // No NPC faucet pays a Fencer for anything (Faucets.cpp has none
+            // for weapon combat); monster_gold is the one row open to
+            // "anybody who can survive the fight".
+            p.income = {Income::Hunt};
+            // Bought, not made: deadly poison is the alchemist's product
+            // (Production.cpp i_potion_poisondeadly, ALCHEMY 90.1), exactly
+            // what this build's Poisoning 100.0 needs applied to a weapon.
+            p.consumes = {"i_potion_poisondeadly"};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.75;      // duelist; picks the fight
+            p.goldReserve = 350;
+            // UNKNOWN: no Revolution-specific evidence places Fencers in a
+            // particular city. Britain and Trinsic are the generic UO
+            // warrior hubs, not a Revolution-sourced fact.
+            p.homeCities = {"Britain", "Trinsic"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 8. Macer --------------------------------------------------------
+        //
+        // PW-04 "Mace Armor-Break Warrior" (compendium v1, section 6):
+        // MACE 100 / TACT 100 / ANAT 100 core, "HEAL", "PARRY", and
+        // "optional POI/ARCH/utility" -- HISTORICAL_FAMILY. Poisoning is
+        // demoted to Utility here rather than a full 100.0: the family's own
+        // wording treats it as optional, unlike the Fencer's PW-03 family
+        // where "POI high" reads as core.
+        //
+        // [NEWBIE MACEFIGHTING] hands over i_club -- the same defname the
+        // lumberjack/carpenter's Carpentry line produces (Production.cpp
+        // i_club, def_carpentry.scp:41), so a Macer's first weapon purchase
+        // is literally a carpenter's product.
+        {
+            Profession p;
+            p.id = "macer";
+            p.label = "Macer";
+            p.startSkillA = kMaceFighting;
+            p.startSkillB = rules::kAnatomy;
+            p.startStr = 30; p.startDex = 15; p.startInt = 5;
+            p.targets = {
+                {kMaceFighting,        1000, 6, false, SkillRole::Primary},
+                {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
+                {rules::kAnatomy,      1000, 4, true,  SkillRole::Secondary},
+                {rules::kHealing,      1000, 3, true,  SkillRole::Secondary},
+                {kParrying,            1000, 2, true,  SkillRole::Secondary},
+                {rules::kPoisoning,     500, 1, false, SkillRole::Utility},
+            };
+            p.unresolvedTenths = 1500;
+            p.targetStr = 100; p.targetDex = 75; p.targetInt = 50;
+            p.income = {Income::Hunt};
+            // Armor/stamina pressure is a slow fight, and a slow fight is
+            // won on Cure potions, not poison -- the alchemist's product
+            // again, a different one than the Fencer buys.
+            p.consumes = {"i_potion_cure"};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.70;
+            p.goldReserve = 350;
+            // UNKNOWN, same caveat as the Fencer: no Revolution-specific
+            // source names a Macer's city. Vesper sits by Minoc's smiths,
+            // who sell the war hammers/mauls this build eventually wants.
+            p.homeCities = {"Vesper", "Britain"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 9. Archer ---------------------------------------------------------
+        //
+        // CR-07 "Lumberjack + Bowyer" (compendium v1, section 10) describes
+        // the loop this build lives inside: "harvest logs -> special logs ->
+        // craft bows/arrows -> sell to Archers." This entry is the CUSTOMER
+        // at the end of that chain who also fletches its own ammunition --
+        // [NEWBIE BOWCRAFT] hands over 14 boards, 5 feathers and 5 arrow
+        // shafts (sp_tm_newbie.scp), enough to start supplying itself rather
+        // than buying every arrow.
+        //
+        // It is also the SECOND profession in the catalogue with a real NPC
+        // gold faucet, after fishing: Revolution's own Bowcraft guidance
+        // says crafted bows could be sold to NPC vendors, and Faucets.cpp
+        // carries both rows as Policy::Allow (bow_to_bowyer,
+        // crossbow_to_bowyer; VENDOR_B_BOWYER tm_vend.scp:1444).
+        {
+            Profession p;
+            p.id = "archer";
+            p.label = "Archer";
+            p.startSkillA = kArchery;
+            p.startSkillB = rules::kBowcraft;
+            p.startStr = 15; p.startDex = 30; p.startInt = 5;
+            p.targets = {
+                {kArchery,             1000, 5, false, SkillRole::Primary},
+                {rules::kBowcraft,     1000, 4, false, SkillRole::Secondary},
+                {rules::kTactics,      1000, 3, true,  SkillRole::Secondary},
+                {rules::kAnatomy,       500, 2, true,  SkillRole::Utility},
+                {rules::kHealing,       500, 1, true,  SkillRole::Utility},
+            };
+            p.unresolvedTenths = 3000;
+            p.targetStr = 70; p.targetDex = 100; p.targetInt = 55;
+            // Craft leads: the bow/crossbow sale is a real NPC faucet,
+            // unlike almost everything else this catalogue can make.
+            p.income = {Income::Craft, Income::Hunt};
+            // Logs are bought from a lumberjack rather than chopped, unlike
+            // every other wood-using life in the catalogue -- an Archer that
+            // also felled its own trees would not need the CR-07 loop.
+            p.gathers = "";
+            p.produces = {"i_arrow_shaft", "i_arrow", "i_bow"};
+            p.consumes = {"i_log", "i_feather"};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.50;      // kites at range, disengages if closed on
+            p.goldReserve = 300;
+            // Yew is the forest CR-07 names as the special-log source; Skara
+            // Brae and Trinsic sit within bow range of it.
+            p.homeCities = {"Yew", "Skara Brae", "Trinsic"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 10. Warlock ---------------------------------------------------
+        //
+        // WL-01, "2007 Balanced Sword Warlock" (compendium v1, section 5),
+        // HISTORICAL_EXACT and the only Warlock allocation in the section
+        // that already sums to exactly 700:
+        //
+        //   MAGERY 100, SW 100, TACT 100, EVAL 80, POI 80, HEAL 80, ANAT 80,
+        //   MEDI 80
+        //
+        // https://www.revolutionuo.net/forum/index.php/topic%2C23720.0.html
+        //
+        // Seven other Warlock variants are on record (WL-02..WL-08) trading
+        // poison for mana, Fencing/Mace/Archery for Sword, or duel focus for
+        // group support -- the family is real but not singular, and WL-01 is
+        // the one with a clean, complete, sourced total to build against.
+        //
+        // [NEWBIE MAGERY] hands over a spellbook (circles 1-4, NO REAGENTS)
+        // and [NEWBIE SWORDSMANSHIP] a katana -- the same kit as the mage
+        // and the lumberjack respectively, because this build is genuinely
+        // both.
+        {
+            Profession p;
+            p.id = "warlock";
+            p.label = "Warlock";
+            p.startSkillA = rules::kMagery;
+            p.startSkillB = rules::kSwordsmanship;
+            p.startStr = 20; p.startDex = 15; p.startInt = 15;
+            p.targets = {
+                {rules::kMagery,          1000, 8, false, SkillRole::Primary},
+                {rules::kSwordsmanship,   1000, 7, false, SkillRole::Secondary},
+                {rules::kTactics,         1000, 6, true,  SkillRole::Secondary},
+                {rules::kEvaluatingIntel,  800, 5, true,  SkillRole::Secondary},
+                {rules::kPoisoning,        800, 4, false, SkillRole::Secondary},
+                {rules::kHealing,          800, 3, true,  SkillRole::Secondary},
+                {rules::kAnatomy,          800, 2, true,  SkillRole::Secondary},
+                {rules::kMeditation,       800, 1, true,  SkillRole::Secondary},
+            };
+            p.unresolvedTenths = 0;      // WL-01 spends the entire 700, forum-exact
+            p.targetStr = 90; p.targetDex = 90; p.targetInt = 45;
+            p.income = {Income::Hunt};
+            // A hybrid still needs the mage's reagents, just fewer of them --
+            // this build never touches Inscription, so it buys finished
+            // scrolls rather than blank ones.
+            p.consumes = {"i_reag_black_pearl", "i_reag_nightshade"};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.65;      // duel-oriented, per the WL-01/WL-03 family
+            p.goldReserve = 700;         // reagents AND weapon upkeep
+            p.homeCities = {"Britain", "Trinsic"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 11. PK / Head Hunter --------------------------------------------
+        //
+        // PK-02, "Pure Warrior Head Hunter" (compendium v1, section 14):
+        // "strong Warrior allocation: combat, Tactics, Anatomy, Healing,
+        // Poisoning, Parry/second combat... Lower reagent dependency; heavy
+        // potion/bandage/weapon dependency." HISTORICAL_FAMILY / no single
+        // posted total, so the shape below is deliberately LEANER than the
+        // Fencer/Macer/Warlock builds -- a Head Hunter's whole point is
+        // opportunistic kills, not a maximal build, and Wrestling stands in
+        // for PK-02's "second combat" so it can still fight disarmed.
+        //
+        // Revolution ran an actual Head Hunter gold system
+        // (revolutionuo.net/head_hunters) -- Faucets.cpp's own
+        // head_hunter_bounty row records it as HistoryEvidence::Confirmed
+        // but RuntimeEvidence::Unverified / Policy::BlockedRuntime, so
+        // `income` below states the ONLY route this build can use today:
+        // monster loot. The bounty itself is a documented gap, not invented
+        // income.
+        {
+            Profession p;
+            p.id = "pk";
+            p.label = "Player Killer";
+            p.startSkillA = rules::kSwordsmanship;
+            p.startSkillB = rules::kPoisoning;
+            p.startStr = 20; p.startDex = 25; p.startInt = 5;
+            p.targets = {
+                {rules::kSwordsmanship, 1000, 5, false, SkillRole::Primary},
+                {rules::kTactics,       1000, 4, true,  SkillRole::Secondary},
+                {rules::kPoisoning,     1000, 3, false, SkillRole::Secondary},
+                {rules::kHealing,        700, 2, true,  SkillRole::Secondary},
+                {kWrestling,             300, 1, false, SkillRole::Utility},
+            };
+            p.unresolvedTenths = 3000;
+            p.targetStr = 60; p.targetDex = 100; p.targetInt = 65;
+            p.income = {Income::Hunt};
+            // Recall is the escape valve after a kill; deadly poison is the
+            // finisher. Both are bought, never made -- this build has no
+            // Magery or Alchemy of its own.
+            p.consumes = {"i_scroll_recall", "i_potion_poisondeadly"};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.85;      // the highest in the catalogue
+            p.goldReserve = 500;
+            // UNKNOWN: no Revolution source names a murderer's home city.
+            // Buccaneer's Den is generic UO outlaw lore, not a Revolution
+            // fact.
+            p.homeCities = {"Buccaneer's Den", "Britain"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 12. Treasure Hunter -----------------------------------------------
+        //
+        // TH-01, "Balanced Treasure Mage" (compendium v1, section 8),
+        // HISTORICAL_EXACT and already exactly 700:
+        //
+        //   LOCK 100, CARTO 100, MAGERY 100, EVAL 100, MEDI 100, POI 80,
+        //   HEAL 60, ANAT 60
+        //
+        // https://www.revolutionuo.net/forum/index.php?topic=66975.0
+        //
+        // TH-04 (same section) separately notes "approximately 30 Mining was
+        // required to open/dig treasure in that period" -- UNKNOWN against
+        // this runtime, not verified or modeled here, so Mining is not a
+        // target below. The shovel tool is carried regardless: digging up a
+        // chest needs one whatever the skill gate turns out to be.
+        //
+        // [NEWBIE LOCKPICKING] hands over 20 lockpicks, [NEWBIE CARTOGRAPHY]
+        // 4 blank maps and a sextant (sp_tm_newbie.scp) -- a kit that is
+        // already a treasure hunter's toolkit, nothing improvised.
+        {
+            Profession p;
+            p.id = "treasure_hunter";
+            p.label = "Treasure Hunter";
+            p.startSkillA = rules::kLockpicking;
+            p.startSkillB = rules::kCartography;
+            p.startStr = 15; p.startDex = 20; p.startInt = 15;
+            p.targets = {
+                {rules::kLockpicking,     1000, 8, false, SkillRole::Primary},
+                {rules::kCartography,     1000, 7, true,  SkillRole::Secondary},
+                {rules::kMagery,          1000, 6, false, SkillRole::Secondary},
+                {rules::kEvaluatingIntel, 1000, 5, true,  SkillRole::Secondary},
+                {rules::kMeditation,      1000, 4, true,  SkillRole::Secondary},
+                {rules::kPoisoning,        800, 3, false, SkillRole::Secondary},
+                {rules::kHealing,          600, 2, true,  SkillRole::Secondary},
+                {rules::kAnatomy,          600, 1, true,  SkillRole::Secondary},
+            };
+            p.unresolvedTenths = 0;      // TH-01 spends the entire 700, forum-exact
+            p.targetStr = 85; p.targetDex = 100; p.targetInt = 40;
+            // Faucets.cpp's own treasure_gold row is Confirmed history but
+            // Policy::BlockedRuntime -- nothing here has opened a chest on
+            // this runtime yet. Guardian loot is what actually pays today.
+            p.income = {Income::Hunt};
+            p.gathers = "";
+            p.consumes = {"i_reag_black_pearl", "i_reag_mandrake_root"};
+            p.tools = {{"shovel",    {kShovel},    false},   // wield requirement UNKNOWN
+                       {"spellbook", {kSpellbook}, false}};
+            p.consumables = {Lockpicks(), Bandages(), Food()};
+            p.riskTolerance = 0.45;      // handles guardians, disengages once looted
+            p.goldReserve = 600;
+            // UNKNOWN: no city evidence for treasure hunters specifically.
+            // Britain is the general market; Vesper is the general travel hub.
+            p.homeCities = {"Britain", "Vesper"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 13. Mage Blacksmith -----------------------------------------------
+        //
+        // No compendium section names this pairing outright, so it is
+        // REVOLUTION_DERIVED rather than a posted allocation: it is the
+        // professions.h SkillRole::Utility idea, applied to a smith instead
+        // of a dexxer. That header's own example is "a dexxer's Magery is
+        // for Recall and Cure and must never become a second profession" --
+        // here BOTH Mining and Magery are held at that deliberately-capped
+        // level, and Blacksmithing alone is the real calling.
+        //
+        // Contrast with `miner_smith`: that build starts Mining+Blacksmithing
+        // and trains Mining to a full 100.0 Secondary. This one starts
+        // Blacksmithing+Magery -- [NEWBIE BLACKSMITHING] hands over tongs, a
+        // pickaxe and 50 ingots, so it can smith from minute one -- and only
+        // grows into Mining later, at a permanently reduced, capped level,
+        // because self-sufficiency, not ore volume, is the point of carrying
+        // it at all.
+        {
+            Profession p;
+            p.id = "mage_blacksmith";
+            p.label = "Mage Blacksmith";
+            p.startSkillA = rules::kBlacksmithing;
+            p.startSkillB = rules::kMagery;
+            p.startStr = 30; p.startDex = 10; p.startInt = 10;
+            p.targets = {
+                {rules::kBlacksmithing, 1000, 3, false, SkillRole::Primary},
+                {rules::kMining,         500, 2, false, SkillRole::Utility},
+                {rules::kMagery,         500, 1, false, SkillRole::Utility},
+            };
+            p.unresolvedTenths = 5000;
+            p.targetStr = 100; p.targetDex = 50; p.targetInt = 60;
+            // Same faucet gap as miner_smith: Faucets.cpp's
+            // smith_output_to_vendor is RefuseAuthenticity, so smithed goods
+            // go to the player market only.
+            p.income = {Income::Craft};
+            p.gathers = "ore";
+            p.produces = {"i_ingot_iron", "i_dagger", "i_spear_short"};
+            // A small reagent basket -- only what Recall and Cure need, not
+            // a working mage's full set.
+            p.consumes = {"i_ore_iron", "i_log", "i_reag_black_pearl",
+                          "i_reag_blood_moss", "i_reag_mandrake_root"};
+            p.tools = {{"pickaxe", V(kPickaxe, 2), true},
+                       {"tongs",   V(kTongs, 2),   false},
+                       {"spellbook", {kSpellbook}, false}};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.40;
+            p.goldReserve = 550;
+            p.homeCities = {"Minoc", "Moonglow", "Britain"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 14. Full Crafter ----------------------------------------------
+        //
+        // EC-02, "Multi-Craft Merchant" (compendium v1, section 15):
+        // "Could combine several: Mining, BS, Alchemy, Tailoring, Tinkering,
+        // Inscription... Not all at GM simultaneously if cap prevents it.
+        // Character chooses a realistic subset." REVOLUTION_DERIVED -- the
+        // family is real, the specific subset below is this catalogue's
+        // choice: Carpentry and Blacksmithing as the two real trades, with
+        // Tinkering, Tailoring and Alchemy carried at working-but-capped
+        // levels rather than invented as further GMs.
+        //
+        // The point of this life is BREADTH, not depth: unlike every other
+        // craft entry in this catalogue, it does not gather anything --
+        // `gathers` is deliberately empty. [NEWBIE CARPENTRY] and
+        // [NEWBIE BLACKSMITHING] together hand over 10 boards, a saw, tongs,
+        // a pickaxe and 50 iron ingots on day one (sp_tm_newbie.scp), so it
+        // can start converting bought logs and ore into finished goods
+        // immediately rather than harvesting its own.
+        {
+            Profession p;
+            p.id = "full_crafter";
+            p.label = "Full Crafter";
+            p.startSkillA = rules::kCarpentry;
+            p.startSkillB = rules::kBlacksmithing;
+            p.startStr = 25; p.startDex = 15; p.startInt = 10;
+            p.targets = {
+                {rules::kCarpentry,     1000, 5, false, SkillRole::Primary},
+                {rules::kBlacksmithing, 1000, 4, false, SkillRole::Secondary},
+                {rules::kTinkering,      700, 3, true,  SkillRole::Secondary},
+                {rules::kTailoring,      600, 2, true,  SkillRole::Utility},
+                {rules::kAlchemy,        400, 1, true,  SkillRole::Utility},
+            };
+            p.unresolvedTenths = 3300;
+            p.targetStr = 100; p.targetDex = 60; p.targetInt = 65;
+            // Every one of these trades is refused as an NPC faucet
+            // (Faucets.cpp: carpentry_output_to_vendor, smith_output_to_vendor,
+            // alchemy_output_to_vendor are all Refuse*) -- the starkest
+            // player-market-only life in the catalogue.
+            p.income = {Income::Craft, Income::Process};
+            p.gathers = "";
+            p.produces = {"i_board", "i_dagger", "i_spear_short", "i_club",
+                          "i_bottle_empty", "i_potion_cure", "i_sash"};
+            p.consumes = {"i_log", "i_ore_iron", "i_reag_garlic"};
+            p.tools = {{"tongs",  V(kTongs, 2), false},
+                       {"saw",    {kSaw},       false},
+                       {"mortar", {kMortar},    false}};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.35;
+            p.goldReserve = 450;
+            p.homeCities = {"Britain", "Minoc", "Yew"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 15. Tailor ----------------------------------------------------
+        //
+        // CR-04, "Special Robe Tailor" (compendium v1, section 10),
+        // HISTORICAL_FAMILY: "TAILOR high, often MAGERY-oriented character,
+        // economic/travel support." PM-03 (section 4) independently confirms
+        // the pairing from the mage side: "A player explicitly described
+        // using Tailoring as the side skill and crafting a large share of
+        // the shard's special robes." Neither thread posts a full 700
+        // split, so the numbers below are REVOLUTION_DERIVED from that
+        // shape.
+        //
+        // The ArmsLore target is not decorative: Production.cpp's own
+        // i_leather_tunic recipe requires Tailoring 70.5 AND ArmsLore 10.0
+        // (SKILLMAKE=Tailoring 70.5,Armslore 10.0), so this is the one
+        // profession in the catalogue that trains ArmsLore for a real
+        // production reason rather than as combat flavor. It is held
+        // exactly at the 50.0 creation already grants -- well above the
+        // recipe's 10.0 floor -- rather than trained further.
+        //
+        // [NEWBIE TAILORING] hands over a cloth bolt and a sewing kit --
+        // enough to cut cloth and start sewing immediately. [NEWBIE
+        // ARMSLORE] hands over one random weapon (kryss/katana/club), a
+        // spare rather than a tool.
+        {
+            Profession p;
+            p.id = "tailor";
+            p.label = "Tailor";
+            p.startSkillA = rules::kTailoring;
+            p.startSkillB = rules::kArmsLore;
+            p.startStr = 15; p.startDex = 15; p.startInt = 20;
+            p.targets = {
+                {rules::kTailoring, 1000, 4, false, SkillRole::Primary},
+                {rules::kArmsLore,   500, 3, false, SkillRole::Utility},
+                // Tinkering is capped Utility because Production.cpp's own
+                // comment names it as what "makes the tailor's kit" -- just
+                // enough to eventually replace a broken sewing kit, not a
+                // second trade.
+                {rules::kTinkering,  500, 2, true,  SkillRole::Utility},
+                {rules::kMagery,     250, 1, false, SkillRole::Utility},
+            };
+            p.unresolvedTenths = 4750;
+            p.targetStr = 40; p.targetDex = 60; p.targetInt = 100;
+            // Faucets.cpp refuses generic tailor buyback outright
+            // (tailor_output_to_vendor, Policy::RefusePlayerMarket): cloth
+            // and robes are player-market goods on Revolution, full stop.
+            p.income = {Income::Craft};
+            p.gathers = "wool";
+            p.produces = {"i_cloth_bolt", "i_sash", "i_robe",
+                          "i_leather_tunic"};
+            // Hides are a hunter's product, not something this life gathers
+            // itself -- the leather-tunic half of its output depends on
+            // someone else's kill.
+            p.consumes = {"i_hides_cut"};
+            p.tools = {{"sewing kit", {kSewingKit}, false},
+                       {"scissors",   {kScissors},  false}};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.15;      // the most peaceful life in the catalogue
+            p.goldReserve = 400;
+            // UNKNOWN: no Revolution source names a tailor's city; Britain
+            // and Trinsic are the generic UO tailoring hubs.
+            p.homeCities = {"Britain", "Trinsic"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 16. Merchant / Tinker -----------------------------------------
+        //
+        // EC-03, "Player Vendor Operator" (compendium v1, section 15): "Any
+        // production/gather build can specialize in stocking a player
+        // vendor... Revolution's Vendor Cooperative makes this especially
+        // relevant." That describes a BEHAVIOR any life can adopt, not a
+        // skill pair, so this entry earns the "Merchant" aspiration the way
+        // Production.cpp's own comment frames Tinkering: "the craft the
+        // other crafts depend on: it makes the tailor's kit, the scribe's
+        // pen, the alchemist's keg and the miner's pickaxe." A Tinker who
+        // supplies every OTHER profession's tools is the closest thing to a
+        // market maker this catalogue's evidence actually supports.
+        //
+        // [NEWBIE TINKERING] is EMPTY (sp_tm_newbie.scp) and [NEWBIE MINING]
+        // hands over only a pickaxe -- the same STR-50-to-wield gate as
+        // `miner_smith` (skill45_mining.scp @PreStart, ReqStr=50), but this
+        // life has no tongs and no ingots either. Its real first act is a
+        // shopping trip: VENDOR_S_TINKER sells i_tinker_tools outright
+        // (tm_vend.scp:910, SELL={4 34}), so the empty kit is a real
+        // bootstrap cost, not a blocker -- gold buys the fix.
+        {
+            Profession p;
+            p.id = "merchant_tinker";
+            p.label = "Merchant / Tinker";
+            p.startSkillA = rules::kTinkering;
+            p.startSkillB = rules::kMining;
+            p.startStr = 30; p.startDex = 10; p.startInt = 10;
+            p.targets = {
+                {rules::kTinkering, 1000, 2, false, SkillRole::Primary},
+                // Held exactly at the 50.0 creation grants: this life buys
+                // its ingots from a miner/smith rather than becoming one --
+                // see `gathers`.
+                {rules::kMining,     500, 1, false, SkillRole::Utility},
+            };
+            p.unresolvedTenths = 5500;
+            p.targetStr = 100; p.targetDex = 50; p.targetInt = 75;
+            // Faucets.cpp refuses NPC buyback for tinker output outright
+            // (tinker_output_to_vendor, Policy::RefusePlayerMarket) -- the
+            // most player-market-dependent income in the whole catalogue.
+            p.income = {Income::Craft};
+            // The defining trait: it gathers NOTHING. Every raw input is
+            // bought from someone who did.
+            p.gathers = "";
+            p.produces = {"i_gears", "i_lockpick", "i_tinker_tools",
+                          "i_pickaxe", "i_scissors", "i_sewing_kit",
+                          "i_pen_and_ink", "i_barrel_tap", "i_barrel_hoops",
+                          "i_keg_potion"};
+            p.consumes = {"i_ingot_iron"};
+            p.tools = {{"tinker tools", {kTinkerTools}, false},
+                       {"pickaxe",      V(kPickaxe, 2), true}};
+            p.consumables = {Bandages(), Food()};
+            p.riskTolerance = 0.30;
+            p.goldReserve = 250;         // spends rather than hoards; that IS the business
+            p.homeCities = {"Britain", "Minoc"};
+            v.push_back(std::move(p));
+        }
+
+        // --- 17. Scribe ------------------------------------------------------
+        //
+        // CR-05, "Inscriber / Runebook Maker" (compendium v1, section 10):
+        // "INS high, MAGERY required, travel/economy support." The `mage`
+        // entry above already carries Inscription, but only as a capped
+        // Utility hobby (500 tenths) -- it never reaches the skill levels
+        // Production.cpp's own scroll ladder requires past Recall
+        // (Inscription 70.0/Magery 60.0 for Gate Travel, 80.0/70.0 for
+        // Resurrection). This entry inverts the emphasis so those tiers are
+        // actually reachable, which is what makes it a different life and
+        // not the mage restated.
+        //
+        // Blank scrolls stay a CARPENTRY product on this runtime, not an
+        // Inscription one (Production.cpp: i_scroll_blank, SKILLMAKE=
+        // Carpentry 25.7) -- so this life buys its own raw material from the
+        // lumberjack/carpenter, the same cross-profession link the mage
+        // entry already documents as a known gap.
+        //
+        // [NEWBIE INSCRIPTION] hands over 2 blank scrolls and a book;
+        // [NEWBIE MAGERY] the same no-reagent spellbook the mage and the
+        // warlock both start with.
+        {
+            Profession p;
+            p.id = "scribe";
+            p.label = "Scribe";
+            p.startSkillA = rules::kInscription;
+            p.startSkillB = rules::kMagery;
+            p.startStr = 10; p.startDex = 10; p.startInt = 30;
+            p.targets = {
+                {rules::kInscription, 1000, 3, false, SkillRole::Primary},
+                // Pushed to 100.0, not capped like the mage's own Magery
+                // dabbling -- Gate Travel and Resurrection scrolls are
+                // unreachable below Magery 60.0/70.0, and reaching them is
+                // this build's entire reason to exist.
+                {rules::kMagery,      1000, 2, false, SkillRole::Secondary},
+                {rules::kMeditation,   400, 1, true,  SkillRole::Utility},
+            };
+            p.unresolvedTenths = 4600;
+            p.targetStr = 30; p.targetDex = 20; p.targetInt = 100;
+            // scroll_to_mage_shop / scroll_recall_to_mage_shop are the only
+            // two rows Faucets.cpp allows (LIVE PROVEN for the first). Gate
+            // Travel and Resurrection scrolls are not in the registry at
+            // all -- UNKNOWN whether an NPC buys them; treat that half of
+            // `produces` as player-market only until audited.
+            p.income = {Income::Craft};
+            p.gathers = "";
+            p.produces = {"i_scroll_poison", "i_scroll_recall",
+                          "i_scroll_gate_travel", "i_scroll_resurrection"};
+            p.consumes = {"i_scroll_blank", "i_reag_nightshade",
+                          "i_reag_black_pearl", "i_reag_blood_moss",
+                          "i_reag_mandrake_root", "i_reag_garlic",
+                          "i_reag_ginseng", "i_reag_sulfur_ash"};
+            p.tools = {{"spellbook", {kSpellbook}, false}};
+            p.consumables = {Food()};
+            p.riskTolerance = 0.20;
+            p.goldReserve = 900;         // the widest reagent basket in the catalogue
+            p.homeCities = {"Moonglow", "Britain"};
+            v.push_back(std::move(p));
+        }
+
         return v;
     }();
     return kAll;

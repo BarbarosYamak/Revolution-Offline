@@ -3208,70 +3208,34 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // RANGE=4 is the shard's own number, so a spot further than that is not a
     // spot at all. Searching a wider radius and then walking is the difference
     // between fishing and standing hopefully near a lake.
-    // RANGE=4 is the CAST range. Finding water is a wider search: a dock is a
-    // twelve-tile place and the character lands wherever the walk ended, not
-    // on the waterline. Look wide, then step to the edge, then cast.
-    Client::WaterHit water;
-    // COMMIT to one tile. NearestWater searches outward from where the
-    // character is standing, so the nearest tile MOVES as it walks -- it
-    // stepped toward four different spots in as many ticks and closed on
-    // none of them. Pick once, walk until arrived or given up.
-    if (fishTargetSet_ && TileDist(obs.x, obs.y, fishTargetX_, fishTargetY_) > 4) {
-        if (client.TravelBusy() || client.GotoBusy()) return false;
-        if (obs.nowMs - fishCastMs_ > 40000) {
-            LogLine("fish: could not get within casting range of the water at "
-                    "%d,%d -- picking again", fishTargetX_, fishTargetY_);
-            deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
-            fishTargetSet_ = false;
-            planner_.NoteAttempt(obs.nowMs);
-            return false;
-        }
-        // NEAR the water, never ONTO it. A goto addressed at the water tile
-        // itself can never arrive -- water is not walkable -- so the character
-        // walked at a spot it could not stand on and gave up, four times in a
-        // row. RANGE=4 means the line reaches; standing on it is not required
-        // and not possible.
-        travelInFlight_ = client.TravelToPoint(fishTargetX_, fishTargetY_, 3,
-                                               "waterline");
-        nextActionMs_ = obs.nowMs + 2000;
-        return false;
-    }
-    if (!fishTargetSet_ && client.NearestWater(obs.x, obs.y, 20, &water) &&
-        TileDist(obs.x, obs.y, water.x, water.y) > 4) {
-        LogLine("fish: water at %d,%d is %d tiles off -- walking to the edge",
-                water.x, water.y, TileDist(obs.x, obs.y, water.x, water.y));
-        fishTargetX_ = water.x;
-        fishTargetY_ = water.y;
-        fishTargetSet_ = true;
-        fishCastMs_ = obs.nowMs;      // doubles as the walk clock
-        nextActionMs_ = obs.nowMs + 500;
-        return false;
-    }
-    fishTargetSet_ = false;   // close enough to cast
-    if (!client.NearestWater(obs.x, obs.y, 4, &water)) {
+    // WHERE TO STAND, AND WHAT TO CAST AT -- one question, answered together.
+    //
+    // Asking only "where is water" produced a target the pathfinder could not
+    // reach, so the character walked at the sea, failed, picked again, and
+    // drifted from nine tiles away to twenty. A fishing spot is a DRY tile
+    // with water inside RANGE=4 of it.
+    Client::FishingSpot spot;
+    if (!client.NearestFishingSpot(obs.x, obs.y, 24, &spot)) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
             ++fishTrips_;
             if (fishTrips_ > kMaxFishTrips) {
-                LogLine("goal_failed=FISH reason=\"no water within reach after "
-                        "%d trips\"", fishTrips_);
-                planner_.Finish(false, "no water reachable", obs.nowMs);
+                LogLine("goal_failed=FISH reason=\"%s\" no shore within reach "
+                        "after %d trips",
+                        faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
+                        fishTrips_);
+                planner_.Finish(false, "no fishable shore reachable", obs.nowMs);
                 fishTrips_ = 0;
                 return false;
             }
             const KnownResourceSource* known =
                 state_.memory.BestProvenResource("fish", obs.x, obs.y, obs.nowMs);
             if (known) {
-                LogLine("fish: back to water that has paid out at %d,%d",
+                LogLine("fish: back to a shore that has paid out at %d,%d",
                         known->x, known->y);
                 travelInFlight_ =
                     client.TravelToPoint(known->x, known->y, 3, "fishing spot");
             } else {
-                // A DOCK, not a fisherman's SHOP. The atlas already files
-                // twenty docks with resources=fishing (atlasgen reads the dock
-                // AREADEF names), and that is where the water is. Travelling
-                // to the shop put the character in a building next to a
-                // counter -- the right trade, the wrong place entirely.
                 LogLine("fish: looking for a dock (trip %d)", fishTrips_);
                 travelInFlight_ =
                     client.TravelToResource(wm::ResourceKind::Fishing);
@@ -3285,13 +3249,14 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
-        // ARRIVAL IS A CLAIM ABOUT THE TILE, and this one lies: a journey to
-        // the Britain dock reported ok=1 with legs=0 plans=0 while the
-        // character stood two hundred tiles away, so the goal re-travelled
-        // forever. GATHER_LOGS already learned this; FISH had not.
-        if (!client.NearestWater(client.PlayerX(), client.PlayerY(), 20, &water)) {
-            LogLine("fish: trip reported %s but there is no water within 20 "
-                    "tiles of %d,%d", client.TravelSucceeded() ? "success" : "failure",
+        // ARRIVAL IS A CLAIM ABOUT THE TILE. A journey to the Britain dock
+        // once reported ok=1 with legs=0 plans=0 while the character stood two
+        // hundred tiles away.
+        if (!client.NearestFishingSpot(client.PlayerX(), client.PlayerY(), 24,
+                                       &spot)) {
+            LogLine("fish: trip reported %s but there is no shore within 24 "
+                    "tiles of %d,%d",
+                    client.TravelSucceeded() ? "success" : "failure",
                     client.PlayerX(), client.PlayerY());
             deadTargets_.emplace_back(client.PlayerX(), client.PlayerY());
             if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
@@ -3300,6 +3265,42 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
         }
         return false;
     }
+
+    // Walk to the BANK, not the water.
+    if (TileDist(obs.x, obs.y, spot.standX, spot.standY) > 0) {
+        if (client.GotoBusy() || client.TravelBusy()) return false;
+        if (!fishTargetSet_ || fishTargetX_ != spot.standX ||
+            fishTargetY_ != spot.standY) {
+            fishTargetX_ = spot.standX;
+            fishTargetY_ = spot.standY;
+            fishTargetSet_ = true;
+            fishWalkMs_ = obs.nowMs;
+            LogLine("fish: standing at %d,%d to cast into %d,%d",
+                    spot.standX, spot.standY, spot.waterX, spot.waterY);
+        }
+        if (obs.nowMs - fishWalkMs_ > 20000) {
+            LogLine("fish: cannot reach the bank at %d,%d", fishTargetX_,
+                    fishTargetY_);
+            deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
+            fishTargetSet_ = false;
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+        // A*, not direct steps. ActionGoto walks straight at the target and
+        // stops at the first thing in the way -- on a dock that is a crate, a
+        // rail or a plank edge every time, so "cannot reach the bank" was the
+        // walker giving up two tiles short rather than the tile being bad.
+        travelInFlight_ = client.TravelToPoint(spot.standX, spot.standY, 0,
+                                               "waterline");
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+    fishTargetSet_ = false;
+
+    Client::WaterHit water;
+    water.x = spot.waterX;
+    water.y = spot.waterY;
+    water.z = spot.waterZ;
     fishTrips_ = 0;
 
     // --- cast --------------------------------------------------------------
