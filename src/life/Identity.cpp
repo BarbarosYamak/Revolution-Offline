@@ -270,6 +270,21 @@ int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
 // so the need model and the goal cannot disagree about them -- the way
 // EARN_GOLD and its own need disagreed about the bank and deadlocked.
 // ---------------------------------------------------------------------------
+// Does this life fight on purpose? A lumberjack finishes fights that find it;
+// a swordsman goes looking. Read off the build rather than off a list of
+// archetype names: a profession that wants MORE than the 50.0 a weapon school
+// is granted at creation intends to use it.
+bool WantsToHunt(const prof::Profession& p) {
+    for (const prof::SkillTargetSpec& t : p.targets) {
+        const bool weapon = t.skillId == rules::kSwordsmanship ||
+                            t.skillId == rules::kMaceFighting ||
+                            t.skillId == rules::kFencing ||
+                            t.skillId == rules::kArchery;
+        if (weapon && t.tenths > 500) return true;
+    }
+    return false;
+}
+
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch) {
     CraftIntent out;

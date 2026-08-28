@@ -63,11 +63,12 @@ constexpr u16 kTinkerTools = 0x1EBC;  // i_profession.scp:2649
 // carry yet. Same sourcing rule as every id rules.h already has: read off
 // the skill's own script filename under runtime/scripts/skills/ --
 // skill<N>_<name>.scp. None of these appear in rules::InactiveSkills().
-constexpr int kParrying     = 5;   // skill5_parrying.scp
-constexpr int kArchery      = 31;  // skill31_archery.scp
-constexpr int kMaceFighting = 41;  // skill41_macefighting.scp
-constexpr int kFencing      = 42;  // skill42_fencing.scp
-constexpr int kWrestling    = 43;  // skill43_wrestling.scp
+// (Now in rules.h with every other skill id -- see the note there.)
+using rules::kParrying;
+using rules::kArchery;
+using rules::kMaceFighting;
+using rules::kFencing;
+using rules::kWrestling;
 
 std::vector<u16> V(const u16* p, usize n) { return std::vector<u16>(p, p + n); }
 

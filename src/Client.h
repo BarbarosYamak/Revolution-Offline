@@ -484,6 +484,10 @@ public:
     // -----------------------------------------------------------------
     bool TravelToPoint(i32 x, i32 y, i32 arriveRadius, const char* label);
     bool TravelToPlace(const char* nameOrId);
+    // Nearest place of a KIND rather than of a named service -- the graveyard,
+    // the dungeon mouth, the shrine. What a character needs when it is looking
+    // for a fight rather than for a shopkeeper.
+    bool TravelToPlaceCategory(wm::PlaceCategory c);
     bool TravelToRegion(const char* nameOrId);
     // `regionHint` narrows the search to one region ("the bank in Yew");
     // nullptr means the nearest one anywhere.

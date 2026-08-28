@@ -243,6 +243,9 @@ private:
     // and never persisted: silence is not a fact the world stated, so it is
     // not a belief worth keeping -- only somewhere already tried today.
     std::vector<u32> trainerSilent_;
+    // Trips taken looking for a hunting ground this goal.
+    int huntTrips_ = 0;
+    static constexpr int kMaxHuntTrips = 3;
     // --- crafting ----------------------------------------------------------
     std::string supplyItem_;      // the input currently being shopped for
     std::string supplyTrade_;     // the trade that sells it
@@ -301,6 +304,9 @@ private:
     i64  tradeAnnouncedMs_ = 0;
     i64  tradeOpenedMs_ = 0;
     i32  tradeAnnounceCount_ = 0;
+    // Until when the player market counts as tried-and-empty.
+    i64  marketQuietUntilMs_ = 0;
+    static constexpr i64 kMarketQuietMs = 10 * 60 * 1000;   // ten minutes
 
     // --- FISH. skill18_fishing.scp: DELAY=8.0, RANGE=4 ---------------------
     // The eight seconds is a CEILING, not a delay: the goal polls for one of

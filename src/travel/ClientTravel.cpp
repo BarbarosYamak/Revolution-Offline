@@ -286,6 +286,27 @@ try_atlas:
                        p->radius, /*hasZ=*/true, p->position.z);
 }
 
+bool Client::TravelToPlaceCategory(wm::PlaceCategory c) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    const wm::Place* p =
+        world_knowledge_->atlas.NearestPlaceOfCategory(c, playerX_, playerY_);
+    if (!p) {
+        travelFailure_ = "no known place of that kind";
+        LogWarn("[travel] no place of category %s is known\n",
+                wm::PlaceCategoryName(c));
+        return false;
+    }
+    travelEntitySerial_ = 0;
+    // Arrive INSIDE it, not at its rim: a graveyard is a place to stand in the
+    // middle of, and the things worth meeting are spread across it.
+    const i32 radius = p->radius > 8 ? 8 : p->radius;
+    return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius,
+                       /*hasZ=*/true, p->position.z);
+}
+
 bool Client::TravelToResource(wm::ResourceKind r) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();

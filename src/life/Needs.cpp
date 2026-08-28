@@ -379,10 +379,15 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // errand rather than a blocked state, and it is the only market a
             // gatherer has left once materials stopped being NPC-sellable.
             if (route.empty()) {
-                add(NeedKind::NeedTrade, urgency, "sell to a player",
-                    "carrying goods no vendor will take, which is what the "
-                    "player market is for",
-                    Fmt("%d x %s spare", biggest, spare.front().item.c_str()));
+                add(NeedKind::NeedTrade, obs.marketQuiet ? 0.0 : urgency,
+                    "sell to a player",
+                    obs.marketQuiet
+                        ? "carrying goods only a player would buy, and the "
+                          "market was just tried and found empty"
+                        : "carrying goods no vendor will take, which is what "
+                          "the player market is for",
+                    Fmt("%d x %s spare", biggest, spare.front().item.c_str()),
+                    obs.marketQuiet);
             }
             add(NeedKind::NeedGold, urgency, "sell surplus",
                 route.empty()
@@ -439,15 +444,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 // a crafter does when it cannot work, never instead of
                 // working: this used to be 0.52, which put the shop ahead of
                 // the workbench permanently.
-                add(NeedKind::NeedSupplies, ruling.allowed ? 0.44 : 0.0,
+                // NO WORKING CAPITAL, NO SHOPPING TRIP.
+                //
+                // BUY_SUPPLIES spends everything above a hard floor of 100
+                // gold. Below that there is nothing to spend, and a scribe
+                // with 92 gold, no reagents and four finished scrolls in its
+                // pack sat in the mage shop choosing this errand over and
+                // over -- outranking the sale that was the only way out of
+                // it. Selling is what pays for the next batch.
+                const bool noCapital = (obs.gold - 100) <= 0;
+                add(NeedKind::NeedSupplies,
+                    (ruling.allowed && !noCapital) ? 0.44 : 0.0,
                     "buy craft inputs",
-                    ruling.allowed
-                        ? "short of what it needs to make its own goods"
-                        : "short of an input no NPC may legitimately sell it",
+                    !ruling.allowed
+                        ? "short of an input no NPC may legitimately sell it"
+                        : (noCapital
+                               ? "short of inputs AND of the gold to buy them "
+                                 "-- what it has made has to be sold first"
+                               : "short of what it needs to make its own goods"),
                     Fmt("%s needs %d x %s%s", craft.item, first.qty, first.item,
-                        ruling.allowed ? "" : " -- and the vendor policy "
-                                              "refuses that purchase"),
-                    !ruling.allowed);
+                        !ruling.allowed ? " -- and the vendor policy refuses "
+                                          "that purchase"
+                                        : (noCapital ? " -- and the purse is empty"
+                                                     : "")),
+                    !ruling.allowed || noCapital);
             }
         } else if (craft.item == nullptr && !cfg.profession->produces.empty()) {
             // Nothing sellable this life can make. Legible, and not a loop.
@@ -505,14 +525,28 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (have >= t.tenths) continue;
         const double gap = static_cast<double>(t.tenths - have) /
                            static_cast<double>(t.tenths > 0 ? t.tenths : 1);
-        const bool nothingToPractiseOn = obs.attackersOnMe == 0;
+        // NOTHING HERE IS NOT THE SAME AS NOWHERE TO GO.
+        //
+        // This gate exists because completing TRAIN_COMBAT instantly with no
+        // enemy present made the planner spin. But it blocked the need
+        // outright, so a character that could have WALKED to a fight never
+        // did -- which is the whole reason M6 has never run live. A fighter
+        // with somewhere to hunt has an actionable need; a lumberjack does
+        // not, and still waits for trouble to find it.
+        const bool nothingHere = obs.attackersOnMe == 0;
+        const bool couldGoHunting =
+            nothingHere && cfg.profession && WantsToHunt(*cfg.profession) &&
+            obs.hp * 100 >= obs.hpMax * 80 && obs.WeightFraction() < 0.7;
+        const bool blocked = nothingHere && !couldGoHunting;
         add(NeedKind::NeedTraining, 0.15 + 0.25 * gap, SkillName(t.skillId),
-            nothingToPractiseOn
-                ? "below target, but nothing is here to practise combat on"
-                : "below the target build value for this skill",
+            couldGoHunting
+                ? "below target, and there is a graveyard to go and practise in"
+                : (nothingHere
+                       ? "below target, but nothing is here to practise combat on"
+                       : "below the target build value for this skill"),
             Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
                 t.tenths / 10.0),
-            nothingToPractiseOn);
+            blocked);
     }
 
     // --- a skill worth BUYING ---------------------------------------------

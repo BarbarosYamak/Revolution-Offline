@@ -79,6 +79,16 @@ enum SkillId : int {
     // names, runtime/scripts/skills/skill<N>_<name>.scp.
     kAnimalLore       = 2,
     kVeterinary       = 39,
+
+    // The other weapon schools. These lived as file-local constants in
+    // Professions.cpp, which was fine while only the catalogue named them --
+    // then the hunting behaviour needed to ask "does this build fight?" and
+    // could not see them. One source, here, like every other id.
+    kParrying         = 5,   // skill5_parrying.scp
+    kArchery          = 31,  // skill31_archery.scp
+    kMaceFighting     = 41,  // skill41_macefighting.scp
+    kFencing          = 42,  // skill42_fencing.scp
+    kWrestling        = 43,  // skill43_wrestling.scp
 };
 
 // The shard's own name for a skill id, or "skill <n>" when we do not have a

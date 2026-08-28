@@ -407,6 +407,7 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
 
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
+    obs.marketQuiet = obs.nowMs < marketQuietUntilMs_;
     obs.hostilesNear = static_cast<i32>(hostiles.size());
     const u32 warTarget = client.WarWatchdog().TargetSerial();
     i32 adjacent = 0;
@@ -2220,12 +2221,67 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     return false;
 }
 
+
 bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
-    // Deliberately narrow for Slice 1: the Lumberjack does not go hunting as
-    // its main activity. This trains by finishing fights that find it, which
-    // is what the era template actually describes.
-    if (obs.hostilesNear == 0) return true;
-    return DoSurvive(client, obs);
+    // Something is already here: finish that fight. This is how every
+    // character trains, hunter or not.
+    if (obs.hostilesNear > 0) return DoSurvive(client, obs);
+
+    // NOTHING HERE. Until now that was the end of it -- "return true" -- and
+    // it is why M6 has never once been exercised live: the layer that decides
+    // what may legally be attacked was never given anything to decide about.
+    // A fighter with no fight in reach should go and find one.
+    if (!needCfg_.profession || !WantsToHunt(*needCfg_.profession)) return true;
+
+    // Not while hurt, and not while loaded: the goal scorer already docks
+    // both, but arriving at a graveyard at half health is a death rather than
+    // a lesson, and that is a decision this goal should make for itself.
+    if (obs.hp * 100 < obs.hpMax * 80) {
+        LogLine("hunt: %d/%d health -- not going looking for a fight",
+                obs.hp, obs.hpMax);
+        return true;
+    }
+    if (obs.WeightFraction() >= 0.7) {
+        LogLine("hunt: carrying too much to fight (%.0f%%)",
+                obs.WeightFraction() * 100.0);
+        return true;
+    }
+
+    if (client.TravelBusy()) return false;
+    if (!travelInFlight_) {
+        if (++huntTrips_ > kMaxHuntTrips) {
+            LogLine("goal_failed=TRAIN_COMBAT reason=\"no hunting ground "
+                    "reachable after %d trips\"", huntTrips_);
+            planner_.Finish(false, "no hunting ground reachable", obs.nowMs);
+            huntTrips_ = 0;
+            nextActionMs_ = obs.nowMs + 60000;
+            return false;
+        }
+        LogLine("hunt: no fight in reach -- going to the nearest graveyard "
+                "(trip %d)", huntTrips_);
+        travelInFlight_ = client.TravelToPlaceCategory(wm::PlaceCategory::Graveyard);
+        if (!travelInFlight_) {
+            LogLine("goal_blocked=TRAIN_COMBAT reason=\"%s\"",
+                    client.TravelFailureText());
+            planner_.NoteAttempt(obs.nowMs);
+        }
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+    travelInFlight_ = false;
+    huntTrips_ = 0;
+    // Arrived. Ask what is here; the targeting layer judges legality, and a
+    // graveyard's dead are the one thing on this shard that is always lawful
+    // to swing at.
+    LogLine("hunt: arrived at %d,%d -- looking for something to fight",
+            client.PlayerX(), client.PlayerY());
+    client.ActionScanMobiles();
+    if (!state_.memory.HasEvent("first_hunt")) {
+        state_.memory.NoteEvent("first_hunt", "went hunting", "graveyard",
+                                obs.x, obs.y, obs.nowMs);
+    }
+    nextActionMs_ = obs.nowMs + 3000;
+    return false;
 }
 
 bool Runner::DoEarnGold(Client& client, const Observation& obs) {
@@ -3189,7 +3245,14 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                                  &offer)) {
         // Nothing worth announcing -- most often because this character has
         // never seen a price for what it carries and refuses to invent one.
+        // SAME DEAD END, SAME COOLDOWN. Returning plain success here let the
+        // need score identically on the very next tick and the goal was
+        // re-picked sixteen times a second -- a lumberjack logged
+        // goal=TRADE_WITH_PLAYER eight times in half a second and did nothing
+        // else all session. An errand that cannot even be started is the
+        // market being unavailable, not a goal that succeeded.
         LogLine("trade: nothing to announce (no observed price for what is spare)");
+        marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
         return true;
     }
     tradeOffer_ = offer;
@@ -3230,6 +3293,12 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         state_.memory.NoteEvent("no_player_buyer", offer.item.c_str(), "",
                                 obs.x, obs.y, obs.nowMs);
         tradeAnnounceCount_ = 0;
+        // AND STOP SCHEDULING IT for a while. Finishing the goal was not
+        // enough: the need scored the same on the very next tick, the errand
+        // was re-picked, and a lumberjack spent whole sessions announcing logs
+        // to an empty Yew while its own training and hunting needs -- which it
+        // could actually have finished -- sat underneath it.
+        marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
         planner_.Finish(false, "nobody wanted it", obs.nowMs);
         return false;
     }

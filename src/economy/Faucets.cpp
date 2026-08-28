@@ -129,7 +129,7 @@ const GoldFaucet kFaucets[] = {
  "as the big fish; tm_vend.scp:1022-1027"},
 
 {"fish_steak_to_fisher", SourceType::VendorSale, "fisher",
- "i_fish_cut_raw", "cook",
+ "i_fish_cut_raw", "fisher",
  HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
  "THE BEST FISH TRADE THERE IS, and it goes to the cook, not the fisher. "
  "A steak is VALUE=3 against a whole fish's 2, so it pays 2 gold against 1 "
@@ -141,8 +141,13 @@ const GoldFaucet kFaucets[] = {
 
 {"fish_cooked_to_cook", SourceType::VendorSale, "fisher",
  "i_fish_cut_cooked", "cook",
- HistoryEvidence::Confirmed, RuntimeEvidence::Blocked, Policy::BlockedRuntime,
- "HISTORY AND RUNTIME DISAGREE, and this row is the reason the two are "
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "THE BEST-ATTESTED PRICE IN THE WHOLE FORUM RECORD: 5 gp, recorded twice "
+ "two years apart (topics 49757 in 2008 and 76498 in 2010), and both the "
+ "cook and the fisherman buy it (owner, 2026-08-28). The runtime now agrees "
+ "-- i_fish_cut_cooked VALUE=6 pays exactly 5, and BUY rows were added to "
+ "VENDOR_B_FISHER and VENDOR_B_COOK, neither of which bought it before. "
+ "History and runtime USED to disagree here and the note is kept: "
  "recorded separately. On TNS cooked fish was the fisher's real money: "
  "references/tns/scripts/Systems/System_SellerBuro.scp:420-445 pays 5gp a "
  "cooked steak and decays that to 3, 2 then 1 as the shard-wide daily count "

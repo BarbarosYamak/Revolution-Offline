@@ -1,0 +1,240 @@
+[22:24:54.609] INFO  session 0: 127.0.0.1:2593 user='RevolutionFighter03' char=Loradan tag='m6a'
+[22:24:54.611] LOG   [m6a] event session_start: text log opened
+[22:24:54.611] LOG   [m6a] event net_connect_begin: connect 127.0.0.1:2593
+[22:24:54.611] INFO  [m6a] [net] connecting to 127.0.0.1:2593 ...
+[22:24:54.612] LOG   [m6a] event net_connected: connect 127.0.0.1:2593
+[22:24:54.613] INFO  [m6a] [net] connected.
+[22:24:54.613] INFO  [m6a] [seed] sent 0x7F000001 (plaintext)
+[22:24:54.613] LOG   [m6a] event seed_out: 0x7F000001 hex=7f000001
+[22:24:54.614] INFO  [life] loaded persistent state for Loradan (27 places, 0 suppliers, 13 events, 0 prior sessions)
+[22:24:54.614] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[22:24:54.614] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[22:24:54.614] INFO  [m6a] [life] autonomous player active for 'Loradan' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[22:24:54.624] INFO  [m6a] [0xA8] 1 server(s):
+[22:24:54.624] INFO  [m6a]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:24:54.640] INFO  [m6a] [0x8C] game server = 127.0.0.1:2593  seed=0xDFA0A29F
+[22:24:54.640] LOG   [m6a] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xDFA0A29F
+[22:24:54.640] INFO  [m6a] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:24:54.640] LOG   [m6a] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:24:54.640] INFO  [m6a] [0xB9] server features = 0x0005
+[22:24:54.640] INFO  [m6a] [0xA9] 5 slot(s) (populated 1):
+[22:24:54.640] INFO  [m6a]   [0] Loradan
+[22:24:54.640] INFO  [m6a]   [1] <empty>
+[22:24:54.640] INFO  [m6a]   [2] <empty>
+[22:24:54.640] INFO  [m6a]   [3] <empty>
+[22:24:54.640] INFO  [m6a]   [4] <empty>
+[22:24:54.640] INFO  [m6a] [ui] playing slot 0 ('Loradan')
+[22:24:54.656] INFO  [m6a] [0x1B] serial=0x00017C2B body=0x0190 pos=(664,855,0)
+[22:24:54.656] LOG   [m6a] event login_confirm: serial=0x00017C2B body=0x0190 pos=(664,855,0)
+[22:24:54.656] INFO  [m6a] [0x20] player @(664,855,0) facing=4
+[22:24:54.656] INFO  [m6a] [0x55] login complete — entering world
+[22:24:54.656] LOG   [m6a] event in_world: 0x55 received
+[22:24:54.656] INFO  [m6a] [backpack] opening 0x40017BBB
+[22:24:54.656] INFO  [m6a] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:24:54.656] INFO  [m6a] [chat ascii] System: There is 1 other player here.
+[22:24:54.656] INFO  [m6a] [chat ascii] System: Last logged: 2026/08/28 18:23:13
+[22:24:54.656] INFO  [m6a] [chat ascii] System: You are under the protection of the town guards
+[22:24:54.663] INFO  [m6a] [action] requesting the skill list
+[22:24:54.663] INFO  [life] in world; asked the server for the skill list
+[22:24:54.672] INFO  [m6a] [0x24] open container 0x40017BBB gump=60
+[22:24:54.672] INFO  [m6a] [0x3C] container contents: 8 item(s)
+[22:24:54.672] LOG   [m6a] event backpack_contents: serial=0x40017BBB items=8
+[22:24:57.260] INFO  [m6a] [bot] world data loaded (0 blacklisted spot(s)).
+[22:24:57.261] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[22:24:57.261] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[22:24:57.261] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[22:24:57.261] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[22:24:57.261] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[22:24:57.261] INFO  [life]   skill_44     persisted=51.0       server=51.0       -> server value accepted
+[22:24:57.261] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[22:24:57.261] INFO  [life]   skill_27     persisted=18.2       server=18.2       -> server value accepted
+[22:24:57.261] INFO  [life]   skill_1      persisted=11.2       server=11.2       -> server value accepted
+[22:24:57.261] INFO  [life]   skill_17     persisted=8.9        server=8.9        -> server value accepted
+[22:24:57.261] INFO  [life]   skill_11     persisted=2.8        server=2.8        -> server value accepted
+[22:24:57.261] INFO  [life]   position     persisted=664,855    server=664,855    -> server value accepted
+[22:24:57.261] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:24:57.261] INFO  [life]   restored objective KEPT: BANK (progress 0)
+[22:24:57.261] INFO  [m6a] [survival] on
+[22:24:57.261] LOG   [m6a] event survival_mode: on
+[22:24:57.263] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:24:57.263] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:24:57.315] INFO  [life] bank: returning to a remembered bank at 664,855 (trip 1)
+[22:24:57.315] INFO  [m6a] [travel] bank -> (664,855) r=2 from (664,855)
+[22:24:57.315] LOG   [m6a] event travel_start: label='bank' target=(664,855) radius=2 from=(664,855)
+[22:24:57.315] INFO  [m6a] [travel] bank ARRIVED at (664,855,0)
+[22:24:57.315] LOG   [m6a] event travel_done: label='bank' ok=1 at=(664,855) legs=0 plans=0 why=''
+[22:24:59.344] INFO  [life] bank: arrived at 664,855 -- asking who is here
+[22:24:59.344] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:24:59.359] INFO  [m6a] [mobiles] nearby (3):
+[22:24:59.359] INFO  [m6a]   Rat 0x00000023
+[22:24:59.359] INFO  [m6a]   Rat 0x0000151E
+[22:24:59.359] INFO  [m6a]   Dog 0x00000968
+[22:25:01.892] INFO  [life] bank: returning to a remembered bank at 664,855 (trip 2)
+[22:25:01.892] INFO  [m6a] [travel] bank -> (664,855) r=2 from (664,855)
+[22:25:01.892] LOG   [m6a] event travel_start: label='bank' target=(664,855) radius=2 from=(664,855)
+[22:25:01.892] INFO  [m6a] [travel] bank ARRIVED at (664,855,0)
+[22:25:01.892] LOG   [m6a] event travel_done: label='bank' ok=1 at=(664,855) legs=0 plans=0 why=''
+[22:25:02.322] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:03.921] INFO  [life] bank: arrived at 664,855 -- asking who is here
+[22:25:03.921] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:03.922] INFO  [m6a] [mobiles] nearby (3):
+[22:25:03.922] INFO  [m6a]   Rat 0x00000023
+[22:25:03.922] INFO  [m6a]   Rat 0x0000151E
+[22:25:03.922] INFO  [m6a]   Dog 0x00000968
+[22:25:06.436] INFO  [life] bank: two trips to 664,855 found no banker -- forgetting that place
+[22:25:06.436] INFO  [life] bank: returning to a remembered bank at 666,848 (trip 3)
+[22:25:06.436] INFO  [m6a] [travel] bank -> (666,848) r=2 from (664,855)
+[22:25:06.436] LOG   [m6a] event travel_start: label='bank' target=(666,848) radius=2 from=(664,855)
+[22:25:06.436] INFO  [m6a] [travel] mode walk             usable   <- chosen
+[22:25:06.436] INFO  [m6a] [travel] mode moongate         usable
+[22:25:06.436] INFO  [m6a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:06.436] INFO  [m6a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:06.436] LOG   [m6a] event travel_mode: walk
+[22:25:06.436] INFO  [m6a] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:25:06.497] INFO  [m6a] [action] goto (666,848) from (664,855,0)
+[22:25:06.497] LOG   [m6a] event goto_start: target=(666,848) from=(664,855)
+[22:25:06.497] INFO  [m6a] [bot] running from (664,855,0) to (666,848)
+[22:25:06.497] INFO  [m6a] [bot] planning path to (666,848) in background
+[22:25:06.558] INFO  [m6a] [bot] replan to (666,848): 7 steps in 130.3us
+[22:25:07.344] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:08.558] INFO  [m6a] [travel] bank ARRIVED at (667,850,0)
+[22:25:08.558] LOG   [m6a] event travel_done: label='bank' ok=1 at=(667,850) legs=1 plans=1 why=''
+[22:25:08.619] INFO  [life] bank: arrived at 667,850 -- asking who is here
+[22:25:08.619] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:08.619] INFO  [m6a] [mobiles] nearby (2):
+[22:25:08.619] INFO  [m6a]   Rat 0x0000151E
+[22:25:08.619] INFO  [m6a]   Rat 0x00000023
+[22:25:09.684] INFO  [m6a] [bot] arrived at (666,848,0)
+[22:25:11.164] INFO  [life] bank: two trips to 666,848 found no banker -- forgetting that place
+[22:25:11.164] INFO  [life] bank: returning to a remembered bank at 673,846 (trip 4)
+[22:25:11.164] INFO  [m6a] [travel] bank -> (673,846) r=2 from (666,848)
+[22:25:11.164] LOG   [m6a] event travel_start: label='bank' target=(673,846) radius=2 from=(666,848)
+[22:25:11.164] INFO  [m6a] [travel] mode walk             usable   <- chosen
+[22:25:11.164] INFO  [m6a] [travel] mode moongate         usable
+[22:25:11.164] INFO  [m6a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:11.164] INFO  [m6a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:11.164] LOG   [m6a] event travel_mode: walk
+[22:25:11.164] INFO  [m6a] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:25:11.225] INFO  [m6a] [action] goto finished at (666,848,0); target (666,848); ARRIVED (off by 0 tile(s))
+[22:25:11.225] LOG   [m6a] event goto_done: at=(666,848) target=(666,848) arrived=1 off=0
+[22:25:11.225] INFO  [m6a] [action] goto (673,846) from (666,848,0)
+[22:25:11.225] LOG   [m6a] event goto_start: target=(673,846) from=(666,848)
+[22:25:11.225] INFO  [m6a] [bot] running from (666,848,0) to (673,846)
+[22:25:11.225] INFO  [m6a] [bot] planning path to (673,846) in background
+[22:25:11.287] INFO  [m6a] [bot] replan to (673,846): 7 steps in 83.4us
+[22:25:12.385] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:13.324] INFO  [m6a] [travel] bank ARRIVED at (671,846,0)
+[22:25:13.324] LOG   [m6a] event travel_done: label='bank' ok=1 at=(671,846) legs=1 plans=1 why=''
+[22:25:13.386] INFO  [life] bank: arrived at 671,846 -- asking who is here
+[22:25:13.386] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:13.386] INFO  [m6a] [mobiles] nearby (2):
+[22:25:13.386] INFO  [m6a]   Rat 0x0000151E
+[22:25:13.386] INFO  [m6a]   Rat 0x00000023
+[22:25:13.908] INFO  [m6a] [bot] arrived at (673,846,0)
+[22:25:15.895] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:25:15.957] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:25:15.957] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:25:15.957] INFO  [life]   score=166.8
+[22:25:15.957] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:25:15.957] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:25:15.957] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:25:15.957] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:25:15.957] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:25:15.957] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:25:17.420] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:22.427] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:27.446] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:32.454] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:37.471] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:42.508] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:45.932] INFO  [life] bank: returning to a remembered bank at 673,846 (trip 1)
+[22:25:45.932] INFO  [m6a] [travel] bank -> (673,846) r=2 from (673,846)
+[22:25:45.932] LOG   [m6a] event travel_start: label='bank' target=(673,846) radius=2 from=(673,846)
+[22:25:45.932] INFO  [m6a] [travel] bank ARRIVED at (673,846,0)
+[22:25:45.932] LOG   [m6a] event travel_done: label='bank' ok=1 at=(673,846) legs=0 plans=0 why=''
+[22:25:47.548] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:47.966] INFO  [life] bank: arrived at 673,846 -- asking who is here
+[22:25:47.966] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:47.981] INFO  [m6a] [mobiles] nearby (2):
+[22:25:47.981] INFO  [m6a]   Rat 0x0000151E
+[22:25:47.981] INFO  [m6a]   Rat 0x00000023
+[22:25:50.511] INFO  [life] bank: returning to a remembered bank at 673,846 (trip 2)
+[22:25:50.511] INFO  [m6a] [travel] bank -> (673,846) r=2 from (673,846)
+[22:25:50.511] LOG   [m6a] event travel_start: label='bank' target=(673,846) radius=2 from=(673,846)
+[22:25:50.511] INFO  [m6a] [travel] bank ARRIVED at (673,846,0)
+[22:25:50.511] LOG   [m6a] event travel_done: label='bank' ok=1 at=(673,846) legs=0 plans=0 why=''
+[22:25:52.515] INFO  [life] bank: arrived at 673,846 -- asking who is here
+[22:25:52.515] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:52.531] INFO  [m6a] [mobiles] nearby (2):
+[22:25:52.531] INFO  [m6a]   Rat 0x0000151E
+[22:25:52.531] INFO  [m6a]   Rat 0x00000023
+[22:25:52.593] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:55.064] INFO  [life] bank: two trips to 673,846 found no banker -- forgetting that place
+[22:25:55.064] INFO  [life] bank: returning to a remembered bank at 668,839 (trip 3)
+[22:25:55.064] INFO  [m6a] [travel] bank -> (668,839) r=2 from (673,846)
+[22:25:55.064] LOG   [m6a] event travel_start: label='bank' target=(668,839) radius=2 from=(673,846)
+[22:25:55.064] INFO  [m6a] [travel] mode walk             usable   <- chosen
+[22:25:55.064] INFO  [m6a] [travel] mode moongate         usable
+[22:25:55.064] INFO  [m6a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:55.064] INFO  [m6a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:55.064] LOG   [m6a] event travel_mode: walk
+[22:25:55.064] INFO  [m6a] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:25:55.126] INFO  [m6a] [action] goto finished at (673,846,0); target (673,846); ARRIVED (off by 0 tile(s))
+[22:25:55.126] LOG   [m6a] event goto_done: at=(673,846) target=(673,846) arrived=1 off=0
+[22:25:55.126] INFO  [m6a] [action] goto (668,839) from (673,846,0)
+[22:25:55.126] LOG   [m6a] event goto_start: target=(668,839) from=(673,846)
+[22:25:55.126] INFO  [m6a] [bot] running from (673,846,0) to (668,839)
+[22:25:55.126] INFO  [m6a] [bot] planning path to (668,839) in background
+[22:25:55.188] INFO  [m6a] [bot] replan to (668,839): 7 steps in 156.3us
+[22:25:57.139] INFO  [m6a] [travel] bank ARRIVED at (668,840,0)
+[22:25:57.139] LOG   [m6a] event travel_done: label='bank' ok=1 at=(668,840) legs=1 plans=1 why=''
+[22:25:57.201] INFO  [life] bank: arrived at 668,840 -- asking who is here
+[22:25:57.201] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:25:57.202] INFO  [m6a] [mobiles] nearby (4):
+[22:25:57.202] INFO  [m6a]   Rat 0x0000151E
+[22:25:57.202] INFO  [m6a]   Rat 0x00000023
+[22:25:57.202] INFO  [m6a]   Filbert 0x0000183F
+[22:25:57.202] INFO  [m6a]   Basia 0x00001858
+[22:25:57.264] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfighter03.loradan/state.json
+[22:25:57.598] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:25:57.904] INFO  [m6a] [bot] arrived at (668,839,0)
+[22:25:59.735] INFO  [life] bank: two trips to 668,839 found no banker -- forgetting that place
+[22:25:59.735] INFO  [life] bank: returning to a remembered bank at 661,839 (trip 4)
+[22:25:59.735] INFO  [m6a] [travel] bank -> (661,839) r=2 from (668,839)
+[22:25:59.735] LOG   [m6a] event travel_start: label='bank' target=(661,839) radius=2 from=(668,839)
+[22:25:59.735] INFO  [m6a] [travel] mode walk             usable   <- chosen
+[22:25:59.735] INFO  [m6a] [travel] mode moongate         usable
+[22:25:59.735] INFO  [m6a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:59.735] INFO  [m6a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:59.735] LOG   [m6a] event travel_mode: walk
+[22:25:59.735] INFO  [m6a] [travel] plan bank: ok legs=1 ~7 tiles transit=0 nodes=0
+[22:25:59.796] INFO  [m6a] [action] goto finished at (668,839,0); target (668,839); ARRIVED (off by 0 tile(s))
+[22:25:59.796] LOG   [m6a] event goto_done: at=(668,839) target=(668,839) arrived=1 off=0
+[22:25:59.796] INFO  [m6a] [action] goto (661,839) from (668,839,0)
+[22:25:59.796] LOG   [m6a] event goto_start: target=(661,839) from=(668,839)
+[22:25:59.796] INFO  [m6a] [bot] running from (668,839,0) to (661,839)
+[22:25:59.796] INFO  [m6a] [bot] planning path to (661,839) in background
+[22:25:59.856] INFO  [m6a] [bot] replan to (661,839): 7 steps in 72.2us
+[22:26:01.319] INFO  [m6a] [travel] bank ARRIVED at (662,839,0)
+[22:26:01.319] LOG   [m6a] event travel_done: label='bank' ok=1 at=(662,839) legs=1 plans=1 why=''
+[22:26:01.659] INFO  [m6a] [bot] arrived at (661,839,0)
+[22:26:01.782] INFO  [life] bank: arrived at 661,839 -- asking who is here
+[22:26:01.782] INFO  [m6a] [action] scanning nearby mobiles for names
+[22:26:01.796] INFO  [m6a] [mobiles] nearby (4):
+[22:26:01.796] INFO  [m6a]   Rat 0x00000023
+[22:26:01.796] INFO  [m6a]   Rat 0x0000151E
+[22:26:01.796] INFO  [m6a]   Filbert 0x0000183F
+[22:26:01.796] INFO  [m6a]   Basia 0x00001858
+[22:26:02.657] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:26:04.327] INFO  [life] goal_failed=BANK reason="4 trips and still no banker in reach; the pack stays full"
+[22:26:04.390] INFO  [life] goal=BANK reason="previous goal abandoned: no banker reachable"
+[22:26:04.390] INFO  [life] needs considered: NeedBank(deposit carried load 0.69) NeedEquipment(bandages BLOCKED 0.50) NeedLogs(logs 0.40) NeedTraining(Carpentry BLOCKED 0.39) NeedTraining(Healing BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.37) NeedTrade(sell to a player 0.37) NeedGold(sell surplus BLOCKED 0.37) NeedTraining(Tactics BLOCKED 0.35) NeedSkillTraining(Carpentry 0.30) NeedTraining(Swordsmanship BLOCKED 0.28) NeedTraining(Lumberjacking BLOCKED 0.27) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools d
+[22:26:04.390] INFO  [life]   score=166.8
+[22:26:04.390] INFO  [life]   reason: NeedBank urgency 0.69 x 240 = 166.8
+[22:26:04.390] INFO  [life]   reason: weight=120/127 (94%) logs=31
+[22:26:04.390] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[22:26:04.390] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (11 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[22:26:04.390] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Carpentry 2.8 -> 100.0)
+[22:26:04.390] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[22:26:07.694] INFO  [m6a] [survival] hp 25/25 (100%) -> fight
+[22:26:12.702] INFO  [m6a] [survival] hp 25/25 (100%) -> fight

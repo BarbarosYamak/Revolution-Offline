@@ -1,0 +1,308 @@
+[22:24:51.652] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='p0b'
+[22:24:51.653] LOG   [p0b] event session_start: text log opened
+[22:24:51.653] LOG   [p0b] event net_connect_begin: connect 127.0.0.1:2593
+[22:24:51.653] INFO  [p0b] [net] connecting to 127.0.0.1:2593 ...
+[22:24:51.654] LOG   [p0b] event net_connected: connect 127.0.0.1:2593
+[22:24:51.654] INFO  [p0b] [net] connected.
+[22:24:51.654] INFO  [p0b] [seed] sent 0x7F000001 (plaintext)
+[22:24:51.654] LOG   [p0b] event seed_out: 0x7F000001 hex=7f000001
+[22:24:51.654] INFO  [life] loaded persistent state for Ysolde (0 places, 1 suppliers, 8 events, 0 prior sessions)
+[22:24:51.655] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[22:24:51.655] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[22:24:51.655] INFO  [p0b] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[22:24:51.655] INFO  [p0b] [0xA8] 1 server(s):
+[22:24:51.655] INFO  [p0b]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:24:51.661] INFO  [p0b] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[22:24:51.661] LOG   [p0b] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[22:24:51.661] INFO  [p0b] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:24:51.661] LOG   [p0b] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:24:51.662] INFO  [p0b] [0xB9] server features = 0x0005
+[22:24:51.662] INFO  [p0b] [0xA9] 5 slot(s) (populated 1):
+[22:24:51.662] INFO  [p0b]   [0] Ysolde
+[22:24:51.662] INFO  [p0b]   [1] <empty>
+[22:24:51.662] INFO  [p0b]   [2] <empty>
+[22:24:51.662] INFO  [p0b]   [3] <empty>
+[22:24:51.662] INFO  [p0b]   [4] <empty>
+[22:24:51.662] INFO  [p0b] [ui] playing slot 0 ('Ysolde')
+[22:24:51.677] INFO  [p0b] [0x1B] serial=0x00014261 body=0x0190 pos=(1486,1548,70)
+[22:24:51.677] LOG   [p0b] event login_confirm: serial=0x00014261 body=0x0190 pos=(1486,1548,70)
+[22:24:51.677] INFO  [p0b] [0x20] player @(1486,1548,70) facing=6
+[22:24:51.677] INFO  [p0b] [0x55] login complete — entering world
+[22:24:51.677] LOG   [p0b] event in_world: 0x55 received
+[22:24:51.677] INFO  [p0b] [backpack] opening 0x4001425D
+[22:24:51.677] INFO  [p0b] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:24:51.677] INFO  [p0b] [chat ascii] System: There are 0 other players here.
+[22:24:51.677] INFO  [p0b] [chat ascii] System: Last logged: 2026/08/28 22:21:28
+[22:24:51.677] INFO  [p0b] [chat ascii] System: You are under the protection of the city guards
+[22:24:51.681] INFO  [p0b] [action] requesting the skill list
+[22:24:51.681] INFO  [life] in world; asked the server for the skill list
+[22:24:51.681] INFO  [p0b] [0x24] open container 0x4001425D gump=60
+[22:24:51.681] INFO  [p0b] [0x3C] container contents: 12 item(s)
+[22:24:51.681] LOG   [p0b] event backpack_contents: serial=0x4001425D items=12
+[22:24:54.278] INFO  [p0b] [bot] world data loaded (0 blacklisted spot(s)).
+[22:24:54.278] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[22:24:54.278] INFO  [life]   gold         persisted=92         server=92         -> server value accepted
+[22:24:54.278] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[22:24:54.278] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[22:24:54.278] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[22:24:54.278] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[22:24:54.278] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[22:24:54.278] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[22:24:54.278] INFO  [life]   position     persisted=1491,1545  server=1486,1548  -> server value accepted
+[22:24:54.278] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:24:54.278] INFO  [life]   restored objective KEPT: BUY_SUPPLIES (progress 0)
+[22:24:54.278] INFO  [p0b] [survival] on
+[22:24:54.278] LOG   [p0b] event survival_mode: on
+[22:24:54.280] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[22:24:54.280] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:24:54.333] INFO  [life] supplies: looking for a 'mage' to sell 2 i_scroll_blank (trip 1)
+[22:24:54.333] INFO  [p0b] [travel] Britain mage -> (1485,1550) r=5 from (1486,1548)
+[22:24:54.333] LOG   [p0b] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1486,1548)
+[22:24:54.333] INFO  [p0b] [travel] mode walk             usable   <- chosen
+[22:24:54.333] INFO  [p0b] [travel] mode moongate         usable
+[22:24:54.333] INFO  [p0b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:24:54.333] INFO  [p0b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:24:54.333] LOG   [p0b] event travel_mode: walk
+[22:24:54.333] INFO  [p0b] [travel] plan Britain mage: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:24:54.395] INFO  [p0b] [action] goto (1485,1550) from (1486,1548,70)
+[22:24:54.395] LOG   [p0b] event goto_start: target=(1485,1550) from=(1486,1548)
+[22:24:54.395] INFO  [p0b] [bot] running from (1486,1548,70) to (1485,1550,z30)
+[22:24:54.395] INFO  [p0b] [bot] planning path to (1485,1550) in background
+[22:24:54.456] INFO  [p0b] [bot] replan to (1485,1550): 19 steps in 1295.5us
+[22:24:54.656] INFO  [p0b] [chat ascii] System: Loradan has arrived in Yew.
+[22:24:58.930] INFO  [p0b] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 99.0us
+[22:24:59.313] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:00.034] INFO  [p0b] [travel] Britain mage ARRIVED at (1484,1548,40)
+[22:25:00.034] LOG   [p0b] event travel_done: label='Britain mage' ok=1 at=(1484,1548) legs=1 plans=1 why=''
+[22:25:00.096] INFO  [life] supplies: arrived at 1484,1548 -- asking who is here
+[22:25:00.096] INFO  [p0b] [action] scanning nearby mobiles for names
+[22:25:00.096] INFO  [p0b] [action] requested 4 paperdoll(s) for trade titles
+[22:25:00.112] INFO  [p0b] [mobiles] nearby (4):
+[22:25:00.112] INFO  [p0b]   Shunnar 0x0000E14F
+[22:25:00.112] INFO  [p0b]   Xanthe 0x00001211
+[22:25:00.112] INFO  [p0b]   Caedmon 0x000012EE
+[22:25:00.112] INFO  [p0b]   Alenne 0x00001145
+[22:25:00.112] INFO  [p0b] [0x20] player @(1484,1548,37) facing=1
+[22:25:00.112] INFO  [p0b] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[22:25:00.112] INFO  [p0b] [world] Caedmon, the mage guildmaster is a mage at (1488,1545)
+[22:25:00.112] INFO  [p0b] [0x20] player @(1484,1548,37) facing=2
+[22:25:00.112] INFO  [p0b] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[22:25:00.112] INFO  [p0b] [world] Xanthe, the alchemist is a alchemist at (1486,1548)
+[22:25:00.112] INFO  [p0b] [0x20] player @(1484,1548,37) facing=3
+[22:25:00.112] INFO  [p0b] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[22:25:00.112] INFO  [p0b] [world] Alenne, the mage is a mage at (1488,1551)
+[22:25:00.112] INFO  [p0b] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[22:25:00.112] INFO  [p0b] [world] Shunnar, the scribe is a scribe at (1485,1549)
+[22:25:00.112] INFO  [p0b] [0x21] stale reject seq=24 (block already handled); pose resynced
+[22:25:02.598] INFO  [p0b] [travel] vendor -> (1487,1551) r=1 from (1484,1548)
+[22:25:02.598] LOG   [p0b] event travel_start: label='vendor' target=(1487,1551) radius=1 from=(1484,1548)
+[22:25:02.598] INFO  [p0b] [travel] mode walk             usable   <- chosen
+[22:25:02.598] INFO  [p0b] [travel] mode moongate         usable
+[22:25:02.598] INFO  [p0b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:02.598] INFO  [p0b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:02.598] LOG   [p0b] event travel_mode: walk
+[22:25:02.598] INFO  [p0b] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[22:25:02.661] INFO  [p0b] [action] goto finished at (1484,1548,37); target (1485,1550); stopped short (off by 3 tile(s))
+[22:25:02.661] LOG   [p0b] event goto_done: at=(1484,1548) target=(1485,1550) arrived=0 off=3
+[22:25:02.661] INFO  [p0b] [action] goto (1487,1551) from (1484,1548,37)
+[22:25:02.661] LOG   [p0b] event goto_start: target=(1487,1551) from=(1484,1548)
+[22:25:02.661] INFO  [p0b] [bot] running from (1484,1548,37) to (1487,1551)
+[22:25:02.661] INFO  [p0b] [bot] planning path to (1487,1551) in background
+[22:25:02.721] INFO  [p0b] [bot] replan to (1487,1551): 20 steps in 3093.7us
+[22:25:04.368] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:09.140] INFO  [p0b] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[22:25:09.140] INFO  [p0b] [chat ascii] System: Opening door...
+[22:25:09.389] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:10.128] INFO  [p0b] [travel] vendor ARRIVED at (1486,1550,70)
+[22:25:10.128] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1486,1550) legs=1 plans=1 why=''
+[22:25:10.145] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1486,1551)
+[22:25:10.145] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1486,1551)
+[22:25:10.145] INFO  [p0b] [travel] mode walk             usable   <- chosen
+[22:25:10.145] INFO  [p0b] [travel] mode moongate         usable
+[22:25:10.145] INFO  [p0b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:25:10.145] INFO  [p0b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:25:10.145] LOG   [p0b] event travel_mode: walk
+[22:25:10.145] INFO  [p0b] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:25:10.994] INFO  [p0b] [bot] arrived at (1487,1551,70)
+[22:25:10.994] INFO  [p0b] [action] goto finished at (1487,1551,70); target (1487,1551); ARRIVED (off by 0 tile(s))
+[22:25:10.994] LOG   [p0b] event goto_done: at=(1487,1551) target=(1487,1551) arrived=1 off=0
+[22:25:10.994] INFO  [p0b] [action] goto (1484,1551) from (1487,1551,70)
+[22:25:10.994] LOG   [p0b] event goto_start: target=(1484,1551) from=(1487,1551)
+[22:25:10.994] INFO  [p0b] [bot] running from (1487,1551,70) to (1484,1551)
+[22:25:10.994] INFO  [p0b] [bot] planning path to (1484,1551) in background
+[22:25:11.055] INFO  [p0b] [bot] replan to (1484,1551): 3 steps in 66.3us
+[22:25:11.425] INFO  [p0b] [bot] door ahead at (1485,1551,z70); OpenDoor before step
+[22:25:11.440] INFO  [p0b] [chat ascii] System: Opening door...
+[22:25:12.198] INFO  [p0b] [travel] vendor ARRIVED at (1485,1551,70)
+[22:25:12.198] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=1 plans=1 why=''
+[22:25:12.259] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[22:25:12.259] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[22:25:12.259] INFO  [p0b] [travel] vendor ARRIVED at (1485,1551,70)
+[22:25:12.259] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[22:25:12.631] INFO  [p0b] [bot] arrived at (1484,1551,70)
+[22:25:14.262] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:14.262] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:14.262] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:14.262] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:14.446] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:16.294] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:16.294] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:16.294] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:16.294] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:18.323] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:18.323] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:18.323] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:18.323] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:19.462] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:20.381] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:20.381] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:20.381] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:20.381] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:22.441] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:22.441] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:22.441] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:22.441] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:24.484] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:24.484] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:24.484] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:24.484] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:24.484] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:26.495] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:26.495] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:26.495] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:26.495] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:28.534] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:28.534] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:28.534] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:28.534] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:29.485] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:30.559] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:30.559] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:30.559] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:30.559] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:32.560] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:32.560] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:32.560] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:32.560] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:34.546] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:34.608] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:34.608] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:34.608] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:34.608] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:36.655] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:36.655] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:36.655] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:36.655] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:38.668] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:38.668] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:38.668] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:38.669] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:39.557] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:40.723] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:40.723] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:40.723] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:40.723] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:42.740] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:42.741] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:42.741] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:42.741] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:44.611] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:44.796] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:44.796] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:44.796] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:44.796] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:46.821] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:46.821] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:46.821] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:46.821] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:48.874] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:48.874] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:48.875] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:48.875] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:49.646] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:50.898] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:50.898] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:50.898] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:50.898] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:52.930] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:52.930] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:52.930] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:52.930] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:54.314] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[22:25:54.681] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:25:54.987] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:54.987] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:54.987] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:54.987] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:57.031] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:57.031] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:57.031] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:57.031] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:59.085] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:25:59.085] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:25:59.085] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:25:59.085] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:25:59.702] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:26:01.101] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:26:01.101] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:26:01.101] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:01.101] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:03.130] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:26:03.130] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:26:03.130] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:03.130] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:04.757] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:26:05.192] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:26:05.192] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:26:05.192] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:05.192] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:07.251] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:26:07.251] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:26:07.251] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:07.251] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:09.290] INFO  [p0b] [travel] vendor -> (1484,1551) r=1 from (1484,1551)
+[22:26:09.290] LOG   [p0b] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1484,1551)
+[22:26:09.290] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:09.290] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:09.765] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:26:11.331] INFO  [p0b] [travel] vendor -> (1485,1551) r=1 from (1484,1551)
+[22:26:11.331] LOG   [p0b] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1484,1551)
+[22:26:11.331] INFO  [p0b] [travel] vendor ARRIVED at (1484,1551,70)
+[22:26:11.331] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:26:13.377] INFO  [p0b] [travel] vendor -> (1486,1551) r=1 from (1484,1551)
+[22:26:13.377] LOG   [p0b] event travel_start: label='vendor' target=(1486,1551) radius=1 from=(1484,1551)
+[22:26:13.377] INFO  [p0b] [travel] mode walk             usable   <- chosen
+[22:26:13.377] INFO  [p0b] [travel] mode moongate         usable
+[22:26:13.377] INFO  [p0b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:26:13.377] INFO  [p0b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:26:13.377] LOG   [p0b] event travel_mode: walk
+[22:26:13.377] INFO  [p0b] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:26:13.438] INFO  [p0b] [action] goto finished at (1484,1551,70); target (1484,1551); ARRIVED (off by 0 tile(s))
+[22:26:13.438] LOG   [p0b] event goto_done: at=(1484,1551) target=(1484,1551) arrived=1 off=0
+[22:26:13.438] INFO  [p0b] [action] goto (1486,1551) from (1484,1551,70)
+[22:26:13.438] LOG   [p0b] event goto_start: target=(1486,1551) from=(1484,1551)
+[22:26:13.438] INFO  [p0b] [bot] running from (1484,1551,70) to (1486,1551)
+[22:26:13.438] INFO  [p0b] [bot] planning path to (1486,1551) in background
+[22:26:13.499] INFO  [p0b] [bot] replan to (1486,1551): 2 steps in 29.6us
+[22:26:13.928] INFO  [p0b] [travel] vendor ARRIVED at (1485,1551,70)
+[22:26:13.928] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=1 plans=1 why=''
+[22:26:14.191] INFO  [p0b] [bot] arrived at (1486,1551,70)
+[22:26:14.803] INFO  [p0b] [survival] hp 10/10 (100%) -> fight
+[22:26:15.383] INFO  [p0b] [travel] vendor -> (1488,1551) r=1 from (1486,1551)
+[22:26:15.383] LOG   [p0b] event travel_start: label='vendor' target=(1488,1551) radius=1 from=(1486,1551)
+[22:26:15.383] INFO  [p0b] [travel] mode walk             usable   <- chosen
+[22:26:15.383] INFO  [p0b] [travel] mode moongate         usable
+[22:26:15.383] INFO  [p0b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:26:15.383] INFO  [p0b] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:26:15.383] LOG   [p0b] event travel_mode: walk
+[22:26:15.383] INFO  [p0b] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:26:15.445] INFO  [p0b] [action] goto finished at (1486,1551,70); target (1486,1551); ARRIVED (off by 0 tile(s))
+[22:26:15.446] LOG   [p0b] event goto_done: at=(1486,1551) target=(1486,1551) arrived=1 off=0
+[22:26:15.446] INFO  [p0b] [action] goto (1488,1551) from (1486,1551,70)
+[22:26:15.446] LOG   [p0b] event goto_start: target=(1488,1551) from=(1486,1551)
+[22:26:15.446] INFO  [p0b] [bot] running from (1486,1551,70) to (1488,1551)
+[22:26:15.446] INFO  [p0b] [bot] planning path to (1488,1551) in background
+[22:26:15.505] INFO  [p0b] [bot] replan to (1488,1551): 2 steps in 55.5us
+[22:26:15.892] INFO  [p0b] [travel] vendor ARRIVED at (1487,1551,70)
+[22:26:15.892] LOG   [p0b] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=1 plans=1 why=''
+[22:26:15.969] INFO  [p0b] [bot] arrived at (1488,1551,70)

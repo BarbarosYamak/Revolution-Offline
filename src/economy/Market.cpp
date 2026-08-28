@@ -269,14 +269,38 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
         }
     }
 
-    for (const std::string& needed : inputs) {
-        for (const GoldEntry& e : ledger.entries) {
-            if (e.flow != GoldFlow::DestroyedVendorPurchase) continue;
-            if (e.detail != needed) continue;
-            out.refusal = faucet::Refusal::EconomicRouteBlocked;
-            out.reason = "its inputs were bought from an NPC -- selling the "
-                         "result back to one would be a closed vendor loop";
-            return out;
+    // A DOCUMENTED FAUCET OUTRANKS THE HEURISTIC.
+    //
+    // The loop test below is a guess about routes nobody has evidence for. It
+    // is not entitled to overrule a route Revolution's own players describe,
+    // and it did: a scribe wrote nine poison scrolls and refused to sell any
+    // of them, because it had bought the blanks from the same mage. But
+    // buying blanks and reagents from a vendor, writing scrolls and selling
+    // them back is EXACTLY what the forum record describes --
+    //
+    //   "people were scribing scroll and selling scrolls to vendor make money"
+    //
+    // -- and scribing is one of the three named taps where gold enters this
+    // shard, beside fishing and mob loot (docs/REVOLUTION_ECONOMY_FORUM_
+    // EVIDENCE.md). The skill and the time are what the margin pays for.
+    //
+    // So the heuristic applies only where history is silent. Where the
+    // registry says Confirmed, the shard has already answered.
+    const bool historyConfirms =
+        allowedRoute && allowedRoute->history == faucet::HistoryEvidence::Confirmed;
+
+    if (!historyConfirms) {
+        for (const std::string& needed : inputs) {
+            for (const GoldEntry& e : ledger.entries) {
+                if (e.flow != GoldFlow::DestroyedVendorPurchase) continue;
+                if (e.detail != needed) continue;
+                out.refusal = faucet::Refusal::EconomicRouteBlocked;
+                out.reason = "its inputs were bought from an NPC and nothing "
+                             "on record says this shard allowed that route -- "
+                             "selling the result back would be a closed "
+                             "vendor loop";
+                return out;
+            }
         }
     }
 
@@ -312,12 +336,12 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_fish_big_2",         "fisher"},
     {"i_fish_big_3",         "fisher"},
     {"i_fish_big_4",         "fisher"},
-    // THE COOK, AND ONLY THE COOK, buys a fish steak. The owner said the
-    // fisher took steaks too and this listed both; TNS's own tables say
-    // otherwise and they are what the shard now runs -- VENDOR_B_FISHER
-    // (tm_vend.scp) buys i_fish_small and i_fish_big_1..4 and stops there,
-    // while VENDOR_B_COOK buys those AND i_fish_cut_raw. Listing a buyer that
-    // will not buy sends a loaded character across a city for nothing.
+    // BOTH TRADES buy the steak and the cooked steak. I had cut the fisher
+    // out of this on the strength of TNS's stock BUY rows, which is a fair
+    // reading of a file and a poor one of a shard: the owner is the authority
+    // on what Revolution did, and the tables have been corrected to match
+    // (tm_vend.scp, VENDOR_B_FISHER and VENDOR_B_COOK, 2026-08-28).
+    {"i_fish_cut_raw",       "fisher"},
     {"i_fish_cut_raw",       "cook"},
     {"i_fish_cut_cooked",    "fisher"},
     {"i_fish_cut_cooked",    "cook"},

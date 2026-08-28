@@ -345,6 +345,11 @@ struct Observation {
     bool weaponEquipped = false;
 
     // What is happening around us, as the client can see it.
+    // Has the market just been tried and found empty? A character that has
+    // shouted its wares to nobody does not keep shouting -- it goes back to
+    // work and tries again later. Without this the trade errand outranked
+    // everything a solo character could actually finish and starved it.
+    bool marketQuiet = false;
     i32  hostilesNear = 0;
     i32  attackersOnMe = 0;
     bool underAttack = false;
@@ -417,6 +422,12 @@ struct CraftIntent {
 };
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch);
+
+// Does this life go looking for fights, or only finish the ones that find it?
+// Read off the build -- a profession that wants MORE than the 50.0 creation
+// grant in a weapon school intends to use it. Shared because two systems ask:
+// the need model (is there a reason to travel?) and the goal that travels.
+bool WantsToHunt(const prof::Profession& p);
 
 int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
                    i32 trainerCeilingTenths);
