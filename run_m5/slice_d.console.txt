@@ -110,3 +110,102 @@
 [17:05:00.775] INFO  [slice_d] [bot] replan to (760,776): 36 steps in 13955.8us
 [17:05:04.190] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
 [17:05:09.202] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:12.228] INFO  [slice_d] [bot] arrived at (760,776,0)
+[17:05:12.229] INFO  [slice_d] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[17:05:12.229] LOG   [slice_d] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[17:05:12.229] INFO  [slice_d] [action] goto (776,760) from (760,776,0)
+[17:05:12.229] LOG   [slice_d] event goto_start: target=(776,760) from=(760,776)
+[17:05:12.229] INFO  [slice_d] [bot] running from (760,776,0) to (776,760)
+[17:05:12.229] INFO  [slice_d] [bot] planning path to (776,760) in background
+[17:05:12.288] INFO  [slice_d] [bot] replan to (776,760): 20 steps in 2477.9us
+[17:05:14.207] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:19.233] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:20.139] INFO  [slice_d] [bot] arrived at (776,760,0)
+[17:05:20.140] INFO  [slice_d] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[17:05:20.140] LOG   [slice_d] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[17:05:20.140] INFO  [slice_d] [action] goto (771,752) from (776,760,0)
+[17:05:20.140] LOG   [slice_d] event goto_start: target=(771,752) from=(776,760)
+[17:05:20.140] INFO  [slice_d] [bot] running from (776,760,0) to (771,752)
+[17:05:20.140] INFO  [slice_d] [bot] planning path to (771,752) in background
+[17:05:20.200] INFO  [slice_d] [bot] replan to (771,752): 8 steps in 74.8us
+[17:05:23.649] INFO  [slice_d] [gump] 0x400028B7 context=0x80A00438: 13 option(s), 15 text(s)
+[17:05:23.649] INFO  [slice_d] [gump]   button 1000 = 'OKAY'
+[17:05:23.649] INFO  [slice_d] [gump]   button 0 = 'CANCEL'
+[17:05:23.649] INFO  [slice_d] [gump]   button 1 = 'Felucca'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 1 = 'Moonglow'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 2 = 'Britain'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 3 = 'Jhelom'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 4 = 'Yew'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 5 = 'New Magincia'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 6 = 'Minoc'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 7 = 'Trinsic'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 8 = 'Skara Brae'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 9 = 'Buccaneer's Den'
+[17:05:23.649] INFO  [slice_d] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:05:23.649] INFO  [slice_d] [gump]   text 0 = 'Pick your destination:'
+[17:05:23.649] INFO  [slice_d] [gump]   text 1 = 'OKAY'
+[17:05:23.649] INFO  [slice_d] [gump]   text 2 = 'CANCEL'
+[17:05:23.649] INFO  [slice_d] [gump]   text 3 = 'Felucca'
+[17:05:23.649] INFO  [slice_d] [gump]   text 4 = 'Felucca'
+[17:05:23.649] INFO  [slice_d] [gump]   text 5 = 'Moonglow'
+[17:05:23.649] INFO  [slice_d] [gump]   text 6 = 'Britain'
+[17:05:23.649] INFO  [slice_d] [gump]   text 7 = 'Jhelom'
+[17:05:23.649] INFO  [slice_d] [gump]   text 8 = 'Yew'
+[17:05:23.649] INFO  [slice_d] [gump]   text 9 = 'New Magincia'
+[17:05:23.649] INFO  [slice_d] [gump]   text 10 = 'Minoc'
+[17:05:23.649] INFO  [slice_d] [gump]   text 11 = 'Trinsic'
+[17:05:23.649] INFO  [slice_d] [gump]   text 12 = 'Skara Brae'
+[17:05:23.649] INFO  [slice_d] [gump]   text 13 = 'Buccaneer's Den'
+[17:05:23.649] INFO  [slice_d] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:05:23.649] LOG   [slice_d] event gump_open: serial=0x400028B7 context=0x80A00438 options=13
+[17:05:23.649] INFO  [slice_d] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[17:05:23.649] LOG   [slice_d] event moongate_use: destination='Britain' choice=2 button=1000
+[17:05:23.649] INFO  [slice_d] [bot] arrived at (771,752,5)
+[17:05:23.650] INFO  [slice_d] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[17:05:23.650] LOG   [slice_d] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[17:05:23.650] INFO  [slice_d] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[17:05:23.650] INFO  [slice_d] [0x20] player @(1336,1997,5) facing=7
+[17:05:23.650] INFO  [slice_d] [0x20] player @(1336,1997,5) facing=7
+[17:05:23.663] INFO  [slice_d] [chat ascii] System: You can't see the target
+[17:05:23.972] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak28.doran/state.json
+[17:05:24.031] INFO  [slice_d] [action] goto (1336,1960) from (1336,1997,5)
+[17:05:24.031] LOG   [slice_d] event goto_start: target=(1336,1960) from=(1336,1997)
+[17:05:24.031] INFO  [slice_d] [bot] running from (1336,1997,5) to (1336,1960)
+[17:05:24.031] INFO  [slice_d] [bot] planning path to (1336,1960) in background
+[17:05:24.093] INFO  [slice_d] [bot] replan to (1336,1960): 37 steps in 19363.8us
+[17:05:24.291] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:24.366] INFO  [slice_d] [chat ascii] System: You have been revealed
+[17:05:29.316] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:34.352] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:36.461] INFO  [slice_d] [bot] arrived at (1336,1960,0)
+[17:05:36.462] INFO  [slice_d] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[17:05:36.462] LOG   [slice_d] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[17:05:36.462] INFO  [slice_d] [action] goto (1336,1928) from (1336,1960,0)
+[17:05:36.462] LOG   [slice_d] event goto_start: target=(1336,1928) from=(1336,1960)
+[17:05:36.462] INFO  [slice_d] [bot] running from (1336,1960,0) to (1336,1928)
+[17:05:36.462] INFO  [slice_d] [bot] planning path to (1336,1928) in background
+[17:05:36.524] INFO  [slice_d] [bot] replan to (1336,1928): 33 steps in 10728.0us
+[17:05:39.399] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:44.411] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:47.064] INFO  [slice_d] [bot] arrived at (1336,1928,0)
+[17:05:47.064] INFO  [slice_d] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[17:05:47.064] LOG   [slice_d] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[17:05:47.065] INFO  [slice_d] [action] goto (1336,1896) from (1336,1928,0)
+[17:05:47.065] LOG   [slice_d] event goto_start: target=(1336,1896) from=(1336,1928)
+[17:05:47.065] INFO  [slice_d] [bot] running from (1336,1928,0) to (1336,1896)
+[17:05:47.065] INFO  [slice_d] [bot] planning path to (1336,1896) in background
+[17:05:47.124] INFO  [slice_d] [bot] replan to (1336,1896): 32 steps in 8412.7us
+[17:05:49.429] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:53.556] INFO  [slice_d] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 101.0us
+[17:05:54.273] INFO  [slice_d] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 112.4us
+[17:05:54.458] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:55.361] INFO  [slice_d] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=10 in 21.7us
+[17:05:59.222] INFO  [slice_d] [bot] arrived at (1336,1896,0)
+[17:05:59.223] INFO  [slice_d] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[17:05:59.223] LOG   [slice_d] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[17:05:59.223] INFO  [slice_d] [action] goto (1352,1864) from (1336,1896,0)
+[17:05:59.223] LOG   [slice_d] event goto_start: target=(1352,1864) from=(1336,1896)
+[17:05:59.223] INFO  [slice_d] [bot] running from (1336,1896,0) to (1352,1864)
+[17:05:59.223] INFO  [slice_d] [bot] planning path to (1352,1864) in background
+[17:05:59.282] INFO  [slice_d] [bot] replan to (1352,1864): 33 steps in 14114.1us
+[17:05:59.465] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight

@@ -451,7 +451,12 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // Arrival is a claim about the TILE, not about the journey. This is the
     // uo-offline site-discipline lesson: a bot that stops short and starts
     // chopping air hides its own failure.
-    if (!obs.atWorkSite && !obs.atBank) {
+    // Only for a life that HAS a work site to be away from. Without this gate
+    // a mage, which gathers nothing, was permanently "not at work" and kept
+    // generating a travel need toward a forest.
+    if (cfg.profession && cfg.profession->gathers.empty()) {
+        // nothing to travel to
+    } else if (!obs.atWorkSite && !obs.atBank) {
         add(NeedKind::NeedTravel, 0.2, "a place where work is possible",
             "standing somewhere that is neither the work site nor the bank",
             Fmt("at=%d,%d work_site=0 bank=0", obs.x, obs.y));

@@ -127,6 +127,32 @@ wm::Service ServiceForTrade(const char* trade) {
     return wm::Service::GeneralVendor;
 }
 
+// What a life gathers, as the ATLAS names it. One table, so "where is my
+// work" is answered from the world model for every profession instead of
+// TreeCount standing in for all of them.
+//
+// The atlas already files every one of these: atlasgen reads the mine and dock
+// AREADEF names and measures foliage density off the client's own statics, so
+// twenty docks come through tagged resources=fishing and the mines likewise.
+// Nothing needed adding to the data -- only to the code that had been asking
+// it one question on behalf of every character.
+struct GatherKind {
+    const char*      gathers;   // Profession::gathers
+    wm::ResourceKind kind;
+};
+const GatherKind kGatherKinds[] = {
+    {"logs", wm::ResourceKind::Lumber},
+    {"ore",  wm::ResourceKind::Mining},
+    {"fish", wm::ResourceKind::Fishing},
+};
+
+wm::ResourceKind ResourceKindFor(const std::string& gathers) {
+    for (const GatherKind& g : kGatherKinds) {
+        if (gathers == g.gathers) return g.kind;
+    }
+    return wm::ResourceKind::None;
+}
+
 // The two hand layers. Which one an item lands on is decided by THIS SHARD'S
 // tiledata, not by generic UO: the newbie katana wears on layer 1 and the
 // hatchet wears on layer 2, so a bot that hardcodes "the weapon layer" gets
@@ -404,7 +430,22 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // Arrival is a claim about the TILE. `TreeCount` asks the shard's own
     // statics whether there is anything here to chop, which travel success
     // does not answer (see docs/UOOFFLINE_BEHAVIOR_AUDIT.md section 3.6).
-    obs.atWorkSite = client.TreeCount(obs.x, obs.y, cfg_.searchRadius) > 0;
+    // AM I WHERE MY WORK IS -- for THIS life. TreeCount answered on behalf of
+    // every profession, so a miner at its vein, a mage in its tower and a
+    // fisher on a dock were all told they were "not at work" and sent hiking
+    // toward the nearest forest looking for logs they had no use for.
+    const std::string gathers =
+        needCfg_.profession ? needCfg_.profession->gathers : std::string("logs");
+    if (gathers == "fish") {
+        Client::WaterHit w;
+        obs.atWorkSite = client.NearestWater(obs.x, obs.y, 4, &w);
+    } else if (gathers.empty()) {
+        // A life that gathers nothing is never away from its work: a mage or
+        // an alchemist works wherever it happens to be standing.
+        obs.atWorkSite = true;
+    } else {
+        obs.atWorkSite = client.TreeCount(obs.x, obs.y, cfg_.searchRadius) > 0;
+    }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
@@ -643,15 +684,25 @@ void Runner::SeedCommonKnowledge(Client& client, i64 nowMs) {
     if (state_.memory.HasEvent("common_knowledge_seeded")) return;
     if (!client.WorldKnowledgeReady()) return;
 
+    // SEED WHAT THIS LIFE GATHERS. Every character was seeded with forest
+    // hints regardless of profession -- a miner learned three woods it would
+    // never chop and no mine at all, and a fisher no dock.
+    const std::string gathers =
+        needCfg_.profession ? needCfg_.profession->gathers : std::string("logs");
+    if (gathers.empty()) return;      // a mage gathers nothing; seed nothing
+    const wm::ResourceKind kind = ResourceKindFor(gathers);
+    if (kind == wm::ResourceKind::None) return;
+
     std::vector<const wm::Place*> forests;
-    client.ResourcePlacesNear(wm::ResourceKind::Lumber, client.PlayerX(),
+    client.ResourcePlacesNear(kind, client.PlayerX(),
                               client.PlayerY(), forests);
     if (forests.empty()) return;
 
     int seeded = 0;
     for (const wm::Place* p : forests) {
         if (seeded >= kSeedHints) break;
-        state_.memory.HintResource("logs", p->name.c_str(), p->position.x,
+        state_.memory.HintResource(gathers.c_str(), p->name.c_str(),
+                                   p->position.x,
                                    p->position.y, p->position.z, nowMs);
         LogLine("common knowledge: %s at %d,%d (%d tiles away)", p->name.c_str(),
                 p->position.x, p->position.y,
@@ -659,10 +710,10 @@ void Runner::SeedCommonKnowledge(Client& client, i64 nowMs) {
                          client.PlayerY()));
         ++seeded;
     }
-    state_.memory.NoteEvent("common_knowledge_seeded", "nearest named forests",
+    state_.memory.NoteEvent("common_knowledge_seeded", gathers.c_str(),
                             "", client.PlayerX(), client.PlayerY(), nowMs);
-    LogLine("seeded %d forest hint(s) of %zu the atlas knows -- everything else "
-            "is earned", seeded, forests.size());
+    LogLine("seeded %d %s hint(s) of %zu the atlas knows -- everything else "
+            "is earned", seeded, gathers.c_str(), forests.size());
 }
 
 void Runner::LearnFromObservation(Client& client, const Observation& obs) {
@@ -3177,10 +3228,14 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
                 travelInFlight_ =
                     client.TravelToPoint(known->x, known->y, 3, "fishing spot");
             } else {
-                LogLine("fish: looking for water (trip %d)", fishTrips_);
+                // A DOCK, not a fisherman's SHOP. The atlas already files
+                // twenty docks with resources=fishing (atlasgen reads the dock
+                // AREADEF names), and that is where the water is. Travelling
+                // to the shop put the character in a building next to a
+                // counter -- the right trade, the wrong place entirely.
+                LogLine("fish: looking for a dock (trip %d)", fishTrips_);
                 travelInFlight_ =
-                    client.TravelToService(wm::Service::Fisherman,
-                                           state_.homeCity.c_str());
+                    client.TravelToResource(wm::ResourceKind::Fishing);
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=FISH reason=\"%s\"",
@@ -3225,6 +3280,12 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
 
 bool Runner::DoTravel(Client& client, const Observation& obs) {
     if (obs.atWorkSite || obs.atBank) return true;
+    // WHERE THIS LIFE'S WORK IS. This body walked every character toward a
+    // forest -- a miner, a mage and a fisher included -- because the need it
+    // answers had no profession gate and the destination was Lumber.
+    const std::string gathers =
+        needCfg_.profession ? needCfg_.profession->gathers : std::string("logs");
+    if (gathers.empty()) return true;   // nothing to travel to; work is here
     if (client.TravelBusy()) return false;
     if (travelAttempts_ >= 3) {
         LogLine("goal_failed=TRAVEL_TO_REQUIRED_PLACE reason=\"three trips did not arrive\"");
@@ -3234,11 +3295,13 @@ bool Runner::DoTravel(Client& client, const Observation& obs) {
     if (!travelInFlight_) {
         travelAttempts_++;
         const KnownResourceSource* stand =
-            state_.memory.BestResource("logs", obs.x, obs.y, obs.nowMs);
+            state_.memory.BestResource(gathers.c_str(), obs.x, obs.y,
+                                       obs.nowMs);
         if (stand) {
-            travelInFlight_ = client.TravelToPoint(stand->x, stand->y, 4, "forest");
+            travelInFlight_ =
+                client.TravelToPoint(stand->x, stand->y, 4, gathers.c_str());
         } else {
-            travelInFlight_ = client.TravelToResource(wm::ResourceKind::Lumber);
+            travelInFlight_ = client.TravelToResource(ResourceKindFor(gathers));
         }
         if (!travelInFlight_) {
             LogLine("travel: could not start (%s)", client.TravelFailureText());
