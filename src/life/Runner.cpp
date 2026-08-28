@@ -3208,7 +3208,19 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // RANGE=4 is the shard's own number, so a spot further than that is not a
     // spot at all. Searching a wider radius and then walking is the difference
     // between fishing and standing hopefully near a lake.
+    // RANGE=4 is the CAST range. Finding water is a wider search: a dock is a
+    // twelve-tile place and the character lands wherever the walk ended, not
+    // on the waterline. Look wide, then step to the edge, then cast.
     Client::WaterHit water;
+    if (client.NearestWater(obs.x, obs.y, 20, &water) &&
+        TileDist(obs.x, obs.y, water.x, water.y) > 4) {
+        if (client.GotoBusy()) return false;
+        LogLine("fish: water at %d,%d is %d tiles off -- stepping to the edge",
+                water.x, water.y, TileDist(obs.x, obs.y, water.x, water.y));
+        client.ActionGoto(water.x, water.y);
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
     if (!client.NearestWater(obs.x, obs.y, 4, &water)) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
@@ -3246,6 +3258,19 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
+        // ARRIVAL IS A CLAIM ABOUT THE TILE, and this one lies: a journey to
+        // the Britain dock reported ok=1 with legs=0 plans=0 while the
+        // character stood two hundred tiles away, so the goal re-travelled
+        // forever. GATHER_LOGS already learned this; FISH had not.
+        if (!client.NearestWater(client.PlayerX(), client.PlayerY(), 20, &water)) {
+            LogLine("fish: trip reported %s but there is no water within 20 "
+                    "tiles of %d,%d", client.TravelSucceeded() ? "success" : "failure",
+                    client.PlayerX(), client.PlayerY());
+            deadTargets_.emplace_back(client.PlayerX(), client.PlayerY());
+            if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 3000;
+        }
         return false;
     }
     fishTrips_ = 0;

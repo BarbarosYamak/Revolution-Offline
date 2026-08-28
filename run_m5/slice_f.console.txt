@@ -220,3 +220,238 @@
 [17:12:37.435] INFO  [slice_f] [bot] running from (1368,1864,0) to (1368,1832)
 [17:12:37.435] INFO  [slice_f] [bot] planning path to (1368,1832) in background
 [17:12:37.496] INFO  [slice_f] [bot] replan to (1368,1832): 39 steps in 4194.0us
+[17:12:42.382] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:47.409] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:47.912] INFO  [slice_f] [chat ascii] System: You shove raven out of the way.
+[17:12:50.177] INFO  [slice_f] [bot] arrived at (1368,1832,0)
+[17:12:50.177] INFO  [slice_f] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[17:12:50.177] LOG   [slice_f] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[17:12:50.177] INFO  [slice_f] [action] goto (1368,1800) from (1368,1832,0)
+[17:12:50.177] LOG   [slice_f] event goto_start: target=(1368,1800) from=(1368,1832)
+[17:12:50.177] INFO  [slice_f] [bot] running from (1368,1832,0) to (1368,1800)
+[17:12:50.177] INFO  [slice_f] [bot] planning path to (1368,1800) in background
+[17:12:50.238] INFO  [slice_f] [bot] replan to (1368,1800): 32 steps in 3424.0us
+[17:12:51.986] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak30.corwin/state.json
+[17:12:52.458] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:57.338] INFO  [slice_f] [bot] reject at (1371,1804): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[17:12:57.338] INFO  [slice_f] [bot] planning path to (1368,1800) in background
+[17:12:57.338] INFO  [slice_f] [bot] replan to (1368,1800): 5 steps in 181.0us
+[17:12:57.461] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:59.491] INFO  [slice_f] [bot] arrived at (1368,1800,3)
+[17:12:59.491] INFO  [slice_f] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:12:59.491] LOG   [slice_f] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:12:59.491] INFO  [slice_f] [action] goto (1402,1760) from (1368,1800,3)
+[17:12:59.491] LOG   [slice_f] event goto_start: target=(1402,1760) from=(1368,1800)
+[17:12:59.491] INFO  [slice_f] [bot] running from (1368,1800,3) to (1402,1760)
+[17:12:59.491] INFO  [slice_f] [bot] planning path to (1402,1760) in background
+[17:12:59.553] INFO  [slice_f] [bot] replan to (1402,1760): 79 steps in 40031.9us
+[17:13:02.517] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:07.531] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:12.576] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:17.608] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:18.881] INFO  [slice_f] [chat ascii] System: You are now under the protection of the city guards
+[17:13:22.635] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:23.113] INFO  [slice_f] [bot] arrived at (1402,1760,0)
+[17:13:23.114] INFO  [slice_f] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:13:23.114] LOG   [slice_f] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:13:23.114] INFO  [slice_f] [action] goto (1440,1754) from (1402,1760,0)
+[17:13:23.114] LOG   [slice_f] event goto_start: target=(1440,1754) from=(1402,1760)
+[17:13:23.114] INFO  [slice_f] [bot] running from (1402,1760,0) to (1440,1754)
+[17:13:23.114] INFO  [slice_f] [bot] planning path to (1440,1754) in background
+[17:13:23.175] INFO  [slice_f] [bot] replan to (1440,1754): 56 steps in 6739.4us
+[17:13:27.694] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:30.337] INFO  [slice_f] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=33 in 163.5us
+[17:13:32.738] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:37.549] INFO  [slice_f] [bot] lookahead patched around block at step 5: anchor=7 new segment=10 path=12 in 419.2us
+[17:13:37.764] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:39.145] INFO  [slice_f] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=5 in 94.3us
+[17:13:41.951] INFO  [slice_f] [bot] arrived at (1440,1754,-2)
+[17:13:41.952] INFO  [slice_f] [action] goto finished at (1440,1754,-2); target (1440,1754); ARRIVED (off by 0 tile(s))
+[17:13:41.952] LOG   [slice_f] event goto_done: at=(1440,1754) target=(1440,1754) arrived=1 off=0
+[17:13:41.952] INFO  [slice_f] [action] goto (1479,1757) from (1440,1754,-2)
+[17:13:41.952] LOG   [slice_f] event goto_start: target=(1479,1757) from=(1440,1754)
+[17:13:41.952] INFO  [slice_f] [bot] running from (1440,1754,-2) to (1479,1757)
+[17:13:41.952] INFO  [slice_f] [bot] planning path to (1479,1757) in background
+[17:13:42.012] INFO  [slice_f] [bot] replan to (1479,1757): 68 steps in 6176.1us
+[17:13:42.794] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:42.856] INFO  [slice_f] [bot] step (1440,1754,-2)->(1439,1755,-2) rejected; OpenDoor + retry
+[17:13:43.606] INFO  [slice_f] [bot] step (1440,1754,-2)->(1439,1755,-2) rejected; avoiding edge + rerouting
+[17:13:43.606] INFO  [slice_f] [bot] planning path to (1479,1757) in background
+[17:13:43.666] INFO  [slice_f] [bot] replan to (1479,1757): 69 steps in 6380.6us
+[17:13:47.835] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:52.000] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak30.corwin/state.json
+[17:13:52.859] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:57.914] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:13:58.235] INFO  [slice_f] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=21 in 454.7us
+[17:14:01.359] INFO  [slice_f] [travel] Docks ARRIVED at (1468,1750,0)
+[17:14:01.359] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=16 plans=1 why=''
+[17:14:01.482] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:01.482] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1468,1750)
+[17:14:01.482] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1468,1750)
+[17:14:01.482] INFO  [slice_f] [travel] Docks ARRIVED at (1468,1750,0)
+[17:14:01.482] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[17:14:01.483] INFO  [slice_f] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=12 in 589.0us
+[17:14:02.970] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:03.598] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:03.598] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1474,1756)
+[17:14:03.598] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1474,1756)
+[17:14:03.598] INFO  [slice_f] [travel] Docks ARRIVED at (1474,1756,-2)
+[17:14:03.598] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1474,1756) legs=0 plans=0 why=''
+[17:14:05.683] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:05.744] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:05.745] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:05.745] INFO  [life]   score=58.5
+[17:14:05.745] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:05.745] INFO  [life]   reason: carrying 0
+[17:14:05.745] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:05.745] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:05.745] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1478,1756)
+[17:14:05.745] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1478,1756)
+[17:14:05.745] INFO  [slice_f] [travel] Docks ARRIVED at (1478,1756,-2)
+[17:14:05.745] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1478,1756) legs=0 plans=0 why=''
+[17:14:05.760] INFO  [slice_f] [bot] arrived at (1479,1757,-2)
+[17:14:07.837] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:07.837] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:07.837] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:07.837] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:07.837] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:08.021] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:09.920] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:09.920] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:09.920] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:09.920] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:09.920] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:12.034] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:12.095] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:12.095] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:12.095] INFO  [life]   score=58.5
+[17:14:12.095] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:12.095] INFO  [life]   reason: carrying 0
+[17:14:12.095] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:12.095] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:12.095] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:12.095] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:12.095] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:12.095] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:13.079] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:14.187] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:14.187] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:14.187] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:14.187] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:14.187] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:16.275] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:16.275] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:16.275] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:16.275] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:16.275] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:18.116] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:18.361] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:18.423] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:18.423] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:18.423] INFO  [life]   score=58.5
+[17:14:18.423] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:18.423] INFO  [life]   reason: carrying 0
+[17:14:18.423] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:18.423] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:18.423] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:18.423] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:18.423] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:18.423] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:20.509] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:20.509] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:20.509] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:20.510] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:20.510] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:22.576] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:22.576] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:22.576] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:22.576] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:22.576] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:23.125] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:24.659] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:24.720] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:24.720] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:24.720] INFO  [life]   score=58.5
+[17:14:24.720] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:24.720] INFO  [life]   reason: carrying 0
+[17:14:24.720] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:24.721] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:24.721] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:24.721] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:24.721] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:24.721] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:26.804] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:26.804] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:26.804] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:26.804] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:26.804] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:28.149] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:28.881] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:28.881] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:28.881] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:28.881] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:28.881] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:30.979] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:31.040] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:31.040] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:31.040] INFO  [life]   score=58.5
+[17:14:31.040] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:31.040] INFO  [life]   reason: carrying 0
+[17:14:31.040] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:31.040] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:31.040] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:31.040] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:31.040] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:31.040] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:33.126] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:33.126] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:33.126] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:33.126] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:33.126] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:33.186] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:35.208] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:35.208] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:35.208] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:35.208] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:35.208] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:37.289] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:37.349] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:37.349] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:37.349] INFO  [life]   score=58.5
+[17:14:37.349] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:37.349] INFO  [life]   reason: carrying 0
+[17:14:37.349] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:37.350] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:37.350] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:37.350] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:37.350] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:37.350] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:38.205] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:39.423] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:39.423] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:39.423] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:39.423] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:39.423] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:41.492] INFO  [life] fish: looking for a dock (trip 3)
+[17:14:41.493] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:41.493] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:41.493] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:41.493] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:43.265] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:14:43.572] INFO  [life] goal_failed=FISH reason="no water within reach after 4 trips"
+[17:14:43.633] INFO  [life] goal=FISH reason="previous goal abandoned: no water reachable"
+[17:14:43.633] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:14:43.633] INFO  [life]   score=58.5
+[17:14:43.633] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:14:43.633] INFO  [life]   reason: carrying 0
+[17:14:43.633] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:14:43.633] INFO  [life] fish: looking for a dock (trip 1)
+[17:14:43.633] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:43.633] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:43.633] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:43.633] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
+[17:14:45.724] INFO  [life] fish: looking for a dock (trip 2)
+[17:14:45.724] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (1479,1757)
+[17:14:45.724] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1479,1757)
+[17:14:45.724] INFO  [slice_f] [travel] Docks ARRIVED at (1479,1757,-2)
+[17:14:45.724] LOG   [slice_f] event travel_done: label='Docks' ok=1 at=(1479,1757) legs=0 plans=0 why=''
