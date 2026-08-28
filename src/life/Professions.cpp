@@ -310,6 +310,10 @@ const std::vector<Profession>& All() {
             Profession p;
             p.id = "fisher";
             p.label = "Fisher";
+            // Fishing is the PRIMARY and leads, which is what the paperdoll
+            // title reads. Tested both orders live: the kit outcome is the
+            // same either way, so the ordering is a build decision rather
+            // than a workaround. See docs/M7.md on the missing pole.
             p.startSkillA = rules::kFishing;
             p.startSkillB = rules::kCooking;
             // Fishing pulls against STR for the catch and the carry; cooking

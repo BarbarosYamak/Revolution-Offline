@@ -286,6 +286,7 @@ private:
     i32 fishTrips_ = 0;
     bool fishCursorPending_ = false;
 
+    i32  toolGoldBefore_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;

@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include "uo/professions.h"
+#include "uo/rules.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -261,7 +262,20 @@ int main(int argc, char** argv) {
             base.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
             base.createSkill[1]    = pr->startSkillB;
             base.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
-            base.createSkill[2]    = 0;   // exactly two, never a third
+            // THE THIRD SLOT IS NOT OPTIONAL, and 0 is not "none".
+            //
+            // Source-X loops skSkill1..4 and looks up [NEWBIE <skill>] for
+            // each WITHOUT checking its value (CChar.cpp:2117-2143). Skill id
+            // 0 is ALCHEMY, so sending 0 as a filler silently granted the
+            // alchemy kit -- a mortar and bottles -- to every character this
+            // project has ever created. A live fisher's pack held them and no
+            // fishing pole, which is how it was finally caught.
+            //
+            // Remove Trap has no [NEWBIE ...] section on this shard, so the
+            // ResourceLock fails and Sphere skips the slot entirely. It is
+            // also INACTIVE on Revolution (M3.6), so it can never be mistaken
+            // for a real third choice at a glance.
+            base.createSkill[2]    = uo::rules::kRemoveTrap;
             base.createSkillVal[2] = 0;
         }
         if (base.createStr == 0) {
@@ -382,7 +396,8 @@ int main(int argc, char** argv) {
                 cfg.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
                 cfg.createSkill[1]    = pr->startSkillB;
                 cfg.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
-                cfg.createSkill[2]    = 0;
+                // Same trap as above: 0 is Alchemy, not "none".
+                cfg.createSkill[2]    = uo::rules::kRemoveTrap;
                 cfg.createSkillVal[2] = 0;
             }
             if (cfg.createStr == 0) {

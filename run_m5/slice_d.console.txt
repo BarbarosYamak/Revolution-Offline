@@ -1,0 +1,112 @@
+[17:04:21.254] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak28' char=Doran tag='slice_d'
+[17:04:21.255] LOG   [slice_d] event session_start: text log opened
+[17:04:21.256] LOG   [slice_d] event net_connect_begin: connect 127.0.0.1:2593
+[17:04:21.256] INFO  [slice_d] [net] connecting to 127.0.0.1:2593 ...
+[17:04:21.257] LOG   [slice_d] event net_connected: connect 127.0.0.1:2593
+[17:04:21.257] INFO  [slice_d] [net] connected.
+[17:04:21.257] INFO  [slice_d] [seed] sent 0x7F000001 (plaintext)
+[17:04:21.257] LOG   [slice_d] event seed_out: 0x7F000001 hex=7f000001
+[17:04:21.257] INFO  [life] no prior state for revolutionsoak28.doran: a new Fisher
+[17:04:21.257] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[17:04:21.257] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[17:04:21.257] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[17:04:21.257] INFO  [slice_d] [life] autonomous player active for 'Doran' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:04:21.293] INFO  [slice_d] [0xA8] 1 server(s):
+[17:04:21.293] INFO  [slice_d]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:04:21.309] INFO  [slice_d] [0x8C] game server = 127.0.0.1:2593  seed=0x463B895F
+[17:04:21.309] LOG   [slice_d] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x463B895F
+[17:04:21.309] INFO  [slice_d] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:04:21.309] LOG   [slice_d] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:04:21.309] INFO  [slice_d] [0xB9] server features = 0x0005
+[17:04:21.309] INFO  [slice_d] [0xA9] 5 slot(s) (populated 0):
+[17:04:21.309] INFO  [slice_d]   [0] <empty>
+[17:04:21.309] INFO  [slice_d]   [1] <empty>
+[17:04:21.309] INFO  [slice_d]   [2] <empty>
+[17:04:21.309] INFO  [slice_d]   [3] <empty>
+[17:04:21.309] INFO  [slice_d]   [4] <empty>
+[17:04:21.309] INFO  [slice_d] [0x00] requested skills 18:50 13:50 48:0
+[17:04:21.309] INFO  [slice_d] [0x00] requested stats STR 25 DEX 15 INT 10
+[17:04:21.309] INFO  [slice_d] [0x00] creating character 'Doran' in slot 0
+[17:04:21.309] LOG   [slice_d] event char_create_sent: Doran
+[17:04:21.327] INFO  [slice_d] [0x1B] serial=0x0000E164 body=0x0190 pos=(633,858,0)
+[17:04:21.327] LOG   [slice_d] event login_confirm: serial=0x0000E164 body=0x0190 pos=(633,858,0)
+[17:04:21.327] INFO  [slice_d] [0x20] player @(633,858,0) facing=3
+[17:04:21.327] INFO  [slice_d] [0x55] login complete — entering world
+[17:04:21.327] LOG   [slice_d] event in_world: 0x55 received
+[17:04:21.327] INFO  [slice_d] [backpack] opening 0x4000E161
+[17:04:21.327] INFO  [slice_d] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:04:21.327] INFO  [slice_d] [chat ascii] System: There is 1 other player here.
+[17:04:21.327] INFO  [slice_d] [chat ascii] System: You are under the protection of the town guards
+[17:04:21.331] INFO  [slice_d] [action] requesting the skill list
+[17:04:21.331] INFO  [life] in world; asked the server for the skill list
+[17:04:21.331] INFO  [slice_d] [0x24] open container 0x4000E161 gump=60
+[17:04:21.331] INFO  [slice_d] [0x3C] container contents: 10 item(s)
+[17:04:21.331] LOG   [slice_d] event backpack_contents: serial=0x4000E161 items=10
+[17:04:23.941] INFO  [slice_d] [bot] world data loaded (0 blacklisted spot(s)).
+[17:04:23.941] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[17:04:23.941] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[17:04:23.941] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[17:04:23.941] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[17:04:23.941] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[17:04:23.941] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[17:04:23.941] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[17:04:23.941] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[17:04:23.941] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:04:23.941] INFO  [slice_d] [survival] on
+[17:04:23.941] LOG   [slice_d] event survival_mode: on
+[17:04:23.943] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak28.doran/state.json
+[17:04:23.943] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:23.997] INFO  [life] goal=FISH reason="no goal was running"
+[17:04:23.997] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[17:04:23.997] INFO  [life]   score=58.5
+[17:04:23.997] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:04:23.997] INFO  [life]   reason: carrying 0
+[17:04:23.997] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:04:23.998] INFO  [life] fish: looking for water (trip 1)
+[17:04:23.998] INFO  [slice_d] [travel] Britain fisherman -> (1438,1761) r=6 from (633,858)
+[17:04:23.998] LOG   [slice_d] event travel_start: label='Britain fisherman' target=(1438,1761) radius=6 from=(633,858)
+[17:04:23.998] INFO  [slice_d] [travel] mode moongate         usable   <- chosen
+[17:04:23.998] INFO  [slice_d] [travel] mode walk             usable
+[17:04:23.998] INFO  [slice_d] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:04:23.998] INFO  [slice_d] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:04:23.998] LOG   [slice_d] event travel_mode: moongate
+[17:04:23.998] INFO  [slice_d] [travel] plan Britain fisherman: ok legs=15 ~616 tiles transit=1 nodes=1226
+[17:04:24.058] INFO  [slice_d] [action] goto (664,856) from (633,858,0)
+[17:04:24.058] LOG   [slice_d] event goto_start: target=(664,856) from=(633,858)
+[17:04:24.058] INFO  [slice_d] [bot] running from (633,858,0) to (664,856)
+[17:04:24.058] INFO  [slice_d] [bot] planning path to (664,856) in background
+[17:04:24.118] INFO  [slice_d] [bot] replan to (664,856): 31 steps in 5927.5us
+[17:04:28.992] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:33.571] INFO  [slice_d] [bot] arrived at (664,856,0)
+[17:04:33.572] INFO  [slice_d] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[17:04:33.572] LOG   [slice_d] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[17:04:33.572] INFO  [slice_d] [action] goto (696,840) from (664,856,0)
+[17:04:33.572] LOG   [slice_d] event goto_start: target=(696,840) from=(664,856)
+[17:04:33.572] INFO  [slice_d] [bot] running from (664,856,0) to (696,840)
+[17:04:33.572] INFO  [slice_d] [bot] planning path to (696,840) in background
+[17:04:33.631] INFO  [slice_d] [bot] replan to (696,840): 36 steps in 8355.0us
+[17:04:33.996] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:39.050] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:40.332] INFO  [slice_d] [chat ascii] System: You have left the protection of the town guards
+[17:04:44.071] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:46.416] INFO  [slice_d] [bot] arrived at (696,840,0)
+[17:04:46.417] INFO  [slice_d] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[17:04:46.417] LOG   [slice_d] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[17:04:46.417] INFO  [slice_d] [action] goto (728,808) from (696,840,0)
+[17:04:46.417] LOG   [slice_d] event goto_start: target=(728,808) from=(696,840)
+[17:04:46.417] INFO  [slice_d] [bot] running from (696,840,0) to (728,808)
+[17:04:46.417] INFO  [slice_d] [bot] planning path to (728,808) in background
+[17:04:46.479] INFO  [slice_d] [bot] replan to (728,808): 40 steps in 11458.9us
+[17:04:49.077] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:54.107] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:04:59.136] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:00.716] INFO  [slice_d] [bot] arrived at (728,808,0)
+[17:05:00.716] INFO  [slice_d] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[17:05:00.716] LOG   [slice_d] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[17:05:00.716] INFO  [slice_d] [action] goto (760,776) from (728,808,0)
+[17:05:00.716] LOG   [slice_d] event goto_start: target=(760,776) from=(728,808)
+[17:05:00.716] INFO  [slice_d] [bot] running from (728,808,0) to (760,776)
+[17:05:00.716] INFO  [slice_d] [bot] planning path to (760,776) in background
+[17:05:00.775] INFO  [slice_d] [bot] replan to (760,776): 36 steps in 13955.8us
+[17:05:04.190] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight
+[17:05:09.202] INFO  [slice_d] [survival] hp 25/25 (100%) -> fight

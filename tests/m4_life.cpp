@@ -1106,6 +1106,83 @@ void TestUnsatisfiableNeedIsBlocked() {
     }
 }
 
+
+// --------------------------------------------------------------------------
+// A life must ask for ITS OWN tools. Five separate behaviours in this codebase
+// were written for the lumberjack and silently did nothing for anybody else;
+// this is the one that left a fisher standing beside a lake with no pole,
+// never generating a tool need and so never getting a GET_TOOL goal.
+void TestEveryLifeAsksForItsOwnTools() {
+    Section("needs: each profession asks for the tools IT needs");
+
+    life::Memory mem;
+    for (const prof::Profession& p : prof::All()) {
+        if (p.tools.empty()) continue;
+
+        life::NeedConfig cfg;
+        cfg.profession = &p;
+        life::BuildPlan plan = life::PlanFromProfession(p);
+
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 25;
+        obs.gold = 1000;                 // rich, so nothing is blocked on cost
+        obs.weight = 10; obs.maxWeight = 500;
+        // obs.toolsHeld deliberately EMPTY: this life owns nothing yet.
+
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+
+        for (const prof::ToolNeed& t : p.tools) {
+            bool asked = false;
+            for (const life::Need& n : needs) {
+                if (n.kind == life::NeedKind::NeedTool && n.what == t.name) {
+                    asked = true;
+                    if (n.blocked) {
+                        std::printf("  FAIL: %s asks for %s but it is blocked "
+                                    "with 1000gp in hand\n",
+                                    p.id.c_str(), t.name.c_str());
+                        ++g_failures;
+                    }
+                    ++g_checks;
+                }
+            }
+            if (!asked) {
+                std::printf("  FAIL: %s never asks for its %s\n",
+                            p.id.c_str(), t.name.c_str());
+                ++g_failures;
+            }
+            ++g_checks;
+        }
+
+        // ...and stops asking once it has one.
+        life::Observation armed = obs;
+        for (const prof::ToolNeed& t : p.tools) armed.toolsHeld.push_back(t.name);
+        const std::vector<life::Need> after =
+            life::AssessNeeds(plan, mem, armed, cfg);
+        for (const life::Need& n : after) {
+            if (n.kind != life::NeedKind::NeedTool) continue;
+            std::printf("  FAIL: %s still wants a %s while holding it\n",
+                        p.id.c_str(), n.what.c_str());
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // Every tool must have at least one graphic, or Observe can never find it
+    // and the character asks forever for something it already owns.
+    for (const prof::Profession& p : prof::All()) {
+        for (const prof::ToolNeed& t : p.tools) {
+            if (t.graphics.empty()) {
+                std::printf("  FAIL: %s tool %s has no graphics\n",
+                            p.id.c_str(), t.name.c_str());
+                ++g_failures;
+            }
+            ++g_checks;
+        }
+    }
+}
+
 }  // namespace
 
 
@@ -1127,6 +1204,7 @@ int main(int argc, char** argv) {
     TestIdentityId();
     TestSurplusNeedsSomewhereToGo();
     TestUnsatisfiableNeedIsBlocked();
+    TestEveryLifeAsksForItsOwnTools();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

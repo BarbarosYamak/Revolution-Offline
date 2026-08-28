@@ -365,6 +365,15 @@ struct Observation {
     // functions read; counting graphics is done once here rather than in every
     // caller, because one item has several graphics by stack size.
     std::vector<market::Stock> pack;
+    // Tools the character actually has, by the profession's own name for them
+    // ("hatchet", "fishing pole"). Filled in Observe from the pack AND both
+    // hands, because a pole in the pack is not a pole in hand and several
+    // Sphere skills read the character's weapon.
+    std::vector<std::string> toolsHeld;
+    bool HasTool(const std::string& name) const {
+        for (const std::string& t : toolsHeld) { if (t == name) return true; }
+        return false;
+    }
     // What the character remembers having in the bank. Same keys as `pack`.
     std::vector<market::Stock> bank;
     bool bankOpen = false;

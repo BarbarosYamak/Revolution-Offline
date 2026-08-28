@@ -181,7 +181,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     }
 
     // --- the tool the whole profession depends on --------------------------
-    if (WantsTool(cfg, "hatchet") && !obs.axeInPack && !obs.axeEquipped) {
+    // EVERY tool this life needs, not just an axe.
+    //
+    // Gating on WantsTool("hatchet") stopped a mage asking for one, which was
+    // right as far as it went -- but it also meant a FISHER never generated a
+    // tool need at all, so it never got a GET_TOOL goal, and it stood beside a
+    // lake failing to fish for want of a pole it never tried to buy. The
+    // fifth place in this codebase written for one archetype.
+    if (cfg.profession) {
+        for (const prof::ToolNeed& t : cfg.profession->tools) {
+            if (obs.HasTool(t.name)) continue;
+            const KnownSupplier* supplier = mem.BestSupplier(t.name.c_str());
+            add(NeedKind::NeedTool, 0.9, t.name,
+                "this life cannot do its own work without one",
+                supplier ? Fmt("known supplier '%s' at %d,%d",
+                               supplier->name.c_str(), supplier->x, supplier->y)
+                         : Fmt("no known supplier of a %s", t.name.c_str()),
+                supplier == nullptr && obs.gold < 20);
+        }
+    } else if (!obs.axeInPack && !obs.axeEquipped) {
         const KnownSupplier* supplier = mem.BestSupplier("hatchet");
         add(NeedKind::NeedTool, 0.9, "hatchet",
             "no usable axe: a lumberjack cannot work without one",

@@ -35,6 +35,9 @@ constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
 const char* SkillKey(int id) {
     switch (id) {
         case rules::kLumberjacking:   return "Lumberjacking";
+        case rules::kFishing:         return "Fishing";
+        case rules::kCooking:         return "Cooking";
+        case rules::kCarpentry:       return "Carpentry";
         case rules::kSwordsmanship:   return "Swordsmanship";
         case rules::kTactics:         return "Tactics";
         case rules::kAnatomy:         return "Anatomy";
@@ -82,6 +85,11 @@ const TrainerFor kTrainers[] = {
     {rules::kAnimalLore,      "animal",      wm::Service::Stablemaster},
     {rules::kVeterinary,      "animal",      wm::Service::Stablemaster},
     {rules::kLumberjacking,   "carpenter",   wm::Service::Carpenter},
+    // The fisher's own two. Without these NextSkillToBuy picks Fishing,
+    // TrainerForSkill returns null, trainerTrade_ stays empty, and the goal
+    // asks NearestMobileWithTrade("") -- burning every trip and failing.
+    {rules::kFishing,         "fisher",      wm::Service::Fisherman},
+    {rules::kCooking,         "cook",        wm::Service::Cook},
     {rules::kCarpentry,       "carpenter",   wm::Service::Carpenter},
 };
 
@@ -460,6 +468,22 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         const TrainerFor* tf = TrainerForSkill(id);
         if (tf && state_.memory.TrainerRefused(id, tf->trade)) {
             obs.trainerRefusedSkills.push_back(id);
+        }
+    }
+
+    // Which of this life's own tools it is actually holding. Checked in the
+    // pack AND in both hands: several Sphere gathering skills read SRC.WEAPON,
+    // so "carried" and "wielded" are different questions.
+    if (needCfg_.profession) {
+        for (const prof::ToolNeed& t : needCfg_.profession->tools) {
+            for (u16 g : t.graphics) {
+                if (client.FindBackpackItemByGraphic(g) ||
+                    client.EquippedGraphicAt(kLayerHand1) == g ||
+                    client.EquippedGraphicAt(kLayerHand2) == g) {
+                    obs.toolsHeld.push_back(t.name);
+                    break;
+                }
+            }
         }
     }
 
@@ -1027,7 +1051,36 @@ void Runner::Tick(Client& client, i64 nowMs) {
     }
 }
 
+namespace {
+std::string Fmt2(const char* fmt, ...) {
+    char buf[160];
+    va_list ap;
+    va_start(ap, fmt);
+    std::vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    return std::string(buf);
+}
+}  // namespace
+
 void Runner::LogGoalChange(const Observation& obs, const std::string& why) {
+    // Every need considered, not just the winner and the blocked ones. "Why
+    // did it not do X" is only answerable if X appears somewhere.
+    {
+        const std::vector<Need> all =
+            AssessNeeds(state_.plan, state_.memory, obs, needCfg_);
+        std::string line;
+        for (const Need& n : all) {
+            line += Fmt2("%s(%s%s %.2f) ", NeedKindName(n.kind), n.what.c_str(),
+                         n.blocked ? " BLOCKED" : "", n.urgency);
+        }
+        std::string held;
+        for (const std::string& t : obs.toolsHeld) { held += t; held += ","; }
+        LogLine("needs considered: %s | tools defined=%zu held=[%s]",
+                line.empty() ? "(none)" : line.c_str(),
+                needCfg_.profession ? needCfg_.profession->tools.size() : 0,
+                held.c_str());
+    }
+
     const std::vector<Need> needs =
         AssessNeeds(state_.plan, state_.memory, obs, needCfg_);
     const std::vector<ScoredGoal> scored = planner_.Score(needs, obs, state_.memory);
@@ -1320,22 +1373,88 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
 
 // --- tools and equipment ---------------------------------------------------
 
-bool Runner::DoGetTool(Client& client, const Observation& obs) {
-    if (obs.axeInPack || obs.axeEquipped) return true;
+// Which trade sells a given tool, and where the world model files them.
+// Read off this shard's own vendor templates rather than guessed, the same
+// discipline the trainer and buyer tables follow.
+struct ToolVendor {
+    const char* tool;      // the profession's own name for it
+    const char* trade;     // paperdoll-title substring
+    wm::Service service;
+};
+const ToolVendor kToolVendors[] = {
+    {"hatchet",      "blacksmith",  wm::Service::Blacksmith},
+    {"pickaxe",      "blacksmith",  wm::Service::Blacksmith},
+    {"fishing pole", "fisherman",   wm::Service::Fisherman},
+    {"mortar",       "alchemist",   wm::Service::Alchemist},
+    {"spellbook",    "mage",        wm::Service::Mage},
+};
 
-    const KnownSupplier* known = state_.memory.BestSupplier("hatchet");
+const ToolVendor* VendorForTool(const std::string& tool) {
+    for (const ToolVendor& t : kToolVendors) {
+        if (tool == t.tool) return &t;
+    }
+    return nullptr;
+}
+
+bool Runner::DoGetTool(Client& client, const Observation& obs) {
+    // WHICH TOOL IS MISSING, from the catalogue rather than from a hardcoded
+    // hatchet. This body was written for the lumberjack and never generalised
+    // -- the fourth place in this file where that was true, after the needs,
+    // the sell path and the bank. A fisher standing next to a lake was being
+    // sent to a blacksmith to buy an axe it had no use for.
+    std::string toolName;
+    std::vector<u16> toolGfx;
+    if (needCfg_.profession) {
+        for (const prof::ToolNeed& t : needCfg_.profession->tools) {
+            bool have = false;
+            for (u16 g : t.graphics) {
+                if (client.FindBackpackItemByGraphic(g) ||
+                    client.EquippedGraphicAt(kLayerHand1) == g ||
+                    client.EquippedGraphicAt(kLayerHand2) == g) {
+                    have = true;
+                    break;
+                }
+            }
+            if (have) continue;
+            toolName = t.name;
+            toolGfx = t.graphics;
+            break;
+        }
+        if (toolName.empty()) return true;   // every tool this life needs
+    } else {
+        // A life predating the catalogue keeps the original behaviour exactly.
+        if (obs.axeInPack || obs.axeEquipped) return true;
+        toolName = "hatchet";
+        toolGfx.assign(kHatchet, kHatchet + 2);
+        toolGfx.push_back(kAxe[0]);
+        toolGfx.push_back(kAxe[1]);
+    }
+
+    const ToolVendor* tv = VendorForTool(toolName);
+    if (!tv) {
+        LogLine("goal_failed=GET_TOOL reason=\"%s\" tool=%s",
+                faucet::RefusalName(faucet::Refusal::NoKnownBuyer),
+                toolName.c_str());
+        planner_.Finish(false, "no trade known to sell it", obs.nowMs);
+        return false;
+    }
+
+    const KnownSupplier* known = state_.memory.BestSupplier(toolName.c_str());
 
     // A tool purchase is legal under the vendor policy -- a tool is not a
     // resource, and buying one shortcuts no production chain. Verify that
     // here rather than assuming it, because the policy is the thing that
     // keeps the shard's player economy alive.
-    const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(kHatchet[0]);
+    const econ::VendorRuling ruling =
+        econ::CanUseNPCVendorForGraphic(toolGfx.empty() ? 0 : toolGfx[0]);
     if (!ruling.allowed) {
-        LogLine("BLOCKED_NEED hatchet: vendor policy refuses (%s / %s)",
-                econ::VendorClassName(ruling.klass),
-                ruling.reason ? ruling.reason : "");
-        planner_.NoteAttempt(obs.nowMs);
-        nextActionMs_ = obs.nowMs + 30000;
+        LogLine("goal_failed=GET_TOOL reason=\"%s\" tool=%s class=%s",
+                faucet::RefusalName(faucet::Refusal::RevolutionAuthenticityUnknown),
+                toolName.c_str(), econ::VendorClassName(ruling.klass));
+        state_.memory.NoteEvent("policy_refused", toolName.c_str(),
+                                econ::VendorClassName(ruling.klass),
+                                obs.x, obs.y, obs.nowMs);
+        planner_.Finish(false, "the vendor policy refuses this tool", obs.nowMs);
         return false;
     }
 
@@ -1349,11 +1468,15 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                         known->name.c_str(), known->x, known->y);
                 travelInFlight_ = client.TravelToPoint(known->x, known->y, 2, "supplier");
             } else {
-                LogLine("get_tool: no remembered supplier; looking for a blacksmith");
-                travelInFlight_ = client.TravelToService(wm::Service::Blacksmith, state_.homeCity.c_str());
+                LogLine("get_tool: no remembered supplier; looking for a %s to "
+                        "sell a %s", tv->trade, toolName.c_str());
+                travelInFlight_ =
+                    client.TravelToService(tv->service, state_.homeCity.c_str());
             }
             if (!travelInFlight_) {
-                LogLine("BLOCKED_NEED hatchet: %s", client.TravelFailureText());
+                LogLine("goal_blocked=GET_TOOL reason=\"%s\" (%s)",
+                        faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                        client.TravelFailureText());
                 planner_.NoteAttempt(obs.nowMs);
                 nextActionMs_ = obs.nowMs + 15000;
             }
@@ -1361,12 +1484,27 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         }
         travelInFlight_ = false;
         // Arrived (or gave up). Ask whoever is here to show their wares.
-        const u32 keeper = client.NearestMobileWithTrade("blacksmith");
+        const u32 keeper = client.NearestMobileWithTrade(tv->trade);
         if (!keeper) {
-            LogLine("get_tool: arrived but no blacksmith is here");
+            LogLine("get_tool: arrived but no %s is here", tv->trade);
+            state_.memory.NoteEvent("vendor_not_observed", toolName.c_str(),
+                                    tv->trade, obs.x, obs.y, obs.nowMs);
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 5000;
             return false;
+        }
+        // WALK UP FIRST. Sphere routes a vendor keyword to whoever is nearest
+        // in earshot, not to the name spoken -- the lesson a carpenter taught
+        // when Joshua the architect answered instead.
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
+            const i32 d = TileDist(obs.x, obs.y, vx, vy);
+            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+            if (d > 1 || dz > 3) {
+                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
         }
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 2500;
@@ -1377,12 +1515,12 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     // stock and seen the item -- never because a place was tagged with a
     // profession (supplier.h, and three journeys that ended at a guildmaster).
     for (const Client::VendorItem& v : client.VendorOffer()) {
-        if (v.graphic != kHatchet[0] && v.graphic != kHatchet[1] &&
-            v.graphic != kAxe[0] && v.graphic != kAxe[1]) {
-            continue;
-        }
+        bool match = false;
+        for (u16 g : toolGfx) { if (v.graphic == g) { match = true; break; } }
+        if (!match) continue;
+
         KnownSupplier s;
-        s.need = "hatchet";
+        s.need = toolName;
         s.name = v.name;
         s.sourceType = "npc_vendor";
         s.serial = vendor;
@@ -1392,27 +1530,43 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         s.lastVerifiedMs = obs.nowMs;
         s.policyAllows = true;
         state_.memory.NoteSupplier(s);
+        // What a thing COSTS is a price observation like any other, and the
+        // character has just read it off an open window with its own eyes.
+        market::PriceObservation po;
+        po.item = toolName;
+        po.pricePerUnit = static_cast<i32>(v.price);
+        po.source = market::PriceSource::NpcVendorSells;
+        po.who = v.name;
+        po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+        state_.prices.Note(po);
         if (!state_.memory.HasEvent("supplier_learned")) {
             state_.memory.NoteEvent("supplier_learned", v.name.c_str(), "", obs.x,
                                     obs.y, obs.nowMs);
         }
-        LogLine("memory_learned=SUPPLIER need=hatchet name=\"%s\" price=%u qty=%u",
-                v.name.c_str(), v.price, v.amount);
+        LogLine("memory_learned=SUPPLIER need=%s name=\"%s\" price=%u qty=%u",
+                toolName.c_str(), v.name.c_str(), v.price, v.amount);
 
         if (obs.gold < static_cast<i32>(v.price)) {
-            LogLine("BLOCKED_NEED hatchet: costs %u, carrying %d", v.price, obs.gold);
+            LogLine("goal_blocked=GET_TOOL reason=\"%s\" %s costs %u, carrying %d",
+                    faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
+                    toolName.c_str(), v.price, obs.gold);
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 10000;
             return false;
         }
+        toolGoldBefore_ = obs.gold;
         client.ActionVendorBuy(vendor, v.serial, 1);
+        state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
+                           static_cast<i32>(v.price), toolName.c_str(),
+                           obs.nowMs);
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
 
-    LogLine("BLOCKED_NEED hatchet: this vendor's %zu-item list contains no axe",
-            client.VendorOffer().size());
+    LogLine("goal_blocked=GET_TOOL reason=\"%s\" this %zu-item list has no %s",
+            faucet::RefusalName(faucet::Refusal::VendorNotObserved),
+            client.VendorOffer().size(), toolName.c_str());
     planner_.NoteAttempt(obs.nowMs);
     nextActionMs_ = obs.nowMs + 8000;
     return false;
@@ -2909,13 +3063,26 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
 
     // The pole has to be IN HAND, the same way the axe does: skf_gather reads
     // the character's weapon, and a pole in the pack is not a pole in hand.
+    // TAKE THE SERIAL FROM THE LAYER IT WAS FOUND ON.
+    //
+    // The first version noticed the pole was equipped and then asked the PACK
+    // for its serial -- which is 0, because it is not in the pack -- and fell
+    // back to hand1 regardless of which hand held it. i_fishing_pole is
+    // TWOHANDS=Y so the kit arms it automatically, and the result was a fisher
+    // standing beside water reporting REFUSE_MISSING_TOOL while holding one.
+    //
+    // That also produced a wrong conclusion on the way: the pack dump showed
+    // no pole, and [NEWBIE FISHING] was very nearly recorded as BLOCKED_RUNTIME
+    // when the kit had worked correctly all along.
     const std::vector<u16> poleGfx = econ::GraphicsForItem("i_fishing_pole");
     u32 pole = 0;
     for (u16 g : poleGfx) {
-        if (client.EquippedGraphicAt(kLayerHand1) == g ||
-            client.EquippedGraphicAt(kLayerHand2) == g) {
-            pole = client.FindBackpackItemByGraphic(g);
-            if (!pole) pole = client.EquippedAtLayer(kLayerHand1);
+        if (client.EquippedGraphicAt(kLayerHand1) == g) {
+            pole = client.EquippedAtLayer(kLayerHand1);
+            break;
+        }
+        if (client.EquippedGraphicAt(kLayerHand2) == g) {
+            pole = client.EquippedAtLayer(kLayerHand2);
             break;
         }
     }
@@ -2928,8 +3095,23 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 1500;
             return false;
         }
-        LogLine("goal_failed=FISH reason=\"%s\"",
-                faucet::RefusalName(faucet::Refusal::MissingTool));
+        // Say WHAT WAS THERE. "no fishing pole" is not a diagnosis when the
+        // question is whether the kit delivered one, whether it is on a layer
+        // this code does not read, or whether its graphic is not the one the
+        // item table names.
+        char seen[192];
+        int n = 0;
+        seen[0] = 0;
+        const u32 pack = client.BackpackSerial();
+        const usize count = client.ContainerItemCount(pack);
+        for (usize i = 0; i < count && n < 160; ++i) {
+            u32 sr = 0; u16 gfx = 0, amt = 0;
+            if (!client.ContainerItemAt(pack, i, &sr, &gfx, &amt)) continue;
+            n += std::snprintf(seen + n, sizeof(seen) - n, "%s0x%04X",
+                               n ? "," : "", gfx);
+        }
+        LogLine("goal_failed=FISH reason=\"%s\" wanted=0x0DBF/0x0DC0 pack=[%s]",
+                faucet::RefusalName(faucet::Refusal::MissingTool), seen);
         planner_.Finish(false, "no fishing pole", obs.nowMs);
         return false;
     }
