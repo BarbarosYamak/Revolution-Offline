@@ -1803,6 +1803,58 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 return false;
             }
         }
+        // AND THE INPUTS, when the load demands it. DoBank could only ever
+        // deposit what a life PRODUCES, so a scribe carrying two hundred and
+        // thirty blank scrolls at 97% of its carry limit reached the bank,
+        // found nothing it was allowed to put down, completed with progress 0
+        // and was re-picked -- five thousand one hundred and sixty-nine times
+        // in twenty minutes. Stock is still weight.
+        //
+        // Keep a working batch and box the rest, so the next errand can
+        // actually be walked to.
+        if (loadDemandsIt && needCfg_.profession) {
+            const i32 keep = needCfg_.craftBatch * 2;
+            // WHAT THIS LIFE CONSUMES, from the RECIPES rather than from the
+            // hand-written list. The scribe has no `consumes` at all -- its
+            // inputs were only ever implied by what it makes -- so a list-only
+            // version of this deposited nothing and the bank goal still span.
+            // The recipe graph already knows, and it cannot fall out of step
+            // with itself.
+            std::vector<std::string> inputs = needCfg_.profession->consumes;
+            for (const std::string& made : needCfg_.profession->produces) {
+                const prod::Recipe* r = prod::FindRecipe(made.c_str());
+                if (!r) continue;
+                for (const prod::Ingredient& in : r->inputs) {
+                    if (!in.item) continue;
+                    bool seen = false;
+                    for (const std::string& have : inputs) {
+                        if (have == in.item) { seen = true; break; }
+                    }
+                    if (!seen) inputs.emplace_back(in.item);
+                }
+            }
+            for (const std::string& input : inputs) {
+                const std::vector<u16> gfx = econ::GraphicsForItem(input.c_str());
+                u32 serial = 0;
+                i32 amount = 0;
+                for (u16 g : gfx) {
+                    const u32 found = client.FindBackpackItemByGraphic(g);
+                    if (!found) continue;
+                    serial = found;
+                    amount = static_cast<i32>(client.BackpackItemCount(g));
+                    break;
+                }
+                if (!serial || amount <= keep) continue;
+                const i32 put = amount - keep;
+                LogLine("banking %d spare %s (keeping %d to work with)", put,
+                        input.c_str(), keep);
+                client.ActionMoveItem(serial, static_cast<u16>(put), box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
+
         const u32 logs = loadDemandsIt || !needCfg_.profession
                              ? client.FindBackpackItemByGraphic(kLog)
                              : 0;

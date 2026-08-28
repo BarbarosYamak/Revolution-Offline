@@ -1490,12 +1490,31 @@ void Client::OnVendorShopData(const u8* data, usize size) {
         (it != containerItems_.end()) ? &it->second : nullptr;
     const std::size_t stockN = stock ? stock->size() : 0;
 
-    // CRITICAL: 0x74 SHOP_DATA walks the vendor's contents list FORWARD
-    // (spatialNext), but the 0x3C that preceded it was built in REVERSE
-    // (PacketManager_MakePacket_MULTI_OBJ_TO_OBJ @0x00499EEB: backward pass via
-    // spatialPrev). So the two packets are mirror-ordered: 0x74 row i pairs with
-    // stock row (stockN-1-i), NOT stock[i]. Zipping by the same index sends the
-    // wrong serial (we sent the Red-Potion serial for "bandage").
+    // WHICH WAY ROUND DO THESE TWO PACKETS PAIR?
+    //
+    // 0x74 carries a price and a display NAME per row; the 0x3C that preceded
+    // it carries the serial, graphic and amount. Neither has both halves, so
+    // they have to be zipped -- and the order is not something to assume.
+    // This code paired them mirror-ordered (row i with stock[N-1-i]) on the
+    // reading that 0x3C is built by a backward pass. Against this shard that
+    // is simply wrong: dumping a Britain mage shop, straight pairing matched
+    // 13 of 13 identifiable rows and mirror pairing matched 1 -- and that one
+    // was the middle element, which matches either way.
+    //
+    // Getting it wrong is not cosmetic. The serial we send to buy comes from
+    // the stock row, so a mis-zip buys the neighbouring item: the bot reported
+    // buying blank scrolls "from 'Spider's Silk'", a reagent name where a
+    // vendor name belongs.
+    //
+    // Rather than swap one assumption for another, DECIDE FROM THE DATA. Every
+    // row whose graphic is in our own graphic->defname table votes for the
+    // ordering that makes its name and its graphic agree. The winner is used.
+    // If a shard, a client version or a Sphere build ever orders these the
+    // other way, this notices instead of silently buying the wrong thing.
+    // Read the rows once, then decide the ordering before committing to it.
+    struct ShopRow { u32 price; std::string name; };
+    std::vector<ShopRow> rows;
+    rows.reserve(count);
     for (u8 i = 0; i < count; ++i) {
         if (p + 5 > size) break;
         const u32 price = LoadBE32(data + p); p += 4;
@@ -1504,10 +1523,58 @@ void Client::OnVendorShopData(const u8* data, usize size) {
         std::string name(reinterpret_cast<const char*>(data + p), nameLen);
         p += nameLen;
         if (const auto z = name.find('\0'); z != std::string::npos) name.resize(z);
+        rows.push_back(ShopRow{price, std::move(name)});
+    }
+
+    // Does this graphic's defname describe this display name? "i_reag_
+    // nightshade" against "Nightshade", "i_scroll_blank" against "blank
+    // scrolls": every word of the defname, minus its type prefix, has to
+    // appear somewhere in the name. Unknown graphics vote for neither.
+    auto agrees = [](u16 graphic, const std::string& shown) -> bool {
+        const char* def = econ::ItemNameForGraphic(graphic);
+        if (!def) return false;
+        std::string lowerName;
+        for (char c : shown)
+            lowerName.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
+        std::string word;
+        bool any = false;
+        auto check = [&](const std::string& w) {
+            if (w.empty() || w == "i" || w == "reag" || w == "potion") return true;
+            any = true;
+            return lowerName.find(w) != std::string::npos;
+        };
+        for (const char* q = def; ; ++q) {
+            if (*q == '_' || *q == '\0') {
+                if (!check(word)) return false;
+                word.clear();
+                if (*q == '\0') break;
+            } else {
+                word.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(*q))));
+            }
+        }
+        return any;
+    };
+
+    int straightScore = 0, mirrorScore = 0;
+    if (stock) {
+        for (usize i = 0; i < rows.size() && i < stockN; ++i) {
+            if (agrees((*stock)[i].graphic, rows[i].name)) ++straightScore;
+            if (agrees((*stock)[stockN - 1 - i].graphic, rows[i].name)) ++mirrorScore;
+        }
+    }
+    const bool mirrored = mirrorScore > straightScore;
+
+    for (usize i = 0; i < rows.size(); ++i) {
         if (!stock || i >= stockN)
             continue;  // no 0x3C row to pair: can't buy without a serial
-        const ContainerItem& ci = (*stock)[stockN - 1 - i];   // reverse pairing
-        pendingVendor_.push_back(VendorItem{ci.serial, ci.graphic, ci.amount, price, layer, name});
+        const ContainerItem& ci = mirrored ? (*stock)[stockN - 1 - i] : (*stock)[i];
+        pendingVendor_.push_back(
+            VendorItem{ci.serial, ci.graphic, ci.amount, rows[i].price, layer, rows[i].name});
+    }
+    if (straightScore || mirrorScore) {
+        LogInfo("[0x74] pairing: %s (straight %d, mirrored %d of %u rows)\n",
+                mirrored ? "MIRRORED" : "straight", straightScore, mirrorScore,
+                static_cast<unsigned>(rows.size()));
     }
     LogInfo("[0x74] vendor shop data: cont=0x%08X %u item(s), layer=0x%02X\n",
             contSerial, count, layer);
