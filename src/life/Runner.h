@@ -233,6 +233,23 @@ private:
     std::string bankDepositItem_;
     int         bankDepositTries_ = 0;
     static constexpr int kMaxBankDepositTries = 5;
+    // --- asking a banker for the box ------------------------------------
+    // Bankers who were asked and never opened anything, so the next ask goes
+    // to a DIFFERENT one. Hyman, two tiles away, was asked sixty-three times
+    // in one session while Lyndon -- who had opened the box six minutes
+    // earlier from three tiles -- stood four tiles off and was never asked
+    // (run_m5/pair3). Not persisted: silence is about this visit, not about
+    // the NPC, and the same rule already governs silent trainers.
+    std::vector<u32> bankerSilent_;
+    u32  bankerAsked_ = 0;        // who the outstanding ask went to
+    u32  bankerCounted_ = 0;      // who bankOpenTries_ is a tally ABOUT
+    i32  bankOpenTries_ = 0;      // asks to THIS banker with no box back
+    static constexpr i32 kMaxBankOpenTries = 3;
+    // Longer than kBankTimeoutMs (6 s, Client.cpp). An ask re-issued inside
+    // its own deadline supersedes itself and can never resolve either way.
+    static constexpr i64 kBankAskGapMs = 7000;
+    // How long BANK stands down after a visit that deposited nothing.
+    static constexpr i64 kBankCooldownMs = 5 * 60 * 1000;
     bool trainerApproached_ = false;
     // How many times we have tried to close the distance to THIS trainer.
     // One attempt was the old behaviour and it cost a whole session of
@@ -251,6 +268,11 @@ private:
     std::string supplyTrade_;     // the trade that sells it
     int         supplyTrips_ = 0;
     static constexpr int kMaxSupplyTrips = 3;
+    // A buy that has been ASKED FOR but not yet settled. The ledger entry is
+    // written from the gold the server actually took, on the tick after the
+    // action resolves -- never at request time. See DoBuySupplies.
+    std::string pendingBuyItem_;
+    i32         pendingBuyGoldBefore_ = 0;
     std::string craftItem_;       // what is being made
     i32         craftHadBefore_ = 0;
     i64         craftStartedMs_ = 0;
@@ -274,6 +296,13 @@ private:
     usize sellBuyerIndex_ = 0;         // which buyer of sellItem_ we are trying
     i32   sellTrips_ = 0;
     i32   sellWanted_ = 0;             // how many units we mean to sell
+    // A ceiling this buyer has proved it can afford. Halved each time a
+    // quoted sale leaves the purse unmoved -- an NPC vendor's own gold is
+    // finite and it will list an offer it cannot pay for. 0 = no cap.
+    i32   sellLotCap_ = 0;
+    // How long EARN_GOLD stands down once every buyer trade has failed.
+    // The vendors need a restock cycle; nothing changes in three seconds.
+    static constexpr i64 kNoBuyerCooldownMs = 3 * 60 * 1000;
     i32   sellGoldBefore_ = -1;        // purse before the sale, to verify it
     bool  sellAsked_ = false;          // 0x9E requested
     i64   sellAskedMs_ = 0;

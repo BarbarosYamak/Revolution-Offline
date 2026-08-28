@@ -162,6 +162,7 @@ json::Value ToJson(const PersistentState& st) {
             json::Value o = json::Value::MakeObject();
             o.Set("skill", static_cast<i64>(k.skillId));
             o.Set("trade", k.trade);
+            o.Set("npc", static_cast<i64>(k.npcSerial));
             o.Set("taught", k.taught);
             o.Set("at_tenths", static_cast<i64>(k.atTenths));
             o.Set("quoted", static_cast<i64>(k.quoted));
@@ -458,6 +459,9 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             TrainerVerdict k;
             k.skillId  = static_cast<int>(e["skill"].AsInt(-1));
             k.trade    = e["trade"].AsString();
+            // Absent in schema v1 records, which is exactly right: those
+            // were written before a refusal knew which NPC gave it.
+            k.npcSerial = static_cast<u32>(e["npc"].AsInt(0));
             k.taught   = e["taught"].AsBool(false);
             k.atTenths = static_cast<i32>(e["at_tenths"].AsInt(0));
             k.quoted   = static_cast<i32>(e["quoted"].AsInt(0));

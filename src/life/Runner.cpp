@@ -1128,10 +1128,23 @@ void Runner::LogGoalChange(const Observation& obs, const std::string& why) {
         }
         std::string held;
         for (const std::string& t : obs.toolsHeld) { held += t; held += ","; }
-        LogLine("needs considered: %s | tools defined=%zu held=[%s]",
+        // SAY WHAT THE CHARACTER WANTS TO BUY, even when the answer is
+        // "nothing". NeedSkillTraining is absent from this line whenever
+        // NextSkillToBuy returns -1, and an ABSENT need is indistinguishable
+        // from a need that was never asked about: run_m5/pair2 and p0gate1
+        // both show a scribe with 317 gold and Meditation at 21.9 -- squarely
+        // inside the 30.0 trainer ceiling -- producing no training need at
+        // all, and the log gave no way to tell whether the planner had
+        // decided against it or never considered it. "Why didn't it do X" has
+        // to be answerable from the log.
+        LogLine("needs considered: %s | tools defined=%zu held=[%s] "
+                "want_train=%s (target %.1f)",
                 line.empty() ? "(none)" : line.c_str(),
                 needCfg_.profession ? needCfg_.profession->tools.size() : 0,
-                held.c_str());
+                held.c_str(),
+                obs.wantTrainSkill >= 0 ? rules::SkillName(obs.wantTrainSkill)
+                                        : "nothing",
+                obs.wantTrainTarget / 10.0);
     }
 
     const std::vector<Need> needs =
@@ -1733,6 +1746,12 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     // anything in it. You do not need to know what is in a container to put
     // something into it.
     if (box) {
+        // The box is open, so whoever we asked did answer. Forgive every
+        // banker we had written off: the next visit starts clean.
+        bankerAsked_ = 0;
+        bankerCounted_ = 0;
+        bankOpenTries_ = 0;
+        bankerSilent_.clear();
         if (client.ActionBusy()) return false;
         // Deposit whatever THIS LIFE produces, not just logs.
         //
@@ -1866,17 +1885,140 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 1500;
             return false;
         }
+        // AND THE DEAD WEIGHT -- what this life has no name for at all.
+        //
+        // The need and the action have to agree or the goal cannot terminate.
+        // NeedBank is scored from CARRIED WEIGHT; every branch above deposits
+        // only what the profession produces, consumes or makes from. When the
+        // load is none of those, the need stays at 0.72 and the goal completes
+        // having done nothing, forever.
+        //
+        // Ysolde is the case that proves it. A scribe with STR 10 has a carry
+        // limit of 75 stones, and her STARTING KIT alone is 73 of them: two
+        // chainmail coifs she cannot wear usefully, two books, a candle, three
+        // cast scrolls (runtime/save/spherechars.scp, serial 04001425d). Not
+        // one of those is a scroll she wrote or a reagent she buys, so she was
+        // full of things she could neither use nor put down.
+        //
+        // A player empties that into the box. So: anything in the pack that is
+        // not gold, not a tool this life declares, not a consumable it stocks,
+        // not what it makes and not what it makes it FROM is dead weight, and
+        // it goes in -- one per tick, each named in the log so the decision is
+        // auditable. Bounded by loadDemandsIt, the same guard the inputs
+        // branch uses: below the weight line a character keeps its oddments.
+        if (loadDemandsIt && client.BackpackContentsKnown()) {
+            std::vector<u16> keepGfx{kGoldCoin, kLog};
+            auto keepAll = [&keepGfx](const std::vector<u16>& g) {
+                keepGfx.insert(keepGfx.end(), g.begin(), g.end());
+            };
+            auto keepNamed = [&keepGfx](const std::string& item) {
+                const std::vector<u16> g = econ::GraphicsForItem(item.c_str());
+                keepGfx.insert(keepGfx.end(), g.begin(), g.end());
+            };
+            if (needCfg_.profession) {
+                for (const prof::ToolNeed& t : needCfg_.profession->tools)
+                    keepAll(t.graphics);
+                for (const prof::ConsumableNeed& c : needCfg_.profession->consumables)
+                    keepAll(c.graphics);
+                for (const std::string& s : needCfg_.profession->consumes)
+                    keepNamed(s);
+                for (const std::string& made : needCfg_.profession->produces) {
+                    keepNamed(made);
+                    const prod::Recipe* r = prod::FindRecipe(made.c_str());
+                    if (!r) continue;
+                    for (const prod::Ingredient& in : r->inputs)
+                        if (in.item) keepNamed(in.item);
+                }
+            }
+            const u32 pack = client.BackpackSerial();
+            const usize n = client.ContainerItemCount(pack);
+            for (usize i = 0; i < n; ++i) {
+                u32 serial = 0; u16 gfx = 0, amount = 0;
+                if (!client.ContainerItemAt(pack, i, &serial, &gfx, &amount)) continue;
+                if (!serial) continue;
+                bool named = false;
+                for (u16 k : keepGfx) { if (k == gfx) { named = true; break; } }
+                if (named) continue;
+                LogLine("banking dead weight: 0x%04X x%u -- this life has no "
+                        "use for it and the pack is at %.0f%%",
+                        gfx, amount ? amount : 1,
+                        obs.WeightFraction() * 100.0);
+                client.ActionMoveItem(serial, amount ? amount : 1, box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
+
         // (Recorded at box-open from the banker's own position, not here:
         // where the character stands after the last deposit is not the bank.)
         if (!state_.memory.HasEvent("first_bank_deposit") && planner_.Current().progress > 0) {
             state_.memory.NoteEvent("first_bank_deposit", "logs", "bank", obs.x,
                                     obs.y, obs.nowMs);
         }
+
+        // A VISIT THAT DEPOSITED NOTHING IS NOT A COMPLETED BANK GOAL.
+        //
+        // Reporting success here is what produced the churn: Finish(true)
+        // clears `active`, the next Select() sees NeedBank still at 0.72 --
+        // because nothing left the pack -- and starts BANK again 60 ms later.
+        // pair2 did that for five straight minutes, fsyncing state.json on
+        // every lap. Say what actually happened and stand down.
+        if (planner_.Current().progress == 0) {
+            LogLine("bank: the box is open and there is nothing in the pack "
+                    "this life may put down (weight %d/%d) -- standing down "
+                    "for %llds rather than re-deciding",
+                    obs.weight, obs.maxWeight,
+                    static_cast<long long>(kBankCooldownMs / 1000));
+            planner_.Cooldown(GoalKind::Bank, obs.nowMs + kBankCooldownMs);
+            planner_.Finish(false, "nothing to deposit", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
         return true;
     }
 
     if (client.TravelBusy()) return false;
-    const u32 banker = client.NearestMobileWithTrade("banker");
+
+    // WAIT FOR THE ASK BEFORE ASKING AGAIN.
+    //
+    // open_bank's deadline is 6 s (kBankTimeoutMs) and this used to re-issue
+    // every 2.5 s, so every attempt was killed by the NEXT one before it could
+    // either succeed or time out. The whole of run_m5/pair3 is sixty-three
+    // repetitions of
+    //
+    //   [action] open_bank superseded by open_bank
+    //   [ACTION_RESULT] open_bank invalid_state (2520ms) superseded
+    //
+    // and not one resolved result in twenty minutes. An action already in
+    // flight is not a reason to start another one.
+    if (client.ActionBusy()) return false;
+
+    // AN ASK THAT PRODUCED NO BOX IS A FAILED ASK, and it has to be counted
+    // here: the action layer can report "superseded" or "timeout", but only
+    // this goal knows that the box it wanted still is not open.
+    if (bankerAsked_) {
+        // COUNT PER BANKER, NOT PER GOAL. Britain's bankers wander, so the
+        // nearest one changes between asks: p0gate1 asked Hyman, Hyman, then
+        // Lyndon, and wrote LYNDON off "3 times" when he had been asked once.
+        // A tally that blames whoever stood closest at the third failure is
+        // not evidence about anybody.
+        if (bankerCounted_ != bankerAsked_) {
+            bankerCounted_ = bankerAsked_;
+            bankOpenTries_ = 0;
+        }
+        if (++bankOpenTries_ >= kMaxBankOpenTries) {
+            LogLine("bank: asked 0x%08X for the box %d times and got nothing "
+                    "back -- finding a different banker",
+                    bankerAsked_, bankOpenTries_);
+            bankerSilent_.push_back(bankerAsked_);
+            bankOpenTries_ = 0;
+            bankerCounted_ = 0;
+        }
+        bankerAsked_ = 0;
+    }
+
+    const u32 banker = client.NearestMobileWithTrade("banker", bankerSilent_);
     if (banker) {
         client.ActionOpenBank(banker);
         // REMEMBER WHERE THE BANKER STANDS, not where we happened to be when
@@ -1890,9 +2032,32 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (client.MobilePosition(banker, &bx, &by, &bz)) {
             state_.memory.NotePlace("bank", "bank", bx, by, bz, obs.nowMs);
         }
+        bankerAsked_ = banker;
         bankOpenedMs_ = obs.nowMs;
-        nextActionMs_ = obs.nowMs + 2500;
-        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + kBankAskGapMs;
+        // ASKING IS NOT PROGRESS. NoteProgress() here reset the attempt
+        // counter on every retry, so Exhausted() never fired and the planner
+        // believed a goal that had done nothing for twenty minutes was
+        // working. An ask is an attempt; the box opening is the progress.
+        planner_.NoteAttempt(obs.nowMs);
+        return false;
+    }
+    if (!bankerSilent_.empty()) {
+        // Every banker within sight has now been asked and none opened a box.
+        // Walking to another bank is the honest next move, but not on this
+        // goal and not this second.
+        LogLine("bank: %d banker(s) in reach and not one opened a box -- "
+                "standing down for %llds",
+                static_cast<int>(bankerSilent_.size()),
+                static_cast<long long>(kBankCooldownMs / 1000));
+        state_.memory.NoteEvent("bank_no_answer", "no banker opened a box", "",
+                                obs.x, obs.y, obs.nowMs);
+        bankerSilent_.clear();
+        bankOpenTries_ = 0;
+        bankTrips_ = 0;
+        planner_.Cooldown(GoalKind::Bank, obs.nowMs + kBankCooldownMs);
+        planner_.Finish(false, "no banker answered", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
         return false;
     }
     if (!travelInFlight_) {
@@ -2392,6 +2557,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             sellSent_ = false;
             sellAsked_ = false;
             sellTrips_ = 0;
+            sellLotCap_ = 0;   // this buyer could pay; stop rationing
             Checkpoint(client, obs.nowMs, "sold to a vendor");
             return true;
         }
@@ -2403,6 +2569,31 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                                     sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
             sellSent_ = false;
             sellAsked_ = false;
+            // A VENDOR'S PURSE IS FINITE. OFFER FEWER BEFORE GIVING UP.
+            //
+            // Alenne bought 5 poison scrolls for 125 gold and then refused 11
+            // of the same scroll at the same quoted 25 each -- 275 gold she no
+            // longer had. The offer is still LISTED, so nothing about the shop
+            // says no; only the silent purse does. The old code went straight
+            // to the next trade, found poison scrolls have exactly one buyer
+            // trade, failed the goal, and was re-picked ten seconds later to
+            // offer the identical 11 again. Gold sat at 135 for the rest of
+            // the run while eleven saleable scrolls sat in the pack
+            // (run_m5/p0gate3).
+            //
+            // A player offers half. Halve until the lot is empty, and only
+            // then decide this buyer is no use -- the same "a refusal is
+            // information, act on it" rule as the banker and trainer paths.
+            if (sellLotCap_ <= 0) sellLotCap_ = sellWanted_;
+            sellLotCap_ /= 2;
+            if (sellLotCap_ > 0) {
+                LogLine("earn_gold: trying a smaller lot -- %d %s this time "
+                        "(a vendor's own purse runs out)",
+                        sellLotCap_, sellItem_.c_str());
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+            sellLotCap_ = 0;
             ++sellBuyerIndex_;      // try the next trade that buys this
             sellTrade_.clear();
         }
@@ -2562,6 +2753,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         sellBuyerIndex_ = 0;
         sellTrade_.clear();
         sellTrips_ = 0;
+        sellLotCap_ = 0;
     }
     sellWanted_ = chosen->qty;
 
@@ -2579,9 +2771,21 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     }
     if (sellBuyerIndex_ >= buyers.size()) {
         LogLine("goal_failed=EARN_GOLD reason=\"tried all %zu trades that buy "
-                "%s\"", buyers.size(), sellItem_.c_str());
+                "%s\" -- standing down for %llds", buyers.size(),
+                sellItem_.c_str(),
+                static_cast<long long>(kNoBuyerCooldownMs / 1000));
+        // STAND DOWN, do not re-decide. Failing here without a cooldown put
+        // EARN_GOLD straight back at the top of the list and the whole walk
+        // began again 2.6 seconds later: run_m5/p0gate3 logged this same line
+        // every few seconds with gold pinned at 135 and eleven saleable
+        // scrolls in the pack. The buyers have not changed in that time; the
+        // vendor's purse needs a restock cycle, and something else can be
+        // done meanwhile.
+        planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kNoBuyerCooldownMs);
         planner_.Finish(false, "no buyer took the goods", obs.nowMs);
         sellBuyerIndex_ = 0;
+        sellLotCap_ = 0;
+        nextActionMs_ = obs.nowMs + 5000;
         return false;
     }
     const market::NpcBuyer* buyer = buyers[sellBuyerIndex_];
@@ -2699,7 +2903,10 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         for (u16 g : mine) { if (v.graphic == g) { match = true; break; } }
         if (!match) continue;
 
-        const i32 qty = std::min<i32>(sellWanted_, static_cast<i32>(v.amount));
+        i32 qty = std::min<i32>(sellWanted_, static_cast<i32>(v.amount));
+        // A cap set by an earlier refusal from THIS buyer -- see the
+        // "purse did not move" branch above.
+        if (sellLotCap_ > 0) qty = std::min<i32>(qty, sellLotCap_);
         if (qty <= 0) continue;
 
         LogLine("earn_gold: '%s' offers %u gold each for %s; selling %d",
@@ -2775,6 +2982,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             TrainerVerdict v;
             v.skillId  = skillId;
             v.trade    = trainerTrade_;
+            v.npcSerial = trainerSerial_;
             v.taught   = true;
             v.atTenths = have;
             v.quoted   = trainQuoted_;
@@ -2834,6 +3042,17 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     // -- also "the mage", in a different Britain shop -- quoted 184 gold for
     // the same skill on the first ask. Why one answers and the other does not
     // is UNKNOWN; what a player does about it is not, and is what this does.
+    // AND SKIP ANYONE WHO ALREADY REFUSED. Silence and refusal are different
+    // answers with the same consequence for THIS NPC -- and, because the
+    // ceiling is that NPC's own skill and not the trade's, the next one may
+    // still teach it. Seeded from memory rather than kept in the transient
+    // list, so a refusal survives the logout that earned it.
+    for (u32 refused :
+         state_.memory.TrainersWhoRefused(skillId, trainerTrade_.c_str())) {
+        bool known = false;
+        for (u32 k : trainerSilent_) { if (k == refused) { known = true; break; } }
+        if (!known) trainerSilent_.push_back(refused);
+    }
     const u32 trainer = client.NearestMobileWithTrade(trainerTrade_.c_str(),
                                                       trainerSilent_);
     if (!trainer) {
@@ -2965,6 +3184,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         TrainerVerdict v;
         v.skillId  = skillId;
         v.trade    = trainerTrade_;
+        v.npcSerial = trainerSerial_;
         v.taught   = false;
         v.atTenths = have;
         v.why      = r.why;
@@ -3516,6 +3736,27 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
 
+    // SETTLE THE PREVIOUS ASK FIRST, from the gold the server actually took.
+    // The ledger is the economy's own books; it must record purchases that
+    // HAPPENED. Noting the flow at request time counted one on every
+    // superseded retry against a vendor that had walked out of reach.
+    if (!pendingBuyItem_.empty() && !client.ActionBusy()) {
+        const i32 spent = pendingBuyGoldBefore_ - obs.gold;
+        if (spent > 0) {
+            state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase, spent,
+                               pendingBuyItem_.c_str(), obs.nowMs);
+            LogLine("supplies: the server took %d gold for %s (purse %d -> %d)",
+                    spent, pendingBuyItem_.c_str(), pendingBuyGoldBefore_,
+                    obs.gold);
+            planner_.NoteProgress();   // THIS is progress: goods changed hands
+        } else {
+            LogLine("supplies: asked to buy %s and the purse did not move -- "
+                    "nothing was bought", pendingBuyItem_.c_str());
+        }
+        pendingBuyItem_.clear();
+        pendingBuyGoldBefore_ = 0;
+    }
+
     const CraftIntent intent = ChooseCraft(*me, obs, needCfg_.craftBatch);
     if (!intent.item || intent.missing.empty()) {
         LogLine("supplies: nothing short after all");
@@ -3609,6 +3850,37 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         return false;
     }
 
+    // AN OPEN SHOP WINDOW IS NOT A VENDOR STILL IN REACH.
+    //
+    // The approach check above only runs while no offer is open, so once the
+    // window came up the character stopped watching where the shopkeeper went
+    // -- and Britain's shopkeepers walk. In run_m5/p0gate1 Ysolde bought once,
+    // Nightshade wandered off, and every buy after that was answered "You
+    // can't reach the Vendor" while the goal re-issued it every 2.5 seconds
+    // for the rest of the session. Re-measure before each purchase and walk
+    // back if the shop has moved.
+    {
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
+            const i32 d = TileDist(obs.x, obs.y, vx, vy);
+            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+            if (d > 1 || dz > 3) {
+                LogLine("supplies: the '%s' has moved to %d,%d (%d tiles) -- "
+                        "walking back before buying",
+                        supplyTrade_.c_str(), vx, vy, d);
+                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+    }
+
+    // ONE BUY IN FLIGHT AT A TIME. kVendorTimeoutMs is 8 s and this used to
+    // re-issue every 2.5 s, so each attempt was superseded before it could
+    // resolve -- the identical defect the bank ask had.
+    if (client.ActionBusy()) return false;
+
     // A shop window is open: find the input in it and buy the shortfall.
     const std::vector<u16> gfx = econ::GraphicsForItem(supplyItem_.c_str());
     for (const Client::VendorItem& v : client.VendorOffer()) {
@@ -3656,11 +3928,22 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         LogLine("supplies: buying %d %s at %d each from '%s'", take,
                 supplyItem_.c_str(), unit, v.name.c_str());
         client.ActionVendorBuy(vendor, v.serial, static_cast<u16>(take));
-        state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
-                           take * unit, supplyItem_.c_str(), obs.nowMs);
-        planner_.NoteProgress();
+        // THE LEDGER RECORDS WHAT THE SERVER DID, not what we asked for.
+        // Noting the flow here counted a purchase on every one of those
+        // superseded retries, so the economy's own books recorded gold
+        // destroyed that never left the purse. What is remembered instead is
+        // the ASK; the flow is noted on the next tick, from the gold the
+        // server actually took (see `pendingBuy_` below).
+        pendingBuyItem_ = supplyItem_;
+        pendingBuyGoldBefore_ = obs.gold;
+        // BUYING IS AN ATTEMPT, NOT PROGRESS. NoteProgress() cleared the
+        // failure ladder on every retry, so a goal that bought nothing for
+        // twenty minutes never ran out of attempts.
+        planner_.NoteAttempt(obs.nowMs);
         supplyItem_.clear();
-        nextActionMs_ = obs.nowMs + 2500;
+        // Longer than kVendorTimeoutMs (8 s, Client.cpp): an ask re-issued
+        // inside its own deadline supersedes itself and never resolves.
+        nextActionMs_ = obs.nowMs + 9000;
         return false;
     }
 

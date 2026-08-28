@@ -221,12 +221,28 @@ inline constexpr double kMaxDangerHeat = 4.0;
 // NPC, not a shard constant. There is no way to know it without asking, and
 // asking costs a walk across town -- so the answer is remembered.
 //
-// A refusal is permanent for that trade: "you already know as much as I can
-// teach" means the trainer's ceiling is BELOW the character's skill, and the
-// character only grows from here.
+// A REFUSAL IS ABOUT THE NPC, NOT ABOUT THE TRADE.
+//
+// This used to say a refusal was permanent for the whole trade, reasoning that
+// "you already know as much as I can teach" put the trainer's ceiling below
+// the character. The first half is right and the second does not follow, and
+// Source-X's own formula says why: NPC_GetTrainMax (CCharNPCStatus.cpp:514-541)
+// is min(THIS NPC's own skill x NPCTrainPercent, NPCTrainMax, the student's
+// cap). The ceiling is a property of the individual NPC's skill value, so two
+// mages of the same trade cap at different places -- Alenne stopped teaching
+// Ysolde Meditation at 21.9, which puts Alenne's own Meditation near 73.0,
+// while a mage at 100.0 would have taught her to 30.0.
+//
+// Writing the trade off on one answer cost Ysolde her only trainable skill
+// permanently and, with Inscription and Magery both already above the 30.0
+// generic ceiling, left her with nothing any trainer could sell her -- which
+// is what blocked the earn-then-train gate (run_m5/p0gate2,
+// "want_train=nothing"). A player told "I have nothing left to teach thee"
+// walks to a different mage.
 struct TrainerVerdict {
     int         skillId = -1;
     std::string trade;          // "mage", "healer", ... the paperdoll title
+    u32         npcSerial = 0;  // WHICH one answered; 0 = an older record
     bool        taught = false; // false = refused
     i32         atTenths = 0;   // what the character's skill was when asked
     i32         quoted = 0;     // the fee the NPC named, if it named one
@@ -260,12 +276,21 @@ public:
     void NoteEvent(const char* kind, const char* detail, const char* place,
                    i32 x, i32 y, i64 nowMs);
 
-    // Record what a trade of trainer said about a skill. One row per
-    // (skill, trade); a later answer replaces an earlier one.
+    // Record what ONE trainer said about a skill. One row per
+    // (skill, trade, npcSerial); a later answer from the same NPC replaces an
+    // earlier one.
     void NoteTrainerVerdict(const TrainerVerdict& v);
-    // Has this trade already refused to teach this skill? Checked BEFORE
-    // walking, so a refusal costs one trip in a character's whole life.
+    // Has THIS NPC already refused to teach this skill? Checked before asking
+    // again, so one refusal is never re-earned from the same mouth.
+    bool TrainerRefusedByNpc(int skillId, u32 npcSerial) const;
+    // Has the TRADE been exhausted -- have enough different NPCs of it refused
+    // that walking to another is no longer worth it? A single refusal is not
+    // evidence about a trade whose ceiling is per-NPC (see TrainerVerdict).
+    static constexpr int kTradeExhaustedAfter = 3;
     bool TrainerRefused(int skillId, const char* trade) const;
+    // Serials of this trade that refused this skill, for the skip list a
+    // character uses to walk to a DIFFERENT trainer.
+    std::vector<u32> TrainersWhoRefused(int skillId, const char* trade) const;
 
     // Decayed heat at a point. 0 when nothing bad ever happened nearby.
     double DangerHeatAt(i32 x, i32 y, i64 nowMs) const;
@@ -615,11 +640,30 @@ public:
     // True when the running goal has run out of time or attempts.
     bool Exhausted(i64 nowMs, std::string* whyOut) const;
 
+    // A GOAL THAT RAN AND ACHIEVED NOTHING MUST NOT BE RE-PICKED IMMEDIATELY.
+    //
+    // Finish() only clears `active`; the very next Select() sees the same top
+    // need and starts the same goal again with a fresh clock. Ysolde stood at
+    // an open, empty bank box carrying nothing she was allowed to deposit and
+    // logged goal=BANK -> goal_completed=BANK progress=0 -> checkpoint every
+    // 60 ms for the rest of the session, writing state.json each time
+    // (run_m5/pair2). The commitment floor does not help: it governs
+    // TRANSITIONS away from a RUNNING goal, and this goal was never running
+    // when the decision was made.
+    //
+    // So a goal can put ITSELF out of the running for a while. The need is
+    // still reported and still scored -- it is marked infeasible with the
+    // reason, the same way a blocked need is, so "why didn't it bank" stays
+    // answerable.
+    void Cooldown(GoalKind kind, i64 untilMs);
+    bool Cooling(GoalKind kind, i64 nowMs) const;
+
     const PlannerConfig& Config() const { return cfg_; }
 
 private:
     PlannerConfig cfg_;
     GoalState     goal_;
+    i64 cooldownUntilMs_[static_cast<int>(GoalKind::Count)] = {};
 };
 
 // ===========================================================================

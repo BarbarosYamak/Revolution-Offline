@@ -106,6 +106,22 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
         ScoredGoal g;
         g.kind = spec.kind;
 
+        // A goal serving its own cooldown is reported, not dropped -- exactly
+        // like a blocked need. Placed BEFORE the blocked test so the cooldown
+        // reason wins: it is the more recent and more specific fact.
+        if (Cooling(spec.kind, obs.nowMs)) {
+            g.feasible = false;
+            g.blockedWhy = Fmt("on cooldown for another %llds after achieving "
+                               "nothing",
+                               static_cast<long long>(
+                                   (cooldownUntilMs_[static_cast<int>(spec.kind)] -
+                                    obs.nowMs) / 1000));
+            g.reasons.push_back("COOLING " + std::string(GoalKindName(spec.kind)) +
+                                " " + g.blockedWhy);
+            out.push_back(std::move(g));
+            continue;
+        }
+
         if (need->blocked) {
             // A blocked need is reported, not silently dropped. "Why didn't
             // it buy an axe" must always have an answer.
@@ -343,6 +359,20 @@ void Planner::Finish(bool success, const char* why, i64 nowMs) {
     (void)nowMs;
     goal_.active = false;
     goal_.failureReason = success ? std::string() : (why ? why : "unspecified failure");
+}
+
+void Planner::Cooldown(GoalKind kind, i64 untilMs) {
+    const int i = static_cast<int>(kind);
+    if (i < 0 || i >= static_cast<int>(GoalKind::Count)) return;
+    // Never shorten one that is already running: two callers cooling the same
+    // goal should give the longer rest, not the last one written.
+    if (untilMs > cooldownUntilMs_[i]) cooldownUntilMs_[i] = untilMs;
+}
+
+bool Planner::Cooling(GoalKind kind, i64 nowMs) const {
+    const int i = static_cast<int>(kind);
+    if (i < 0 || i >= static_cast<int>(GoalKind::Count)) return false;
+    return nowMs < cooldownUntilMs_[i];
 }
 
 }  // namespace uo::life

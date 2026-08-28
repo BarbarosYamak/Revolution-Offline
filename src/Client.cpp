@@ -3074,12 +3074,23 @@ void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
 // --- banking ---------------------------------------------------------------
 // Sphere opens the bank the way a player does it: speak the keyword near a
 // banker. There is no client-side shortcut; the server decides.
+//
+// ADDRESS THE BANKER BY NAME, for the same reason a vendor is addressed by
+// name (see AddressMobile below). A bare "bank" is an UNNAMED keyword, and
+// Source-X answers those with "pick the closest NPC" (CClientEvent.cpp:1962) --
+// so which NPC hears it depends on who happens to be standing nearest at that
+// instant, and Britain's bankers wander. run_m5/p0gate1 asked Hyman and Lyndon
+// six times between them from two and four tiles and every one timed out,
+// while the same phrase from the same tile had opened the box six minutes
+// earlier. Naming the NPC removes the coin-flip.
 void Client::ActionOpenBank(u32 bankerSerial, const char* phrase) {
     BeginAction(act::Kind::OpenBank, kBankTimeoutMs);
     action_.subject = bankerSerial;
-    LogInfo("[ACTION] open_bank banker=0x%08X phrase='%s'\n",
-            bankerSerial, phrase ? phrase : "bank");
-    SayAscii(phrase && phrase[0] ? phrase : "bank");
+    const std::string say =
+        AddressMobile(bankerSerial, phrase && phrase[0] ? phrase : "bank");
+    LogInfo("[ACTION] open_bank banker=0x%08X say='%s'\n",
+            bankerSerial, say.c_str());
+    SayAscii(say.c_str());
 }
 
 // --- vendors ---------------------------------------------------------------
@@ -3474,8 +3485,16 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
         return false;
     };
 
-    if (contains("you cannot reach") || contains("out of range") ||
-        contains("too far away") || contains("cannot see")) {
+    // "can't" AS WELL AS "cannot". Source-X writes the contraction for the
+    // vendor case -- "You can't reach the Vendor" -- and matching only the
+    // spelled-out form let that sail past as an unrecognised line. The buy
+    // action then had no result to report, so the goal re-issued it every 2.5
+    // seconds against a vendor that had simply walked away, and the ledger
+    // recorded a purchase each time (run_m5/p0gate1). A definitive refusal
+    // that is not read is worse than no message at all.
+    if (contains("you cannot reach") || contains("you can't reach") ||
+        contains("out of range") || contains("too far away") ||
+        contains("cannot see")) {
         FinishAction(act::Result::Rejected, text);
         return;
     }

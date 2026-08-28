@@ -366,8 +366,17 @@ void TestARefusalIsRemembered() {
 
 // --------------------------------------------------------------------------
 void TestTrainerMemory() {
-    Section("memory: verdicts are per (skill, trade) and replaceable");
+    Section("memory: verdicts are per (skill, trade, NPC) and replaceable");
 
+    // CHANGED DELIBERATELY. This test used to assert that ONE refusal marked
+    // the whole trade refused, and that there was one row per (skill, trade).
+    // Both encoded a mistake: Source-X caps teaching at min(THAT NPC's own
+    // skill x NPCTrainPercent, NPCTrainMax, the student's cap), so the ceiling
+    // belongs to the individual and two mages stop in different places. Under
+    // the old rule Alenne's "nothing left to give" at Meditation 21.9 wrote
+    // off every mage on the shard and left Ysolde with no buyable skill at
+    // all (run_m5/p0gate2, `want_train=nothing`). A trade is given up only
+    // after kTradeExhaustedAfter different NPCs of it have said no.
     life::Memory mem;
     Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
           "nothing is refused before anyone has been asked");
@@ -375,27 +384,38 @@ void TestTrainerMemory() {
     life::TrainerVerdict v;
     v.skillId = rules::kEvaluatingIntel;
     v.trade = "mage";
+    v.npcSerial = 0x1111;
     v.taught = false;
     v.atTenths = 118;
     v.why = "the trainer has nothing left to give";
     mem.NoteTrainerVerdict(v);
 
-    Check(mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
-          "the refusal is remembered");
+    Check(mem.TrainerRefusedByNpc(rules::kEvaluatingIntel, 0x1111),
+          "the refusal is remembered against the NPC that gave it");
+    Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
+          "but ONE mage's answer does not write off mages");
+    Check(!mem.TrainerRefusedByNpc(rules::kEvaluatingIntel, 0x2222),
+          "and says nothing about a mage who was never asked");
     Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "scribe"),
-          "and it says nothing about a DIFFERENT trade");
+          "nor about a DIFFERENT trade");
     Check(!mem.TrainerRefused(rules::kInscription, "mage"),
           "nor about a different skill from the same trade");
 
-    // The same NPC trade teaching it later replaces the refusal, so a verdict
+    v.npcSerial = 0x2222; mem.NoteTrainerVerdict(v);
+    v.npcSerial = 0x3333; mem.NoteTrainerVerdict(v);
+    Check(mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
+          "three different mages refusing DOES exhaust the trade");
+
+    // The same NPC teaching it later replaces its own refusal, so a verdict
     // is never a permanent lie about the world.
+    v.npcSerial = 0x1111;
     v.taught = true;
     v.why = "taught";
     mem.NoteTrainerVerdict(v);
     Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
-          "a later success replaces the earlier refusal");
-    Check(mem.Trainers().size() == 1,
-          "one row per (skill, trade), not one per asking");
+          "a later success drops that NPC back below the exhaustion line");
+    Check(mem.Trainers().size() == 3,
+          "one row per (skill, trade, NPC), not one per asking");
 }
 
 

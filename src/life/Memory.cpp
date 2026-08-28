@@ -310,18 +310,49 @@ usize Memory::ApproximateBytes() const {
 }
 
 void Memory::NoteTrainerVerdict(const TrainerVerdict& v) {
+    // One row per (skill, trade, NPC). Keying on (skill, trade) alone made
+    // every mage in the world one mage: the second trainer's answer
+    // overwrote the first's, and one refusal spoke for all of them.
     for (TrainerVerdict& t : trainers_) {
-        if (t.skillId == v.skillId && t.trade == v.trade) { t = v; return; }
+        if (t.skillId == v.skillId && t.trade == v.trade &&
+            t.npcSerial == v.npcSerial) { t = v; return; }
     }
     trainers_.push_back(v);
 }
 
-bool Memory::TrainerRefused(int skillId, const char* trade) const {
-    if (!trade) return false;
+bool Memory::TrainerRefusedByNpc(int skillId, u32 npcSerial) const {
+    if (!npcSerial) return false;
     for (const TrainerVerdict& t : trainers_) {
-        if (t.skillId == skillId && t.trade == trade && !t.taught) return true;
+        if (t.skillId == skillId && t.npcSerial == npcSerial && !t.taught)
+            return true;
     }
     return false;
+}
+
+std::vector<u32> Memory::TrainersWhoRefused(int skillId, const char* trade) const {
+    std::vector<u32> out;
+    if (!trade) return out;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId != skillId || t.trade != trade || t.taught) continue;
+        if (!t.npcSerial) continue;
+        bool seen = false;
+        for (u32 s : out) { if (s == t.npcSerial) { seen = true; break; } }
+        if (!seen) out.push_back(t.npcSerial);
+    }
+    return out;
+}
+
+bool Memory::TrainerRefused(int skillId, const char* trade) const {
+    if (!trade) return false;
+    // A record with no serial predates the per-NPC split. Those were written
+    // under the old "one refusal condemns the trade" rule, and honouring them
+    // that way would preserve exactly the bug: treat them as ONE refusal,
+    // which is all they ever actually evidenced.
+    int refusals = 0;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId == skillId && t.trade == trade && !t.taught) ++refusals;
+    }
+    return refusals >= kTradeExhaustedAfter;
 }
 
 }  // namespace uo::life

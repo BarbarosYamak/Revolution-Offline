@@ -1187,6 +1187,175 @@ void TestEveryLifeAsksForItsOwnTools() {
 // --------------------------------------------------------------------------
 // riskTolerance was dead data: every profession carried a distinct value and
 // nothing read it, so a fisher and a swordsman fled at the same threshold.
+// --------------------------------------------------------------------------
+// A GOAL THAT ACHIEVED NOTHING MUST NOT BE RE-PICKED ON THE NEXT TICK.
+//
+// Ysolde the scribe, run_m5/pair2: STR 10, carry limit 75 stones, and a
+// starting kit of 73 -- two chainmail coifs, two books, a candle and three
+// cast scrolls, none of which the old DoBank was allowed to deposit. She
+// stood at an open bank box and logged
+//
+//   goal=BANK ... weight=73/75 (97%)
+//   goal_completed=BANK progress=0
+//   checkpoint (goal completed) -> state.json
+//
+// every 60 ms for five straight minutes, fsyncing state.json each lap. The
+// commitment floor does not catch this: it governs transitions away from a
+// RUNNING goal, and Finish() had already cleared `active`. So the goal has to
+// be able to stand itself down, and the need must still be REPORTED while it
+// does -- "why isn't it banking" stays answerable.
+void TestGoalCooldownStopsChurn() {
+    Section("planner: a goal that did nothing can stand itself down");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    if (!lj) { Check(false, "no lumberjack"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = lj;
+    life::BuildPlan plan = life::PlanFromProfession(*lj);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 25;
+    obs.gold = 500;
+    obs.axeEquipped = true;
+    obs.nowMs = 1000;
+    // Fully equipped, so the housekeeping need is the top one: this test is
+    // about the churn, not about what outranks it.
+    for (const prof::ToolNeed& t : lj->tools) obs.toolsHeld.push_back(t.name);
+    obs.bandages = 10;
+    obs.weaponEquipped = true;
+    // At the weight line with nothing sellable: exactly the shape that scores
+    // NeedBank and nothing above it.
+    obs.weight = 73; obs.maxWeight = 75;
+
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
+
+    life::Planner planner;
+    std::string why;
+    Check(planner.Select(needs, obs, mem, obs.nowMs, &why),
+          "a full pack picks a goal to begin with");
+    Check(planner.Current().kind == life::GoalKind::Bank,
+          "and the goal it picks is BANK");
+
+    // The visit deposited nothing. Stand down for five minutes and fail.
+    planner.Cooldown(life::GoalKind::Bank, obs.nowMs + 5 * 60 * 1000);
+    planner.Finish(false, "nothing to deposit", obs.nowMs);
+    Check(planner.Cooling(life::GoalKind::Bank, obs.nowMs),
+          "BANK is cooling immediately after standing down");
+
+    // 60 ms later -- the interval the live churn actually ran at.
+    obs.nowMs += 60;
+    const std::vector<life::ScoredGoal> cooling = planner.Score(needs, obs, mem);
+    bool reported = false;
+    for (const life::ScoredGoal& g : cooling) {
+        if (g.kind != life::GoalKind::Bank) continue;
+        reported = true;
+        Check(!g.feasible, "BANK is not feasible again 60 ms later");
+        Check(!g.blockedWhy.empty(), "and it says why it is standing down");
+    }
+    Check(reported, "the BANK goal is still REPORTED, not silently dropped");
+
+    planner.Select(needs, obs, mem, obs.nowMs, &why);
+    Check(planner.Current().kind != life::GoalKind::Bank,
+          "so the very next decision is something other than BANK");
+
+    // And it comes back on its own once the rest is served.
+    obs.nowMs += 5 * 60 * 1000;
+    Check(!planner.Cooling(life::GoalKind::Bank, obs.nowMs),
+          "the stand-down expires; banking is not disabled forever");
+
+    // A second, shorter cooldown must not shorten one already running.
+    planner.Cooldown(life::GoalKind::Bank, obs.nowMs + 60000);
+    planner.Cooldown(life::GoalKind::Bank, obs.nowMs + 1000);
+    Check(planner.Cooling(life::GoalKind::Bank, obs.nowMs + 30000),
+          "the longer rest wins when two callers cool the same goal");
+}
+
+
+// --------------------------------------------------------------------------
+// ONE TRAINER'S REFUSAL IS NOT THE TRADE'S ANSWER.
+//
+// Source-X caps what an NPC may teach at min(THAT NPC's own skill x
+// NPCTrainPercent, NPCTrainMax, the student's cap) -- CCharNPCStatus.cpp:514.
+// The ceiling is therefore a property of the individual, so two mages cap in
+// different places. Recording the refusal against the TRADE made every mage in
+// Britain one mage: Alenne stopped teaching Ysolde Meditation at 21.9 (which
+// puts Alenne's own Meditation near 73.0), the whole "mage" trade was written
+// off for good, and with Inscription and Magery both already past the generic
+// 30.0 ceiling the character was left with nothing any trainer could sell her.
+// run_m5/p0gate2 logged it as `want_train=nothing` while she stood on 205 gold
+// she had just earned.
+void TestOneTrainerIsNotTheTrade() {
+    Section("memory: one trainer's refusal is not the whole trade's");
+
+    life::Memory mem;
+    auto refuse = [&mem](u32 npc, i32 at) {
+        life::TrainerVerdict v;
+        v.skillId   = rules::kMeditation;
+        v.trade     = "mage";
+        v.npcSerial = npc;
+        v.taught    = false;
+        v.atTenths  = at;
+        v.why       = "the trainer has nothing left to give";
+        v.whenMs    = 1000;
+        mem.NoteTrainerVerdict(v);
+    };
+
+    refuse(0x1111, 219);
+    Check(mem.TrainerRefusedByNpc(rules::kMeditation, 0x1111),
+          "the NPC that refused is remembered by serial");
+    Check(!mem.TrainerRefusedByNpc(rules::kMeditation, 0x2222),
+          "a mage who was never asked has not refused anything");
+    Check(!mem.TrainerRefused(rules::kMeditation, "mage"),
+          "one refusal does NOT write off the trade");
+    Check(mem.TrainersWhoRefused(rules::kMeditation, "mage").size() == 1,
+          "and the skip list names exactly the one who said no");
+
+    // A second answer from the SAME mouth is the same one refusal.
+    refuse(0x1111, 219);
+    Check(mem.TrainersWhoRefused(rules::kMeditation, "mage").size() == 1,
+          "asking the same NPC twice is still one refusal, not two");
+    Check(!mem.TrainerRefused(rules::kMeditation, "mage"),
+          "so it cannot exhaust the trade on its own");
+
+    refuse(0x2222, 219);
+    Check(!mem.TrainerRefused(rules::kMeditation, "mage"),
+          "two different mages is still not enough to give up on mages");
+
+    refuse(0x3333, 219);
+    Check(mem.TrainerRefused(rules::kMeditation, "mage"),
+          "three different mages refusing DOES exhaust the trade");
+    Check(mem.TrainersWhoRefused(rules::kMeditation, "mage").size() == 3,
+          "and all three are on the skip list");
+
+    // A refusal about one skill says nothing about another.
+    Check(!mem.TrainerRefused(rules::kMagery, "mage"),
+          "refusing Meditation is not refusing Magery");
+
+    // The character must still WANT the skill after a single refusal --
+    // this is the half that actually unblocks the earn-then-train gate.
+    const prof::Profession* scribe = prof::Find("scribe");
+    if (!scribe) { Check(false, "no scribe"); return; }
+    life::BuildPlan plan = life::PlanFromProfession(*scribe);
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.skills.push_back({rules::kInscription, 500});
+    obs.skills.push_back({rules::kMagery,      500});
+    obs.skills.push_back({rules::kMeditation,  219});
+
+    Check(life::NextSkillToBuy(plan, obs, 300) == rules::kMeditation,
+          "with nobody refused, the scribe wants to buy Meditation");
+
+    // The old behaviour, restated as the bug it was: mark the skill refused
+    // outright and the character wants nothing at all.
+    obs.trainerRefusedSkills.push_back(rules::kMeditation);
+    Check(life::NextSkillToBuy(plan, obs, 300) == -1,
+          "and a skill the whole trade has refused is correctly dropped");
+}
+
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1261,6 +1430,8 @@ int main(int argc, char** argv) {
     TestUnsatisfiableNeedIsBlocked();
     TestEveryLifeAsksForItsOwnTools();
     TestNerveIsPerProfession();
+    TestOneTrainerIsNotTheTrade();
+    TestGoalCooldownStopsChurn();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

@@ -1,0 +1,739 @@
+[00:21:34.696] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='p0gate1'
+[00:21:34.697] LOG   [p0gate1] event session_start: text log opened
+[00:21:34.697] LOG   [p0gate1] event net_connect_begin: connect 127.0.0.1:2593
+[00:21:34.697] INFO  [p0gate1] [net] connecting to 127.0.0.1:2593 ...
+[00:21:34.698] LOG   [p0gate1] event net_connected: connect 127.0.0.1:2593
+[00:21:34.698] INFO  [p0gate1] [net] connected.
+[00:21:34.698] INFO  [p0gate1] [seed] sent 0x7F000001 (plaintext)
+[00:21:34.698] LOG   [p0gate1] event seed_out: 0x7F000001 hex=7f000001
+[00:21:34.701] INFO  [life] loaded persistent state for Ysolde (1 places, 2 suppliers, 256 events, 0 prior sessions)
+[00:21:34.701] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[00:21:34.701] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[00:21:34.701] INFO  [p0gate1] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[00:21:34.708] INFO  [p0gate1] [0xA8] 1 server(s):
+[00:21:34.708] INFO  [p0gate1]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[00:21:34.723] INFO  [p0gate1] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[00:21:34.723] LOG   [p0gate1] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[00:21:34.723] INFO  [p0gate1] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:21:34.723] LOG   [p0gate1] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:21:34.723] INFO  [p0gate1] [0xB9] server features = 0x0005
+[00:21:34.723] INFO  [p0gate1] [0xA9] 5 slot(s) (populated 1):
+[00:21:34.723] INFO  [p0gate1]   [0] Ysolde
+[00:21:34.723] INFO  [p0gate1]   [1] <empty>
+[00:21:34.723] INFO  [p0gate1]   [2] <empty>
+[00:21:34.723] INFO  [p0gate1]   [3] <empty>
+[00:21:34.723] INFO  [p0gate1]   [4] <empty>
+[00:21:34.723] INFO  [p0gate1] [ui] playing slot 0 ('Ysolde')
+[00:21:34.739] INFO  [p0gate1] [0x1B] serial=0x00014261 body=0x0190 pos=(1425,1687,0)
+[00:21:34.739] LOG   [p0gate1] event login_confirm: serial=0x00014261 body=0x0190 pos=(1425,1687,0)
+[00:21:34.739] INFO  [p0gate1] [0x20] player @(1425,1687,0) facing=0
+[00:21:34.739] INFO  [p0gate1] [0x55] login complete — entering world
+[00:21:34.739] LOG   [p0gate1] event in_world: 0x55 received
+[00:21:34.739] INFO  [p0gate1] [backpack] opening 0x4001425D
+[00:21:34.739] INFO  [p0gate1] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:21:34.739] INFO  [p0gate1] [chat ascii] System: There are 0 other players here.
+[00:21:34.739] INFO  [p0gate1] [chat ascii] System: Last logged: 2026/08/28 23:53:12
+[00:21:34.739] INFO  [p0gate1] [chat ascii] System: You are under the protection of the city guards
+[00:21:34.743] INFO  [p0gate1] [action] requesting the skill list
+[00:21:34.743] INFO  [life] in world; asked the server for the skill list
+[00:21:34.743] INFO  [p0gate1] [0x24] open container 0x4001425D gump=60
+[00:21:34.744] INFO  [p0gate1] [0x3C] container contents: 11 item(s)
+[00:21:34.744] LOG   [p0gate1] event backpack_contents: serial=0x4001425D items=11
+[00:21:37.315] INFO  [p0gate1] [bot] world data loaded (0 blacklisted spot(s)).
+[00:21:37.315] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[00:21:37.315] INFO  [life]   gold         persisted=317        server=317        -> server value accepted
+[00:21:37.315] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[00:21:37.315] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[00:21:37.315] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[00:21:37.315] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[00:21:37.315] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[00:21:37.315] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[00:21:37.315] INFO  [life]   position     persisted=1425,1687  server=1425,1687  -> server value accepted
+[00:21:37.315] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:21:37.315] INFO  [p0gate1] [survival] on
+[00:21:37.315] LOG   [p0gate1] event survival_mode: on
+[00:21:37.319] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:21:37.319] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:21:37.370] INFO  [life] goal=BANK reason="no goal was running"
+[00:21:37.370] INFO  [life] needs considered: NeedBank(deposit carried load 0.72) NeedSupplies(buy craft inputs 0.44) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:21:37.370] INFO  [life]   score=173.6
+[00:21:37.370] INFO  [life]   reason: NeedBank urgency 0.72 x 240 = 173.6
+[00:21:37.370] INFO  [life]   reason: weight=73/75 (97%) logs=0
+[00:21:37.370] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:21:37.370] INFO  [life] bank: returning to a remembered bank at 1424,1687 (trip 1)
+[00:21:37.370] INFO  [p0gate1] [travel] bank -> (1424,1687) r=2 from (1425,1687)
+[00:21:37.370] LOG   [p0gate1] event travel_start: label='bank' target=(1424,1687) radius=2 from=(1425,1687)
+[00:21:37.371] INFO  [p0gate1] [travel] bank ARRIVED at (1425,1687,0)
+[00:21:37.371] LOG   [p0gate1] event travel_done: label='bank' ok=1 at=(1425,1687) legs=0 plans=0 why=''
+[00:21:39.395] INFO  [life] bank: arrived at 1425,1687 -- asking who is here
+[00:21:39.395] INFO  [p0gate1] [action] scanning nearby mobiles for names
+[00:21:39.395] INFO  [p0gate1] [action] requested 2 paperdoll(s) for trade titles
+[00:21:39.395] INFO  [p0gate1] [mobiles] nearby (2):
+[00:21:39.395] INFO  [p0gate1]   Hyman 0x00001033
+[00:21:39.395] INFO  [p0gate1]   Lyndon 0x0000124E
+[00:21:39.395] INFO  [p0gate1] [0x20] player @(1425,1687,0) facing=4
+[00:21:39.395] INFO  [p0gate1] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[00:21:39.395] INFO  [p0gate1] [world] Lyndon, the minter is a banker at (1425,1691)
+[00:21:39.395] INFO  [p0gate1] [0x20] player @(1425,1687,0) facing=1
+[00:21:39.395] INFO  [p0gate1] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[00:21:39.395] INFO  [p0gate1] [world] Hyman, the banker is a banker at (1427,1685)
+[00:21:41.922] INFO  [p0gate1] [ACTION] open_bank start
+[00:21:41.922] INFO  [p0gate1] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[00:21:41.938] INFO  [p0gate1] [chat uni  ] : bank
+[00:21:42.368] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:21:47.400] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:21:47.955] LOG   [p0gate1] event action_result: open_bank timeout
+[00:21:48.934] INFO  [p0gate1] [ACTION] open_bank start
+[00:21:48.934] INFO  [p0gate1] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[00:21:48.934] INFO  [p0gate1] [chat uni  ] : bank
+[00:21:52.415] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:21:54.936] LOG   [p0gate1] event action_result: open_bank timeout
+[00:21:55.981] INFO  [p0gate1] [ACTION] open_bank start
+[00:21:55.981] INFO  [p0gate1] [ACTION] open_bank banker=0x0000124E phrase='bank'
+[00:21:55.982] INFO  [p0gate1] [chat uni  ] : bank
+[00:21:57.448] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:01.992] LOG   [p0gate1] event action_result: open_bank timeout
+[00:22:02.481] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:03.033] INFO  [life] bank: asked 0x0000124E for the box 3 times and got nothing back -- finding a different banker
+[00:22:03.033] INFO  [p0gate1] [ACTION] open_bank start
+[00:22:03.033] INFO  [p0gate1] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[00:22:03.049] INFO  [p0gate1] [chat uni  ] : bank
+[00:22:07.536] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:09.067] LOG   [p0gate1] event action_result: open_bank timeout
+[00:22:10.049] INFO  [p0gate1] [ACTION] open_bank start
+[00:22:10.050] INFO  [p0gate1] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[00:22:10.050] INFO  [p0gate1] [chat uni  ] : bank
+[00:22:10.050] INFO  [life] goal_changed=BANK from=BANK reason="previous goal abandoned: attempts 5 >= 5"
+[00:22:10.050] INFO  [life] needs considered: NeedBank(deposit carried load 0.72) NeedSupplies(buy craft inputs 0.44) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:22:10.050] INFO  [life]   score=173.6
+[00:22:10.050] INFO  [life]   reason: NeedBank urgency 0.72 x 240 = 173.6
+[00:22:10.050] INFO  [life]   reason: weight=73/75 (97%) logs=0
+[00:22:10.050] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:22:12.570] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:16.066] LOG   [p0gate1] event action_result: open_bank timeout
+[00:22:17.053] INFO  [p0gate1] [ACTION] open_bank start
+[00:22:17.053] INFO  [p0gate1] [ACTION] open_bank banker=0x00001033 phrase='bank'
+[00:22:17.054] INFO  [p0gate1] [chat uni  ] : bank
+[00:22:17.602] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:22.640] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:23.069] LOG   [p0gate1] event action_result: open_bank timeout
+[00:22:24.110] INFO  [life] bank: asked 0x00001033 for the box 3 times and got nothing back -- finding a different banker
+[00:22:24.111] INFO  [life] bank: 2 banker(s) in reach and not one opened a box -- standing down for 300s
+[00:22:24.172] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: no banker answered"
+[00:22:24.172] INFO  [life] needs considered: NeedBank(deposit carried load 0.72) NeedSupplies(buy craft inputs 0.44) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:22:24.172] INFO  [life]   score=61.6
+[00:22:24.172] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:22:24.172] INFO  [life]   reason: i_scroll_poison needs 2 x i_scroll_blank
+[00:22:24.172] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:22:24.172] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:22:27.642] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:29.130] INFO  [life] supplies: looking for a 'mage' to sell 2 i_scroll_blank (trip 1)
+[00:22:29.130] INFO  [p0gate1] [travel] Britain mage -> (1485,1550) r=5 from (1425,1687)
+[00:22:29.130] LOG   [p0gate1] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1425,1687)
+[00:22:29.130] INFO  [p0gate1] [travel] mode moongate         usable   <- chosen
+[00:22:29.130] INFO  [p0gate1] [travel] mode walk             usable
+[00:22:29.130] INFO  [p0gate1] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:29.130] INFO  [p0gate1] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:29.130] LOG   [p0gate1] event travel_mode: moongate
+[00:22:29.130] INFO  [p0gate1] [travel] plan Britain mage: ok legs=5 ~168 tiles transit=0 nodes=48
+[00:22:29.191] INFO  [p0gate1] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:29.191] INFO  [p0gate1] [action] goto (1448,1656) from (1425,1687,0)
+[00:22:29.191] LOG   [p0gate1] event goto_start: target=(1448,1656) from=(1425,1687)
+[00:22:29.191] INFO  [p0gate1] [bot] running from (1425,1687,0) to (1448,1656)
+[00:22:29.191] INFO  [p0gate1] [bot] planning path to (1448,1656) in background
+[00:22:29.252] INFO  [p0gate1] [bot] replan to (1448,1656): 64 steps in 5811.4us
+[00:22:32.674] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:32.735] INFO  [p0gate1] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[00:22:32.751] INFO  [p0gate1] [chat ascii] System: Opening door...
+[00:22:34.208] INFO  [p0gate1] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[00:22:34.208] INFO  [p0gate1] [chat ascii] System: Opening door...
+[00:22:34.208] INFO  [p0gate1] [0x20] player @(1439,1693,0) facing=2
+[00:22:34.208] INFO  [p0gate1] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[00:22:34.208] LOG   [p0gate1] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[00:22:35.422] INFO  [p0gate1] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:35.422] INFO  [p0gate1] [action] goto (1448,1656) from (1439,1693,0)
+[00:22:35.422] LOG   [p0gate1] event goto_start: target=(1448,1656) from=(1439,1693)
+[00:22:35.422] INFO  [p0gate1] [bot] running from (1439,1693,0) to (1448,1656)
+[00:22:35.422] INFO  [p0gate1] [bot] planning path to (1448,1656) in background
+[00:22:35.482] INFO  [p0gate1] [bot] replan to (1448,1656): 49 steps in 7224.6us
+[00:22:37.314] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:22:37.679] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:42.685] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:47.696] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:49.184] INFO  [p0gate1] [bot] arrived at (1448,1656,10)
+[00:22:49.185] INFO  [p0gate1] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[00:22:49.185] LOG   [p0gate1] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[00:22:49.185] INFO  [p0gate1] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:22:49.185] INFO  [p0gate1] [action] goto (1464,1624) from (1448,1656,10)
+[00:22:49.185] LOG   [p0gate1] event goto_start: target=(1464,1624) from=(1448,1656)
+[00:22:49.185] INFO  [p0gate1] [bot] running from (1448,1656,10) to (1464,1624)
+[00:22:49.185] INFO  [p0gate1] [bot] planning path to (1464,1624) in background
+[00:22:49.245] INFO  [p0gate1] [bot] replan to (1464,1624): 43 steps in 3151.0us
+[00:22:52.699] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:22:57.761] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:02.774] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:02.851] INFO  [p0gate1] [bot] arrived at (1464,1624,20)
+[00:23:02.851] INFO  [p0gate1] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[00:23:02.851] LOG   [p0gate1] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[00:23:02.851] INFO  [p0gate1] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:23:02.851] INFO  [p0gate1] [action] goto (1464,1592) from (1464,1624,20)
+[00:23:02.851] LOG   [p0gate1] event goto_start: target=(1464,1592) from=(1464,1624)
+[00:23:02.851] INFO  [p0gate1] [bot] running from (1464,1624,20) to (1464,1592)
+[00:23:02.851] INFO  [p0gate1] [bot] planning path to (1464,1592) in background
+[00:23:02.896] INFO  [p0gate1] [bot] replan to (1464,1592): 32 steps in 549.2us
+[00:23:07.784] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:10.681] INFO  [p0gate1] [bot] arrived at (1464,1592,20)
+[00:23:10.681] INFO  [p0gate1] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[00:23:10.681] LOG   [p0gate1] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[00:23:10.681] INFO  [p0gate1] [action] goto (1480,1558) from (1464,1592,20)
+[00:23:10.681] LOG   [p0gate1] event goto_start: target=(1480,1558) from=(1464,1592)
+[00:23:10.681] INFO  [p0gate1] [bot] running from (1464,1592,20) to (1480,1558)
+[00:23:10.681] INFO  [p0gate1] [bot] planning path to (1480,1558) in background
+[00:23:10.742] INFO  [p0gate1] [bot] replan to (1480,1558): 41 steps in 6333.0us
+[00:23:12.787] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:16.722] INFO  [p0gate1] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 232.7us
+[00:23:17.795] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:22.806] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:23.591] INFO  [p0gate1] [bot] arrived at (1480,1558,30)
+[00:23:23.591] INFO  [p0gate1] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[00:23:23.591] LOG   [p0gate1] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[00:23:23.591] INFO  [p0gate1] [action] goto (1485,1550) from (1480,1558,30)
+[00:23:23.591] LOG   [p0gate1] event goto_start: target=(1485,1550) from=(1480,1558)
+[00:23:23.591] INFO  [p0gate1] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[00:23:23.591] INFO  [p0gate1] [bot] planning path to (1485,1550) in background
+[00:23:23.652] INFO  [p0gate1] [bot] replan to (1485,1550): 47 steps in 8075.8us
+[00:23:27.818] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:32.849] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:35.876] INFO  [p0gate1] [travel] Britain mage ARRIVED at (1490,1555,30)
+[00:23:35.876] LOG   [p0gate1] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=5 plans=1 why=''
+[00:23:35.938] INFO  [life] supplies: arrived at 1490,1555 -- asking who is here
+[00:23:35.938] INFO  [p0gate1] [action] scanning nearby mobiles for names
+[00:23:35.938] INFO  [p0gate1] [action] requested 3 paperdoll(s) for trade titles
+[00:23:35.938] INFO  [p0gate1] [mobiles] nearby (4):
+[00:23:35.938] INFO  [p0gate1]   Xanthe 0x00001211
+[00:23:35.938] INFO  [p0gate1]   Shunnar 0x0000E14F
+[00:23:35.938] INFO  [p0gate1]   Alenne 0x00001145
+[00:23:35.938] INFO  [p0gate1]   Caedmon 0x000012EE
+[00:23:35.938] INFO  [p0gate1] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[00:23:35.938] INFO  [p0gate1] [world] Xanthe, the alchemist is a alchemist at (1485,1551)
+[00:23:35.938] INFO  [p0gate1] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[00:23:35.938] INFO  [p0gate1] [world] Shunnar, the scribe is a scribe at (1484,1551)
+[00:23:35.938] INFO  [p0gate1] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[00:23:35.938] INFO  [p0gate1] [world] Alenne, the mage is a mage at (1484,1550)
+[00:23:37.361] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:23:37.909] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:38.219] INFO  [p0gate1] [bot] arrived at (1485,1550,30)
+[00:23:38.462] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:23:38.462] INFO  [p0gate1] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[00:23:38.463] INFO  [p0gate1] [chat uni  ] : Alenne buy
+[00:23:38.463] INFO  [p0gate1] [chat ascii] Alenne: What's thou need?
+[00:23:38.463] INFO  [p0gate1] [chat ascii] Alenne: I got lots to sell!
+[00:23:38.463] INFO  [p0gate1] [0x3C] container contents: 17 item(s)
+[00:23:38.463] INFO  [p0gate1] [0x74] pairing: straight (straight 10, mirrored 1 of 17 rows)
+[00:23:38.463] INFO  [p0gate1] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[00:23:38.463] INFO  [p0gate1] [0x74]   Magic Arrow Scroll           gfx=0x1F32 qty=11   price=20
+[00:23:38.463] INFO  [p0gate1] [0x74]   Harm Scroll                  gfx=0x1F38 qty=10   price=21
+[00:23:38.463] INFO  [p0gate1] [0x74]   Telekinisis Scroll           gfx=0x1F41 qty=18   price=23
+[00:23:38.463] INFO  [p0gate1] [0x74]   Lightning Scroll             gfx=0x1F4A qty=15   price=29
+[00:23:38.463] INFO  [p0gate1] [0x74]   Bones                        gfx=0x0F7E qty=47   price=3
+[00:23:38.463] INFO  [p0gate1] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[00:23:38.463] INFO  [p0gate1] [0x74]   recall rune                  gfx=0x1F14 qty=5    price=23
+[00:23:38.463] INFO  [p0gate1] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[00:23:38.463] INFO  [p0gate1] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[00:23:38.463] INFO  [p0gate1] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[00:23:38.463] INFO  [p0gate1] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[00:23:38.463] INFO  [p0gate1] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[00:23:38.463] INFO  [p0gate1] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[00:23:38.464] INFO  [p0gate1] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[00:23:38.464] INFO  [p0gate1] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[00:23:38.464] INFO  [p0gate1] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[00:23:38.464] INFO  [p0gate1] [0x74]   Spellbook                    gfx=0x0EFA qty=4    price=18
+[00:23:38.464] INFO  [p0gate1] [0x3C] container contents: 0 item(s)
+[00:23:38.464] INFO  [p0gate1] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[00:23:38.464] INFO  [p0gate1] [VENDOR] offer from 0x00001145: 17 item(s)
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015ECA Magic Arrow Scroll     x11  20 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015EC9 Harm Scroll            x10  21 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015EC8 Telekinisis Scroll     x18  23 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015EC7 Lightning Scroll       x15  29 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015EC5 Bones                  x47  3 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015EC4 pen and ink            x10  13 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015E0C recall rune            x5   23 gp
+[00:23:38.464] INFO  [p0gate1] [VENDOR]   0x40015E0B blank scrolls          x250 6 gp
+[00:23:38.464] LOG   [p0gate1] event vendor_offer: vendor=0x00001145 items=17
+[00:23:38.464] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[00:23:38.464] LOG   [p0gate1] event action_result: vendor_buy success took=2ms vendor offer received
+[00:23:38.464] INFO  [p0gate1] [0x24] vendor buy gump for 0x00001145
+[00:23:40.995] INFO  [life] supplies: buying 2 i_scroll_blank at 6 each from 'blank scrolls'
+[00:23:40.995] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:23:40.995] INFO  [p0gate1] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:23:40.995] INFO  [p0gate1] [VENDOR] buy item=0x40015E0B qty=2 from vendor=0x00001145 gold=317
+[00:23:40.996] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:23:40.996] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:23:40.996] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 12 gold coins.  I thank thee for thy business.
+[00:23:40.996] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:23:42.236] INFO  [p0gate1] [chat ascii] Xanthe: Hmm?
+[00:23:42.971] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:43.526] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:23:43.526] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:23:43.526] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:23:43.526] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=305
+[00:23:43.526] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:23:43.526] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:23:43.526] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:23:43.526] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:23:43.526] INFO  [life] goal_changed=CRAFT from=BUY_SUPPLIES reason="CRAFT 65.0 superseded BUY_SUPPLIES 0.0"
+[00:23:43.526] INFO  [life] needs considered: NeedBank(deposit carried load 0.72) NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:23:43.526] INFO  [life]   score=65.0
+[00:23:43.526] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:23:43.526] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:23:43.526] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 220s after achieving nothing
+[00:23:43.526] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:23:46.084] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:23:46.084] INFO  [p0gate1] [ACTION] use_object start
+[00:23:46.084] INFO  [p0gate1] [ACTION] use_object serial=0x4001089C
+[00:23:46.086] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:23:46.086] INFO  [p0gate1]         1) poison
+[00:23:46.086] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:23:47.790] INFO  [p0gate1] [chat ascii] Shunnar: Thou wishest to speak with me?
+[00:23:47.973] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:50.134] LOG   [p0gate1] event action_result: use_object timeout
+[00:23:50.194] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:23:50.194] INFO  [life] craft: chose 'poison'
+[00:23:51.427] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:23:52.195] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[00:23:52.195] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:23:52.195] INFO  [p0gate1] [ACTION] use_object start
+[00:23:52.195] INFO  [p0gate1] [ACTION] use_object serial=0x4001089C
+[00:23:52.195] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:23:52.195] INFO  [p0gate1]         1) poison
+[00:23:52.195] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:23:52.995] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:56.211] LOG   [p0gate1] event action_result: use_object timeout
+[00:23:56.274] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:23:56.274] INFO  [life] craft: chose 'poison'
+[00:23:57.519] INFO  [p0gate1] [chat ascii] System: You fail to inscribe the scroll, and the scroll is ruined.
+[00:23:58.013] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:23:58.322] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:23:58.322] INFO  [p0gate1] [ACTION] use_object start
+[00:23:58.322] INFO  [p0gate1] [ACTION] use_object serial=0x4001089C
+[00:23:58.338] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:23:58.338] INFO  [p0gate1]         1) poison
+[00:23:58.338] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:02.324] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:02.386] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:02.386] INFO  [life] craft: chose 'poison'
+[00:24:03.065] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:03.629] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:04.421] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[00:24:04.421] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:04.421] INFO  [p0gate1] [ACTION] use_object start
+[00:24:04.421] INFO  [p0gate1] [ACTION] use_object serial=0x4001089C
+[00:24:04.438] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:04.438] INFO  [p0gate1]         1) poison
+[00:24:04.438] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:08.113] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:08.480] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:08.541] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:08.541] INFO  [life] craft: chose 'poison'
+[00:24:09.784] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:10.570] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[00:24:10.570] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:10.570] INFO  [p0gate1] [ACTION] use_object start
+[00:24:10.570] INFO  [p0gate1] [ACTION] use_object serial=0x4001089C
+[00:24:10.571] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:10.571] INFO  [p0gate1]         1) poison
+[00:24:10.571] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:13.154] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:14.580] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:14.641] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:14.641] INFO  [life] craft: chose 'poison'
+[00:24:15.867] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:15.867] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 61.6 superseded CRAFT 0.0"
+[00:24:15.867] INFO  [life] needs considered: NeedBank(deposit carried load 0.72) NeedSupplies(buy craft inputs 0.44) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:24:15.867] INFO  [life]   score=61.6
+[00:24:15.867] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:24:15.867] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[00:24:15.867] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 188s after achieving nothing
+[00:24:15.867] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:24:16.673] INFO  [life] supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+[00:24:16.673] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:16.673] INFO  [p0gate1] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:16.673] INFO  [p0gate1] [VENDOR] buy item=0x40015E0B qty=5 from vendor=0x00001145 gold=290
+[00:24:16.689] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:24:16.689] LOG   [p0gate1] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:24:16.689] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:24:16.689] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:24:18.215] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:19.187] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:24:19.187] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:19.187] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:19.187] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=260
+[00:24:19.187] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:24:19.187] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:24:19.187] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:24:19.187] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:24:21.724] INFO  [life] supplies: nothing short after all
+[00:24:21.724] INFO  [life] goal_completed=BUY_SUPPLIES progress=2
+[00:24:21.727] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:24:21.785] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:24:21.786] INFO  [life] needs considered: NeedBank(deposit carried load 0.74) NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:24:21.786] INFO  [life]   score=65.0
+[00:24:21.786] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:24:21.786] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:24:21.786] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 182s after achieving nothing
+[00:24:21.786] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:24:21.786] INFO  [life] craft: made one i_scroll_poison (4 this sitting)
+[00:24:21.786] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:21.786] INFO  [p0gate1] [ACTION] use_object start
+[00:24:21.786] INFO  [p0gate1] [ACTION] use_object serial=0x40010356
+[00:24:21.787] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:21.787] INFO  [p0gate1]         1) poison
+[00:24:21.787] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:23.226] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:25.817] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:25.879] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:25.879] INFO  [life] craft: chose 'poison'
+[00:24:27.128] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:27.916] INFO  [life] craft: made one i_scroll_poison (5 this sitting)
+[00:24:27.916] INFO  [life] craft: 5 i_scroll_poison made -- enough for a trip to a buyer
+[00:24:27.916] INFO  [life] goal_completed=CRAFT progress=2
+[00:24:27.920] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:24:27.978] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:24:27.978] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25) NeedGold(sell surplus 0.25)  | tools defined=1 held=[spellbook,]
+[00:24:27.978] INFO  [life]   score=65.0
+[00:24:27.978] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:24:27.978] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:24:27.978] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:24:27.978] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:27.978] INFO  [p0gate1] [ACTION] use_object start
+[00:24:27.978] INFO  [p0gate1] [ACTION] use_object serial=0x40010356
+[00:24:27.995] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:27.995] INFO  [p0gate1]         1) poison
+[00:24:27.995] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:28.269] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:32.004] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:32.066] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:32.066] INFO  [life] craft: chose 'poison'
+[00:24:33.320] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:33.320] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:34.077] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[00:24:34.077] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:34.077] INFO  [p0gate1] [ACTION] use_object start
+[00:24:34.077] INFO  [p0gate1] [ACTION] use_object serial=0x40010356
+[00:24:34.079] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:34.079] INFO  [p0gate1]         1) poison
+[00:24:34.079] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:38.084] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:38.145] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:38.145] INFO  [life] craft: chose 'poison'
+[00:24:38.345] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:39.411] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:40.179] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[00:24:40.179] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:40.179] INFO  [p0gate1] [ACTION] use_object start
+[00:24:40.179] INFO  [p0gate1] [ACTION] use_object serial=0x40010356
+[00:24:40.180] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:40.180] INFO  [p0gate1]         1) poison
+[00:24:40.180] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:43.395] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:44.192] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:44.253] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:44.253] INFO  [life] craft: chose 'poison'
+[00:24:45.516] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:46.282] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[00:24:46.282] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:24:46.282] INFO  [p0gate1] [ACTION] use_object start
+[00:24:46.282] INFO  [p0gate1] [ACTION] use_object serial=0x40010356
+[00:24:46.283] INFO  [p0gate1] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:24:46.283] INFO  [p0gate1]         1) poison
+[00:24:46.283] LOG   [p0gate1] event dialog: Spell Circle 3
+[00:24:48.450] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:50.311] LOG   [p0gate1] event action_result: use_object timeout
+[00:24:50.371] INFO  [p0gate1] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:24:50.371] INFO  [life] craft: chose 'poison'
+[00:24:51.631] INFO  [p0gate1] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:24:51.631] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 61.6 superseded CRAFT 0.0"
+[00:24:51.631] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.33) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[00:24:51.631] INFO  [life]   score=61.6
+[00:24:51.631] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:24:51.631] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[00:24:51.631] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[00:24:52.381] INFO  [life] supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+[00:24:52.381] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:52.381] INFO  [p0gate1] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:52.381] INFO  [p0gate1] [VENDOR] buy item=0x40015E0B qty=5 from vendor=0x00001145 gold=245
+[00:24:52.397] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:24:52.397] LOG   [p0gate1] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:24:52.397] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:24:52.397] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:24:53.455] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:54.930] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:24:54.930] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:54.930] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:54.930] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:24:54.930] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:24:54.930] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:24:54.930] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:24:54.930] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:24:56.750] INFO  [p0gate1] [chat ascii] Alenne: Well it was nice speaking to you Ysolde but I must go about my business
+[00:24:57.433] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:24:57.433] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:57.433] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:57.433] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:24:57.434] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:24:57.434] LOG   [p0gate1] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:24:57.434] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:24:57.434] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:24:58.497] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:24:59.972] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:24:59.972] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:24:59.972] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:24:59.972] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:24:59.972] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:24:59.972] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:24:59.972] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:24:59.972] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:02.492] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:02.492] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:02.492] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:02.492] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:02.493] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:25:02.493] LOG   [p0gate1] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:25:02.493] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:02.493] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:03.541] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:05.020] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:05.020] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:05.020] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:05.020] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:05.021] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:25:05.021] LOG   [p0gate1] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:25:05.021] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:05.021] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:07.524] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:07.524] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:07.524] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:07.525] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:07.540] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:08.588] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:10.084] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:10.085] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2560ms superseded
+[00:25:10.085] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:10.085] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:10.085] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:10.085] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:12.643] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:12.643] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2559ms superseded
+[00:25:12.643] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:12.643] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:12.643] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:12.643] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:13.630] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:15.183] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:15.184] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2540ms superseded
+[00:25:15.184] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:15.184] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:15.184] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:15.199] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:17.695] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:17.695] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2512ms superseded
+[00:25:17.695] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:17.695] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:17.695] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:17.695] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:18.679] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:20.220] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:20.220] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2525ms superseded
+[00:25:20.220] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:20.220] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:20.220] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:20.220] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:22.780] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:22.780] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2560ms superseded
+[00:25:22.780] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:22.780] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:22.780] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:22.781] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:23.692] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:25.298] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:25.298] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2518ms superseded
+[00:25:25.298] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:25.298] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:25.298] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:25.313] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:27.835] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:27.836] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2537ms superseded
+[00:25:27.836] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:27.836] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:27.836] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:27.836] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:25:27.836] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:25:27.836] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:27.836] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:27.931] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:25:28.728] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:30.372] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:30.372] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:30.372] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:30.372] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:30.373] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:25:30.373] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:25:30.373] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:30.373] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:32.874] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:32.874] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:32.874] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:32.874] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:32.875] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:25:32.875] LOG   [p0gate1] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:25:32.875] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:32.875] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:33.735] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:35.423] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:35.423] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:35.423] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:35.423] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:35.423] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:37.950] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:37.951] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2527ms superseded
+[00:25:37.951] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:37.951] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:37.951] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:37.951] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:38.794] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:40.483] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:40.483] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2532ms superseded
+[00:25:40.483] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:40.483] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:40.483] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:40.483] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:42.983] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:42.983] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2500ms superseded
+[00:25:42.983] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:42.983] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:42.983] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:42.999] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:43.797] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:45.520] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:45.520] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2537ms superseded
+[00:25:45.520] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:45.520] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:45.520] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:45.520] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:48.036] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:48.036] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2516ms superseded
+[00:25:48.036] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:48.036] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:48.036] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:48.036] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:48.810] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:50.595] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:50.595] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2559ms superseded
+[00:25:50.595] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:50.595] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:50.595] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:50.611] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:53.142] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:53.142] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2547ms superseded
+[00:25:53.142] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:53.142] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:53.142] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:53.142] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:53.834] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:25:55.683] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:55.683] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2541ms superseded
+[00:25:55.683] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:55.683] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:55.683] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:55.698] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:25:58.220] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:25:58.220] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2537ms superseded
+[00:25:58.220] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:25:58.220] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:25:58.220] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:25:58.221] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:25:58.221] LOG   [p0gate1] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:25:58.221] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:25:58.221] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:25:58.839] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:00.732] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:00.732] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:00.732] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:00.732] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:00.748] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:26:00.748] LOG   [p0gate1] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:26:00.748] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:26:00.748] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:26:03.243] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:03.243] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:03.243] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:03.243] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:03.243] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:26:03.243] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:26:03.243] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:26:03.243] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:26:03.892] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:05.787] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:05.787] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:05.787] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:05.787] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:05.802] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[00:26:05.802] LOG   [p0gate1] event action_result: vendor_buy success took=15ms purchased item delivered
+[00:26:05.802] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:26:05.802] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:26:08.292] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:08.292] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:08.292] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:08.292] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:08.292] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:26:08.292] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:26:08.292] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:26:08.292] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:26:08.907] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:10.815] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:10.815] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:10.815] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:10.815] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:10.815] INFO  [p0gate1] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:26:10.815] LOG   [p0gate1] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:26:10.815] INFO  [p0gate1] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:26:10.815] INFO  [p0gate1] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:26:13.332] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:13.332] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:13.332] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:13.332] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:13.333] INFO  [p0gate1] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[00:26:13.947] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:15.834] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:15.834] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2502ms superseded
+[00:26:15.834] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:15.834] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:15.834] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:15.834] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:26:18.388] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:18.388] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2554ms superseded
+[00:26:18.388] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:18.388] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:18.388] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:18.388] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:26:19.003] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:20.938] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:20.938] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2550ms superseded
+[00:26:20.938] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:20.938] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:20.938] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:20.953] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:26:23.439] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:23.439] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2501ms superseded
+[00:26:23.439] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:23.440] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:23.440] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:23.440] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
+[00:26:24.011] INFO  [p0gate1] [survival] hp 10/10 (100%) -> fight
+[00:26:25.510] INFO  [p0gate1] [chat ascii] System: World save in 10 seconds
+[00:26:25.957] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:26:25.957] LOG   [p0gate1] event action_result: vendor_buy invalid_state took=2518ms superseded
+[00:26:25.957] INFO  [p0gate1] [ACTION] vendor_buy start
+[00:26:25.957] INFO  [p0gate1] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:26:25.957] INFO  [p0gate1] [VENDOR] buy item=0x40015E05 qty=5 from vendor=0x00001145 gold=215
+[00:26:25.957] INFO  [p0gate1] [chat ascii] System: You can't reach the Vendor
