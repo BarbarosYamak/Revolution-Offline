@@ -92,6 +92,10 @@ set(UO_CLIENT_SOURCES
     src/life/State.cpp
     src/life/Professions.cpp
     src/life/Runner.cpp
+    # M6 -- combat legality and threat. Same construction rule as the life
+    # layer: pure functions over what a player can see, so ctest runs the very
+    # objects the live bot runs.
+    src/combat/Targeting.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp

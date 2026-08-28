@@ -157,6 +157,20 @@ json::Value ToJson(const PersistentState& st) {
         }
         m.Set("suppliers", std::move(sup));
 
+        json::Value trn = json::Value::MakeArray();
+        for (const TrainerVerdict& k : st.memory.Trainers()) {
+            json::Value o = json::Value::MakeObject();
+            o.Set("skill", static_cast<i64>(k.skillId));
+            o.Set("trade", k.trade);
+            o.Set("taught", k.taught);
+            o.Set("at_tenths", static_cast<i64>(k.atTenths));
+            o.Set("quoted", static_cast<i64>(k.quoted));
+            o.Set("why", k.why);
+            o.Set("when_ms", k.whenMs);
+            trn.Push(std::move(o));
+        }
+        m.Set("trainers", std::move(trn));
+
         json::Value dgr = json::Value::MakeArray();
         for (const DangerMemory& k : st.memory.Dangers()) {
             json::Value o = json::Value::MakeObject();
@@ -347,6 +361,24 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.lastVerifiedMs = e["last_verified_ms"].AsInt(0);
             k.policyAllows = e["policy_allows"].AsBool(false);
             st.memory.MutableSuppliers().push_back(std::move(k));
+        }
+    }
+    {
+        // A trainer verdict costs a walk across town to learn, so it is worth
+        // as much as a supplier. Absent in a v1/v2 file, which simply means
+        // the character has not asked anyone yet.
+        const json::Value& a = m["trainers"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const json::Value& e = a.At(i);
+            TrainerVerdict k;
+            k.skillId  = static_cast<int>(e["skill"].AsInt(-1));
+            k.trade    = e["trade"].AsString();
+            k.taught   = e["taught"].AsBool(false);
+            k.atTenths = static_cast<i32>(e["at_tenths"].AsInt(0));
+            k.quoted   = static_cast<i32>(e["quoted"].AsInt(0));
+            k.why      = e["why"].AsString();
+            k.whenMs   = e["when_ms"].AsInt(0);
+            if (k.skillId >= 0) st.memory.MutableTrainers().push_back(std::move(k));
         }
     }
     {

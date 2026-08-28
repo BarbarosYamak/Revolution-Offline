@@ -1,5 +1,7 @@
 #include "uo/rules.h"
 
+#include <cstdio>
+
 namespace uo::rules {
 
 const Profile& Revolution() {
@@ -174,6 +176,49 @@ TrainerDecision DecideTraining(const Profile& p, const TrainerSituation& s) {
     d.buyToTenths = s.currentTenths + points;
     d.quote = points * p.teachingGoldPerTenth;
     return d;
+}
+
+const char* SkillName(int skillId) {
+    switch (skillId) {
+        case kAlchemy:          return "Alchemy";
+        case kAnatomy:          return "Anatomy";
+        case kAnimalLore:       return "Animal Lore";
+        case kArmsLore:         return "Arms Lore";
+        case kBlacksmithing:    return "Blacksmithing";
+        case kBowcraft:         return "Bowcraft";
+        case kCarpentry:        return "Carpentry";
+        case kCartography:      return "Cartography";
+        case kCooking:          return "Cooking";
+        case kEvaluatingIntel:  return "Evaluating Intelligence";
+        case kFishing:          return "Fishing";
+        case kForensics:        return "Forensic Evaluation";
+        case kHealing:          return "Healing";
+        case kHerding:          return "Herding";
+        case kInscription:      return "Inscription";
+        case kLockpicking:      return "Lockpicking";
+        case kLumberjacking:    return "Lumberjacking";
+        case kMagery:           return "Magery";
+        case kMagicResistance:  return "Resisting Spells";
+        case kMeditation:       return "Meditation";
+        case kMining:           return "Mining";
+        case kPoisoning:        return "Poisoning";
+        case kProvocation:      return "Provocation";
+        case kRemoveTrap:       return "Remove Trap";
+        case kSpiritSpeak:      return "Spirit Speak";
+        case kSwordsmanship:    return "Swordsmanship";
+        case kTactics:          return "Tactics";
+        case kTailoring:        return "Tailoring";
+        case kTaming:           return "Animal Taming";
+        case kTasteId:          return "Taste Identification";
+        case kTinkering:        return "Tinkering";
+        case kVeterinary:       return "Veterinary";
+        default:                break;
+    }
+    // Deliberately not a name we made up: an id we have no evidence for prints
+    // as the id, so an UNKNOWN skill reads as UNKNOWN in the logs.
+    static char buf[24];
+    std::snprintf(buf, sizeof(buf), "skill %d", skillId);
+    return buf;
 }
 
 } // namespace uo::rules

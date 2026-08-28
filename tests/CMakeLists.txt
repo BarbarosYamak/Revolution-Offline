@@ -171,9 +171,23 @@ add_test(NAME m4_economy_invariant COMMAND m4_economy_invariant
 add_executable(m5_professions m5_professions.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
 target_include_directories(m5_professions PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m5_professions COMMAND m5_professions)
+
+# --- M6.1: legal target classification -------------------------------------
+# Pure logic over what a player can see on screen. Every rule it asserts is
+# either a line of this shard's sphere.ini or a line of Source-X, and the
+# citation is in the check name -- including the one that killed a character
+# in M3.9 (GuardsInstantKill=1 + a swing at a blue).
+add_executable(m6_targeting m6_targeting.cpp
+    ${CMAKE_SOURCE_DIR}/src/combat/Targeting.cpp)
+target_include_directories(m6_targeting PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m6_targeting COMMAND m6_targeting)

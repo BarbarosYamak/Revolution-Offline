@@ -27,6 +27,29 @@ const char* NeedKindName(NeedKind k) {
 
 namespace {
 
+// Does this life carry the thing at all? The catalogue is the answer; a life
+// saved before the catalogue existed (cfg.profession == nullptr) keeps the M4
+// lumberjack answers, so nothing that already works changes.
+bool WantsTool(const NeedConfig& cfg, const char* name) {
+    if (!cfg.profession) return true;
+    for (const prof::ToolNeed& t : cfg.profession->tools) {
+        if (t.name == name) return true;
+    }
+    return false;
+}
+
+bool WantsConsumable(const NeedConfig& cfg, const char* name) {
+    if (!cfg.profession) return true;
+    for (const prof::ConsumableNeed& c : cfg.profession->consumables) {
+        if (c.name == name) return true;
+    }
+    return false;
+}
+
+bool GathersLogs(const NeedConfig& cfg) {
+    return !cfg.profession || cfg.profession->gathers == "logs";
+}
+
 std::string Fmt(const char* fmt, ...) {
     char buf[256];
     va_list ap;
@@ -36,28 +59,8 @@ std::string Fmt(const char* fmt, ...) {
     return std::string(buf);
 }
 
-const char* SkillName(int id) {
-    switch (id) {
-        case rules::kLumberjacking: return "Lumberjacking";
-        case rules::kSwordsmanship: return "Swordsmanship";
-        case rules::kTactics:       return "Tactics";
-        case rules::kAnatomy:       return "Anatomy";
-        case rules::kHealing:       return "Healing";
-        case rules::kMining:        return "Mining";
-        case rules::kBlacksmithing: return "Blacksmithing";
-        case rules::kMagery:        return "Magery";
-        case rules::kMeditation:    return "Meditation";
-        case rules::kAlchemy:       return "Alchemy";
-        case rules::kTaming:        return "Taming";
-        case rules::kAnimalLore:    return "Animal Lore";
-        case rules::kVeterinary:    return "Veterinary";
-        case rules::kTinkering:     return "Tinkering";
-        case rules::kArmsLore:      return "Arms Lore";
-        case rules::kEvaluatingIntel: return "Evaluating Intelligence";
-        case rules::kInscription:   return "Inscription";
-        default:                    return "skill";
-    }
-}
+using rules::SkillName;
+
 
 }  // namespace
 
@@ -139,7 +142,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     }
 
     // --- the tool the whole profession depends on --------------------------
-    if (!obs.axeInPack && !obs.axeEquipped) {
+    if (WantsTool(cfg, "hatchet") && !obs.axeInPack && !obs.axeEquipped) {
         const KnownSupplier* supplier = mem.BestSupplier("hatchet");
         add(NeedKind::NeedTool, 0.9, "hatchet",
             "no usable axe: a lumberjack cannot work without one",
@@ -150,7 +153,10 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     }
 
     // --- a weapon, so incidental danger is survivable ----------------------
-    if (!obs.weaponEquipped) {
+    // Only for a life whose tool IS its weapon. A mage's answer to "nothing in
+    // hand" is a spellbook and a spell, not a sword, and M6 owns that; saying
+    // NeedEquipment here would just be a need it can never clear.
+    if (WantsTool(cfg, "hatchet") && !obs.weaponEquipped) {
         // An axe IS a weapon in this build -- the era Lumberjack fights with
         // it -- so this only fires when there is nothing in hand at all.
         const bool haveAnything = obs.axeInPack || obs.axeEquipped;
@@ -161,7 +167,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 obs.axeEquipped ? 1 : 0));
     }
 
-    if (obs.bandages < cfg.bandageLow) {
+    if (WantsConsumable(cfg, "bandage") && obs.bandages < cfg.bandageLow) {
         const KnownSupplier* supplier = mem.BestSupplier("bandage");
         add(NeedKind::NeedEquipment, 0.5, "bandages",
             "below the bandage floor; a fight without them is a death",
@@ -204,7 +210,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     }
 
     // --- the work itself ---------------------------------------------------
-    {
+    if (GathersLogs(cfg)) {
         // Proven first, then a lead. Never the old catch-all: a "stand" that
         // never yielded is not evidence of anything.
         const KnownResourceSource* src =

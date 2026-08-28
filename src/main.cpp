@@ -1,5 +1,7 @@
 #include "Client.h"
 
+#include "uo/professions.h"
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -233,6 +235,39 @@ int main(int argc, char** argv) {
             std::fprintf(stderr, "unknown option: %s\n", a);
             PrintUsage();
             return 64;
+        }
+    }
+
+    // --profession IS the creation request. The catalogue holds Revolution's
+    // rule -- exactly two skills at 50.0, about 50 stat points -- and that is
+    // what goes on the wire, so there is one place a character's opening hand
+    // is decided. An explicit --create-skills still wins, for probes.
+    if (base.professionId && base.professionId[0]) {
+        const uo::prof::Profession* pr = uo::prof::Find(base.professionId);
+        if (!pr) {
+            std::fprintf(stderr, "error: unknown --profession '%s'. Known:",
+                         base.professionId);
+            for (const uo::prof::Profession& q : uo::prof::All()) {
+                std::fprintf(stderr, " %s", q.id.c_str());
+            }
+            std::fprintf(stderr, "\n");
+            return 64;
+        }
+        // Tested on the VALUE, not the id: skill id 0 is Alchemy, so an
+        // alchemist's first skill is a legitimate 0 and an id test would
+        // silently overwrite an explicit --create-skills.
+        if (base.createSkillVal[0] == 0) {
+            base.createSkill[0]    = pr->startSkillA;
+            base.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
+            base.createSkill[1]    = pr->startSkillB;
+            base.createSkillVal[1] = uo::prof::kRevolutionStartSkillEach / 10;
+            base.createSkill[2]    = 0;   // exactly two, never a third
+            base.createSkillVal[2] = 0;
+        }
+        if (base.createStr == 0) {
+            base.createStr = pr->startStr;
+            base.createDex = pr->startDex;
+            base.createInt = pr->startInt;
         }
     }
 

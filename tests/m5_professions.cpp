@@ -326,6 +326,78 @@ void TestNextSkillToBuy() {
     Check(inPlan, "the chosen skill is one the plan actually targets");
 }
 
+
+// --------------------------------------------------------------------------
+void TestARefusalIsRemembered() {
+    Section("trainer: a refusal is learned once, not rediscovered forever");
+
+    // The first live M5 run walked a mage across Britain to a mage NPC, was
+    // told "You already know as much as I can teach of EvaluatingIntel", and
+    // then asked the same NPC the same question every ~2.5 seconds for the
+    // rest of the session. The refusal was written to an event log nothing
+    // read. This is that defect, as a test.
+    const prof::Profession* mg = prof::Find("mage");
+    Check(mg != nullptr, "the mage exists");
+    if (!mg) return;
+    const life::BuildPlan plan = life::PlanFromProfession(*mg);
+
+    life::Observation obs;
+    obs.skills.push_back({rules::kEvaluatingIntel, 118});   // the live value
+    obs.skills.push_back({rules::kInscription,      77});   // ditto
+
+    const int first = life::NextSkillToBuy(plan, obs, 300);
+    Check(first == rules::kEvaluatingIntel,
+          "before asking, Evaluating Intelligence is the highest-priority buy");
+
+    // Now the NPC has said no. Source-X sets a trainer's ceiling from ITS OWN
+    // skill (CCharNPCStatus.cpp:514), so no amount of walking changes this.
+    obs.trainerRefusedSkills.push_back(rules::kEvaluatingIntel);
+    const int second = life::NextSkillToBuy(plan, obs, 300);
+    Check(second != rules::kEvaluatingIntel,
+          "after the refusal the character stops choosing that skill");
+    Check(second == rules::kInscription,
+          "and moves down its own priority order to the next trainable skill");
+
+    // Refuse everything: no target at all, rather than looping on the last one.
+    obs.trainerRefusedSkills.push_back(rules::kInscription);
+    Check(life::NextSkillToBuy(plan, obs, 300) == -1,
+          "a life whose every trainable skill was refused buys nothing");
+}
+
+// --------------------------------------------------------------------------
+void TestTrainerMemory() {
+    Section("memory: verdicts are per (skill, trade) and replaceable");
+
+    life::Memory mem;
+    Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
+          "nothing is refused before anyone has been asked");
+
+    life::TrainerVerdict v;
+    v.skillId = rules::kEvaluatingIntel;
+    v.trade = "mage";
+    v.taught = false;
+    v.atTenths = 118;
+    v.why = "the trainer has nothing left to give";
+    mem.NoteTrainerVerdict(v);
+
+    Check(mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
+          "the refusal is remembered");
+    Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "scribe"),
+          "and it says nothing about a DIFFERENT trade");
+    Check(!mem.TrainerRefused(rules::kInscription, "mage"),
+          "nor about a different skill from the same trade");
+
+    // The same NPC trade teaching it later replaces the refusal, so a verdict
+    // is never a permanent lie about the world.
+    v.taught = true;
+    v.why = "taught";
+    mem.NoteTrainerVerdict(v);
+    Check(!mem.TrainerRefused(rules::kEvaluatingIntel, "mage"),
+          "a later success replaces the earlier refusal");
+    Check(mem.Trainers().size() == 1,
+          "one row per (skill, trade), not one per asking");
+}
+
 }  // namespace
 
 int main() {
@@ -338,6 +410,8 @@ int main() {
     TestMinerConstraintIsRecorded();
     TestPlanFromProfession();
     TestNextSkillToBuy();
+    TestARefusalIsRemembered();
+    TestTrainerMemory();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

@@ -2252,7 +2252,10 @@ void Client::SendCreateCharacter() {
     build::CreateCharacterParams p;
     p.name = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName : "Bot";
     p.slot = static_cast<u32>(cfg_.charSlot < 0 ? 0 : cfg_.charSlot);
-    if (cfg_.createSkill[0] > 0) {
+    // The VALUE decides whether a skill was requested. Skill id 0 is Alchemy
+    // on this shard, so `createSkill[0] > 0` would drop an alchemist's first
+    // skill and hand the character a default kit with no explanation.
+    if (cfg_.createSkillVal[0] > 0) {
         p.skill1 = static_cast<u8>(cfg_.createSkill[0]);
         p.skill1Val = static_cast<u8>(cfg_.createSkillVal[0]);
         p.skill2 = static_cast<u8>(cfg_.createSkill[1]);

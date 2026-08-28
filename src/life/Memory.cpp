@@ -284,6 +284,7 @@ void Memory::Clear() {
     suppliers_.clear();
     danger_.clear();
     events_.clear();
+    trainers_.clear();
 }
 
 usize Memory::ApproximateBytes() const {
@@ -293,7 +294,23 @@ usize Memory::ApproximateBytes() const {
     for (const KnownSupplier& s : suppliers_)    n += sizeof(s) + s.need.size() + s.name.size() + s.sourceType.size();
     for (const DangerMemory& d : danger_)        n += sizeof(d) + d.threat.size();
     for (const LifeEvent& e : events_)           n += sizeof(e) + e.kind.size() + e.detail.size() + e.place.size();
+    for (const TrainerVerdict& t : trainers_)    n += sizeof(t) + t.trade.size() + t.why.size();
     return n;
+}
+
+void Memory::NoteTrainerVerdict(const TrainerVerdict& v) {
+    for (TrainerVerdict& t : trainers_) {
+        if (t.skillId == v.skillId && t.trade == v.trade) { t = v; return; }
+    }
+    trainers_.push_back(v);
+}
+
+bool Memory::TrainerRefused(int skillId, const char* trade) const {
+    if (!trade) return false;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId == skillId && t.trade == trade && !t.taught) return true;
+    }
+    return false;
 }
 
 }  // namespace uo::life

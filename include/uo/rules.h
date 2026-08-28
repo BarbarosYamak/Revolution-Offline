@@ -81,6 +81,12 @@ enum SkillId : int {
     kVeterinary       = 39,
 };
 
+// The shard's own name for a skill id, or "skill <n>" when we do not have a
+// name for it. There used to be two of these -- one in the needs layer, one in
+// the runner -- and both stopped at the five M4 skills, so every M5 log line
+// about a mage read "skill 50.0 + skill 50.0". One table, everywhere.
+const char* SkillName(int skillId);
+
 struct Profile {
     std::string name = "revolution_2009_2010";
 

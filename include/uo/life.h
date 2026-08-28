@@ -211,6 +211,27 @@ inline constexpr i64 kDangerHalfLifeMs = 45 * 60 * 1000;
 // character's own profession score negative, so it idled instead of working.
 inline constexpr double kMaxDangerHeat = 4.0;
 
+// What one trade of NPC actually said about teaching one skill.
+//
+// Source-X decides a trainer's ceiling as
+//   min(NPC's own skill x TrainSkillPercent, TrainSkillMax, the student's cap)
+// (CCharNPCStatus.cpp:514-541), so the ceiling is a property of the INDIVIDUAL
+// NPC, not a shard constant. There is no way to know it without asking, and
+// asking costs a walk across town -- so the answer is remembered.
+//
+// A refusal is permanent for that trade: "you already know as much as I can
+// teach" means the trainer's ceiling is BELOW the character's skill, and the
+// character only grows from here.
+struct TrainerVerdict {
+    int         skillId = -1;
+    std::string trade;          // "mage", "healer", ... the paperdoll title
+    bool        taught = false; // false = refused
+    i32         atTenths = 0;   // what the character's skill was when asked
+    i32         quoted = 0;     // the fee the NPC named, if it named one
+    std::string why;            // the refusal, in the NPC's own terms
+    i64         whenMs = 0;
+};
+
 class Memory {
 public:
     void NotePlace(const char* kind, const char* name, i32 x, i32 y, i8 z, i64 nowMs);
@@ -237,6 +258,13 @@ public:
     void NoteEvent(const char* kind, const char* detail, const char* place,
                    i32 x, i32 y, i64 nowMs);
 
+    // Record what a trade of trainer said about a skill. One row per
+    // (skill, trade); a later answer replaces an earlier one.
+    void NoteTrainerVerdict(const TrainerVerdict& v);
+    // Has this trade already refused to teach this skill? Checked BEFORE
+    // walking, so a refusal costs one trip in a character's whole life.
+    bool TrainerRefused(int skillId, const char* trade) const;
+
     // Decayed heat at a point. 0 when nothing bad ever happened nearby.
     double DangerHeatAt(i32 x, i32 y, i64 nowMs) const;
     // Drop danger notes whose decayed heat has fallen below the floor.
@@ -253,12 +281,14 @@ public:
     const std::vector<KnownSupplier>&       Suppliers() const { return suppliers_; }
     const std::vector<DangerMemory>&        Dangers()   const { return danger_; }
     const std::vector<LifeEvent>&           Events()    const { return events_; }
+    const std::vector<TrainerVerdict>&      Trainers()  const { return trainers_; }
 
     std::vector<KnownPlace>&          MutablePlaces()    { return places_; }
     std::vector<KnownResourceSource>& MutableResources() { return resources_; }
     std::vector<KnownSupplier>&       MutableSuppliers() { return suppliers_; }
     std::vector<DangerMemory>&        MutableDangers()   { return danger_; }
     std::vector<LifeEvent>&           MutableEvents()    { return events_; }
+    std::vector<TrainerVerdict>&      MutableTrainers()  { return trainers_; }
 
     void Clear();
     usize ApproximateBytes() const;
@@ -269,6 +299,7 @@ private:
     std::vector<KnownSupplier>       suppliers_;
     std::vector<DangerMemory>        danger_;
     std::vector<LifeEvent>           events_;
+    std::vector<TrainerVerdict>      trainers_;
 };
 
 // ===========================================================================
@@ -326,6 +357,9 @@ struct Observation {
     // What the profession wants bought from a trainer next, or -1. Set by the
     // runner from the build plan; the need model does not know about
     // professions, only about a skill it has been pointed at.
+    // Skills a trainer has already refused, so the planner stops choosing
+    // them. Filled from Memory each tick; never inferred inside the chooser.
+    std::vector<int> trainerRefusedSkills;
     int wantTrainSkill = -1;
     i32 wantTrainTarget = 0;
 
@@ -399,6 +433,16 @@ struct NeedConfig {
     // generic trainer taking a skill 0 -> 30.0 asks about 300; a guildmaster
     // overrides to 50.0 at 50% (c_human_guildmasters.scp:23) and asks ~500.
     i32    trainerFeeGuess  = 300;
+
+    // WHICH LIFE is asking. Needs used to be written for one character -- an
+    // axe, bandages, logs -- so a mage logged in and immediately decided it
+    // needed a hatchet and eight bandages, and spent its whole session on a
+    // need it could never satisfy. The catalogue already says what each life
+    // carries, so the needs read it instead of assuming.
+    //
+    // nullptr means "the M4 lumberjack rules", which is what a life saved
+    // before the catalogue existed still expects.
+    const prof::Profession* profession = nullptr;
 };
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,

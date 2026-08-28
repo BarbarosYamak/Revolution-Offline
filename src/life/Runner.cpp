@@ -139,17 +139,6 @@ bool HandsBusy(Client& c) {
     return c.EquippedAtLayer(kLayerHand1) != 0 || c.EquippedAtLayer(kLayerHand2) != 0;
 }
 
-const char* SkillLabel(int id) {
-    switch (id) {
-        case rules::kLumberjacking: return "Lumberjacking";
-        case rules::kSwordsmanship: return "Swordsmanship";
-        case rules::kTactics:       return "Tactics";
-        case rules::kAnatomy:       return "Anatomy";
-        case rules::kHealing:       return "Healing";
-        default:                    return "skill";
-    }
-}
-
 i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
     return std::max(ax > bx ? ax - bx : bx - ax, ay > by ? ay - by : by - ay);
 }
@@ -217,7 +206,7 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
         LogLine("no prior state for %s: a new %s", id.c_str(),
                 chosen->label.c_str());
         LogLine("creation request: %s 50.0 + %s 50.0, stats %d/%d/%d = %d",
-                SkillLabel(chosen->startSkillA), SkillLabel(chosen->startSkillB),
+                rules::SkillName(chosen->startSkillA), rules::SkillName(chosen->startSkillB),
                 chosen->startStr, chosen->startDex, chosen->startInt,
                 chosen->startStr + chosen->startDex + chosen->startInt);
     }
@@ -242,6 +231,19 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
             rules::Revolution().totalSkillCapTenths / 10.0,
             state_.plan.targetStr, state_.plan.targetDex, state_.plan.targetInt,
             check.statTotal);
+
+    // Which life is asking. Resolved from the plan's family so it works the
+    // same for a fresh character and for one reloaded from disk. A plan family
+    // with no catalogue entry -- the M4 lumberjack, saved before the catalogue
+    // existed -- leaves this null and keeps the old lumberjack needs.
+    needCfg_.profession = prof::Find(state_.plan.family.c_str());
+    if (needCfg_.profession) {
+        LogLine("needs: reading '%s' from the profession catalogue",
+                needCfg_.profession->id.c_str());
+    } else {
+        LogLine("needs: plan family '%s' is not in the catalogue -- using the "
+                "original lumberjack needs", state_.plan.family.c_str());
+    }
 
     // The goal that came back from disk is an INTENTION. Its clock and
     // counters are transient and are rebuilt at reconciliation.
@@ -341,6 +343,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
+
+    // Which of this plan's trainable skills have already been refused. Read
+    // from memory, so one wasted walk teaches the character for good -- and
+    // so the answer survives a logout.
+    for (usize i = 0; i < state_.plan.skills.size(); ++i) {
+        if (i >= state_.plan.viaTrainer.size() || !state_.plan.viaTrainer[i]) continue;
+        const int id = state_.plan.skills[i].skillId;
+        const TrainerFor* tf = TrainerForSkill(id);
+        if (tf && state_.memory.TrainerRefused(id, tf->trade)) {
+            obs.trainerRefusedSkills.push_back(id);
+        }
+    }
 
     // What this life wants to BUY next. A generic tradesman teaches to 30.0
     // (sphere.ini NPCTrainPercent=30 of a GM's 100.0); a guildmaster overrides
@@ -455,7 +469,7 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
             const u8 want = (have >= t.tenths) ? build::kLockLocked : build::kLockUp;
             const i32 now = client.PlayerSkillLock(static_cast<u16>(t.skillId));
             if (now == static_cast<i32>(want)) continue;
-            LogLine("build: %s at %.1f/%.1f -> %s", SkillLabel(t.skillId),
+            LogLine("build: %s at %.1f/%.1f -> %s", rules::SkillName(t.skillId),
                     have / 10.0, t.tenths / 10.0,
                     want == build::kLockLocked ? "LOCK" : "train up");
             client.ActionSetSkillLock(static_cast<u16>(t.skillId), want);
@@ -1781,8 +1795,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     if (trainPaid_) {
         if (have > trainSkillBefore_) {
             LogLine("training: %s %.1f -> %.1f, bought from a trainer",
-                    SkillLabel(skillId), trainSkillBefore_ / 10.0, have / 10.0);
-            state_.memory.NoteEvent("skill_trained", SkillLabel(skillId),
+                    rules::SkillName(skillId), trainSkillBefore_ / 10.0, have / 10.0);
+            state_.memory.NoteEvent("skill_trained", rules::SkillName(skillId),
                                     trainerTrade_.c_str(), obs.x, obs.y,
                                     obs.nowMs);
             // Remember WHERE, so the next skill this life buys does not start
@@ -1796,6 +1810,17 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             sup.lastVerifiedMs = obs.nowMs;
             sup.policyAllows = true;
             state_.memory.NoteSupplier(sup);
+            // The other half of the verdict: this trade DOES teach this skill,
+            // and here is what it charged. Worth as much as the refusal.
+            TrainerVerdict v;
+            v.skillId  = skillId;
+            v.trade    = trainerTrade_;
+            v.taught   = true;
+            v.atTenths = have;
+            v.quoted   = trainQuoted_;
+            v.why      = "taught";
+            v.whenMs   = obs.nowMs;
+            state_.memory.NoteTrainerVerdict(v);
             trainPaid_ = false;
             trainAsked_ = false;
             trainTrips_ = 0;
@@ -1803,7 +1828,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         }
         if (obs.nowMs - trainPaidMs_ > 10000) {
             LogLine("training: paid but %s has not moved after 10s (still %.1f)",
-                    SkillLabel(skillId), have / 10.0);
+                    rules::SkillName(skillId), have / 10.0);
             client.ActionRequestSkills();
             planner_.NoteAttempt(obs.nowMs);
             trainPaid_ = false;
@@ -1814,7 +1839,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     }
     if (have >= obs.wantTrainTarget) {
         LogLine("training: %s is already at %.1f -- nothing to buy",
-                SkillLabel(skillId), have / 10.0);
+                rules::SkillName(skillId), have / 10.0);
         return true;
     }
 
@@ -1843,7 +1868,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                     client.TravelToPoint(known->x, known->y, 2, "trainer");
             } else {
                 LogLine("training: looking for a '%s' to teach %s (trip %d)",
-                        trainerTrade_.c_str(), SkillLabel(skillId), trainTrips_);
+                        trainerTrade_.c_str(), rules::SkillName(skillId), trainTrips_);
                 travelInFlight_ = client.TravelToService(trainerService_);
             }
             if (!travelInFlight_) {
@@ -1866,7 +1891,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     if (!trainAsked_) {
         trainAskedMs_ = client.JournalNowMs();
         trainAsked_ = true;
-        LogLine("training: asking the trainer about %s", SkillLabel(skillId));
+        LogLine("training: asking the trainer about %s", rules::SkillName(skillId));
         client.ActionNpcTrain(trainer, SkillKey(skillId));
         nextActionMs_ = obs.nowMs + 2500;
         return false;
@@ -1883,13 +1908,28 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     };
     for (const Refusal& r : kRefusals) {
         if (!client.JournalSaidSince(r.text, trainAskedMs_)) continue;
-        LogLine("training: refused -- %s", r.why);
-        // Remember the refusal so the character does not walk back tomorrow.
+        LogLine("training: %s refused to teach %s at %.1f -- %s",
+                trainerTrade_.c_str(), rules::SkillName(skillId), have / 10.0,
+                r.why);
+        // A durable verdict, not a log line. The previous version wrote an
+        // event nothing ever read and then reset the trip counter, so the
+        // character re-selected the goal and asked the same NPC again roughly
+        // every two seconds for the rest of the session -- 30+ times in the
+        // first live run, with the NPC patiently refusing each time.
+        TrainerVerdict v;
+        v.skillId  = skillId;
+        v.trade    = trainerTrade_;
+        v.taught   = false;
+        v.atTenths = have;
+        v.why      = r.why;
+        v.whenMs   = obs.nowMs;
+        state_.memory.NoteTrainerVerdict(v);
         state_.memory.NoteEvent("trainer_refused", r.why, trainerTrade_.c_str(),
                                 obs.x, obs.y, obs.nowMs);
         planner_.Finish(false, r.why, obs.nowMs);
         trainAsked_ = false;
         trainTrips_ = 0;
+        Checkpoint(client, obs.nowMs, "trainer refusal");
         return false;
     }
 
@@ -1907,8 +1947,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
 
     if (obs.gold < quoted) {
         LogLine("BLOCKED_NEED %s: the trainer wants %d gold and the purse holds "
-                "%d -- going back to work", SkillLabel(skillId), quoted, obs.gold);
-        state_.memory.NoteEvent("trainer_quote", SkillLabel(skillId),
+                "%d -- going back to work", rules::SkillName(skillId), quoted, obs.gold);
+        state_.memory.NoteEvent("trainer_quote", rules::SkillName(skillId),
                                 trainerTrade_.c_str(), obs.x, obs.y, obs.nowMs);
         planner_.Finish(false, "cannot afford the quoted fee", obs.nowMs);
         trainAsked_ = false;
@@ -1924,7 +1964,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         return false;
     }
     LogLine("training: paying the quoted %d gold for %s (purse %d)",
-            quoted, SkillLabel(skillId), obs.gold);
+            quoted, rules::SkillName(skillId), obs.gold);
     trainSkillBefore_ = have;
     trainQuoted_ = quoted;
     trainPaidMs_ = client.JournalNowMs();

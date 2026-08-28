@@ -1,0 +1,544 @@
+[13:52:02.863] INFO  session 0: 127.0.0.1:2593 user='revolutionmage01' char=Ilyandra tag='m5b'
+[13:52:02.864] LOG   [m5b] event session_start: text log opened
+[13:52:02.864] LOG   [m5b] event net_connect_begin: connect 127.0.0.1:2593
+[13:52:02.864] INFO  [m5b] [net] connecting to 127.0.0.1:2593 ...
+[13:52:02.866] LOG   [m5b] event net_connected: connect 127.0.0.1:2593
+[13:52:02.866] INFO  [m5b] [net] connected.
+[13:52:02.866] INFO  [m5b] [seed] sent 0x7F000001 (plaintext)
+[13:52:02.866] LOG   [m5b] event seed_out: 0x7F000001 hex=7f000001
+[13:52:02.866] INFO  [life] no prior state for revolutionmage01.ilyandra: a new Pure Mage
+[13:52:02.866] INFO  [life] creation request: Magery 50.0 + Meditation 50.0, stats 15/10/25 = 50
+[13:52:02.866] INFO  [life] build plan 'mage': 350.0 resolved + 350.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[13:52:02.866] INFO  [life] needs: reading 'mage' from the profession catalogue
+[13:52:02.866] INFO  [m5b] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 15 min)
+[13:52:02.866] INFO  [m5b] [0xA8] 1 server(s):
+[13:52:02.866] INFO  [m5b]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[13:52:02.877] INFO  [m5b] [0x8C] game server = 127.0.0.1:2593  seed=0xB45B826E
+[13:52:02.877] LOG   [m5b] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB45B826E
+[13:52:02.877] INFO  [m5b] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:52:02.877] LOG   [m5b] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:52:02.878] INFO  [m5b] [0xB9] server features = 0x0005
+[13:52:02.878] INFO  [m5b] [0xA9] 5 slot(s) (populated 1):
+[13:52:02.878] INFO  [m5b]   [0] Ilyandra
+[13:52:02.878] INFO  [m5b]   [1] <empty>
+[13:52:02.878] INFO  [m5b]   [2] <empty>
+[13:52:02.878] INFO  [m5b]   [3] <empty>
+[13:52:02.878] INFO  [m5b]   [4] <empty>
+[13:52:02.878] INFO  [m5b] [ui] playing slot 0 ('Ilyandra')
+[13:52:02.893] INFO  [m5b] [0x1B] serial=0x0001616F body=0x0190 pos=(633,858,0)
+[13:52:02.893] LOG   [m5b] event login_confirm: serial=0x0001616F body=0x0190 pos=(633,858,0)
+[13:52:02.893] INFO  [m5b] [0x20] player @(633,858,0) facing=3
+[13:52:02.893] INFO  [m5b] [0x55] login complete — entering world
+[13:52:02.893] LOG   [m5b] event in_world: 0x55 received
+[13:52:02.893] INFO  [m5b] [backpack] opening 0x4001606B
+[13:52:02.894] INFO  [m5b] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:52:02.894] INFO  [m5b] [chat ascii] System: There are 0 other players here.
+[13:52:02.894] INFO  [m5b] [chat ascii] System: Last logged: 2026/08/26 13:37:52
+[13:52:02.894] INFO  [m5b] [chat ascii] System: You are under the protection of the town guards
+[13:52:02.913] INFO  [m5b] [action] requesting the skill list
+[13:52:02.913] INFO  [life] in world; asked the server for the skill list
+[13:52:02.913] INFO  [m5b] [0x24] open container 0x4001606B gump=60
+[13:52:02.913] INFO  [m5b] [0x3C] container contents: 10 item(s)
+[13:52:02.913] LOG   [m5b] event backpack_contents: serial=0x4001606B items=10
+[13:52:05.534] INFO  [m5b] [bot] world data loaded (0 blacklisted spot(s)).
+[13:52:05.535] INFO  [life] common knowledge: Yew woods at 664,1030 (172 tiles away)
+[13:52:05.535] INFO  [life] common knowledge: Yew Territory woods at 776,1030 (172 tiles away)
+[13:52:05.535] INFO  [life] common knowledge: Yew woods at 520,1160 (302 tiles away)
+[13:52:05.535] INFO  [life] seeded 3 forest hint(s) of 43 the atlas knows -- everything else is earned
+[13:52:05.535] INFO  [life] reconciliation: first ever login, 9 field(s) differed
+[13:52:05.535] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[13:52:05.535] INFO  [life]   str          persisted=0          server=15         -> server value accepted
+[13:52:05.535] INFO  [life]   dex          persisted=0          server=10         -> server value accepted
+[13:52:05.535] INFO  [life]   int          persisted=0          server=25         -> server value accepted
+[13:52:05.535] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[13:52:05.535] INFO  [life]   skill_46     persisted=0.0        server=50.0       -> server value accepted
+[13:52:05.535] INFO  [life]   skill_16     persisted=0.0        server=11.8       -> server value accepted
+[13:52:05.535] INFO  [life]   skill_23     persisted=0.0        server=7.7        -> server value accepted
+[13:52:05.535] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[13:52:05.535] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:52:05.535] INFO  [m5b] [survival] on
+[13:52:05.535] LOG   [m5b] event survival_mode: on
+[13:52:05.536] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:52:05.536] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:05.600] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[13:52:05.600] INFO  [life]   score=60.0
+[13:52:05.600] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:52:05.600] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:52:05.600] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:52:05.600] INFO  [life] training: looking for a 'mage' to teach Evaluating Intelligence (trip 1)
+[13:52:05.600] INFO  [m5b] [travel] Britain mage -> (1485,1550) r=5 from (633,858)
+[13:52:05.600] LOG   [m5b] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(633,858)
+[13:52:05.600] INFO  [m5b] [travel] mode moongate         usable   <- chosen
+[13:52:05.600] INFO  [m5b] [travel] mode walk             usable
+[13:52:05.600] INFO  [m5b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:52:05.600] INFO  [m5b] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:52:05.600] LOG   [m5b] event travel_mode: moongate
+[13:52:05.600] INFO  [m5b] [travel] plan Britain mage: ok legs=21 ~832 tiles transit=1 nodes=785
+[13:52:05.661] INFO  [m5b] [action] goto (664,856) from (633,858,0)
+[13:52:05.661] LOG   [m5b] event goto_start: target=(664,856) from=(633,858)
+[13:52:05.661] INFO  [m5b] [bot] running from (633,858,0) to (664,856)
+[13:52:05.661] INFO  [m5b] [bot] planning path to (664,856) in background
+[13:52:05.723] INFO  [m5b] [bot] replan to (664,856): 31 steps in 5500.1us
+[13:52:10.570] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:15.202] INFO  [m5b] [bot] arrived at (664,856,0)
+[13:52:15.203] INFO  [m5b] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[13:52:15.203] LOG   [m5b] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[13:52:15.203] INFO  [m5b] [action] goto (696,840) from (664,856,0)
+[13:52:15.203] LOG   [m5b] event goto_start: target=(696,840) from=(664,856)
+[13:52:15.203] INFO  [m5b] [bot] running from (664,856,0) to (696,840)
+[13:52:15.203] INFO  [m5b] [bot] planning path to (696,840) in background
+[13:52:15.264] INFO  [m5b] [bot] replan to (696,840): 36 steps in 8778.4us
+[13:52:15.575] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:20.576] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:21.719] INFO  [m5b] [chat ascii] System: You have left the protection of the town guards
+[13:52:25.590] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:27.850] INFO  [m5b] [bot] arrived at (696,840,0)
+[13:52:27.851] INFO  [m5b] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[13:52:27.851] LOG   [m5b] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[13:52:27.851] INFO  [m5b] [action] goto (728,808) from (696,840,0)
+[13:52:27.851] LOG   [m5b] event goto_start: target=(728,808) from=(696,840)
+[13:52:27.851] INFO  [m5b] [bot] running from (696,840,0) to (728,808)
+[13:52:27.851] INFO  [m5b] [bot] planning path to (728,808) in background
+[13:52:27.911] INFO  [m5b] [bot] replan to (728,808): 40 steps in 10246.5us
+[13:52:30.614] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:35.621] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:40.646] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:42.123] INFO  [m5b] [bot] arrived at (728,808,0)
+[13:52:42.124] INFO  [m5b] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[13:52:42.124] LOG   [m5b] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[13:52:42.124] INFO  [m5b] [action] goto (760,776) from (728,808,0)
+[13:52:42.124] LOG   [m5b] event goto_start: target=(760,776) from=(728,808)
+[13:52:42.124] INFO  [m5b] [bot] running from (728,808,0) to (760,776)
+[13:52:42.124] INFO  [m5b] [bot] planning path to (760,776) in background
+[13:52:42.184] INFO  [m5b] [bot] replan to (760,776): 37 steps in 12384.4us
+[13:52:45.259] INFO  [m5b] [bot] step (732,799,0)->(733,798,0) rejected; OpenDoor + retry
+[13:52:45.704] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:45.999] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=29 in 52.8us
+[13:52:50.720] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:53.741] INFO  [m5b] [bot] step (752,781,0)->(753,780,0) rejected; OpenDoor + retry
+[13:52:54.448] INFO  [m5b] [bot] step (752,781,0)->(753,780,0) rejected; avoiding edge + rerouting
+[13:52:54.448] INFO  [m5b] [bot] planning path to (760,776) in background
+[13:52:54.448] INFO  [m5b] [bot] replan to (760,776): 8 steps in 513.7us
+[13:52:55.768] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:52:57.435] INFO  [m5b] [bot] arrived at (760,776,0)
+[13:52:57.436] INFO  [m5b] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[13:52:57.436] LOG   [m5b] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[13:52:57.436] INFO  [m5b] [action] goto (776,760) from (760,776,0)
+[13:52:57.436] LOG   [m5b] event goto_start: target=(776,760) from=(760,776)
+[13:52:57.436] INFO  [m5b] [bot] running from (760,776,0) to (776,760)
+[13:52:57.436] INFO  [m5b] [bot] planning path to (776,760) in background
+[13:52:57.483] INFO  [m5b] [bot] replan to (776,760): 20 steps in 2678.3us
+[13:53:00.771] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:05.246] INFO  [m5b] [bot] arrived at (776,760,0)
+[13:53:05.247] INFO  [m5b] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[13:53:05.247] LOG   [m5b] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[13:53:05.247] INFO  [m5b] [action] goto (771,752) from (776,760,0)
+[13:53:05.247] LOG   [m5b] event goto_start: target=(771,752) from=(776,760)
+[13:53:05.247] INFO  [m5b] [bot] running from (776,760,0) to (771,752)
+[13:53:05.247] INFO  [m5b] [bot] planning path to (771,752) in background
+[13:53:05.308] INFO  [m5b] [bot] replan to (771,752): 8 steps in 51.9us
+[13:53:05.507] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:53:05.825] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:08.827] INFO  [m5b] [gump] 0x400028B7 context=0x80A00438: 13 option(s), 15 text(s)
+[13:53:08.827] INFO  [m5b] [gump]   button 1000 = 'OKAY'
+[13:53:08.827] INFO  [m5b] [gump]   button 0 = 'CANCEL'
+[13:53:08.827] INFO  [m5b] [gump]   button 1 = 'Felucca'
+[13:53:08.827] INFO  [m5b] [gump]   choice 1 = 'Moonglow'
+[13:53:08.827] INFO  [m5b] [gump]   choice 2 = 'Britain'
+[13:53:08.827] INFO  [m5b] [gump]   choice 3 = 'Jhelom'
+[13:53:08.827] INFO  [m5b] [gump]   choice 4 = 'Yew'
+[13:53:08.827] INFO  [m5b] [gump]   choice 5 = 'New Magincia'
+[13:53:08.827] INFO  [m5b] [gump]   choice 6 = 'Minoc'
+[13:53:08.827] INFO  [m5b] [gump]   choice 7 = 'Trinsic'
+[13:53:08.827] INFO  [m5b] [gump]   choice 8 = 'Skara Brae'
+[13:53:08.827] INFO  [m5b] [gump]   choice 9 = 'Buccaneer's Den'
+[13:53:08.828] INFO  [m5b] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[13:53:08.828] INFO  [m5b] [gump]   text 0 = 'Pick your destination:'
+[13:53:08.828] INFO  [m5b] [gump]   text 1 = 'OKAY'
+[13:53:08.828] INFO  [m5b] [gump]   text 2 = 'CANCEL'
+[13:53:08.828] INFO  [m5b] [gump]   text 3 = 'Felucca'
+[13:53:08.828] INFO  [m5b] [gump]   text 4 = 'Felucca'
+[13:53:08.828] INFO  [m5b] [gump]   text 5 = 'Moonglow'
+[13:53:08.828] INFO  [m5b] [gump]   text 6 = 'Britain'
+[13:53:08.828] INFO  [m5b] [gump]   text 7 = 'Jhelom'
+[13:53:08.828] INFO  [m5b] [gump]   text 8 = 'Yew'
+[13:53:08.828] INFO  [m5b] [gump]   text 9 = 'New Magincia'
+[13:53:08.828] INFO  [m5b] [gump]   text 10 = 'Minoc'
+[13:53:08.828] INFO  [m5b] [gump]   text 11 = 'Trinsic'
+[13:53:08.828] INFO  [m5b] [gump]   text 12 = 'Skara Brae'
+[13:53:08.828] INFO  [m5b] [gump]   text 13 = 'Buccaneer's Den'
+[13:53:08.828] INFO  [m5b] [gump]   text 14 = 'Ocllo (Newplayers)'
+[13:53:08.828] LOG   [m5b] event gump_open: serial=0x400028B7 context=0x80A00438 options=13
+[13:53:08.828] INFO  [m5b] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[13:53:08.828] LOG   [m5b] event moongate_use: destination='Britain' choice=2 button=1000
+[13:53:08.828] INFO  [m5b] [bot] arrived at (771,752,5)
+[13:53:08.828] INFO  [m5b] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[13:53:08.828] LOG   [m5b] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[13:53:08.828] INFO  [m5b] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[13:53:08.828] INFO  [m5b] [0x20] player @(1336,1997,5) facing=7
+[13:53:08.828] INFO  [m5b] [0x20] player @(1336,1997,5) facing=7
+[13:53:08.842] INFO  [m5b] [chat ascii] System: You can't see the target
+[13:53:09.148] INFO  [m5b] [action] goto (1336,1960) from (1336,1997,5)
+[13:53:09.148] LOG   [m5b] event goto_start: target=(1336,1960) from=(1336,1997)
+[13:53:09.149] INFO  [m5b] [bot] running from (1336,1997,5) to (1336,1960)
+[13:53:09.149] INFO  [m5b] [bot] planning path to (1336,1960) in background
+[13:53:09.209] INFO  [m5b] [bot] replan to (1336,1960): 37 steps in 18281.7us
+[13:53:09.455] INFO  [m5b] [chat ascii] System: You have been revealed
+[13:53:10.832] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:15.891] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:20.907] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:21.489] INFO  [m5b] [bot] arrived at (1336,1960,0)
+[13:53:21.490] INFO  [m5b] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[13:53:21.490] LOG   [m5b] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[13:53:21.490] INFO  [m5b] [action] goto (1336,1928) from (1336,1960,0)
+[13:53:21.490] LOG   [m5b] event goto_start: target=(1336,1928) from=(1336,1960)
+[13:53:21.490] INFO  [m5b] [bot] running from (1336,1960,0) to (1336,1928)
+[13:53:21.490] INFO  [m5b] [bot] planning path to (1336,1928) in background
+[13:53:21.551] INFO  [m5b] [bot] replan to (1336,1928): 33 steps in 5777.8us
+[13:53:25.958] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:30.963] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:31.963] INFO  [m5b] [bot] arrived at (1336,1928,0)
+[13:53:31.964] INFO  [m5b] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[13:53:31.964] LOG   [m5b] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[13:53:31.964] INFO  [m5b] [action] goto (1336,1896) from (1336,1928,0)
+[13:53:31.964] LOG   [m5b] event goto_start: target=(1336,1896) from=(1336,1928)
+[13:53:31.964] INFO  [m5b] [bot] running from (1336,1928,0) to (1336,1896)
+[13:53:31.964] INFO  [m5b] [bot] planning path to (1336,1896) in background
+[13:53:32.024] INFO  [m5b] [bot] replan to (1336,1896): 32 steps in 13693.6us
+[13:53:35.969] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:40.996] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:43.275] INFO  [m5b] [bot] arrived at (1336,1896,0)
+[13:53:43.276] INFO  [m5b] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[13:53:43.276] LOG   [m5b] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[13:53:43.276] INFO  [m5b] [action] goto (1336,1864) from (1336,1896,0)
+[13:53:43.276] LOG   [m5b] event goto_start: target=(1336,1864) from=(1336,1896)
+[13:53:43.276] INFO  [m5b] [bot] running from (1336,1896,0) to (1336,1864)
+[13:53:43.276] INFO  [m5b] [bot] planning path to (1336,1864) in background
+[13:53:43.335] INFO  [m5b] [bot] replan to (1336,1864): 37 steps in 5578.0us
+[13:53:46.000] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:51.007] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:56.028] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:53:56.839] INFO  [m5b] [bot] arrived at (1336,1864,0)
+[13:53:56.840] INFO  [m5b] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[13:53:56.840] LOG   [m5b] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[13:53:56.840] INFO  [m5b] [action] goto (1336,1832) from (1336,1864,0)
+[13:53:56.840] LOG   [m5b] event goto_start: target=(1336,1832) from=(1336,1864)
+[13:53:56.840] INFO  [m5b] [bot] running from (1336,1864,0) to (1336,1832)
+[13:53:56.840] INFO  [m5b] [bot] planning path to (1336,1832) in background
+[13:53:56.902] INFO  [m5b] [bot] replan to (1336,1832): 33 steps in 7586.2us
+[13:53:57.933] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=32 in 102.5us
+[13:54:01.035] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:05.547] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:54:06.071] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:08.604] INFO  [m5b] [bot] arrived at (1336,1832,0)
+[13:54:08.605] INFO  [m5b] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[13:54:08.605] LOG   [m5b] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[13:54:08.605] INFO  [m5b] [action] goto (1336,1800) from (1336,1832,0)
+[13:54:08.605] LOG   [m5b] event goto_start: target=(1336,1800) from=(1336,1832)
+[13:54:08.605] INFO  [m5b] [bot] running from (1336,1832,0) to (1336,1800)
+[13:54:08.605] INFO  [m5b] [bot] planning path to (1336,1800) in background
+[13:54:08.666] INFO  [m5b] [bot] replan to (1336,1800): 32 steps in 5250.8us
+[13:54:11.127] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:16.178] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:18.075] INFO  [m5b] [bot] arrived at (1336,1800,0)
+[13:54:18.076] INFO  [m5b] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[13:54:18.076] LOG   [m5b] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[13:54:18.076] INFO  [m5b] [action] goto (1352,1766) from (1336,1800,0)
+[13:54:18.076] LOG   [m5b] event goto_start: target=(1352,1766) from=(1336,1800)
+[13:54:18.076] INFO  [m5b] [bot] running from (1336,1800,0) to (1352,1766)
+[13:54:18.076] INFO  [m5b] [bot] planning path to (1352,1766) in background
+[13:54:18.106] INFO  [m5b] [bot] replan to (1352,1766): 49 steps in 14772.6us
+[13:54:21.197] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:26.220] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:31.249] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:32.421] INFO  [m5b] [bot] arrived at (1352,1766,15)
+[13:54:32.422] INFO  [m5b] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[13:54:32.422] LOG   [m5b] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[13:54:32.422] INFO  [m5b] [action] goto (1386,1728) from (1352,1766,15)
+[13:54:32.422] LOG   [m5b] event goto_start: target=(1386,1728) from=(1352,1766)
+[13:54:32.422] INFO  [m5b] [bot] running from (1352,1766,15) to (1386,1728)
+[13:54:32.422] INFO  [m5b] [bot] planning path to (1386,1728) in background
+[13:54:32.483] INFO  [m5b] [bot] replan to (1386,1728): 64 steps in 34247.0us
+[13:54:36.286] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:41.294] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:43.562] INFO  [m5b] [chat ascii] System: You are now under the protection of the city guards
+[13:54:45.206] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 697.8us
+[13:54:46.295] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:51.005] INFO  [m5b] [chat ascii] System: You have left the protection of the city guards
+[13:54:51.313] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:54:51.450] INFO  [m5b] [bot] arrived at (1386,1728,0)
+[13:54:51.451] INFO  [m5b] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[13:54:51.451] LOG   [m5b] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[13:54:51.451] INFO  [m5b] [action] goto (1416,1688) from (1386,1728,0)
+[13:54:51.451] LOG   [m5b] event goto_start: target=(1416,1688) from=(1386,1728)
+[13:54:51.451] INFO  [m5b] [bot] running from (1386,1728,0) to (1416,1688)
+[13:54:51.451] INFO  [m5b] [bot] planning path to (1416,1688) in background
+[13:54:51.511] INFO  [m5b] [bot] replan to (1416,1688): 52 steps in 5834.2us
+[13:54:52.312] INFO  [m5b] [chat ascii] System: You are now under the protection of the city guards
+[13:54:56.326] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:01.267] INFO  [m5b] [bot] step (1410,1706,20)->(1411,1705,20) rejected; OpenDoor + retry
+[13:55:01.327] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:02.004] INFO  [m5b] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=23 in 51.2us
+[13:55:05.576] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:55:06.330] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:08.468] INFO  [m5b] [bot] arrived at (1417,1687,0)
+[13:55:08.469] INFO  [m5b] [action] goto finished at (1417,1687,0); target (1416,1688); stopped short (off by 2 tile(s))
+[13:55:08.469] LOG   [m5b] event goto_done: at=(1417,1687) target=(1416,1688) arrived=0 off=2
+[13:55:08.469] INFO  [m5b] [action] goto (1448,1656) from (1417,1687,0)
+[13:55:08.469] LOG   [m5b] event goto_start: target=(1448,1656) from=(1417,1687)
+[13:55:08.469] INFO  [m5b] [bot] running from (1417,1687,0) to (1448,1656)
+[13:55:08.469] INFO  [m5b] [bot] planning path to (1448,1656) in background
+[13:55:08.529] INFO  [m5b] [bot] replan to (1448,1656): 45 steps in 3256.9us
+[13:55:11.386] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:16.423] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:16.624] INFO  [m5b] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[13:55:17.361] INFO  [m5b] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[13:55:17.361] INFO  [m5b] [bot] planning path to (1448,1656) in background
+[13:55:17.422] INFO  [m5b] [bot] replan to (1448,1656): 20 steps in 653.0us
+[13:55:21.471] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:24.211] INFO  [m5b] [bot] arrived at (1448,1656,10)
+[13:55:24.212] INFO  [m5b] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[13:55:24.212] LOG   [m5b] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[13:55:24.212] INFO  [m5b] [travel] avoiding 2 teleporter pad(s) on this leg
+[13:55:24.212] INFO  [m5b] [action] goto (1464,1624) from (1448,1656,10)
+[13:55:24.212] LOG   [m5b] event goto_start: target=(1464,1624) from=(1448,1656)
+[13:55:24.212] INFO  [m5b] [bot] running from (1448,1656,10) to (1464,1624)
+[13:55:24.212] INFO  [m5b] [bot] planning path to (1464,1624) in background
+[13:55:24.273] INFO  [m5b] [bot] replan to (1464,1624): 43 steps in 3642.6us
+[13:55:26.478] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:31.535] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:36.584] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:37.561] INFO  [m5b] [bot] arrived at (1464,1624,20)
+[13:55:37.562] INFO  [m5b] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[13:55:37.562] LOG   [m5b] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[13:55:37.562] INFO  [m5b] [travel] avoiding 2 teleporter pad(s) on this leg
+[13:55:37.562] INFO  [m5b] [action] goto (1464,1592) from (1464,1624,20)
+[13:55:37.562] LOG   [m5b] event goto_start: target=(1464,1592) from=(1464,1624)
+[13:55:37.562] INFO  [m5b] [bot] running from (1464,1624,20) to (1464,1592)
+[13:55:37.562] INFO  [m5b] [bot] planning path to (1464,1592) in background
+[13:55:37.624] INFO  [m5b] [bot] replan to (1464,1592): 32 steps in 361.7us
+[13:55:38.474] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=30 in 396.4us
+[13:55:41.590] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:46.605] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:46.805] INFO  [m5b] [bot] arrived at (1464,1592,20)
+[13:55:46.806] INFO  [m5b] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[13:55:46.806] LOG   [m5b] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[13:55:46.806] INFO  [m5b] [action] goto (1480,1558) from (1464,1592,20)
+[13:55:46.806] LOG   [m5b] event goto_start: target=(1480,1558) from=(1464,1592)
+[13:55:46.806] INFO  [m5b] [bot] running from (1464,1592,20) to (1480,1558)
+[13:55:46.806] INFO  [m5b] [bot] planning path to (1480,1558) in background
+[13:55:46.866] INFO  [m5b] [bot] replan to (1480,1558): 41 steps in 6862.3us
+[13:55:51.649] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:52.816] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 369.1us
+[13:55:56.701] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:55:59.831] INFO  [m5b] [bot] arrived at (1480,1558,30)
+[13:55:59.831] INFO  [m5b] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[13:55:59.832] LOG   [m5b] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[13:55:59.832] INFO  [m5b] [action] goto (1485,1550) from (1480,1558,30)
+[13:55:59.832] LOG   [m5b] event goto_start: target=(1485,1550) from=(1480,1558)
+[13:55:59.832] INFO  [m5b] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[13:55:59.832] INFO  [m5b] [bot] planning path to (1485,1550) in background
+[13:55:59.892] INFO  [m5b] [bot] replan to (1485,1550): 47 steps in 7113.7us
+[13:56:01.721] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:05.600] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionmage01.ilyandra/state.json
+[13:56:06.730] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:10.860] INFO  [m5b] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=11 in 310.7us
+[13:56:11.781] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:12.684] INFO  [m5b] [travel] Britain mage ARRIVED at (1488,1554,30)
+[13:56:12.684] LOG   [m5b] event travel_done: label='Britain mage' ok=1 at=(1488,1554) legs=21 plans=1 why=''
+[13:56:12.685] INFO  [life] training: arrived at 1488,1553 -- asking who is here
+[13:56:12.685] INFO  [m5b] [action] scanning nearby mobiles for names
+[13:56:12.685] INFO  [m5b] [action] requested 3 paperdoll(s) for trade titles
+[13:56:12.699] INFO  [m5b] [mobiles] nearby (3):
+[13:56:12.699] INFO  [m5b]   Caedmon 0x000012EE
+[13:56:12.699] INFO  [m5b]   Xanthe 0x00001211
+[13:56:12.699] INFO  [m5b]   Alenne 0x00001145
+[13:56:12.699] INFO  [m5b] [0x20] player @(1488,1553,30) facing=2
+[13:56:12.699] INFO  [m5b] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[13:56:12.699] INFO  [m5b] [world] Caedmon, the mage guildmaster is a mage at (1489,1553)
+[13:56:12.699] INFO  [m5b] [0x20] player @(1488,1553,30) facing=7
+[13:56:12.699] INFO  [m5b] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[13:56:12.699] INFO  [m5b] [world] Xanthe, the alchemist is a alchemist at (1485,1551)
+[13:56:12.699] INFO  [m5b] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[13:56:12.699] INFO  [m5b] [world] Alenne, the mage is a mage at (1485,1549)
+[13:56:14.081] INFO  [m5b] [chat ascii] Alenne: Aye?
+[13:56:15.207] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:15.207] INFO  [m5b] [ACTION] npc_train start
+[13:56:15.207] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:15.207] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:15.222] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:16.801] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:18.950] INFO  [m5b] [chat ascii] Xanthe: I'm listenin'.
+[13:56:21.860] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:23.230] LOG   [m5b] event action_result: npc_train timeout
+[13:56:26.862] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:26.922] INFO  [life] training: no quote and no refusal after 12s; giving up on this trainer
+[13:56:28.466] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:28.466] INFO  [m5b] [ACTION] npc_train start
+[13:56:28.466] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:28.466] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:28.482] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:28.482] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:28.482] LOG   [m5b] event action_result: npc_train invalid_state took=16ms You already know as much as I can teach of EvaluatingIntel
+[13:56:30.989] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:31.051] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:31.051] INFO  [life]   score=60.0
+[13:56:31.051] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:31.051] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:31.051] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:31.051] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:31.051] INFO  [m5b] [ACTION] npc_train start
+[13:56:31.051] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:31.051] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:31.052] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:31.052] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:31.052] LOG   [m5b] event action_result: npc_train invalid_state took=1ms You already know as much as I can teach of EvaluatingIntel
+[13:56:31.898] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:33.592] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:33.655] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:33.655] INFO  [life]   score=60.0
+[13:56:33.655] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:33.655] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:33.655] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:33.655] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:33.655] INFO  [m5b] [ACTION] npc_train start
+[13:56:33.655] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:33.655] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:33.670] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:33.670] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:33.670] LOG   [m5b] event action_result: npc_train invalid_state took=15ms You already know as much as I can teach of EvaluatingIntel
+[13:56:36.197] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:36.259] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:36.259] INFO  [life]   score=60.0
+[13:56:36.259] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:36.259] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:36.259] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:36.259] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:36.259] INFO  [m5b] [ACTION] npc_train start
+[13:56:36.259] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:36.259] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:36.259] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:36.259] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:36.259] LOG   [m5b] event action_result: npc_train invalid_state took=0ms You already know as much as I can teach of EvaluatingIntel
+[13:56:36.951] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:38.812] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:38.872] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:38.872] INFO  [life]   score=60.0
+[13:56:38.872] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:38.872] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:38.872] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:38.872] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:38.872] INFO  [m5b] [ACTION] npc_train start
+[13:56:38.872] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:38.872] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:38.873] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:38.873] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:38.873] LOG   [m5b] event action_result: npc_train invalid_state took=1ms You already know as much as I can teach of EvaluatingIntel
+[13:56:41.404] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:41.448] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:41.448] INFO  [life]   score=60.0
+[13:56:41.448] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:41.448] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:41.448] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:41.448] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:41.448] INFO  [m5b] [ACTION] npc_train start
+[13:56:41.448] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:41.448] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:41.449] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:41.449] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:41.449] LOG   [m5b] event action_result: npc_train invalid_state took=1ms You already know as much as I can teach of EvaluatingIntel
+[13:56:42.002] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:43.997] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:44.059] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:44.059] INFO  [life]   score=60.0
+[13:56:44.059] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:44.059] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:44.059] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:44.059] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:44.059] INFO  [m5b] [ACTION] npc_train start
+[13:56:44.059] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:44.059] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:44.074] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:44.074] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:44.074] LOG   [m5b] event action_result: npc_train invalid_state took=15ms You already know as much as I can teach of EvaluatingIntel
+[13:56:46.577] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:46.639] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:46.639] INFO  [life]   score=60.0
+[13:56:46.639] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:46.639] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:46.639] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:46.639] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:46.639] INFO  [m5b] [ACTION] npc_train start
+[13:56:46.639] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:46.639] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:46.639] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:46.639] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:46.639] LOG   [m5b] event action_result: npc_train invalid_state took=0ms You already know as much as I can teach of EvaluatingIntel
+[13:56:47.025] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:49.182] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:49.242] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:49.242] INFO  [life]   score=60.0
+[13:56:49.242] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:49.242] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:49.242] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:49.242] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:49.242] INFO  [m5b] [ACTION] npc_train start
+[13:56:49.242] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:49.242] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:49.257] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:49.257] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:49.257] LOG   [m5b] event action_result: npc_train invalid_state took=15ms You already know as much as I can teach of EvaluatingIntel
+[13:56:51.762] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:51.823] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:51.823] INFO  [life]   score=60.0
+[13:56:51.823] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:51.823] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:51.823] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:51.823] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:51.823] INFO  [m5b] [ACTION] npc_train start
+[13:56:51.823] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:51.823] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:51.824] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:51.824] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:51.824] LOG   [m5b] event action_result: npc_train invalid_state took=1ms You already know as much as I can teach of EvaluatingIntel
+[13:56:52.068] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:54.339] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:54.401] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:54.401] INFO  [life]   score=60.0
+[13:56:54.401] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:54.401] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:54.401] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:54.401] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:54.401] INFO  [m5b] [ACTION] npc_train start
+[13:56:54.401] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:54.401] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:54.401] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:54.401] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:54.401] LOG   [m5b] event action_result: npc_train invalid_state took=0ms You already know as much as I can teach of EvaluatingIntel
+[13:56:56.929] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:56.989] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:56.989] INFO  [life]   score=60.0
+[13:56:56.989] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:56.989] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:56.989] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:56.989] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:56.989] INFO  [m5b] [ACTION] npc_train start
+[13:56:56.989] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:56.989] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:57.004] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:57.004] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:57.004] LOG   [m5b] event action_result: npc_train invalid_state took=15ms You already know as much as I can teach of EvaluatingIntel
+[13:56:57.130] INFO  [m5b] [survival] hp 15/15 (100%) -> fight
+[13:56:59.493] INFO  [life] training: refused -- the trainer has nothing left to give
+[13:56:59.555] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:56:59.555] INFO  [life]   score=60.0
+[13:56:59.555] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[13:56:59.555] INFO  [life]   reason: Evaluating Intelligence 11.8 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:56:59.555] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Evaluating Intelligence 11.8 -> 100.0)
+[13:56:59.555] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[13:56:59.555] INFO  [m5b] [ACTION] npc_train start
+[13:56:59.555] INFO  [m5b] [TRAIN] ask 0x00001145 say='Alenne train EvaluatingIntel'
+[13:56:59.555] LOG   [m5b] event npc_train_ask: Alenne train EvaluatingIntel
+[13:56:59.569] INFO  [m5b] [chat uni  ] : Alenne train EvaluatingIntel
+[13:56:59.569] INFO  [m5b] [chat ascii] Xanthe: You already know as much as I can teach of EvaluatingIntel
+[13:56:59.570] LOG   [m5b] event action_result: npc_train invalid_state took=14ms You already know as much as I can teach of EvaluatingIntel

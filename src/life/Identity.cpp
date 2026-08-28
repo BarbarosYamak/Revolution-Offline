@@ -234,8 +234,18 @@ int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
         const i32 have = obs.SkillTenths(t.skillId);
         if (have >= t.tenths) continue;
         // Past what a trainer can give, paying one is simply waste -- the
-        // character has to grind from here whether it pays or not.
+        // character has to grind from here whether it pays or not. This is a
+        // GUESS: the real ceiling is the individual NPC's own skill times the
+        // shard's percentage, and it is only knowable by asking.
         if (have >= trainerCeilingTenths) continue;
+        // Which is why the answers actually received outrank the guess. An
+        // NPC of this trade has already said no to this skill; the ceiling is
+        // below the character and only moves further below as it grows.
+        bool refused = false;
+        for (int r : obs.trainerRefusedSkills) {
+            if (r == t.skillId) { refused = true; break; }
+        }
+        if (refused) continue;
         const int pri = (i < plan.priority.size()) ? plan.priority[i] : 0;
         if (pri > bestPriority) { bestPriority = pri; best = t.skillId; }
     }
