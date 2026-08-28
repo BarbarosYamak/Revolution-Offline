@@ -1712,6 +1712,7 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
             client.ActionTargetStatic(chopX_, chopY_, chopZ_, chopGraphic_);
             chopCursorPending_ = false;
             lastChopMs_ = obs.nowMs;
+            chopSwungJournalMs_ = client.JournalNowMs();
             // LET THE CHOP FINISH. skill44_lumberjacking.scp is DELAY=1.6 and
             // Source-X rolls rand(5)+2 strokes per attempt (CCharSkill.cpp),
             // so one chop runs 3.2 to 9.6 seconds. Re-using the axe before it
@@ -1720,8 +1721,10 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
             // loss that looked like bad luck rather than a bug.
             //
             // The wait is cut short the moment the pack gains a log, so a
-            // fast success is not paid for twice (see the yield check below).
-            nextActionMs_ = obs.nowMs + kChopResolveMs;
+            // fast success is not paid for twice (see the yield check below)
+            // -- and equally by any of Sphere's DEFINITIVE answers, checked
+            // on a short poll below.
+            nextActionMs_ = obs.nowMs + kChopPollMs;
             return false;
         }
         if (obs.nowMs - lastChopMs_ > 6000) {
@@ -1738,6 +1741,43 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     // straight because the "nothing came out" branch was gated on a timer that
     // the next swing kept resetting. Count swings instead of watching a clock:
     // a counter cannot be reset by the thing it is counting.
+    // --- has the swing RESOLVED? -------------------------------------------
+    //
+    // A flat ten-second sleep after every swing was most of the loop's wall
+    // clock, and most of it was spent waiting for an answer the server had
+    // already given. "There is nothing here to chop" arrives on the FIRST
+    // stroke, and with 60% of trees barren by the shard's own resource table
+    // (regionresources.scp: 60.0 mr_nothing against 40.0 mr_tree) that is the
+    // common case, not the exception. A live run managed seven swings in three
+    // minutes and gathered nothing.
+    //
+    // So the ten seconds is now a CEILING, not a delay: poll briefly and stop
+    // the moment Sphere says something conclusive.
+    if (!chopCursorPending_ && lastChopMs_ != 0 &&
+        obs.nowMs - lastChopMs_ < kChopResolveMs && obs.logs <= logsSeen_) {
+        static const char* kResolved[] = {
+            "there is nothing here to chop",       // barren: move on NOW
+            "but fail to produce any useable wood",// attempt resolved, no yield
+            "you decide not to chop wood for now", // @Abort
+            "that is too far away",
+            "you can't reach this",
+        };
+        bool done = false;
+        for (const char* line : kResolved) {
+            if (client.JournalSaidSince(line, chopSwungJournalMs_)) {
+                done = true;
+                break;
+            }
+        }
+        if (!done) {
+            nextActionMs_ = obs.nowMs + kChopPollMs;
+            return false;
+        }
+        // Resolved with no wood. Fall through: the swing counter below decides
+        // whether to try this tree once more or move to the next one.
+        lastChopMs_ = 0;
+    }
+
     if (obs.logs > logsSeen_) {
         // The chop resolved early and paid out -- stop waiting out the stroke
         // window and swing again.

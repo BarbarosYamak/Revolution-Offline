@@ -1,0 +1,169 @@
+[14:52:03.893] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5j'
+[14:52:03.894] LOG   [m5j] event session_start: text log opened
+[14:52:03.894] LOG   [m5j] event net_connect_begin: connect 127.0.0.1:2593
+[14:52:03.894] INFO  [m5j] [net] connecting to 127.0.0.1:2593 ...
+[14:52:03.895] LOG   [m5j] event net_connected: connect 127.0.0.1:2593
+[14:52:03.895] INFO  [m5j] [net] connected.
+[14:52:03.895] INFO  [m5j] [seed] sent 0x7F000001 (plaintext)
+[14:52:03.895] LOG   [m5j] event seed_out: 0x7F000001 hex=7f000001
+[14:52:03.896] INFO  [life] loaded persistent state for Brannoc (0 places, 0 suppliers, 2 events, 0 prior sessions)
+[14:52:03.896] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[14:52:03.896] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:52:03.896] INFO  [m5j] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 40 min)
+[14:52:03.917] INFO  [m5j] [0xA8] 1 server(s):
+[14:52:03.918] INFO  [m5j]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:52:03.933] INFO  [m5j] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[14:52:03.933] LOG   [m5j] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[14:52:03.933] INFO  [m5j] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:52:03.933] LOG   [m5j] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:52:03.933] INFO  [m5j] [0xB9] server features = 0x0005
+[14:52:03.933] INFO  [m5j] [0xA9] 5 slot(s) (populated 1):
+[14:52:03.933] INFO  [m5j]   [0] Brannoc
+[14:52:03.933] INFO  [m5j]   [1] <empty>
+[14:52:03.933] INFO  [m5j]   [2] <empty>
+[14:52:03.933] INFO  [m5j]   [3] <empty>
+[14:52:03.933] INFO  [m5j]   [4] <empty>
+[14:52:03.933] INFO  [m5j] [ui] playing slot 0 ('Brannoc')
+[14:52:03.949] INFO  [m5j] [0x1B] serial=0x0000CC33 body=0x0190 pos=(659,856,0)
+[14:52:03.949] LOG   [m5j] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(659,856,0)
+[14:52:03.949] INFO  [m5j] [0x20] player @(659,856,0) facing=1
+[14:52:03.949] INFO  [m5j] [0x55] login complete — entering world
+[14:52:03.949] LOG   [m5j] event in_world: 0x55 received
+[14:52:03.949] INFO  [m5j] [backpack] opening 0x4000CC23
+[14:52:03.949] INFO  [m5j] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:52:03.949] INFO  [m5j] [chat ascii] System: There is 1 other player here.
+[14:52:03.949] INFO  [m5j] [chat ascii] System: Last logged: 2026/08/28 14:49:04
+[14:52:03.949] INFO  [m5j] [chat ascii] System: You are under the protection of the town guards
+[14:52:03.953] INFO  [m5j] [action] requesting the skill list
+[14:52:03.953] INFO  [life] in world; asked the server for the skill list
+[14:52:03.953] INFO  [m5j] [0x24] open container 0x4000CC23 gump=60
+[14:52:03.953] INFO  [m5j] [0x3C] container contents: 8 item(s)
+[14:52:03.953] LOG   [m5j] event backpack_contents: serial=0x4000CC23 items=8
+[14:52:06.541] INFO  [m5j] [bot] world data loaded (0 blacklisted spot(s)).
+[14:52:06.541] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[14:52:06.541] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[14:52:06.541] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[14:52:06.541] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[14:52:06.541] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[14:52:06.541] INFO  [life]   skill_44     persisted=50.2       server=50.2       -> server value accepted
+[14:52:06.541] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[14:52:06.541] INFO  [life]   skill_27     persisted=12.3       server=12.3       -> server value accepted
+[14:52:06.541] INFO  [life]   skill_1      persisted=17.6       server=17.6       -> server value accepted
+[14:52:06.541] INFO  [life]   skill_17     persisted=14.9       server=14.9       -> server value accepted
+[14:52:06.541] INFO  [life]   position     persisted=652,863    server=659,856    -> server value accepted
+[14:52:06.541] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:52:06.541] INFO  [life]   restored objective KEPT: GATHER_LOGS (progress 5)
+[14:52:06.541] INFO  [m5j] [survival] on
+[14:52:06.541] LOG   [m5j] event survival_mode: on
+[14:52:06.543] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:52:06.543] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:06.596] INFO  [m5j] [ACTION] use_object start
+[14:52:06.596] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:06.611] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:06.611] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[14:52:06.611] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[14:52:06.611] INFO  [m5j] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:52:06.611] LOG   [m5j] event action_result: use_object success took=15ms server armed a target cursor
+[14:52:07.409] INFO  [m5j] [TARGET] reply static=(660,855,0) gfx=0x0CCD gen=1
+[14:52:07.409] INFO  [m5j] [target] static 0x0CCD (660,855,0)
+[14:52:11.603] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:15.506] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:52:15.628] INFO  [m5j] [ACTION] use_object start
+[14:52:15.628] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:15.628] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:15.628] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[14:52:15.628] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[14:52:15.628] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:52:15.628] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:52:16.486] INFO  [m5j] [TARGET] reply static=(660,855,0) gfx=0x0CCD gen=2
+[14:52:16.486] INFO  [m5j] [target] static 0x0CCD (660,855,0)
+[14:52:16.609] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:21.659] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:24.597] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:52:24.660] INFO  [life] tree at 660,855 holds no wood -> next tree (1 tried this stand)
+[14:52:24.723] INFO  [m5j] [action] goto (663,858) from (659,856,0)
+[14:52:24.723] LOG   [m5j] event goto_start: target=(663,858) from=(659,856)
+[14:52:24.723] INFO  [m5j] [bot] running from (659,856,0) to (663,858)
+[14:52:24.723] INFO  [m5j] [bot] planning path to (663,858) in background
+[14:52:24.784] INFO  [m5j] [bot] replan to (663,858): 4 steps in 46.6us
+[14:52:25.966] INFO  [m5j] [ACTION] use_object start
+[14:52:25.966] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:25.980] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:25.980] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[14:52:25.980] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[14:52:25.980] INFO  [m5j] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:52:25.980] LOG   [m5j] event action_result: use_object success took=14ms server armed a target cursor
+[14:52:26.164] INFO  [m5j] [bot] arrived at (663,858,0)
+[14:52:26.711] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:26.772] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=3
+[14:52:26.772] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:52:31.759] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:33.260] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:52:33.261] INFO  [m5j] [ACTION] use_object start
+[14:52:33.261] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:33.261] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:33.261] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[14:52:33.261] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[14:52:33.261] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:52:33.261] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:52:34.072] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=4
+[14:52:34.072] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:52:36.811] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:41.832] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:43.775] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:52:44.023] INFO  [m5j] [ACTION] use_object start
+[14:52:44.023] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:44.038] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:44.038] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[14:52:44.038] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[14:52:44.038] INFO  [m5j] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:52:44.038] LOG   [m5j] event action_result: use_object success took=15ms server armed a target cursor
+[14:52:44.835] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=5
+[14:52:44.835] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:52:46.875] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:49.731] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:52:50.065] INFO  [m5j] [ACTION] use_object start
+[14:52:50.065] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:50.080] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:50.080] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[14:52:50.080] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[14:52:50.080] INFO  [m5j] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:52:50.080] LOG   [m5j] event action_result: use_object success took=15ms server armed a target cursor
+[14:52:50.874] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=6
+[14:52:50.874] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:52:51.896] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:52:54.137] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:52:54.320] INFO  [m5j] [ACTION] use_object start
+[14:52:54.320] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:52:54.320] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:52:54.320] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[14:52:54.320] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[14:52:54.320] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:52:54.320] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:52:55.176] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=7
+[14:52:55.176] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:52:56.937] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:01.638] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:53:01.975] INFO  [m5j] [ACTION] use_object start
+[14:53:01.976] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:01.976] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:01.990] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:01.990] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[14:53:01.990] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[14:53:01.990] INFO  [m5j] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:53:01.990] LOG   [m5j] event action_result: use_object success took=15ms server armed a target cursor
+[14:53:02.784] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=8
+[14:53:02.784] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:53:06.541] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:53:07.033] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:07.661] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:53:07.967] INFO  [m5j] [ACTION] use_object start
+[14:53:07.967] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:07.967] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:07.967] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
+[14:53:07.967] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
+[14:53:07.967] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:07.967] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:08.791] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=9
+[14:53:08.791] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:53:12.091] INFO  [m5j] [survival] hp 25/25 (100%) -> fight

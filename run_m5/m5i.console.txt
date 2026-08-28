@@ -127,3 +127,155 @@
 [14:49:53.216] INFO  [m5i] [0x20] player @(644,865,0) facing=0
 [14:49:53.216] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
 [14:49:57.768] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:02.807] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:03.235] INFO  [m5i] [ACTION] use_object start
+[14:50:03.235] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:50:03.249] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:50:03.249] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[14:50:03.249] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[14:50:03.249] INFO  [m5i] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:50:03.249] LOG   [m5i] event action_result: use_object success took=14ms server armed a target cursor
+[14:50:04.048] INFO  [m5i] [TARGET] reply static=(644,864,0) gfx=0x0CD3 gen=6
+[14:50:04.049] INFO  [m5i] [target] static 0x0CD3 (644,864,0)
+[14:50:04.063] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:50:07.482] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:50:07.849] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:12.889] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:14.057] INFO  [life] tree at 644,864 holds no wood -> next tree (3 tried this stand)
+[14:50:14.119] INFO  [m5i] [action] goto finished at (644,865,0); target (644,865); ARRIVED (off by 0 tile(s))
+[14:50:14.119] LOG   [m5i] event goto_done: at=(644,865) target=(644,865) arrived=1 off=0
+[14:50:14.119] INFO  [m5i] [action] goto (641,864) from (644,865,0)
+[14:50:14.119] LOG   [m5i] event goto_start: target=(641,864) from=(644,865)
+[14:50:14.119] INFO  [m5i] [bot] running from (644,865,0) to (641,864)
+[14:50:14.119] INFO  [m5i] [bot] planning path to (641,864) in background
+[14:50:14.180] INFO  [m5i] [bot] replan to (641,864): 5 steps in 138.9us
+[14:50:15.377] INFO  [m5i] [ACTION] use_object start
+[14:50:15.377] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:50:15.392] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:50:15.392] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[14:50:15.392] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[14:50:15.392] INFO  [m5i] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:50:15.392] LOG   [m5i] event action_result: use_object success took=15ms server armed a target cursor
+[14:50:16.005] INFO  [m5i] [bot] arrived at (641,864,0)
+[14:50:16.177] INFO  [m5i] [TARGET] reply static=(640,864,0) gfx=0x0CE0 gen=7
+[14:50:16.177] INFO  [m5i] [target] static 0x0CE0 (640,864,0)
+[14:50:16.177] INFO  [m5i] [0x20] player @(641,864,0) facing=6
+[14:50:16.177] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:50:17.929] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:22.943] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:26.203] INFO  [m5i] [ACTION] use_object start
+[14:50:26.203] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:50:26.203] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:50:26.203] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[14:50:26.203] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[14:50:26.203] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:50:26.203] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:50:27.063] INFO  [m5i] [TARGET] reply static=(640,864,0) gfx=0x0CE0 gen=8
+[14:50:27.063] INFO  [m5i] [target] static 0x0CE0 (640,864,0)
+[14:50:27.063] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:50:27.995] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:33.040] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:37.088] INFO  [life] tree at 640,864 holds no wood -> next tree (4 tried this stand)
+[14:50:37.150] INFO  [m5i] [action] goto finished at (641,864,0); target (641,864); ARRIVED (off by 0 tile(s))
+[14:50:37.150] LOG   [m5i] event goto_done: at=(641,864) target=(641,864) arrived=1 off=0
+[14:50:37.150] INFO  [m5i] [action] goto (651,858) from (641,864,0)
+[14:50:37.150] LOG   [m5i] event goto_start: target=(651,858) from=(641,864)
+[14:50:37.150] INFO  [m5i] [bot] running from (641,864,0) to (651,858)
+[14:50:37.151] INFO  [m5i] [bot] planning path to (651,858) in background
+[14:50:37.213] INFO  [m5i] [bot] replan to (651,858): 10 steps in 241.6us
+[14:50:38.041] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:40.239] INFO  [m5i] [ACTION] use_object start
+[14:50:40.239] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:50:40.252] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:50:40.252] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
+[14:50:40.252] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
+[14:50:40.252] INFO  [m5i] [ACTION_RESULT] use_object success (13ms) server armed a target cursor
+[14:50:40.252] LOG   [m5i] event action_result: use_object success took=13ms server armed a target cursor
+[14:50:40.697] INFO  [m5i] [bot] arrived at (651,858,0)
+[14:50:41.067] INFO  [m5i] [TARGET] reply static=(652,858,0) gfx=0x0CD6 gen=9
+[14:50:41.067] INFO  [m5i] [target] static 0x0CD6 (652,858,0)
+[14:50:41.068] INFO  [m5i] [0x20] player @(651,858,0) facing=2
+[14:50:41.068] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:50:43.099] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:48.121] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:51.126] INFO  [m5i] [ACTION] use_object start
+[14:50:51.126] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:50:51.126] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:50:51.126] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[14:50:51.126] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[14:50:51.126] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:50:51.126] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:50:51.988] INFO  [m5i] [TARGET] reply static=(652,858,0) gfx=0x0CD6 gen=10
+[14:50:51.988] INFO  [m5i] [target] static 0x0CD6 (652,858,0)
+[14:50:51.988] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:50:53.149] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:50:58.176] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:02.002] INFO  [life] tree at 652,858 holds no wood -> next tree (5 tried this stand)
+[14:51:02.063] INFO  [m5i] [action] goto finished at (651,858,0); target (651,858); ARRIVED (off by 0 tile(s))
+[14:51:02.063] LOG   [m5i] event goto_done: at=(651,858) target=(651,858) arrived=1 off=0
+[14:51:02.063] INFO  [m5i] [action] goto (652,863) from (651,858,0)
+[14:51:02.063] LOG   [m5i] event goto_start: target=(652,863) from=(651,858)
+[14:51:02.063] INFO  [m5i] [bot] running from (651,858,0) to (652,863)
+[14:51:02.063] INFO  [m5i] [bot] planning path to (652,863) in background
+[14:51:02.124] INFO  [m5i] [bot] replan to (652,863): 5 steps in 103.2us
+[14:51:03.208] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:03.542] INFO  [m5i] [ACTION] use_object start
+[14:51:03.542] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:51:03.542] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:51:03.542] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
+[14:51:03.542] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
+[14:51:03.542] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:51:03.542] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:51:03.985] INFO  [m5i] [bot] arrived at (652,863,0)
+[14:51:04.369] INFO  [m5i] [TARGET] reply static=(652,864,0) gfx=0x0CE3 gen=11
+[14:51:04.369] INFO  [m5i] [target] static 0x0CE3 (652,864,0)
+[14:51:04.384] INFO  [m5i] [0x20] player @(652,863,0) facing=4
+[14:51:04.384] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:51:07.499] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:51:08.229] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:13.279] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:14.385] INFO  [m5i] [ACTION] use_object start
+[14:51:14.385] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:51:14.386] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:51:14.386] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[14:51:14.386] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[14:51:14.386] INFO  [m5i] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[14:51:14.386] LOG   [m5i] event action_result: use_object success took=1ms server armed a target cursor
+[14:51:15.244] INFO  [m5i] [TARGET] reply static=(652,864,0) gfx=0x0CE3 gen=12
+[14:51:15.244] INFO  [m5i] [target] static 0x0CE3 (652,864,0)
+[14:51:15.244] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:51:18.318] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:23.337] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:25.301] INFO  [life] tree at 652,864 holds no wood -> next tree (6 tried this stand)
+[14:51:25.364] INFO  [m5i] [action] goto finished at (652,863,0); target (652,863); ARRIVED (off by 0 tile(s))
+[14:51:25.365] LOG   [m5i] event goto_done: at=(652,863) target=(652,863) arrived=1 off=0
+[14:51:25.365] INFO  [m5i] [action] goto (659,856) from (652,863,0)
+[14:51:25.365] LOG   [m5i] event goto_start: target=(659,856) from=(652,863)
+[14:51:25.365] INFO  [m5i] [bot] running from (652,863,0) to (659,856)
+[14:51:25.365] INFO  [m5i] [bot] planning path to (659,856) in background
+[14:51:25.426] INFO  [m5i] [bot] replan to (659,856): 7 steps in 65.9us
+[14:51:26.912] INFO  [m5i] [ACTION] use_object start
+[14:51:26.912] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:51:26.912] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:51:26.912] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=13
+[14:51:26.912] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=13
+[14:51:26.912] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:51:26.912] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:51:27.339] INFO  [m5i] [bot] arrived at (659,856,0)
+[14:51:27.768] INFO  [m5i] [TARGET] reply static=(660,855,0) gfx=0x0CCD gen=13
+[14:51:27.768] INFO  [m5i] [target] static 0x0CCD (660,855,0)
+[14:51:28.349] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:33.381] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:34.223] INFO  [m5i] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:51:37.825] INFO  [m5i] [ACTION] use_object start
+[14:51:37.825] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:51:37.840] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:51:37.840] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
+[14:51:37.840] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
+[14:51:37.840] INFO  [m5i] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:51:37.840] LOG   [m5i] event action_result: use_object success took=15ms server armed a target cursor
+[14:51:38.391] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:38.638] INFO  [m5i] [TARGET] reply static=(660,855,0) gfx=0x0CCD gen=14
+[14:51:38.638] INFO  [m5i] [target] static 0x0CCD (660,855,0)
+[14:51:43.445] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:51:46.815] INFO  [m5i] [chat ascii] System: You put the logs in your pack.

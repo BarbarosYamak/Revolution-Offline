@@ -160,7 +160,13 @@ private:
     // again inside that window fires the skill's @Abort trigger and throws the
     // whole attempt away. Wait out the worst case; a yield cuts it short.
     static constexpr i64 kChopResolveMs = 10000;
+    // How often to look for one of those answers while waiting. Short enough
+    // that a barren tree costs a fraction of a second rather than ten.
+    static constexpr i64 kChopPollMs = 400;
     i32  swingsOnTree_ = 0;
+    // Journal mark taken when the axe swing is targeted, so the definitive
+    // answers below can be read without re-reading the whole journal.
+    i64  chopSwungJournalMs_ = 0;
     i32  approachCell_ = 0;   // which of the tree's eight neighbours we have tried
     i32  logsSeen_ = 0;
     std::vector<std::pair<i32, i32>> visitedTrees_;
