@@ -1,0 +1,321 @@
+[15:05:15.432] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5m'
+[15:05:15.434] LOG   [m5m] event session_start: text log opened
+[15:05:15.434] LOG   [m5m] event net_connect_begin: connect 127.0.0.1:2593
+[15:05:15.434] INFO  [m5m] [net] connecting to 127.0.0.1:2593 ...
+[15:05:15.435] LOG   [m5m] event net_connected: connect 127.0.0.1:2593
+[15:05:15.435] INFO  [m5m] [net] connected.
+[15:05:15.435] INFO  [m5m] [seed] sent 0x7F000001 (plaintext)
+[15:05:15.435] LOG   [m5m] event seed_out: 0x7F000001 hex=7f000001
+[15:05:15.435] INFO  [life] loaded persistent state for Brannoc (23 places, 0 suppliers, 4 events, 0 prior sessions)
+[15:05:15.436] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[15:05:15.436] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[15:05:15.436] INFO  [m5m] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 40 min)
+[15:05:15.456] INFO  [m5m] [0xA8] 1 server(s):
+[15:05:15.456] INFO  [m5m]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[15:05:15.472] INFO  [m5m] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[15:05:15.472] LOG   [m5m] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[15:05:15.472] INFO  [m5m] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:05:15.472] LOG   [m5m] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:05:15.472] INFO  [m5m] [0xB9] server features = 0x0005
+[15:05:15.472] INFO  [m5m] [0xA9] 5 slot(s) (populated 1):
+[15:05:15.472] INFO  [m5m]   [0] Brannoc
+[15:05:15.472] INFO  [m5m]   [1] <empty>
+[15:05:15.472] INFO  [m5m]   [2] <empty>
+[15:05:15.472] INFO  [m5m]   [3] <empty>
+[15:05:15.472] INFO  [m5m]   [4] <empty>
+[15:05:15.472] INFO  [m5m] [ui] playing slot 0 ('Brannoc')
+[15:05:15.488] INFO  [m5m] [0x1B] serial=0x0000CC33 body=0x0190 pos=(550,912,0)
+[15:05:15.488] LOG   [m5m] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(550,912,0)
+[15:05:15.488] INFO  [m5m] [0x20] player @(550,912,0) facing=1
+[15:05:15.488] INFO  [m5m] [0x55] login complete — entering world
+[15:05:15.488] LOG   [m5m] event in_world: 0x55 received
+[15:05:15.488] INFO  [m5m] [backpack] opening 0x4000CC23
+[15:05:15.488] INFO  [m5m] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:05:15.488] INFO  [m5m] [chat ascii] System: There is 1 other player here.
+[15:05:15.488] INFO  [m5m] [chat ascii] System: Last logged: 2026/08/28 14:58:38
+[15:05:15.488] INFO  [m5m] [chat ascii] System: You are under the protection of the town guards
+[15:05:15.492] INFO  [m5m] [action] requesting the skill list
+[15:05:15.492] INFO  [life] in world; asked the server for the skill list
+[15:05:15.492] INFO  [m5m] [0x24] open container 0x4000CC23 gump=60
+[15:05:15.492] INFO  [m5m] [0x3C] container contents: 8 item(s)
+[15:05:15.492] LOG   [m5m] event backpack_contents: serial=0x4000CC23 items=8
+[15:05:18.061] INFO  [m5m] [bot] world data loaded (0 blacklisted spot(s)).
+[15:05:18.062] INFO  [life] reconciliation: resuming a life, 2 field(s) differed
+[15:05:18.062] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[15:05:18.062] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[15:05:18.062] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[15:05:18.062] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[15:05:18.062] INFO  [life]   skill_44     persisted=50.6       server=50.9       -> server value accepted
+[15:05:18.062] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[15:05:18.062] INFO  [life]   skill_27     persisted=12.3       server=12.3       -> server value accepted
+[15:05:18.062] INFO  [life]   skill_1      persisted=17.6       server=17.6       -> server value accepted
+[15:05:18.062] INFO  [life]   skill_17     persisted=14.9       server=14.9       -> server value accepted
+[15:05:18.062] INFO  [life]   position     persisted=551,933    server=550,912    -> server value accepted
+[15:05:18.062] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:05:18.062] INFO  [life]   restored objective KEPT: EARN_GOLD (progress 0)
+[15:05:18.062] INFO  [m5m] [survival] on
+[15:05:18.062] LOG   [m5m] event survival_mode: on
+[15:05:18.064] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[15:05:18.064] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:18.115] INFO  [life] earn_gold: looking for a 'carpenter' to buy 17 i_log (trip 1)
+[15:05:18.115] INFO  [m5m] [travel] Yew carpenter -> (564,1011) r=5 from (550,912)
+[15:05:18.115] LOG   [m5m] event travel_start: label='Yew carpenter' target=(564,1011) radius=5 from=(550,912)
+[15:05:18.115] INFO  [m5m] [travel] mode moongate         usable   <- chosen
+[15:05:18.115] INFO  [m5m] [travel] mode walk             usable
+[15:05:18.115] INFO  [m5m] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:05:18.115] INFO  [m5m] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:05:18.115] LOG   [m5m] event travel_mode: moongate
+[15:05:18.115] INFO  [m5m] [travel] plan Yew carpenter: ok legs=3 ~104 tiles transit=0 nodes=13
+[15:05:18.176] INFO  [m5m] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:05:18.176] INFO  [m5m] [action] goto (552,952) from (550,912,0)
+[15:05:18.176] LOG   [m5m] event goto_start: target=(552,952) from=(550,912)
+[15:05:18.176] INFO  [m5m] [bot] running from (550,912,0) to (552,952)
+[15:05:18.176] INFO  [m5m] [bot] planning path to (552,952) in background
+[15:05:18.237] INFO  [m5m] [bot] replan to (552,952): 40 steps in 897.3us
+[15:05:23.122] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:26.260] INFO  [m5m] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=20 in 22.7us
+[15:05:28.170] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:31.430] INFO  [m5m] [bot] arrived at (552,952,0)
+[15:05:31.430] INFO  [m5m] [action] goto finished at (552,952,0); target (552,952); ARRIVED (off by 0 tile(s))
+[15:05:31.430] LOG   [m5m] event goto_done: at=(552,952) target=(552,952) arrived=1 off=0
+[15:05:31.430] INFO  [m5m] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:05:31.430] INFO  [m5m] [action] goto (568,984) from (552,952,0)
+[15:05:31.430] LOG   [m5m] event goto_start: target=(568,984) from=(552,952)
+[15:05:31.430] INFO  [m5m] [bot] running from (552,952,0) to (568,984)
+[15:05:31.430] INFO  [m5m] [bot] planning path to (568,984) in background
+[15:05:31.491] INFO  [m5m] [bot] replan to (568,984): 34 steps in 702.7us
+[15:05:33.220] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:38.251] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:41.411] INFO  [m5m] [bot] arrived at (568,984,0)
+[15:05:41.412] INFO  [m5m] [action] goto finished at (568,984,0); target (568,984); ARRIVED (off by 0 tile(s))
+[15:05:41.412] LOG   [m5m] event goto_done: at=(568,984) target=(568,984) arrived=1 off=0
+[15:05:41.412] INFO  [m5m] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:05:41.412] INFO  [m5m] [action] goto (564,1011) from (568,984,0)
+[15:05:41.412] LOG   [m5m] event goto_start: target=(564,1011) from=(568,984)
+[15:05:41.412] INFO  [m5m] [bot] running from (568,984,0) to (564,1011,z0)
+[15:05:41.412] INFO  [m5m] [bot] planning path to (564,1011) in background
+[15:05:41.426] INFO  [m5m] [bot] replan to (564,1011): 39 steps in 6616.7us
+[15:05:43.276] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:48.281] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:48.865] INFO  [m5m] [bot] door ahead at (575,1011,z0); OpenDoor before step
+[15:05:48.865] INFO  [m5m] [chat ascii] System: Opening door...
+[15:05:51.575] INFO  [m5m] [travel] Yew carpenter ARRIVED at (569,1010,0)
+[15:05:51.576] LOG   [m5m] event travel_done: label='Yew carpenter' ok=1 at=(569,1010) legs=3 plans=1 why=''
+[15:05:51.623] INFO  [life] earn_gold: arrived at 569,1010 -- asking who is here
+[15:05:51.623] INFO  [m5m] [action] scanning nearby mobiles for names
+[15:05:51.623] INFO  [m5m] [action] requested 4 paperdoll(s) for trade titles
+[15:05:51.637] INFO  [m5m] [mobiles] nearby (7):
+[15:05:51.637] INFO  [m5m]   Joshua 0x00000839
+[15:05:51.637] INFO  [m5m]   Weston 0x00000805
+[15:05:51.637] INFO  [m5m]   Dog 0x0000035C
+[15:05:51.637] INFO  [m5m]   Observer 0x0000063C
+[15:05:51.637] INFO  [m5m]   Arnon 0x000007F6
+[15:05:51.637] INFO  [m5m]   Rat 0x00000027
+[15:05:51.637] INFO  [m5m]   Cat 0x00000894
+[15:05:51.637] INFO  [m5m] [0x20] player @(569,1010,0) facing=1
+[15:05:51.637] INFO  [m5m] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[15:05:51.637] INFO  [m5m] [0x20] player @(569,1010,0) facing=7
+[15:05:51.637] INFO  [m5m] [0x88] paperdoll 0x00000839: "Joshua, the architect"
+[15:05:51.637] INFO  [m5m] [0x20] player @(569,1010,0) facing=6
+[15:05:51.637] INFO  [m5m] [0x88] paperdoll 0x000007F6: "Arnon, the architect"
+[15:05:51.637] INFO  [m5m] [0x88] paperdoll 0x00000805: "Weston, the carpenter"
+[15:05:51.637] INFO  [m5m] [world] Weston, the carpenter is a carpenter at (564,1012)
+[15:05:53.282] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:54.165] INFO  [life] earn_gold: the 'carpenter' is 5 tiles and 0 z away -- walking up before speaking, or the nearest other vendor answers instead
+[15:05:54.165] INFO  [m5m] [travel] vendor -> (564,1010) r=1 from (569,1010)
+[15:05:54.165] LOG   [m5m] event travel_start: label='vendor' target=(564,1010) radius=1 from=(569,1010)
+[15:05:54.165] INFO  [m5m] [travel] mode walk             usable   <- chosen
+[15:05:54.165] INFO  [m5m] [travel] mode moongate         usable
+[15:05:54.165] INFO  [m5m] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:05:54.165] INFO  [m5m] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:05:54.165] LOG   [m5m] event travel_mode: walk
+[15:05:54.165] INFO  [m5m] [travel] plan vendor: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:05:54.226] INFO  [m5m] [action] goto finished at (569,1010,0); target (564,1011); stopped short (off by 6 tile(s))
+[15:05:54.226] LOG   [m5m] event goto_done: at=(569,1010) target=(564,1011) arrived=0 off=6
+[15:05:54.226] INFO  [m5m] [action] goto (564,1010) from (569,1010,0)
+[15:05:54.226] LOG   [m5m] event goto_start: target=(564,1010) from=(569,1010)
+[15:05:54.226] INFO  [m5m] [bot] running from (569,1010,0) to (564,1010)
+[15:05:54.226] INFO  [m5m] [bot] planning path to (564,1010) in background
+[15:05:55.243] INFO  [m5m] [action] goto finished at (569,1010,0); target (564,1010); stopped short (off by 5 tile(s))
+[15:05:55.243] LOG   [m5m] event goto_done: at=(569,1010) target=(564,1010) arrived=0 off=5
+[15:05:56.480] INFO  [m5m] [action] goto (564,1010) from (569,1010,0)
+[15:05:56.480] LOG   [m5m] event goto_start: target=(564,1010) from=(569,1010)
+[15:05:56.480] INFO  [m5m] [bot] running from (569,1010,0) to (564,1010)
+[15:05:56.481] INFO  [m5m] [bot] planning path to (564,1010) in background
+[15:05:57.574] INFO  [m5m] [action] goto finished at (569,1010,0); target (564,1010); stopped short (off by 5 tile(s))
+[15:05:57.574] LOG   [m5m] event goto_done: at=(569,1010) target=(564,1010) arrived=0 off=5
+[15:05:58.307] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:05:58.794] INFO  [m5m] [action] goto (564,1010) from (569,1010,0)
+[15:05:58.794] LOG   [m5m] event goto_start: target=(564,1010) from=(569,1010)
+[15:05:58.794] INFO  [m5m] [bot] running from (569,1010,0) to (564,1010)
+[15:05:58.794] INFO  [m5m] [bot] planning path to (564,1010) in background
+[15:05:58.856] INFO  [m5m] [bot] replan to (564,1010): 5 steps in 61.0us
+[15:05:59.974] INFO  [m5m] [bot] arrived at (564,1010,0)
+[15:05:59.974] INFO  [m5m] [action] goto finished at (564,1010,0); target (564,1010); ARRIVED (off by 0 tile(s))
+[15:05:59.974] LOG   [m5m] event goto_done: at=(564,1010) target=(564,1010) arrived=1 off=0
+[15:05:59.974] INFO  [m5m] [travel] vendor ARRIVED at (564,1010,0)
+[15:05:59.974] LOG   [m5m] event travel_done: label='vendor' ok=1 at=(564,1010) legs=1 plans=1 why=''
+[15:06:00.034] INFO  [life] earn_gold: asking the 'carpenter' what it buys
+[15:06:00.034] INFO  [m5m] [ACTION] vendor_sell start
+[15:06:00.034] INFO  [m5m] [VENDOR] open sell vendor=0x00000805 say='Weston sell'
+[15:06:00.050] INFO  [m5m] [chat uni  ] : Weston sell
+[15:06:00.050] INFO  [m5m] [chat ascii] Weston: Yes?
+[15:06:00.050] INFO  [m5m] [chat ascii] Weston: Thee got summat to sell? Give it here.
+[15:06:00.050] INFO  [m5m] [VENDOR] sell list from 0x00000805: 1 item(s)
+[15:06:00.050] INFO  [m5m] [VENDOR]   0x400047F9 logs                   x17  0 gp
+[15:06:00.050] LOG   [m5m] event vendor_sell_list: vendor=0x00000805 items=1
+[15:06:00.050] INFO  [m5m] [ACTION_RESULT] vendor_sell success (16ms) vendor sell list received
+[15:06:00.050] LOG   [m5m] event action_result: vendor_sell success took=16ms vendor sell list received
+[15:06:02.575] INFO  [life] earn_gold: 'carpenter' offers 0 gold each for i_log; selling 17
+[15:06:02.575] INFO  [m5m] [ACTION] vendor_sell start
+[15:06:02.575] INFO  [m5m] [VENDOR] sell item=0x400047F9 qty=17 to vendor=0x00000805 gold=1000
+[15:06:02.576] INFO  [life] goal_changed=TRAIN_AT_NPC from=EARN_GOLD reason="TRAIN_AT_NPC 60.0 superseded EARN_GOLD 0.0"
+[15:06:02.576] INFO  [life]   score=60.0
+[15:06:02.576] INFO  [life]   reason: NeedSkillTraining urgency 0.30 x 200 = 60.0
+[15:06:02.576] INFO  [life]   reason: Tactics 12.3 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[15:06:02.576] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:06:02.576] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[15:06:03.310] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:05.587] INFO  [life] training: looking for a 'swordsman' to teach Tactics (trip 1)
+[15:06:05.587] INFO  [m5m] [travel] Britain Territory blacksmithguildmaster -> (1349,1778) r=5 from (564,1010)
+[15:06:05.587] LOG   [m5m] event travel_start: label='Britain Territory blacksmithguildmaster' target=(1349,1778) radius=5 from=(564,1010)
+[15:06:05.587] INFO  [m5m] [travel] mode moongate         usable   <- chosen
+[15:06:05.587] INFO  [m5m] [travel] mode walk             usable
+[15:06:05.587] INFO  [m5m] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:06:05.587] INFO  [m5m] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:06:05.587] LOG   [m5m] event travel_mode: moongate
+[15:06:05.588] INFO  [m5m] [travel] plan Britain Territory blacksmithguildmaster: ok legs=17 ~696 tiles transit=1 nodes=2141
+[15:06:05.647] INFO  [m5m] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:06:05.647] INFO  [m5m] [action] goto (568,984) from (564,1010,0)
+[15:06:05.647] LOG   [m5m] event goto_start: target=(568,984) from=(564,1010)
+[15:06:05.647] INFO  [m5m] [bot] running from (564,1010,0) to (568,984)
+[15:06:05.647] INFO  [m5m] [bot] planning path to (568,984) in background
+[15:06:05.709] INFO  [m5m] [bot] replan to (568,984): 39 steps in 1287.4us
+[15:06:08.311] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:10.631] LOG   [m5m] event action_result: vendor_sell timeout
+[15:06:13.339] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:17.473] INFO  [m5m] [bot] arrived at (568,984,0)
+[15:06:17.474] INFO  [m5m] [action] goto finished at (568,984,0); target (568,984); ARRIVED (off by 0 tile(s))
+[15:06:17.474] LOG   [m5m] event goto_done: at=(568,984) target=(568,984) arrived=1 off=0
+[15:06:17.474] INFO  [m5m] [travel] avoiding 1 teleporter pad(s) on this leg
+[15:06:17.474] INFO  [m5m] [action] goto (584,952) from (568,984,0)
+[15:06:17.474] LOG   [m5m] event goto_start: target=(584,952) from=(568,984)
+[15:06:17.474] INFO  [m5m] [bot] running from (568,984,0) to (584,952)
+[15:06:17.474] INFO  [m5m] [bot] planning path to (584,952) in background
+[15:06:17.535] INFO  [m5m] [bot] replan to (584,952): 32 steps in 1490.6us
+[15:06:18.098] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[15:06:18.356] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:22.584] INFO  [life] goal_changed=GATHER_LOGS from=TRAIN_AT_NPC reason="GATHER_LOGS 97.0 superseded TRAIN_AT_NPC 60.0"
+[15:06:22.584] INFO  [life]   score=97.0
+[15:06:22.584] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[15:06:22.584] INFO  [life]   reason: proven stand at 660,855 (10 successes, 5 failures)
+[15:06:22.584] INFO  [life]   reason: axe already in hand +20
+[15:06:22.584] INFO  [life]   reason: proven stand at 660,855 (10 successes) +25
+[15:06:22.584] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:06:22.584] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[15:06:23.391] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:23.638] INFO  [m5m] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=9 in 43.9us
+[15:06:26.246] INFO  [m5m] [bot] arrived at (584,952,0)
+[15:06:26.246] INFO  [m5m] [action] goto finished at (584,952,0); target (584,952); ARRIVED (off by 0 tile(s))
+[15:06:26.246] LOG   [m5m] event goto_done: at=(584,952) target=(584,952) arrived=1 off=0
+[15:06:26.246] INFO  [m5m] [action] goto (584,956) from (584,952,0)
+[15:06:26.246] LOG   [m5m] event goto_start: target=(584,956) from=(584,952)
+[15:06:26.246] INFO  [m5m] [bot] running from (584,952,0) to (584,956)
+[15:06:26.247] INFO  [m5m] [bot] planning path to (584,956) in background
+[15:06:26.306] INFO  [m5m] [bot] replan to (584,956): 4 steps in 219.1us
+[15:06:27.470] INFO  [m5m] [ACTION] use_object start
+[15:06:27.470] INFO  [m5m] [ACTION] use_object serial=0x4000CBEF
+[15:06:27.485] INFO  [m5m] [chat ascii] System: What do you want to use this on?
+[15:06:27.485] INFO  [m5m] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[15:06:27.485] LOG   [m5m] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[15:06:27.485] INFO  [m5m] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[15:06:27.485] LOG   [m5m] event action_result: use_object success took=15ms server armed a target cursor
+[15:06:27.670] INFO  [m5m] [bot] arrived at (584,956,0)
+[15:06:27.671] INFO  [m5m] [action] goto finished at (584,956,0); target (584,956); ARRIVED (off by 0 tile(s))
+[15:06:27.671] LOG   [m5m] event goto_done: at=(584,956) target=(584,956) arrived=1 off=0
+[15:06:27.671] INFO  [m5m] [action] goto (616,920) from (584,956,0)
+[15:06:27.671] LOG   [m5m] event goto_start: target=(616,920) from=(584,956)
+[15:06:27.671] INFO  [m5m] [bot] running from (584,956,0) to (616,920)
+[15:06:27.671] INFO  [m5m] [bot] planning path to (616,920) in background
+[15:06:27.732] INFO  [m5m] [bot] replan to (616,920): 41 steps in 8055.7us
+[15:06:28.302] INFO  [m5m] [TARGET] reply static=(584,957,0) gfx=0x0CE3 gen=1
+[15:06:28.302] INFO  [m5m] [target] static 0x0CE3 (584,957,0)
+[15:06:28.302] INFO  [m5m] [0x20] player @(585,955,0) facing=5
+[15:06:28.302] INFO  [m5m] [chat ascii] System: There is nothing here to chop.
+[15:06:28.303] INFO  [m5m] [action] goto finished at (585,955,0); target (616,920); stopped short (off by 66 tile(s))
+[15:06:28.303] LOG   [m5m] event goto_done: at=(585,955) target=(616,920) arrived=0 off=66
+[15:06:28.425] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:28.702] INFO  [m5m] [ACTION] use_object start
+[15:06:28.702] INFO  [m5m] [ACTION] use_object serial=0x4000CBEF
+[15:06:28.702] INFO  [m5m] [chat ascii] System: What do you want to use this on?
+[15:06:28.702] INFO  [m5m] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[15:06:28.702] LOG   [m5m] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[15:06:28.702] INFO  [m5m] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:06:28.702] LOG   [m5m] event action_result: use_object success took=0ms server armed a target cursor
+[15:06:29.559] INFO  [m5m] [TARGET] reply static=(584,957,0) gfx=0x0CE3 gen=2
+[15:06:29.559] INFO  [m5m] [target] static 0x0CE3 (584,957,0)
+[15:06:29.559] INFO  [m5m] [action] goto (616,920) from (585,955,0)
+[15:06:29.559] LOG   [m5m] event goto_start: target=(616,920) from=(585,955)
+[15:06:29.559] INFO  [m5m] [bot] running from (585,955,0) to (616,920)
+[15:06:29.559] INFO  [m5m] [bot] planning path to (616,920) in background
+[15:06:29.574] INFO  [m5m] [chat ascii] System: There is nothing here to chop.
+[15:06:29.574] INFO  [m5m] [bot] replan to (616,920): 40 steps in 8722.8us
+[15:06:33.428] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:38.480] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:43.193] INFO  [m5m] [bot] arrived at (616,920,0)
+[15:06:43.193] INFO  [m5m] [action] goto finished at (616,920,0); target (616,920); ARRIVED (off by 0 tile(s))
+[15:06:43.193] LOG   [m5m] event goto_done: at=(616,920) target=(616,920) arrived=1 off=0
+[15:06:43.193] INFO  [m5m] [action] goto (584,956) from (616,920,0)
+[15:06:43.193] LOG   [m5m] event goto_start: target=(584,956) from=(616,920)
+[15:06:43.193] INFO  [m5m] [bot] running from (616,920,0) to (584,956)
+[15:06:43.194] INFO  [m5m] [bot] planning path to (584,956) in background
+[15:06:43.254] INFO  [m5m] [bot] replan to (584,956): 41 steps in 11928.8us
+[15:06:43.516] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:48.544] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:53.605] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:56.030] INFO  [life] tree at 584,957 holds no wood -> next tree (1 tried this stand)
+[15:06:56.090] INFO  [m5m] [ACTION] use_object start
+[15:06:56.090] INFO  [m5m] [ACTION] use_object serial=0x4000CBEF
+[15:06:56.104] INFO  [m5m] [chat ascii] System: What do you want to use this on?
+[15:06:56.104] INFO  [m5m] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[15:06:56.104] LOG   [m5m] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[15:06:56.104] INFO  [m5m] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[15:06:56.104] LOG   [m5m] event action_result: use_object success took=14ms server armed a target cursor
+[15:06:57.172] INFO  [m5m] [bot] arrived at (584,956,0)
+[15:06:57.172] INFO  [m5m] [action] goto finished at (584,956,0); target (584,956); ARRIVED (off by 0 tile(s))
+[15:06:57.172] LOG   [m5m] event goto_done: at=(584,956) target=(584,956) arrived=1 off=0
+[15:06:57.172] INFO  [m5m] [action] goto (587,957) from (584,956,0)
+[15:06:57.172] LOG   [m5m] event goto_start: target=(587,957) from=(584,956)
+[15:06:57.172] INFO  [m5m] [bot] running from (584,956,0) to (587,957)
+[15:06:57.172] INFO  [m5m] [bot] planning path to (587,957) in background
+[15:06:57.232] INFO  [m5m] [bot] replan to (587,957): 3 steps in 67.3us
+[15:06:58.381] INFO  [m5m] [TARGET] reply static=(588,957,0) gfx=0x0CE0 gen=3
+[15:06:58.381] INFO  [m5m] [target] static 0x0CE0 (588,957,0)
+[15:06:58.381] INFO  [m5m] [0x20] player @(586,956,0) facing=3
+[15:06:58.381] INFO  [m5m] [chat ascii] System: There is nothing here to chop.
+[15:06:58.381] INFO  [m5m] [action] goto finished at (586,956,0); target (587,957); stopped short (off by 2 tile(s))
+[15:06:58.381] LOG   [m5m] event goto_done: at=(586,956) target=(587,957) arrived=0 off=2
+[15:06:58.382] INFO  [m5m] [0x21] stale reject seq=3 (block already handled); pose resynced
+[15:06:58.627] INFO  [m5m] [survival] hp 25/25 (100%) -> fight
+[15:06:58.782] INFO  [m5m] [ACTION] use_object start
+[15:06:58.782] INFO  [m5m] [ACTION] use_object serial=0x4000CBEF
+[15:06:58.782] INFO  [m5m] [chat ascii] System: What do you want to use this on?
+[15:06:58.782] INFO  [m5m] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[15:06:58.782] LOG   [m5m] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[15:06:58.782] INFO  [m5m] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[15:06:58.782] LOG   [m5m] event action_result: use_object success took=0ms server armed a target cursor
+[15:06:59.585] INFO  [m5m] [TARGET] reply static=(588,957,0) gfx=0x0CE0 gen=4
+[15:06:59.585] INFO  [m5m] [target] static 0x0CE0 (588,957,0)
+[15:06:59.585] INFO  [m5m] [travel] mode moongate         usable   <- chosen
+[15:06:59.585] INFO  [m5m] [travel] mode walk             usable
+[15:06:59.585] INFO  [m5m] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:06:59.585] INFO  [m5m] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:06:59.585] LOG   [m5m] event travel_mode: moongate
+[15:06:59.585] INFO  [m5m] [travel] plan Britain Territory blacksmithguildmaster: ok legs=16 ~632 tiles transit=1 nodes=1887
+[15:06:59.585] INFO  [m5m] [chat ascii] System: There is nothing here to chop.
+[15:07:00.001] INFO  [life] tree at 588,957 holds no wood -> next tree (2 tried this stand)
+[15:07:00.064] INFO  [m5m] [action] goto (591,957) from (586,956,0)
+[15:07:00.064] LOG   [m5m] event goto_start: target=(591,957) from=(586,956)
+[15:07:00.064] INFO  [m5m] [bot] running from (586,956,0) to (591,957)
+[15:07:00.064] INFO  [m5m] [bot] planning path to (591,957) in background
+[15:07:00.124] INFO  [m5m] [bot] replan to (591,957): 5 steps in 161.5us

@@ -90,6 +90,44 @@ struct SellRuling {
     const char* reason  = nullptr;   // always populated, allowed or not
 };
 
+// WHERE NEW GOLD ENTERS THE SHARD.
+//
+// The buying question and the selling question are NOT the same question, and
+// answering the second with the first's table was wrong. A spell scroll is
+// PlayerCrafted -- a bot must never BUY one from an NPC, because that
+// shortcuts the whole scribing profession -- and yet Revolution scribes made
+// their living SELLING scrolls to vendors. Both are true at once.
+//
+// Project owner, 2026-08-28, describing Revolution directly:
+//
+//   "you cant sell logs to npc only to players"
+//   "whole economy based on players mostly except fishing, killing mobs,
+//    scribe etc"
+//   "people were scribing scroll and selling scrolls to vendor make money or
+//    caught fish cook fish then sell"
+//
+// So the shard has a few narrow taps where gold is created, and everything
+// else is players trading with players. This enumerates the taps. Anything
+// not listed is UNKNOWN and refused, and the accumulated refusals are the
+// research backlog -- the same discipline the buying side has followed since
+// M3.7.
+enum class NpcSellClass : u8 {
+    Unknown = 0,      // no Revolution evidence. Refused.
+    // The taps, per the statement above.
+    Fish,             // caught, or cooked and then sold
+    MobLoot,          // what a corpse yielded
+    ScribedScroll,    // a scribe's stock in trade
+    // Refused for a reason, so the refusal can say which reason.
+    RawResource,      // logs, ore -- an NPC price would floor the player market
+    PlayerMarketGood, // ingots, crafted goods players trade between themselves
+    Count,
+};
+
+const char* NpcSellClassName(NpcSellClass c);
+
+// How Revolution treated SELLING this to an NPC.
+NpcSellClass ClassifyForNpcSale(const char* item);
+
 // May this life sell `item` to an NPC vendor?
 //
 // Selling to an NPC CREATES gold -- the vendor pays from nowhere -- so it is

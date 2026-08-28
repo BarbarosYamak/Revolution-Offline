@@ -8,6 +8,7 @@
 // No server, no MULs, no world data.
 
 #include "uo/market.h"
+#include "uo/vendor_policy.h"
 #include "uo/professions.h"
 
 #include <cstdio>
@@ -302,24 +303,36 @@ void TestNoClosedVendorLoop() {
     // real sale backed by real time in a mountain.
     Ledger clean;
     clean.Note(GoldFlow::StartingKit, 1000, "newbie kit", 0);
-    const SellRuling ok = MaySellToNpc(*ms, "i_ingot_iron", clean);
-    Check(ok.allowed, "ingots from gathered ore may be sold");
-    Check(ok.reason != nullptr, "and the ruling says why");
 
-    // Now it BOUGHT the ore from an NPC. vendor -> smelt -> vendor touches
-    // the world nowhere, and economy_arbitrage.py finds 66 such loops on this
-    // shard. Refused.
+    // Ingots are a PLAYER-MARKET good on Revolution, so this is refused on the
+    // sell-class gate before the ledger is ever consulted. It used to be
+    // allowed here, and that was the defect the project owner caught.
+    const SellRuling ingots = MaySellToNpc(*ms, "i_ingot_iron", clean);
+    Check(!ingots.allowed, "a smith may not sell ingots to an NPC");
+    Check(ingots.reason != nullptr, "and the ruling says why");
+
+    // The arbitrage guard is tested on a good that DOES have a tap, so the
+    // two gates are exercised separately rather than one masking the other.
+    const prof::Profession* mage = prof::Find("mage");
+    Check(mage != nullptr, "the mage exists");
+    if (!mage) return;
+    Check(MaySellToNpc(*mage, "i_scroll_poison", clean).allowed,
+          "a scribe MAY sell a scroll it wrote -- one of the three taps");
+
+    // Now it bought the blank scroll from an NPC. vendor -> inscribe ->
+    // vendor touches the world nowhere; economy_arbitrage.py finds 66 such
+    // loops on this shard. Refused.
     Ledger dirty = clean;
-    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_ore_iron", 1000);
-    const SellRuling bad = MaySellToNpc(*ms, "i_ingot_iron", dirty);
-    Check(!bad.allowed, "ingots smelted from NPC-bought ore may NOT be sold");
+    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_scroll_blank", 1000);
+    const SellRuling bad = MaySellToNpc(*mage, "i_scroll_poison", dirty);
+    Check(!bad.allowed, "a scroll written on an NPC-bought blank may NOT be sold");
     Check(bad.reason != nullptr, "and the refusal says why");
 
     // Buying something UNRELATED does not poison the sale.
     Ledger unrelated = clean;
     unrelated.Note(GoldFlow::BoughtFromNpcVendor, 30, "i_bandage", 1000);
-    Check(MaySellToNpc(*ms, "i_ingot_iron", unrelated).allowed,
-          "buying bandages does not block selling ingots");
+    Check(MaySellToNpc(*mage, "i_scroll_poison", unrelated).allowed,
+          "buying bandages does not block selling a scroll");
 
     // A life may not sell what it does not make, however much it carries.
     Check(!MaySellToNpc(*lj, "i_ingot_iron", clean).allowed,
@@ -330,72 +343,120 @@ void TestNoClosedVendorLoop() {
     // A trainer fee is a SINK, not a purchase of inputs, so it must not
     // block anything.
     Ledger trained = clean;
-    trained.Note(GoldFlow::PaidTrainer, 108, "i_ore_iron", 1000);
-    Check(MaySellToNpc(*ms, "i_ingot_iron", trained).allowed,
+    trained.Note(GoldFlow::PaidTrainer, 108, "i_scroll_blank", 1000);
+    Check(MaySellToNpc(*mage, "i_scroll_poison", trained).allowed,
           "only a PURCHASE poisons the cycle, not any ledger entry that "
           "happens to name the same item");
 }
 
 
 // --------------------------------------------------------------------------
-void TestBuyersComeFromTheShard() {
-    Section("buyers: read off this shard's vendor templates, not guessed");
+void TestNpcsMayNotBuyPlayerMarketGoods() {
+    Section("selling: NPCs do not set a floor under a player-market good");
 
-    // The whole reason this table is data and not a guess. The obvious buyer
-    // for logs is the LUMBERJACK vendor -- and it is wrong. c_lumberjack SELLS
-    // logs and buys only axes (c_vendor_human.scp:2853-2922); the carpenter is
-    // the one with BUY=i_log (tm_vend.scp:167).
-    const std::vector<const NpcBuyer*> logs = NpcBuyersFor("i_log");
-    Check(!logs.empty(), "somebody on this shard buys logs");
-    bool sawCarpenter = false, sawLumberjack = false;
-    for (const NpcBuyer* b : logs) {
-        if (std::string(b->trade) == "carpenter")  sawCarpenter = true;
-        if (std::string(b->trade) == "lumberjack") sawLumberjack = true;
-    }
-    Check(sawCarpenter, "the carpenter buys logs");
-    Check(!sawLumberjack,
-          "the LUMBERJACK vendor does not -- it sells them and buys axes");
+    // REVOLUTION, stated by the project owner: you sold logs to PLAYERS, not
+    // to a carpenter. The stock Sphere scripts disagree -- VENDOR_B_CARPENTER
+    // carries BUY=i_log,{5 15} (tm_vend.scp:167) -- and that disagreement is
+    // the whole reason the M3.7 vendor matrix exists.
+    //
+    // M3.7 built that matrix to stop bots BUYING player-craftable goods from
+    // NPCs. The same reasoning runs in reverse and was missed for a while: an
+    // NPC that BUYS a gathered resource at a fixed price sets a floor under
+    // it, and no player pays more than the floor for something they can dump
+    // at a vendor. The player market dies either way.
+    Check(econ::ClassifyForVendor("i_log") == econ::VendorClass::WorldGathered,
+          "the matrix grades a log WorldGathered");
+    Check(econ::ClassifyForVendor("i_ingot_iron") ==
+              econ::VendorClass::PlayerMarketGood,
+          "and an iron ingot PlayerMarketGood");
 
-    const std::vector<const NpcBuyer*> ingots = NpcBuyersFor("i_ingot_iron");
-    Check(!ingots.empty(), "somebody buys iron ingots");
-    Check(std::string(ingots.front()->trade) == "blacksmith",
-          "and the blacksmith is listed first -- tm_vend.scp:1936 pays 44-88, "
-          "far the best of the four");
-
-    Check(NpcBuyersFor("i_reag_black_pearl").empty(),
-          "nothing claims to buy something no template names");
+    Check(NpcBuyersFor("i_log").empty(),
+          "so NO npc buyer is offered for logs, whatever the scripts allow");
+    Check(NpcBuyersFor("i_ingot_iron").empty(),
+          "nor for ingots");
+    Check(!HasNpcBuyer("i_log"), "HasNpcBuyer agrees");
     Check(NpcBuyersFor(nullptr).empty(), "a null query is not a crash");
-    Check(HasNpcBuyer("i_log") && !HasNpcBuyer("i_nonexistent"),
-          "HasNpcBuyer agrees with the full lookup");
-}
 
-// --------------------------------------------------------------------------
-void TestEveryProducedGoodIsReachable() {
-    Section("buyers: what a life makes is either sellable or knowably not");
-
-    // Not every product needs an NPC buyer -- but the bot must be able to tell
-    // the difference, because "no buyer exists" and "I have not found one" lead
-    // to completely different behaviour. This asserts the question is at least
-    // answerable for everything the catalogue produces.
-    for (const prof::Profession& p : prof::All()) {
-        for (const std::string& made : p.produces) {
-            const bool answerable =
-                HasNpcBuyer(made.c_str()) || !HasNpcBuyer(made.c_str());
-            Check(answerable, "the buyer question has an answer");
-            (void)answerable;
-        }
-    }
-
-    // The two goods the live bots actually carry must be sellable, or the
-    // whole earn-gold path is unreachable for them.
     const prof::Profession* lj = prof::Find("lumberjack_swordsman");
     const prof::Profession* ms = prof::Find("miner_smith");
     Check(lj && ms, "the two gathering lives exist");
     if (!lj || !ms) return;
-    Check(HasNpcBuyer(lj->produces.front().c_str()),
-          "a lumberjack's output has a buyer -- otherwise it can never earn");
-    Check(HasNpcBuyer(ms->produces.front().c_str()),
-          "and so does a smith's");
+
+    Ledger clean;
+    const SellRuling logs = MaySellToNpc(*lj, "i_log", clean);
+    Check(!logs.allowed, "a lumberjack may not sell its logs to an NPC");
+    Check(logs.reason != nullptr, "and the refusal says why");
+
+    const SellRuling ingots = MaySellToNpc(*ms, "i_ingot_iron", clean);
+    Check(!ingots.allowed, "nor a smith its ingots");
+
+    // The consequence, stated so it is not mistaken for a bug: a gatherer
+    // with no player buyer stays resource-rich and wealth-poor. That is a
+    // legitimate state on this shard and the reason M7's real target is
+    // player-to-player trade, not a vendor errand.
+}
+
+// --------------------------------------------------------------------------
+void TestWhatAnNpcMayStillBuy() {
+    Section("selling: the narrow case an NPC may still be used for");
+
+    // Only a DATED Revolution entry opens the door. Reagents are the class
+    // that has one, which is why a mage buying reagents from a mage shop is
+    // era behaviour and a lumberjack dumping logs on a carpenter is not.
+    Check(econ::ClassifyForVendor("i_reag_black_pearl") ==
+              econ::VendorClass::RevolutionNpcVerified,
+          "reagents carry a dated Revolution NPC entry");
+
+    // Exactly ONE life in the catalogue currently makes something an NPC will
+    // buy: the mage, whose spell scrolls are a scribe's stock in trade. Every
+    // other life's output is a player-market good, which is why M7's real
+    // target is player-to-player trade and not a vendor errand.
+    Ledger clean;
+    std::vector<std::string> sellers;
+    for (const prof::Profession& p : prof::All()) {
+        for (const std::string& made : p.produces) {
+            if (MaySellToNpc(p, made.c_str(), clean).allowed) {
+                sellers.push_back(p.id);
+                break;
+            }
+        }
+    }
+    Check(sellers.size() == 1, "exactly one life has an NPC income today");
+    if (!sellers.empty()) {
+        Check(sellers.front() == "mage",
+              "and it is the scroll-writer -- scribing was one of the taps");
+    }
+
+    Check(ClassifyForNpcSale("i_log") == NpcSellClass::RawResource,
+          "a log is a raw resource, not a tap");
+    Check(ClassifyForNpcSale("i_ingot_iron") == NpcSellClass::PlayerMarketGood,
+          "an ingot is a player-market good, not a tap");
+    Check(ClassifyForNpcSale("i_nothing_at_all") == NpcSellClass::Unknown,
+          "and anything unlisted is UNKNOWN, which refuses");
+}
+
+// --------------------------------------------------------------------------
+void TestArbitrageGuardStillApplies() {
+    Section("selling: the closed-loop guard sits behind the policy gate");
+
+    // Both gates have to hold. The policy decides whether the good has an NPC
+    // price at all; the ledger decides whether THIS character earned it. A
+    // hypothetical NPC-verified good bought from a vendor and sold back is
+    // still refused, which is the 66-loop case from economy_arbitrage.py.
+    const prof::Profession* mg = prof::Find("mage");
+    Check(mg != nullptr, "the mage exists");
+    if (!mg) return;
+
+    Ledger dirty;
+    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_reag_nightshade", 1000);
+    // The mage produces spell scrolls, which are PlayerCrafted, so this is
+    // refused on the POLICY gate before the ledger is even consulted -- and
+    // that ordering is deliberate: the cheaper, more fundamental test first.
+    const SellRuling r = MaySellToNpc(*mg, "i_scroll_poison", dirty);
+    Check(!r.allowed, "a crafted scroll is not an NPC good");
+
+    Check(!MaySellToNpc(*mg, "i_log", dirty).allowed,
+          "and a life still may not sell what it does not produce");
 }
 
 }  // namespace
@@ -410,8 +471,9 @@ int main() {
     TestGoldLedger();
     TestReserveOnlyForOwnInputs();
     TestNoClosedVendorLoop();
-    TestBuyersComeFromTheShard();
-    TestEveryProducedGoodIsReachable();
+    TestNpcsMayNotBuyPlayerMarketGoods();
+    TestWhatAnNpcMayStillBuy();
+    TestArbitrageGuardStillApplies();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

@@ -206,6 +206,7 @@ add_test(NAME m6_targeting COMMAND m6_targeting)
 add_executable(m7_market m7_market.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
 target_include_directories(m7_market PRIVATE

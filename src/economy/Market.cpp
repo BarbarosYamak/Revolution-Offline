@@ -1,6 +1,7 @@
 #include "uo/market.h"
 
 #include "uo/production.h"
+#include "uo/vendor_policy.h"
 
 #include <algorithm>
 #include <cstring>
@@ -179,15 +180,51 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
         return out;
     }
 
+    // WHICH TAP IS THIS? Selling to an NPC is the one flow that CREATES gold,
+    // and on Revolution only a few narrow kinds of good did it. Everything
+    // else was players trading with players.
+    switch (ClassifyForNpcSale(item)) {
+        case NpcSellClass::Fish:
+        case NpcSellClass::MobLoot:
+        case NpcSellClass::ScribedScroll:
+            break;   // a tap. Carry on to the arbitrage test.
+        case NpcSellClass::RawResource:
+            out.reason = "a raw resource: an NPC price would set a floor and "
+                         "no player would pay more than the floor";
+            return out;
+        case NpcSellClass::PlayerMarketGood:
+            out.reason = "a player-market good: this is what players buy from "
+                         "each other, and an NPC buyer replaces that";
+            return out;
+        default:
+            out.reason = "no Revolution evidence that an NPC bought this";
+            return out;
+    }
+
     // The arbitrage test. Every RAW input of the item -- the leaves of the
     // production graph, not the intermediate steps -- checked against what
     // this character has actually paid an NPC for.
-    const std::vector<uo::prod::Ingredient> raw = uo::prod::RawInputsFor(item, 1);
-    for (const uo::prod::Ingredient& in : raw) {
-        if (!in.item) continue;
+    // EVERY input at EVERY level, not just the raw leaves. The first version
+    // asked RawInputsFor(), which walks down to the leaves of the graph -- so
+    // a scroll's raw inputs are logs and reagents, and a blank scroll bought
+    // from a vendor slipped straight past it. The intermediate step is exactly
+    // where a vendor loop is cheapest to open.
+    std::vector<std::string> inputs;
+    for (const uo::prod::Ingredient& in : uo::prod::RawInputsFor(item, 1)) {
+        if (in.item) inputs.emplace_back(in.item);
+    }
+    bool cycle = false;
+    for (const uo::prod::Recipe* r : uo::prod::ProductionOrder(item, &cycle)) {
+        if (!r) continue;
+        for (const uo::prod::Ingredient& in : r->inputs) {
+            if (in.item) inputs.emplace_back(in.item);
+        }
+    }
+
+    for (const std::string& needed : inputs) {
         for (const GoldEntry& e : ledger.entries) {
             if (e.flow != GoldFlow::BoughtFromNpcVendor) continue;
-            if (e.detail != in.item) continue;
+            if (e.detail != needed) continue;
             out.reason = "its inputs were bought from an NPC -- selling the "
                          "result back to one would be a closed vendor loop";
             return out;
@@ -201,7 +238,12 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
 
 namespace {
 
-// tm_vend.scp buy-template line numbers are the citation for each row.
+// What the STOCK SCRIPTS allow, with tm_vend.scp line numbers as the citation.
+//
+// This table is a fact about Sphere, not a permission. NpcBuyersFor() filters
+// it through the M3.7 vendor policy, and on Revolution both of these are
+// player-market goods -- so today the filter returns nothing for either, and
+// that is correct rather than a gap in the table.
 const NpcBuyer kNpcBuyers[] = {
     // i_log -- :167 CARPENTER, :964 TINKER, :1273 PROVISIONER, :1451 BOWYER,
     //          :1685 WEAPONS_BLADED, :1722 WEAPONS_BLUNT, :1935 BLACKSMITH
@@ -223,6 +265,18 @@ const NpcBuyer kNpcBuyers[] = {
 std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
     std::vector<const NpcBuyer*> out;
     if (!item) return out;
+    // Only buyers we may LEGITIMATELY use. The table below records what the
+    // stock scripts allow; the policy decides what Revolution permits, and it
+    // is the policy that answers. Returning a buyer the character would then
+    // refuse on arrival is a 224-tile walk to say no.
+    switch (ClassifyForNpcSale(item)) {
+        case NpcSellClass::Fish:
+        case NpcSellClass::MobLoot:
+        case NpcSellClass::ScribedScroll:
+            break;
+        default:
+            return out;   // no legitimate NPC buyer for this
+    }
     for (const NpcBuyer& b : kNpcBuyers) {
         if (std::strcmp(b.item, item) == 0) out.push_back(&b);
     }
@@ -230,6 +284,63 @@ std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
 }
 
 bool HasNpcBuyer(const char* item) { return !NpcBuyersFor(item).empty(); }
+
+const char* NpcSellClassName(NpcSellClass c) {
+    switch (c) {
+        case NpcSellClass::Unknown:          return "UNKNOWN";
+        case NpcSellClass::Fish:             return "FISH";
+        case NpcSellClass::MobLoot:          return "MOB_LOOT";
+        case NpcSellClass::ScribedScroll:    return "SCRIBED_SCROLL";
+        case NpcSellClass::RawResource:      return "RAW_RESOURCE";
+        case NpcSellClass::PlayerMarketGood: return "PLAYER_MARKET_GOOD";
+        case NpcSellClass::Count:            break;
+    }
+    return "?";
+}
+
+namespace {
+
+struct SellRow { const char* item; NpcSellClass klass; };
+
+// Evidence class O (project owner, describing Revolution, 2026-08-28) for the
+// three taps; everything else is either explicitly refused with a reason or
+// left off the table entirely, which refuses it as UNKNOWN.
+const SellRow kSellMatrix[] = {
+    // --- the taps: where gold enters the shard ---------------------------
+    {"i_fish_big_1",        NpcSellClass::Fish},
+    {"i_fish_cut_raw",      NpcSellClass::Fish},
+    {"i_fish_cut_cooked",   NpcSellClass::Fish},
+    {"i_scroll_poison",     NpcSellClass::ScribedScroll},
+    {"i_scroll_recall",     NpcSellClass::ScribedScroll},
+    {"i_scroll_gate_travel",NpcSellClass::ScribedScroll},
+    {"i_scroll_resurrection",NpcSellClass::ScribedScroll},
+
+    // --- refused, and the reason is worth keeping separate ---------------
+    // Raw: an NPC price sets a floor and the player market for it dies.
+    {"i_log",               NpcSellClass::RawResource},
+    {"i_board",             NpcSellClass::RawResource},
+    {"i_ore_iron",          NpcSellClass::RawResource},
+    {"i_hide",              NpcSellClass::RawResource},
+    {"i_wool",              NpcSellClass::RawResource},
+    // Player-market: what players buy from each other.
+    {"i_ingot_iron",        NpcSellClass::PlayerMarketGood},
+    {"i_spear_short",       NpcSellClass::PlayerMarketGood},
+    {"i_scroll_blank",      NpcSellClass::PlayerMarketGood},
+    {"i_potion_refresh",    NpcSellClass::PlayerMarketGood},
+    {"i_potion_cure",       NpcSellClass::PlayerMarketGood},
+    {"i_cloth",             NpcSellClass::PlayerMarketGood},
+    {"i_robe",              NpcSellClass::PlayerMarketGood},
+};
+
+}  // namespace
+
+NpcSellClass ClassifyForNpcSale(const char* item) {
+    if (!item) return NpcSellClass::Unknown;
+    for (const SellRow& r : kSellMatrix) {
+        if (std::strcmp(r.item, item) == 0) return r.klass;
+    }
+    return NpcSellClass::Unknown;
+}
 
 // ---------------------------------------------------------------------------
 // PriceBook
