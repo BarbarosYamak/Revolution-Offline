@@ -17,6 +17,7 @@
 
 #include "uo/json.h"
 #include "uo/life.h"
+#include "uo/professions.h"
 #include "uo/rules.h"
 
 #include <cstdio>
@@ -987,7 +988,146 @@ void TestIdentityId() {
     Check(weird.find(' ') == std::string::npos, "spaces are replaced");
 }
 
+// --------------------------------------------------------------------------
+// M7: a surplus is its own reason to go to town, and it has to be able to WIN
+// that argument against gathering more.
+void TestSurplusBeatsGatheringEventually() {
+    Section("needs: a load worth selling outranks chopping another tree");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(lj != nullptr, "the catalogue lumberjack exists");
+    if (!lj) return;
+
+    life::NeedConfig cfg;
+    cfg.profession = lj;
+
+    life::BuildPlan plan = life::PlanFromProfession(*lj);
+    life::Memory mem;
+
+    auto needFor = [&](i32 logs) {
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hp = obs.hpMax = 25;
+        obs.gold = 1000;               // NOT broke -- this is the whole point
+        obs.logs = logs;
+        obs.weight = 10; obs.maxWeight = 500;   // nowhere near encumbered
+        obs.pack.push_back({"i_log", logs});
+        obs.axeEquipped = true;
+        return life::AssessNeeds(plan, mem, obs, cfg);
+    };
+
+    auto scoreOf = [](const std::vector<life::Need>& needs, life::NeedKind k) {
+        double best = -1.0;
+        for (const life::Need& n : needs) {
+            if (n.kind == k && !n.blocked) best = std::max(best, n.urgency);
+        }
+        return best;
+    };
+
+    // Nothing spare: no reason to sell at all.
+    Check(scoreOf(needFor(0), life::NeedKind::NeedGold) < 0.0,
+          "an empty pack and a full purse produce no reason to sell");
+
+    // A few logs: keep working. The trip is not worth it yet.
+    const double small = scoreOf(needFor(6), life::NeedKind::NeedGold);
+    Check(small > 0.0, "six logs IS a surplus");
+
+    // A full load: the trip wins.
+    const double full = scoreOf(needFor(40), life::NeedKind::NeedGold);
+    Check(full > small, "urgency grows with the size of the load");
+
+    // The bit that actually matters, and that a flat urgency got wrong: at a
+    // full load the SELL goal must outrank gathering another tree, or the
+    // character chops until its pack overflows and never sells anything.
+    const std::vector<life::Need> loaded = needFor(40);
+    life::Planner planner;
+    life::Observation loadedObs;
+    loadedObs.inWorld = true;
+    loadedObs.hp = loadedObs.hpMax = 25;
+    loadedObs.gold = 1000;
+    loadedObs.logs = 40;
+    loadedObs.weight = 10; loadedObs.maxWeight = 500;
+    loadedObs.pack.push_back({"i_log", 40});
+    loadedObs.axeEquipped = true;
+    const std::vector<life::ScoredGoal> goals =
+        planner.Score(loaded, loadedObs, mem);
+    double sell = -1.0, gather = -1.0;
+    for (const life::ScoredGoal& g : goals) {
+        if (!g.feasible) continue;
+        if (g.kind == life::GoalKind::EarnGold)   sell = std::max(sell, g.score);
+        if (g.kind == life::GoalKind::GatherLogs) gather = std::max(gather, g.score);
+    }
+    Check(sell > 0.0 && gather > 0.0, "both goals are on the board");
+    Check(sell > gather,
+          "with a full load, selling outranks chopping another tree");
+
+    // ...and with only a few logs it does NOT, or the character would walk to
+    // town after every second tree.
+    life::Observation lightObs = loadedObs;
+    lightObs.logs = 6;
+    lightObs.pack.clear();
+    lightObs.pack.push_back({"i_log", 6});
+    const std::vector<life::ScoredGoal> light =
+        planner.Score(needFor(6), lightObs, mem);
+    double sell2 = -1.0, gather2 = -1.0;
+    for (const life::ScoredGoal& g : light) {
+        if (!g.feasible) continue;
+        if (g.kind == life::GoalKind::EarnGold)   sell2 = std::max(sell2, g.score);
+        if (g.kind == life::GoalKind::GatherLogs) gather2 = std::max(gather2, g.score);
+    }
+    Check(gather2 > sell2,
+          "with six logs it keeps working instead of walking to town");
+}
+
+// --------------------------------------------------------------------------
+// A need with no legitimate route must be BLOCKED, not selected and then
+// discovered impossible inside the goal body.
+void TestUnsatisfiableNeedIsBlocked() {
+    Section("needs: bandages with no route are blocked, not chosen");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    if (!lj) { Check(false, "no lumberjack"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = lj;
+    life::BuildPlan plan = life::PlanFromProfession(*lj);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 25;
+    obs.gold = 1000;          // rich, and it still cannot buy one
+    obs.bandages = 0;
+    obs.axeEquipped = true;
+    obs.weight = 10; obs.maxWeight = 500;
+
+    // i_bandage is not in the M3.7 vendor matrix at all, so it grades UNKNOWN
+    // and the policy refuses it. The live lumberjack had 1000 gold, so this
+    // need looked satisfiable, won the scoring at 130, and sat on a 30-second
+    // retry forever. It never chopped a log.
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
+    bool found = false;
+    for (const life::Need& n : needs) {
+        if (n.kind != life::NeedKind::NeedEquipment) continue;
+        if (n.what != "bandages") continue;
+        found = true;
+        Check(n.blocked,
+              "the bandage need is BLOCKED despite a purse full of gold");
+        Check(!n.evidence.empty(), "and says why, so the gap is legible");
+    }
+    Check(found, "the bandage need is still reported, not silently dropped");
+
+    // With the need blocked, real work wins.
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> goals = planner.Score(needs, obs, mem);
+    for (const life::ScoredGoal& g : goals) {
+        if (g.kind != life::GoalKind::ReplaceEquipment) continue;
+        Check(!g.feasible, "REPLACE_EQUIPMENT is not a feasible goal here");
+    }
+}
+
 }  // namespace
+
 
 int main(int argc, char** argv) {
     std::printf("m4_life\n");
@@ -1005,6 +1145,8 @@ int main(int argc, char** argv) {
     TestDangerHeatIsCapped();
     TestSchemaV1StillLoads();
     TestIdentityId();
+    TestSurplusBeatsGatheringEventually();
+    TestUnsatisfiableNeedIsBlocked();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

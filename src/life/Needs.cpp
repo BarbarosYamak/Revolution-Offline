@@ -258,10 +258,24 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         const std::vector<market::Offer> spare =
             market::Surplus(*cfg.profession, obs.pack, market::TradePolicy{});
         if (!spare.empty()) {
-            add(NeedKind::NeedGold, 0.22, "sell surplus",
+            // Urgency GROWS with the load, because "worth walking to town for"
+            // is a question about quantity. Flat, it lost to gathering forever:
+            // 0.22 x 150 = 33 against NeedLogs at 0.4 x 130 = 52, so a
+            // lumberjack chopped until its pack overflowed and then banked --
+            // never once selling.
+            //
+            // Ramps from a low floor at the minimum worth offering to 0.55 at
+            // a full load, which crosses NeedLogs at roughly the point a
+            // player would stop and head for town.
+            i32 biggest = 0;
+            for (const market::Offer& o : spare) biggest = std::max(biggest, o.qty);
+            const i32 trip = std::max(1, cfg.surplusWorthTrip);
+            const double frac = std::min(1.0, static_cast<double>(biggest) / trip);
+            const double urgency = 0.15 + 0.40 * frac;
+            add(NeedKind::NeedGold, urgency, "sell surplus",
                 "carrying more of its own output than its own work needs",
-                Fmt("%zu line(s) spare, first: %d x %s", spare.size(),
-                    spare.front().qty, spare.front().item.c_str()));
+                Fmt("%d x %s spare, a load is %d", biggest,
+                    spare.front().item.c_str(), trip));
         }
     }
 

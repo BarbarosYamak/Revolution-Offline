@@ -1,0 +1,120 @@
+[14:55:46.852] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5k'
+[14:55:46.854] LOG   [m5k] event session_start: text log opened
+[14:55:46.854] LOG   [m5k] event net_connect_begin: connect 127.0.0.1:2593
+[14:55:46.854] INFO  [m5k] [net] connecting to 127.0.0.1:2593 ...
+[14:55:46.855] LOG   [m5k] event net_connected: connect 127.0.0.1:2593
+[14:55:46.855] INFO  [m5k] [net] connected.
+[14:55:46.855] INFO  [m5k] [seed] sent 0x7F000001 (plaintext)
+[14:55:46.855] LOG   [m5k] event seed_out: 0x7F000001 hex=7f000001
+[14:55:46.855] INFO  [life] loaded persistent state for Brannoc (0 places, 0 suppliers, 2 events, 0 prior sessions)
+[14:55:46.856] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[14:55:46.856] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:55:46.856] INFO  [m5k] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 40 min)
+[14:55:46.900] INFO  [m5k] [0xA8] 1 server(s):
+[14:55:46.900] INFO  [m5k]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:55:46.915] INFO  [m5k] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[14:55:46.915] LOG   [m5k] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[14:55:46.915] INFO  [m5k] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:55:46.915] LOG   [m5k] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:55:46.915] INFO  [m5k] [0xB9] server features = 0x0005
+[14:55:46.915] INFO  [m5k] [0xA9] 5 slot(s) (populated 1):
+[14:55:46.915] INFO  [m5k]   [0] Brannoc
+[14:55:46.915] INFO  [m5k]   [1] <empty>
+[14:55:46.915] INFO  [m5k]   [2] <empty>
+[14:55:46.915] INFO  [m5k]   [3] <empty>
+[14:55:46.915] INFO  [m5k]   [4] <empty>
+[14:55:46.915] INFO  [m5k] [ui] playing slot 0 ('Brannoc')
+[14:55:46.931] INFO  [m5k] [0x1B] serial=0x0000CC33 body=0x0190 pos=(639,826,0)
+[14:55:46.931] LOG   [m5k] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(639,826,0)
+[14:55:46.931] INFO  [m5k] [0x20] player @(639,826,0) facing=5
+[14:55:46.931] INFO  [m5k] [0x55] login complete — entering world
+[14:55:46.931] LOG   [m5k] event in_world: 0x55 received
+[14:55:46.931] INFO  [m5k] [backpack] opening 0x4000CC23
+[14:55:46.931] INFO  [m5k] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:55:46.931] INFO  [m5k] [chat ascii] System: There is 1 other player here.
+[14:55:46.931] INFO  [m5k] [chat ascii] System: Last logged: 2026/08/28 14:52:03
+[14:55:46.931] INFO  [m5k] [chat ascii] System: You are under the protection of the town guards
+[14:55:46.935] INFO  [m5k] [action] requesting the skill list
+[14:55:46.935] INFO  [life] in world; asked the server for the skill list
+[14:55:46.935] INFO  [m5k] [0x24] open container 0x4000CC23 gump=60
+[14:55:46.935] INFO  [m5k] [0x3C] container contents: 7 item(s)
+[14:55:46.935] LOG   [m5k] event backpack_contents: serial=0x4000CC23 items=7
+[14:55:49.516] INFO  [m5k] [bot] world data loaded (0 blacklisted spot(s)).
+[14:55:49.516] INFO  [life] reconciliation: resuming a life, 2 field(s) differed
+[14:55:49.516] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[14:55:49.516] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[14:55:49.516] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[14:55:49.516] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[14:55:49.516] INFO  [life]   skill_44     persisted=50.2       server=50.6       -> server value accepted
+[14:55:49.516] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[14:55:49.516] INFO  [life]   skill_27     persisted=12.3       server=12.3       -> server value accepted
+[14:55:49.516] INFO  [life]   skill_1      persisted=17.6       server=17.6       -> server value accepted
+[14:55:49.516] INFO  [life]   skill_17     persisted=14.9       server=14.9       -> server value accepted
+[14:55:49.516] INFO  [life]   position     persisted=636,835    server=639,826    -> server value accepted
+[14:55:49.516] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:55:49.516] INFO  [life]   restored objective KEPT: BANK (progress 0)
+[14:55:49.516] INFO  [m5k] [survival] on
+[14:55:49.516] LOG   [m5k] event survival_mode: on
+[14:55:49.518] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:55:49.518] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:55:49.570] INFO  [life] bank: no bank learned yet; asking the world model for one (trip 1)
+[14:55:49.570] INFO  [m5k] [travel] Yew banker -> (652,820) r=5 from (639,826)
+[14:55:49.570] LOG   [m5k] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(639,826)
+[14:55:49.570] INFO  [m5k] [travel] mode walk             usable   <- chosen
+[14:55:49.570] INFO  [m5k] [travel] mode moongate         usable
+[14:55:49.570] INFO  [m5k] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:55:49.570] INFO  [m5k] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:55:49.570] LOG   [m5k] event travel_mode: walk
+[14:55:49.570] INFO  [m5k] [travel] plan Yew banker: ok legs=1 ~13 tiles transit=0 nodes=0
+[14:55:49.631] INFO  [m5k] [action] goto (652,820) from (639,826,0)
+[14:55:49.631] LOG   [m5k] event goto_start: target=(652,820) from=(639,826)
+[14:55:49.631] INFO  [m5k] [bot] running from (639,826,0) to (652,820,z0)
+[14:55:49.631] INFO  [m5k] [bot] planning path to (652,820) in background
+[14:55:49.692] INFO  [m5k] [bot] replan to (652,820): 13 steps in 382.0us
+[14:55:51.822] INFO  [m5k] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=7 in 119.3us
+[14:55:52.696] INFO  [m5k] [travel] Yew banker ARRIVED at (647,819,0)
+[14:55:52.696] LOG   [m5k] event travel_done: label='Yew banker' ok=1 at=(647,819) legs=1 plans=1 why=''
+[14:55:52.758] INFO  [life] bank: arrived at 647,819 -- asking who is here
+[14:55:52.758] INFO  [m5k] [action] scanning nearby mobiles for names
+[14:55:52.758] INFO  [m5k] [action] requested 2 paperdoll(s) for trade titles
+[14:55:52.758] INFO  [m5k] [mobiles] nearby (2):
+[14:55:52.758] INFO  [m5k]   Basia 0x00001858
+[14:55:52.758] INFO  [m5k]   Filbert 0x0000183F
+[14:55:52.758] INFO  [m5k] [0x20] player @(647,819,0) facing=4
+[14:55:52.758] INFO  [m5k] [0x88] paperdoll 0x00001858: "Basia, the banker"
+[14:55:52.758] INFO  [m5k] [world] Basia, the banker is a banker at (647,820)
+[14:55:52.758] INFO  [m5k] [0x20] player @(647,819,0) facing=3
+[14:55:52.758] INFO  [m5k] [0x88] paperdoll 0x0000183F: "Filbert, the minter"
+[14:55:52.758] INFO  [m5k] [world] Filbert, the minter is a banker at (654,824)
+[14:55:52.758] INFO  [m5k] [0x21] stale reject seq=13 (block already handled); pose resynced
+[14:55:54.532] INFO  [m5k] [survival] hp 25/25 (100%) -> fight
+[14:55:55.268] INFO  [m5k] [ACTION] open_bank start
+[14:55:55.268] INFO  [m5k] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[14:55:55.269] INFO  [m5k] [chat uni  ] : bank
+[14:55:55.269] INFO  [m5k] [chat ascii] Basia: Banking is a satisfactory experience.
+[14:55:55.269] INFO  [m5k] [chat ascii] System: You have 50 stones in your Bank Box
+[14:55:55.269] INFO  [m5k] [0x24] open container 0x4000CC2C gump=74
+[14:55:55.269] INFO  [m5k] [STATE] bank container=0x4000CC2C gump=0x004A
+[14:55:55.269] LOG   [m5k] event bank_opened: container recognised
+[14:55:55.269] INFO  [m5k] [ACTION_RESULT] open_bank success (1ms) bank container opened
+[14:55:55.269] LOG   [m5k] event action_result: open_bank success took=1ms bank container opened
+[14:55:55.269] INFO  [m5k] [0x3C] container contents: 1 item(s)
+[14:55:55.270] INFO  [life] memory_learned=PLACE kind=bank at 647,819
+[14:55:57.785] INFO  [life] goal_completed=BANK progress=1
+[14:55:57.787] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:55:57.845] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:55:57.845] INFO  [life]   score=97.0
+[14:55:57.845] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:55:57.845] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:55:57.845] INFO  [life]   reason: axe already in hand +20
+[14:55:57.845] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:55:57.845] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:55:57.845] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:55:57.845] INFO  [m5k] [action] goto finished at (647,819,0); target (652,820); stopped short (off by 6 tile(s))
+[14:55:57.845] LOG   [m5k] event goto_done: at=(647,819) target=(652,820) arrived=0 off=6
+[14:55:57.845] INFO  [m5k] [action] goto (634,809) from (647,819,0)
+[14:55:57.845] LOG   [m5k] event goto_start: target=(634,809) from=(647,819)
+[14:55:57.845] INFO  [m5k] [bot] running from (647,819,0) to (634,809)
+[14:55:57.845] INFO  [m5k] [bot] planning path to (634,809) in background
+[14:55:58.154] INFO  [m5k] [bot] replan to (634,809): 160 steps in 284384.5us
+[14:55:59.578] INFO  [m5k] [survival] hp 25/25 (100%) -> fight

@@ -432,6 +432,11 @@ struct NeedConfig {
     double bankWeightFrac   = 0.85;
     i32    goldFloor        = 100;   // below this, gold itself becomes a need
     i32    logsWorthBanking = 20;
+    // A load worth walking to town for. Below this, gathering more beats the
+    // trip; at or above it, the trip wins. Same number as logsWorthBanking
+    // because it is the same judgement -- "this is a load now" -- reached from
+    // the selling side rather than the securing side.
+    i32    surplusWorthTrip = 20;
     i32    foodLow          = 1;
     bool   hungerLive       = true;  // HitsHungerLoss=1 on this shard
     // Only used to decide whether walking to a trainer is worth it. The real

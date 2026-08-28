@@ -167,3 +167,212 @@
 [14:53:08.791] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=9
 [14:53:08.791] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
 [14:53:12.091] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:13.657] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:53:13.931] INFO  [m5j] [ACTION] use_object start
+[14:53:13.931] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:13.931] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:13.931] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[14:53:13.931] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[14:53:13.931] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:13.931] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:14.788] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=10
+[14:53:14.788] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:53:14.788] INFO  [m5j] [chat ascii] System: There is nothing here to chop.
+[14:53:15.214] INFO  [m5j] [ACTION] use_object start
+[14:53:15.214] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:15.214] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:15.214] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
+[14:53:15.214] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
+[14:53:15.214] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:15.214] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:16.026] INFO  [m5j] [TARGET] reply static=(664,858,0) gfx=0x0CD6 gen=11
+[14:53:16.026] INFO  [m5j] [target] static 0x0CD6 (664,858,0)
+[14:53:16.026] INFO  [m5j] [chat ascii] System: There is nothing here to chop.
+[14:53:16.456] INFO  [life] tree at 664,858 holds no wood -> next tree (2 tried this stand)
+[14:53:16.518] INFO  [m5j] [action] goto finished at (663,858,0); target (663,858); ARRIVED (off by 0 tile(s))
+[14:53:16.518] LOG   [m5j] event goto_done: at=(663,858) target=(663,858) arrived=1 off=0
+[14:53:16.518] INFO  [m5j] [action] goto (667,861) from (663,858,0)
+[14:53:16.518] LOG   [m5j] event goto_start: target=(667,861) from=(663,858)
+[14:53:16.518] INFO  [m5j] [bot] running from (663,858,0) to (667,861)
+[14:53:16.518] INFO  [m5j] [bot] planning path to (667,861) in background
+[14:53:16.577] INFO  [m5j] [bot] replan to (667,861): 5 steps in 98.2us
+[14:53:17.097] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:17.941] INFO  [m5j] [ACTION] use_object start
+[14:53:17.941] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:17.955] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:17.955] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[14:53:17.955] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[14:53:17.955] INFO  [m5j] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:53:17.955] LOG   [m5j] event action_result: use_object success took=14ms server armed a target cursor
+[14:53:18.769] INFO  [m5j] [TARGET] reply static=(668,861,0) gfx=0x0CDD gen=12
+[14:53:18.769] INFO  [m5j] [target] static 0x0CDD (668,861,0)
+[14:53:18.829] INFO  [m5j] [bot] arrived at (667,861,0)
+[14:53:22.008] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:53:22.131] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:22.192] INFO  [m5j] [ACTION] use_object start
+[14:53:22.192] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:22.192] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:22.192] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=13
+[14:53:22.192] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=13
+[14:53:22.192] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:22.192] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:23.045] INFO  [m5j] [TARGET] reply static=(668,861,0) gfx=0x0CDD gen=13
+[14:53:23.045] INFO  [m5j] [target] static 0x0CDD (668,861,0)
+[14:53:23.045] INFO  [m5j] [0x20] player @(667,861,0) facing=2
+[14:53:26.277] INFO  [m5j] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:53:26.463] INFO  [life] tree at 668,861 holds no wood -> next tree (3 tried this stand)
+[14:53:26.524] INFO  [m5j] [action] goto finished at (667,861,0); target (667,861); ARRIVED (off by 0 tile(s))
+[14:53:26.524] LOG   [m5j] event goto_done: at=(667,861) target=(667,861) arrived=1 off=0
+[14:53:26.524] INFO  [m5j] [action] goto (668,863) from (667,861,0)
+[14:53:26.524] LOG   [m5j] event goto_start: target=(668,863) from=(667,861)
+[14:53:26.524] INFO  [m5j] [bot] running from (667,861,0) to (668,863)
+[14:53:26.524] INFO  [m5j] [bot] planning path to (668,863) in background
+[14:53:26.585] INFO  [m5j] [bot] replan to (668,863): 3 steps in 104.8us
+[14:53:27.154] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:27.783] INFO  [m5j] [ACTION] use_object start
+[14:53:27.783] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:27.797] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:27.797] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
+[14:53:27.798] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
+[14:53:27.798] INFO  [m5j] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:53:27.798] LOG   [m5j] event action_result: use_object success took=14ms server armed a target cursor
+[14:53:28.106] INFO  [m5j] [bot] arrived at (668,863,0)
+[14:53:28.597] INFO  [m5j] [TARGET] reply static=(668,864,0) gfx=0x0CDA gen=14
+[14:53:28.597] INFO  [m5j] [target] static 0x0CDA (668,864,0)
+[14:53:28.597] INFO  [m5j] [0x20] player @(668,863,0) facing=4
+[14:53:28.597] INFO  [m5j] [chat ascii] System: There is nothing here to chop.
+[14:53:29.039] INFO  [m5j] [ACTION] use_object start
+[14:53:29.039] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:29.039] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:29.039] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=15
+[14:53:29.040] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=15
+[14:53:29.040] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:29.040] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:29.894] INFO  [m5j] [TARGET] reply static=(668,864,0) gfx=0x0CDA gen=15
+[14:53:29.895] INFO  [m5j] [target] static 0x0CDA (668,864,0)
+[14:53:29.895] INFO  [m5j] [chat ascii] System: There is nothing here to chop.
+[14:53:30.320] INFO  [life] tree at 668,864 holds no wood -> next tree (4 tried this stand)
+[14:53:30.382] INFO  [m5j] [action] goto finished at (668,863,0); target (668,863); ARRIVED (off by 0 tile(s))
+[14:53:30.382] LOG   [m5j] event goto_done: at=(668,863) target=(668,863) arrived=1 off=0
+[14:53:30.382] INFO  [m5j] [action] goto (672,859) from (668,863,0)
+[14:53:30.382] LOG   [m5j] event goto_start: target=(672,859) from=(668,863)
+[14:53:30.382] INFO  [m5j] [bot] running from (668,863,0) to (672,859)
+[14:53:30.382] INFO  [m5j] [bot] planning path to (672,859) in background
+[14:53:30.442] INFO  [m5j] [bot] replan to (672,859): 4 steps in 50.5us
+[14:53:31.559] INFO  [m5j] [bot] arrived at (672,859,0)
+[14:53:31.621] INFO  [m5j] [ACTION] use_object start
+[14:53:31.621] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:31.636] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:31.636] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=16
+[14:53:31.636] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=16
+[14:53:31.636] INFO  [m5j] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:53:31.636] LOG   [m5j] event action_result: use_object success took=15ms server armed a target cursor
+[14:53:32.189] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:32.433] INFO  [m5j] [TARGET] reply static=(672,858,0) gfx=0x0CD3 gen=16
+[14:53:32.433] INFO  [m5j] [target] static 0x0CD3 (672,858,0)
+[14:53:32.448] INFO  [m5j] [0x20] player @(672,859,0) facing=0
+[14:53:37.237] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:37.314] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:53:37.623] INFO  [m5j] [ACTION] use_object start
+[14:53:37.623] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:37.623] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:37.623] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=17
+[14:53:37.623] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=17
+[14:53:37.623] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:37.623] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:38.480] INFO  [m5j] [TARGET] reply static=(672,858,0) gfx=0x0CD3 gen=17
+[14:53:38.480] INFO  [m5j] [target] static 0x0CD3 (672,858,0)
+[14:53:42.288] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:43.344] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:53:43.622] INFO  [m5j] [ACTION] use_object start
+[14:53:43.622] INFO  [m5j] [ACTION] use_object serial=0x4000CBEF
+[14:53:43.622] INFO  [m5j] [chat ascii] System: What do you want to use this on?
+[14:53:43.622] INFO  [m5j] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=18
+[14:53:43.622] LOG   [m5j] event target_requested: id=0x000002CE type=0 subtype=1 gen=18
+[14:53:43.622] INFO  [m5j] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:53:43.622] LOG   [m5j] event action_result: use_object success took=0ms server armed a target cursor
+[14:53:44.421] INFO  [m5j] [TARGET] reply static=(672,858,0) gfx=0x0CD3 gen=18
+[14:53:44.422] INFO  [m5j] [target] static 0x0CD3 (672,858,0)
+[14:53:47.322] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:47.643] INFO  [m5j] [chat ascii] System: You put the logs in your pack.
+[14:53:47.689] INFO  [life] goal_changed=BANK from=GATHER_LOGS reason="BANK 114.1 superseded GATHER_LOGS 57.0"
+[14:53:47.689] INFO  [life]   score=114.1
+[14:53:47.689] INFO  [life]   reason: NeedBank urgency 0.60 x 240 = 144.1
+[14:53:47.689] INFO  [life]   reason: weight=108/127 (85%) logs=25
+[14:53:47.689] INFO  [life]   reason: no bank learned yet -30
+[14:53:47.689] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:53:47.689] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:53:47.872] INFO  [life] bank: no bank learned yet; asking the world model for one (trip 1)
+[14:53:47.872] INFO  [m5j] [travel] Yew banker -> (652,820) r=5 from (672,859)
+[14:53:47.872] LOG   [m5j] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(672,859)
+[14:53:47.872] INFO  [m5j] [travel] mode walk             usable   <- chosen
+[14:53:47.872] INFO  [m5j] [travel] mode moongate         usable
+[14:53:47.872] INFO  [m5j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:53:47.872] INFO  [m5j] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:53:47.872] LOG   [m5j] event travel_mode: walk
+[14:53:47.872] INFO  [m5j] [travel] plan Yew banker: ok legs=1 ~39 tiles transit=0 nodes=0
+[14:53:47.933] INFO  [m5j] [action] goto finished at (672,859,0); target (672,859); ARRIVED (off by 0 tile(s))
+[14:53:47.933] LOG   [m5j] event goto_done: at=(672,859) target=(672,859) arrived=1 off=0
+[14:53:47.933] INFO  [m5j] [action] goto (652,820) from (672,859,0)
+[14:53:47.933] LOG   [m5j] event goto_start: target=(652,820) from=(672,859)
+[14:53:47.933] INFO  [m5j] [bot] running from (672,859,0) to (652,820,z0)
+[14:53:47.934] INFO  [m5j] [bot] planning path to (652,820) in background
+[14:53:47.997] INFO  [m5j] [bot] replan to (652,820): 80 steps in 34461.1us
+[14:53:52.359] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:53:57.378] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:54:00.456] INFO  [m5j] [bot] door ahead at (635,855,z0); OpenDoor before step
+[14:54:00.457] INFO  [m5j] [chat ascii] System: Opening door...
+[14:54:02.430] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:54:06.569] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:54:07.443] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:54:11.681] INFO  [m5j] [travel] Yew banker ARRIVED at (648,820,0)
+[14:54:11.681] LOG   [m5j] event travel_done: label='Yew banker' ok=1 at=(648,820) legs=1 plans=1 why=''
+[14:54:11.741] INFO  [life] bank: arrived at 648,820 -- asking who is here
+[14:54:11.741] INFO  [m5j] [action] scanning nearby mobiles for names
+[14:54:11.742] INFO  [m5j] [action] requested 2 paperdoll(s) for trade titles
+[14:54:11.757] INFO  [m5j] [mobiles] nearby (2):
+[14:54:11.757] INFO  [m5j]   Basia 0x00001858
+[14:54:11.757] INFO  [m5j]   Filbert 0x0000183F
+[14:54:11.757] INFO  [m5j] [0x20] player @(648,820,0) facing=3
+[14:54:11.757] INFO  [m5j] [0x88] paperdoll 0x0000183F: "Filbert, the minter"
+[14:54:11.757] INFO  [m5j] [world] Filbert, the minter is a banker at (654,824)
+[14:54:11.757] INFO  [m5j] [0x20] player @(648,820,0) facing=2
+[14:54:11.757] INFO  [m5j] [0x88] paperdoll 0x00001858: "Basia, the banker"
+[14:54:11.757] INFO  [m5j] [world] Basia, the banker is a banker at (652,821)
+[14:54:12.487] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:54:14.296] INFO  [m5j] [ACTION] open_bank start
+[14:54:14.296] INFO  [m5j] [ACTION] open_bank banker=0x00001858 phrase='bank'
+[14:54:14.311] INFO  [m5j] [chat ascii] Basia: Thou wishest to speak with me?
+[14:54:14.312] INFO  [m5j] [chat uni  ] : bank
+[14:54:14.312] INFO  [m5j] [chat ascii] Basia: We have no history of bank robberies at this branch.
+[14:54:14.312] INFO  [m5j] [chat ascii] System: You have 0 stones in your Bank Box
+[14:54:14.312] INFO  [m5j] [0x24] open container 0x4000CC2C gump=74
+[14:54:14.312] INFO  [m5j] [STATE] bank container=0x4000CC2C gump=0x004A
+[14:54:14.312] LOG   [m5j] event bank_opened: container recognised
+[14:54:14.312] INFO  [m5j] [ACTION_RESULT] open_bank success (16ms) bank container opened
+[14:54:14.312] LOG   [m5j] event action_result: open_bank success took=16ms bank container opened
+[14:54:14.312] INFO  [m5j] [0x3C] container contents: 0 item(s)
+[14:54:16.822] INFO  [life] banking 25 logs
+[14:54:16.822] INFO  [m5j] [ACTION] move_item start
+[14:54:16.822] INFO  [m5j] [ACTION] move_item serial=0x4001345B amount=25 dest=0x4000CC2C
+[14:54:16.822] INFO  [m5j] [ITEM] drag serial=0x4001345B amount=25
+[14:54:16.822] INFO  [m5j] [ITEM] drop container=0x4000CC2C
+[14:54:16.823] INFO  [m5j] [ACTION_RESULT] move_item success (1ms) item is in the destination
+[14:54:16.823] LOG   [m5j] event action_result: move_item success took=1ms item is in the destination
+[14:54:16.824] INFO  [life] memory_learned=PLACE kind=bank at 648,820
+[14:54:16.853] INFO  [life] goal_changed=GATHER_LOGS from=BANK reason="GATHER_LOGS 97.0 superseded BANK 0.0"
+[14:54:16.853] INFO  [life]   score=97.0
+[14:54:16.853] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:54:16.853] INFO  [life]   reason: proven stand at 660,855 (6 successes, 2 failures)
+[14:54:16.853] INFO  [life]   reason: axe already in hand +20
+[14:54:16.853] INFO  [life]   reason: proven stand at 660,855 (6 successes) +25
+[14:54:16.853] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:54:16.853] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:54:17.526] INFO  [m5j] [survival] hp 25/25 (100%) -> fight
+[14:54:18.381] INFO  [m5j] [action] goto finished at (648,820,0); target (652,820); stopped short (off by 4 tile(s))
+[14:54:18.381] LOG   [m5j] event goto_done: at=(648,820) target=(652,820) arrived=0 off=4
+[14:54:18.381] INFO  [m5j] [action] goto (634,809) from (648,820,0)
+[14:54:18.381] LOG   [m5j] event goto_start: target=(634,809) from=(648,820)
+[14:54:18.381] INFO  [m5j] [bot] running from (648,820,0) to (634,809)
+[14:54:18.381] INFO  [m5j] [bot] planning path to (634,809) in background
+[14:54:18.689] INFO  [m5j] [bot] replan to (634,809): 161 steps in 287121.7us
