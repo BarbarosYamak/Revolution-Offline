@@ -1,0 +1,76 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[01:08:17.087] WARN  [p0gate5] [bot] 0x20 resync; aborting path
+[01:08:19.718] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:22.650] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:27.061] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:32.935] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:33.183] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:36.069] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:40.440] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:08:46.239] WARN  [p0gate5] [bot] goal (1484,1547) is not walkable; skipping A* and stopping
+[01:09:03.131] WARN  [p0gate5] [bot] no path to (1485,1550) avoiding 0 block(s); stopping (search 1019481.7us)
+[01:09:03.131] WARN  [p0gate5] [bot] start (1484,1548,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 106 item(s), 4 mobile(s))
+[01:09:25.874] WARN  [p0gate5] [bot] no path to (1484,1546) avoiding 0 block(s); stopping (search 1007610.2us)
+[01:09:25.875] WARN  [p0gate5] [bot] start (1486,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 106 item(s), 4 mobile(s))
+[01:09:54.750] WARN  [p0gate5] [bot] no path to (1485,1545) avoiding 0 block(s); stopping (search 977265.2us)
+[01:09:54.750] WARN  [p0gate5] [bot] start (1485,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 106 item(s), 4 mobile(s))
+[01:10:02.020] WARN  [p0gate5] [0x21] move REJECTED seq=18; server says (1487,1544,57) facing=6
+[01:10:04.481] WARN  [p0gate5] [0x21] move REJECTED seq=1; server says (1487,1544,57) facing=5
+[01:10:12.136] WARN  [p0gate5] [action] vendor_buy superseded by vendor_buy
+[01:10:12.136] WARN  [p0gate5] [ACTION_RESULT] vendor_buy invalid_state (2531ms) superseded
+[01:10:14.637] WARN  [p0gate5] [action] vendor_buy superseded by vendor_buy
+[01:10:14.637] WARN  [p0gate5] [ACTION_RESULT] vendor_buy invalid_state (2501ms) superseded
+[01:10:17.191] WARN  [p0gate5] [action] vendor_buy superseded by vendor_buy
+[01:10:17.191] WARN  [p0gate5] [ACTION_RESULT] vendor_buy invalid_state (2554ms) superseded
+[01:10:19.712] WARN  [p0gate5] [action] vendor_buy superseded by vendor_buy
+[01:10:19.712] WARN  [p0gate5] [ACTION_RESULT] vendor_buy invalid_state (2521ms) superseded
+[01:10:27.356] WARN  [p0gate5] [bot] no path to (1484,1546) avoiding 0 block(s); stopping (search 974326.0us)
+[01:10:27.356] WARN  [p0gate5] [bot] start (1485,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 106 item(s), 4 mobile(s))
+[01:10:27.737] WARN  [p0gate5] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:11:07.936] WARN  [p0gate5] [bot] no path to (1490,1553) avoiding 0 block(s); stopping (search 1061298.7us)
+[01:11:07.937] WARN  [p0gate5] [bot] start (1488,1555,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 106 item(s), 4 mobile(s))
+[01:11:21.229] WARN  [p0gate5] [bot] no path to (1487,1551) avoiding 0 block(s); stopping (search 995603.4us)
+[01:11:21.229] WARN  [p0gate5] [bot] start (1490,1553,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:11:47.248] WARN  [p0gate5] [bot] no path to (1490,1551) avoiding 0 block(s); stopping (search 1194489.7us)
+[01:11:47.248] WARN  [p0gate5] [bot] start (1487,1551,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:12:13.061] WARN  [p0gate5] [bot] no path to (1490,1551) avoiding 0 block(s); stopping (search 1065373.9us)
+[01:12:13.061] WARN  [p0gate5] [bot] start (1488,1551,70) exits: open=4 terrain=3 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:12:34.270] WARN  [p0gate5] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:12:46.105] WARN  [p0gate5] [bot] no path to (1490,1550) avoiding 0 block(s); stopping (search 973022.1us)
+[01:12:46.105] WARN  [p0gate5] [bot] start (1488,1551,70) exits: open=4 terrain=3 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:13:01.481] WARN  [p0gate5] [bot] goal (1487,1545) is not walkable; skipping A* and stopping
+[01:13:04.363] WARN  [p0gate5] [bot] goal (1487,1545) is not walkable; skipping A* and stopping
+[01:13:08.744] WARN  [p0gate5] [bot] goal (1487,1545) is not walkable; skipping A* and stopping
+[01:13:14.624] WARN  [p0gate5] [bot] goal (1487,1545) is not walkable; skipping A* and stopping
+[01:13:14.873] WARN  [p0gate5] [bot] goal (1486,1545) is not walkable; skipping A* and stopping
+[01:13:17.773] WARN  [p0gate5] [bot] goal (1486,1545) is not walkable; skipping A* and stopping
+[01:13:22.071] WARN  [p0gate5] [bot] goal (1486,1545) is not walkable; skipping A* and stopping
+[01:13:27.917] WARN  [p0gate5] [bot] goal (1486,1545) is not walkable; skipping A* and stopping
+[01:14:01.503] WARN  [p0gate5] [bot] no path to (1485,1546) avoiding 0 block(s); stopping (search 963020.3us)
+[01:14:01.503] WARN  [p0gate5] [bot] start (1484,1549,70) exits: open=3 terrain=5 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:14:05.369] WARN  [p0gate5] [bot] no path to (1485,1546) avoiding 0 block(s); stopping (search 1018787.1us)
+[01:14:05.369] WARN  [p0gate5] [bot] start (1484,1549,70) exits: open=3 terrain=5 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:15:27.977] WARN  [p0gate5] [bot] no path to (1487,1550) avoiding 0 block(s); stopping (search 983590.9us)
+[01:15:27.977] WARN  [p0gate5] [bot] start (1487,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:15:51.937] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:15:58.026] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:04.164] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:10.249] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:16.383] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:40.613] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:46.764] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:52.895] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:16:59.052] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:17:05.205] WARN  [p0gate5] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:17:08.427] WARN  [p0gate5] [bot] no path to (1484,1550) avoiding 0 block(s); stopping (search 1000364.2us)
+[01:17:08.427] WARN  [p0gate5] [bot] start (1487,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:17:12.261] WARN  [p0gate5] [bot] no path to (1484,1550) avoiding 0 block(s); stopping (search 987869.5us)
+[01:17:12.261] WARN  [p0gate5] [bot] start (1487,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:17:26.240] WARN  [p0gate5] [bot] no path to (1489,1551) avoiding 0 block(s); stopping (search 1011310.7us)
+[01:17:26.240] WARN  [p0gate5] [bot] start (1488,1551,70) exits: open=4 terrain=3 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:17:54.599] WARN  [p0gate5] [bot] no path to (1485,1550) avoiding 0 block(s); stopping (search 1084359.6us)
+[01:17:54.599] WARN  [p0gate5] [bot] start (1484,1548,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 108 item(s), 4 mobile(s))
+[01:18:15.783] WARN  [p0gate5] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:18:36.376] WARN  [p0gate5] [ACTION_RESULT] vendor_sell rejected (0ms) You can't reach the Vendor
+[01:22:09.268] WARN  [p0gate5] [ACTION_RESULT] vendor_sell timeout (no server confirmation)

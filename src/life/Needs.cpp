@@ -564,8 +564,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             // is only used to decide whether it is worth WALKING there --
             // never to decide what to pay.
             const bool canAfford = obs.gold >= cfg.trainerFeeGuess;
+            // ONCE IT IS AFFORDABLE, GO AND BUY IT.
+            //
+            // At a flat 0.30 this scored 60 against NeedSupplies' 61.6 and
+            // lost every single tick, so a crafter reinvested its whole
+            // surplus in reagents the moment it had one and never once walked
+            // to the trainer. Ysolde sold eleven poison scrolls for 275 gold,
+            // touched 321 -- past the fee -- and was back under 260 before the
+            // next decision was taken (run_m5/p0gate6). She would have done
+            // that forever.
+            //
+            // A player who has saved up for a skill stops buying stock and
+            // goes and gets it, then returns to work. The weight comment on
+            // TrainAtNpc already states this reasoning ("the gold is already
+            // saved by the time the need fires"); the urgency simply never
+            // reflected it. Below the fee it stays low -- saving is not
+            // urgent, it is just saving.
+            const double urgency = have <= 0 ? 0.55 : (canAfford ? 0.45 : 0.30);
             add(NeedKind::NeedSkillTraining,
-                have <= 0 ? 0.55 : 0.30,
+                urgency,
                 SkillName(obs.wantTrainSkill),
                 have <= 0
                     ? "this life needs a skill the character does not have at all"

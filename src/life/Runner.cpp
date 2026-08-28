@@ -281,6 +281,33 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
     // with no catalogue entry -- the M4 lumberjack, saved before the catalogue
     // existed -- leaves this null and keeps the old lumberjack needs.
     needCfg_.profession = prof::Find(state_.plan.family.c_str());
+    if (!needCfg_.profession) {
+        // THE M4 CHARACTER IS NOT A DIFFERENT LIFE, ONLY AN OLDER SPELLING.
+        //
+        // FrontierLumberjackSwordsman() (Identity.cpp:121) predates the M5
+        // catalogue and writes family "frontier_lumberjack_swordsman"; the
+        // catalogue registers "lumberjack_swordsman" (Professions.cpp:149).
+        // Tarath was created under the old plan, so every reload since has
+        // fallen into the branch below and run with a NULL profession -- and
+        // a null profession silently disables far more than the comment
+        // implies. DoTrainCombat short-circuits on it before WantsToHunt is
+        // ever evaluated (Runner.cpp, `!needCfg_.profession`), so the shard's
+        // most-run character could never go hunting, and the plan was never
+        // rebuilt so it had no viaTrainer flags either. It logged one line
+        // about "the original lumberjack needs" and looked fine.
+        //
+        // Alias the old spelling rather than renaming it: the M4 plan is what
+        // that character was actually created with, and rewriting history in
+        // Identity.cpp would change what the saved file means.
+        if (state_.plan.family == "frontier_lumberjack_swordsman") {
+            needCfg_.profession = prof::Find("lumberjack_swordsman");
+            if (needCfg_.profession) {
+                LogLine("needs: plan family '%s' is the M4 spelling of '%s' "
+                        "-- reading the catalogue entry",
+                        state_.plan.family.c_str(), needCfg_.profession->id.c_str());
+            }
+        }
+    }
     if (needCfg_.profession) {
         // THE CATALOGUE IS THE INTENTION; the save file only records which
         // life this is. Re-deriving here is not tidiness -- the saved plan
@@ -1569,7 +1596,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
             const i32 d = TileDist(obs.x, obs.y, vx, vy);
             const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
             if (d > 1 || dz > 3) {
-                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                travelInFlight_ = client.TravelToEntity(keeper, 1);
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
             }
@@ -2860,7 +2887,24 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 LogLine("earn_gold: the '%s' is %d tiles and %d z away -- "
                         "walking up before speaking, or the nearest other "
                         "vendor answers instead", sellTrade_.c_str(), d, dz);
-                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                // WALK TO THE MOBILE, NOT TO ITS FOOTPRINT.
+                //
+                // TravelToPoint zeroes travelEntitySerial_ and passes no Z at
+                // all (ClientTravel.cpp:183-186), so A* is free to finish on
+                // whichever floor of that column it reaches first. In a
+                // multi-storey Britain mage shop that is the wrong storey:
+                // "the 'mage' is 1 tiles and 40 z away", arrived by every 2D
+                // measure and out of speech range by the server's, so the buy
+                // list never came and the character could not sell a thing for
+                // a whole session (run_m5/p0gate4). A UO storey is about 20 z
+                // and the same-floor tolerance is 12, so this is never a near
+                // miss -- it is a different room.
+                //
+                // TravelToEntity keeps the serial, re-aims at the live
+                // position as it closes, and pins the goal Z on the final leg
+                // (ClientTravel.cpp:644-651) -- which is exactly what chasing
+                // a wandering NPC needs.
+                travelInFlight_ = client.TravelToEntity(vendor, 1);
                 sellApproached_ = true;   // one approach, then talk regardless
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
@@ -3124,7 +3168,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                         "them before speaking (approach %d of %d)",
                         trainerTrade_.c_str(), d, dz, trainApproaches_ + 1,
                         kMaxTrainApproaches);
-                travelInFlight_ = client.TravelToPoint(tx, ty, 1, "trainer");
+                travelInFlight_ = client.TravelToEntity(trainer, 1);
                 // ONE APPROACH WAS NOT ENOUGH, and the cost of that was a
                 // whole session. Ysolde stood 7 tiles and 2 z from Alenne,
                 // gave up closing after a single attempt, and then asked about
@@ -3433,7 +3477,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         }
         if (TileDist(obs.x, obs.y, px, py) > 2) {
             if (!travelInFlight_) {
-                travelInFlight_ = client.TravelToPoint(px, py, 1, "trade partner");
+                travelInFlight_ = client.TravelToEntity(tradePartner_, 1);
                 nextActionMs_ = obs.nowMs + 1500;
             } else {
                 travelInFlight_ = false;
@@ -3808,7 +3852,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                 const i32 d = TileDist(obs.x, obs.y, vx, vy);
                 const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
                 if (d > 1 || dz > 3) {
-                    travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                    travelInFlight_ = client.TravelToEntity(keeper, 1);
                     nextActionMs_ = obs.nowMs + 2000;
                     return false;
                 }
@@ -3868,7 +3912,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                 LogLine("supplies: the '%s' has moved to %d,%d (%d tiles) -- "
                         "walking back before buying",
                         supplyTrade_.c_str(), vx, vy, d);
-                travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                travelInFlight_ = client.TravelToEntity(vendor, 1);
                 planner_.NoteAttempt(obs.nowMs);
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;

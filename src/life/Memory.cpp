@@ -344,15 +344,24 @@ std::vector<u32> Memory::TrainersWhoRefused(int skillId, const char* trade) cons
 
 bool Memory::TrainerRefused(int skillId, const char* trade) const {
     if (!trade) return false;
-    // A record with no serial predates the per-NPC split. Those were written
-    // under the old "one refusal condemns the trade" rule, and honouring them
-    // that way would preserve exactly the bug: treat them as ONE refusal,
-    // which is all they ever actually evidenced.
-    int refusals = 0;
+    // COUNT DISTINCT NPCs, AND IGNORE THE ONES THAT NAME NOBODY.
+    //
+    // A record with no serial predates the per-NPC split. It cannot be
+    // attributed, and it is usually a DUPLICATE of a serialled row for the
+    // same NPC -- Ysolde's legacy row and her row for Alenne 0x1145 are the
+    // same refusal written twice, which counted her twice toward exhaustion
+    // and would have retired the trade after only two real trainers. Those
+    // rows were written under a rule this code has discarded; they are kept
+    // for the record but they do not vote.
+    std::vector<u32> distinct;
     for (const TrainerVerdict& t : trainers_) {
-        if (t.skillId == skillId && t.trade == trade && !t.taught) ++refusals;
+        if (t.skillId != skillId || t.trade != trade || t.taught) continue;
+        if (!t.npcSerial) continue;
+        bool seen = false;
+        for (u32 s : distinct) { if (s == t.npcSerial) { seen = true; break; } }
+        if (!seen) distinct.push_back(t.npcSerial);
     }
-    return refusals >= kTradeExhaustedAfter;
+    return static_cast<int>(distinct.size()) >= kTradeExhaustedAfter;
 }
 
 }  // namespace uo::life

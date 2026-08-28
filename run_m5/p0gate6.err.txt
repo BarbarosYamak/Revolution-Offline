@@ -1,0 +1,99 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[01:22:44.117] WARN  [p0gate6] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[01:25:55.251] WARN  [p0gate6] [bot] no path to (1488,1549) avoiding 0 block(s); stopping (search 986018.7us)
+[01:25:55.252] WARN  [p0gate6] [bot] start (1486,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 76 item(s), 4 mobile(s))
+[01:25:55.313] WARN  [p0gate6] [travel] reached (1486,1547,70) but the target is on another floor; not arrived
+[01:26:01.199] WARN  [p0gate6] [bot] no path to (1488,1552) avoiding 0 block(s); stopping (search 1035974.6us)
+[01:26:01.199] WARN  [p0gate6] [bot] start (1486,1545,55) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 90 item(s), 4 mobile(s))
+[01:26:01.261] WARN  [p0gate6] [travel] reached (1486,1545,55) but the target is on another floor; not arrived
+[01:26:03.525] WARN  [p0gate6] [bot] no path to (1488,1552) avoiding 0 block(s); stopping (search 1011947.5us)
+[01:26:03.525] WARN  [p0gate6] [bot] start (1486,1545,55) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 90 item(s), 4 mobile(s))
+[01:26:03.585] WARN  [p0gate6] [travel] reached (1486,1545,55) but the target is on another floor; not arrived
+[01:26:08.708] WARN  [p0gate6] [bot] no path to (1489,1555) avoiding 0 block(s); stopping (search 1029314.2us)
+[01:26:08.708] WARN  [p0gate6] [bot] start (1488,1551,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 103 item(s), 4 mobile(s))
+[01:26:22.221] WARN  [p0gate6] [travel] route exhausted at (1489,1555,30); trying to reach (1480,1558,30) to get somewhere routable (escape 1/3)
+[01:27:22.938] WARN  [p0gate6] [bot] 0x20 resync; aborting path
+[01:27:31.514] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:27:38.505] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:27:45.553] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:27:52.624] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:27:59.665] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:28:06.677] WARN  [p0gate6] [ACTION_RESULT] open_bank timeout (no server confirmation)
+[01:28:17.273] WARN  [p0gate6] [0x21] move REJECTED seq=19; server says (1439,1693,0) facing=3
+[01:28:17.273] WARN  [p0gate6] [bot] 0x20 resync; aborting path
+[01:29:26.849] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:29:26.850] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2510ms) superseded
+[01:29:29.371] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:29:29.371] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2521ms) superseded
+[01:29:31.872] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:29:31.872] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2501ms) superseded
+[01:29:35.691] WARN  [p0gate6] [bot] no path to (1488,1555) avoiding 0 block(s); stopping (search 1210514.4us)
+[01:29:35.691] WARN  [p0gate6] [bot] start (1489,1553,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:29:39.878] WARN  [p0gate6] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:29:40.001] WARN  [p0gate6] [bot] no path to (1489,1552) avoiding 0 block(s); stopping (search 1198069.8us)
+[01:29:40.001] WARN  [p0gate6] [bot] start (1489,1554,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:29:47.639] WARN  [p0gate6] [bot] no path to (1488,1554) avoiding 0 block(s); stopping (search 1425826.7us)
+[01:29:47.639] WARN  [p0gate6] [bot] start (1489,1552,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:29:50.964] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:29:50.964] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (7332ms) superseded
+[01:29:54.770] WARN  [p0gate6] [bot] no path to (1488,1552) avoiding 0 block(s); stopping (search 1177390.8us)
+[01:29:54.770] WARN  [p0gate6] [bot] start (1488,1554,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:29:57.374] WARN  [p0gate6] [bot] no path to (1488,1549) avoiding 0 block(s); stopping (search 1197392.6us)
+[01:29:57.374] WARN  [p0gate6] [bot] start (1488,1554,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:29:58.714] WARN  [p0gate6] [bot] goal (1488,1549) is not walkable; skipping A* and stopping
+[01:29:59.022] WARN  [p0gate6] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:29:59.975] WARN  [p0gate6] [bot] goal (1488,1549) is not walkable; skipping A* and stopping
+[01:30:02.822] WARN  [p0gate6] [bot] goal (1488,1549) is not walkable; skipping A* and stopping
+[01:30:10.444] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:30:10.444] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2516ms) superseded
+[01:30:12.960] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:30:12.960] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2516ms) superseded
+[01:30:16.750] WARN  [p0gate6] [bot] no path to (1491,1547) avoiding 0 block(s); stopping (search 1186018.0us)
+[01:30:16.750] WARN  [p0gate6] [bot] start (1489,1548,35) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:30:19.584] WARN  [p0gate6] [bot] goal (1491,1547) is not walkable; skipping A* and stopping
+[01:30:20.966] WARN  [p0gate6] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[01:30:23.218] WARN  [p0gate6] [bot] no path to (1487,1551) avoiding 0 block(s); stopping (search 1189839.6us)
+[01:30:23.218] WARN  [p0gate6] [bot] start (1489,1548,35) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:30:28.665] WARN  [p0gate6] [bot] no path to (1485,1551) avoiding 0 block(s); stopping (search 1247295.1us)
+[01:30:28.665] WARN  [p0gate6] [bot] start (1487,1551,30) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:30:34.759] WARN  [p0gate6] [action] vendor_buy superseded by vendor_buy
+[01:30:34.759] WARN  [p0gate6] [ACTION_RESULT] vendor_buy invalid_state (2545ms) superseded
+[01:30:59.381] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:05.499] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:11.603] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:17.689] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:23.783] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:48.103] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:31:54.240] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:00.318] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:06.476] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:12.626] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:36.849] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:43.074] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:49.194] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:32:55.297] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:01.418] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:25.689] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:31.738] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:37.839] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:43.968] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:33:50.016] WARN  [p0gate6] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1253308.5us)
+[01:33:50.016] WARN  [p0gate6] [bot] start (1485,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:33:58.907] WARN  [p0gate6] [bot] no path to (1489,1550) avoiding 0 block(s); stopping (search 1224757.7us)
+[01:33:58.907] WARN  [p0gate6] [bot] start (1485,1551,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:02.826] WARN  [p0gate6] [bot] no path to (1488,1548) avoiding 0 block(s); stopping (search 1181710.0us)
+[01:34:02.826] WARN  [p0gate6] [bot] start (1489,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:14.659] WARN  [p0gate6] [ACTION_RESULT] use_object timeout (no server confirmation)
+[01:34:18.215] WARN  [p0gate6] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1276376.1us)
+[01:34:18.215] WARN  [p0gate6] [bot] start (1489,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:22.424] WARN  [p0gate6] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1205170.7us)
+[01:34:22.424] WARN  [p0gate6] [bot] start (1484,1548,40) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:24.416] WARN  [p0gate6] [bot] no path to (1486,1548) avoiding 0 block(s); stopping (search 1237060.4us)
+[01:34:24.416] WARN  [p0gate6] [bot] start (1484,1548,40) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:27.256] WARN  [p0gate6] [bot] goal (1486,1548) is not walkable; skipping A* and stopping
+[01:34:31.618] WARN  [p0gate6] [bot] goal (1486,1548) is not walkable; skipping A* and stopping
+[01:34:35.220] WARN  [p0gate6] [bot] no path to (1484,1551) avoiding 0 block(s); stopping (search 1233466.5us)
+[01:34:35.220] WARN  [p0gate6] [bot] start (1484,1548,40) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
+[01:34:39.398] WARN  [p0gate6] [bot] no path to (1484,1551) avoiding 0 block(s); stopping (search 1319680.5us)
+[01:34:39.398] WARN  [p0gate6] [bot] start (1484,1548,40) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 524 item(s), 4 mobile(s))
