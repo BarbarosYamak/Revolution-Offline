@@ -897,6 +897,85 @@ void TestReconciliation() {
     }
 }
 
+void TestHintsVersusEarnedStands() {
+    Section("memory: a hint is a lead, a stand is earned");
+
+    life::Memory mem;
+    const i64 t0 = 1000;
+
+    mem.HintResource("logs", "Yew woods", 664, 1030, 0, t0);
+    mem.HintResource("logs", "Britain Territory woods", 1416, 1288, 0, t0);
+    Check(mem.Resources().size() == 2, "two forests seeded as leads");
+    Check(mem.Resources()[0].hinted, "a seeded forest is marked as a hint");
+    Check(mem.Resources()[0].successes == 0,
+          "a hint claims no yield -- nobody knows that without chopping");
+    Check(mem.Resources()[0].label == "Yew woods", "the hint keeps its atlas name");
+
+    Check(mem.BestProvenResource("logs", 650, 820, t0) == nullptr,
+          "nothing is proven yet, so there is no proven stand");
+    const life::KnownResourceSource* lead = mem.BestHint("logs", 650, 820, t0);
+    Check(lead != nullptr && lead->label == "Yew woods",
+          "with nothing proven, the NEAREST lead is chosen");
+
+    // Working an area dry charges the LEAD, so the next trip picks elsewhere.
+    mem.NoteResource("logs", 664, 1030, 0, false, t0);
+    const life::KnownResourceSource* next = mem.BestHint("logs", 650, 820, t0);
+    Check(next != nullptr && next->label == "Britain Territory woods",
+          "a disappointing lead drops below a farther untried one");
+
+    // A real yield creates a proven stand, which then outranks every lead.
+    mem.NoteResource("logs", 1420, 1290, 0, true, t0 + 10);
+    const life::KnownResourceSource* proven =
+        mem.BestProvenResource("logs", 650, 820, t0 + 10);
+    Check(proven != nullptr && proven->successes == 1,
+          "a chop that yielded creates a proven stand");
+    Check(!proven->hinted || proven->successes > 0,
+          "proven-ness comes from successes, never from being seeded");
+
+    // Seeding is idempotent and never overwrites what was earned.
+    mem.HintResource("logs", "Britain Territory woods", 1416, 1288, 0, t0 + 20);
+    Check(mem.Resources().size() == 2, "re-seeding the same forest adds nothing");
+}
+
+void TestDangerHeatIsCapped() {
+    Section("memory: fear is bounded");
+
+    life::Memory mem;
+    const i64 t0 = 1000;
+    // The live failure: a twenty-minute fight added heat on every tick and
+    // reached 499.89, which drove the character's own profession negative.
+    for (int i = 0; i < 1000; ++i) mem.NoteDanger(600, 600, 12, "grey wolf", 0.5, t0);
+    const double heat = mem.DangerHeatAt(600, 600, t0);
+    Check(heat <= life::kMaxDangerHeat + 0.001,
+          "a thousand scares at one spot cannot exceed the cap");
+    Check(heat > 1.0, "but repeated trouble still reads as much worse than one scare");
+}
+
+void TestSchemaV1StillLoads() {
+    Section("persistence: a v1 file loads under the v2 reader");
+
+    // Exactly the shape v1 wrote: a resource with no `hinted` and no `label`.
+    const std::string v1 =
+        "{\"schema_version\":1,"
+        "\"identity\":{\"identity_id\":\"acc.char\",\"character_name\":\"Tarath\"},"
+        "\"memory\":{\"resources\":[{\"resource\":\"logs\",\"x\":649,\"y\":820,"
+        "\"successes\":3,\"failures\":1}]}}";
+    json::ParseError perr;
+    const json::Value v = json::Parse(v1, &perr);
+    Check(!perr.failed, "the v1 document parses");
+
+    life::PersistentState st;
+    std::string err;
+    Check(life::FromJson(v, &st, &err), "a v1 state file loads under the v2 reader");
+    Check(st.identity.characterName == "Tarath", "identity survives the migration");
+    Check(st.memory.Resources().size() == 1, "its resources survive");
+    Check(st.memory.Resources()[0].successes == 3, "and their earned counts survive");
+    Check(!st.memory.Resources()[0].hinted,
+          "an absent `hinted` defaults to false -- v1 recorded only observation, "
+          "never seeded knowledge");
+    Check(st.memory.Resources()[0].label.empty(), "an absent label defaults empty");
+}
+
 void TestIdentityId() {
     Section("identity: filesystem-safe ids");
     Check(life::MakeIdentityId("RevolutionLumber01", "Balthasar") ==
@@ -922,6 +1001,9 @@ int main(int argc, char** argv) {
     TestStateRoundTrip();
     TestStore(tmpDir);
     TestReconciliation();
+    TestHintsVersusEarnedStands();
+    TestDangerHeatIsCapped();
+    TestSchemaV1StillLoads();
     TestIdentityId();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

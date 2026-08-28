@@ -490,6 +490,13 @@ public:
     const wm::Region* CurrentRegion() const;
     const wm::Place*  NearestServicePlace(wm::Service s) const;
     const wm::Place*  NearestResourcePlace(wm::ResourceKind r) const;
+    // Every named place yielding `r`, nearest to (x, y) first. This is ATLAS
+    // data -- the same shard-wide facts every client is handed, and the same
+    // thing a player reads off a map or hears in town ("Yew has woods"). It is
+    // NOT personal knowledge: which individual tree still holds wood is
+    // learned by chopping, and lives in the character's own memory.
+    void ResourcePlacesNear(wm::ResourceKind r, i32 x, i32 y,
+                            std::vector<const wm::Place*>& out) const;
     // True when the character is standing inside the named place's own
     // interaction radius -- the honest "did we arrive" question, since a
     // vendor's spawner range is what decides how close is close enough.

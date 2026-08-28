@@ -110,11 +110,19 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
                     g.score += 20.0;
                     g.reasons.push_back("axe already in hand +20");
                 }
-                const KnownResourceSource* src =
-                    mem.BestResource("logs", obs.x, obs.y, obs.nowMs);
-                if (src) {
+                // Only a stand that has ACTUALLY PAID OUT earns the bonus.
+                // Crediting any remembered spot is what kept a character in
+                // the scrub: it held 64 spots it had merely stood in, each
+                // worth +25, and none of them worth visiting.
+                const KnownResourceSource* proven =
+                    mem.BestProvenResource("logs", obs.x, obs.y, obs.nowMs);
+                if (proven) {
                     g.score += 25.0;
-                    g.reasons.push_back(Fmt("remembered stand at %d,%d +25", src->x, src->y));
+                    g.reasons.push_back(Fmt("proven stand at %d,%d (%d successes) +25",
+                                            proven->x, proven->y, proven->successes));
+                } else if (mem.BestHint("logs", obs.x, obs.y, obs.nowMs)) {
+                    g.score += 10.0;
+                    g.reasons.push_back("a known forest to try +10");
                 }
                 if (obs.WeightFraction() > 0.7) {
                     g.score -= 40.0;

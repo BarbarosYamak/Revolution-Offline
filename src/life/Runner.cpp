@@ -369,13 +369,52 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
     }
 }
 
-void Runner::LearnFromObservation(Client& client, const Observation& obs) {
-    if (obs.atWorkSite) {
-        // "I have stood here and there are trees" is a SIGHTING, not a failed
-        // harvest. The first live run scored 64 failures on a healthy stand in
-        // ninety seconds because every idle tick counted as one.
-        state_.memory.NoteResourceSeen("logs", obs.x, obs.y, obs.z, obs.nowMs);
+// ---------------------------------------------------------------------------
+// A SMALL HINT, and no more.
+//
+// The M4 brief's Phase 15 rule: "Seed only what the character would reasonably
+// know at creation ... Everything else should be learned."
+//
+// A player who rolls a lumberjack knows that Yew has woods. They do NOT know
+// which tree still holds wood, nor where the good stands are -- that is earned
+// by swinging an axe. So this seeds the few NAMED forests nearest home, marked
+// as hints, and nothing else. No global map, no yields, no confidence.
+//
+// Runs once per life: after the first session the character has its own
+// experience and the hints only matter as fallback leads.
+void Runner::SeedCommonKnowledge(Client& client, i64 nowMs) {
+    if (state_.memory.HasEvent("common_knowledge_seeded")) return;
+    if (!client.WorldKnowledgeReady()) return;
+
+    std::vector<const wm::Place*> forests;
+    client.ResourcePlacesNear(wm::ResourceKind::Lumber, client.PlayerX(),
+                              client.PlayerY(), forests);
+    if (forests.empty()) return;
+
+    int seeded = 0;
+    for (const wm::Place* p : forests) {
+        if (seeded >= kSeedHints) break;
+        state_.memory.HintResource("logs", p->name.c_str(), p->position.x,
+                                   p->position.y, p->position.z, nowMs);
+        LogLine("common knowledge: %s at %d,%d (%d tiles away)", p->name.c_str(),
+                p->position.x, p->position.y,
+                TileDist(p->position.x, p->position.y, client.PlayerX(),
+                         client.PlayerY()));
+        ++seeded;
     }
+    state_.memory.NoteEvent("common_knowledge_seeded", "nearest named forests",
+                            "", client.PlayerX(), client.PlayerY(), nowMs);
+    LogLine("seeded %d forest hint(s) of %zu the atlas knows -- everything else "
+            "is earned", seeded, forests.size());
+}
+
+void Runner::LearnFromObservation(Client& client, const Observation& obs) {
+    // NOTHING is written here. Standing where trees are visible is not
+    // knowledge worth keeping: doing so gave the character 64 imaginary
+    // "stands" after one session, which it then preferred over asking the
+    // atlas, and it spent four sessions working scrub 210 tiles short of the
+    // real Yew woods. A stand is recorded only where a chop YIELDED (see
+    // DoGatherLogs), and leads come from HintResource.
     if (obs.atBank) {
         state_.memory.NotePlace("bank", "bank", obs.x, obs.y, obs.z, obs.nowMs);
         if (!state_.memory.HasEvent("bank_learned")) {
@@ -402,6 +441,16 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
 // Unreachable-foe memory (audit section 3.7). Lives on the RUNNER, not on the
 // goal, so abandoning a fight and coming back does not forget it.
 // ---------------------------------------------------------------------------
+
+// A destination we already travelled to this session and found treeless. The
+// memory failure count reorders things eventually, but only a hard skip stops
+// the same no-op trip repeating within one session.
+bool Runner::IsDeadTarget(i32 x, i32 y) const {
+    for (const auto& d : deadTargets_) {
+        if (TileDist(d.first, d.second, x, y) <= 8) return true;
+    }
+    return false;
+}
 
 bool Runner::IsUnreachable(u32 serial, i64 nowMs) const {
     for (const auto& e : unreachable_) {
@@ -489,6 +538,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
 
         case Phase::Reconcile: {
             const Observation obs = Observe(client, nowMs);
+            SeedCommonKnowledge(client, nowMs);
             const ReconcileReport rep = Reconcile(&state_, obs);
 
             LogLine("reconciliation: %s, %d field(s) differed",
@@ -803,10 +853,14 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         return true;   // the danger passed
     }
 
-    // Remember where this went badly, whatever we decide next. Heat compounds
-    // at a spot that keeps producing fights.
-    state_.memory.NoteDanger(obs.x, obs.y, 14, hostiles.front().name.c_str(), 0.5,
-                             obs.nowMs);
+    // Remember where this went badly -- ONCE PER FIGHT, not once per tick.
+    // Per-tick notes are how one twenty-minute stalemate compounded a single
+    // wolf into heat 499.89 and made the whole forest look lethal.
+    if (obs.nowMs - lastDangerNoteMs_ > 60000) {
+        lastDangerNoteMs_ = obs.nowMs;
+        state_.memory.NoteDanger(obs.x, obs.y, 14, hostiles.front().name.c_str(),
+                                 0.5, obs.nowMs);
+    }
 
     double bailAt = needCfg_.fleeHpFraction;
     const i32 extra = obs.attackersOnMe - 1;
@@ -1277,15 +1331,35 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
     if (!obs.atWorkSite) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
-            const KnownResourceSource* stand =
-                state_.memory.BestResource("logs", obs.x, obs.y, obs.nowMs);
-            if (stand) {
-                LogLine("gather: heading to a remembered stand at %d,%d "
-                        "(successes %d, failures %d)",
-                        stand->x, stand->y, stand->successes, stand->failures);
-                travelInFlight_ = client.TravelToPoint(stand->x, stand->y, 4, "forest");
+            // Earned knowledge first, then common knowledge, then go looking.
+            // The order matters: preferring a merely-remembered spot over a
+            // named forest is what kept this character in the scrub.
+            const KnownResourceSource* proven =
+                state_.memory.BestProvenResource("logs", obs.x, obs.y, obs.nowMs);
+            if (proven && IsDeadTarget(proven->x, proven->y)) proven = nullptr;
+            const KnownResourceSource* hint =
+                proven ? nullptr
+                       : state_.memory.BestHint("logs", obs.x, obs.y, obs.nowMs);
+            if (hint && IsDeadTarget(hint->x, hint->y)) hint = nullptr;
+            if (proven) {
+                LogLine("gather: back to a stand that has paid out before at "
+                        "%d,%d (%d successes, %d failures)",
+                        proven->x, proven->y, proven->successes, proven->failures);
+                lastHintX_ = proven->x;
+                lastHintY_ = proven->y;
+                travelInFlight_ =
+                    client.TravelToPoint(proven->x, proven->y, 4, "proven_stand");
+            } else if (hint) {
+                LogLine("gather: nothing proven yet -- trying %s at %d,%d "
+                        "(a lead, %d disappointment(s) so far)",
+                        hint->label.empty() ? "a known forest" : hint->label.c_str(),
+                        hint->x, hint->y, hint->failures);
+                lastHintX_ = hint->x;
+                lastHintY_ = hint->y;
+                travelInFlight_ =
+                    client.TravelToPoint(hint->x, hint->y, 6, "forest_hint");
             } else {
-                LogLine("gather: no stand remembered; asking the world for lumber");
+                LogLine("gather: no stand and no lead left; asking the world for lumber");
                 travelInFlight_ = client.TravelToResource(wm::ResourceKind::Lumber);
             }
             if (!travelInFlight_) {
@@ -1303,8 +1377,17 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         if (client.TreeCount(client.PlayerX(), client.PlayerY(), cfg_.searchRadius) == 0) {
             LogLine("gather: trip reported %s but there are no trees within %d tiles",
                     client.TravelSucceeded() ? "success" : "failure", cfg_.searchRadius);
-            state_.memory.NoteResource("logs", client.PlayerX(), client.PlayerY(),
-                                       client.PlayerZ(), false, obs.nowMs);
+            // Charge the DESTINATION WE AIMED AT, and refuse to aim there
+            // again this session. Charging wherever we happen to stand let a
+            // no-op trip -- one that "arrived" without moving -- pile failures
+            // onto a stand with three real successes, several times a second.
+            if (lastHintX_ != 0 || lastHintY_ != 0) {
+                state_.memory.NoteResource("logs", lastHintX_, lastHintY_,
+                                           client.PlayerZ(), false, obs.nowMs);
+                deadTargets_.emplace_back(lastHintX_, lastHintY_);
+                if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+                lastHintX_ = lastHintY_ = 0;
+            }
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 3000;
         }
@@ -1335,10 +1418,18 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         }
         if (!found) {
             LogLine("gather: every tree within %d tiles is worked out -> "
-                    "this stand is done", cfg_.searchRadius);
-            state_.memory.NoteResource("logs", obs.x, obs.y, obs.z, false, obs.nowMs);
+                    "this area is done for now", cfg_.searchRadius);
+            // Charge the FAILURE TO THE LEAD that sent us here, so the next
+            // trip picks a different named forest instead of walking back to
+            // the same dry one. Without this the hint list never reorders and
+            // the character loops on its nearest disappointment.
+            if (lastHintX_ != 0 || lastHintY_ != 0) {
+                state_.memory.NoteResource("logs", lastHintX_, lastHintY_, obs.z,
+                                           false, obs.nowMs);
+                lastHintX_ = lastHintY_ = 0;
+            }
             visitedTrees_.clear();
-            return true;   // the goal completed what this stand could give
+            return true;   // the goal completed what this area could give
         }
         chopX_ = tree.x; chopY_ = tree.y; chopZ_ = tree.z;
         chopGraphic_ = tree.graphic;
@@ -1428,7 +1519,13 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         // being told it had failed.
         LogLine("tree at %d,%d holds no wood -> next tree (%d tried this stand)",
                 chopX_, chopY_, static_cast<int>(visitedTrees_.size()) + 1);
-        client.MarkStump(chopX_, chopY_, chopZ_, chopGraphic_);
+        // DO NOT MarkStump here. It rewrites the tree's graphic in OUR OWN
+        // statics overlay, so the next TreeCount() sees nothing -- the bot
+        // blinds itself, concludes it is not at a work site, "travels" zero
+        // tiles to where it already stands, and loops, charging a failure onto
+        // a genuinely productive stand every time round. `visitedTrees_`
+        // already stops us re-picking this tree, and it does it without
+        // lying to the census.
         state_.memory.NoteResource("logs", chopX_, chopY_, chopZ_, false, obs.nowMs);
         visitedTrees_.emplace_back(chopX_, chopY_);
         if (visitedTrees_.size() > 64) visitedTrees_.erase(visitedTrees_.begin());

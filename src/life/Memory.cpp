@@ -87,6 +87,59 @@ void Memory::NoteResourceSeen(const char* resource, i32 x, i32 y, i8 z, i64 nowM
     CapOldestFirst(resources_, kMaxResources, &KnownResourceSource::lastSeenMs);
 }
 
+void Memory::HintResource(const char* resource, const char* label, i32 x, i32 y,
+                          i8 z, i64 nowMs) {
+    if (!resource || !resource[0]) return;
+    for (const KnownResourceSource& r : resources_) {
+        // A hint never overwrites anything, least of all a proven stand.
+        if (r.resource == resource && TileDist(r.x, r.y, x, y) <= kSameSpotTiles) return;
+    }
+    KnownResourceSource r;
+    r.resource = resource;
+    r.label = label ? label : "";
+    r.x = x; r.y = y; r.z = z;
+    r.hinted = true;
+    r.lastSeenMs = nowMs;
+    resources_.push_back(std::move(r));
+    CapOldestFirst(resources_, kMaxResources, &KnownResourceSource::lastSeenMs);
+}
+
+const KnownResourceSource* Memory::BestProvenResource(const char* resource,
+                                                      i32 fromX, i32 fromY,
+                                                      i64 nowMs) const {
+    if (!resource) return nullptr;
+    const KnownResourceSource* best = nullptr;
+    double bestScore = -1e18;
+    for (const KnownResourceSource& r : resources_) {
+        if (r.resource != resource) continue;
+        if (r.successes <= 0) continue;   // PROVEN means it actually yielded
+        const double dist = static_cast<double>(TileDist(r.x, r.y, fromX, fromY));
+        const double score = static_cast<double>(r.successes) * 20.0 -
+                             static_cast<double>(r.failures) * 4.0 - dist * 0.05 -
+                             DangerHeatAt(r.x, r.y, nowMs) * 40.0;
+        if (score > bestScore) { bestScore = score; best = &r; }
+    }
+    return best;
+}
+
+const KnownResourceSource* Memory::BestHint(const char* resource, i32 fromX,
+                                            i32 fromY, i64 nowMs) const {
+    if (!resource) return nullptr;
+    const KnownResourceSource* best = nullptr;
+    double bestScore = -1e18;
+    for (const KnownResourceSource& r : resources_) {
+        if (r.resource != resource) continue;
+        if (!r.hinted) continue;
+        const double dist = static_cast<double>(TileDist(r.x, r.y, fromX, fromY));
+        // Nearest first, but a lead that has already disappointed drops down
+        // the list rather than being walked to again and again.
+        const double score = -dist * 0.05 - static_cast<double>(r.failures) * 30.0 -
+                             DangerHeatAt(r.x, r.y, nowMs) * 40.0;
+        if (score > bestScore) { bestScore = score; best = &r; }
+    }
+    return best;
+}
+
 void Memory::NoteSupplier(const KnownSupplier& s) {
     for (KnownSupplier& k : suppliers_) {
         if (k.serial == s.serial && k.need == s.need) {
@@ -108,7 +161,13 @@ void Memory::NoteDanger(i32 x, i32 y, i32 radius, const char* threat, double hea
             const double halves =
                 static_cast<double>(nowMs - d.atMs) / static_cast<double>(kDangerHalfLifeMs);
             const double current = d.heat * std::pow(0.5, halves);
-            d.heat = current + heat;
+            // CAPPED. Heat compounds on repeat trouble, which is right, but
+            // an unbounded sum is not a memory -- it is a grudge. One live
+            // session reached 499.89 at a single spot because a twenty-minute
+            // fight added to it on every tick, and the resulting -60 x heat
+            // penalty drove the character's own profession to a NEGATIVE
+            // score. Four doublings is as afraid as it ever needs to be.
+            d.heat = std::min(kMaxDangerHeat, current + heat);
             d.atMs = nowMs;
             d.radius = std::max(d.radius, radius);
             if (threat && threat[0]) d.threat = threat;

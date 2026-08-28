@@ -98,6 +98,20 @@ const wm::Place* Client::NearestResourcePlace(wm::ResourceKind r) const {
                                                             playerY_);
 }
 
+void Client::ResourcePlacesNear(wm::ResourceKind r, i32 x, i32 y,
+                                std::vector<const wm::Place*>& out) const {
+    out.clear();
+    if (!world_knowledge_ || !world_knowledge_->ok) return;
+    for (const wm::Place& p : world_knowledge_->atlas.Places()) {
+        if (p.Yields(r)) out.push_back(&p);
+    }
+    std::sort(out.begin(), out.end(),
+              [x, y](const wm::Place* a, const wm::Place* b) {
+                  return Chebyshev(x, y, a->position.x, a->position.y) <
+                         Chebyshev(x, y, b->position.x, b->position.y);
+              });
+}
+
 bool Client::WithinPlace(const char* nameOrId) const {
     if (!world_knowledge_ || !world_knowledge_->ok) return false;
     const wm::Place* p = world_knowledge_->atlas.FindPlace(nameOrId);

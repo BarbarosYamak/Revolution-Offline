@@ -84,6 +84,10 @@ private:
     // because Sphere will not wear a second weapon over a full hand.
     bool        ArmAxe(Client& client, const Observation& obs);
     void        LearnFromObservation(Client& client, const Observation& obs);
+    // Seed the handful of named forests a new character would plausibly have
+    // heard of. Runs once per life; everything else is earned.
+    static constexpr int kSeedHints = 3;
+    void        SeedCommonKnowledge(Client& client, i64 nowMs);
     // Hold the build to its caps: LOCK a planned skill or stat that has
     // reached its target, keep the rest training up. Nothing here raises a
     // value -- it moves the arrow a player clicks.
@@ -150,6 +154,13 @@ private:
     i32  approachCell_ = 0;   // which of the tree's eight neighbours we have tried
     i32  logsSeen_ = 0;
     std::vector<std::pair<i32, i32>> visitedTrees_;
+    // The lead that sent us to the current area, so a dry area is charged
+    // against the lead rather than against wherever we happen to stand.
+    i32  lastHintX_ = 0, lastHintY_ = 0;
+    // Destinations proven treeless THIS SESSION. Transient by design: the
+    // world regenerates, so this must not persist.
+    std::vector<std::pair<i32, i32>> deadTargets_;
+    bool IsDeadTarget(i32 x, i32 y) const;
     i32  logsAtGoalStart_ = 0;
     i32  logsAtSessionStart_ = -1;
     u32  currentFoe_ = 0;
@@ -165,6 +176,7 @@ private:
     i64  fightStartedMs_ = 0;
     double foeHpAtStart_ = -1.0;
     i64  lastBandageMs_ = 0;
+    i64  lastDangerNoteMs_ = 0;   // one danger note per fight, not per tick
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;
     bool travelInFlight_ = false;

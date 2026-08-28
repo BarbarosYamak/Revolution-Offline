@@ -35,7 +35,11 @@ namespace uo::life {
 // Bumped whenever the on-disk shape changes. Readers gate every field behind
 // the version and default what is absent, so an older state.json loads under
 // a newer build instead of being wiped.
-inline constexpr int kSchemaVersion = 1;
+// v2 (2026-08-28) adds KnownResourceSource::hinted and ::label -- the
+// distinction between a seeded LEAD and an EARNED stand. A v1 file loads
+// unchanged: both fields default, which is correct, because everything a v1
+// file recorded was written from observation rather than seeded.
+inline constexpr int kSchemaVersion = 2;
 
 // ===========================================================================
 // Build plan -- the character's long-term intention about what it will be
@@ -111,6 +115,23 @@ struct KnownPlace {
     i32 visits = 0;
 };
 
+// Where this character believes a resource can be worked.
+//
+// TWO KINDS, and the difference is the whole point:
+//
+//   a HINT is basic shard knowledge -- "Yew has woods" -- seeded once at
+//   creation from the atlas. A player knows that much before they ever swing
+//   an axe. It is a LEAD: it says roughly where to go, and nothing about
+//   whether anything is left there.
+//
+//   a STAND is EARNED. It is only ever recorded where a chop actually
+//   produced a log. Which individual tree still holds wood is not something
+//   anyone can know without trying, so it cannot be seeded.
+//
+// The first M4 runs blurred the two: any tick with trees in view wrote a
+// "resource source", so after one session the character held 64 imaginary
+// stands, preferred them over asking the atlas, and spent four sessions
+// working scrub 210 tiles short of the real Yew woods.
 struct KnownResourceSource {
     std::string resource;      // "logs"
     i32 x = 0, y = 0;
@@ -119,6 +140,8 @@ struct KnownResourceSource {
     i64 lastSeenMs = 0;
     i32 successes = 0;
     i32 failures = 0;
+    bool hinted = false;       // seeded common knowledge, not earned
+    std::string label;         // the atlas name, for a legible log line
 };
 
 // A supplier note is a FLATTENED, PERSISTABLE copy of a supply::Supplier the
@@ -170,6 +193,12 @@ inline constexpr usize kMaxSessions  = 32;
 // choice; ours is per-character and is a weight, not a switch.
 inline constexpr i64 kDangerHalfLifeMs = 45 * 60 * 1000;
 
+// Ceiling on remembered fear at one spot. Heat compounds on repeat trouble --
+// that is the point -- but an unbounded sum is a grudge, not a memory: a live
+// session reached 499.89 at one spot and the resulting penalty made the
+// character's own profession score negative, so it idled instead of working.
+inline constexpr double kMaxDangerHeat = 4.0;
+
 class Memory {
 public:
     void NotePlace(const char* kind, const char* name, i32 x, i32 y, i8 z, i64 nowMs);
@@ -179,6 +208,18 @@ public:
     // attempt to chop it, and counting it as one buries a good stand under
     // hundreds of imaginary failures.
     void NoteResourceSeen(const char* resource, i32 x, i32 y, i8 z, i64 nowMs);
+    // Seed a lead from atlas common knowledge. Never counts as a success, and
+    // is only ever added once per place.
+    void HintResource(const char* resource, const char* label, i32 x, i32 y,
+                      i8 z, i64 nowMs);
+    // A stand this character has PROVEN: nearest proven-productive first.
+    // Returns null when nothing has ever yielded, which is the signal to fall
+    // back to a hint or to go looking.
+    const KnownResourceSource* BestProvenResource(const char* resource, i32 fromX,
+                                                  i32 fromY, i64 nowMs) const;
+    // The best untried or least-failed lead, for when nothing is proven.
+    const KnownResourceSource* BestHint(const char* resource, i32 fromX, i32 fromY,
+                                        i64 nowMs) const;
     void NoteSupplier(const KnownSupplier& s);
     void NoteDanger(i32 x, i32 y, i32 radius, const char* threat, double heat, i64 nowMs);
     void NoteEvent(const char* kind, const char* detail, const char* place,

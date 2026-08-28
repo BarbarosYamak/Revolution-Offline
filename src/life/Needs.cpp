@@ -185,13 +185,22 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
     // --- the work itself ---------------------------------------------------
     {
-        const KnownResourceSource* src = mem.BestResource("logs", obs.x, obs.y, obs.nowMs);
+        // Proven first, then a lead. Never the old catch-all: a "stand" that
+        // never yielded is not evidence of anything.
+        const KnownResourceSource* src =
+            mem.BestProvenResource("logs", obs.x, obs.y, obs.nowMs);
+        const bool provenSrc = src != nullptr;
+        if (!src) src = mem.BestHint("logs", obs.x, obs.y, obs.nowMs);
         const bool canWork = obs.axeInPack || obs.axeEquipped;
         add(NeedKind::NeedLogs, canWork ? 0.4 : 0.1, "logs",
             "logs are this character's income and its Lumberjacking training",
-            src ? Fmt("known stand at %d,%d successes=%d failures=%d",
-                      src->x, src->y, src->successes, src->failures)
-                : std::string("no remembered stand yet"),
+            src ? (provenSrc
+                       ? Fmt("proven stand at %d,%d (%d successes, %d failures)",
+                             src->x, src->y, src->successes, src->failures)
+                       : Fmt("a lead on %s at %d,%d, untested",
+                             src->label.empty() ? "woods" : src->label.c_str(),
+                             src->x, src->y))
+                : std::string("no stand and no lead"),
             !canWork);
     }
 

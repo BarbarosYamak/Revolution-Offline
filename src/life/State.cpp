@@ -130,6 +130,8 @@ json::Value ToJson(const PersistentState& st) {
             o.Set("last_seen_ms", k.lastSeenMs);
             o.Set("successes", static_cast<i64>(k.successes));
             o.Set("failures", static_cast<i64>(k.failures));
+            o.Set("hinted", k.hinted);
+            o.Set("label", k.label);
             res.Push(std::move(o));
         }
         m.Set("resources", std::move(res));
@@ -321,6 +323,10 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.lastSeenMs = e["last_seen_ms"].AsInt(0);
             k.successes = static_cast<i32>(e["successes"].AsInt(0));
             k.failures = static_cast<i32>(e["failures"].AsInt(0));
+            // Absent in v1, and false is the right default there: everything a
+            // v1 file holds was written from observation, never seeded.
+            k.hinted = e["hinted"].AsBool(false);
+            k.label = e["label"].AsString();
             st.memory.MutableResources().push_back(std::move(k));
         }
     }
@@ -352,7 +358,11 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.y = static_cast<i32>(e["y"].AsInt(0));
             k.radius = static_cast<i32>(e["radius"].AsInt(0));
             k.threat = e["threat"].AsString();
-            k.heat = e["heat"].AsDouble(0.0);
+            // Clamp on LOAD as well as on write. The cap was added after a
+            // live character had already accumulated 499.89 at one spot, and a
+            // cap that only applies to new notes would leave that character
+            // permanently afraid of its own forest.
+            k.heat = std::min(kMaxDangerHeat, e["heat"].AsDouble(0.0));
             k.atMs = e["at_ms"].AsInt(0);
             st.memory.MutableDangers().push_back(std::move(k));
         }
@@ -369,6 +379,32 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.y = static_cast<i32>(e["y"].AsInt(0));
             k.atMs = e["at_ms"].AsInt(0);
             st.memory.MutableEvents().push_back(std::move(k));
+        }
+    }
+
+    // --- v1 -> v2 migration ------------------------------------------------
+    //
+    // v1 wrote a "resource source" for any tick with trees in view, so a v1
+    // file holds dozens of stands that never yielded anything -- and the
+    // planner preferred them over asking the atlas, which is how one character
+    // spent four sessions working scrub 210 tiles short of the real woods.
+    //
+    // A stand that never produced is not knowledge. Drop it, and let the
+    // character re-earn or re-seed. Anything with a success is kept: that WAS
+    // earned, and it is the only part of a v1 resource list worth carrying.
+    if (version < 2) {
+        std::vector<KnownResourceSource>& res = st.memory.MutableResources();
+        const usize before = res.size();
+        res.erase(std::remove_if(res.begin(), res.end(),
+                                 [](const KnownResourceSource& r) {
+                                     return !r.hinted && r.successes <= 0;
+                                 }),
+                  res.end());
+        if (before != res.size()) {
+            std::printf("[life] migrated v1 -> v2: dropped %llu unproven resource "
+                        "record(s), kept %llu that actually yielded\n",
+                        static_cast<unsigned long long>(before - res.size()),
+                        static_cast<unsigned long long>(res.size()));
         }
     }
 
