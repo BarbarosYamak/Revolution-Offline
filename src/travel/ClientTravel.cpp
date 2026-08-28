@@ -1700,20 +1700,17 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
                 const tiledata::LandTile& land = tileData_->Land(cell.tileId);
                 if ((land.flags & tiledata::kFlagWet) == 0) continue;
 
-                // A plank or bridge over the water makes the tile a walkway,
-                // not a fishing spot.
-                bool covered = false;
-                std::vector<world::StaticHit> statics;
-                world_->CollectStatics(tx, ty, 0, statics);
-                for (const world::StaticHit& sh : statics) {
-                    if (sh.x != tx || sh.y != ty) continue;
-                    i8 top = 0;
-                    if (world_->StaticSurfaceTop(sh.itemId, sh.z, &top)) {
-                        covered = true;
-                        break;
-                    }
-                }
-                if (covered) continue;
+                // NO STATIC FILTER. The first version rejected any water tile
+                // carrying a static that provides a surface, meaning to skip
+                // planks and bridges -- and around a dock that is most of the
+                // near water, so the search skipped everything close and
+                // returned a tile ten tiles out that could not be reached.
+                //
+                // Deciding what is fishable is the SERVER'S job. Sphere
+                // answers a bad target itself, and this project's whole
+                // discipline is to ask rather than to out-think it: the cast
+                // reads the reply and moves on. Guessing here cost a fisher
+                // its entire session.
 
                 out->x = tx;
                 out->y = ty;

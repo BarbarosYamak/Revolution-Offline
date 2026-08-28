@@ -50,6 +50,25 @@ constexpr u16 kSpellbook  = 0x0EFA;             // i_spellbook
 constexpr u16 kTongs[]    = {0x0FBB, 0x0FBC};   // i_tongs
 constexpr u16 kBread[]    = {0x103B, 0x09EB};
 
+// -- M5.2: graphics for the eleven new archetypes, read off the runtime's
+// own itemdefs the same way as the block above -- never guessed.
+constexpr u16 kShovel      = 0x0F39;  // i_profession.scp:440  i_shovel
+constexpr u16 kLockpick    = 0x14FB;  // i_profession.scp:1511 i_lockpick (qty 20 in the newbie kit)
+constexpr u16 kSewingKit   = 0x0F9D;  // i_profession_tailor_tanner.scp:115
+constexpr u16 kScissors    = 0x0F9E;  // i_profession_tailor_tanner.scp:128
+constexpr u16 kSaw         = 0x1034;  // i_profession.scp:945   i_saw
+constexpr u16 kTinkerTools = 0x1EBC;  // i_profession.scp:2649
+
+// -- M5.2: skill ids the M3.6 SkillId enum (include/uo/rules.h) does not
+// carry yet. Same sourcing rule as every id rules.h already has: read off
+// the skill's own script filename under runtime/scripts/skills/ --
+// skill<N>_<name>.scp. None of these appear in rules::InactiveSkills().
+constexpr int kParrying     = 5;   // skill5_parrying.scp
+constexpr int kArchery      = 31;  // skill31_archery.scp
+constexpr int kMaceFighting = 41;  // skill41_macefighting.scp
+constexpr int kFencing      = 42;  // skill42_fencing.scp
+constexpr int kWrestling    = 43;  // skill43_wrestling.scp
+
 std::vector<u16> V(const u16* p, usize n) { return std::vector<u16>(p, p + n); }
 
 ConsumableNeed Bandages() {
@@ -67,6 +86,15 @@ ConsumableNeed Food() {
     c.graphics = V(kBread, 2);
     c.low = 1;
     c.restockTo = 5;
+    return c;
+}
+
+ConsumableNeed Lockpicks() {
+    ConsumableNeed c;
+    c.name = "lockpicks";
+    c.graphics = {kLockpick};
+    c.low = 5;
+    c.restockTo = 20;   // [NEWBIE LOCKPICKING] hands over exactly 20
     return c;
 }
 
@@ -337,7 +365,7 @@ const std::vector<Profession>& All() {
             v.push_back(std::move(p));
         }
 
-        // --- 5. Tamer ----------------------------------------------------------
+        // --- 6. Tamer ----------------------------------------------------------
         //
         // [NEWBIE TAMING] is EMPTY -- the shard hands a tamer nothing at all.
         // Combined with M8 owning the taming ecosystem, this entry exists so
