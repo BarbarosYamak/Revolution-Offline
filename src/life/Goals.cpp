@@ -20,6 +20,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::TravelToRequiredPlace: return "TRAVEL_TO_REQUIRED_PLACE";
         case GoalKind::TrainAtNpc:            return "TRAIN_AT_NPC";
         case GoalKind::TradeWithPlayer:       return "TRADE_WITH_PLAYER";
+        case GoalKind::Fish:                  return "FISH";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -78,6 +79,9 @@ const GoalSpec kGoals[] = {
     // Just under EARN_GOLD: when a vendor will take the goods that is the
     // shorter errand, and the player market is for what it refuses.
     {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},
+    // Beside GatherLogs: it is the same kind of thing, the productive work
+    // this life does, and it must not outrank housekeeping.
+    {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
 };
 
 }  // namespace

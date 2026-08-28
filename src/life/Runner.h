@@ -114,6 +114,7 @@ private:
     bool DoTravel(Client& client, const Observation& obs);
     bool DoTrainAtNpc(Client& client, const Observation& obs);
     bool DoTradeWithPlayer(Client& client, const Observation& obs);
+    bool DoFish(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
     bool DoIdle(Client& client, const Observation& obs);
@@ -271,6 +272,19 @@ private:
     i64  tradeAnnouncedMs_ = 0;
     i64  tradeOpenedMs_ = 0;
     i32  tradeAnnounceCount_ = 0;
+
+    // --- FISH. skill18_fishing.scp: DELAY=8.0, RANGE=4 ---------------------
+    // The eight seconds is a CEILING, not a delay: the goal polls for one of
+    // Sphere's own verdicts, the same lesson the axe taught.
+    static constexpr i64 kFishResolveMs = 9000;
+    static constexpr i64 kFishPollMs = 400;
+    static constexpr i32 kMaxFishTrips = 3;
+    i64 fishCastMs_ = 0;
+    i64 fishCastJournalMs_ = 0;
+    i32 fishX_ = 0, fishY_ = 0;
+    i32 fishSeen_ = 0;
+    i32 fishTrips_ = 0;
+    bool fishCursorPending_ = false;
 
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;

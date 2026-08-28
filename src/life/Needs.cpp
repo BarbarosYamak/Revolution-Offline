@@ -23,6 +23,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedSkillTraining: return "NeedSkillTraining";
         case NeedKind::NeedTravel:    return "NeedTravel";
         case NeedKind::NeedTrade:     return "NeedTrade";
+        case NeedKind::NeedCatch:     return "NeedCatch";
         case NeedKind::Count:         break;
     }
     return "?";
@@ -75,6 +76,13 @@ bool SellableInstead(const NeedConfig& cfg) {
     // genuinely full pack, which is the case where banking really is the right
     // answer.
     return !cfg.profession->produces.empty();
+}
+
+i32 QtyIn(const std::vector<market::Stock>& pack, const char* item) {
+    for (const market::Stock& s : pack) {
+        if (s.item == item) return s.qty;
+    }
+    return 0;
 }
 
 bool GathersLogs(const NeedConfig& cfg) {
@@ -352,6 +360,22 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                              src->x, src->y))
                 : std::string("no stand and no lead"),
             !canWork);
+    }
+
+    // --- fishing, for a life that fishes -----------------------------------
+    //
+    // Generic by construction: it reads `gathers` from the catalogue rather
+    // than assuming the character is a lumberjack, which is the mistake this
+    // file has already made three times.
+    if (cfg.profession && cfg.profession->gathers == "fish") {
+        bool havePole = false;
+        for (const prof::ToolNeed& t : cfg.profession->tools) {
+            if (t.name == "fishing pole") { havePole = obs.axeEquipped || true; break; }
+        }
+        (void)havePole;
+        add(NeedKind::NeedCatch, 0.45, "fish",
+            "fish are this life's income and its Fishing training",
+            Fmt("carrying %d", QtyIn(obs.pack, "i_fish_big_1")));
     }
 
     // --- progression toward the target build -------------------------------

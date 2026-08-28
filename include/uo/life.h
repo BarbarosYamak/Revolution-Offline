@@ -414,6 +414,9 @@ enum class NeedKind : u8 {
     // them is other characters, so this is what sends a bot to where players
     // gather to announce what it has.
     NeedTrade,
+    // Raw material this life gathers and sells. Distinct from NeedLogs, which
+    // is the M4 lumberjack's own: this one is generic and reads the profession.
+    NeedCatch,
     Count,
 };
 
@@ -487,6 +490,8 @@ enum class GoalKind : u8 {
     // Stand where players gather, announce what is spare, and answer anybody
     // who wants it. The one goal that needs another character to exist.
     TradeWithPlayer,
+    // The one gold faucet a character can reach on day one.
+    Fish,
     IdleBriefly,
     Count,
 };

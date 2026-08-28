@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "uo/log.h"
 #include "uo/builders.h"
+#include "uo/faucets.h"
 #include "uo/market.h"
 #include "uo/trade.h"
 #include "uo/professions.h"
@@ -1077,6 +1078,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::TravelToRequiredPlace: done = DoTravel(client, obs); break;
         case GoalKind::TrainAtNpc:            done = DoTrainAtNpc(client, obs); break;
         case GoalKind::TradeWithPlayer:       done = DoTradeWithPlayer(client, obs); break;
+        case GoalKind::Fish:                  done = DoFish(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -2873,6 +2875,170 @@ void Runner::ResetTradeState() {
     tradeGoldBefore_ = 0;
     tradeAnnounceCount_ = 0;
     travelInFlight_ = false;
+}
+
+// ---------------------------------------------------------------------------
+// FISH -- the one gold faucet a character can reach on day one.
+//
+// Every number here is the shard's own, read out of
+// runtime/scripts/skills/skill18_fishing.scp rather than assumed:
+//
+//   DELAY=8.0     one cast takes eight seconds
+//   RANGE=4       water four tiles away is reachable
+//   FLAGS=skf_gather
+//   @PreStart     refuses outright while mounted
+//
+// The answers Sphere gives are equally its own, and they are the only honest
+// signal that a cast resolved:
+//
+//   "You fish a while, but fail to catch anything."
+//   "You pull your line back in and stop fishing."
+//
+// The same lesson the axe taught applies: a flat sleep after every cast spends
+// most of the loop waiting for an answer the server already gave, so the eight
+// seconds is a CEILING and the goal polls for a verdict.
+// ---------------------------------------------------------------------------
+bool Runner::DoFish(Client& client, const Observation& obs) {
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return true;
+
+    if (obs.WeightFraction() >= 0.95) {
+        LogLine("fish: pack full at %.0f%%", obs.WeightFraction() * 100.0);
+        return true;
+    }
+
+    // The pole has to be IN HAND, the same way the axe does: skf_gather reads
+    // the character's weapon, and a pole in the pack is not a pole in hand.
+    const std::vector<u16> poleGfx = econ::GraphicsForItem("i_fishing_pole");
+    u32 pole = 0;
+    for (u16 g : poleGfx) {
+        if (client.EquippedGraphicAt(kLayerHand1) == g ||
+            client.EquippedGraphicAt(kLayerHand2) == g) {
+            pole = client.FindBackpackItemByGraphic(g);
+            if (!pole) pole = client.EquippedAtLayer(kLayerHand1);
+            break;
+        }
+    }
+    if (!pole) {
+        for (u16 g : poleGfx) {
+            const u32 inPack = client.FindBackpackItemByGraphic(g);
+            if (!inPack) continue;
+            LogLine("fish: arming the pole");
+            client.ActionEquip(inPack, kLayerServerChooses);
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+        LogLine("goal_failed=FISH reason=\"%s\"",
+                faucet::RefusalName(faucet::Refusal::MissingTool));
+        planner_.Finish(false, "no fishing pole", obs.nowMs);
+        return false;
+    }
+
+    // --- has the last cast resolved? --------------------------------------
+    if (fishCastMs_ != 0 && obs.nowMs - fishCastMs_ < kFishResolveMs) {
+        static const char* kResolved[] = {
+            "but fail to catch anything",       // resolved, no fish
+            "you pull your line back in",       // stopped
+            "you can't fish while riding",      // @PreStart refusal
+            "target cannot be seen",
+            "that is too far away",
+        };
+        bool done = false;
+        for (const char* line : kResolved) {
+            if (client.JournalSaidSince(line, fishCastJournalMs_)) {
+                done = true;
+                break;
+            }
+        }
+        const i32 caught = market::QtyOf(obs.pack, "i_fish_big_1");
+        if (caught > fishSeen_) {
+            LogLine("fish: caught one (pack now holds %d)", caught);
+            fishSeen_ = caught;
+            planner_.NoteProgress();
+            state_.memory.NoteResource("fish", fishX_, fishY_, obs.z, true,
+                                       obs.nowMs);
+            if (!state_.memory.HasEvent("first_fish")) {
+                state_.memory.NoteEvent("first_fish", "first fish caught",
+                                        "water", obs.x, obs.y, obs.nowMs);
+            }
+            done = true;
+        }
+        if (!done) {
+            nextActionMs_ = obs.nowMs + kFishPollMs;
+            return false;
+        }
+        fishCastMs_ = 0;
+    }
+
+    // --- find water -------------------------------------------------------
+    //
+    // RANGE=4 is the shard's own number, so a spot further than that is not a
+    // spot at all. Searching a wider radius and then walking is the difference
+    // between fishing and standing hopefully near a lake.
+    Client::WaterHit water;
+    if (!client.NearestWater(obs.x, obs.y, 4, &water)) {
+        if (client.TravelBusy()) return false;
+        if (!travelInFlight_) {
+            ++fishTrips_;
+            if (fishTrips_ > kMaxFishTrips) {
+                LogLine("goal_failed=FISH reason=\"no water within reach after "
+                        "%d trips\"", fishTrips_);
+                planner_.Finish(false, "no water reachable", obs.nowMs);
+                fishTrips_ = 0;
+                return false;
+            }
+            const KnownResourceSource* known =
+                state_.memory.BestProvenResource("fish", obs.x, obs.y, obs.nowMs);
+            if (known) {
+                LogLine("fish: back to water that has paid out at %d,%d",
+                        known->x, known->y);
+                travelInFlight_ =
+                    client.TravelToPoint(known->x, known->y, 3, "fishing spot");
+            } else {
+                LogLine("fish: looking for water (trip %d)", fishTrips_);
+                travelInFlight_ =
+                    client.TravelToService(wm::Service::Fisherman,
+                                           state_.homeCity.c_str());
+            }
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=FISH reason=\"%s\"",
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        travelInFlight_ = false;
+        return false;
+    }
+    fishTrips_ = 0;
+
+    // --- cast --------------------------------------------------------------
+    if (client.ActionBusy()) return false;
+
+    if (fishCursorPending_) {
+        if (client.TargetActive()) {
+            client.ActionTargetGround(water.x, water.y, water.z);
+            fishCursorPending_ = false;
+            fishCastMs_ = obs.nowMs;
+            fishCastJournalMs_ = client.JournalNowMs();
+            fishX_ = water.x; fishY_ = water.y;
+            fishSeen_ = market::QtyOf(obs.pack, "i_fish_big_1");
+            nextActionMs_ = obs.nowMs + kFishPollMs;
+            return false;
+        }
+        if (obs.nowMs - fishCastMs_ > 6000) {
+            fishCursorPending_ = false;
+            planner_.NoteAttempt(obs.nowMs);
+        }
+        return false;
+    }
+
+    client.ActionUseObject(pole);
+    fishCursorPending_ = true;
+    fishCastMs_ = obs.nowMs;
+    nextActionMs_ = obs.nowMs + 800;
+    return false;
 }
 
 bool Runner::DoTravel(Client& client, const Observation& obs) {
