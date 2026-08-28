@@ -90,6 +90,7 @@ set(UO_CLIENT_SOURCES
     src/life/Needs.cpp
     src/life/Goals.cpp
     src/life/State.cpp
+    src/life/Professions.cpp
     src/life/Runner.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp

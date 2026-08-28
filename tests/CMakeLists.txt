@@ -160,3 +160,16 @@ target_include_directories(m4_economy_invariant PRIVATE
 
 add_test(NAME m4_economy_invariant COMMAND m4_economy_invariant
          ${CMAKE_SOURCE_DIR}/../../docs/tns_exports/economy_arbitrage_loops.tsv)
+
+# --- M5.1: the profession catalogue ----------------------------------------
+# Checks every entry against BOTH rulesets -- Revolution's creation rule
+# (two skills at 50.0, 50 stat points) and the finished-build caps (700/225).
+# A bad table entry fails here rather than on a live shard. Pure data.
+add_executable(m5_professions m5_professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(m5_professions PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m5_professions COMMAND m5_professions)

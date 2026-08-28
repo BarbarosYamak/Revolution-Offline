@@ -74,6 +74,11 @@ enum SkillId : int {
     kHealing          = 17,
     kTactics          = 27,
     kSwordsmanship    = 40,
+
+    // M5 archetypes. Same sourcing rule: read off the runtime's own file
+    // names, runtime/scripts/skills/skill<N>_<name>.scp.
+    kAnimalLore       = 2,
+    kVeterinary       = 39,
 };
 
 struct Profile {

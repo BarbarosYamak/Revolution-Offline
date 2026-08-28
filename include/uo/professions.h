@@ -1,0 +1,185 @@
+#pragma once
+
+// ---------------------------------------------------------------------------
+// M5.1 -- professions as DATA, not as branches.
+//
+// M4 proved one life with a hardcoded `FrontierLumberjackSwordsman()`. M5 needs
+// several, and the brief is explicit about the failure mode to avoid:
+//
+//     do not scatter `if (miner) ... if (mage) ... if (tamer)` through
+//     unrelated systems.
+//
+// So a profession is a RECORD describing what a character is trying to become,
+// and every system reads that record rather than testing an archetype enum.
+// Adding an archetype must not require editing the need model, the planner or
+// the runner.
+//
+// THIS IS A GOAL PROFILE, NOT A TEMPLATE TO INSTANTIATE.
+//
+// The distinction is the whole project rule. Nothing here is granted: the
+// starting pair is what the character ASKS the server for at creation, and
+// every other number is a target it must earn. A profession that listed
+// finished skills and handed them over would be exactly the uo-offline
+// `Skills[x].Base = v` mistake this project rejects.
+// ---------------------------------------------------------------------------
+
+#include "uo/rules.h"
+#include "uo/types.h"
+
+#include <string>
+#include <vector>
+
+namespace uo::prof {
+
+// --- Revolution character creation ------------------------------------------
+//
+// THE RULE, as the project owner states it: a new character picks exactly TWO
+// skills at 50.0 each, everything else 0.0, and splits about 50 points across
+// STR/DEX/INT.
+//
+// MEASURED AGAINST THE RUNTIME, both fit inside what Source-X allows, so
+// neither is blocked and neither needs a server change:
+//
+//   CChar::InitPlayer clamps creation to 50.0 per skill and 100.0 total
+//     -> 50 + 50 = 100.0 is EXACTLY the ceiling. The rule is expressible.
+//   CChar::InitPlayer clamps creation to 60 per stat and 80 total
+//     -> a 50-point split is comfortably UNDER the ceiling, so asking for 50
+//        is simply a choice we make, not a limit we fight.
+//
+// Recorded so the difference is never lost: 80 is what the SERVER permits,
+// 50 is what REVOLUTION intends. M4's character asked for 80 (40/35/5) --
+// legal, but not the Revolution rule, and it is corrected here.
+inline constexpr i32 kRevolutionStartSkillEach   = 500;  // 50.0, in tenths
+inline constexpr i32 kRevolutionStartSkillCount  = 2;
+inline constexpr i32 kRevolutionStartStatTotal   = 50;
+
+// Server-side creation ceilings, for comparison only. Never use these as
+// targets -- they are what the engine tolerates, not what Revolution did.
+inline constexpr i32 kServerCreateSkillEachMax = 500;   // 50.0
+inline constexpr i32 kServerCreateSkillSumMax  = 1000;  // 100.0
+inline constexpr i32 kServerCreateStatEachMax  = 60;
+inline constexpr i32 kServerCreateStatSumMax   = 80;
+
+// --- what a profession needs from the world ---------------------------------
+
+// A tool the life cannot proceed without. `graphics` are the item ids as this
+// shard's own itemdefs carry them -- never guessed from generic UO.
+struct ToolNeed {
+    std::string      name;        // "hatchet", "pickaxe"
+    std::vector<u16> graphics;
+    bool             mustBeWielded = false;  // Sphere skills that need SRC.WEAPON
+};
+
+struct ConsumableNeed {
+    std::string      name;        // "bandage", "reagent", "food"
+    std::vector<u16> graphics;
+    i32              low = 0;     // below this, it becomes a need
+    i32              restockTo = 0;
+};
+
+// What this life does for money, in preference order. A profession that can
+// only gather is not the same as one that can gather and craft.
+enum class Income : u8 {
+    Gather = 0,     // chop, mine, fish -- take from the world
+    Process,        // smelt, spin -- transform what was gathered
+    Craft,          // make a finished good
+    Hunt,           // loot from creatures
+    Count,
+};
+
+const char* IncomeName(Income i);
+
+// --- the profession record ---------------------------------------------------
+
+// A skill this profession wants, and why. `priority` orders training when
+// several are short; `viaTrainer` marks the ones worth paying an NPC for
+// rather than grinding from zero.
+struct SkillTargetSpec {
+    int    skillId = -1;
+    i32    tenths = 0;
+    int    priority = 0;      // higher trains first
+    bool   viaTrainer = false;
+};
+
+struct Profession {
+    std::string id;             // "miner_smith", stable, used as a key
+    std::string label;          // human-readable
+
+    // CREATION. Exactly two, 50.0 each -- validated, not assumed.
+    // -1, not 0, is "unset": skill id 0 is ALCHEMY, a real skill, and using 0
+    // as a sentinel silently rejected the alchemist archetype.
+    int startSkillA = -1;
+    int startSkillB = -1;
+    // The stat split this life wants at creation. Must total
+    // kRevolutionStartStatTotal.
+    i32 startStr = 0, startDex = 0, startInt = 0;
+
+    // THE LONG GAME. Targets the character must earn, inside the 700 budget.
+    std::vector<SkillTargetSpec> targets;
+    i32 unresolvedTenths = 0;   // budget deliberately left unspent
+
+    i32 targetStr = 0, targetDex = 0, targetInt = 0;
+
+    std::vector<Income>         income;
+    std::vector<ToolNeed>       tools;
+    std::vector<ConsumableNeed> consumables;
+
+    // Resource this life gathers, as the world model names it ("logs", "ore").
+    // Empty for a profession that buys its inputs instead.
+    std::string gathers;
+
+    // What it makes, as itemdef defnames. Drives the production-chain link and
+    // the M7 producer/consumer split.
+    std::vector<std::string> produces;
+    // What it must obtain from someone else. THIS is what creates economic
+    // interdependence rather than every bot doing every stage.
+    std::vector<std::string> consumes;
+
+    // How readily this life picks a fight it did not start. A miner deep in a
+    // cave and a swordsman on the road should not behave alike.
+    double riskTolerance = 0.5;   // 0 = flee everything, 1 = stand and fight
+
+    // Gold this life keeps back rather than spending -- the reserve that pays
+    // for a replacement tool after a death.
+    i32 goldReserve = 0;
+};
+
+// --- the catalogue -----------------------------------------------------------
+
+// Every profession this build knows. Data only; adding one is a table entry.
+const std::vector<Profession>& All();
+const Profession* Find(const char* id);
+
+enum class ProfViolation : u8 {
+    None = 0,
+    NotTwoStartSkills,      // Revolution starts exactly two
+    StartSkillNot50,
+    StartStatsWrongTotal,   // must be kRevolutionStartStatTotal
+    StartStatOverServerMax,
+    SkillBudgetExceeded,    // targets + unresolved > 700.0
+    PerSkillCap,
+    InactiveSkill,
+    StatTotalExceeded,      // targets > 225
+    StatPerCapExceeded,
+    NoIncome,
+    Count,
+};
+
+const char* ProfViolationName(ProfViolation v);
+
+struct ProfCheck {
+    bool          ok = false;
+    ProfViolation violation = ProfViolation::None;
+    int           skillId = 0;
+    i32           startSkillSum = 0;
+    i32           startStatSum = 0;
+    i32           targetSkillSum = 0;   // targets + unresolved
+    i32           targetStatSum = 0;
+};
+
+// Validates a profession against BOTH rulesets: Revolution's creation rule and
+// the 700/225 finished-build caps. A profession that fails is a bug in the
+// table, not a runtime condition -- every entry is checked by the unit tests.
+ProfCheck Validate(const rules::Profile& p, const Profession& prof);
+
+}  // namespace uo::prof
