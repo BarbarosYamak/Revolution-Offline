@@ -122,6 +122,7 @@ public:
         // both would have two things deciding where to walk.
         bool        autonomous = false;
         const char* botDataRoot = nullptr;    // nullptr -> "bot_data"
+        const char* professionId = nullptr;   // uo::prof::All() id; required with --autonomous
         i32         lifeMinutes = 30;         // session length before a clean logout
         i32         lifeGoalLimit = 0;        // 0 = no goal-count limit
         bool        logPackets;       // write PKT hex lines to the log file
@@ -559,6 +560,14 @@ public:
     // chop", or "You decide not to chop wood for now" -- four outcomes a timer
     // cannot tell apart. Reading them is exactly what a player does.
     bool JournalSaidSince(const char* needle, i64 sinceMs) const;
+    // Pull the FIRST integer out of the newest journal line containing
+    // `needle`, or -1. The NPC trainer quote is
+    // "For %d gold I will train you in all I know of %s"
+    // (Source-X defmessages.tbl NPC_TRAINER_PRICE), so the price a bot pays is
+    // READ FROM THE NPC rather than computed from a config we happen to know.
+    // That keeps the mechanic honest: if the shard changes NPCTrainCost, the
+    // bot follows without being told.
+    i32  JournalNumberSince(const char* needle, i64 sinceMs) const;
     // Timestamp of the newest journal entry, for taking a "before" mark.
     i64  JournalNowMs() const;
 

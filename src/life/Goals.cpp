@@ -18,6 +18,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::TrainCombat:           return "TRAIN_COMBAT";
         case GoalKind::EarnGold:              return "EARN_GOLD";
         case GoalKind::TravelToRequiredPlace: return "TRAVEL_TO_REQUIRED_PLACE";
+        case GoalKind::TrainAtNpc:            return "TRAIN_AT_NPC";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -69,6 +70,10 @@ const GoalSpec kGoals[] = {
     {GoalKind::GatherLogs,            NeedKind::NeedLogs,       130.0},
     {GoalKind::TrainCombat,           NeedKind::NeedTraining,   110.0},
     {GoalKind::TravelToRequiredPlace, NeedKind::NeedTravel,      90.0},
+    // Above ordinary gathering: buying a skill is a step change in what the
+    // character can do, and the gold is already saved by the time the need
+    // fires. Below housekeeping, because a full pack still comes first.
+    {GoalKind::TrainAtNpc,            NeedKind::NeedSkillTraining, 200.0},
 };
 
 }  // namespace

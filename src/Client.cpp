@@ -259,6 +259,7 @@ bool Client::Start() {
                                                                : lc.accountName;
         lc.sessionLimitMs = static_cast<i64>(cfg_.lifeMinutes) * 60 * 1000;
         lc.goalLimit = cfg_.lifeGoalLimit;
+        lc.professionId = cfg_.professionId ? cfg_.professionId : "";
         lifeRunner_ = std::make_unique<life::Runner>();
         std::string lerr;
         if (!lifeRunner_->Configure(lc, &lerr)) {

@@ -1,4 +1,5 @@
 #include "uo/life.h"
+#include "uo/professions.h"
 
 #include <algorithm>
 #include <cctype>
@@ -189,6 +190,56 @@ i32 Observation::SkillSumTenths() const {
     i32 sum = 0;
     for (const SkillTarget& s : skills) sum += s.tenths;
     return sum;
+}
+
+
+// ---------------------------------------------------------------------------
+// M5: a plan is a profession, restated as the thing the character asks for at
+// creation plus the things it must earn.
+// ---------------------------------------------------------------------------
+BuildPlan PlanFromProfession(const prof::Profession& p) {
+    BuildPlan plan;
+    plan.family = p.id;
+
+    for (const prof::SkillTargetSpec& t : p.targets) {
+        plan.skills.push_back({t.skillId, t.tenths});
+        plan.viaTrainer.push_back(t.viaTrainer);
+        plan.priority.push_back(t.priority);
+    }
+    plan.unresolvedTenths = p.unresolvedTenths;
+
+    plan.targetStr = p.targetStr;
+    plan.targetDex = p.targetDex;
+    plan.targetInt = p.targetInt;
+
+    // THE REVOLUTION CREATION RULE: exactly two skills at 50.0, and about 50
+    // stat points. Nothing else is requested and nothing else is granted.
+    plan.createStr = p.startStr;
+    plan.createDex = p.startDex;
+    plan.createInt = p.startInt;
+    plan.createSkills = {
+        {p.startSkillA, prof::kRevolutionStartSkillEach},
+        {p.startSkillB, prof::kRevolutionStartSkillEach},
+    };
+    return plan;
+}
+
+int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
+                   i32 trainerCeilingTenths) {
+    int best = -1;
+    int bestPriority = -1;
+    for (usize i = 0; i < plan.skills.size(); ++i) {
+        if (i >= plan.viaTrainer.size() || !plan.viaTrainer[i]) continue;
+        const SkillTarget& t = plan.skills[i];
+        const i32 have = obs.SkillTenths(t.skillId);
+        if (have >= t.tenths) continue;
+        // Past what a trainer can give, paying one is simply waste -- the
+        // character has to grind from here whether it pays or not.
+        if (have >= trainerCeilingTenths) continue;
+        const int pri = (i < plan.priority.size()) ? plan.priority[i] : 0;
+        if (pri > bestPriority) { bestPriority = pri; best = t.skillId; }
+    }
+    return best;
 }
 
 }  // namespace uo::life

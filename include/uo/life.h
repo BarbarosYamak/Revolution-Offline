@@ -23,6 +23,7 @@
 // that `uo/actions.h` uses for the M2 action layer.
 // ---------------------------------------------------------------------------
 
+#include "uo/professions.h"
 #include "uo/rules.h"
 #include "uo/json.h"
 #include "uo/types.h"
@@ -57,6 +58,10 @@ struct SkillTarget {
 struct BuildPlan {
     std::string family;
     std::vector<SkillTarget> skills;
+    // Parallel to `skills`: which of them an NPC will teach, and in what order
+    // this life wants them. Empty for an M4-era plan, which had no trainers.
+    std::vector<bool> viaTrainer;
+    std::vector<int>  priority;
     i32 unresolvedTenths = 0;
 
     i32 targetStr = 0;
@@ -99,7 +104,14 @@ struct PlanCheck {
 PlanCheck ValidatePlan(const rules::Profile& p, const BuildPlan& plan);
 
 // The M4 Slice 1 character, exactly as docs/M4_LIFECYCLE_PLAN.md specifies it.
+// KEPT so M4's persisted characters still load and its tests still mean what
+// they meant; new characters come from the profession catalogue instead.
 BuildPlan FrontierLumberjackSwordsman();
+
+// M5: derive a plan from a profession record. The two starting skills become
+// the creation request at 50.0 each; everything else becomes a target the
+// character has to earn.
+BuildPlan PlanFromProfession(const prof::Profession& p);
 
 // ===========================================================================
 // Memory -- what this character has learned. Private to one identity.
@@ -311,6 +323,12 @@ struct Observation {
     bool treeAdjacent = false;
     bool atBank = false;
 
+    // What the profession wants bought from a trainer next, or -1. Set by the
+    // runner from the build plan; the need model does not know about
+    // professions, only about a skill it has been pointed at.
+    int wantTrainSkill = -1;
+    i32 wantTrainTarget = 0;
+
     i32 SkillTenths(int skillId) const;
     i32 SkillSumTenths() const;
     double HpFraction() const { return hpMax > 0 ? static_cast<double>(hp) / hpMax : 1.0; }
@@ -318,6 +336,14 @@ struct Observation {
         return maxWeight > 0 ? static_cast<double>(weight) / maxWeight : 0.0;
     }
 };
+
+// The next skill worth BUYING from a trainer, or -1. Chosen by the profession's
+// own priority order, restricted to targets flagged `viaTrainer`, and only
+// while the character is still below what a trainer could give -- there is no
+// point paying an NPC for a skill already past its ceiling.
+int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
+                   i32 trainerCeilingTenths);
+
 
 // ===========================================================================
 // Needs -- small, specific, and always able to say WHAT and WHY
@@ -334,6 +360,11 @@ enum class NeedKind : u8 {
     NeedGold,
     NeedLogs,
     NeedTraining,
+    // A skill this build wants that the character does NOT have, and that an
+    // NPC will teach for gold. Distinct from NeedTraining, which is "grind the
+    // skill I already have upward": this one is BUYABLE, and it is the need
+    // that ties M5 progression to the M7 economy.
+    NeedSkillTraining,
     NeedTravel,
     Count,
 };
@@ -362,6 +393,12 @@ struct NeedConfig {
     i32    logsWorthBanking = 20;
     i32    foodLow          = 1;
     bool   hungerLive       = true;  // HitsHungerLoss=1 on this shard
+    // Only used to decide whether walking to a trainer is worth it. The real
+    // price is whatever the NPC quotes on arrival, and is never assumed.
+    // sphere.ini gives NPCTrainCost=1 gp per 0.1 and NPCTrainPercent=30, so a
+    // generic trainer taking a skill 0 -> 30.0 asks about 300; a guildmaster
+    // overrides to 50.0 at 50% (c_human_guildmasters.scp:23) and asks ~500.
+    i32    trainerFeeGuess  = 300;
 };
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
@@ -382,6 +419,8 @@ enum class GoalKind : u8 {
     TrainCombat,
     EarnGold,
     TravelToRequiredPlace,
+    // Find a trainer, ask the price, pay it, and verify the skill moved.
+    TrainAtNpc,
     IdleBriefly,
     Count,
 };

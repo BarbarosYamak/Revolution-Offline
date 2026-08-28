@@ -1584,6 +1584,34 @@ bool Client::JournalSaidSince(const char* needle, i64 sinceMs) const {
     return false;
 }
 
+i32 Client::JournalNumberSince(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return -1;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) == std::string::npos) continue;
+        for (usize i = 0; i < it->text.size(); ++i) {
+            if (it->text[i] < '0' || it->text[i] > '9') continue;
+            i64 v = 0;
+            while (i < it->text.size() && it->text[i] >= '0' && it->text[i] <= '9') {
+                v = v * 10 + (it->text[i] - '0');
+                if (v > 100000000) return -1;   // not a price
+                ++i;
+            }
+            return static_cast<i32>(v);
+        }
+        return -1;   // matched the line but it carries no number
+    }
+    return -1;
+}
+
 i64 Client::JournalNowMs() const {
     return journal_.empty() ? NowMs() : journal_.back().timeMs;
 }

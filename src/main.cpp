@@ -220,6 +220,7 @@ int main(int argc, char** argv) {
         // --bot-data across logouts and host restarts.
         else if (ArgIs(a, "--autonomous")) base.autonomous = true;
         else if (ArgIs(a, "--bot-data"))   { base.botDataRoot = next; ++i; }
+        else if (ArgIs(a, "--profession")) { base.professionId = next; ++i; }
         else if (ArgIs(a, "--life-minutes")) { base.lifeMinutes = std::atoi(next); ++i; }
         else if (ArgIs(a, "--life-goals"))   { base.lifeGoalLimit = std::atoi(next); ++i; }
         else if (ArgIs(a, "--keepalive")) { base.keepaliveIntervalMs = static_cast<uo::u32>(std::atoi(next)); ++i; }

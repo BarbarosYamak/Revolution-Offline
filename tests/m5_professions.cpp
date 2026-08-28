@@ -9,6 +9,7 @@
 //
 // No server, no MULs, no world data.
 
+#include "uo/life.h"
 #include "uo/professions.h"
 #include "uo/rules.h"
 
@@ -236,6 +237,95 @@ void TestMinerConstraintIsRecorded() {
           "the 50 starting ingots long before it can lift the pickaxe");
 }
 
+
+// --------------------------------------------------------------------------
+void TestPlanFromProfession() {
+    Section("plan: a profession becomes a legal BuildPlan");
+
+    const rules::Profile& rp = rules::Revolution();
+    for (const prof::Profession& p : prof::All()) {
+        const life::BuildPlan plan = life::PlanFromProfession(p);
+        const life::PlanCheck pc = life::ValidatePlan(rp, plan);
+        if (!pc.ok) {
+            std::printf("  FAIL: plan for '%s' is illegal: %s\n", p.id.c_str(),
+                        life::PlanViolationName(pc.violation));
+            ++g_failures;
+        }
+        ++g_checks;
+
+        // The creation request is the Revolution rule, verbatim -- two skills,
+        // 50.0 each. If PlanFromProfession ever "helpfully" adds a third, the
+        // server clamps it and the character silently gets less than asked.
+        Check(plan.createSkills.size() == 2,
+              "the creation request carries exactly two skills");
+        i32 sum = 0;
+        for (const life::SkillTarget& t : plan.createSkills) sum += t.tenths;
+        Check(sum == prof::kServerCreateSkillSumMax,
+              "the creation request is exactly 100.0 total");
+
+        // The parallel arrays must stay parallel; NextSkillToBuy indexes them.
+        Check(plan.viaTrainer.size() == plan.skills.size() &&
+              plan.priority.size() == plan.skills.size(),
+              "viaTrainer/priority stay in step with skills");
+    }
+}
+
+// --------------------------------------------------------------------------
+void TestNextSkillToBuy() {
+    Section("trainer: what a life pays an NPC for, and when it stops");
+
+    const prof::Profession* mg = prof::Find("mage");
+    Check(mg != nullptr, "the mage exists");
+    if (!mg) return;
+    const life::BuildPlan plan = life::PlanFromProfession(*mg);
+
+    // A generic tradesman teaches to 30.0 (NPCTrainPercent=30 of a GM's
+    // 100.0); a guildmaster to 50.0 (TRAINSKILLMAX). Both ceilings are
+    // exercised, because the answer must change with the ceiling.
+    life::Observation obs;
+    const int firstBuy = life::NextSkillToBuy(plan, obs, 300);
+    Check(firstBuy >= 0,
+          "a brand-new mage has something worth buying from a trainer");
+
+    // Priority order decides, not table order.
+    int bestPri = -1, expect = -1;
+    for (usize i = 0; i < plan.skills.size(); ++i) {
+        if (!plan.viaTrainer[i]) continue;
+        if (plan.priority[i] > bestPri) {
+            bestPri = plan.priority[i];
+            expect = plan.skills[i].skillId;
+        }
+    }
+    Check(firstBuy == expect, "the highest-priority trainable skill is chosen");
+
+    // Already past the trainer's ceiling -> stop paying. This is the check
+    // that keeps a bot from handing gold to an NPC for nothing, which is the
+    // bot-side half of the anti-arbitrage invariant.
+    obs.skills.push_back({firstBuy, 300});
+    Check(life::NextSkillToBuy(plan, obs, 300) != firstBuy,
+          "a skill at the trainer ceiling is no longer bought");
+    Check(life::NextSkillToBuy(plan, obs, 500) == firstBuy,
+          "the same skill IS still worth buying from a guildmaster at 50.0");
+
+    // Nothing left to buy must be -1, not 0 -- skill id 0 is Alchemy, and a
+    // 0 sentinel would send every finished character to an alchemy trainer.
+    life::Observation done;
+    for (usize i = 0; i < plan.skills.size(); ++i) {
+        done.skills.push_back({plan.skills[i].skillId, 500});
+    }
+    Check(life::NextSkillToBuy(plan, done, 300) == -1,
+          "a character past every trainer ceiling buys nothing (-1, not 0)");
+
+    // A skill the plan never asked for is never bought, however cheap.
+    life::Observation zero;
+    const int pick = life::NextSkillToBuy(plan, zero, 300);
+    bool inPlan = false;
+    for (const life::SkillTarget& t : plan.skills) {
+        if (t.skillId == pick) inPlan = true;
+    }
+    Check(inPlan, "the chosen skill is one the plan actually targets");
+}
+
 }  // namespace
 
 int main() {
@@ -246,6 +336,8 @@ int main() {
     TestRefusals();
     TestArchetypesDiffer();
     TestMinerConstraintIsRecorded();
+    TestPlanFromProfession();
+    TestNextSkillToBuy();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

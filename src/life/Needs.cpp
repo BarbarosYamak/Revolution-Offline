@@ -18,6 +18,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedGold:      return "NeedGold";
         case NeedKind::NeedLogs:      return "NeedLogs";
         case NeedKind::NeedTraining:  return "NeedTraining";
+        case NeedKind::NeedSkillTraining: return "NeedSkillTraining";
         case NeedKind::NeedTravel:    return "NeedTravel";
         case NeedKind::Count:         break;
     }
@@ -42,6 +43,18 @@ const char* SkillName(int id) {
         case rules::kTactics:       return "Tactics";
         case rules::kAnatomy:       return "Anatomy";
         case rules::kHealing:       return "Healing";
+        case rules::kMining:        return "Mining";
+        case rules::kBlacksmithing: return "Blacksmithing";
+        case rules::kMagery:        return "Magery";
+        case rules::kMeditation:    return "Meditation";
+        case rules::kAlchemy:       return "Alchemy";
+        case rules::kTaming:        return "Taming";
+        case rules::kAnimalLore:    return "Animal Lore";
+        case rules::kVeterinary:    return "Veterinary";
+        case rules::kTinkering:     return "Tinkering";
+        case rules::kArmsLore:      return "Arms Lore";
+        case rules::kEvaluatingIntel: return "Evaluating Intelligence";
+        case rules::kInscription:   return "Inscription";
         default:                    return "skill";
     }
 }
@@ -231,6 +244,34 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
                 t.tenths / 10.0),
             nothingToPractiseOn);
+    }
+
+    // --- a skill worth BUYING ---------------------------------------------
+    //
+    // The economically grounded progression the M5/M7 briefs both describe:
+    // the character notices it lacks a skill its life needs, works until it
+    // can afford the fee, pays an NPC, and only then starts training normally.
+    //
+    // The need is BLOCKED rather than absent when the gold is short, so the
+    // reason a character is still gathering is legible: it is saving.
+    if (obs.wantTrainSkill >= 0) {
+        const i32 have = obs.SkillTenths(obs.wantTrainSkill);
+        if (have < obs.wantTrainTarget) {
+            // The fee is not known until an NPC quotes it. `trainerFeeGuess`
+            // is only used to decide whether it is worth WALKING there --
+            // never to decide what to pay.
+            const bool canAfford = obs.gold >= cfg.trainerFeeGuess;
+            add(NeedKind::NeedSkillTraining,
+                have <= 0 ? 0.55 : 0.30,
+                SkillName(obs.wantTrainSkill),
+                have <= 0
+                    ? "this life needs a skill the character does not have at all"
+                    : "an NPC can teach this faster than grinding it from here",
+                Fmt("%s %.1f -> %.1f, gold %d (fee is quoted on arrival, "
+                    "roughly %d)", SkillName(obs.wantTrainSkill), have / 10.0,
+                    obs.wantTrainTarget / 10.0, obs.gold, cfg.trainerFeeGuess),
+                !canAfford);
+        }
     }
 
     // --- being in the right place -----------------------------------------

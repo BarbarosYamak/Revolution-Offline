@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "uo/log.h"
 #include "uo/builders.h"
+#include "uo/professions.h"
 #include "uo/vendor_policy.h"
 #include "uo/world_model.h"
 
@@ -24,6 +25,68 @@ constexpr u16 kLog        = 0x1BDD;
 constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
 constexpr u16 kFood[]     = {0x103B, 0x09EB, 0x09F2};
+constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
+
+// The word the NPC expects after "train". Sphere matches on the skill KEY from
+// skills/skill<N>_<name>.scp, not on our own label.
+const char* SkillKey(int id) {
+    switch (id) {
+        case rules::kLumberjacking:   return "Lumberjacking";
+        case rules::kSwordsmanship:   return "Swordsmanship";
+        case rules::kTactics:         return "Tactics";
+        case rules::kAnatomy:         return "Anatomy";
+        case rules::kHealing:         return "Healing";
+        case rules::kMining:          return "Mining";
+        case rules::kBlacksmithing:   return "Blacksmithing";
+        case rules::kMagery:          return "Magery";
+        case rules::kMeditation:      return "Meditation";
+        case rules::kAlchemy:         return "Alchemy";
+        case rules::kTinkering:       return "Tinkering";
+        case rules::kArmsLore:        return "ArmsLore";
+        case rules::kEvaluatingIntel: return "EvaluatingIntel";
+        case rules::kInscription:     return "Inscription";
+        case rules::kTaming:          return "Taming";
+        case rules::kAnimalLore:      return "AnimalLore";
+        case rules::kVeterinary:      return "Veterinary";
+        default:                      return "";
+    }
+}
+
+// Which trade teaches which skill. A guildmaster teaches to 50.0 where a plain
+// tradesman stops at 30.0 (c_human_guildmasters.scp:23), so the guild is
+// preferred wherever one exists. Pairs are (paperdoll-title substring, the
+// world model's service) so both the mobile scan and the travel layer agree.
+struct TrainerFor {
+    int         skillId;
+    const char* trade;
+    wm::Service service;
+};
+const TrainerFor kTrainers[] = {
+    {rules::kSwordsmanship,   "swordsman",   wm::Service::Blacksmith},
+    {rules::kTactics,         "swordsman",   wm::Service::Blacksmith},
+    {rules::kAnatomy,         "healer",      wm::Service::Healer},
+    {rules::kHealing,         "healer",      wm::Service::Healer},
+    {rules::kBlacksmithing,   "blacksmith",  wm::Service::Blacksmith},
+    {rules::kMining,          "blacksmith",  wm::Service::Blacksmith},
+    {rules::kTinkering,       "tinker",      wm::Service::Tinker},
+    {rules::kArmsLore,        "blacksmith",  wm::Service::Blacksmith},
+    {rules::kMagery,          "mage",        wm::Service::Mage},
+    {rules::kMeditation,      "mage",        wm::Service::Mage},
+    {rules::kEvaluatingIntel, "mage",        wm::Service::Mage},
+    {rules::kInscription,     "scribe",      wm::Service::Scribe},
+    {rules::kAlchemy,         "alchemist",   wm::Service::Alchemist},
+    {rules::kTaming,          "animal",      wm::Service::Stablemaster},
+    {rules::kAnimalLore,      "animal",      wm::Service::Stablemaster},
+    {rules::kVeterinary,      "animal",      wm::Service::Stablemaster},
+    {rules::kLumberjacking,   "carpenter",   wm::Service::Carpenter},
+};
+
+const TrainerFor* TrainerForSkill(int id) {
+    for (const TrainerFor& t : kTrainers) {
+        if (t.skillId == id) return &t;
+    }
+    return nullptr;
+}
 
 // The two hand layers. Which one an item lands on is decided by THIS SHARD'S
 // tiledata, not by generic UO: the newbie katana wears on layer 1 and the
@@ -133,8 +196,30 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
         state_.identity.identityId    = id;
         state_.identity.accountName   = cfg.accountName;
         state_.identity.characterName = cfg.characterName;
-        state_.plan = FrontierLumberjackSwordsman();
-        LogLine("no prior state for %s: this is a new life", id.c_str());
+        const prof::Profession* chosen =
+            cfg.professionId.empty() ? nullptr : prof::Find(cfg.professionId.c_str());
+        if (!chosen) {
+            if (err) {
+                *err = "unknown profession '" + cfg.professionId +
+                       "' -- see uo::prof::All()";
+            }
+            return false;
+        }
+        const prof::ProfCheck pc = prof::Validate(rules::Revolution(), *chosen);
+        if (!pc.ok) {
+            if (err) {
+                *err = "profession '" + chosen->id + "' is not a legal life: " +
+                       prof::ProfViolationName(pc.violation);
+            }
+            return false;
+        }
+        state_.plan = PlanFromProfession(*chosen);
+        LogLine("no prior state for %s: a new %s", id.c_str(),
+                chosen->label.c_str());
+        LogLine("creation request: %s 50.0 + %s 50.0, stats %d/%d/%d = %d",
+                SkillLabel(chosen->startSkillA), SkillLabel(chosen->startSkillB),
+                chosen->startStr, chosen->startDex, chosen->startInt,
+                chosen->startStr + chosen->startDex + chosen->startInt);
     }
 
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
@@ -256,6 +341,17 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
+
+    // What this life wants to BUY next. A generic tradesman teaches to 30.0
+    // (sphere.ini NPCTrainPercent=30 of a GM's 100.0); a guildmaster overrides
+    // to 50.0. The ceiling passed here is the lower one, so the character
+    // never pays for a skill it has already grown past a plain trainer.
+    obs.wantTrainSkill = NextSkillToBuy(state_.plan, obs, 300);
+    if (obs.wantTrainSkill >= 0) {
+        for (const SkillTarget& t : state_.plan.skills) {
+            if (t.skillId == obs.wantTrainSkill) { obs.wantTrainTarget = t.tenths; break; }
+        }
+    }
 
     return obs;
 }
@@ -651,6 +747,20 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             // --- act -------------------------------------------------------
+            // Point the trainer machinery at whatever the plan wants next.
+            // Doing it here, from data, is what keeps `if (miner) ...` out of
+            // the goal bodies.
+            if (obs.wantTrainSkill >= 0) {
+                if (const TrainerFor* tf = TrainerForSkill(obs.wantTrainSkill)) {
+                    if (trainerTrade_ != tf->trade) {
+                        trainerTrade_ = tf->trade;
+                        trainerService_ = tf->service;
+                        trainTrips_ = 0;
+                        trainAsked_ = false;
+                    }
+                }
+            }
+
             RunGoal(client, obs);
 
             // --- checkpoint ------------------------------------------------
@@ -838,6 +948,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::TrainCombat:           done = DoTrainCombat(client, obs); break;
         case GoalKind::EarnGold:              done = DoEarnGold(client, obs); break;
         case GoalKind::TravelToRequiredPlace: done = DoTravel(client, obs); break;
+        case GoalKind::TrainAtNpc:            done = DoTrainAtNpc(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -1636,6 +1747,191 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     }
     LogLine("earn_gold: this buyer's list does not take logs; banking instead");
     return true;
+}
+
+
+// ---------------------------------------------------------------------------
+// TRAIN_AT_NPC -- buy a skill the way a player does.
+//
+//   travel to a trade NPC -> ask who is here -> say "train <skill>"
+//   -> READ THE PRICE THE NPC QUOTES -> hand over exactly that in gold
+//   -> verify against the server's own skill number
+//
+// The price is never computed. Source-X answers with
+// "For %d gold I will train you in all I know of %s" (defmessages.tbl
+// NPC_TRAINER_PRICE) and the bot reads that line. If the shard retunes
+// NPCTrainCost the bot follows without being told, and a refusal
+// ("I know nothing about that", "You already know as much as I can teach")
+// is read as a refusal rather than timed out.
+//
+// Nothing here sets a skill. The gold leaves the pack by an ordinary
+// lift-and-drop onto the trainer, and the proof of training is the server's
+// skill value afterwards.
+// ---------------------------------------------------------------------------
+bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
+    const int skillId = obs.wantTrainSkill;
+    if (skillId < 0) return true;
+
+    const i32 have = client.PlayerSkillBase(static_cast<u16>(skillId));
+
+    // --- did the gold we handed over actually buy anything? ---------------
+    //
+    // The proof is the SERVER'S skill number, not our own bookkeeping. Asking
+    // for a fresh skill list is what a player's client does anyway.
+    if (trainPaid_) {
+        if (have > trainSkillBefore_) {
+            LogLine("training: %s %.1f -> %.1f, bought from a trainer",
+                    SkillLabel(skillId), trainSkillBefore_ / 10.0, have / 10.0);
+            state_.memory.NoteEvent("skill_trained", SkillLabel(skillId),
+                                    trainerTrade_.c_str(), obs.x, obs.y,
+                                    obs.nowMs);
+            // Remember WHERE, so the next skill this life buys does not start
+            // the search from nothing. Recorded only because we dealt with it.
+            KnownSupplier sup;
+            sup.need = std::string("trainer:") + trainerTrade_;
+            sup.name = trainerTrade_;
+            sup.sourceType = "npc_trainer";
+            sup.x = obs.x; sup.y = obs.y; sup.z = obs.z;
+            sup.observedPricePerUnit = trainQuoted_;
+            sup.lastVerifiedMs = obs.nowMs;
+            sup.policyAllows = true;
+            state_.memory.NoteSupplier(sup);
+            trainPaid_ = false;
+            trainAsked_ = false;
+            trainTrips_ = 0;
+            return true;
+        }
+        if (obs.nowMs - trainPaidMs_ > 10000) {
+            LogLine("training: paid but %s has not moved after 10s (still %.1f)",
+                    SkillLabel(skillId), have / 10.0);
+            client.ActionRequestSkills();
+            planner_.NoteAttempt(obs.nowMs);
+            trainPaid_ = false;
+            trainAsked_ = false;
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+    if (have >= obs.wantTrainTarget) {
+        LogLine("training: %s is already at %.1f -- nothing to buy",
+                SkillLabel(skillId), have / 10.0);
+        return true;
+    }
+
+    if (client.TravelBusy()) return false;
+
+    // --- get to a trainer --------------------------------------------------
+    const u32 trainer = client.NearestMobileWithTrade(trainerTrade_.c_str());
+    if (!trainer) {
+        if (trainTrips_ >= kMaxTrainTrips) {
+            LogLine("goal_failed=TRAIN_AT_NPC reason=\"no '%s' reachable after "
+                    "%d trips\"", trainerTrade_.c_str(), trainTrips_);
+            state_.memory.NoteEvent("trainer_unreachable", trainerTrade_.c_str(),
+                                    "", obs.x, obs.y, obs.nowMs);
+            planner_.Finish(false, "no trainer reachable", obs.nowMs);
+            trainTrips_ = 0;
+            return false;
+        }
+        if (!travelInFlight_) {
+            ++trainTrips_;
+            const KnownSupplier* known = state_.memory.BestSupplier(
+                (std::string("trainer:") + trainerTrade_).c_str());
+            if (known) {
+                LogLine("training: back to a trainer we have used before, "
+                        "'%s' at %d,%d", known->name.c_str(), known->x, known->y);
+                travelInFlight_ =
+                    client.TravelToPoint(known->x, known->y, 2, "trainer");
+            } else {
+                LogLine("training: looking for a '%s' to teach %s (trip %d)",
+                        trainerTrade_.c_str(), SkillLabel(skillId), trainTrips_);
+                travelInFlight_ = client.TravelToService(trainerService_);
+            }
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=TRAIN_AT_NPC reason=\"%s\"",
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        travelInFlight_ = false;
+        LogLine("training: arrived at %d,%d -- asking who is here",
+                client.PlayerX(), client.PlayerY());
+        client.ActionScanMobiles();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // --- ask, then read what the NPC actually says -------------------------
+    if (!trainAsked_) {
+        trainAskedMs_ = client.JournalNowMs();
+        trainAsked_ = true;
+        LogLine("training: asking the trainer about %s", SkillLabel(skillId));
+        client.ActionNpcTrain(trainer, SkillKey(skillId));
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // Refusals first -- each is a real answer, not a timeout.
+    struct Refusal { const char* text; const char* why; };
+    static const Refusal kRefusals[] = {
+        {"i know nothing about",        "this NPC does not teach it"},
+        {"you know more about",         "the character already exceeds the trainer"},
+        {"you already know as much",    "the trainer has nothing left to give"},
+        {"i would never train",         "the trainer refuses this character"},
+        {"there is nothing that i can", "the trainer has nothing to teach"},
+    };
+    for (const Refusal& r : kRefusals) {
+        if (!client.JournalSaidSince(r.text, trainAskedMs_)) continue;
+        LogLine("training: refused -- %s", r.why);
+        // Remember the refusal so the character does not walk back tomorrow.
+        state_.memory.NoteEvent("trainer_refused", r.why, trainerTrade_.c_str(),
+                                obs.x, obs.y, obs.nowMs);
+        planner_.Finish(false, r.why, obs.nowMs);
+        trainAsked_ = false;
+        trainTrips_ = 0;
+        return false;
+    }
+
+    const i32 quoted = client.JournalNumberSince("i will train you", trainAskedMs_);
+    if (quoted <= 0) {
+        if (obs.nowMs - trainAskedMs_ > 12000) {
+            LogLine("training: no quote and no refusal after 12s; giving up on "
+                    "this trainer");
+            planner_.NoteAttempt(obs.nowMs);
+            trainAsked_ = false;
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    if (obs.gold < quoted) {
+        LogLine("BLOCKED_NEED %s: the trainer wants %d gold and the purse holds "
+                "%d -- going back to work", SkillLabel(skillId), quoted, obs.gold);
+        state_.memory.NoteEvent("trainer_quote", SkillLabel(skillId),
+                                trainerTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+        planner_.Finish(false, "cannot afford the quoted fee", obs.nowMs);
+        trainAsked_ = false;
+        return false;
+    }
+
+    // --- pay exactly what was quoted ---------------------------------------
+    const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
+    if (!gold) {
+        LogLine("training: quoted %d but no gold stack found in the pack", quoted);
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+    LogLine("training: paying the quoted %d gold for %s (purse %d)",
+            quoted, SkillLabel(skillId), obs.gold);
+    trainSkillBefore_ = have;
+    trainQuoted_ = quoted;
+    trainPaidMs_ = client.JournalNowMs();
+    client.ActionNpcGive(trainer, gold, static_cast<u16>(quoted));
+    trainPaid_ = true;
+    nextActionMs_ = obs.nowMs + 4000;
+    return false;
 }
 
 bool Runner::DoTravel(Client& client, const Observation& obs) {

@@ -16,6 +16,7 @@
 // ---------------------------------------------------------------------------
 
 #include "uo/life.h"
+#include "uo/world_model.h"
 #include "uo/types.h"
 
 #include <string>
@@ -31,6 +32,10 @@ struct RunnerConfig {
     std::string dataRoot = "bot_data";
     std::string accountName;
     std::string characterName;
+    // Which life this character is starting. Must name an entry in
+    // uo::prof::All(); there is no default, because guessing one would
+    // silently create the wrong character.
+    std::string professionId;
 
     // Deterministic session limits (M4 brief, Phase 19). Whichever comes
     // first ends the session; the character then finds somewhere safe,
@@ -107,6 +112,7 @@ private:
     bool DoTrainCombat(Client& client, const Observation& obs);
     bool DoEarnGold(Client& client, const Observation& obs);
     bool DoTravel(Client& client, const Observation& obs);
+    bool DoTrainAtNpc(Client& client, const Observation& obs);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -187,6 +193,17 @@ private:
     // Bounded bank trips, for the same reason gathering needed one.
     static constexpr i32 kMaxBankTrips = 4;
     i32  bankTrips_ = 0;
+    // --- buying a skill from an NPC ------------------------------------
+    static constexpr i32 kMaxTrainTrips = 3;
+    std::string trainerTrade_;          // paperdoll-title substring to look for
+    wm::Service trainerService_ = wm::Service::None;
+    i32  trainTrips_ = 0;
+    bool trainAsked_ = false;
+    bool trainPaid_ = false;
+    i64  trainAskedMs_ = 0;
+    i64  trainPaidMs_ = 0;
+    i32  trainQuoted_ = 0;
+    i32  trainSkillBefore_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;
