@@ -1396,10 +1396,19 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     if (obs.bandages < needCfg_.bandageLow) {
         const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(kBandage);
         if (!ruling.allowed) {
-            LogLine("BLOCKED_NEED bandages: vendor policy refuses (%s)",
+            // FINISH the goal rather than retrying every 30 seconds forever.
+            // The policy verdict will not change within a session, so a retry
+            // is not a retry -- it is a character standing still. The need
+            // itself is now reported blocked in AssessNeeds, so this is the
+            // belt to that braces.
+            LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"the vendor policy "
+                    "grades a bandage %s, and no player supplier is known\"",
                     econ::VendorClassName(ruling.klass));
-            planner_.NoteAttempt(obs.nowMs);
-            nextActionMs_ = obs.nowMs + 30000;
+            state_.memory.NoteEvent("policy_refused", "i_bandage",
+                                    econ::VendorClassName(ruling.klass),
+                                    obs.x, obs.y, obs.nowMs);
+            planner_.Finish(false, "no legitimate source of bandages",
+                            obs.nowMs);
             return false;
         }
         if (client.TravelBusy()) return false;

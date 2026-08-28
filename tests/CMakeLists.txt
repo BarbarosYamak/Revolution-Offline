@@ -139,6 +139,7 @@ add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp

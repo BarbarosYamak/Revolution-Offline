@@ -1,0 +1,135 @@
+[14:46:41.437] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5h'
+[14:46:41.438] LOG   [m5h] event session_start: text log opened
+[14:46:41.438] LOG   [m5h] event net_connect_begin: connect 127.0.0.1:2593
+[14:46:41.438] INFO  [m5h] [net] connecting to 127.0.0.1:2593 ...
+[14:46:41.439] LOG   [m5h] event net_connected: connect 127.0.0.1:2593
+[14:46:41.439] INFO  [m5h] [net] connected.
+[14:46:41.439] INFO  [m5h] [seed] sent 0x7F000001 (plaintext)
+[14:46:41.439] LOG   [m5h] event seed_out: 0x7F000001 hex=7f000001
+[14:46:41.439] INFO  [life] no prior state for revolutionminer01.brannoc: a new Frontier Lumberjack / Swordsman
+[14:46:41.440] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 25/20/5 = 50
+[14:46:41.440] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[14:46:41.440] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:46:41.440] INFO  [m5h] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[14:46:41.447] INFO  [m5h] [0xA8] 1 server(s):
+[14:46:41.447] INFO  [m5h]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:46:41.463] INFO  [m5h] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[14:46:41.463] LOG   [m5h] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[14:46:41.463] INFO  [m5h] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:46:41.463] LOG   [m5h] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:46:41.463] INFO  [m5h] [0xB9] server features = 0x0005
+[14:46:41.463] INFO  [m5h] [0xA9] 5 slot(s) (populated 1):
+[14:46:41.463] INFO  [m5h]   [0] Brannoc
+[14:46:41.463] INFO  [m5h]   [1] <empty>
+[14:46:41.463] INFO  [m5h]   [2] <empty>
+[14:46:41.463] INFO  [m5h]   [3] <empty>
+[14:46:41.463] INFO  [m5h]   [4] <empty>
+[14:46:41.463] INFO  [m5h] [ui] playing slot 0 ('Brannoc')
+[14:46:41.479] INFO  [m5h] [0x1B] serial=0x0000CC33 body=0x0190 pos=(633,858,0)
+[14:46:41.479] LOG   [m5h] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(633,858,0)
+[14:46:41.479] INFO  [m5h] [0x20] player @(633,858,0) facing=3
+[14:46:41.479] INFO  [m5h] [0x55] login complete — entering world
+[14:46:41.479] LOG   [m5h] event in_world: 0x55 received
+[14:46:41.479] INFO  [m5h] [backpack] opening 0x4000CC23
+[14:46:41.479] INFO  [m5h] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:46:41.479] INFO  [m5h] [chat ascii] System: There is 1 other player here.
+[14:46:41.479] INFO  [m5h] [chat ascii] System: Last logged: 2026/08/28 03:21:30
+[14:46:41.479] INFO  [m5h] [chat ascii] System: You are under the protection of the town guards
+[14:46:41.483] INFO  [m5h] [action] requesting the skill list
+[14:46:41.483] INFO  [life] in world; asked the server for the skill list
+[14:46:41.484] INFO  [m5h] [0x24] open container 0x4000CC23 gump=60
+[14:46:41.484] INFO  [m5h] [0x3C] container contents: 7 item(s)
+[14:46:41.484] LOG   [m5h] event backpack_contents: serial=0x4000CC23 items=7
+[14:46:44.062] INFO  [m5h] [bot] world data loaded (0 blacklisted spot(s)).
+[14:46:44.063] INFO  [life] common knowledge: Yew woods at 664,1030 (172 tiles away)
+[14:46:44.063] INFO  [life] common knowledge: Yew Territory woods at 776,1030 (172 tiles away)
+[14:46:44.063] INFO  [life] common knowledge: Yew woods at 520,1160 (302 tiles away)
+[14:46:44.063] INFO  [life] seeded 3 forest hint(s) of 43 the atlas knows -- everything else is earned
+[14:46:44.063] INFO  [life] reconciliation: first ever login, 10 field(s) differed
+[14:46:44.063] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[14:46:44.063] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[14:46:44.063] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
+[14:46:44.063] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[14:46:44.063] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[14:46:44.063] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[14:46:44.063] INFO  [life]   skill_27     persisted=0.0        server=12.3       -> server value accepted
+[14:46:44.063] INFO  [life]   skill_1      persisted=0.0        server=17.6       -> server value accepted
+[14:46:44.063] INFO  [life]   skill_17     persisted=0.0        server=14.9       -> server value accepted
+[14:46:44.063] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[14:46:44.063] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:46:44.063] INFO  [m5h] [survival] on
+[14:46:44.063] LOG   [m5h] event survival_mode: on
+[14:46:44.065] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:46:44.065] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:46:44.116] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[14:46:44.117] INFO  [life]   score=62.0
+[14:46:44.117] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[14:46:44.117] INFO  [life]   reason: a lead on Yew woods at 664,1030, untested
+[14:46:44.117] INFO  [life]   reason: a known forest to try +10
+[14:46:44.117] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:46:44.117] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:46:44.117] INFO  [life] arming the axe: taking off 0x13FE from layer 1 first
+[14:46:44.117] INFO  [m5h] [ACTION] unequip start
+[14:46:44.117] INFO  [m5h] [ACTION] unequip serial=0x4000CBEE -> backpack 0x4000CC23
+[14:46:44.117] INFO  [m5h] [ITEM] drag serial=0x4000CBEE amount=1
+[14:46:44.117] INFO  [m5h] [ITEM] drop container=0x4000CC23
+[14:46:44.132] INFO  [m5h] [ACTION_RESULT] unequip success (15ms) item is in the destination
+[14:46:44.132] LOG   [m5h] event action_result: unequip success took=15ms item is in the destination
+[14:46:45.571] INFO  [life] arming the axe
+[14:46:45.571] INFO  [m5h] [ACTION] equip start
+[14:46:45.571] INFO  [m5h] [ACTION] equip serial=0x4000CBEF layer=0
+[14:46:45.572] INFO  [m5h] [ITEM] drag serial=0x4000CBEF amount=1
+[14:46:45.586] INFO  [m5h] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[14:46:45.586] LOG   [m5h] event action_result: equip success took=15ms worn on the requested layer
+[14:46:47.226] INFO  [m5h] [action] goto (639,864) from (633,858,0)
+[14:46:47.226] LOG   [m5h] event goto_start: target=(639,864) from=(633,858)
+[14:46:47.226] INFO  [m5h] [bot] running from (633,858,0) to (639,864)
+[14:46:47.226] INFO  [m5h] [bot] planning path to (639,864) in background
+[14:46:47.286] INFO  [m5h] [bot] replan to (639,864): 6 steps in 91.5us
+[14:46:48.435] INFO  [m5h] [ACTION] use_object start
+[14:46:48.435] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:46:48.435] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:46:48.435] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[14:46:48.435] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[14:46:48.435] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:46:48.435] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:46:48.681] INFO  [m5h] [bot] arrived at (639,864,0)
+[14:46:49.109] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:46:49.264] INFO  [m5h] [TARGET] reply static=(640,864,0) gfx=0x0CE0 gen=1
+[14:46:49.264] INFO  [m5h] [target] static 0x0CE0 (640,864,0)
+[14:46:49.264] INFO  [m5h] [0x20] player @(639,864,0) facing=2
+[14:46:49.264] INFO  [m5h] [chat ascii] System: There is nothing here to chop.
+[14:46:54.154] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:46:59.180] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:46:59.302] INFO  [m5h] [ACTION] use_object start
+[14:46:59.302] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:46:59.302] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:46:59.302] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[14:46:59.302] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[14:46:59.302] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:46:59.302] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:47:00.162] INFO  [m5h] [TARGET] reply static=(640,864,0) gfx=0x0CE0 gen=2
+[14:47:00.162] INFO  [m5h] [target] static 0x0CE0 (640,864,0)
+[14:47:00.163] INFO  [m5h] [chat ascii] System: There is nothing here to chop.
+[14:47:04.229] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:09.269] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:10.164] INFO  [life] tree at 640,864 holds no wood -> next tree (1 tried this stand)
+[14:47:10.224] INFO  [m5h] [action] goto finished at (639,864,0); target (639,864); ARRIVED (off by 0 tile(s))
+[14:47:10.224] LOG   [m5h] event goto_done: at=(639,864) target=(639,864) arrived=1 off=0
+[14:47:10.224] INFO  [m5h] [action] goto (643,867) from (639,864,0)
+[14:47:10.224] LOG   [m5h] event goto_start: target=(643,867) from=(639,864)
+[14:47:10.224] INFO  [m5h] [bot] running from (639,864,0) to (643,867)
+[14:47:10.224] INFO  [m5h] [bot] planning path to (643,867) in background
+[14:47:10.285] INFO  [m5h] [bot] replan to (643,867): 6 steps in 243.0us
+[14:47:12.278] INFO  [m5h] [ACTION] use_object start
+[14:47:12.278] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:47:12.278] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:47:12.278] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[14:47:12.278] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[14:47:12.278] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:47:12.278] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:47:13.135] INFO  [m5h] [TARGET] reply static=(644,867,0) gfx=0x0CDD gen=3
+[14:47:13.135] INFO  [m5h] [target] static 0x0CDD (644,867,0)
+[14:47:13.150] INFO  [m5h] [chat ascii] System: There is nothing here to chop.
+[14:47:13.150] INFO  [m5h] [bot] arrived at (643,867,0)
+[14:47:14.314] INFO  [m5h] [survival] hp 25/25 (100%) -> fight

@@ -1,5 +1,7 @@
 #include "uo/life.h"
 
+#include "uo/vendor_policy.h"
+
 #include <algorithm>
 #include <cstdarg>
 #include <cstdio>
@@ -169,10 +171,27 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
     if (WantsConsumable(cfg, "bandage") && obs.bandages < cfg.bandageLow) {
         const KnownSupplier* supplier = mem.BestSupplier("bandage");
+        // Gold is not the question. i_bandage is not in the M3.7 vendor
+        // matrix at all, so it grades UNKNOWN and the policy refuses it --
+        // permanently, until the research gap is closed. A need whose only
+        // route is refused must be reported BLOCKED here, not selected as a
+        // goal and then discovered to be impossible inside the goal body.
+        //
+        // The first live catalogue lumberjack proved why: it had 1000 gold,
+        // so this need looked satisfiable, won the scoring at 130, and then
+        // sat on a 30-second retry forever. It never chopped a log.
+        const econ::VendorRuling ruling = econ::CanUseNPCVendorFor("i_bandage");
+        const bool noRoute = supplier == nullptr &&
+                             (!ruling.allowed || obs.gold < 50);
         add(NeedKind::NeedEquipment, 0.5, "bandages",
             "below the bandage floor; a fight without them is a death",
-            Fmt("bandages=%d low=%d", obs.bandages, cfg.bandageLow),
-            supplier == nullptr && obs.gold < 50);
+            supplier != nullptr
+                ? Fmt("bandages=%d low=%d, supplier '%s'", obs.bandages,
+                      cfg.bandageLow, supplier->name.c_str())
+                : Fmt("bandages=%d low=%d, no supplier and the vendor policy "
+                      "grades a bandage %s", obs.bandages, cfg.bandageLow,
+                      econ::VendorClassName(ruling.klass)),
+            noRoute);
     }
 
     // --- hunger is live on this shard (HitsHungerLoss=1) -------------------
