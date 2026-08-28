@@ -3,6 +3,7 @@
 #include "uo/production.h"
 
 #include <algorithm>
+#include <cstring>
 
 namespace uo::market {
 
@@ -197,6 +198,38 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     out.reason = "own output, from inputs the world provided";
     return out;
 }
+
+namespace {
+
+// tm_vend.scp buy-template line numbers are the citation for each row.
+const NpcBuyer kNpcBuyers[] = {
+    // i_log -- :167 CARPENTER, :964 TINKER, :1273 PROVISIONER, :1451 BOWYER,
+    //          :1685 WEAPONS_BLADED, :1722 WEAPONS_BLUNT, :1935 BLACKSMITH
+    {"i_log",        "carpenter"},
+    {"i_log",        "provisioner"},
+    {"i_log",        "tinker"},
+    {"i_log",        "bowyer"},
+    {"i_log",        "blacksmith"},
+    // i_ingot_iron -- :1936 BLACKSMITH pays 44-88, much the best of them;
+    //                 :963 TINKER, :1256 PROVISIONER, :1341 JEWELER
+    {"i_ingot_iron", "blacksmith"},
+    {"i_ingot_iron", "tinker"},
+    {"i_ingot_iron", "provisioner"},
+    {"i_ingot_iron", "jeweler"},
+};
+
+}  // namespace
+
+std::vector<const NpcBuyer*> NpcBuyersFor(const char* item) {
+    std::vector<const NpcBuyer*> out;
+    if (!item) return out;
+    for (const NpcBuyer& b : kNpcBuyers) {
+        if (std::strcmp(b.item, item) == 0) out.push_back(&b);
+    }
+    return out;
+}
+
+bool HasNpcBuyer(const char* item) { return !NpcBuyersFor(item).empty(); }
 
 // ---------------------------------------------------------------------------
 // PriceBook

@@ -111,6 +111,30 @@ struct SellRuling {
 SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
                         const Ledger& ledger);
 
+// --- who on this shard will buy a thing -------------------------------------
+//
+// Read off the shard's own vendor buy-templates
+// (runtime/scripts/templates/tm_vend.scp), not inferred from the trade name --
+// and the difference matters. The obvious guess for logs is the LUMBERJACK
+// vendor, and it is wrong: c_lumberjack SELLS logs and buys only axes
+// (c_vendor_human.scp:2853-2922). The carpenter is the one that buys them.
+//
+// Trades are named as the paperdoll-title substring to look for. Mapping a
+// trade to a travel destination is the caller's job, because that is world-
+// model knowledge and this layer stays protocol-free.
+struct NpcBuyer {
+    const char* item;
+    const char* trade;
+};
+
+// Every trade that buys `item`, best price first. Empty is a real answer: it
+// means no NPC on this shard takes it, and the character should bank the goods
+// rather than walk the world looking for a buyer that does not exist.
+std::vector<const NpcBuyer*> NpcBuyersFor(const char* item);
+
+// Cheap form of the same question, for the need layer.
+bool HasNpcBuyer(const char* item);
+
 // ---------------------------------------------------------------------------
 // Prices. Observed only.
 // ---------------------------------------------------------------------------

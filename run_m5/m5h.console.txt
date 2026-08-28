@@ -133,3 +133,123 @@
 [14:47:13.150] INFO  [m5h] [chat ascii] System: There is nothing here to chop.
 [14:47:13.150] INFO  [m5h] [bot] arrived at (643,867,0)
 [14:47:14.314] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:19.373] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:23.173] INFO  [m5h] [ACTION] use_object start
+[14:47:23.173] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:47:23.173] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:47:23.173] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[14:47:23.173] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[14:47:23.173] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:47:23.173] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:47:24.031] INFO  [m5h] [TARGET] reply static=(644,867,0) gfx=0x0CDD gen=4
+[14:47:24.031] INFO  [m5h] [target] static 0x0CDD (644,867,0)
+[14:47:24.031] INFO  [m5h] [0x20] player @(643,867,0) facing=2
+[14:47:24.031] INFO  [m5h] [chat ascii] System: There is nothing here to chop.
+[14:47:24.399] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:29.404] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:34.054] INFO  [life] tree at 644,867 holds no wood -> next tree (2 tried this stand)
+[14:47:34.116] INFO  [m5h] [action] goto finished at (643,867,0); target (643,867); ARRIVED (off by 0 tile(s))
+[14:47:34.116] LOG   [m5h] event goto_done: at=(643,867) target=(643,867) arrived=1 off=0
+[14:47:34.116] INFO  [m5h] [action] goto (644,869) from (643,867,0)
+[14:47:34.116] LOG   [m5h] event goto_start: target=(644,869) from=(643,867)
+[14:47:34.116] INFO  [m5h] [bot] running from (643,867,0) to (644,869)
+[14:47:34.116] INFO  [m5h] [bot] planning path to (644,869) in background
+[14:47:34.177] INFO  [m5h] [bot] replan to (644,869): 2 steps in 56.7us
+[14:47:34.421] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:35.281] INFO  [m5h] [bot] arrived at (644,869,0)
+[14:47:35.343] INFO  [m5h] [ACTION] use_object start
+[14:47:35.343] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:47:35.358] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:47:35.358] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[14:47:35.358] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[14:47:35.358] INFO  [m5h] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:47:35.358] LOG   [m5h] event action_result: use_object success took=15ms server armed a target cursor
+[14:47:36.151] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=5
+[14:47:36.151] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:47:36.151] INFO  [m5h] [0x20] player @(644,869,0) facing=4
+[14:47:39.430] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:39.445] INFO  [m5h] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:47:44.108] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:47:44.442] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:46.159] INFO  [m5h] [ACTION] use_object start
+[14:47:46.159] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:47:46.174] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:47:46.174] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[14:47:46.174] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[14:47:46.174] INFO  [m5h] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[14:47:46.174] LOG   [m5h] event action_result: use_object success took=15ms server armed a target cursor
+[14:47:46.961] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=6
+[14:47:46.961] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:47:49.457] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:51.813] INFO  [m5h] [chat ascii] System: You put the logs in your pack.
+[14:47:54.496] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:47:56.979] INFO  [life] first logs gathered at 644,869 (pack now holds 2)
+[14:47:56.979] INFO  [m5h] [ACTION] use_object start
+[14:47:56.979] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:47:56.993] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:47:56.993] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=7
+[14:47:56.993] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=7
+[14:47:56.993] INFO  [m5h] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[14:47:56.993] LOG   [m5h] event action_result: use_object success took=14ms server armed a target cursor
+[14:47:57.838] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=7
+[14:47:57.838] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:47:59.513] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:04.564] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:05.993] INFO  [m5h] [chat ascii] System: You put the logs in your pack.
+[14:48:07.848] INFO  [m5h] [ACTION] use_object start
+[14:48:07.848] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:48:07.864] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:48:07.864] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[14:48:07.864] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[14:48:07.864] INFO  [m5h] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[14:48:07.864] LOG   [m5h] event action_result: use_object success took=16ms server armed a target cursor
+[14:48:08.658] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=8
+[14:48:08.658] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:48:09.591] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:13.535] INFO  [m5h] [chat ascii] System: You hack at the tree for a while, but fail to produce any useable wood.
+[14:48:14.642] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:18.673] INFO  [m5h] [ACTION] use_object start
+[14:48:18.673] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:48:18.673] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:48:18.673] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=9
+[14:48:18.673] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=9
+[14:48:18.673] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:48:18.673] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:48:19.534] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=9
+[14:48:19.534] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:48:19.656] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:24.686] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:29.279] INFO  [m5h] [chat ascii] System: You put the logs in your pack.
+[14:48:29.588] INFO  [m5h] [ACTION] use_object start
+[14:48:29.588] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:48:29.588] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:48:29.588] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[14:48:29.588] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[14:48:29.588] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:48:29.588] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor
+[14:48:29.710] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:30.446] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=10
+[14:48:30.446] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:48:34.737] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:34.877] INFO  [m5h] [chat ascii] System: You put the logs in your pack.
+[14:48:39.771] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:40.448] INFO  [m5h] [ACTION] use_object start
+[14:48:40.448] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:48:40.448] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:48:40.448] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=11
+[14:48:40.448] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=11
+[14:48:40.448] INFO  [m5h] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[14:48:40.448] LOG   [m5h] event action_result: use_object success took=1ms server armed a target cursor
+[14:48:41.248] INFO  [m5h] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=11
+[14:48:41.248] INFO  [m5h] [target] static 0x0CDD (644,870,0)
+[14:48:44.127] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:48:44.506] INFO  [m5h] [chat ascii] System: You put the logs in your pack.
+[14:48:44.800] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:49.822] INFO  [m5h] [survival] hp 25/25 (100%) -> fight
+[14:48:51.288] INFO  [m5h] [ACTION] use_object start
+[14:48:51.288] INFO  [m5h] [ACTION] use_object serial=0x4000CBEF
+[14:48:51.288] INFO  [m5h] [chat ascii] System: What do you want to use this on?
+[14:48:51.288] INFO  [m5h] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[14:48:51.288] LOG   [m5h] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[14:48:51.288] INFO  [m5h] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:48:51.288] LOG   [m5h] event action_result: use_object success took=0ms server armed a target cursor

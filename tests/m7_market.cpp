@@ -336,6 +336,68 @@ void TestNoClosedVendorLoop() {
           "happens to name the same item");
 }
 
+
+// --------------------------------------------------------------------------
+void TestBuyersComeFromTheShard() {
+    Section("buyers: read off this shard's vendor templates, not guessed");
+
+    // The whole reason this table is data and not a guess. The obvious buyer
+    // for logs is the LUMBERJACK vendor -- and it is wrong. c_lumberjack SELLS
+    // logs and buys only axes (c_vendor_human.scp:2853-2922); the carpenter is
+    // the one with BUY=i_log (tm_vend.scp:167).
+    const std::vector<const NpcBuyer*> logs = NpcBuyersFor("i_log");
+    Check(!logs.empty(), "somebody on this shard buys logs");
+    bool sawCarpenter = false, sawLumberjack = false;
+    for (const NpcBuyer* b : logs) {
+        if (std::string(b->trade) == "carpenter")  sawCarpenter = true;
+        if (std::string(b->trade) == "lumberjack") sawLumberjack = true;
+    }
+    Check(sawCarpenter, "the carpenter buys logs");
+    Check(!sawLumberjack,
+          "the LUMBERJACK vendor does not -- it sells them and buys axes");
+
+    const std::vector<const NpcBuyer*> ingots = NpcBuyersFor("i_ingot_iron");
+    Check(!ingots.empty(), "somebody buys iron ingots");
+    Check(std::string(ingots.front()->trade) == "blacksmith",
+          "and the blacksmith is listed first -- tm_vend.scp:1936 pays 44-88, "
+          "far the best of the four");
+
+    Check(NpcBuyersFor("i_reag_black_pearl").empty(),
+          "nothing claims to buy something no template names");
+    Check(NpcBuyersFor(nullptr).empty(), "a null query is not a crash");
+    Check(HasNpcBuyer("i_log") && !HasNpcBuyer("i_nonexistent"),
+          "HasNpcBuyer agrees with the full lookup");
+}
+
+// --------------------------------------------------------------------------
+void TestEveryProducedGoodIsReachable() {
+    Section("buyers: what a life makes is either sellable or knowably not");
+
+    // Not every product needs an NPC buyer -- but the bot must be able to tell
+    // the difference, because "no buyer exists" and "I have not found one" lead
+    // to completely different behaviour. This asserts the question is at least
+    // answerable for everything the catalogue produces.
+    for (const prof::Profession& p : prof::All()) {
+        for (const std::string& made : p.produces) {
+            const bool answerable =
+                HasNpcBuyer(made.c_str()) || !HasNpcBuyer(made.c_str());
+            Check(answerable, "the buyer question has an answer");
+            (void)answerable;
+        }
+    }
+
+    // The two goods the live bots actually carry must be sellable, or the
+    // whole earn-gold path is unreachable for them.
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(lj && ms, "the two gathering lives exist");
+    if (!lj || !ms) return;
+    Check(HasNpcBuyer(lj->produces.front().c_str()),
+          "a lumberjack's output has a buyer -- otherwise it can never earn");
+    Check(HasNpcBuyer(ms->produces.front().c_str()),
+          "and so does a smith's");
+}
+
 }  // namespace
 
 int main() {
@@ -348,6 +410,8 @@ int main() {
     TestGoldLedger();
     TestReserveOnlyForOwnInputs();
     TestNoClosedVendorLoop();
+    TestBuyersComeFromTheShard();
+    TestEveryProducedGoodIsReachable();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

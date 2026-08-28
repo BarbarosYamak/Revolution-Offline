@@ -1,0 +1,129 @@
+[14:49:04.776] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5i'
+[14:49:04.777] LOG   [m5i] event session_start: text log opened
+[14:49:04.777] LOG   [m5i] event net_connect_begin: connect 127.0.0.1:2593
+[14:49:04.777] INFO  [m5i] [net] connecting to 127.0.0.1:2593 ...
+[14:49:04.778] LOG   [m5i] event net_connected: connect 127.0.0.1:2593
+[14:49:04.778] INFO  [m5i] [net] connected.
+[14:49:04.778] INFO  [m5i] [seed] sent 0x7F000001 (plaintext)
+[14:49:04.778] LOG   [m5i] event seed_out: 0x7F000001 hex=7f000001
+[14:49:04.778] INFO  [life] loaded persistent state for Brannoc (0 places, 0 suppliers, 2 events, 0 prior sessions)
+[14:49:04.779] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[14:49:04.779] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:49:04.779] INFO  [m5i] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 40 min)
+[14:49:04.798] INFO  [m5i] [0xA8] 1 server(s):
+[14:49:04.798] INFO  [m5i]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:49:04.814] INFO  [m5i] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[14:49:04.814] LOG   [m5i] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[14:49:04.814] INFO  [m5i] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:49:04.815] LOG   [m5i] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:49:04.815] INFO  [m5i] [0xB9] server features = 0x0005
+[14:49:04.815] INFO  [m5i] [0xA9] 5 slot(s) (populated 1):
+[14:49:04.815] INFO  [m5i]   [0] Brannoc
+[14:49:04.815] INFO  [m5i]   [1] <empty>
+[14:49:04.815] INFO  [m5i]   [2] <empty>
+[14:49:04.815] INFO  [m5i]   [3] <empty>
+[14:49:04.815] INFO  [m5i]   [4] <empty>
+[14:49:04.815] INFO  [m5i] [ui] playing slot 0 ('Brannoc')
+[14:49:04.830] INFO  [m5i] [0x1B] serial=0x0000CC33 body=0x0190 pos=(644,869,0)
+[14:49:04.830] LOG   [m5i] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(644,869,0)
+[14:49:04.830] INFO  [m5i] [0x20] player @(644,869,0) facing=4
+[14:49:04.831] INFO  [m5i] [0x55] login complete — entering world
+[14:49:04.831] LOG   [m5i] event in_world: 0x55 received
+[14:49:04.831] INFO  [m5i] [backpack] opening 0x4000CC23
+[14:49:04.831] INFO  [m5i] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:49:04.831] INFO  [m5i] [chat ascii] System: There is 1 other player here.
+[14:49:04.831] INFO  [m5i] [chat ascii] System: Last logged: 2026/08/28 14:46:41
+[14:49:04.831] INFO  [m5i] [chat ascii] System: You are under the protection of the town guards
+[14:49:04.834] INFO  [m5i] [action] requesting the skill list
+[14:49:04.835] INFO  [life] in world; asked the server for the skill list
+[14:49:04.835] INFO  [m5i] [0x24] open container 0x4000CC23 gump=60
+[14:49:04.835] INFO  [m5i] [0x3C] container contents: 8 item(s)
+[14:49:04.835] LOG   [m5i] event backpack_contents: serial=0x4000CC23 items=8
+[14:49:07.458] INFO  [m5i] [bot] world data loaded (0 blacklisted spot(s)).
+[14:49:07.458] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[14:49:07.458] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[14:49:07.458] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[14:49:07.458] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[14:49:07.458] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[14:49:07.458] INFO  [life]   skill_44     persisted=50.0       server=50.2       -> server value accepted
+[14:49:07.458] INFO  [life]   skill_40     persisted=50.0       server=50.0       -> server value accepted
+[14:49:07.458] INFO  [life]   skill_27     persisted=12.3       server=12.3       -> server value accepted
+[14:49:07.458] INFO  [life]   skill_1      persisted=17.6       server=17.6       -> server value accepted
+[14:49:07.458] INFO  [life]   skill_17     persisted=14.9       server=14.9       -> server value accepted
+[14:49:07.458] INFO  [life]   position     persisted=644,869    server=644,869    -> server value accepted
+[14:49:07.458] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:49:07.458] INFO  [life]   restored objective KEPT: GATHER_LOGS (progress 4)
+[14:49:07.458] INFO  [m5i] [survival] on
+[14:49:07.458] LOG   [m5i] event survival_mode: on
+[14:49:07.460] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:49:07.460] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:07.514] INFO  [m5i] [ACTION] use_object start
+[14:49:07.514] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:49:07.514] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:49:07.514] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[14:49:07.514] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[14:49:07.514] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:49:07.514] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:49:08.367] INFO  [m5i] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=1
+[14:49:08.367] INFO  [m5i] [target] static 0x0CDD (644,870,0)
+[14:49:08.367] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:49:12.491] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:17.509] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:18.369] INFO  [m5i] [ACTION] use_object start
+[14:49:18.369] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:49:18.369] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:49:18.369] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[14:49:18.369] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[14:49:18.369] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:49:18.369] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:49:19.230] INFO  [m5i] [TARGET] reply static=(644,870,0) gfx=0x0CDD gen=2
+[14:49:19.230] INFO  [m5i] [target] static 0x0CDD (644,870,0)
+[14:49:19.230] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:49:22.560] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:27.568] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:29.268] INFO  [life] tree at 644,870 holds no wood -> next tree (1 tried this stand)
+[14:49:29.330] INFO  [m5i] [ACTION] use_object start
+[14:49:29.330] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:49:29.343] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:49:29.343] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[14:49:29.343] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[14:49:29.343] INFO  [m5i] [ACTION_RESULT] use_object success (13ms) server armed a target cursor
+[14:49:29.343] LOG   [m5i] event action_result: use_object success took=13ms server armed a target cursor
+[14:49:30.142] INFO  [m5i] [TARGET] reply static=(644,867,0) gfx=0x0CDD gen=3
+[14:49:30.142] INFO  [m5i] [target] static 0x0CDD (644,867,0)
+[14:49:30.157] INFO  [m5i] [0x20] player @(644,869,0) facing=0
+[14:49:30.157] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:49:32.599] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:37.643] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:40.185] INFO  [m5i] [ACTION] use_object start
+[14:49:40.185] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:49:40.185] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:49:40.185] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[14:49:40.185] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[14:49:40.185] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:49:40.185] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:49:41.042] INFO  [m5i] [TARGET] reply static=(644,867,0) gfx=0x0CDD gen=4
+[14:49:41.042] INFO  [m5i] [target] static 0x0CDD (644,867,0)
+[14:49:41.042] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:49:42.650] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:47.710] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:51.087] INFO  [life] tree at 644,867 holds no wood -> next tree (2 tried this stand)
+[14:49:51.149] INFO  [m5i] [action] goto (644,865) from (644,869,0)
+[14:49:51.149] LOG   [m5i] event goto_start: target=(644,865) from=(644,869)
+[14:49:51.149] INFO  [m5i] [bot] running from (644,869,0) to (644,865)
+[14:49:51.149] INFO  [m5i] [bot] planning path to (644,865) in background
+[14:49:51.210] INFO  [m5i] [bot] replan to (644,865): 4 steps in 187.7us
+[14:49:52.351] INFO  [m5i] [ACTION] use_object start
+[14:49:52.351] INFO  [m5i] [ACTION] use_object serial=0x4000CBEF
+[14:49:52.351] INFO  [m5i] [chat ascii] System: What do you want to use this on?
+[14:49:52.351] INFO  [m5i] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=5
+[14:49:52.351] LOG   [m5i] event target_requested: id=0x000002CE type=0 subtype=1 gen=5
+[14:49:52.351] INFO  [m5i] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[14:49:52.351] LOG   [m5i] event action_result: use_object success took=0ms server armed a target cursor
+[14:49:52.594] INFO  [m5i] [bot] arrived at (644,865,0)
+[14:49:52.716] INFO  [m5i] [survival] hp 25/25 (100%) -> fight
+[14:49:53.202] INFO  [m5i] [TARGET] reply static=(644,864,0) gfx=0x0CD3 gen=5
+[14:49:53.202] INFO  [m5i] [target] static 0x0CD3 (644,864,0)
+[14:49:53.216] INFO  [m5i] [0x20] player @(644,865,0) facing=0
+[14:49:53.216] INFO  [m5i] [chat ascii] System: There is nothing here to chop.
+[14:49:57.768] INFO  [m5i] [survival] hp 25/25 (100%) -> fight

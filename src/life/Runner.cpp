@@ -89,46 +89,28 @@ const TrainerFor* TrainerForSkill(int id) {
     return nullptr;
 }
 
-// Which trade of NPC will BUY a given good, best first.
-//
-// Read straight off this shard's own vendor buy-templates
-// (runtime/scripts/templates/tm_vend.scp) rather than assumed from the trade
-// name -- and the difference matters. The obvious guess for logs is the
-// LUMBERJACK vendor, and it is wrong: c_lumberjack SELLS logs and buys only
-// axes (c_vendor_human.scp:2853-2922). The carpenter is the one that buys them.
-//
-// Pairs are (paperdoll-title substring, world-model service) so the mobile
-// scan and the travel layer agree, exactly as kTrainers does.
-struct BuyerFor {
-    const char* item;
-    const char* trade;
-    wm::Service service;
-};
-const BuyerFor kBuyers[] = {
-    // i_log  -- tm_vend.scp:167 CARPENTER, :964 TINKER, :1273 PROVISIONER,
-    //           :1451 BOWYER, :1935 BLACKSMITH
-    {"i_log",         "carpenter",   wm::Service::Carpenter},
-    {"i_log",         "provisioner", wm::Service::Provisioner},
-    {"i_log",         "tinker",      wm::Service::Tinker},
-    {"i_log",         "bowyer",      wm::Service::Bowyer},
-    {"i_log",         "blacksmith",  wm::Service::Blacksmith},
-    // i_ingot_iron -- :1936 BLACKSMITH (44-88, much the best), :963 TINKER,
-    //                 :1256 PROVISIONER, :1341 JEWELER
-    {"i_ingot_iron",  "blacksmith",  wm::Service::Blacksmith},
-    {"i_ingot_iron",  "tinker",      wm::Service::Tinker},
-    {"i_ingot_iron",  "provisioner", wm::Service::Provisioner},
-    {"i_ingot_iron",  "jeweler",     wm::Service::Jeweler},
-};
-
-// The buyers for `item`, best first. Empty means this shard has no NPC that
-// takes it -- a real answer, and the character should bank the goods instead
-// of walking the world looking for a buyer that does not exist.
-std::vector<const BuyerFor*> BuyersFor(const std::string& item) {
-    std::vector<const BuyerFor*> out;
-    for (const BuyerFor& b : kBuyers) {
-        if (item == b.item) out.push_back(&b);
+// A buyer trade, as the world model names its destination. The item->trade
+// half of this lives in uo::market, because it is shard vendor data that the
+// need layer also has to ask about; only the trade->place mapping is here,
+// where the world model is in scope.
+wm::Service ServiceForTrade(const char* trade) {
+    struct Row { const char* trade; wm::Service service; };
+    static const Row kRows[] = {
+        {"carpenter",   wm::Service::Carpenter},
+        {"provisioner", wm::Service::Provisioner},
+        {"tinker",      wm::Service::Tinker},
+        {"bowyer",      wm::Service::Bowyer},
+        {"blacksmith",  wm::Service::Blacksmith},
+        {"jeweler",     wm::Service::Jeweler},
+        {"tailor",      wm::Service::Tailor},
+        {"scribe",      wm::Service::Scribe},
+        {"alchemist",   wm::Service::Alchemist},
+        {"mage",        wm::Service::Mage},
+    };
+    for (const Row& r : kRows) {
+        if (std::strcmp(r.trade, trade) == 0) return r.service;
     }
-    return out;
+    return wm::Service::GeneralVendor;
 }
 
 // The two hand layers. Which one an item lands on is decided by THIS SHARD'S
@@ -1931,7 +1913,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     sellWanted_ = chosen->qty;
 
     // --- who buys it? ------------------------------------------------------
-    const std::vector<const BuyerFor*> buyers = BuyersFor(sellItem_);
+    const std::vector<const market::NpcBuyer*> buyers =
+        market::NpcBuyersFor(sellItem_.c_str());
     if (buyers.empty()) {
         // A real answer, not a failure. The character stays resource-rich and
         // wealth-poor, which is a legitimate state on this shard.
@@ -1948,10 +1931,10 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         sellBuyerIndex_ = 0;
         return false;
     }
-    const BuyerFor* buyer = buyers[sellBuyerIndex_];
+    const market::NpcBuyer* buyer = buyers[sellBuyerIndex_];
     if (sellTrade_ != buyer->trade) {
         sellTrade_ = buyer->trade;
-        sellService_ = buyer->service;
+        sellService_ = ServiceForTrade(buyer->trade);
         sellAsked_ = false;
     }
 

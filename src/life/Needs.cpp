@@ -48,6 +48,24 @@ bool WantsConsumable(const NeedConfig& cfg, const char* name) {
     return false;
 }
 
+// Is the load the character is carrying something it means to SELL, with a
+// buyer that actually exists on this shard?
+//
+// Banking a good you intend to sell is not securing it, it is hoarding it. At
+// twenty logs the bank need scores 0.35 x 240 = 84 and the surplus need scores
+// 0.22 x 150 = 33, so without this a lumberjack would carry its own income to
+// the bank forever and never once visit a buyer.
+//
+// The weight-driven bank clauses above are NOT gated on this: a pack that is
+// overflowing has to be dealt with wherever the character is standing.
+bool SellableInstead(const NeedConfig& cfg) {
+    if (!cfg.profession) return false;
+    for (const std::string& made : cfg.profession->produces) {
+        if (market::HasNpcBuyer(made.c_str())) return true;
+    }
+    return false;
+}
+
 bool GathersLogs(const NeedConfig& cfg) {
     return !cfg.profession || cfg.profession->gathers == "logs";
 }
@@ -216,7 +234,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             "close to the carry limit; further gathering is wasted",
             Fmt("weight=%d/%d (%.0f%%) logs=%d", obs.weight, obs.maxWeight,
                 weightFrac * 100.0, obs.logs));
-    } else if (obs.logs >= cfg.logsWorthBanking) {
+    } else if (obs.logs >= cfg.logsWorthBanking && !SellableInstead(cfg)) {
         add(NeedKind::NeedBank, 0.35, "deposit logs",
             "enough logs carried to be worth securing",
             Fmt("logs=%d threshold=%d", obs.logs, cfg.logsWorthBanking));
