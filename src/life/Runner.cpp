@@ -3173,6 +3173,7 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             "but fail to catch anything",       // resolved, no fish
             "you pull your line back in",       // stopped
             "you can't fish while riding",      // @PreStart refusal
+            "cannot fish so close to yourself", // adjacent water is refused
             "target cannot be seen",
             "that is too far away",
         };
@@ -3208,23 +3209,25 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // RANGE=4 is the shard's own number, so a spot further than that is not a
     // spot at all. Searching a wider radius and then walking is the difference
     // between fishing and standing hopefully near a lake.
-    // WHERE TO STAND, AND WHAT TO CAST AT -- one question, answered together.
+    // GO TO A DOCK FIRST, and only then look for water.
     //
-    // Asking only "where is water" produced a target the pathfinder could not
-    // reach, so the character walked at the sea, failed, picked again, and
-    // drifted from nine tiles away to twenty. A fishing spot is a DRY tile
-    // with water inside RANGE=4 of it.
-    Client::FishingSpot spot;
-    if (!client.NearestFishingSpot(obs.x, obs.y, 24, &spot)) {
+    // The order used to be the other way round, and it was the whole problem:
+    // NearestFishingSpot searches 24 tiles and there is water within 24 tiles
+    // of almost anywhere near Britain, so the dock trip only ran when that
+    // search FAILED -- which it never did. The character chased the nearest
+    // pond from wherever it stood, the route stopped short, it picked again
+    // from the new position, and it drifted across the map without once
+    // reaching a dock. There is no "Docks ARRIVED" line in any of those runs.
+    if (!fishAtDock_) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
             ++fishTrips_;
             if (fishTrips_ > kMaxFishTrips) {
-                LogLine("goal_failed=FISH reason=\"%s\" no shore within reach "
+                LogLine("goal_failed=FISH reason=\"%s\" no dock reachable "
                         "after %d trips",
                         faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
                         fishTrips_);
-                planner_.Finish(false, "no fishable shore reachable", obs.nowMs);
+                planner_.Finish(false, "no dock reachable", obs.nowMs);
                 fishTrips_ = 0;
                 return false;
             }
@@ -3234,9 +3237,9 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
                 LogLine("fish: back to a shore that has paid out at %d,%d",
                         known->x, known->y);
                 travelInFlight_ =
-                    client.TravelToPoint(known->x, known->y, 3, "fishing spot");
+                    client.TravelToPoint(known->x, known->y, 4, "fishing spot");
             } else {
-                LogLine("fish: looking for a dock (trip %d)", fishTrips_);
+                LogLine("fish: going to a dock (trip %d)", fishTrips_);
                 travelInFlight_ =
                     client.TravelToResource(wm::ResourceKind::Fishing);
             }
@@ -3249,58 +3252,66 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
-        // ARRIVAL IS A CLAIM ABOUT THE TILE. A journey to the Britain dock
-        // once reported ok=1 with legs=0 plans=0 while the character stood two
-        // hundred tiles away.
-        if (!client.NearestFishingSpot(client.PlayerX(), client.PlayerY(), 24,
-                                       &spot)) {
-            LogLine("fish: trip reported %s but there is no shore within 24 "
+        // ARRIVAL IS A CLAIM ABOUT THE TILE, and the proof is water nearby.
+        Client::FishingSpot probe;
+        if (!client.NearestFishingSpot(client.PlayerX(), client.PlayerY(), 12,
+                                       &probe)) {
+            LogLine("fish: trip reported %s but there is no shore within 12 "
                     "tiles of %d,%d",
                     client.TravelSucceeded() ? "success" : "failure",
                     client.PlayerX(), client.PlayerY());
             deadTargets_.emplace_back(client.PlayerX(), client.PlayerY());
             if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
             planner_.NoteAttempt(obs.nowMs);
-            nextActionMs_ = obs.nowMs + 3000;
-        }
-        return false;
-    }
-
-    // Walk to the BANK, not the water.
-    if (TileDist(obs.x, obs.y, spot.standX, spot.standY) > 0) {
-        if (client.GotoBusy() || client.TravelBusy()) return false;
-        if (!fishTargetSet_ || fishTargetX_ != spot.standX ||
-            fishTargetY_ != spot.standY) {
-            fishTargetX_ = spot.standX;
-            fishTargetY_ = spot.standY;
-            fishTargetSet_ = true;
-            fishWalkMs_ = obs.nowMs;
-            LogLine("fish: standing at %d,%d to cast into %d,%d",
-                    spot.standX, spot.standY, spot.waterX, spot.waterY);
-        }
-        if (obs.nowMs - fishWalkMs_ > 20000) {
-            LogLine("fish: cannot reach the bank at %d,%d", fishTargetX_,
-                    fishTargetY_);
-            deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
-            fishTargetSet_ = false;
-            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 2000;
             return false;
         }
-        // A*, not direct steps. ActionGoto walks straight at the target and
-        // stops at the first thing in the way -- on a dock that is a crate, a
-        // rail or a plank edge every time, so "cannot reach the bank" was the
-        // walker giving up two tiles short rather than the tile being bad.
-        travelInFlight_ = client.TravelToPoint(spot.standX, spot.standY, 0,
-                                               "waterline");
-        nextActionMs_ = obs.nowMs + 1500;
+        LogLine("fish: at the water's edge (%d,%d), shore %d,%d",
+                client.PlayerX(), client.PlayerY(), probe.standX, probe.standY);
+        fishAtDock_ = true;
+        fishTrips_ = 0;
+        state_.memory.NoteResource("fish", client.PlayerX(), client.PlayerY(),
+                                   client.PlayerZ(), true, obs.nowMs);
         return false;
     }
-    fishTargetSet_ = false;
 
+    // AT A DOCK: cast at whatever water is already in range.
+    //
+    // Every previous version picked a "stand tile" and then tried to walk to
+    // it, and every one of them failed differently -- exact-tile routes that
+    // could not arrive, targets that moved as the character walked, A* routes
+    // that stopped short. None of that navigation is needed. The character is
+    // standing at the water's edge already; the only question is which tile to
+    // aim at, and Sphere answers the rest.
+    //
+    // 2 to 4 tiles: RANGE=4 is the maximum from skill18_fishing.scp, and the
+    // minimum is the server's own "You cannot fish so close to yourself."
     Client::WaterHit water;
-    water.x = spot.waterX;
-    water.y = spot.waterY;
-    water.z = spot.waterZ;
+    bool haveTarget = false;
+    for (int r = 2; r <= 4 && !haveTarget; ++r) {
+        for (i32 dy = -r; dy <= r && !haveTarget; ++dy) {
+            for (i32 dx = -r; dx <= r && !haveTarget; ++dx) {
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                Client::WaterHit w;
+                if (!client.NearestWater(obs.x + dx, obs.y + dy, 0, &w)) continue;
+                if (IsDeadTarget(w.x, w.y)) continue;
+                water = w;
+                haveTarget = true;
+            }
+        }
+    }
+    if (!haveTarget) {
+        // Not at the edge after all. Go back to a dock rather than wander.
+        LogLine("fish: no water 2-4 tiles from %d,%d -- finding another dock",
+                obs.x, obs.y);
+        fishAtDock_ = false;
+        deadTargets_.emplace_back(obs.x, obs.y);
+        if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+        planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
     fishTrips_ = 0;
 
     // --- cast --------------------------------------------------------------

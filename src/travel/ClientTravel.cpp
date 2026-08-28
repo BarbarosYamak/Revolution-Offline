@@ -1682,8 +1682,10 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
     if (radius < 0) radius = 0;
 
     // Nearest-first, so a character fishes from where it stands rather than
-    // walking to the far side of the lake.
-    for (int r = 1; r <= radius; ++r) {
+    // walking to the far side of the lake. r STARTS AT 0, which makes
+    // radius 0 mean "is THIS tile water" -- the form a caller needs when it
+    // already knows which tile it wants to test.
+    for (int r = 0; r <= radius; ++r) {
         for (i32 dy = -r; dy <= r; ++dy) {
             for (i32 dx = -r; dx <= r; ++dx) {
                 // Only the ring at distance r; the interior was covered by a
@@ -1755,9 +1757,16 @@ bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out) {
                 }
 
                 // ...and water has to be in casting reach of it. RANGE=4 in
-                // skill18_fishing.scp, so anything inside that works; adjacent
-                // is checked first because it is the most reliable.
-                for (int wr = 1; wr <= 4; ++wr) {
+                // skill18_fishing.scp is the MAXIMUM; there is also a minimum
+                // the script does not state and the server does:
+                //
+                //     "You cannot fish so close to yourself."
+                //
+                // Adjacent water is refused, so the search starts at 2. Found
+                // live, by casting -- which is the point: the shard answers
+                // this question and guessing at it is what wasted the session
+                // before.
+                for (int wr = 2; wr <= 4; ++wr) {
                     for (i32 wy = -wr; wy <= wr; ++wy) {
                         for (i32 wx = -wr; wx <= wr; ++wx) {
                             if (std::max(std::abs(wx), std::abs(wy)) != wr) continue;

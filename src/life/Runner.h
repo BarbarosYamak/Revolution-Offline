@@ -291,6 +291,9 @@ private:
     i32  fishTargetX_ = 0, fishTargetY_ = 0;
     bool fishTargetSet_ = false;
     i64  fishWalkMs_ = 0;
+    // Has this character actually REACHED a dock? Until it has, it must not
+    // start chasing whatever water it happens to see.
+    bool fishAtDock_ = false;
 
     i32  toolGoldBefore_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
