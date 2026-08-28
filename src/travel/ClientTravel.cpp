@@ -1676,6 +1676,39 @@ void Client::JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const {
 }
 
 
+// Is there water at (tx,ty), in either physical form? Fills z with the
+// surface a cast should target and graphic with 0 (wet land) or the wet
+// static's id. Shared by NearestWater and NearestFishingSpot so the two can
+// never disagree about what counts as water -- they disagreed once, and the
+// fisher looped between them for a whole session.
+bool Client::WaterAt(i32 tx, i32 ty, i8* z, u16* graphic) {
+    if (tx < 0 || ty < 0) return false;
+    map::LandCell cell{};
+    if (!worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty),
+                             &cell)) {
+        return false;
+    }
+    if ((tileData_->Land(cell.tileId).flags & tiledata::kFlagWet) != 0) {
+        if (z) *z = cell.z;
+        if (graphic) *graphic = 0;
+        return true;
+    }
+    // Wet STATICS: the coastline form (see the WaterHit comment in Client.h).
+    // The test is the tiledata Wet flag, not an id whitelist -- the flag is
+    // what makes 0x1796-0x17B2 water, and a whitelist is exactly the kind of
+    // client-side guess that once rejected all the near water.
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(tx, ty, 0, hits);
+    for (const world::StaticHit& h : hits) {
+        if ((tileData_->Static(h.itemId).flags & tiledata::kFlagWet) == 0)
+            continue;
+        if (z) *z = h.z;
+        if (graphic) *graphic = h.itemId;
+        return true;
+    }
+    return false;
+}
+
 bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
     if (!out) return false;
     if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
@@ -1692,15 +1725,6 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
                 // previous pass.
                 if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
                 const i32 tx = x + dx, ty = y + dy;
-                if (tx < 0 || ty < 0) continue;
-
-                map::LandCell cell{};
-                if (!worldMap_->ReadCell(static_cast<u32>(tx),
-                                         static_cast<u32>(ty), &cell)) {
-                    continue;
-                }
-                const tiledata::LandTile& land = tileData_->Land(cell.tileId);
-                if ((land.flags & tiledata::kFlagWet) == 0) continue;
 
                 // NO STATIC FILTER. The first version rejected any water tile
                 // carrying a static that provides a surface, meaning to skip
@@ -1713,10 +1737,14 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
                 // discipline is to ask rather than to out-think it: the cast
                 // reads the reply and moves on. Guessing here cost a fisher
                 // its entire session.
+                i8 wz = 0;
+                u16 gfx = 0;
+                if (!WaterAt(tx, ty, &wz, &gfx)) continue;
 
                 out->x = tx;
                 out->y = ty;
-                out->z = cell.z;
+                out->z = wz;
+                out->graphic = gfx;
                 return true;
             }
         }
@@ -1725,17 +1753,17 @@ bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
 }
 
 
-bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out) {
+bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out,
+                                const std::vector<std::pair<i32, i32>>* exclude) {
     if (!out) return false;
     if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
     if (radius < 0) radius = 0;
 
-    auto isWet = [&](i32 tx, i32 ty) -> bool {
-        if (tx < 0 || ty < 0) return false;
-        map::LandCell c{};
-        if (!worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty), &c))
-            return false;
-        return (tileData_->Land(c.tileId).flags & tiledata::kFlagWet) != 0;
+    auto excluded = [&](i32 tx, i32 ty) -> bool {
+        if (!exclude) return false;
+        for (const auto& e : *exclude)
+            if (e.first == tx && e.second == ty) return true;
+        return false;
     };
 
     // Search outward from where the character stands, so it fishes from the
@@ -1746,15 +1774,25 @@ bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out) {
                 if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
                 const i32 sx = x + dx, sy = y + dy;
                 if (sx < 0 || sy < 0) continue;
+                if (excluded(sx, sy)) continue;
 
-                // The STANDING tile must be dry. A wet one cannot be walked to,
-                // which is the whole reason this function exists.
-                if (isWet(sx, sy)) continue;
-                map::LandCell stand{};
-                if (!worldMap_->ReadCell(static_cast<u32>(sx),
-                                         static_cast<u32>(sy), &stand)) {
-                    continue;
-                }
+                // The STANDING tile must be one the character can actually
+                // occupy, and the ONLY judge of that is the pathfinder's own
+                // World::QueryCell, statics included. "Dry by land tiledata"
+                // once nominated (1463,1754), a tile under a coastline water
+                // static (walkable:false), and the walk to it could not
+                // succeed by construction: the A* worker itself refuses an
+                // unwalkable goal ("goal not walkable", Navigation.cpp
+                // BotPollPathPlanner). QueryCell alone is also the right
+                // wetness test -- wet land is unwalkable by definition
+                // (World.cpp treats Wet like Impassable) and a dock plank
+                // over a wet static IS a legal place to stand, which a
+                // separate "no water here" check would wrongly reject.
+                world::WalkQuery q{};
+                q.x = static_cast<u32>(sx);
+                q.y = static_cast<u32>(sy);
+                q.fromZ = playerZ_;
+                if (!world_->QueryCell(q).walkable) continue;
 
                 // ...and water has to be in casting reach of it. RANGE=4 in
                 // skill18_fishing.scp is the MAXIMUM; there is also a minimum
@@ -1771,13 +1809,14 @@ bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out) {
                         for (i32 wx = -wr; wx <= wr; ++wx) {
                             if (std::max(std::abs(wx), std::abs(wy)) != wr) continue;
                             const i32 tx = sx + wx, ty = sy + wy;
-                            if (!isWet(tx, ty)) continue;
-                            map::LandCell w{};
-                            worldMap_->ReadCell(static_cast<u32>(tx),
-                                                static_cast<u32>(ty), &w);
+                            if (excluded(tx, ty)) continue;
+                            i8 wz = 0;
+                            u16 gfx = 0;
+                            if (!WaterAt(tx, ty, &wz, &gfx)) continue;
                             out->standX = sx; out->standY = sy;
                             out->waterX = tx; out->waterY = ty;
-                            out->waterZ = w.z;
+                            out->waterZ = wz;
+                            out->waterGraphic = gfx;
                             return true;
                         }
                     }

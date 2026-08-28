@@ -1,0 +1,165 @@
+[18:06:49.727] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='cast4'
+[18:06:49.729] LOG   [cast4] event session_start: text log opened
+[18:06:49.729] LOG   [cast4] event net_connect_begin: connect 127.0.0.1:2593
+[18:06:49.729] INFO  [cast4] [net] connecting to 127.0.0.1:2593 ...
+[18:06:49.730] LOG   [cast4] event net_connected: connect 127.0.0.1:2593
+[18:06:49.730] INFO  [cast4] [net] connected.
+[18:06:49.730] INFO  [cast4] [seed] sent 0x7F000001 (plaintext)
+[18:06:49.730] LOG   [cast4] event seed_out: 0x7F000001 hex=7f000001
+[18:06:49.730] INFO  [life] no prior state for revolutionsoak31.bryn: a new Fisher
+[18:06:49.730] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[18:06:49.730] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:06:49.730] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:06:49.730] INFO  [cast4] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 6 min)
+[18:06:49.737] INFO  [cast4] [0xA8] 1 server(s):
+[18:06:49.737] INFO  [cast4]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:06:49.753] INFO  [cast4] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:06:49.753] LOG   [cast4] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:06:49.753] INFO  [cast4] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:06:49.753] LOG   [cast4] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:06:49.754] INFO  [cast4] [0xB9] server features = 0x0005
+[18:06:49.754] INFO  [cast4] [0xA9] 5 slot(s) (populated 1):
+[18:06:49.754] INFO  [cast4]   [0] Bryn
+[18:06:49.754] INFO  [cast4]   [1] <empty>
+[18:06:49.754] INFO  [cast4]   [2] <empty>
+[18:06:49.754] INFO  [cast4]   [3] <empty>
+[18:06:49.754] INFO  [cast4]   [4] <empty>
+[18:06:49.754] INFO  [cast4] [ui] playing slot 0 ('Bryn')
+[18:06:49.769] INFO  [cast4] [0x1B] serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:06:49.769] LOG   [cast4] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:06:49.769] INFO  [cast4] [0x20] player @(1468,1750,0) facing=6
+[18:06:49.769] INFO  [cast4] [0x55] login complete — entering world
+[18:06:49.769] LOG   [cast4] event in_world: 0x55 received
+[18:06:49.769] INFO  [cast4] [backpack] opening 0x40012DD6
+[18:06:49.769] INFO  [cast4] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:06:49.769] INFO  [cast4] [chat ascii] System: There is 1 other player here.
+[18:06:49.769] INFO  [cast4] [chat ascii] System: Last logged: 2026/08/28 18:03:59
+[18:06:49.769] INFO  [cast4] [chat ascii] System: You are under the protection of the city guards
+[18:06:49.773] INFO  [cast4] [action] requesting the skill list
+[18:06:49.773] INFO  [life] in world; asked the server for the skill list
+[18:06:49.773] INFO  [cast4] [0x24] open container 0x40012DD6 gump=60
+[18:06:49.773] INFO  [cast4] [0x3C] container contents: 10 item(s)
+[18:06:49.773] LOG   [cast4] event backpack_contents: serial=0x40012DD6 items=10
+[18:06:52.390] INFO  [cast4] [bot] world data loaded (0 blacklisted spot(s)).
+[18:06:52.390] INFO  [life] common knowledge: Docks at 1479,1757 (11 tiles away)
+[18:06:52.390] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (742 tiles away)
+[18:06:52.390] INFO  [life] common knowledge: Cove Docks at 2255,1191 (787 tiles away)
+[18:06:52.390] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[18:06:52.390] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[18:06:52.390] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[18:06:52.390] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[18:06:52.390] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[18:06:52.390] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[18:06:52.390] INFO  [life]   skill_18     persisted=0.0        server=50.1       -> server value accepted
+[18:06:52.390] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[18:06:52.390] INFO  [life]   position     persisted=0,0        server=1468,1750  -> server value accepted
+[18:06:52.390] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:06:52.390] INFO  [cast4] [survival] on
+[18:06:52.390] LOG   [cast4] event survival_mode: on
+[18:06:52.392] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:06:52.392] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:06:52.400] INFO  [life] goal=FISH reason="no goal was running"
+[18:06:52.400] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.27) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:06:52.400] INFO  [life]   score=58.5
+[18:06:52.400] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:06:52.400] INFO  [life]   reason: carrying 0
+[18:06:52.400] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.1 -> 100.0)
+[18:06:52.400] INFO  [life] fish: going to a dock (trip 1)
+[18:06:52.400] INFO  [cast4] [travel] Docks -> (1479,1757) r=12 from (1468,1750)
+[18:06:52.400] LOG   [cast4] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1468,1750)
+[18:06:52.400] INFO  [cast4] [travel] Docks ARRIVED at (1468,1750,0)
+[18:06:52.400] LOG   [cast4] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:06:54.423] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:06:54.484] INFO  [cast4] [ACTION] use_object start
+[18:06:54.484] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:06:54.500] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:06:54.500] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[18:06:54.500] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[18:06:54.500] INFO  [cast4] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:06:54.500] LOG   [cast4] event action_result: use_object success took=16ms server armed a target cursor
+[18:06:55.343] INFO  [cast4] [TARGET] reply static=(1466,1752,-5) gfx=0x17A5 gen=1
+[18:06:55.344] INFO  [cast4] [target] static 0x17A5 (1466,1752,-5)
+[18:06:55.359] INFO  [cast4] [0x20] player @(1468,1750,0) facing=5
+[18:06:55.359] INFO  [cast4] [chat ascii] System: There are no fish here.
+[18:06:55.792] INFO  [life] fish: refused at 1466,1752 ("there are no fish here") -- marking it dead
+[18:06:55.793] INFO  [cast4] [ACTION] use_object start
+[18:06:55.793] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:06:55.808] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:06:55.808] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[18:06:55.808] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[18:06:55.808] INFO  [cast4] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:06:55.808] LOG   [cast4] event action_result: use_object success took=16ms server armed a target cursor
+[18:06:56.637] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=2
+[18:06:56.637] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:06:56.637] INFO  [cast4] [0x20] player @(1468,1750,0) facing=6
+[18:06:57.434] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:02.485] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:07.512] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:12.530] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:12.685] INFO  [cast4] [chat ascii] System: You pull out a fish!
+[18:07:17.581] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:21.642] INFO  [cast4] [ACTION] use_object start
+[18:07:21.642] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:07:21.642] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:07:21.642] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[18:07:21.642] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[18:07:21.642] INFO  [cast4] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:07:21.642] LOG   [cast4] event action_result: use_object success took=0ms server armed a target cursor
+[18:07:22.500] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=3
+[18:07:22.500] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:07:22.622] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:27.656] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:30.511] INFO  [cast4] [chat ascii] System: You fish a while, but fail to catch anything.
+[18:07:30.695] INFO  [cast4] [ACTION] use_object start
+[18:07:30.695] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:07:30.695] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:07:30.695] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[18:07:30.695] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[18:07:30.695] INFO  [cast4] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:07:30.695] LOG   [cast4] event action_result: use_object success took=0ms server armed a target cursor
+[18:07:31.496] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=4
+[18:07:31.496] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:07:32.670] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:37.676] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:39.528] INFO  [cast4] [chat ascii] System: You pull out a fish!
+[18:07:42.726] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:47.771] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:52.404] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:07:52.830] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:07:56.805] INFO  [cast4] [ACTION] use_object start
+[18:07:56.805] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:07:56.820] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:07:56.820] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[18:07:56.820] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[18:07:56.820] INFO  [cast4] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[18:07:56.820] LOG   [cast4] event action_result: use_object success took=15ms server armed a target cursor
+[18:07:57.620] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=5
+[18:07:57.620] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:07:57.879] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:02.882] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:05.680] INFO  [cast4] [chat ascii] System: You fish a while, but fail to catch anything.
+[18:08:05.740] INFO  [cast4] [ACTION] use_object start
+[18:08:05.740] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:08:05.755] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:08:05.756] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=6
+[18:08:05.756] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=6
+[18:08:05.756] INFO  [cast4] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:08:05.756] LOG   [cast4] event action_result: use_object success took=16ms server armed a target cursor
+[18:08:06.554] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=6
+[18:08:06.554] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:08:07.936] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:12.972] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:18.024] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:22.636] INFO  [cast4] [chat ascii] System: You pull out a fish!
+[18:08:23.052] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:28.109] INFO  [cast4] [survival] hp 25/25 (100%) -> fight
+[18:08:31.571] INFO  [cast4] [ACTION] use_object start
+[18:08:31.571] INFO  [cast4] [ACTION] use_object serial=0x40012D7B
+[18:08:31.571] INFO  [cast4] [chat ascii] System: Where would you like to fish?
+[18:08:31.571] INFO  [cast4] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=7
+[18:08:31.571] LOG   [cast4] event target_requested: id=0x000002CE type=1 subtype=0 gen=7
+[18:08:31.571] INFO  [cast4] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:08:31.571] LOG   [cast4] event action_result: use_object success took=0ms server armed a target cursor
+[18:08:32.432] INFO  [cast4] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=7
+[18:08:32.432] INFO  [cast4] [target] static 0x17B2 (1465,1751,-5)
+[18:08:33.150] INFO  [cast4] [survival] hp 25/25 (100%) -> fight

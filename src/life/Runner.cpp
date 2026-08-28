@@ -3168,25 +3168,86 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     }
 
     // --- has the last cast resolved? --------------------------------------
-    if (fishCastMs_ != 0 && obs.nowMs - fishCastMs_ < kFishResolveMs) {
-        static const char* kResolved[] = {
-            "but fail to catch anything",       // resolved, no fish
-            "you pull your line back in",       // stopped
+    // Gated on the target reply having been SENT: fishCastMs_ is also set
+    // when the pole is double-clicked, and ungated this branch swallowed the
+    // whole 9-second ceiling between cursor and reply doing nothing -- the
+    // cast1 live run armed the cursor at :24.6 and answered it at :33.7.
+    // The ceiling is NOT one stroke. DELAY=8.0 is per @Stroke, and a round
+    // can run more than one before Sphere speaks: the cast3 live run held a
+    // line at (1465,1751) for a full 9 seconds with no verdict at all, and
+    // @Success (skill18_fishing.scp:37) packs the fish SILENTLY -- so the
+    // only signs of a good round are the fish appearing in the pack or,
+    // eventually, @Fail's sentence. Twenty-five seconds is three strokes of
+    // headroom; on expiry the recast below aborts the stale round cleanly.
+    const i64 kFishRoundCeilingMs = 25000;
+    if (!fishCursorPending_ && fishCastMs_ != 0 &&
+        obs.nowMs - fishCastMs_ < kFishRoundCeilingMs) {
+        // Two kinds of answer. A cast that HELD and came up empty means the
+        // water is good and the roll said mr_nothing (regionresources.scp:
+        // RESOURCES=60.0 mr_nothing); cast there again. A REFUSAL is Sphere
+        // saying this tile can never pay -- "There are no fish here." is
+        // DEFMSG FISHING_2 (core/messages.scp:158) and came back instantly
+        // when the cast1 run targeted near-shore water at (1466,1752) -- so
+        // the tile goes on the dead list and the sweep moves on.
+        // "You pull your line back in and stop fishing." is DELIBERATELY not
+        // a resolution. It is @Abort (skill18_fishing.scp:43-44) -- the echo
+        // of this character's own recast cancelling the previous round -- and
+        // it arrives moments AFTER the new round's journal mark. Treating it
+        // as a verdict resolved every new cast instantly, which recast again,
+        // which aborted again: the cast3 run cancelled its own line twice a
+        // second for a minute straight.
+        static const char* kNoCatch[] = {
+            "but fail to catch anything",       // @Fail: resolved, no fish
+        };
+        static const char* kRefusedHere[] = {
+            "there are no fish here",           // no fish resource at the tile
+            "try fishing elsewhere",            // FISHING_1, same verdict
+            "try fishing in water",             // not water at all
+            "can't fish from where you are standing",
             "you can't fish while riding",      // @PreStart refusal
             "cannot fish so close to yourself", // adjacent water is refused
             "target cannot be seen",
             "that is too far away",
         };
         bool done = false;
-        for (const char* line : kResolved) {
+        for (const char* line : kNoCatch) {
             if (client.JournalSaidSince(line, fishCastJournalMs_)) {
                 done = true;
                 break;
             }
         }
-        const i32 caught = market::QtyOf(obs.pack, "i_fish_big_1");
-        if (caught > fishSeen_) {
-            LogLine("fish: caught one (pack now holds %d)", caught);
+        if (!done) {
+            for (const char* line : kRefusedHere) {
+                if (!client.JournalSaidSince(line, fishCastJournalMs_))
+                    continue;
+                LogLine("fish: refused at %d,%d (\"%s\") -- marking it dead",
+                        fishX_, fishY_, line);
+                deadTargets_.emplace_back(fishX_, fishY_);
+                if (deadTargets_.size() > 32)
+                    deadTargets_.erase(deadTargets_.begin());
+                done = true;
+                break;
+            }
+        }
+        // ALL four fish, not just the first: the region rolls mr_fish1-4
+        // (core/regionresources.scp:64-90) and each REAPs its own item, so a
+        // counter watching only i_fish_big_1 misses three catches in four --
+        // and @Success is silent, so the pack count is the only proof.
+        const i32 caught = market::QtyOf(obs.pack, "i_fish_big_1") +
+                           market::QtyOf(obs.pack, "i_fish_big_2") +
+                           market::QtyOf(obs.pack, "i_fish_big_3") +
+                           market::QtyOf(obs.pack, "i_fish_big_4");
+        // ...and Sphere announces a catch OUT LOUD as well: "You pull out a
+        // fish!" (hardcoded, not in skill18_fishing.scp). In the cast4 live
+        // run that sentence arrived at :07:12 and the pack counter never
+        // moved -- the round resolved only when the 25 s ceiling expired --
+        // so the server's own receipt is trusted directly and the pack count
+        // stays as a second witness.
+        const bool saidCaught =
+            client.JournalSaidSince("you pull out a fish", fishCastJournalMs_);
+        if (caught > fishSeen_ || saidCaught) {
+            LogLine("fish: caught one at %d,%d (%s)", fishX_, fishY_,
+                    saidCaught ? "journal" : "pack count");
             fishSeen_ = caught;
             planner_.NoteProgress();
             state_.memory.NoteResource("fish", fishX_, fishY_, obs.z, true,
@@ -3278,32 +3339,129 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // AT A DOCK: cast at whatever water is already in range.
     //
     // Every previous version picked a "stand tile" and then tried to walk to
-    // it, and every one of them failed differently -- exact-tile routes that
-    // could not arrive, targets that moved as the character walked, A* routes
-    // that stopped short. None of that navigation is needed. The character is
-    // standing at the water's edge already; the only question is which tile to
-    // aim at, and Sphere answers the rest.
+    // it, and every one of them failed differently -- and the post-mortem
+    // found ONE cause under all of them: the client could not see the water
+    // it was standing next to. Around Britain's docks the sea is wet STATICS
+    // over impassable dry-by-tiledata land (see WaterHit in Client.h), so the
+    // land-only water search reported "no water 2-4 tiles" while castable
+    // water sat 2 tiles away, and every walk was aimed at either a wet tile
+    // (an unwalkable A* goal by definition) or a "dry" tile under a water
+    // static (walkable:false -- "goal not walkable"). With both water forms
+    // visible, standing at the edge is usually already enough.
     //
     // 2 to 4 tiles: RANGE=4 is the maximum from skill18_fishing.scp, and the
     // minimum is the server's own "You cannot fish so close to yourself."
+
+    // A shore hop is in flight. Its deadline is checked BEFORE the
+    // GotoBusy early-return -- checked after, a hung walk means the ceiling
+    // can never fire.
+    if (fishTargetSet_) {
+        if (obs.nowMs > fishWalkMs_) {
+            LogLine("fish: shore hop to %d,%d timed out at %d,%d",
+                    fishTargetX_, fishTargetY_, obs.x, obs.y);
+            fishTargetSet_ = false;
+            deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
+            if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+            fishAtDock_ = false;   // re-approach through the travel path
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+        if (client.GotoBusy()) return false;
+        // The walk resolved -- arrived, or A* stopped as close as it could.
+        // Either way the next tick asks the only question arrival ever
+        // poses, "is there castable water from HERE", against a FRESH
+        // observation; scanning this tick's snapshot after a walk is the
+        // stale-position bug the chop goal already paid for. The tile is
+        // marked tried first so a hop that resolved somewhere useless is
+        // never picked again.
+        LogLine("fish: shore hop done at %d,%d (wanted %d,%d)",
+                client.PlayerX(), client.PlayerY(), fishTargetX_, fishTargetY_);
+        deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
+        if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+        fishTargetSet_ = false;
+        nextActionMs_ = obs.nowMs + 300;
+        return false;
+    }
+    // When Sphere has already refused SEVERAL waters around this stand, the
+    // whole near band is fishless and probing the rest of the ring one cast
+    // at a time is just slower agreement. Refusals are structural, not luck:
+    // an empty roll answers "you fish a while, but fail to catch anything"
+    // (RESOURCES=60.0 mr_nothing, core/regionresources.scp:93), while "There
+    // are no fish here." is about the TILE. Three of those within casting
+    // range is enough evidence to move along the shore instead. Only refused
+    // WATER counts -- the dead list also holds failed stand tiles, and those
+    // say nothing about fish.
+    // EXACT-tile matching for cast bookkeeping. IsDeadTarget deliberately
+    // matches within EIGHT tiles (Runner.cpp:766) because it judges travel
+    // destinations -- "this clearing is treeless" -- and that radius is
+    // right for those. Applied to per-tile casts it is catastrophic: one
+    // "There are no fish here." at (1466,1752) blackened the whole dock,
+    // and the very next scan reported "no water 2-4 tiles ... and no shore
+    // to hop to" from a stand with live water three tiles away (cast2 run).
+    auto deadExact = [&](i32 x, i32 y) -> bool {
+        for (const auto& d : deadTargets_)
+            if (d.first == x && d.second == y) return true;
+        return false;
+    };
+
+    int refusedNear = 0;
+    for (const auto& d : deadTargets_) {
+        if (std::max(std::abs(d.first - obs.x), std::abs(d.second - obs.y)) > 4)
+            continue;
+        Client::WaterHit dw;
+        if (client.NearestWater(d.first, d.second, 0, &dw)) ++refusedNear;
+    }
+
     Client::WaterHit water;
     bool haveTarget = false;
-    for (int r = 2; r <= 4 && !haveTarget; ++r) {
+    for (int r = 2; r <= 4 && !haveTarget && refusedNear < 3; ++r) {
         for (i32 dy = -r; dy <= r && !haveTarget; ++dy) {
             for (i32 dx = -r; dx <= r && !haveTarget; ++dx) {
                 if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
                 Client::WaterHit w;
                 if (!client.NearestWater(obs.x + dx, obs.y + dy, 0, &w)) continue;
-                if (IsDeadTarget(w.x, w.y)) continue;
+                if (deadExact(w.x, w.y)) continue;
                 water = w;
                 haveTarget = true;
             }
         }
     }
     if (!haveTarget) {
-        // Not at the edge after all. Go back to a dock rather than wander.
-        LogLine("fish: no water 2-4 tiles from %d,%d -- finding another dock",
-                obs.x, obs.y);
+        // No castable water from where we stand. That makes this a SHORT
+        // WALK problem, not a search problem: NearestFishingSpot now vets
+        // its stand tile with the pathfinder's own walkability query, so a
+        // spot it returns is a goal ActionGoto's A* will accept -- the
+        // missing property that killed every earlier walk. Commit to the
+        // tile ONCE: re-picking from the current position every tick is
+        // what made attempt 2's target drift from 9 tiles out to 20.
+        // The dead list rides along so refused water is not re-nominated:
+        // without it the sweep down the pier proposes the same "no fish
+        // here" tiles from every new stand.
+        Client::FishingSpot spot;
+        if (!client.GotoBusy() &&
+            client.NearestFishingSpot(client.PlayerX(), client.PlayerY(), 12,
+                                      &spot, &deadTargets_) &&
+            !deadExact(spot.standX, spot.standY) &&
+            !(spot.standX == client.PlayerX() &&
+              spot.standY == client.PlayerY())) {
+            LogLine("fish: shore hop %d,%d -> %d,%d (water %d,%d)",
+                    client.PlayerX(), client.PlayerY(),
+                    spot.standX, spot.standY, spot.waterX, spot.waterY);
+            client.ActionGoto(spot.standX, spot.standY);
+            fishTargetX_ = spot.standX;
+            fishTargetY_ = spot.standY;
+            fishTargetSet_ = true;
+            // A ceiling, not a wait: the hop is at most 12 tiles of route,
+            // and 15 s is roomy even at a walk. Timed-out hops are marked
+            // dead above, so this cannot retry the same tile forever, and
+            // the planner's own attempt cap bounds the whole goal.
+            fishWalkMs_ = obs.nowMs + 15000;
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
+        // No walkable shore to hop to either: this place is a dud.
+        LogLine("fish: no water 2-4 tiles from %d,%d and no shore to hop to "
+                "-- finding another dock", obs.x, obs.y);
         fishAtDock_ = false;
         deadTargets_.emplace_back(obs.x, obs.y);
         if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
@@ -3319,12 +3477,29 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
 
     if (fishCursorPending_) {
         if (client.TargetActive()) {
-            client.ActionTargetGround(water.x, water.y, water.z);
+            // Answer the cursor the way a classic client answers a click on
+            // the water the player SEES. Coastline water is a static and a
+            // static reply carries its graphic; open sea is wet land and
+            // gets a ground reply. Sphere types both as fishable t_water
+            // (items/i_ground_tiles.scp:733 [ITEMDEF 01796] TYPE=T_WATER,
+            // DUPELIST through 017b2), so the difference is fidelity, not
+            // permission -- and water.z is the surface actually targeted:
+            // the static's own z (-5 at the Britain dock), not the land
+            // buried under it (-15).
+            if (water.graphic != 0) {
+                client.ActionTargetStatic(water.x, water.y, water.z,
+                                          water.graphic);
+            } else {
+                client.ActionTargetGround(water.x, water.y, water.z);
+            }
             fishCursorPending_ = false;
             fishCastMs_ = obs.nowMs;
             fishCastJournalMs_ = client.JournalNowMs();
             fishX_ = water.x; fishY_ = water.y;
-            fishSeen_ = market::QtyOf(obs.pack, "i_fish_big_1");
+            fishSeen_ = market::QtyOf(obs.pack, "i_fish_big_1") +
+                        market::QtyOf(obs.pack, "i_fish_big_2") +
+                        market::QtyOf(obs.pack, "i_fish_big_3") +
+                        market::QtyOf(obs.pack, "i_fish_big_4");
             nextActionMs_ = obs.nowMs + kFishPollMs;
             return false;
         }

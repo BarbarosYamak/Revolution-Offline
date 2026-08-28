@@ -1,0 +1,698 @@
+[18:03:59.533] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='cast3'
+[18:03:59.534] LOG   [cast3] event session_start: text log opened
+[18:03:59.534] LOG   [cast3] event net_connect_begin: connect 127.0.0.1:2593
+[18:03:59.534] INFO  [cast3] [net] connecting to 127.0.0.1:2593 ...
+[18:03:59.535] LOG   [cast3] event net_connected: connect 127.0.0.1:2593
+[18:03:59.536] INFO  [cast3] [net] connected.
+[18:03:59.536] INFO  [cast3] [seed] sent 0x7F000001 (plaintext)
+[18:03:59.536] LOG   [cast3] event seed_out: 0x7F000001 hex=7f000001
+[18:03:59.536] INFO  [life] no prior state for revolutionsoak31.bryn: a new Fisher
+[18:03:59.536] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[18:03:59.536] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:03:59.536] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:03:59.536] INFO  [cast3] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[18:03:59.578] INFO  [cast3] [0xA8] 1 server(s):
+[18:03:59.578] INFO  [cast3]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:03:59.594] INFO  [cast3] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:03:59.594] LOG   [cast3] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:03:59.594] INFO  [cast3] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:03:59.594] LOG   [cast3] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:03:59.594] INFO  [cast3] [0xB9] server features = 0x0005
+[18:03:59.594] INFO  [cast3] [0xA9] 5 slot(s) (populated 1):
+[18:03:59.594] INFO  [cast3]   [0] Bryn
+[18:03:59.594] INFO  [cast3]   [1] <empty>
+[18:03:59.594] INFO  [cast3]   [2] <empty>
+[18:03:59.594] INFO  [cast3]   [3] <empty>
+[18:03:59.594] INFO  [cast3]   [4] <empty>
+[18:03:59.594] INFO  [cast3] [ui] playing slot 0 ('Bryn')
+[18:03:59.610] INFO  [cast3] [0x1B] serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:03:59.610] LOG   [cast3] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:03:59.610] INFO  [cast3] [0x20] player @(1468,1750,0) facing=5
+[18:03:59.610] INFO  [cast3] [0x55] login complete — entering world
+[18:03:59.610] LOG   [cast3] event in_world: 0x55 received
+[18:03:59.610] INFO  [cast3] [backpack] opening 0x40012DD6
+[18:03:59.610] INFO  [cast3] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:03:59.610] INFO  [cast3] [chat ascii] System: There is 1 other player here.
+[18:03:59.610] INFO  [cast3] [chat ascii] System: Last logged: 2026/08/28 18:00:52
+[18:03:59.610] INFO  [cast3] [chat ascii] System: You are under the protection of the city guards
+[18:03:59.614] INFO  [cast3] [action] requesting the skill list
+[18:03:59.614] INFO  [life] in world; asked the server for the skill list
+[18:03:59.614] INFO  [cast3] [0x24] open container 0x40012DD6 gump=60
+[18:03:59.614] INFO  [cast3] [0x3C] container contents: 10 item(s)
+[18:03:59.614] LOG   [cast3] event backpack_contents: serial=0x40012DD6 items=10
+[18:04:02.221] INFO  [cast3] [bot] world data loaded (0 blacklisted spot(s)).
+[18:04:02.221] INFO  [life] common knowledge: Docks at 1479,1757 (11 tiles away)
+[18:04:02.221] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (742 tiles away)
+[18:04:02.221] INFO  [life] common knowledge: Cove Docks at 2255,1191 (787 tiles away)
+[18:04:02.221] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[18:04:02.221] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[18:04:02.221] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[18:04:02.221] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[18:04:02.221] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[18:04:02.221] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[18:04:02.221] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[18:04:02.221] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[18:04:02.221] INFO  [life]   position     persisted=0,0        server=1468,1750  -> server value accepted
+[18:04:02.221] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:04:02.221] INFO  [cast3] [survival] on
+[18:04:02.221] LOG   [cast3] event survival_mode: on
+[18:04:02.222] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:04:02.222] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:02.274] INFO  [life] goal=FISH reason="no goal was running"
+[18:04:02.274] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:04:02.274] INFO  [life]   score=58.5
+[18:04:02.274] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:04:02.274] INFO  [life]   reason: carrying 0
+[18:04:02.274] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:04:02.274] INFO  [life] fish: going to a dock (trip 1)
+[18:04:02.274] INFO  [cast3] [travel] Docks -> (1479,1757) r=12 from (1468,1750)
+[18:04:02.274] LOG   [cast3] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1468,1750)
+[18:04:02.274] INFO  [cast3] [travel] Docks ARRIVED at (1468,1750,0)
+[18:04:02.274] LOG   [cast3] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:04:04.278] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:04:04.339] INFO  [cast3] [ACTION] use_object start
+[18:04:04.339] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:04.340] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:04.340] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[18:04:04.340] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[18:04:04.340] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:04.340] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:05.197] INFO  [cast3] [TARGET] reply static=(1466,1752,-5) gfx=0x17A5 gen=1
+[18:04:05.197] INFO  [cast3] [target] static 0x17A5 (1466,1752,-5)
+[18:04:05.197] INFO  [cast3] [chat ascii] System: There are no fish here.
+[18:04:05.629] INFO  [life] fish: refused at 1466,1752 ("there are no fish here") -- marking it dead
+[18:04:05.629] INFO  [cast3] [ACTION] use_object start
+[18:04:05.629] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:05.629] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:05.629] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[18:04:05.630] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[18:04:05.630] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:05.630] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:06.469] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=2
+[18:04:06.469] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:06.485] INFO  [cast3] [0x20] player @(1468,1750,0) facing=6
+[18:04:07.282] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:12.314] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:15.521] INFO  [cast3] [ACTION] use_object start
+[18:04:15.521] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:15.537] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:15.537] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[18:04:15.537] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[18:04:15.537] INFO  [cast3] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:04:15.537] LOG   [cast3] event action_result: use_object success took=16ms server armed a target cursor
+[18:04:16.350] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=3
+[18:04:16.350] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:16.350] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:16.794] INFO  [cast3] [ACTION] use_object start
+[18:04:16.794] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:16.794] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:16.794] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[18:04:16.794] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[18:04:16.794] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:16.794] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:17.346] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:17.636] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=4
+[18:04:17.637] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:17.652] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:18.062] INFO  [cast3] [ACTION] use_object start
+[18:04:18.062] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:18.062] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:18.062] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[18:04:18.062] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[18:04:18.062] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:18.062] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:18.872] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=5
+[18:04:18.872] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:18.872] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:19.300] INFO  [cast3] [ACTION] use_object start
+[18:04:19.300] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:19.301] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:19.301] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=6
+[18:04:19.301] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=6
+[18:04:19.301] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:19.301] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:20.117] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=6
+[18:04:20.117] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:20.117] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:20.560] INFO  [cast3] [ACTION] use_object start
+[18:04:20.560] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:20.560] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:20.560] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=7
+[18:04:20.560] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=7
+[18:04:20.560] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:20.560] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:21.405] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=7
+[18:04:21.405] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:21.421] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:21.833] INFO  [cast3] [ACTION] use_object start
+[18:04:21.833] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:21.833] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:21.833] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=8
+[18:04:21.833] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=8
+[18:04:21.833] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:21.833] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:22.382] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:22.643] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=8
+[18:04:22.643] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:22.643] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:23.073] INFO  [cast3] [ACTION] use_object start
+[18:04:23.073] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:23.073] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:23.073] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=9
+[18:04:23.073] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=9
+[18:04:23.073] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:23.073] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:23.915] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=9
+[18:04:23.915] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:23.931] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:24.344] INFO  [cast3] [ACTION] use_object start
+[18:04:24.344] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:24.344] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:24.344] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=10
+[18:04:24.344] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=10
+[18:04:24.344] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:24.344] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:25.157] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=10
+[18:04:25.157] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:25.158] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:25.586] INFO  [cast3] [ACTION] use_object start
+[18:04:25.586] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:25.586] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:25.586] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=11
+[18:04:25.586] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=11
+[18:04:25.586] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:25.586] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:26.394] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=11
+[18:04:26.394] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:26.394] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:26.853] INFO  [cast3] [ACTION] use_object start
+[18:04:26.853] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:26.853] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:26.853] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=12
+[18:04:26.853] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=12
+[18:04:26.853] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:26.853] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:27.406] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:27.682] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=12
+[18:04:27.682] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:27.698] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:28.097] INFO  [cast3] [ACTION] use_object start
+[18:04:28.097] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:28.097] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:28.097] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=13
+[18:04:28.097] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=13
+[18:04:28.097] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:28.097] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:28.923] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=13
+[18:04:28.924] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:28.924] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:29.352] INFO  [cast3] [ACTION] use_object start
+[18:04:29.352] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:29.352] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:29.352] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=14
+[18:04:29.352] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=14
+[18:04:29.352] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:29.352] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:30.196] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=14
+[18:04:30.196] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:30.213] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:30.627] INFO  [cast3] [ACTION] use_object start
+[18:04:30.627] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:30.628] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:30.628] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=15
+[18:04:30.628] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=15
+[18:04:30.628] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:30.628] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:31.435] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=15
+[18:04:31.435] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:31.435] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:31.861] INFO  [cast3] [ACTION] use_object start
+[18:04:31.861] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:31.862] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:31.862] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=16
+[18:04:31.862] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=16
+[18:04:31.862] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:31.862] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:32.431] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:32.703] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=16
+[18:04:32.703] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:32.719] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:33.134] INFO  [cast3] [ACTION] use_object start
+[18:04:33.134] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:33.134] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:33.134] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=17
+[18:04:33.134] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=17
+[18:04:33.134] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:33.134] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:33.945] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=17
+[18:04:33.945] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:33.945] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:34.378] INFO  [cast3] [ACTION] use_object start
+[18:04:34.378] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:34.378] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:34.378] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=18
+[18:04:34.378] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=18
+[18:04:34.378] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:34.378] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:35.222] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=18
+[18:04:35.222] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:35.238] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:35.654] INFO  [cast3] [ACTION] use_object start
+[18:04:35.654] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:35.669] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:35.670] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=19
+[18:04:35.670] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=19
+[18:04:35.670] INFO  [cast3] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:04:35.670] LOG   [cast3] event action_result: use_object success took=16ms server armed a target cursor
+[18:04:36.511] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=19
+[18:04:36.511] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:36.527] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:36.937] INFO  [cast3] [ACTION] use_object start
+[18:04:36.937] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:36.937] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:36.937] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=20
+[18:04:36.937] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=20
+[18:04:36.937] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:36.937] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:37.442] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:37.747] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=20
+[18:04:37.747] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:37.748] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:38.176] INFO  [cast3] [ACTION] use_object start
+[18:04:38.176] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:38.177] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:38.177] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=21
+[18:04:38.177] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=21
+[18:04:38.177] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:38.177] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:39.016] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=21
+[18:04:39.016] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:39.032] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:39.446] INFO  [cast3] [ACTION] use_object start
+[18:04:39.446] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:39.447] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:39.447] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=22
+[18:04:39.447] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=22
+[18:04:39.447] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:39.447] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:40.301] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=22
+[18:04:40.301] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:40.317] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:40.716] INFO  [cast3] [ACTION] use_object start
+[18:04:40.716] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:40.716] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:40.716] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=23
+[18:04:40.716] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=23
+[18:04:40.716] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:40.716] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:41.570] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=23
+[18:04:41.570] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:41.571] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:42.029] INFO  [cast3] [ACTION] use_object start
+[18:04:42.029] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:42.029] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:42.029] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=24
+[18:04:42.029] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=24
+[18:04:42.029] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:42.029] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:42.461] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:42.860] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=24
+[18:04:42.860] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:42.875] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:43.287] INFO  [cast3] [ACTION] use_object start
+[18:04:43.287] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:43.287] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:43.287] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=25
+[18:04:43.287] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=25
+[18:04:43.287] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:43.287] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:44.101] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=25
+[18:04:44.101] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:44.102] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:44.529] INFO  [cast3] [ACTION] use_object start
+[18:04:44.530] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:44.530] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:44.530] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=26
+[18:04:44.530] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=26
+[18:04:44.530] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:44.530] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:45.374] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=26
+[18:04:45.374] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:45.389] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:45.807] INFO  [cast3] [ACTION] use_object start
+[18:04:45.807] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:45.807] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:45.807] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=27
+[18:04:45.807] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=27
+[18:04:45.807] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:45.807] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:46.618] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=27
+[18:04:46.618] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:46.619] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:47.050] INFO  [cast3] [ACTION] use_object start
+[18:04:47.050] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:47.050] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:47.050] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=28
+[18:04:47.050] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=28
+[18:04:47.050] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:47.050] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:47.482] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:47.893] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=28
+[18:04:47.893] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:47.908] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:48.324] INFO  [cast3] [ACTION] use_object start
+[18:04:48.324] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:48.324] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:48.324] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=29
+[18:04:48.324] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=29
+[18:04:48.324] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:48.324] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:49.133] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=29
+[18:04:49.133] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:49.134] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:49.561] INFO  [cast3] [ACTION] use_object start
+[18:04:49.561] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:49.561] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:49.561] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=30
+[18:04:49.561] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=30
+[18:04:49.561] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:49.561] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:50.402] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=30
+[18:04:50.402] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:50.417] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:50.835] INFO  [cast3] [ACTION] use_object start
+[18:04:50.835] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:50.835] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:50.835] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=31
+[18:04:50.835] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=31
+[18:04:50.835] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:50.835] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:51.644] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=31
+[18:04:51.644] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:51.644] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:52.076] INFO  [cast3] [ACTION] use_object start
+[18:04:52.076] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:52.077] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:52.077] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=32
+[18:04:52.077] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=32
+[18:04:52.077] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:52.077] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:52.535] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:52.917] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=32
+[18:04:52.917] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:52.933] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:53.360] INFO  [cast3] [ACTION] use_object start
+[18:04:53.360] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:53.375] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:53.375] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=33
+[18:04:53.375] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=33
+[18:04:53.375] INFO  [cast3] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[18:04:53.375] LOG   [cast3] event action_result: use_object success took=15ms server armed a target cursor
+[18:04:54.214] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=33
+[18:04:54.215] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:54.230] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:54.647] INFO  [cast3] [ACTION] use_object start
+[18:04:54.647] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:54.647] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:54.648] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=34
+[18:04:54.648] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=34
+[18:04:54.648] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:54.648] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:55.458] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=34
+[18:04:55.458] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:55.459] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:55.884] INFO  [cast3] [ACTION] use_object start
+[18:04:55.884] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:55.884] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:55.884] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=35
+[18:04:55.884] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=35
+[18:04:55.884] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:55.884] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:56.741] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=35
+[18:04:56.741] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:56.757] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:57.170] INFO  [cast3] [ACTION] use_object start
+[18:04:57.170] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:57.170] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:57.170] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=36
+[18:04:57.170] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=36
+[18:04:57.170] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:04:57.170] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:04:57.537] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:04:57.980] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=36
+[18:04:57.980] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:57.981] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:58.411] INFO  [cast3] [ACTION] use_object start
+[18:04:58.411] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:58.412] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:58.412] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=37
+[18:04:58.412] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=37
+[18:04:58.412] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:58.412] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:04:59.253] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=37
+[18:04:59.253] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:04:59.269] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:04:59.680] INFO  [cast3] [ACTION] use_object start
+[18:04:59.680] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:04:59.681] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:04:59.681] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=38
+[18:04:59.681] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=38
+[18:04:59.681] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:04:59.681] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:00.480] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=38
+[18:05:00.480] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:00.481] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:00.910] INFO  [cast3] [ACTION] use_object start
+[18:05:00.910] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:00.910] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:00.910] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=39
+[18:05:00.910] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=39
+[18:05:00.910] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:00.910] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:01.752] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=39
+[18:05:01.752] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:01.768] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:02.185] INFO  [cast3] [ACTION] use_object start
+[18:05:02.185] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:02.185] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:02.185] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=40
+[18:05:02.185] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=40
+[18:05:02.185] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:02.185] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:02.247] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:05:02.552] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:02.997] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=40
+[18:05:02.997] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:02.998] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:03.425] INFO  [cast3] [ACTION] use_object start
+[18:05:03.425] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:03.426] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:03.426] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=41
+[18:05:03.426] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=41
+[18:05:03.426] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:03.426] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:04.263] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=41
+[18:05:04.264] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:04.279] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:04.690] INFO  [cast3] [ACTION] use_object start
+[18:05:04.690] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:04.690] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:04.690] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=42
+[18:05:04.690] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=42
+[18:05:04.690] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:04.690] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:05.501] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=42
+[18:05:05.501] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:05.502] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:05.934] INFO  [cast3] [ACTION] use_object start
+[18:05:05.934] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:05.934] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:05.934] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=43
+[18:05:05.934] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=43
+[18:05:05.934] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:05.934] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:06.773] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=43
+[18:05:06.773] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:06.788] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:07.201] INFO  [cast3] [ACTION] use_object start
+[18:05:07.201] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:07.201] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:07.201] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=44
+[18:05:07.201] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=44
+[18:05:07.201] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:07.201] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:07.566] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:08.009] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=44
+[18:05:08.009] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:08.009] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:08.438] INFO  [cast3] [ACTION] use_object start
+[18:05:08.439] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:08.439] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:08.439] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=45
+[18:05:08.439] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=45
+[18:05:08.439] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:08.439] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:09.276] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=45
+[18:05:09.276] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:09.293] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:09.707] INFO  [cast3] [ACTION] use_object start
+[18:05:09.707] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:09.707] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:09.707] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=46
+[18:05:09.707] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=46
+[18:05:09.707] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:09.707] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:10.523] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=46
+[18:05:10.523] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:10.524] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:10.951] INFO  [cast3] [ACTION] use_object start
+[18:05:10.951] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:10.951] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:10.951] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=47
+[18:05:10.951] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=47
+[18:05:10.951] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:10.951] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:11.792] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=47
+[18:05:11.792] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:11.807] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:12.223] INFO  [cast3] [ACTION] use_object start
+[18:05:12.223] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:12.223] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:12.223] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=48
+[18:05:12.223] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=48
+[18:05:12.223] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:12.223] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:12.590] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:13.033] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=48
+[18:05:13.033] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:13.033] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:13.460] INFO  [cast3] [ACTION] use_object start
+[18:05:13.461] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:13.461] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:13.461] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=49
+[18:05:13.461] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=49
+[18:05:13.461] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:13.461] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:14.307] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=49
+[18:05:14.307] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:14.323] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:14.740] INFO  [cast3] [ACTION] use_object start
+[18:05:14.740] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:14.740] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:14.740] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=50
+[18:05:14.740] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=50
+[18:05:14.740] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:14.740] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:15.548] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=50
+[18:05:15.548] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:15.549] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:15.976] INFO  [cast3] [ACTION] use_object start
+[18:05:15.976] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:15.976] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:15.977] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=51
+[18:05:15.977] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=51
+[18:05:15.977] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:15.977] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:16.821] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=51
+[18:05:16.821] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:16.836] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:17.250] INFO  [cast3] [ACTION] use_object start
+[18:05:17.250] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:17.251] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:17.251] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=52
+[18:05:17.251] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=52
+[18:05:17.251] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:17.251] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:17.615] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:18.060] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=52
+[18:05:18.060] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:18.060] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:18.490] INFO  [cast3] [ACTION] use_object start
+[18:05:18.490] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:18.490] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:18.490] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=53
+[18:05:18.490] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=53
+[18:05:18.490] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:18.490] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:19.334] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=53
+[18:05:19.334] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:19.350] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:19.763] INFO  [cast3] [ACTION] use_object start
+[18:05:19.763] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:19.777] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:19.777] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=54
+[18:05:19.778] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=54
+[18:05:19.778] INFO  [cast3] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[18:05:19.778] LOG   [cast3] event action_result: use_object success took=14ms server armed a target cursor
+[18:05:20.622] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=54
+[18:05:20.622] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:20.637] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:21.055] INFO  [cast3] [ACTION] use_object start
+[18:05:21.055] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:21.055] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:21.055] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=55
+[18:05:21.055] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=55
+[18:05:21.055] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:21.055] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:21.871] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=55
+[18:05:21.871] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:21.871] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:22.297] INFO  [cast3] [ACTION] use_object start
+[18:05:22.297] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:22.298] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:22.298] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=56
+[18:05:22.298] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=56
+[18:05:22.298] INFO  [cast3] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:22.298] LOG   [cast3] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:22.662] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:23.137] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=56
+[18:05:23.137] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:23.153] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:23.538] INFO  [cast3] [ACTION] use_object start
+[18:05:23.538] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:23.538] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:23.538] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=57
+[18:05:23.538] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=57
+[18:05:23.538] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:23.538] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:24.366] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=57
+[18:05:24.366] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:24.366] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:24.794] INFO  [cast3] [ACTION] use_object start
+[18:05:24.794] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:24.794] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:24.794] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=58
+[18:05:24.794] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=58
+[18:05:24.794] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:24.794] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:25.636] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=58
+[18:05:25.636] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:25.652] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:26.071] INFO  [cast3] [ACTION] use_object start
+[18:05:26.071] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:26.071] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:26.071] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=59
+[18:05:26.071] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=59
+[18:05:26.071] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:26.071] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:26.896] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=59
+[18:05:26.896] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:26.897] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:27.325] INFO  [cast3] [ACTION] use_object start
+[18:05:27.325] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:27.325] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:27.325] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=60
+[18:05:27.325] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=60
+[18:05:27.325] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:27.325] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor
+[18:05:27.691] INFO  [cast3] [survival] hp 25/25 (100%) -> fight
+[18:05:28.164] INFO  [cast3] [TARGET] reply static=(1465,1751,-5) gfx=0x17B2 gen=60
+[18:05:28.164] INFO  [cast3] [target] static 0x17B2 (1465,1751,-5)
+[18:05:28.179] INFO  [cast3] [chat ascii] System: You pull your line back in and stop fishing.
+[18:05:28.593] INFO  [cast3] [ACTION] use_object start
+[18:05:28.593] INFO  [cast3] [ACTION] use_object serial=0x40012D7B
+[18:05:28.593] INFO  [cast3] [chat ascii] System: Where would you like to fish?
+[18:05:28.593] INFO  [cast3] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=61
+[18:05:28.593] LOG   [cast3] event target_requested: id=0x000002CE type=1 subtype=0 gen=61
+[18:05:28.593] INFO  [cast3] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:05:28.593] LOG   [cast3] event action_result: use_object success took=0ms server armed a target cursor

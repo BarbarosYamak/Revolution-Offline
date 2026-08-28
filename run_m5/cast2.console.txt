@@ -1,0 +1,453 @@
+[18:00:52.416] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='cast2'
+[18:00:52.417] LOG   [cast2] event session_start: text log opened
+[18:00:52.418] LOG   [cast2] event net_connect_begin: connect 127.0.0.1:2593
+[18:00:52.418] INFO  [cast2] [net] connecting to 127.0.0.1:2593 ...
+[18:00:52.419] LOG   [cast2] event net_connected: connect 127.0.0.1:2593
+[18:00:52.419] INFO  [cast2] [net] connected.
+[18:00:52.419] INFO  [cast2] [seed] sent 0x7F000001 (plaintext)
+[18:00:52.419] LOG   [cast2] event seed_out: 0x7F000001 hex=7f000001
+[18:00:52.419] INFO  [life] no prior state for revolutionsoak31.bryn: a new Fisher
+[18:00:52.419] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[18:00:52.419] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[18:00:52.419] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[18:00:52.419] INFO  [cast2] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 4 min)
+[18:00:52.451] INFO  [cast2] [0xA8] 1 server(s):
+[18:00:52.452] INFO  [cast2]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:00:52.467] INFO  [cast2] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[18:00:52.467] LOG   [cast2] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[18:00:52.467] INFO  [cast2] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:00:52.467] LOG   [cast2] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:00:52.467] INFO  [cast2] [0xB9] server features = 0x0005
+[18:00:52.467] INFO  [cast2] [0xA9] 5 slot(s) (populated 1):
+[18:00:52.467] INFO  [cast2]   [0] Bryn
+[18:00:52.467] INFO  [cast2]   [1] <empty>
+[18:00:52.467] INFO  [cast2]   [2] <empty>
+[18:00:52.467] INFO  [cast2]   [3] <empty>
+[18:00:52.467] INFO  [cast2]   [4] <empty>
+[18:00:52.467] INFO  [cast2] [ui] playing slot 0 ('Bryn')
+[18:00:52.483] INFO  [cast2] [0x1B] serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:00:52.483] LOG   [cast2] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1468,1750,0)
+[18:00:52.483] INFO  [cast2] [0x20] player @(1468,1750,0) facing=5
+[18:00:52.483] INFO  [cast2] [0x55] login complete — entering world
+[18:00:52.483] LOG   [cast2] event in_world: 0x55 received
+[18:00:52.483] INFO  [cast2] [backpack] opening 0x40012DD6
+[18:00:52.483] INFO  [cast2] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:00:52.483] INFO  [cast2] [chat ascii] System: There is 1 other player here.
+[18:00:52.483] INFO  [cast2] [chat ascii] System: Last logged: 2026/08/28 17:55:19
+[18:00:52.483] INFO  [cast2] [chat ascii] System: You are under the protection of the city guards
+[18:00:52.487] INFO  [cast2] [action] requesting the skill list
+[18:00:52.487] INFO  [life] in world; asked the server for the skill list
+[18:00:52.487] INFO  [cast2] [0x24] open container 0x40012DD6 gump=60
+[18:00:52.487] INFO  [cast2] [0x3C] container contents: 10 item(s)
+[18:00:52.487] LOG   [cast2] event backpack_contents: serial=0x40012DD6 items=10
+[18:00:55.091] INFO  [cast2] [bot] world data loaded (0 blacklisted spot(s)).
+[18:00:55.091] INFO  [life] common knowledge: Docks at 1479,1757 (11 tiles away)
+[18:00:55.091] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (742 tiles away)
+[18:00:55.091] INFO  [life] common knowledge: Cove Docks at 2255,1191 (787 tiles away)
+[18:00:55.091] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[18:00:55.091] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[18:00:55.091] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[18:00:55.091] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[18:00:55.091] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[18:00:55.091] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[18:00:55.091] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[18:00:55.091] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[18:00:55.091] INFO  [life]   position     persisted=0,0        server=1468,1750  -> server value accepted
+[18:00:55.091] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:00:55.091] INFO  [cast2] [survival] on
+[18:00:55.091] LOG   [cast2] event survival_mode: on
+[18:00:55.093] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:00:55.093] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:00:55.144] INFO  [life] goal=FISH reason="no goal was running"
+[18:00:55.144] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:00:55.144] INFO  [life]   score=58.5
+[18:00:55.144] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:00:55.144] INFO  [life]   reason: carrying 0
+[18:00:55.144] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:00:55.144] INFO  [life] fish: going to a dock (trip 1)
+[18:00:55.144] INFO  [cast2] [travel] Docks -> (1479,1757) r=12 from (1468,1750)
+[18:00:55.144] LOG   [cast2] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1468,1750)
+[18:00:55.144] INFO  [cast2] [travel] Docks ARRIVED at (1468,1750,0)
+[18:00:55.144] LOG   [cast2] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:00:57.195] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:00:57.257] INFO  [cast2] [ACTION] use_object start
+[18:00:57.257] INFO  [cast2] [ACTION] use_object serial=0x40012D7B
+[18:00:57.257] INFO  [cast2] [chat ascii] System: Where would you like to fish?
+[18:00:57.257] INFO  [cast2] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[18:00:57.257] LOG   [cast2] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[18:00:57.257] INFO  [cast2] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:00:57.257] LOG   [cast2] event action_result: use_object success took=0ms server armed a target cursor
+[18:00:58.081] INFO  [cast2] [TARGET] reply static=(1466,1752,-5) gfx=0x17A5 gen=1
+[18:00:58.081] INFO  [cast2] [target] static 0x17A5 (1466,1752,-5)
+[18:00:58.081] INFO  [cast2] [chat ascii] System: There are no fish here.
+[18:00:58.511] INFO  [life] fish: refused at 1466,1752 ("there are no fish here") -- marking it dead
+[18:00:58.511] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:00.126] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:00.570] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:00.570] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:00.570] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:00.570] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:00.570] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:02.589] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:02.651] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:04.704] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:04.704] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:04.704] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:04.704] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:04.704] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:05.129] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:06.754] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:06.814] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:08.816] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:08.816] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:08.816] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:08.816] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:08.816] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:10.158] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:10.876] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:10.938] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:12.991] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:12.991] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:12.991] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:12.991] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:12.991] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:14.996] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:15.058] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:15.120] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:01:15.120] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:01:15.120] INFO  [life]   score=58.5
+[18:01:15.120] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:01:15.120] INFO  [life]   reason: carrying 0
+[18:01:15.120] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:01:15.181] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:17.118] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:17.118] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:17.118] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:17.118] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:17.118] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:19.121] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:19.184] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:20.228] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:21.193] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:21.194] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:21.194] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:21.194] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:21.194] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:23.244] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:23.306] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:25.283] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:25.343] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:25.343] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:25.343] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:25.343] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:25.343] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:27.349] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:27.409] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:29.430] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:29.430] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:29.430] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:29.430] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:29.430] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:30.332] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:31.437] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:31.497] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:33.531] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:33.531] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:33.531] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:33.531] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:33.531] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:35.387] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:35.571] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:35.633] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:35.695] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:01:35.695] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:01:35.695] INFO  [life]   score=58.5
+[18:01:35.695] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:01:35.695] INFO  [life]   reason: carrying 0
+[18:01:35.695] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:01:37.670] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:37.670] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:37.671] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:37.671] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:37.671] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:39.690] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:39.751] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:40.443] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:41.769] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:41.769] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:41.770] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:41.770] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:41.770] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:43.781] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:43.843] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:45.445] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:45.870] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:45.870] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:45.870] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:45.870] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:45.870] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:47.893] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:47.954] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:49.955] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:49.955] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:49.955] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:49.955] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:49.955] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:50.506] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:51.981] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:52.043] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:54.073] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:54.073] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:54.073] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:54.073] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:54.073] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:01:55.118] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:01:55.545] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:01:56.095] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:01:56.157] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:01:56.217] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:01:56.217] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:01:56.217] INFO  [life]   score=58.5
+[18:01:56.217] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:01:56.217] INFO  [life]   reason: carrying 0
+[18:01:56.217] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:01:58.205] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:01:58.205] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:01:58.205] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:01:58.205] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:01:58.205] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:00.242] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:00.302] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:00.547] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:02.320] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:02.320] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:02.320] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:02.320] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:02.320] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:04.358] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:04.420] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:05.550] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:06.466] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:06.466] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:06.466] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:06.466] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:06.466] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:08.466] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:08.528] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:10.579] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:10.579] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:10.579] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:10.579] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:10.579] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:10.579] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:12.616] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:12.616] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:14.663] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:14.664] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:14.664] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:14.664] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:14.664] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:15.582] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:16.686] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:16.701] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:16.762] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:02:16.762] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:02:16.762] INFO  [life]   score=58.5
+[18:02:16.762] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:02:16.762] INFO  [life]   reason: carrying 0
+[18:02:16.762] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:02:18.726] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:18.726] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:18.726] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:18.726] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:18.726] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:20.617] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:20.739] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:20.801] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:22.819] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:22.819] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:22.819] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:22.819] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:22.819] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:24.838] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:24.898] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:25.638] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:26.901] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:26.901] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:26.901] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:26.901] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:26.901] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:28.918] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:28.979] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:30.648] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:31.018] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:31.018] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:31.018] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:31.018] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:31.018] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:33.073] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:33.135] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:35.154] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:35.154] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:35.154] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:35.154] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:35.154] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:35.703] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:37.211] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:37.273] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:37.335] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:02:37.335] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:02:37.335] INFO  [life]   score=58.5
+[18:02:37.335] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:02:37.335] INFO  [life]   reason: carrying 0
+[18:02:37.335] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:02:39.325] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:39.325] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:39.325] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:39.325] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:39.325] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:40.718] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:41.335] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:41.366] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:43.370] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:43.370] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:43.370] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:43.370] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:43.370] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:45.375] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:45.436] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:45.742] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:47.467] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:47.467] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:47.467] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:47.467] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:47.467] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:49.494] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:49.555] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:50.753] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:51.596] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:51.596] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:51.596] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:51.596] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:51.596] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:53.626] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:53.689] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:55.146] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[18:02:55.695] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:55.695] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:55.695] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:55.695] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:55.695] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:02:55.756] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:02:57.698] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:02:57.759] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:02:57.820] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:02:57.820] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:02:57.820] INFO  [life]   score=58.5
+[18:02:57.820] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:02:57.820] INFO  [life]   reason: carrying 0
+[18:02:57.820] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:02:59.782] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:02:59.782] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:02:59.782] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:02:59.782] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:02:59.782] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:00.780] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:01.835] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:01.898] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:03.957] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:03.957] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:03.957] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:03.957] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:03.957] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:05.826] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:06.011] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:06.073] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:08.133] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:08.133] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:08.133] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:08.133] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:08.133] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:10.154] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:10.216] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:10.845] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:12.220] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:12.220] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:12.220] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:12.220] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:12.220] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:14.247] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:14.309] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:15.857] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:16.315] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:16.315] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:16.316] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:16.316] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:16.316] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:18.354] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:18.417] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:18.479] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:03:18.479] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:03:18.479] INFO  [life]   score=58.5
+[18:03:18.479] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:03:18.479] INFO  [life]   reason: carrying 0
+[18:03:18.479] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:03:20.466] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:20.466] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:20.466] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:20.466] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:20.466] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:20.896] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:22.520] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:22.582] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:24.628] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:24.628] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:24.628] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:24.628] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:24.628] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:25.948] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:26.683] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:26.746] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:28.790] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:28.790] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:28.790] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:28.790] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:28.790] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:30.846] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:30.907] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:30.967] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:32.956] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:32.956] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:32.956] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:32.956] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:32.956] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:35.007] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:35.069] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:35.987] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:37.077] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:37.077] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:37.077] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:37.077] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:37.077] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:39.086] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:39.146] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:39.208] INFO  [life] goal_changed=FISH from=FISH reason="previous goal abandoned: attempts 5 >= 5"
+[18:03:39.208] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=1 held=[fishing pole,]
+[18:03:39.208] INFO  [life]   score=58.5
+[18:03:39.208] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[18:03:39.208] INFO  [life]   reason: carrying 0
+[18:03:39.208] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[18:03:41.045] INFO  [cast2] [survival] hp 25/25 (100%) -> fight
+[18:03:41.166] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:41.166] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:41.166] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:41.166] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:41.166] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:43.212] INFO  [life] fish: at the water's edge (1468,1750), shore 1468,1750
+[18:03:43.274] INFO  [life] fish: no water 2-4 tiles from 1468,1750 and no shore to hop to -- finding another dock
+[18:03:45.326] INFO  [life] fish: back to a shore that has paid out at 1468,1750
+[18:03:45.326] INFO  [cast2] [travel] fishing spot -> (1468,1750) r=4 from (1468,1750)
+[18:03:45.326] LOG   [cast2] event travel_start: label='fishing spot' target=(1468,1750) radius=4 from=(1468,1750)
+[18:03:45.326] INFO  [cast2] [travel] fishing spot ARRIVED at (1468,1750,0)
+[18:03:45.326] LOG   [cast2] event travel_done: label='fishing spot' ok=1 at=(1468,1750) legs=0 plans=0 why=''
+[18:03:46.060] INFO  [cast2] [survival] hp 25/25 (100%) -> fight

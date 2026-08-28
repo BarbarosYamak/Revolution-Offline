@@ -540,13 +540,32 @@ public:
     // kCellWater flag at 8x8 granularity, which is far too coarse to target,
     // and a fishing attempt needs an exact tile.
     //
-    // So this reads the LAND tile out of the map and asks tiledata whether it
-    // is Wet, exactly as NearestTree reads statics. Statics are checked too:
-    // a bridge or a dock plank sitting over water is NOT fishable, and
-    // standing on a pier casting into the plank under your feet is the
-    // fishing equivalent of swinging an axe at a stump.
-    struct WaterHit { i32 x = 0, y = 0; i8 z = 0; };
+    // Water comes in TWO physical forms and this looks for both:
+    //
+    //  1. LAND tiles whose tiledata flags carry Wet (open sea, ponds).
+    //  2. Wet STATICS -- the 0x1796-0x17B2 "water" overlays a coastline is
+    //     drawn with. Around Britain's docks the sea a player SEES is these
+    //     statics (flags 0xC1: Wet|Impassable) laid over land that tiledata
+    //     calls impassable dry "sand" (map0 at 1458-1466,1745-1760: land ids
+    //     27/30/77/85 flags 0x40). The shard types that whole range as
+    //     fishable itself -- items/i_ground_tiles.scp:733 [ITEMDEF 01796]
+    //     TYPE=T_WATER plus the DUPELIST through 017b2 -- so land-Wet alone
+    //     is blind exactly where a day-one fisher goes to fish. That
+    //     blindness produced "no water 2-4 tiles from 1468,1750" in a live
+    //     run while castable water statics sat 2 tiles away.
+    //
+    // `graphic` says which form: 0 for wet land (target the ground), else
+    // the wet static's id (target the static, the way a classic client
+    // click on visible water does). `z` is the surface actually targeted --
+    // the static's own z, not the land under it.
+    struct WaterHit { i32 x = 0, y = 0; i8 z = 0; u16 graphic = 0; };
     bool NearestWater(i32 x, i32 y, int radius, WaterHit* out);
+
+    // Both forms of water at one tile (the primitive the two searches above
+    // share). Fills z with the surface a cast should target and graphic with
+    // 0 for wet land or the wet static's id. Callers must have the world
+    // loaded (NearestWater/NearestFishingSpot check EnsureWorldLoaded first).
+    bool WaterAt(i32 tx, i32 ty, i8* z, u16* graphic);
 
     // A place to FISH FROM: somewhere to stand, and the water to cast at.
     //
@@ -555,12 +574,27 @@ public:
     // walkable -- so a character told to walk to the sea walks at it, fails,
     // and picks again, drifting further out each time. What it needs is the
     // SHORE: a dry tile beside the wet one.
+    //
+    // The stand tile is vetted with the SAME World::QueryCell the pathfinder
+    // uses, statics included. "Dry by land tiledata" is not "standable":
+    // this function once returned (1463,1754) -- dry land under a water
+    // static, walkable:false -- and every walk strategy aimed at it died its
+    // own way ("goal not walkable", exact-tile journeys re-picking forever).
+    // A stand tile this returns is one A* will accept as a goal.
     struct FishingSpot {
-        i32 standX = 0, standY = 0;   // walk here
+        i32 standX = 0, standY = 0;   // walk here (QueryCell-walkable)
         i32 waterX = 0, waterY = 0;   // cast at this
         i8  waterZ = 0;
+        u16 waterGraphic = 0;         // 0 = wet land; else the wet static id
     };
-    bool NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out);
+    // `exclude` lists tiles the caller has already been refused at -- both
+    // failed stand tiles and water Sphere answered "There are no fish here."
+    // for -- so the search proposes somewhere NEW, the same contract
+    // NearestTree honours for worked-out trees. Without it the fisher's
+    // sweep down a pier re-nominates the refused water forever.
+    bool NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out,
+                            const std::vector<std::pair<i32, i32>>* exclude
+                                = nullptr);
 
     // How many trees are within `radius`. Used to answer "am I actually
     // standing where the work is", which travel success does not answer.
