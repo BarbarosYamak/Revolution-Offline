@@ -3212,15 +3212,42 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
     // twelve-tile place and the character lands wherever the walk ended, not
     // on the waterline. Look wide, then step to the edge, then cast.
     Client::WaterHit water;
-    if (client.NearestWater(obs.x, obs.y, 20, &water) &&
-        TileDist(obs.x, obs.y, water.x, water.y) > 4) {
-        if (client.GotoBusy()) return false;
-        LogLine("fish: water at %d,%d is %d tiles off -- stepping to the edge",
-                water.x, water.y, TileDist(obs.x, obs.y, water.x, water.y));
-        client.ActionGoto(water.x, water.y);
-        nextActionMs_ = obs.nowMs + 1500;
+    // COMMIT to one tile. NearestWater searches outward from where the
+    // character is standing, so the nearest tile MOVES as it walks -- it
+    // stepped toward four different spots in as many ticks and closed on
+    // none of them. Pick once, walk until arrived or given up.
+    if (fishTargetSet_ && TileDist(obs.x, obs.y, fishTargetX_, fishTargetY_) > 4) {
+        if (client.TravelBusy() || client.GotoBusy()) return false;
+        if (obs.nowMs - fishCastMs_ > 40000) {
+            LogLine("fish: could not get within casting range of the water at "
+                    "%d,%d -- picking again", fishTargetX_, fishTargetY_);
+            deadTargets_.emplace_back(fishTargetX_, fishTargetY_);
+            fishTargetSet_ = false;
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+        // NEAR the water, never ONTO it. A goto addressed at the water tile
+        // itself can never arrive -- water is not walkable -- so the character
+        // walked at a spot it could not stand on and gave up, four times in a
+        // row. RANGE=4 means the line reaches; standing on it is not required
+        // and not possible.
+        travelInFlight_ = client.TravelToPoint(fishTargetX_, fishTargetY_, 3,
+                                               "waterline");
+        nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
+    if (!fishTargetSet_ && client.NearestWater(obs.x, obs.y, 20, &water) &&
+        TileDist(obs.x, obs.y, water.x, water.y) > 4) {
+        LogLine("fish: water at %d,%d is %d tiles off -- walking to the edge",
+                water.x, water.y, TileDist(obs.x, obs.y, water.x, water.y));
+        fishTargetX_ = water.x;
+        fishTargetY_ = water.y;
+        fishTargetSet_ = true;
+        fishCastMs_ = obs.nowMs;      // doubles as the walk clock
+        nextActionMs_ = obs.nowMs + 500;
+        return false;
+    }
+    fishTargetSet_ = false;   // close enough to cast
     if (!client.NearestWater(obs.x, obs.y, 4, &water)) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {

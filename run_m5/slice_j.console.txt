@@ -1,0 +1,352 @@
+[17:21:25.457] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='slice_j'
+[17:21:25.458] LOG   [slice_j] event session_start: text log opened
+[17:21:25.459] LOG   [slice_j] event net_connect_begin: connect 127.0.0.1:2593
+[17:21:25.459] INFO  [slice_j] [net] connecting to 127.0.0.1:2593 ...
+[17:21:25.460] LOG   [slice_j] event net_connected: connect 127.0.0.1:2593
+[17:21:25.460] INFO  [slice_j] [net] connected.
+[17:21:25.460] INFO  [slice_j] [seed] sent 0x7F000001 (plaintext)
+[17:21:25.460] LOG   [slice_j] event seed_out: 0x7F000001 hex=7f000001
+[17:21:25.460] INFO  [life] loaded persistent state for Bryn (0 places, 0 suppliers, 1 events, 0 prior sessions)
+[17:21:25.460] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[17:21:25.460] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[17:21:25.460] INFO  [slice_j] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 45 min)
+[17:21:25.501] INFO  [slice_j] [0xA8] 1 server(s):
+[17:21:25.501] INFO  [slice_j]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:21:25.516] INFO  [slice_j] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[17:21:25.516] LOG   [slice_j] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[17:21:25.516] INFO  [slice_j] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:21:25.517] LOG   [slice_j] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:21:25.517] INFO  [slice_j] [0xB9] server features = 0x0005
+[17:21:25.517] INFO  [slice_j] [0xA9] 5 slot(s) (populated 1):
+[17:21:25.517] INFO  [slice_j]   [0] Bryn
+[17:21:25.517] INFO  [slice_j]   [1] <empty>
+[17:21:25.517] INFO  [slice_j]   [2] <empty>
+[17:21:25.517] INFO  [slice_j]   [3] <empty>
+[17:21:25.517] INFO  [slice_j]   [4] <empty>
+[17:21:25.517] INFO  [slice_j] [ui] playing slot 0 ('Bryn')
+[17:21:25.532] INFO  [slice_j] [0x1B] serial=0x00012E10 body=0x0190 pos=(1479,1757,-2)
+[17:21:25.532] LOG   [slice_j] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1479,1757,-2)
+[17:21:25.532] INFO  [slice_j] [0x20] player @(1479,1757,-2) facing=3
+[17:21:25.532] INFO  [slice_j] [0x55] login complete — entering world
+[17:21:25.532] LOG   [slice_j] event in_world: 0x55 received
+[17:21:25.532] INFO  [slice_j] [backpack] opening 0x40012DD6
+[17:21:25.532] INFO  [slice_j] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:21:25.532] INFO  [slice_j] [chat ascii] System: There is 1 other player here.
+[17:21:25.532] INFO  [slice_j] [chat ascii] System: Last logged: 2026/08/28 17:19:42
+[17:21:25.532] INFO  [slice_j] [chat ascii] System: You are under the protection of the city guards
+[17:21:25.536] INFO  [slice_j] [action] requesting the skill list
+[17:21:25.536] INFO  [life] in world; asked the server for the skill list
+[17:21:25.536] INFO  [slice_j] [0x24] open container 0x40012DD6 gump=60
+[17:21:25.536] INFO  [slice_j] [0x3C] container contents: 10 item(s)
+[17:21:25.536] LOG   [slice_j] event backpack_contents: serial=0x40012DD6 items=10
+[17:21:28.116] INFO  [slice_j] [bot] world data loaded (0 blacklisted spot(s)).
+[17:21:28.116] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[17:21:28.116] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[17:21:28.116] INFO  [life]   str          persisted=25         server=25         -> server value accepted
+[17:21:28.116] INFO  [life]   dex          persisted=15         server=15         -> server value accepted
+[17:21:28.116] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[17:21:28.116] INFO  [life]   skill_18     persisted=50.0       server=50.0       -> server value accepted
+[17:21:28.116] INFO  [life]   skill_13     persisted=50.0       server=50.0       -> server value accepted
+[17:21:28.116] INFO  [life]   position     persisted=1479,1757  server=1479,1757  -> server value accepted
+[17:21:28.116] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:21:28.116] INFO  [life]   restored objective KEPT: FISH (progress 0)
+[17:21:28.116] INFO  [slice_j] [survival] on
+[17:21:28.116] LOG   [slice_j] event survival_mode: on
+[17:21:28.118] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:21:28.118] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:28.170] INFO  [life] fish: water at 1488,1767 is 10 tiles off -- walking to the edge
+[17:21:33.168] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:37.334] INFO  [slice_j] [travel] waterline -> (1488,1767) r=3 from (1479,1757)
+[17:21:37.334] LOG   [slice_j] event travel_start: label='waterline' target=(1488,1767) radius=3 from=(1479,1757)
+[17:21:37.334] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:21:37.334] INFO  [slice_j] [travel] mode moongate         usable
+[17:21:37.334] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:21:37.334] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:21:37.334] LOG   [slice_j] event travel_mode: walk
+[17:21:37.334] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:21:37.396] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:37.396] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:37.396] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:37.396] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:37.472] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:37.472] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:38.209] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:38.698] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:38.698] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:38.698] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:38.698] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:38.820] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:38.820] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:40.063] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:40.063] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:40.063] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:40.063] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:40.185] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:40.185] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:41.439] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:21:41.439] INFO  [slice_j] [travel] mode moongate         usable
+[17:21:41.439] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:21:41.439] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:21:41.439] LOG   [slice_j] event travel_mode: walk
+[17:21:41.439] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:21:42.974] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:42.974] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:42.974] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:42.974] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:43.096] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:43.096] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:43.251] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:44.336] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:44.336] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:44.336] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:44.336] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:44.461] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:44.461] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:45.672] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:45.672] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:45.672] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:45.672] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:45.733] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:45.733] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:46.973] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:21:46.973] INFO  [slice_j] [travel] mode moongate         usable
+[17:21:46.973] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:21:46.973] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:21:46.973] LOG   [slice_j] event travel_mode: walk
+[17:21:46.973] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:21:48.304] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:49.988] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:49.988] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:49.988] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:49.988] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:50.110] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:50.110] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:51.320] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:51.320] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:51.320] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:51.320] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:51.442] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:51.442] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:52.696] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:52.696] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:52.696] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:52.696] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:52.758] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:52.758] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:53.324] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:53.967] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:21:53.967] INFO  [slice_j] [travel] mode moongate         usable
+[17:21:53.967] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:21:53.967] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:21:53.967] LOG   [slice_j] event travel_mode: walk
+[17:21:53.967] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~10 tiles transit=0 nodes=0
+[17:21:58.380] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:21:58.502] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:58.502] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:58.502] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:58.502] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:58.625] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:58.625] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:21:59.848] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:21:59.848] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:21:59.848] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:21:59.848] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:21:59.909] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:21:59.909] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:22:01.161] INFO  [slice_j] [action] goto (1488,1767) from (1479,1757,-2)
+[17:22:01.161] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1479,1757)
+[17:22:01.161] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1767)
+[17:22:01.161] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:01.222] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1767); stopped short (off by 19 tile(s))
+[17:22:01.222] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1767) arrived=0 off=19
+[17:22:01.222] LOG   [slice_j] event travel_escape: from=(1479,1757,-2) to=(1488,1746) attempt=1
+[17:22:01.222] INFO  [slice_j] [action] goto (1488,1746) from (1479,1757,-2)
+[17:22:01.222] LOG   [slice_j] event goto_start: target=(1488,1746) from=(1479,1757)
+[17:22:01.222] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1488,1746,z-2)
+[17:22:01.222] INFO  [slice_j] [bot] planning path to (1488,1746) in background
+[17:22:02.355] INFO  [slice_j] [action] goto finished at (1479,1757,-2); target (1488,1746); stopped short (off by 20 tile(s))
+[17:22:02.355] LOG   [slice_j] event goto_done: at=(1479,1757) target=(1488,1746) arrived=0 off=20
+[17:22:02.356] INFO  [slice_j] [travel] recovery walk fell short at (1479,1757,-2) (off 11); attempt 1/3
+[17:22:02.356] LOG   [slice_j] event travel_recovery_done: reached=0 at=(1479,1757,-2) off=11 attempt=1
+[17:22:02.356] LOG   [slice_j] event travel_escape: from=(1479,1757,-2) to=(1464,1748) attempt=2
+[17:22:02.356] INFO  [slice_j] [action] goto (1464,1748) from (1479,1757,-2)
+[17:22:02.356] LOG   [slice_j] event goto_start: target=(1464,1748) from=(1479,1757)
+[17:22:02.356] INFO  [slice_j] [bot] running from (1479,1757,-2) to (1464,1748,z0)
+[17:22:02.356] INFO  [slice_j] [bot] planning path to (1464,1748) in background
+[17:22:02.417] INFO  [slice_j] [bot] replan to (1464,1748): 15 steps in 333.4us
+[17:22:03.428] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:06.896] INFO  [slice_j] [bot] arrived at (1464,1748,0)
+[17:22:06.897] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1464,1748); ARRIVED (off by 0 tile(s))
+[17:22:06.897] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1464,1748) arrived=1 off=0
+[17:22:06.897] INFO  [slice_j] [travel] recovery walk reached its anchor at (1464,1748,0) (off 0); attempt 1/3
+[17:22:06.897] LOG   [slice_j] event travel_recovery_done: reached=1 at=(1464,1748,0) off=0 attempt=1
+[17:22:06.957] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:06.957] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:06.957] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:06.957] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:06.957] LOG   [slice_j] event travel_mode: walk
+[17:22:06.957] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:22:07.019] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:07.019] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:07.019] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:07.019] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:07.141] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:07.142] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:08.384] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:08.384] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:08.384] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:08.384] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:08.445] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:08.445] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:08.445] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:09.690] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:09.690] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:09.690] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:09.690] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:09.815] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:09.815] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:11.059] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:11.059] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:11.059] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:11.059] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:11.059] LOG   [slice_j] event travel_mode: walk
+[17:22:11.059] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:22:12.578] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:12.579] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:12.579] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:12.579] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:12.699] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:12.699] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:13.464] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:13.957] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:13.957] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:13.957] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:13.957] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:14.080] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:14.080] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:15.292] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:15.292] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:15.292] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:15.292] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:15.383] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:15.383] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:16.625] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:16.625] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:16.625] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:16.625] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:16.625] LOG   [slice_j] event travel_mode: walk
+[17:22:16.625] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:22:18.496] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:19.675] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:19.675] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:19.675] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:19.675] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:19.797] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:19.797] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:21.007] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:21.007] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:21.007] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:21.007] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:21.129] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:21.129] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:22.371] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:22.371] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:22.371] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:22.371] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:22.432] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:22.432] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:23.549] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:23.670] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:23.670] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:23.670] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:23.670] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:23.670] LOG   [slice_j] event travel_mode: walk
+[17:22:23.670] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:22:28.130] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:22:28.205] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:28.205] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:28.205] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:28.206] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:28.327] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:28.327] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:28.572] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:29.582] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:29.582] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:29.582] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:29.582] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:29.702] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:29.702] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:30.910] INFO  [slice_j] [action] goto (1488,1767) from (1464,1748,0)
+[17:22:30.910] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1748)
+[17:22:30.910] INFO  [slice_j] [bot] running from (1464,1748,0) to (1488,1767)
+[17:22:30.910] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:31.032] INFO  [slice_j] [action] goto finished at (1464,1748,0); target (1488,1767); stopped short (off by 43 tile(s))
+[17:22:31.032] LOG   [slice_j] event goto_done: at=(1464,1748) target=(1488,1767) arrived=0 off=43
+[17:22:31.032] LOG   [slice_j] event travel_escape: from=(1464,1748,0) to=(1464,1736) attempt=3
+[17:22:31.032] INFO  [slice_j] [action] goto (1464,1736) from (1464,1748,0)
+[17:22:31.032] LOG   [slice_j] event goto_start: target=(1464,1736) from=(1464,1748)
+[17:22:31.032] INFO  [slice_j] [bot] running from (1464,1748,0) to (1464,1736,z0)
+[17:22:31.032] INFO  [slice_j] [bot] planning path to (1464,1736) in background
+[17:22:31.092] INFO  [slice_j] [bot] replan to (1464,1736): 12 steps in 165.6us
+[17:22:33.622] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:34.084] INFO  [slice_j] [bot] arrived at (1464,1736,0)
+[17:22:34.084] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1464,1736); ARRIVED (off by 0 tile(s))
+[17:22:34.084] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1464,1736) arrived=1 off=0
+[17:22:34.084] INFO  [slice_j] [travel] recovery walk reached its anchor at (1464,1736,0) (off 0); attempt 2/3
+[17:22:34.084] LOG   [slice_j] event travel_recovery_done: reached=1 at=(1464,1736,0) off=0 attempt=2
+[17:22:34.130] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:34.130] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:34.130] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:34.130] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:34.130] LOG   [slice_j] event travel_mode: walk
+[17:22:34.130] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:22:34.193] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:34.193] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:34.193] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:34.193] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:34.317] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:34.317] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:35.576] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:35.576] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:35.576] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:35.576] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:35.698] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:35.698] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:36.919] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:36.920] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:36.920] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:36.920] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:37.041] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:37.041] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:38.268] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:38.268] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:38.269] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:38.269] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:38.269] LOG   [slice_j] event travel_mode: walk
+[17:22:38.269] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:22:38.632] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:39.804] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:39.804] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:39.804] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:39.804] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:39.926] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:39.926] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:41.151] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:41.151] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:41.151] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:41.151] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:41.212] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:41.212] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:42.422] INFO  [slice_j] [action] goto (1488,1767) from (1464,1736,0)
+[17:22:42.422] LOG   [slice_j] event goto_start: target=(1488,1767) from=(1464,1736)
+[17:22:42.422] INFO  [slice_j] [bot] running from (1464,1736,0) to (1488,1767)
+[17:22:42.422] INFO  [slice_j] [bot] planning path to (1488,1767) in background
+[17:22:42.543] INFO  [slice_j] [action] goto finished at (1464,1736,0); target (1488,1767); stopped short (off by 55 tile(s))
+[17:22:42.543] LOG   [slice_j] event goto_done: at=(1464,1736) target=(1488,1767) arrived=0 off=55
+[17:22:43.647] INFO  [slice_j] [survival] hp 25/25 (100%) -> fight
+[17:22:43.769] INFO  [slice_j] [travel] mode walk             usable   <- chosen
+[17:22:43.769] INFO  [slice_j] [travel] mode moongate         usable
+[17:22:43.769] INFO  [slice_j] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:22:43.769] INFO  [slice_j] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:22:43.769] LOG   [slice_j] event travel_mode: walk
+[17:22:43.769] INFO  [slice_j] [travel] plan waterline: ok legs=1 ~31 tiles transit=0 nodes=0

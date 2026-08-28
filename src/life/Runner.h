@@ -285,6 +285,11 @@ private:
     i32 fishSeen_ = 0;
     i32 fishTrips_ = 0;
     bool fishCursorPending_ = false;
+    // The water tile this character has COMMITTED to walking to. Re-picking
+    // the nearest tile every tick makes the target move as the character
+    // does, so it walks toward a spot it never reaches.
+    i32  fishTargetX_ = 0, fishTargetY_ = 0;
+    bool fishTargetSet_ = false;
 
     i32  toolGoldBefore_ = 0;
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
