@@ -2375,9 +2375,14 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     // floor -- and got a greeting but no training reply, three times, silently.
     // Close the distance in three dimensions before talking.
     if (trainerSerial_ != trainer) {
+        // A DIFFERENT NPC, so the conversation starts over. Leaving
+        // trainAsked_ set meant the bot skipped re-asking and then judged the
+        // silence of an NPC it had never spoken to, reporting "the trainer
+        // never answered" about a conversation that never happened.
         trainerSerial_ = trainer;
         trainerApproached_ = false;
         trainSilentAsks_ = 0;
+        trainAsked_ = false;
     }
     if (!trainerApproached_) {
         i32 tx = 0, ty = 0; i8 tz = 0;

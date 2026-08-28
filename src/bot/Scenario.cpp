@@ -138,11 +138,17 @@ u32 CountGraphics(Client& client, const u16* list, usize n) {
     return total;
 }
 
-void Scenario::Bind(const std::string& name, u32 serial) {
+void Scenario::Bind(const std::string& name, u32 serial,
+                    const char* liveKind, const char* liveArg) {
+    Remembered r;
+    r.name = name;
+    r.serial = serial;
+    if (liveKind) r.liveKind = liveKind;
+    if (liveArg)  r.liveArg = liveArg;
     for (auto& b : binds_) {
-        if (b.first == name) { b.second = serial; return; }
+        if (b.name == name) { b = r; return; }
     }
-    binds_.emplace_back(name, serial);
+    binds_.push_back(std::move(r));
 }
 
 // Operands are either a literal serial, a previously bound @name, or a
@@ -154,7 +160,23 @@ u32 Scenario::Resolve(Client& client, const std::string& tok) const {
     if (tok[0] == '@') {
         const std::string name = tok.substr(1);
         for (const auto& b : binds_) {
-            if (b.first == name) return b.second;
+            if (b.name != name) continue;
+            // RE-RESOLVE, do not replay. A serial captured at `remember` time
+            // may have been retired since -- Sphere splits a gold stack to
+            // make change -- and handing over a retired serial is a silent
+            // no-op. Returning the snapshot is what made the live trainer
+            // payment do nothing at all.
+            if (b.liveKind == "pack_graphic") {
+                u16 list[8];
+                const usize n = ParseGraphicList(b.liveArg, list, 8);
+                for (usize i = 0; i < n; ++i) {
+                    if (const u32 live = client.FindBackpackItemByGraphic(list[i])) {
+                        return live;
+                    }
+                }
+                return 0;   // gone entirely: 0 is honest, the snapshot is not
+            }
+            return b.serial;
         }
         return 0;
     }
@@ -1188,7 +1210,13 @@ void Scenario::Tick(Client& client, i64 nowMs) {
                     } else {
                         serial = Resolve(client, st.b);
                     }
-                    Bind(st.a, serial);
+                    // Keep the RECIPE for kinds that have a live form, so
+                    // @name re-resolves rather than replaying a snapshot.
+                    if (st.b == "pack_graphic") {
+                        Bind(st.a, serial, "pack_graphic", st.c.c_str());
+                    } else {
+                        Bind(st.a, serial);
+                    }
                     LogInfo("[scenario] remember %s = 0x%08X\n", st.a.c_str(), serial);
                     break;
                 }
