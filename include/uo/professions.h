@@ -159,6 +159,20 @@ struct Profession {
     // Gold this life keeps back rather than spending -- the reserve that pays
     // for a replacement tool after a death.
     i32 goldReserve = 0;
+
+    // WHERE THIS LIFE LIVES, best first, as the atlas names the region.
+    //
+    // Without a home every character asks the travel layer for the NEAREST
+    // provider of a service, so twenty bots spawning on the same tile converge
+    // on the same shop -- seven of them queued at the Yew banker in the first
+    // fleet run. A shard where every trade is in one place does not read as
+    // populated, and it is not how UO's map works: miners live at Minoc
+    // because the mountain is there, lumberjacks at Yew because the forest is.
+    //
+    // uo-offline's BotHomeCities has the same shape (audit A.4) -- roll a home,
+    // bias destination picks toward it, and REGULARS emerge. This ties the
+    // roll to the profession, because the geography is not arbitrary.
+    std::vector<std::string> homeCities;
 };
 
 // --- the catalogue -----------------------------------------------------------

@@ -340,15 +340,40 @@ const Place* Atlas::FindPlace(const char* needle) const {
     return nullptr;
 }
 
+bool Atlas::PlaceIsGuarded(const wm::Place& p) const {
+    if (const wm::Region* r = RegionById(p.regionId.c_str())) {
+        if (r->flags.guarded) return true;
+    }
+    // A place can sit inside a guarded region without being FILED under it,
+    // so fall back to geometry rather than to an optimistic guess.
+    for (const wm::Region& r : regions_) {
+        if (!r.flags.guarded) continue;
+        if (r.Contains(p.position.x, p.position.y)) return true;
+    }
+    return false;
+}
+
 const Place* Atlas::NearestPlaceWithService(wm::Service s, i32 x, i32 y,
                                             i32 maxDist) const {
+    // GUARDED FIRST, then distance. A shop in an unguarded field is not a
+    // cheaper version of the same shop -- it is a different proposition, and
+    // eight 15hp mages walked into one because this function ranked on
+    // distance alone.
+    //
+    // A nearer unguarded shop still wins over NOTHING: the second pass runs
+    // only when no guarded provider exists at all, so a service that simply
+    // has no safe location stays reachable.
     const Place* best = nullptr;
     i32 bestD = 0;
-    for (const Place& p : places_) {
-        if (!p.Offers(s)) continue;
-        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
-        if (maxDist > 0 && d > maxDist) continue;
-        if (!best || d < bestD) { best = &p; bestD = d; }
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (maxDist > 0 && d > maxDist) continue;
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
     }
     return best;
 }
@@ -386,16 +411,20 @@ const Place* Atlas::NearestPlaceWithServiceInRegion(wm::Service s,
     if (!region) return nullptr;
     const Place* best = nullptr;
     i32 bestD = 0;
-    for (const Place& p : places_) {
-        if (!p.Offers(s)) continue;
-        // Either the generator filed the place under this region, or the place
-        // simply falls inside its rectangles -- a shop just outside the town
-        // AREADEF still belongs to the town for a traveller's purposes.
-        if (!EqualsNoCase(p.regionId, region->id.c_str()) &&
-            !region->Contains(p.position.x, p.position.y))
-            continue;
-        const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
-        if (!best || d < bestD) { best = &p; bestD = d; }
+    for (int pass = 0; pass < 2 && !best; ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            // Either the generator filed the place under this region, or the
+            // place simply falls inside its rectangles -- a shop just outside
+            // the town AREADEF still belongs to the town for a traveller.
+            if (!EqualsNoCase(p.regionId, region->id.c_str()) &&
+                !region->Contains(p.position.x, p.position.y))
+                continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            const i32 d = Chebyshev(x, y, p.position.x, p.position.y);
+            if (!best || d < bestD) { best = &p; bestD = d; }
+        }
     }
     return best;
 }

@@ -151,6 +151,8 @@ const std::vector<Profession>& All() {
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.55;
             p.goldReserve = 300;         // one trainer fee held back
+                        // Yew is the forest. Britain and Skara Brae have woods within reach.
+            p.homeCities = {"Yew", "Britain", "Skara Brae"};
             v.push_back(std::move(p));
         }
 
@@ -205,6 +207,9 @@ const std::vector<Profession>& All() {
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.35;      // a smith is not looking for a fight
             p.goldReserve = 500;
+                        // Minoc is the mining town -- the mountain is why it is there. Vesper
+            // works the same range from the north.
+            p.homeCities = {"Minoc", "Britain", "Vesper"};
             v.push_back(std::move(p));
         }
 
@@ -248,6 +253,8 @@ const std::vector<Profession>& All() {
             p.consumables = {Food()};
             p.riskTolerance = 0.30;      // squishy; disengages early
             p.goldReserve = 800;         // reagents are a running cost
+                        // Moonglow is the mage city; Britain has the largest mage shop.
+            p.homeCities = {"Moonglow", "Britain", "Nujel'm"};
             v.push_back(std::move(p));
         }
 
@@ -279,6 +286,8 @@ const std::vector<Profession>& All() {
             p.consumables = {Food()};
             p.riskTolerance = 0.25;
             p.goldReserve = 600;
+                        // Reagents and a mortar; Britain has the deepest reagent supply.
+            p.homeCities = {"Britain", "Vesper", "Moonglow"};
             v.push_back(std::move(p));
         }
 
@@ -306,6 +315,8 @@ const std::vector<Profession>& All() {
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.40;
             p.goldReserve = 400;
+                        // Skara Brae is the ranger town, if a tamer ever becomes playable.
+            p.homeCities = {"Britain", "Skara Brae"};
             v.push_back(std::move(p));
         }
 

@@ -47,10 +47,10 @@ ACCOUNTS = os.path.join(ROOT, "runtime", "accounts", "sphereaccu.scp")
 
 # (profession id, how many). Producers first so the chain fills from the top.
 POPULATION = [
-    ("lumberjack_swordsman", 5),   # logs, boards, blank scrolls, clubs
-    ("miner_smith",          4),   # eats ore + logs -> ingots, spears
-    ("mage",                 4),   # eats blank scrolls + reagents -> scrolls
-    ("alchemist",            3),   # potions
+    ("lumberjack_swordsman", 6),   # logs, boards, blank scrolls, clubs
+    ("miner_smith",          5),   # eats ore + logs -> ingots, spears
+    ("mage",                 5),   # eats blank scrolls + reagents -> scrolls
+    ("alchemist",            4),   # potions
 ]
 
 # From revolution_offline_namebook.md, which exists so synthetic characters are
@@ -61,6 +61,63 @@ NAMES = [
     "Beleth", "Elvrin", "Ardor", "Voris", "Calar",
     "Malazar", "Baelos", "Vorath", "Galthor", "Rhalthor",
 ]
+
+
+ROSTER = os.path.join(BOT, "run_m7", "roster.tsv")
+
+
+def load_roster():
+    """The fleet as it was last launched: name -> (account, password, profession).
+
+    THE ROSTER MUST BE STABLE. free_accounts() skips accounts that already have
+    a character, so without this the SECOND launch would exclude every bot the
+    FIRST launch created and hand back a completely different population --
+    twenty new strangers instead of the same twenty lives a day older. That
+    would quietly destroy the one thing M4 exists to prove.
+    """
+    if not os.path.exists(ROSTER):
+        return []
+    out = []
+    with open(ROSTER, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split("\t")
+            if len(parts) == 3:
+                out.append(tuple(parts))
+    return out
+
+
+def save_roster(rows):
+    with open(ROSTER, "w", encoding="utf-8") as fh:
+        fh.write("# name\taccount\tprofession -- the fleet identity.\n")
+        fh.write("# Stable by design: these accounts have characters now, so\n")
+        fh.write("# free_accounts() would skip them and the next launch would\n")
+        fh.write("# be twenty strangers instead of the same twenty lives.\n")
+        for name, acct, prof in rows:
+            fh.write(f"{name}\t{acct}\t{prof}\n")
+
+
+def account_password(acct):
+    """The password for one account, read fresh from the shard's own file.
+
+    Reads it at launch rather than caching it in the roster, so a password
+    changed on the shard takes effect and no secret is ever written into
+    run_m7/roster.tsv.
+    """
+    with open(ACCOUNTS, encoding="utf-8", errors="replace") as fh:
+        text = fh.read()
+    header = "[" + acct + "]"
+    i = text.find("\n" + header + "\n")
+    if i < 0:
+        return None
+    body = text[i + len(header) + 2:]
+    j = body.find("\n[")
+    if j >= 0:
+        body = body[:j]
+    m = re.search(r"PASSWORD=(\S+)", body)
+    return m.group(1) if m else None
 
 
 def free_accounts():
@@ -98,28 +155,55 @@ def main():
     if args.size:
         plan = plan[:args.size]
 
-    accounts = free_accounts()
-    if len(accounts) < len(plan):
-        sys.exit(f"need {len(plan)} free accounts, found {len(accounts)}")
-    if len(NAMES) < len(plan):
-        sys.exit(f"need {len(plan)} names, have {len(NAMES)}")
-
     outdir = os.path.join(BOT, "run_m7")
     os.makedirs(outdir, exist_ok=True)
 
+    # Existing lives first, in the order they were created, then top up from
+    # whatever accounts are still empty. Growing the fleet must not disturb
+    # anybody already living in it.
+    existing = load_roster()
+    roster = list(existing)
+    used = {acct for _, acct, _ in existing}
+    usednames = {name for name, _, _ in existing}
+
+    if len(roster) < len(plan):
+        spare = [a for a in free_accounts() if a[0] not in used]
+        spare_names = [n for n in NAMES if n not in usednames]
+        need = len(plan) - len(roster)
+        if len(spare) < need:
+            sys.exit(f"need {need} more free accounts, found {len(spare)}")
+        if len(spare_names) < need:
+            sys.exit(f"need {need} more names, have {len(spare_names)}")
+        # The professions still unfilled, counted against what already exists.
+        have = {}
+        for _, _, prof in existing:
+            have[prof] = have.get(prof, 0) + 1
+        want = {}
+        for prof in plan:
+            want[prof] = want.get(prof, 0) + 1
+        topup = []
+        for prof, n in want.items():
+            topup.extend([prof] * max(0, n - have.get(prof, 0)))
+        for i, prof in enumerate(topup[:need]):
+            roster.append((spare_names[i], spare[i][0], prof))
+        save_roster(roster)
+    elif not existing:
+        save_roster(roster)
+
+    roster = roster[:len(plan)]
+
     env = dict(os.environ)
     sessions = []
-    roster = []
-    for i, prof in enumerate(plan):
-        acct, pw = accounts[i]
-        name = NAMES[i]
+    for name, acct, prof in roster:
+        pw = account_password(acct)
+        if not pw:
+            sys.exit(f"no password for account {acct}")
         tag = name
         # user:pass:char:scenario:tag:profession -- the password field is left
         # EMPTY on purpose; it travels in the environment instead so it never
         # reaches a process listing.
         sessions.append(f"{acct}::{name}::{tag}:{prof}")
         env["UO_BOT_PASS_" + tag.upper()] = pw
-        roster.append((name, acct, prof))
 
     cmd = [
         os.path.join(BOT, "build-m1", "uo_client.exe"),

@@ -124,3 +124,401 @@ map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (68
 [15:53:31.666] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (632,857,0) facing=0
 [15:53:32.173] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,856,0) facing=0
 [15:53:32.183] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:53:33.302] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (633,857,0) facing=1
+[15:53:33.757] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (632,857,0) facing=0
+[15:53:34.747] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,853,0) facing=0
+[15:53:34.831] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,855,0) facing=0
+[15:53:36.812] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:53:36.823] WARN  [Aeryn] [0x21] move REJECTED seq=2; server says (634,856,0) facing=0
+[15:53:37.269] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,855,0) facing=0
+[15:53:37.953] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (632,856,0) facing=2
+[15:53:38.978] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:53:38.979] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:53:39.269] WARN  [Dravazar] [bot] no path to (652,820) avoiding 0 block(s); stopping (search 1092520.9us)
+[15:53:39.270] WARN  [Dravazar] [bot] start (632,856,0) exits: open=4 terrain=4 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 11 mobile(s))
+[15:53:39.356] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,855,0) facing=0
+[15:53:41.128] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:53:41.130] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:53:41.481] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,855,0) facing=0
+[15:53:41.711] WARN  [Dravazar] [bot] no path to (652,820) avoiding 0 block(s); stopping (search 1069302.8us)
+[15:53:41.711] WARN  [Dravazar] [bot] start (632,856,0) exits: open=4 terrain=4 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 11 mobile(s))
+[15:53:43.268] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:53:43.269] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:53:43.667] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,855,0) facing=0
+[15:53:43.761] WARN  [Beleth] [0x21] move REJECTED seq=49; server says (695,840,0) facing=2
+[15:53:44.266] WARN  [Dravazar] [bot] no path to (652,820) avoiding 0 block(s); stopping (search 1234647.3us)
+[15:53:44.266] WARN  [Dravazar] [bot] start (632,856,0) exits: open=4 terrain=4 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 11 mobile(s))
+[15:53:45.017] WARN  [Beleth] [bot] no path to (696,840) avoiding 0 block(s); stopping (search 1217688.8us)
+[15:53:45.017] WARN  [Beleth] [bot] start (695,840,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 138 item(s), 3 mobile(s))
+[15:53:45.360] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:53:45.772] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,852,0) facing=0
+[15:53:46.186] WARN  [Elvrin] [0x21] move REJECTED seq=2; server says (728,808,0) facing=0
+[15:53:46.196] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,854,0) facing=0
+[15:53:46.674] WARN  [Aeryn] [bot] no path to (652,820) avoiding 1 block(s); stopping (search 1273248.3us)
+[15:53:46.674] WARN  [Aeryn] [bot] start (634,856,0) exits: open=5 terrain=1 mobile=1 dynamic=0 door=0 blacklist=1 (overlay saw 142 item(s), 11 mobile(s))
+[15:53:47.770] WARN  [Rhalvar] [bot] no path to (644,865) avoiding 0 block(s); stopping (search 1077153.2us)
+[15:53:47.770] WARN  [Rhalvar] [bot] start (643,869,0) exits: open=5 terrain=1 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 148 item(s), 11 mobile(s))
+[15:53:47.855] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:53:48.292] WARN  [Elvrin] [0x21] move REJECTED seq=0; server says (728,808,0) facing=0
+[15:53:48.302] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,854,0) facing=0
+[15:53:49.252] WARN  [Rhalazar] [bot] no path to (644,865) avoiding 0 block(s); stopping (search 1112925.0us)
+[15:53:49.252] WARN  [Rhalazar] [bot] start (642,869,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 142 item(s), 11 mobile(s))
+[15:53:49.442] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (632,856,0) facing=3
+[15:53:49.462] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,855,0) facing=0
+[15:53:49.463] WARN  [Dravazar] [bot] 0x20 resync; aborting path
+[15:53:50.009] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:53:50.162] WARN  [Loradan] [bot] no path to (644,865) avoiding 0 block(s); stopping (search 1165723.4us)
+[15:53:50.162] WARN  [Loradan] [bot] start (644,868,0) exits: open=5 terrain=1 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 145 item(s), 11 mobile(s))
+[15:53:50.314] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,854,0) facing=0
+[15:53:50.345] WARN  [Elvrin] [0x21] move REJECTED seq=0; server says (728,808,0) facing=0
+[15:53:51.593] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,855,0) facing=0
+[15:53:51.706] WARN  [Rhalazar] [bot] 0x20 resync; aborting path
+[15:53:51.734] WARN  [Loradan] [0x21] move REJECTED seq=5; server says (645,866,0) facing=0
+[15:53:51.963] WARN  [Dravazar] [bot] no path to (652,820) avoiding 0 block(s); stopping (search 1152974.9us)
+[15:53:51.963] WARN  [Dravazar] [bot] start (632,856,0) exits: open=4 terrain=4 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 11 mobile(s))
+[15:53:52.198] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:53:52.378] WARN  [Elvrin] [0x21] move REJECTED seq=0; server says (728,808,0) facing=0
+[15:53:52.399] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:53:52.400] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,854,0) facing=0
+[15:53:53.818] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,855,0) facing=0
+[15:53:54.493] WARN  [Dravazar] [bot] no path to (652,820) avoiding 0 block(s); stopping (search 1090511.9us)
+[15:53:54.493] WARN  [Dravazar] [bot] start (632,856,0) exits: open=4 terrain=4 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 11 mobile(s))
+[15:53:54.863] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,851,0) facing=0
+[15:53:54.972] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,853,0) facing=0
+[15:53:56.428] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,854,0) facing=0
+[15:53:56.905] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:53:57.088] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,853,0) facing=0
+[15:53:58.536] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:53:59.064] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:53:59.279] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,853,0) facing=0
+[15:54:00.763] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:54:01.035] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (633,856,0) facing=2
+[15:54:01.357] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:54:01.366] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,853,0) facing=0
+[15:54:02.888] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:54:03.180] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (633,856,0) facing=2
+[15:54:03.442] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:54:03.442] WARN  [Galrin] [bot] (634,850) blocked by fatigue for too long; stopping (not blacklisted)
+[15:54:03.551] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,853,0) facing=0
+[15:54:03.551] WARN  [Dorthor] [bot] (635,852) blocked by fatigue for too long; stopping (not blacklisted)
+[15:54:05.221] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,850,0) facing=0
+[15:54:05.535] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,852,0) facing=0
+[15:54:05.538] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,853,0) facing=0
+[15:54:06.360] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,856,0) facing=1
+[15:54:07.407] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:07.682] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,852,0) facing=0
+[15:54:07.683] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:54:09.371] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,856,0) facing=0
+[15:54:09.602] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:09.845] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,852,0) facing=0
+[15:54:09.846] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:54:11.543] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:54:11.819] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:12.077] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,852,0) facing=0
+[15:54:12.077] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:54:13.268] WARN  [Rhalazar] [bot] 0x20 resync; aborting path
+[15:54:13.755] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,856,0) facing=0
+[15:54:13.959] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:14.579] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,851,0) facing=0
+[15:54:15.018] WARN  [Aeryn] [0x21] move REJECTED seq=2; server says (634,852,0) facing=7
+[15:54:16.582] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,849,0) facing=0
+[15:54:16.593] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,851,0) facing=0
+[15:54:16.844] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,855,0) facing=1
+[15:54:17.116] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,852,0) facing=7
+[15:54:18.369] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:54:18.414] WARN  [Itheth] [bot] 0x20 resync; aborting path
+[15:54:18.719] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,851,0) facing=0
+[15:54:18.751] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:19.577] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,855,0) facing=0
+[15:54:19.710] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,852,0) facing=0
+[15:54:20.822] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,851,0) facing=0
+[15:54:20.853] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:21.668] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,855,0) facing=0
+[15:54:21.840] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:54:22.926] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:22.937] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,851,0) facing=0
+[15:54:23.845] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,855,0) facing=0
+[15:54:23.967] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:54:25.611] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,850,0) facing=0
+[15:54:25.642] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,848,0) facing=0
+[15:54:26.672] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,851,0) facing=0
+[15:54:26.934] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,854,0) facing=1
+[15:54:27.747] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,850,0) facing=0
+[15:54:27.750] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:54:28.781] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:54:29.413] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,854,0) facing=0
+[15:54:29.927] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,850,0) facing=0
+[15:54:29.958] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:54:30.953] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:54:31.593] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:54:32.158] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,850,0) facing=0
+[15:54:32.189] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:54:33.160] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:54:33.760] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,854,0) facing=0
+[15:54:34.710] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,849,0) facing=0
+[15:54:34.909] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,847,0) facing=0
+[15:54:35.753] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,850,0) facing=0
+[15:54:36.731] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,853,0) facing=1
+[15:54:36.823] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,849,0) facing=0
+[15:54:37.049] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:54:37.906] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:39.018] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,849,0) facing=0
+[15:54:39.176] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:54:39.359] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,853,0) facing=0
+[15:54:39.420] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:54:40.047] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:40.308] WARN  [Rhalvar] [bot] no path to (652,863) avoiding 0 block(s); stopping (search 1238270.3us)
+[15:54:40.308] WARN  [Rhalvar] [bot] start (651,859,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 148 item(s), 8 mobile(s))
+[15:54:40.894] WARN  [Rhalazar] [bot] no path to (659,856) avoiding 0 block(s); stopping (search 1252263.3us)
+[15:54:40.894] WARN  [Rhalazar] [bot] start (652,863,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 142 item(s), 9 mobile(s))
+[15:54:41.169] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,849,0) facing=0
+[15:54:41.311] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:54:41.449] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:54:42.266] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:54:42.447] WARN  [Itheth] [bot] no path to (659,856) avoiding 0 block(s); stopping (search 1079015.4us)
+[15:54:42.447] WARN  [Itheth] [bot] start (652,863,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 142 item(s), 9 mobile(s))
+[15:54:43.181] WARN  [Rhalvar] [bot] 0x20 resync; aborting path
+[15:54:43.183] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,849,0) facing=0
+[15:54:43.429] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:54:43.656] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,853,0) facing=0
+[15:54:43.871] WARN  [Rhalazar] [bot] 0x20 resync; aborting path
+[15:54:44.822] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,849,0) facing=0
+[15:54:45.724] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,848,0) facing=0
+[15:54:46.002] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,846,0) facing=0
+[15:54:46.312] WARN  [Itheth] [bot] 0x20 resync; aborting path
+[15:54:46.615] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,852,0) facing=1
+[15:54:47.060] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:47.060] WARN  [Aeryn] [bot] (634,848) blocked by fatigue for too long; stopping (not blacklisted)
+[15:54:47.872] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,848,0) facing=0
+[15:54:48.130] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:54:48.484] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:49.207] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,852,0) facing=0
+[15:54:49.283] WARN  [Itheth] [bot] no path to (663,858) avoiding 0 block(s); stopping (search 1133309.5us)
+[15:54:49.283] WARN  [Itheth] [bot] start (659,856,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 144 item(s), 3 mobile(s))
+[15:54:50.078] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,848,0) facing=0
+[15:54:50.354] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:54:50.651] WARN  [Rhalvar] [bot] no path to (663,858) avoiding 0 block(s); stopping (search 1105166.3us)
+[15:54:50.651] WARN  [Rhalvar] [bot] start (659,856,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 159 item(s), 3 mobile(s))
+[15:54:50.693] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:51.321] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:54:52.261] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,848,0) facing=0
+[15:54:52.493] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:54:52.800] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:54:53.567] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,852,0) facing=0
+[15:54:53.603] WARN  [Rhalvar] [bot] 0x20 resync; aborting path
+[15:54:54.781] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,847,0) facing=0
+[15:54:55.209] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,845,0) facing=0
+[15:54:55.561] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,848,0) facing=0
+[15:54:56.523] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,851,0) facing=1
+[15:54:56.981] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,847,0) facing=0
+[15:54:57.320] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:54:57.673] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:54:59.204] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,847,0) facing=0
+[15:54:59.206] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,851,0) facing=0
+[15:54:59.492] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:54:59.801] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:55:01.227] WARN  [Malazar] [0x21] move REJECTED seq=1; server says (1336,1928,0) facing=1
+[15:55:01.318] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:55:01.408] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,847,0) facing=0
+[15:55:01.408] WARN  [Dorthor] [bot] (635,846) blocked by fatigue for too long; stopping (not blacklisted)
+[15:55:01.667] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:55:01.667] WARN  [Galrin] [bot] (634,844) blocked by fatigue for too long; stopping (not blacklisted)
+[15:55:02.005] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:55:02.903] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,847,0) facing=0
+[15:55:03.150] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:55:03.471] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,851,0) facing=0
+[15:55:03.471] WARN  [Dravazar] [bot] (634,850) blocked by fatigue for too long; stopping (not blacklisted)
+[15:55:03.888] WARN  [Malazar] [0x21] move REJECTED seq=1; server says (1336,1928,0) facing=7
+[15:55:04.194] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:55:05.067] WARN  [Voris] [0x21] move REJECTED seq=42; server says (1336,1929,0) facing=0
+[15:55:05.526] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,846,0) facing=0
+[15:55:05.834] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,844,0) facing=0
+[15:55:05.959] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,850,0) facing=1
+[15:55:06.374] WARN  [Voris] [bot] no path to (1336,1928) avoiding 0 block(s); stopping (search 1217046.9us)
+[15:55:06.374] WARN  [Voris] [bot] start (1336,1929,0) exits: open=6 terrain=1 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 146 item(s), 4 mobile(s))
+[15:55:06.711] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,847,0) facing=0
+[15:55:07.741] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,846,0) facing=0
+[15:55:08.093] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:08.216] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,850,0) facing=1
+[15:55:08.986] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:55:09.888] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,846,0) facing=0
+[15:55:10.293] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:10.906] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,850,0) facing=0
+[15:55:11.137] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:55:12.056] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,846,0) facing=0
+[15:55:12.426] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:13.014] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,850,0) facing=0
+[15:55:13.291] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:55:13.373] WARN  [Itheth] [0x21] move REJECTED seq=5; server says (666,861,0) facing=2
+[15:55:14.320] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,846,0) facing=0
+[15:55:14.466] WARN  [Itheth] [bot] no path to (667,861) avoiding 0 block(s); stopping (search 1056454.0us)
+[15:55:14.466] WARN  [Itheth] [bot] start (666,861,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 144 item(s), 2 mobile(s))
+[15:55:14.993] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,843,0) facing=0
+[15:55:15.888] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,846,0) facing=0
+[15:55:16.009] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,849,0) facing=1
+[15:55:16.943] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,845,0) facing=0
+[15:55:17.234] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:17.649] WARN  [Itheth] [0x21] move REJECTED seq=5; server says (667,863,0) facing=2
+[15:55:18.078] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:18.127] WARN  [Itheth] [bot] 0x20 resync; aborting path
+[15:55:18.185] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,849,0) facing=1
+[15:55:18.248] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:55:19.044] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,845,0) facing=0
+[15:55:19.459] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:20.193] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:20.835] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,849,0) facing=0
+[15:55:21.172] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,845,0) facing=0
+[15:55:21.586] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:22.290] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:22.785] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:55:23.107] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,849,0) facing=0
+[15:55:23.205] WARN  [Itheth] [bot] 0x20 resync; aborting path
+[15:55:23.385] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,845,0) facing=0
+[15:55:23.797] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:24.474] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:25.846] WARN  [Loradan] [bot] no path to (672,859) avoiding 0 block(s); stopping (search 1173629.2us)
+[15:55:25.846] WARN  [Loradan] [bot] start (669,863,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 156 item(s), 2 mobile(s))
+[15:55:26.124] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,844,0) facing=0
+[15:55:26.230] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,848,0) facing=1
+[15:55:26.472] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,842,0) facing=0
+[15:55:27.194] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,845,0) facing=0
+[15:55:28.298] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,844,0) facing=0
+[15:55:28.372] WARN  [Loradan] [bot] 0x20 resync; aborting path
+[15:55:28.402] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,848,0) facing=1
+[15:55:28.679] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:55:29.381] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:55:30.526] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,844,0) facing=0
+[15:55:30.819] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:55:31.019] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,848,0) facing=0
+[15:55:31.527] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:55:32.633] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,844,0) facing=0
+[15:55:32.910] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:55:33.168] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,848,0) facing=0
+[15:55:33.676] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:55:35.274] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,843,0) facing=0
+[15:55:35.549] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,841,0) facing=0
+[15:55:36.274] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,844,0) facing=0
+[15:55:36.275] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,847,0) facing=1
+[15:55:37.456] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,843,0) facing=0
+[15:55:37.775] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:55:38.454] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:39.007] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,847,0) facing=0
+[15:55:39.639] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,843,0) facing=0
+[15:55:40.023] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:55:40.664] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:41.183] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:55:41.751] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,843,0) facing=0
+[15:55:42.211] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:55:42.843] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:55:43.335] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,847,0) facing=0
+[15:55:43.945] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,843,0) facing=0
+[15:55:44.326] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:55:45.377] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,843,0) facing=0
+[15:55:45.377] WARN  [Aeryn] [bot] (634,842) blocked by fatigue for too long; stopping (not blacklisted)
+[15:55:46.330] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,846,0) facing=1
+[15:55:46.514] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,842,0) facing=0
+[15:55:46.898] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,840,0) facing=0
+[15:55:48.620] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,842,0) facing=0
+[15:55:48.896] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,846,0) facing=0
+[15:55:49.064] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,840,0) facing=0
+[15:55:50.738] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,842,0) facing=0
+[15:55:50.969] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:51.123] WARN  [Itheth] [bot] 0x20 resync; aborting path
+[15:55:51.226] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,840,0) facing=0
+[15:55:51.459] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:52.939] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,842,0) facing=0
+[15:55:53.045] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,846,0) facing=0
+[15:55:53.290] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,840,0) facing=0
+[15:55:53.735] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,843,0) facing=0
+[15:55:55.700] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,841,0) facing=0
+[15:55:56.131] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,845,0) facing=1
+[15:55:56.361] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,842,0) facing=0
+[15:55:56.561] WARN  [Galrin] [0x21] move REJECTED seq=2; server says (634,839,0) facing=1
+[15:55:57.834] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:55:58.550] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:55:58.888] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,845,0) facing=0
+[15:55:59.121] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (634,839,0) facing=0
+[15:55:59.945] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:55:59.945] WARN  [Dorthor] [bot] (635,840) blocked by fatigue for too long; stopping (not blacklisted)
+[15:56:00.743] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:56:01.156] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:56:01.294] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,839,0) facing=0
+[15:56:01.294] WARN  [Galrin] [bot] (634,838) blocked by fatigue for too long; stopping (not blacklisted)
+[15:56:02.917] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,842,0) facing=0
+[15:56:03.238] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,845,0) facing=0
+[15:56:04.571] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:56:05.490] WARN  [Rhalvar] [bot] 0x20 resync; aborting path
+[15:56:05.520] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (634,841,0) facing=0
+[15:56:06.320] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,844,0) facing=1
+[15:56:06.777] WARN  [Galrin] [0x21] move REJECTED seq=2; server says (634,838,0) facing=1
+[15:56:07.204] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,840,0) facing=0
+[15:56:07.693] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:56:08.602] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,844,0) facing=1
+[15:56:08.602] WARN  [Dravazar] [bot] (635,843) blocked by fatigue for too long; stopping (not blacklisted)
+[15:56:08.931] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,838,0) facing=1
+[15:56:09.311] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,840,0) facing=0
+[15:56:09.573] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (634,844,0) facing=0
+[15:56:09.880] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:56:11.120] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,838,0) facing=1
+[15:56:11.501] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,840,0) facing=0
+[15:56:11.702] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:56:12.114] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:56:13.347] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (634,838,0) facing=1
+[15:56:13.700] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,840,0) facing=0
+[15:56:13.917] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,844,0) facing=0
+[15:56:14.284] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (634,841,0) facing=0
+[15:56:16.050] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (635,837,0) facing=1
+[15:56:16.815] WARN  [Dorthor] [0x21] move REJECTED seq=2; server says (635,839,0) facing=1
+[15:56:16.939] WARN  [Dravazar] [0x21] move REJECTED seq=2; server says (634,843,0) facing=1
+[15:56:17.828] WARN  [Aeryn] [0x21] move REJECTED seq=3; server says (635,840,0) facing=2
+[15:56:18.245] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (635,837,0) facing=1
+[15:56:19.015] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,839,0) facing=1
+[15:56:19.123] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,843,0) facing=1
+[15:56:20.016] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (635,840,0) facing=2
+[15:56:20.474] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (635,837,0) facing=1
+[15:56:21.243] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,839,0) facing=1
+[15:56:21.365] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,843,0) facing=1
+[15:56:22.149] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (635,840,0) facing=2
+[15:56:22.639] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (635,837,0) facing=1
+[15:56:23.388] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,839,0) facing=1
+[15:56:23.464] WARN  [Rhalazar] [bot] 0x20 resync; aborting path
+[15:56:23.541] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (634,843,0) facing=1
+[15:56:24.353] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (635,840,0) facing=2
+[15:56:25.862] WARN  [Galrin] [0x21] move REJECTED seq=2; server says (636,836,0) facing=0
+[15:56:26.090] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (635,842,0) facing=1
+[15:56:26.457] WARN  [Dorthor] [0x21] move REJECTED seq=2; server says (635,838,0) facing=0
+[15:56:27.917] WARN  [Aeryn] [0x21] move REJECTED seq=3; server says (636,839,0) facing=0
+[15:56:28.072] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,836,0) facing=0
+[15:56:28.298] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,842,0) facing=1
+[15:56:28.563] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,838,0) facing=0
+[15:56:30.186] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (636,839,0) facing=0
+[15:56:30.323] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,836,0) facing=0
+[15:56:30.799] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,838,0) facing=0
+[15:56:30.815] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (635,842,0) facing=0
+[15:56:32.319] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (636,839,0) facing=0
+[15:56:32.505] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,836,0) facing=0
+[15:56:33.011] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,838,0) facing=0
+[15:56:33.026] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,842,0) facing=0
+[15:56:34.442] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (636,839,0) facing=0
+[15:56:34.749] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,836,0) facing=0
+[15:56:35.596] WARN  [Dorthor] [0x21] move REJECTED seq=1; server says (635,837,0) facing=0
+[15:56:35.610] WARN  [Dravazar] [0x21] move REJECTED seq=1; server says (635,841,0) facing=0
+[15:56:36.391] WARN  [Ravan] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[15:56:37.269] WARN  [Ravan] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[15:56:37.515] WARN  [Galrin] [0x21] move REJECTED seq=1; server says (636,835,0) facing=0
+[15:56:37.577] WARN  [Aeryn] [0x21] move REJECTED seq=2; server says (636,838,0) facing=1
+[15:56:37.841] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,837,0) facing=0
+[15:56:37.856] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:56:39.650] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,835,0) facing=0
+[15:56:39.955] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:56:40.032] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,837,0) facing=0
+[15:56:40.197] WARN  [Aeryn] [0x21] move REJECTED seq=1; server says (636,838,0) facing=0
+[15:56:41.345] WARN  [Zaror] [bot] 0x20 resync; aborting path
+[15:56:41.931] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,835,0) facing=0
+[15:56:42.219] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,837,0) facing=0
+[15:56:42.236] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:56:42.343] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (636,838,0) facing=0
+[15:56:44.170] WARN  [Galrin] [0x21] move REJECTED seq=0; server says (636,835,0) facing=0
+[15:56:44.354] WARN  [Dorthor] [0x21] move REJECTED seq=0; server says (635,837,0) facing=0
+[15:56:44.369] WARN  [Dravazar] [0x21] move REJECTED seq=0; server says (635,841,0) facing=0
+[15:56:44.401] WARN  [Aeryn] [0x21] move REJECTED seq=0; server says (636,838,0) facing=0

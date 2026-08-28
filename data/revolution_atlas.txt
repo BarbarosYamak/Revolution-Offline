@@ -236,7 +236,7 @@ RECT	a_fatted_calf_1	4391	1139	4400	1146
 REGION	a_mighty_axe_1	building	5	4397	1117	0	Moonglow	The Mighty Axe
 RECT	a_mighty_axe_1	4383	1111	4400	1120
 RECT	a_mighty_axe_1	4383	1103	4392	1110
-REGION	a_moonglow_academyrts_1	building	5	4526	1065	0	Moonglow	Moonglow Academy of Arts
+REGION	a_moonglow_academyrts_1	dungeon	4	4526	1065	0	Moonglow	Moonglow Academy of Arts
 RECT	a_moonglow_academyrts_1	4519	1055	4536	1064
 RECT	a_moonglow_academyrts_1	4519	1065	4528	1072
 REGION	a_scholars_cut_tailory_1	building	5	4455	1069	0	Moonglow	Scholar's Cut Tailory
@@ -308,7 +308,7 @@ REGION	a_minoc_vesper_moongate_1	moongate	0	2702	692	5	Moongates	Minoc-Vesper Mo
 RECT	a_minoc_vesper_moongate_1	2697	688	2705	696
 REGION	a_great_waterfall_1	wilderness	0	1319	541	-15	Misc	Great Waterfall
 RECT	a_great_waterfall_1	1316	527	1323	542
-REGION	a_fishermans_hut_1	building	5	2380	3488	3	Trinsic	Fisherman's Hut
+REGION	a_fishermans_hut_1	dungeon	4	2380	3488	3	Trinsic	Fisherman's Hut
 RECT	a_fishermans_hut_1	2375	3482	2384	3491
 REGION	a_destard_entrance_1	wilderness	0	1176	2636	0	Destard	Destard Entrance
 RECT	a_destard_entrance_1	1173	2633	1180	2637
@@ -573,7 +573,7 @@ RECT	a_fruits_vegetables_1	4475	1089	4484	1092
 REGION	a_scholars_goods_1	building	5	4421	1063	0	Moonglow	The Scholar's Goods
 RECT	a_scholars_goods_1	4407	1055	4416	1072
 RECT	a_scholars_goods_1	4417	1060	4424	1068
-REGION	a_minoc_mine_1_1	cave	5	2558	499	0	Mines & Caves	Minoc Mine 1
+REGION	a_minoc_mine_1_1	cave	4	2558	499	0	Mines & Caves	Minoc Mine 1
 RECT	a_minoc_mine_1_1	2556	501	2561	503
 RECT	a_minoc_mine_1_1	2556	474	2581	500
 REGION	a_entrance_from_nrinsic_1	dungeon	0	1988	2064	-40	T2A Entrances & Exits	Entrance from N of Trinsic
@@ -611,7 +611,7 @@ RECT	a_ice_dungeon_5	5784	287	5895	386
 REGION	a_fire_dungeon_4	dungeon	4	5790	1416	40	T2A	Fire Dungeon
 RECT	a_fire_dungeon_4	5627	1282	5886	1490
 RECT	a_fire_dungeon_4	5726	1489	5886	1520
-REGION	a_papua_4	town	1	5729	3209	-1	Papua	Papua
+REGION	a_papua_4	wilderness	0	5729	3209	-1	Papua	Papua
 RECT	a_papua_4	5633	3088	5742	3328
 RECT	a_papua_4	5743	3088	5839	3331
 REGION	a_delucia_5	wilderness	0	5272	3995	37	Delucia	Delucia
@@ -631,7 +631,7 @@ REGION	a_entrance_from_temple_isle_1	dungeon	4	2494	3581	5	T2A Entrances & Exits
 RECT	a_entrance_from_temple_isle_1	2490	3572	2498	3580
 REGION	a_temple_isle_1	wilderness	0	2493	3604	0	Trinsic	Temple Isle
 RECT	a_temple_isle_1	2431	3528	2561	3671
-REGION	a_entrance_from_moonglow_1	dungeon	41	4545	852	30	T2A Entrances & Exits	Entrance from Moonglow
+REGION	a_entrance_from_moonglow_1	dungeon	40	4545	852	30	T2A Entrances & Exits	Entrance from Moonglow
 RECT	a_entrance_from_moonglow_1	4542	848	4549	851
 REGION	a_minoc_cave2_1	cave	4	2440	94	0	Mines & Caves	Minoc Cave2
 RECT	a_minoc_cave2_1	2418	81	2441	112
@@ -734,7 +734,7 @@ RECT	a_wind_tunnels_1	5253	189	5300	200
 RECT	a_wind_tunnels_1	5261	177	5299	188
 RECT	a_wind_tunnels_1	5284	151	5312	176
 RECT	a_wind_tunnels_1	5291	138	5315	155
-REGION	a_townWind	town	109	5223	201	5	Wind	Wind
+REGION	a_townWind	wilderness	108	5223	201	5	Wind	Wind
 RECT	a_townWind	5121	4	5372	254
 REGION	a_outside_wind_1	wilderness	0	1465	989	0	Wind	Outside Wind
 RECT	a_outside_wind_1	1347	881	1455	1009
@@ -832,7 +832,7 @@ RECT	a_townNujelm	3696	1346	3769	1423
 RECT	a_townNujelm	3718	1175	3797	1346
 RECT	a_townNujelm	3758	1116	3797	1174
 RECT	a_townNujelm	3797	1240	3821	1309
-REGION	a_moonglow_encyclopedia_magicka_1	building	5	4545	862	30	Moonglow	Moonglow Encyclopedia Magicka
+REGION	a_moonglow_encyclopedia_magicka_1	dungeon	4	4545	862	30	Moonglow	Moonglow Encyclopedia Magicka
 RECT	a_moonglow_encyclopedia_magicka_1	4541	847	4550	872
 RECT	a_moonglow_encyclopedia_magicka_1	4551	855	4558	864
 RECT	a_moonglow_encyclopedia_magicka_1	4533	855	4540	864
@@ -992,7 +992,7 @@ REGION	a_beach_house_1	wilderness	0	1606	3531	0	Misc	Beach House
 RECT	a_beach_house_1	1602	3526	1610	3536
 REGION	a_ruins_1	moongate	0	1609	3372	0	Moongates	Ruins
 RECT	a_ruins_1	1603	3366	1615	3378
-REGION	a_Britain_Fields	town	1	1495	1629	10	Britain	Britain Fields
+REGION	a_Britain_Fields	wilderness	0	1495	1629	10	Britain	Britain Fields
 RECT	a_Britain_Fields	1376	1743	1245	1832
 RECT	a_Britain_Fields	1379	1766	1427	1832
 RECT	a_Britain_Fields	1376	1743	1142	1702
@@ -2659,7 +2659,6 @@ PLACE	entrance_from_n_of_trinsic_dungeon_entrance	dungeon_entrance	a_entrance_fr
 PLACE	entrance_to_below_terathan_keep_dungeon_entrance	dungeon_entrance	a_entrance_to_below_terathan_keep_1	5342	1601	0	8			Entrance to below Terathan Keep
 PLACE	entrance_into_britain_sewers_dungeon_entrance	dungeon_entrance	a_entrance_into_britain_sewers_1	1490	1641	24	8			Entrance Into Britain Sewers
 PLACE	city_of_the_dead_graveyard	graveyard	a_cityhe_dead_1	5220	3665	-3	12			City of the Dead
-PLACE	papua_town_center	town_center	a_papua_4	5729	3209	-1	8			Papua
 PLACE	fire_dungeon_entrance_dungeon_entrance	dungeon_entrance	a_fire_dungeon_entrance_1	5758	2908	0	8			Fire Dungeon Entrance
 PLACE	entrance_serpent_s_pillar_e_dungeon_entrance	dungeon_entrance	a_entrance_serpents_pillar_e_1	2984	2893	-5	8			Entrance - Serpent's Pillar E
 PLACE	entrance_from_temple_isle_dungeon_entrance	dungeon_entrance	a_temple_isle_1	2494	3581	5	8			Entrance from Temple Isle
@@ -2680,7 +2679,6 @@ PLACE	yew_cave1_resource_area	resource_area	a_yew_cave1_1	773	1684	45	12		mining
 PLACE	north_territory_mine2_resource_area	resource_area	a_north_territory_mine2_1	1638	974	0	20		mining	North Territory Mine2
 PLACE	north_territory_mine1_resource_area	resource_area	a_north_territory_mine1_1	1723	1065	0	20		mining	North Territory Mine1
 PLACE	brit_mine1_resource_area	resource_area	a_brit_mine1_1	1443	1228	0	20		mining	Brit Mine1
-PLACE	wind_town_center	town_center	a_wind_tunnels_1	5223	201	5	8			Wind
 PLACE	yew_town_center	town_center	a_townYew	546	992	0	8			Yew
 PLACE	vesper_cemetary_graveyard	graveyard	a_vesper_cemetary_1	2781	867	0	12			Vesper Cemetary
 PLACE	vesper_town_center	town_center	a_townVesper	2899	676	0	8			Vesper
@@ -2724,49 +2722,6 @@ PLACE	buccaneer_s_den_docks_dock	dock	a_townBucsden	2750	2166	-2	12		fishing	Buc
 PLACE	jhelom_cemetary_graveyard	graveyard	a_jhelom_territory_1	1291	3719	0	12			Jhelom Cemetary
 PLACE	secret_cave_resource_area	resource_area	a_trinsic_territory_1	1653	2967	0	12		mining	Secret Cave
 PLACE	cave_resource_area_4	resource_area	a_cove_territory_1	2345	830	0	12		mining	Cave
-PLACE	trinsic_territory_woods	resource_area	a_trinsic_territory_1	1928	3208	0	48		lumber	Trinsic Territory woods
-PLACE	trinsic_territory_woods_2	resource_area	a_trinsic_territory_1	1816	3336	0	48		lumber	Trinsic Territory woods
-PLACE	trinsic_territory_woods_3	resource_area	a_trinsic_territory_1	1544	3080	0	48		lumber	Trinsic Territory woods
-PLACE	fire_island_woods	resource_area	a_islehe_fire_1	4648	3592	0	48		lumber	Fire Island woods
-PLACE	wilds_woods	resource_area		1416	3078	0	48		lumber	wilds woods
-PLACE	fire_island_woods_2	resource_area	a_islehe_fire_1	4504	3592	0	48		lumber	Fire Island woods
-PLACE	wastelands_woods	resource_area	a_wastelands_1	5528	3208	0	48		lumber	WasteLands woods
-PLACE	wastelands_woods_2	resource_area	a_wastelands_1	5382	3208	0	48		lumber	WasteLands woods
-PLACE	wilds_woods_2	resource_area		1544	2824	0	48		lumber	wilds woods
-PLACE	fire_island_woods_3	resource_area	a_islehe_fire_1	4616	3336	0	48		lumber	Fire Island woods
-PLACE	wastelands_woods_3	resource_area	a_wastelands_1	5384	3718	0	48		lumber	WasteLands woods
-PLACE	wilds_woods_3	resource_area		1032	2312	0	48		lumber	wilds woods
-PLACE	yew_territory_woods	resource_area	a_Yew_Ter	776	1414	0	48		lumber	Yew Territory woods
-PLACE	northern_territory_woods	resource_area	a_northern_territory_1	1864	520	0	48		lumber	Northern Territory woods
-PLACE	yew_territory_woods_2	resource_area	a_Yew_Ter	776	1030	0	48		lumber	Yew Territory woods
-PLACE	yew_territory_woods_3	resource_area	a_Yew_Ter	1048	776	0	48		lumber	Yew Territory woods
-PLACE	britain_territory_woods	resource_area	a_britain_territory_1	1416	1928	0	48		lumber	Britain Territory woods
-PLACE	britain_territory_woods_2	resource_area	a_britain_territory_1	1848	1288	0	48		lumber	Britain Territory woods
-PLACE	buccaneer_s_den_woods	resource_area	a_townBucsden	2712	2216	0	48		lumber	Buccaneer's Den woods
-PLACE	vesper_territory_woods	resource_area	a_vesper_territory_1	3080	520	0	48		lumber	Vesper Territory woods
-PLACE	windemere_woods_woods	resource_area	a_Windemere_Woods	3336	392	0	48		lumber	Windemere Woods woods
-PLACE	britain_territory_woods_3	resource_area	a_britain_territory_1	1416	1288	0	48		lumber	Britain Territory woods
-PLACE	buccaneer_s_den_territory_woods	resource_area	a_buccaneers_den_territory_1	2600	2054	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	cove_territory_woods	resource_area	a_cove_territory_1	2568	1030	0	48		lumber	Cove Territory woods
-PLACE	yew_woods	resource_area	a_townYew	648	1160	0	48		lumber	Yew woods
-PLACE	buccaneer_s_den_territory_woods_2	resource_area	a_buccaneers_den_territory_1	2616	2184	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	orcish_lands_woods	resource_area	a_orcish_lands_1	6040	3206	0	48		lumber	Orcish Lands woods
-PLACE	magincia_territory_woods	resource_area	a_magincia_territory_1	3656	2056	0	48		lumber	Magincia Territory woods
-PLACE	minoc_territory_woods	resource_area	a_minoc_territory_1	2728	392	0	48		lumber	Minoc Territory woods
-PLACE	yew_woods_2	resource_area	a_townYew	520	1160	0	48		lumber	Yew woods
-PLACE	yew_woods_3	resource_area	a_townYew	664	1030	0	48		lumber	Yew woods
-PLACE	windemere_woods_woods_2	resource_area	a_Windemere_Woods	3208	520	0	48		lumber	Windemere Woods woods
-PLACE	cove_territory_woods_2	resource_area	a_cove_territory_1	2568	776	0	48		lumber	Cove Territory woods
-PLACE	vesper_territory_woods_2	resource_area	a_vesper_territory_1	3112	392	0	48		lumber	Vesper Territory woods
-PLACE	cove_territory_woods_3	resource_area	a_cove_territory_1	2312	952	0	48		lumber	Cove Territory woods
-PLACE	minoc_territory_woods_2	resource_area	a_minoc_territory_1	2712	646	0	48		lumber	Minoc Territory woods
-PLACE	vesper_territory_woods_3	resource_area	a_vesper_territory_1	3160	648	0	48		lumber	Vesper Territory woods
-PLACE	buccaneer_s_den_territory_woods_3	resource_area	a_buccaneers_den_territory_1	2744	1944	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	northern_territory_woods_2	resource_area	a_northern_territory_1	2088	536	0	48		lumber	Northern Territory woods
-PLACE	northern_territory_woods_3	resource_area	a_northern_territory_1	1800	406	0	48		lumber	Northern Territory woods
-PLACE	jhelom_territory_woods	resource_area	a_jhelom_territory_1	1096	3462	0	48		lumber	Jhelom Territory woods
-PLACE	windemere_woods_woods_3	resource_area	a_Windemere_Woods	3224	392	0	48		lumber	Windemere Woods woods
-PLACE	jhelom_territory_woods_2	resource_area	a_jhelom_territory_1	1160	3464	0	48		lumber	Jhelom Territory woods
 TRANSIT	tp_0	teleporter	5490	19	-25	5514	10	5	0	tp_shame_1_2_x
 TRANSIT	tp_1	teleporter	5514	10	5	5490	19	-25	0	tp_shame_2_1_x
 TRANSIT	tp_2	teleporter	5875	19	-5	5507	162	5	0	tp_shame_5_4_x

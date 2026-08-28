@@ -263,6 +263,22 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 "original lumberjack needs", state_.plan.family.c_str());
     }
 
+    // Pick a home, once. Deterministic from the identity id rather than random,
+    // so the same character always gets the same home even if the state file is
+    // lost -- and so a fleet spreads across the map instead of every member
+    // rolling the same first entry.
+    if (state_.homeCity.empty() && needCfg_.profession &&
+        !needCfg_.profession->homeCities.empty()) {
+        usize h = 0;
+        for (char c : state_.identity.identityId) {
+            h = h * 131 + static_cast<unsigned char>(c);
+        }
+        const std::vector<std::string>& homes = needCfg_.profession->homeCities;
+        state_.homeCity = homes[h % homes.size()];
+        LogLine("home: %s lives in %s", state_.identity.characterName.c_str(),
+                state_.homeCity.c_str());
+    }
+
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
     // to be a legal Revolution build before the character acts on it.
     const PlanCheck check = ValidatePlan(rules::Revolution(), state_.plan);
@@ -904,7 +920,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogLine("wind-down: no bank learned yet; asking the world for one "
                             "(attempt %d)", windDownTrips_);
-                    travelInFlight_ = client.TravelToService(wm::Service::Banker);
+                    travelInFlight_ = client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
                 }
                 if (!travelInFlight_) {
                     LogLine("wind-down: could not start the trip (%s); logging out here",
@@ -1293,7 +1309,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                 travelInFlight_ = client.TravelToPoint(known->x, known->y, 2, "supplier");
             } else {
                 LogLine("get_tool: no remembered supplier; looking for a blacksmith");
-                travelInFlight_ = client.TravelToService(wm::Service::Blacksmith);
+                travelInFlight_ = client.TravelToService(wm::Service::Blacksmith, state_.homeCity.c_str());
             }
             if (!travelInFlight_) {
                 LogLine("BLOCKED_NEED hatchet: %s", client.TravelFailureText());
@@ -1401,7 +1417,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         const u32 vendor = client.VendorOfferFrom();
         if (vendor == 0) {
             if (!travelInFlight_) {
-                travelInFlight_ = client.TravelToService(wm::Service::Healer);
+                travelInFlight_ = client.TravelToService(wm::Service::Healer, state_.homeCity.c_str());
                 if (!travelInFlight_) {
                     LogLine("BLOCKED_NEED bandages: %s", client.TravelFailureText());
                     planner_.NoteAttempt(obs.nowMs);
@@ -1518,7 +1534,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         } else {
             LogLine("bank: no bank learned yet; asking the world model for one "
                     "(trip %d)", bankTrips_);
-            travelInFlight_ = client.TravelToService(wm::Service::Banker);
+            travelInFlight_ = client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
         }
         if (!travelInFlight_) {
             LogLine("goal_blocked=BANK reason=\"%s\"", client.TravelFailureText());
@@ -2032,7 +2048,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 LogLine("earn_gold: looking for a '%s' to buy %d %s (trip %d)",
                         sellTrade_.c_str(), sellWanted_, sellItem_.c_str(),
                         sellTrips_);
-                travelInFlight_ = client.TravelToService(sellService_);
+                travelInFlight_ = client.TravelToService(sellService_, state_.homeCity.c_str());
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=EARN_GOLD reason=\"%s\"",
@@ -2265,7 +2281,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             } else {
                 LogLine("training: looking for a '%s' to teach %s (trip %d)",
                         trainerTrade_.c_str(), rules::SkillName(skillId), trainTrips_);
-                travelInFlight_ = client.TravelToService(trainerService_);
+                travelInFlight_ = client.TravelToService(trainerService_, state_.homeCity.c_str());
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=TRAIN_AT_NPC reason=\"%s\"",

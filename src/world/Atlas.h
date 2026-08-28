@@ -60,8 +60,15 @@ public:
     // Same widening search as FindRegion: id, then exact name, then substring.
     const wm::Place* FindPlace(const char* needle) const;
 
+    // True when this place sits inside a region a guard will answer in.
+    // Unknown region -> false: an unguarded assumption is the safe one, and
+    // the opposite assumption is what walks a 15hp mage into a field.
+    bool PlaceIsGuarded(const wm::Place& p) const;
+
     // Nearest place offering a service / yielding a resource, measured by
     // Chebyshev tiles from (x, y). `maxDist` <= 0 means "anywhere".
+    // GUARDED PLACES WIN over nearer unguarded ones; an unguarded provider is
+    // returned only when no guarded one exists at all.
     const wm::Place* NearestPlaceWithService(wm::Service s, i32 x, i32 y,
                                              i32 maxDist = 0) const;
     const wm::Place* NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,

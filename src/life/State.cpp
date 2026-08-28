@@ -197,6 +197,8 @@ json::Value ToJson(const PersistentState& st) {
         }
         m.Set("events", std::move(evs));
 
+        root.Set("home_city", st.homeCity);
+
         root.Set("memory", std::move(m));
 
     {
@@ -366,6 +368,8 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             if (g.amount > 0) st.ledger.entries.push_back(std::move(g));
         }
     }
+    st.homeCity = v["home_city"].AsString();
+
     const json::Value& m = v["memory"];
     {
         const json::Value& a = m["places"];

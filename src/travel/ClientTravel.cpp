@@ -237,12 +237,18 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
                            seen->z);
     }
 
-    const wm::Place* p =
-        regionHint && *regionHint
-            ? world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
-                  s, regionHint, playerX_, playerY_)
-            : world_knowledge_->atlas.NearestPlaceWithService(s, playerX_,
-                                                              playerY_);
+    // HOME FIRST, then anywhere. A region hint that finds nothing must not
+    // strand the character: a mage living in Moonglow still needs a banker
+    // when it is standing in Britain.
+    const wm::Place* p = nullptr;
+    if (regionHint && *regionHint) {
+        p = world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
+                s, regionHint, playerX_, playerY_);
+    }
+    if (!p) {
+        p = world_knowledge_->atlas.NearestPlaceWithService(s, playerX_,
+                                                            playerY_);
+    }
     if (!p) {
         travelFailure_ = "no known provider of that service";
         LogWarn("[travel] no place offers %s%s%s\n", wm::ServiceName(s),

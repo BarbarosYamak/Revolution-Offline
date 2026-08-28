@@ -596,6 +596,12 @@ struct PersistentState {
     market::PriceBook prices;
     market::Ledger    ledger;
 
+    // WHERE THIS CHARACTER LIVES. Chosen once from the profession's own list
+    // and then never re-rolled: a bot that picks a new home every login is a
+    // tourist, and the whole point is that the same smith is at the same forge
+    // every evening.
+    std::string homeCity;
+
     // The current objective, so a session RESUMES rather than restarts. It is
     // re-validated against server truth on login and may be dropped.
     GoalState goal;
