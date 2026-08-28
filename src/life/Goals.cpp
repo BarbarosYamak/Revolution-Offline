@@ -21,6 +21,8 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::TrainAtNpc:            return "TRAIN_AT_NPC";
         case GoalKind::TradeWithPlayer:       return "TRADE_WITH_PLAYER";
         case GoalKind::Fish:                  return "FISH";
+        case GoalKind::BuySupplies:           return "BUY_SUPPLIES";
+        case GoalKind::Craft:                 return "CRAFT";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -82,6 +84,12 @@ const GoalSpec kGoals[] = {
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
+    // Making is the same productive work as gathering, so it sits with FISH
+    // and GATHER_LOGS. Buying the inputs ranks just above it: a crafter that
+    // cannot start is worth a trip to the shop before anything else it does,
+    // and without the inputs the making cannot happen at all.
+    {GoalKind::Craft,                 NeedKind::NeedCraft,         130.0},
+    {GoalKind::BuySupplies,           NeedKind::NeedSupplies,      140.0},
 };
 
 }  // namespace

@@ -25,6 +25,7 @@
 
 #include "uo/market.h"
 #include "uo/professions.h"
+#include "uo/production.h"
 #include "uo/rules.h"
 #include "uo/json.h"
 #include "uo/types.h"
@@ -399,6 +400,24 @@ struct Observation {
 // own priority order, restricted to targets flagged `viaTrainer`, and only
 // while the character is still below what a trainer could give -- there is no
 // point paying an NPC for a skill already past its ceiling.
+// --- crafting ---------------------------------------------------------------
+//
+// What this life should make next, and what stands in the way. Answered in one
+// place because two systems ask it: the need model (is there a reason to go
+// shopping or to sit down and work?) and the goal that carries it out.
+//
+// Only ever names something the faucet registry says may legitimately be sold.
+// A character does not manufacture goods it has nowhere to take.
+struct CraftIntent {
+    const char* item = nullptr;      // what to make, or nullptr for nothing
+    bool skillsMet = false;          // the recipe's own skill requirements
+    // Inputs the pack is short of, in the quantities still needed.
+    std::vector<prod::Ingredient> missing;
+    const char* why = "";            // printable, always set
+};
+CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
+                        i32 batch);
+
 int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
                    i32 trainerCeilingTenths);
 
@@ -431,6 +450,12 @@ enum class NeedKind : u8 {
     // Raw material this life gathers and sells. Distinct from NeedLogs, which
     // is the M4 lumberjack's own: this one is generic and reads the profession.
     NeedCatch,
+    // Inputs this life needs to MAKE what it sells, and the making itself.
+    // A crafter with no reagents is not idle by choice, and the difference
+    // between "cannot craft" and "has nothing to craft with" is the whole
+    // reason these are two needs and not one.
+    NeedSupplies,
+    NeedCraft,
     Count,
 };
 
@@ -449,6 +474,10 @@ struct Need {
 // Config for the thresholds a need model needs. Values that came from a live
 // measurement carry that in their comment; the rest are starting points.
 struct NeedConfig {
+    // How many of a thing to make in one sitting. Small on purpose: reagents
+    // cost real gold, the sale price is small, and a batch that empties the
+    // purse before the first sale proves nothing about whether the trade pays.
+    i32    craftBatch       = 5;
     double fleeHpFraction   = 0.32;  // M3.9.1 live: disengaged at ~32% and survived
     double healHpFraction   = 0.80;
     i32    bandageLow       = 8;     // uo-offline's threshold shape, our numbers
@@ -506,6 +535,10 @@ enum class GoalKind : u8 {
     TradeWithPlayer,
     // The one gold faucet a character can reach on day one.
     Fish,
+    // Buy the inputs, then make the thing. The half of the economy a
+    // gatherer never needed and a scribe cannot earn a copper without.
+    BuySupplies,
+    Craft,
     IdleBriefly,
     Count,
 };

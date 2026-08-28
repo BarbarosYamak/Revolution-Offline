@@ -142,10 +142,22 @@ struct Profession {
     // Revolution's rule -- exactly two skills at 50.0 -- is untouched.
     //
     // CONSTRAINT: Source-X applies [NEWBIE <skill>] for every requested slot
-    // WITHOUT checking its value (CChar.cpp:2117-2143), so a skill named here
-    // must have no [NEWBIE] section on this shard or the character is handed
-    // a kit it did not earn. Meditation is the only plan skill that
-    // qualifies; Remove Trap remains the default for everyone else.
+    // WITHOUT checking its value (CChar.cpp:2116-2144), so a skill named here
+    // must grant nothing, or the character is handed a kit it did not earn.
+    //
+    // "Grants nothing" is about the section's CONTENTS, not its existence --
+    // this used to say Meditation was the only candidate, which was wrong and
+    // needlessly narrow. Reading
+    // runtime/scripts/templates_special/sp_tm_newbie.scp, two kinds qualify:
+    //
+    //   no section at all -- Meditation, Stealth, Remove Trap, Focus,
+    //     Spellweaving, Mysticism, Imbuing (the lookup simply fails)
+    //   a section whose body is literally "//empty" -- Evaluating Intelligence
+    //     (:376), Tinkering (:545), Forensics, Magic Resistance, Necromancy,
+    //     Taming, Taste ID
+    //
+    // Either way the pack is untouched. Anything else pays a real kit: naming
+    // Inscription here would hand over two blank scrolls and a book (:417).
     int startZeroSkill = -1;
     // The stat split this life wants at creation. Must total
     // kRevolutionStartStatTotal.

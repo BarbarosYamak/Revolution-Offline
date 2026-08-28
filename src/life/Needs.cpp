@@ -24,6 +24,8 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedTravel:    return "NeedTravel";
         case NeedKind::NeedTrade:     return "NeedTrade";
         case NeedKind::NeedCatch:     return "NeedCatch";
+        case NeedKind::NeedSupplies:  return "NeedSupplies";
+        case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
     return "?";
@@ -393,6 +395,64 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                     : Fmt("%d x %s spare, a load is %d, buyer: %s", biggest,
                           spare.front().item.c_str(), trip, route.c_str()),
                 route.empty());
+        }
+    }
+
+    // --- making things -----------------------------------------------------
+    //
+    // A crafter's day is two errands, not one: fetch what it cannot make, then
+    // make what it can sell. Split because they fail differently and a bot
+    // that says "I cannot craft" when it means "nobody has sold me nightshade
+    // yet" is lying about its own state.
+    if (cfg.profession) {
+        // TWO QUESTIONS, NOT ONE.
+        //
+        //   "can I make one right now?"   -> batch of 1
+        //   "am I stocked for a sitting?" -> the full batch
+        //
+        // Asking only the second made a scribe buy blank scrolls forever.
+        // NeedSupplies outranked NeedCraft by 0.02, so every time she held
+        // fewer than five she went shopping instead of writing -- and since
+        // buying never reduced the shortfall of the NEXT batch, she bought
+        // until the purse fell from 781 gold to 92 without inscribing a
+        // single scroll. Working stock is for working with.
+        const CraftIntent now = ChooseCraft(*cfg.profession, obs, 1);
+        const CraftIntent craft =
+            now.item && now.missing.empty()
+                ? now
+                : ChooseCraft(*cfg.profession, obs, cfg.craftBatch);
+        if (craft.item && craft.skillsMet) {
+            if (craft.missing.empty()) {
+                add(NeedKind::NeedCraft, 0.50, "make goods to sell",
+                    "holds every input for something this life can legitimately "
+                    "sell to an NPC",
+                    Fmt("%s: %s", craft.item, craft.why));
+            } else {
+                // Can the shortfall actually be bought? A missing input with
+                // no seller is a blocked state, not an errand -- and saying
+                // otherwise is how a goal wins the scoring and then discovers
+                // on entry that there was never anywhere to go.
+                const prod::Ingredient& first = craft.missing.front();
+                const econ::VendorRuling ruling =
+                    econ::CanUseNPCVendorFor(first.item);
+                // BELOW NeedCraft (0.50) and below selling. Shopping is what
+                // a crafter does when it cannot work, never instead of
+                // working: this used to be 0.52, which put the shop ahead of
+                // the workbench permanently.
+                add(NeedKind::NeedSupplies, ruling.allowed ? 0.44 : 0.0,
+                    "buy craft inputs",
+                    ruling.allowed
+                        ? "short of what it needs to make its own goods"
+                        : "short of an input no NPC may legitimately sell it",
+                    Fmt("%s needs %d x %s%s", craft.item, first.qty, first.item,
+                        ruling.allowed ? "" : " -- and the vendor policy "
+                                              "refuses that purchase"),
+                    !ruling.allowed);
+            }
+        } else if (craft.item == nullptr && !cfg.profession->produces.empty()) {
+            // Nothing sellable this life can make. Legible, and not a loop.
+            add(NeedKind::NeedCraft, 0.0, "make goods to sell", craft.why,
+                "nothing to make", true);
         }
     }
 

@@ -1,0 +1,822 @@
+[21:15:02.767] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='scribe4'
+[21:15:02.768] LOG   [scribe4] event session_start: text log opened
+[21:15:02.769] LOG   [scribe4] event net_connect_begin: connect 127.0.0.1:2593
+[21:15:02.769] INFO  [scribe4] [net] connecting to 127.0.0.1:2593 ...
+[21:15:02.769] LOG   [scribe4] event net_connected: connect 127.0.0.1:2593
+[21:15:02.769] INFO  [scribe4] [net] connected.
+[21:15:02.769] INFO  [scribe4] [seed] sent 0x7F000001 (plaintext)
+[21:15:02.770] LOG   [scribe4] event seed_out: 0x7F000001 hex=7f000001
+[21:15:02.770] INFO  [life] loaded persistent state for Ysolde (0 places, 1 suppliers, 7 events, 0 prior sessions)
+[21:15:02.770] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[21:15:02.770] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[21:15:02.770] INFO  [scribe4] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[21:15:02.780] INFO  [scribe4] [0xA8] 1 server(s):
+[21:15:02.780] INFO  [scribe4]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[21:15:02.795] INFO  [scribe4] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[21:15:02.795] LOG   [scribe4] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[21:15:02.795] INFO  [scribe4] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[21:15:02.795] LOG   [scribe4] event relay_same_socket: no seed re-sent; 0x91 follows
+[21:15:02.795] INFO  [scribe4] [0xB9] server features = 0x0005
+[21:15:02.795] INFO  [scribe4] [0xA9] 5 slot(s) (populated 1):
+[21:15:02.795] INFO  [scribe4]   [0] Ysolde
+[21:15:02.795] INFO  [scribe4]   [1] <empty>
+[21:15:02.795] INFO  [scribe4]   [2] <empty>
+[21:15:02.795] INFO  [scribe4]   [3] <empty>
+[21:15:02.795] INFO  [scribe4]   [4] <empty>
+[21:15:02.795] INFO  [scribe4] [ui] playing slot 0 ('Ysolde')
+[21:15:02.810] INFO  [scribe4] [0x1B] serial=0x00014261 body=0x0190 pos=(1484,1546,47)
+[21:15:02.810] LOG   [scribe4] event login_confirm: serial=0x00014261 body=0x0190 pos=(1484,1546,47)
+[21:15:02.810] INFO  [scribe4] [0x20] player @(1484,1546,47) facing=5
+[21:15:02.810] INFO  [scribe4] [0x55] login complete — entering world
+[21:15:02.810] LOG   [scribe4] event in_world: 0x55 received
+[21:15:02.811] INFO  [scribe4] [backpack] opening 0x4001425D
+[21:15:02.811] INFO  [scribe4] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[21:15:02.811] INFO  [scribe4] [chat ascii] System: There are 0 other players here.
+[21:15:02.811] INFO  [scribe4] [chat ascii] System: Last logged: 2026/08/28 21:11:17
+[21:15:02.811] INFO  [scribe4] [chat ascii] System: You are under the protection of the city guards
+[21:15:02.814] INFO  [scribe4] [action] requesting the skill list
+[21:15:02.814] INFO  [life] in world; asked the server for the skill list
+[21:15:02.814] INFO  [scribe4] [0x24] open container 0x4001425D gump=60
+[21:15:02.814] INFO  [scribe4] [0x3C] container contents: 10 item(s)
+[21:15:02.814] LOG   [scribe4] event backpack_contents: serial=0x4001425D items=10
+[21:15:05.398] INFO  [scribe4] [bot] world data loaded (0 blacklisted spot(s)).
+[21:15:05.398] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[21:15:05.398] INFO  [life]   gold         persisted=736        server=736        -> server value accepted
+[21:15:05.398] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[21:15:05.398] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[21:15:05.398] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[21:15:05.398] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[21:15:05.398] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[21:15:05.398] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[21:15:05.398] INFO  [life]   position     persisted=1484,1546  server=1484,1546  -> server value accepted
+[21:15:05.398] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[21:15:05.398] INFO  [scribe4] [survival] on
+[21:15:05.398] LOG   [scribe4] event survival_mode: on
+[21:15:05.400] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:15:05.400] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:05.452] INFO  [life] goal=CRAFT reason="previous goal abandoned: the craft menu does not offer it"
+[21:15:05.452] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:15:05.452] INFO  [life]   score=65.0
+[21:15:05.452] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[21:15:05.452] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[21:15:05.452] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:15:05.452] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:05.452] INFO  [scribe4] [ACTION] use_object start
+[21:15:05.452] INFO  [scribe4] [ACTION] use_object serial=0x400184A9
+[21:15:05.468] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:05.468] INFO  [scribe4]         1) poison
+[21:15:05.468] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:09.464] LOG   [scribe4] event action_result: use_object timeout
+[21:15:09.526] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:09.527] INFO  [life] craft: chose 'poison'
+[21:15:10.447] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:10.782] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:15:11.575] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[21:15:11.575] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:11.575] INFO  [scribe4] [ACTION] use_object start
+[21:15:11.575] INFO  [scribe4] [ACTION] use_object serial=0x400184A9
+[21:15:11.591] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:11.591] INFO  [scribe4]         1) poison
+[21:15:11.591] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:15.474] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:15.597] LOG   [scribe4] event action_result: use_object timeout
+[21:15:15.657] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:15.657] INFO  [life] craft: chose 'poison'
+[21:15:16.904] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:15:17.699] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[21:15:17.699] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:17.699] INFO  [scribe4] [ACTION] use_object start
+[21:15:17.699] INFO  [scribe4] [ACTION] use_object serial=0x400184A9
+[21:15:17.716] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:17.716] INFO  [scribe4]         1) poison
+[21:15:17.716] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:20.479] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:21.739] LOG   [scribe4] event action_result: use_object timeout
+[21:15:21.800] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:21.800] INFO  [life] craft: chose 'poison'
+[21:15:23.019] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:15:23.813] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[21:15:23.813] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:23.813] INFO  [scribe4] [ACTION] use_object start
+[21:15:23.813] INFO  [scribe4] [ACTION] use_object serial=0x400184A9
+[21:15:23.830] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:23.830] INFO  [scribe4]         1) poison
+[21:15:23.830] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:25.488] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 72.8 superseded CRAFT 0.0"
+[21:15:25.488] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:15:25.488] INFO  [life]   score=72.8
+[21:15:25.488] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:15:25.488] INFO  [life]   reason: i_scroll_poison needs 3 x i_scroll_blank
+[21:15:25.488] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:15:25.488] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:25.855] INFO  [life] supplies: looking for a 'mage' to sell 3 i_scroll_blank (trip 1)
+[21:15:25.855] INFO  [scribe4] [travel] Britain mage -> (1485,1550) r=5 from (1484,1546)
+[21:15:25.855] LOG   [scribe4] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1484,1546)
+[21:15:25.855] INFO  [scribe4] [travel] mode walk             usable   <- chosen
+[21:15:25.855] INFO  [scribe4] [travel] mode moongate         usable
+[21:15:25.855] INFO  [scribe4] [travel] mode loose_rune_recall no: no rune marked at that destination
+[21:15:25.855] INFO  [scribe4] [travel] mode runebook_recall  no: no runebook page for that destination
+[21:15:25.855] LOG   [scribe4] event travel_mode: walk
+[21:15:25.855] INFO  [scribe4] [travel] plan Britain mage: ok legs=1 ~4 tiles transit=0 nodes=0
+[21:15:25.918] INFO  [scribe4] [action] goto (1485,1550) from (1484,1546,47)
+[21:15:25.918] LOG   [scribe4] event goto_start: target=(1485,1550) from=(1484,1546)
+[21:15:25.918] INFO  [scribe4] [bot] running from (1484,1546,47) to (1485,1550,z30)
+[21:15:25.918] INFO  [scribe4] [bot] planning path to (1485,1550) in background
+[21:15:25.978] INFO  [scribe4] [bot] replan to (1485,1550): 5 steps in 58.3us
+[21:15:27.449] INFO  [scribe4] [travel] Britain mage ARRIVED at (1485,1549,35)
+[21:15:27.449] LOG   [scribe4] event travel_done: label='Britain mage' ok=1 at=(1485,1549) legs=1 plans=1 why=''
+[21:15:27.633] INFO  [scribe4] [bot] arrived at (1485,1550,30)
+[21:15:27.816] LOG   [scribe4] event action_result: use_object timeout
+[21:15:27.877] INFO  [life] supplies: arrived at 1485,1550 -- asking who is here
+[21:15:27.877] INFO  [scribe4] [action] scanning nearby mobiles for names
+[21:15:27.877] INFO  [scribe4] [action] requested 3 paperdoll(s) for trade titles
+[21:15:27.892] INFO  [scribe4] [mobiles] nearby (3):
+[21:15:27.892] INFO  [scribe4]   Alenne 0x00001145
+[21:15:27.892] INFO  [scribe4]   Xanthe 0x00001211
+[21:15:27.893] INFO  [scribe4]   Caedmon 0x000012EE
+[21:15:27.893] INFO  [scribe4] [chat ascii] System: Targeting cancelled.
+[21:15:27.893] INFO  [scribe4] [0x20] player @(1485,1550,30) facing=2
+[21:15:27.893] INFO  [scribe4] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[21:15:27.893] INFO  [scribe4] [world] Caedmon, the mage guildmaster is a mage at (1490,1550)
+[21:15:27.893] INFO  [scribe4] [0x20] player @(1485,1550,30) facing=0
+[21:15:27.893] INFO  [scribe4] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[21:15:27.893] INFO  [scribe4] [world] Xanthe, the alchemist is a alchemist at (1484,1547)
+[21:15:27.893] INFO  [scribe4] [0x20] player @(1485,1550,30) facing=5
+[21:15:27.893] INFO  [scribe4] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[21:15:27.893] INFO  [scribe4] [world] Alenne, the mage is a mage at (1484,1551)
+[21:15:30.396] INFO  [scribe4] [ACTION] vendor_buy start
+[21:15:30.396] INFO  [scribe4] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[21:15:30.412] INFO  [scribe4] [chat uni  ] : Alenne buy
+[21:15:30.412] INFO  [scribe4] [chat ascii] Alenne: My shop sells many things.
+[21:15:30.412] INFO  [scribe4] [0x3C] container contents: 33 item(s)
+[21:15:30.412] INFO  [scribe4] [0x74] vendor shop data: cont=0x4000113C 33 item(s), layer=0x1A
+[21:15:30.413] INFO  [scribe4] [0x3C] container contents: 0 item(s)
+[21:15:30.413] INFO  [scribe4] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[21:15:30.413] INFO  [scribe4] [VENDOR] offer from 0x00001145: 33 item(s)
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171A2 Create Food Scroll     x23  23 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171A5 Agility Scroll         x79  21 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171AB Poison Scroll          x129 20 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171AC Mana Drain Scroll      x91  29 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171AD recall rune            x46  16 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171AF blank scrolls          x76  10 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171B0 Batwings               x199 35 gp
+[21:15:30.413] INFO  [scribe4] [VENDOR]   0x400171B1 Blackmoor              x173 35 gp
+[21:15:30.413] LOG   [scribe4] event vendor_offer: vendor=0x00001145 items=33
+[21:15:30.413] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[21:15:30.413] LOG   [scribe4] event action_result: vendor_buy success took=17ms vendor offer received
+[21:15:30.413] INFO  [scribe4] [0x24] vendor buy gump for 0x00001145
+[21:15:30.534] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:32.896] INFO  [life] supplies: buying 3 i_scroll_blank at 3 each from 'Spider's Silk'
+[21:15:32.896] INFO  [scribe4] [ACTION] vendor_buy start
+[21:15:32.896] INFO  [scribe4] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:15:32.896] INFO  [scribe4] [VENDOR] buy item=0x400171EA qty=3 from vendor=0x00001145 gold=736
+[21:15:32.911] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[21:15:32.912] LOG   [scribe4] event action_result: vendor_buy success took=15ms purchased item delivered
+[21:15:32.912] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[21:15:32.912] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:15:35.413] INFO  [life] supplies: buying 1 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:15:35.413] INFO  [scribe4] [ACTION] vendor_buy start
+[21:15:35.413] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:15:35.413] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=1 from vendor=0x00001145 gold=706
+[21:15:35.413] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[21:15:35.413] LOG   [scribe4] event action_result: vendor_buy success took=0ms purchased item delivered
+[21:15:35.413] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 3 gold coins.  I thank thee for thy business.
+[21:15:35.413] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:15:35.536] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:37.953] INFO  [life] supplies: nothing short after all
+[21:15:37.953] INFO  [life] goal_completed=BUY_SUPPLIES progress=2
+[21:15:37.955] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:15:38.014] INFO  [life] goal=CRAFT reason="no goal was running"
+[21:15:38.014] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:15:38.014] INFO  [life]   score=65.0
+[21:15:38.014] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[21:15:38.014] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[21:15:38.014] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:15:38.014] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:38.014] INFO  [life] craft: chose 'poison'
+[21:15:38.014] INFO  [scribe4] [chat ascii] System: Unexpected menu info.
+[21:15:40.032] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:40.032] INFO  [scribe4] [ACTION] use_object start
+[21:15:40.032] INFO  [scribe4] [ACTION] use_object serial=0x40017D13
+[21:15:40.033] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:40.033] INFO  [scribe4]         1) poison
+[21:15:40.033] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:40.579] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:44.045] LOG   [scribe4] event action_result: use_object timeout
+[21:15:44.105] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:44.105] INFO  [life] craft: chose 'poison'
+[21:15:45.360] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:15:45.606] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:46.156] INFO  [life] craft: made one i_scroll_poison (4 this sitting)
+[21:15:46.156] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:46.156] INFO  [scribe4] [ACTION] use_object start
+[21:15:46.156] INFO  [scribe4] [ACTION] use_object serial=0x40017D13
+[21:15:46.172] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:46.173] INFO  [scribe4]         1) poison
+[21:15:46.173] LOG   [scribe4] event dialog: Spell Circle 3
+[21:15:50.194] LOG   [scribe4] event action_result: use_object timeout
+[21:15:50.256] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:15:50.256] INFO  [life] craft: chose 'poison'
+[21:15:50.626] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:51.503] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:15:52.313] INFO  [life] craft: made one i_scroll_poison (5 this sitting)
+[21:15:52.313] INFO  [life] craft: 5 i_scroll_poison made -- enough for a trip to a buyer
+[21:15:52.313] INFO  [life] goal_completed=CRAFT progress=2
+[21:15:52.315] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:15:52.375] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[21:15:52.375] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25) NeedGold(sell surplus 0.25)  | tools defined=1 held=[spellbook,]
+[21:15:52.375] INFO  [life]   score=72.8
+[21:15:52.375] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:15:52.375] INFO  [life]   reason: i_scroll_poison needs 2 x i_scroll_blank
+[21:15:52.375] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:15:52.375] INFO  [life] supplies: buying 2 i_scroll_blank at 3 each from 'Spider's Silk'
+[21:15:52.375] INFO  [scribe4] [ACTION] vendor_buy start
+[21:15:52.375] INFO  [scribe4] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:15:52.375] INFO  [scribe4] [VENDOR] buy item=0x400171EA qty=2 from vendor=0x00001145 gold=703
+[21:15:52.375] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[21:15:52.375] LOG   [scribe4] event action_result: vendor_buy success took=0ms purchased item delivered
+[21:15:52.375] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 20 gold coins.  I thank thee for thy business.
+[21:15:52.375] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:15:54.877] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:15:54.877] INFO  [scribe4] [ACTION] vendor_buy start
+[21:15:54.877] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:15:54.877] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=683
+[21:15:54.878] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[21:15:54.878] LOG   [scribe4] event action_result: vendor_buy success took=1ms purchased item delivered
+[21:15:54.878] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 9 gold coins.  I thank thee for thy business.
+[21:15:54.878] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:15:55.660] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:15:57.435] INFO  [life] supplies: nothing short after all
+[21:15:57.435] INFO  [life] goal_completed=BUY_SUPPLIES progress=2
+[21:15:57.437] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:15:57.496] INFO  [life] goal=CRAFT reason="no goal was running"
+[21:15:57.496] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25) NeedGold(sell surplus 0.25)  | tools defined=1 held=[spellbook,]
+[21:15:57.496] INFO  [life]   score=65.0
+[21:15:57.496] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[21:15:57.496] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[21:15:57.496] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:15:57.496] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:15:57.496] INFO  [scribe4] [ACTION] use_object start
+[21:15:57.496] INFO  [scribe4] [ACTION] use_object serial=0x40014734
+[21:15:57.513] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:15:57.513] INFO  [scribe4]         1) poison
+[21:15:57.513] LOG   [scribe4] event dialog: Spell Circle 3
+[21:16:00.667] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:01.557] LOG   [scribe4] event action_result: use_object timeout
+[21:16:01.618] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:16:01.618] INFO  [life] craft: chose 'poison'
+[21:16:02.875] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:16:03.622] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[21:16:03.622] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:16:03.622] INFO  [scribe4] [ACTION] use_object start
+[21:16:03.622] INFO  [scribe4] [ACTION] use_object serial=0x40014734
+[21:16:03.623] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:16:03.623] INFO  [scribe4]         1) poison
+[21:16:03.623] LOG   [scribe4] event dialog: Spell Circle 3
+[21:16:05.724] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:07.648] LOG   [scribe4] event action_result: use_object timeout
+[21:16:07.709] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:16:07.709] INFO  [life] craft: chose 'poison'
+[21:16:08.936] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:16:09.720] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[21:16:09.720] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:16:09.720] INFO  [scribe4] [ACTION] use_object start
+[21:16:09.720] INFO  [scribe4] [ACTION] use_object serial=0x40014734
+[21:16:09.721] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:16:09.721] INFO  [scribe4]         1) poison
+[21:16:09.721] LOG   [scribe4] event dialog: Spell Circle 3
+[21:16:10.763] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:13.770] LOG   [scribe4] event action_result: use_object timeout
+[21:16:13.803] INFO  [scribe4] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[21:16:13.803] INFO  [life] craft: chose 'poison'
+[21:16:15.023] INFO  [scribe4] [chat ascii] System: You put the Poison Scroll in your pack.
+[21:16:15.805] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[21:16:15.805] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[21:16:15.805] INFO  [scribe4] [ACTION] use_object start
+[21:16:15.805] INFO  [scribe4] [ACTION] use_object serial=0x40014734
+[21:16:15.805] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:15.805] INFO  [scribe4] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[21:16:15.805] INFO  [scribe4]         1) poison
+[21:16:15.805] LOG   [scribe4] event dialog: Spell Circle 3
+[21:16:17.551] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 72.8 superseded CRAFT 0.0"
+[21:16:17.551] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:16:17.551] INFO  [life]   score=72.8
+[21:16:17.551] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:16:17.551] INFO  [life]   reason: i_scroll_poison needs 3 x i_scroll_blank
+[21:16:17.551] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:16:17.859] INFO  [life] supplies: buying 3 i_scroll_blank at 3 each from 'Spider's Silk'
+[21:16:17.859] LOG   [scribe4] event action_result: use_object invalid_state took=2054ms superseded
+[21:16:17.859] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:17.859] INFO  [scribe4] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:17.859] INFO  [scribe4] [VENDOR] buy item=0x400171EA qty=3 from vendor=0x00001145 gold=674
+[21:16:17.859] INFO  [scribe4] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[21:16:17.859] LOG   [scribe4] event action_result: vendor_buy success took=0ms purchased item delivered
+[21:16:17.859] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[21:16:17.859] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:16:20.362] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:20.363] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:20.363] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:20.363] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=644
+[21:16:20.363] INFO  [scribe4] [chat ascii] System: You cannot buy that.
+[21:16:20.855] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:22.895] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:22.895] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2533ms superseded
+[21:16:22.895] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:22.895] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:22.895] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=644
+[21:16:22.895] INFO  [scribe4] [chat ascii] System: You cannot buy that.
+[21:16:25.412] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:25.412] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2517ms superseded
+[21:16:25.412] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:25.412] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:25.412] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=644
+[21:16:25.429] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 138 gold coins.  I thank thee for thy business.
+[21:16:25.429] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:16:25.874] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:27.956] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:27.956] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2544ms superseded
+[21:16:27.956] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:27.956] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:27.956] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:27.956] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 138 gold coins.  I thank thee for thy business.
+[21:16:27.957] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:16:30.459] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:30.459] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2503ms superseded
+[21:16:30.459] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:30.459] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:30.459] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:30.459] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 138 gold coins.  I thank thee for thy business.
+[21:16:30.459] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:16:30.890] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:32.964] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:32.964] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2505ms superseded
+[21:16:32.964] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:32.964] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:32.964] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:32.980] INFO  [scribe4] [chat ascii] Alenne: Here you are, Ysolde That will be 138 gold coins.  I thank thee for thy business.
+[21:16:32.980] INFO  [scribe4] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[21:16:35.472] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:35.472] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2508ms superseded
+[21:16:35.472] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:35.472] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:35.472] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:35.487] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:35.917] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:38.008] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:38.008] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2536ms superseded
+[21:16:38.008] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:38.008] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:38.008] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:38.008] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:40.539] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:40.539] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2531ms superseded
+[21:16:40.539] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:40.539] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:40.539] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:40.555] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:40.920] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:43.051] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:43.051] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2512ms superseded
+[21:16:43.051] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:43.051] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:43.051] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:43.052] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:45.554] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:45.554] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2503ms superseded
+[21:16:45.554] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:45.554] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:45.554] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:45.555] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:45.922] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:46.611] INFO  [scribe4] [chat ascii] Alenne: Well it was nice speaking to you Ysolde but I must go about my business
+[21:16:48.099] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:48.099] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2545ms superseded
+[21:16:48.099] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:48.099] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:48.099] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:48.115] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:50.602] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:50.602] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2503ms superseded
+[21:16:50.602] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:50.602] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:50.602] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:50.603] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:50.969] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:52.029] INFO  [scribe4] [chat ascii] Alenne: Can I help thee?
+[21:16:53.132] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:53.132] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2530ms superseded
+[21:16:53.132] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:53.132] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:53.133] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:53.133] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:55.642] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:55.642] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2510ms superseded
+[21:16:55.642] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:55.642] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:55.642] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:55.657] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:16:56.023] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:16:57.484] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:16:58.151] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:16:58.151] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2509ms superseded
+[21:16:58.151] INFO  [scribe4] [ACTION] vendor_buy start
+[21:16:58.151] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:16:58.151] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:16:58.167] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:00.692] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:00.692] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2541ms superseded
+[21:17:00.692] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:00.692] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:00.692] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:00.692] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:01.041] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:03.248] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:03.248] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2556ms superseded
+[21:17:03.248] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:03.248] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:03.248] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:03.263] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:05.792] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:05.793] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2544ms superseded
+[21:17:05.793] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:05.793] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:05.793] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:05.793] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:06.098] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:08.339] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:08.339] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2547ms superseded
+[21:17:08.339] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:08.339] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:08.339] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:08.354] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:10.839] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:10.840] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2501ms superseded
+[21:17:10.840] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:10.840] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:10.840] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:10.855] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:11.099] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:13.351] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:13.351] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2511ms superseded
+[21:17:13.351] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:13.351] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:13.351] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:13.367] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:14.609] INFO  [scribe4] [chat ascii] Xanthe: Observer! Nice to see thee.
+[21:17:15.897] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:15.897] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2546ms superseded
+[21:17:15.897] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:15.897] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:15.897] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:15.897] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:16.144] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:18.429] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:18.429] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2532ms superseded
+[21:17:18.429] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:18.429] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:18.429] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:18.429] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:20.974] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:20.974] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2545ms superseded
+[21:17:20.974] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:20.974] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:20.974] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:20.974] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:21.157] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:23.533] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:23.533] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2559ms superseded
+[21:17:23.533] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:23.533] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:23.533] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:23.533] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:26.064] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:26.064] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2531ms superseded
+[21:17:26.064] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:26.064] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:26.064] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:26.065] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:26.187] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:28.583] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:28.583] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2519ms superseded
+[21:17:28.583] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:28.583] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:28.583] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:28.583] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:31.119] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:31.119] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2536ms superseded
+[21:17:31.119] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:31.119] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:31.119] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:31.134] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:31.195] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:33.632] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:33.632] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2513ms superseded
+[21:17:33.632] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:33.632] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:33.632] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:33.648] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:36.143] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:36.143] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2511ms superseded
+[21:17:36.143] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:36.143] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:36.143] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:36.159] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:36.220] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:38.687] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:38.687] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2544ms superseded
+[21:17:38.687] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:38.687] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:38.687] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:38.687] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:41.217] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:41.217] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2530ms superseded
+[21:17:41.217] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:41.217] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:41.217] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:41.232] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:41.232] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:43.735] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:43.735] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2518ms superseded
+[21:17:43.735] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:43.735] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:43.735] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:43.735] INFO  [scribe4] [chat ascii] System: You can't reach the Vendor
+[21:17:46.282] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:46.282] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2547ms superseded
+[21:17:46.282] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:46.282] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:46.282] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:46.282] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:46.297] INFO  [scribe4] [chat ascii] System: You can't reach the Vendor
+[21:17:48.801] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:48.801] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2519ms superseded
+[21:17:48.801] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:48.801] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:48.801] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:48.818] INFO  [scribe4] [chat ascii] System: You can't reach the Vendor
+[21:17:51.305] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:51.305] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2504ms superseded
+[21:17:51.305] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:51.305] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:51.305] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:51.305] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:51.320] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:53.831] INFO  [life] supplies: buying 3 i_reag_nightshade at 35 each from 'Bloodspawn'
+[21:17:53.831] LOG   [scribe4] event action_result: vendor_buy invalid_state took=2526ms superseded
+[21:17:53.831] INFO  [scribe4] [ACTION] vendor_buy start
+[21:17:53.831] INFO  [scribe4] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[21:17:53.831] INFO  [scribe4] [VENDOR] buy item=0x400171BD qty=3 from vendor=0x00001145 gold=506
+[21:17:53.831] INFO  [scribe4] [chat ascii] Alenne: Begging thy pardon, but thou canst not afford that.
+[21:17:54.273] INFO  [scribe4] [gump] 0x00000000 context=0x01000142: 0 option(s), 1 text(s)
+[21:17:54.273] INFO  [scribe4] [gump]   text 0 = ''
+[21:17:54.273] LOG   [scribe4] event gump_open: serial=0x00000000 context=0x01000142 options=0
+[21:17:56.327] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:17:56.389] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:17:57.492] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:18:01.376] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:01.833] LOG   [scribe4] event action_result: vendor_buy timeout
+[21:18:06.418] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:07.440] INFO  [scribe4] [chat uni  ] enu: bank
+[21:18:07.440] INFO  [scribe4] [chat ascii] Alenne: How old are ye really? No, really, ye're so famous an' all...
+[21:18:11.143] INFO  [scribe4] [chat uni  ] enu: buy
+[21:18:11.143] INFO  [scribe4] [chat ascii] Alenne: I'm here to sell thee supplies.
+[21:18:11.450] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:18:11.451] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:16.463] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:21.504] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:26.467] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:18:26.527] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:31.536] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:36.554] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:37.222] INFO  [scribe4] [chat uni  ] enu: buy
+[21:18:39.221] INFO  [scribe4] [chat ascii] Alenne: Thou hast mine attention.
+[21:18:39.607] INFO  [scribe4] [chat uni  ] enu: buy
+[21:18:41.475] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:18:41.597] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:42.961] INFO  [scribe4] [chat uni  ] enu: buy
+[21:18:42.961] INFO  [scribe4] [chat ascii] Alenne: My shop sells many things.
+[21:18:46.647] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:51.653] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:56.507] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:18:56.569] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:18:56.569] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:18:56.569] INFO  [life]   score=72.8
+[21:18:56.569] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:18:56.569] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:18:56.569] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:18:56.692] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:18:57.510] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:19:01.699] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:06.600] INFO  [scribe4] [chat ascii] System: World save in 10 seconds
+[21:19:06.722] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:11.520] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:19:11.767] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:16.621] INFO  [scribe4] [chat ascii] System: World save has been initiated.
+[21:19:16.810] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:21.857] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:26.546] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:19:26.914] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:31.926] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:36.979] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:41.587] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:19:42.016] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:47.022] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:52.079] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:56.615] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:19:57.104] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:19:57.537] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:20:02.136] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:07.143] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:11.660] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:20:11.706] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:20:11.707] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:20:11.707] INFO  [life]   score=72.8
+[21:20:11.707] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:20:11.707] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:20:11.707] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:20:12.198] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:17.259] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:22.286] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:25.905] INFO  [scribe4] [chat ascii] Xanthe: Thou wishest to speak with me?
+[21:20:26.703] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:20:27.303] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:32.320] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:37.341] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:41.761] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:20:42.374] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:47.386] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:52.396] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:56.002] INFO  [scribe4] [gump] 0x00000000 context=0x04000142: 0 option(s), 1 text(s)
+[21:20:56.002] INFO  [scribe4] [gump]   text 0 = ''
+[21:20:56.002] LOG   [scribe4] event gump_open: serial=0x00000000 context=0x04000142 options=0
+[21:20:56.772] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:20:57.432] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:20:57.558] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:20:59.789] INFO  [scribe4] [gump] 0x00000000 context=0x01000142: 0 option(s), 1 text(s)
+[21:20:59.789] INFO  [scribe4] [gump]   text 0 = ''
+[21:20:59.789] LOG   [scribe4] event gump_open: serial=0x00000000 context=0x01000142 options=0
+[21:21:02.461] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:07.516] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:11.797] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:21:12.532] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:17.537] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:22.561] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:26.807] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:21:26.867] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:21:26.867] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:21:26.867] INFO  [life]   score=72.8
+[21:21:26.867] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:21:26.867] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:21:26.867] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:21:27.598] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:32.639] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:37.641] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:41.856] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:21:42.682] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:47.684] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:52.724] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:21:56.906] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:21:57.616] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:21:57.735] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:02.771] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:07.772] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:11.933] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:22:12.791] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:17.793] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:22.802] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:26.992] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:22:27.810] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:32.837] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:37.882] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:41.993] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:22:42.056] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:22:42.056] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:22:42.056] INFO  [life]   score=72.8
+[21:22:42.056] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:22:42.056] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:22:42.056] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:22:42.887] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:47.897] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:52.913] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:22:57.010] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:22:57.660] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:22:57.966] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:02.999] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:08.056] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:12.067] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:23:13.098] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:18.119] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:23.121] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:27.076] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:23:28.153] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:33.182] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:38.209] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:42.124] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:23:43.261] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:45.312] INFO  [scribe4] [chat ascii] Alenne: I am listening to thee.
+[21:23:48.313] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:53.338] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:23:57.132] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:23:57.194] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:23:57.194] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:23:57.194] INFO  [life]   score=72.8
+[21:23:57.194] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:23:57.194] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:23:57.194] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:23:57.688] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:23:58.361] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:03.373] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:08.429] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:12.164] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:24:13.452] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:18.469] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:23.480] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:27.169] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:24:28.484] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:33.543] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:38.566] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:42.188] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:24:43.586] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:48.623] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:53.657] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:24:57.241] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:24:57.734] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:24:58.697] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:03.704] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:08.746] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:12.264] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:25:12.324] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:25:12.324] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:25:12.324] INFO  [life]   score=72.8
+[21:25:12.324] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:25:12.324] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:25:12.324] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:25:13.800] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:18.826] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:23.864] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:27.299] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:25:28.887] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:33.894] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:38.905] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:42.349] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:25:43.924] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:48.968] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:54.004] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:25:57.384] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:25:57.754] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:25:59.013] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:04.057] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:06.455] INFO  [scribe4] [chat ascii] Xanthe: What is it thou wishest?
+[21:26:09.119] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:12.440] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:26:14.167] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:19.186] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:24.194] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:27.497] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:26:27.559] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:26:27.559] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:26:27.559] INFO  [life]   score=72.8
+[21:26:27.559] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:26:27.559] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:26:27.559] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:26:29.256] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:34.307] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:39.345] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:42.504] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:26:44.393] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:49.430] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:54.460] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:26:57.521] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:26:57.772] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:26:59.481] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:04.529] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:09.571] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:12.534] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:27:14.582] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:19.619] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:24.678] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:27.538] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:27:29.691] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:34.748] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:39.760] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:42.538] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:27:42.600] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[21:27:42.600] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.52) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[21:27:42.600] INFO  [life]   score=72.8
+[21:27:42.600] INFO  [life]   reason: NeedSupplies urgency 0.52 x 140 = 72.8
+[21:27:42.600] INFO  [life]   reason: i_scroll_poison needs 1 x i_scroll_blank
+[21:27:42.600] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[21:27:44.787] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:49.802] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:54.819] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:27:57.586] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:27:57.804] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[21:27:59.861] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:04.876] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:09.903] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:12.615] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:28:14.920] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:19.972] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:25.027] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight
+[21:28:27.655] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 3 each, purse 92, spendable -8
+[21:28:30.061] INFO  [scribe4] [survival] hp 10/10 (100%) -> fight

@@ -312,7 +312,12 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_fish_big_2",         "fisher"},
     {"i_fish_big_3",         "fisher"},
     {"i_fish_big_4",         "fisher"},
-    {"i_fish_cut_raw",       "fisher"},
+    // THE COOK, AND ONLY THE COOK, buys a fish steak. The owner said the
+    // fisher took steaks too and this listed both; TNS's own tables say
+    // otherwise and they are what the shard now runs -- VENDOR_B_FISHER
+    // (tm_vend.scp) buys i_fish_small and i_fish_big_1..4 and stops there,
+    // while VENDOR_B_COOK buys those AND i_fish_cut_raw. Listing a buyer that
+    // will not buy sends a loaded character across a city for nothing.
     {"i_fish_cut_raw",       "cook"},
     {"i_fish_cut_cooked",    "fisher"},
     {"i_fish_cut_cooked",    "cook"},
@@ -393,10 +398,25 @@ struct SellRow { const char* item; NpcSellClass klass; };
 // left off the table entirely, which refuses it as UNKNOWN.
 const SellRow kSellMatrix[] = {
     // --- the taps: where gold enters the shard ---------------------------
-    // The fisher buys raw fish AND fish steaks (owner, 2026-08-28). Cooked is
-    // worth about 1 gp more -- roughly 5 against 4 -- which matches TNS's own
-    // saturating buyer exactly: System_SellerBuro.scp:426-440 pays 5 gp for
-    // cooked fish until the day's shard-wide volume passes 500,000.
+    // The fisher buys raw fish AND fish steaks (owner, 2026-08-28).
+    //
+    // WHAT A FISH ACTUALLY PAYS, measured and then derived. A whole fish sold
+    // for exactly 1 gold (run_m5/selln, 15 fish -> 15 gold), and the engine
+    // says why: the payout is the itemdef VALUE adjusted by the vendor markup,
+    // VALUE=2 for every i_fish_big_* (i_profession_cook_barkeep_baker.scp:707
+    // onward) less VendorMarkup=15 (CServerConfig.cpp:158, unset in
+    // sphere.ini) = 1. The {4 24} in a BUY row is NOT a price at all: it is
+    // the RESTOCK QUANTITY (CItem.cpp:612-623 stores it via SetContainedLayer).
+    //
+    // So the steak is the fisher's real product, not the fish: i_fish_cut_raw
+    // has VALUE=3 and weighs 0.1 against the whole fish's 5.0, which pays 2
+    // gold at a fiftieth of the weight.
+    //
+    // Cooked fish pays nothing HERE. There is no BUY row for i_fish_cut_cooked
+    // anywhere in runtime/scripts. The 5gp figure is real but it belongs to
+    // TNS's own saturating buyer, which lives in the donor tree at
+    // references/tns/scripts/Systems/System_SellerBuro.scp:420-445 and is not
+    // installed on this shard.
     {"i_fish_small",        NpcSellClass::Fish},
     {"i_fish_big_1",        NpcSellClass::Fish},
     {"i_fish_big_2",        NpcSellClass::Fish},

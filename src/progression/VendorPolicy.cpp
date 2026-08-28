@@ -169,22 +169,31 @@ const Row kMatrix[] = {
     {"i_reag_dead_wood",        VendorClass::EraConflict},
     {"i_reag_wyrm_heart",       VendorClass::EraConflict},
 
-    // --- the eight Magery reagents: the biggest UNKNOWN in the audit ---------
-    // Listed EXPLICITLY as Unknown rather than omitted, so that a reader of
-    // this table sees the gap instead of inferring one from silence. The
-    // archive proves a real reagent economy -- a dedicated Reagent Crystal
-    // (07.11.2008) and Recall's cost cut from three to one (14.05.2009) -- but
-    // never says where the reagents came from.
-    {"i_reag_black_pearl",   VendorClass::Unknown},
-    {"i_reag_blood_moss",    VendorClass::Unknown},
-    {"i_reag_garlic",        VendorClass::Unknown},
-    {"i_reag_ginseng",       VendorClass::Unknown},
-    {"i_reag_mandrake_root", VendorClass::Unknown},
-    {"i_reag_nightshade",    VendorClass::Unknown},
-    {"i_reag_spider_silk",   VendorClass::Unknown},
-    {"i_reag_sulfur_ash",    VendorClass::Unknown},
-    // Both gate an entire craft, and neither is attested.
-    {"i_scroll_blank",       VendorClass::Unknown},
+    // --- the eight Magery reagents: RESOLVED, and the dead rows removed -----
+    //
+    // This block used to repeat all eight reagents as Unknown, below the
+    // RevolutionNpcVerified rows above. ClassifyForVendor returns the FIRST
+    // match, so those rows never once decided anything -- the table said
+    // "the biggest UNKNOWN in the audit" while the code had already answered
+    // it. A duplicate that cannot win is not a record of doubt, it is a lie
+    // about what the program does, so it is gone rather than kept for
+    // conscience. The audit note itself is preserved above.
+    //
+    // i_scroll_blank: the mage shop SELLS them -- VENDOR_S_MAGE_SHOP,
+    // templates/tm_vend.scp:633 `SELL=i_scroll_blank,{10 15}`, and the same
+    // template BUYS them back at :671 -- and the shard owner confirmed it
+    // directly (2026-08-28). It is the one input the whole Inscription chain
+    // starts from, so an unresolved Unknown here made every scribe in the
+    // catalogue unable to earn a copper.
+    {"i_scroll_blank",       VendorClass::RevolutionNpcVerified},
+    // Written scrolls: the mage shop BUYS these back by circle
+    // (VENDOR_B_MAGE_SHOP, templates/tm_vend.scp:666-669, and poison is in
+    // random_third_circle -- templates/tm_magic.scp:29). Selling them is the
+    // scribe's income, so the class has to say so.
+    {"i_scroll_poison",      VendorClass::RevolutionNpcVerified},
+    {"i_scroll_recall",      VendorClass::RevolutionNpcVerified},
+    // i_bottle_empty stays UNKNOWN: nothing has been produced for it, and the
+    // alchemy chain is genuinely blocked until something is.
     {"i_bottle_empty",       VendorClass::Unknown},
 };
 
@@ -210,6 +219,13 @@ const GraphicRow kGraphics[] = {
     {0x1078, "i_hide"},
     {0x1067, "i_hides_cut"},
     {0x0E34, "i_scroll_blank"},
+    // The scribe's own output. Without these a crafted scroll is invisible
+    // exactly the way three kinds of fish were: the pack counter reads these
+    // names, so the craft goal could not tell that it had made anything and
+    // the sell path could not find what it had made.
+    // Ids: items/i_magic_magery.scp:468 and :653.
+    {0x1F40, "i_scroll_poison"},
+    {0x1F4C, "i_scroll_recall"},
     {0x0F0E, "i_bottle_empty"},
     {0x1BD1, "i_feather"},
     {0x0F3F, "i_arrow"},

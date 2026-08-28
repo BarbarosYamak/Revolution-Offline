@@ -79,13 +79,7 @@ i_reag_nox_crystal	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_
 i_reag_grave_dust	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_dead_wood	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
 i_reag_wyrm_heart	ERA_CONFLICT	0	0	belongs to a later era than revolution_2009_2010
-i_reag_black_pearl	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_blood_moss	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_garlic	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_ginseng	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_mandrake_root	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_nightshade	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_spider_silk	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_reag_sulfur_ash	UNKNOWN	1	0	a dated Revolution update records an NPC selling this
-i_scroll_blank	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap
+i_scroll_blank	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_scroll_poison	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_scroll_recall	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_bottle_empty	UNKNOWN	0	1	no Revolution evidence either way; refusing and recording an authenticity gap

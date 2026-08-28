@@ -129,17 +129,29 @@ const GoldFaucet kFaucets[] = {
  "as the big fish; tm_vend.scp:1022-1027"},
 
 {"fish_steak_to_fisher", SourceType::VendorSale, "fisher",
- "i_fish_cut_raw", "fisher",
+ "i_fish_cut_raw", "cook",
  HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
- "same guide statement; the fisher buys steaks and whole fish both (owner, "
- "2026-08-28)"},
+ "THE BEST FISH TRADE THERE IS, and it goes to the cook, not the fisher. "
+ "A steak is VALUE=3 against a whole fish's 2, so it pays 2 gold against 1 "
+ "(engine: itemdef VALUE less VendorMarkup=15), and it weighs 0.1 stones "
+ "against 5.0 -- a hundredfold better per stone carried. Only "
+ "VENDOR_B_COOK buys it: VENDOR_B_FISHER's list ends at whole fish "
+ "(tm_vend.scp, TNS's tables as installed 2026-08-28). Cutting needs "
+ "Cooking 10.0 (i_profession_cook_barkeep_baker.scp:103)"},
 
 {"fish_cooked_to_cook", SourceType::VendorSale, "fisher",
  "i_fish_cut_cooked", "cook",
- HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
- "cooked fish pays about 1gp more than raw; VENDOR_B_COOK BUY rows at "
- "tm_vend.scp:730-735. TNS's own saturating buyer pays 5gp until daily volume "
- "passes 500,000 (System_SellerBuro.scp:426-440), which corroborates the number"},
+ HistoryEvidence::Confirmed, RuntimeEvidence::Blocked, Policy::BlockedRuntime,
+ "HISTORY AND RUNTIME DISAGREE, and this row is the reason the two are "
+ "recorded separately. On TNS cooked fish was the fisher's real money: "
+ "references/tns/scripts/Systems/System_SellerBuro.scp:420-445 pays 5gp a "
+ "cooked steak and decays that to 3, 2 then 1 as the shard-wide daily count "
+ "passes 500k, 1M and 2M. That script is a DONOR reference and is NOT "
+ "installed in runtime/scripts. On the shard as it actually boots there is "
+ "no BUY row for i_fish_cut_cooked anywhere in the tree, so cooking is a "
+ "gold dead end here until the system is installed. Cite the donor path, "
+ "never a bare filename: the earlier wording read as if the running shard "
+ "carried it"},
 
 {"scroll_to_mage_shop", SourceType::VendorSale, "mage",
  "i_scroll_poison", "mage",

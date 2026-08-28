@@ -1,5 +1,6 @@
 #include "uo/life.h"
 #include "uo/professions.h"
+#include "uo/faucets.h"
 
 #include <algorithm>
 #include <cctype>
@@ -234,9 +235,18 @@ int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
         const i32 have = obs.SkillTenths(t.skillId);
         if (have >= t.tenths) continue;
         // Past what a trainer can give, paying one is simply waste -- the
-        // character has to grind from here whether it pays or not. This is a
-        // GUESS: the real ceiling is the individual NPC's own skill times the
-        // shard's percentage, and it is only knowable by asking.
+        // character has to grind from here whether it pays or not.
+        //
+        // 300 is no longer a guess. It is this shard's own configured hard
+        // ceiling: sphere.ini NPCTrainMax=300 (set by the owner 2026-08-28;
+        // 420 had been Source-X's built-in default, CServerConfig.cpp:149, and
+        // was never Revolution's) with NPCTrainPercent=30. Source-X computes
+        // min(NPC's own skill x 30%, NPCTrainMax, the student's cap) in
+        // CChar::NPC_GetTrainMax (CCharNPCStatus.cpp:514-541), so 30.0 is the
+        // most any NPC here can teach, and an NPC below 100.0 in the skill
+        // teaches less -- Alenne stopped at 21.9, which puts her Meditation at
+        // about 73.0. The per-NPC part is still only knowable by asking, which
+        // is why an actual refusal outranks this number below.
         if (have >= trainerCeilingTenths) continue;
         // Which is why the answers actually received outrank the guess. An
         // NPC of this trade has already said no to this skill; the ceiling is
@@ -250,6 +260,69 @@ int NextSkillToBuy(const BuildPlan& plan, const Observation& obs,
         if (pri > bestPriority) { bestPriority = pri; best = t.skillId; }
     }
     return best;
+}
+// ---------------------------------------------------------------------------
+// What to make next.
+//
+// A crafter is not a gatherer with extra steps: it cannot begin at all until
+// somebody sells it the inputs, and it must not begin at all unless what it
+// makes has somewhere legitimate to go. Both of those are answered here, once,
+// so the need model and the goal cannot disagree about them -- the way
+// EARN_GOLD and its own need disagreed about the bank and deadlocked.
+// ---------------------------------------------------------------------------
+CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
+                        i32 batch) {
+    CraftIntent out;
+    if (batch < 1) batch = 1;
+
+    for (const std::string& made : p.produces) {
+        // ONLY WHAT MAY BE SOLD. The registry is the authority on which of
+        // this shard's goods a bot may take to an NPC at all, and a good with
+        // no legitimate destination is not a reason to spend gold on
+        // reagents. (A player-market good will belong here too once the
+        // player market can actually complete a sale; it cannot yet, so
+        // making for it would be manufacturing into a void.)
+        if (!faucet::AllowedForItem(made.c_str())) continue;
+
+        const prod::Recipe* r = prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        // Gathered things are not crafted things. A fisher's "produces" holds
+        // fish, and fish come out of the sea.
+        if (!r->inputs[0].item) continue;
+
+        // The recipe's own skill requirements, against what the SERVER last
+        // reported. Never against the build plan: a plan is an intention.
+        const bool skillsOk =
+            (r->skillId < 0 || obs.SkillTenths(r->skillId) >= r->skillTenths) &&
+            (r->skillId2 < 0 || obs.SkillTenths(r->skillId2) >= r->skillTenths2);
+        if (!skillsOk) {
+            if (!out.item) {
+                out.item = nullptr;
+                out.why = "the skills for everything this life makes are short";
+            }
+            continue;
+        }
+
+        out.item = r->output;
+        out.skillsMet = true;
+        out.why = "can be made and can be sold";
+        for (const prod::Ingredient& in : r->inputs) {
+            if (!in.item || in.qty <= 0) continue;
+            const i32 want = in.qty * batch;
+            const i32 have = market::QtyOf(obs.pack, in.item);
+            if (have < want) {
+                prod::Ingredient shortfall;
+                shortfall.item = in.item;
+                shortfall.qty = want - have;
+                out.missing.push_back(shortfall);
+            }
+        }
+        if (out.missing.empty()) out.why = "every input is in the pack";
+        else out.why = "inputs are short";
+        return out;
+    }
+    if (!out.why || !*out.why) out.why = "this life makes nothing sellable";
+    return out;
 }
 
 }  // namespace uo::life

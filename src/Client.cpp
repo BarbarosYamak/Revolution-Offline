@@ -1511,6 +1511,18 @@ void Client::OnVendorShopData(const u8* data, usize size) {
     }
     LogInfo("[0x74] vendor shop data: cont=0x%08X %u item(s), layer=0x%02X\n",
             contSerial, count, layer);
+    // WHAT IS ACTUALLY ON THE SHELF, not just how many rows there are.
+    //
+    // A count alone cannot answer "did this vendor restock against the new
+    // tables?" -- the question any change of vendor scripts raises. The
+    // containers rebuild on the first shop-open after a restart (m_timeRestock
+    // is not persisted, CCharNPC.cpp:58), so the answer is a matter of
+    // evidence rather than argument. One line per row provides it.
+    for (const VendorItem& v : pendingVendor_) {
+        if (v.layer != layer) continue;
+        LogInfo("[0x74]   %-28s gfx=0x%04X qty=%-4u price=%u\n",
+                v.name.c_str(), v.graphic, v.amount, v.price);
+    }
 }
 
 // 0x3B OFFERACCEPT (variable, server->client): closes the vendor gump after a

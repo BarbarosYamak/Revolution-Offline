@@ -115,6 +115,8 @@ private:
     bool DoTrainAtNpc(Client& client, const Observation& obs);
     bool DoTradeWithPlayer(Client& client, const Observation& obs);
     bool DoFish(Client& client, const Observation& obs);
+    bool DoBuySupplies(Client& client, const Observation& obs);
+    bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
     bool DoIdle(Client& client, const Observation& obs);
@@ -241,6 +243,16 @@ private:
     // and never persisted: silence is not a fact the world stated, so it is
     // not a belief worth keeping -- only somewhere already tried today.
     std::vector<u32> trainerSilent_;
+    // --- crafting ----------------------------------------------------------
+    std::string supplyItem_;      // the input currently being shopped for
+    std::string supplyTrade_;     // the trade that sells it
+    int         supplyTrips_ = 0;
+    static constexpr int kMaxSupplyTrips = 3;
+    std::string craftItem_;       // what is being made
+    i32         craftHadBefore_ = 0;
+    i64         craftStartedMs_ = 0;
+    int         craftMenuStep_ = 0;   // 0 = not started, 1 = top menu answered
+    int         craftMade_ = 0;
     // Shops of the trade already walked to this session. Britain has three
     // mage shops in the atlas; without this the character walks to the
     // nearest one forever, however many times it comes away with nothing.

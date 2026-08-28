@@ -16,7 +16,7 @@ i_spear_short	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_spear_short SKILLMAKE=Blacksmith
 i_log	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT r_default_tree 40.0 mr_tree; mr_tree REAPAMOUNT=1,3 SKILL=1.0,80.0
 i_board	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
 i_parchment	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7
-i_scroll_blank	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7
+i_scroll_blank	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT sm_wood_misc; i_scroll_blank SKILLMAKE=Carpentry 25.7
 i_club	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT def_carpentry.scp:41 menu entry; SKILLMAKE and log count UNKNOWN; buyer tm_vend.scp:1710 VENDOR_B_WEAPONS_BLUNT {10 15}
 i_model_ship	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_model_ship SKILLMAKE=carpentry 95.0; REVOLUTION forum 59111 band 95-100
 i_arrow_shaft	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT sm_bowcraft; i_arrow_shaft SKILLMAKE=9.8 Bowcraft; REVOLUTION forum 59111 band 0-100 Shaft
@@ -39,8 +39,8 @@ i_potion_agilitygreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 35.1; RE
 i_potion_healgreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
 i_potion_curegreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
 i_potion_poisondeadly	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
-i_scroll_poison	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
-i_scroll_recall	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
+i_scroll_poison	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
+i_scroll_recall	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
 i_scroll_gate_travel	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 70.0,Magery 60.0; no vendor sells 7th circle
 i_scroll_resurrection	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100
 i_spellbook_runebook	PLAYER_MARKET	PLAYER_MARKET_GOOD	0	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY

@@ -1184,6 +1184,8 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::TrainAtNpc:            done = DoTrainAtNpc(client, obs); break;
         case GoalKind::TradeWithPlayer:       done = DoTradeWithPlayer(client, obs); break;
         case GoalKind::Fish:                  done = DoFish(client, obs); break;
+        case GoalKind::BuySupplies:           done = DoBuySupplies(client, obs); break;
+        case GoalKind::Craft:                 done = DoCraft(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -3338,6 +3340,351 @@ static i32 FishInPack(const std::vector<market::Stock>& pack) {
     i32 n = 0;
     for (const char* k : kKinds) n += market::QtyOf(pack, k);
     return n;
+}
+
+// ---------------------------------------------------------------------------
+// CRAFTING -- the half of the economy a gatherer never needed.
+//
+// A crafter's day is two errands. BUY_SUPPLIES fetches what it cannot make;
+// CRAFT makes what it can sell. They are separate goals because they fail
+// differently, and "I cannot craft" when the truth is "nobody has sold me
+// nightshade yet" is a bot lying about its own state.
+// ---------------------------------------------------------------------------
+
+// Who sells a craft input, as the paperdoll names them. Read off this shard's
+// own vendor templates, never guessed: the mage shop carries both halves of
+// the Inscription chain -- SELL=i_scroll_blank,{10 15} and every Magery
+// reagent (templates/tm_vend.scp:633-656) -- which is why a scribe's whole
+// shopping trip is one stop.
+const char* SupplierTradeFor(const std::string& item) {
+    if (item.rfind("i_reag_", 0) == 0) return "mage";
+    if (item == "i_scroll_blank")      return "mage";
+    if (item == "i_bottle_empty")      return "alchemist";
+    if (item == "i_feather")           return "provisioner";
+    return nullptr;
+}
+
+// How to reach one output through the shard's legacy craft menus. Two levels
+// at most, and both strings are matched as case-insensitive substrings.
+//
+// Inscription is nested -- the blank scroll opens "Spell Circles" and the
+// spell lives one level down (sm_legacy_inscription.scp:12-31, 93-118).
+// Bowcraft is flat, its options named "<name> (<resmake>)"
+// (sm_legacy_bowcraft.scp:13-33). Nothing here is inferred from generic UO.
+struct CraftMenuPath {
+    const char* item;
+    const char* step1;
+    const char* step2;   // nullptr for a flat menu
+};
+const CraftMenuPath kCraftMenus[] = {
+    {"i_scroll_poison",      "Spell Circle 3", "poison"},
+    {"i_scroll_recall",      "Spell Circle 4", "recall"},
+    {"i_bow",                "bow",            nullptr},
+    {"i_crossbow",           "crossbow",       nullptr},
+    {"i_arrow_shaft",        "arrow_shaft",    nullptr},
+};
+
+const CraftMenuPath* CraftMenuFor(const std::string& item) {
+    for (const CraftMenuPath& m : kCraftMenus) {
+        if (item == m.item) return &m;
+    }
+    return nullptr;
+}
+
+bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return true;
+
+    const CraftIntent intent = ChooseCraft(*me, obs, needCfg_.craftBatch);
+    if (!intent.item || intent.missing.empty()) {
+        LogLine("supplies: nothing short after all");
+        supplyItem_.clear();
+        return true;
+    }
+
+    const prod::Ingredient want = intent.missing.front();
+    if (supplyItem_ != want.item) {
+        supplyItem_ = want.item;
+        supplyTrips_ = 0;
+        const char* trade = SupplierTradeFor(supplyItem_);
+        supplyTrade_ = trade ? trade : "";
+    }
+
+    if (supplyTrade_.empty()) {
+        LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" item=%s",
+                faucet::RefusalName(faucet::Refusal::NoKnownBuyer),
+                supplyItem_.c_str());
+        planner_.Finish(false, "no trade known to sell it", obs.nowMs);
+        return false;
+    }
+
+    // THE POLICY DECIDES, not the shop. An NPC that technically stocks a thing
+    // is not thereby a legitimate source for it -- that is the whole point of
+    // the vendor matrix, and buying a player-market good from a vendor would
+    // cut a real player out of the economy this project exists to simulate.
+    const econ::VendorRuling ruling = econ::CanUseNPCVendorFor(supplyItem_.c_str());
+    if (!ruling.allowed) {
+        LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" item=%s class=%s (%s)",
+                faucet::RefusalName(faucet::Refusal::RevolutionAuthenticityUnknown),
+                supplyItem_.c_str(), econ::VendorClassName(ruling.klass),
+                ruling.reason ? ruling.reason : "");
+        state_.memory.NoteEvent("policy_refused", supplyItem_.c_str(),
+                                econ::VendorClassName(ruling.klass), obs.x,
+                                obs.y, obs.nowMs);
+        planner_.Finish(false, "the vendor policy refuses this input", obs.nowMs);
+        return false;
+    }
+
+    if (client.TravelBusy()) return false;
+
+    const u32 vendor = client.VendorOfferFrom();
+    if (vendor == 0) {
+        const u32 keeper = client.NearestMobileWithTrade(supplyTrade_.c_str());
+        if (keeper) {
+            i32 vx = 0, vy = 0; i8 vz = 0;
+            if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
+                const i32 d = TileDist(obs.x, obs.y, vx, vy);
+                const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+                if (d > 1 || dz > 3) {
+                    travelInFlight_ = client.TravelToPoint(vx, vy, 1, "vendor");
+                    nextActionMs_ = obs.nowMs + 2000;
+                    return false;
+                }
+            }
+            client.ActionVendorOpen(keeper);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        if (!travelInFlight_) {
+            if (++supplyTrips_ > kMaxSupplyTrips) {
+                LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" no '%s' found "
+                        "after %d trips",
+                        faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                        supplyTrade_.c_str(), supplyTrips_);
+                planner_.Finish(false, "no supplier reachable", obs.nowMs);
+                supplyTrips_ = 0;
+                nextActionMs_ = obs.nowMs + 30000;
+                return false;
+            }
+            LogLine("supplies: looking for a '%s' to sell %d %s (trip %d)",
+                    supplyTrade_.c_str(), want.qty, supplyItem_.c_str(),
+                    supplyTrips_);
+            travelInFlight_ = client.TravelToService(
+                ServiceForTrade(supplyTrade_.c_str()), state_.homeCity.c_str());
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=BUY_SUPPLIES reason=\"%s\" (%s)",
+                        faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        travelInFlight_ = false;
+        LogLine("supplies: arrived at %d,%d -- asking who is here",
+                client.PlayerX(), client.PlayerY());
+        client.ActionScanMobiles();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // A shop window is open: find the input in it and buy the shortfall.
+    const std::vector<u16> gfx = econ::GraphicsForItem(supplyItem_.c_str());
+    for (const Client::VendorItem& v : client.VendorOffer()) {
+        bool match = false;
+        for (u16 g : gfx) { if (v.graphic == g) { match = true; break; } }
+        if (!match) continue;
+
+        const i32 unit = static_cast<i32>(v.price);
+        i32 take = want.qty;
+        // WORKING CAPITAL IS NOT THE DEATH RESERVE.
+        //
+        // goldReserve is what a life keeps back to replace a tool after it
+        // dies. Charging the working stock against it deadlocked a scribe
+        // outright: blank scrolls cost 3 gold, the purse held 781, the
+        // reserve was 900, and the character stood in the mage shop
+        // refusing to buy three scrolls -- every fifteen seconds, for the
+        // whole session. A reserve that forbids the only activity which
+        // refills it is not caution, it is a trap.
+        //
+        // So inputs are bought out of working capital: everything above a
+        // small hard floor, and never more than a quarter of the purse in one
+        // trip, so a bad price cannot empty a character either.
+        constexpr i32 kHardFloor = 100;      // never end a trip broke
+        const i32 above = obs.gold - kHardFloor;
+        const i32 spendable = (above < obs.gold / 4) ? above : obs.gold / 4;
+        if (unit > 0 && take * unit > spendable) take = spendable / unit;
+        if (take <= 0) {
+            LogLine("goal_blocked=BUY_SUPPLIES reason=\"%s\" %s costs %d each, "
+                    "purse %d, spendable %d",
+                    faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
+                    supplyItem_.c_str(), unit, obs.gold, spendable);
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 15000;
+            return false;
+        }
+
+        market::PriceObservation po;
+        po.item = supplyItem_;
+        po.pricePerUnit = unit;
+        po.source = market::PriceSource::NpcVendorSells;
+        po.who = v.name;
+        po.x = obs.x; po.y = obs.y; po.whenMs = obs.nowMs;
+        state_.prices.Note(po);
+
+        LogLine("supplies: buying %d %s at %d each from '%s'", take,
+                supplyItem_.c_str(), unit, v.name.c_str());
+        client.ActionVendorBuy(vendor, v.serial, static_cast<u16>(take));
+        state_.ledger.Note(market::GoldFlow::DestroyedVendorPurchase,
+                           take * unit, supplyItem_.c_str(), obs.nowMs);
+        planner_.NoteProgress();
+        supplyItem_.clear();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" this '%s' does not stock %s",
+            faucet::RefusalName(faucet::Refusal::VendorNotObserved),
+            supplyTrade_.c_str(), supplyItem_.c_str());
+    state_.memory.NoteEvent("vendor_lacks", supplyItem_.c_str(),
+                            supplyTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+    planner_.Finish(false, "this vendor does not stock it", obs.nowMs);
+    return false;
+}
+
+bool Runner::DoCraft(Client& client, const Observation& obs) {
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return true;
+
+    const CraftIntent intent = ChooseCraft(*me, obs, 1);
+    if (!intent.item) {
+        LogLine("craft: nothing this life can make and sell (%s)", intent.why);
+        return true;
+    }
+    if (!intent.missing.empty()) {
+        LogLine("goal_blocked=CRAFT reason=\"%s\" %s short of %d x %s",
+                faucet::RefusalName(faucet::Refusal::RequiredForProduction),
+                intent.item, intent.missing.front().qty,
+                intent.missing.front().item);
+        planner_.Finish(false, "inputs are short", obs.nowMs);
+        return false;
+    }
+
+    if (craftItem_ != intent.item) {
+        craftItem_ = intent.item;
+        craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
+        craftMade_ = 0;
+        craftMenuStep_ = 0;
+    }
+
+    // Did the last attempt land? The pack is the only honest witness -- Sphere
+    // answers a failed inscription with "the scroll is ruined", which consumes
+    // the input and produces nothing, so counting attempts would count wrong.
+    const i32 now = market::QtyOf(obs.pack, craftItem_);
+    if (now > craftHadBefore_) {
+        craftMade_ += now - craftHadBefore_;
+        craftHadBefore_ = now;
+        craftMenuStep_ = 0;
+        planner_.NoteProgress();
+        LogLine("craft: made one %s (%d this sitting)", craftItem_.c_str(),
+                craftMade_);
+        if (!state_.memory.HasEvent("first_craft")) {
+            state_.memory.NoteEvent("first_craft", craftItem_.c_str(), "",
+                                    obs.x, obs.y, obs.nowMs);
+        }
+        if (craftMade_ >= needCfg_.craftBatch) {
+            LogLine("craft: %d %s made -- enough for a trip to a buyer",
+                    craftMade_, craftItem_.c_str());
+            craftItem_.clear();
+            return true;
+        }
+    }
+
+    const CraftMenuPath* path = CraftMenuFor(craftItem_);
+    if (!path) {
+        LogLine("goal_failed=CRAFT reason=\"%s\" no menu path known for %s",
+                faucet::RefusalName(faucet::Refusal::MissingRecipe),
+                craftItem_.c_str());
+        planner_.Finish(false, "no craft menu path known", obs.nowMs);
+        return false;
+    }
+
+    if (client.ActionBusy()) return false;
+
+    // --- walk the menu -----------------------------------------------------
+    if (client.CraftMenuOpen()) {
+        // READ THE MENU, DO NOT COUNT STEPS.
+        //
+        // The first version tracked which level it thought it was on. One
+        // failed answer reset that counter to zero while the SUBMENU was
+        // still open, so it then hunted for "Spell Circle 3" inside the list
+        // that was already offering "poison" -- and said "the craft menu does
+        // not offer it" sixteen times a second while printing the very option
+        // it wanted. The menu itself says which level it is; ask it.
+        const char* want = nullptr;
+        if (path->step2 && client.DialogHasOption(path->step2)) {
+            want = path->step2;          // already in the submenu
+        } else if (client.DialogHasOption(path->step1)) {
+            want = path->step1;          // the top menu, or a flat one
+        }
+        if (!want) {
+            LogLine("goal_failed=CRAFT reason=\"%s\" this menu offers neither "
+                    "'%s' nor '%s'",
+                    faucet::RefusalName(faucet::Refusal::MissingRecipe),
+                    path->step1, path->step2 ? path->step2 : "(flat menu)");
+            for (const std::string& o : client.CraftableNow()) {
+                LogLine("craft:   offered: %s", o.c_str());
+            }
+            planner_.Finish(false, "the craft menu does not offer it", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
+        if (!client.ChooseDialogByName(want)) {
+            // DialogHasOption just said it was there, so this is a send
+            // failure rather than a missing option. Let it settle and re-read.
+            nextActionMs_ = obs.nowMs + 1500;
+            return false;
+        }
+        LogLine("craft: chose '%s'", want);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    // --- open it -----------------------------------------------------------
+    //
+    // The menu opens by USING the thing the craft is made from -- a blank
+    // scroll for Inscription, a log for Bowcraft. The recipe's own first
+    // input is that thing, so nothing here has to be hardcoded per trade.
+    const prod::Recipe* r = prod::FindRecipe(craftItem_.c_str());
+    if (!r || !r->inputs[0].item) {
+        LogLine("goal_failed=CRAFT reason=\"%s\" %s has no recipe",
+                faucet::RefusalName(faucet::Refusal::MissingRecipe),
+                craftItem_.c_str());
+        planner_.Finish(false, "no recipe", obs.nowMs);
+        return false;
+    }
+    const std::vector<u16> openGfx = econ::GraphicsForItem(r->inputs[0].item);
+    u32 opener = 0;
+    for (u16 g : openGfx) {
+        opener = client.FindBackpackItemByGraphic(g);
+        if (opener) break;
+    }
+    if (!opener) {
+        LogLine("goal_blocked=CRAFT reason=\"%s\" nothing in the pack to open "
+                "the %s menu with (%s)",
+                faucet::RefusalName(faucet::Refusal::MissingTool),
+                craftItem_.c_str(), r->inputs[0].item);
+        planner_.Finish(false, "no material to start from", obs.nowMs);
+        return false;
+    }
+
+    LogLine("craft: making %s -- using a %s to open the menu",
+            craftItem_.c_str(), r->inputs[0].item);
+    client.ActionUseObject(opener);
+    craftStartedMs_ = obs.nowMs;
+    craftMenuStep_ = 0;
+    nextActionMs_ = obs.nowMs + 2000;
+    return false;
 }
 
 bool Runner::DoFish(Client& client, const Observation& obs) {

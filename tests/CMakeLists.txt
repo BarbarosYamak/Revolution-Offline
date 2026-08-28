@@ -177,7 +177,13 @@ add_executable(m5_professions m5_professions.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
-    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
+    # ChooseCraft asks the recipe graph what a thing is made of and the faucet
+    # registry whether it may be sold, so both come with Identity now.
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp)
 target_include_directories(m5_professions PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
