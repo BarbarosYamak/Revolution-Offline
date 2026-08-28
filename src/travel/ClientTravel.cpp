@@ -1675,4 +1675,54 @@ void Client::JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const {
     }
 }
 
+
+bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
+    if (radius < 0) radius = 0;
+
+    // Nearest-first, so a character fishes from where it stands rather than
+    // walking to the far side of the lake.
+    for (int r = 1; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                // Only the ring at distance r; the interior was covered by a
+                // previous pass.
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 tx = x + dx, ty = y + dy;
+                if (tx < 0 || ty < 0) continue;
+
+                map::LandCell cell{};
+                if (!worldMap_->ReadCell(static_cast<u32>(tx),
+                                         static_cast<u32>(ty), &cell)) {
+                    continue;
+                }
+                const tiledata::LandTile& land = tileData_->Land(cell.tileId);
+                if ((land.flags & tiledata::kFlagWet) == 0) continue;
+
+                // A plank or bridge over the water makes the tile a walkway,
+                // not a fishing spot.
+                bool covered = false;
+                std::vector<world::StaticHit> statics;
+                world_->CollectStatics(tx, ty, 0, statics);
+                for (const world::StaticHit& sh : statics) {
+                    if (sh.x != tx || sh.y != ty) continue;
+                    i8 top = 0;
+                    if (world_->StaticSurfaceTop(sh.itemId, sh.z, &top)) {
+                        covered = true;
+                        break;
+                    }
+                }
+                if (covered) continue;
+
+                out->x = tx;
+                out->y = ty;
+                out->z = cell.z;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 } // namespace uo

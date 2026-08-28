@@ -531,6 +531,23 @@ public:
     // loops. One live session swung at a single tree 231 times that way.
     bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
                      const std::vector<std::pair<i32, i32>>* exclude = nullptr);
+    // M7: the nearest WATER tile a character could cast a line into.
+    //
+    // Fishing is the one gold faucet in the registry that a starting
+    // character can reach on day one -- the guide states it, the shard's
+    // VENDOR_B_FISHER carries the BUY rows, and the newbie kit hands over a
+    // pole. But nothing in the client could find water: the navgrid carries a
+    // kCellWater flag at 8x8 granularity, which is far too coarse to target,
+    // and a fishing attempt needs an exact tile.
+    //
+    // So this reads the LAND tile out of the map and asks tiledata whether it
+    // is Wet, exactly as NearestTree reads statics. Statics are checked too:
+    // a bridge or a dock plank sitting over water is NOT fishable, and
+    // standing on a pier casting into the plank under your feet is the
+    // fishing equivalent of swinging an axe at a stump.
+    struct WaterHit { i32 x = 0, y = 0; i8 z = 0; };
+    bool NearestWater(i32 x, i32 y, int radius, WaterHit* out);
+
     // How many trees are within `radius`. Used to answer "am I actually
     // standing where the work is", which travel success does not answer.
     int  TreeCount(i32 x, i32 y, int radius);
