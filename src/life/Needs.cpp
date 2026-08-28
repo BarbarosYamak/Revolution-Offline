@@ -209,6 +209,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("gold=%d floor=%d", obs.gold, cfg.goldFloor));
     }
 
+    // Having goods worth selling is its own reason to visit a buyer, quite
+    // separate from being short of gold. Keyed only to the purse, a character
+    // that started with 1000 gp would carry a pack full of its own output
+    // forever and never once sell anything -- which is not what a player does
+    // with a surplus, and would have made the whole sell path unreachable on
+    // a new character.
+    //
+    // Weaker than being broke: work first, errands second.
+    if (cfg.profession) {
+        const std::vector<market::Offer> spare =
+            market::Surplus(*cfg.profession, obs.pack, market::TradePolicy{});
+        if (!spare.empty()) {
+            add(NeedKind::NeedGold, 0.22, "sell surplus",
+                "carrying more of its own output than its own work needs",
+                Fmt("%zu line(s) spare, first: %d x %s", spare.size(),
+                    spare.front().qty, spare.front().item.c_str()));
+        }
+    }
+
     // --- the work itself ---------------------------------------------------
     if (GathersLogs(cfg)) {
         // Proven first, then a lead. Never the old catch-all: a "stand" that

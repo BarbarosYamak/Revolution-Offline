@@ -136,6 +136,9 @@ add_test(NAME m38_closure COMMAND m38_closure ${CMAKE_SOURCE_DIR}/data)
 # working copy.
 add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Json.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp
@@ -196,8 +199,12 @@ add_test(NAME m6_targeting COMMAND m6_targeting)
 # The rule this suite exists for is the easy one to break by accident: a bot
 # may not know the market. A character with no observation of a price must
 # answer "I do not know", not a plausible number.
+# Production.cpp comes along because the anti-arbitrage guard asks the real
+# production graph what an item's RAW inputs are -- there is no second, softer
+# copy of the recipe list for the economy layer to consult.
 add_executable(m7_market m7_market.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
 target_include_directories(m7_market PRIVATE

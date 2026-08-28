@@ -1,5 +1,7 @@
 #include "uo/market.h"
 
+#include "uo/production.h"
+
 #include <algorithm>
 
 namespace uo::market {
@@ -49,6 +51,23 @@ bool IsGoldSource(GoldFlow f) {
     }
 }
 
+namespace {
+
+// Does this life feed `item` back into something else it makes?
+bool IsOwnInput(const prof::Profession& p, const std::string& item) {
+    for (const std::string& made : p.produces) {
+        if (made == item) continue;
+        const uo::prod::Recipe* r = uo::prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        for (const uo::prod::Ingredient& in : r->inputs) {
+            if (in.item && item == in.item) return true;
+        }
+    }
+    return false;
+}
+
+}  // namespace
+
 // ---------------------------------------------------------------------------
 // Surplus and shortfall
 // ---------------------------------------------------------------------------
@@ -61,12 +80,26 @@ std::vector<Offer> Surplus(const prof::Profession& p,
     // into an omniscient reseller, which is exactly what M7 forbids.
     for (const std::string& item : p.produces) {
         const i32 have = QtyOf(pack, item);
-        const i32 spare = have - policy.keepOfOwnOutput;
+
+        // The reserve exists so a smith that sells every ingot can still
+        // smith tomorrow -- so it applies ONLY to output this life feeds back
+        // into its OWN recipes. A lumberjack does not eat logs; holding twenty
+        // back would just be twenty logs it never sells and never uses.
+        //
+        // The question is answered by the production graph, not by the
+        // catalogue's `consumes` field: that field means "must obtain from
+        // someone else", so a smith's own ingots are correctly absent from it
+        // even though every weapon it makes eats six of them.
+        const bool selfConsumed = IsOwnInput(p, item);
+        const i32 reserve = selfConsumed ? policy.keepOfOwnOutput : 0;
+
+        const i32 spare = have - reserve;
         if (spare < policy.minimumSurplusToOffer) continue;
         Offer o;
         o.item = item;
         o.qty = spare;
-        o.reason = "own output beyond the working reserve";
+        o.reason = selfConsumed ? "own output beyond the working reserve"
+                                : "own output; this life does not consume it";
         out.push_back(std::move(o));
     }
     return out;
@@ -127,6 +160,42 @@ bool CanSupply(const prof::Profession& producer,
         }
     }
     return false;
+}
+
+SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
+                        const Ledger& ledger) {
+    SellRuling out;
+    if (!item) { out.reason = "no item named"; return out; }
+
+    // A life sells what it MAKES. Selling something it merely picked up turns
+    // a character into a fence, and there is no world contact behind the sale.
+    bool mine = false;
+    for (const std::string& made : p.produces) {
+        if (made == item) { mine = true; break; }
+    }
+    if (!mine) {
+        out.reason = "this life does not produce it";
+        return out;
+    }
+
+    // The arbitrage test. Every RAW input of the item -- the leaves of the
+    // production graph, not the intermediate steps -- checked against what
+    // this character has actually paid an NPC for.
+    const std::vector<uo::prod::Ingredient> raw = uo::prod::RawInputsFor(item, 1);
+    for (const uo::prod::Ingredient& in : raw) {
+        if (!in.item) continue;
+        for (const GoldEntry& e : ledger.entries) {
+            if (e.flow != GoldFlow::BoughtFromNpcVendor) continue;
+            if (e.detail != in.item) continue;
+            out.reason = "its inputs were bought from an NPC -- selling the "
+                         "result back to one would be a closed vendor loop";
+            return out;
+        }
+    }
+
+    out.allowed = true;
+    out.reason = "own output, from inputs the world provided";
+    return out;
 }
 
 // ---------------------------------------------------------------------------

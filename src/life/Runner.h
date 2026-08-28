@@ -221,6 +221,19 @@ private:
     static constexpr i32 kMaxPayAttempts = 3;
     bool trainPackRefreshed_ = false;
     i32  trainPayAttempts_ = 0;
+    // --- EARN_GOLD: selling what this life makes --------------------------
+    static constexpr i32 kMaxSellTrips = 3;
+    std::string sellItem_;             // defname currently being sold
+    std::string sellTrade_;            // paperdoll-title substring to look for
+    wm::Service sellService_ = wm::Service::None;
+    usize sellBuyerIndex_ = 0;         // which buyer of sellItem_ we are trying
+    i32   sellTrips_ = 0;
+    i32   sellWanted_ = 0;             // how many units we mean to sell
+    i32   sellGoldBefore_ = -1;        // purse before the sale, to verify it
+    bool  sellAsked_ = false;          // 0x9E requested
+    i64   sellAskedMs_ = 0;
+    bool  sellSent_ = false;           // ActionVendorSell issued
+
     i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;

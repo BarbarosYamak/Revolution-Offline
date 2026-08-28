@@ -254,6 +254,88 @@ void TestGoldLedger() {
           "zero and negative amounts are not entries");
 }
 
+
+// --------------------------------------------------------------------------
+void TestReserveOnlyForOwnInputs() {
+    Section("surplus: the reserve protects tomorrow's work, nothing else");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(ms && lj, "the smith and the lumberjack exist");
+    if (!ms || !lj) return;
+
+    TradePolicy pol;
+    pol.keepOfOwnOutput = 20;
+    pol.minimumSurplusToOffer = 5;
+
+    // A smith's ingots feed its own spear recipe (6 ingots + 1 log), so the
+    // reserve applies: selling all 25 would leave it unable to smith.
+    const std::vector<Offer> smith = Surplus(*ms, {{"i_ingot_iron", 25}}, pol);
+    Check(smith.size() == 1, "25 ingots is one offer");
+    if (!smith.empty()) {
+        Check(smith[0].qty == 5, "and only 5 of them, holding 20 back to work");
+    }
+
+    // A lumberjack's logs feed NOTHING it makes. Holding 20 back would be 20
+    // logs it never sells and never uses -- which is what the first version
+    // of this rule did, because it keyed off the catalogue's `consumes`
+    // field. That field means "obtain from someone else", so a smith's own
+    // ingots are correctly absent from it even though every weapon eats six.
+    const std::vector<Offer> woodcutter = Surplus(*lj, {{"i_log", 25}}, pol);
+    Check(woodcutter.size() == 1, "25 logs is one offer");
+    if (!woodcutter.empty()) {
+        Check(woodcutter[0].qty == 25,
+              "and ALL of them -- a lumberjack has no use for a log reserve");
+    }
+}
+
+// --------------------------------------------------------------------------
+void TestNoClosedVendorLoop() {
+    Section("selling: an NPC may not be both ends of the same cycle");
+
+    const prof::Profession* ms = prof::Find("miner_smith");
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(ms && lj, "the two lives exist");
+    if (!ms || !lj) return;
+
+    // Clean ledger: the smith gathered its own ore, so selling ingots is a
+    // real sale backed by real time in a mountain.
+    Ledger clean;
+    clean.Note(GoldFlow::StartingKit, 1000, "newbie kit", 0);
+    const SellRuling ok = MaySellToNpc(*ms, "i_ingot_iron", clean);
+    Check(ok.allowed, "ingots from gathered ore may be sold");
+    Check(ok.reason != nullptr, "and the ruling says why");
+
+    // Now it BOUGHT the ore from an NPC. vendor -> smelt -> vendor touches
+    // the world nowhere, and economy_arbitrage.py finds 66 such loops on this
+    // shard. Refused.
+    Ledger dirty = clean;
+    dirty.Note(GoldFlow::BoughtFromNpcVendor, 40, "i_ore_iron", 1000);
+    const SellRuling bad = MaySellToNpc(*ms, "i_ingot_iron", dirty);
+    Check(!bad.allowed, "ingots smelted from NPC-bought ore may NOT be sold");
+    Check(bad.reason != nullptr, "and the refusal says why");
+
+    // Buying something UNRELATED does not poison the sale.
+    Ledger unrelated = clean;
+    unrelated.Note(GoldFlow::BoughtFromNpcVendor, 30, "i_bandage", 1000);
+    Check(MaySellToNpc(*ms, "i_ingot_iron", unrelated).allowed,
+          "buying bandages does not block selling ingots");
+
+    // A life may not sell what it does not make, however much it carries.
+    Check(!MaySellToNpc(*lj, "i_ingot_iron", clean).allowed,
+          "a lumberjack may not sell ingots -- it is not a fence");
+    Check(!MaySellToNpc(*ms, nullptr, clean).allowed,
+          "a null item is refused, not a crash");
+
+    // A trainer fee is a SINK, not a purchase of inputs, so it must not
+    // block anything.
+    Ledger trained = clean;
+    trained.Note(GoldFlow::PaidTrainer, 108, "i_ore_iron", 1000);
+    Check(MaySellToNpc(*ms, "i_ingot_iron", trained).allowed,
+          "only a PURCHASE poisons the cycle, not any ledger entry that "
+          "happens to name the same item");
+}
+
 }  // namespace
 
 int main() {
@@ -264,6 +346,8 @@ int main() {
     TestWhoProducesIsCatalogueNotMarket();
     TestPricesMustHaveBeenSeen();
     TestGoldLedger();
+    TestReserveOnlyForOwnInputs();
+    TestNoClosedVendorLoop();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

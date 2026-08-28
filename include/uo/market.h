@@ -80,6 +80,38 @@ bool CanSupply(const prof::Profession& producer,
                const prof::Profession& consumer, std::string* itemOut = nullptr);
 
 // ---------------------------------------------------------------------------
+// Selling to an NPC. Permitted, but not unconditionally.
+// ---------------------------------------------------------------------------
+
+struct Ledger;   // defined below
+
+struct SellRuling {
+    bool        allowed = false;
+    const char* reason  = nullptr;   // always populated, allowed or not
+};
+
+// May this life sell `item` to an NPC vendor?
+//
+// Selling to an NPC CREATES gold -- the vendor pays from nowhere -- so it is
+// the one flow that can print money. What makes it legitimate is a real
+// player-side loss on the other side: the log came out of a tree the character
+// had to find and swing at, and that time is the cost.
+//
+// What makes it ILLEGITIMATE is buying the inputs from an NPC too. Then the
+// cycle is vendor -> craft -> vendor with no world contact at all, and
+// tools/economy_arbitrage.py finds 66 such loops on this shard's own itemdefs
+// (a cake returns +16.6 gp at 2.44x, a crossbow +20.0 at 3.48x). The audit's
+// invariant states it directly:
+//
+//   No deterministic NPC/vendor/crafting/recycling cycle may generate net gold
+//   or resources without a player-side loss.
+//
+// So the ledger is the evidence: if this character bought a raw input of
+// `item` from an NPC, selling the result back to one is refused.
+SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
+                        const Ledger& ledger);
+
+// ---------------------------------------------------------------------------
 // Prices. Observed only.
 // ---------------------------------------------------------------------------
 

@@ -2178,6 +2178,7 @@ void Client::OnVendorSellList(const u8* data, usize size) {
     const u16 count = LoadBE16(data + 7);
 
     vendorSellOffer_.clear();
+    vendorSellVendor_ = vendor;
     usize p = 9;
     for (u16 i = 0; i < count; ++i) {
         if (p + 14 > size) break;
@@ -3014,6 +3015,7 @@ void Client::ActionVendorOpen(u32 vendorSerial, const char* phrase) {
     action_.destination = vendorSerial;
     vendorOffer_.clear();
     vendorOfferVendor_ = 0;
+    vendorSellVendor_ = 0;
     const std::string say = AddressMobile(vendorSerial, phrase && phrase[0] ? phrase : "buy");
     LogInfo("[VENDOR] open vendor=0x%08X say='%s'\n", vendorSerial, say.c_str());
     SayAscii(say.c_str());

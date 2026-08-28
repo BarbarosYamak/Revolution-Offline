@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "uo/log.h"
 #include "uo/builders.h"
+#include "uo/market.h"
 #include "uo/professions.h"
 #include "uo/vendor_policy.h"
 #include "uo/world_model.h"
@@ -86,6 +87,48 @@ const TrainerFor* TrainerForSkill(int id) {
         if (t.skillId == id) return &t;
     }
     return nullptr;
+}
+
+// Which trade of NPC will BUY a given good, best first.
+//
+// Read straight off this shard's own vendor buy-templates
+// (runtime/scripts/templates/tm_vend.scp) rather than assumed from the trade
+// name -- and the difference matters. The obvious guess for logs is the
+// LUMBERJACK vendor, and it is wrong: c_lumberjack SELLS logs and buys only
+// axes (c_vendor_human.scp:2853-2922). The carpenter is the one that buys them.
+//
+// Pairs are (paperdoll-title substring, world-model service) so the mobile
+// scan and the travel layer agree, exactly as kTrainers does.
+struct BuyerFor {
+    const char* item;
+    const char* trade;
+    wm::Service service;
+};
+const BuyerFor kBuyers[] = {
+    // i_log  -- tm_vend.scp:167 CARPENTER, :964 TINKER, :1273 PROVISIONER,
+    //           :1451 BOWYER, :1935 BLACKSMITH
+    {"i_log",         "carpenter",   wm::Service::Carpenter},
+    {"i_log",         "provisioner", wm::Service::Provisioner},
+    {"i_log",         "tinker",      wm::Service::Tinker},
+    {"i_log",         "bowyer",      wm::Service::Bowyer},
+    {"i_log",         "blacksmith",  wm::Service::Blacksmith},
+    // i_ingot_iron -- :1936 BLACKSMITH (44-88, much the best), :963 TINKER,
+    //                 :1256 PROVISIONER, :1341 JEWELER
+    {"i_ingot_iron",  "blacksmith",  wm::Service::Blacksmith},
+    {"i_ingot_iron",  "tinker",      wm::Service::Tinker},
+    {"i_ingot_iron",  "provisioner", wm::Service::Provisioner},
+    {"i_ingot_iron",  "jeweler",     wm::Service::Jeweler},
+};
+
+// The buyers for `item`, best first. Empty means this shard has no NPC that
+// takes it -- a real answer, and the character should bank the goods instead
+// of walking the world looking for a buyer that does not exist.
+std::vector<const BuyerFor*> BuyersFor(const std::string& item) {
+    std::vector<const BuyerFor*> out;
+    for (const BuyerFor& b : kBuyers) {
+        if (item == b.item) out.push_back(&b);
+    }
+    return out;
 }
 
 // The two hand layers. Which one an item lands on is decided by THIS SHARD'S
@@ -353,6 +396,26 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
+
+    // The pack, as the M7 economy layer wants it: quantities keyed by itemdef
+    // defname. Built from what THIS life produces and consumes, so the loop is
+    // over a handful of names rather than every item on the shard. One name can
+    // have several graphics -- iron ingots are 0x1BEF/0x1BF0/0x1BF1 by stack
+    // size -- so a caller that checked only the first would miss most of a pack.
+    if (needCfg_.profession) {
+        auto countInto = [&](const std::string& item) {
+            for (const market::Stock& have : obs.pack) {
+                if (have.item == item) return;   // already counted
+            }
+            i32 n = 0;
+            for (u16 g : econ::GraphicsForItem(item.c_str())) {
+                n += static_cast<i32>(client.BackpackItemCount(g));
+            }
+            obs.pack.push_back({item, n});
+        };
+        for (const std::string& it : needCfg_.profession->produces) countInto(it);
+        for (const std::string& it : needCfg_.profession->consumes) countInto(it);
+    }
 
     // Which of this plan's trainable skills have already been refused. Read
     // from memory, so one wasted walk teaches the character for good -- and
@@ -1746,31 +1809,242 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
 }
 
 bool Runner::DoEarnGold(Client& client, const Observation& obs) {
-    if (obs.logs <= 0) return true;
-
-    // Phase 9: do NOT sell to a stock Sphere NPC merely because SELL exists.
-    // If no authentic buyer is observed, the logs go to the bank and the
-    // character stays resource-rich and wealth-poor -- which is a valid state,
-    // not a failure to work around.
-    const u32 vendor = client.VendorOfferFrom();
-    if (vendor == 0) {
-        LogLine("earn_gold: no observed buyer for logs; banking them instead");
-        state_.memory.NoteEvent("no_log_buyer",
-                                "no authentic NPC buyer observed for logs", "",
-                                obs.x, obs.y, obs.nowMs);
-        return true;   // the planner will pick BANK next
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) {
+        // A life that predates the catalogue (the M4 lumberjack) has no
+        // `produces` list, so there is nothing this goal can honestly sell.
+        LogLine("earn_gold: '%s' is not in the catalogue -- nothing to sell",
+                state_.plan.family.c_str());
+        return true;
     }
-    for (const Client::VendorItem& v : client.VendorSellOffer()) {
-        if (v.graphic != kLog) continue;
-        LogLine("earn_gold: selling logs at %u each to an observed buyer", v.price);
-        client.ActionVendorSell(vendor, v.serial,
-                                static_cast<u16>(client.BackpackItemCount(kLog)));
-        planner_.NoteProgress();
+
+    // --- did the last sale actually pay? ----------------------------------
+    //
+    // The purse is the proof, not the fact that a packet was sent. Sphere
+    // answers a refused sale with silence, and a sale that "worked" without
+    // gold arriving is the same silent failure that made a working trainer
+    // purchase read as a failure earlier in M5.
+    if (sellSent_) {
+        if (sellGoldBefore_ >= 0 && obs.gold > sellGoldBefore_) {
+            const i32 paid = obs.gold - sellGoldBefore_;
+            const i32 each = sellWanted_ > 0 ? paid / sellWanted_ : paid;
+            LogLine("earn_gold: sold %d %s for %d gold (%d each) to a '%s'",
+                    sellWanted_, sellItem_.c_str(), paid, each,
+                    sellTrade_.c_str());
+
+            // What it was worth, as OBSERVED. This is the only kind of price
+            // this project lets a character know.
+            market::PriceObservation po;
+            po.item = sellItem_;
+            po.pricePerUnit = each;
+            po.source = market::PriceSource::NpcVendorBuys;
+            po.who = sellTrade_;
+            po.x = obs.x; po.y = obs.y;
+            po.whenMs = obs.nowMs;
+            state_.prices.Note(po);
+
+            // Selling to an NPC CREATES gold. Recording it as a source is what
+            // makes the anti-arbitrage invariant checkable afterwards.
+            state_.ledger.Note(market::GoldFlow::SoldToNpcVendor, paid,
+                               sellItem_.c_str(), obs.nowMs);
+
+            KnownSupplier sup;
+            sup.need = std::string("buyer:") + sellItem_;
+            sup.name = sellTrade_;
+            sup.sourceType = "npc_vendor";
+            sup.x = obs.x; sup.y = obs.y; sup.z = obs.z;
+            sup.observedPricePerUnit = each;
+            sup.lastVerifiedMs = obs.nowMs;
+            sup.policyAllows = true;
+            state_.memory.NoteSupplier(sup);
+
+            state_.memory.NoteEvent("sold_to_vendor", sellItem_.c_str(),
+                                    sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+            planner_.NoteProgress();
+            sellSent_ = false;
+            sellAsked_ = false;
+            sellTrips_ = 0;
+            Checkpoint(client, obs.nowMs, "sold to a vendor");
+            return true;
+        }
+        if (obs.nowMs - sellAskedMs_ > 12000) {
+            LogLine("earn_gold: offered %d %s and the purse did not move "
+                    "(still %d) -- this buyer did not take them",
+                    sellWanted_, sellItem_.c_str(), obs.gold);
+            state_.memory.NoteEvent("sale_refused", sellItem_.c_str(),
+                                    sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+            sellSent_ = false;
+            sellAsked_ = false;
+            ++sellBuyerIndex_;      // try the next trade that buys this
+            sellTrade_.clear();
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    // --- what is there to sell? -------------------------------------------
+    const market::TradePolicy tp;
+    const std::vector<market::Offer> offers =
+        market::Surplus(*me, obs.pack, tp);
+    if (offers.empty()) {
+        LogLine("earn_gold: nothing spare to sell (the pack holds no surplus "
+                "of what this life makes)");
+        return true;
+    }
+
+    // Take the first offer this life may legitimately sell.
+    const market::Offer* chosen = nullptr;
+    for (const market::Offer& o : offers) {
+        const market::SellRuling r =
+            market::MaySellToNpc(*me, o.item.c_str(), state_.ledger);
+        if (!r.allowed) {
+            LogLine("earn_gold: will NOT sell %d %s -- %s", o.qty,
+                    o.item.c_str(), r.reason);
+            state_.memory.NoteEvent("sale_refused_policy", o.item.c_str(),
+                                    r.reason, obs.x, obs.y, obs.nowMs);
+            continue;
+        }
+        chosen = &o;
+        break;
+    }
+    if (!chosen) {
+        LogLine("earn_gold: everything spare is barred from an NPC sale; "
+                "banking instead");
+        return true;
+    }
+
+    if (sellItem_ != chosen->item) {
+        sellItem_ = chosen->item;
+        sellBuyerIndex_ = 0;
+        sellTrade_.clear();
+        sellTrips_ = 0;
+    }
+    sellWanted_ = chosen->qty;
+
+    // --- who buys it? ------------------------------------------------------
+    const std::vector<const BuyerFor*> buyers = BuyersFor(sellItem_);
+    if (buyers.empty()) {
+        // A real answer, not a failure. The character stays resource-rich and
+        // wealth-poor, which is a legitimate state on this shard.
+        LogLine("earn_gold: no NPC trade on this shard buys %s; banking it "
+                "instead", sellItem_.c_str());
+        state_.memory.NoteEvent("no_buyer", sellItem_.c_str(), "",
+                                obs.x, obs.y, obs.nowMs);
+        return true;
+    }
+    if (sellBuyerIndex_ >= buyers.size()) {
+        LogLine("goal_failed=EARN_GOLD reason=\"tried all %zu trades that buy "
+                "%s\"", buyers.size(), sellItem_.c_str());
+        planner_.Finish(false, "no buyer took the goods", obs.nowMs);
+        sellBuyerIndex_ = 0;
+        return false;
+    }
+    const BuyerFor* buyer = buyers[sellBuyerIndex_];
+    if (sellTrade_ != buyer->trade) {
+        sellTrade_ = buyer->trade;
+        sellService_ = buyer->service;
+        sellAsked_ = false;
+    }
+
+    if (client.TravelBusy()) return false;
+
+    // --- get to one ---------------------------------------------------------
+    const u32 vendor = client.NearestMobileWithTrade(sellTrade_.c_str());
+    if (!vendor) {
+        if (sellTrips_ >= kMaxSellTrips) {
+            LogLine("earn_gold: no '%s' reachable after %d trips; trying the "
+                    "next trade that buys %s", sellTrade_.c_str(), sellTrips_,
+                    sellItem_.c_str());
+            ++sellBuyerIndex_;
+            sellTrade_.clear();
+            sellTrips_ = 0;
+            return false;
+        }
+        if (!travelInFlight_) {
+            ++sellTrips_;
+            const KnownSupplier* known = state_.memory.BestSupplier(
+                (std::string("buyer:") + sellItem_).c_str());
+            if (known && known->name == sellTrade_) {
+                LogLine("earn_gold: back to a buyer we have used before, "
+                        "'%s' at %d,%d", known->name.c_str(), known->x, known->y);
+                travelInFlight_ =
+                    client.TravelToPoint(known->x, known->y, 2, "buyer");
+            } else {
+                LogLine("earn_gold: looking for a '%s' to buy %d %s (trip %d)",
+                        sellTrade_.c_str(), sellWanted_, sellItem_.c_str(),
+                        sellTrips_);
+                travelInFlight_ = client.TravelToService(sellService_);
+            }
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=EARN_GOLD reason=\"%s\"",
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        travelInFlight_ = false;
+        LogLine("earn_gold: arrived at %d,%d -- asking who is here",
+                client.PlayerX(), client.PlayerY());
+        client.ActionScanMobiles();
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
-    LogLine("earn_gold: this buyer's list does not take logs; banking instead");
-    return true;
+
+    // --- ask what it will take ---------------------------------------------
+    if (!sellAsked_) {
+        LogLine("earn_gold: asking the '%s' what it buys", sellTrade_.c_str());
+        client.ActionVendorSellOpen(vendor);
+        sellAsked_ = true;
+        sellAskedMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    if (client.VendorSellFrom() != vendor) {
+        if (obs.nowMs - sellAskedMs_ > 10000) {
+            LogLine("earn_gold: the '%s' never showed a buy list",
+                    sellTrade_.c_str());
+            ++sellBuyerIndex_;
+            sellTrade_.clear();
+            sellAsked_ = false;
+        }
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+
+    // --- sell, matching by GRAPHIC -----------------------------------------
+    //
+    // The 0x9E list carries the serials of OUR OWN items, so this is a join
+    // against the pack rather than against the vendor's stock.
+    const std::vector<u16> mine = econ::GraphicsForItem(sellItem_.c_str());
+    for (const Client::VendorItem& v : client.VendorSellOffer()) {
+        bool match = false;
+        for (u16 g : mine) { if (v.graphic == g) { match = true; break; } }
+        if (!match) continue;
+
+        const i32 qty = std::min<i32>(sellWanted_, static_cast<i32>(v.amount));
+        if (qty <= 0) continue;
+
+        LogLine("earn_gold: '%s' offers %u gold each for %s; selling %d",
+                sellTrade_.c_str(), v.price, sellItem_.c_str(), qty);
+        sellWanted_ = qty;
+        sellGoldBefore_ = obs.gold;
+        sellAskedMs_ = obs.nowMs;
+        client.ActionVendorSell(vendor, v.serial, static_cast<u16>(qty));
+        sellSent_ = true;
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    LogLine("earn_gold: this '%s' does not take %s after all; trying the next "
+            "trade", sellTrade_.c_str(), sellItem_.c_str());
+    state_.memory.NoteEvent("buyer_list_lacks_item", sellItem_.c_str(),
+                            sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+    ++sellBuyerIndex_;
+    sellTrade_.clear();
+    sellAsked_ = false;
+    return false;
 }
 
 

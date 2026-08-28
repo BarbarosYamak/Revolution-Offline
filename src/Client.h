@@ -298,6 +298,10 @@ public:
     i32  PlayerHp() const;
     i32  PlayerHpMax() const;
     u32  VendorOfferFrom() const { return vendorOfferVendor_; }
+    // The vendor whose SELL list (0x9E) is in VendorSellOffer(). Distinct from
+    // VendorOfferFrom(), which is the BUY list -- selling to the vendor whose
+    // buy list happened to arrive last would address the wrong NPC.
+    u32  VendorSellFrom() const { return vendorSellVendor_; }
 
     // Life state (server-driven only)
     act::LifeState Life() const { return life_; }
@@ -1339,6 +1343,7 @@ private:
     u32 bankContainer_ = 0;         // container the server opened as our bank
     u32 vendorOfferVendor_ = 0;     // vendor whose offer is in vendorOffer_
     std::vector<VendorItem> vendorOffer_;
+    u32 vendorSellVendor_ = 0;      // vendor whose offer is in vendorSellOffer_
     std::vector<VendorItem> vendorSellOffer_;   // what the vendor will buy
     i32 manaAtActionStart_ = -1;    // for observing a spell's mana cost
     i32 goldAtActionStart_ = -1;    // for observing a purchase

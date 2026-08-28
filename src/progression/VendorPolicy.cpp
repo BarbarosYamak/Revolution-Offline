@@ -288,6 +288,15 @@ const char* ItemNameForGraphic(u16 graphic) {
     return nullptr;
 }
 
+std::vector<u16> GraphicsForItem(const char* item) {
+    std::vector<u16> out;
+    if (!item) return out;
+    for (const GraphicRow& g : kGraphics) {
+        if (std::strcmp(g.item, item) == 0) out.push_back(g.graphic);
+    }
+    return out;
+}
+
 VendorClass ClassifyForVendorGraphic(u16 graphic) {
     const char* item = ItemNameForGraphic(graphic);
     return item ? ClassifyForVendor(item) : VendorClass::Unknown;

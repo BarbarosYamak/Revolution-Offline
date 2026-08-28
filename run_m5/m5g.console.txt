@@ -1,0 +1,78 @@
+[14:44:38.444] INFO  session 0: 127.0.0.1:2593 user='revolutionminer01' char=Brannoc tag='m5g'
+[14:44:38.445] LOG   [m5g] event session_start: text log opened
+[14:44:38.445] LOG   [m5g] event net_connect_begin: connect 127.0.0.1:2593
+[14:44:38.445] INFO  [m5g] [net] connecting to 127.0.0.1:2593 ...
+[14:44:38.446] LOG   [m5g] event net_connected: connect 127.0.0.1:2593
+[14:44:38.446] INFO  [m5g] [net] connected.
+[14:44:38.446] INFO  [m5g] [seed] sent 0x7F000001 (plaintext)
+[14:44:38.446] LOG   [m5g] event seed_out: 0x7F000001 hex=7f000001
+[14:44:38.446] INFO  [life] no prior state for revolutionminer01.brannoc: a new Frontier Lumberjack / Swordsman
+[14:44:38.446] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 25/20/5 = 50
+[14:44:38.446] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[14:44:38.446] INFO  [life] build plan 'lumberjack_swordsman': 500.0 resolved + 200.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:44:38.446] INFO  [m5g] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[14:44:38.463] INFO  [m5g] [0xA8] 1 server(s):
+[14:44:38.463] INFO  [m5g]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:44:38.479] INFO  [m5g] [0x8C] game server = 127.0.0.1:2593  seed=0xA2247099
+[14:44:38.479] LOG   [m5g] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA2247099
+[14:44:38.479] INFO  [m5g] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:44:38.479] LOG   [m5g] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:44:38.479] INFO  [m5g] [0xB9] server features = 0x0005
+[14:44:38.479] INFO  [m5g] [0xA9] 5 slot(s) (populated 0):
+[14:44:38.479] INFO  [m5g]   [0] <empty>
+[14:44:38.479] INFO  [m5g]   [1] <empty>
+[14:44:38.479] INFO  [m5g]   [2] <empty>
+[14:44:38.479] INFO  [m5g]   [3] <empty>
+[14:44:38.479] INFO  [m5g]   [4] <empty>
+[14:44:38.479] INFO  [m5g] [0x00] requested skills 44:50 40:50 0:0
+[14:44:38.479] INFO  [m5g] [0x00] requested stats STR 25 DEX 20 INT 5
+[14:44:38.479] INFO  [m5g] [0x00] creating character 'Brannoc' in slot 0
+[14:44:38.479] LOG   [m5g] event char_create_sent: Brannoc
+[14:44:38.495] INFO  [m5g] [0x1B] serial=0x0000CC33 body=0x0190 pos=(633,858,0)
+[14:44:38.496] LOG   [m5g] event login_confirm: serial=0x0000CC33 body=0x0190 pos=(633,858,0)
+[14:44:38.496] INFO  [m5g] [0x20] player @(633,858,0) facing=3
+[14:44:38.496] INFO  [m5g] [0x55] login complete — entering world
+[14:44:38.496] LOG   [m5g] event in_world: 0x55 received
+[14:44:38.496] INFO  [m5g] [backpack] opening 0x4000CC23
+[14:44:38.496] INFO  [m5g] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:44:38.496] INFO  [m5g] [chat ascii] System: There is 1 other player here.
+[14:44:38.496] INFO  [m5g] [chat ascii] System: You are under the protection of the town guards
+[14:44:38.500] INFO  [m5g] [action] requesting the skill list
+[14:44:38.500] INFO  [life] in world; asked the server for the skill list
+[14:44:38.500] INFO  [m5g] [0x24] open container 0x4000CC23 gump=60
+[14:44:38.500] INFO  [m5g] [0x3C] container contents: 7 item(s)
+[14:44:38.500] LOG   [m5g] event backpack_contents: serial=0x4000CC23 items=7
+[14:44:41.117] INFO  [m5g] [bot] world data loaded (0 blacklisted spot(s)).
+[14:44:41.118] INFO  [life] common knowledge: Yew woods at 664,1030 (172 tiles away)
+[14:44:41.118] INFO  [life] common knowledge: Yew Territory woods at 776,1030 (172 tiles away)
+[14:44:41.118] INFO  [life] common knowledge: Yew woods at 520,1160 (302 tiles away)
+[14:44:41.118] INFO  [life] seeded 3 forest hint(s) of 43 the atlas knows -- everything else is earned
+[14:44:41.118] INFO  [life] reconciliation: first ever login, 10 field(s) differed
+[14:44:41.118] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[14:44:41.118] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[14:44:41.118] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
+[14:44:41.118] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[14:44:41.118] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[14:44:41.118] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[14:44:41.118] INFO  [life]   skill_27     persisted=0.0        server=12.3       -> server value accepted
+[14:44:41.118] INFO  [life]   skill_1      persisted=0.0        server=17.6       -> server value accepted
+[14:44:41.118] INFO  [life]   skill_17     persisted=0.0        server=14.9       -> server value accepted
+[14:44:41.118] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[14:44:41.118] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:44:41.118] INFO  [m5g] [survival] on
+[14:44:41.118] LOG   [m5g] event survival_mode: on
+[14:44:41.119] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionminer01.brannoc/state.json
+[14:44:41.119] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:44:41.171] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[14:44:41.171] INFO  [life]   score=130.0
+[14:44:41.171] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[14:44:41.171] INFO  [life]   reason: bandages=0 low=8
+[14:44:41.171] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tactics 12.3 -> 100.0)
+[14:44:41.171] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[14:44:46.140] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:44:51.169] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:44:56.200] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:45:01.227] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:45:06.277] INFO  [m5g] [survival] hp 25/25 (100%) -> fight
+[14:45:11.184] INFO  [life] BLOCKED_NEED bandages: vendor policy refuses (UNKNOWN)
+[14:45:11.306] INFO  [m5g] [survival] hp 25/25 (100%) -> fight

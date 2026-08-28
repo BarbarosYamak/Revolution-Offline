@@ -125,6 +125,11 @@ VendorRuling CanUseNPCVendorForGraphic(u16 graphic);
 // The defname a graphic maps to, or nullptr. For logging a refusal in words.
 const char*  ItemNameForGraphic(u16 graphic);
 
+// The reverse: every graphic this shard uses for `item`. Several items have
+// more than one (iron ingots are 0x1BEF/0x1BF0/0x1BF1 by stack size), so a
+// caller that checks only the first will miss most of a pack.
+std::vector<u16> GraphicsForItem(const char* item);
+
 // --- acquisition -----------------------------------------------------------
 
 // Every legitimate way to obtain something. Ordered roughly by how much of the

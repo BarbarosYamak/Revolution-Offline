@@ -198,6 +198,36 @@ json::Value ToJson(const PersistentState& st) {
         m.Set("events", std::move(evs));
 
         root.Set("memory", std::move(m));
+
+    {
+        // Prices and the gold ledger. A price learned by walking across town
+        // is worth as much as a trainer verdict, and is lost the same way if
+        // it does not survive a logout.
+        json::Value pr = json::Value::MakeArray();
+        for (const market::PriceObservation& o : st.prices.All()) {
+            json::Value e = json::Value::MakeObject();
+            e.Set("item", o.item);
+            e.Set("price", static_cast<i64>(o.pricePerUnit));
+            e.Set("source", static_cast<i64>(o.source));
+            e.Set("who", o.who);
+            e.Set("x", static_cast<i64>(o.x));
+            e.Set("y", static_cast<i64>(o.y));
+            e.Set("when_ms", o.whenMs);
+            pr.Push(std::move(e));
+        }
+        root.Set("prices", std::move(pr));
+
+        json::Value lg = json::Value::MakeArray();
+        for (const market::GoldEntry& g : st.ledger.entries) {
+            json::Value e = json::Value::MakeObject();
+            e.Set("flow", static_cast<i64>(g.flow));
+            e.Set("amount", static_cast<i64>(g.amount));
+            e.Set("detail", g.detail);
+            e.Set("when_ms", g.whenMs);
+            lg.Push(std::move(e));
+        }
+        root.Set("ledger", std::move(lg));
+    }
     }
 
     {
@@ -307,6 +337,35 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
     st.plan.createInt         = static_cast<i32>(p["create_int"].AsInt(0));
     st.plan.createSkills      = SkillsFromJson(p["create_skills"]);
 
+    {
+        // Prices and the ledger. Absent in a v1/v2 file, which just means the
+        // character has not seen a price or spent a coin yet.
+        const json::Value& a = v["prices"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const json::Value& e = a.At(i);
+            market::PriceObservation o;
+            o.item = e["item"].AsString();
+            o.pricePerUnit = static_cast<i32>(e["price"].AsInt(0));
+            o.source = static_cast<market::PriceSource>(e["source"].AsInt(0));
+            o.who = e["who"].AsString();
+            o.x = static_cast<i32>(e["x"].AsInt(0));
+            o.y = static_cast<i32>(e["y"].AsInt(0));
+            o.whenMs = e["when_ms"].AsInt(0);
+            if (!o.item.empty()) st.prices.Mutable().push_back(std::move(o));
+        }
+    }
+    {
+        const json::Value& a = v["ledger"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const json::Value& e = a.At(i);
+            market::GoldEntry g;
+            g.flow = static_cast<market::GoldFlow>(e["flow"].AsInt(0));
+            g.amount = static_cast<i32>(e["amount"].AsInt(0));
+            g.detail = e["detail"].AsString();
+            g.whenMs = e["when_ms"].AsInt(0);
+            if (g.amount > 0) st.ledger.entries.push_back(std::move(g));
+        }
+    }
     const json::Value& m = v["memory"];
     {
         const json::Value& a = m["places"];

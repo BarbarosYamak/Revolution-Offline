@@ -23,6 +23,7 @@
 // that `uo/actions.h` uses for the M2 action layer.
 // ---------------------------------------------------------------------------
 
+#include "uo/market.h"
 #include "uo/professions.h"
 #include "uo/rules.h"
 #include "uo/json.h"
@@ -359,6 +360,12 @@ struct Observation {
     // professions, only about a skill it has been pointed at.
     // Skills a trainer has already refused, so the planner stops choosing
     // them. Filled from Memory each tick; never inferred inside the chooser.
+    // The pack, keyed by itemdef defname, for everything any profession in the
+    // catalogue produces or consumes. This is what the M7 surplus/shortfall
+    // functions read; counting graphics is done once here rather than in every
+    // caller, because one item has several graphics by stack size.
+    std::vector<market::Stock> pack;
+
     std::vector<int> trainerRefusedSkills;
     int wantTrainSkill = -1;
     i32 wantTrainTarget = 0;
@@ -576,6 +583,13 @@ struct PersistentState {
     Identity  identity;
     BuildPlan plan;
     Memory    memory;
+
+    // What this character has SEEN things sell for, and where its gold came
+    // from and went. Both are per-character by construction and both persist,
+    // because a price learned by walking to a vendor is worth as much as a
+    // trainer verdict and is lost the same way if it does not survive logout.
+    market::PriceBook prices;
+    market::Ledger    ledger;
 
     // The current objective, so a session RESUMES rather than restarts. It is
     // re-validated against server truth on login and may be dropped.
