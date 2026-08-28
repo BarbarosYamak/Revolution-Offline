@@ -365,6 +365,9 @@ struct Observation {
     // functions read; counting graphics is done once here rather than in every
     // caller, because one item has several graphics by stack size.
     std::vector<market::Stock> pack;
+    // What the character remembers having in the bank. Same keys as `pack`.
+    std::vector<market::Stock> bank;
+    bool bankOpen = false;
 
     std::vector<int> trainerRefusedSkills;
     int wantTrainSkill = -1;
@@ -602,6 +605,19 @@ struct PersistentState {
     // trainer verdict and is lost the same way if it does not survive logout.
     market::PriceBook prices;
     market::Ledger    ledger;
+
+    // WHAT IS IN THE BANK. Recorded whenever the box is open and kept, so the
+    // character KNOWS its own stock while standing somewhere else.
+    //
+    // Without this a bot banks everything it gathers and the goods leave the
+    // economy permanently: it cannot sell what it cannot see, and it has no
+    // reason to walk to a bank it does not know holds anything. Five hundred
+    // BANK goals in one fleet session and not one sale.
+    //
+    // This is not omniscience -- it is a character remembering its own box,
+    // which is the most ordinary thing a player does.
+    std::vector<market::Stock> bank;
+    i64 bankSeenMs = 0;
 
     // WHERE THIS CHARACTER LIVES. Chosen once from the profession's own list
     // and then never re-rolled: a bot that picks a new home every login is a

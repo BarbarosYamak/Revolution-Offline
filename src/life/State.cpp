@@ -197,6 +197,16 @@ json::Value ToJson(const PersistentState& st) {
         }
         m.Set("events", std::move(evs));
 
+        json::Value bank = json::Value::MakeArray();
+        for (const market::Stock& k : st.bank) {
+            json::Value o = json::Value::MakeObject();
+            o.Set("item", k.item);
+            o.Set("qty", static_cast<i64>(k.qty));
+            bank.Push(std::move(o));
+        }
+        root.Set("bank", std::move(bank));
+        root.Set("bank_seen_ms", st.bankSeenMs);
+
         root.Set("home_city", st.homeCity);
 
         root.Set("memory", std::move(m));
@@ -368,6 +378,18 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             if (g.amount > 0) st.ledger.entries.push_back(std::move(g));
         }
     }
+    {
+        const json::Value& a = v["bank"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const json::Value& e = a.At(i);
+            market::Stock k;
+            k.item = e["item"].AsString();
+            k.qty = static_cast<i32>(e["qty"].AsInt(0));
+            if (!k.item.empty() && k.qty > 0) st.bank.push_back(std::move(k));
+        }
+        st.bankSeenMs = v["bank_seen_ms"].AsInt(0);
+    }
+
     st.homeCity = v["home_city"].AsString();
 
     const json::Value& m = v["memory"];

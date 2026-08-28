@@ -61,10 +61,20 @@ bool WantsConsumable(const NeedConfig& cfg, const char* name) {
 // overflowing has to be dealt with wherever the character is standing.
 bool SellableInstead(const NeedConfig& cfg) {
     if (!cfg.profession) return false;
-    for (const std::string& made : cfg.profession->produces) {
-        if (market::HasNpcBuyer(made.c_str())) return true;
-    }
-    return false;
+    // ANY market counts, not just an NPC one.
+    //
+    // The first version asked only HasNpcBuyer, and after logs became a
+    // player-market good that made a lumberjack bank every log as "securing
+    // it" -- 570 BANK goals in one fleet session, packs emptied, and
+    // TRADE_WITH_PLAYER never once fired because there was no surplus left to
+    // announce. Banking a good you mean to sell is hoarding it whichever
+    // counter you were going to sell it over.
+    //
+    // A life that produces something HAS a market for it by definition: an NPC
+    // buys it, or a player does. The weight-driven bank clauses still catch a
+    // genuinely full pack, which is the case where banking really is the right
+    // answer.
+    return !cfg.profession->produces.empty();
 }
 
 bool GathersLogs(const NeedConfig& cfg) {
@@ -256,8 +266,19 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     //
     // Weaker than being broke: work first, errands second.
     if (cfg.profession) {
+        // Pack AND bank. Goods sitting in the box are still this character's
+        // stock -- it just has to go and fetch them, which is a step in the
+        // errand rather than a reason not to have one.
+        std::vector<market::Stock> holdings = obs.pack;
+        for (const market::Stock& b : obs.bank) {
+            bool merged = false;
+            for (market::Stock& h : holdings) {
+                if (h.item == b.item) { h.qty += b.qty; merged = true; break; }
+            }
+            if (!merged) holdings.push_back(b);
+        }
         const std::vector<market::Offer> spare =
-            market::Surplus(*cfg.profession, obs.pack, market::TradePolicy{});
+            market::Surplus(*cfg.profession, holdings, market::TradePolicy{});
         if (!spare.empty()) {
             // Urgency GROWS with the load, because "worth walking to town for"
             // is a question about quantity. Flat, it lost to gathering forever:

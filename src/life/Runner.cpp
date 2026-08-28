@@ -400,6 +400,36 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
 
+    // READ THE BOX while it is open, and KEEP what it said.
+    //
+    // A character that does not remember its own bank cannot sell what it
+    // banked -- it has no reason to walk to a box it does not know holds
+    // anything, so everything it ever gathered leaves the economy for good.
+    // This is not omniscience: it is remembering your own container, which is
+    // the most ordinary thing a player does.
+    obs.bankOpen = obs.atBank;
+    if (obs.atBank) {
+        const u32 box = client.BankContainer();
+        std::vector<market::Stock> fresh;
+        const usize n = client.ContainerItemCount(box);
+        for (usize i = 0; i < n; ++i) {
+            u32 serial = 0; u16 gfx = 0, amount = 0;
+            if (!client.ContainerItemAt(box, i, &serial, &gfx, &amount)) continue;
+            const char* name = econ::ItemNameForGraphic(gfx);
+            if (!name) continue;          // nothing we have a name for
+            if (amount == 0) amount = 1;
+            bool merged = false;
+            for (market::Stock& k : fresh) {
+                if (k.item == name) { k.qty += amount; merged = true; break; }
+            }
+            if (!merged) fresh.push_back({name, static_cast<i32>(amount)});
+        }
+        obs.bank = std::move(fresh);
+    } else {
+        // Away from the box: what the character REMEMBERS is what it has.
+        obs.bank = state_.bank;
+    }
+
     // The pack, as the M7 economy layer wants it: quantities keyed by itemdef
     // defname. Built from what THIS life produces and consumes, so the loop is
     // over a handful of names rather than every item on the shard. One name can
@@ -611,6 +641,13 @@ void Runner::SeedCommonKnowledge(Client& client, i64 nowMs) {
 }
 
 void Runner::LearnFromObservation(Client& client, const Observation& obs) {
+    // Keep what the open box said. Observe() is const by design -- it is the
+    // ephemeral half of the truth split -- so the remembering happens here,
+    // which is the function whose whole job is "what did I learn".
+    if (obs.bankOpen) {
+        state_.bank = obs.bank;
+        state_.bankSeenMs = obs.nowMs;
+    }
     // NOTHING is written here. Standing where trees are visible is not
     // knowledge worth keeping: doing so gave the character 64 imaginary
     // "stands" after one session, which it then preferred over asking the
@@ -2640,6 +2677,42 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
+    }
+
+    // --- collect the stock before selling it --------------------------------
+    //
+    // Everything this character ever gathered is in the bank, because banking
+    // is what it does when a pack fills. Announcing goods that are in a box on
+    // the other side of town is an offer it cannot honour, so the withdrawal
+    // is part of the errand.
+    if (obs.atBank) {
+        market::TradeIntent want;
+        std::vector<market::Stock> holdings = obs.pack;
+        for (const market::Stock& b : obs.bank) {
+            bool merged = false;
+            for (market::Stock& h : holdings) {
+                if (h.item == b.item) { h.qty += b.qty; merged = true; break; }
+            }
+            if (!merged) holdings.push_back(b);
+        }
+        if (market::ChooseSellOffer(*me, holdings, state_.prices, tradePolicy_,
+                                    &want)) {
+            const i32 inPack = market::QtyOf(obs.pack, want.item);
+            const i32 inBank = market::QtyOf(obs.bank, want.item);
+            if (inPack < want.qty && inBank > 0) {
+                const std::vector<u16> gfx = econ::GraphicsForItem(want.item.c_str());
+                const u32 serial = client.FindContainerItemByGraphic(
+                    client.BankContainer(), gfx.data(), gfx.size());
+                if (serial) {
+                    const i32 take = std::min(inBank, want.qty - inPack);
+                    LogLine("trade: withdrawing %d %s from the bank to sell",
+                            take, want.item.c_str());
+                    client.TakeFromContainer(serial, static_cast<u16>(take));
+                    nextActionMs_ = obs.nowMs + 2000;
+                    return false;
+                }
+            }
+        }
     }
 
     // --- nothing heard: stand where players are and announce ----------------
