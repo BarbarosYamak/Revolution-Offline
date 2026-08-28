@@ -160,12 +160,18 @@ const GoldFaucet kFaucets[] = {
 
 {"scroll_to_mage_shop", SourceType::VendorSale, "mage",
  "i_scroll_poison", "mage",
- HistoryEvidence::NotFullyConfirmed, RuntimeEvidence::LiveProven, Policy::Allow,
- "LIVE PROVEN on this shard -- a bot sold scribed scrolls to a mage shop and "
- "the purse moved. Revolution describes Inscription as an income profession "
- "but the archival statement about the NPC channel is weaker than the one for "
- "fishing, so the history stays NOT_FULLY_CONFIRMED. Live reality is not "
- "downgraded because the archive is vague"},
+ HistoryEvidence::Confirmed, RuntimeEvidence::LiveProven, Policy::Allow,
+ "CONFIRMED, and the wording matters because a heuristic was overruling this "
+ "row. Revolution's own players describe the channel directly -- \"people "
+ "were scribing scroll and selling scrolls to vendor make money\" -- and "
+ "scribing is one of the three named taps where gold enters this shard, "
+ "beside fishing and mob loot (docs/REVOLUTION_ECONOMY_FORUM_EVIDENCE.md). "
+ "This row read NOT_FULLY_CONFIRMED on the grounds that the archive was "
+ "vaguer than for fishing; it is not, and while it did, the closed-loop test "
+ "in MaySellToNpc refused every scroll a scribe wrote because it had bought "
+ "the blanks from the same mage. The margin pays for the skill and the time: "
+ "a blank costs 6 (topic 88176) and a resurrection scroll fetched 167-170 "
+ "(topic 49757)"},
 
 {"scroll_recall_to_mage_shop", SourceType::VendorSale, "mage",
  "i_scroll_recall", "mage",

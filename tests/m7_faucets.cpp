@@ -131,10 +131,15 @@ void TestTheAllowedFaucets() {
         Check(Allowed(scroll->policy), "and allowed");
         Check(scroll->runtime == RuntimeEvidence::LiveProven,
               "because it is LIVE PROVEN on this shard");
-        Check(scroll->history == HistoryEvidence::NotFullyConfirmed,
-              "while the ARCHIVAL claim stays not-fully-confirmed -- live "
-              "reality is not downgraded because the archive is vague, and "
-              "the archive is not overstated because the runtime works");
+        // This asserted NotFullyConfirmed on the grounds that the archive was
+        // vaguer about scrolls than about fish. It is not: Revolution's own
+        // players name the route -- "people were scribing scroll and selling
+        // scrolls to vendor make money" -- and it is one of the three taps
+        // where gold enters the shard. The understatement had teeth, because
+        // MaySellToNpc only lets a CONFIRMED row past its closed-loop test,
+        // so a scribe refused every scroll it had written.
+        Check(scroll->history == HistoryEvidence::Confirmed,
+              "and the archive confirms the route rather than merely hinting");
     }
 
     // MONSTER GOLD. Creation, not transfer: it did not come out of another

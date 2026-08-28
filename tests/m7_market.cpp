@@ -330,14 +330,35 @@ void TestNoClosedVendorLoop() {
     Check(MaySellToNpc(*mage, "i_scroll_poison", clean).allowed,
           "a scribe MAY sell a scroll it wrote -- one of the three taps");
 
-    // Now it bought the blank scroll from an NPC. vendor -> inscribe ->
-    // vendor touches the world nowhere; economy_arbitrage.py finds 66 such
-    // loops on this shard. Refused.
+    // Now it bought the blank scroll from an NPC. This used to be refused as a
+    // vendor -> inscribe -> vendor loop, and the assertion here said so. The
+    // premise was wrong, not the code: Revolution's own players describe that
+    // exact route -- "people were scribing scroll and selling scrolls to
+    // vendor make money" -- and scribing is one of the three named taps where
+    // gold enters this shard. What made it LOOK like arbitrage was our
+    // pricing: a stock blank scroll cost 10 against a 14-gold scroll. The
+    // forum puts a blank at 6 (topic 88176), and the itemdefs now agree.
+    //
+    // So the loop test is scoped to routes the archive does not cover, and a
+    // CONFIRMED faucet is sold even from bought inputs. The margin pays for
+    // the skill and the time.
     Ledger dirty = clean;
     dirty.Note(GoldFlow::DestroyedVendorPurchase, 40, "i_scroll_blank", 1000);
-    const SellRuling bad = MaySellToNpc(*mage, "i_scroll_poison", dirty);
-    Check(!bad.allowed, "a scroll written on an NPC-bought blank may NOT be sold");
-    Check(bad.reason != nullptr, "and the refusal says why");
+    const SellRuling documented = MaySellToNpc(*mage, "i_scroll_poison", dirty);
+    Check(documented.allowed,
+          "a documented faucet survives NPC-bought inputs");
+
+    // THE GUARD STILL HAS TO BITE where the archive is silent, or scoping it
+    // would just have disabled it. The recall scroll is the case: allowed as a
+    // faucet, but its history is only NOT_FULLY_CONFIRMED, so buying the blank
+    // from a vendor and selling the written scroll back to one is exactly the
+    // loop this test exists to catch. Same character, same shop, same bought
+    // input as the poison scroll above -- only the strength of the evidence
+    // differs, which is the whole point.
+    const SellRuling undocumented = MaySellToNpc(*mage, "i_scroll_recall", dirty);
+    Check(!undocumented.allowed,
+          "an UNdocumented route from NPC-bought inputs is still refused");
+    Check(undocumented.reason != nullptr, "and the refusal says why");
 
     // Buying something UNRELATED does not poison the sale.
     Ledger unrelated = clean;
@@ -491,11 +512,12 @@ void TestArbitrageGuardStillApplies() {
 
     Ledger dirty;
     dirty.Note(GoldFlow::DestroyedVendorPurchase, 40, "i_reag_nightshade", 1000);
-    // The mage produces spell scrolls, which are PlayerCrafted, so this is
-    // refused on the POLICY gate before the ledger is even consulted -- and
-    // that ordering is deliberate: the cheaper, more fundamental test first.
+    // A scribed scroll IS an NPC good on this shard -- see the note in
+    // TestArbitrage above and the faucet registry's own row. This assertion
+    // used to read the other way round, on a premise the forum record
+    // refutes.
     const SellRuling r = MaySellToNpc(*mg, "i_scroll_poison", dirty);
-    Check(!r.allowed, "a crafted scroll is not an NPC good");
+    Check(r.allowed, "a scribed scroll is one of the three gold taps");
 
     Check(!MaySellToNpc(*mg, "i_log", dirty).allowed,
           "and a life still may not sell what it does not produce");
