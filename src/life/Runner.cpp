@@ -106,6 +106,8 @@ wm::Service ServiceForTrade(const char* trade) {
         {"scribe",      wm::Service::Scribe},
         {"alchemist",   wm::Service::Alchemist},
         {"mage",        wm::Service::Mage},
+        {"fisher",      wm::Service::Fisherman},
+        {"cook",        wm::Service::Cook},
     };
     for (const Row& r : kRows) {
         if (std::strcmp(r.trade, trade) == 0) return r.service;

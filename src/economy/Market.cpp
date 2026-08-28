@@ -245,6 +245,27 @@ namespace {
 // player-market goods -- so today the filter returns nothing for either, and
 // that is correct rather than a gap in the table.
 const NpcBuyer kNpcBuyers[] = {
+    // --- the taps. These are the rows NpcBuyersFor can actually return -----
+    // Spell scrolls: the mage shop buys them back. tm_vend.scp:1848
+    // (VENDOR_B_MAGE_3RD, i_scroll_poison) and :1881 (VENDOR_B_MAGE_4TH,
+    // i_scroll_recall), both {10 15}. This is the scribe's income the owner
+    // named.
+    {"i_scroll_poison",      "mage"},
+    {"i_scroll_recall",      "mage"},
+    {"i_scroll_gate_travel", "mage"},
+    {"i_scroll_resurrection","mage"},
+    // Fish: tm_vend.scp:730 (VENDOR_B_COOK) and :1022 (VENDOR_B_FISHER),
+    // both {4 24}.
+    {"i_fish_big_1",         "fisher"},
+    {"i_fish_big_1",         "cook"},
+    {"i_fish_cut_raw",       "cook"},
+    {"i_fish_cut_raw",       "fisher"},
+
+    // --- refused by policy, kept for the record -----------------------------
+    // The rows below describe what the STOCK SCRIPTS allow. NpcBuyersFor
+    // filters them out, because on Revolution both are player-market goods.
+    // They stay so the table shows what was considered and rejected rather
+    // than looking like an oversight.
     // i_log -- :167 CARPENTER, :964 TINKER, :1273 PROVISIONER, :1451 BOWYER,
     //          :1685 WEAPONS_BLADED, :1722 WEAPONS_BLUNT, :1935 BLACKSMITH
     {"i_log",        "carpenter"},

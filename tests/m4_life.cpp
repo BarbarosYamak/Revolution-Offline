@@ -989,94 +989,74 @@ void TestIdentityId() {
 }
 
 // --------------------------------------------------------------------------
-// M7: a surplus is its own reason to go to town, and it has to be able to WIN
-// that argument against gathering more.
-void TestSurplusBeatsGatheringEventually() {
-    Section("needs: a load worth selling outranks chopping another tree");
+// M7: a surplus is a reason to go to town ONLY when somebody buys it.
+void TestSurplusNeedsSomewhereToGo() {
+    Section("needs: a surplus with no buyer is blocked, not a goal");
 
     const prof::Profession* lj = prof::Find("lumberjack_swordsman");
-    Check(lj != nullptr, "the catalogue lumberjack exists");
-    if (!lj) return;
+    const prof::Profession* mg = prof::Find("mage");
+    Check(lj && mg, "the two lives exist");
+    if (!lj || !mg) return;
 
-    life::NeedConfig cfg;
-    cfg.profession = lj;
-
-    life::BuildPlan plan = life::PlanFromProfession(*lj);
     life::Memory mem;
 
-    auto needFor = [&](i32 logs) {
+    auto needsFor = [&](const prof::Profession& p, const char* item, i32 qty) {
+        life::NeedConfig cfg;
+        cfg.profession = &p;
+        life::BuildPlan plan = life::PlanFromProfession(p);
         life::Observation obs;
         obs.inWorld = true;
         obs.hp = obs.hpMax = 25;
-        obs.gold = 1000;               // NOT broke -- this is the whole point
-        obs.logs = logs;
+        obs.gold = 1000;                        // NOT broke -- the whole point
         obs.weight = 10; obs.maxWeight = 500;   // nowhere near encumbered
-        obs.pack.push_back({"i_log", logs});
+        obs.pack.push_back({item, qty});
         obs.axeEquipped = true;
         return life::AssessNeeds(plan, mem, obs, cfg);
     };
 
-    auto scoreOf = [](const std::vector<life::Need>& needs, life::NeedKind k) {
-        double best = -1.0;
+    auto sellNeed = [](const std::vector<life::Need>& needs) -> const life::Need* {
         for (const life::Need& n : needs) {
-            if (n.kind == k && !n.blocked) best = std::max(best, n.urgency);
+            if (n.kind == life::NeedKind::NeedGold && n.what == "sell surplus") {
+                return &n;
+            }
         }
-        return best;
+        return nullptr;
     };
 
-    // Nothing spare: no reason to sell at all.
-    Check(scoreOf(needFor(0), life::NeedKind::NeedGold) < 0.0,
-          "an empty pack and a full purse produce no reason to sell");
-
-    // A few logs: keep working. The trip is not worth it yet.
-    const double small = scoreOf(needFor(6), life::NeedKind::NeedGold);
-    Check(small > 0.0, "six logs IS a surplus");
-
-    // A full load: the trip wins.
-    const double full = scoreOf(needFor(40), life::NeedKind::NeedGold);
-    Check(full > small, "urgency grows with the size of the load");
-
-    // The bit that actually matters, and that a flat urgency got wrong: at a
-    // full load the SELL goal must outrank gathering another tree, or the
-    // character chops until its pack overflows and never sells anything.
-    const std::vector<life::Need> loaded = needFor(40);
-    life::Planner planner;
-    life::Observation loadedObs;
-    loadedObs.inWorld = true;
-    loadedObs.hp = loadedObs.hpMax = 25;
-    loadedObs.gold = 1000;
-    loadedObs.logs = 40;
-    loadedObs.weight = 10; loadedObs.maxWeight = 500;
-    loadedObs.pack.push_back({"i_log", 40});
-    loadedObs.axeEquipped = true;
-    const std::vector<life::ScoredGoal> goals =
-        planner.Score(loaded, loadedObs, mem);
-    double sell = -1.0, gather = -1.0;
-    for (const life::ScoredGoal& g : goals) {
-        if (!g.feasible) continue;
-        if (g.kind == life::GoalKind::EarnGold)   sell = std::max(sell, g.score);
-        if (g.kind == life::GoalKind::GatherLogs) gather = std::max(gather, g.score);
+    // A LUMBERJACK. On Revolution logs go to players, never to an NPC, so
+    // after the sell-policy correction this life has no NPC route at all. The
+    // need must still be REPORTED -- the character really is carrying goods it
+    // cannot move -- but BLOCKED, or the goal wins the scoring, discovers on
+    // entry that nothing buys logs, completes with progress 0, and is re-picked
+    // two seconds later. That is the exhausted-area churn in a second costume.
+    const std::vector<life::Need> woodcutter = needsFor(*lj, "i_log", 40);
+    const life::Need* wood = sellNeed(woodcutter);
+    Check(wood != nullptr, "the surplus is still reported, not silently dropped");
+    if (wood) {
+        Check(wood->blocked, "and BLOCKED, because nothing buys a log");
+        Check(!wood->evidence.empty(), "with the reason spelled out");
     }
-    Check(sell > 0.0 && gather > 0.0, "both goals are on the board");
-    Check(sell > gather,
-          "with a full load, selling outranks chopping another tree");
 
-    // ...and with only a few logs it does NOT, or the character would walk to
-    // town after every second tree.
-    life::Observation lightObs = loadedObs;
-    lightObs.logs = 6;
-    lightObs.pack.clear();
-    lightObs.pack.push_back({"i_log", 6});
-    const std::vector<life::ScoredGoal> light =
-        planner.Score(needFor(6), lightObs, mem);
-    double sell2 = -1.0, gather2 = -1.0;
-    for (const life::ScoredGoal& g : light) {
-        if (!g.feasible) continue;
-        if (g.kind == life::GoalKind::EarnGold)   sell2 = std::max(sell2, g.score);
-        if (g.kind == life::GoalKind::GatherLogs) gather2 = std::max(gather2, g.score);
+    // A MAGE. Scrolls are one of the three taps, so this one does have a
+    // route, and the urgency has to grow with the load or it never outranks
+    // working -- flat, it lost to gathering every single time.
+    //
+    // The vectors are NAMED. Passing needsFor(...) straight into sellNeed()
+    // binds a pointer into a temporary that dies at the end of the full
+    // expression, and the resulting read is garbage that happens to look like
+    // a blocked need. This project has been bitten by exactly that once
+    // before, in M4.
+    const std::vector<life::Need> fewNeeds  = needsFor(*mg, "i_scroll_poison", 6);
+    const std::vector<life::Need> manyNeeds = needsFor(*mg, "i_scroll_poison", 40);
+    const life::Need* few  = sellNeed(fewNeeds);
+    const life::Need* many = sellNeed(manyNeeds);
+    Check(few && many, "a mage's scrolls are a surplus at both sizes");
+    if (few && many) {
+        Check(!few->blocked && !many->blocked,
+              "and NOT blocked -- the mage shop buys scrolls back");
+        Check(many->urgency > few->urgency,
+              "urgency grows with the size of the load");
     }
-    Check(gather2 > sell2,
-          "with six logs it keeps working instead of walking to town");
 }
 
 // --------------------------------------------------------------------------
@@ -1145,7 +1125,7 @@ int main(int argc, char** argv) {
     TestDangerHeatIsCapped();
     TestSchemaV1StillLoads();
     TestIdentityId();
-    TestSurplusBeatsGatheringEventually();
+    TestSurplusNeedsSomewhereToGo();
     TestUnsatisfiableNeedIsBlocked();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

@@ -272,10 +272,33 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             const i32 trip = std::max(1, cfg.surplusWorthTrip);
             const double frac = std::min(1.0, static_cast<double>(biggest) / trip);
             const double urgency = 0.15 + 0.40 * frac;
+            // IS THERE ANYWHERE TO TAKE IT? A surplus with no buyer is not a
+            // reason to go anywhere, and saying it is produces exactly the
+            // churn the exhausted-area fix cured: the goal wins the scoring,
+            // discovers on entry that nothing buys logs, completes with
+            // progress 0, and is re-picked two seconds later.
+            //
+            // After the Revolution correction this is the NORMAL case for a
+            // gatherer -- logs and ingots are player-market goods -- so it has
+            // to read as a legible blocked state rather than a loop.
+            std::string route;
+            for (const market::Offer& o : spare) {
+                if (market::HasNpcBuyer(o.item.c_str())) { route = "an NPC"; break; }
+                const KnownSupplier* buyer =
+                    mem.BestSupplier((std::string("buyer:") + o.item).c_str());
+                if (buyer) { route = buyer->name; break; }
+            }
             add(NeedKind::NeedGold, urgency, "sell surplus",
-                "carrying more of its own output than its own work needs",
-                Fmt("%d x %s spare, a load is %d", biggest,
-                    spare.front().item.c_str(), trip));
+                route.empty()
+                    ? "carrying its own output with nobody known to buy it"
+                    : "carrying more of its own output than its own work needs",
+                route.empty()
+                    ? Fmt("%d x %s spare, and no buyer known -- on this shard "
+                          "it is a player-market good", biggest,
+                          spare.front().item.c_str())
+                    : Fmt("%d x %s spare, a load is %d, buyer: %s", biggest,
+                          spare.front().item.c_str(), trip, route.c_str()),
+                route.empty());
         }
     }
 
