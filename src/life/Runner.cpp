@@ -199,6 +199,22 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.gold      = client.PlayerGold();
     obs.weight    = client.PlayerWeight();
     obs.maxWeight = client.PlayerMaxWeight();
+    if (obs.maxWeight <= 0) {
+        // The server only sends maxWeight when its status packet is flagged >= 5
+        // (Client.cpp OnStats), and this shard sends less -- so it is ALWAYS 0
+        // here and WeightFraction() was permanently 0. The character therefore
+        // never noticed it was full, never banked, and simply overflowed:
+        // "You put the logs at your feet. It is too heavy.."
+        //
+        // Derive it from the engine's own formula instead of guessing.
+        // CResourceCalc.cpp:24 -- 40 + STR * 3.5, plus a flat +60 for humans
+        // with the Strong Back racial. Tenths of stones there; PlayerWeight()
+        // is in whole stones, so this is the stone figure.
+        obs.maxWeight = 40 + (obs.str * 35) / 10;
+    }
+    // The server's own words are the definitive signal, and they arrive whether
+    // or not it ever told us a capacity.
+    obs.overloaded = client.JournalSaidSince("it is too heavy", overloadWatchMs_);
 
     obs.bandages = static_cast<i32>(client.BackpackItemCount(kBandage));
     obs.logs     = static_cast<i32>(client.BackpackItemCount(kLog));
@@ -416,6 +432,9 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
     // real Yew woods. A stand is recorded only where a chop YIELDED (see
     // DoGatherLogs), and leads come from HintResource.
     if (obs.atBank) {
+        bankTrips_ = 0;
+        // Pack emptied: stop reacting to the overflow message that got us here.
+        overloadWatchMs_ = client.JournalNowMs() + 1;
         state_.memory.NotePlace("bank", "bank", obs.x, obs.y, obs.z, obs.nowMs);
         if (!state_.memory.HasEvent("bank_learned")) {
             state_.memory.NoteEvent("bank_learned", "opened a bank box", "bank",
@@ -1248,7 +1267,13 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
 
 bool Runner::DoBank(Client& client, const Observation& obs) {
     const u32 box = client.BankContainer();
-    if (box && client.ContainerKnown(box)) {
+    // ONLY the serial is needed to deposit. Requiring ContainerKnown -- that
+    // the box's CONTENTS have arrived -- was wrong twice over: an EMPTY bank
+    // box sends no 0x3C at all, so the flag never flipped, and the character
+    // re-opened the bank every 2.5 seconds forever without ever putting
+    // anything in it. You do not need to know what is in a container to put
+    // something into it.
+    if (box) {
         if (client.ActionBusy()) return false;
         const u32 logs = client.FindBackpackItemByGraphic(kLog);
         if (logs) {
@@ -1271,17 +1296,35 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     const u32 banker = client.NearestMobileWithTrade("banker");
     if (banker) {
         client.ActionOpenBank(banker);
+        bankOpenedMs_ = obs.nowMs;
         nextActionMs_ = obs.nowMs + 2500;
         planner_.NoteProgress();
         return false;
     }
     if (!travelInFlight_) {
+        // BOUNDED. A trip that "arrives" without putting a banker in reach
+        // completes instantly, and without a counter this alternates
+        // start/clear forever -- the same no-op travel loop that pinned
+        // GATHER_LOGS, logged eight times a second.
+        if (++bankTrips_ > kMaxBankTrips) {
+            LogLine("goal_failed=BANK reason=\"%d trips and still no banker in "
+                    "reach; the pack stays full\"", bankTrips_ - 1);
+            state_.memory.NoteEvent("bank_unreachable",
+                                    "could not reach a banker", "", obs.x, obs.y,
+                                    obs.nowMs);
+            planner_.Finish(false, "no banker reachable", obs.nowMs);
+            bankTrips_ = 0;
+            nextActionMs_ = obs.nowMs + 30000;
+            return false;
+        }
         const KnownPlace* known = state_.memory.BestPlace("bank");
         if (known) {
-            LogLine("bank: returning to a remembered bank at %d,%d", known->x, known->y);
+            LogLine("bank: returning to a remembered bank at %d,%d (trip %d)",
+                    known->x, known->y, bankTrips_);
             travelInFlight_ = client.TravelToPoint(known->x, known->y, 2, "bank");
         } else {
-            LogLine("bank: no bank learned yet; asking the world model for one");
+            LogLine("bank: no bank learned yet; asking the world model for one "
+                    "(trip %d)", bankTrips_);
             travelInFlight_ = client.TravelToService(wm::Service::Banker);
         }
         if (!travelInFlight_) {
@@ -1289,13 +1332,24 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 10000;
         }
+        nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
     travelInFlight_ = false;
     if (!client.TravelSucceeded()) {
         LogLine("bank: the trip did not arrive (%s)", client.TravelFailureText());
         planner_.NoteAttempt(obs.nowMs);
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
     }
+    // Arrived. ASK WHO IS HERE before concluding there is no banker:
+    // NearestMobileWithTrade matches on the paperdoll title, and a title only
+    // arrives after a 0x98 name request. Without this the character stands
+    // next to a banker and reports none in reach.
+    LogLine("bank: arrived at %d,%d -- asking who is here", client.PlayerX(),
+            client.PlayerY());
+    client.ActionScanMobiles();
+    nextActionMs_ = obs.nowMs + 2500;
     return false;
 }
 

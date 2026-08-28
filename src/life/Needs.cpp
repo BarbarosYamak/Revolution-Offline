@@ -165,7 +165,14 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 
     // --- weight and banking ------------------------------------------------
     const double weightFrac = obs.WeightFraction();
-    if (weightFrac >= cfg.bankWeightFrac) {
+    if (obs.overloaded) {
+        // Already spilling onto the ground. Nothing else matters about the
+        // pack: every further log is dropped where anyone can take it.
+        add(NeedKind::NeedBank, 0.95, "deposit carried load",
+            "the pack has overflowed and logs are going on the floor",
+            Fmt("server said 'it is too heavy'; weight=%d/%d logs=%d",
+                obs.weight, obs.maxWeight, obs.logs));
+    } else if (weightFrac >= cfg.bankWeightFrac) {
         add(NeedKind::NeedBank, 0.6 + (weightFrac - cfg.bankWeightFrac),
             "deposit carried load",
             "close to the carry limit; further gathering is wasted",

@@ -181,6 +181,13 @@ private:
     double foeHpAtStart_ = -1.0;
     i64  lastBandageMs_ = 0;
     i64  lastDangerNoteMs_ = 0;   // one danger note per fight, not per tick
+    // Journal watermark for the overflow message. Moved forward once the pack
+    // has been emptied, so one past overflow does not pin BANK forever.
+    i64  overloadWatchMs_ = 0;
+    // Bounded bank trips, for the same reason gathering needed one.
+    static constexpr i32 kMaxBankTrips = 4;
+    i32  bankTrips_ = 0;
+    i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;
     bool travelInFlight_ = false;

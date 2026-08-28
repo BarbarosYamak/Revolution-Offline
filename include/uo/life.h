@@ -281,6 +281,10 @@ struct Observation {
 
     i32 gold = 0;
     i32 weight = 0, maxWeight = 0;
+    // The server said "it is too heavy" -- the pack overflowed and items are
+    // going on the floor. Definitive, and independent of whether the server
+    // ever told us a carry capacity.
+    bool overloaded = false;
 
     // Pack contents that matter to this build. Counted from the real backpack.
     i32  bandages = 0;
