@@ -83,6 +83,11 @@ const Row kMatrix[] = {
     {"i_hide",            VendorClass::WorldGathered},
     {"i_feather",         VendorClass::WorldGathered},
     {"i_fish_big_1",      VendorClass::WorldGathered},
+    {"i_fish_big_2",      VendorClass::WorldGathered},
+    {"i_fish_big_3",      VendorClass::WorldGathered},
+    {"i_fish_big_4",      VendorClass::WorldGathered},
+    {"i_fish_small",      VendorClass::WorldGathered},
+    {"i_fish_cut_cooked", VendorClass::WorldProcessed},
 
     // --- world-processed: a station did this, not a shopkeeper ---------------
     {"i_yarn_ball",       VendorClass::WorldProcessed},
@@ -216,8 +221,20 @@ const GraphicRow kGraphics[] = {
     {0x1541, "i_sash"},
     {0x1F03, "i_robe"},          {0x1F04, "i_robe"},
     {0x1F14, "i_rune_marker"},
+    // ALL FOUR big fish, plus the small one and the cooked steak. Only
+    // 0x09CC was listed, so a character that caught a fish of any other kind
+    // could not SEE it: the pack counter reads these names, Surplus() reads
+    // the pack, and the sell path reads Surplus. A live fisher pulled fish out
+    // of the sea and its own economy layer reported an empty hold.
+    // Ids from items/i_profession_cook_barkeep_baker.scp:703-740, 102-114
+    // and :1087.
     {0x09CC, "i_fish_big_1"},
+    {0x09CD, "i_fish_big_2"},
+    {0x09CE, "i_fish_big_3"},
+    {0x09CF, "i_fish_big_4"},
+    {0x0DD6, "i_fish_small"},
     {0x097A, "i_fish_cut_raw"},
+    {0x097B, "i_fish_cut_cooked"},
     // the eight Magery reagents -- UNKNOWN, and therefore refused
     {0x0F7A, "i_reag_black_pearl"},   {0x0F7B, "i_reag_blood_moss"},
     {0x0F84, "i_reag_garlic"},        {0x0F85, "i_reag_ginseng"},

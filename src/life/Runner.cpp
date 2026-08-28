@@ -3103,6 +3103,19 @@ void Runner::ResetTradeState() {
 // most of the loop waiting for an answer the server already gave, so the eight
 // seconds is a CEILING and the goal polls for a verdict.
 // ---------------------------------------------------------------------------
+// Every kind of fish the sea yields, counted as one catch. The graphic table
+// listed only i_fish_big_1 for a long while, so a character could pull a fish
+// out of the water and its own pack counter would report nothing -- the catch
+// was real, the blindness was ours (VendorPolicy.cpp kGraphics).
+static i32 FishInPack(const std::vector<market::Stock>& pack) {
+    static const char* kKinds[] = {"i_fish_big_1", "i_fish_big_2",
+                                   "i_fish_big_3", "i_fish_big_4",
+                                   "i_fish_small"};
+    i32 n = 0;
+    for (const char* k : kKinds) n += market::QtyOf(pack, k);
+    return n;
+}
+
 bool Runner::DoFish(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
@@ -3233,10 +3246,7 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
         // (core/regionresources.scp:64-90) and each REAPs its own item, so a
         // counter watching only i_fish_big_1 misses three catches in four --
         // and @Success is silent, so the pack count is the only proof.
-        const i32 caught = market::QtyOf(obs.pack, "i_fish_big_1") +
-                           market::QtyOf(obs.pack, "i_fish_big_2") +
-                           market::QtyOf(obs.pack, "i_fish_big_3") +
-                           market::QtyOf(obs.pack, "i_fish_big_4");
+        const i32 caught = FishInPack(obs.pack);
         // ...and Sphere announces a catch OUT LOUD as well: "You pull out a
         // fish!" (hardcoded, not in skill18_fishing.scp). In the cast4 live
         // run that sentence arrived at :07:12 and the pack counter never
@@ -3496,10 +3506,7 @@ bool Runner::DoFish(Client& client, const Observation& obs) {
             fishCastMs_ = obs.nowMs;
             fishCastJournalMs_ = client.JournalNowMs();
             fishX_ = water.x; fishY_ = water.y;
-            fishSeen_ = market::QtyOf(obs.pack, "i_fish_big_1") +
-                        market::QtyOf(obs.pack, "i_fish_big_2") +
-                        market::QtyOf(obs.pack, "i_fish_big_3") +
-                        market::QtyOf(obs.pack, "i_fish_big_4");
+            fishSeen_ = FishInPack(obs.pack);
             nextActionMs_ = obs.nowMs + kFishPollMs;
             return false;
         }

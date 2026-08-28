@@ -102,6 +102,32 @@ const GoldFaucet kFaucets[] = {
  "Revolution documented fish as sellable to NPC vendors, cooked or not; "
  "VENDOR_B_FISHER carries the BUY rows (tm_vend.scp:1022-1027, {4 24})"},
 
+{"fish_big_2_to_fisher", SourceType::VendorSale, "fisher",
+ "i_fish_big_2", "fisher",
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "the sea yields four kinds of big fish and VENDOR_B_FISHER buys every one "
+ "of them (tm_vend.scp:1022-1027, {4 24}); listing only the first left three "
+ "catches in four unsellable"},
+
+{"fish_big_3_to_fisher", SourceType::VendorSale, "fisher",
+ "i_fish_big_3", "fisher",
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "the sea yields four kinds of big fish and VENDOR_B_FISHER buys every one "
+ "of them (tm_vend.scp:1022-1027, {4 24}); listing only the first left three "
+ "catches in four unsellable"},
+
+{"fish_big_4_to_fisher", SourceType::VendorSale, "fisher",
+ "i_fish_big_4", "fisher",
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "the sea yields four kinds of big fish and VENDOR_B_FISHER buys every one "
+ "of them (tm_vend.scp:1022-1027, {4 24}); listing only the first left three "
+ "catches in four unsellable"},
+
+{"fish_small_to_fisher", SourceType::VendorSale, "fisher",
+ "i_fish_small", "fisher",
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "as the big fish; tm_vend.scp:1022-1027"},
+
 {"fish_steak_to_fisher", SourceType::VendorSale, "fisher",
  "i_fish_cut_raw", "fisher",
  HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,

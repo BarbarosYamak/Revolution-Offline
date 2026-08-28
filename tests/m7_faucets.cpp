@@ -13,6 +13,7 @@
 // No server, no MULs, no world data.
 
 #include "uo/faucets.h"
+#include "uo/vendor_policy.h"
 
 #include <cstdio>
 #include <cstring>
@@ -319,6 +320,27 @@ void TestRefusalReasonsAreSpecific() {
 
 }  // namespace
 
+// REGRESSION -- a live defect, not a hypothetical. The fisher pulled fish out
+// of the sea at Britain dock (run_m5/cast5.console.txt) and its own economy
+// layer reported an empty hold, because only 0x09CC of the four big-fish
+// graphics was mapped. The pack counter reads these names, Surplus() reads the
+// pack, and the sell path reads Surplus, so three catches in four were
+// unsellable and invisible. Ids: items/i_profession_cook_barkeep_baker.scp.
+void TestEveryFishIsVisible() {
+    Section("fish: every kind the sea yields can be seen and sold");
+    const struct { u16 gfx; const char* name; } kFish[] = {
+        {0x09CC, "i_fish_big_1"}, {0x09CD, "i_fish_big_2"},
+        {0x09CE, "i_fish_big_3"}, {0x09CF, "i_fish_big_4"},
+        {0x0DD6, "i_fish_small"},
+    };
+    for (const auto& f : kFish) {
+        const char* n = uo::econ::ItemNameForGraphic(f.gfx);
+        Check(n && std::strcmp(n, f.name) == 0, f.name);
+        Check(!uo::econ::GraphicsForItem(f.name).empty(), f.name);
+        Check(uo::faucet::AllowedForItem(f.name) != nullptr, f.name);
+    }
+}
+
 int main() {
     std::printf("m7_faucets\n");
     TestEveryRowIsAuditable();
@@ -329,6 +351,7 @@ int main() {
     TestLookups();
     TestEnumNamesDoNotCollide();
     TestRefusalReasonsAreSpecific();
+    TestEveryFishIsVisible();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

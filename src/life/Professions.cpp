@@ -357,7 +357,11 @@ const std::vector<Profession>& All() {
             p.gathers = "fish";
             // Cooked fish is worth about 1gp more than raw, so the cooking
             // half is a real if small margin rather than decoration.
-            p.produces = {"i_fish_big_1", "i_fish_cut_raw", "i_fish_cut_cooked"};
+            // All four kinds the sea yields, or three quarters of a catch is
+            // invisible to the economy layer.
+            p.produces = {"i_fish_big_1", "i_fish_big_2", "i_fish_big_3",
+                          "i_fish_big_4", "i_fish_small",
+                          "i_fish_cut_raw", "i_fish_cut_cooked"};
             p.tools = {{"fishing pole", V(kFishingPole, 2), true}};
             p.consumables = {Food()};
             p.riskTolerance = 0.20;      // stands on a dock; avoids everything

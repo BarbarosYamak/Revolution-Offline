@@ -223,7 +223,11 @@ add_test(NAME m7_market COMMAND m7_market)
 # registry keeps that apart from what the shard actually intended -- including
 # that BLOCKED, UNKNOWN and REFUSED stay three distinct answers.
 add_executable(m7_faucets m7_faucets.cpp
-    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp)
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    # The fish-visibility regression needs the graphic tables themselves: the
+    # defect was a gap between a faucet row and the graphic it is reachable by.
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp)
 target_include_directories(m7_faucets PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
