@@ -1,6 +1,7 @@
 #include "Client.h"
 
 #include "bot/Scenario.h"
+#include "life/Runner.h"
 #include "uo/actions.h"
 #include "uo/sphere_rules.h"
 #include "uo/vendor_policy.h"
@@ -242,6 +243,35 @@ bool Client::Start() {
         LogInfo("[scenario] loaded '%s'\n", cfg_.scenarioPath);
     }
 
+    if (cfg_.autonomous) {
+        if (scenario_) {
+            // Two decision-makers for one body is not a configuration, it is a
+            // bug waiting for a live run to expose it.
+            LogError("[life] --autonomous and --scenario are mutually exclusive\n");
+            LogEvent("life_config_failed", "scenario and autonomous both set");
+            exitCode_ = 5; finished_ = true; return false;
+        }
+        life::RunnerConfig lc;
+        lc.dataRoot = (cfg_.botDataRoot && cfg_.botDataRoot[0]) ? cfg_.botDataRoot
+                                                                : "bot_data";
+        lc.accountName = cfg_.username ? cfg_.username : "";
+        lc.characterName = (cfg_.charName && cfg_.charName[0]) ? cfg_.charName
+                                                               : lc.accountName;
+        lc.sessionLimitMs = static_cast<i64>(cfg_.lifeMinutes) * 60 * 1000;
+        lc.goalLimit = cfg_.lifeGoalLimit;
+        lifeRunner_ = std::make_unique<life::Runner>();
+        std::string lerr;
+        if (!lifeRunner_->Configure(lc, &lerr)) {
+            LogError("[life] %s\n", lerr.c_str());
+            LogEvent("life_config_failed", lerr.c_str());
+            lifeRunner_.reset();
+            exitCode_ = 5; finished_ = true; return false;
+        }
+        LogInfo("[life] autonomous player active for '%s' (data root '%s', "
+                "session limit %d min)\n",
+                lc.characterName.c_str(), lc.dataRoot.c_str(), cfg_.lifeMinutes);
+    }
+
     lastActivity_ = std::chrono::steady_clock::now();
     return true;
 }
@@ -437,6 +467,10 @@ void Client::Tick(int waitMs) {
             // trigger the lazy load themselves, and a scenario is entitled to
             // ask "which region am I in" before it asks to travel anywhere.
             EnsureWorldKnowledge();
+            // The autonomous player decides here, for the same reason the
+            // scenario runs above: it drives travel through the public API,
+            // so its requests must be in flight before TravelTick pumps them.
+            if (lifeRunner_ && !lifeRunner_->Finished()) lifeRunner_->Tick(*this, NowMs());
             // Travel drives the tile A* through ActionGoto, so it has to run
             // before BotTick pumps the steps it queued.
             TravelTick();
@@ -3711,6 +3745,12 @@ void Client::SetMobileEquipLayer(u32 mobileSerial, u32 itemSerial, u8 layer,
 u32 Client::PlayerEquipSerialAt(u8 layer) const {
     for (const auto& e : playerEquip_)
         if (e.layer == layer) return e.serial;
+    return 0;
+}
+
+u16 Client::EquippedGraphicAt(u8 layer) const {
+    for (const auto& e : playerEquip_)
+        if (e.layer == layer) return e.graphic;
     return 0;
 }
 

@@ -14,6 +14,7 @@
 #include "uo/travel_mode.h"
 #include "uo/combat_policy.h"
 #include "uo/rules.h"
+#include "uo/world.h"
 
 #include "uo/endian.h"
 
@@ -1462,6 +1463,118 @@ bool Client::CloseGump() {
     SendGumpResponse(gump_.serial, gump_.context, 0, nullptr, 0);
     gump_ = ActiveGump{};
     return true;
+}
+
+// ---------------------------------------------------------------------------
+// M4 world/perception helpers for the life layer.
+//
+// Both of these answer questions a HUMAN CLIENT can answer. The tree lookup
+// reads the shard's own statics, which every client is sent; the hostile scan
+// reads notoriety and the health bar, which is what a player sees over a
+// mobile's head. Neither reaches for anything the server does not send.
+// ---------------------------------------------------------------------------
+
+namespace {
+
+// THE SHARD'S OWN LIST, not a name heuristic.
+//
+// Every graphic here carries `TYPE=t_tree` in runtime/scripts/items/
+// i_vegetation.scp -- 51 of them, extracted from the itemdefs rather than
+// guessed. That distinction is load-bearing: the first M4 live run filtered
+// statics by "the tiledata name contains 'tree'", which also matches
+// decorative foliage and canopy tiles, and Source-X answered every swing with
+// `It appears immune to your blow` (CClientTarg.cpp:1990 -- the target
+// resolved to an item that is not a harvestable type).
+//
+// A static NOT in this list cannot be chopped on this shard, however much its
+// name looks like a tree.
+constexpr u16 kTreeGraphics[] = {
+    0x224A, 0x224B, 0x224C, 0x224D, 0x246C, 0x2476, 0x247D, 0x26ED,
+    0x309C, 0x30BD, 0x30C3, 0x30C8, 0x30CF, 0x30D4, 0x30DA, 0x9E38,
+    0x0CCA, 0x0CCB, 0x0CCC, 0x0CCD, 0x0CD0, 0x0CD3, 0x0CD6, 0x0CD8,
+    0x0CD9, 0x0CDA, 0x0CDD, 0x0CE0, 0x0CE3, 0x0CE6, 0x0CF8, 0x0CFB,
+    0x0CFE, 0x0D01, 0x0D41, 0x0D42, 0x0D43, 0x0D44, 0x0D57, 0x0D58,
+    0x0D59, 0x0D5A, 0x0D5B, 0x0D6E, 0x0D6F, 0x0D70, 0x0D71, 0x0D72,
+    0x0D84, 0x0D85, 0x0D86,
+};
+
+bool GraphicIsTree(u16 graphic) {
+    for (u16 g : kTreeGraphics) {
+        if (g == graphic) return true;
+    }
+    return false;
+}
+
+}  // namespace
+
+bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_) return false;
+    if (radius < 0) radius = 0;
+
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(x, y, radius, hits);
+
+    bool found = false;
+    i32 bestDist = 0;
+    for (const world::StaticHit& h : hits) {
+        if (!GraphicIsTree(h.itemId)) continue;
+        const i32 dx = h.x > x ? h.x - x : x - h.x;
+        const i32 dy = h.y > y ? h.y - y : y - h.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (found && d >= bestDist) continue;
+        bestDist = d;
+        out->x = h.x;
+        out->y = h.y;
+        out->z = h.z;
+        out->graphic = h.itemId;
+        found = true;
+    }
+    return found;
+}
+
+int Client::TreeCount(i32 x, i32 y, int radius) {
+    if (!EnsureWorldLoaded() || !world_) return 0;
+    if (radius < 0) radius = 0;
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(x, y, radius, hits);
+    int n = 0;
+    for (const world::StaticHit& h : hits) {
+        if (GraphicIsTree(h.itemId)) ++n;
+    }
+    return n;
+}
+
+int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {
+    out.clear();
+    if (maxDist < 0) maxDist = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        // Notoriety is the whole filter, and it is deliberately conservative.
+        // 1 = innocent (the farm animals a guard will execute us over),
+        // 2 = guild ally, 7 = invulnerable (guards, some NPCs). Everything
+        // else -- gray, orange, red -- is something a player may lawfully
+        // fight. A mobile whose notoriety has not arrived yet (0) is NOT
+        // assumed hostile: an unknown is not a target.
+        if (m.noto == 0 || m.noto == 1 || m.noto == 2 || m.noto == 7) continue;
+        const i32 dx = m.x > playerX_ ? m.x - playerX_ : playerX_ - m.x;
+        const i32 dy = m.y > playerY_ ? m.y - playerY_ : playerY_ - m.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (d > maxDist) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        h.x = m.x;
+        h.y = m.y;
+        h.z = m.z;
+        h.noto = m.noto;
+        h.hpCur = m.hpCur;
+        h.hpMax = m.hpMax;
+        h.warMode = m.warMode;
+        const char* name = MobileName(m.serial);
+        h.name = name ? name : "";
+        out.push_back(std::move(h));
+    }
+    return static_cast<int>(out.size());
 }
 
 } // namespace uo

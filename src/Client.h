@@ -59,6 +59,7 @@ struct CharEntry {
 
 namespace js { struct ClientBindings; }  // friend: live JS bindings (ClientBindings.cpp)
 namespace bot { class Scenario; }        // M1 scripted action runner (bot/Scenario.h)
+namespace life { class Runner; }        // M4 autonomous player (life/Runner.h)
 
 class Client {
 public:
@@ -115,6 +116,14 @@ public:
         const char* sessionTag;       // short id used in logs ("bot01"); nullptr = none
         bool        enableStdin;      // read console commands (single-session only)
         const char* scenarioPath;     // optional scripted action list (nullptr = none)
+        // --- M4 autonomous player --------------------------------------
+        // A Scenario is a list somebody wrote; a life is a loop the character
+        // runs itself. They are mutually exclusive: handing the same body to
+        // both would have two things deciding where to walk.
+        bool        autonomous = false;
+        const char* botDataRoot = nullptr;    // nullptr -> "bot_data"
+        i32         lifeMinutes = 30;         // session length before a clean logout
+        i32         lifeGoalLimit = 0;        // 0 = no goal-count limit
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
@@ -389,6 +398,13 @@ public:
     i32  PlayerWeight() const { return player_.weight; }
     i32  PlayerMaxWeight() const { return player_.maxWeight; }
     u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
+    // The GRAPHIC of our own worn item on `layer`, or 0. The server tells a
+    // client what its character is wearing (0x1A/0x2E), so this is ordinary
+    // client knowledge -- and it is the only way to answer "is the thing in my
+    // hand an axe or the katana the newbie kit gave me", which a serial alone
+    // cannot. M4 needs that distinction: swinging a katana at a tree earns
+    // "The tool is out of charges" forever.
+    u16  EquippedGraphicAt(u8 layer) const;
     bool PlayerIsMounted() const;
     void ActionDismount();
     bool ContainerKnown(u32 serial) const;
@@ -477,6 +493,40 @@ public:
     bool WithinRegion(const char* nameOrId) const;
     bool WorldKnowledgeReady();
     const char* WorldKnowledgeError();
+
+    // M4: the nearest choppable tree to (x, y), from the SHARD'S OWN statics.
+    // A tree is a static whose tiledata name contains "tree" and does not
+    // contain "leaves" -- the same test scripts/js/lumberjack.js uses, kept
+    // here so the C++ life layer does not need a second definition of one.
+    //
+    // This is world DATA, not world KNOWLEDGE: every character sees the same
+    // statics, exactly as every human client does. What a character has
+    // LEARNED about a stand lives in its own memory and is never shared.
+    struct TreeHit { i32 x = 0; i32 y = 0; i8 z = 0; u16 graphic = 0; };
+    bool NearestTree(i32 x, i32 y, int radius, TreeHit* out);
+    // How many trees are within `radius`. Used to answer "am I actually
+    // standing where the work is", which travel success does not answer.
+    int  TreeCount(i32 x, i32 y, int radius);
+
+    // M4: what a HUMAN PLAYER would read off the screen about nearby mobiles.
+    // Notoriety hue and the health bar, nothing else -- no HitsMax, no karma,
+    // no fight mode. A bot that could see a monster's true maximum hit points
+    // would be reasoning about data no client is ever sent.
+    struct HostileHit {
+        u32 serial = 0;
+        i32 x = 0, y = 0;
+        i8  z = 0;
+        u8  noto = 0;          // 1 blue, 2 green, 3/4 gray, 5 orange, 6 red, 7 yellow
+        i32 hpCur = -1, hpMax = -1;
+        std::string name;
+        bool warMode = false;
+    };
+    // Mobiles within `maxDist` whose notoriety marks them as something a
+    // player may lawfully fight. Innocent (blue) and guild-green are excluded
+    // BY DESIGN: attacking a town's livestock flags the character criminal,
+    // the flag persists across sessions, and a guard executes it -- which is
+    // how this project lost a character in M3.9.
+    int ScanHostiles(int maxDist, std::vector<HostileHit>& out) const;
 
     // Per-character knowledge. Session-owned: never shared, never static.
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }
@@ -790,11 +840,19 @@ private:
 
     // --- M3 bot -----------------------------------------------------------
     bool EnsureWorldLoaded();
+public:
     // Show a chopped/depleted tree at (x,y,z) as a stump in the world view for
     // `ttlMs` (<=0 uses the default). In-memory only (uo::map::StumpOverlay);
     // it reverts on its own once the TTL lapses. `treeGraphic` is the live tree
-    // static id to replace. Exposed to JS as World.markStump.
+    // static id to replace. Exposed to JS as World.markStump, and used by the
+    // M4 life layer for the same reason: a depleted tree it has already worked
+    // must stop being offered as the nearest one.
+    //
+    // Public, and it changes NOTHING on the server -- it is a note this client
+    // keeps about what it saw, exactly like a player remembering which tree
+    // they just emptied.
     void MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs = 0);
+private:
     void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0,
                       bool terrainBias = true);
     void BotStartFollow(u32 serial, u32 followDistance);
@@ -1229,6 +1287,7 @@ private:
     bool  logoutAcked_ = false;          // server answered 0xD1
     bool  charCreateSent_ = false;       // 0x00 sent; don't loop on it
     std::unique_ptr<bot::Scenario> scenario_;
+    std::unique_ptr<life::Runner>  lifeRunner_;
 
     // --- M2 action state (all session-owned) -------------------------------
     act::Action    action_;

@@ -1,0 +1,929 @@
+// M4 Slice 1: the persistent-life layer, tested without a server.
+//
+//   * the JSON subset the state file is written in -- round trip, escapes,
+//     and a parse failure that reports WHERE
+//   * build-plan legality: the 700-point budget, the 225/100 stat rule, the
+//     inactive-skill refusal, and the creation split that killed six characters
+//   * memory: proximity dedupe, exponential danger decay, bounded histories
+//   * the need model: what it says and, more importantly, WHY
+//   * the utility planner: hard filters, additive scoring, commitment,
+//     hysteresis and bounded failure
+//   * persistence: schema round trip, forward-version refusal, atomic save
+//   * login reconciliation: the server wins, and an older save never rolls
+//     server progression back
+//
+// No server, no MULs, no world data. The store test writes into a temp dir
+// passed by CTest.
+
+#include "uo/json.h"
+#include "uo/life.h"
+#include "uo/rules.h"
+
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <vector>
+
+namespace {
+
+int g_checks = 0;
+int g_failures = 0;
+
+void Check(bool ok, const char* what) {
+    ++g_checks;
+    if (!ok) {
+        ++g_failures;
+        std::printf("  FAIL: %s\n", what);
+    }
+}
+
+void Section(const char* name) { std::printf("[%s]\n", name); }
+
+using namespace uo;
+
+// --------------------------------------------------------------------------
+void TestJsonRoundTrip() {
+    Section("json: round trip and errors");
+
+    json::Value root = json::Value::MakeObject();
+    root.Set("schema_version", static_cast<i64>(1));
+    root.Set("name", std::string("Bal\"tazar\\ \n\t"));
+    root.Set("ratio", 0.5);
+    root.Set("flag", true);
+    root.Set("nothing", json::Value());
+    json::Value arr = json::Value::MakeArray();
+    arr.Push(static_cast<i64>(1));
+    arr.Push(static_cast<i64>(-2));
+    json::Value inner = json::Value::MakeObject();
+    inner.Set("deep", std::string("yes"));
+    arr.Push(std::move(inner));
+    root.Set("list", std::move(arr));
+
+    const std::string text = root.Serialize(2);
+    json::ParseError err;
+    const json::Value back = json::Parse(text, &err);
+    Check(!err.failed, "a document we wrote parses back");
+    Check(back["schema_version"].AsInt(0) == 1, "integer survives the trip");
+    Check(back["name"].AsString() == "Bal\"tazar\\ \n\t", "escapes survive the trip");
+    Check(back["ratio"].AsDouble(0.0) == 0.5, "fraction survives the trip");
+    Check(back["flag"].AsBool(false), "bool survives the trip");
+    Check(back["nothing"].isNull(), "null survives the trip");
+    Check(back["list"].Size() == 3, "array length survives the trip");
+    Check(back["list"].At(1).AsInt(0) == -2, "negative number survives the trip");
+    Check(back["list"].At(2)["deep"].AsString() == "yes", "nested object survives");
+
+    // A big millisecond stamp must not drift through a double.
+    json::Value stamp = json::Value::MakeObject();
+    stamp.Set("at", static_cast<i64>(1772150400123LL));
+    const json::Value stampBack = json::Parse(stamp.Serialize(0), nullptr);
+    Check(stampBack["at"].AsInt(0) == 1772150400123LL,
+          "a millisecond timestamp round-trips exactly");
+
+    // Missing and wrong-typed fields fall back rather than guessing.
+    Check(back["absent"].AsInt(42) == 42, "absent field returns the caller's default");
+    Check(back["name"].AsInt(7) == 7, "wrong-typed field returns the caller's default");
+    Check(back["absent"]["deeper"].AsString("d") == "d", "chained lookup on null is safe");
+
+    // \u escapes, including a surrogate pair.
+    const json::Value uni = json::Parse("{\"s\":\"\\u00e7\\ud83d\\ude00\"}", &err);
+    Check(!err.failed, "unicode escapes parse");
+    Check(uni["s"].AsString() == "\xc3\xa7\xf0\x9f\x98\x80",
+          "BMP escape and surrogate pair both decode to UTF-8");
+
+    json::ParseError bad;
+    json::Parse("{\"a\": }", &bad);
+    Check(bad.failed, "malformed JSON fails");
+    Check(!bad.message.empty(), "the failure names a reason");
+
+    json::ParseError trailing;
+    json::Parse("{} junk", &trailing);
+    Check(trailing.failed, "trailing data is a failure, not ignored");
+}
+
+// --------------------------------------------------------------------------
+void TestBuildPlanLegality() {
+    Section("build plan: 700 points, 225/100 stats");
+
+    const rules::Profile& p = rules::Revolution();
+    const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+    const life::PlanCheck ok = life::ValidatePlan(p, plan);
+
+    Check(ok.ok, "the Slice 1 character's plan is legal");
+    Check(ok.resolvedTenths == 5000, "five named skills at 100.0 = 500.0 resolved");
+    Check(plan.unresolvedTenths == 2000,
+          "200.0 is left UNRESOLVED on purpose, not silently filled");
+    Check(ok.plannedTotalTenths == p.totalSkillCapTenths,
+          "resolved + unresolved is exactly the 700-point budget");
+    Check(ok.statTotal == 225, "target stats sum to exactly 225");
+    Check(plan.targetStr <= 100 && plan.targetDex <= 100 && plan.targetInt <= 100,
+          "no target stat exceeds 100");
+    Check(plan.createStr + plan.createDex + plan.createInt == 80,
+          "the creation request matches the server's own 80-point ceiling");
+    Check(plan.createStr == 40 && plan.createDex == 35 && plan.createInt == 5,
+          "the creation split is the measured survivor, 40/35/5");
+
+    i32 createSkillTotal = 0;
+    for (const life::SkillTarget& s : plan.createSkills) createSkillTotal += s.tenths;
+    Check(createSkillTotal == 1000,
+          "creation skills sum to the server's 100.0 ceiling");
+
+    // The kit matters as much as the skill: Lumberjacking is what hands over
+    // the hatchet, and without it the whole economic loop cannot start.
+    bool asksLumberjacking = false, asksSwords = false, asksHealing = false;
+    for (const life::SkillTarget& s : plan.createSkills) {
+        if (s.skillId == rules::kLumberjacking) asksLumberjacking = true;
+        if (s.skillId == rules::kSwordsmanship) asksSwords = true;
+        if (s.skillId == rules::kHealing)       asksHealing = true;
+    }
+    Check(asksLumberjacking, "creation asks for Lumberjacking (the hatchet)");
+    Check(asksSwords, "creation asks for Swordsmanship (the katana)");
+    Check(asksHealing, "creation asks for Healing (50 bandages)");
+
+    // --- refusals ----------------------------------------------------------
+    {
+        life::BuildPlan over = plan;
+        over.unresolvedTenths = 2001;
+        const life::PlanCheck c = life::ValidatePlan(p, over);
+        Check(!c.ok && c.violation == life::PlanViolation::SkillBudgetExceeded,
+              "700.1 points is refused");
+    }
+    {
+        life::BuildPlan tall = plan;
+        tall.skills[0].tenths = 1001;
+        const life::PlanCheck c = life::ValidatePlan(p, tall);
+        Check(!c.ok && c.violation == life::PlanViolation::PerSkillCap,
+              "a skill above 100.0 is refused");
+    }
+    {
+        // The uo-offline T2A dexxer template carries MagicResist. Revolution
+        // did not run it, and a generic T2A template is not evidence about
+        // Revolution -- so the plan validator must reject it outright.
+        life::BuildPlan resist = plan;
+        resist.skills.push_back({rules::kMagicResistance, 100});
+        resist.unresolvedTenths = 1900;
+        const life::PlanCheck c = life::ValidatePlan(p, resist);
+        Check(!c.ok && c.violation == life::PlanViolation::InactiveSkill,
+              "Resisting Spells is refused as an inactive skill");
+        Check(c.skillId == rules::kMagicResistance, "the refusal names the skill");
+    }
+    {
+        life::BuildPlan fat = plan;
+        fat.targetInt = 26;    // 100 + 100 + 26
+        const life::PlanCheck c = life::ValidatePlan(p, fat);
+        Check(!c.ok && c.violation == life::PlanViolation::StatTotalExceeded,
+              "226 total stats is refused");
+    }
+    {
+        life::BuildPlan tallStat = plan;
+        tallStat.targetStr = 101;
+        tallStat.targetDex = 99;
+        tallStat.targetInt = 25;
+        const life::PlanCheck c = life::ValidatePlan(p, tallStat);
+        Check(!c.ok && c.violation == life::PlanViolation::StatPerCapExceeded,
+              "a single stat above 100 is refused even when the total fits");
+    }
+    {
+        life::BuildPlan rich = plan;
+        rich.createStr = 60; rich.createDex = 60; rich.createInt = 60;
+        const life::PlanCheck c = life::ValidatePlan(p, rich);
+        Check(!c.ok && c.violation == life::PlanViolation::CreationTooRich,
+              "a creation request the server would clamp is refused up front");
+    }
+    {
+        // Six characters died on this split; one from full health in about
+        // 34 seconds. It is refused by value, not by warning.
+        life::BuildPlan doomed = plan;
+        doomed.createStr = 55; doomed.createDex = 15; doomed.createInt = 10;
+        const life::PlanCheck c = life::ValidatePlan(p, doomed);
+        Check(!c.ok && c.violation == life::PlanViolation::RejectedCreationSplit,
+              "the rejected 55/15/10 creation split cannot be reused");
+    }
+}
+
+// --------------------------------------------------------------------------
+void TestMemory() {
+    Section("memory: dedupe, decay, bounds");
+
+    life::Memory mem;
+    const i64 t0 = 1000000;
+
+    mem.NotePlace("bank", "Britain bank", 1820, 2824, 0, t0);
+    mem.NotePlace("bank", "Britain bank", 1822, 2825, 0, t0 + 1000);
+    Check(mem.Places().size() == 1,
+          "two sightings a few tiles apart are one remembered place");
+    Check(mem.Places()[0].visits == 2, "the revisit is counted");
+
+    mem.NotePlace("bank", "Minoc bank", 2500, 550, 0, t0 + 2000);
+    Check(mem.Places().size() == 2, "a bank in another city is a different place");
+
+    mem.NoteResource("logs", 1776, 2774, 0, true, t0);
+    mem.NoteResource("logs", 1778, 2776, 0, true, t0 + 500);
+    mem.NoteResource("logs", 1778, 2776, 0, false, t0 + 900);
+    Check(mem.Resources().size() == 1, "one stand, not three");
+    Check(mem.Resources()[0].successes == 2 && mem.Resources()[0].failures == 1,
+          "successes and failures are tracked separately");
+
+    // --- danger decays rather than switching off --------------------------
+    mem.NoteDanger(1900, 2800, 12, "grey wolf", 1.0, t0);
+    const double atOnce = mem.DangerHeatAt(1900, 2800, t0);
+    const double oneHalfLife = mem.DangerHeatAt(1900, 2800, t0 + life::kDangerHalfLifeMs);
+    const double twoHalfLives =
+        mem.DangerHeatAt(1900, 2800, t0 + 2 * life::kDangerHalfLifeMs);
+    Check(atOnce > 0.99 && atOnce < 1.01, "fresh danger reads at full heat");
+    Check(oneHalfLife > 0.49 && oneHalfLife < 0.51, "one half-life halves the heat");
+    Check(twoHalfLives > 0.24 && twoHalfLives < 0.26, "decay is exponential");
+    Check(mem.DangerHeatAt(4000, 1000, t0) == 0.0, "danger is local, not global");
+
+    // Trouble at the same spot compounds ON TOP OF the decayed value, so a
+    // place that keeps killing you stays hot and a single scare fades.
+    mem.NoteDanger(1901, 2801, 12, "grey wolf", 1.0, t0 + life::kDangerHalfLifeMs);
+    const double compounded =
+        mem.DangerHeatAt(1900, 2800, t0 + life::kDangerHalfLifeMs);
+    Check(compounded > 1.49 && compounded < 1.51,
+          "a second scare compounds onto the decayed heat, not the original");
+
+    mem.ExpireDanger(t0 + 40 * life::kDangerHalfLifeMs);
+    Check(mem.Dangers().empty(), "fully decayed danger is pruned");
+
+    // --- bounded history ---------------------------------------------------
+    for (int i = 0; i < static_cast<int>(life::kMaxEvents) + 50; ++i) {
+        mem.NoteEvent("chop", "one log", "forest", 1776, 2774, t0 + i);
+    }
+    Check(mem.Events().size() == life::kMaxEvents,
+          "the event history is a bounded ring, not an unbounded log");
+    Check(mem.Events().back().atMs == t0 + static_cast<i64>(life::kMaxEvents) + 49,
+          "the newest event is kept");
+
+    // --- suppliers: recorded, but only returned when policy allows --------
+    life::KnownSupplier refused;
+    refused.need = "cloth";
+    refused.name = "a weaver";
+    refused.serial = 0x1234;
+    refused.policyAllows = false;
+    refused.lastVerifiedMs = t0;
+    mem.NoteSupplier(refused);
+    Check(mem.Suppliers().size() == 1,
+          "a policy-refused supplier is still recorded as a fact about the world");
+    Check(mem.BestSupplier("cloth") == nullptr,
+          "a policy-refused supplier is never returned as usable");
+
+    life::KnownSupplier allowed = refused;
+    allowed.need = "hatchet";
+    allowed.name = "a smith";
+    allowed.serial = 0x5678;
+    allowed.policyAllows = true;
+    mem.NoteSupplier(allowed);
+    Check(mem.BestSupplier("hatchet") != nullptr, "an allowed supplier is returned");
+}
+
+// --------------------------------------------------------------------------
+life::Observation HealthyLumberjackAtWork() {
+    life::Observation obs;
+    obs.nowMs = 5000000;
+    obs.inWorld = true;
+    obs.x = 1776; obs.y = 2774;
+    obs.hp = 60; obs.hpMax = 60;
+    obs.str = 40; obs.dex = 35; obs.intel = 5;
+    obs.gold = 400;
+    obs.weight = 100; obs.maxWeight = 400;
+    obs.bandages = 40;
+    obs.food = 3;
+    obs.axeInPack = true;
+    obs.axeEquipped = true;
+    obs.weaponEquipped = true;
+    obs.atWorkSite = true;
+    obs.treeAdjacent = true;
+    obs.skills = {
+        {rules::kLumberjacking, 350},
+        {rules::kSwordsmanship, 400},
+        {rules::kTactics,       200},
+        {rules::kAnatomy,       200},
+        {rules::kHealing,       200},
+    };
+    return obs;
+}
+
+const life::Need* Find(const std::vector<life::Need>& needs, life::NeedKind k) {
+    for (const life::Need& n : needs) {
+        if (n.kind == k) return &n;
+    }
+    return nullptr;
+}
+
+void TestNeeds() {
+    Section("needs: what, and why");
+
+    const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+    const life::NeedConfig cfg;
+    life::Memory mem;
+
+    // --- working normally --------------------------------------------------
+    {
+        const life::Observation obs = HealthyLumberjackAtWork();
+        const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
+        Check(Find(needs, life::NeedKind::NeedTool) == nullptr,
+              "an armed lumberjack does not need a tool");
+        Check(Find(needs, life::NeedKind::StayAlive) == nullptr,
+              "nothing threatens, so survival is not a need");
+        const life::Need* logs = Find(needs, life::NeedKind::NeedLogs);
+        Check(logs != nullptr && !logs->blocked, "gathering logs is an open need");
+        Check(Find(needs, life::NeedKind::NeedTraining) != nullptr,
+              "skills below target produce a training need");
+        for (const life::Need& n : needs) {
+            Check(!n.what.empty(), "every need names WHAT it is about");
+            Check(!n.reason.empty(), "every need states WHY");
+        }
+    }
+
+    // --- no axe: the profession is blocked, and it says so ----------------
+    {
+        life::Observation obs = HealthyLumberjackAtWork();
+        obs.axeInPack = false;
+        obs.axeEquipped = false;
+        const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
+        const life::Need* tool = Find(needs, life::NeedKind::NeedTool);
+        Check(tool != nullptr, "no axe produces a tool need");
+        Check(tool->what == "hatchet", "the need names the tool, not just 'tool'");
+        Check(tool->blocked, "with no known supplier the need is BLOCKED, not pretended");
+        const life::Need* logs = Find(needs, life::NeedKind::NeedLogs);
+        Check(logs != nullptr && logs->blocked,
+              "gathering is blocked too -- an axeless lumberjack cannot work");
+
+        // Learning a supplier unblocks it. Nothing is conjured.
+        life::Memory withSupplier;
+        life::KnownSupplier s;
+        s.need = "hatchet";
+        s.name = "a blacksmith";
+        s.serial = 0x99;
+        s.x = 1500; s.y = 1600;
+        s.policyAllows = true;
+        s.lastVerifiedMs = obs.nowMs;
+        withSupplier.NoteSupplier(s);
+        const std::vector<life::Need> needs2 =
+            life::AssessNeeds(plan, withSupplier, obs, cfg);
+        const life::Need* tool2 = Find(needs2, life::NeedKind::NeedTool);
+        Check(tool2 != nullptr && !tool2->blocked,
+              "a learned supplier turns a blocked need into an actionable one");
+    }
+
+    // --- gang pressure raises the bail threshold --------------------------
+    {
+        life::Observation solo = HealthyLumberjackAtWork();
+        solo.hp = 24;   // 40%
+        solo.underAttack = true;
+        solo.hostilesNear = 1;
+        solo.attackersOnMe = 1;
+        // Bind the vector to a named local: taking a pointer INTO a temporary
+        // container leaves it dangling at the end of the full expression.
+        const std::vector<life::Need> soloNeeds = life::AssessNeeds(plan, mem, solo, cfg);
+        const life::Need* n1 = Find(soloNeeds, life::NeedKind::StayAlive);
+        Check(n1 != nullptr, "an attack always produces a survival need");
+        const double soloUrgency = n1 ? n1->urgency : 0.0;
+
+        life::Observation swarmed = solo;
+        swarmed.hostilesNear = 3;
+        swarmed.attackersOnMe = 3;
+        const std::vector<life::Need> swarmNeeds =
+            life::AssessNeeds(plan, mem, swarmed, cfg);
+        const life::Need* n3 = Find(swarmNeeds, life::NeedKind::StayAlive);
+        Check(n3 != nullptr && n3->urgency > soloUrgency,
+              "40% health is survivable 1v1 and a bail-out against three");
+    }
+
+    // --- weight -----------------------------------------------------------
+    {
+        life::Observation heavy = HealthyLumberjackAtWork();
+        heavy.weight = 380;   // 95% of 400
+        heavy.logs = 60;
+        const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, heavy, cfg);
+        const life::Need* bank = Find(needs, life::NeedKind::NeedBank);
+        Check(bank != nullptr, "a nearly full pack produces a banking need");
+        Check(bank && bank->evidence.find("95%") != std::string::npos,
+              "the banking need shows the measured weight, not a bare flag");
+    }
+
+    // --- dead: a ghost has no economic needs ------------------------------
+    {
+        life::Observation dead = HealthyLumberjackAtWork();
+        dead.dead = true;
+        dead.corpseKnown = true;
+        dead.corpseX = 1780; dead.corpseY = 2780;
+        const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, dead, cfg);
+        Check(Find(needs, life::NeedKind::NeedLogs) == nullptr,
+              "a ghost is not asked to chop wood");
+        Check(Find(needs, life::NeedKind::StayAlive) != nullptr,
+              "a ghost needs resurrection");
+        const life::Need* corpse = Find(needs, life::NeedKind::RecoverCorpse);
+        Check(corpse != nullptr && !corpse->blocked, "a known corpse is recoverable");
+
+        dead.corpseRecoveryAttempts = 3;
+        const std::vector<life::Need> tired = life::AssessNeeds(plan, mem, dead, cfg);
+        const life::Need* exhausted = Find(tired, life::NeedKind::RecoverCorpse);
+        Check(exhausted != nullptr && exhausted->blocked,
+              "corpse recovery is bounded: three failed attempts and it stops");
+    }
+}
+
+// --------------------------------------------------------------------------
+void TestPlanner() {
+    Section("planner: scoring, commitment, bounded failure");
+
+    const life::BuildPlan plan = life::FrontierLumberjackSwordsman();
+    const life::NeedConfig needCfg;
+    life::Memory mem;
+
+    life::PlannerConfig cfg;
+    cfg.minCommitMs = 20000;
+    cfg.maxGoalMs = 60000;
+    cfg.maxAttempts = 3;
+    life::Planner planner(cfg);
+
+    life::Observation obs = HealthyLumberjackAtWork();
+    std::string why;
+
+    // --- first selection ---------------------------------------------------
+    {
+        const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, needCfg);
+        const bool changed = planner.Select(needs, obs, mem, obs.nowMs, &why);
+        Check(changed, "the first tick selects a goal");
+        Check(planner.Current().active, "the goal is running");
+        Check(planner.Current().kind == life::GoalKind::GatherLogs,
+              "a healthy, armed, empty-packed lumberjack chooses to gather");
+
+        const std::vector<life::ScoredGoal> scored = planner.Score(needs, obs, mem);
+        Check(!scored.empty(), "scoring produces candidates");
+        Check(!scored[0].reasons.empty(), "the winning goal explains itself");
+        bool sawIdle = false;
+        for (const life::ScoredGoal& g : scored) {
+            if (g.kind == life::GoalKind::IdleBriefly) sawIdle = true;
+        }
+        Check(sawIdle, "a bounded no-op always exists, so there is never 'no goal'");
+    }
+
+    // --- commitment: a better goal still waits out the floor ---------------
+    //
+    // The pack fills up, so BANK genuinely outscores GATHER_LOGS. Three
+    // seconds into the gathering goal, that must NOT be enough to switch --
+    // this is the exact gather/bank/gather flapping the M4 brief forbids.
+    {
+        life::Observation nudged = obs;
+        nudged.nowMs += 3000;
+        nudged.weight = 380;              // 95% of capacity: banking clearly wins
+        nudged.logs = 60;
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, nudged, needCfg);
+        const std::vector<life::ScoredGoal> scored = planner.Score(needs, nudged, mem);
+        Check(!scored.empty() && scored[0].kind == life::GoalKind::Bank,
+              "with a full pack, banking is the higher-scoring goal");
+
+        const bool changed = planner.Select(needs, nudged, mem, nudged.nowMs, &why);
+        Check(!changed, "a goal three seconds old is not swapped out for a better one");
+        Check(why.find("commitment floor") != std::string::npos,
+              "and the refusal says why");
+        Check(planner.Current().kind == life::GoalKind::GatherLogs,
+              "the incumbent goal is still running");
+    }
+
+    // --- past the floor, the better goal DOES take over --------------------
+    {
+        life::Observation later = obs;
+        later.nowMs += 30000;
+        later.weight = 380;
+        later.logs = 60;
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, later, needCfg);
+        const bool changed = planner.Select(needs, later, mem, later.nowMs, &why);
+        Check(changed && planner.Current().kind == life::GoalKind::Bank,
+              "once the commitment floor has passed, a clearly better goal wins");
+        Check(why.find("superseded") != std::string::npos,
+              "and the handover is logged with both scores");
+    }
+
+    // --- hysteresis: a near-win past the floor still keeps the incumbent ---
+    //
+    // Carrying enough logs to be worth banking, with a bank already learned,
+    // puts BANK slightly ahead of GATHER_LOGS. "Slightly" is the whole point:
+    // inside the margin, the running goal keeps the body.
+    {
+        life::PlannerConfig tight = cfg;
+        tight.incumbentBonus = 0.25;
+        life::Planner p6(tight);
+
+        life::Memory withBank;
+        withBank.NotePlace("bank", "Britain bank", 1820, 2824, 0, 1);
+
+        life::Observation work = HealthyLumberjackAtWork();
+        p6.Select(life::AssessNeeds(plan, withBank, work, needCfg), work, withBank,
+                  work.nowMs, &why);
+        Check(p6.Current().kind == life::GoalKind::GatherLogs, "gathering first");
+
+        life::Observation tie = work;
+        tie.nowMs += 40000;               // well past the commitment floor
+        tie.logs = 22;                    // worth banking, but the pack is not full
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, withBank, tie, needCfg);
+        const std::vector<life::ScoredGoal> scored = p6.Score(needs, tie, withBank);
+        double bankScore = 0.0, gatherScore = 0.0;
+        for (const life::ScoredGoal& g : scored) {
+            if (g.kind == life::GoalKind::Bank) bankScore = g.score;
+            if (g.kind == life::GoalKind::GatherLogs) gatherScore = g.score;
+        }
+        Check(bankScore > gatherScore, "banking now scores higher than gathering");
+        Check(bankScore < gatherScore * (1.0 + tight.incumbentBonus),
+              "but only inside the hysteresis margin");
+
+        const bool changed = p6.Select(needs, tie, withBank, tie.nowMs, &why);
+        Check(!changed, "a near-win past the floor still favours the incumbent");
+        Check(why.find("does not beat") != std::string::npos,
+              "and says by how much it fell short");
+        Check(p6.Current().kind == life::GoalKind::GatherLogs,
+              "the character keeps chopping instead of flapping to the bank");
+    }
+
+    // --- an emergency preempts regardless of commitment -------------------
+    {
+        life::Planner p2(cfg);
+        life::Observation work = HealthyLumberjackAtWork();
+        p2.Select(life::AssessNeeds(plan, mem, work, needCfg), work, mem, work.nowMs, &why);
+        Check(p2.Current().kind == life::GoalKind::GatherLogs, "gathering first");
+
+        life::Observation ambush = work;
+        ambush.nowMs += 2000;             // well inside the commitment floor
+        ambush.hp = 12;                   // 20%
+        ambush.underAttack = true;
+        ambush.hostilesNear = 2;
+        ambush.attackersOnMe = 2;
+        const bool changed =
+            p2.Select(life::AssessNeeds(plan, mem, ambush, needCfg), ambush, mem,
+                      ambush.nowMs, &why);
+        Check(changed, "a life-threatening interruption preempts a committed goal");
+        Check(p2.Current().kind == life::GoalKind::Survive,
+              "and the new goal is survival");
+        Check(why.find("emergency preempt") != std::string::npos,
+              "the preemption is logged as one");
+    }
+
+    // --- bounded failure: attempts ----------------------------------------
+    {
+        life::Planner p3(cfg);
+        life::Observation work = HealthyLumberjackAtWork();
+        p3.Select(life::AssessNeeds(plan, mem, work, needCfg), work, mem, work.nowMs, &why);
+        for (int i = 0; i < cfg.maxAttempts; ++i) p3.NoteAttempt(work.nowMs);
+        std::string exhaustedWhy;
+        Check(p3.Exhausted(work.nowMs, &exhaustedWhy),
+              "a goal that keeps failing is exhausted, not retried forever");
+        Check(exhaustedWhy.find("attempts") != std::string::npos,
+              "and the exhaustion names the attempt count");
+
+        p3.NoteProgress();
+        Check(!p3.Exhausted(work.nowMs, nullptr),
+              "real progress clears the failure ladder");
+    }
+
+    // --- bounded failure: time --------------------------------------------
+    {
+        life::Planner p4(cfg);
+        life::Observation work = HealthyLumberjackAtWork();
+        p4.Select(life::AssessNeeds(plan, mem, work, needCfg), work, mem, work.nowMs, &why);
+        std::string exhaustedWhy;
+        Check(p4.Exhausted(work.nowMs + cfg.maxGoalMs + 1, &exhaustedWhy),
+              "a goal that never finishes is abandoned on the clock");
+        Check(exhaustedWhy.find("without finishing") != std::string::npos,
+              "and says so");
+    }
+
+    // --- a blocked goal is reported, not silently dropped -----------------
+    {
+        life::Observation noAxe = HealthyLumberjackAtWork();
+        noAxe.axeInPack = false;
+        noAxe.axeEquipped = false;
+        life::Planner p5(cfg);
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, noAxe, needCfg);
+        const std::vector<life::ScoredGoal> scored = p5.Score(needs, noAxe, mem);
+        bool sawBlockedTool = false;
+        for (const life::ScoredGoal& g : scored) {
+            if (g.kind != life::GoalKind::GetTool) continue;
+            sawBlockedTool = !g.feasible && !g.blockedWhy.empty();
+        }
+        Check(sawBlockedTool,
+              "with no supplier, GET_TOOL is reported as blocked WITH a reason");
+        for (const life::ScoredGoal& g : scored) {
+            if (!g.feasible) {
+                Check(!g.blockedWhy.empty(), "every infeasible goal carries a reason");
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+life::PersistentState SampleState() {
+    life::PersistentState st;
+    st.identity.identityId    = "revolutionlumber01.balthasar";
+    st.identity.accountName   = "RevolutionLumber01";
+    st.identity.characterName = "Balthasar";
+    st.identity.createdAtMs   = 1000;
+    st.identity.firstSeenAtMs = 1000;
+    st.identity.lastSeenAtMs  = 9000;
+    st.identity.totalPlayTimeMs = 8000;
+    st.identity.sessions = 2;
+
+    st.plan = life::FrontierLumberjackSwordsman();
+
+    st.memory.NotePlace("bank", "Britain bank", 1820, 2824, 0, 2000);
+    st.memory.NoteResource("logs", 1776, 2774, 0, true, 3000);
+    life::KnownSupplier s;
+    s.need = "hatchet";
+    s.name = "a blacksmith";
+    s.sourceType = "npc_vendor";
+    s.serial = 0xABCD;
+    s.x = 1500; s.y = 1600; s.z = 0;
+    s.observedQuantity = 4;
+    s.observedPricePerUnit = 21;
+    s.lastVerifiedMs = 4000;
+    s.policyAllows = true;
+    st.memory.NoteSupplier(s);
+    st.memory.NoteDanger(1900, 2800, 12, "grey wolf", 1.0, 5000);
+    st.memory.NoteEvent("first_logs", "8 logs", "forest", 1776, 2774, 6000);
+
+    st.goal.kind = life::GoalKind::GatherLogs;
+    st.goal.active = true;
+    st.goal.startedAtMs = 7000;
+    st.goal.attempts = 1;
+    st.goal.progress = 12;
+
+    st.lastKnownGold = 312;
+    st.lastKnownStr = 41;
+    st.lastKnownDex = 36;
+    st.lastKnownInt = 5;
+    st.lastKnownSkills = {{rules::kLumberjacking, 437}, {rules::kSwordsmanship, 402}};
+    st.lastKnownX = 1776;
+    st.lastKnownY = 2774;
+    st.checkpointMs = 9000;
+
+    life::SessionSummary sum;
+    sum.startedMs = 1000;
+    sum.endedMs = 9000;
+    sum.goalsAttempted = 5;
+    sum.goalsCompleted = 4;
+    sum.logsGathered = 41;
+    sum.cleanLogout = true;
+    st.sessions.push_back(sum);
+    return st;
+}
+
+void TestStateRoundTrip() {
+    Section("persistence: schema round trip");
+
+    const life::PersistentState st = SampleState();
+    const json::Value doc = life::ToJson(st);
+    const std::string text = doc.Serialize(2);
+
+    Check(text.find("\"schema_version\"") != std::string::npos,
+          "the file carries a schema_version");
+    Check(text.find("password") == std::string::npos,
+          "no password ever reaches the state file");
+
+    json::ParseError perr;
+    const json::Value back = json::Parse(text, &perr);
+    Check(!perr.failed, "the written state parses");
+
+    life::PersistentState loaded;
+    std::string err;
+    Check(life::FromJson(back, &loaded, &err), "the written state loads");
+
+    Check(loaded.identity.identityId == st.identity.identityId, "identity survives");
+    Check(loaded.identity.characterName == st.identity.characterName, "name survives");
+    Check(loaded.identity.totalPlayTimeMs == st.identity.totalPlayTimeMs,
+          "play time survives");
+    Check(loaded.plan.family == st.plan.family, "build family survives");
+    Check(loaded.plan.skills.size() == st.plan.skills.size(), "target skills survive");
+    Check(loaded.plan.unresolvedTenths == st.plan.unresolvedTenths,
+          "the deliberately unresolved budget survives as a number");
+    Check(loaded.plan.targetStr == 100 && loaded.plan.targetDex == 100 &&
+          loaded.plan.targetInt == 25, "target stats survive");
+    Check(loaded.memory.Places().size() == 1, "learned places survive");
+    Check(loaded.memory.Places()[0].name == "Britain bank", "place names survive");
+    Check(loaded.memory.Resources().size() == 1, "learned resource stands survive");
+    Check(loaded.memory.Suppliers().size() == 1, "learned suppliers survive");
+    Check(loaded.memory.Suppliers()[0].observedPricePerUnit == 21,
+          "the observed price survives -- it is a fact we measured");
+    Check(loaded.memory.Dangers().size() == 1, "danger memory survives");
+    Check(loaded.memory.Events().size() == 1, "the event history survives");
+    Check(loaded.goal.kind == life::GoalKind::GatherLogs, "the current objective survives");
+    Check(loaded.goal.progress == 12, "goal progress survives");
+    Check(loaded.lastKnownGold == 312, "the last server report survives for the diff");
+    Check(loaded.sessions.size() == 1, "session history survives");
+    Check(loaded.sessions[0].logsGathered == 41, "session figures survive");
+
+    const life::PlanCheck check = life::ValidatePlan(rules::Revolution(), loaded.plan);
+    Check(check.ok, "a plan reloaded from disk is still a legal Revolution build");
+
+    // --- forward compatibility --------------------------------------------
+    {
+        json::Value future = back;
+        future.Set("schema_version", static_cast<i64>(life::kSchemaVersion + 1));
+        life::PersistentState dummy;
+        std::string ferr;
+        Check(!life::FromJson(future, &dummy, &ferr),
+              "a state file from a NEWER build is refused, not half-read");
+        Check(!ferr.empty(), "and the refusal explains itself");
+    }
+    {
+        json::Value versionless = json::Value::MakeObject();
+        versionless.Set("identity", json::Value::MakeObject());
+        life::PersistentState dummy;
+        std::string ferr;
+        Check(!life::FromJson(versionless, &dummy, &ferr),
+              "a file with no schema_version is refused");
+    }
+    {
+        // Missing sections default rather than failing -- that is what makes
+        // an OLDER file loadable under a newer reader.
+        json::Value sparse = json::Value::MakeObject();
+        sparse.Set("schema_version", static_cast<i64>(1));
+        life::PersistentState thin;
+        std::string ferr;
+        Check(life::FromJson(sparse, &thin, &ferr),
+              "a minimal file loads with defaults instead of failing");
+        Check(thin.memory.Places().empty(), "absent memory defaults to empty");
+        Check(!thin.goal.active, "absent goal defaults to inactive");
+    }
+}
+
+void TestStore(const std::string& tmpDir) {
+    Section("persistence: store on disk");
+
+    const life::Store store(tmpDir + "/bot_data");
+    life::PersistentState st = SampleState();
+
+    std::string err;
+    Check(store.Save(st, &err), "state saves to a fresh directory tree");
+    Check(err.empty(), "and reports no error");
+    Check(store.Exists(st.identity.identityId), "the saved state is found again");
+
+    // The atomic write must not leave its scratch file behind -- a stray
+    // state.json.tmp is how a half-written save survives a crash.
+    const std::string tmpPath = store.PathFor(st.identity.identityId) + ".tmp";
+    std::string leftover;
+    Check(!json::ReadFile(tmpPath.c_str(), &leftover),
+          "the atomic write leaves no .tmp behind");
+
+    life::PersistentState loaded;
+    Check(store.Load(st.identity.identityId, &loaded, &err), "state loads back");
+    Check(loaded.identity.characterName == "Balthasar", "the right character loads");
+    Check(loaded.memory.Suppliers().size() == 1, "learned suppliers came back");
+
+    // A character that has never played is not an error.
+    life::PersistentState missing;
+    std::string missErr = "sentinel";
+    Check(!store.Load("nobody.nothing", &missing, &missErr),
+          "loading a character with no history returns false");
+    Check(missErr.empty(),
+          "and is NOT reported as an error -- a new character simply has no state");
+
+    // Saving twice must overwrite in place, not accumulate.
+    st.lastKnownGold = 999;
+    Check(store.Save(st, &err), "a second save succeeds");
+    life::PersistentState again;
+    Check(store.Load(st.identity.identityId, &again, &err), "and reloads");
+    Check(again.lastKnownGold == 999, "the second save replaced the first");
+}
+
+// --------------------------------------------------------------------------
+void TestReconciliation() {
+    Section("reconciliation: the server wins");
+
+    life::PersistentState st = SampleState();
+
+    life::Observation obs;
+    obs.nowMs = 100000;
+    obs.inWorld = true;
+    obs.gold = 328;                 // the character earned 16 gold we never saw
+    obs.str = 41; obs.dex = 36; obs.intel = 5;
+    obs.x = 1800; obs.y = 2800;
+    obs.axeInPack = true;
+    obs.skills = {
+        {rules::kLumberjacking, 441},   // 43.7 -> 44.1: real server progression
+        {rules::kSwordsmanship, 402},
+        {rules::kTactics, 200},
+        {rules::kAnatomy, 200},
+        {rules::kHealing, 200},
+    };
+
+    const life::ReconcileReport rep = life::Reconcile(&st, obs);
+
+    Check(!rep.lines.empty(), "reconciliation produces an explicit log");
+    Check(rep.driftFields > 0, "and notices that things moved while we were away");
+    Check(st.lastKnownGold == 328, "gold reconciles to the server's figure");
+    Check(st.lastKnownX == 1800 && st.lastKnownY == 2800,
+          "position reconciles to the server's figure");
+
+    bool sawLumberjacking = false;
+    for (const life::ReconcileLine& l : rep.lines) {
+        if (l.field != "skill_44") continue;
+        sawLumberjacking = true;
+        Check(l.persisted == "43.7", "the log shows what we believed");
+        Check(l.server == "44.1", "the log shows what the server said");
+        Check(l.result.find("server value accepted") != std::string::npos,
+              "and which one was kept");
+    }
+    Check(sawLumberjacking, "every planned skill appears in the reconciliation log");
+
+    // --- the crash case: our save is BEHIND the server --------------------
+    {
+        life::PersistentState behind = SampleState();
+        behind.lastKnownSkills = {{rules::kLumberjacking, 600}};   // stale, too high
+        life::Observation server = obs;
+        server.skills = {{rules::kLumberjacking, 441}};
+        life::Reconcile(&behind, server);
+        i32 kept = 0;
+        for (const life::SkillTarget& s : behind.lastKnownSkills) {
+            if (s.skillId == rules::kLumberjacking) kept = s.tenths;
+        }
+        Check(kept == 441,
+              "an out-of-date save never overwrites server progression in either direction");
+    }
+
+    // --- a restored goal is a hypothesis, not a resumable process ---------
+    {
+        life::PersistentState dropped = SampleState();
+        life::Observation noAxe = obs;
+        noAxe.axeInPack = false;
+        noAxe.axeEquipped = false;
+        const life::ReconcileReport r2 = life::Reconcile(&dropped, noAxe);
+        Check(r2.goalDropped, "a gathering goal is dropped when the axe is gone");
+        Check(!r2.goalDropReason.empty(), "and the reason is recorded");
+        Check(!dropped.goal.active, "the goal is no longer running");
+    }
+    {
+        life::PersistentState ghost = SampleState();
+        life::Observation dead = obs;
+        dead.dead = true;
+        const life::ReconcileReport r3 = life::Reconcile(&ghost, dead);
+        Check(r3.goalDropped, "a work goal cannot resume into a ghost");
+    }
+    {
+        // A goal that IS still satisfiable survives -- but its clock does not.
+        life::PersistentState kept = SampleState();
+        const life::ReconcileReport r4 = life::Reconcile(&kept, obs);
+        Check(!r4.goalDropped, "a still-valid objective is kept across the restart");
+        Check(kept.goal.active, "and stays active");
+        Check(kept.goal.startedAtMs == obs.nowMs,
+              "but its clock restarts -- a goal does not carry a stale age");
+        Check(kept.goal.attempts == 0, "and its attempt counter is transient");
+    }
+
+    // --- death spiral decays ----------------------------------------------
+    {
+        life::PersistentState spiral = SampleState();
+        spiral.recentDeaths = 3;
+        spiral.lastDeathMs = 1000;
+        life::Observation muchLater = obs;
+        muchLater.nowMs = 1000 + 2 * 60 * 60 * 1000;
+        life::Reconcile(&spiral, muchLater);
+        Check(spiral.recentDeaths == 0, "the death-spiral counter decays after a quiet hour");
+    }
+
+    // --- identity is never lost -------------------------------------------
+    {
+        life::PersistentState id = SampleState();
+        life::Reconcile(&id, obs);
+        Check(id.identity.characterName == "Balthasar",
+              "reconciliation never touches identity");
+        Check(id.plan.family == "frontier_lumberjack_swordsman",
+              "reconciliation never touches the build plan");
+    }
+}
+
+void TestIdentityId() {
+    Section("identity: filesystem-safe ids");
+    Check(life::MakeIdentityId("RevolutionLumber01", "Balthasar") ==
+              "revolutionlumber01.balthasar",
+          "an identity id is lowercase account.character");
+    const std::string weird = life::MakeIdentityId("acc/../evil", "na me");
+    Check(weird.find('/') == std::string::npos && weird.find("..") == std::string::npos,
+          "path separators and traversal cannot reach the filesystem");
+    Check(weird.find(' ') == std::string::npos, "spaces are replaced");
+}
+
+}  // namespace
+
+int main(int argc, char** argv) {
+    std::printf("m4_life\n");
+    const std::string tmpDir = (argc > 1) ? argv[1] : ".";
+
+    TestJsonRoundTrip();
+    TestBuildPlanLegality();
+    TestMemory();
+    TestNeeds();
+    TestPlanner();
+    TestStateRoundTrip();
+    TestStore(tmpDir);
+    TestReconciliation();
+    TestIdentityId();
+
+    std::printf("%d checks, %d failures\n", g_checks, g_failures);
+    return g_failures == 0 ? 0 : 1;
+}

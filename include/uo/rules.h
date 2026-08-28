@@ -66,6 +66,14 @@ enum SkillId : int {
     kLumberjacking    = 44,
     kMining           = 45,
     kMeditation       = 46,
+
+    // Combat and support skills the M4 Slice 1 build plans against. Same
+    // sourcing rule as the production ids above: read off the runtime's own
+    // file names, runtime/scripts/skills/skill<N>_<name>.scp.
+    kAnatomy          = 1,
+    kHealing          = 17,
+    kTactics          = 27,
+    kSwordsmanship    = 40,
 };
 
 struct Profile {

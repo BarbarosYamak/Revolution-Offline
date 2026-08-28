@@ -81,6 +81,16 @@ set(UO_CLIENT_SOURCES
     src/travel/Journey.cpp
     src/travel/PersonalKnowledge.cpp
     src/travel/WarMode.cpp
+    # M4 -- the persistent-life layer. Protocol-free by construction (see
+    # include/uo/life.h), so the same objects the live bot runs are the ones
+    # m4_life exercises under ctest.
+    src/life/Json.cpp
+    src/life/Identity.cpp
+    src/life/Memory.cpp
+    src/life/Needs.cpp
+    src/life/Goals.cpp
+    src/life/State.cpp
+    src/life/Runner.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp

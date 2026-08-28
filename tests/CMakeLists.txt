@@ -129,3 +129,21 @@ target_include_directories(m38_closure PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m38_closure COMMAND m38_closure ${CMAKE_SOURCE_DIR}/data)
+
+# --- M4 Slice 1: identity, persistence, needs, utility goals ---------------
+# Pure logic and one temp directory. No server, no MULs, no world data; the
+# store test writes under the build tree so a run leaves nothing behind in the
+# working copy.
+add_executable(m4_life m4_life.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Json.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Goals.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/State.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(m4_life PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m4_life COMMAND m4_life ${CMAKE_CURRENT_BINARY_DIR})
