@@ -1,0 +1,1218 @@
+[14:16:08.045] INFO  session 0: 127.0.0.1:2593 user='revolutionsmith01' char=Durnholde tag='m5f'
+[14:16:08.047] LOG   [m5f] event session_start: text log opened
+[14:16:08.047] LOG   [m5f] event net_connect_begin: connect 127.0.0.1:2593
+[14:16:08.047] INFO  [m5f] [net] connecting to 127.0.0.1:2593 ...
+[14:16:08.048] LOG   [m5f] event net_connected: connect 127.0.0.1:2593
+[14:16:08.048] INFO  [m5f] [net] connected.
+[14:16:08.048] INFO  [m5f] [seed] sent 0x7F000001 (plaintext)
+[14:16:08.048] LOG   [m5f] event seed_out: 0x7F000001 hex=7f000001
+[14:16:08.048] INFO  [life] no prior state for revolutionsmith01.durnholde: a new Miner / Blacksmith
+[14:16:08.048] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 35/10/5 = 50
+[14:16:08.048] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[14:16:08.048] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[14:16:08.048] INFO  [m5f] [life] autonomous player active for 'Durnholde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[14:16:08.074] INFO  [m5f] [0xA8] 1 server(s):
+[14:16:08.074] INFO  [m5f]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:16:08.089] INFO  [m5f] [0x8C] game server = 127.0.0.1:2593  seed=0x45601F50
+[14:16:08.089] LOG   [m5f] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x45601F50
+[14:16:08.089] INFO  [m5f] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:16:08.089] LOG   [m5f] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:16:08.090] INFO  [m5f] [0xB9] server features = 0x0005
+[14:16:08.090] INFO  [m5f] [0xA9] 5 slot(s) (populated 0):
+[14:16:08.090] INFO  [m5f]   [0] <empty>
+[14:16:08.090] INFO  [m5f]   [1] <empty>
+[14:16:08.090] INFO  [m5f]   [2] <empty>
+[14:16:08.090] INFO  [m5f]   [3] <empty>
+[14:16:08.090] INFO  [m5f]   [4] <empty>
+[14:16:08.090] INFO  [m5f] [0x00] requested skills 45:50 7:50 0:0
+[14:16:08.090] INFO  [m5f] [0x00] requested stats STR 35 DEX 10 INT 5
+[14:16:08.090] INFO  [m5f] [0x00] creating character 'Durnholde' in slot 0
+[14:16:08.090] LOG   [m5f] event char_create_sent: Durnholde
+[14:16:08.106] INFO  [m5f] [0x1B] serial=0x00013979 body=0x0190 pos=(633,858,0)
+[14:16:08.106] LOG   [m5f] event login_confirm: serial=0x00013979 body=0x0190 pos=(633,858,0)
+[14:16:08.106] INFO  [m5f] [0x20] player @(633,858,0) facing=3
+[14:16:08.106] INFO  [m5f] [0x55] login complete — entering world
+[14:16:08.106] LOG   [m5f] event in_world: 0x55 received
+[14:16:08.106] INFO  [m5f] [backpack] opening 0x40013975
+[14:16:08.106] INFO  [m5f] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:16:08.106] INFO  [m5f] [chat ascii] System: There is 1 other player here.
+[14:16:08.106] INFO  [m5f] [chat ascii] System: You are under the protection of the town guards
+[14:16:08.110] INFO  [m5f] [action] requesting the skill list
+[14:16:08.110] INFO  [life] in world; asked the server for the skill list
+[14:16:08.110] INFO  [m5f] [0x24] open container 0x40013975 gump=60
+[14:16:08.110] INFO  [m5f] [0x3C] container contents: 9 item(s)
+[14:16:08.111] LOG   [m5f] event backpack_contents: serial=0x40013975 items=9
+[14:16:10.726] INFO  [m5f] [bot] world data loaded (0 blacklisted spot(s)).
+[14:16:10.727] INFO  [life] common knowledge: Yew woods at 664,1030 (172 tiles away)
+[14:16:10.727] INFO  [life] common knowledge: Yew Territory woods at 776,1030 (172 tiles away)
+[14:16:10.727] INFO  [life] common knowledge: Yew woods at 520,1160 (302 tiles away)
+[14:16:10.727] INFO  [life] seeded 3 forest hint(s) of 43 the atlas knows -- everything else is earned
+[14:16:10.727] INFO  [life] reconciliation: first ever login, 9 field(s) differed
+[14:16:10.727] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[14:16:10.727] INFO  [life]   str          persisted=0          server=35         -> server value accepted
+[14:16:10.727] INFO  [life]   dex          persisted=0          server=10         -> server value accepted
+[14:16:10.727] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[14:16:10.727] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[14:16:10.727] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[14:16:10.727] INFO  [life]   skill_37     persisted=0.0        server=6.7        -> server value accepted
+[14:16:10.727] INFO  [life]   skill_4      persisted=0.0        server=14.7       -> server value accepted
+[14:16:10.727] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[14:16:10.727] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:16:10.727] INFO  [m5f] [survival] on
+[14:16:10.727] LOG   [m5f] event survival_mode: on
+[14:16:10.728] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:16:10.728] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:10.781] INFO  [life] goal=BANK reason="no goal was running"
+[14:16:10.781] INFO  [life]   score=154.4
+[14:16:10.781] INFO  [life]   reason: NeedBank urgency 0.77 x 240 = 184.4
+[14:16:10.781] INFO  [life]   reason: weight=165/162 (102%) logs=0
+[14:16:10.781] INFO  [life]   reason: no bank learned yet -30
+[14:16:10.781] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tinkering 6.7 -> 50.0)
+[14:16:10.781] INFO  [life] bank: no bank learned yet; asking the world model for one (trip 1)
+[14:16:10.781] INFO  [m5f] [travel] Yew banker -> (652,820) r=5 from (633,858)
+[14:16:10.781] LOG   [m5f] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(633,858)
+[14:16:10.781] INFO  [m5f] [travel] mode walk             usable   <- chosen
+[14:16:10.781] INFO  [m5f] [travel] mode moongate         usable
+[14:16:10.781] INFO  [m5f] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:16:10.781] INFO  [m5f] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:16:10.781] LOG   [m5f] event travel_mode: walk
+[14:16:10.781] INFO  [m5f] [travel] plan Yew banker: ok legs=1 ~38 tiles transit=0 nodes=0
+[14:16:10.842] INFO  [m5f] [action] goto (652,820) from (633,858,0)
+[14:16:10.842] LOG   [m5f] event goto_start: target=(652,820) from=(633,858)
+[14:16:10.842] INFO  [m5f] [bot] running from (633,858,0) to (652,820,z0)
+[14:16:10.842] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:10.905] INFO  [m5f] [bot] replan to (652,820): 45 steps in 4498.2us
+[14:16:11.995] INFO  [m5f] [bot] door ahead at (634,855,z0); OpenDoor before step
+[14:16:11.996] INFO  [m5f] [chat ascii] System: Opening door...
+[14:16:12.743] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:12.743] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:12.744] INFO  [m5f] [bot] reject at (634,855): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:16:12.744] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:12.805] INFO  [m5f] [bot] replan to (652,820): 43 steps in 4901.7us
+[14:16:14.766] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:14.766] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:14.766] INFO  [m5f] [bot] reject at (634,855): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:16:14.766] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:14.826] INFO  [m5f] [bot] replan to (652,820): 43 steps in 4887.6us
+[14:16:15.743] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:16.799] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:16.799] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:16.799] INFO  [m5f] [bot] reject at (634,855): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:16:16.799] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:16.862] INFO  [m5f] [bot] replan to (652,820): 43 steps in 5107.7us
+[14:16:18.851] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:18.851] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:18.851] INFO  [m5f] [bot] reject at (634,855): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:16:18.851] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:18.911] INFO  [m5f] [bot] replan to (652,820): 43 steps in 5163.1us
+[14:16:20.760] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:21.330] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:21.330] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:21.331] INFO  [m5f] [bot] reject at (634,854): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:16:21.331] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:21.391] INFO  [m5f] [bot] replan to (652,820): 42 steps in 4894.4us
+[14:16:23.364] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:23.365] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:23.365] INFO  [m5f] [bot] reject at (634,854): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:16:23.365] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:23.426] INFO  [m5f] [bot] replan to (652,820): 42 steps in 4253.5us
+[14:16:25.388] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:25.388] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:25.388] INFO  [m5f] [bot] reject at (634,854): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:16:25.388] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:25.448] INFO  [m5f] [bot] replan to (652,820): 42 steps in 4780.4us
+[14:16:25.818] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:27.406] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:27.406] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:27.406] INFO  [m5f] [bot] reject at (634,854): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:16:27.406] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:27.467] INFO  [m5f] [bot] replan to (652,820): 42 steps in 4499.0us
+[14:16:29.887] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:29.887] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:29.887] INFO  [m5f] [bot] reject at (634,853): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:16:29.887] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:29.950] INFO  [m5f] [bot] replan to (652,820): 41 steps in 5486.3us
+[14:16:30.866] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:31.924] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:31.924] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:31.924] INFO  [m5f] [bot] reject at (634,853): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:16:31.925] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:31.987] INFO  [m5f] [bot] replan to (652,820): 41 steps in 4164.4us
+[14:16:33.949] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:33.949] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:33.949] INFO  [m5f] [bot] reject at (634,853): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:16:33.949] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:34.012] INFO  [m5f] [bot] replan to (652,820): 41 steps in 5179.1us
+[14:16:35.906] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:35.982] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:35.982] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:35.982] INFO  [m5f] [bot] reject at (634,853): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:16:35.982] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:36.043] INFO  [m5f] [bot] replan to (652,820): 41 steps in 4232.0us
+[14:16:37.997] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:37.997] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:37.997] INFO  [m5f] [bot] reject at (634,853): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:16:37.997] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:38.060] INFO  [m5f] [bot] replan to (652,820): 41 steps in 7061.7us
+[14:16:40.483] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:40.483] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:40.483] INFO  [m5f] [bot] reject at (634,852): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:16:40.483] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:40.544] INFO  [m5f] [bot] replan to (652,820): 40 steps in 4263.4us
+[14:16:40.911] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:42.503] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:42.503] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:42.503] INFO  [m5f] [bot] reject at (634,852): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:16:42.503] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:42.563] INFO  [m5f] [bot] replan to (652,820): 40 steps in 4985.0us
+[14:16:44.532] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:44.532] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:44.532] INFO  [m5f] [bot] reject at (634,852): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:16:44.532] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:44.592] INFO  [m5f] [bot] replan to (652,820): 40 steps in 4551.0us
+[14:16:45.941] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:46.564] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:46.564] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:46.564] INFO  [m5f] [bot] reject at (634,852): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:16:46.564] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:46.626] INFO  [m5f] [bot] replan to (652,820): 40 steps in 5286.9us
+[14:16:48.601] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:48.601] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:48.601] INFO  [m5f] [bot] reject at (634,852): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:16:48.601] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:48.664] INFO  [m5f] [bot] replan to (652,820): 40 steps in 4006.0us
+[14:16:50.979] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:51.103] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:51.103] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:51.103] INFO  [m5f] [bot] reject at (634,851): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:16:51.103] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:51.164] INFO  [m5f] [bot] replan to (652,820): 39 steps in 5184.3us
+[14:16:53.121] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:53.121] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:53.121] INFO  [m5f] [bot] reject at (634,851): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:16:53.121] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:53.180] INFO  [m5f] [bot] replan to (652,820): 39 steps in 6178.4us
+[14:16:55.161] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:55.161] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:55.161] INFO  [m5f] [bot] reject at (634,851): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:16:55.161] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:55.224] INFO  [m5f] [bot] replan to (652,820): 39 steps in 4748.1us
+[14:16:56.019] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:16:57.183] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:57.183] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:57.183] INFO  [m5f] [bot] reject at (634,851): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:16:57.183] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:57.245] INFO  [m5f] [bot] replan to (652,820): 39 steps in 6591.8us
+[14:16:59.219] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:16:59.219] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:16:59.219] INFO  [m5f] [bot] reject at (634,851): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:16:59.219] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:16:59.280] INFO  [m5f] [bot] replan to (652,820): 39 steps in 7469.7us
+[14:17:01.079] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:01.695] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:01.695] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:01.695] INFO  [m5f] [bot] reject at (634,850): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:17:01.695] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:01.757] INFO  [m5f] [bot] replan to (652,820): 38 steps in 5204.8us
+[14:17:03.726] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:03.726] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:03.727] INFO  [m5f] [bot] reject at (634,850): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:17:03.727] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:03.789] INFO  [m5f] [bot] replan to (652,820): 38 steps in 4804.8us
+[14:17:05.747] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:05.747] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:05.748] INFO  [m5f] [action] goto finished at (634,851,0); target (652,820); stopped short (off by 49 tile(s))
+[14:17:05.748] LOG   [m5f] event goto_done: at=(634,851) target=(652,820) arrived=0 off=49
+[14:17:06.114] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:06.969] INFO  [m5f] [action] goto (652,820) from (634,851,0)
+[14:17:06.969] LOG   [m5f] event goto_start: target=(652,820) from=(634,851)
+[14:17:06.969] INFO  [m5f] [bot] walking from (634,851,0) to (652,820,z0)
+[14:17:06.969] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:07.030] INFO  [m5f] [bot] replan to (652,820): 38 steps in 4359.2us
+[14:17:07.030] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:07.030] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:07.030] INFO  [m5f] [bot] reject at (634,850): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:17:07.030] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:07.091] INFO  [m5f] [bot] replan to (652,820): 38 steps in 6821.3us
+[14:17:09.043] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:09.043] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:09.043] INFO  [m5f] [bot] reject at (634,850): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:17:09.043] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:09.104] INFO  [m5f] [bot] replan to (652,820): 38 steps in 4672.3us
+[14:17:10.257] INFO  [m5f] [chat ascii] System: Tarath has arrived in Yew.
+[14:17:10.564] INFO  [m5f] [travel] mode walk             usable   <- chosen
+[14:17:10.564] INFO  [m5f] [travel] mode moongate         usable
+[14:17:10.564] INFO  [m5f] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:17:10.564] INFO  [m5f] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:17:10.564] LOG   [m5f] event travel_mode: walk
+[14:17:10.564] INFO  [m5f] [travel] plan Yew banker: ok legs=1 ~31 tiles transit=0 nodes=0
+[14:17:10.748] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:17:11.175] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:11.482] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:11.482] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:11.482] INFO  [m5f] [bot] reject at (634,849): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:17:11.482] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:11.544] INFO  [m5f] [bot] replan to (652,820): 37 steps in 4773.5us
+[14:17:13.522] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:13.522] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:13.522] INFO  [m5f] [bot] reject at (634,849): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:17:13.522] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:13.584] INFO  [m5f] [bot] replan to (652,820): 37 steps in 6248.2us
+[14:17:15.554] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:15.554] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:15.554] INFO  [m5f] [bot] reject at (634,849): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:17:15.554] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:15.618] INFO  [m5f] [bot] replan to (652,820): 37 steps in 4251.5us
+[14:17:16.232] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:17.581] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:17.581] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:17.581] INFO  [m5f] [bot] reject at (634,849): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:17:17.581] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:17.641] INFO  [m5f] [bot] replan to (652,820): 37 steps in 3760.1us
+[14:17:20.060] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:20.060] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:20.060] INFO  [m5f] [bot] reject at (634,848): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:17:20.060] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:20.122] INFO  [m5f] [bot] replan to (652,820): 36 steps in 3731.6us
+[14:17:21.289] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:22.087] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:22.087] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:22.087] INFO  [m5f] [bot] reject at (634,848): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:17:22.087] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:22.147] INFO  [m5f] [bot] replan to (652,820): 36 steps in 3832.1us
+[14:17:24.103] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:24.103] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:24.103] INFO  [m5f] [bot] reject at (634,848): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:17:24.103] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:24.163] INFO  [m5f] [bot] replan to (652,820): 36 steps in 5391.0us
+[14:17:26.130] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:26.130] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:26.130] INFO  [m5f] [bot] reject at (634,848): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:17:26.130] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:26.191] INFO  [m5f] [bot] replan to (652,820): 36 steps in 6077.7us
+[14:17:26.314] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:28.151] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:28.151] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:28.151] INFO  [m5f] [bot] reject at (634,848): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:17:28.151] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:28.211] INFO  [m5f] [bot] replan to (652,820): 36 steps in 5019.1us
+[14:17:30.590] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:30.590] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:30.590] INFO  [m5f] [bot] reject at (634,847): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:17:30.590] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:30.651] INFO  [m5f] [bot] replan to (652,820): 35 steps in 4295.7us
+[14:17:31.325] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:32.620] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:32.620] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:32.620] INFO  [m5f] [bot] reject at (634,847): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:17:32.620] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:32.681] INFO  [m5f] [bot] replan to (652,820): 35 steps in 5451.0us
+[14:17:34.655] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:34.655] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:34.655] INFO  [m5f] [bot] reject at (634,847): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:17:34.655] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:34.717] INFO  [m5f] [bot] replan to (652,820): 35 steps in 4253.5us
+[14:17:36.367] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:36.672] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:36.672] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:36.672] INFO  [m5f] [bot] reject at (634,847): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:17:36.672] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:36.735] INFO  [m5f] [bot] replan to (652,820): 35 steps in 3602.3us
+[14:17:38.701] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:38.701] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:38.701] INFO  [m5f] [bot] reject at (634,847): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:17:38.701] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:38.763] INFO  [m5f] [bot] replan to (652,820): 35 steps in 4070.6us
+[14:17:41.156] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:41.157] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:41.157] INFO  [m5f] [bot] reject at (634,846): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:17:41.157] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:41.218] INFO  [m5f] [bot] replan to (652,820): 34 steps in 3776.3us
+[14:17:41.418] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:43.190] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:43.190] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:43.190] INFO  [m5f] [bot] reject at (634,846): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:17:43.190] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:43.250] INFO  [m5f] [bot] replan to (652,820): 34 steps in 5585.7us
+[14:17:45.222] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:45.222] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:45.222] INFO  [m5f] [bot] reject at (634,846): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:17:45.222] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:45.285] INFO  [m5f] [bot] replan to (652,820): 34 steps in 4027.3us
+[14:17:46.450] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:47.260] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:47.260] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:47.260] INFO  [m5f] [bot] reject at (634,846): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:17:47.260] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:47.320] INFO  [m5f] [bot] replan to (652,820): 34 steps in 3684.3us
+[14:17:49.284] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:49.284] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:49.284] INFO  [m5f] [bot] reject at (634,846): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:17:49.284] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:49.346] INFO  [m5f] [bot] replan to (652,820): 34 steps in 3341.5us
+[14:17:51.464] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:51.767] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:51.767] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:51.767] INFO  [m5f] [bot] reject at (634,845): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:17:51.767] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:51.828] INFO  [m5f] [bot] replan to (652,820): 33 steps in 3562.2us
+[14:17:53.790] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:53.790] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:53.790] INFO  [m5f] [bot] reject at (634,845): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:17:53.790] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:53.851] INFO  [m5f] [bot] replan to (652,820): 33 steps in 5175.2us
+[14:17:55.820] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:55.820] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:55.820] INFO  [m5f] [bot] reject at (634,845): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:17:55.820] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:55.879] INFO  [m5f] [bot] replan to (652,820): 33 steps in 4066.1us
+[14:17:56.489] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:17:57.857] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:17:57.857] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:17:57.857] INFO  [m5f] [bot] reject at (634,845): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:17:57.857] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:17:57.919] INFO  [m5f] [bot] replan to (652,820): 33 steps in 5042.8us
+[14:18:00.297] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:00.297] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:00.298] INFO  [m5f] [action] goto finished at (634,845,0); target (652,820); stopped short (off by 43 tile(s))
+[14:18:00.298] LOG   [m5f] event goto_done: at=(634,845) target=(652,820) arrived=0 off=43
+[14:18:01.516] INFO  [m5f] [action] goto (652,820) from (634,845,0)
+[14:18:01.516] LOG   [m5f] event goto_start: target=(652,820) from=(634,845)
+[14:18:01.516] INFO  [m5f] [bot] walking from (634,845,0) to (652,820,z0)
+[14:18:01.516] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:01.516] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:01.578] INFO  [m5f] [bot] replan to (652,820): 32 steps in 3920.9us
+[14:18:01.578] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:01.578] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:01.578] INFO  [m5f] [bot] reject at (634,844): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:18:01.578] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:01.638] INFO  [m5f] [bot] replan to (652,820): 32 steps in 3835.0us
+[14:18:03.613] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:03.613] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:03.613] INFO  [m5f] [bot] reject at (634,844): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:18:03.613] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:03.676] INFO  [m5f] [bot] replan to (652,820): 32 steps in 3532.2us
+[14:18:05.640] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:05.640] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:05.640] INFO  [m5f] [bot] reject at (634,844): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:18:05.640] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:05.702] INFO  [m5f] [bot] replan to (652,820): 32 steps in 4893.1us
+[14:18:06.562] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:07.682] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:07.682] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:07.682] INFO  [m5f] [bot] reject at (634,844): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:18:07.682] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:07.743] INFO  [m5f] [bot] replan to (652,820): 32 steps in 4402.0us
+[14:18:09.713] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:09.713] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:09.713] INFO  [m5f] [bot] reject at (634,844): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:18:09.713] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:09.774] INFO  [m5f] [bot] replan to (652,820): 32 steps in 5256.4us
+[14:18:10.793] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:18:11.577] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:12.207] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:12.207] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:12.207] INFO  [m5f] [bot] reject at (634,843): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:18:12.207] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:12.268] INFO  [m5f] [bot] replan to (652,820): 31 steps in 5524.3us
+[14:18:14.227] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:14.227] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:14.228] INFO  [m5f] [bot] reject at (634,843): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:18:14.228] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:14.289] INFO  [m5f] [bot] replan to (652,820): 31 steps in 5696.4us
+[14:18:16.271] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:16.271] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:16.271] INFO  [m5f] [bot] reject at (634,843): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:18:16.272] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:16.334] INFO  [m5f] [bot] replan to (652,820): 31 steps in 6095.6us
+[14:18:16.579] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:18.300] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:18.300] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:18.300] INFO  [m5f] [bot] reject at (634,843): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:18:18.300] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:18.362] INFO  [m5f] [bot] replan to (652,820): 31 steps in 6133.3us
+[14:18:20.742] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:20.742] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:20.742] INFO  [m5f] [bot] reject at (634,842): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:18:20.742] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:20.803] INFO  [m5f] [bot] replan to (652,820): 30 steps in 3163.8us
+[14:18:21.599] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:22.766] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:22.766] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:22.767] INFO  [m5f] [bot] reject at (634,842): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:18:22.767] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:22.828] INFO  [m5f] [bot] replan to (652,820): 30 steps in 4592.1us
+[14:18:24.796] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:24.796] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:24.796] INFO  [m5f] [bot] reject at (634,842): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:18:24.796] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:24.856] INFO  [m5f] [bot] replan to (652,820): 30 steps in 5240.4us
+[14:18:26.636] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:26.822] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:26.822] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:26.822] INFO  [m5f] [bot] reject at (634,842): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:18:26.822] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:26.883] INFO  [m5f] [bot] replan to (652,820): 30 steps in 4787.5us
+[14:18:28.861] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:28.862] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:28.862] INFO  [m5f] [bot] reject at (634,842): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:18:28.862] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:28.922] INFO  [m5f] [bot] replan to (652,820): 30 steps in 4994.4us
+[14:18:31.325] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:31.325] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:31.325] INFO  [m5f] [bot] reject at (634,841): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:18:31.325] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:31.387] INFO  [m5f] [bot] replan to (652,820): 29 steps in 4472.3us
+[14:18:31.695] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:33.352] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:33.352] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:33.352] INFO  [m5f] [bot] reject at (634,841): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:18:33.352] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:33.413] INFO  [m5f] [bot] replan to (652,820): 29 steps in 3658.5us
+[14:18:35.378] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:35.378] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:35.378] INFO  [m5f] [bot] reject at (634,841): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:18:35.378] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:35.439] INFO  [m5f] [bot] replan to (652,820): 29 steps in 2869.5us
+[14:18:36.730] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:37.416] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:37.416] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:37.416] INFO  [m5f] [bot] reject at (634,841): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:18:37.416] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:37.478] INFO  [m5f] [bot] replan to (652,820): 29 steps in 4030.9us
+[14:18:39.445] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:39.445] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:39.445] INFO  [m5f] [bot] reject at (634,841): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:18:39.445] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:39.505] INFO  [m5f] [bot] replan to (652,820): 29 steps in 4354.8us
+[14:18:41.759] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:41.943] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:41.943] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:41.943] INFO  [m5f] [bot] reject at (634,840): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:18:41.943] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:42.005] INFO  [m5f] [bot] replan to (652,820): 28 steps in 2971.6us
+[14:18:43.965] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:43.965] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:43.965] INFO  [m5f] [bot] reject at (634,840): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:18:43.965] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:44.025] INFO  [m5f] [bot] replan to (652,820): 28 steps in 3656.5us
+[14:18:45.988] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:45.988] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:45.988] INFO  [m5f] [bot] reject at (634,840): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:18:45.988] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:46.051] INFO  [m5f] [bot] replan to (652,820): 28 steps in 2810.7us
+[14:18:46.787] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:48.029] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:48.029] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:48.029] INFO  [m5f] [bot] reject at (634,840): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:18:48.029] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:48.091] INFO  [m5f] [bot] replan to (652,820): 28 steps in 3498.3us
+[14:18:50.062] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:50.062] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:50.062] INFO  [m5f] [bot] reject at (634,840): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:18:50.062] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:50.122] INFO  [m5f] [bot] replan to (652,820): 28 steps in 2896.5us
+[14:18:51.835] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:52.511] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:52.511] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:52.511] INFO  [m5f] [bot] reject at (634,839): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:18:52.511] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:52.572] INFO  [m5f] [bot] replan to (652,820): 27 steps in 2662.7us
+[14:18:54.528] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:54.528] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:54.528] INFO  [m5f] [action] goto finished at (634,840,0); target (652,820); stopped short (off by 38 tile(s))
+[14:18:54.529] LOG   [m5f] event goto_done: at=(634,840) target=(652,820) arrived=0 off=38
+[14:18:55.757] INFO  [m5f] [travel] mode walk             usable   <- chosen
+[14:18:55.757] INFO  [m5f] [travel] mode moongate         usable
+[14:18:55.757] INFO  [m5f] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:18:55.757] INFO  [m5f] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:18:55.757] LOG   [m5f] event travel_mode: walk
+[14:18:55.757] INFO  [m5f] [travel] plan Yew banker: ok legs=1 ~20 tiles transit=0 nodes=0
+[14:18:56.863] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:18:58.759] INFO  [m5f] [action] goto (652,820) from (634,840,0)
+[14:18:58.759] LOG   [m5f] event goto_start: target=(652,820) from=(634,840)
+[14:18:58.759] INFO  [m5f] [bot] walking from (634,840,0) to (652,820,z0)
+[14:18:58.759] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:58.820] INFO  [m5f] [bot] replan to (652,820): 27 steps in 2388.7us
+[14:18:58.821] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:18:58.821] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:18:58.821] INFO  [m5f] [bot] reject at (634,839): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:18:58.821] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:18:58.882] INFO  [m5f] [bot] replan to (652,820): 27 steps in 3792.1us
+[14:18:58.943] INFO  [m5f] [chat ascii] System: World save in 10 seconds
+[14:19:01.714] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:01.714] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:01.714] INFO  [m5f] [bot] reject at (635,838): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:19:01.714] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:01.776] INFO  [m5f] [bot] replan to (652,820): 26 steps in 4317.1us
+[14:19:01.899] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:04.186] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:04.186] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:04.186] INFO  [m5f] [bot] reject at (634,838): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:19:04.186] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:04.249] INFO  [m5f] [bot] replan to (652,820): 26 steps in 3768.9us
+[14:19:06.212] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:06.212] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:06.212] INFO  [m5f] [bot] reject at (634,838): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:19:06.212] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:06.275] INFO  [m5f] [bot] replan to (652,820): 26 steps in 3439.3us
+[14:19:06.951] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:08.240] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:08.240] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:08.240] INFO  [m5f] [bot] reject at (634,838): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:19:08.240] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:08.300] INFO  [m5f] [bot] replan to (652,820): 26 steps in 4056.8us
+[14:19:08.967] INFO  [m5f] [chat ascii] System: World save has been initiated.
+[14:19:10.261] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:10.261] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:10.261] INFO  [m5f] [bot] reject at (634,838): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:19:10.261] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:10.322] INFO  [m5f] [bot] replan to (652,820): 26 steps in 4026.9us
+[14:19:10.829] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:19:12.011] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:13.232] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:13.232] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:13.232] INFO  [m5f] [bot] reject at (635,837): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:19:13.232] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:13.294] INFO  [m5f] [bot] replan to (652,820): 25 steps in 4055.7us
+[14:19:15.270] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:15.270] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:15.270] INFO  [m5f] [bot] reject at (635,837): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:19:15.270] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:15.331] INFO  [m5f] [bot] replan to (652,820): 25 steps in 2194.2us
+[14:19:17.047] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:17.291] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:17.291] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:17.292] INFO  [m5f] [bot] reject at (635,837): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:19:17.292] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:17.352] INFO  [m5f] [bot] replan to (652,820): 25 steps in 2837.3us
+[14:19:19.320] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:19.320] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:19.320] INFO  [m5f] [bot] reject at (635,837): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:19:19.320] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:19.381] INFO  [m5f] [bot] replan to (652,820): 25 steps in 2002.7us
+[14:19:21.799] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:21.799] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:21.799] INFO  [m5f] [bot] reject at (636,836): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:19:21.799] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:21.860] INFO  [m5f] [bot] replan to (652,820): 24 steps in 3185.5us
+[14:19:22.106] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:23.836] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:23.836] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:23.836] INFO  [m5f] [bot] reject at (636,836): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:19:23.836] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:24.992] INFO  [m5f] [action] goto finished at (635,837,0); target (652,820); stopped short (off by 34 tile(s))
+[14:19:24.992] LOG   [m5f] event goto_done: at=(635,837) target=(652,820) arrived=0 off=34
+[14:19:26.220] INFO  [m5f] [action] goto (652,820) from (635,837,0)
+[14:19:26.220] LOG   [m5f] event goto_start: target=(652,820) from=(635,837)
+[14:19:26.220] INFO  [m5f] [bot] walking from (635,837,0) to (652,820,z0)
+[14:19:26.220] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:26.281] INFO  [m5f] [bot] replan to (652,820): 24 steps in 1711.5us
+[14:19:26.282] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:26.282] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:26.282] INFO  [m5f] [bot] reject at (636,836): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:19:26.282] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:26.344] INFO  [m5f] [bot] replan to (652,820): 24 steps in 2968.8us
+[14:19:27.158] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:28.321] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:28.321] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:28.321] INFO  [m5f] [bot] reject at (636,836): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:19:28.321] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:28.381] INFO  [m5f] [bot] replan to (652,820): 24 steps in 1652.8us
+[14:19:30.036] INFO  [m5f] [travel] mode walk             usable   <- chosen
+[14:19:30.036] INFO  [m5f] [travel] mode moongate         usable
+[14:19:30.036] INFO  [m5f] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:19:30.036] INFO  [m5f] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:19:30.036] LOG   [m5f] event travel_mode: walk
+[14:19:30.036] INFO  [m5f] [travel] plan Yew banker: ok legs=1 ~17 tiles transit=0 nodes=0
+[14:19:30.346] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:30.346] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:30.346] INFO  [m5f] [bot] reject at (636,836): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:19:30.347] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:30.406] INFO  [m5f] [bot] replan to (652,820): 24 steps in 2520.7us
+[14:19:32.168] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:33.196] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:33.196] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:33.196] INFO  [m5f] [bot] reject at (636,835): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:19:33.196] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:33.259] INFO  [m5f] [bot] replan to (652,820): 23 steps in 2111.4us
+[14:19:35.203] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:35.203] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:35.203] INFO  [m5f] [bot] reject at (636,835): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:19:35.203] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:35.264] INFO  [m5f] [bot] replan to (652,820): 23 steps in 1760.3us
+[14:19:37.224] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:37.224] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:37.224] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:37.224] INFO  [m5f] [bot] reject at (636,835): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:19:37.224] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:37.287] INFO  [m5f] [bot] replan to (652,820): 23 steps in 2195.9us
+[14:19:39.266] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:39.266] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:39.266] INFO  [m5f] [bot] reject at (636,835): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:19:39.266] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:39.328] INFO  [m5f] [bot] replan to (652,820): 23 steps in 2491.3us
+[14:19:41.749] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:41.749] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:41.749] INFO  [m5f] [bot] reject at (636,834): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:19:41.749] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:41.795] INFO  [m5f] [bot] replan to (652,820): 22 steps in 1197.5us
+[14:19:42.226] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:43.753] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:43.753] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:43.753] INFO  [m5f] [bot] reject at (636,834): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:19:43.754] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:43.814] INFO  [m5f] [bot] replan to (652,820): 22 steps in 1877.4us
+[14:19:45.777] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:45.777] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:45.777] INFO  [m5f] [bot] reject at (636,834): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:19:45.777] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:45.838] INFO  [m5f] [bot] replan to (652,820): 22 steps in 2057.5us
+[14:19:47.247] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:47.800] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:47.800] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:47.800] INFO  [m5f] [bot] reject at (636,834): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:19:47.800] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:47.830] INFO  [m5f] [bot] replan to (652,820): 22 steps in 1452.0us
+[14:19:49.822] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:49.822] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:49.822] INFO  [m5f] [bot] reject at (636,834): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:19:49.822] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:49.881] INFO  [m5f] [bot] replan to (652,820): 22 steps in 1915.1us
+[14:19:52.255] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:52.255] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:52.255] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:52.255] INFO  [m5f] [bot] reject at (636,833): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:19:52.255] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:52.316] INFO  [m5f] [bot] replan to (652,820): 21 steps in 799.0us
+[14:19:54.288] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:54.288] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:54.288] INFO  [m5f] [bot] reject at (636,833): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:19:54.288] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:54.289] INFO  [m5f] [bot] replan to (652,820): 21 steps in 785.1us
+[14:19:56.334] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:56.334] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:56.334] INFO  [m5f] [bot] reject at (636,833): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:19:56.334] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:56.396] INFO  [m5f] [bot] replan to (652,820): 21 steps in 879.0us
+[14:19:57.316] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:19:58.405] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:19:58.405] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:19:58.405] INFO  [m5f] [bot] reject at (636,833): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:19:58.405] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:19:58.468] INFO  [m5f] [bot] replan to (652,820): 21 steps in 1394.1us
+[14:20:00.454] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:00.454] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:00.454] INFO  [m5f] [bot] reject at (636,833): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:20:00.454] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:00.514] INFO  [m5f] [bot] replan to (652,820): 21 steps in 1340.0us
+[14:20:02.369] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:02.922] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:02.922] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:02.922] INFO  [m5f] [bot] reject at (636,832): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:20:02.922] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:02.983] INFO  [m5f] [bot] replan to (652,820): 20 steps in 1184.6us
+[14:20:04.985] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:04.986] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:04.986] INFO  [m5f] [bot] reject at (636,832): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:20:04.986] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:04.987] INFO  [m5f] [bot] replan to (652,820): 20 steps in 903.1us
+[14:20:07.007] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:07.007] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:07.007] INFO  [m5f] [bot] reject at (636,832): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:20:07.007] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:07.008] INFO  [m5f] [bot] replan to (652,820): 20 steps in 760.7us
+[14:20:07.371] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:09.057] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:09.057] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:09.057] INFO  [m5f] [bot] reject at (636,832): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:20:09.057] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:09.118] INFO  [m5f] [bot] replan to (652,820): 20 steps in 1373.9us
+[14:20:10.865] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:20:11.564] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:11.564] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:11.564] INFO  [m5f] [bot] reject at (636,831): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:20:11.564] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:11.565] INFO  [m5f] [bot] replan to (652,820): 19 steps in 738.3us
+[14:20:12.407] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:13.573] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:13.573] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:13.573] INFO  [m5f] [bot] reject at (636,831): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:20:13.573] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:13.633] INFO  [m5f] [bot] replan to (652,820): 19 steps in 868.8us
+[14:20:15.575] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:15.575] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:15.575] INFO  [m5f] [bot] reject at (636,831): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:20:15.575] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:15.635] INFO  [m5f] [bot] replan to (652,820): 19 steps in 762.3us
+[14:20:17.421] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:17.605] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:17.605] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:17.605] INFO  [m5f] [bot] reject at (636,831): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:20:17.605] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:17.666] INFO  [m5f] [bot] replan to (652,820): 19 steps in 674.3us
+[14:20:19.638] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:19.638] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:19.639] INFO  [m5f] [action] goto finished at (636,832,0); target (652,820); stopped short (off by 28 tile(s))
+[14:20:19.639] LOG   [m5f] event goto_done: at=(636,832) target=(652,820) arrived=0 off=28
+[14:20:20.891] INFO  [m5f] [action] goto (652,820) from (636,832,0)
+[14:20:20.891] LOG   [m5f] event goto_start: target=(652,820) from=(636,832)
+[14:20:20.891] INFO  [m5f] [bot] walking from (636,832,0) to (652,820,z0)
+[14:20:20.891] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:20.952] INFO  [m5f] [bot] replan to (652,820): 19 steps in 1207.4us
+[14:20:20.952] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:20.952] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:20.952] INFO  [m5f] [bot] reject at (636,831): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:20:20.952] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:21.014] INFO  [m5f] [bot] replan to (652,820): 19 steps in 729.9us
+[14:20:22.477] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:23.381] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:23.381] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:23.382] INFO  [m5f] [bot] reject at (636,830): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:20:23.382] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:23.441] INFO  [m5f] [bot] replan to (652,820): 18 steps in 780.1us
+[14:20:25.401] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:25.401] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:25.401] INFO  [m5f] [bot] reject at (636,830): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:20:25.401] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:25.462] INFO  [m5f] [bot] replan to (652,820): 18 steps in 1097.5us
+[14:20:27.436] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:27.436] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:27.436] INFO  [m5f] [bot] reject at (636,830): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:20:27.436] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:27.437] INFO  [m5f] [bot] replan to (652,820): 18 steps in 798.9us
+[14:20:27.498] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:29.502] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:29.502] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:29.503] INFO  [m5f] [bot] reject at (636,830): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:20:29.503] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:29.565] INFO  [m5f] [bot] replan to (652,820): 18 steps in 1532.4us
+[14:20:32.018] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:32.018] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:32.018] INFO  [m5f] [bot] reject at (636,829): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:20:32.018] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:32.079] INFO  [m5f] [bot] replan to (652,820): 17 steps in 1241.0us
+[14:20:32.521] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:34.070] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:34.070] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:34.070] INFO  [m5f] [bot] reject at (636,829): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:20:34.070] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:34.131] INFO  [m5f] [bot] replan to (652,820): 17 steps in 1258.5us
+[14:20:36.128] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:36.128] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:36.128] INFO  [m5f] [bot] reject at (636,829): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:20:36.128] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:36.189] INFO  [m5f] [bot] replan to (652,820): 17 steps in 1250.5us
+[14:20:37.528] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:38.156] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:38.156] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:38.156] INFO  [m5f] [bot] reject at (636,829): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:20:38.156] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:38.217] INFO  [m5f] [bot] replan to (652,820): 17 steps in 1031.7us
+[14:20:40.165] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:40.165] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:40.165] INFO  [m5f] [bot] reject at (636,829): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:20:40.165] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:40.166] INFO  [m5f] [bot] replan to (652,820): 17 steps in 703.2us
+[14:20:42.553] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:43.043] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:43.043] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:43.043] INFO  [m5f] [bot] reject at (637,828): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:20:43.043] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:43.105] INFO  [m5f] [bot] replan to (652,820): 16 steps in 685.3us
+[14:20:45.075] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:45.075] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:45.075] INFO  [m5f] [bot] reject at (637,828): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:20:45.075] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:45.137] INFO  [m5f] [bot] replan to (652,820): 16 steps in 828.6us
+[14:20:47.126] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:47.126] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:47.126] INFO  [m5f] [bot] reject at (637,828): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:20:47.126] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:47.187] INFO  [m5f] [bot] replan to (652,820): 16 steps in 1412.5us
+[14:20:47.554] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:49.192] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:49.192] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:49.192] INFO  [m5f] [bot] reject at (637,828): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:20:49.192] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:49.193] INFO  [m5f] [bot] replan to (652,820): 16 steps in 873.0us
+[14:20:51.213] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:51.213] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:51.213] INFO  [m5f] [bot] reject at (637,828): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:20:51.213] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:51.274] INFO  [m5f] [bot] replan to (652,820): 16 steps in 799.2us
+[14:20:52.560] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:53.691] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:53.692] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:53.692] INFO  [m5f] [bot] reject at (638,827): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:20:53.692] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:53.752] INFO  [m5f] [bot] replan to (652,820): 15 steps in 1270.7us
+[14:20:55.743] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:55.743] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:55.743] INFO  [m5f] [bot] reject at (638,827): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:20:55.743] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:55.803] INFO  [m5f] [bot] replan to (652,820): 15 steps in 775.7us
+[14:20:57.562] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:20:57.748] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:57.748] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:57.748] INFO  [m5f] [bot] reject at (638,827): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:20:57.748] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:57.809] INFO  [m5f] [bot] replan to (652,820): 15 steps in 1186.6us
+[14:20:59.782] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:20:59.782] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:20:59.782] INFO  [m5f] [bot] reject at (638,827): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:20:59.782] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:20:59.845] INFO  [m5f] [bot] replan to (652,820): 15 steps in 1416.0us
+[14:21:02.229] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:02.229] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:02.229] INFO  [m5f] [bot] reject at (639,826): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:21:02.229] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:02.229] INFO  [m5f] [bot] replan to (652,820): 14 steps in 306.5us
+[14:21:02.598] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:04.267] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:04.267] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:04.267] INFO  [m5f] [bot] reject at (639,826): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:21:04.267] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:04.328] INFO  [m5f] [bot] replan to (652,820): 14 steps in 835.6us
+[14:21:06.301] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:06.301] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:06.301] INFO  [m5f] [bot] reject at (639,826): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:21:06.301] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:06.302] INFO  [m5f] [bot] replan to (652,820): 14 steps in 833.9us
+[14:21:07.601] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:08.321] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:08.321] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:08.321] INFO  [m5f] [bot] reject at (639,826): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:21:08.321] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:08.322] INFO  [m5f] [bot] replan to (652,820): 14 steps in 403.7us
+[14:21:10.379] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:10.379] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:10.379] INFO  [m5f] [bot] reject at (639,826): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:21:10.379] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:10.441] INFO  [m5f] [bot] replan to (652,820): 14 steps in 856.2us
+[14:21:10.808] INFO  [life] goal_changed=BANK from=BANK reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[14:21:10.808] INFO  [life]   score=154.4
+[14:21:10.808] INFO  [life]   reason: NeedBank urgency 0.77 x 240 = 184.4
+[14:21:10.808] INFO  [life]   reason: weight=165/162 (102%) logs=0
+[14:21:10.808] INFO  [life]   reason: no bank learned yet -30
+[14:21:10.808] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Tinkering 6.7 -> 50.0)
+[14:21:10.872] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:21:12.636] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:12.883] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:12.883] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:12.883] INFO  [m5f] [bot] reject at (640,825): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:21:12.883] INFO  [m5f] [bot] planning path to (652,820) in background
+[14:21:12.942] INFO  [m5f] [bot] replan to (652,820): 13 steps in 710.2us
+[14:21:14.889] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:14.889] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:14.890] INFO  [m5f] [action] goto finished at (639,826,0); target (652,820); stopped short (off by 19 tile(s))
+[14:21:14.890] LOG   [m5f] event goto_done: at=(639,826) target=(652,820) arrived=0 off=19
+[14:21:14.890] LOG   [m5f] event travel_escape: from=(639,826,0) to=(648,822) attempt=1
+[14:21:14.890] INFO  [m5f] [action] goto (648,822) from (639,826,0)
+[14:21:14.890] LOG   [m5f] event goto_start: target=(648,822) from=(639,826)
+[14:21:14.890] INFO  [m5f] [bot] walking from (639,826,0) to (648,822,z0)
+[14:21:14.890] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:14.951] INFO  [m5f] [bot] replan to (648,822): 9 steps in 418.7us
+[14:21:15.334] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:15.334] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:15.334] INFO  [m5f] [bot] reject at (640,825): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:21:15.334] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:15.335] INFO  [m5f] [bot] replan to (648,822): 9 steps in 362.6us
+[14:21:17.391] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:17.391] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:17.391] INFO  [m5f] [bot] reject at (640,825): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:21:17.391] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:17.392] INFO  [m5f] [bot] replan to (648,822): 9 steps in 295.1us
+[14:21:17.667] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:19.438] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:19.438] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:19.438] INFO  [m5f] [bot] reject at (640,825): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:21:19.438] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:19.439] INFO  [m5f] [bot] replan to (648,822): 9 steps in 356.3us
+[14:21:21.448] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:21.449] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:21.449] INFO  [m5f] [bot] reject at (640,825): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:21:21.449] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:21.449] INFO  [m5f] [bot] replan to (648,822): 9 steps in 467.7us
+[14:21:22.687] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:23.900] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:23.900] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:23.900] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:21:23.900] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:23.901] INFO  [m5f] [bot] replan to (648,822): 8 steps in 208.1us
+[14:21:25.946] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:25.946] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:25.946] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:21:25.946] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:25.947] INFO  [m5f] [bot] replan to (648,822): 8 steps in 311.9us
+[14:21:27.736] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:27.981] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:27.981] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:27.981] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:21:27.981] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:27.982] INFO  [m5f] [bot] replan to (648,822): 8 steps in 361.3us
+[14:21:30.055] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:30.055] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:30.055] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:21:30.055] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:30.056] INFO  [m5f] [bot] replan to (648,822): 8 steps in 234.7us
+[14:21:32.469] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:32.469] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:32.469] INFO  [m5f] [bot] reject at (642,823): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:21:32.469] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:32.470] INFO  [m5f] [bot] replan to (648,822): 7 steps in 273.8us
+[14:21:32.774] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:34.520] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:34.520] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:34.520] INFO  [m5f] [bot] reject at (642,823): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:21:34.520] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:34.521] INFO  [m5f] [bot] replan to (648,822): 7 steps in 343.2us
+[14:21:36.580] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:36.580] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:36.580] INFO  [m5f] [bot] reject at (642,823): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:21:36.580] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:36.581] INFO  [m5f] [bot] replan to (648,822): 7 steps in 261.9us
+[14:21:37.777] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:38.633] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:38.633] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:38.633] INFO  [m5f] [bot] reject at (642,823): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:21:38.633] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:38.634] INFO  [m5f] [bot] replan to (648,822): 7 steps in 294.9us
+[14:21:40.683] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:40.683] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:40.683] INFO  [m5f] [bot] reject at (642,823): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:21:40.683] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:40.684] INFO  [m5f] [bot] replan to (648,822): 7 steps in 200.1us
+[14:21:42.797] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:43.106] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:43.106] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:43.106] INFO  [m5f] [bot] reject at (643,822): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:21:43.106] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:43.107] INFO  [m5f] [bot] replan to (648,822): 6 steps in 225.9us
+[14:21:45.163] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:45.163] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:45.163] INFO  [m5f] [bot] reject at (643,822): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:21:45.163] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:45.164] INFO  [m5f] [bot] replan to (648,822): 6 steps in 173.4us
+[14:21:47.208] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:47.208] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:47.208] INFO  [m5f] [bot] reject at (643,822): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:21:47.208] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:47.209] INFO  [m5f] [bot] replan to (648,822): 6 steps in 251.0us
+[14:21:47.820] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:49.249] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:49.250] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:49.250] INFO  [m5f] [bot] reject at (643,822): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:21:49.250] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:49.250] INFO  [m5f] [bot] replan to (648,822): 6 steps in 167.3us
+[14:21:51.269] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:51.269] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:51.269] INFO  [m5f] [bot] reject at (643,822): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:21:51.269] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:51.270] INFO  [m5f] [bot] replan to (648,822): 6 steps in 181.3us
+[14:21:52.834] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:54.155] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:54.155] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:54.155] INFO  [m5f] [bot] reject at (644,822): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:21:54.155] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:54.156] INFO  [m5f] [bot] replan to (648,822): 5 steps in 102.5us
+[14:21:56.172] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:56.172] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:56.172] INFO  [m5f] [bot] reject at (644,822): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:21:56.172] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:56.173] INFO  [m5f] [bot] replan to (648,822): 5 steps in 101.4us
+[14:21:57.893] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:21:58.218] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:21:58.218] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:21:58.218] INFO  [m5f] [bot] reject at (644,822): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:21:58.218] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:21:58.219] INFO  [m5f] [bot] replan to (648,822): 5 steps in 53.8us
+[14:22:00.242] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:00.242] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:00.242] INFO  [m5f] [bot] reject at (644,822): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:22:00.242] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:22:00.243] INFO  [m5f] [bot] replan to (648,822): 5 steps in 64.6us
+[14:22:02.704] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:02.704] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:02.704] INFO  [m5f] [bot] reject at (645,822): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:22:02.704] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:22:02.705] INFO  [m5f] [bot] replan to (648,822): 4 steps in 108.8us
+[14:22:02.949] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:04.316] INFO  [m5f] [chat ascii] Basia: Thou hast mine attention.
+[14:22:04.762] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:04.762] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:04.762] INFO  [m5f] [bot] reject at (645,822): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:22:04.762] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:22:04.763] INFO  [m5f] [bot] replan to (648,822): 4 steps in 55.8us
+[14:22:06.816] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:06.816] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:06.816] INFO  [m5f] [bot] reject at (645,822): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:22:06.816] INFO  [m5f] [bot] planning path to (648,822) in background
+[14:22:06.817] INFO  [m5f] [bot] replan to (648,822): 4 steps in 80.2us
+[14:22:07.983] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:08.838] INFO  [m5f] [bot] lookahead patched around block at step 3: anchor=4 new segment=5 path=5 in 156.9us
+[14:22:08.853] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:08.853] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:08.854] INFO  [m5f] [action] goto finished at (644,822,0); target (648,822); stopped short (off by 4 tile(s))
+[14:22:08.854] LOG   [m5f] event goto_done: at=(644,822) target=(648,822) arrived=0 off=4
+[14:22:08.854] INFO  [m5f] [travel] recovery walk fell short at (644,822,0) (off 4); attempt 1/3
+[14:22:08.854] LOG   [m5f] event travel_recovery_done: reached=0 at=(644,822,0) off=4 attempt=1
+[14:22:08.854] LOG   [m5f] event travel_escape: from=(644,822,0) to=(632,824) attempt=2
+[14:22:08.854] INFO  [m5f] [action] goto (632,824) from (644,822,0)
+[14:22:08.854] LOG   [m5f] event goto_start: target=(632,824) from=(644,822)
+[14:22:08.854] INFO  [m5f] [bot] walking from (644,822,0) to (632,824,z0)
+[14:22:08.854] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:08.899] INFO  [m5f] [bot] replan to (632,824): 12 steps in 299.0us
+[14:22:09.697] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:09.698] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:09.698] INFO  [m5f] [bot] reject at (643,823): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:22:09.698] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:09.698] INFO  [m5f] [bot] replan to (632,824): 12 steps in 264.8us
+[14:22:10.927] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsmith01.durnholde/state.json
+[14:22:11.738] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:11.738] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:11.738] INFO  [m5f] [bot] reject at (643,823): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[14:22:11.738] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:11.739] INFO  [m5f] [bot] replan to (632,824): 12 steps in 315.4us
+[14:22:12.985] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:14.210] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:14.210] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:14.210] INFO  [m5f] [bot] reject at (642,824): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[14:22:14.210] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:14.212] INFO  [m5f] [bot] replan to (632,824): 11 steps in 259.8us
+[14:22:16.252] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:16.252] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:16.252] INFO  [m5f] [bot] reject at (642,824): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[14:22:16.252] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:16.254] INFO  [m5f] [bot] replan to (632,824): 11 steps in 284.9us
+[14:22:17.986] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:18.293] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:18.293] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:18.293] INFO  [m5f] [bot] reject at (642,824): fatigued (stamina) — waiting 2000ms, retrying (5) [no blacklist]
+[14:22:18.293] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:18.294] INFO  [m5f] [bot] replan to (632,824): 11 steps in 254.6us
+[14:22:20.339] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:20.339] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:20.339] INFO  [m5f] [bot] reject at (642,824): fatigued (stamina) — waiting 2000ms, retrying (6) [no blacklist]
+[14:22:20.339] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:20.340] INFO  [m5f] [bot] replan to (632,824): 11 steps in 265.5us
+[14:22:23.041] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:23.288] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:23.288] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:23.288] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (7) [no blacklist]
+[14:22:23.288] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:23.289] INFO  [m5f] [bot] replan to (632,824): 10 steps in 113.0us
+[14:22:25.319] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:25.319] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:25.319] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (8) [no blacklist]
+[14:22:25.319] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:25.320] INFO  [m5f] [bot] replan to (632,824): 10 steps in 233.3us
+[14:22:27.375] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:27.375] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:27.375] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (9) [no blacklist]
+[14:22:27.375] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:27.376] INFO  [m5f] [bot] replan to (632,824): 10 steps in 183.8us
+[14:22:28.076] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:29.390] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:29.390] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:29.390] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (10) [no blacklist]
+[14:22:29.390] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:29.391] INFO  [m5f] [bot] replan to (632,824): 10 steps in 108.1us
+[14:22:31.400] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:31.400] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:31.400] INFO  [m5f] [bot] reject at (641,824): fatigued (stamina) — waiting 2000ms, retrying (11) [no blacklist]
+[14:22:31.400] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:31.400] INFO  [m5f] [bot] replan to (632,824): 10 steps in 201.0us
+[14:22:33.077] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:33.894] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:33.894] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:33.894] INFO  [m5f] [bot] reject at (640,824): fatigued (stamina) — waiting 2000ms, retrying (12) [no blacklist]
+[14:22:33.894] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:33.895] INFO  [m5f] [bot] replan to (632,824): 9 steps in 100.6us
+[14:22:36.170] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:36.170] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:36.170] INFO  [m5f] [bot] reject at (640,824): fatigued (stamina) — waiting 2000ms, retrying (13) [no blacklist]
+[14:22:36.170] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:36.171] INFO  [m5f] [bot] replan to (632,824): 9 steps in 143.2us
+[14:22:38.138] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:38.199] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:38.199] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:38.199] INFO  [m5f] [bot] reject at (640,824): fatigued (stamina) — waiting 2000ms, retrying (14) [no blacklist]
+[14:22:38.199] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:38.200] INFO  [m5f] [bot] replan to (632,824): 9 steps in 143.7us
+[14:22:40.242] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:40.242] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:40.242] INFO  [m5f] [bot] reject at (640,824): fatigued (stamina) — waiting 2000ms, retrying (15) [no blacklist]
+[14:22:40.242] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:40.243] INFO  [m5f] [bot] replan to (632,824): 9 steps in 197.0us
+[14:22:42.698] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:42.698] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:42.698] INFO  [m5f] [bot] reject at (639,824): fatigued (stamina) — waiting 2000ms, retrying (16) [no blacklist]
+[14:22:42.698] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:42.699] INFO  [m5f] [bot] replan to (632,824): 8 steps in 81.3us
+[14:22:43.183] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:44.740] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:44.740] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:44.740] INFO  [m5f] [bot] reject at (639,824): fatigued (stamina) — waiting 2000ms, retrying (17) [no blacklist]
+[14:22:44.740] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:44.741] INFO  [m5f] [bot] replan to (632,824): 8 steps in 185.6us
+[14:22:46.745] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:46.745] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:46.745] INFO  [m5f] [bot] reject at (639,824): fatigued (stamina) — waiting 2000ms, retrying (18) [no blacklist]
+[14:22:46.745] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:46.746] INFO  [m5f] [bot] replan to (632,824): 8 steps in 131.4us
+[14:22:48.217] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:48.779] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:48.779] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:48.779] INFO  [m5f] [bot] reject at (639,824): fatigued (stamina) — waiting 2000ms, retrying (19) [no blacklist]
+[14:22:48.779] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:48.780] INFO  [m5f] [bot] replan to (632,824): 8 steps in 153.2us
+[14:22:50.802] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:50.802] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:50.802] INFO  [m5f] [bot] reject at (639,824): fatigued (stamina) — waiting 2000ms, retrying (20) [no blacklist]
+[14:22:50.802] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:50.803] INFO  [m5f] [bot] replan to (632,824): 8 steps in 144.7us
+[14:22:53.267] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:53.283] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:53.283] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:53.283] INFO  [m5f] [bot] reject at (638,824): fatigued (stamina) — waiting 2000ms, retrying (21) [no blacklist]
+[14:22:53.283] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:53.284] INFO  [m5f] [bot] replan to (632,824): 7 steps in 87.4us
+[14:22:55.306] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:55.306] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:55.306] INFO  [m5f] [bot] reject at (638,824): fatigued (stamina) — waiting 2000ms, retrying (22) [no blacklist]
+[14:22:55.306] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:55.307] INFO  [m5f] [bot] replan to (632,824): 7 steps in 130.0us
+[14:22:57.334] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:57.334] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:57.334] INFO  [m5f] [bot] reject at (638,824): fatigued (stamina) — waiting 2000ms, retrying (23) [no blacklist]
+[14:22:57.334] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:57.334] INFO  [m5f] [bot] replan to (632,824): 7 steps in 72.4us
+[14:22:58.320] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:22:59.362] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:22:59.362] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:22:59.362] INFO  [m5f] [bot] reject at (638,824): fatigued (stamina) — waiting 2000ms, retrying (24) [no blacklist]
+[14:22:59.362] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:22:59.363] INFO  [m5f] [bot] replan to (632,824): 7 steps in 104.9us
+[14:23:01.386] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:23:01.386] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:23:01.386] INFO  [m5f] [bot] reject at (638,824): fatigued (stamina) — waiting 2000ms, retrying (25) [no blacklist]
+[14:23:01.386] INFO  [m5f] [bot] planning path to (632,824) in background
+[14:23:01.387] INFO  [m5f] [bot] replan to (632,824): 7 steps in 131.5us
+[14:23:03.364] INFO  [m5f] [survival] hp 35/35 (100%) -> fight
+[14:23:03.867] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:23:03.867] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:23:03.868] INFO  [m5f] [action] goto finished at (638,824,0); target (632,824); stopped short (off by 6 tile(s))
+[14:23:03.868] LOG   [m5f] event goto_done: at=(638,824) target=(632,824) arrived=0 off=6
+[14:23:03.868] INFO  [m5f] [travel] recovery walk fell short at (638,824,0) (off 6); attempt 1/3
+[14:23:03.868] LOG   [m5f] event travel_recovery_done: reached=0 at=(638,824,0) off=6 attempt=1
+[14:23:03.868] LOG   [m5f] event travel_escape: from=(638,824,0) to=(632,808) attempt=3
+[14:23:03.868] INFO  [m5f] [action] goto (632,808) from (638,824,0)
+[14:23:03.868] LOG   [m5f] event goto_start: target=(632,808) from=(638,824)
+[14:23:03.868] INFO  [m5f] [bot] walking from (638,824,0) to (632,808,z1)
+[14:23:03.868] INFO  [m5f] [bot] planning path to (632,808) in background
+[14:23:04.176] INFO  [m5f] [bot] replan to (632,808): 136 steps in 265241.7us
+[14:23:04.744] INFO  [m5f] [chat ascii] System: You are too fatigued to move, because you are carrying too much weight!
+[14:23:04.744] INFO  [m5f] [bot] fatigue detected; rejects will wait for stamina regen
+[14:23:04.744] INFO  [m5f] [bot] reject at (637,825): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[14:23:04.744] INFO  [m5f] [bot] planning path to (632,808) in background

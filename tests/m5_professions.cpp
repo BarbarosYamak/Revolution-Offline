@@ -398,6 +398,116 @@ void TestTrainerMemory() {
           "one row per (skill, trade), not one per asking");
 }
 
+
+// --------------------------------------------------------------------------
+void TestSkillRoles() {
+    Section("roles: every build has one primary, and utility stays utility");
+
+    const rules::Profile& rp = rules::Revolution();
+    for (const prof::Profession& p : prof::All()) {
+        if (p.targets.empty()) continue;
+        int primaries = 0;
+        for (const prof::SkillTargetSpec& t : p.targets) {
+            if (t.role == prof::SkillRole::Primary) ++primaries;
+        }
+        if (primaries != 1) {
+            std::printf("  FAIL: '%s' has %d primary skills, not 1\n",
+                        p.id.c_str(), primaries);
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    const prof::Profession* base = prof::Find("mage");
+    Check(base != nullptr, "the mage exists");
+    if (!base) return;
+
+    {   // Two primaries: the paperdoll title would be arbitrary.
+        prof::Profession bad = *base;
+        for (prof::SkillTargetSpec& t : bad.targets) t.role = prof::SkillRole::Primary;
+        Check(prof::Validate(rp, bad).violation ==
+                  prof::ProfViolation::NotExactlyOnePrimary,
+              "a build with two primaries is refused");
+    }
+    {   // No primary at all.
+        prof::Profession bad = *base;
+        for (prof::SkillTargetSpec& t : bad.targets) t.role = prof::SkillRole::Secondary;
+        Check(prof::Validate(rp, bad).violation ==
+                  prof::ProfViolation::NotExactlyOnePrimary,
+              "a build with no primary is refused");
+    }
+    {   // A "utility" skill at the per-skill cap is a second profession, and
+        // on this shard it would also break travel-magic rarity: Recall opens
+        // at 26+ and Gate at 90+, so a GM utility Magery is a free gate.
+        prof::Profession bad = *base;
+        bool found = false;
+        for (prof::SkillTargetSpec& t : bad.targets) {
+            if (t.role != prof::SkillRole::Utility) continue;
+            // Pay for the raise out of the unresolved budget, so this stays a
+            // test of the ROLE rule rather than tripping the 700-point one.
+            bad.unresolvedTenths -= (rp.perSkillCapTenths - t.tenths);
+            t.tenths = rp.perSkillCapTenths;
+            found = true;
+            break;
+        }
+        Check(found, "the mage has a utility skill to corrupt");
+        if (found) {
+            Check(prof::Validate(rp, bad).violation ==
+                      prof::ProfViolation::UtilityAtFullCap,
+                  "a utility skill at 100.0 is refused");
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+void TestTierIsObservedNotAssigned() {
+    Section("tier: computed from the server's numbers, never handed out");
+
+    const i32 cap = rules::Revolution().totalSkillCapTenths;   // 7000
+
+    // A brand-new Revolution character has exactly 100.0 of a 700.0 budget.
+    // It must read as a Novice: it has done nothing yet.
+    Check(prof::TierFromSkillSum(prof::kRevolutionStartSkillEach *
+                                 prof::kRevolutionStartSkillCount, cap) ==
+              prof::Tier::Novice,
+          "a freshly created character is a Novice");
+    Check(prof::TierFromSkillSum(0, cap) == prof::Tier::Novice,
+          "and so is one with nothing at all");
+    Check(prof::TierFromSkillSum(cap, cap) == prof::Tier::Grandmaster,
+          "a finished 700-point build is a Grandmaster");
+
+    // Monotonic: more skill never means a lower tier.
+    int last = -1;
+    for (i32 sum = 0; sum <= cap; sum += 50) {
+        const int t = static_cast<int>(prof::TierFromSkillSum(sum, cap));
+        if (t < last) {
+            std::printf("  FAIL: tier went DOWN at sum %d\n", sum);
+            ++g_failures;
+            break;
+        }
+        last = t;
+    }
+    ++g_checks;
+
+    // Nonsense in, Novice out -- never a crash and never a flattering answer.
+    Check(prof::TierFromSkillSum(-500, cap) == prof::Tier::Novice,
+          "a negative total is a Novice, not an error");
+    Check(prof::TierFromSkillSum(9999, 0) == prof::Tier::Novice,
+          "a zero cap is a Novice, not a division by zero");
+
+    // The population curve is a yardstick, not a spawn table. It has to sum
+    // to 100 to be either.
+    int total = 0;
+    for (int i = 0; i <= static_cast<int>(prof::Tier::Grandmaster); ++i) {
+        total += prof::PopulationSharePercent(static_cast<prof::Tier>(i));
+    }
+    Check(total == 100, "the population shares sum to 100");
+    Check(prof::PopulationSharePercent(prof::Tier::Grandmaster) <
+          prof::PopulationSharePercent(prof::Tier::Journeyman),
+          "Grandmasters are rarer than Journeymen -- the curve is a bell, "
+          "not a flat roll");
+}
+
 }  // namespace
 
 int main() {
@@ -412,6 +522,8 @@ int main() {
     TestNextSkillToBuy();
     TestARefusalIsRemembered();
     TestTrainerMemory();
+    TestSkillRoles();
+    TestTierIsObservedNotAssigned();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

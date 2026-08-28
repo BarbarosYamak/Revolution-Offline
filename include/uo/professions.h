@@ -93,12 +93,29 @@ const char* IncomeName(Income i);
 
 // A skill this profession wants, and why. `priority` orders training when
 // several are short; `viaTrainer` marks the ones worth paying an NPC for
-// rather than grinding from zero.
+// rather than grinding from zero; `role` says what the skill is FOR.
+//
+// What a skill is FOR in a build. uo-offline's BotSkillTemplate separates
+// these three and gives each one a reason for its number; a flat priority
+// integer orders training and explains nothing.
+//
+//   Primary   defines the character -- and, on this shard, its paperdoll
+//             title, which is the only thing another player actually sees.
+//   Secondary the rest of the working build, trained alongside the primary.
+//   Utility   deliberately capped. A dexxer's Magery is for Recall and Cure
+//             and must never become a second profession; letting it drift to
+//             GM would also break Revolution's travel-magic rarity, where
+//             Recall opens at 26+ and Gate at 90+.
+enum class SkillRole : u8 { Primary = 0, Secondary, Utility };
+
+const char* SkillRoleName(SkillRole r);
+
 struct SkillTargetSpec {
-    int    skillId = -1;
-    i32    tenths = 0;
-    int    priority = 0;      // higher trains first
-    bool   viaTrainer = false;
+    int       skillId = -1;
+    i32       tenths = 0;
+    int       priority = 0;      // higher trains first
+    bool      viaTrainer = false;
+    SkillRole role = SkillRole::Secondary;
 };
 
 struct Profession {
@@ -162,6 +179,8 @@ enum class ProfViolation : u8 {
     StatTotalExceeded,      // targets > 225
     StatPerCapExceeded,
     NoIncome,
+    NotExactlyOnePrimary,   // the primary is what the paperdoll title reads
+    UtilityAtFullCap,       // a "utility" skill at 100.0 is a second job
     Count,
 };
 
@@ -181,5 +200,29 @@ struct ProfCheck {
 // the 700/225 finished-build caps. A profession that fails is a bug in the
 // table, not a runtime condition -- every entry is checked by the unit tests.
 ProfCheck Validate(const rules::Profile& p, const Profession& prof);
+
+// ---------------------------------------------------------------------------
+// How far along a character is. OBSERVED, never assigned.
+//
+// uo-offline rolls a tier at creation and grants the matching skills. Here it
+// is computed from the skill total the SERVER reports, so a bot cannot be
+// spawned a Grandmaster -- it can only become one. The bands are ours; the
+// axis (class = the set of skills, tier = the level they sit at) is the idea
+// worth keeping, because without it there is no way to say "a Journeyman
+// smith" as distinct from "a smith who started yesterday".
+enum class Tier : u8 {
+    Novice = 0, Apprentice, Journeyman, Adept, Expert, Master, Grandmaster,
+};
+
+const char* TierName(Tier t);
+
+// From the character's total skill, in tenths, as the server reports it.
+Tier TierFromSkillSum(i32 sumTenths, i32 capTenths);
+
+// The share of a healthy POPULATION expected at each tier, in percent. This is
+// a yardstick the fleet can measure itself against -- most characters are
+// mid-tier and Grandmasters are rare -- and it is explicitly NOT a spawn
+// table: nothing may create a character at a tier.
+int PopulationSharePercent(Tier t);
 
 }  // namespace uo::prof

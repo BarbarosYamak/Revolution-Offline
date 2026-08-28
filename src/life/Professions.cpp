@@ -27,6 +27,8 @@ const char* ProfViolationName(ProfViolation v) {
         case ProfViolation::InactiveSkill:          return "inactive_skill";
         case ProfViolation::StatTotalExceeded:      return "stat_total_exceeded";
         case ProfViolation::StatPerCapExceeded:     return "stat_per_cap_exceeded";
+        case ProfViolation::NotExactlyOnePrimary: return "not_exactly_one_primary";
+        case ProfViolation::UtilityAtFullCap:     return "utility_at_full_cap";
         case ProfViolation::NoIncome:               return "no_income";
         case ProfViolation::Count:                  break;
     }
@@ -105,11 +107,11 @@ const std::vector<Profession>& All() {
             // survived on a DEX-heavy one (M4 plan). Same lesson, 50 points.
             p.startStr = 25; p.startDex = 20; p.startInt = 5;
             p.targets = {
-                {rules::kLumberjacking, 1000, 5, false},
-                {rules::kSwordsmanship, 1000, 4, false},
-                {rules::kTactics,       1000, 3, true},
-                {rules::kAnatomy,       1000, 2, true},
-                {rules::kHealing,       1000, 2, true},
+                {rules::kLumberjacking, 1000, 5, false, SkillRole::Primary},
+                {rules::kSwordsmanship, 1000, 4, false, SkillRole::Secondary},
+                {rules::kTactics,       1000, 3, true,  SkillRole::Secondary},
+                {rules::kAnatomy,       1000, 2, true,  SkillRole::Secondary},
+                {rules::kHealing,       1000, 2, true,  SkillRole::Secondary},
             };
             p.unresolvedTenths = 2000;   // 200.0 deliberately unspent
             p.targetStr = 100; p.targetDex = 100; p.targetInt = 25;
@@ -151,10 +153,10 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kBlacksmithing;
             p.startStr = 35; p.startDex = 10; p.startInt = 5;
             p.targets = {
-                {rules::kBlacksmithing, 1000, 5, false},
-                {rules::kMining,        1000, 4, false},
-                {rules::kTinkering,      500, 2, true},
-                {rules::kArmsLore,       500, 1, true},
+                {rules::kBlacksmithing, 1000, 5, false, SkillRole::Primary},
+                {rules::kMining,        1000, 4, false, SkillRole::Secondary},
+                {rules::kTinkering,      500, 2, true,  SkillRole::Utility},
+                {rules::kArmsLore,       500, 1, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 4000;
             p.targetStr = 100; p.targetDex = 45; p.targetInt = 80;
@@ -191,10 +193,10 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kMeditation;
             p.startStr = 15; p.startDex = 10; p.startInt = 25;
             p.targets = {
-                {rules::kMagery,          1000, 5, false},
-                {rules::kMeditation,      1000, 4, false},
-                {rules::kEvaluatingIntel, 1000, 3, true},
-                {rules::kInscription,      500, 1, true},
+                {rules::kMagery,          1000, 5, false, SkillRole::Primary},
+                {rules::kMeditation,      1000, 4, false, SkillRole::Secondary},
+                {rules::kEvaluatingIntel, 1000, 3, true,  SkillRole::Secondary},
+                {rules::kInscription,      500, 1, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 3500;
             p.targetStr = 25; p.targetDex = 25; p.targetInt = 100;
@@ -231,9 +233,9 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kMagery;
             p.startStr = 20; p.startDex = 10; p.startInt = 20;
             p.targets = {
-                {rules::kAlchemy,     1000, 5, false},
-                {rules::kMagery,       500, 3, false},
-                {rules::kMeditation,   500, 2, true},
+                {rules::kAlchemy,     1000, 5, false, SkillRole::Primary},
+                {rules::kMagery,       500, 3, false, SkillRole::Utility},
+                {rules::kMeditation,   500, 2, true,  SkillRole::Utility},
             };
             p.unresolvedTenths = 4500;
             p.targetStr = 50; p.targetDex = 25; p.targetInt = 100;
@@ -265,9 +267,9 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kAnimalLore;
             p.startStr = 20; p.startDex = 10; p.startInt = 20;
             p.targets = {
-                {rules::kTaming,     1000, 5, false},
-                {rules::kAnimalLore, 1000, 4, false},
-                {rules::kVeterinary, 1000, 3, true},
+                {rules::kTaming,     1000, 5, false, SkillRole::Primary},
+                {rules::kAnimalLore, 1000, 4, false, SkillRole::Secondary},
+                {rules::kVeterinary, 1000, 3, true,  SkillRole::Secondary},
             };
             p.unresolvedTenths = 4000;
             p.targetStr = 80; p.targetDex = 45; p.targetInt = 100;
@@ -359,6 +361,28 @@ ProfCheck Validate(const rules::Profile& rp, const Profession& p) {
     }
 
     // A life with no way to earn is not a profession.
+    // --- roles ------------------------------------------------------------
+    //
+    // Exactly one primary. It is what the paperdoll title reads, and a title
+    // is the only thing another player can see about a character before
+    // speaking to it -- two primaries means the title is arbitrary.
+    int primaries = 0;
+    for (const SkillTargetSpec& t : p.targets) {
+        if (t.role == SkillRole::Primary) ++primaries;
+        // A "utility" skill at the per-skill cap is not utility, it is a
+        // second profession. The cap is what keeps a dexxer's Magery at
+        // Recall-and-Cure and keeps Revolution's travel-magic rarity intact.
+        if (t.role == SkillRole::Utility && t.tenths >= rp.perSkillCapTenths) {
+            out.violation = ProfViolation::UtilityAtFullCap;
+            out.skillId = t.skillId;
+            return out;
+        }
+    }
+    if (!p.targets.empty() && primaries != 1) {
+        out.violation = ProfViolation::NotExactlyOnePrimary;
+        return out;
+    }
+
     if (p.income.empty()) {
         out.violation = ProfViolation::NoIncome;
         return out;
@@ -366,6 +390,60 @@ ProfCheck Validate(const rules::Profile& rp, const Profession& p) {
 
     out.ok = true;
     return out;
+}
+
+const char* SkillRoleName(SkillRole r) {
+    switch (r) {
+        case SkillRole::Primary:   return "primary";
+        case SkillRole::Secondary: return "secondary";
+        case SkillRole::Utility:   return "utility";
+    }
+    return "?";
+}
+
+const char* TierName(Tier t) {
+    switch (t) {
+        case Tier::Novice:      return "Novice";
+        case Tier::Apprentice:  return "Apprentice";
+        case Tier::Journeyman:  return "Journeyman";
+        case Tier::Adept:       return "Adept";
+        case Tier::Expert:      return "Expert";
+        case Tier::Master:      return "Master";
+        case Tier::Grandmaster: return "Grandmaster";
+    }
+    return "?";
+}
+
+Tier TierFromSkillSum(i32 sumTenths, i32 capTenths) {
+    if (capTenths <= 0) return Tier::Novice;
+    if (sumTenths < 0) sumTenths = 0;
+    // Fraction of the 700-point budget the character has actually earned.
+    // A Revolution character starts at 100.0 of 700.0 -- 14% -- so Novice
+    // deliberately covers everything up to a quarter of a finished build.
+    const int pct = static_cast<int>((sumTenths * 100LL) / capTenths);
+    if (pct >= 97) return Tier::Grandmaster;   // effectively a finished build
+    if (pct >= 85) return Tier::Master;
+    if (pct >= 70) return Tier::Expert;
+    if (pct >= 55) return Tier::Adept;
+    if (pct >= 40) return Tier::Journeyman;
+    if (pct >= 25) return Tier::Apprentice;
+    return Tier::Novice;
+}
+
+int PopulationSharePercent(Tier t) {
+    // uo-offline's bell curve (BotSkillTier.cs), kept because the SHAPE is
+    // right -- most players are mid-tier, Grandmasters are rare. There it is
+    // a spawn table; here it is only something a fleet can compare itself to.
+    switch (t) {
+        case Tier::Novice:      return 15;
+        case Tier::Apprentice:  return 20;
+        case Tier::Journeyman:  return 20;
+        case Tier::Adept:       return 20;
+        case Tier::Expert:      return 15;
+        case Tier::Master:      return 8;
+        case Tier::Grandmaster: return 2;
+    }
+    return 0;
 }
 
 }  // namespace uo::prof
