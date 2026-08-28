@@ -1,0 +1,222 @@
+[17:10:49.271] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak30' char=Corwin tag='slice_f'
+[17:10:49.273] LOG   [slice_f] event session_start: text log opened
+[17:10:49.273] LOG   [slice_f] event net_connect_begin: connect 127.0.0.1:2593
+[17:10:49.273] INFO  [slice_f] [net] connecting to 127.0.0.1:2593 ...
+[17:10:49.274] LOG   [slice_f] event net_connected: connect 127.0.0.1:2593
+[17:10:49.274] INFO  [slice_f] [net] connected.
+[17:10:49.274] INFO  [slice_f] [seed] sent 0x7F000001 (plaintext)
+[17:10:49.274] LOG   [slice_f] event seed_out: 0x7F000001 hex=7f000001
+[17:10:49.274] INFO  [life] no prior state for revolutionsoak30.corwin: a new Fisher
+[17:10:49.280] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[17:10:49.280] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[17:10:49.280] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[17:10:49.280] INFO  [slice_f] [life] autonomous player active for 'Corwin' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 45 min)
+[17:10:49.288] INFO  [slice_f] [0xA8] 1 server(s):
+[17:10:49.288] INFO  [slice_f]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:10:49.304] INFO  [slice_f] [0x8C] game server = 127.0.0.1:2593  seed=0x51FB302C
+[17:10:49.304] LOG   [slice_f] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x51FB302C
+[17:10:49.304] INFO  [slice_f] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:10:49.304] LOG   [slice_f] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:10:49.304] INFO  [slice_f] [0xB9] server features = 0x0005
+[17:10:49.304] INFO  [slice_f] [0xA9] 5 slot(s) (populated 0):
+[17:10:49.304] INFO  [slice_f]   [0] <empty>
+[17:10:49.304] INFO  [slice_f]   [1] <empty>
+[17:10:49.304] INFO  [slice_f]   [2] <empty>
+[17:10:49.304] INFO  [slice_f]   [3] <empty>
+[17:10:49.304] INFO  [slice_f]   [4] <empty>
+[17:10:49.304] INFO  [slice_f] [0x00] requested skills 18:50 13:50 48:0
+[17:10:49.304] INFO  [slice_f] [0x00] requested stats STR 25 DEX 15 INT 10
+[17:10:49.304] INFO  [slice_f] [0x00] creating character 'Corwin' in slot 0
+[17:10:49.304] LOG   [slice_f] event char_create_sent: Corwin
+[17:10:49.320] INFO  [slice_f] [0x1B] serial=0x00013739 body=0x0190 pos=(633,858,0)
+[17:10:49.320] LOG   [slice_f] event login_confirm: serial=0x00013739 body=0x0190 pos=(633,858,0)
+[17:10:49.320] INFO  [slice_f] [0x20] player @(633,858,0) facing=3
+[17:10:49.320] INFO  [slice_f] [0x55] login complete — entering world
+[17:10:49.320] LOG   [slice_f] event in_world: 0x55 received
+[17:10:49.320] INFO  [slice_f] [backpack] opening 0x40013735
+[17:10:49.320] INFO  [slice_f] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:10:49.320] INFO  [slice_f] [chat ascii] System: There is 1 other player here.
+[17:10:49.320] INFO  [slice_f] [chat ascii] System: You are under the protection of the town guards
+[17:10:49.324] INFO  [slice_f] [action] requesting the skill list
+[17:10:49.324] INFO  [life] in world; asked the server for the skill list
+[17:10:49.324] INFO  [slice_f] [0x24] open container 0x40013735 gump=60
+[17:10:49.324] INFO  [slice_f] [0x3C] container contents: 10 item(s)
+[17:10:49.324] LOG   [slice_f] event backpack_contents: serial=0x40013735 items=10
+[17:10:51.941] INFO  [slice_f] [bot] world data loaded (0 blacklisted spot(s)).
+[17:10:51.942] INFO  [life] common knowledge: Docks at 1479,1757 (899 tiles away)
+[17:10:51.942] INFO  [life] common knowledge: Skara Brae Docks E at 638,2227 (1369 tiles away)
+[17:10:51.942] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (1378 tiles away)
+[17:10:51.942] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[17:10:51.942] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[17:10:51.942] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[17:10:51.942] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[17:10:51.942] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[17:10:51.942] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[17:10:51.942] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[17:10:51.942] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[17:10:51.942] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[17:10:51.942] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:10:51.942] INFO  [slice_f] [survival] on
+[17:10:51.942] LOG   [slice_f] event survival_mode: on
+[17:10:51.943] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak30.corwin/state.json
+[17:10:51.943] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:10:51.994] INFO  [life] goal=FISH reason="no goal was running"
+[17:10:51.994] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:10:51.994] INFO  [life]   score=58.5
+[17:10:51.995] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:10:51.995] INFO  [life]   reason: carrying 0
+[17:10:51.995] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:10:51.995] INFO  [life] fish: looking for a dock (trip 1)
+[17:10:51.995] INFO  [slice_f] [travel] Docks -> (1479,1757) r=12 from (633,858)
+[17:10:51.995] LOG   [slice_f] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(633,858)
+[17:10:51.995] INFO  [slice_f] [travel] mode moongate         usable   <- chosen
+[17:10:51.995] INFO  [slice_f] [travel] mode walk             usable
+[17:10:51.995] INFO  [slice_f] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:10:51.995] INFO  [slice_f] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:10:51.995] LOG   [slice_f] event travel_mode: moongate
+[17:10:51.995] INFO  [slice_f] [travel] plan Docks: ok legs=16 ~656 tiles transit=1 nodes=1170
+[17:10:52.055] INFO  [slice_f] [action] goto (664,856) from (633,858,0)
+[17:10:52.055] LOG   [slice_f] event goto_start: target=(664,856) from=(633,858)
+[17:10:52.055] INFO  [slice_f] [bot] running from (633,858,0) to (664,856)
+[17:10:52.055] INFO  [slice_f] [bot] planning path to (664,856) in background
+[17:10:52.116] INFO  [slice_f] [bot] replan to (664,856): 31 steps in 6012.7us
+[17:10:56.960] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:01.814] INFO  [slice_f] [bot] arrived at (664,856,0)
+[17:11:01.815] INFO  [slice_f] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[17:11:01.815] LOG   [slice_f] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[17:11:01.815] INFO  [slice_f] [action] goto (696,840) from (664,856,0)
+[17:11:01.815] LOG   [slice_f] event goto_start: target=(696,840) from=(664,856)
+[17:11:01.815] INFO  [slice_f] [bot] running from (664,856,0) to (696,840)
+[17:11:01.815] INFO  [slice_f] [bot] planning path to (696,840) in background
+[17:11:01.876] INFO  [slice_f] [bot] replan to (696,840): 36 steps in 7958.5us
+[17:11:01.999] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:07.017] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:08.416] INFO  [slice_f] [chat ascii] System: You have left the protection of the town guards
+[17:11:12.018] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:14.579] INFO  [slice_f] [bot] arrived at (696,840,0)
+[17:11:14.580] INFO  [slice_f] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[17:11:14.580] LOG   [slice_f] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[17:11:14.580] INFO  [slice_f] [action] goto (728,808) from (696,840,0)
+[17:11:14.580] LOG   [slice_f] event goto_start: target=(728,808) from=(696,840)
+[17:11:14.580] INFO  [slice_f] [bot] running from (696,840,0) to (728,808)
+[17:11:14.580] INFO  [slice_f] [bot] planning path to (728,808) in background
+[17:11:14.641] INFO  [slice_f] [bot] replan to (728,808): 40 steps in 11042.9us
+[17:11:17.025] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:22.053] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:27.086] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:28.666] INFO  [slice_f] [bot] arrived at (728,808,0)
+[17:11:28.666] INFO  [slice_f] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[17:11:28.666] LOG   [slice_f] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[17:11:28.666] INFO  [slice_f] [action] goto (760,776) from (728,808,0)
+[17:11:28.666] LOG   [slice_f] event goto_start: target=(760,776) from=(728,808)
+[17:11:28.666] INFO  [slice_f] [bot] running from (728,808,0) to (760,776)
+[17:11:28.666] INFO  [slice_f] [bot] planning path to (760,776) in background
+[17:11:28.727] INFO  [slice_f] [bot] replan to (760,776): 37 steps in 13443.0us
+[17:11:32.097] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:37.154] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:41.108] INFO  [slice_f] [bot] arrived at (760,776,0)
+[17:11:41.108] INFO  [slice_f] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[17:11:41.108] LOG   [slice_f] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[17:11:41.108] INFO  [slice_f] [action] goto (776,760) from (760,776,0)
+[17:11:41.108] LOG   [slice_f] event goto_start: target=(776,760) from=(760,776)
+[17:11:41.108] INFO  [slice_f] [bot] running from (760,776,0) to (776,760)
+[17:11:41.108] INFO  [slice_f] [bot] planning path to (776,760) in background
+[17:11:41.170] INFO  [slice_f] [bot] replan to (776,760): 20 steps in 2432.2us
+[17:11:42.164] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:47.177] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:48.986] INFO  [slice_f] [bot] arrived at (776,760,0)
+[17:11:48.987] INFO  [slice_f] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[17:11:48.987] LOG   [slice_f] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[17:11:48.987] INFO  [slice_f] [action] goto (771,752) from (776,760,0)
+[17:11:48.987] LOG   [slice_f] event goto_start: target=(771,752) from=(776,760)
+[17:11:48.987] INFO  [slice_f] [bot] running from (776,760,0) to (771,752)
+[17:11:48.987] INFO  [slice_f] [bot] planning path to (771,752) in background
+[17:11:49.050] INFO  [slice_f] [bot] replan to (771,752): 8 steps in 105.0us
+[17:11:51.943] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak30.corwin/state.json
+[17:11:52.204] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:11:52.463] INFO  [slice_f] [gump] 0x400028B7 context=0x80A00438: 13 option(s), 15 text(s)
+[17:11:52.463] INFO  [slice_f] [gump]   button 1000 = 'OKAY'
+[17:11:52.463] INFO  [slice_f] [gump]   button 0 = 'CANCEL'
+[17:11:52.463] INFO  [slice_f] [gump]   button 1 = 'Felucca'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 1 = 'Moonglow'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 2 = 'Britain'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 3 = 'Jhelom'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 4 = 'Yew'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 5 = 'New Magincia'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 6 = 'Minoc'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 7 = 'Trinsic'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 8 = 'Skara Brae'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 9 = 'Buccaneer's Den'
+[17:11:52.463] INFO  [slice_f] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:11:52.463] INFO  [slice_f] [gump]   text 0 = 'Pick your destination:'
+[17:11:52.463] INFO  [slice_f] [gump]   text 1 = 'OKAY'
+[17:11:52.463] INFO  [slice_f] [gump]   text 2 = 'CANCEL'
+[17:11:52.463] INFO  [slice_f] [gump]   text 3 = 'Felucca'
+[17:11:52.463] INFO  [slice_f] [gump]   text 4 = 'Felucca'
+[17:11:52.463] INFO  [slice_f] [gump]   text 5 = 'Moonglow'
+[17:11:52.463] INFO  [slice_f] [gump]   text 6 = 'Britain'
+[17:11:52.463] INFO  [slice_f] [gump]   text 7 = 'Jhelom'
+[17:11:52.463] INFO  [slice_f] [gump]   text 8 = 'Yew'
+[17:11:52.463] INFO  [slice_f] [gump]   text 9 = 'New Magincia'
+[17:11:52.463] INFO  [slice_f] [gump]   text 10 = 'Minoc'
+[17:11:52.463] INFO  [slice_f] [gump]   text 11 = 'Trinsic'
+[17:11:52.463] INFO  [slice_f] [gump]   text 12 = 'Skara Brae'
+[17:11:52.463] INFO  [slice_f] [gump]   text 13 = 'Buccaneer's Den'
+[17:11:52.463] INFO  [slice_f] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:11:52.463] LOG   [slice_f] event gump_open: serial=0x400028B7 context=0x80A00438 options=13
+[17:11:52.463] INFO  [slice_f] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[17:11:52.463] LOG   [slice_f] event moongate_use: destination='Britain' choice=2 button=1000
+[17:11:52.463] INFO  [slice_f] [bot] arrived at (771,752,5)
+[17:11:52.464] INFO  [slice_f] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[17:11:52.464] LOG   [slice_f] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[17:11:52.464] INFO  [slice_f] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[17:11:52.464] INFO  [slice_f] [0x20] player @(1336,1997,5) facing=7
+[17:11:52.464] INFO  [slice_f] [0x20] player @(1336,1997,5) facing=7
+[17:11:52.477] INFO  [slice_f] [chat ascii] System: You can't see the target
+[17:11:52.724] INFO  [slice_f] [action] goto (1336,1960) from (1336,1997,5)
+[17:11:52.724] LOG   [slice_f] event goto_start: target=(1336,1960) from=(1336,1997)
+[17:11:52.724] INFO  [slice_f] [bot] running from (1336,1997,5) to (1336,1960)
+[17:11:52.724] INFO  [slice_f] [bot] planning path to (1336,1960) in background
+[17:11:52.785] INFO  [slice_f] [bot] replan to (1336,1960): 37 steps in 14187.6us
+[17:11:53.046] INFO  [slice_f] [chat ascii] System: You have been revealed
+[17:11:57.213] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:02.241] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:05.122] INFO  [slice_f] [bot] arrived at (1336,1960,0)
+[17:12:05.123] INFO  [slice_f] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[17:12:05.123] LOG   [slice_f] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[17:12:05.123] INFO  [slice_f] [action] goto (1336,1928) from (1336,1960,0)
+[17:12:05.123] LOG   [slice_f] event goto_start: target=(1336,1928) from=(1336,1960)
+[17:12:05.123] INFO  [slice_f] [bot] running from (1336,1960,0) to (1336,1928)
+[17:12:05.123] INFO  [slice_f] [bot] planning path to (1336,1928) in background
+[17:12:05.184] INFO  [slice_f] [bot] replan to (1336,1928): 33 steps in 6240.6us
+[17:12:07.293] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:12.294] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:16.043] INFO  [slice_f] [bot] arrived at (1336,1928,0)
+[17:12:16.044] INFO  [slice_f] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[17:12:16.044] LOG   [slice_f] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[17:12:16.044] INFO  [slice_f] [action] goto (1352,1896) from (1336,1928,0)
+[17:12:16.044] LOG   [slice_f] event goto_start: target=(1352,1896) from=(1336,1928)
+[17:12:16.044] INFO  [slice_f] [bot] running from (1336,1928,0) to (1352,1896)
+[17:12:16.044] INFO  [slice_f] [bot] planning path to (1352,1896) in background
+[17:12:16.105] INFO  [slice_f] [bot] replan to (1352,1896): 36 steps in 8398.0us
+[17:12:17.304] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:22.336] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:27.337] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:27.537] INFO  [slice_f] [bot] arrived at (1352,1896,0)
+[17:12:27.538] INFO  [slice_f] [action] goto finished at (1352,1896,0); target (1352,1896); ARRIVED (off by 0 tile(s))
+[17:12:27.538] LOG   [slice_f] event goto_done: at=(1352,1896) target=(1352,1896) arrived=1 off=0
+[17:12:27.538] INFO  [slice_f] [action] goto (1368,1864) from (1352,1896,0)
+[17:12:27.538] LOG   [slice_f] event goto_start: target=(1368,1864) from=(1352,1896)
+[17:12:27.538] INFO  [slice_f] [bot] running from (1352,1896,0) to (1368,1864)
+[17:12:27.538] INFO  [slice_f] [bot] planning path to (1368,1864) in background
+[17:12:27.599] INFO  [slice_f] [bot] replan to (1368,1864): 32 steps in 5270.6us
+[17:12:32.343] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:37.357] INFO  [slice_f] [survival] hp 25/25 (100%) -> fight
+[17:12:37.434] INFO  [slice_f] [bot] arrived at (1368,1864,0)
+[17:12:37.435] INFO  [slice_f] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[17:12:37.435] LOG   [slice_f] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[17:12:37.435] INFO  [slice_f] [action] goto (1368,1832) from (1368,1864,0)
+[17:12:37.435] LOG   [slice_f] event goto_start: target=(1368,1832) from=(1368,1864)
+[17:12:37.435] INFO  [slice_f] [bot] running from (1368,1864,0) to (1368,1832)
+[17:12:37.435] INFO  [slice_f] [bot] planning path to (1368,1832) in background
+[17:12:37.496] INFO  [slice_f] [bot] replan to (1368,1832): 39 steps in 4194.0us

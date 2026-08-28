@@ -47,6 +47,11 @@ ACCOUNTS = os.path.join(ROOT, "runtime", "accounts", "sphereaccu.scp")
 
 # (profession id, how many). Producers first so the chain fills from the top.
 POPULATION = [
+    # The FISHER first, because it is the only life in the catalogue with a
+    # legitimate NPC gold faucet (see docs/GOLD_FAUCET_REPORT.md). A fleet
+    # without one has no character that can earn at all, which is how twenty
+    # bots spent a session with EARN_GOLD blocked 3,297 times.
+    ("fisher",               4),   # fish -> fisher/cook NPC. Creates gold.
     ("lumberjack_swordsman", 6),   # logs, boards, blank scrolls, clubs
     ("miner_smith",          5),   # eats ore + logs -> ingots, spears
     ("mage",                 5),   # eats blank scrolls + reagents -> scrolls
@@ -60,6 +65,8 @@ NAMES = [
     "Dorthor", "Aeryn", "Dravazar", "Galrin", "Ravan",
     "Beleth", "Elvrin", "Ardor", "Voris", "Calar",
     "Malazar", "Baelos", "Vorath", "Galthor", "Rhalthor",
+    "Aurir", "Zaran", "Talran", "Ithvar", "Neriel",
+    "Fenael", "Dorvar", "Ithion", "Caelos", "Elandor",
 ]
 
 
