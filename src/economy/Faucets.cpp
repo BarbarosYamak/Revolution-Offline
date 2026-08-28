@@ -235,11 +235,22 @@ const GoldFaucet kFaucets[] = {
 
 {"alchemy_output_to_vendor", SourceType::VendorSale, "alchemist",
  "i_potion_cure", "alchemist",
- HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported,
+ HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported,
  Policy::RefusePlayerMarket,
- "potions and kegs are economically important player goods. The alchemist's "
- "role is to supply PvPers, mages and PvM players -- not to be an NPC money "
- "printer"},
+ "CONFIRMED as a player-market good, and the two shards genuinely differ "
+ "here. TNS scripts an NPC buyback -- VENDOR_B_ALCHEMIST names Refresh, "
+ "Agility, Night Sight, Heal, Strength, Poison, Cure, Explosion, the Greater "
+ "variants, Deadly Poison and Total Refresh -- so the mechanism exists and "
+ "is not in doubt; what it paid is not in the public pack. REVOLUTION pushed "
+ "the other way, deliberately and on the record: on 18.08.2009 Night Sight "
+ "potions STOPPED being sold by NPCs. Demand was between players and it was "
+ "large -- a 2008 Revolution warrior describes carrying roughly 150 Deadly "
+ "Poison, 80 Heal and 80 Cure in kegs for a large battle, which makes every "
+ "PvPer, PvMer, tamer, mage and warlock a repeat customer. The February 2011 "
+ "update let a Store Crystal of 250 identical potions be listed in the "
+ "Tezgahtarlar Kooperatifi, using 250 Heal as its worked example. NOTE: the "
+ "'.fiyat 50000' in that example demonstrates the LISTING SYSTEM and is not "
+ "evidence of a price -- do not quote it as one (owner, 2026-08-28)"},
 
 {"ingot_to_vendor", SourceType::VendorSale, "miner_smith",
  "i_ingot_iron", "blacksmith",

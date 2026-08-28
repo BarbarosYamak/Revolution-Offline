@@ -317,6 +317,19 @@ const std::vector<Profession>& All() {
             };
             p.unresolvedTenths = 4500;
             p.targetStr = 50; p.targetDex = 25; p.targetInt = 100;
+            // THE TRAINING IS THE PRODUCTION. An alchemist does not grind
+            // Alchemy and then separately make stock to sell -- every practice
+            // batch comes out of the mortar as real potions. So the loop is:
+            // train, keep what this life needs, sell the excess to PLAYERS,
+            // and spend that on the next reagents and bottles.
+            //
+            // Revolution made the player half explicit rather than incidental:
+            // on 18.08.2009 Night Sight potions stopped being sold by NPCs,
+            // and a 2008 warrior describes carrying about 150 Deadly Poison,
+            // 80 Heal and 80 Cure in kegs into a large battle. Every PvPer,
+            // PvMer, tamer, mage and warlock is a standing customer. TNS
+            // scripts an NPC buyback instead (VENDOR_B_ALCHEMIST); that is
+            // TNS's model, not this one -- see the faucet registry row.
             p.income = {Income::Craft};
             // Bottles are NOT bought: i_bottle_empty is Alchemy 25.0 with a
             // glassblowing tool (Production.cpp:178), so an alchemist makes
