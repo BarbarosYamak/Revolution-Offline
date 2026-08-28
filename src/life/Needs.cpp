@@ -154,7 +154,21 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // Gang pressure: incoming damage scales with attackers while outgoing
         // does not, so the bail threshold rises with every extra attacker
         // (uo-offline's measured shape, our M3.9.1 base value).
+        // NERVE IS PER LIFE. Every profession carries a riskTolerance -- 0.55
+        // for a swordsman down to 0.20 for a fisher -- and until now nothing
+        // read it: every character fled at the same shared threshold, so the
+        // fisher's "avoids everything" and the swordsman's willingness to
+        // stand were both inert data.
+        //
+        // A cautious life bails EARLIER, so lower tolerance raises the
+        // threshold. Bounded either side: nobody fights to 5% and nobody runs
+        // at full health.
         double bailAt = cfg.fleeHpFraction;
+        if (cfg.profession) {
+            const double nerve = cfg.profession->riskTolerance;   // 0..1
+            bailAt = std::min(0.75, std::max(0.20,
+                        cfg.fleeHpFraction + (0.5 - nerve) * 0.4));
+        }
         const i32 extra = obs.attackersOnMe - 1;
         if (extra > 0) bailAt = std::min(0.90, bailAt + 0.08 * std::min(3, extra));
 

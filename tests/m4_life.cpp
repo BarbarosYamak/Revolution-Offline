@@ -1183,6 +1183,61 @@ void TestEveryLifeAsksForItsOwnTools() {
     }
 }
 
+
+// --------------------------------------------------------------------------
+// riskTolerance was dead data: every profession carried a distinct value and
+// nothing read it, so a fisher and a swordsman fled at the same threshold.
+void TestNerveIsPerProfession() {
+    Section("needs: a cautious life bails earlier than a bold one");
+
+    const prof::Profession* sword = prof::Find("lumberjack_swordsman");
+    const prof::Profession* fish  = prof::Find("fisher");
+    Check(sword && fish, "the bold and the cautious both exist");
+    if (!sword || !fish) return;
+    Check(fish->riskTolerance < sword->riskTolerance,
+          "the catalogue really does rate them differently");
+
+    life::Memory mem;
+    auto bailUrgency = [&](const prof::Profession& p, double hpFrac) {
+        life::NeedConfig cfg;
+        cfg.profession = &p;
+        life::BuildPlan plan = life::PlanFromProfession(p);
+        life::Observation obs;
+        obs.inWorld = true;
+        obs.hpMax = 100;
+        obs.hp = static_cast<i32>(hpFrac * 100);
+        obs.underAttack = true;
+        obs.attackersOnMe = 1;
+        obs.weight = 10; obs.maxWeight = 500;
+        const std::vector<life::Need> needs =
+            life::AssessNeeds(plan, mem, obs, cfg);
+        for (const life::Need& n : needs) {
+            if (n.kind == life::NeedKind::StayAlive) return n.urgency;
+        }
+        return -1.0;
+    };
+
+    // 40% sits BETWEEN the two thresholds -- the fisher bails at 0.44, the
+    // swordsman at 0.30 -- so this is the health where they genuinely differ.
+    // 45% was above both and produced identical urgency, which is correct
+    // behaviour and a useless test.
+    const double fisherAt40 = bailUrgency(*fish, 0.40);
+    const double swordAt40  = bailUrgency(*sword, 0.40);
+    Check(fisherAt40 > 0.0 && swordAt40 > 0.0,
+          "both register a fight in progress");
+    Check(fisherAt40 > swordAt40,
+          "the fisher is already disengaging where the swordsman fights on");
+
+    // And well above both thresholds they agree, which is equally required:
+    // nerve changes WHERE the line is, not whether there is one.
+    Check(bailUrgency(*fish, 0.90) == bailUrgency(*sword, 0.90),
+          "at 90% neither is bailing and they read the same");
+
+    // And at full health neither is bailing.
+    Check(bailUrgency(*fish, 1.0) < 1.0,
+          "nobody flees at full health, however cautious");
+}
+
 }  // namespace
 
 
@@ -1205,6 +1260,7 @@ int main(int argc, char** argv) {
     TestSurplusNeedsSomewhereToGo();
     TestUnsatisfiableNeedIsBlocked();
     TestEveryLifeAsksForItsOwnTools();
+    TestNerveIsPerProfession();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

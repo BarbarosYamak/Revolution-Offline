@@ -199,3 +199,54 @@
 [17:16:29.012] INFO  [slice_g] [bot] running from (1336,1928,0) to (1352,1896)
 [17:16:29.012] INFO  [slice_g] [bot] planning path to (1352,1896) in background
 [17:16:29.074] INFO  [slice_g] [bot] replan to (1352,1896): 36 steps in 8562.5us
+[17:16:31.019] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:16:36.030] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:16:40.622] INFO  [slice_g] [bot] arrived at (1352,1896,0)
+[17:16:40.626] INFO  [slice_g] [action] goto finished at (1352,1896,0); target (1352,1896); ARRIVED (off by 0 tile(s))
+[17:16:40.626] LOG   [slice_g] event goto_done: at=(1352,1896) target=(1352,1896) arrived=1 off=0
+[17:16:40.626] INFO  [slice_g] [action] goto (1368,1864) from (1352,1896,0)
+[17:16:40.626] LOG   [slice_g] event goto_start: target=(1368,1864) from=(1352,1896)
+[17:16:40.626] INFO  [slice_g] [bot] running from (1352,1896,0) to (1368,1864)
+[17:16:40.626] INFO  [slice_g] [bot] planning path to (1368,1864) in background
+[17:16:40.688] INFO  [slice_g] [bot] replan to (1368,1864): 32 steps in 6033.8us
+[17:16:41.059] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:16:46.089] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:16:51.093] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:16:51.105] INFO  [slice_g] [bot] arrived at (1368,1864,0)
+[17:16:51.109] INFO  [slice_g] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[17:16:51.109] LOG   [slice_g] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[17:16:51.109] INFO  [slice_g] [action] goto (1368,1832) from (1368,1864,0)
+[17:16:51.109] LOG   [slice_g] event goto_start: target=(1368,1832) from=(1368,1864)
+[17:16:51.109] INFO  [slice_g] [bot] running from (1368,1864,0) to (1368,1832)
+[17:16:51.109] INFO  [slice_g] [bot] planning path to (1368,1832) in background
+[17:16:51.170] INFO  [slice_g] [bot] replan to (1368,1832): 39 steps in 4115.0us
+[17:16:56.117] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:01.165] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:03.774] INFO  [slice_g] [bot] arrived at (1368,1832,0)
+[17:17:03.778] INFO  [slice_g] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[17:17:03.778] LOG   [slice_g] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[17:17:03.778] INFO  [slice_g] [action] goto (1368,1800) from (1368,1832,0)
+[17:17:03.778] LOG   [slice_g] event goto_start: target=(1368,1800) from=(1368,1832)
+[17:17:03.778] INFO  [slice_g] [bot] running from (1368,1832,0) to (1368,1800)
+[17:17:03.778] INFO  [slice_g] [bot] planning path to (1368,1800) in background
+[17:17:03.837] INFO  [slice_g] [bot] replan to (1368,1800): 32 steps in 4848.1us
+[17:17:05.190] INFO  [slice_g] [bot] step (1368,1828,0)->(1368,1827,0) rejected; OpenDoor + retry
+[17:17:05.495] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:17:05.929] INFO  [slice_g] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=30 in 150.0us
+[17:17:06.192] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:11.236] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:14.140] INFO  [slice_g] [bot] step (1371,1801,0)->(1370,1800,0) rejected; OpenDoor + retry
+[17:17:14.876] INFO  [slice_g] [bot] step (1371,1801,0)->(1370,1800,0) rejected; avoiding edge + rerouting
+[17:17:14.876] INFO  [slice_g] [bot] planning path to (1368,1800) in background
+[17:17:14.880] INFO  [slice_g] [bot] replan to (1368,1800): 3 steps in 55.4us
+[17:17:16.262] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:16.324] INFO  [slice_g] [bot] arrived at (1368,1800,3)
+[17:17:16.328] INFO  [slice_g] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:17:16.328] LOG   [slice_g] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:17:16.328] INFO  [slice_g] [action] goto (1402,1760) from (1368,1800,3)
+[17:17:16.328] LOG   [slice_g] event goto_start: target=(1402,1760) from=(1368,1800)
+[17:17:16.328] INFO  [slice_g] [bot] running from (1368,1800,3) to (1402,1760)
+[17:17:16.328] INFO  [slice_g] [bot] planning path to (1402,1760) in background
+[17:17:16.387] INFO  [slice_g] [bot] replan to (1402,1760): 79 steps in 36279.2us
+[17:17:21.304] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
+[17:17:26.331] INFO  [slice_g] [survival] hp 25/25 (100%) -> fight
