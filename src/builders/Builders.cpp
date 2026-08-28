@@ -24,6 +24,32 @@ usize VendorBuy(u8* out, u32 vendorSerial, const VendorBuyEntry* entries, usize 
     return w.size();
 }
 
+usize SkillLock(u8* out, const SkillLockEntry* entries, usize count) {
+    BufWriter w(out, 256);
+    w.WriteU8(0x3A);
+    const usize len_at = w.size();
+    w.WriteU16(0);
+    for (usize i = 0; i < count; ++i) {
+        w.WriteU16(entries[i].skillIndex);
+        w.WriteU8(entries[i].state);
+    }
+    // The server reads the length, subtracts the 3 header bytes, and refuses
+    // anything that is not a multiple of 3 -- so the patched total is the
+    // whole packet, exactly as with 0x9F above.
+    w.PatchU16(len_at, static_cast<u16>(w.size()));
+    return w.size();
+}
+
+usize StatLock(u8* out, u8 statCode, u8 state) {
+    BufWriter w(out, 8);
+    w.WriteU8(0xBF);
+    w.WriteU16(7);          // fixed: cmd + len(2) + subcmd(2) + code + state
+    w.WriteU16(0x001A);     // EXTDATA_Stats_Change
+    w.WriteU8(statCode);
+    w.WriteU8(state);
+    return w.size();
+}
+
 usize VendorSell(u8* out, u32 vendorSerial, const VendorSellEntry* entries,
                  usize count) {
     BufWriter w(out, 256);

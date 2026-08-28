@@ -228,4 +228,37 @@ usize VendorSell(u8* out, u32 vendorSerial, const VendorSellEntry* entries,
 usize MoveRequest(u8* out, u8 direction, u8 sequence,
                   u32 fastWalkKey = 0, bool legacy = false);
 
+// --- skill and stat locks (M4) ---------------------------------------------
+//
+// How a player holds a finished build to its caps. Once a skill reaches its
+// target it is LOCKED so further use does not push it past 100.0 and eat the
+// 700 budget; once a stat reaches its target it is LOCKED so gains go
+// elsewhere. Both are ordinary client requests a human sends by clicking the
+// arrow beside the entry on the status/skill gump.
+//
+// Lock states, shared by both packets (Source-X `SKILLLOCK_TYPE`,
+// src/common/sphereproto.h:570):
+enum : u8 { kLockUp = 0, kLockDown = 1, kLockLocked = 2 };
+
+// 0x3A Skill Lock Change (variable). Source-X `PacketSkillLockChange`,
+// src/network/receive.cpp:685.
+//   BYTE    cmd 0x3A
+//   BYTE[2] length (BE), == 3 + 3*count
+//   per skill: BYTE[2] skill index (BE), BYTE lock state
+// The index is the [SKILL n] number -- the same numbering `uo/rules.h` uses.
+struct SkillLockEntry {
+    u16 skillIndex;
+    u8  state;
+};
+usize SkillLock(u8* out, const SkillLockEntry* entries, usize count);
+
+// 0xBF subcommand 0x1A Change Stat Lock. Source-X `PacketChangeStatLock`,
+// src/network/receive.cpp:3041.
+//   BYTE    cmd 0xBF
+//   BYTE[2] length (BE) == 7
+//   BYTE[2] subcommand 0x001A (BE)
+//   BYTE    stat code: 0 = STR, 1 = DEX, 2 = INT
+//   BYTE    lock state
+usize StatLock(u8* out, u8 statCode, u8 state);
+
 }

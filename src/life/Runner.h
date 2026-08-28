@@ -84,6 +84,10 @@ private:
     // because Sphere will not wear a second weapon over a full hand.
     bool        ArmAxe(Client& client, const Observation& obs);
     void        LearnFromObservation(Client& client, const Observation& obs);
+    // Hold the build to its caps: LOCK a planned skill or stat that has
+    // reached its target, keep the rest training up. Nothing here raises a
+    // value -- it moves the arrow a player clicks.
+    void        MaintainBuildLocks(Client& client, const Observation& obs);
     void        RunGoal(Client& client, const Observation& obs);
     void        LogGoalChange(const Observation& obs, const std::string& why);
     void        LogLine(const char* fmt, ...) const;
@@ -115,6 +119,12 @@ private:
     i64 lastCheckpointMs_ = 0;
     i64 lastTickMs_ = 0;
     i64 nextActionMs_ = 0;
+    // Build-lock bookkeeping. `statLockSent_` holds `wantedState + 1` so 0
+    // means "never sent"; the client is never told a stat's lock state, so
+    // there is nothing to reconcile against.
+    i64 nextLockCheckMs_ = 0;
+    u8  statLockSent_[3] = {0, 0, 0};
+    bool lockGateLogged_ = false;
     i64 windDownStartedMs_ = 0;
     i32 windDownTrips_ = 0;
     bool windDownArrived_ = false;
@@ -147,6 +157,13 @@ private:
     static constexpr i64 kChaseGiveUpMs = 8000;
     i32  chaseBestDist_ = 0;
     i64  chaseProgressMs_ = 0;
+    // Stalemate bound. A chase bound is not enough: an ADJACENT foe never
+    // stops "closing", so a fight neither side can win runs forever. This
+    // window is measured against the one progress signal a client has -- the
+    // foe's health bar.
+    static constexpr i64 kFightAssessMs = 20000;
+    i64  fightStartedMs_ = 0;
+    double foeHpAtStart_ = -1.0;
     i64  lastBandageMs_ = 0;
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;

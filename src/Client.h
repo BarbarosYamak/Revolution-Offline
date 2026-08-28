@@ -385,6 +385,15 @@ public:
     // Trained value of a skill in tenths; -1 when the server has not told us.
     i32   PlayerSkillBase(u16 index) const;
     void  PlayerSkillsAll(std::vector<SkillReport>& out) const;
+    // Lock state the server last reported for a skill (0 up, 1 down, 2 locked),
+    // or -1 when it has not told us.
+    i32   PlayerSkillLock(u16 index) const;
+    // Ask the server to change a skill's lock arrow, exactly as clicking it on
+    // the skill gump does. This is how a build is held to 700: a skill at its
+    // target is LOCKED so further use stops consuming the budget.
+    void  ActionSetSkillLock(u16 index, u8 state);
+    // Same for a stat (0 = STR, 1 = DEX, 2 = INT), holding a build to 225.
+    void  ActionSetStatLock(u8 statCode, u8 state);
     // Sum of every trained skill, in tenths -- the number the shard's
     // SKILLSUM cap is measured against.
     u32   PlayerSkillSum() const;

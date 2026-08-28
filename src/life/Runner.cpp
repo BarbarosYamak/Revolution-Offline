@@ -2,6 +2,7 @@
 
 #include "Client.h"
 #include "uo/log.h"
+#include "uo/builders.h"
 #include "uo/vendor_policy.h"
 #include "uo/world_model.h"
 
@@ -73,6 +74,17 @@ bool AxeInHand(Client& c) { return AxeSerialInHand(c) != 0; }
 
 bool HandsBusy(Client& c) {
     return c.EquippedAtLayer(kLayerHand1) != 0 || c.EquippedAtLayer(kLayerHand2) != 0;
+}
+
+const char* SkillLabel(int id) {
+    switch (id) {
+        case rules::kLumberjacking: return "Lumberjacking";
+        case rules::kSwordsmanship: return "Swordsmanship";
+        case rules::kTactics:       return "Tactics";
+        case rules::kAnatomy:       return "Anatomy";
+        case rules::kHealing:       return "Healing";
+        default:                    return "skill";
+    }
 }
 
 i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
@@ -207,10 +219,13 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     for (const Client::HostileHit& h : hostiles) {
         if (TileDist(h.x, h.y, obs.x, obs.y) <= 1) ++adjacent;
     }
-    // What the client can honestly claim about "how many are on me": a foe we
-    // are in a fight with, plus anything hostile standing in melee range.
-    obs.attackersOnMe = adjacent;
-    obs.underAttack = warTarget != 0 || adjacent > 0;
+    // A FIGHT, not a crowd. Adjacency alone is not being attacked: Session B
+    // opened combat with a COW that happened to be standing next to it, and
+    // then spent twenty seconds failing to dent it. The war watchdog's target
+    // is the client's own record that a fight is actually happening, so that
+    // is the gate; adjacent hostiles only scale the pressure once it is.
+    obs.underAttack = warTarget != 0;
+    obs.attackersOnMe = obs.underAttack ? std::max(1, adjacent) : 0;
 
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
     obs.corpseKnown = death.valid && death.corpseSerial != 0;
@@ -268,6 +283,90 @@ bool Runner::ArmAxe(Client& client, const Observation& obs) {
     client.ActionEquip(axe, kLayerServerChooses);
     nextActionMs_ = obs.nowMs + 1600;
     return true;
+}
+
+// ---------------------------------------------------------------------------
+// Holding the build to its caps.
+//
+// A build plan that is never enforced is a wish. Revolution's caps are 700.0
+// skill and 225 stat, and both are reached by ACCUMULATION -- so a character
+// that never locks anything eventually spends its budget on whatever it
+// happened to use most, not on what it planned.
+//
+// The policy is deliberately narrow, because the plan is:
+//   * a PLANNED skill at or past its target  -> LOCK  (stop spending budget)
+//   * a PLANNED skill below its target        -> UP    (keep training it)
+//   * an UNPLANNED skill                      -> left alone. The 200 unresolved
+//     points are unspent ON PURPOSE, and setting them DOWN would quietly
+//     decide the rest of the build.
+//   * a stat at or past its target            -> LOCK
+//   * a stat below its target                 -> UP
+//
+// Nothing here raises a skill or a stat. It moves the arrow beside it, which
+// is what a player does, and the server remains free to refuse.
+void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
+    if (obs.nowMs < nextLockCheckMs_) return;
+    nextLockCheckMs_ = obs.nowMs + 30000;
+
+    const rules::Profile& p = rules::Revolution();
+
+    // --- DO NOT LOCK EARLY. -----------------------------------------------
+    //
+    // A lock is an END-OF-BUILD instrument. Its only job is to stop a finished
+    // part of the build from eating budget the unfinished parts still need,
+    // and that budget is only scarce near the cap. A young character has
+    // hundreds of points of headroom, so locking anything then just freezes
+    // growth for no gain -- and a locked stat cannot fall either, which is
+    // exactly the redistribution a build near the cap depends on.
+    //
+    // So: nothing is locked until the character is actually approaching the
+    // cap. Below the gate, everything trains up and no lock packet is sent at
+    // all. The gates are the last 100 skill points and the last 25 stat
+    // points -- the region where the caps start to bind.
+    const i32 skillSum = obs.SkillSumTenths();
+    const i32 statSum  = obs.str + obs.dex + obs.intel;
+    const bool skillsNearCap = skillSum >= p.totalSkillCapTenths - 1000;   // 600.0 of 700.0
+    const bool statsNearCap  = statSum  >= p.totalStatCap - 25;            // 200 of 225
+
+    if (!lockGateLogged_ && (skillsNearCap || statsNearCap)) {
+        lockGateLogged_ = true;
+        LogLine("build: approaching the caps (skills %.1f/%.1f, stats %d/%d) -- "
+                "lock management starts now",
+                skillSum / 10.0, p.totalSkillCapTenths / 10.0, statSum,
+                p.totalStatCap);
+    }
+
+    if (skillsNearCap) {
+        for (const SkillTarget& t : state_.plan.skills) {
+            const i32 have = client.PlayerSkillBase(static_cast<u16>(t.skillId));
+            if (have < 0) continue;   // the server has not told us yet
+            const u8 want = (have >= t.tenths) ? build::kLockLocked : build::kLockUp;
+            const i32 now = client.PlayerSkillLock(static_cast<u16>(t.skillId));
+            if (now == static_cast<i32>(want)) continue;
+            LogLine("build: %s at %.1f/%.1f -> %s", SkillLabel(t.skillId),
+                    have / 10.0, t.tenths / 10.0,
+                    want == build::kLockLocked ? "LOCK" : "train up");
+            client.ActionSetSkillLock(static_cast<u16>(t.skillId), want);
+        }
+    }
+
+    if (statsNearCap) {
+        // The client is never told a stat's lock state, so each transition is
+        // sent once rather than reconciled against the server.
+        const struct { u8 code; i32 have; i32 target; const char* name; } kStats[3] = {
+            {0, obs.str,   state_.plan.targetStr, "STR"},
+            {1, obs.dex,   state_.plan.targetDex, "DEX"},
+            {2, obs.intel, state_.plan.targetInt, "INT"},
+        };
+        for (const auto& s : kStats) {
+            const u8 want = (s.have >= s.target) ? build::kLockLocked : build::kLockUp;
+            if (statLockSent_[s.code] == want + 1) continue;
+            statLockSent_[s.code] = static_cast<u8>(want + 1);
+            LogLine("build: %s at %d/%d -> %s", s.name, s.have, s.target,
+                    want == build::kLockLocked ? "LOCK" : "train up");
+            client.ActionSetStatLock(s.code, want);
+        }
+    }
 }
 
 void Runner::LearnFromObservation(Client& client, const Observation& obs) {
@@ -439,6 +538,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (!client.IsInWorld()) return;
             const Observation obs = Observe(client, nowMs);
             LearnFromObservation(client, obs);
+            MaintainBuildLocks(client, obs);
 
             // --- session limits -------------------------------------------
             const i64 elapsed = nowMs - sessionStartMs_;
@@ -500,13 +600,26 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // wind-down walks to a known bank first and only then logs out.
             client.EnsurePeaceMode();
 
+            // The deadline is checked BEFORE the travel guard, and it ABORTS
+            // the trip. Session B put this the other way round and a trip that
+            // never arrived held the wind-down open for fourteen minutes --
+            // the timeout was unreachable while travel was busy, which is not
+            // a bound at all.
+            const bool outOfTime = nowMs - windDownStartedMs_ > 2 * 60 * 1000;
+            if (outOfTime && client.TravelBusy()) {
+                LogLine("wind-down: the trip has run past its deadline; abandoning "
+                        "it and logging out where I stand");
+                client.TravelAbort("wind-down deadline");
+                travelInFlight_ = false;
+                return;
+            }
             if (client.TravelBusy()) return;
+
             const KnownPlace* bank = state_.memory.BestPlace("bank");
             const bool safeHere = client.BankContainer() != 0 ||
                                   windDownArrived_ ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
                                                     client.PlayerY()) <= 6);
-            const bool outOfTime = nowMs - windDownStartedMs_ > 2 * 60 * 1000;
 
             if (travelInFlight_) {
                 travelInFlight_ = false;
@@ -740,9 +853,50 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         currentFoe_ = target->serial;
         chaseBestDist_ = dist;
         chaseProgressMs_ = obs.nowMs;
+        fightStartedMs_ = obs.nowMs;
+        foeHpAtStart_ = target->hpCur >= 0 && target->hpMax > 0
+                            ? static_cast<double>(target->hpCur) / target->hpMax
+                            : -1.0;
         LogLine("engaging %s (noto %d) at %d,%d",
                 target->name.empty() ? "a hostile" : target->name.c_str(),
                 target->noto, target->x, target->y);
+    }
+
+    // CANNOT DENT IT. A fight neither side can win is the worst outcome
+    // available: Session A spent twenty of its thirty-one minutes in one, and
+    // the goal-level timeout only restarted it every five minutes because
+    // something was still attacking. So the fight itself is bounded on the one
+    // signal a client actually has -- the foe's health bar.
+    if (obs.nowMs - fightStartedMs_ > kFightAssessMs) {
+        const double foeHp = target->hpCur >= 0 && target->hpMax > 0
+                                 ? static_cast<double>(target->hpCur) / target->hpMax
+                                 : -1.0;
+        const bool noDent = foeHp < 0.0 || foeHpAtStart_ < 0.0 ||
+                            (foeHpAtStart_ - foeHp) < 0.05;
+        if (noDent) {
+            LogLine("interrupt=DISENGAGE reason=\"%llds of fighting and %s is "
+                    "still at %s health; this is a stalemate\"",
+                    static_cast<long long>((obs.nowMs - fightStartedMs_) / 1000),
+                    target->name.empty() ? "it" : target->name.c_str(),
+                    foeHp >= 0.0 ? "the same" : "unknown");
+            MarkUnreachable(target->serial, obs.nowMs);
+            state_.memory.NoteDanger(obs.x, obs.y, 16,
+                                     target->name.empty() ? "a stalemate foe"
+                                                          : target->name.c_str(),
+                                     1.0, obs.nowMs);
+            currentFoe_ = 0;
+            client.EnsurePeaceMode();
+            // Walk away, or the same foe is simply re-engaged next tick.
+            const KnownResourceSource* stand =
+                state_.memory.BestResource("logs", obs.x, obs.y, obs.nowMs);
+            if (stand && !client.TravelBusy()) {
+                client.TravelToPoint(stand->x, stand->y, 4, "leave_stalemate");
+            }
+            return true;
+        }
+        // It IS taking damage -- reset the window and keep fighting.
+        fightStartedMs_ = obs.nowMs;
+        foeHpAtStart_ = foeHp;
     }
 
     // BOUNDED CHASE. A wounded animal runs, and a lumberjack that follows it
