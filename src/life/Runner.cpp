@@ -855,7 +855,7 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
         state_.homeCity = workIsPlaceBound ? homes.front()
                                            : homes[h % homes.size()];
         LogLine("home: %s lives in %s", state_.identity.characterName.c_str(),
-                HomeOrNearest(state_.homeCity));
+                state_.homeCity.c_str());
     }
 
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has

@@ -439,7 +439,10 @@ const std::vector<Profession>& All() {
             p.riskTolerance = 0.25;
             p.goldReserve = 600;
                         // Reagents and a mortar; Britain has the deepest reagent supply.
-            p.homeCities = {"Britain", "Vesper", "Moonglow"};
+            // Confirmed by the owner 2026-08-29: "alchemist moonglow britain jhelom
+            // magicinia all good". An alchemist gathers nothing, so it keeps the
+            // hashed spread across these four rather than being pinned to one.
+            p.homeCities = {"Moonglow", "Britain", "Jhelom", "Magincia"};
             v.push_back(std::move(p));
         }
 
