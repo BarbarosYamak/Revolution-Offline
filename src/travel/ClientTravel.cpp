@@ -223,6 +223,17 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
     return TravelToServiceSkipping(s, regionHint, kNoSerials, nullptr);
 }
 
+i32 Client::DistanceToResource(wm::ResourceKind r) const {
+    if (!world_knowledge_) return -1;
+    const wm::Place* p =
+        world_knowledge_->atlas.NearestPlaceWithResource(r, playerX_, playerY_);
+    if (!p) return -1;
+    const i32 dx = p->position.x - playerX_;
+    const i32 dy = p->position.y - playerY_;
+    const i32 ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+    return ax > ay ? ax : ay;
+}
+
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                      const std::vector<u32>& skipSerials,
                                      std::vector<std::string>* skipPlaceIds) {

@@ -552,6 +552,11 @@ public:
                                  const std::vector<u32>& skipSerials,
                                  std::vector<std::string>* skipPlaceIds);
     bool TravelToResource(wm::ResourceKind r);
+    // How far the nearest place yielding this resource is, or -1 if none is
+    // known. The life layer needs the DISTANCE, not just the ability to walk
+    // there: a miner standing in Minoc is at work, and one standing in Vesper
+    // is not, and nothing could previously tell the two apart.
+    i32  DistanceToResource(wm::ResourceKind r) const;
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);

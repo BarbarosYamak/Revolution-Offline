@@ -387,6 +387,8 @@ constexpr u16 kCampfireGraphic = 0x0DE3;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
 // how much coin a life keeps, or one will ask for a trip the other undoes.
 constexpr i32 kGoldWorthCarryingRt = 500;
+// Close enough to a mining place to call it a day at work.
+constexpr i32 kAtOreDistance = 40;
 // THE 36 ARMOUR PIECES AN ARMORER ACTUALLY STOCKS, generated from every
 // SELL row in VENDOR_S_ARMORER_LEATHER / _RING / _CHAIN / _PLATE /
 // _SHIELDS. Everything else with an ARMOR value is smith-crafted or
@@ -959,6 +961,15 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         // A life that gathers nothing is never away from its work: a mage or
         // an alchemist works wherever it happens to be standing.
         obs.atWorkSite = true;
+    } else if (gathers == "ore") {
+        // A MINER IS AT WORK WHERE THE ORE IS. This fell through to counting
+        // TREES -- the comment above says a miner at its vein was the very
+        // case this block existed to fix, and ore was still never handled. So
+        // a miner standing in Minoc, the mining town, was judged by how many
+        // trees happened to be around him. Corwyn trained in Minoc and walked
+        // back to Vesper without a single swing.
+        const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
+        obs.atWorkSite = d >= 0 && d <= kAtOreDistance;
     } else {
         obs.atWorkSite = client.TreeCount(obs.x, obs.y, cfg_.searchRadius) > 0;
     }
@@ -1612,7 +1623,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 } else {
                     LogLine("wind-down: no bank learned yet; asking the world for one "
                             "(attempt %d)", windDownTrips_);
-                    travelInFlight_ = client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
+                    travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
                 }
                 if (!travelInFlight_) {
                     LogLine("wind-down: could not start the trip (%s); logging out here",
@@ -2993,7 +3004,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         } else {
             LogLine("bank: no bank learned yet; asking the world model for one "
                     "(trip %d)", bankTrips_);
-            travelInFlight_ = client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
+            travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
         }
         if (!travelInFlight_) {
             LogLine("goal_blocked=BANK reason=\"%s\"", client.TravelFailureText());
@@ -4675,7 +4686,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                     state_.homeCity.empty() ? "nearest" : state_.homeCity.c_str(),
                     tradeTrips_);
             travelInFlight_ =
-                client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
+                client.TravelToService(wm::Service::Banker, nullptr);
             if (!travelInFlight_) {
                 LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"%s\"",
                         client.TravelFailureText());
