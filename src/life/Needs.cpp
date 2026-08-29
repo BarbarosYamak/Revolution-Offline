@@ -27,6 +27,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedSupplies:  return "NeedSupplies";
         case NeedKind::NeedPractice:  return "NeedPractice";
         case NeedKind::NeedSpells:    return "NeedSpells";
+        case NeedKind::NeedMakeBandages: return "NeedMakeBandages";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -50,6 +51,11 @@ constexpr int kSpellbookComfortable = 24;
 // is good enough" to go spell shopping in earnest. At this much clear, the
 // need is at full strength; below it, proportionally less.
 constexpr i32 kSpellShoppingSpare = 1000;
+// Enough gold that buying bandages is the sensible move. Healers sell them at
+// {5 20} and vets at {6 66} (tm_vend.scp), so a couple of hundred coins buys a
+// fighting stock outright -- and walking to a shop beats shearing a sheep,
+// spinning it, weaving it and cutting it up.
+constexpr i32 kBandagesBuyable = 200;
 
 
 // Does this life carry the thing at all? The catalogue is the answer; a life
@@ -687,6 +693,38 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
                 t.tenths / 10.0),
             blocked);
+    }
+
+    // --- bandages this character must MAKE ---------------------------------
+    //
+    // "if warrior economy is good then he can buy bandage and potion,
+    // otherwise go get yourself wool make bandage" (project owner,
+    // 2026-08-29). So this is strictly the poor branch. A character who can
+    // pay for bandages should walk to a healer and pay -- NeedEquipment
+    // already asks for that -- and this need must not compete with it.
+    //
+    // It exists because of a real deadlock. Kaelen was hungry so did not
+    // regenerate, wounded so could not hunt, out of bandages so could not
+    // heal, and broke so could not buy any: every exit locked behind another.
+    // Bandages ARE sold here (VENDOR_S_HEALER_SHOP, VENDOR_S_VET) and none of
+    // that helps an empty purse. A sheep costs nothing.
+    //
+    // Only for lives that actually fight. A scribe with no bandages is not in
+    // danger; a fencer is.
+    if (cfg.profession && WantsToHunt(*cfg.profession) &&
+        obs.bandages < cfg.bandageLow) {
+        const bool canAffordToBuy = obs.gold >= kBandagesBuyable;
+        const double shortfall =
+            1.0 - static_cast<double>(obs.bandages) /
+                      static_cast<double>(cfg.bandageLow > 0 ? cfg.bandageLow : 1);
+        add(NeedKind::NeedMakeBandages, 0.25 + 0.45 * shortfall, "bandages",
+            canAffordToBuy
+                ? "short of bandages, but there is money to buy them -- a shop "
+                  "is faster than a sheep"
+                : "no bandages and no money for any: shear, spin, weave, cut",
+            Fmt("bandages %d/%d gold %d (buyable at %d)", obs.bandages,
+                cfg.bandageLow, obs.gold, kBandagesBuyable),
+            canAffordToBuy);
     }
 
     // --- a spellbook worth FILLING -----------------------------------------

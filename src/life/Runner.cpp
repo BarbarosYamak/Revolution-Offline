@@ -64,6 +64,12 @@ constexpr i32 kMaxSpellbookTrips = 3;
 // again the moment the purse is still empty.
 constexpr i64 kNothingToSellCooldownMs = 180000;   // three minutes
 constexpr i32 kMaxTradeTrips = 3;
+// "up to 50-100" (project owner). Sixty is a fighting stock: enough to see a
+// character through several graveyard trips, short of hoarding wool it could
+// have spun into something saleable.
+constexpr i32 kBandagesWanted = 60;
+constexpr i32 kMaxBandageTrips = 3;
+constexpr i64 kNoBandageCooldownMs = 180000;
 // A goal that used its whole time limit and finished nothing rests for two
 // minutes. Long enough that something else certainly gets a turn, short enough
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
@@ -82,6 +88,36 @@ constexpr i32 kVendorReach = 3;
 // And a wandering vendor must not own the goal. After this many walk-backs,
 // try the purchase from where we stand and let the server decide.
 constexpr i32 kMaxVendorChases = 4;
+// THE TAILORING CHAIN, END TO END. Every graphic read from this shard's own
+// itemdefs and every mechanic from Source-X's source, not from generic UO:
+//
+//   scissors 0x0F9E on a woolly sheep (CHARDEF 0cf, body 0x00CF)
+//        -> wool          CClientTarg.cpp:1878, case CREID_SHEEP
+//   wool 0x0DF8 on a spinning wheel 0x1015
+//        -> yarn/thread   CClientTarg.cpp:2053, case IT_WOOL
+//   yarn 0x0E1D / thread 0x0FA0 on an upright loom 0x105F
+//        -> cloth bolt    CClientTarg.cpp:2186, case IT_YARN/IT_THREAD
+//   scissors on the bolt 0x0F95
+//        -> cut cloth     CClientTarg.cpp:2147, ConvertBolttoCloth
+//   scissors on cloth 0x175D
+//        -> BANDAGES      CClientTarg.cpp:2151, IT_CLOTH -> ITEMID_BANDAGES1,
+//                         one bandage per cloth
+//
+// The stations are real dynamic items and must be targeted by serial: the
+// engine breaks out when pItemTarg is null, so targeting the ground beside a
+// loom does nothing at all. There are 20 spinning wheels and 33 looms in the
+// world -- in save/spherestatics.scp, NOT sphereworld.scp, because the M3.7
+// decorator marks its placements attr_static and Source-X routes those to a
+// different file.
+constexpr u16 kScissorsGraphic  = 0x0F9E;
+constexpr u16 kWoolGraphic      = 0x0DF8;
+constexpr u16 kYarnGraphic      = 0x0E1D;
+constexpr u16 kThreadGraphic    = 0x0FA0;
+constexpr u16 kClothBoltGraphic = 0x0F95;
+constexpr u16 kClothGraphic     = 0x175D;
+constexpr u16 kSpinWheelGraphic = 0x1015;
+constexpr u16 kLoomGraphic      = 0x105F;
+constexpr u16 kSheepBody        = 0x00CF;
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -1485,6 +1521,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::GetFood:               done = DoGetFood(client, obs); break;
         case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
+        case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -5740,6 +5777,154 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
             "is one of the twelve safe to cast at oneself",
             static_cast<int>(n), had.c_str());
     return -1;
+}
+
+// ---------------------------------------------------------------------------
+// MAKING BANDAGES.
+//
+// "for warrior it should create its own bandage on up to 50-100, we know the
+// crafting bandages" and "wool can be obtained from sheeps" (project owner,
+// 2026-08-29).
+//
+// This is the answer to the deadlock that cost Kaelen a session: hungry, so no
+// HP regeneration; wounded, so under the hunting bar; no bandages, so HEAL was
+// blocked; and no gold, so he could not buy any. Bandages ARE sold -- healers
+// and vets stock them -- but a fighter with an empty purse cannot use a shop,
+// and a sheep costs nothing.
+//
+// The chain is five gestures and they are all the same gesture: use one thing
+// on another. See the constants above for the engine citation behind each.
+// Every stage is skipped if its output is already in the pack, so a character
+// who loots cloth walks straight to the last step.
+bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    if (obs.bandages >= kBandagesWanted) {
+        LogLine("bandages: %d is enough to fight on", obs.bandages);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // Scissors do every step, so without them there is no chain at all. They
+    // are in every starter kit as ITEMNEWBIE and so survive death, which is
+    // the point -- this goal exists for characters who have just lost
+    // everything else.
+    const u32 scissors = client.FindBackpackItemByGraphic(kScissorsGraphic);
+    if (!scissors) {
+        LogLine("goal_failed=MAKE_BANDAGES reason=\"no scissors -- every step "
+                "of the chain needs them\"");
+        planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
+        planner_.Finish(false, "no scissors", obs.nowMs);
+        return false;
+    }
+
+    // 1. CLOTH -> BANDAGES. One bandage per cloth, so this is the step that
+    //    actually pays and it runs before anything else.
+    if (const u32 cloth = client.FindBackpackItemByGraphic(kClothGraphic)) {
+        LogLine("bandages: cutting cloth (%d bandages so far, want %d)",
+                obs.bandages, kBandagesWanted);
+        client.ActionUseItemOn(scissors, cloth);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // 2. BOLT -> CLOTH.
+    if (const u32 bolt = client.FindBackpackItemByGraphic(kClothBoltGraphic)) {
+        LogLine("bandages: cutting a bolt of cloth into cloth");
+        client.ActionUseItemOn(scissors, bolt);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // 3. YARN OR THREAD -> LOOM -> BOLT.
+    u32 spun = client.FindBackpackItemByGraphic(kYarnGraphic);
+    if (!spun) spun = client.FindBackpackItemByGraphic(kThreadGraphic);
+    if (spun) {
+        const u32 loom = client.FindWorldItemByGraphic(kLoomGraphic, 10);
+        if (!loom) {
+            LogLine("bandages: carrying yarn but no loom in sight -- going to "
+                    "a tailor, where the looms are");
+            if (!travelInFlight_)
+                travelInFlight_ = client.TravelToService(
+                    wm::Service::Tailor, state_.homeCity.c_str());
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        LogLine("bandages: weaving yarn into cloth at a loom");
+        client.ActionUseItemOn(spun, loom);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    // 4. WOOL -> SPINNING WHEEL -> YARN.
+    if (const u32 wool = client.FindBackpackItemByGraphic(kWoolGraphic)) {
+        const u32 wheel = client.FindWorldItemByGraphic(kSpinWheelGraphic, 10);
+        if (!wheel) {
+            LogLine("bandages: carrying wool but no spinning wheel in sight -- "
+                    "going to a tailor");
+            if (!travelInFlight_)
+                travelInFlight_ = client.TravelToService(
+                    wm::Service::Tailor, state_.homeCity.c_str());
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        LogLine("bandages: spinning wool into yarn at a wheel");
+        client.ActionUseItemOn(wool, wheel);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    // 5. A SHEEP -> WOOL. The only free step, and the start of everything.
+    const u32 sheep = client.NearestMobileWithBody(kSheepBody, 12);
+    if (sheep) {
+        i32 sx = 0, sy = 0; i8 sz = 0;
+        if (client.MobilePosition(sheep, &sx, &sy, &sz)) {
+            const i32 d = TileDist(obs.x, obs.y, sx, sy);
+            if (d > 1) {
+                LogLine("bandages: a sheep %d tiles away -- walking up to shear "
+                        "it", d);
+                travelInFlight_ = client.TravelToEntity(sheep, 1);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        LogLine("bandages: shearing a sheep for wool");
+        client.ActionUseItemOn(scissors, sheep);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    // NO SHEEP IN SIGHT. Go where they are.
+    //
+    // The pastures are read from the world save rather than assumed: of 246
+    // sheep on map 0, the three real flocks are at 572,1098 (15), 669,943 (13)
+    // and 669,1175 (11), which is the farmland north-east of Yew. The rest are
+    // ones and twos wandering. The owner's recollection was Jhelom and
+    // Britain; the save says Yew, and the save is what the bot has to walk to.
+    if (client.TravelBusy()) return false;
+    if (++bandageTrips_ > kMaxBandageTrips) {
+        LogLine("goal_failed=MAKE_BANDAGES reason=\"no sheep found after %d "
+                "trips to the pastures\"", bandageTrips_ - 1);
+        planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
+        planner_.Finish(false, "no sheep reachable", obs.nowMs);
+        bandageTrips_ = 0;
+        return false;
+    }
+    static const struct { i32 x, y; } kPastures[] = {
+        {572, 1098}, {669, 943}, {669, 1175},
+    };
+    const int which = (bandageTrips_ - 1) % 3;
+    LogLine("bandages: no sheep in sight -- walking to the pasture at %d,%d "
+            "(trip %d)", kPastures[which].x, kPastures[which].y, bandageTrips_);
+    travelInFlight_ =
+        client.TravelToPoint(kPastures[which].x, kPastures[which].y, 6, "pasture");
+    nextActionMs_ = obs.nowMs + 2500;
+    return false;
 }
 
 // ---------------------------------------------------------------------------

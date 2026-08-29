@@ -587,6 +587,14 @@ enum class NeedKind : u8 {
     // See docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.5. So this is a need that is
     // satisfied slowly, across sessions, and never in one errand.
     NeedSpells,
+    // BANDAGES THIS CHARACTER MUST MAKE RATHER THAN BUY.
+    //
+    // Distinct from NeedEquipment, which wants bandages and assumes a shop.
+    // "if warrior economy is good then he can buy bandage and potion,
+    // otherwise go get yourself wool make bandage" (project owner) -- so this
+    // is the POOR branch, and it must not fire for a character who can simply
+    // pay for them.
+    NeedMakeBandages,
     Count,
 };
 
@@ -704,6 +712,9 @@ enum class GoalKind : u8 {
     // warrior buying a better sword, and the reason a mage with Magery 50
     // could still cast nothing at all.
     FillSpellbook,
+    // Shear a sheep, spin it, weave it, cut it. What a fighter does when it
+    // cannot afford bandages -- which is exactly when it most needs them.
+    MakeBandages,
     IdleBriefly,
     Count,
 };

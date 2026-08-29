@@ -26,6 +26,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::GetFood:               return "GET_FOOD";
         case GoalKind::PracticeSkill:         return "PRACTICE_SKILL";
         case GoalKind::FillSpellbook:         return "FILL_SPELLBOOK";
+        case GoalKind::MakeBandages:         return "MAKE_BANDAGES";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -62,6 +63,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // and replacing armour, not with training -- the character is not
         // practising anything, it is shopping for the means to cast at all.
         case GoalKind::FillSpellbook:
+        case GoalKind::MakeBandages:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Fish:
@@ -159,6 +161,10 @@ const GoalSpec kGoals[] = {
     // sessions and must never crowd out the work that pays for it, but it
     // outranks idling, because a mage without spells is not really a mage.
     {GoalKind::FillSpellbook,         NeedKind::NeedSpells,        110.0},
+    // Above buying supplies. A fighter with no bandages and no money is in a
+    // worse place than one short of craft inputs: it cannot heal, so it cannot
+    // hunt, so it cannot earn the money to fix any of it.
+    {GoalKind::MakeBandages,          NeedKind::NeedMakeBandages,  145.0},
 };
 
 }  // namespace

@@ -278,6 +278,11 @@ public:
 
     // Healing
     void ActionUseBandage(u32 bandageSerial, u32 targetSerial);
+    // Double-click an item and answer the cursor it arms with another object.
+    // The whole tailoring chain is this one gesture repeated: scissors on a
+    // woolly sheep, wool on a spinning wheel, thread on a loom, scissors on
+    // the cloth that comes out.
+    void ActionUseItemOn(u32 itemSerial, u32 targetSerial);
 
     // One row of a vendor offer, joined from the 0x3C stock contents and the
     // 0x74 price/name list. Plain data: the scenario picks what to buy.

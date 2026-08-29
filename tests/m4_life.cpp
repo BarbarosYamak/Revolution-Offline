@@ -2014,6 +2014,80 @@ void TestACorneredFighterMayHunt() {
         Check(!fit->blocked, "a fighter at full health hunts either way");
 }
 
+// "if warrior economy is good then he can buy bandage and potion, otherwise go
+// get yourself wool make bandage" (project owner, 2026-08-29).
+void TestAPoorFighterMakesItsOwnBandages() {
+    Section("needs: a broke fighter shears a sheep, a rich one visits a shop");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (!fencer) { Check(false, "no fencer"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = fencer;
+    life::BuildPlan plan = life::PlanFromProfession(*fencer);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 32;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.bandages = 0;
+    obs.skills.push_back({rules::kFencing, 500});
+
+    auto makeNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedMakeBandages) return &n;
+        return nullptr;
+    };
+
+    // Broke: making them is the only way, so the need is actionable.
+    obs.gold = 0;
+    const std::vector<life::Need> nsPoor = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* poor = makeNeed(nsPoor);
+    Check(poor != nullptr, "a fighter with no bandages considers making them");
+    if (poor) {
+        Check(!poor->blocked,
+              "and with no money it is ACTIONABLE -- a sheep costs nothing, "
+              "which is the whole point of the goal");
+        Check(poor->reason.find("no money") != std::string::npos,
+              "the reason names poverty, not a missing shop");
+    }
+
+    // Money in the purse: buying is faster, so this branch stands aside.
+    obs.gold = 500;
+    const std::vector<life::Need> nsRich = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* rich = makeNeed(nsRich);
+    if (rich)
+        Check(rich->blocked,
+              "with money it is BLOCKED -- shearing, spinning, weaving and "
+              "cutting is a poor character's errand, not a rich one's");
+
+    // A life that does not fight is never sent to a pasture for bandages.
+    const prof::Profession* scribe = prof::Find("scribe");
+    if (scribe) {
+        life::NeedConfig scfg;
+        scfg.profession = scribe;
+        life::BuildPlan splan = life::PlanFromProfession(*scribe);
+        life::Observation so = obs;
+        so.gold = 0;
+        so.bandages = 0;
+        so.skills.clear();
+        so.skills.push_back({rules::kInscription, 500});
+        const std::vector<life::Need> nsS =
+            life::AssessNeeds(splan, mem, so, scfg);
+        Check(makeNeed(nsS) == nullptr,
+              "a scribe with no bandages is not in danger and is not sent "
+              "shearing -- only lives that actually fight are");
+    }
+
+    // Stocked up: nothing to do.
+    obs.gold = 0;
+    obs.bandages = 30;
+    const std::vector<life::Need> nsFull = life::AssessNeeds(plan, mem, obs, cfg);
+    Check(makeNeed(nsFull) == nullptr,
+          "a fighter already carrying bandages does not go looking for sheep");
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -2092,6 +2166,7 @@ int main(int argc, char** argv) {
     TestNoSkillGainRegionBlocksPractice();
     TestAMageWantsItsBookFilled();
     TestACorneredFighterMayHunt();
+    TestAPoorFighterMakesItsOwnBandages();
     TestAGoalThatSucceedsAtNothingIsStopped();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();

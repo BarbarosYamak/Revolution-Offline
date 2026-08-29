@@ -3115,6 +3115,30 @@ void Client::ActionWarMode(bool on) {
 // A bandage is used like any other item (double-click) and then asks for a
 // target. The targeting layer stays generic: the bandage-specific part is only
 // that this action knows which serial to answer with.
+// USE ONE THING ON ANOTHER. The same double-click-then-answer-the-cursor
+// gesture ActionUseBandage performs, without assuming the target is a
+// character or the item a bandage.
+//
+// Every step of turning a sheep into bandages is this and nothing else:
+//   scissors -> woolly sheep      wool     (CHARDEF 0cf RESOURCES=3 I_WOOL)
+//   wool     -> spinning wheel    thread   (CClientTarg.cpp:2053 IT_SPINWHEEL)
+//   thread   -> loom              cloth    (CClientTarg.cpp:2186 IT_LOOM)
+//   scissors -> cloth             BANDAGES (CClientTarg.cpp:2151 IT_CLOTH ->
+//                                           ITEMID_BANDAGES1, one per cloth)
+void Client::ActionUseItemOn(u32 itemSerial, u32 targetSerial) {
+    BeginAction(act::Kind::UseItemOn, kBandageTimeoutMs);
+    action_.subject = itemSerial;
+    action_.destination = targetSerial;
+    action_.awaitingTarget = true;
+    if (!itemSerial || !targetSerial) {
+        FinishAction(act::Result::InvalidState, "no item or no target");
+        return;
+    }
+    LogInfo("[ACTION] use_item_on item=0x%08X target=0x%08X\n",
+            itemSerial, targetSerial);
+    SendDoubleClick(itemSerial);
+}
+
 void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
     BeginAction(act::Kind::Bandage, kBandageTimeoutMs);
     action_.subject = bandageSerial;
@@ -3667,7 +3691,10 @@ void Client::ActionOnSysMessage(const char* text, u32 sourceSerial, u8 type) {
     if (sourceSerial != 0 && sourceSerial == playerSerial_ &&
         type != kTalkModeSpell) {
         if (action_.kind == act::Kind::UseSkill ||
-            action_.kind == act::Kind::Bandage) {
+            action_.kind == act::Kind::Bandage ||
+            // "You put the cloth in your backpack", "You create the bandages"
+            // -- the server narrating what the gesture did is the confirmation.
+            action_.kind == act::Kind::UseItemOn) {
             FinishAction(act::Result::Success, text);
             return;
         }
