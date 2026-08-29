@@ -183,11 +183,17 @@ const GoldFaucet kFaucets[] = {
  "references/tns/scripts/Systems/System_SellerBuro.scp:420-445 pays 5gp a "
  "cooked steak and decays that to 3, 2 then 1 as the shard-wide daily count "
  "passes 500k, 1M and 2M. That script is a DONOR reference and is NOT "
- "installed in runtime/scripts. On the shard as it actually boots there is "
- "no BUY row for i_fish_cut_cooked anywhere in the tree, so cooking is a "
- "gold dead end here until the system is installed. Cite the donor path, "
- "never a bare filename: the earlier wording read as if the running shard "
- "carried it"},
+ "installed in runtime/scripts. Cite the donor path, never a bare filename: "
+ "an earlier wording read as if the running shard carried it. "
+ "CORRECTED 2026-08-29: that same wording then went on to claim there is no "
+ "BUY row for i_fish_cut_cooked anywhere in the tree and that cooking is "
+ "therefore a gold dead end. That is false, and it is the fourth time in "
+ "this project a negative grep has been written down as a fact. "
+ "tm_vend.scp:798 and :1104 BOTH carry BUY=i_fish_cut_cooked,{4 24} -- in "
+ "VENDOR_B_COOK and VENDOR_B_FISHER, which are the very NPCs a fisher "
+ "already sells raw steaks to. Cooked pays about 5gp against raw's observed "
+ "2gp, so cooking is roughly 2.5x, not a dead end. The Policy::Allow on this "
+ "entry was right all along; only the reasoning under it was wrong"},
 
 {"scroll_to_mage_shop", SourceType::VendorSale, "mage",
  "i_scroll_poison", "mage",

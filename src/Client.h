@@ -324,6 +324,15 @@ public:
     // the buy flow -- carries the item serials itself.
     void ActionVendorSellOpen(u32 vendorSerial, const char* phrase = "sell");
     void ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty);
+    // Sell SEVERAL items in one 0x9F. Non-stackable goods -- daggers, armour --
+    // arrive in the vendor's buy list as one entry each with amount 1, so a
+    // one-item sell is one dagger, and a smith with fifteen of them made
+    // fifteen round trips. The packet has always carried a count; only the
+    // caller was passing one.
+    // (serial, qty) pairs rather than build::VendorSellEntry, so this header
+    // does not have to pull in the packet builders.
+    void ActionVendorSellMany(u32 vendorSerial,
+                              const std::vector<std::pair<u32, u16>>& items);
     const std::vector<VendorItem>& VendorSellOffer() const { return vendorSellOffer_; }
     const std::vector<VendorItem>& VendorOffer() const { return vendorOffer_; }
     // Player vitals, read straight from the server's own status packets.

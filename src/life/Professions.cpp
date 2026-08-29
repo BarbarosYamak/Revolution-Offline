@@ -1192,11 +1192,19 @@ const std::vector<Profession>& All() {
         // actually reachable, which is what makes it a different life and
         // not the mage restated.
         //
-        // Blank scrolls stay a CARPENTRY product on this runtime, not an
+        // Blank scrolls are a CARPENTRY product on this runtime, not an
         // Inscription one (Production.cpp: i_scroll_blank, SKILLMAKE=
-        // Carpentry 25.7) -- so this life buys its own raw material from the
-        // lumberjack/carpenter, the same cross-profession link the mage
-        // entry already documents as a known gap.
+        // Carpentry 25.7).
+        //
+        // CORRECTED 2026-08-29: that used to end "so this life buys its own
+        // raw material from the lumberjack/carpenter". It does not, and it
+        // never did at runtime. SupplierTradeFor() sends blank scrolls to the
+        // MAGE SHOP, which is where Ysolde actually buys them -- in the same
+        // stop as her reagents, confirmed live: "supplies: the server took 30
+        // gold for i_scroll_blank (purse 194 -> 164)" from Alenne the mage,
+        // whose buy list carries blank scrolls at 6gp beside all eight
+        // reagents. Who CRAFTS a thing and who SELLS it are different
+        // questions; this comment answered the first and asserted the second.
         //
         // [NEWBIE INSCRIPTION] hands over 2 blank scrolls and a book;
         // [NEWBIE MAGERY] the same no-reagent spellbook the mage and the

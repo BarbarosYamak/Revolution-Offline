@@ -4255,18 +4255,41 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         for (u16 g : mine) { if (v.graphic == g) { match = true; break; } }
         if (!match) continue;
 
-        i32 qty = std::min<i32>(sellWanted_, static_cast<i32>(v.amount));
-        // A cap set by an earlier refusal from THIS buyer -- see the
-        // "purse did not move" branch above.
-        if (sellLotCap_ > 0) qty = std::min<i32>(qty, sellLotCap_);
-        if (qty <= 0) continue;
+        // THE WHOLE LOT, NOT ONE PIECE. "yes dont sell one buy one" (project
+        // owner, 2026-08-29). A dagger does not stack, so the vendor's buy
+        // list holds sixteen separate entries of amount 1 -- and
+        // min(sellWanted_, v.amount) is therefore always 1. Corwyn sold a
+        // dagger, walked back to the forge, made another, and returned.
+        //
+        // The 0x9F packet has always carried an item COUNT; only the caller
+        // was passing one. So gather every entry of this item the vendor will
+        // take, up to what this life wants to be rid of, and sell them in a
+        // single transaction.
+        i32 remaining = sellWanted_;
+        if (sellLotCap_ > 0) remaining = std::min<i32>(remaining, sellLotCap_);
+        if (remaining <= 0) continue;
 
-        LogLine("earn_gold: '%s' offers %u gold each for %s; selling %d",
-                sellTrade_.c_str(), v.price, sellItem_.c_str(), qty);
-        sellWanted_ = qty;
+        std::vector<std::pair<u32, u16>> lot;
+        i32 lotQty = 0;
+        for (const Client::VendorItem& w : client.VendorSellOffer()) {
+            if (lotQty >= remaining) break;
+            bool same = false;
+            for (u16 g : mine) { if (w.graphic == g) { same = true; break; } }
+            if (!same || w.amount <= 0) continue;
+            const i32 take =
+                std::min<i32>(remaining - lotQty, static_cast<i32>(w.amount));
+            lot.emplace_back(w.serial, static_cast<u16>(take));
+            lotQty += take;
+        }
+        if (lot.empty()) continue;
+
+        LogLine("earn_gold: '%s' offers %u gold each for %s; selling %d in "
+                "%u lot(s)", sellTrade_.c_str(), v.price, sellItem_.c_str(),
+                lotQty, static_cast<unsigned>(lot.size()));
+        sellWanted_ = lotQty;
         sellGoldBefore_ = obs.gold;
         sellAskedMs_ = obs.nowMs;
-        client.ActionVendorSell(vendor, v.serial, static_cast<u16>(qty));
+        client.ActionVendorSellMany(vendor, lot);
         sellSent_ = true;
         nextActionMs_ = obs.nowMs + 3000;
         return false;

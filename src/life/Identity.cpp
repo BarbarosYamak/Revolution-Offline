@@ -288,6 +288,9 @@ bool WantsToHunt(const prof::Profession& p) {
 CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                         i32 batch) {
     CraftIntent out;
+    // The best candidate seen so far whose inputs are NOT all present, kept so
+    // a fully-stocked recipe later in the list can win instead.
+    CraftIntent firstWorkable;
     if (batch < 1) batch = 1;
 
     for (const std::string& made : p.produces) {
@@ -318,9 +321,31 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
             continue;
         }
 
-        out.item = r->output;
-        out.skillsMet = true;
-        out.why = "can be made and can be sold";
+        // WHAT CAN ACTUALLY BE MADE BEATS WHAT COMES FIRST IN THE LIST.
+        //
+        // This used to return on the first recipe with inputs, whatever the
+        // pack held -- so the ORDER of `produces` silently decided what a life
+        // could ever make. A fisher lists i_fish_cut_raw before
+        // i_fish_cut_cooked, and DoFish cuts every whole fish the instant it
+        // is caught, so the pack essentially never holds i_fish_big_1. Marla
+        // therefore landed on i_fish_cut_raw, reported it short of a whole
+        // fish, and returned -- with 36 raw steaks and two kindling in her
+        // pack and cooking never once considered. Ten times in one run:
+        //
+        //   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may
+        //   legitimately sell it (i_fish_cut_raw needs 5 x i_fish_big_1)
+        //
+        // She sold raw steaks at 2gp while VENDOR_B_COOK and VENDOR_B_FISHER
+        // both carry BUY=i_fish_cut_cooked,{4 24} (tm_vend.scp:798 and :1104)
+        // -- the same two NPCs she was already selling to.
+        //
+        // So: remember the first workable candidate, but keep looking, and
+        // take the first whose inputs are all present. Falling back to the
+        // earlier one preserves the old answer whenever nothing is fully
+        // stocked, which is what the "inputs are short" callers expect.
+        CraftIntent here;
+        here.item = r->output;
+        here.skillsMet = true;
         for (const prod::Ingredient& in : r->inputs) {
             if (!in.item || in.qty <= 0) continue;
             const i32 want = in.qty * batch;
@@ -329,13 +354,17 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
                 prod::Ingredient shortfall;
                 shortfall.item = in.item;
                 shortfall.qty = want - have;
-                out.missing.push_back(shortfall);
+                here.missing.push_back(shortfall);
             }
         }
-        if (out.missing.empty()) out.why = "every input is in the pack";
-        else out.why = "inputs are short";
-        return out;
+        if (here.missing.empty()) {
+            here.why = "every input is in the pack";
+            return here;
+        }
+        here.why = "inputs are short";
+        if (!firstWorkable.item) firstWorkable = here;
     }
+    if (firstWorkable.item) return firstWorkable;
     if (!out.why || !*out.why) out.why = "this life makes nothing sellable";
     return out;
 }

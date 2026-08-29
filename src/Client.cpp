@@ -3576,8 +3576,54 @@ void Client::ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty) {
             itemSerial, qty, vendorSerial, PlayerGold());
 
     build::VendorSellEntry e{itemSerial, qty};
-    u8 buf[64];
+    // 256, not 64: build::VendorSell writes through a BufWriter constructed
+    // with a capacity of 256, so a 64-byte buffer was only ever safe because
+    // the count was hardcoded to one.
+    u8 buf[256];
     const usize n = build::VendorSell(buf, vendorSerial, &e, 1);
+    Send(buf, n, "0x9F VendorSell");
+}
+
+void Client::ActionVendorSellMany(
+        u32 vendorSerial, const std::vector<std::pair<u32, u16>>& items) {
+    if (items.empty()) return;
+    if (items.size() == 1) {
+        ActionVendorSell(vendorSerial, items[0].first, items[0].second);
+        return;
+    }
+    BeginAction(act::Kind::VendorSell, kVendorTimeoutMs);
+    action_.subject = items[0].first;
+    action_.destination = vendorSerial;
+    u32 total = 0;
+    for (const auto& e : items) total += e.second;
+    action_.amount = static_cast<u16>(total > 0xFFFF ? 0xFFFF : total);
+
+    // Everything offered must be something this vendor actually asked to buy.
+    for (const auto& e : items) {
+        bool offered = false;
+        for (const VendorItem& v : vendorSellOffer_) {
+            if (v.serial == e.first) { offered = true; break; }
+        }
+        if (!offered) {
+            FinishAction(act::Result::InvalidState,
+                         "the vendor did not offer to buy one of those items");
+            return;
+        }
+    }
+
+    // The header is 9 bytes and each entry 6, against the builder's 256-byte
+    // window -- so 40 is the most that fits with room to spare.
+    std::vector<build::VendorSellEntry> lot;
+    for (const auto& e : items) {
+        if (lot.size() >= 40) break;
+        lot.push_back(build::VendorSellEntry{e.first, e.second});
+    }
+
+    LogInfo("[VENDOR] sell %u item(s) totalling %u to vendor=0x%08X gold=%d\n",
+            static_cast<unsigned>(lot.size()), total, vendorSerial,
+            PlayerGold());
+    u8 buf[256];
+    const usize n = build::VendorSell(buf, vendorSerial, lot.data(), lot.size());
     Send(buf, n, "0x9F VendorSell");
 }
 
