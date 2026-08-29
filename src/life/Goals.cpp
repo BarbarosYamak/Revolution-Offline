@@ -23,6 +23,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::Fish:                  return "FISH";
         case GoalKind::BuySupplies:           return "BUY_SUPPLIES";
         case GoalKind::Craft:                 return "CRAFT";
+        case GoalKind::GetFood:               return "GET_FOOD";
         case GoalKind::PracticeSkill:         return "PRACTICE_SKILL";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
@@ -55,6 +56,7 @@ GoalFamily FamilyOf(GoalKind k) {
             return GoalFamily::Emergency;
         case GoalKind::Bank:
         case GoalKind::ReplaceEquipment:
+        case GoalKind::GetFood:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Fish:
@@ -118,6 +120,10 @@ const GoalSpec kGoals[] = {
     {GoalKind::GetTool,               NeedKind::NeedTool,       520.0},
     {GoalKind::ReplaceEquipment,      NeedKind::NeedEquipment,  260.0},
     {GoalKind::Bank,                  NeedKind::NeedBank,       240.0},
+    // Above banking: being hungry outranks tidying the pack, and starving
+    // outranks nearly everything short of an actual emergency. The urgency
+    // does that scaling; the weight just puts it in the right neighbourhood.
+    {GoalKind::GetFood,               NeedKind::NeedFood,       250.0},
     {GoalKind::EarnGold,              NeedKind::NeedGold,       150.0},
     {GoalKind::GatherLogs,            NeedKind::NeedLogs,       130.0},
     {GoalKind::TrainCombat,           NeedKind::NeedTraining,   110.0},

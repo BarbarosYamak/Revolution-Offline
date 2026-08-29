@@ -365,6 +365,14 @@ struct Observation {
     i32  bandages = 0;
     i32  logs = 0;
     i32  food = 0;
+    // HUNGER, as the server itself says it. Sphere sends "You are <level>"
+    // with the levels starving / very hungry / hungry / fairly content /
+    // content / fed / well fed / stuffed (core/messages.scp:470-477,
+    // CCharAct.cpp:5798 DEFMSG_MSG_HUNGER). Read from the journal, which is
+    // what a player reads -- never from a server-side food value, which no
+    // real client can see.
+    bool hungry     = false;   // "hungry" or worse
+    bool starving   = false;   // "starving" -- damage is imminent
     bool axeInPack = false;
     bool axeEquipped = false;
     bool weaponEquipped = false;
@@ -615,6 +623,9 @@ enum class GoalKind : u8 {
     Craft,
     // Do the thing that raises the skill: cast, meditate, bandage.
     // TrainCombat is the fighting half of the same idea.
+    // Eat something. The simplest need there is, and it had no goal at all
+    // until 2026-08-29 -- NeedFood was scored every tick into a void.
+    GetFood,
     PracticeSkill,
     IdleBriefly,
     Count,

@@ -312,10 +312,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     }
 
     // --- hunger is live on this shard (HitsHungerLoss=1) -------------------
-    if (cfg.hungerLive && obs.food < cfg.foodLow) {
-        add(NeedKind::NeedFood, 0.25, "food",
-            "carrying no food and hunger is enabled on this shard",
-            Fmt("food=%d", obs.food));
+    // TWO DIFFERENT THINGS, and only one of them used to be here: being
+    // hungry NOW, and having nothing to eat later. The old need fired only on
+    // an empty pack, so a character with bread in its bag was never told to
+    // eat it -- which did not matter, because NeedFood was wired to no goal at
+    // all and fell into a void every tick.
+    if (cfg.hungerLive) {
+        if (obs.starving) {
+            add(NeedKind::NeedFood, 0.85, "food",
+                "the server says STARVING -- hunger damage is imminent",
+                Fmt("food=%d starving=1", obs.food));
+        } else if (obs.hungry) {
+            add(NeedKind::NeedFood, 0.45, "food",
+                "the server says hungry; eat before it costs health",
+                Fmt("food=%d hungry=1", obs.food));
+        } else if (obs.food < cfg.foodLow) {
+            add(NeedKind::NeedFood, 0.25, "food",
+                "carrying no food and hunger is enabled on this shard",
+                Fmt("food=%d", obs.food));
+        }
     }
 
     // --- weight and banking ------------------------------------------------

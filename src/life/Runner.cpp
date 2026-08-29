@@ -428,6 +428,15 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.bandages = static_cast<i32>(client.BackpackItemCount(kBandage));
     obs.logs     = static_cast<i32>(client.BackpackItemCount(kLog));
     obs.food     = CountAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]));
+    // HUNGER AS THE SERVER SAYS IT. "You are <level>" over the eight levels
+    // in core/messages.scp:470-477. A player reads this line; so do we.
+    // Watermarked from session start rather than a rolling mark: hunger is
+    // a STATE, and the last thing it said is still true until it says
+    // otherwise.
+    obs.starving = client.JournalSaidSince("you are starving", sessionStartJournalMs_);
+    obs.hungry   = obs.starving ||
+                   client.JournalSaidSince("you are very hungry", sessionStartJournalMs_) ||
+                   client.JournalSaidSince("you are hungry", sessionStartJournalMs_);
 
     obs.axeInPack = FindAny(client, kHatchet, 2) != 0 || FindAny(client, kAxe, 2) != 0;
     obs.weaponEquipped = HandsBusy(client);
@@ -898,6 +907,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (!client.IsInWorld()) return;
             if (sessionStartMs_ == 0) {
                 sessionStartMs_ = nowMs;
+                sessionStartJournalMs_ = client.JournalNowMs();
                 // The server has to tell us the skills before anything can be
                 // reconciled against them.
                 client.ActionRequestSkills();
@@ -1315,6 +1325,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::Fish:                  done = DoFish(client, obs); break;
         case GoalKind::BuySupplies:           done = DoBuySupplies(client, obs); break;
         case GoalKind::Craft:                 done = DoCraft(client, obs); break;
+        case GoalKind::GetFood:               done = DoGetFood(client, obs); break;
         case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
@@ -4741,6 +4752,64 @@ bool Runner::DoTravel(Client& client, const Observation& obs) {
 // Inscription, Blacksmithing, Lumberjacking -- is raised by the work the life
 // already does, and must NOT get an errand of its own: a scribe writes scrolls
 // to sell, not to practise.
+// EAT SOMETHING.
+//
+// The simplest need in the model, and it had NO GOAL AT ALL until now:
+// NeedFood was assessed and printed every tick -- 27 times in one twenty
+// minute session -- and appeared in no entry of the goal table, so it fell
+// into a void every time. That is why M4's hunger row reads BUILT / NEVER
+// FIRED. It was never reachable.
+//
+// Two halves, in the order a person would do them: eat what you are carrying,
+// and if you are carrying none, go and buy some.
+bool Runner::DoGetFood(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    const u32 food = FindAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]));
+    if (food) {
+        LogLine("food: eating (hungry=%d starving=%d, carrying %d)",
+                obs.hungry ? 1 : 0, obs.starving ? 1 : 0, obs.food);
+        // A double-click is how a player eats. The server decides whether it
+        // helped; the next tick's journal says so.
+        client.ActionUseObject(food);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // Nothing to eat. Buying food is an ordinary provisioner errand, and it is
+    // NOT a craft input -- so it does not belong in DoBuySupplies, which is
+    // about the things a profession makes other things from.
+    if (client.TravelBusy()) return false;
+    const u32 keeper = client.NearestMobileWithTrade("provisioner");
+    if (keeper) {
+        LogLine("food: nothing to eat -- asking a provisioner");
+        client.ActionVendorOpen(keeper);
+        nextActionMs_ = obs.nowMs + 9000;
+        return false;
+    }
+    if (!travelInFlight_) {
+        if (++foodTrips_ > kMaxFoodTrips) {
+            LogLine("goal_failed=GET_FOOD reason=\"%d trips and no provisioner "
+                    "in reach\"", foodTrips_ - 1);
+            planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+            planner_.Finish(false, "no provisioner reachable", obs.nowMs);
+            foodTrips_ = 0;
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
+        LogLine("food: looking for a provisioner (trip %d)", foodTrips_);
+        travelInFlight_ =
+            client.TravelToService(wm::Service::Provisioner, state_.homeCity.c_str());
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+    travelInFlight_ = false;
+    client.ActionScanMobiles();
+    nextActionMs_ = obs.nowMs + 2500;
+    return false;
+}
+
 bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     const int skillId = obs.wantPracticeSkill;
     if (skillId < 0) return true;

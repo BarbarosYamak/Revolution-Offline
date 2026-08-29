@@ -119,6 +119,7 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
+    bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
     bool DoIdle(Client& client, const Observation& obs);
 
@@ -209,6 +210,13 @@ private:
     // Bounded bank trips, for the same reason gathering needed one.
     static constexpr i32 kMaxBankTrips = 4;
     i32  bankTrips_ = 0;
+    // Bounded food errands, and a rest when there is no provisioner.
+    i32  foodTrips_ = 0;
+    static constexpr i32 kMaxFoodTrips = 3;
+    static constexpr i64 kNoFoodCooldownMs = 3 * 60 * 1000;
+    // Journal mark taken once at session start: hunger is a STATE, and the
+    // last thing the server said about it is still true until it speaks again.
+    i64  sessionStartJournalMs_ = 0;
     // --- buying a skill from an NPC ------------------------------------
     static constexpr i32 kMaxTrainTrips = 3;
     // How long TRAIN_AT_NPC rests after finding no trainer, or after one
