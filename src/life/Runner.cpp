@@ -29,6 +29,10 @@ constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
 constexpr u16 kFood[]     = {0x103B, 0x09EB, 0x09F2};
 constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
+// [SPELL 2] s_create_food -- targetless, 4 mana, MAGERY 10.0 to try.
+// The practice spell: nothing to target wrongly, nobody to anger.
+constexpr int kSpellCreateFood = 2;
+constexpr i32 kCreateFoodMana  = 4;
 
 // The word the NPC expects after "train". Sphere matches on the skill KEY from
 // skills/skill<N>_<name>.scp, not on our own label.
@@ -474,6 +478,15 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     } else {
         obs.atWorkSite = client.TreeCount(obs.x, obs.y, cfg_.searchRadius) > 0;
     }
+    // NO SKILL ADVANCES INSIDE A REGION_FLAG_SAFE AREA (Source-X
+    // Skill_Experience; docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.2 point 1).
+    // Twenty-five of them on map 0, and the ones that matter are the
+    // SHRINES -- quiet, safe-looking, and exactly where a bot would
+    // otherwise choose to stand and meditate for an hour to no effect.
+    {
+        const wm::Region* here = client.CurrentRegion();
+        obs.inNoGainRegion = here && here->flags.safe;
+    }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
@@ -566,7 +579,8 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.wantPracticeSkill = -1;
     for (const SkillTarget& t : state_.plan.skills) {
         if (obs.SkillTenths(t.skillId) >= t.tenths) continue;
-        if (t.skillId != rules::kMeditation) continue;   // see DoPracticeSkill
+        if (t.skillId != rules::kMeditation &&
+            t.skillId != rules::kMagery) continue;   // see DoPracticeSkill
         obs.wantPracticeSkill = t.skillId;
         break;
     }
@@ -4733,6 +4747,34 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
     const i32 have = obs.SkillTenths(skillId);
+
+    // MAGERY IS RAISED BY CASTING, WITH OR WITHOUT A FOE.
+    //
+    // Owner's rule, and the spell table agrees: [SPELL 2] s_create_food is
+    // FLAGS=spellflag_playeronly with no targ flag at all
+    // (runtime/scripts/spells/spells_magery.scp:36), so it is cast at nobody.
+    // Four mana, MAGERY 10.0 to attempt. It is the honest practice spell: no
+    // target to pick wrong, no harm flag to make a criminal of the caster, and
+    // what it produces is FOOD -- which this character also needs and has no
+    // other way to get.
+    //
+    // Deliberately not a combat spell. Practising Magery must not be a way to
+    // start fights the life did not choose.
+    if (skillId == rules::kMagery) {
+        if (obs.mana < kCreateFoodMana) {
+            LogLine("practice: %d mana is not enough to cast (need %d) -- "
+                    "resting instead", obs.mana, kCreateFoodMana);
+            nextActionMs_ = obs.nowMs + 15000;
+            return true;   // meditation or time will bring it back
+        }
+        LogLine("practice: casting Create Food to raise Magery (%.1f, mana %d)",
+                have / 10.0, obs.mana);
+        client.ActionCastSpell(kSpellCreateFood);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 6000;
+        return false;
+    }
+
     LogLine("practice: using %s to raise it (%.1f)", rules::SkillName(skillId),
             have / 10.0);
     client.ActionUseSkill(skillId);

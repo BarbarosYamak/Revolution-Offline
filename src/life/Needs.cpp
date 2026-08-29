@@ -593,12 +593,21 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         if (how != PracticeBy::Fighting) {
             // Casting needs mana; self-use needs nothing but the character.
             // Neither needs a foe, and neither may be blocked for want of one.
-            const bool ready = (how == PracticeBy::SelfUse) || obs.mana >= 10;
+            // A REGION THAT REFUSES SKILL GAIN MAKES PRACTICE POINTLESS.
+            // Not dangerous, not blocked by the server -- simply wasted. The
+            // character must move before it is worth a single cast.
+            const bool canGain = !obs.inNoGainRegion;
+            const bool ready = canGain &&
+                               ((how == PracticeBy::SelfUse) || obs.mana >= 10);
             add(NeedKind::NeedPractice, 0.20 + 0.25 * gap, SkillName(t.skillId),
                 ready ? "below target, and this skill is raised by using it"
-                      : "below target, but there is not enough mana to cast",
-                Fmt("%s %.1f -> %.1f mana=%d", SkillName(t.skillId),
-                    have / 10.0, t.tenths / 10.0, obs.mana),
+                      : (!canGain
+                             ? "below target, but no skill advances in this "
+                               "region -- move somewhere ordinary first"
+                             : "below target, but there is not enough mana to cast"),
+                Fmt("%s %.1f -> %.1f mana=%d no_gain_region=%d",
+                    SkillName(t.skillId), have / 10.0, t.tenths / 10.0,
+                    obs.mana, obs.inNoGainRegion ? 1 : 0),
                 !ready);
             continue;
         }

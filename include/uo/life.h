@@ -390,6 +390,11 @@ struct Observation {
     bool atWorkSite = false;
     bool treeAdjacent = false;
     bool atBank = false;
+    // Standing where NO SKILL CAN ADVANCE (REGION_FLAG_SAFE). Shrines,
+    // jails, the great castles, the Lycaeum, Empath Abbey. Nothing the
+    // client shows says so, and mana spent practising here is simply
+    // gone -- see Atlas::AllowsSkillGainAt.
+    bool inNoGainRegion = false;
 
     // What the profession wants bought from a trainer next, or -1. Set by the
     // runner from the build plan; the need model does not know about

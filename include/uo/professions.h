@@ -43,15 +43,21 @@ namespace uo::prof {
 //   CChar::InitPlayer clamps creation to 50.0 per skill and 100.0 total
 //     -> 50 + 50 = 100.0 is EXACTLY the ceiling. The rule is expressible.
 //   CChar::InitPlayer clamps creation to 60 per stat and 80 total
-//     -> a 50-point split is comfortably UNDER the ceiling, so asking for 50
-//        is simply a choice we make, not a limit we fight.
+//     -> and a new character spends ALL EIGHTY.
 //
-// Recorded so the difference is never lost: 80 is what the SERVER permits,
-// 50 is what REVOLUTION intends. M4's character asked for 80 (40/35/5) --
-// legal, but not the Revolution rule, and it is corrected here.
+// CORRECTED 2026-08-29. This said 50 for a long time, attributed to the owner,
+// and the owner has since corrected it to 80 -- the full ceiling. Every
+// profession's split was scaled x1.6 to match; all seventeen were multiples of
+// five, so each scales exactly and no stat exceeds the per-stat cap of 60.
+//
+// Worth recording because it went the wrong way once already: M4's original
+// character asked for 80 (40/35/5), which was LEGAL AND RIGHT, and an earlier
+// pass "corrected" it down to 50 in the belief that 50 was the Revolution
+// rule. Every bot created between then and now was born a third weaker than a
+// real player. Restored here.
 inline constexpr i32 kRevolutionStartSkillEach   = 500;  // 50.0, in tenths
 inline constexpr i32 kRevolutionStartSkillCount  = 2;
-inline constexpr i32 kRevolutionStartStatTotal   = 50;
+inline constexpr i32 kRevolutionStartStatTotal   = 80;
 
 // Server-side creation ceilings, for comparison only. Never use these as
 // targets -- they are what the engine tolerates, not what Revolution did.

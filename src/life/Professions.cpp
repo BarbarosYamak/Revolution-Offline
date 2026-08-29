@@ -152,7 +152,7 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kSwordsmanship;
             // DEX-weighted: six characters died on a STR-heavy split and one
             // survived on a DEX-heavy one (M4 plan). Same lesson, 50 points.
-            p.startStr = 25; p.startDex = 20; p.startInt = 5;
+            p.startStr = 40; p.startDex = 32; p.startInt = 8;
             p.targets = {
                 {rules::kLumberjacking, 1000, 5, false, SkillRole::Primary},
                 {rules::kSwordsmanship, 1000, 4, false, SkillRole::Secondary},
@@ -215,7 +215,7 @@ const std::vector<Profession>& All() {
             p.label = "Miner / Blacksmith";
             p.startSkillA = rules::kMining;
             p.startSkillB = rules::kBlacksmithing;
-            p.startStr = 35; p.startDex = 10; p.startInt = 5;
+            p.startStr = 56; p.startDex = 16; p.startInt = 8;
             p.targets = {
                 {rules::kBlacksmithing, 1000, 5, false, SkillRole::Primary},
                 {rules::kMining,        1000, 4, false, SkillRole::Secondary},
@@ -261,7 +261,7 @@ const std::vector<Profession>& All() {
             p.label = "Pure Mage";
             p.startSkillA = rules::kMagery;
             p.startSkillB = rules::kMeditation;
-            p.startStr = 15; p.startDex = 10; p.startInt = 25;
+            p.startStr = 24; p.startDex = 16; p.startInt = 40;
             p.targets = {
                 {rules::kMagery,          1000, 5, false, SkillRole::Primary},
                 {rules::kMeditation,      1000, 4, false, SkillRole::Secondary},
@@ -309,7 +309,7 @@ const std::vector<Profession>& All() {
             p.label = "Alchemist";
             p.startSkillA = rules::kAlchemy;
             p.startSkillB = rules::kMagery;
-            p.startStr = 20; p.startDex = 10; p.startInt = 20;
+            p.startStr = 32; p.startDex = 16; p.startInt = 32;
             p.targets = {
                 {rules::kAlchemy,     1000, 5, false, SkillRole::Primary},
                 {rules::kMagery,       500, 3, false, SkillRole::Utility},
@@ -372,7 +372,7 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kCooking;
             // Fishing pulls against STR for the catch and the carry; cooking
             // needs nothing. A fisher is not a fighter and does not pretend.
-            p.startStr = 25; p.startDex = 15; p.startInt = 10;
+            p.startStr = 40; p.startDex = 24; p.startInt = 16;
             p.targets = {
                 {rules::kFishing,   1000, 5, true,  SkillRole::Primary},
                 {rules::kCooking,    500, 3, true,  SkillRole::Utility},
@@ -407,7 +407,7 @@ const std::vector<Profession>& All() {
             p.label = "Animal Tamer";
             p.startSkillA = rules::kTaming;
             p.startSkillB = rules::kAnimalLore;
-            p.startStr = 20; p.startDex = 10; p.startInt = 20;
+            p.startStr = 32; p.startDex = 16; p.startInt = 32;
             p.targets = {
                 {rules::kTaming,     1000, 5, false, SkillRole::Primary},
                 {rules::kAnimalLore, 1000, 4, false, SkillRole::Secondary},
@@ -443,7 +443,7 @@ const std::vector<Profession>& All() {
             p.label = "Fencer";
             p.startSkillA = kFencing;
             p.startSkillB = rules::kTactics;
-            p.startStr = 20; p.startDex = 25; p.startInt = 5;
+            p.startStr = 32; p.startDex = 40; p.startInt = 8;
             p.targets = {
                 {kFencing,             1000, 6, false, SkillRole::Primary},
                 {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
@@ -491,7 +491,7 @@ const std::vector<Profession>& All() {
             p.label = "Macer";
             p.startSkillA = kMaceFighting;
             p.startSkillB = rules::kAnatomy;
-            p.startStr = 30; p.startDex = 15; p.startInt = 5;
+            p.startStr = 48; p.startDex = 24; p.startInt = 8;
             p.targets = {
                 {kMaceFighting,        1000, 6, false, SkillRole::Primary},
                 {rules::kTactics,      1000, 5, true,  SkillRole::Secondary},
@@ -538,7 +538,7 @@ const std::vector<Profession>& All() {
             p.label = "Archer";
             p.startSkillA = kArchery;
             p.startSkillB = rules::kBowcraft;
-            p.startStr = 15; p.startDex = 30; p.startInt = 5;
+            p.startStr = 24; p.startDex = 48; p.startInt = 8;
             p.targets = {
                 {kArchery,             1000, 5, false, SkillRole::Primary},
                 {rules::kBowcraft,     1000, 4, false, SkillRole::Secondary},
@@ -598,7 +598,7 @@ const std::vector<Profession>& All() {
             p.label = "Warlock";
             p.startSkillA = rules::kMagery;
             p.startSkillB = rules::kSwordsmanship;
-            p.startStr = 20; p.startDex = 15; p.startInt = 15;
+            p.startStr = 32; p.startDex = 24; p.startInt = 24;
             p.targets = {
                 {rules::kMagery,          1000, 8, false, SkillRole::Primary},
                 {rules::kSwordsmanship,   1000, 7, false, SkillRole::Secondary},
@@ -647,7 +647,7 @@ const std::vector<Profession>& All() {
             p.label = "Player Killer";
             p.startSkillA = rules::kSwordsmanship;
             p.startSkillB = rules::kPoisoning;
-            p.startStr = 20; p.startDex = 25; p.startInt = 5;
+            p.startStr = 32; p.startDex = 40; p.startInt = 8;
             p.targets = {
                 {rules::kSwordsmanship, 1000, 5, false, SkillRole::Primary},
                 {rules::kTactics,       1000, 4, true,  SkillRole::Secondary},
@@ -703,7 +703,7 @@ const std::vector<Profession>& All() {
             p.label = "Treasure Hunter";
             p.startSkillA = rules::kLockpicking;
             p.startSkillB = rules::kCartography;
-            p.startStr = 15; p.startDex = 20; p.startInt = 15;
+            p.startStr = 24; p.startDex = 32; p.startInt = 24;
             p.targets = {
                 {rules::kLockpicking,     1000, 8, false, SkillRole::Primary},
                 {rules::kCartography,     1000, 7, true,  SkillRole::Secondary},
@@ -756,7 +756,7 @@ const std::vector<Profession>& All() {
             p.label = "Mage Blacksmith";
             p.startSkillA = rules::kBlacksmithing;
             p.startSkillB = rules::kMagery;
-            p.startStr = 30; p.startDex = 10; p.startInt = 10;
+            p.startStr = 48; p.startDex = 16; p.startInt = 16;
             p.targets = {
                 {rules::kBlacksmithing, 1000, 3, false, SkillRole::Primary},
                 {rules::kMining,         500, 2, false, SkillRole::Utility},
@@ -810,7 +810,7 @@ const std::vector<Profession>& All() {
             p.label = "Full Crafter";
             p.startSkillA = rules::kCarpentry;
             p.startSkillB = rules::kBlacksmithing;
-            p.startStr = 25; p.startDex = 15; p.startInt = 10;
+            p.startStr = 40; p.startDex = 24; p.startInt = 16;
             p.targets = {
                 {rules::kCarpentry,     1000, 5, false, SkillRole::Primary},
                 {rules::kBlacksmithing, 1000, 4, false, SkillRole::Secondary},
@@ -870,7 +870,7 @@ const std::vector<Profession>& All() {
             p.label = "Tailor";
             p.startSkillA = rules::kTailoring;
             p.startSkillB = rules::kArmsLore;
-            p.startStr = 15; p.startDex = 15; p.startInt = 20;
+            p.startStr = 24; p.startDex = 24; p.startInt = 32;
             p.targets = {
                 {rules::kTailoring, 1000, 4, false, SkillRole::Primary},
                 {rules::kArmsLore,   500, 3, false, SkillRole::Utility},
@@ -931,7 +931,7 @@ const std::vector<Profession>& All() {
             p.label = "Merchant / Tinker";
             p.startSkillA = rules::kTinkering;
             p.startSkillB = rules::kMining;
-            p.startStr = 30; p.startDex = 10; p.startInt = 10;
+            p.startStr = 48; p.startDex = 16; p.startInt = 16;
             p.targets = {
                 {rules::kTinkering, 1000, 2, false, SkillRole::Primary},
                 // Held exactly at the 50.0 creation grants: this life buys
@@ -995,7 +995,7 @@ const std::vector<Profession>& All() {
             p.label = "Scribe";
             p.startSkillA = rules::kInscription;
             p.startSkillB = rules::kMagery;
-            p.startStr = 10; p.startDex = 10; p.startInt = 30;
+            p.startStr = 16; p.startDex = 16; p.startInt = 48;
             p.targets = {
                 {rules::kInscription, 1000, 3, false, SkillRole::Primary},
                 // Pushed to 100.0, not capped like the mage's own Magery

@@ -110,6 +110,21 @@ public:
     bool AllowsRecallOutOf(i32 x, i32 y) const;
     bool AllowsGateAt(i32 x, i32 y) const;
 
+    // NO SKILL GAIN HAPPENS HERE.
+    //
+    // REGION_FLAG_SAFE is not "safe from monsters" -- Source-X
+    // Skill_Experience refuses to advance ANY skill inside one
+    // (CCharSkill.cpp:363; docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.2 point 1).
+    // Twenty-five regions on map 0 carry it: every shrine, every jail,
+    // Lord British's and Blackthorne's castles, the Lycaeum, Empath
+    // Abbey, Green Acres, the Moonglow zoo.
+    //
+    // A character practising inside one is wasting the whole session, and
+    // nothing the client shows says so. Shrines matter most: they are
+    // exactly the quiet, safe-looking spot a bot would otherwise pick to
+    // stand and meditate in.
+    bool AllowsSkillGainAt(i32 x, i32 y) const;
+
     usize CountPlacesWithService(wm::Service s) const;
 
 private:

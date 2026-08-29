@@ -495,6 +495,13 @@ bool Atlas::AllowsGateAt(i32 x, i32 y) const {
     return !r || !r->flags.BlocksGate();
 }
 
+bool Atlas::AllowsSkillGainAt(i32 x, i32 y) const {
+    const Region* r = RegionAt(x, y);
+    // Unknown ground is assumed to allow gain. The atlas covers the named
+    // regions; everywhere else is ordinary world, where skills do advance.
+    return !r || !r->flags.safe;
+}
+
 usize Atlas::CountPlacesWithService(wm::Service s) const {
     usize n = 0;
     for (const Place& p : places_)

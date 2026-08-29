@@ -84,9 +84,13 @@ void TestCreationFitsTheServer() {
           "two skills at 50.0 exactly fills the server's 100.0 creation cap");
     Check(prof::kRevolutionStartSkillEach <= prof::kServerCreateSkillEachMax,
           "50.0 per skill is within the server's per-skill creation cap");
-    Check(prof::kRevolutionStartStatTotal < prof::kServerCreateStatSumMax,
-          "Revolution's 50 stat points sit UNDER the server's 80 -- the rule "
-          "is our choice, not a limit we are fighting");
+    // CORRECTED 2026-08-29: the owner's figure is 80, the full ceiling, not
+    // 50. A new character spends every point it is allowed. This used to
+    // assert the opposite and was wrong for as long as it stood -- every bot
+    // created under it was born a third weaker than a real player.
+    Check(prof::kRevolutionStartStatTotal == prof::kServerCreateStatSumMax,
+          "Revolution's 80 stat points are EXACTLY the server's ceiling -- "
+          "a new character spends everything it is allowed");
 
     for (const prof::Profession& p : prof::All()) {
         Check(p.startStr <= prof::kServerCreateStatEachMax &&
@@ -141,12 +145,18 @@ void TestRefusals() {
                   prof::ProfViolation::NotTwoStartSkills,
               "a profession with one starting skill is refused");
     }
-    {   // 80 stat points is the SERVER's allowance, not Revolution's rule.
+    {   // M4's original 40/35/5 = 80 is CORRECT and must be accepted. It was
+        // refused here for a long time on a mistaken 50-point rule; the split
+        // that is actually wrong is one that does not spend the full 80.
+        prof::Profession good = *base;
+        good.startStr = 40; good.startDex = 35; good.startInt = 5;
+        Check(prof::Validate(rp, good).violation == prof::ProfViolation::None,
+              "M4's 40/35/5 = 80 split is legal Revolution creation");
         prof::Profession bad = *base;
-        bad.startStr = 40; bad.startDex = 35; bad.startInt = 5;   // M4's split
+        bad.startStr = 20; bad.startDex = 25; bad.startInt = 5;   // only 50
         Check(prof::Validate(rp, bad).violation ==
                   prof::ProfViolation::StartStatsWrongTotal,
-              "M4's legal-but-not-Revolution 80-point split is now refused");
+              "a split that leaves 30 points unspent is refused");
     }
     {   // Resisting Spells did not run on Revolution.
         prof::Profession bad = *base;
@@ -219,8 +229,8 @@ void TestMinerConstraintIsRecorded() {
     Check(pickaxeWielded,
           "the pickaxe is marked as needing to be WIELDED, which is why its "
           "ReqStr=50 gates the whole profession");
-    Check(ms->startStr < 50,
-          "the miner does NOT dump all 50 points into STR just to lift a "
+    Check(ms->startStr < prof::kRevolutionStartStatTotal,
+          "the miner does NOT dump all 80 points into STR just to lift a "
           "pickaxe on day one");
     Check(ms->targetStr >= 50,
           "STR 50 is a stated TARGET -- the gate is something to grow into");

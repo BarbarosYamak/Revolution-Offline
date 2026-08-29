@@ -1501,6 +1501,88 @@ void TestFamilySatiationBreaksAMonotonousDay() {
 }
 
 
+// --------------------------------------------------------------------------
+// NO SKILL ADVANCES INSIDE A REGION_FLAG_SAFE AREA.
+//
+// Source-X Skill_Experience refuses to advance ANY skill there
+// (docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.2, point 1), and twenty-five regions on
+// map 0 carry the flag: every shrine, every jail, Lord British's and
+// Blackthorne's castles, the Lycaeum, Empath Abbey, Green Acres, the Moonglow
+// zoo.
+//
+// This is the cruellest of the gates because NOTHING SAYS SO. The server sends
+// no message, the spell succeeds, the mana is spent, and the skill simply does
+// not move. A bot would happily stand at a shrine -- quiet, safe, no monsters,
+// exactly where a sensible character would go to meditate -- and burn an
+// entire session for nothing.
+void TestNoSkillGainRegionBlocksPractice() {
+    Section("needs: practice is pointless where no skill can advance");
+
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { Check(false, "no mage"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 20;
+    obs.mana = 30;                       // plenty to cast with
+    obs.gold = 500;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.toolsHeld.push_back("spellbook");
+    obs.skills.push_back({rules::kMagery,     500});
+    obs.skills.push_back({rules::kMeditation, 500});
+
+    auto practiceNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedPractice) return &n;
+        return nullptr;
+    };
+
+    // Ordinary ground: practice is on.
+    obs.inNoGainRegion = false;
+    // NAME THE VECTOR. practiceNeed returns a pointer INTO it, and passing
+    // the call inline let the temporary die at the end of the expression --
+    // the pointer then read freed memory, which happened to report blocked=1
+    // and empty strings. A dangling read that looks like a passing check is
+    // exactly the kind of "evidence" this project must not accept.
+    const std::vector<life::Need> nsOk = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* ok = practiceNeed(nsOk);
+    Check(ok != nullptr, "a mage below target wants to practise");
+    if (ok) Check(!ok->blocked, "and out in the world it is actionable");
+
+    // At a shrine: reported, but blocked, and the reason says why.
+    obs.inNoGainRegion = true;
+    const std::vector<life::Need> nsNo = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* no = practiceNeed(nsNo);
+    Check(no != nullptr,
+          "the need is still REPORTED in a no-gain region, not dropped");
+    if (no) {
+        Check(no->blocked, "but blocked: casting here advances nothing");
+        Check(no->reason.find("no skill advances") != std::string::npos,
+              "and the reason names the real cause, not 'not enough mana'");
+        Check(no->evidence.find("no_gain_region=1") != std::string::npos,
+              "with the flag in the evidence so a log can be grepped");
+    }
+
+    // Mana is a SEPARATE gate and must not be confused with it: plenty of
+    // mana in a shrine is still pointless, and no mana in the world is a
+    // different problem with a different answer.
+    obs.inNoGainRegion = false;
+    obs.mana = 0;
+    const std::vector<life::Need> nsDry = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* dry = practiceNeed(nsDry);
+    if (dry) {
+        Check(dry->blocked, "no mana also blocks");
+        Check(dry->reason.find("mana") != std::string::npos,
+              "and that one blames the mana, which is the fixable thing");
+    }
+}
+
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1575,6 +1657,7 @@ int main(int argc, char** argv) {
     TestUnsatisfiableNeedIsBlocked();
     TestEveryLifeAsksForItsOwnTools();
     TestNerveIsPerProfession();
+    TestNoSkillGainRegionBlocksPractice();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();
