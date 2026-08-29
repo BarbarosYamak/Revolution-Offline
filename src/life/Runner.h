@@ -240,6 +240,7 @@ private:
     // that the mage shop's random scroll is better than no scroll.
     bool scribeExhausted_ = false;
     i32  tradeTrips_ = 0;
+    i32  vendorChases_ = 0;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;

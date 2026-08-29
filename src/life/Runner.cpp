@@ -69,6 +69,19 @@ constexpr i32 kMaxTradeTrips = 3;
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
 // resumed later in the same session.
 constexpr i64 kExhaustedCooldownMs = 120000;
+// HOW CLOSE IS CLOSE ENOUGH TO TRADE.
+//
+// One tile was too strict. Britain's shopkeepers wander a step at a time, so a
+// character that insists on being adjacent re-walks every time the vendor
+// shifts -- Ysolde logged "the 'mage' has moved to 1450,1618 (2 tiles) --
+// walking back before buying" fifty-seven times in one session and bought
+// nothing at all. Sphere refuses an out-of-reach purchase itself ("You can't
+// reach the Vendor"), so the client does not need to be stricter than the
+// server; it only needs to be close enough that the answer is usually yes.
+constexpr i32 kVendorReach = 3;
+// And a wandering vendor must not own the goal. After this many walk-backs,
+// try the purchase from where we stand and let the server decide.
+constexpr i32 kMaxVendorChases = 4;
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -1135,6 +1148,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 chopCursorPending_ = false;
                 travelInFlight_ = false;
                 travelAttempts_ = 0;
+                // Per-errand counters belong to the errand. vendorChases_
+                // bounds how long a wandering shopkeeper may be followed, and
+                // a fresh goal deserves a fresh allowance -- otherwise one
+                // restless vendor early in a session silences every purchase
+                // made after it.
+                vendorChases_ = 0;
                 logsAtGoalStart_ = obs.logs;
             }
 
@@ -1826,6 +1845,34 @@ const ToolVendor kToolVendors[] = {
     {"fishing pole", "fisherman",   wm::Service::Fisherman},
     {"mortar",       "alchemist",   wm::Service::Alchemist},
     {"spellbook",    "mage",        wm::Service::Mage},
+    // FOUR TOOLS THE CATALOGUE ASKS FOR AND NOBODY SOLD.
+    //
+    // Exactly the shape of the missing kTrainers rows: a profession names a
+    // tool, VendorForTool returns null, and the goal fails
+    // REFUSE_NO_KNOWN_BUYER without ever walking to a shop. Bruin, a full
+    // crafter, logged "no known supplier of a tongs" 107 times in one session
+    // -- BLOCKED_NEED GET_TOOL and BLOCKED_NEED CRAFT together, so he could
+    // neither equip himself nor make anything, and spent 85% of his picks
+    // idling with 0 gold.
+    //
+    // Trades read from this shard's own vendor templates rather than guessed:
+    //   i_tongs        VENDOR_S_BLACKSMITH, VENDOR_S_TINKER
+    //   i_shovel       VENDOR_S_TINKER
+    //   i_sewing_kit   VENDOR_S_TAILOR, VENDOR_S_TINKER
+    //   i_tinker_tools VENDOR_S_TINKER
+    // Where two sell it, the one whose trade the tool belongs to is named --
+    // a smith's tongs from a smith -- since that is also who stands in the
+    // shop the rest of that craft's errands already visit.
+    {"tongs",        "blacksmith",  wm::Service::Blacksmith},
+    {"shovel",       "tinker",      wm::Service::Tinker},
+    {"sewing kit",   "tailor",      wm::Service::Tailor},
+    {"tinker tools", "tinker",      wm::Service::Tinker},
+    // And two more the cross-check caught: every name in any profession's
+    // p.tools must appear here, and "saw" and "scissors" did not.
+    //   i_saw       VENDOR_S_CARPENTER, VENDOR_S_TINKER
+    //   i_scissors  VENDOR_S_TAILOR, VENDOR_S_TINKER, VENDOR_S_WEAVER
+    {"saw",          "carpenter",   wm::Service::Carpenter},
+    {"scissors",     "tailor",      wm::Service::Tailor},
 };
 
 const ToolVendor* VendorForTool(const std::string& tool) {
@@ -4482,14 +4529,24 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
             const i32 d = TileDist(obs.x, obs.y, vx, vy);
             const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
-            if (d > 1 || dz > 3) {
+            if ((d > kVendorReach || dz > 3) &&
+                ++vendorChases_ <= kMaxVendorChases) {
                 LogLine("supplies: the '%s' has moved to %d,%d (%d tiles) -- "
-                        "walking back before buying",
-                        supplyTrade_.c_str(), vx, vy, d);
+                        "walking back before buying (chase %d of %d)",
+                        supplyTrade_.c_str(), vx, vy, d, vendorChases_,
+                        kMaxVendorChases);
                 travelInFlight_ = client.TravelToEntity(vendor, 1);
                 planner_.NoteAttempt(obs.nowMs);
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
+            }
+            if (d > kVendorReach && vendorChases_ > kMaxVendorChases) {
+                // Chasing has failed; ask anyway and let Sphere answer. A
+                // refusal is information and ends the goal honestly, where
+                // another lap ends nothing.
+                LogLine("supplies: the '%s' keeps moving (%d tiles after %d "
+                        "chases) -- asking from here and letting the server "
+                        "decide", supplyTrade_.c_str(), d, kMaxVendorChases);
             }
         }
     }
@@ -5398,7 +5455,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         }
         const i32 d = TileDist(obs.x, obs.y, vx, vy);
         const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
-        if (d > 1 || dz > 3) {
+        if (d > kVendorReach || dz > 3) {
             LogLine("food: the %s is %d tiles and %d z away -- "
                     "walking up before speaking", keeperTrade, d, dz);
             travelInFlight_ = client.TravelToEntity(keeper, 1);
@@ -5538,7 +5595,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         return false;
     }
     const i32 d = TileDist(obs.x, obs.y, vx, vy);
-    if (d > 1) {
+    if (d > kVendorReach) {
         LogLine("spellbook: the %s is %d tiles away -- walking up", trade, d);
         travelInFlight_ = client.TravelToEntity(keeper, 1);
         nextActionMs_ = obs.nowMs + 2000;
