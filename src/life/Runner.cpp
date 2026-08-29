@@ -1237,6 +1237,11 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         LogLine("goal_completed=%s progress=%d",
                 GoalKindName(planner_.Current().kind), planner_.Current().progress);
         session_.goalsCompleted++;
+        // Count it toward satiation so the same errand does not own the whole
+        // session. A life is train, earn, sell, hunt and company in turn, not
+        // one loop repeated -- and goods that found no buyer simply going into
+        // the bank is a fine end to an errand, not a failure to retry.
+        planner_.NoteRan(planner_.Current().kind, obs.nowMs);
         planner_.Finish(true, nullptr, obs.nowMs);
         Checkpoint(client, obs.nowMs, "goal completed");
     }

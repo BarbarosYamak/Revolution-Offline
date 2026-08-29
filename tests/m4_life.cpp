@@ -1356,6 +1356,76 @@ void TestOneTrainerIsNotTheTrade() {
 }
 
 
+// --------------------------------------------------------------------------
+// A LIFE IS NOT ONE ERRAND REPEATED.
+//
+// The owner's rule for this project: a character should "sometimes train,
+// sometimes make money, sometimes sell, sometimes PvM, socialise in between",
+// and goods that found no buyer simply going into the bank is a fine outcome
+// rather than something to retry. Pure scoring cannot produce that -- it picks
+// the same winner every tick until its need is gone, which is how a scribe
+// logged 4,717 BANK goals in twenty minutes.
+//
+// Satiation is the smallest thing that breaks the monotony: a goal that keeps
+// winning gets progressively less attractive WHILE IT IS FRESH, so the
+// runner-up gets a turn. It is not a ban -- it decays with time, it clears the
+// moment another goal runs, and it never touches an emergency.
+void TestSatiationLetsSomethingElseHaveATurn() {
+    Section("planner: a goal that keeps winning eases off");
+
+    life::Planner planner;
+    const i64 t0 = 1000;
+
+    Check(planner.Satiation(life::GoalKind::Bank, t0) == 0.0,
+          "a goal that has never run is not satiated");
+
+    planner.NoteRan(life::GoalKind::Bank, t0);
+    Check(planner.Satiation(life::GoalKind::Bank, t0) == 0.0,
+          "running ONCE is not repetition -- an errand may finish in peace");
+
+    planner.NoteRan(life::GoalKind::Bank, t0);
+    const double twice = planner.Satiation(life::GoalKind::Bank, t0);
+    planner.NoteRan(life::GoalKind::Bank, t0);
+    const double thrice = planner.Satiation(life::GoalKind::Bank, t0);
+    Check(twice > 0.0, "a second run in a row starts to ease off");
+    Check(thrice > twice, "and a third eases off further");
+    Check(thrice < 1.0, "but it never zeroes the goal outright");
+
+    // The damping is bounded, however stubborn the character is.
+    for (int i = 0; i < 40; ++i) planner.NoteRan(life::GoalKind::Bank, t0);
+    Check(planner.Satiation(life::GoalKind::Bank, t0) <= 0.45 + 1e-9,
+          "the easing off is capped, so a real need can still win through");
+
+    // It FADES. A character that banked a lot ten minutes ago is perfectly
+    // happy to bank again -- this is satiation, not a grudge.
+    Check(planner.Satiation(life::GoalKind::Bank, t0 + 3 * 60 * 1000) == 0.0,
+          "and it has worn off entirely once the goal is no longer fresh");
+
+    // Doing something ELSE clears the streak: the point is variety, not a
+    // permanent tax on whatever the character happens to be good at.
+    life::Planner p2;
+    for (int i = 0; i < 5; ++i) p2.NoteRan(life::GoalKind::Bank, t0);
+    Check(p2.Satiation(life::GoalKind::Bank, t0) > 0.0, "streak is running");
+    p2.NoteRan(life::GoalKind::EarnGold, t0);
+    Check(p2.Satiation(life::GoalKind::Bank, t0) == 0.0,
+          "one turn at something else and banking is welcome again");
+
+    // AN EMERGENCY IS NEVER DAMPED. A character does not get bored of not
+    // dying, and must not hesitate over a corpse because it died twice today.
+    life::Planner p3;
+    for (int i = 0; i < 10; ++i) p3.NoteRan(life::GoalKind::Survive, t0);
+    Check(p3.Satiation(life::GoalKind::Survive, t0) == 0.0,
+          "SURVIVE is never eased off, however often it has just run");
+    life::Planner p4;
+    for (int i = 0; i < 10; ++i) p4.NoteRan(life::GoalKind::Heal, t0);
+    Check(p4.Satiation(life::GoalKind::Heal, t0) == 0.0, "nor is HEAL");
+    life::Planner p5;
+    for (int i = 0; i < 10; ++i) p5.NoteRan(life::GoalKind::RecoverCorpse, t0);
+    Check(p5.Satiation(life::GoalKind::RecoverCorpse, t0) == 0.0,
+          "nor is RECOVER_CORPSE");
+}
+
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1430,6 +1500,7 @@ int main(int argc, char** argv) {
     TestUnsatisfiableNeedIsBlocked();
     TestEveryLifeAsksForItsOwnTools();
     TestNerveIsPerProfession();
+    TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();
     TestGoalCooldownStopsChurn();
 

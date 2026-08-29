@@ -658,12 +658,45 @@ public:
     void Cooldown(GoalKind kind, i64 untilMs);
     bool Cooling(GoalKind kind, i64 nowMs) const;
 
+    // A LIFE IS NOT ONE ERRAND REPEATED.
+    //
+    // Scoring alone always picks the same winner, so a character does the one
+    // thing its top need names until that need is gone -- a scribe buys, makes
+    // and sells in a tight ring and never trains, never hunts, never wanders.
+    // The owner's rule for this project is that a character should "sometimes
+    // train, sometimes make money, sometimes sell, sometimes PvM, socialise in
+    // between", and that unsold goods simply going in the bank is a fine
+    // outcome rather than a failure.
+    //
+    // So a goal that keeps winning gets progressively less attractive while
+    // it is fresh, letting the runner-up have its turn. This is satiation, not
+    // a ban: the damping decays with time and clears the moment something else
+    // runs, and it never touches an emergency.
+    void NoteRan(GoalKind kind, i64 nowMs);
+    // 0.0 = no damping. Exposed so the reason line can print it.
+    double Satiation(GoalKind kind, i64 nowMs) const;
+
     const PlannerConfig& Config() const { return cfg_; }
 
 private:
     PlannerConfig cfg_;
     GoalState     goal_;
     i64 cooldownUntilMs_[static_cast<int>(GoalKind::Count)] = {};
+    // Satiation bookkeeping. `repeatRuns_` counts how many times this kind
+    // has finished IN A ROW; any other kind running resets it to zero.
+    i64 lastRanMs_[static_cast<int>(GoalKind::Count)] = {};
+    int repeatRuns_[static_cast<int>(GoalKind::Count)] = {};
+    GoalKind lastRanKind_ = GoalKind::Count;
+    // How long a finished goal stays "fresh". Beyond this the damping is
+    // gone entirely -- a character that banked ten minutes ago is perfectly
+    // happy to bank again.
+    static constexpr i64 kSatiationMs = 3 * 60 * 1000;
+    // Per consecutive repeat, and the ceiling. 0.12/0.45 lets a goal win
+    // three or four times running before it reliably yields -- enough for a
+    // real errand (buy, craft, sell) to finish, not so much that one need
+    // owns the whole session.
+    static constexpr double kSatiationPerRepeat = 0.12;
+    static constexpr double kSatiationMax = 0.45;
 };
 
 // ===========================================================================

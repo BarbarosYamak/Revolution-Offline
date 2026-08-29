@@ -210,6 +210,17 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
                 break;
         }
 
+        // --- satiation: let something else have a turn ------------------
+        const double sat = Satiation(spec.kind, obs.nowMs);
+        if (sat > 0.0) {
+            const double before = g.score;
+            g.score *= (1.0 - sat);
+            g.reasons.push_back(Fmt("done %d times just now, easing off %.0f%% "
+                                    "(%.1f -> %.1f)",
+                                    repeatRuns_[static_cast<int>(spec.kind)],
+                                    sat * 100.0, before, g.score));
+        }
+
         out.push_back(std::move(g));
     }
 
@@ -359,6 +370,48 @@ void Planner::Finish(bool success, const char* why, i64 nowMs) {
     (void)nowMs;
     goal_.active = false;
     goal_.failureReason = success ? std::string() : (why ? why : "unspecified failure");
+}
+
+// An emergency is never damped. A character does not get bored of not dying.
+static bool IsEmergencyGoal(GoalKind k) {
+    return k == GoalKind::Survive || k == GoalKind::Heal ||
+           k == GoalKind::RecoverCorpse || k == GoalKind::GetTool ||
+           k == GoalKind::IdleBriefly;
+}
+
+void Planner::NoteRan(GoalKind kind, i64 nowMs) {
+    const int i = static_cast<int>(kind);
+    if (i < 0 || i >= static_cast<int>(GoalKind::Count)) return;
+    if (kind == lastRanKind_) {
+        ++repeatRuns_[i];
+    } else {
+        // Something else got a turn, so the streak is over. Clearing the OLD
+        // goal's counter rather than only setting the new one is what lets a
+        // character come back to banking later without being punished for
+        // having banked a lot an hour ago.
+        const int prev = static_cast<int>(lastRanKind_);
+        if (prev >= 0 && prev < static_cast<int>(GoalKind::Count))
+            repeatRuns_[prev] = 0;
+        repeatRuns_[i] = 1;
+        lastRanKind_ = kind;
+    }
+    lastRanMs_[i] = nowMs;
+}
+
+double Planner::Satiation(GoalKind kind, i64 nowMs) const {
+    const int i = static_cast<int>(kind);
+    if (i < 0 || i >= static_cast<int>(GoalKind::Count)) return 0.0;
+    if (IsEmergencyGoal(kind)) return 0.0;
+    if (repeatRuns_[i] <= 1 || lastRanMs_[i] <= 0) return 0.0;
+    const i64 age = nowMs - lastRanMs_[i];
+    if (age >= kSatiationMs) return 0.0;
+    // Linear fade over the freshness window, so the damping lets go smoothly
+    // rather than snapping back the instant the timer expires.
+    const double fresh = 1.0 - (static_cast<double>(age) /
+                                static_cast<double>(kSatiationMs));
+    const double raw = kSatiationPerRepeat * (repeatRuns_[i] - 1);
+    const double capped = raw < kSatiationMax ? raw : kSatiationMax;
+    return capped * fresh;
 }
 
 void Planner::Cooldown(GoalKind kind, i64 untilMs) {
