@@ -5015,6 +5015,30 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (client.TravelBusy()) return false;
     const u32 keeper = client.NearestMobileWithTrade("provisioner");
     if (keeper) {
+        // WALK TO THEM FIRST. Every other vendor path learned this today and
+        // this one, written later the same day, did not: it shouted the
+        // keeper's name from wherever it happened to be standing.
+        //
+        // Seen directly rather than deduced -- the owner sent a screenshot of
+        // Kaelen saying "Taite buy" twice from INSIDE A DIFFERENT ROOM of the
+        // Britain provisioner's shop, a wall between him and Taite, who
+        // answered with the generic "I'm here to sell thee supplies" because
+        // she had heard her name and nothing she could act on. No log line
+        // says any of that: to the bot it looked like an ask that got no shop
+        // window. Headless runs prove mechanics; they cannot prove where the
+        // character is standing.
+        i32 vx = 0, vy = 0; i8 vz = 0;
+        if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
+            const i32 d = TileDist(obs.x, obs.y, vx, vy);
+            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+            if (d > 1 || dz > 3) {
+                LogLine("food: the provisioner is %d tiles and %d z away -- "
+                        "walking up before speaking", d, dz);
+                travelInFlight_ = client.TravelToEntity(keeper, 1);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
         LogLine("food: nothing to eat -- asking a provisioner");
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
