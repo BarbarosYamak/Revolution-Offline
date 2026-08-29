@@ -6,6 +6,7 @@
 #include "uo/faucets.h"
 #include "uo/market.h"
 #include "uo/trade.h"
+#include "uo/combat.h"
 #include "uo/professions.h"
 #include "uo/vendor_policy.h"
 #include "uo/world_model.h"
@@ -2663,6 +2664,83 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
 bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
     // Something is already here: finish that fight. This is how every
     // character trains, hunter or not.
+    // A FIGHT IN PROGRESS IS DEFENCE. A fight to pick is not.
+    //
+    // This used to hand EVERY sighting to DoSurvive, which answers "what is
+    // most likely to kill me" and attacks the nearest reachable thing. That is
+    // right when something is already swinging and wrong when choosing whom to
+    // start on -- and it meant the whole M6 layer (Classify, ChooseTarget,
+    // ChoosePrey and 54 unit tests) was called by nothing at all.
+    if (obs.attackersOnMe > 0) return DoSurvive(client, obs);
+
+    if (obs.hostilesNear > 0 && !client.ActionBusy()) {
+        std::vector<Client::HostileHit> seen;
+        client.ScanHostiles(12, seen);
+        if (!seen.empty()) {
+            std::vector<combat::Candidate> cands;
+            cands.reserve(seen.size());
+            for (const Client::HostileHit& h : seen) {
+                combat::Candidate c;
+                c.serial = h.serial;
+                c.name   = h.name;
+                // The notoriety BYTE and the Noto enum agree value for value --
+                // 1 blue, 2 green, 3/4 gray, 5 orange, 6 red, 7 yellow
+                // (Client.h:644, combat.h:28-37) -- so this is a mapping,
+                // not a guess.
+                c.noto   = static_cast<combat::Noto>(h.noto);
+                c.dist   = TileDist(h.x, h.y, obs.x, obs.y);
+                c.hpCur  = h.hpCur;
+                c.hpMax  = h.hpMax;
+                c.warMode = h.warMode;
+                cands.push_back(std::move(c));
+            }
+            combat::Stance me;
+            // REGION_FLAG_GUARDED, straight from the atlas -- there is no
+            // Observation field for it and inventing one would just cache a
+            // fact the world model already answers.
+            {
+                const wm::Region* here = client.CurrentRegion();
+                me.inGuardedRegion = here && here->flags.guarded;
+            }
+            me.attackersOnMe   = obs.attackersOnMe;
+
+            // What this life has LEARNED about these creatures, so a lich it
+            // died to last session is not "weak and alone" today.
+            const Memory& mem = state_.memory;
+            const i64 now = obs.nowMs;
+            const combat::CreatureDangerLookup danger =
+                [&mem, now](const std::string& n) {
+                    return mem.CreatureDanger(n.c_str(), now);
+                };
+
+            const combat::EngagePolicy policy;
+            const int prey = combat::ChoosePrey(cands, me, combat::RevolutionCrimeRules(),
+                                                policy, obs.HpFraction(), danger);
+            if (prey >= 0) {
+                const combat::Candidate& c = cands[static_cast<usize>(prey)];
+                const combat::Classification v =
+                    combat::Classify(c, me, combat::RevolutionCrimeRules(), policy,
+                                     obs.HpFraction());
+                // PRINT THE VERDICT. R2's whole point is that a kill is
+                // exercised THROUGH the legality layer, not around it, and a
+                // verdict nobody logs is a verdict nobody can check.
+                LogLine("hunt: picked '%s' at %d tiles -- verdict=%s threat=%.2f "
+                        "learned_danger=%.2f (%s)",
+                        c.name.c_str(), c.dist, combat::LegalityName(v.legality),
+                        v.threat, mem.CreatureDanger(c.name.c_str(), obs.nowMs),
+                        v.reason.c_str());
+                client.ActionAttack(c.serial);
+                currentFoe_ = c.serial;
+                currentFoeName_ = c.name;
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+            LogLine("hunt: %zu hostile(s) in sight and none worth starting on",
+                    seen.size());
+        }
+        return DoSurvive(client, obs);
+    }
     if (obs.hostilesNear > 0) return DoSurvive(client, obs);
 
     // NOTHING HERE. Until now that was the end of it -- "return true" -- and
