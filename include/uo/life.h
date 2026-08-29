@@ -416,6 +416,8 @@ struct Observation {
 
     std::vector<int> trainerRefusedSkills;
     int wantTrainSkill = -1;
+    // Which skill this life should PRACTISE next, and how. -1 = none.
+    int wantPracticeSkill = -1;
     i32 wantTrainTarget = 0;
 
     i32 SkillTenths(int skillId) const;
@@ -492,6 +494,13 @@ enum class NeedKind : u8 {
     // reason these are two needs and not one.
     NeedSupplies,
     NeedCraft,
+    // PRACTISE a skill by doing it, as opposed to buying tenths from an
+    // NPC (NeedSkillTraining). This is how a skill actually reaches 100:
+    // a mage casts, a warrior fights, a healer bandages. It is a wholly
+    // different activity from paying a guildmaster, and conflating the
+    // two is why every non-combat skill sat BLOCKED with the reason
+    // "nothing is here to practise combat on" -- including Inscription.
+    NeedPractice,
     Count,
 };
 
@@ -599,6 +608,9 @@ enum class GoalKind : u8 {
     // gatherer never needed and a scribe cannot earn a copper without.
     BuySupplies,
     Craft,
+    // Do the thing that raises the skill: cast, meditate, bandage.
+    // TrainCombat is the fighting half of the same idea.
+    PracticeSkill,
     IdleBriefly,
     Count,
 };

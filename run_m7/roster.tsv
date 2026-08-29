@@ -26,3 +26,27 @@ Aurir	RevolutionSoak24	fisher
 Zaran	RevolutionSoak25	fisher
 Talran	RevolutionSoak26	fisher
 Ithvar	RevolutionSoak27	fisher
+
+# --- added 2026-08-29 for R2/R4/R5 of the re-sequence -----------------
+# NOTHING ABOVE WAS REMOVED. Each account holds five character slots and
+# only one was used, so these are NEW characters alongside the old ones.
+# An existing character cannot be re-professioned: its two 50.0 skills
+# were fixed at creation, and rewriting the family only produces the
+# Tarath fault -- a plan the server's own skills do not match.
+#
+# WHY: the fleet above is 24 characters using five of seventeen
+# archetypes, and not one of them fights for a living. That is the
+# roster-level reason M6 has never fired -- the fighter accounts hold
+# lumberjacks and smiths. R2 needs a character whose work IS combat.
+#
+# Beleth/revolutionfisher01 is a MAGE despite the account name; the
+# roster is right and the account name is the lie. Left alone: renaming
+# an account would orphan its bot_data and its server character.
+Kaelen	RevolutionWarrior01	fencer
+Torvald	RevolutionWarrior02	macer
+Aldwin	RevolutionWarrior03	archer
+# A scribe: the one crafting income proven live end to end (M7 4a1).
+Sabelle	RevolutionScribe01	scribe
+# Player-market goods with NO npc buyer -- these force P2P trade (R4).
+Marta	RevolutionTailor01	tailor
+Bruin	RevolutionCrafter01	full_crafter

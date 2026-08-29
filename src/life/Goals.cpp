@@ -23,6 +23,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::Fish:                  return "FISH";
         case GoalKind::BuySupplies:           return "BUY_SUPPLIES";
         case GoalKind::Craft:                 return "CRAFT";
+        case GoalKind::PracticeSkill:         return "PRACTICE_SKILL";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -63,6 +64,7 @@ GoalFamily FamilyOf(GoalKind k) {
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
+        case GoalKind::PracticeSkill:
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
             return GoalFamily::Social;
@@ -136,6 +138,12 @@ const GoalSpec kGoals[] = {
     // and without the inputs the making cannot happen at all.
     {GoalKind::Craft,                 NeedKind::NeedCraft,         130.0},
     {GoalKind::BuySupplies,           NeedKind::NeedSupplies,      140.0},
+    // Practising sits with the productive work, because that is what it is:
+    // the hours a character puts in to get a skill to 100. Slightly under
+    // gathering so a life that can earn does not stand in a field casting
+    // all day, and well under buying a skill outright, which is a step
+    // change rather than an hour of practice.
+    {GoalKind::PracticeSkill,         NeedKind::NeedPractice,      120.0},
 };
 
 }  // namespace

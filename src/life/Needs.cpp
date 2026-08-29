@@ -25,6 +25,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedTrade:     return "NeedTrade";
         case NeedKind::NeedCatch:     return "NeedCatch";
         case NeedKind::NeedSupplies:  return "NeedSupplies";
+        case NeedKind::NeedPractice:  return "NeedPractice";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -101,6 +102,51 @@ std::string Fmt(const char* fmt, ...) {
 }
 
 using rules::SkillName;
+
+// HOW A SKILL IS ACTUALLY RAISED.
+//
+// Paying a guildmaster (NeedSkillTraining) buys tenths up to 30.0 and stops.
+// Everything above that is PRACTICE -- the hours a character puts in doing the
+// thing: a mage casts, a warrior goes to a graveyard and fights, a healer
+// bandages, a scribe writes. Those are different activities with different
+// preconditions, and the code used to gate all of them on combat, so a scribe
+// short of Inscription logged "nothing is here to practise combat on" and a
+// mage could never practise Magery at all.
+enum class PracticeBy : u8 {
+    Fighting,   // needs a foe, or somewhere to find one
+    Casting,    // needs mana, and reagents for most spells
+    SelfUse,    // just use the skill: Meditation, Hiding, Stealth
+    Working,    // raised by the profession's own work goals, not separately
+};
+
+PracticeBy HowToPractise(int skillId) {
+    switch (skillId) {
+        case rules::kSwordsmanship:
+        case rules::kMaceFighting:
+        case rules::kFencing:
+        case rules::kArchery:
+        case rules::kWrestling:
+        case rules::kTactics:
+        case rules::kAnatomy:
+        case rules::kParrying:
+            return PracticeBy::Fighting;
+        case rules::kMagery:
+        case rules::kEvaluatingIntel:
+            return PracticeBy::Casting;
+        case rules::kMeditation:
+            // Hiding and Stealth belong here too; this build's rules.h
+            // does not name them yet, so they fall to Working rather
+            // than be invented. UNKNOWN, not omitted.
+            return PracticeBy::SelfUse;
+        default:
+            // Inscription, Blacksmithing, Tailoring, Lumberjacking, Mining,
+            // Fishing, Cooking ... all rise from the work the life already
+            // does. They need no separate practice errand, and inventing one
+            // would have the character craft for its own sake rather than to
+            // sell.
+            return PracticeBy::Working;
+    }
+}
 
 
 }  // namespace
@@ -533,6 +579,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // did -- which is the whole reason M6 has never run live. A fighter
         // with somewhere to hunt has an actionable need; a lumberjack does
         // not, and still waits for trouble to find it.
+        // WHICH KIND OF PRACTICE THIS SKILL EVEN IS.
+        //
+        // Everything below used to assume "practise" meant "fight", so a
+        // scribe short of Inscription was told there was nothing here to
+        // practise combat on, and a mage could never practise Magery at all.
+        // A skill raised by the profession's own work needs no errand of its
+        // own -- Inscription rises from writing scrolls to sell, which is
+        // already the money-making goal.
+        const PracticeBy how = HowToPractise(t.skillId);
+        if (how == PracticeBy::Working) continue;
+
+        if (how != PracticeBy::Fighting) {
+            // Casting needs mana; self-use needs nothing but the character.
+            // Neither needs a foe, and neither may be blocked for want of one.
+            const bool ready = (how == PracticeBy::SelfUse) || obs.mana >= 10;
+            add(NeedKind::NeedPractice, 0.20 + 0.25 * gap, SkillName(t.skillId),
+                ready ? "below target, and this skill is raised by using it"
+                      : "below target, but there is not enough mana to cast",
+                Fmt("%s %.1f -> %.1f mana=%d", SkillName(t.skillId),
+                    have / 10.0, t.tenths / 10.0, obs.mana),
+                !ready);
+            continue;
+        }
+
         const bool nothingHere = obs.attackersOnMe == 0;
         const bool couldGoHunting =
             nothingHere && cfg.profession && WantsToHunt(*cfg.profession) &&

@@ -560,6 +560,17 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // (sphere.ini NPCTrainPercent=30 of a GM's 100.0); a guildmaster overrides
     // to 50.0. The ceiling passed here is the lower one, so the character
     // never pays for a skill it has already grown past a plain trainer.
+    // Which skill this life should PRACTISE -- do the thing that raises it.
+    // Distinct from wantTrainSkill, which is a skill to BUY from a guildmaster
+    // and stops at 30.0. Practice is how a skill reaches 100.
+    obs.wantPracticeSkill = -1;
+    for (const SkillTarget& t : state_.plan.skills) {
+        if (obs.SkillTenths(t.skillId) >= t.tenths) continue;
+        if (t.skillId != rules::kMeditation) continue;   // see DoPracticeSkill
+        obs.wantPracticeSkill = t.skillId;
+        break;
+    }
+
     obs.wantTrainSkill = NextSkillToBuy(state_.plan, obs, 300);
     if (obs.wantTrainSkill >= 0) {
         for (const SkillTarget& t : state_.plan.skills) {
@@ -1290,6 +1301,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::Fish:                  done = DoFish(client, obs); break;
         case GoalKind::BuySupplies:           done = DoBuySupplies(client, obs); break;
         case GoalKind::Craft:                 done = DoCraft(client, obs); break;
+        case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -1316,8 +1328,22 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
 
 bool Runner::DoSurvive(Client& client, const Observation& obs) {
     if (obs.dead) {
+        // ASK ONCE AND WAIT. Resurrection is driven by the world -- a healer
+        // walking over, a shrine -- so its deadline is fifteen minutes
+        // (kResurrectTimeoutMs). Re-announcing the ghost every three seconds
+        // superseded the outstanding request every single time:
+        //
+        //   resurrect invalid_state took=3056ms superseded
+        //   [ACTION] resurrect start
+        //
+        // for as long as the character stayed dead (run_m5/r1warrior.console
+        // .txt, the first death this project has ever recorded). Same
+        // retry-inside-its-own-deadline fault as the bank, the vendor and the
+        // trainer -- and it survived undetected precisely because nothing had
+        // ever died to exercise it. "Never fired" and "broken" look identical.
+        if (client.ActionBusy()) return false;
         client.ActionResurrectAccept();
-        nextActionMs_ = obs.nowMs + 3000;
+        nextActionMs_ = obs.nowMs + 10000;
         return false;
     }
 
@@ -1480,8 +1506,13 @@ bool Runner::DoHeal(Client& client, const Observation& obs) {
 
 bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
     if (obs.dead) {
+        // Same guard as DoSurvive: one outstanding resurrection request, not
+        // one every three seconds against a fifteen-minute deadline. Both
+        // goals can be the one running while the character is a ghost, so
+        // both had the fault.
+        if (client.ActionBusy()) return false;
         client.ActionResurrectAccept();
-        nextActionMs_ = obs.nowMs + 3000;
+        nextActionMs_ = obs.nowMs + 10000;
         return false;
     }
     if (!obs.corpseKnown) return true;   // nothing to recover
@@ -4678,6 +4709,37 @@ bool Runner::DoTravel(Client& client, const Observation& obs) {
     }
     LogLine("travel: did not arrive (%s)", client.TravelFailureText());
     planner_.NoteAttempt(obs.nowMs);
+    return false;
+}
+
+// PRACTISE THE SKILL BY DOING IT.
+//
+// The half of progression that is not buying tenths from a guildmaster. A
+// guildmaster sells up to 30.0 and stops; everything above that is the hours a
+// character puts in. Meditation is the honest first case: it is raised purely
+// by using it, needs no target, no reagents and no foe, and this life already
+// wants it.
+//
+// DELIBERATELY NARROW. Magery and Evaluating Intelligence are raised by
+// casting, which needs a spell choice, reagents and a legal target, and
+// getting that wrong would have a mage burning its scribe stock on practice
+// casts. Fighting skills already have TRAIN_COMBAT. Everything else --
+// Inscription, Blacksmithing, Lumberjacking -- is raised by the work the life
+// already does, and must NOT get an errand of its own: a scribe writes scrolls
+// to sell, not to practise.
+bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
+    const int skillId = obs.wantPracticeSkill;
+    if (skillId < 0) return true;
+    if (client.ActionBusy()) return false;
+
+    const i32 have = obs.SkillTenths(skillId);
+    LogLine("practice: using %s to raise it (%.1f)", rules::SkillName(skillId),
+            have / 10.0);
+    client.ActionUseSkill(skillId);
+    planner_.NoteProgress();
+    // Meditation runs for a while and the server decides when it ends. Long
+    // enough that this is not a spin, short enough to notice an interruption.
+    nextActionMs_ = obs.nowMs + 12000;
     return false;
 }
 

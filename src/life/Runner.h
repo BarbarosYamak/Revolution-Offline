@@ -119,6 +119,7 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
+    bool DoPracticeSkill(Client& client, const Observation& obs);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
