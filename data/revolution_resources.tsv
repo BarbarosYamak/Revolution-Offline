@@ -34,6 +34,7 @@ i_scissors	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT i_scissors SKILLMAKE=Tinkeri
 i_pen_and_ink	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT i_pen_and_ink SKILLMAKE=Tinkering 44.1 -- the scribe's tool is a TINKER product
 i_bottle_empty	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
 i_potion_heal	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
+i_potion_poison	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
 i_potion_cure	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
 i_potion_agilitygreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility
 i_potion_healgreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
@@ -53,6 +54,7 @@ i_bowl_wood	UNKNOWN	UNKNOWN	1	leaf: nothing in the graph produces it
 i_feather	UNKNOWN	WORLD_GATHERED	1	leaf: nothing in the graph produces it
 i_ink_well	UNKNOWN	UNKNOWN	1	leaf: nothing in the graph produces it
 i_reag_ginseng	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_reag_nightshade	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_garlic	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_blood_moss	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_ginseng	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it

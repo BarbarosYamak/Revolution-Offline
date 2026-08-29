@@ -86,9 +86,16 @@ void TestAllowedNeedsEvidence() {
         // An allowed route must rest on SOMETHING: either Revolution said so,
         // or we watched it work here. Allowing a route that has neither would
         // be exactly the stock-Scripts-X mistake in a new costume.
+        // OwnerDecision counts, and deliberately: it is this person's shard
+        // and their ruling is a real ground for a route. It is NOT historical
+        // evidence and is graded separately so it can never be mistaken for a
+        // guide or a changelog -- the point of the guard is that an allowed
+        // gold faucet must rest on SOMETHING nameable, not that the something
+        // must always be Revolution's own record.
         const bool grounded =
             f.history == HistoryEvidence::Confirmed ||
             f.history == HistoryEvidence::NotFullyConfirmed ||
+            f.history == HistoryEvidence::OwnerDecision ||
             f.runtime == RuntimeEvidence::LiveProven;
         if (!grounded) {
             std::printf("  FAIL: '%s' is ALLOWED with no evidence either way\n",

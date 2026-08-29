@@ -60,6 +60,16 @@ enum class HistoryEvidence : u8 {
     Unknown = 0,          // no statement either way. Fails safe.
     Confirmed,            // a Revolution guide or dated changelog says so
     NotFullyConfirmed,    // described as income, but the NPC channel is vague
+    // THE SHARD OWNER DECIDED IT. Not a historical claim and must never be
+    // read as one: it says nobody has shown what Revolution did, and the
+    // person whose shard this is has ruled on it anyway. That is a legitimate
+    // ground for allowing a route -- it is their world -- and it is a
+    // different KIND of ground from a guide or a changelog, so it gets its own
+    // grade rather than being laundered into Confirmed.
+    //
+    // Every entry carrying this must quote the instruction and, where it
+    // overrides evidence, say what that evidence was.
+    OwnerDecision,
     Count,
 };
 

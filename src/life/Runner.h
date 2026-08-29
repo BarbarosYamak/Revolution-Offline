@@ -247,6 +247,7 @@ private:
     i32  tradeTrips_ = 0;
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
+    i32  toolTrips_ = 0;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;

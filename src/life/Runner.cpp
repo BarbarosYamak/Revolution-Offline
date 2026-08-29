@@ -74,6 +74,8 @@ constexpr i64 kNoBandageCooldownMs = 180000;
 constexpr i64 kExploredAllCooldownMs = 300000;
 // A pair of scissors is a few dozen coins from any tailor. Worth a walk.
 constexpr i32 kScissorsMoney = 60;
+constexpr i32 kMaxToolTrips = 3;
+constexpr i64 kNoToolCooldownMs = 180000;
 // Spare gold, above the profession's reserve, that makes armour shopping
 // sensible rather than reckless.
 constexpr i32 kArmorMoney = 400;
@@ -2220,13 +2222,36 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         // Arrived (or gave up). Ask whoever is here to show their wares.
         const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade);
         if (!keeper) {
-            LogLine("get_tool: arrived but no %s is here", tv->trade);
+            // BOUND THE TRIPS. This was the last travelling goal without a
+            // limit, and it cost a whole session: Edrik logged "arrived but no
+            // blacksmith is here" TWO HUNDRED AND FIFTY times, 51 GET_TOOL
+            // picks at 100% of a full crafter's day, and never went anywhere
+            // else. Documented in M4_OPEN_LOOSE_ENDS as waste-not-a-hang, on
+            // the grounds the 300s limit caps it -- which was true and still
+            // meant one goal owning the character.
+            //
+            // Three arrivals with nobody there is enough to conclude this
+            // trade is not where the atlas says, cool off and let another
+            // family have the day.
+            if (++toolTrips_ > kMaxToolTrips) {
+                LogLine("goal_failed=GET_TOOL reason=\"%d arrivals and no '%s' "
+                        "was there to sell a %s\"", toolTrips_ - 1, tv->trade,
+                        toolName.c_str());
+                planner_.Cooldown(GoalKind::GetTool,
+                                  obs.nowMs + kNoToolCooldownMs);
+                planner_.Finish(false, "no shopkeeper of that trade", obs.nowMs);
+                toolTrips_ = 0;
+                return false;
+            }
+            LogLine("get_tool: arrived but no %s is here (trip %d of %d)",
+                    tv->trade, toolTrips_, kMaxToolTrips);
             state_.memory.NoteEvent("vendor_not_observed", toolName.c_str(),
                                     tv->trade, obs.x, obs.y, obs.nowMs);
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 5000;
             return false;
         }
+        toolTrips_ = 0;
         // WALK UP FIRST. Sphere routes a vendor keyword to whoever is nearest
         // in earshot, not to the name spoken -- the lesson a carpenter taught
         // when Joshua the architect answered instead.

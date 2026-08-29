@@ -45,6 +45,8 @@ i_pen_and_ink	1	i_ink_well	1	37	44.1	none		none	tinker tools	0	PLAYER_CRAFTED	SC
 i_bottle_empty	1		0	0	25.0	none		none	none	0	PLAYER_CRAFTED	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
 i_potion_heal	1	i_reag_ginseng	3	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
 i_potion_heal	1	i_bottle_empty	1	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
+i_potion_poison	1	i_reag_nightshade	2	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
+i_potion_poison	1	i_bottle_empty	1	0	15.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
 i_potion_cure	1	i_reag_garlic	3	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
 i_potion_cure	1	i_bottle_empty	1	0	25.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure
 i_potion_agilitygreat	1	i_reag_blood_moss	3	0	35.1	none		none	mortar and pestle	0	PLAYER_CRAFTED	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility

@@ -21,6 +21,7 @@ const char* HistoryEvidenceName(HistoryEvidence e) {
         case HistoryEvidence::Unknown:           return "UNKNOWN";
         case HistoryEvidence::Confirmed:         return "REVOLUTION_CONFIRMED";
         case HistoryEvidence::NotFullyConfirmed: return "NOT_FULLY_CONFIRMED";
+        case HistoryEvidence::OwnerDecision:      return "OWNER_DECISION";
         case HistoryEvidence::Count:             break;
     }
     return "?";
@@ -98,7 +99,7 @@ const GoldFaucet kFaucets[] = {
 
 {"dagger_to_weaponsmith", SourceType::VendorSale, "miner_smith",
  "i_dagger", "weaponsmith",
- HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ HistoryEvidence::OwnerDecision, RuntimeEvidence::ScriptSupported, Policy::Allow,
  "OWNER DECISION, 2026-08-29: \"brannoc he can make gold by selling daggers he "
  "crafted, go mine then forge then make dagger and sell them\". This is the "
  "call the smith_output_to_vendor entry below was explicitly waiting on -- it "
@@ -114,7 +115,7 @@ const GoldFaucet kFaucets[] = {
 
 {"poison_potion_to_alchemist", SourceType::VendorSale, "alchemist",
  "i_potion_poison", "alchemist",
- HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ HistoryEvidence::OwnerDecision, RuntimeEvidence::ScriptSupported, Policy::Allow,
  "OWNER DECISION, 2026-08-29: \"Voris it can make poison bottle and it can "
  "sell to npc\". FLAGGED AT THE TIME and recorded here so the conflict is not "
  "lost: the alchemy_output_to_vendor entry below refuses potion sales on "

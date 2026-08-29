@@ -84,7 +84,17 @@ void TestSurplusIsOwnOutputOnly() {
     pol.keepOfOwnOutput = 20;
     pol.minimumSurplusToOffer = 5;
 
-    const std::string made = ms->produces.front();
+    // NAME THE GOOD, do not take produces.front(). The working reserve exists
+    // only for output a life feeds back into its OWN recipes, so this test is
+    // about i_ingot_iron specifically -- every weapon the smith makes eats
+    // four to six of them. front() happened to be the ingot until daggers were
+    // added on 2026-08-29, whereupon the test silently started asserting about
+    // a good with no reserve at all and failed three times over. A test that
+    // depends on list ORDER is testing the wrong thing.
+    const std::string made = "i_ingot_iron";
+    bool makesIt = false;
+    for (const std::string& p : ms->produces) makesIt = makesIt || (p == made);
+    Check(makesIt, "the smith still makes the good this test is about");
 
     // Below the reserve: nothing is offered, however much is in the pack.
     std::vector<Stock> pack = {{made, 20}};
@@ -468,10 +478,24 @@ void TestWhatAnNpcMayStillBuy() {
     // a shard economy rather than a gap to be filled in.
     Check(withNpcIncome.count("scribe") == 1,
           "a scribe has an NPC income -- live-proven on this shard");
-    Check(withNpcIncome.count("miner_smith") == 0,
-          "a smith does NOT: mine -> smith -> dump to NPC would print gold");
-    Check(withNpcIncome.count("alchemist") == 0,
-          "nor an alchemist: potions are player goods");
+    // CHANGED 2026-08-29 by owner decision: "brannoc he can make gold by
+    // selling daggers he crafted, go mine then forge then make dagger and sell
+    // them". A smith now HAS a narrow NPC faucet.
+    //
+    // The concern this assertion was written to protect is real and has not
+    // gone away -- mine -> smith -> dump to NPC does print gold -- so what is
+    // checked now is the SHAPE of the exception rather than its absence:
+    // exactly one smith good is sellable, it is the day-one one
+    // (SKILLMAKE=Blacksmithing 0.0), and the rest of the smith's output is
+    // still refused. If that count ever grows quietly, this fails.
+    Check(withNpcIncome.count("miner_smith") == 1,
+          "a smith now has ONE narrow NPC faucet: the dagger the owner ruled "
+          "on, and nothing else");
+    Check(withNpcIncome.count("alchemist") == 1,
+          "an alchemist now has one too -- poison, by owner decision, over "
+          "CONFIRMED evidence that potions were player goods. The evidence is "
+          "kept in the registry entry and the price (3 gold) is what keeps it "
+          "a training sink rather than an income loop");
     Check(withNpcIncome.count("lumberjack_swordsman") == 0,
           "nor the carpenter, whose market is players");
 
