@@ -5385,6 +5385,55 @@ bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
     return false;
 }
 
+// WHICH SPELL THIS CHARACTER CAN ACTUALLY PRACTISE WITH.
+//
+// Not a constant, because the starter book is not what the code assumed. The
+// [NEWBIE MAGERY] template hands over a spellbook with MORE1=0382a8c38, and
+// that bitmask decodes to exactly twelve spells --
+//
+//   Heal, Magic Arrow, Night Sight, Cure, Harm, Strength, Fireball, Poison,
+//   Teleport, Fire Field, Greater Heal, Lightning
+//
+// -- which does NOT include Create Food. So the hardcoded practice spell was
+// missing from the book of every freshly created character on this shard, not
+// only from Voris's. "The spell is not in your spellbook", forever.
+//
+// The book is read rather than guessed: a spellbook's contents arrive as
+// container items whose graphic is 0x1F2D + the spell number, so opening it
+// says precisely what this character owns.
+//
+// The candidates are ordered by how safe they are to cast at oneself, which is
+// the owner's rule for skill practice -- "we used to use all of the skills on
+// ourselves with no damage to ourselves". Every one below is
+// spellflag_good + spellflag_playeronly in spells_magery.scp: none can hurt the
+// caster, none makes a criminal of them, and none needs a foe.
+int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
+    if (obs.spellbookSerial == 0) return -1;
+
+    // Night Sight first: it always succeeds on a healthy character, where Heal
+    // on someone at full health does nothing. Create Food last -- it is the
+    // one that started all this, and it is still fine when present.
+    static const int kSelfSafe[] = {
+        6,   // Night Sight     targ_char | good | playeronly
+        7,   // Reactive Armor  targ_char | good
+        4,   // Heal            targ_char | good | playeronly | heal
+        2,   // Create Food     playeronly, no target at all
+    };
+
+    const usize n = client.ContainerItemCount(obs.spellbookSerial);
+    for (int want : kSelfSafe) {
+        const u16 wantGfx = static_cast<u16>(0x1F2D + want);
+        for (usize i = 0; i < n; ++i) {
+            u32 serial = 0; u16 gfx = 0, amount = 0;
+            if (!client.ContainerItemAt(obs.spellbookSerial, i, &serial, &gfx,
+                                        &amount))
+                continue;
+            if (gfx == wantGfx) return want;
+        }
+    }
+    return -1;
+}
+
 // ---------------------------------------------------------------------------
 // FILLING THE BOOK.
 //
@@ -5517,10 +5566,36 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 15000;
             return true;   // meditation or time will bring it back
         }
-        LogLine("practice: casting Create Food to raise Magery (%.1f, mana %d)",
-                have / 10.0, obs.mana);
+        // CAST SOMETHING THIS CHARACTER ACTUALLY HAS. The book must be opened
+        // once before it can be read; an unopened book is not an empty one.
+        if (obs.spellbookSerial == 0) {
+            LogLine("practice: no spellbook carried -- Magery cannot be "
+                    "practised until FILL_SPELLBOOK has bought one");
+            planner_.Finish(false, "no spellbook", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
+        if (!spellbookOpened_) {
+            LogLine("practice: opening the spellbook to see what can be cast");
+            client.ActionUseObject(obs.spellbookSerial);
+            spellbookOpened_ = true;
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        const int spell = PickPracticeSpell(client, obs);
+        if (spell < 0) {
+            LogLine("practice: nothing safe to cast at myself is in this book "
+                    "-- Magery cannot be practised until it holds one");
+            planner_.Finish(false, "no self-safe spell in book", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
+        // At oneself. Every candidate is spellflag_good and playeronly, so
+        // this can neither hurt the caster nor make a criminal of them.
+        LogLine("practice: casting spell %d at myself to raise Magery "
+                "(%.1f, mana %d)", spell, have / 10.0, obs.mana);
         createFoodMark_ = client.JournalNowMs();
-        client.ActionCastSpell(kSpellCreateFood);
+        client.ActionCastSpell(spell, client.PlayerSerial());
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 6000;
         return false;

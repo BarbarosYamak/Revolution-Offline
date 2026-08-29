@@ -125,6 +125,7 @@ private:
     bool LifeNeedsGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
+    int  PickPracticeSpell(Client& client, const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool BuyFromMageShop(Client& client, const Observation& obs, u16 graphic,
                          u16 qty, const char* what);
