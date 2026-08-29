@@ -408,6 +408,17 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("logs=%d threshold=%d", obs.logs, cfg.logsWorthBanking));
     }
 
+    // A BANK TRIP IS ALSO FOR TAKING MONEY OUT. Depositing was implemented
+    // and withdrawing was not, so a character banked everything and then stood
+    // in front of a shop it could not pay -- a smith hammer it had 9,785 gold
+    // for, and a 196 gold lesson from Olin.
+    if (obs.coinWanted > obs.goldOnHand) {
+        add(NeedKind::NeedBank, 0.80, "withdraw for a purchase",
+            "something is waiting to be bought and the purse is empty",
+            Fmt("wanted=%d on_hand=%d banked=%d", obs.coinWanted,
+                obs.goldOnHand, obs.gold), false);
+    }
+
     // GOLD IN THE PACK IS GOLD AT RISK. "nobody carry gold on them unless they
     // need to buy something -- always put additional items to bank, so they
     // can get it when they need it" (project owner, 2026-08-29).
@@ -418,22 +429,28 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // holds back for tools, reagents and lessons -- plus a little working
     // change; anything above that belongs in the box.
     if (cfg.profession && !obs.atBank) {
+        // WHAT IS CARRIED, NOT WHAT IS OWNED. obs.gold is the status-bar
+        // total and includes the bank box on this shard, so this used to
+        // announce "spare=8785" and walk to the bank to deposit coins that
+        // were already in it -- which is also why the character appeared to
+        // spam the banker.
         const i32 carry = cfg.profession->goldReserve + kGoldWorthCarrying;
-        if (obs.gold > carry) {
+        if (obs.goldOnHand > carry) {
             // URGENCY SCALES WITH WHAT IS AT RISK. A flat 0.38 lost to
             // training every time -- 0.38 x 240 = 91 against a trainer need at
             // 110 -- so Corwyn walked around with 9,842 gold on him for a
             // whole session and never once opened a box, on a shard where
             // death is full loot. A few hundred spare is worth ignoring; nine
             // thousand is not, and the number should say which it is.
-            const i32 spare = obs.gold - carry;
+            const i32 spare = obs.goldOnHand - carry;
             const double risk =
                 std::min(1.0, static_cast<double>(spare) /
                                   static_cast<double>(carry > 0 ? carry * 4 : 1));
             add(NeedKind::NeedBank, 0.30 + 0.45 * risk, "deposit surplus gold",
                 "carrying more coin than this life needs, and death here is "
                 "full loot",
-                Fmt("gold=%d reserve=%d carry=%d spare=%d risk=%.2f", obs.gold,
+                Fmt("on_hand=%d (total %d) reserve=%d carry=%d spare=%d "
+                    "risk=%.2f", obs.goldOnHand, obs.gold,
                     cfg.profession->goldReserve, carry, spare, risk));
         }
     }

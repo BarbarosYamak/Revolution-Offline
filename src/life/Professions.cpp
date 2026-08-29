@@ -58,6 +58,10 @@ constexpr u16 kSpellbook  = 0x0EFA;             // i_spellbook
 // it" (project owner, 2026-08-29) -- and VENDOR_S_TINKER does sell all of
 // i_tongs, i_hammer, i_hammer_smith and i_hammer_sledge.
 constexpr u16 kSmithTool[] = {0x0FBB, 0x0FBC, 0x13E3, 0x13E4};
+// The half of that set a character can actually WIELD. The blacksmith menu
+// opens from LAYER_HAND1 and i_tongs is not a weapon -- no DAM, no SKILL -- so
+// the server refuses to put it in a hand. A smith needs the hammer itself.
+constexpr u16 kSmithHammer[] = {0x13E3, 0x13E4};
 constexpr u16 kBread[]    = {0x103B, 0x09EB};
 
 // -- M5.2: graphics for the eleven new archetypes, read off the runtime's
@@ -297,7 +301,7 @@ const std::vector<Profession>& All() {
             // The pickaxe is listed even though a new character cannot lift it:
             // the need model must SAY that, not hide it.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
-                       {"tongs",   V(kSmithTool, 4),   false}};
+                       {"smith hammer", V(kSmithHammer, 2), false}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.35;      // a smith is not looking for a fight
             p.goldReserve = 500;
@@ -897,7 +901,7 @@ const std::vector<Profession>& All() {
             p.consumes = {"i_ore_iron", "i_log", "i_reag_black_pearl",
                           "i_reag_blood_moss", "i_reag_mandrake_root"};
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
-                       {"tongs",   V(kSmithTool, 4),   false},
+                       {"smith hammer", V(kSmithHammer, 2), false},
                        {"spellbook", {kSpellbook}, false}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.40;
@@ -1037,7 +1041,7 @@ const std::vector<Profession>& All() {
             // told he lacks while standing next to a forest with an axe.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
                        {"hatchet", V(kHatchet, 2), true},
-                       {"tongs",   V(kSmithTool, 4),   false},
+                       {"smith hammer", V(kSmithHammer, 2), false},
                        {"saw",     {kSaw},         false},
                        {"mortar",  {kMortar},      false}};
             p.consumables = {Bandages(), Food()};

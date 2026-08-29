@@ -131,6 +131,10 @@ private:
     bool DoExplore(Client& client, const Observation& obs);
     bool DoMine(Client& client, const Observation& obs);
     bool DoSmelt(Client& client, const Observation& obs);
+    // Put enough coin in the pack for a purchase, drawing on the bank. True
+    // when it has taken over the tick.
+    bool FetchCoinForPurchase(Client& client, const Observation& obs,
+                              i32 needed);
     bool DoTameAnimal(Client& client, const Observation& obs);
     bool DoUpgradeGear(Client& client, const Observation& obs);
     bool MayWear(const ArmorPiece& a, const Observation& obs) const;
@@ -260,6 +264,19 @@ private:
     i64  smeltStartedMs_ = 0;
     i32  smeltIngotsBefore_ = 0;
     i32  smeltTrips_ = 0;
+    i64  toolTitlesAskedMs_ = 0;
+    i64  bankTitlesAskedMs_ = 0;
+    i32  coinLiftFails_ = 0;
+    // Who was standing there when an offer went unanswered, so the same room
+    // is not shouted at twice.
+    u32  tradeAudienceIgnored_ = 0;
+    // How much coin a pending purchase needs in the PACK. Drives NeedBank so
+    // the existing bank goal fetches it; zero when nothing is waiting on money.
+    i32  coinWanted_ = 0;
+    // Blacksmithing: the hammer arms a cursor that wants an ingot before the
+    // menu will open.
+    bool craftCursorPending_ = false;
+    i64  craftClickedMs_ = 0;
     // Forges that refused from every tile that could be reached, so the next
     // look offers a different one.
     std::vector<std::pair<i32, i32>> deadForges_;

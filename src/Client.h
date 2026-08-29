@@ -769,6 +769,10 @@ public:
     // player whose title has not arrived yet is counted as a player, which is
     // the harmless direction to be wrong in.
     int PlayersNearby(int maxDist) const;
+    // A cheap identity for "who is close enough to hear me", so a speaker can
+    // tell whether the room has changed since its last unanswered offer.
+    // Order-independent, and 0 when nobody is there.
+    u32 AudienceFingerprint(int maxDist) const;
 
     // M7: what OTHER CHARACTERS have said since `sinceMs`, with who said it
     // and where they were standing.

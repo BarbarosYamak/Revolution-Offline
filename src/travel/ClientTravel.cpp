@@ -497,18 +497,27 @@ try_atlas:
     //
     // Skipping it here rather than in the caller means it is skipped for
     // every city, not just the one that was noticed.
-    if (s == wm::Service::Blacksmith &&
-        p->id.find("armorer") != std::string::npos) {
-        if (skipPlaceIds) skipPlaceIds->push_back(p->id);
-        const wm::Place* real =
-            world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
-                s, playerX_, playerY_,
-                skipPlaceIds ? *skipPlaceIds : noPlaces);
-        if (real) {
-            p = real;
+    if (s == wm::Service::Blacksmith) {
+        // KEEP GOING PAST ARMOURIES, not just the first one. The earlier
+        // version stepped over one and took whatever came next -- which in
+        // Vesper is another armoury. Walk the list until a real smithy turns
+        // up, and only settle for an armoury if there is nothing else at all.
+        std::vector<std::string> tried =
+            skipPlaceIds ? *skipPlaceIds : noPlaces;
+        int guard = 0;
+        while (p && p->id.find("armorer") != std::string::npos && ++guard < 16) {
+            tried.push_back(p->id);
+            const wm::Place* next =
+                world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
+                    s, playerX_, playerY_, tried);
+            if (!next) break;   // armouries are all there is; use the first
+            p = next;
         }
-        // If an armoury really is the only thing offering the trade, fall
-        // through and use it -- refusing to go anywhere is worse.
+        if (p && p->id.find("armorer") == std::string::npos && skipPlaceIds) {
+            // Record the armouries stepped over so the next call skips them
+            // immediately instead of walking the same dead ends again.
+            *skipPlaceIds = tried;
+        }
     }
     // Record which shop this was, so a caller that strikes out here asks
     // for a different one next time instead of walking the same road again.
@@ -2073,6 +2082,25 @@ int Client::PlayersNearby(int maxDist) const {
         ++n;
     }
     return n;
+}
+
+u32 Client::AudienceFingerprint(int maxDist) const {
+    // Same test PlayersNearby uses, summed rather than counted. XOR would
+    // cancel a pair out; a sum of serials will not, and exact identity is not
+    // needed -- only "has this room changed".
+    u32 sum = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (m.body != 0x0190 && m.body != 0x0191) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+        if ((ax > ay ? ax : ay) > maxDist) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        if (std::strstr(title, " the ")) continue;
+        sum += m.serial;
+    }
+    return sum;
 }
 
 int Client::ScanMobiles(int maxDist, std::vector<HostileHit>& out) const {

@@ -511,6 +511,19 @@ struct Observation {
     std::vector<market::Stock> bank;
     bool bankOpen = false;
 
+    // COINS ACTUALLY IN THE PACK, as distinct from `gold`.
+    //
+    // `gold` is the status-bar figure (packet 0x11, offset 58) and on this
+    // shard that counts the BANK BOX as well. Reading it as "what I am
+    // carrying" produced two bugs at once: the bank goal kept trying to
+    // deposit a spare 8,785 coins that were already in the box, and the
+    // trainer goal accepted a 196 gold quote and then found "no gold stack in
+    // the pack". What a life can hand over is only ever what it holds.
+    i32 goldOnHand = 0;
+    // Coin a pending purchase needs in the pack but does not have. Set by the
+    // goal that wants to buy something; read by NeedBank, so "go to the bank"
+    // can mean withdraw and not only deposit.
+    i32 coinWanted = 0;
     std::vector<int> trainerRefusedSkills;
     int wantTrainSkill = -1;
     // Which skill this life should PRACTISE next, and how. -1 = none.

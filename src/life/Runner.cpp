@@ -43,6 +43,20 @@ constexpr u16 kFood[]     = {0x103B, 0x1041, 0x09E9, 0x09EA, 0x098C, 0x160B,
                              0x1040, 0x160A, 0x1608, 0x09B7, 0x09C9,
                              0x09EB, 0x09F2};
 constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
+// i_tongs (0FBB/0FBC) and i_hammer_smith (013E3, dupe 013E4) are both
+// TYPE=t_weapon_mace_smith, which is what the engine gates the menu on.
+constexpr u16 kSmithToolGfx[] = {0x0FBB, 0x0FBC, 0x13E3, 0x13E4};
+// BUT ONLY THE HAMMER CAN BE WIELDED, and the menu needs it in HAND1.
+// i_tongs has no DAM and no SKILL in i_profession.scp -- it is not a weapon,
+// so the server will not put it in a hand: it answered "You put the tongs in
+// your pack" to every equip, at layer 0 and layer 1, with the hand empty.
+// i_hammer_smith has DAM=13,15 SKILL=Macefighting and equips normally.
+// "equip smith hammer maybe?" (project owner, 2026-08-29).
+constexpr u16 kSmithHammerGfx[] = {0x13E3, 0x13E4};
+// Enough coin to walk into a shop with. A smith hammer is VALUE=50 and the
+// dearest tool a life buys is well under this, so one withdrawal covers the
+// errand rather than one trip to the box per item.
+constexpr i32 kToolMoneyToCarry = 500;
 // i_spellbook, ITEMDEF 0efa. A spell scroll's graphic is 0x1F2D + the spell
 // number: Create Food is spell 2 at 0x1F2F, Heal is 4 at 0x1F31, Magic Arrow
 // is 5 at 0x1F32 and Recall is 31 at 0x1F4C -- four independent points, all
@@ -971,6 +985,8 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     }
 
     obs.gold      = client.PlayerGold();
+    obs.goldOnHand = static_cast<i32>(client.BackpackItemCount(kGoldCoin));
+    obs.coinWanted = coinWanted_;
     obs.weight    = client.PlayerWeight();
     obs.maxWeight = client.PlayerMaxWeight();
     if (obs.maxWeight <= 0) {
@@ -2398,6 +2414,18 @@ const ToolVendor kToolVendors[] = {
     // a smith's tongs from a smith -- since that is also who stands in the
     // shop the rest of that craft's errands already visit.
     {"tongs",        "blacksmith",  wm::Service::Blacksmith},
+    // The wieldable half of the smith kit, and it is sold WHERE THE SMITH
+    // ALREADY IS. Reading only tm_vend.scp's SELL rows said otherwise --
+    // VENDOR_S_BLACKSMITH lists just i_tongs and i_store_ingot -- but a
+    // vendor's stock is not only that list: c_blacksmith and c_blacksmith_f
+    // in c_vendor_human.scp both carry
+    //     ITEM={ i_hammer_sledge 1 i_hammer_smith 1 }
+    // in their own CHARDEF. "blacksmith has it as well, it doesnt need to go
+    // far away" (project owner, 2026-08-29) -- and a smelting or smithing
+    // errand is standing in a smithy already, so this costs no walk at all.
+    // (c_armorer and c_weaponsmith_blade carry it too, but Blacksmith travel
+    // deliberately steps past armouries.)
+    {"smith hammer", "blacksmith",  wm::Service::Blacksmith},
     {"shovel",       "tinker",      wm::Service::Tinker},
     {"sewing kit",   "tailor",      wm::Service::Tailor},
     {"tinker tools", "tinker",      wm::Service::Tinker},
@@ -2490,6 +2518,13 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         return false;
     }
 
+    // COIN BEFORE THE SHOP TRIP, not after arriving at it. Fetching it later
+    // put two destinations in play at once: the coin errand started walking to
+    // the bank, the tool goal re-issued its walk to the smithy on the next
+    // tick, and the character announced "looking for a blacksmith" every two
+    // and a half seconds without ever arriving anywhere.
+    if (FetchCoinForPurchase(client, obs, kToolMoneyToCarry)) return false;
+
     if (client.TravelBusy()) return false;
 
     const u32 vendor = client.VendorOfferFrom();
@@ -2500,6 +2535,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                         known->name.c_str(), known->x, known->y);
                 travelInFlight_ = client.TravelToPoint(known->x, known->y, 2, "supplier");
             } else {
+                toolTitlesAskedMs_ = 0;
                 LogLine("get_tool: no remembered supplier; looking for a %s to "
                         "sell a %s", tv->trade, toolName.c_str());
                 travelInFlight_ =
@@ -2512,6 +2548,29 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                 planner_.NoteAttempt(obs.nowMs);
                 nextActionMs_ = obs.nowMs + 15000;
             }
+            return false;
+        }
+        // LEARN WHO IS STANDING HERE BEFORE DECIDING NOBODY IS.
+        //
+        // NOTE THE ORDER. travelInFlight_ is cleared AFTER this, not before:
+        // clearing it first and then returning early to wait for titles threw
+        // away the fact that the character had arrived, so the next tick saw
+        // "not travelling" and set off again -- a walk of nought tiles,
+        // restarted every two and a half seconds, with two blacksmiths named
+        // Olin and Curtis standing in the room.
+        //
+        // NearestShopkeeperWithTrade matches on the PAPERDOLL TITLE and skips
+        // every mobile whose title has not been fetched yet -- and titles only
+        // arrive after ActionScanMobiles double-clicks them. This path never
+        // called it, so the character arrived, saw a cache full of untitled
+        // mobiles, and concluded the trade was absent. At The Forgery that
+        // meant "arrived but no blacksmith is here" three times over with
+        // c_blacksmith standing at 2474,565 and 2467,567 -- three and four
+        // tiles away.
+        if (!toolTitlesAskedMs_ || obs.nowMs - toolTitlesAskedMs_ > 20000) {
+            client.ActionScanMobiles();
+            toolTitlesAskedMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 2500;   // let the replies land
             return false;
         }
         travelInFlight_ = false;
@@ -2725,6 +2784,12 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
 // --- banking ---------------------------------------------------------------
 
 bool Runner::DoBank(Client& client, const Observation& obs) {
+    if (coinWanted_ > 0 && obs.goldOnHand >= coinWanted_) {
+        LogLine("bank: %d gold is in the pack now -- the purchase can go ahead",
+                obs.goldOnHand);
+        coinWanted_ = 0;
+        coinLiftFails_ = 0;
+    }
     const u32 box = client.BankContainer();
     // ONLY the serial is needed to deposit. Requiring ContainerKnown -- that
     // the box's CONTENTS have arrived -- was wrong twice over: an EMPTY bank
@@ -2740,6 +2805,44 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         bankOpenTries_ = 0;
         bankerSilent_.clear();
         if (client.ActionBusy()) return false;
+
+        // TAKE OUT BEFORE PUTTING IN. A purchase waiting on coin is the reason
+        // this trip was made at all, and depositing first would empty the pack
+        // it is trying to fill.
+        if (coinWanted_ > obs.goldOnHand) {
+            // STAND STILL TO LIFT. The box opened while the character was
+            // still walking to the banker; he then stepped through a door to
+            // 2502,548, and every lift came back "cannot lift that" -- the
+            // open container does not survive being walked away from.
+            if (client.TravelBusy()) return false;
+            static const u16 kCoin[] = {kGoldCoin};
+            const u32 stack = client.FindContainerItemByGraphic(box, kCoin, 1);
+            if (stack && coinLiftFails_ >= 2) {
+                // The reference has gone stale. Ask for the box again rather
+                // than dragging at a serial the server no longer honours.
+                LogLine("bank: the box will not give up its coin -- reopening");
+                client.ForgetBankContainer();
+                coinLiftFails_ = 0;
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            if (stack) {
+                const i32 want = (coinWanted_ - obs.goldOnHand) + 200;
+                LogLine("bank: withdrawing %d gold -- %d is wanted for a "
+                        "purchase and %d is carried",
+                        want, coinWanted_, obs.goldOnHand);
+                client.ActionMoveItem(stack, static_cast<u16>(want),
+                                      client.BackpackSerial());
+                ++coinLiftFails_;   // cleared below the moment coin arrives
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 3000;
+                return false;
+            }
+            LogLine("bank: %d gold wanted but the open box shows no coin",
+                    coinWanted_);
+            coinWanted_ = 0;
+        }
+
         // Deposit whatever THIS LIFE produces, not just logs.
         //
         // This used to be hardcoded to kLog, which is the same lumberjack
@@ -2779,7 +2882,11 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             const i32 keep =
                 (needCfg_.profession ? needCfg_.profession->goldReserve : 0) +
                 kGoldWorthCarryingRt;
-            const i32 spare = obs.gold - keep;
+            // WHAT IS CARRIED, NOT WHAT IS OWNED. obs.gold is the status-bar
+            // figure and counts the bank box, so this asked to deposit 8,785
+            // coins one second after withdrawing 700 -- undoing the errand
+            // that made the trip.
+            const i32 spare = obs.goldOnHand - keep;
             if (coin && spare > 0 && !client.ActionBusy()) {
                 LogLine("bank: depositing %d gold, keeping %d for this life's "
                         "own errands", spare, keep);
@@ -3087,6 +3194,16 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // beside a GUILDMASTER, who is not a banker and never answers.
         // Shouting the word is only sensible where the closest NPC is likely
         // to be a banker, and that is inside the bank.
+        // ASK WHO IS HERE FIRST. The trade match needs a paperdoll title and
+        // titles only arrive after ActionScanMobiles clicks for them, so
+        // "no banker recognised" is often just "nobody has been asked yet".
+        if (!bankTitlesAskedMs_ || obs.nowMs - bankTitlesAskedMs_ > 20000) {
+            client.ActionScanMobiles();
+            bankTitlesAskedMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+
         const KnownPlace* bankHere = state_.memory.BestPlace("bank");
         const bool standingInABank =
             obs.atBank || client.BankContainer() != 0 ||
@@ -3109,6 +3226,24 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         }
     }
     if (banker) {
+        // CLOSE ENOUGH TO BE HEARD. "he cant open the bank he needs to be
+        // closer to banker" (project owner, 2026-08-29). The remembered bank
+        // place is a spot in the room, not the teller: Corwyn stood at
+        // 2502,552 while Jarvinia was at 2499,549 and the other banker at
+        // 2502,547 -- three and five tiles -- and every "bank" he said drew no
+        // reply at all, from a banker who greets other bots cheerfully.
+        i32 kx = 0, ky = 0; i8 kz = 0;
+        if (client.MobilePosition(banker, &kx, &ky, &kz)) {
+            const i32 d = TileDist(obs.x, obs.y, kx, ky);
+            if (d > 2) {
+                if (client.TravelBusy()) return false;
+                LogLine("bank: the banker is %d tiles off -- stepping up to be "
+                        "heard", d);
+                travelInFlight_ = client.TravelToPoint(kx, ky, 2, "banker");
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
         client.ActionOpenBank(banker);
         // REMEMBER WHERE THE BANKER STANDS, not where we happened to be when
         // the last item went into the box. Recording the player's position at
@@ -4623,6 +4758,9 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         trainPayAttempts_ = 0;
         return false;
     }
+    // The fee has to be IN THE PACK. obs.gold counts the bank box on this
+    // shard, so "can afford" and "can hand over" are different questions.
+    if (FetchCoinForPurchase(client, obs, quoted)) return false;
     const u32 gold = client.FindBackpackItemByGraphic(kGoldCoin);
     if (!gold) {
         LogLine("training: quoted %d but no gold stack found in the pack", quoted);
@@ -4936,6 +5074,24 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return false;
     }
 
+    // AND NOT AT THE SAME PEOPLE WHO ALREADY IGNORED IT. The earshot test is
+    // working correctly -- the "players" standing in the Minoc bank are the
+    // owner's own observer characters, "Observer, Apprentice Archer" and "The
+    // Eminent Owner Observer", which are real player bodies with no " the " in
+    // their titles. They are an audience that never buys, so a character kept
+    // shouting WTS at them and Jarvinia answered "Um... um?" each time.
+    //
+    // A player asks once and waits. Announcing again is only sensible when
+    // somebody NEW is in the room.
+    const u32 audience = client.AudienceFingerprint(kTradeEarshot);
+    if (audience == tradeAudienceIgnored_) {
+        LogLine("trade: the same people who ignored the last offer are still "
+                "here -- not repeating it");
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
+        planner_.Finish(false, "audience already declined", obs.nowMs);
+        return false;
+    }
+
     if (obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
         const std::string line = market::FormatSellOffer(offer);
         LogLine("trade: announcing '%s'", line.c_str());
@@ -4946,6 +5102,7 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     if (tradeAnnounceCount_ >= kMaxAnnounces) {
         LogLine("trade: nobody answered %d offers of %s -- back to work",
                 tradeAnnounceCount_, offer.item.c_str());
+        tradeAudienceIgnored_ = client.AudienceFingerprint(kTradeEarshot);
         state_.memory.NoteEvent("no_player_buyer", offer.item.c_str(), "",
                                 obs.x, obs.y, obs.nowMs);
         tradeAnnounceCount_ = 0;
@@ -5110,13 +5267,28 @@ struct CraftMenuPath {
     const char* item;
     const char* step1;
     const char* step2;   // nullptr for a flat menu
+    const char* step3;   // blacksmithing nests one level deeper than the rest
 };
 const CraftMenuPath kCraftMenus[] = {
-    {"i_scroll_poison",      "Spell Circle 3", "poison"},
-    {"i_scroll_recall",      "Spell Circle 4", "recall"},
-    {"i_bow",                "bow",            nullptr},
-    {"i_crossbow",           "crossbow",       nullptr},
-    {"i_arrow_shaft",        "arrow_shaft",    nullptr},
+    {"i_scroll_poison",      "Spell Circle 3", "poison",  nullptr},
+    {"i_scroll_recall",      "Spell Circle 4", "recall",  nullptr},
+    {"i_bow",                "bow",            nullptr,   nullptr},
+    {"i_crossbow",           "crossbow",       nullptr,   nullptr},
+    {"i_arrow_shaft",        "arrow_shaft",    nullptr,   nullptr},
+    // BLACKSMITHING. Corwyn reached 58 ingots and then stopped dead on
+    // "no menu path known for i_dagger" -- the table had no smith entry at
+    // all, so the whole mine -> smelt -> smith -> sell chain ended one step
+    // from the end.
+    //
+    // Three levels, from sm_legacy_blacksmithing.scp:
+    //   ON=i_sword_viking Weapons          -> ON=i_sword_viking Swords & Blades
+    //   -> ON=i_dagger <name> (<resmake>)
+    // where <name> is the itemdef's NAME. If this shard serves the newer
+    // def_blacksmithing gump instead, its categories are clilocs ("Bladed",
+    // 1011081) -- the failure branch below prints what the menu ACTUALLY
+    // offered, which is how to settle it without guessing twice.
+    {"i_dagger",             "Weapons",        "Swords & Blades", "dagger"},
+    {"i_spear_short",        "Weapons",        "Spears and Forks", "short spear"},
 };
 
 const CraftMenuPath* CraftMenuFor(const std::string& item) {
@@ -5386,6 +5558,78 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
 // everything then failed for the right reason and the wrong cause: EARN_GOLD
 // refused to sell ore because a raw material is a player-market good, and
 // CRAFT was short of the ingots that were sitting in his pack as ore.
+// ---------------------------------------------------------------------------
+// COIN IN HAND BEFORE A PURCHASE.
+//
+// "nobody carry gold on them unless they need to buy something -- always put
+// additional items to bank, so they can get it when they need it" (project
+// owner). The first half was implemented and the second half was not: a
+// character banked everything and then stood in front of a shop with an empty
+// purse. "even though you say here carry 1000 gp on him he is not carry 1000
+// gp" -- the 1000 in that log is the THRESHOLD, not what is carried.
+//
+// Two symptoms, one cause: Olin quoted 196 gold for Arms Lore and the payment
+// step answered "no gold stack found in the pack", and a smith hammer could
+// not be bought for the same reason.
+//
+// Returns true when it has taken over the tick (walking to the bank, opening
+// it, or lifting coin out); the caller should return false and try again.
+bool Runner::FetchCoinForPurchase(Client& client, const Observation& obs,
+                                  i32 needed) {
+    if (needed <= 0) return false;
+    if (obs.goldOnHand >= needed) { coinWanted_ = 0; return false; }
+    // Nothing banked either -- poverty, not logistics. The caller's own
+    // "cannot afford" path is the honest answer.
+    if (obs.gold < needed) { coinWanted_ = 0; return false; }
+
+    // DO NOT OPEN THE BANK HERE. An earlier version of this walked to the box
+    // and shouted "bank" itself, and it was wrong in four separate ways at
+    // once -- it tested obs.atBank (which means the box is already OPEN), it
+    // passed banker serial 0, it asked before any paperdoll title had been
+    // fetched, and it re-issued inside open_bank's own 3s deadline so every
+    // attempt superseded the last. The visible result was a character standing
+    // at the bank saying "bank" over and over. ("corwyn spamming bank")
+    //
+    // There is already a goal that opens the box properly, with a skip list
+    // for bankers that do not answer: BANK. And there is already a withdrawal
+    // that works -- EARN_GOLD lifts stock out of the box the same way. So this
+    // only does the part neither of them does: name the sum wanted, so NeedBank
+    // fires, and lift the coin once the box is open.
+    // "we withdraw stuff from bank before -- why it is hard for this account"
+    // (project owner, 2026-08-29). It was not hard; it was duplicated.
+    coinWanted_ = needed;
+
+    const u32 box = client.BankContainer();
+    if (box) {
+        static const u16 kCoin[] = {kGoldCoin};
+        const u32 stack = client.FindContainerItemByGraphic(box, kCoin, 1);
+        if (stack && !client.ActionBusy()) {
+            const i32 want = (needed - obs.goldOnHand) + 200;
+            LogLine("bank: withdrawing %d gold for a purchase (need %d, "
+                    "carrying %d)", want, needed, obs.goldOnHand);
+            client.ActionMoveItem(stack, static_cast<u16>(want),
+                                  client.BackpackSerial());
+            nextActionMs_ = obs.nowMs + 3000;
+            return true;
+        }
+    }
+
+    // Box shut: let the BANK goal have the tick. Reporting "not now" rather
+    // than steering keeps one goal in charge of one errand.
+    // AND STAND DOWN LONG ENOUGH FOR THE BANK TRIP TO HAPPEN. Finishing alone
+    // was not enough: NeedTool scores 0.90 against NeedBank's 0.80, so the
+    // buying goal won the very next tick, stood down again, and BANK never got
+    // a turn -- "500 gold needed and 0 carried" every three seconds while the
+    // character stood still.
+    LogLine("%s: %d gold needed and %d carried -- standing down so the bank "
+            "goal can fetch it",
+            GoalKindName(planner_.Current().kind), needed, obs.goldOnHand);
+    planner_.Cooldown(planner_.Current().kind, obs.nowMs + 45000);
+    planner_.Finish(false, "needs coin from the bank", obs.nowMs);
+    nextActionMs_ = obs.nowMs + 1000;
+    return true;
+}
+
 bool Runner::DoSmelt(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
@@ -5586,7 +5830,12 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
         return false;
     }
 
+    // A FORGE THAT WORKS ENDS THE SEARCH. Without this the skip list only
+    // ever grew: once Minoc's smithies were on it, "the nearest blacksmith not
+    // yet tried" became Vesper, and the character walked out of its own city
+    // to smelt. ("why corwyn in vesper?")
     smeltTrips_ = 0;
+    smeltSkipPlaces_.clear();
     travelInFlight_ = false;
     smeltForgeX_ = forgeTile.x;
     smeltForgeY_ = forgeTile.y;
@@ -5686,6 +5935,109 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         }
     }
 
+    // A FORGE RECIPE NEEDS THE FORGE, AND THE HAMMER IN HAND.
+    //
+    // Production.cpp already recorded both, from the engine:
+    //   CClientUse.cpp:1273 LayerFind(LAYER_HAND1)   -- tool EQUIPPED, not carried
+    //   CClientUse.cpp:1282 IsItemTypeNear(IT_FORGE,3)
+    // and nothing acted on either. So Corwyn stood wherever he happened to be,
+    // double-clicked an ingot 14 times, and the menu never opened -- "craft:
+    // making i_dagger -- using a i_ingot_iron to open the menu", once every
+    // four seconds until the run ended. "double click smith hammer maybe"
+    // (project owner, 2026-08-29), which is exactly what the engine wants.
+    if (const prod::Recipe* fr = prod::FindRecipe(intent.item)) {
+        if (fr->station == prod::Station::Forge) {
+            Client::TreeHit forgeTile;
+            // NOT `near` -- MSVC still defines that as a legacy keyword macro.
+            const bool haveForge = client.NearestForge(obs.x, obs.y, 20,
+                                                       &forgeTile, &deadForges_);
+            const i32 d = haveForge
+                              ? TileDist(obs.x, obs.y, forgeTile.x, forgeTile.y)
+                              : 999;
+            if (!haveForge || d > 2) {
+                if (client.TravelBusy()) return false;
+                LogLine("craft: %s needs a forge -- %s", intent.item,
+                        haveForge ? "walking to the one in sight"
+                                  : "going to find a smithy");
+                if (haveForge) {
+                    i32 sx = 0, sy = 0; bool ok = false;
+                    static const int ddx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+                    static const int ddy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+                    for (int i = 0; i < 8 && !ok; ++i) {
+                        const i32 tx = forgeTile.x + ddx[i];
+                        const i32 ty = forgeTile.y + ddy[i];
+                        if (!client.TileIsWalkable(tx, ty, forgeTile.z)) continue;
+                        sx = tx; sy = ty; ok = true;
+                    }
+                    if (ok) {
+                        travelInFlight_ = client.TravelToPoint(sx, sy, 0, "forge");
+                        nextActionMs_ = obs.nowMs + 2000;
+                        return false;
+                    }
+                    deadForges_.emplace_back(forgeTile.x, forgeTile.y);
+                }
+                travelInFlight_ = client.TravelToServiceSkipping(
+                    wm::Service::Blacksmith, HomeOrNearest(state_.homeCity), {},
+                    &smeltSkipPlaces_);
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+        }
+        // THE TOOL MUST BE IN HAND1, not merely in the pack.
+        if (fr->tool == prod::Tool::SmithHammer) {
+            bool held = false;
+            for (usize i = 0; i < 2; ++i) {
+                if (client.EquippedGraphicAt(kLayerHand1) == kSmithHammerGfx[i]) {
+                    held = true; break;
+                }
+            }
+            if (!held) {
+                // DO NOT RE-ISSUE INSIDE THE ACTION'S OWN DEADLINE. Without
+                // this the equip superseded itself every two seconds --
+                // "equip invalid_state took=2091ms superseded" -- forever.
+                if (client.ActionBusy()) return false;
+                const u32 inPack = FindAny(client, kSmithHammerGfx, 2);
+                if (!inPack) {
+                    // Tongs will not do here, however much the catalogue likes
+                    // them: GET_TOOL has to fetch an actual hammer, and
+                    // VENDOR_S_TINKER sells one.
+                    LogLine("goal_blocked=CRAFT reason=\"%s\" no smith HAMMER "
+                            "to open the forge menu with (tongs cannot be "
+                            "wielded)",
+                            faucet::RefusalName(faucet::Refusal::MissingTool));
+                    planner_.Finish(false, "no smith hammer", obs.nowMs);
+                    return false;
+                }
+                // EMPTY THE HAND FIRST. Naming the layer was still not
+                // enough: a miner_smith carries a pickaxe AND tongs, mining
+                // leaves the pickaxe wielded, and the server will not put a
+                // second thing in an occupied hand -- it answered "You put the
+                // tongs in your pack" to every attempt, at layer 0 and at
+                // layer 1 alike. Mining re-equips its own pickaxe when it next
+                // needs it, so putting it away here costs nothing.
+                const u32 hand1 = client.EquippedAtLayer(kLayerHand1);
+                const u32 hand2 = client.EquippedAtLayer(kLayerHand2);
+                const u32 inTheWay = hand1 ? hand1 : hand2;
+                if (inTheWay && inTheWay != inPack) {
+                    LogLine("craft: putting away what is in hand to free "
+                            "HAND1 for the smith tool");
+                    client.ActionUnequip(inTheWay);
+                    nextActionMs_ = obs.nowMs + 3000;
+                    return false;
+                }
+
+                // NAME THE LAYER. Passing kLayerServerChooses (0) does not
+                // equip anything. The engine looks in HAND1
+                // (CClientUse.cpp:1273), so say HAND1.
+                LogLine("craft: taking the smith tool into HAND1 -- the menu "
+                        "reads LAYER_HAND1");
+                client.ActionEquip(inPack, kLayerHand1);
+                nextActionMs_ = obs.nowMs + 4000;
+                return false;
+            }
+        }
+    }
+
     if (craftItem_ != intent.item) {
         craftItem_ = intent.item;
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
@@ -5708,9 +6060,35 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("first_craft", craftItem_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
         }
-        if (craftMade_ >= needCfg_.craftBatch) {
-            LogLine("craft: %d %s made -- enough for a trip to a buyer",
-                    craftMade_, craftItem_.c_str());
+        // KEEP GOING WHILE THE MATERIAL LASTS. "craft till you are out of iron
+        // on your bag" (project owner, 2026-08-29). Stopping at craftBatch
+        // left a smith standing at the forge with fifty-odd ingots still in
+        // the pack, walking off to sell four daggers and coming back.
+        //
+        // The stock is the honest limit: when the inputs no longer cover one
+        // more, ChooseCraft reports it missing and the goal ends on its own.
+        // The batch still applies to trades whose material is bought rather
+        // than dug -- a scribe should not spend its whole purse on scrolls.
+        bool moreToUse = false;
+        if (const prod::Recipe* rr = prod::FindRecipe(craftItem_.c_str())) {
+            if (rr->station == prod::Station::Forge) {
+                moreToUse = true;
+                for (const prod::Ingredient& in : rr->inputs) {
+                    if (!in.item) break;
+                    if (market::QtyOf(obs.pack, in.item) < in.qty) {
+                        moreToUse = false;
+                        break;
+                    }
+                }
+            }
+        }
+        if (moreToUse && obs.WeightFraction() < 0.90) {
+            LogLine("craft: %d %s made and the iron is not finished -- "
+                    "carrying on", craftMade_, craftItem_.c_str());
+        } else if (craftMade_ >= needCfg_.craftBatch || !moreToUse) {
+            LogLine("craft: %d %s made -- %s", craftMade_, craftItem_.c_str(),
+                    moreToUse ? "enough for a trip to a buyer"
+                              : "the material is spent");
             craftItem_.clear();
             return true;
         }
@@ -5737,17 +6115,22 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // that was already offering "poison" -- and said "the craft menu does
         // not offer it" sixteen times a second while printing the very option
         // it wanted. The menu itself says which level it is; ask it.
+        // DEEPEST FIRST. The menu itself says which level it is on, so ask it
+        // from the bottom up; anything else mistakes a submenu for the top.
         const char* want = nullptr;
-        if (path->step2 && client.DialogHasOption(path->step2)) {
+        if (path->step3 && client.DialogHasOption(path->step3)) {
+            want = path->step3;
+        } else if (path->step2 && client.DialogHasOption(path->step2)) {
             want = path->step2;          // already in the submenu
         } else if (client.DialogHasOption(path->step1)) {
             want = path->step1;          // the top menu, or a flat one
         }
         if (!want) {
-            LogLine("goal_failed=CRAFT reason=\"%s\" this menu offers neither "
-                    "'%s' nor '%s'",
+            LogLine("goal_failed=CRAFT reason=\"%s\" this menu offers none of "
+                    "'%s' / '%s' / '%s'",
                     faucet::RefusalName(faucet::Refusal::MissingRecipe),
-                    path->step1, path->step2 ? path->step2 : "(flat menu)");
+                    path->step1, path->step2 ? path->step2 : "(flat)",
+                    path->step3 ? path->step3 : "(flat)");
             for (const std::string& o : client.CraftableNow()) {
                 LogLine("craft:   offered: %s", o.c_str());
             }
@@ -5779,7 +6162,14 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         planner_.Finish(false, "no recipe", obs.nowMs);
         return false;
     }
-    const std::vector<u16> openGfx = econ::GraphicsForItem(r->inputs[0].item);
+    // WHAT OPENS THE MENU. For most trades it is the material -- a blank
+    // scroll, a log. For blacksmithing it is the TOOL: t_weapon_mace_smith is
+    // a hardcoded engine type (defs_types_hardcoded.scp) whose double-click
+    // opens the smith menu, and an ingot's double-click opens nothing at all.
+    const std::vector<u16> openGfx =
+        r->tool == prod::Tool::SmithHammer
+            ? std::vector<u16>(kSmithToolGfx, kSmithToolGfx + 4)
+            : econ::GraphicsForItem(r->inputs[0].item);
     u32 opener = 0;
     for (u16 g : openGfx) {
         opener = client.FindBackpackItemByGraphic(g);
@@ -5791,6 +6181,58 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 faucet::RefusalName(faucet::Refusal::MissingTool),
                 craftItem_.c_str(), r->inputs[0].item);
         planner_.Finish(false, "no material to start from", obs.nowMs);
+        return false;
+    }
+
+    // BLACKSMITHING TAKES THREE ACTIONS, NOT ONE.
+    //
+    // "how to craft is double click hammer then select ingot then select what
+    // do you want to craft" (project owner, 2026-08-29). The hammer arms a
+    // TARGET cursor; the cursor is given an ingot; only THEN does the menu
+    // appear. This code used the hammer and sat waiting for a menu that was
+    // never going to come on its own -- the same shape as the smelt bug, where
+    // the forge arms a cursor for the ore.
+    //
+    // Inscription and bowcraft are genuinely one action (use the material),
+    // so the middle step is asked for only where the tool opens a target.
+    if (r->tool == prod::Tool::SmithHammer) {
+        if (craftCursorPending_) {
+            if (client.TargetActive()) {
+                const std::vector<u16> matGfx =
+                    econ::GraphicsForItem(r->inputs[0].item);
+                u32 mat = 0;
+                for (u16 g : matGfx) {
+                    mat = client.FindBackpackItemByGraphic(g);
+                    if (mat) break;
+                }
+                if (!mat) {
+                    LogLine("goal_blocked=CRAFT reason=\"%s\" the smith cursor "
+                            "is up but there is no %s to give it",
+                            faucet::RefusalName(
+                                faucet::Refusal::RequiredForProduction),
+                            r->inputs[0].item);
+                    craftCursorPending_ = false;
+                    planner_.Finish(false, "no ingots to target", obs.nowMs);
+                    return false;
+                }
+                LogLine("craft: giving the smith cursor an %s to open the menu",
+                        r->inputs[0].item);
+                client.ActionTargetObject(mat);
+                craftCursorPending_ = false;
+                craftStartedMs_ = obs.nowMs;
+                craftMenuStep_ = 0;
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+            if (obs.nowMs - craftClickedMs_ > 6000) craftCursorPending_ = false;
+            return false;
+        }
+        LogLine("craft: making %s -- double-clicking the smith hammer",
+                craftItem_.c_str());
+        client.ActionUseObject(opener);
+        craftCursorPending_ = true;
+        craftClickedMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 1500;
         return false;
     }
 
