@@ -276,6 +276,38 @@ void TestMemory() {
     allowed.policyAllows = true;
     mem.NoteSupplier(allowed);
     Check(mem.BestSupplier("hatchet") != nullptr, "an allowed supplier is returned");
+
+    // --- and a supplier can be DISPROVED -----------------------------------
+    //
+    // A remembered supplier is a position, and the NPC that earned it can be
+    // gone. Live, a lumberjack stood on the exact tile it remembered a
+    // carpenter at, saw nobody, and travelled to that tile twice more --
+    // "back to a trainer we have used before, 'carpenter' at 2629,2099", two
+    // seconds apart -- before blaming the world for having no carpenter.
+    // Forgetting is what stops a wrong belief becoming a loop.
+    life::KnownSupplier trainer;
+    trainer.need = "trainer:carpenter";
+    trainer.name = "carpenter";
+    trainer.serial = 0x9abc;
+    trainer.policyAllows = true;
+    trainer.x = 2629;
+    trainer.y = 2099;
+    trainer.lastVerifiedMs = t0;
+    mem.NoteSupplier(trainer);
+    Check(mem.BestSupplier("trainer:carpenter") != nullptr,
+          "the remembered trainer is there to begin with");
+    Check(!mem.ForgetSupplier("trainer:carpenter", 2629, 2100),
+          "forgetting the WRONG tile changes nothing -- an off-by-one must not "
+          "silently erase a good memory");
+    Check(mem.BestSupplier("trainer:carpenter") != nullptr,
+          "so the trainer survives that");
+    Check(mem.ForgetSupplier("trainer:carpenter", 2629, 2099),
+          "forgetting the tile we actually stood on reports that it did something");
+    Check(mem.BestSupplier("trainer:carpenter") == nullptr,
+          "and the disproved trainer is gone, so the next trip searches "
+          "properly instead of walking to where we already are");
+    Check(mem.BestSupplier("hatchet") != nullptr,
+          "forgetting one supplier leaves the others alone");
 }
 
 // --------------------------------------------------------------------------

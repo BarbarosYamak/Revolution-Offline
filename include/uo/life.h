@@ -355,6 +355,11 @@ public:
     // Britain dock sent one character on the same futile walk three times a
     // minute, and it would have done so forever.
     bool                       ForgetPlace(const char* kind, i32 x, i32 y);
+    // The same lesson, for suppliers. A remembered trainer is a POSITION, and
+    // the NPC that made it memorable can be gone -- despawned, re-rolled by a
+    // spawner, or simply wandered off. Standing on the spot and seeing nobody
+    // is the disproof; without this the goal walks to where it already is.
+    bool                       ForgetSupplier(const char* need, i32 x, i32 y);
     const KnownResourceSource* BestResource(const char* resource, i32 fromX, i32 fromY,
                                             i64 nowMs) const;
     const KnownSupplier*       BestSupplier(const char* need) const;

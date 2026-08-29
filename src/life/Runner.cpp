@@ -88,11 +88,41 @@ const TrainerFor kTrainers[] = {
     // generic UO: c_guild_warrior carries PARRYING={75.0 98.0}, the tailor
     // guildmaster carries TAILORING, and the mapmaker carries
     // CARTOGRAPHY={50.0 75.0} (c_human_guildmasters.scp, c_vendor_human.scp).
-    {rules::kParrying,        "warrior",     wm::Service::Blacksmith},
+    {rules::kParrying,        "armorer",     wm::Service::Blacksmith},
     {rules::kTailoring,       "tailor",      wm::Service::Tailor},
-    {rules::kCartography,     "mapmaker",    wm::Service::GeneralVendor},
-    {rules::kSwordsmanship,   "swordsman",   wm::Service::Blacksmith},
-    {rules::kTactics,         "swordsman",   wm::Service::Blacksmith},
+    {rules::kCartography,     "mapmaker",    wm::Service::Mapmaker},
+    // "swordsman" WAS A WORD NOBODY ON THIS SHARD WEARS.
+    //
+    // These two rows were dead for exactly the same reason the three missing
+    // rows above were dead -- the goal asked NearestMobileWithTrade() for a
+    // title that matches nothing -- and they were harder to spot, because a
+    // wrong name looks like a right one in the table. Zero NPC chardefs across
+    // runtime/scripts/npcs/*.scp carry "the swordsman"; the count is 0, next to
+    // 12 for "the weaponsmith" and 6 for "the armorer".
+    //
+    // The warrior guildmaster is the right teacher by the owner's rule -- every
+    // skill-related guildmaster teaches to 30.0 -- and it is the wrong ANSWER
+    // here, because it cannot be reached. There are 7 in the world and no PLACE
+    // in the atlas carries a warrior service, so TravelToService has nowhere to
+    // send anyone; the nearest routable PLACE to Britain's is 47 tiles away,
+    // well past scan range. The craft guildmasters work only because they stand
+    // inside the shop their service already points at -- that is how Tarath
+    // found Jarman and bought Carpentry. The warrior guild has no shop.
+    //
+    // Weaponsmiths and armorers do stand in one. Both carry the whole combat
+    // set -- SWORDSMANSHIP/FENCING/MACEFIGHTING {15.0 38.0}, PARRYING/TACTICS
+    // {45.0 68.0} (c_vendor_human.scp) -- both map to Service::Blacksmith,
+    // which has 33 PLACEs, and 68 of them are spawned in the world save.
+    // Training caps at the NPC's own roll, so a low-rolled weaponsmith teaches
+    // less than a guildmaster would. A trainer that is sometimes weaker beats
+    // one that is always unreachable.
+    //
+    // Routing guildmasters properly is real work and belongs with the atlas
+    // generator, which today reads only vendor SPAWNERS and never the world
+    // save's WORLDCHARs -- noted in docs/M4_OPEN_LOOSE_ENDS.md rather than
+    // bodged here.
+    {rules::kSwordsmanship,   "weaponsmith", wm::Service::Blacksmith},
+    {rules::kTactics,         "weaponsmith", wm::Service::Blacksmith},
     {rules::kAnatomy,         "healer",      wm::Service::Healer},
     {rules::kHealing,         "healer",      wm::Service::Healer},
     {rules::kBlacksmithing,   "blacksmith",  wm::Service::Blacksmith},
@@ -3476,6 +3506,38 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             const KnownSupplier* known = state_.memory.BestSupplier(
                 (std::string("trainer:") + trainerTrade_).c_str());
             if (known) {
+                // STANDING ON THE SPOT AND SEEING NOBODY IS THE DISPROOF.
+                //
+                // A remembered supplier is a POSITION, not a mobile, and the
+                // NPC that earned it can be gone -- despawned, re-rolled by a
+                // spawner, or just wandered off. The old code walked back
+                // regardless, which meant that when the trainer was missing it
+                // issued a travel to the tile it was ALREADY on. Live:
+                //
+                //   arrived at (2629,2099,10)
+                //   training: back to a trainer we have used before, 'carpenter' at 2629,2099
+                //   training: back to a trainer we have used before, 'carpenter' at 2629,2099
+                //   goal_failed=TRAIN_AT_NPC reason="no 'carpenter' reachable after 3 trips"
+                //
+                // Two of the three trips were spent travelling nowhere, two
+                // seconds apart, and the goal then blamed the world. This is
+                // the same shape ForgetPlace was written for -- belief that
+                // survives being disproved is not memory, it is a loop.
+                const i32 dToKnown = TileDist(obs.x, obs.y, known->x, known->y);
+                if (dToKnown <= 3) {
+                    LogLine("training: no '%s' where we remembered one at %d,%d "
+                            "-- forgetting it and looking properly",
+                            trainerTrade_.c_str(), known->x, known->y);
+                    state_.memory.ForgetSupplier(
+                        (std::string("trainer:") + trainerTrade_).c_str(),
+                        known->x, known->y);
+                    // Do not spend a trip on a lesson. Rescan from here first:
+                    // the trade may be a few tiles off rather than absent.
+                    --trainTrips_;
+                    client.ActionScanMobiles();
+                    nextActionMs_ = obs.nowMs + 2000;
+                    return false;
+                }
                 LogLine("training: back to a trainer we have used before, "
                         "'%s' at %d,%d", known->name.c_str(), known->x, known->y);
                 travelInFlight_ =
@@ -5043,7 +5105,40 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // input -- so it does not belong in DoBuySupplies, which is about the
     // things a profession makes other things from.
     if (client.TravelBusy()) return false;
-    const u32 keeper = client.NearestMobileWithTrade("provisioner");
+
+    // A PROVISIONER ON THIS SHARD CANNOT SELL FOOD.
+    //
+    // This goal asked one anyway, all session, and never ate. The shop window
+    // opened every time -- 24 items, all of them backpacks, lockpicks, bottles
+    // and board games -- because TNS's VENDOR_S_PROVISIONER has its four food
+    // lines COMMENTED OUT (tm_vend.scp:1276-1279):
+    //
+    //   //SELL=i_bread_loaf,{5 38}
+    //   //SELL=i_lamb_leg,{5 38}
+    //   //SELL=i_chicken_leg,{5 38}
+    //   //SELL=i_bird_cooked,{5 38}
+    //
+    // So this was never a protocol failure or a pathing failure. The errand was
+    // addressed to a shop that structurally does not stock the goods. Voris and
+    // Ysolde spent a whole 25-minute session on it and picked no other goal:
+    //   session_goals families=1 picks=4 top=100% | GET_FOOD=4(100%)
+    //
+    // The BAKER carries it -- SELL=i_bread_loaf,{55 140}, plus pies, muffins
+    // and cakes -- and i_bread_loaf is ITEMDEF 0103b, which is already the
+    // first entry in kFood above, so the eating side needed no change at all.
+    // Ask the baker first and keep the provisioner only as a fallback: it costs
+    // nothing when a baker is near, and a town without one still gets a try.
+    //
+    // The runtime vendor lists are TNS's, kept deliberately. Uncommenting those
+    // four lines would have been the smaller diff and the wrong one -- it edits
+    // the shard's economy to suit the bot instead of teaching the bot where
+    // food is sold.
+    u32 keeper = client.NearestMobileWithTrade("baker");
+    const char* keeperTrade = "baker";
+    if (!keeper) {
+        keeper = client.NearestMobileWithTrade("provisioner");
+        keeperTrade = "provisioner";
+    }
     if (keeper) {
         // WALK TO THEM FIRST. Every other vendor path learned this today and
         // this one, written later the same day, did not: it shouted the
@@ -5058,35 +5153,54 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         // window. Headless runs prove mechanics; they cannot prove where the
         // character is standing.
         i32 vx = 0, vy = 0; i8 vz = 0;
-        if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
-            const i32 d = TileDist(obs.x, obs.y, vx, vy);
-            const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
-            if (d > 1 || dz > 3) {
-                LogLine("food: the provisioner is %d tiles and %d z away -- "
-                        "walking up before speaking", d, dz);
-                travelInFlight_ = client.TravelToEntity(keeper, 1);
-                nextActionMs_ = obs.nowMs + 2000;
-                return false;
-            }
+        // AND IF WE CANNOT SEE WHERE THEY ARE, DO NOT SPEAK.
+        //
+        // The old code fell through to the ask when MobilePosition failed,
+        // which is exactly how the shout-through-a-wall came back after being
+        // fixed: the walk-up logged three times at an unchanging 4 tiles, the
+        // mobile went stale, the position lookup failed, and the bot spoke
+        // from wherever it stood. Not knowing where the keeper is, is a reason
+        // to look again -- never a reason to assume we have arrived.
+        if (!client.MobilePosition(keeper, &vx, &vy, &vz)) {
+            LogLine("food: lost sight of the %s -- looking again before speaking",
+                    keeperTrade);
+            client.ActionScanMobiles();
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
         }
-        LogLine("food: nothing to eat -- asking a provisioner");
+        const i32 d = TileDist(obs.x, obs.y, vx, vy);
+        const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+        if (d > 1 || dz > 3) {
+            LogLine("food: the %s is %d tiles and %d z away -- "
+                    "walking up before speaking", keeperTrade, d, dz);
+            travelInFlight_ = client.TravelToEntity(keeper, 1);
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        LogLine("food: nothing to eat -- asking the %s", keeperTrade);
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
         return false;
     }
     if (!travelInFlight_) {
         if (++foodTrips_ > kMaxFoodTrips) {
-            LogLine("goal_failed=GET_FOOD reason=\"%d trips and no provisioner "
-                    "in reach\"", foodTrips_ - 1);
+            LogLine("goal_failed=GET_FOOD reason=\"%d trips and no baker or "
+                    "provisioner in reach\"", foodTrips_ - 1);
             planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
-            planner_.Finish(false, "no provisioner reachable", obs.nowMs);
+            planner_.Finish(false, "no food seller reachable", obs.nowMs);
             foodTrips_ = 0;
             nextActionMs_ = obs.nowMs + 5000;
             return false;
         }
-        LogLine("food: looking for a provisioner (trip %d)", foodTrips_);
-        travelInFlight_ =
-            client.TravelToService(wm::Service::Provisioner, state_.homeCity.c_str());
+        // Head for the baker, since that is who sells the goods. Alternate to
+        // the provisioner on later trips so a town with no baker in the atlas
+        // still gets tried rather than walking the same empty errand thrice.
+        const bool tryBaker = (foodTrips_ % 2) == 1;
+        LogLine("food: looking for a %s (trip %d)",
+                tryBaker ? "baker" : "provisioner", foodTrips_);
+        travelInFlight_ = client.TravelToService(
+            tryBaker ? wm::Service::Baker : wm::Service::Provisioner,
+            state_.homeCity.c_str());
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }

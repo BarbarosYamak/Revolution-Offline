@@ -289,6 +289,17 @@ bool Memory::ForgetPlace(const char* kind, i32 x, i32 y) {
     return false;
 }
 
+bool Memory::ForgetSupplier(const char* need, i32 x, i32 y) {
+    if (!need) return false;
+    for (usize i = 0; i < suppliers_.size(); ++i) {
+        if (suppliers_[i].need != need) continue;
+        if (suppliers_[i].x != x || suppliers_[i].y != y) continue;
+        suppliers_.erase(suppliers_.begin() + static_cast<std::ptrdiff_t>(i));
+        return true;
+    }
+    return false;
+}
+
 const KnownResourceSource* Memory::BestResource(const char* resource, i32 fromX,
                                                 i32 fromY, i64 nowMs) const {
     if (!resource) return nullptr;
