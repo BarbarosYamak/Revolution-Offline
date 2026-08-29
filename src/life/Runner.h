@@ -129,6 +129,8 @@ private:
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
     bool DoExplore(Client& client, const Observation& obs);
+    bool DoUpgradeGear(Client& client, const Observation& obs);
+    bool MayWear(const ArmorPiece& a, const Observation& obs) const;
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,

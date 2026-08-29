@@ -214,7 +214,12 @@ const std::vector<Profession>& All() {
             p.tools = {{"hatchet", V(kHatchet, 2), true}};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.55;
-            p.goldReserve = 300;         // one trainer fee held back
+            // "tarath it should have 10K + to buy bandages" (owner,
+            // 2026-08-29). 300 was one trainer fee and nothing else, so this
+            // life spent down to nothing and then could not equip itself for
+            // the fights that pay for everything. A fighter's reserve is its
+            // ability to walk back into a graveyard.
+            p.goldReserve = 10000;
                         // Yew is the forest. Britain and Skara Brae have woods within reach.
             p.homeCities = {"Yew", "Britain", "Skara Brae"};
             v.push_back(std::move(p));
@@ -1202,7 +1207,12 @@ const std::vector<Profession>& All() {
             // per tenth), and this life wants Inscription and Magery both --
             // so a few lessons plus a reagent basket is the shape of the
             // number. 2500 keeps a full basket AND several lessons in hand.
-            p.goldReserve = 2500;
+            // Raised again 2026-08-29: "ysolde first should make money at least
+            // keep 5K gold". Lessons are the point -- a guildmaster teaches to
+            // 30.0 for about 300 -- and she wants Inscription and Magery both,
+            // so a five-thousand floor is several lessons plus a full reagent
+            // basket rather than one lesson and an empty purse.
+            p.goldReserve = 5000;
             p.homeCities = {"Moonglow", "Britain"};
             v.push_back(std::move(p));
         }

@@ -72,6 +72,12 @@ constexpr i32 kMaxBandageTrips = 3;
 constexpr i64 kNoBandageCooldownMs = 180000;
 // When even the map is exhausted, rest a while before asking again.
 constexpr i64 kExploredAllCooldownMs = 300000;
+// A pair of scissors is a few dozen coins from any tailor. Worth a walk.
+constexpr i32 kScissorsMoney = 60;
+// Spare gold, above the profession's reserve, that makes armour shopping
+// sensible rather than reckless.
+constexpr i32 kArmorMoney = 400;
+constexpr i64 kGearCooldownMs = 240000;
 // A goal that used its whole time limit and finished nothing rests for two
 // minutes. Long enough that something else certainly gets a turn, short enough
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
@@ -111,6 +117,165 @@ constexpr i32 kMaxVendorChases = 4;
 // world -- in save/spherestatics.scp, NOT sphereworld.scp, because the M3.7
 // decorator marks its placements attr_static and Source-X routes those to a
 // different file.
+// WHAT A CHARACTER MAY WEAR, AND HOW GOOD IT IS.
+//
+// "always try to wear better equipment based on your class" and "bots also
+// always check for gear" (project owner, 2026-08-29).
+//
+// CLASS MATTERS ABSOLUTELY ON THIS SHARD, not as a penalty. revolutionuo.net's
+// mining guide states that ore-smithed metal sets are Warrior-only and that
+// "Bu setleri giyen karakterler buyu atamazlar" -- characters wearing them
+// CANNOT CAST AT ALL (docs/REVOLUTION_EQUIPMENT_EVIDENCE.md, graded CONFIRMED).
+// So metal on a caster is not a trade-off to weigh, it is the end of its
+// profession. Leather is PLAUSIBLE for a caster and is allowed; cloth always.
+//
+// GENERATED from this shard's own itemdefs: every TYPE=t_armor,
+// t_armor_leather or t_shield def carrying an ARMOR value, minus the gargish
+// and elven pieces this Renaissance-era client has no art for. ARMOR and
+// ReqStr are the shard's numbers, never guessed -- and ReqStr is why this
+// table exists at all: a piece the character is too weak to wear is refused by
+// the server, and asking repeatedly is one of the ways a goal burns a session.
+constexpr ArmorPiece kArmorPieces[] = {
+    {0x13BB, 25,  60, ArmorClass::Metal  },  // i_chainmail_coif
+    {0x13BE, 25,  60, ArmorClass::Metal  },  // i_chainmail_leggings
+    {0x13BF, 25,  60, ArmorClass::Metal  },  // i_chainmail_tunic
+    {0x13C5, 13,  20, ArmorClass::Leather},  // i_leather_sleeves
+    {0x13C6, 13,  20, ArmorClass::Leather},  // i_leather_gloves
+    {0x13C7, 13,  20, ArmorClass::Leather},  // i_leather_gorget
+    {0x13CB, 13,  20, ArmorClass::Leather},  // i_leather_leggings
+    {0x13CC, 13,  25, ArmorClass::Leather},  // i_leather_tunic
+    {0x13D4, 16,  25, ArmorClass::Leather},  // i_studded_sleeves
+    {0x13D5, 16,  25, ArmorClass::Leather},  // i_studded_gloves
+    {0x13D6, 16,  25, ArmorClass::Leather},  // i_studded_gorget
+    {0x13DA, 16,  30, ArmorClass::Leather},  // i_studded_leggings
+    {0x13DB, 16,  35, ArmorClass::Leather},  // i_studded_tunic
+    {0x13EB, 22,  40, ArmorClass::Metal  },  // i_ringmail_gloves
+    {0x13EC, 22,  40, ArmorClass::Metal  },  // i_ringmail_tunic
+    {0x13EE, 22,  40, ArmorClass::Metal  },  // i_ringmail_sleeves
+    {0x13F0, 22,  40, ArmorClass::Metal  },  // i_ringmail_leggings
+    {0x1408, 30,  55, ArmorClass::Metal  },  // i_helm_closed
+    {0x140A, 30,  45, ArmorClass::Metal  },  // i_helm_open
+    {0x140C, 25,  40, ArmorClass::Metal  },  // i_bascinet
+    {0x140E, 30,  55, ArmorClass::Metal  },  // i_helm_nose
+    {0x1410, 30,  80, ArmorClass::Metal  },  // i_platemail_arms
+    {0x1411, 30,  90, ArmorClass::Metal  },  // i_platemail_leggings
+    {0x1412, 30,  80, ArmorClass::Metal  },  // i_platemail_helm
+    {0x1413, 30,  45, ArmorClass::Metal  },  // i_platemail_gorget
+    {0x1414, 30,  70, ArmorClass::Metal  },  // i_platemail_gloves
+    {0x1415, 30,  95, ArmorClass::Metal  },  // i_platemail_chest
+    {0x144E, 24,  55, ArmorClass::Metal  },  // i_bone_arms
+    {0x144F, 24,  60, ArmorClass::Metal  },  // i_bone_chest
+    {0x1450, 24,  55, ArmorClass::Metal  },  // i_bone_gloves
+    {0x1451, 24,  20, ArmorClass::Metal  },  // i_bone_helmet
+    {0x1452, 24,  55, ArmorClass::Metal  },  // i_bone_leggings
+    {0x1B72, 10,  35, ArmorClass::Shield },  // i_shield_round_bronze
+    {0x1B73,  7,  20, ArmorClass::Shield },  // i_shield_buckler
+    {0x1B74, 12,  45, ArmorClass::Shield },  // i_shield_kite_metal
+    {0x1B76, 15,  90, ArmorClass::Shield },  // i_shield_heater
+    {0x1B78,  9,  20, ArmorClass::Shield },  // i_shield_kite_wood
+    {0x1B7A,  8,  20, ArmorClass::Shield },  // i_shield_wood
+    {0x1B7B,  9,  45, ArmorClass::Shield },  // i_shield_round_metal
+    {0x1BC3, 16,  95, ArmorClass::Shield },  // i_shield_chaos
+    {0x1BC4, 16,  95, ArmorClass::Shield },  // i_shield_order
+    {0x1BC6, 16,  95, ArmorClass::Shield },  // i_shield_scale
+    {0x1C00, 13,  20, ArmorClass::Leather},  // i_armor_female_shorts
+    {0x1C02, 16,  35, ArmorClass::Leather},  // i_armor_female_studded
+    {0x1C04, 30,  95, ArmorClass::Metal  },  // i_armor_female_plate
+    {0x1C06, 13,  25, ArmorClass::Leather},  // i_armor_female_leather
+    {0x1C08, 13,  25, ArmorClass::Leather},  // i_armor_female_skirt
+    {0x1C0A, 13,  20, ArmorClass::Leather},  // i_armor_female_bustier
+    {0x1C0C, 16,  35, ArmorClass::Leather},  // i_armor_female_bustier_studded
+    {0x1DB9, 13,  20, ArmorClass::Leather},  // i_leather_cap
+    {0x1F0B, 20,  30, ArmorClass::Metal  },  // i_helm_orc
+    {0x236C, 25,  80, ArmorClass::Metal  },  // i_helm_kabuto
+    {0x25E4, 15,  20, ArmorClass::Leather},  // i_armor_female_shorts_spiked
+    {0x25E6, 18,  25, ArmorClass::Metal  },  // i_armor_female_harness_amazon
+    {0x25E8, 20,  25, ArmorClass::Metal  },  // i_armor_female_harness_elite
+    {0x2641, 28,  75, ArmorClass::Metal  },  // i_dragon_chest
+    {0x2643, 28,  75, ArmorClass::Metal  },  // i_dragon_gloves
+    {0x2645, 28,  75, ArmorClass::Metal  },  // i_dragon_helm
+    {0x2647, 28,  75, ArmorClass::Metal  },  // i_dragon_leggings
+    {0x264B, 30,  45, ArmorClass::Metal  },  // i_platemail_gorget2
+    {0x2653, 30,  70, ArmorClass::Metal  },  // i_platemail_waraji_3d
+    {0x2657, 28,  75, ArmorClass::Metal  },  // i_dragon_sleeves
+    {0x2659, 30,  60, ArmorClass::Metal  },  // i_amazon_heavy
+    {0x265B, 30,  60, ArmorClass::Metal  },  // i_amazon_medium
+    {0x265D, 20,  60, ArmorClass::Metal  },  // i_amazon_light
+    {0x2677, 13,  40, ArmorClass::Leather},  // i_gloves_kote1
+    {0x2679, 13,  40, ArmorClass::Leather},  // i_gloves_kote2
+    {0x2689, 30,  25, ArmorClass::Metal  },  // i_helm_winged
+    {0x268B, 30,  40, ArmorClass::Metal  },  // i_hachimaki
+    {0x268D, 30,  80, ArmorClass::Metal  },  // i_helm_kabuto_decorative
+    {0x268F, 30,  80, ArmorClass::Metal  },  // i_kabuto_mempo
+    {0x2691, 13,  20, ArmorClass::Leather},  // i_leather_cap2
+    {0x269D, 13,  25, ArmorClass::Leather},  // i_cap_feathered
+    {0x26B0, 13,  10, ArmorClass::Leather},  // i_leather_gloves_arcane
+    {0x2774, 28,  50, ArmorClass::Metal  },  // i_chainmail_hatsuburi
+    {0x2775, 30,  65, ArmorClass::Metal  },  // i_platemail_hatsuburi
+    {0x2776, 13,  25, ArmorClass::Leather},  // i_leather_jingasa
+    {0x2777, 30,  55, ArmorClass::Metal  },  // i_plate_jingasa_heavy
+    {0x2778, 30,  80, ArmorClass::Metal  },  // i_platemail_kabuto_decorative
+    {0x2779, 30,  50, ArmorClass::Metal  },  // i_platemail_mempo
+    {0x277A, 13,  30, ArmorClass::Leather},  // i_leather_mempo
+    {0x277B, 13,  40, ArmorClass::Leather},  // i_leather_do
+    {0x277C, 20,  55, ArmorClass::Leather},  // i_studded_do
+    {0x277D, 30,  85, ArmorClass::Metal  },  // i_platemail_do
+    {0x277E, 13,  25, ArmorClass::Metal  },  // i_leather_hiro_sode
+    {0x277F, 20,  30, ArmorClass::Leather},  // i_studded_hiro_sode
+    {0x2780, 30,  75, ArmorClass::Metal  },  // i_platemail_hiro_sode
+    {0x2781, 28,  55, ArmorClass::Metal  },  // i_plate_jingasa_light
+    {0x2784, 13,  55, ArmorClass::Metal  },  // i_plate_jingasa_small
+    {0x2785, 30,  70, ArmorClass::Metal  },  // i_helm_kabuto_battle
+    {0x2786, 13,  20, ArmorClass::Leather},  // i_leather_suneate
+    {0x2787, 20,  30, ArmorClass::Leather},  // i_studded_suneate
+    {0x2788, 30,  80, ArmorClass::Metal  },  // i_platemail_suneate
+    {0x2789, 30,  70, ArmorClass::Metal  },  // i_platemail_kabuto
+    {0x278A, 13,  20, ArmorClass::Leather},  // i_leather_haidate
+    {0x278B, 20,  30, ArmorClass::Leather},  // i_studded_haidate
+    {0x278D, 30,  80, ArmorClass::Metal  },  // i_platemail_haidate
+    {0x278E, 13,  10, ArmorClass::Leather},  // i_hood_ninja_leather
+    {0x2790, 13,  10, ArmorClass::Leather},  // i_belt_ninja_leather
+    {0x2791, 13,  10, ArmorClass::Leather},  // i_pants_ninja_leather
+    {0x2792, 13,  10, ArmorClass::Leather},  // i_mitts_ninja_leather
+    {0x2793, 13,  10, ArmorClass::Leather},  // i_jacket_ninja_leather
+    {0x279D, 20,  30, ArmorClass::Leather},  // i_mempo_studded
+    {0x2B06, 40,  70, ArmorClass::Metal  },  // i_legs_honor
+    {0x2B08, 40,  65, ArmorClass::Metal  },  // i_breastplate_justice
+    {0x2B0A, 40,  60, ArmorClass::Metal  },  // i_arms_compassion
+    {0x2B0C, 40,  60, ArmorClass::Metal  },  // i_gauntlets_valor
+    {0x2B0E, 40,  45, ArmorClass::Metal  },  // i_gorget_truth
+    {0x2B10, 40,  25, ArmorClass::Metal  },  // i_helm_spirituality
+    {0x2B12, 40,  10, ArmorClass::Metal  },  // i_solaretes_sacrifice
+    {0x2B67, 30,  95, ArmorClass::Metal  },  // i_woodland_chest
+    {0x2B69, 30,  45, ArmorClass::Metal  },  // i_woodland_gorget
+    {0x2B6A, 30,  70, ArmorClass::Metal  },  // i_woodland_gauntlets
+    {0x2B6B, 30,  90, ArmorClass::Metal  },  // i_woodland_leggings
+    {0x2B6C, 30,  80, ArmorClass::Metal  },  // i_woodland_arms
+    {0x2B6D, 30,  95, ArmorClass::Metal  },  // i_woodland_chest_female
+    {0x2B6E, 30,  10, ArmorClass::Metal  },  // i_helm_circlet1
+    {0x2B6F, 30,  10, ArmorClass::Metal  },  // i_helm_circlet2
+    {0x2B70, 30,  10, ArmorClass::Metal  },  // i_helm_circlet3
+    {0x2B71, 30,  25, ArmorClass::Metal  },  // i_helm_raven
+    {0x2B72, 30,  25, ArmorClass::Metal  },  // i_helm_vulture
+    {0x2B73, 30,  25, ArmorClass::Metal  },  // i_helm_winged_2
+    {0x2B74, 20,  25, ArmorClass::Leather},  // i_hide_chest
+    {0x2B75, 20,  15, ArmorClass::Leather},  // i_hide_gloves
+    {0x2B76, 20,  15, ArmorClass::Leather},  // i_hide_gorget
+    {0x2B77, 20,  20, ArmorClass::Leather},  // i_hide_arms
+    {0x2B78, 20,  25, ArmorClass::Leather},  // i_hide_leggings
+    {0x2B79, 20,  25, ArmorClass::Leather},  // i_hide_chest_female
+    {0x317B, 13,  20, ArmorClass::Leather},  // i_leaf_chest
+    {0x317C, 13,  10, ArmorClass::Leather},  // i_leaf_gloves
+    {0x317D, 13,  10, ArmorClass::Leather},  // i_leaf_gorget
+    {0x317E, 13,  15, ArmorClass::Leather},  // i_leaf_arms
+    {0x317F, 13,  20, ArmorClass::Leather},  // i_leaf_leggings
+    {0x3180, 13,  10, ArmorClass::Leather},  // i_leaf_tonlet
+    {0x3181, 13,  20, ArmorClass::Leather},  // i_leaf_chest_female
+    {0xA649, 20,  35, ArmorClass::Shield },  // i_shield_pirate
+    {0xA7E2,  5,  10, ArmorClass::Leather},  // i_belt_demon
+    {0xA831, 20,  35, ArmorClass::Shield },  // i_shield_hildebrandt
+};
+
 constexpr u16 kScissorsGraphic  = 0x0F9E;
 constexpr u16 kWoolGraphic      = 0x0DF8;
 constexpr u16 kYarnGraphic      = 0x0E1D;
@@ -1555,6 +1720,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
         case GoalKind::Explore:              done = DoExplore(client, obs); break;
+        case GoalKind::UpgradeGear:          done = DoUpgradeGear(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -2052,7 +2218,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         }
         travelInFlight_ = false;
         // Arrived (or gave up). Ask whoever is here to show their wares.
-        const u32 keeper = client.NearestMobileWithTrade(tv->trade);
+        const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade);
         if (!keeper) {
             LogLine("get_tool: arrived but no %s is here", tv->trade);
             state_.memory.NoteEvent("vendor_not_observed", toolName.c_str(),
@@ -3403,7 +3569,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     if (client.TravelBusy()) return false;
 
     // --- get to one ---------------------------------------------------------
-    const u32 vendor = client.NearestMobileWithTrade(sellTrade_.c_str());
+    const u32 vendor = client.NearestShopkeeperWithTrade(sellTrade_.c_str());
     if (!vendor) {
         if (sellTrips_ >= kMaxSellTrips) {
             LogLine("earn_gold: no '%s' reachable after %d trips; trying the "
@@ -4536,7 +4702,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
 
     const u32 vendor = client.VendorOfferFrom();
     if (vendor == 0) {
-        const u32 keeper = client.NearestMobileWithTrade(supplyTrade_.c_str());
+        const u32 keeper = client.NearestShopkeeperWithTrade(supplyTrade_.c_str());
         if (keeper) {
             i32 vx = 0, vy = 0; i8 vz = 0;
             if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
@@ -5488,10 +5654,10 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // four lines would have been the smaller diff and the wrong one -- it edits
     // the shard's economy to suit the bot instead of teaching the bot where
     // food is sold.
-    u32 keeper = client.NearestMobileWithTrade("baker");
+    u32 keeper = client.NearestShopkeeperWithTrade("baker");
     const char* keeperTrade = "baker";
     if (!keeper) {
-        keeper = client.NearestMobileWithTrade("provisioner");
+        keeper = client.NearestShopkeeperWithTrade("provisioner");
         keeperTrade = "provisioner";
     }
     if (keeper) {
@@ -5625,7 +5791,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                            bool skipKnown, u16 qty, const char* what) {
     if (client.TravelBusy()) return false;
 
-    const u32 keeper = client.NearestMobileWithTrade(trade);
+    const u32 keeper = client.NearestShopkeeperWithTrade(trade);
     if (!keeper) {
         if (++spellbookTrips_ > kMaxSpellbookTrips) {
             spellbookTrips_ = 0;
@@ -5813,6 +5979,100 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
 }
 
 // ---------------------------------------------------------------------------
+// GEAR.
+//
+// "always try to wear better equipment based on your class", "bots also always
+// check for gear", "Kaelen needs to buy some armor" (project owner,
+// 2026-08-29).
+//
+// Two halves. WEAR what is already carried if it beats what is worn -- loot
+// arrives in the pack and sat there forever, because nothing ever looked. And
+// BUY a piece for an empty slot when the purse is clear of the reserve.
+//
+// The class rule is not a preference. On this shard a metal set stops a
+// caster casting entirely, so ArmorFor refuses metal to anyone with Magery
+// rather than scoring it lower.
+const ArmorPiece* ArmorFor(u16 graphic) {
+    for (const ArmorPiece& a : kArmorPieces)
+        if (a.graphic == graphic) return &a;
+    return nullptr;
+}
+
+bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
+    if (obs.SkillTenths(rules::kMagery) > 0 && a.cls == ArmorClass::Metal)
+        return false;                       // metal ends a caster's casting
+    if (a.cls == ArmorClass::Shield && obs.SkillTenths(rules::kMagery) > 0)
+        return false;                       // a shield hand is a spell hand
+    return obs.str >= static_cast<i32>(a.reqStr);
+}
+
+bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    // --- WEAR WHAT IS ALREADY CARRIED ------------------------------------
+    //
+    // Every armour graphic this shard defines, checked against the pack. The
+    // layer comes from tiledata, so the comparison is against the piece
+    // actually in that slot rather than a guess about what a slot holds.
+    for (const ArmorPiece& a : kArmorPieces) {
+        if (!MayWear(a, obs)) continue;
+        const u32 have = client.FindBackpackItemByGraphic(a.graphic);
+        if (!have) continue;
+        const u8 layer = client.ItemEquipLayer(a.graphic);
+        if (!layer) continue;
+        const u16 wornGfx = client.EquippedGraphicAt(layer);
+        const ArmorPiece* worn = wornGfx ? ArmorFor(wornGfx) : nullptr;
+        const int wornArmor = worn ? worn->armor : 0;
+        if (wornGfx && wornArmor >= a.armor) continue;   // no better
+        LogLine("gear: wearing 0x%04X (armor %d, needs str %d, have %d) over "
+                "0x%04X (armor %d)", a.graphic, a.armor, a.reqStr, obs.str,
+                wornGfx, wornArmor);
+        client.ActionEquip(have, layer);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    // --- BUY A PIECE FOR AN EMPTY SLOT -----------------------------------
+    //
+    // Only above the reserve: armour is worth having and is never worth being
+    // unable to eat for. The best affordable legal piece is chosen, which for
+    // a caster means the best LEATHER, and for a fighter the best its
+    // strength allows.
+    const i32 reserve =
+        needCfg_.profession ? needCfg_.profession->goldReserve : 0;
+    if (obs.gold <= reserve + kArmorMoney) {
+        LogLine("gear: nothing carried is an upgrade, and %d gold is not clear "
+                "of the %d reserve -- earning first", obs.gold, reserve);
+        planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
+        planner_.Finish(false, "no upgrade and no spare money", obs.nowMs);
+        return false;
+    }
+
+    const ArmorPiece* want = nullptr;
+    for (const ArmorPiece& a : kArmorPieces) {
+        if (!MayWear(a, obs)) continue;
+        const u8 layer = client.ItemEquipLayer(a.graphic);
+        if (!layer) continue;
+        if (client.EquippedGraphicAt(layer)) continue;   // slot already filled
+        if (!want || a.armor > want->armor) want = &a;
+    }
+    if (!want) {
+        LogLine("gear: every slot this class may fill is filled");
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // An armourer sells metal and leather both; a tailor is no use here.
+    LogLine("gear: no piece for an empty slot in the pack -- buying 0x%04X "
+            "(armor %d, needs str %d) from an armourer",
+            want->graphic, want->armor, want->reqStr);
+    BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
+                  want->graphic, false, 1, "a piece of armour");
+    return false;
+}
+
+// ---------------------------------------------------------------------------
 // EXPLORING.
 //
 // "bots shouldnt be idle unless its state specifically" (project owner). This
@@ -5902,10 +6162,28 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
     // everything else.
     const u32 scissors = client.FindBackpackItemByGraphic(kScissorsGraphic);
     if (!scissors) {
-        LogLine("goal_failed=MAKE_BANDAGES reason=\"no scissors -- every step "
-                "of the chain needs them\"");
+        // GO AND BUY A PAIR. "fencer we added scissor no? if he has none he
+        // should go buy one" (owner, 2026-08-29) -- and he is right that
+        // giving up was the wrong answer.
+        //
+        // Scissors are in every starter kit as ITEMNEWBIE now, but a character
+        // created before that change has none and can never get any, which is
+        // exactly Kaelen: MAKE_BANDAGES fired three times and failed three
+        // times on "no scissors" while he idled through the rest of the
+        // session. A tailor sells them (VENDOR_S_TAILOR, and the tinker too),
+        // and they are cheap.
+        //
+        // If the purse cannot even manage that, THEN stand down -- but say so
+        // as a money problem, which is the thing that can actually change.
+        if (obs.gold >= kScissorsMoney) {
+            BuyScrollFrom(client, obs, "tailor", wm::Service::Tailor,
+                          kScissorsGraphic, false, 1, "a pair of scissors");
+            return false;
+        }
+        LogLine("goal_failed=MAKE_BANDAGES reason=\"no scissors and only %d "
+                "gold to buy a pair with\"", obs.gold);
         planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
-        planner_.Finish(false, "no scissors", obs.nowMs);
+        planner_.Finish(false, "no scissors and no money", obs.nowMs);
         return false;
     }
 

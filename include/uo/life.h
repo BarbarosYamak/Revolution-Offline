@@ -119,6 +119,25 @@ BuildPlan PlanFromProfession(const prof::Profession& p);
 // Memory -- what this character has learned. Private to one identity.
 // ===========================================================================
 
+// WHAT A CHARACTER MAY WEAR, AND HOW GOOD IT IS.
+//
+// Declared here rather than in Runner.cpp's anonymous namespace because
+// Runner::MayWear takes one, and a member function cannot name a type that
+// only exists inside one translation unit's unnamed namespace.
+//
+// Class is not a preference on this shard. revolutionuo.net's mining guide
+// states that characters wearing ore-smithed metal sets "buyu atamazlar" --
+// cannot cast at all -- so Metal on a caster ends its profession rather than
+// costing it a little mana.
+enum class ArmorClass : u8 { Cloth, Leather, Metal, Shield };
+
+struct ArmorPiece {
+    u16        graphic;
+    u8         armor;
+    u16        reqStr;
+    ArmorClass cls;
+};
+
 struct KnownPlace {
     std::string kind;          // "bank", "healer", "forest", "town"
     std::string name;          // semantic name, as the world model gave it
@@ -595,6 +614,10 @@ enum class NeedKind : u8 {
     // is the POOR branch, and it must not fire for a character who can simply
     // pay for them.
     NeedMakeBandages,
+    // BETTER ARMOUR THAN IS BEING WORN. Ongoing, not a one-off: loot arrives
+    // in the pack throughout a life, and on this shard the class rule is
+    // absolute -- a metal set stops a caster casting at all.
+    NeedGear,
     Count,
 };
 
@@ -719,6 +742,9 @@ enum class GoalKind : u8 {
     // with nothing to do should be learning the world, because almost every
     // other goal is blocked for want of knowing where something is.
     Explore,
+    // Wear the best this class is allowed and strong enough for, and buy a
+    // piece for an empty slot. Checked constantly, not once at creation.
+    UpgradeGear,
     IdleBriefly,
     Count,
 };

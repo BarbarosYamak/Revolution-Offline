@@ -2701,6 +2701,41 @@ u32 Client::NearestGuildmasterForTrade(const char* trade,
     return best;
 }
 
+// Everyone of this trade who is NOT a guildmaster. Same matching as the
+// lookup below, with the guild title refused: a guildmaster teaches, and a
+// character that asks one to open a shop window waits out the timeout and
+// learns nothing.
+u32 Client::NearestShopkeeperWithTrade(const char* trade) const {
+    if (!trade || !trade[0]) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(trade);
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        const std::string t = lower(title);
+        if (t.find("guildmaster") != std::string::npos ||
+            t.find("guildmistress") != std::string::npos)
+            continue;
+        const usize the = t.rfind(" the ");
+        if (the == std::string::npos) continue;
+        std::string job = t.substr(the + 5);
+        const usize sp = job.find_first_of(" ,.");
+        if (sp != std::string::npos) job.resize(sp);
+        if (job != want) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
 u32 Client::NearestMobileWithTrade(const char* trade,
                                    const std::vector<u32>& skip) const {
     if (!trade || !trade[0]) return 0;

@@ -189,6 +189,11 @@ public:
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }
     u32  BackpackSerial() const { return PlayerEquipSerialAt(0x15); }  // layer 21 = backpack
+    // Which paperdoll slot this graphic wears in, from tiledata, or 0 if it is
+    // not wearable at all. Public because the life layer needs it to compare a
+    // looted piece against the one already in that slot -- without it, "is
+    // this better than what I have on" cannot be asked.
+    u8   ItemEquipLayer(u16 graphic) const;
     bool BackpackContentsKnown() const { return backpackContentsKnown_; }
 
     // Queue `count` single steps in `dir` (0=N, 1=NE, ... 7=NW). Steps are
@@ -328,6 +333,14 @@ public:
     // the guildmaster keeps no shop, so a bot shopping for reagents would
     // stand in front of him saying "buy" to no answer.
     u32  NearestMobileWithTrade(const char* trade) const;
+    // A GUILDMASTER IS A TEACHER, NOT A SHOP.
+    //
+    // The plain lookup above truncates "the tailor guildmaster" to "tailor",
+    // so every BUYING path could address a guildmaster who runs no shop and
+    // answers nothing -- "Caedmen guildmaster, why try to buy from him?
+    // guildmaster ONLY for training" (project owner, 2026-08-29). This one
+    // skips them, and is what the purchase goals ask.
+    u32  NearestShopkeeperWithTrade(const char* trade) const;
     void ServiceSightingTail(u32 serial, const char* title, wm::Service svc);
     // Same scan, skipping mobiles already tried and found useless. Sphere
     // gives no way to ask "will you teach me" except to ask, and some NPCs of
@@ -1406,7 +1419,7 @@ private:
     std::string ItemNameLower(u16 graphic) const;
     // Equip layer for an item graphic, read from tiledata (StaticTile.quality,
     // as the client does in Gump_HandleMouseOver @0x45486d). 0 = unknown.
-    u8 ItemEquipLayer(u16 graphic) const;
+
     void ForgetEquippedItem(u32 itemSerial);
     // True if an item graphic matches the query (exact graphic when hasType,
     // else a case-insensitive tiledata-name substring).

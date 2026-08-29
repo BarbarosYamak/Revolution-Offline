@@ -28,6 +28,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedPractice:  return "NeedPractice";
         case NeedKind::NeedSpells:    return "NeedSpells";
         case NeedKind::NeedMakeBandages: return "NeedMakeBandages";
+        case NeedKind::NeedGear:      return "NeedGear";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -725,6 +726,25 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("bandages %d/%d gold %d (buyable at %d)", obs.bandages,
                 cfg.bandageLow, obs.gold, kBandagesBuyable),
             canAffordToBuy);
+    }
+
+    // --- gear worth wearing -------------------------------------------------
+    //
+    // "bots also always check for gear" (project owner). Standing, not
+    // one-off: loot arrives in the pack all life long, and a piece that beats
+    // what is worn is free armour nobody was looking at.
+    //
+    // Modest urgency, because this is an improvement rather than a
+    // predicament -- it must never outrank eating or bandages. The goal
+    // itself decides what is legal for the class and what the character is
+    // strong enough for; the need only says "look".
+    if (cfg.profession) {
+        add(NeedKind::NeedGear, 0.22, "gear",
+            "loot and shops both hold better armour than this character is "
+            "wearing, and nothing checks unless this asks",
+            Fmt("str %d gold %d reserve %d", obs.str, obs.gold,
+                cfg.profession->goldReserve),
+            false);
     }
 
     // --- a spellbook worth FILLING -----------------------------------------

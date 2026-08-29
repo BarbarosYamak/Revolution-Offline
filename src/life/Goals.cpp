@@ -28,6 +28,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::FillSpellbook:         return "FILL_SPELLBOOK";
         case GoalKind::MakeBandages:         return "MAKE_BANDAGES";
         case GoalKind::Explore:              return "EXPLORE";
+        case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -65,6 +66,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // practising anything, it is shopping for the means to cast at all.
         case GoalKind::FillSpellbook:
         case GoalKind::MakeBandages:
+        case GoalKind::UpgradeGear:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Fish:
@@ -167,6 +169,9 @@ const GoalSpec kGoals[] = {
     // worse place than one short of craft inputs: it cannot heal, so it cannot
     // hunt, so it cannot earn the money to fix any of it.
     {GoalKind::MakeBandages,          NeedKind::NeedMakeBandages,  145.0},
+    // Below bandages and food: armour is what you want once you are fed and
+    // able to heal, not instead of them.
+    {GoalKind::UpgradeGear,           NeedKind::NeedGear,          100.0},
 };
 
 }  // namespace

@@ -2133,6 +2133,56 @@ void TestExploringBeatsStandingStill() {
           "thing owning a day applies to it too");
 }
 
+// "always try to wear better equipment based on your class" (project owner,
+// 2026-08-29). On this shard the class rule is absolute, not a preference:
+// revolutionuo.net states that characters wearing ore-smithed metal sets
+// "buyu atamazlar" -- cannot cast at all.
+void TestGearIsCheckedAndClassBound() {
+    Section("needs: every life keeps an eye on its gear");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    const prof::Profession* mage   = prof::Find("mage");
+    if (!fencer || !mage) { Check(false, "missing professions"); return; }
+
+    life::Memory mem;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 40;
+    obs.str = 60;
+    obs.gold = 1000;
+    obs.bandages = 30;
+    obs.weight = 10; obs.maxWeight = 200;
+
+    auto gearNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedGear) return &n;
+        return nullptr;
+    };
+
+    life::NeedConfig fcfg; fcfg.profession = fencer;
+    life::BuildPlan fplan = life::PlanFromProfession(*fencer);
+    const std::vector<life::Need> nsF = life::AssessNeeds(fplan, mem, obs, fcfg);
+    const life::Need* gf = gearNeed(nsF);
+    Check(gf != nullptr,
+          "a fighter always has gear on its mind -- loot arrives all life "
+          "long and nothing looks at it unless this need exists");
+    if (gf) {
+        Check(!gf->blocked, "and it is actionable");
+        Check(gf->urgency < 0.5,
+              "but modestly, because armour is an improvement and must never "
+              "outrank eating or bandages");
+    }
+
+    // The need is standing, so it is there for a caster too -- what differs is
+    // WHAT the goal will let them wear, which the runtime enforces.
+    life::NeedConfig mcfg; mcfg.profession = mage;
+    life::BuildPlan mplan = life::PlanFromProfession(*mage);
+    life::Observation mobs = obs;
+    mobs.skills.push_back({rules::kMagery, 500});
+    const std::vector<life::Need> nsM = life::AssessNeeds(mplan, mem, mobs, mcfg);
+    Check(gearNeed(nsM) != nullptr, "a mage checks its gear as well");
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -2213,6 +2263,7 @@ int main(int argc, char** argv) {
     TestACorneredFighterMayHunt();
     TestAPoorFighterMakesItsOwnBandages();
     TestExploringBeatsStandingStill();
+    TestGearIsCheckedAndClassBound();
     TestAGoalThatSucceedsAtNothingIsStopped();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
