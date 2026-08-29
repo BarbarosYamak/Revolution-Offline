@@ -104,6 +104,16 @@ public:
         // spellbook exactly as a human player's would be.
         int         createSkill[3];
         int         createSkillVal[3];
+        // WHICH CITY TO BE CREATED IN. Index into the shard's own starting
+        // list (maps/map0/map0_starts.scp): 0 Yew, 1 Minoc, 2 Britain,
+        // 3 Moonglow, 4 Trinsic, 5 Magincia, 6 Jhelom, 7 Skara Brae, 8 Vesper.
+        //
+        // It defaulted to 0 and every character on the shard was therefore
+        // born in Yew, then walked across the map to wherever its profession
+        // actually lives. Being made where you intend to live saves that walk
+        // and spreads a fleet over the world instead of stacking it in one
+        // abbey.
+        int         startCity;
         // Starting stats for the 0x00 create packet. Source-X clamps each to 60
         // and the sum to 80 (CChar::InitPlayer). 0 means "leave the default".
         //

@@ -395,6 +395,51 @@ int main(int argc, char** argv) {
                 std::fprintf(stderr, "\n");
                 return 64;
             }
+            // BE BORN WHERE YOU MEAN TO LIVE.
+            //
+            // startLoc defaulted to 0, so every character on this shard was
+            // created in Yew and then walked across the map to wherever its
+            // profession actually lives -- "lol they all started yew again"
+            // (project owner, 2026-08-29). The home city is already decided
+            // deterministically from the identity id, so it can be computed
+            // here, before creation, and the character simply begins there.
+            //
+            // The same hash as Runner::Start uses, so the city chosen at
+            // creation is the city the life then calls home. If a profession's
+            // home is not one of the shard's nine starting cities the default
+            // stands, which is the honest fallback rather than a guess.
+            if (cfg.startCity == 0 && !pr->homeCities.empty()) {
+                std::string ident;
+                auto append = [&ident](const char* t) {
+                    for (const char* c = t; c && *c; ++c) {
+                        const unsigned char u = static_cast<unsigned char>(*c);
+                        if (std::isalnum(u))
+                            ident.push_back(static_cast<char>(std::tolower(u)));
+                        else if (*c == '-' || *c == '_') ident.push_back(*c);
+                        else ident.push_back('_');
+                    }
+                };
+                append(cfg.username);
+                ident.push_back('.');
+                append(cfg.charName);
+                uo::usize h = 0;
+                for (char c : ident)
+                    h = h * 131 + static_cast<unsigned char>(c);
+                const std::string& home =
+                    pr->homeCities[h % pr->homeCities.size()];
+                // maps/map0/map0_starts.scp, in its own order.
+                static const char* kStarts[] = {
+                    "Yew", "Minoc", "Britain", "Moonglow", "Trinsic",
+                    "Magincia", "Jhelom", "Skara Brae", "Vesper",
+                };
+                for (int i = 0; i < 9; ++i) {
+                    if (home == kStarts[i]) { cfg.startCity = i; break; }
+                }
+                std::fprintf(stderr, "start: %s is a %s and lives in %s -> "
+                                     "starting city index %d\n",
+                             cfg.charName, pr->id.c_str(), home.c_str(),
+                             cfg.startCity);
+            }
             if (cfg.createSkillVal[0] == 0) {
                 cfg.createSkill[0]    = pr->startSkillA;
                 cfg.createSkillVal[0] = uo::prof::kRevolutionStartSkillEach / 10;
