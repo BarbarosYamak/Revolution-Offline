@@ -148,4 +148,30 @@ int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
                  double myHpFraction,
                  std::vector<Classification>* verdictsOut = nullptr);
 
+// The best thing to PICK A FIGHT WITH, or -1 if nothing is worth starting on.
+//
+// NOT the same question as ChooseTarget, and the difference is the whole
+// point. ChooseTarget answers "what is most likely to kill me" -- correct when
+// something is already swinging, because the thing hitting you is the thing
+// you must deal with. This answers "what can I safely beat", which is how a
+// player actually levels a warrior:
+//
+//   "Start on the weakest undead around the edges rather than diving into
+//    the middle. Fight one target at a time." -- the project owner's warrior
+//   loop, 2026-08-29.
+//
+// So it inverts the threat term (weakest first), and it penalises a candidate
+// that has COMPANY within kCrowdRadius, because two skeletons at once is how a
+// new fencer dies -- which is exactly what happened on this project's first
+// warrior outing (run_m5/r1warrior.console.txt).
+//
+// Anything already attacking us is refused here: that is a fight in progress,
+// not a fight to pick, and ChooseTarget owns it.
+int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
+               const CrimeRules& rules, const EngagePolicy& policy,
+               double myHpFraction);
+
+// How close another mobile has to be to count as the prey's company.
+inline constexpr i32 kCrowdRadius = 4;
+
 }  // namespace uo::combat

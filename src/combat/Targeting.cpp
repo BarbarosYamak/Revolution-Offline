@@ -225,4 +225,49 @@ int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
     return best;
 }
 
+int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
+               const CrimeRules& rules, const EngagePolicy& policy,
+               double myHpFraction) {
+    int best = -1;
+    double bestScore = -1.0;
+    for (usize i = 0; i < candidates.size(); ++i) {
+        const Candidate& c = candidates[i];
+
+        // A fight already in progress is not a fight to pick. ChooseTarget
+        // owns that case, and it must, because walking off to start a second
+        // fight while something swings at you is how one fight becomes two.
+        if (c.attackingMe) continue;
+
+        const Classification v = Classify(c, me, rules, policy, myHpFraction);
+        if (!v.engage) continue;
+
+        // WEAKEST FIRST -- the inverse of ChooseTarget. A warrior levels on
+        // the weakest undead at the edge of the graveyard, not the strongest
+        // thing in the middle of it.
+        double score = 1.0 - v.threat;
+
+        // AND ALONE. Company is what actually kills a new fencer: it is not
+        // the skeleton, it is the second skeleton. Every other engageable
+        // mobile within kCrowdRadius of this one is a reason to pick a
+        // different fight, and the penalty is steep enough to outweigh a
+        // sizeable threat difference.
+        int company = 0;
+        for (usize j = 0; j < candidates.size(); ++j) {
+            if (j == i) continue;
+            const Candidate& o = candidates[j];
+            if (o.isMyPet || o.isPlayer) continue;
+            const i32 dx = o.dist - c.dist;
+            if (dx > -kCrowdRadius && dx < kCrowdRadius) ++company;
+        }
+        score -= 0.35 * company;
+
+        // Then prefer the near one, as ChooseTarget does: fewer steps across
+        // open ground is less time for something else to notice us.
+        score -= 0.01 * c.dist;
+
+        if (score > bestScore) { bestScore = score; best = static_cast<int>(i); }
+    }
+    return best;
+}
+
 }  // namespace uo::combat

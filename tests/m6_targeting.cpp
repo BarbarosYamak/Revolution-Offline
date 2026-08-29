@@ -322,6 +322,86 @@ void TestHurtCharacterDoesNotOpenFights() {
 
 }  // namespace
 
+// --------------------------------------------------------------------------
+// PICKING A FIGHT IS NOT THE SAME QUESTION AS SURVIVING ONE.
+//
+// ChooseTarget answers "what is most likely to kill me", and prefers the
+// HIGHEST threat -- correct while something is already swinging, because the
+// thing hitting you is the thing you must deal with.
+//
+// ChoosePrey answers "what can I safely beat", which is how a warrior is
+// actually levelled: "start on the weakest undead around the edges rather than
+// diving into the middle. Fight one target at a time." (project owner's
+// warrior loop, 2026-08-29). It inverts the threat term and penalises company,
+// because what kills a new fencer is not the skeleton -- it is the second
+// skeleton. This project's first warrior died on its first outing.
+void TestChoosePreyPicksTheWeakestLoner() {
+    const combat::CrimeRules rules = combat::RevolutionCrimeRules();
+    combat::EngagePolicy policy;
+    combat::Stance me;
+    me.inGuardedRegion = false;
+
+    auto mob = [](u32 serial, const char* name, i32 dist, i32 hpCur, i32 hpMax) {
+        combat::Candidate c;
+        c.serial = serial; c.name = name; c.dist = dist;
+        c.noto = combat::Noto::Criminal;      // lawful to attack
+        c.hpCur = hpCur; c.hpMax = hpMax;
+        return c;
+    };
+
+    // A weak loner far off, versus a strong one close by.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "strong", 2, 100, 100));
+        cs.push_back(mob(2, "weak",   6,  20, 100));
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0);
+        const int targ = combat::ChooseTarget(cs, me, rules, policy, 1.0);
+        Check(prey == 1, "prey is the WEAK one, even though it is further away");
+        Check(targ == 0, "while ChooseTarget still wants the strong one");
+        Check(prey != targ,
+              "the two questions give different answers -- that is the point");
+    }
+
+    // THE ONE THAT MATTERS: a lone target at the edge beats an equally weak
+    // one standing in a group.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "in_the_middle", 3, 20, 100));
+        cs.push_back(mob(2, "its_friend",    3, 20, 100));
+        cs.push_back(mob(3, "its_other_friend", 4, 20, 100));
+        cs.push_back(mob(4, "at_the_edge",  9, 20, 100));
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0);
+        Check(prey == 3,
+              "prey is the loner at the edge, not the identical mob in the pack");
+    }
+
+    // A fight already in progress is NOT a fight to pick.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "already_on_me", 1, 90, 100));
+        cs[0].attackingMe = true;
+        cs.push_back(mob(2, "a_weakling",    8, 10, 100));
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0);
+        Check(prey == 1,
+              "ChoosePrey refuses the attacker -- ChooseTarget owns that one");
+        const int targ = combat::ChooseTarget(cs, me, rules, policy, 1.0);
+        Check(targ == 0,
+              "and ChooseTarget takes it, so nothing is left unhandled");
+    }
+
+    // Nothing legal to attack means no prey, not a bad choice.
+    {
+        std::vector<combat::Candidate> cs;
+        combat::Candidate innocent = mob(1, "a_townsfolk", 2, 100, 100);
+        innocent.noto = combat::Noto::Innocent;
+        cs.push_back(innocent);
+        Check(combat::ChoosePrey(cs, me, rules, policy, 1.0) == -1,
+              "an innocent is never prey, however weak and however close");
+    }
+}
+
+
+
 int main() {
     std::printf("m6_targeting\n");
     TestShardRulesAreTheReadValues();
@@ -335,6 +415,7 @@ int main() {
     TestGangPressureRaisesThreat();
     TestChooseTarget();
     TestHurtCharacterDoesNotOpenFights();
+    TestChoosePreyPicksTheWeakestLoner();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }
