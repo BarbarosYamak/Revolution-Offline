@@ -789,6 +789,9 @@ public:
     // answerable.
     void Cooldown(GoalKind kind, i64 untilMs);
     bool Cooling(GoalKind kind, i64 nowMs) const;
+    // Which goal the anti-spin backstop just cooled off, or GoalKind::Count.
+    // Reading it clears it, so the Runner logs the event exactly once.
+    GoalKind TakeSpinDetected();
 
     // A LIFE IS NOT ONE ERRAND REPEATED.
     //
@@ -821,6 +824,18 @@ private:
     // has finished IN A ROW; any other kind running resets it to zero.
     i64 lastRanMs_[static_cast<int>(GoalKind::Count)] = {};
     int repeatRuns_[static_cast<int>(GoalKind::Count)] = {};
+    // HOW MANY TIMES IN A ROW THIS GOAL HAS "SUCCEEDED" WITHOUT DOING
+    // ANYTHING. Three separate goals have now burned a whole session by
+    // completing with progress 0 and being re-picked milliseconds later --
+    // GET_TOOL 2,058 times, GET_FOOD for entire sessions, EARN_GOLD 13,111
+    // times. Each was fixed where it was found, which is the wrong shape of
+    // fix for a bug that keeps reappearing in new goals. This counter is the
+    // general backstop: a goal that reports success while achieving nothing,
+    // over and over, is spinning whatever its reason.
+    int noopCompletions_[static_cast<int>(GoalKind::Count)] = {};
+    // Set when the backstop fires, so the Runner can say so in the log rather
+    // than the character silently going quiet.
+    GoalKind spinDetected_ = GoalKind::Count;
     GoalKind lastRanKind_ = GoalKind::Count;
     // The same bookkeeping one level up. A family's streak is what actually
     // breaks a monotonous day, because the crowding-out is done by a family

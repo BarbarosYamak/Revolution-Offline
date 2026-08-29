@@ -1427,6 +1427,17 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         // the bank is a fine end to an errand, not a failure to retry.
         planner_.NoteRan(planner_.Current().kind, obs.nowMs);
         planner_.Finish(true, nullptr, obs.nowMs);
+        // The anti-spin backstop, said out loud. A goal cooled off for
+        // repeatedly succeeding at nothing is a BUG REPORT, not routine
+        // pacing, and it must not be silent -- the three that got through so
+        // far were each found by noticing a goal count in the thousands.
+        const GoalKind spun = planner_.TakeSpinDetected();
+        if (spun != GoalKind::Count) {
+            LogLine("goal_spinning=%s reason=\"completed %d times in a row "
+                    "with progress 0 -- cooled off for a minute; this is a "
+                    "bug in that goal, not pacing\"",
+                    GoalKindName(spun), 5);
+        }
         Checkpoint(client, obs.nowMs, "goal completed");
     }
 }

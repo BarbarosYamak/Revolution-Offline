@@ -1783,6 +1783,89 @@ void TestAMageWantsItsBookFilled() {
     }
 }
 
+// THE BACKSTOP FOR A BUG THIS PROJECT KEEPS REDISCOVERING.
+//
+// Three separate goals have each burned an entire session by completing with
+// progress 0 and being handed straight back: GET_TOOL 2,058 times, GET_FOOD
+// for whole sessions at 100% of picks, EARN_GOLD 13,111 times at 60ms
+// intervals. Every one was fixed at its own call site, and the next goal did
+// it again. This test is here so the general guard cannot be removed quietly.
+void TestAGoalThatSucceedsAtNothingIsStopped() {
+    Section("planner: a goal that keeps succeeding at nothing is spinning");
+
+    // Select() is what normally starts a goal, and it needs a whole need list
+    // and observation to do it. What is under test here is the bookkeeping in
+    // Finish(), so the goal is placed directly -- the same fields Select sets.
+    auto start = [](life::Planner& pl, life::GoalKind k, i64 now) {
+        life::GoalState& g = pl.Mutable();
+        g.kind = k;
+        g.active = true;
+        g.startedAtMs = now;
+        g.attempts = 0;
+        g.progress = 0;
+        g.failureReason.clear();
+    };
+
+    life::Planner p;
+    i64 t = 1000000;
+
+    // A goal that completes having actually DONE something is never punished,
+    // however often it runs. This half matters as much as the other: a working
+    // errand that got cooled off would be a worse bug than the one guarded.
+    for (int i = 0; i < 20; ++i) {
+        start(p, life::GoalKind::Bank, t);
+        p.NoteProgress();
+        p.Finish(true, nullptr, t);
+        Check(p.TakeSpinDetected() == life::GoalKind::Count,
+              "a goal that made progress is never flagged, however often it runs");
+        t += 1000;
+    }
+    Check(!p.Cooling(life::GoalKind::Bank, t),
+          "and it is not cooled off");
+
+    // A goal that says "done" without doing anything gets four free passes and
+    // is stopped on the fifth.
+    life::GoalKind flagged = life::GoalKind::Count;
+    for (int i = 0; i < 5; ++i) {
+        start(p, life::GoalKind::EarnGold, t);
+        p.Finish(true, nullptr, t);
+        const life::GoalKind got = p.TakeSpinDetected();
+        if (got != life::GoalKind::Count) flagged = got;
+        if (i < 4)
+            Check(got == life::GoalKind::Count,
+                  "a few no-op completions are tolerated -- some errands really "
+                  "do have nothing to do this minute");
+        t += 60;   // the observed interval: sixty milliseconds
+    }
+    Check(flagged == life::GoalKind::EarnGold,
+          "the fifth consecutive empty success names the goal that is spinning");
+    Check(p.Cooling(life::GoalKind::EarnGold, t),
+          "and cools it off, so one broken goal cannot own a whole session");
+    Check(p.TakeSpinDetected() == life::GoalKind::Count,
+          "reading the flag clears it, so it is reported exactly once");
+
+    // Real progress in the middle breaks the streak.
+    life::Planner q;
+    t = 2000000;
+    for (int i = 0; i < 4; ++i) {
+        start(q, life::GoalKind::Fish, t);
+        q.Finish(true, nullptr, t);
+        t += 60;
+    }
+    start(q, life::GoalKind::Fish, t);
+    q.NoteProgress();                       // one real catch
+    q.Finish(true, nullptr, t);
+    t += 60;
+    for (int i = 0; i < 4; ++i) {
+        start(q, life::GoalKind::Fish, t);
+        q.Finish(true, nullptr, t);
+        Check(q.TakeSpinDetected() == life::GoalKind::Count,
+              "the streak restarted after real work, so four more empties are "
+              "not yet a spin");
+        t += 60;
+    }
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1860,6 +1943,7 @@ int main(int argc, char** argv) {
     TestNerveIsPerProfession();
     TestNoSkillGainRegionBlocksPractice();
     TestAMageWantsItsBookFilled();
+    TestAGoalThatSucceedsAtNothingIsStopped();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();

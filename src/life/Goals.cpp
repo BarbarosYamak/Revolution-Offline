@@ -441,10 +441,46 @@ void Planner::NoteProgress() {
     goal_.attempts = 0;
 }
 
+// A GOAL THAT SUCCEEDS WITHOUT DOING ANYTHING, REPEATEDLY, IS SPINNING.
+//
+// The backstop for a bug this project keeps rediscovering in new goals. Each
+// instance looked different and was the same thing: the goal could not act,
+// said it was done, freed the planner, and was handed straight back the errand
+// it had just failed to perform.
+//
+//   GET_TOOL     2,058 goals in ten minutes (Bruin)
+//   GET_FOOD     whole 25-minute sessions, 100% of picks (Voris, Ysolde)
+//   EARN_GOLD    13,111 completions at 60ms intervals (Kaelen)
+//
+// Fixing each site as it is found does not stop the next goal from doing it.
+// So: five consecutive completions with no progress cools the goal off for a
+// minute, whatever its internal reason. This is a safety net, not a substitute
+// for the real fix -- it exists so that one broken goal cannot silently
+// consume an entire session's worth of decisions again.
+constexpr int kNoopSpinLimit = 5;
+constexpr i64 kSpinCooldownMs = 60000;
+
 void Planner::Finish(bool success, const char* why, i64 nowMs) {
-    (void)nowMs;
+    const int i = static_cast<int>(goal_.kind);
+    if (i >= 0 && i < static_cast<int>(GoalKind::Count)) {
+        if (success && goal_.progress == 0) {
+            if (++noopCompletions_[i] >= kNoopSpinLimit) {
+                Cooldown(goal_.kind, nowMs + kSpinCooldownMs);
+                spinDetected_ = goal_.kind;
+                noopCompletions_[i] = 0;
+            }
+        } else {
+            noopCompletions_[i] = 0;
+        }
+    }
     goal_.active = false;
     goal_.failureReason = success ? std::string() : (why ? why : "unspecified failure");
+}
+
+GoalKind Planner::TakeSpinDetected() {
+    const GoalKind k = spinDetected_;
+    spinDetected_ = GoalKind::Count;
+    return k;
 }
 
 // An emergency is never damped. A character does not get bored of not dying.
