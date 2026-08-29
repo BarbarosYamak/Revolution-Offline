@@ -359,6 +359,11 @@ public:
     // evidence about a trade whose ceiling is per-NPC (see TrainerVerdict).
     static constexpr int kTradeExhaustedAfter = 3;
     bool TrainerRefused(int skillId, const char* trade) const;
+    // "You already know as much as I can teach", from ANY one NPC, is a
+    // statement about the CHARACTER, not about that NPC -- unlike "I know
+    // nothing about that", which is only ever about the one who said it. One
+    // such answer retires the skill from NPC training for good.
+    bool TrainerSaysMaxed(int skillId) const;
     // Serials of this trade that refused this skill, for the skip list a
     // character uses to walk to a DIFFERENT trainer.
     std::vector<u32> TrainersWhoRefused(int skillId, const char* trade) const;

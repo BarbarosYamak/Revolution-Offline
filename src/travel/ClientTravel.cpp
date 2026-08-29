@@ -489,6 +489,27 @@ try_atlas:
         return false;
     }
     travelEntitySerial_ = 0;
+    // AN ARMOURY IS NOT A SMITHY. The atlas files both under `blacksmith`,
+    // and in Minoc the armorer at 2533,572 is 30 tiles nearer than the real
+    // smithy -- so a smelting errand went there every single time, to a lone
+    // forge with no walkable tile beside it. "do not go that armorer"
+    // (project owner, 2026-08-29, after asking twice for The Forgery).
+    //
+    // Skipping it here rather than in the caller means it is skipped for
+    // every city, not just the one that was noticed.
+    if (s == wm::Service::Blacksmith &&
+        p->id.find("armorer") != std::string::npos) {
+        if (skipPlaceIds) skipPlaceIds->push_back(p->id);
+        const wm::Place* real =
+            world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
+                s, playerX_, playerY_,
+                skipPlaceIds ? *skipPlaceIds : noPlaces);
+        if (real) {
+            p = real;
+        }
+        // If an armoury really is the only thing offering the trade, fall
+        // through and use it -- refusing to go anywhere is worse.
+    }
     // Record which shop this was, so a caller that strikes out here asks
     // for a different one next time instead of walking the same road again.
     if (skipPlaceIds) skipPlaceIds->push_back(p->id);
@@ -1877,27 +1898,31 @@ bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
     return found;
 }
 
-bool Client::NearestForge(i32 x, i32 y, int radius, TreeHit* out) {
+bool Client::NearestForge(i32 x, i32 y, int radius, TreeHit* out,
+                          const std::vector<std::pair<i32, i32>>* exclude) {
     if (!out) return false;
-    if (!EnsureWorldLoaded() || !world_) return false;
     if (radius < 0) radius = 0;
 
-    // WHAT COUNTS AS A FORGE IS THE TYPE, NOT A GRAPHIC I LIKED THE LOOK OF.
-    // Enumerated by walking every ITEMDEF with TYPE=t_forge and then every
-    // DUPEITEM pointing at one of those bases:
-    //   0fb1   i_forge
-    //   0197a  i_forge_large_bellows  +  0197e  i_forge_large
-    //          -- every id in 0197a..019a9 dupes to one of these two. They are
-    //             the animation frames of a lit forge, so the tile actually on
-    //             the map is usually NOT the base id.
-    //   02dd8  i_forge_elven
-    //   0423b / 04263 / 04277 / 044c7  the soulforges, with their own dupe
-    //          runs; they are t_forge too, so they smelt.
+    // FORGES ARE WORLD ITEMS, NOT MAP STATICS.
     //
-    // 0fb0 is deliberately ABSENT. It looks like it belongs beside 0fb1, and
-    // an earlier version of this list included it -- but it dupes to 0faf,
-    // which is i_anvil, TYPE=t_anvil. An anvil is not a forge and standing at
-    // one smelts nothing.
+    // An earlier version of this read the .mul statics, on the strength of a
+    // grep over the save files that found nothing. That grep was wrong twice:
+    // the world save keys items by DEFNAME, not by hex id, and the keyword is
+    // WORLDITEM, not ITEM -- so `^ITEM 0*(fb1|197a)` could never have matched
+    // anything. There are 107 forges in spherestatics.scp: 21 i_forge, 26
+    // i_forge_large_bellows and 60 i_forge_large. Six of them stand in The
+    // Forgery in Minoc (2467-2469, 555/557), one beside the Minoc armorer at
+    // 2535,571, and one INSIDE the Minoc mine at 2561,501 -- which is why a
+    // miner can often smelt without leaving the rock face at all.
+    //
+    // The server sends these like any other item, so the item list is the
+    // right place to look and the map statics never held them.
+    //
+    // Which ids count comes from TYPE=t_forge and its DUPEITEM runs:
+    // 0fb1 i_forge, 02dd8 i_forge_elven, and 0197a..019a9, which are the
+    // animation frames of a lit forge -- so the id actually on the wire is
+    // usually not the base. 0fb0 is deliberately excluded: it looks like it
+    // belongs beside 0fb1 but dupes to 0faf, which is i_anvil.
     auto isForgeId = [](u16 id) -> bool {
         return id == 0x0FB1 || id == 0x2DD8 ||
                (id >= 0x197A && id <= 0x19A9) ||
@@ -1907,19 +1932,29 @@ bool Client::NearestForge(i32 x, i32 y, int radius, TreeHit* out) {
                (id >= 0x44C7 && id <= 0x44CA);
     };
 
-    std::vector<world::StaticHit> hits;
-    world_->CollectStatics(x, y, radius, hits);
-
     bool found = false;
     i32 bestDist = 0;
-    for (const world::StaticHit& h : hits) {
-        if (!isForgeId(h.itemId)) continue;
-        const i32 dx = h.x > x ? h.x - x : x - h.x;
-        const i32 dy = h.y > y ? h.y - y : y - h.y;
-        const i32 d = dx > dy ? dx : dy;
+    for (const auto& kv : items_) {
+        if (!isForgeId(kv.second.itemId)) continue;
+        if (exclude) {
+            bool skip = false;
+            for (const auto& e : *exclude)
+                if (e.first == kv.second.x && e.second == kv.second.y) {
+                    skip = true; break;
+                }
+            if (skip) continue;
+        }
+        const i32 dx = kv.second.x > x ? kv.second.x - x : x - kv.second.x;
+        const i32 dy = kv.second.y > y ? kv.second.y - y : y - kv.second.y;
+        const i32 d = dx > dy ? dx : dy;      // Chebyshev, as isneartype uses
+        if (d > radius) continue;
         if (found && d >= bestDist) continue;
         bestDist = d;
-        out->x = h.x; out->y = h.y; out->z = h.z; out->graphic = h.itemId;
+        out->x = kv.second.x;
+        out->y = kv.second.y;
+        out->z = static_cast<i8>(kv.second.z);
+        out->graphic = kv.second.itemId;
+        forgeSerial_ = kv.first;   // the forge itself is what gets clicked
         found = true;
     }
     return found;

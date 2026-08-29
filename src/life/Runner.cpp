@@ -402,7 +402,12 @@ constexpr u16 kCampfireGraphic = 0x0DE3;
 constexpr u16 kIronOre[] = {0x19B7, 0x19B8, 0x19B9, 0x19BA};
 // Which graphics are forges lives in Client::NearestForge -- it reads the map
 // statics, and the id set is derived there from TYPE=t_forge.
-constexpr i32 kForgeReach = 2;          // <src.isneartype t_forge 2>
+// <src.isneartype t_forge 2> reads like "two tiles is fine". It is not: at a
+// Chebyshev distance of exactly 2 -- standing at 2533,572 with the forge at
+// 2535,571 -- the shard answered "You must be near a forge to smelt" on every
+// swing. Sphere measures that distance to the object's own footprint, so the
+// only reliable rule is to stand ADJACENT and then click.
+constexpr i32 kForgeReach = 1;
 // i_fish_cut_raw 0x097A -- four to a whole fish, and food once cooked.
 constexpr u16 kFishRawSteak = 0x097A;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
@@ -1126,7 +1131,11 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         if (i >= state_.plan.viaTrainer.size() || !state_.plan.viaTrainer[i]) continue;
         const int id = state_.plan.skills[i].skillId;
         const TrainerFor* tf = TrainerForSkill(id);
-        if (tf && state_.memory.TrainerRefused(id, tf->trade)) {
+        // Either the trade is exhausted (several NPCs of it have said no), or
+        // one of them has said the character is already past teaching -- which
+        // no other NPC can undo, so it counts on its own.
+        if (state_.memory.TrainerSaysMaxed(id) ||
+            (tf && state_.memory.TrainerRefused(id, tf->trade))) {
             obs.trainerRefusedSkills.push_back(id);
         }
     }
@@ -5405,6 +5414,30 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     }
     smeltIngotsBefore_ = metal;
 
+    // The one smelt message that IS plain ASCII, and so the one the journal
+    // can actually see: everything else on this path is a cliloc and 0xC1 is a
+    // no-op here. If it appears, the character is not close enough -- say so
+    // rather than swinging again from the same spot.
+    if (smeltStartedMs_ != 0 &&
+        client.JournalSaidSince("must be near a forge", smeltStartedMs_)) {
+        // GIVE UP ON A FORGE THAT CANNOT BE STOOD NEXT TO. Some are behind a
+        // counter or against a wall, so no walkable tile is ever adjacent --
+        // the lone forge beside the Minoc armorer is a candidate. Rather than
+        // swing at it forever, strike it off and let NearestForge offer the
+        // next one; in Minoc that means The Forgery, which has six of them.
+        if (++smeltRefusals_ >= 3) {
+            LogLine("smelt: the forge at %d,%d refuses from every tile reached "
+                    "-- looking for another", smeltForgeX_, smeltForgeY_);
+            deadForges_.emplace_back(smeltForgeX_, smeltForgeY_);
+            if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
+            smeltRefusals_ = 0;
+            travelInFlight_ = false;
+        } else {
+            LogLine("smelt: refused -- not close enough to the forge yet (%d)",
+                    smeltRefusals_);
+        }
+    }
+
     // A FORGE WITHIN TWO TILES, or go and find one.
     //
     // FROM THE MAP, NOT FROM THE ITEM LIST. sphereworld.scp and
@@ -5413,30 +5446,116 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     // one as an item and the first version of this, which asked
     // FindWorldItemByGraphic, stood inside a smithy reporting "no forge within
     // 2 tiles" three times and gave up.
+    // AS FAR AS THE SERVER SENDS ITEMS, then walk the last few tiles. There
+    // is no point asking for more: a forge outside the item-send radius is not
+    // in the item list at all, so a bigger number would only look thorough.
+    //
+    // This is usually enough on its own. A forge stands beside the Minoc
+    // armorer at 2535,571, and another INSIDE the Minoc mine at 2561,501 --
+    // four tiles from the rock Corwyn actually swings at -- so a miner very
+    // often smelts without going anywhere.
     Client::TreeHit forgeTile;
-    const bool sawForge = client.NearestForge(obs.x, obs.y, 24, &forgeTile);
+    const bool sawForge =
+        client.NearestForge(obs.x, obs.y, 20, &forgeTile, &deadForges_);
     const i32 forgeDist =
         sawForge ? TileDist(obs.x, obs.y, forgeTile.x, forgeTile.y) : 0;
 
     if (sawForge && forgeDist > kForgeReach) {
         if (client.TravelBusy()) return false;
-        LogLine("smelt: forge at %d,%d is %d tiles off -- stepping up to it",
-                forgeTile.x, forgeTile.y, forgeDist);
-        travelInFlight_ =
-            client.TravelToPoint(forgeTile.x, forgeTile.y, kForgeReach, "forge");
+
+        // A FORGE YOU CANNOT GET NEXT TO IS NOT A FORGE YOU CAN USE. Many
+        // stand against a wall or behind a counter with no walkable tile
+        // adjacent -- the lone one beside the Minoc armorer is exactly that.
+        // Walking "to" it then succeeds at two tiles forever, and because the
+        // character never gets close enough to CLICK, the refusal message that
+        // would otherwise retire the forge never arrives. So count approaches
+        // as well as refusals.
+        if (forgeTile.x == smeltForgeX_ && forgeTile.y == smeltForgeY_) {
+            if (++smeltApproaches_ >= 4) {
+                LogLine("smelt: cannot get within %d tile of the forge at %d,%d "
+                        "after %d tries -- looking for another",
+                        kForgeReach, forgeTile.x, forgeTile.y, smeltApproaches_);
+                deadForges_.emplace_back(forgeTile.x, forgeTile.y);
+                if (deadForges_.size() > 16)
+                    deadForges_.erase(deadForges_.begin());
+                smeltApproaches_ = 0;
+                travelInFlight_ = false;
+                // The trip counter is what decides to walk somewhere new, and
+                // the skip list above is what makes "somewhere new" mean a
+                // different building rather than this one again.
+                smeltTrips_ = 0;
+                nextActionMs_ = obs.nowMs + 500;
+                return false;
+            }
+        } else {
+            smeltForgeX_ = forgeTile.x;
+            smeltForgeY_ = forgeTile.y;
+            smeltApproaches_ = 1;
+        }
+
+        // WALK TO A TILE BESIDE THE FORGE, NEVER TO THE FORGE ITSELF. A forge
+        // is solid: asking the planner for its own tile made it search for the
+        // best part of a second and then give up --
+        //   "no path to (2468,557) avoiding 0 block(s) (search 976432.8us)"
+        //   "start (2472,550,5) exits: open=8" -- not enclosed; unreachable.
+        // Naming a real standing tile turns that into an ordinary short walk.
+        i32 standX = 0, standY = 0;
+        bool haveStand = false;
+        static const int kdx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        static const int kdy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        for (int i = 0; i < 8 && !haveStand; ++i) {
+            const i32 tx = forgeTile.x + kdx[i], ty = forgeTile.y + kdy[i];
+            if (!client.TileIsWalkable(tx, ty, forgeTile.z)) continue;
+            standX = tx; standY = ty; haveStand = true;
+        }
+        if (!haveStand) {
+            // Nothing to stand on next to it -- that is the whole story for
+            // the lone forge beside the Minoc armorer. No point approaching
+            // four times to learn it.
+            LogLine("smelt: no walkable tile beside the forge at %d,%d -- "
+                    "striking it off", forgeTile.x, forgeTile.y);
+            deadForges_.emplace_back(forgeTile.x, forgeTile.y);
+            if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
+            smeltApproaches_ = 0;
+            travelInFlight_ = false;
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
+
+        LogLine("smelt: forge at %d,%d is %d tiles off -- standing at %d,%d",
+                forgeTile.x, forgeTile.y, forgeDist, standX, standY);
+        travelInFlight_ = client.TravelToPoint(standX, standY, 0, "forge");
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
+
+    // DO NOT SWING WHILE STILL WALKING. The first version issued the
+    // double-click in the same tick it started the last step, so the click
+    // went out from two tiles away and the shard refused it -- four times in
+    // a row, each one looking like a smelt that simply did nothing.
+    if (client.TravelBusy()) return false;
 
     if (!sawForge) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
             // Forges stand in smithies, and the atlas files smithies -- and
             // the weaponsmiths beside them -- under `blacksmith`.
+            // ADVANCE TO THE NEXT SMITHY, do not keep arriving at the same
+            // one. The atlas files two Minoc buildings as `blacksmith`:
+            // minoc_armorer at 2533,572, whose single forge stands where no
+            // adjacent tile can be reached, and minoc_blackshmith at 2471,564
+            // inside The Forgery, which has SIX. Travel quite reasonably picks
+            // the nearer, so without a skip list the character walks to the
+            // armorer forever and never sees the real smithy.
+            // "why dont you go minoc_blacksmith ... the real smithy"
+            // (project owner, 2026-08-29, asked twice).
             LogLine("smelt: carrying %d ore with no forge in reach -- walking "
-                    "to a smithy", market::QtyOf(obs.pack, "i_ore_iron"));
-            travelInFlight_ = client.TravelToService(
-                wm::Service::Blacksmith, HomeOrNearest(state_.homeCity));
+                    "to a smithy (%d already tried)",
+                    market::QtyOf(obs.pack, "i_ore_iron"),
+                    static_cast<int>(smeltSkipPlaces_.size()));
+            travelInFlight_ = client.TravelToServiceSkipping(
+                wm::Service::Blacksmith, HomeOrNearest(state_.homeCity), {},
+                &smeltSkipPlaces_);
             if (!travelInFlight_) {
                 LogLine("goal_blocked=SMELT reason=\"%s\" (%s)",
                         faucet::RefusalName(faucet::Refusal::VendorUnreachable),
@@ -5469,12 +5588,47 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
 
     smeltTrips_ = 0;
     travelInFlight_ = false;
-    LogLine("smelt: melting ore at the forge (%d ore, %d ingots so far)",
-            market::QtyOf(obs.pack, "i_ore_iron"), metal);
-    client.ActionUseObject(ore);
-    smeltStartedMs_ = obs.nowMs;
-    planner_.NoteAttempt(obs.nowMs);
-    nextActionMs_ = obs.nowMs + 2500;
+    smeltForgeX_ = forgeTile.x;
+    smeltForgeY_ = forgeTile.y;
+    smeltApproaches_ = 0;
+
+    // CLICK THE FORGE, THEN THE ORE -- not the ore on its own.
+    //
+    // "Also forge works I double clicked forge then ore" (project owner,
+    // 2026-08-29), and the scripts agree. types_forge.scp:
+    //     [TYPEDEF t_forge]
+    //     ON=@DCLICK
+    //        TARGETF f_craft_blacksmith_smelt_targ
+    // so the forge arms a target cursor, and that cursor is then given the
+    // ore. f_craft_blacksmith_smelt_targ (crafting_functions.scp) checks the
+    // ore is in the pack, checks ISNEARTYPE t_forge 3, and for a t_ore target
+    // delegates to the ore's own @dclick.
+    //
+    // The first version clicked the ore directly. That is the OTHER route --
+    // type_ore.scp's @dclick -- and it is the one that answered "You must be
+    // near a forge to smelt" from two tiles away, over and over.
+    if (smeltCursorPending_) {
+        if (client.TargetActive()) {
+            LogLine("smelt: giving the forge's cursor the ore (%d ore, %d "
+                    "ingots so far)", market::QtyOf(obs.pack, "i_ore_iron"),
+                    metal);
+            client.ActionTargetObject(ore);
+            smeltCursorPending_ = false;
+            smeltStartedMs_ = obs.nowMs;
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        // The cursor never came up. Do not sit waiting on it forever.
+        if (obs.nowMs - smeltClickedMs_ > 6000) smeltCursorPending_ = false;
+        return false;
+    }
+
+    LogLine("smelt: opening the forge at %d,%d", forgeTile.x, forgeTile.y);
+    client.ActionUseObject(client.LastForgeSerial());
+    smeltCursorPending_ = true;
+    smeltClickedMs_ = obs.nowMs;
+    nextActionMs_ = obs.nowMs + 1500;
     return false;
 }
 

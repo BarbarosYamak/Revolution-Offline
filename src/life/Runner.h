@@ -260,6 +260,17 @@ private:
     i64  smeltStartedMs_ = 0;
     i32  smeltIngotsBefore_ = 0;
     i32  smeltTrips_ = 0;
+    // Forges that refused from every tile that could be reached, so the next
+    // look offers a different one.
+    std::vector<std::pair<i32, i32>> deadForges_;
+    i32  smeltForgeX_ = 0, smeltForgeY_ = 0;
+    i32  smeltRefusals_ = 0;
+    i32  smeltApproaches_ = 0;
+    bool smeltCursorPending_ = false;
+    i64  smeltClickedMs_ = 0;
+    // Smithies already walked to and found wanting, so the next trip goes to a
+    // different one instead of the same nearest.
+    std::vector<std::string> smeltSkipPlaces_;
     i8   mineZ_ = 0;
     u16  mineGraphic_ = 0;
     i64  mineSwungMs_ = 0, mineJournalMs_ = 0;

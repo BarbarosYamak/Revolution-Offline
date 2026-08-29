@@ -395,6 +395,32 @@ std::vector<u32> Memory::TrainersWhoRefused(int skillId, const char* trade) cons
     return out;
 }
 
+bool Memory::TrainerSaysMaxed(int skillId) const {
+    // TWO OF THE FIVE REFUSALS ARE ABOUT THE STUDENT, NOT THE TEACHER.
+    //
+    // "I know nothing about that" is one NPC's own limit, and writing off a
+    // whole trade on one of those is the mistake TrainerRefused exists to
+    // avoid -- Sphere's ceiling is min(NPC skill x 30%, NPCTrainMax, cap), so
+    // the next NPC of the same trade may well teach more.
+    //
+    // "You already know as much as I can teach" and "You know more about this
+    // than I do" are different in kind: they say the character is at or above
+    // what is teachable. sphere.ini caps NPCTrainMax at 300, so no NPC
+    // anywhere teaches past 30.0 -- once one has said this, every other one
+    // will too, and the trips are pure waste. "If npc says you already know
+    // trainNpc should go 0 on life" (project owner, 2026-08-29).
+    //
+    // Matched on the reason text, which is persisted with the verdict, so this
+    // survives a logout without a schema change.
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId != skillId || t.taught) continue;
+        if (t.why == "the character already exceeds the trainer" ||
+            t.why == "the trainer has nothing left to give")
+            return true;
+    }
+    return false;
+}
+
 bool Memory::TrainerRefused(int skillId, const char* trade) const {
     if (!trade) return false;
     // COUNT DISTINCT NPCs, AND IGNORE THE ONES THAT NAME NOBODY.

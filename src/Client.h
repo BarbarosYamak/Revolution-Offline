@@ -562,6 +562,8 @@ public:
     // life layer to vet stand tiles.)
     bool TileIsWalkable(i32 x, i32 y, i8 fromZ) const;
 
+    u32 forgeSerial_ = 0;
+
     // Is (tx,ty) a tile Sphere will actually MINE? This mirrors the server's
     // own test, not a walkability heuristic. "Unwalkable == rock" was tried
     // and was wrong twice over: water is unwalkable (Corwyn stood on the Minoc
@@ -650,15 +652,16 @@ public:
     // to the next: it asks for "the nearest" at ever-wider radii and is handed
     // the same tree every time, concludes the whole area is exhausted, and
     // loops. One live session swung at a single tree 231 times that way.
-    // THE NEAREST FORGE, read from the map statics.
-    //
-    // Not from the world item list: there are ZERO forges in sphereworld.scp
-    // and zero in spherestatics.scp -- every forge on this shard is original
-    // UO map content baked into statics0.mul, so the server never sends one as
-    // an item and FindWorldItemByGraphic can never see it. Smelting needs to
-    // stand within 2 tiles of one (type_ore.scp), which makes this the only
-    // way to find the thing at all.
-    bool NearestForge(i32 x, i32 y, int radius, TreeHit* out);
+    // THE NEAREST FORGE, from the world item list, by Chebyshev distance --
+    // the same measure type_ore.scp's `isneartype t_forge 2` uses. There are
+    // 107 forges in spherestatics.scp; the implementation says which ids count
+    // and why the map statics are the wrong place to look.
+    bool NearestForge(i32 x, i32 y, int radius, TreeHit* out,
+                      const std::vector<std::pair<i32, i32>>* exclude = nullptr);
+    // Serial of the forge NearestForge last returned. Smelting is driven from
+    // the FORGE, not the ore: t_forge's @DCLICK arms
+    // f_craft_blacksmith_smelt_targ, and that target is then given the ore.
+    u32 LastForgeSerial() const { return forgeSerial_; }
     bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
                      const std::vector<std::pair<i32, i32>>* exclude = nullptr);
     // M7: the nearest WATER tile a character could cast a line into.
