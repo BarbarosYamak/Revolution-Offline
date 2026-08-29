@@ -39,6 +39,8 @@ i_potion_cure	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION
 i_potion_agilitygreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 35.1; REVOLUTION guide band 35.1-55.1 Gr. Agility
 i_potion_healgreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 55.1; REVOLUTION guide band 55.1-65.1 Gr. Heal
 i_potion_curegreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure
+i_potion_poisonless	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_potion_PoisonLess SKILLMAKE=ALCHEMY 0,t_mortar; RESOURCES=1 i_reag_nightshade,1 i_bottle_empty
+i_potion_poisongreat	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_potion_PoisonGreat SKILLMAKE=ALCHEMY 55.1,t_mortar; RESOURCES=4 i_reag_nightshade,1 i_bottle_empty
 i_potion_poisondeadly	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison
 i_scroll_poison	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscription 30.0,Magery 20.0; REVOLUTION forum 59111 band 0-60
 i_scroll_recall	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT SKILLMAKE=Inscription 40.0,Magery 30.0; REVOLUTION forum 59111 band 60-80
@@ -60,6 +62,8 @@ i_reag_garlic	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produ
 i_reag_blood_moss	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_ginseng	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_garlic	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_reag_nightshade	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
+i_reag_nightshade	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_nightshade	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_nightshade	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it
 i_reag_black_pearl	UNKNOWN	REVOLUTION_NPC_VERIFIED	1	leaf: nothing in the graph produces it

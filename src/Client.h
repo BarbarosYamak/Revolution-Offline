@@ -887,6 +887,11 @@ public:
     // cannot invent a recipe the server never offered.
     usize DialogIndexOf(const char* substring) const;
     bool  DialogHasOption(const char* substring) const { return DialogIndexOf(substring) != 0; }
+    // Anchored at the start of the option, for names that are suffixes of
+    // each other: "Poison" vs "Lesser Poison".
+    usize DialogIndexOfPrefix(const char* prefix) const;
+    bool  DialogHasPrefix(const char* prefix) const { return DialogIndexOfPrefix(prefix) != 0; }
+    bool  ChooseDialogByPrefix(const char* prefix);
     bool  ChooseDialogByName(const char* substring);
 
     // ---- M3.9 Phase 13: the menu as a general execution oracle -------------

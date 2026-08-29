@@ -465,7 +465,16 @@ const std::vector<Profession>& All() {
             // this life can make and sell to an NPC, and Poisoning is a skill
             // the fighters buy the product of. See the flagged conflict in
             // Faucets.cpp poison_potion_to_alchemist.
-            p.produces = {"i_potion_poison", "i_potion_heal", "i_potion_healgreat",
+            // STRONGEST FIRST, so the ladder is climbed rather than ignored.
+            // ChooseCraft takes the first entry whose skill is met AND whose
+            // inputs are all present, so ORDER is the ladder: an alchemist at
+            // 90.1 makes Deadly Poison, at 55.1 Greater, at 15.1 plain, and a
+            // brand-new one still has Lesser at 0. Listing plain Poison first
+            // meant a master alchemist brewed the beginner's potion forever.
+            // "use the ladder" (project owner, 2026-08-30).
+            p.produces = {"i_potion_poisondeadly", "i_potion_poisongreat",
+                          "i_potion_poison", "i_potion_poisonless",
+                          "i_potion_heal", "i_potion_healgreat",
                           "i_potion_refresh", "i_potion_cure"};
             // EVERY REAGENT ITS RECIPES ACTUALLY NAME. i_reag_nightshade was
             // missing, and it is the one poison is made of

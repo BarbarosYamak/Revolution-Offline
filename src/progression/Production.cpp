@@ -223,6 +223,18 @@ const std::vector<Recipe>& Table() {
     {"i_potion_curegreat", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 651, kNoSkill, 0, {{"i_reag_garlic", 6}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 65.1; REVOLUTION guide band 65.1-90.1 Gr. Cure"},
+    // THE REST OF THE POISON LADDER. i_potion_Poison sat alone with nothing
+    // below or beside it, so an alchemist could only ever make one rung of a
+    // four-rung skill line. All four are in i_provisions_potions.scp with the
+    // same shape: more nightshade as the skill gate rises.
+    {"i_potion_poisonless", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 0, kNoSkill, 0, {{"i_reag_nightshade", 1}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_PoisonLess SKILLMAKE=ALCHEMY 0,t_mortar; "
+     "RESOURCES=1 i_reag_nightshade,1 i_bottle_empty"},
+    {"i_potion_poisongreat", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 551, kNoSkill, 0, {{"i_reag_nightshade", 4}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_PoisonGreat SKILLMAKE=ALCHEMY 55.1,t_mortar; "
+     "RESOURCES=4 i_reag_nightshade,1 i_bottle_empty"},
     {"i_potion_poisondeadly", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 901, kNoSkill, 0, {{"i_reag_nightshade", 8}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 90.1; REVOLUTION guide band 90.1-100 Deadly Poison"},

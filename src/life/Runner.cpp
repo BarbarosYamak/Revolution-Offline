@@ -53,6 +53,25 @@ constexpr u16 kSmithToolGfx[] = {0x0FBB, 0x0FBC, 0x13E3, 0x13E4};
 // i_hammer_smith has DAM=13,15 SKILL=Macefighting and equips normally.
 // "equip smith hammer maybe?" (project owner, 2026-08-29).
 constexpr u16 kSmithHammerGfx[] = {0x13E3, 0x13E4};
+// WEAPONS A FIGHTER MIGHT BE CARRYING. Every one of these is handed out by the
+// shard's own newbie kits (sp_tm_newbie.scp: [NEWBIE FENCING] ITEMNEWBIE=
+// i_kryss, [NEWBIE MACEFIGHTING] i_club, [NEWBIE SWORDSMANSHIP] and friends),
+// and they are ITEMNEWBIE, so they survive death. Kaelen's own saved character
+// carries i_kryss, i_dagger AND i_katana -- all three sitting in CONT=
+// (his backpack) with no LAYER, which is to say in his bag while he punched a
+// Spectre bare-handed for twenty seconds and called it a stalemate.
+// Flip pairs included: a weapon on the wire is often the flipped id.
+constexpr u16 kMeleeWeaponGfx[] = {
+    0x1400, 0x1401,   // i_kryss
+    0x0F51, 0x0F52,   // i_dagger
+    0x13B3, 0x13B4,   // i_club
+    0x13FE, 0x13FF,   // i_katana
+    0x0F5E, 0x0F5F,   // i_sword_broad
+    0x1440, 0x1441,   // i_sword_cutlass
+    0x0F60, 0x0F61,   // i_sword_long
+    0x143B, 0x143C,   // i_mace
+    0x0F62, 0x0F63,   // i_spear
+};
 // Enough coin to walk into a shop with. A smith hammer is VALUE=50 and the
 // dearest tool a life buys is well under this, so one withdrawal covers the
 // errand rather than one trip to the box per item.
@@ -2218,6 +2237,38 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                         "", obs.x, obs.y, obs.nowMs);
             }
             session_.kills++;
+        }
+    }
+
+    // TAKE THE WEAPON OUT OF THE BAG FIRST.
+    //
+    // Nothing in the life layer ever wielded one. The fighting professions
+    // define no tools at all (fencer, macer and archer all have empty
+    // p.tools), so no goal ever asked for a weapon in hand -- and the shard
+    // hands every fighter one at creation, which then sits in the backpack for
+    // the character's whole life. The result reads as a combat problem and is
+    // not one: "20s of fighting and Spectre is still at the same health; this
+    // is a stalemate", swung with bare fists.
+    if (!client.ActionBusy()) {
+        bool armed = false;
+        for (usize i = 0; i < sizeof(kMeleeWeaponGfx) / sizeof(u16); ++i) {
+            const u16 g = kMeleeWeaponGfx[i];
+            if (client.EquippedGraphicAt(kLayerHand1) == g ||
+                client.EquippedGraphicAt(kLayerHand2) == g) {
+                armed = true;
+                break;
+            }
+        }
+        if (!armed) {
+            const u32 inPack = FindAny(client, kMeleeWeaponGfx,
+                                       sizeof(kMeleeWeaponGfx) / sizeof(u16));
+            if (inPack) {
+                LogLine("combat: drawing a weapon before swinging -- it was in "
+                        "the pack");
+                client.ActionEquip(inPack, kLayerHand1);
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
         }
     }
 
@@ -5372,6 +5423,17 @@ const CraftMenuPath kCraftMenus[] = {
     // 1011081) -- the failure branch below prints what the menu ACTUALLY
     // offered, which is how to settle it without guessing twice.
     {"i_dagger",             "Weapons",        "Swords & Blades", "dagger"},
+    // ALCHEMY IS A FLAT MENU -- sm_legacy_alchemy.scp has no categories, just
+    // "ON=i_potion_Poison <name> (<resmake>)" straight off the mortar. But the
+    // names are suffixes of one another and the menu lists them in this order:
+    //     Lesser Poison / Poison / Greater Poison / Deadly Poison
+    // so a plain substring search for "poison" finds LESSER poison first and
+    // quietly brews the wrong thing. A leading '^' means match the START of
+    // the option instead, which only the plain "Poison" satisfies.
+    {"i_potion_poisonless",  "^Lesser Poison", nullptr,   nullptr},
+    {"i_potion_poison",      "^Poison",        nullptr,   nullptr},
+    {"i_potion_poisongreat", "^Greater Poison",nullptr,   nullptr},
+    {"i_potion_poisondeadly","^Deadly Poison", nullptr,   nullptr},
     {"i_spear_short",        "Weapons",        "Spears and Forks", "short spear"},
     // COOKING. Two levels, from sm_legacy_cooking.scp (this shard runs the
     // legacy menu: crafting_settings.scp has scp.NewCrafting_Cooking=0):
@@ -6227,8 +6289,12 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             // the server spends it at lighting time, so while the campfire
             // burns the pack owes no more of it (the same carve-out the
             // blocked check above makes).
-            if (rr->station == prod::Station::Forge ||
-                rr->station == prod::Station::Fire) {
+            // ANY TRADE, not just the ones at a station. This was limited to
+            // Forge and then Fire, so a smith and a cook batched their work
+            // while an alchemist brewed ONE potion, walked off to sell it and
+            // came back. "also do like blacksmith craft a lot then sell"
+            // (project owner, 2026-08-30).
+            {
                 moreToUse = true;
                 for (const prod::Ingredient& in : rr->inputs) {
                     if (!in.item) break;
@@ -6279,12 +6345,22 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // it wanted. The menu itself says which level it is; ask it.
         // DEEPEST FIRST. The menu itself says which level it is on, so ask it
         // from the bottom up; anything else mistakes a submenu for the top.
+        // A step beginning with '^' is anchored at the start of the option.
+        auto has = [&client](const char* step) -> bool {
+            if (!step) return false;
+            return step[0] == '^' ? client.DialogHasPrefix(step + 1)
+                                  : client.DialogHasOption(step);
+        };
+        auto choose = [&client](const char* step) -> bool {
+            return step[0] == '^' ? client.ChooseDialogByPrefix(step + 1)
+                                  : client.ChooseDialogByName(step);
+        };
         const char* want = nullptr;
-        if (path->step3 && client.DialogHasOption(path->step3)) {
+        if (path->step3 && has(path->step3)) {
             want = path->step3;
-        } else if (path->step2 && client.DialogHasOption(path->step2)) {
+        } else if (path->step2 && has(path->step2)) {
             want = path->step2;          // already in the submenu
-        } else if (client.DialogHasOption(path->step1)) {
+        } else if (has(path->step1)) {
             want = path->step1;          // the top menu, or a flat one
         }
         if (!want) {
@@ -6300,7 +6376,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 5000;
             return false;
         }
-        if (!client.ChooseDialogByName(want)) {
+        if (!choose(want)) {
             // DialogHasOption just said it was there, so this is a send
             // failure rather than a missing option. Let it settle and re-read.
             nextActionMs_ = obs.nowMs + 1500;

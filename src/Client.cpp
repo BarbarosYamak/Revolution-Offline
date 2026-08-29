@@ -2100,12 +2100,43 @@ usize Client::DialogIndexOf(const char* substring) const {
     return 0;
 }
 
+usize Client::DialogIndexOfPrefix(const char* prefix) const {
+    // ANCHORED AT THE START, because a plain substring cannot tell
+    // "Poison" from "Lesser Poison" -- and the alchemy menu lists
+    // Lesser Poison FIRST, so a substring search for "poison" silently
+    // brews the wrong potion. Leading spaces are skipped: menu text is
+    // sometimes indented.
+    if (!prefix || !*prefix || !activeDialog_.active) return 0;
+    std::string want(prefix);
+    for (char& c : want) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+
+    for (usize i = 0; i < activeDialog_.options.size(); ++i) {
+        std::string have = activeDialog_.options[i].text;
+        for (char& c : have) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        const usize at = have.find_first_not_of(" 	");
+        if (at == std::string::npos) continue;
+        if (have.compare(at, want.size(), want) == 0) return i + 1;
+    }
+    return 0;
+}
+
 std::vector<std::string> Client::CraftableNow() const {
     std::vector<std::string> out;
     if (!activeDialog_.active) return out;
     out.reserve(activeDialog_.options.size());
     for (const auto& o : activeDialog_.options) out.push_back(o.text);
     return out;
+}
+
+bool Client::ChooseDialogByPrefix(const char* prefix) {
+    const usize idx = DialogIndexOfPrefix(prefix);
+    if (idx != 0) return AnswerDialog(static_cast<u16>(idx));
+    LogWarn("[menu] nothing starts with '%s' in \"%s\" (%zu option(s)):\n",
+            prefix ? prefix : "", activeDialog_.question.c_str(),
+            activeDialog_.options.size());
+    for (usize i = 0; i < activeDialog_.options.size(); ++i)
+        LogWarn("        %zu) %s\n", i + 1, activeDialog_.options[i].text.c_str());
+    return false;
 }
 
 bool Client::ChooseDialogByName(const char* substring) {
