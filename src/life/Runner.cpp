@@ -2650,6 +2650,34 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // Weight is the exception the need model already makes, and it is the
         // real reason to bank: a load too heavy to carry to a buyer has to go
         // somewhere.
+        // GOLD GOES IN WHATEVER THE PACK WEIGHS.
+        //
+        // Everything below is gated on the load being heavy, which is the
+        // right rule for STOCK -- a smith does not put its ingots in the box
+        // on the way to the shop. It is the wrong rule for coin: gold is
+        // barely any weight at all, so the gate never opened for it, and
+        // Corwyn stood at an open bank box carrying 9,842 gold and deposited
+        // nothing. "corwyn didnt put money on bank" (project owner).
+        //
+        // Coin is a RISK problem, not a weight problem, and this shard has
+        // full loot on death. What stays is the profession's own reserve plus
+        // working change; the rest goes in before anything else is considered.
+        {
+            const u32 coin = client.FindBackpackItemByGraphic(kGoldCoin);
+            const i32 keep =
+                (needCfg_.profession ? needCfg_.profession->goldReserve : 0) +
+                kGoldWorthCarryingRt;
+            const i32 spare = obs.gold - keep;
+            if (coin && spare > 0 && !client.ActionBusy()) {
+                LogLine("bank: depositing %d gold, keeping %d for this life's "
+                        "own errands", spare, keep);
+                client.ActionMoveItem(coin, static_cast<u16>(spare), box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
+
         const bool loadDemandsIt =
             obs.WeightFraction() >= needCfg_.bankWeightFrac;
         if (needCfg_.profession && (loadDemandsIt ||
@@ -2924,7 +2952,31 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         bankerAsked_ = 0;
     }
 
-    const u32 banker = client.NearestMobileWithTrade("banker", bankerSilent_);
+    u32 banker = client.NearestMobileWithTrade("banker", bankerSilent_);
+    if (!banker) {
+        // STAND IN THE BANK AND SAY "BANK". "you dont need find banker vendor
+        // directly, go near bank and say bank" (project owner, 2026-08-29) --
+        // which is exactly what a player does.
+        //
+        // Addressing a banker BY NAME was itself a fix, for a real problem:
+        // a bare keyword is UNNAMED and Source-X answers those by picking the
+        // closest NPC, and Britain's bankers wander. But requiring the name
+        // means requiring the PAPERDOLL TITLE, and if that has not arrived the
+        // character stands inside a bank unable to see a banker at all --
+        // three trips and "no banker in reach", which is how Corwyn ended a
+        // session carrying 9,842 gold.
+        //
+        // So: name one when we can see one, and otherwise just say the word.
+        // Standing in the bank is what makes "closest NPC" the right NPC.
+        if (obs.atBank || client.BankContainer() != 0 ||
+            state_.memory.BestPlace("bank")) {
+            LogLine("bank: no banker recognised here -- saying 'bank' aloud, "
+                    "which is what a player does");
+            client.ActionOpenBank(0, "bank");
+            nextActionMs_ = obs.nowMs + kBankAskGapMs;
+            return false;
+        }
+    }
     if (banker) {
         client.ActionOpenBank(banker);
         // REMEMBER WHERE THE BANKER STANDS, not where we happened to be when
@@ -4326,6 +4378,42 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     }
 
     const i32 quoted = client.JournalNumberSince("i will train you", trainAskedMs_);
+
+    // PAY WHOEVER ACTUALLY QUOTED.
+    //
+    // The price is read out of the journal by TEXT, with no regard for who
+    // said it, and the fee was then handed to the NPC we had addressed. Those
+    // are not always the same person:
+    //
+    //   [TRAIN] ask 0x00009096 say='Rhyssa train Tinkering'
+    //   Pembroke: For 101 gold I will train you in all I know of Tinkering
+    //   training: paying the quoted 101 gold ... (purse 9801)
+    //   training: paid 101 for Tinkering but the server still reports 19.9
+    //
+    // Two tinkers stand together in Minoc; Sphere answered with the nearer
+    // one. The gold went to Rhyssa, who had offered nothing, and Pembroke --
+    // who had -- was never paid. The skill did not move, the purse did not
+    // move, and the character went round again.
+    //
+    // So the payee is the SPEAKER of the quote when one can be identified.
+    u32 payee = trainer;
+    if (quoted > 0) {
+        std::vector<Client::Heard> said;
+        client.JournalHeardSince(trainAskedMs_, said);
+        for (const Client::Heard& h : said) {
+            std::string low;
+            for (char c : h.text)
+                low.push_back(static_cast<char>(std::tolower(
+                    static_cast<unsigned char>(c))));
+            if (low.find("i will train you") == std::string::npos) continue;
+            if (!h.speaker || h.speaker == trainer) break;
+            LogLine("training: '%s' answered instead of the one asked -- "
+                    "paying the trainer who actually quoted",
+                    h.name.empty() ? "someone else" : h.name.c_str());
+            payee = h.speaker;
+            break;
+        }
+    }
     if (quoted <= 0) {
         if (obs.nowMs - trainAskedTickMs_ > 12000) {
             ++trainSilentAsks_;
@@ -4420,7 +4508,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     trainPaidMs_ = obs.nowMs;
     trainSkillsAsked_ = false;
     ++trainPayAttempts_;
-    client.ActionNpcGive(trainer, gold, static_cast<u16>(quoted));
+    client.ActionNpcGive(payee, gold, static_cast<u16>(quoted));
     trainPaid_ = true;
     nextActionMs_ = obs.nowMs + 4000;
     return false;

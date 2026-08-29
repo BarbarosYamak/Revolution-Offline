@@ -419,11 +419,21 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     if (cfg.profession && !obs.atBank) {
         const i32 carry = cfg.profession->goldReserve + kGoldWorthCarrying;
         if (obs.gold > carry) {
-            add(NeedKind::NeedBank, 0.38, "deposit surplus gold",
+            // URGENCY SCALES WITH WHAT IS AT RISK. A flat 0.38 lost to
+            // training every time -- 0.38 x 240 = 91 against a trainer need at
+            // 110 -- so Corwyn walked around with 9,842 gold on him for a
+            // whole session and never once opened a box, on a shard where
+            // death is full loot. A few hundred spare is worth ignoring; nine
+            // thousand is not, and the number should say which it is.
+            const i32 spare = obs.gold - carry;
+            const double risk =
+                std::min(1.0, static_cast<double>(spare) /
+                                  static_cast<double>(carry > 0 ? carry * 4 : 1));
+            add(NeedKind::NeedBank, 0.30 + 0.45 * risk, "deposit surplus gold",
                 "carrying more coin than this life needs, and death here is "
                 "full loot",
-                Fmt("gold=%d reserve=%d carry=%d", obs.gold,
-                    cfg.profession->goldReserve, carry));
+                Fmt("gold=%d reserve=%d carry=%d spare=%d risk=%.2f", obs.gold,
+                    cfg.profession->goldReserve, carry, spare, risk));
         }
     }
 
