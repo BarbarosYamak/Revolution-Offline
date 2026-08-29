@@ -1617,12 +1617,13 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             LogLine("session_summary duration=%llds goals=%d/%d gold=%d->%d "
-                    "skills=%.1f->%.1f logs=+%d deaths=%d places=%d suppliers=%d",
+                    "skills=%.1f->%.1f logs=+%d kills=%d deaths=%d places=%d "
+                    "suppliers=%d",
                     static_cast<long long>((nowMs - sessionStartMs_) / 1000),
                     session_.goalsCompleted, session_.goalsAttempted,
                     session_.goldStart, session_.goldEnd,
                     session_.skillTenthsStart / 10.0, session_.skillTenthsEnd / 10.0,
-                    session_.logsGathered, session_.deaths,
+                    session_.logsGathered, session_.kills, session_.deaths,
                     session_.placesLearned, session_.suppliersLearned);
 
             // HOW THE DAY WAS SPENT, as one greppable line.
@@ -2001,6 +2002,41 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     }
 
     const i32 dist = TileDist(target->x, target->y, obs.x, obs.y);
+
+    // DID THE LAST ONE DIE?
+    //
+    // Nothing in this file ever recorded WINNING a fight:
+    // kCreatureEvidenceCheapKill and kCreatureEvidenceCostlyKill were declared
+    // and never used, so a creature's danger could only ever go UP -- fleeing
+    // added 1.0, dying added 2.0, and killing something added nothing at all.
+    // A character that beat a zombie ten times learned exactly as much about
+    // zombies as one that had never seen one.
+    //
+    // The foe vanishing from the mobile list while we were fighting it is the
+    // kill: Sphere removes the mobile and drops a corpse. Cheap or costly is
+    // decided by the health we finished on, which is the thing that actually
+    // matters when choosing the next fight.
+    if (currentFoe_ != 0 && currentFoe_ != target->serial &&
+        !currentFoeName_.empty()) {
+        bool stillThere = false;
+        for (const Client::HostileHit& h : hostiles)
+            stillThere = stillThere || (h.serial == currentFoe_);
+        if (!stillThere) {
+            const bool cheap = obs.HpFraction() >= 0.75;
+            LogLine("hunt: killed '%s' -- finished at %.0f%% health, recording "
+                    "it as a %s win", currentFoeName_.c_str(),
+                    obs.HpFraction() * 100.0, cheap ? "cheap" : "costly");
+            state_.memory.NoteCreatureOutcome(
+                currentFoeName_.c_str(),
+                cheap ? kCreatureEvidenceCheapKill : kCreatureEvidenceCostlyKill,
+                obs.nowMs);
+            if (!state_.memory.HasEvent("first_kill")) {
+                state_.memory.NoteEvent("first_kill", currentFoeName_.c_str(),
+                                        "", obs.x, obs.y, obs.nowMs);
+            }
+            session_.kills++;
+        }
+    }
 
     if (currentFoe_ != target->serial) {
         currentFoe_ = target->serial;

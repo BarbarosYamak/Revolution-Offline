@@ -950,6 +950,10 @@ struct SessionSummary {
     i32 goldStart = 0, goldEnd = 0;
     i32 skillTenthsStart = 0, skillTenthsEnd = 0;
     i32 logsGathered = 0;
+    // Fights WON. Counted because nothing counted them: the danger memory
+    // recorded fleeing and dying and never winning, so a session that killed
+    // twenty things looked identical to one that killed none.
+    i32 kills = 0;
     i32 deaths = 0;
     i32 placesLearned = 0;
     i32 suppliersLearned = 0;
