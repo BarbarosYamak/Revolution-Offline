@@ -330,6 +330,12 @@ public:
     // and find another, which is what a player does.
     u32  NearestMobileWithTrade(const char* trade,
                                 const std::vector<u32>& skip) const;
+    // Nearest "<trade> guildmaster" / "<trade> guildmistress". Skill
+    // training is a guildmaster service and the plain trade lookup cannot
+    // tell one from an ordinary shopkeeper -- it truncates the job at the
+    // first space, so it returns whoever is nearer. See the definition.
+    u32  NearestGuildmasterForTrade(const char* trade,
+                                    const std::vector<u32>& skip) const;
     // "<name> <phrase>" when the mobile's paperdoll name is known, so exactly
     // one NPC in earshot answers (Source-X CClientEvent.cpp:1962).
     std::string AddressMobile(u32 serial, const char* phrase) const;

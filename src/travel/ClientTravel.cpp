@@ -1688,8 +1688,29 @@ i32 Client::JournalNumberSince(const char* needle, i64 sinceMs) const {
     return -1;
 }
 
+// AN EXCLUSIVE MARK. "Read replies after this point" has to EXCLUDE the line
+// that was already there, and this returned the last entry's own timestamp
+// while JournalSaidSince breaks on `timeMs < sinceMs` -- so the entry equal to
+// the mark was still matched. The mark included the very message it existed to
+// exclude.
+//
+// What that cost: Ysolde asked Alenne to teach Meditation and Alenne answered
+// "You already know as much as I can teach of Meditation". That line became
+// the last journal entry. She then walked to Caedmon, the mage guildmaster who
+// CAN teach it, marked the journal -- getting Alenne's timestamp, because
+// nothing had been said since -- asked him, and he said nothing at all. Two
+// seconds later the refusal scan matched ALENNE's line and recorded a durable
+// verdict against CAEDMON, who was thereafter skipped for a refusal he never
+// made (run_m5/p0gate7:433-438; there is no Caedmon reply in that window).
+//
+// A silent NPC was therefore always recorded as repeating whatever the
+// previous NPC had said. The same hazard applies to every other watermarked
+// read -- the chop result, the craft result, the fishing cast. One call site
+// had already worked around it locally with a `+ 1`; the mark itself was the
+// bug.
 i64 Client::JournalNowMs() const {
-    return journal_.empty() ? NowMs() : journal_.back().timeMs;
+    if (journal_.empty()) return NowMs();
+    return journal_.back().timeMs + 1;
 }
 
 int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {

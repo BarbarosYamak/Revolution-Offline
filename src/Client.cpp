@@ -2643,6 +2643,64 @@ u32 Client::NearestMobileWithTrade(const char* trade) const {
     return NearestMobileWithTrade(trade, kNone);
 }
 
+// TRAINING IS A GUILDMASTER'S SERVICE, AND A GUILDMASTER IS NOT JUST A
+// NEARER SHOPKEEPER.
+//
+// NearestMobileWithTrade truncates the paperdoll job at the first space, so
+// "Zed the mage guildmaster" and "Alenne the mage" both reduce to "mage" and
+// the lookup returns whichever is CLOSER. In Britain's mage shop that is
+// always the shopkeeper: Alenne stood two tiles from Ysolde and the
+// guildmaster five (runtime/save/sphereworld.scp has c_guild_arcane at
+// 1490,1549), so every training trip asked the one NPC who could not help.
+//
+// The difference is not cosmetic. An ordinary mage rolls
+// MEDITATION={50.0 75.0} and Source-X teaches 30% of the NPC's own skill
+// (NPC_GetTrainMax, CCharNPCStatus.cpp:514-541), so it caps around 22.5 --
+// below Ysolde's 21.9, hence "You already know as much as I can teach".
+// c_guild_arcane carries TAG.OVERRIDE.TRAINSKILLMAX=50.0 with
+// MEDITATION={75.0 100.0} and can actually teach her.
+//
+// So this matches the job WITHOUT truncating, against the guild vocabulary in
+// npcs/c_human_guildmasters.scp: eleven trades, each male "guildmaster" and
+// female "guildmistress".
+u32 Client::NearestGuildmasterForTrade(const char* trade,
+                                       const std::vector<u32>& skip) const {
+    if (!trade || !trade[0]) return 0;
+    auto lower = [](std::string s) {
+        for (char& c : s)
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        return s;
+    };
+    const std::string want = lower(trade);
+    const std::string male = want + " guildmaster";
+    const std::string female = want + " guildmistress";
+
+    u32 best = 0;
+    int bestD = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        bool skipped = false;
+        for (u32 sk : skip) { if (sk == m.serial) { skipped = true; break; } }
+        if (skipped) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        const std::string t = lower(title);
+        const usize the = t.rfind(" the ");
+        if (the == std::string::npos) continue;
+        std::string job = t.substr(the + 5);
+        // Trim trailing punctuation but NOT the second word -- the second
+        // word is the whole point here.
+        while (!job.empty() && (job.back() == '.' || job.back() == ',' ||
+                                job.back() == ' ')) job.pop_back();
+        if (job != male && job != female) continue;
+
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
+        if (!best || d < bestD) { best = m.serial; bestD = d; }
+    }
+    return best;
+}
+
 u32 Client::NearestMobileWithTrade(const char* trade,
                                    const std::vector<u32>& skip) const {
     if (!trade || !trade[0]) return 0;

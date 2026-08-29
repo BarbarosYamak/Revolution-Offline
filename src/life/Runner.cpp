@@ -761,7 +761,9 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
     if (obs.atBank) {
         bankTrips_ = 0;
         // Pack emptied: stop reacting to the overflow message that got us here.
-        overloadWatchMs_ = client.JournalNowMs() + 1;
+        // (The `+ 1` that used to be here is now inside JournalNowMs, which
+        // returns an exclusive mark for every caller rather than only this one.)
+        overloadWatchMs_ = client.JournalNowMs();
         // (The place itself was recorded when the box was opened, from the
         // banker's own position -- see above.)
         if (!state_.memory.HasEvent("bank_learned")) {
@@ -3097,8 +3099,24 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         for (u32 k : trainerSilent_) { if (k == refused) { known = true; break; } }
         if (!known) trainerSilent_.push_back(refused);
     }
-    const u32 trainer = client.NearestMobileWithTrade(trainerTrade_.c_str(),
-                                                      trainerSilent_);
+    // THE GUILDMASTER FIRST. Both the guildmaster and the shopkeeper of a
+    // trade answer NearestMobileWithTrade -- it truncates "mage guildmaster"
+    // to "mage" -- so it returns whoever is nearer, and in Britain's mage shop
+    // that is always the shopkeeper. Alenne, two tiles away, refused Ysolde
+    // Meditation at 21.9 on every visit while a mage guildmaster stood five
+    // tiles off at 1490,1549 able to teach it (run_m5/p0gate7). Ask the one
+    // whose job it is; fall back to the trade only when no guildmaster is in
+    // reach, because an ordinary tradesman can still teach a low skill.
+    u32 trainer = client.NearestGuildmasterForTrade(trainerTrade_.c_str(),
+                                                    trainerSilent_);
+    if (trainer && trainer != trainerSerial_) {
+        LogLine("training: a '%s guildmaster' is here -- asking them rather "
+                "than the shopkeeper", trainerTrade_.c_str());
+    }
+    if (!trainer) {
+        trainer = client.NearestMobileWithTrade(trainerTrade_.c_str(),
+                                                trainerSilent_);
+    }
     if (!trainer) {
         if (trainTrips_ >= kMaxTrainTrips) {
             LogLine("goal_failed=TRAIN_AT_NPC reason=\"no '%s' reachable after "
