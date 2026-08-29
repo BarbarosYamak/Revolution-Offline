@@ -392,6 +392,23 @@ constexpr i32 kAtOreDistance = 40;
 constexpr i32 kMaxBankShouts = 3;
 // How far a spoken offer carries, in tiles.
 constexpr int kTradeEarshot = 16;
+
+// A SHOP IS A SHOP, WHEREVER YOU ARE STANDING.
+//
+// Every service trip passed the character's HOME CITY as a region hint, and
+// that hint forces NearestPlaceWithServiceInRegion -- so a miner standing in
+// Minoc who wanted a tinker was sent 440 tiles back to Vesper, because Vesper
+// is where he happens to live. "it shouldnt go to vesper always, that is
+// wrong" (project owner, 2026-08-29).
+//
+// Home is where a character LIVES. It is not a reason to walk past the shop in
+// front of it. Returning nullptr makes the atlas pick the nearest place with
+// the service, which is what a person does.
+//
+// Kept as a named function rather than deleting the argument, because there
+// may yet be an errand where home genuinely matters -- a player market to be
+// found at one's own bank, say -- and this is where that exception would go.
+const char* HomeOrNearest(const std::string&) { return nullptr; }
 constexpr i64 kNoBankCooldownMs = 120000;
 // THE 36 ARMOUR PIECES AN ARMORER ACTUALLY STOCKS, generated from every
 // SELL row in VENDOR_S_ARMORER_LEATHER / _RING / _CHAIN / _PLATE /
@@ -824,7 +841,7 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
         const std::vector<std::string>& homes = needCfg_.profession->homeCities;
         state_.homeCity = homes[h % homes.size()];
         LogLine("home: %s lives in %s", state_.identity.characterName.c_str(),
-                state_.homeCity.c_str());
+                HomeOrNearest(state_.homeCity));
     }
 
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
@@ -1981,7 +1998,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             }
             LogLine("dead: walking to a healer (trip %d)", ghostTrips_);
             travelInFlight_ =
-                client.TravelToService(wm::Service::Healer, state_.homeCity.c_str());
+                client.TravelToService(wm::Service::Healer, HomeOrNearest(state_.homeCity));
         }
         nextActionMs_ = obs.nowMs + 5000;
         return false;
@@ -2395,7 +2412,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                 LogLine("get_tool: no remembered supplier; looking for a %s to "
                         "sell a %s", tv->trade, toolName.c_str());
                 travelInFlight_ =
-                    client.TravelToService(tv->service, state_.homeCity.c_str());
+                    client.TravelToService(tv->service, HomeOrNearest(state_.homeCity));
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=GET_TOOL reason=\"%s\" (%s)",
@@ -2559,7 +2576,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         const u32 vendor = client.VendorOfferFrom();
         if (vendor == 0) {
             if (!travelInFlight_) {
-                travelInFlight_ = client.TravelToService(wm::Service::Healer, state_.homeCity.c_str());
+                travelInFlight_ = client.TravelToService(wm::Service::Healer, HomeOrNearest(state_.homeCity));
                 if (!travelInFlight_) {
                     LogLine("BLOCKED_NEED bandages: %s", client.TravelFailureText());
                     planner_.NoteAttempt(obs.nowMs);
@@ -3781,7 +3798,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 travelInFlight_ =
                     known ? client.TravelToPoint(known->x, known->y, 2, "bank")
                           : client.TravelToService(wm::Service::Banker,
-                                                   state_.homeCity.c_str());
+                                                   HomeOrNearest(state_.homeCity));
                 if (!travelInFlight_) {
                     LogLine("goal_blocked=EARN_GOLD reason=\"%s\" (%s)",
                             faucet::RefusalName(faucet::Refusal::VendorUnreachable),
@@ -3914,7 +3931,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 LogLine("earn_gold: looking for a '%s' to buy %d %s (trip %d)",
                         sellTrade_.c_str(), sellWanted_, sellItem_.c_str(),
                         sellTrips_);
-                travelInFlight_ = client.TravelToService(sellService_, state_.homeCity.c_str());
+                travelInFlight_ = client.TravelToService(sellService_, HomeOrNearest(state_.homeCity));
             }
             if (!travelInFlight_) {
                 LogLine("goal_blocked=EARN_GOLD reason=\"%s\"",
@@ -4279,7 +4296,7 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                 LogLine("training: looking for a '%s' to teach %s (trip %d)",
                         trainerTrade_.c_str(), rules::SkillName(skillId), trainTrips_);
                 travelInFlight_ = client.TravelToServiceSkipping(
-                    trainerService_, state_.homeCity.c_str(), trainerSilent_,
+                    trainerService_, HomeOrNearest(state_.homeCity), trainerSilent_,
                     &trainerShopsTried_);
             }
             if (!travelInFlight_) {
@@ -5112,7 +5129,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
                     supplyTrade_.c_str(), want.qty, supplyItem_.c_str(),
                     supplyTrips_);
             travelInFlight_ = client.TravelToService(
-                ServiceForTrade(supplyTrade_.c_str()), state_.homeCity.c_str());
+                ServiceForTrade(supplyTrade_.c_str()), HomeOrNearest(state_.homeCity));
             if (!travelInFlight_) {
                 LogLine("goal_blocked=BUY_SUPPLIES reason=\"%s\" (%s)",
                         faucet::RefusalName(faucet::Refusal::VendorUnreachable),
@@ -6221,7 +6238,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
                 tryBaker ? "baker" : "provisioner", foodTrips_);
         travelInFlight_ = client.TravelToService(
             tryBaker ? wm::Service::Baker : wm::Service::Provisioner,
-            state_.homeCity.c_str());
+            HomeOrNearest(state_.homeCity));
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -6304,7 +6321,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         }
         LogLine("%s: looking for a '%s' to sell %s (trip %d)",
                 GoalKindName(owner), trade, what, spellbookTrips_);
-        travelInFlight_ = client.TravelToService(svc, state_.homeCity.c_str());
+        travelInFlight_ = client.TravelToService(svc, HomeOrNearest(state_.homeCity));
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -7004,7 +7021,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                     "a tailor, where the looms are");
             if (!travelInFlight_)
                 travelInFlight_ = client.TravelToService(
-                    wm::Service::Tailor, state_.homeCity.c_str());
+                    wm::Service::Tailor, HomeOrNearest(state_.homeCity));
             nextActionMs_ = obs.nowMs + 2500;
             return false;
         }
@@ -7023,7 +7040,7 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                     "going to a tailor");
             if (!travelInFlight_)
                 travelInFlight_ = client.TravelToService(
-                    wm::Service::Tailor, state_.homeCity.c_str());
+                    wm::Service::Tailor, HomeOrNearest(state_.homeCity));
             nextActionMs_ = obs.nowMs + 2500;
             return false;
         }
