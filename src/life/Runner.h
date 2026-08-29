@@ -253,6 +253,7 @@ private:
     i32  mineX_ = 0, mineY_ = 0, mineRing_ = 0;
     i64  mineSwungMs_ = 0, mineJournalMs_ = 0;
     bool mineCursorPending_ = false;
+    i32  tameTrips_ = 0;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;

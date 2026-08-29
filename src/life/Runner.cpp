@@ -78,6 +78,7 @@ constexpr i32 kScissorsMoney = 60;
 constexpr i32 kMaxToolTrips = 3;
 constexpr i64 kNoOreCooldownMs = 120000;
 constexpr i64 kNoPetCooldownMs = 180000;
+constexpr i32 kMaxTameTrips = 3;
 
 // WHAT A CREATURE IS LIKELY TO DO TO YOU, before it has done it.
 //
@@ -6469,12 +6470,39 @@ bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
     }
 
     if (!best) {
-        LogLine("tame: nothing in sight this character can tame (Taming %.1f)",
-                mySkill);
+        // GO WHERE THE ANIMALS ARE. Standing down was wrong: Cassia lives in
+        // Britain, a city, and cities have almost nothing tamable in them. She
+        // logged "nothing in sight" once and then spent the session BLOCKED on
+        // a three-minute cooldown, twelve times over, while sheep grazed
+        // outside the walls.
+        //
+        // A miner travels to ore and a fisher to water; a tamer travels to
+        // livestock. The pastures are the ones read out of the world save for
+        // the bandage chain -- 246 sheep on map 0, the three real flocks being
+        // the farmland north-east of Yew.
+        if (client.TravelBusy()) return false;
+        if (++tameTrips_ <= kMaxTameTrips) {
+            static const struct { i32 x, y; } kPastures[] = {
+                {572, 1098}, {669, 943}, {669, 1175},
+            };
+            const int which = (tameTrips_ - 1) % 3;
+            LogLine("tame: nothing tamable here (Taming %.1f) -- walking out to "
+                    "the pasture at %d,%d (trip %d)", mySkill,
+                    kPastures[which].x, kPastures[which].y, tameTrips_);
+            travelInFlight_ = client.TravelToPoint(kPastures[which].x,
+                                                   kPastures[which].y, 8,
+                                                   "pasture");
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        LogLine("goal_failed=TAME_ANIMAL reason=\"nothing tamable after %d "
+                "trips to the pastures (Taming %.1f)\"", tameTrips_ - 1, mySkill);
         planner_.Cooldown(GoalKind::TameAnimal, obs.nowMs + kNoPetCooldownMs);
-        planner_.Finish(false, "nothing tamable in sight", obs.nowMs);
+        planner_.Finish(false, "nothing tamable in reach", obs.nowMs);
+        tameTrips_ = 0;
         return false;
     }
+    tameTrips_ = 0;
 
     i32 tx = 0, ty = 0; i8 tz = 0;
     if (client.MobilePosition(best, &tx, &ty, &tz)) {
