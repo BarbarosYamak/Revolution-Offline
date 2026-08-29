@@ -381,6 +381,9 @@ constexpr u16 kMinePickaxe[] = {0x0E85, 0x0E86};
 // and what a cook can turn into a meal.
 constexpr u16 kWholeFish[] = {0x09CC, 0x09CD, 0x09CE, 0x09CF};
 constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knives
+// i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
+constexpr u16 kKindlingGraphic = 0x0DE1;
+constexpr u16 kCampfireGraphic = 0x0DE3;
 constexpr u16 kScissorsGraphic  = 0x0F9E;
 constexpr u16 kWoolGraphic      = 0x0DF8;
 constexpr u16 kYarnGraphic      = 0x0E1D;
@@ -5088,6 +5091,42 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         return false;
     }
 
+    // A FIRE IS A STATION YOU CARRY. "nessa needs to cut the whole fish with
+    // dagger to have raw fish then cook it with kindling and camping skill"
+    // (project owner, 2026-08-29).
+    //
+    // Cooking's source is t_cooking, and the way to have one on a shore is to
+    // light kindling: double-clicking it runs Skill_UseQuick(SKILL_CAMPING)
+    // and on success turns the kindling itself into ITEMID_CAMPFIRE 0x0DE3
+    // (Source-X CCharUse.cpp:294-300). Unlike a forge, this is a station the
+    // character makes on the spot -- which is exactly why a fisher can cook
+    // where it fished.
+    //
+    // Note the raw steak cannot simply be double-clicked onto the fire:
+    // Source-X answers a double-click on IT_FOOD_RAW by EATING it
+    // (CCharUse.cpp:1860), so the cooking itself goes through the menu with a
+    // fire in reach.
+    if (const prod::Recipe* r = prod::FindRecipe(intent.item)) {
+        if (r->station == prod::Station::Fire &&
+            !client.FindWorldItemByGraphic(kCampfireGraphic, 3)) {
+            const u32 kindling = client.FindBackpackItemByGraphic(kKindlingGraphic);
+            if (!kindling) {
+                LogLine("goal_blocked=CRAFT reason=\"%s\" %s needs a fire and "
+                        "there is no kindling to light one",
+                        faucet::RefusalName(faucet::Refusal::RequiredForProduction),
+                        intent.item);
+                planner_.Finish(false, "no kindling for a fire", obs.nowMs);
+                return false;
+            }
+            LogLine("craft: lighting kindling for a campfire to cook %s on",
+                    intent.item);
+            client.ActionUseObject(kindling);
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+        }
+    }
+
     if (craftItem_ != intent.item) {
         craftItem_ = intent.item;
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
@@ -6077,8 +6116,8 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
             planner_.Finish(false, "no seller reachable", obs.nowMs);
             return false;
         }
-        LogLine("spellbook: looking for a '%s' to sell %s (trip %d)",
-                trade, what, spellbookTrips_);
+        LogLine("%s: looking for a '%s' to sell %s (trip %d)",
+                GoalKindName(owner), trade, what, spellbookTrips_);
         travelInFlight_ = client.TravelToService(svc, state_.homeCity.c_str());
         nextActionMs_ = obs.nowMs + 2000;
         return false;
@@ -6093,14 +6132,15 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     }
     const i32 d = TileDist(obs.x, obs.y, vx, vy);
     if (d > kVendorReach) {
-        LogLine("spellbook: the %s is %d tiles away -- walking up", trade, d);
+        LogLine("%s: the %s is %d tiles away -- walking up",
+                GoalKindName(owner), trade, d);
         travelInFlight_ = client.TravelToEntity(keeper, 1);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
 
     if (!OfferBelongsTo(client, keeper)) {
-        LogLine("spellbook: asking the %s to show %s", trade, what);
+        LogLine("%s: asking the %s to show %s", GoalKindName(owner), trade, what);
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
         return false;
@@ -6267,6 +6307,13 @@ bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
 
 bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
+    // AND NOT WHILE ALREADY WALKING TO THE SHOP.
+    //
+    // Without this the goal re-decided every tick during the journey, printed
+    // "no piece for an empty slot" again and re-issued the trip: Nessa logged
+    // it 849 times in one session and spent it running between a lake and a
+    // tailor. The third goal to spin this way by re-entering mid-travel.
+    if (client.TravelBusy()) return false;
 
     // --- WEAR WHAT IS ALREADY CARRIED ------------------------------------
     //
@@ -6298,6 +6345,20 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
     // unable to eat for. The best affordable legal piece is chosen, which for
     // a caster means the best LEATHER, and for a fighter the best its
     // strength allows.
+    // A CRAFTER DOES NOT GO ARMOUR SHOPPING. "for crafter upgrade gear just
+    // wear normal clothing for now" (project owner, 2026-08-29).
+    //
+    // A life that does not pick fights has little use for armour and every use
+    // for its gold: a tailor buying a leather tunic is spending the money that
+    // buys its lessons and its cloth. It still WEARS anything better that it
+    // loots -- that part ran above and costs nothing -- but it does not shop.
+    if (needCfg_.profession && !WantsToHunt(*needCfg_.profession)) {
+        LogLine("gear: nothing carried is an upgrade, and this life does not "
+                "fight -- ordinary clothes will do, so no armour shopping");
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
     const i32 reserve =
         needCfg_.profession ? needCfg_.profession->goldReserve : 0;
     if (obs.gold <= reserve + kArmorMoney) {

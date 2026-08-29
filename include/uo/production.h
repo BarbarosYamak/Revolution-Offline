@@ -66,6 +66,14 @@ enum class Station : u8 {
     Anvil,          // t_anvil  -- repairs
     SpinningWheel,  // t_spinwheel
     Loom,           // t_loom
+    // A CAMPFIRE. Cooking's SKILLMAKE names t_cooking as its source, and the
+    // ordinary way to have one in the wild is to light kindling: double-
+    // clicking it runs Skill_UseQuick(SKILL_CAMPING) and, on success, turns
+    // the kindling itself into ITEMID_CAMPFIRE 0x0DE3
+    // (Source-X CCharUse.cpp:294-300). So unlike a forge this station is one
+    // the character CARRIES and makes, which is why a fisher can cook on a
+    // shore.
+    Fire,
     Count,
 };
 

@@ -12,6 +12,7 @@ using rules::kArmsLore;
 using rules::kBlacksmithing;
 using rules::kBowcraft;
 using rules::kCarpentry;
+using rules::kCooking;
 using rules::kInscription;
 using rules::kMagery;
 using rules::kMining;
@@ -263,6 +264,16 @@ const std::vector<Recipe>& Table() {
      "SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3"},
     // The M3 finding, as an edge: one fish becomes four steaks at a twelfth of
     // the weight, and only the cook buys them.
+    // COOKED, which is what a vendor buys and what a person can eat. The raw
+    // steak cannot simply be double-clicked onto a fire: Source-X answers a
+    // double-click on IT_FOOD_RAW by EATING it (CCharUse.cpp:1860), so this
+    // goes through the Cooking menu with a fire in reach, exactly as the
+    // itemdef says -- SKILLMAKE=Cooking 0.0, t_cooking.
+    {"i_fish_cut_cooked", 1, Provenance::PlayerCrafted, Station::Fire,
+     Tool::None, kCooking, 0, kNoSkill, 0, {{"i_fish_cut_raw", 1}},
+     "SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, "
+     "SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling "
+     "-> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3"},
     {"i_fish_cut_raw", 4, Provenance::WorldProcessed, Station::None, Tool::Blade,
      kNoSkill, 0, kNoSkill, 0, {{"i_fish_big_1", 1}},
      "ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1"},
@@ -318,6 +329,7 @@ const char* StationName(Station s) {
         case Station::Anvil:         return "anvil";
         case Station::SpinningWheel: return "spinning wheel";
         case Station::Loom:          return "loom";
+        case Station::Fire:          return "campfire";
         default:                     return "?";
     }
 }
