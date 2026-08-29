@@ -882,27 +882,67 @@ const std::vector<Profession>& All() {
             // As miner_smith: Tinkering grants no kit, so it can start at 0.0.
             p.startZeroSkill = rules::kTinkering;
             p.label = "Full Crafter";
-            p.startSkillA = rules::kCarpentry;
-            p.startSkillB = rules::kBlacksmithing;
+            // RESOURCE SKILLS FIRST, not production skills. Owner's rule,
+            // 2026-08-29: "a crafter with 50 Blacksmithy and no ore is
+            // useless. A crafter with 50 Mining can immediately create his
+            // own input stream."
+            //
+            // This started as Carpentry + Blacksmithing -- both PRODUCTION --
+            // while listing i_ore_iron and i_log among the things it CONSUMES,
+            // i.e. a crafter created unable to obtain either of its own
+            // inputs. Mining and Lumberjacking are the two skills that turn
+            // labour into materials, and everything else the build wants is
+            // earned from there.
+            //
+            // UNKNOWN, deliberately not invented: the canonical Revolution 7x
+            // crafter build. Mining / Blacksmithy / Lumberjacking / Carpentry /
+            // Tailoring / Tinkering plus Alchemy or Inscription is the SHAPE,
+            // and the exact seven needs old build evidence before it is
+            // written down as fact.
+            p.startSkillA = rules::kMining;
+            p.startSkillB = rules::kLumberjacking;
             p.startStr = 40; p.startDex = 24; p.startInt = 16;
             p.targets = {
-                {rules::kCarpentry,     1000, 5, false, SkillRole::Primary},
+                // The resource half of the build comes FIRST in priority --
+                // ore and logs are what every other skill here consumes, and a
+                // day spent raising Mining is a day the whole build gets more
+                // capable, not a detour from crafting.
+                {rules::kMining,        1000, 6, false, SkillRole::Primary},
+                {rules::kLumberjacking,  800, 5, false, SkillRole::Secondary},
+                {rules::kCarpentry,     1000, 4, false, SkillRole::Secondary},
                 {rules::kBlacksmithing, 1000, 4, false, SkillRole::Secondary},
                 {rules::kTinkering,      700, 3, true,  SkillRole::Secondary},
                 {rules::kTailoring,      600, 2, true,  SkillRole::Utility},
                 {rules::kAlchemy,        400, 1, true,  SkillRole::Utility},
             };
-            p.unresolvedTenths = 3300;
+            // 550.0 resolved across seven skills, 150.0 left open. The
+            // owner's shape is Mining / Blacksmithy / Lumberjacking /
+            // Carpentry / Tailoring / Tinkering plus Alchemy or
+            // Inscription -- which at seven skills is 100.0 each and
+            // exactly the 700 budget. That symmetry is suggestive and is
+            // NOT written down as fact: the canonical Revolution 7x build
+            // needs old build evidence, so the remainder stays unresolved.
+            p.unresolvedTenths = 1500;
             p.targetStr = 100; p.targetDex = 60; p.targetInt = 65;
             // Every one of these trades is refused as an NPC faucet
             // (Faucets.cpp: carpentry_output_to_vendor, smith_output_to_vendor,
             // alchemy_output_to_vendor are all Refuse*) -- the starkest
             // player-market-only life in the catalogue.
             p.income = {Income::Craft, Income::Process};
-            p.gathers = "";
+            // ORE FIRST. `gathers` is a single resource and this life needs
+            // two, which is a real limit of the model rather than a choice:
+            // a full crafter mines AND chops. Ore is named because smithing
+            // is the deeper chain and the ingot stockpile is the day-one
+            // objective; the wood side needs the model to grow a second
+            // slot before it can be expressed honestly.
+            p.gathers = "ore";
             p.produces = {"i_board", "i_dagger", "i_spear_short", "i_club",
                           "i_bottle_empty", "i_potion_cure", "i_sash"};
-            p.consumes = {"i_log", "i_ore_iron", "i_reag_garlic"};
+            // NOT ore and logs -- this life GATHERS those. What it must get
+            // from someone else is the reagent side, and only once it has
+            // the gold and supply access for Alchemy at all, which the
+            // owner places on day two rather than day one.
+            p.consumes = {"i_reag_garlic"};
             p.tools = {{"tongs",  V(kTongs, 2), false},
                        {"saw",    {kSaw},       false},
                        {"mortar", {kMortar},    false}};
