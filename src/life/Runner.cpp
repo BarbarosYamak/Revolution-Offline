@@ -388,7 +388,14 @@ constexpr u16 kCampfireGraphic = 0x0DE3;
 // how much coin a life keeps, or one will ask for a trip the other undoes.
 constexpr i32 kGoldWorthCarryingRt = 500;
 // Close enough to a mining place to call it a day at work.
-constexpr i32 kAtOreDistance = 40;
+// Distance to the EDGE of a mining area that still counts as being at work.
+// Minoc's ore sits in resource areas of radius 20 scattered round the town, so
+// a miner in Minoc is usually a short walk from one rather than standing on it.
+constexpr i32 kAtOreDistance = 45;
+// Close enough to actually swing: the pickaxe reaches two tiles, so anything
+// beyond a few means walking in rather than hammering the ground.
+constexpr i32 kMineReach = 6;
+constexpr i32 kMaxMineTrips = 3;
 constexpr i32 kMaxBankShouts = 3;
 // How far a spoken offer carries, in tiles.
 constexpr int kTradeEarshot = 16;
@@ -6684,15 +6691,14 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
 
     // THE PICKAXE MUST BE IN HAND. skill45_mining reads SRC.WEAPON, so one
     // sitting in the backpack mines nothing and explains nothing.
-    bool wielded = false;
-    for (int i = 0; i < 2; ++i) {
-        if (client.EquippedGraphicAt(kLayerHand1) == kMinePickaxe[i] ||
-            client.EquippedGraphicAt(kLayerHand2) == kMinePickaxe[i]) {
-            wielded = true;
-            break;
-        }
+    u32 pick = 0;
+    for (int i = 0; i < 2 && !pick; ++i) {
+        if (client.EquippedGraphicAt(kLayerHand1) == kMinePickaxe[i])
+            pick = client.EquippedAtLayer(kLayerHand1);
+        else if (client.EquippedGraphicAt(kLayerHand2) == kMinePickaxe[i])
+            pick = client.EquippedAtLayer(kLayerHand2);
     }
-    if (!wielded) {
+    if (!pick) {
         const u32 inPack = FindAny(client, kMinePickaxe, 2);
         if (!inPack) {
             LogLine("goal_failed=MINE reason=\"no pickaxe carried\"");
@@ -6704,6 +6710,34 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         client.ActionEquip(inPack, kLayerServerChooses);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
+    }
+
+    // GO TO THE ROCK FIRST. "first he needs to go to mining area" (project
+    // owner, 2026-08-29).
+    //
+    // Being at WORK is a district; being able to MINE is a tile. atWorkSite
+    // accepts 45 tiles from a resource area's edge, which is the right test
+    // for "is this a mining town" and far too loose for "can I swing here":
+    // Corwyn stood in Minoc hitting ordinary ground and was told "Try mining
+    // elsewhere" every time. Walk into the area, then swing.
+    if (!client.TravelBusy()) {
+        const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
+        if (d > kMineReach && !mineCursorPending_) {
+            if (++mineTrips_ > kMaxMineTrips) {
+                LogLine("goal_failed=MINE reason=\"could not reach a mining "
+                        "area in %d trips\"", kMaxMineTrips);
+                planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
+                planner_.Finish(false, "no mining area reachable", obs.nowMs);
+                mineTrips_ = 0;
+                return false;
+            }
+            LogLine("mine: the ore is %d tiles off -- walking into the mining "
+                    "area first (trip %d)", d, mineTrips_);
+            client.TravelToResource(wm::ResourceKind::Mining);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        mineTrips_ = 0;
     }
 
     // Answer the cursor the skill arms.
@@ -6723,6 +6757,8 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         static const char* kNoOre[] = {
             "no ore here", "can't mine that", "cannot mine that",
             "try mining in rock", "loosen some rocks",
+            // What this shard actually answers for a tile that is not rock.
+            "try mining elsewhere", "that is too far away",
         };
         for (const char* line : kNoOre) {
             if (client.JournalSaidSince(line, mineJournalMs_)) {
@@ -6744,11 +6780,71 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
 
     // The next tile in the ring that has not already refused us. RANGE=2, so
     // the ring is two tiles out.
-    static const int kdx[] = {2, 2, 0, -2, -2, -2, 0, 2};
-    static const int kdy[] = {0, 2, 2, 2, 0, -2, -2, -2};
+    // ADJACENT TILES, NOT THE RING AT TWO.
+    //
+    // skill45_mining.scp declares RANGE=2 and I read that as "target a tile
+    // two away". The server disagrees -- "That is too far away" -- so the rock
+    // a character can actually strike is the tile beside it. A player mines
+    // the wall in front of them.
+    static const int kdx[] = {1, 1, 0, -1, -1, -1, 0, 1};
+    static const int kdy[] = {0, 1, 1, 1, 0, -1, -1, -1};
+    // WALK TO A ROCK FACE FIRST.
+    //
+    // The resource area's recorded position is a region CENTROID and a
+    // centroid can be anything -- Corwyn's was a wooden bridge over water, and
+    // the owner sent a screenshot of him standing on it swinging at planks.
+    // Being "in the mining area" is not being at the rock.
+    //
+    // So find an unwalkable tile with a walkable neighbour, stand on the
+    // neighbour, and strike the rock. That is what the picture shows a player
+    // would do: the stone was twenty tiles up the bank.
+    if (!client.TravelBusy() && !mineCursorPending_) {
+        i32 sx = 0, sy = 0, rx = 0, ry = 0;
+        const bool haveFace =
+            client.NearestRockFace(obs.x, obs.y, obs.z, 24, &sx, &sy, &rx, &ry);
+        if (haveFace && TileDist(obs.x, obs.y, rx, ry) > 2) {
+            LogLine("mine: the rock is at %d,%d, %d tiles off -- standing at "
+                    "%d,%d to reach it", rx, ry,
+                    TileDist(obs.x, obs.y, rx, ry), sx, sy);
+            client.ActionGoto(sx, sy);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+        // STRIKE ONLY WHEN ACTUALLY BESIDE IT. The walk is issued and the
+        // next tick came round before the character had arrived, so it swung
+        // at rock still several tiles off and the server said "That is too far
+        // away" -- six times in one outing. The engine wants a target at least
+        // 1 and at most RANGE tiles off (CCharSkill.cpp:1432-1441), so the
+        // distance to the ROCK is the thing to check, not the distance to the
+        // spot we meant to stand on.
+        const i32 toRock = haveFace ? TileDist(obs.x, obs.y, rx, ry) : 99;
+        if (haveFace && toRock >= 1 && toRock <= 2) {
+            mineX_ = rx; mineY_ = ry;
+            LogLine("mine: striking the rock at %d,%d (%d tiles)", rx, ry,
+                    toRock);
+            mineJournalMs_ = client.JournalNowMs();
+            mineSwungMs_ = obs.nowMs;
+            mineCursorPending_ = true;
+            client.ActionUseObject(pick);
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
+    }
+
+    // TWO PASSES: the rock first, then anything left.
+    //
+    // Ore sits inside mountain and cave walls, and those are precisely the
+    // tiles a character CANNOT walk onto. Aiming at open ground is how Corwyn
+    // spent a session being told "Try mining elsewhere" -- he was standing on
+    // a BRIDGE (the owner watched him do it), swinging at the road.
+    //
+    // The second pass keeps the old behaviour so a spot where the walkability
+    // data disagrees with the server is still tried rather than skipped.
+    for (int pass = 0; pass < 2; ++pass) {
     for (int i = 0; i < 8; ++i) {
         const int idx = (mineRing_ + i) % 8;
         const i32 tx = obs.x + kdx[idx], ty = obs.y + kdy[idx];
+        if (pass == 0 && client.TileIsWalkable(tx, ty, obs.z)) continue;
         bool dead = false;
         for (usize k = 0; k < deadTargets_.size(); ++k)
             dead = dead || (deadTargets_[k].first == tx &&
@@ -6756,13 +6852,24 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         if (dead) continue;
         mineRing_ = (idx + 1) % 8;
         mineX_ = tx; mineY_ = ty;
-        LogLine("mine: swinging at %d,%d", tx, ty);
+        LogLine("mine: swinging at %d,%d (%s)", tx, ty,
+                pass == 0 ? "rock" : "any tile left");
         mineJournalMs_ = client.JournalNowMs();
         mineSwungMs_ = obs.nowMs;
         mineCursorPending_ = true;
-        client.ActionUseSkill(rules::kMining);
+        // USE THE PICKAXE, DO NOT INVOKE THE SKILL.
+        //
+        // ActionUseSkill(kMining) is answered by Sphere with "There is no such
+        // skill. Please tell support you saw this" -- thirty times in one
+        // session, which is what "swinging" amounted to. A gathering skill is
+        // not requested by id; it is what the TOOL does. Double-clicking the
+        // pickaxe is what arms the "Where would you like to mine?" cursor that
+        // skill45_mining.scp declares, and DoFish has always done exactly this
+        // with the pole.
+        client.ActionUseObject(pick);
         nextActionMs_ = obs.nowMs + 2500;
         return false;
+    }
     }
 
     LogLine("mine: nothing within reach of %d,%d yields ore -- moving on",

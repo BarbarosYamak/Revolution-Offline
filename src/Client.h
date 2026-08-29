@@ -557,6 +557,23 @@ public:
     // there: a miner standing in Minoc is at work, and one standing in Vesper
     // is not, and nothing could previously tell the two apart.
     i32  DistanceToResource(wm::ResourceKind r) const;
+
+    // Can a character stand on this tile? Mining needs the opposite answer:
+    // ore is inside mountain and cave walls, which are exactly the tiles you
+    // cannot walk onto, so "not walkable" is the best cheap signal for "rock".
+    bool TileIsWalkable(i32 x, i32 y, i8 fromZ) const;
+
+    // The nearest ROCK FACE worth mining: an unwalkable tile that has a
+    // walkable neighbour to stand on. Returns the standing spot in
+    // standX/standY and the rock in rockX/rockY.
+    //
+    // A resource area's recorded position is a region CENTROID, and a centroid
+    // can be anywhere in the region -- Corwyn's was a wooden bridge over
+    // water, which is where he stood swinging at the road. A player walks to
+    // the rock they can see.
+    bool NearestRockFace(i32 fromX, i32 fromY, i8 fromZ, int radius,
+                         i32* standX, i32* standY,
+                         i32* rockX, i32* rockY) const;
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);

@@ -3218,8 +3218,21 @@ void Client::ActionUseBandage(u32 bandageSerial, u32 targetSerial) {
 void Client::ActionOpenBank(u32 bankerSerial, const char* phrase) {
     BeginAction(act::Kind::OpenBank, kBankTimeoutMs);
     action_.subject = bankerSerial;
-    const std::string say =
-        AddressMobile(bankerSerial, phrase && phrase[0] ? phrase : "bank");
+    // SAY "BANK", NOT "JARVINIA BANK".
+    //
+    // "when say bank dont say with name just bank" (project owner,
+    // 2026-08-29), and the game agrees: a player standing in a bank types the
+    // bare word. Prefixing the banker's name made the phrase a NAMED command,
+    // and a named command is matched against that one NPC -- which is why the
+    // trainer path had the identical problem an hour ago, saying "Rhyssa train
+    // Tinkering" while Pembroke was the one who answered.
+    //
+    // The comment this replaces argued the opposite: that a bare keyword is
+    // unnamed, so Source-X picks the closest NPC, and Britain's bankers
+    // wander. Both halves are true and the conclusion was still wrong --
+    // picking the closest NPC is exactly what you want when you are standing
+    // in the bank, and the caller now only says this while it is.
+    const std::string say = phrase && phrase[0] ? phrase : "bank";
     LogInfo("[ACTION] open_bank banker=0x%08X say='%s'\n",
             bankerSerial, say.c_str());
     SayAscii(say.c_str());

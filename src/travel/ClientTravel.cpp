@@ -223,6 +223,51 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
     return TravelToServiceSkipping(s, regionHint, kNoSerials, nullptr);
 }
 
+bool Client::NearestRockFace(i32 fromX, i32 fromY, i8 fromZ, int radius,
+                             i32* standX, i32* standY,
+                             i32* rockX, i32* rockY) const {
+    if (!world_) return false;
+    int bestD = radius + 1;
+    bool found = false;
+    for (int dy = -radius; dy <= radius; ++dy) {
+        for (int dx = -radius; dx <= radius; ++dx) {
+            const i32 rx = fromX + dx, ry = fromY + dy;
+            if (rx < 0 || ry < 0) continue;
+            if (TileIsWalkable(rx, ry, fromZ)) continue;      // not rock
+            // A face is only useful if we can stand beside it.
+            static const int nx[] = {1, -1, 0, 0};
+            static const int ny[] = {0, 0, 1, -1};
+            for (int k = 0; k < 4; ++k) {
+                const i32 sx = rx + nx[k], sy = ry + ny[k];
+                if (sx < 0 || sy < 0) continue;
+                if (!TileIsWalkable(sx, sy, fromZ)) continue;
+                const int ddx = sx - fromX, ddy = sy - fromY;
+                const int ax = ddx < 0 ? -ddx : ddx, ay = ddy < 0 ? -ddy : ddy;
+                const int d = ax > ay ? ax : ay;
+                if (d >= bestD) continue;
+                bestD = d;
+                found = true;
+                if (standX) *standX = sx;
+                if (standY) *standY = sy;
+                if (rockX)  *rockX  = rx;
+                if (rockY)  *rockY  = ry;
+            }
+        }
+    }
+    return found;
+}
+
+bool Client::TileIsWalkable(i32 x, i32 y, i8 fromZ) const {
+    if (!world_ || x < 0 || y < 0) return false;
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(x);
+    q.y = static_cast<u32>(y);
+    q.fromZ = fromZ;
+    q.maxStepUp = 127;
+    q.maxStepDown = 127;
+    return world_->QueryCell(q).walkable;
+}
+
 i32 Client::DistanceToResource(wm::ResourceKind r) const {
     if (!world_knowledge_) return -1;
     const wm::Place* p =
@@ -231,7 +276,14 @@ i32 Client::DistanceToResource(wm::ResourceKind r) const {
     const i32 dx = p->position.x - playerX_;
     const i32 dy = p->position.y - playerY_;
     const i32 ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
-    return ax > ay ? ax : ay;
+    const i32 toCentre = ax > ay ? ax : ay;
+    // TO THE EDGE, NOT THE CENTRE. A resource area is a REGION, not a point:
+    // Minoc's mining places carry radius 20, so a character at its boundary is
+    // 20 tiles from the recorded position and very much at work. Measuring to
+    // the middle made Corwyn "48 tiles from ore" while standing in the mining
+    // district.
+    const i32 edge = toCentre - p->radius;
+    return edge < 0 ? 0 : edge;
 }
 
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
@@ -1773,8 +1825,21 @@ int Client::PlayersNearby(int maxDist) const {
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
         if ((ax > ay ? ax : ay) > maxDist) continue;
+        // AN UNKNOWN TITLE IS NOT A PLAYER.
+        //
+        // The first version counted a mobile whose paperdoll had not arrived
+        // as a person, on the grounds that being wrong that way was harmless.
+        // It is not: paperdolls arrive only when asked for, so a bank full of
+        // NPCs reads as a bank full of customers, and Corwyn announced "WTS 30
+        // i_ingot_iron" six times to a room with nobody in it.
+        //
+        // Requiring a KNOWN title with no " the " in it means the answer is
+        // "yes, a person" only where there is evidence of one. The cost of
+        // being wrong the other way is a missed sale; the cost of being wrong
+        // this way was the shouting the owner asked to stop.
         const char* title = PaperdollTitle(m.serial);
-        if (title && std::strstr(title, " the ")) continue;   // a titled NPC
+        if (!title || !*title) continue;                    // unknown: assume NPC
+        if (std::strstr(title, " the ")) continue;           // a titled NPC
         ++n;
     }
     return n;
