@@ -325,6 +325,9 @@ private:
     // --- crafting ----------------------------------------------------------
     std::string supplyItem_;      // the input currently being shopped for
     std::string supplyTrade_;     // the trade that sells it
+    // and the SERVICE it maps to, so a shopkeeper whose title differs from
+    // the trade word -- "fisherwoman" against "fisher" -- is still found.
+    wm::Service supplyService_ = wm::Service::None;
     int         supplyTrips_ = 0;
     static constexpr int kMaxSupplyTrips = 3;
     // A buy that has been ASKED FOR but not yet settled. The ledger entry is

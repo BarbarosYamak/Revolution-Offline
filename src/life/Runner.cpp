@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <cstdarg>
 #include <cstdio>
+#include <unordered_map>
 #include <cstring>
 
 namespace uo::life {
@@ -75,6 +76,73 @@ constexpr i64 kExploredAllCooldownMs = 300000;
 // A pair of scissors is a few dozen coins from any tailor. Worth a walk.
 constexpr i32 kScissorsMoney = 60;
 constexpr i32 kMaxToolTrips = 3;
+
+// WHAT A CREATURE IS LIKELY TO DO TO YOU, before it has done it.
+//
+// "britain graveyard has specific enemies so zombie skeletal mage etc etc"
+// (project owner, 2026-08-29). The graveyard holds zombies, skeletal mages and
+// spectres, and a new fencer picked the SPECTRE -- the hardest hitter of the
+// three and a caster besides.
+//
+// The danger memory only learned by dying, so a character's first fight was
+// always a coin toss. This is the prior it lacked, generated from the shard's
+// own chardefs (data/revolution_creatures.tsv, 450 creatures): damage weighs
+// heaviest because that is what kills a weak melee character, then armour
+// because it decides whether the fight can be won at all, then hit points, and
+// a flat penalty for anything that casts. The ranking it produces for the
+// graveyard is the one a player would give:
+//
+//   Zombie 0.037 < Skeleton 0.038 < Ghoul 0.054 < Skeletal Mage 0.097
+//                                               < Spectre 0.101
+//
+// It is only a PRIOR. Anything this character has actually learned about a
+// creature overrides it, because being killed by something is better evidence
+// than its stat block.
+std::unordered_map<std::string, double>& SeededCreatureDanger() {
+    static std::unordered_map<std::string, double> table;
+    return table;
+}
+
+void LoadSeededCreatureDanger(const std::string& dataDir) {
+    std::unordered_map<std::string, double>& t = SeededCreatureDanger();
+    if (!t.empty()) return;
+    std::FILE* f = std::fopen((dataDir + "/revolution_creatures.tsv").c_str(), "rb");
+    if (!f) return;
+    char line[512];
+    bool first = true;
+    while (std::fgets(line, sizeof(line), f)) {
+        if (first) { first = false; continue; }          // header
+        std::string row(line);
+        // defname 	 name 	 danger 	 ...
+        const usize t1 = row.find('	');
+        if (t1 == std::string::npos) continue;
+        const usize t2 = row.find('	', t1 + 1);
+        if (t2 == std::string::npos) continue;
+        const usize t3 = row.find('	', t2 + 1);
+        const std::string name = row.substr(t1 + 1, t2 - t1 - 1);
+        const std::string dg =
+            row.substr(t2 + 1, (t3 == std::string::npos ? row.size() : t3) - t2 - 1);
+        if (name.empty()) continue;
+        std::string key;
+        for (char c : name)
+            key.push_back(static_cast<char>(std::tolower(
+                static_cast<unsigned char>(c))));
+        t[key] = std::atof(dg.c_str());
+    }
+    std::fclose(f);
+}
+
+double SeededDangerFor(const std::string& name) {
+    const std::unordered_map<std::string, double>& t = SeededCreatureDanger();
+    std::string key;
+    for (char c : name)
+        key.push_back(static_cast<char>(std::tolower(
+            static_cast<unsigned char>(c))));
+    const auto it = t.find(key);
+    return it == t.end() ? -1.0 : it->second;
+}
+
+
 constexpr i64 kNoToolCooldownMs = 180000;
 // Spare gold, above the profession's reserve, that makes armour shopping
 // sensible rather than reckless.
@@ -2220,7 +2288,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         }
         travelInFlight_ = false;
         // Arrived (or gave up). Ask whoever is here to show their wares.
-        const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade);
+        const u32 keeper = client.NearestShopkeeperWithTrade(tv->trade, tv->service);
         if (!keeper) {
             // BOUND THE TRIPS. This was the last travelling goal without a
             // limit, and it cost a whole session: Edrik logged "arrived but no
@@ -3177,9 +3245,14 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // died to last session is not "weak and alone" today.
             const Memory& mem = state_.memory;
             const i64 now = obs.nowMs;
+            // Learned first, seeded second. Experience beats a stat block.
+            LoadSeededCreatureDanger(client.DataDir());
             const combat::CreatureDangerLookup danger =
                 [&mem, now](const std::string& n) {
-                    return mem.CreatureDanger(n.c_str(), now);
+                    const double learned = mem.CreatureDanger(n.c_str(), now);
+                    if (learned > 0.0) return learned;
+                    const double seeded = SeededDangerFor(n);
+                    return seeded >= 0.0 ? seeded : 0.0;
                 };
 
             const combat::EngagePolicy policy;
@@ -3594,7 +3667,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     if (client.TravelBusy()) return false;
 
     // --- get to one ---------------------------------------------------------
-    const u32 vendor = client.NearestShopkeeperWithTrade(sellTrade_.c_str());
+    const u32 vendor = client.NearestShopkeeperWithTrade(sellTrade_.c_str(),
+                                                        sellService_);
     if (!vendor) {
         if (sellTrips_ >= kMaxSellTrips) {
             LogLine("earn_gold: no '%s' reachable after %d trips; trying the "
@@ -4696,6 +4770,9 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         supplyTrips_ = 0;
         const char* trade = SupplierTradeFor(supplyItem_);
         supplyTrade_ = trade ? trade : "";
+        // The service the trade word maps to, so a shopkeeper wearing a
+        // different title for the same job is still recognised.
+        supplyService_ = ServiceForTrade(supplyTrade_.c_str());
     }
 
     if (supplyTrade_.empty()) {
@@ -4727,7 +4804,8 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
 
     const u32 vendor = client.VendorOfferFrom();
     if (vendor == 0) {
-        const u32 keeper = client.NearestShopkeeperWithTrade(supplyTrade_.c_str());
+        const u32 keeper = client.NearestShopkeeperWithTrade(supplyTrade_.c_str(),
+                                                             supplyService_);
         if (keeper) {
             i32 vx = 0, vy = 0; i8 vz = 0;
             if (client.MobilePosition(keeper, &vx, &vy, &vz)) {
@@ -5709,10 +5787,11 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // four lines would have been the smaller diff and the wrong one -- it edits
     // the shard's economy to suit the bot instead of teaching the bot where
     // food is sold.
-    u32 keeper = client.NearestShopkeeperWithTrade("baker");
+    u32 keeper = client.NearestShopkeeperWithTrade("baker", wm::Service::Baker);
     const char* keeperTrade = "baker";
     if (!keeper) {
-        keeper = client.NearestShopkeeperWithTrade("provisioner");
+        keeper = client.NearestShopkeeperWithTrade("provisioner",
+                                                   wm::Service::Provisioner);
         keeperTrade = "provisioner";
     }
     if (keeper) {
@@ -5861,7 +5940,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         buyTripsOwner_ = owner;
         spellbookTrips_ = 0;
     }
-    const u32 keeper = client.NearestShopkeeperWithTrade(trade);
+    const u32 keeper = client.NearestShopkeeperWithTrade(trade, svc);
     if (!keeper) {
         if (++spellbookTrips_ > kMaxSpellbookTrips) {
             spellbookTrips_ = 0;
@@ -6116,8 +6195,22 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         return false;
     }
 
+    // BUY ONLY WHAT IS ACTUALLY FOR SALE.
+    //
+    // Nobody on this shard sells metal armour. Checking every SELL line in
+    // tm_vend.scp against the plate/chain/ring/leather families, the only
+    // templates carrying any are VENDOR_S_ARMORER_LEATHER, VENDOR_S_TAILOR and
+    // VENDOR_S_JEWELER -- and the armorer's list is LEATHER. Plate and chain
+    // are smith-crafted or looted, full stop.
+    //
+    // So the first version of this shopped for the best piece the character
+    // could wear, which was usually plate, from a trade that has never stocked
+    // it: five of twelve characters logged goal_failed=UPGRADE_GEAR
+    // "no 'armorer' reachable" in one run. Metal is now WORN when looted and
+    // never shopped for; leather is what gets bought.
     const ArmorPiece* want = nullptr;
     for (const ArmorPiece& a : kArmorPieces) {
+        if (a.cls != ArmorClass::Leather) continue;   // the only kind sold
         if (!MayWear(a, obs)) continue;
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
@@ -6130,13 +6223,22 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         return true;
     }
 
-    // An armourer sells metal and leather both; a tailor is no use here.
+    // The armorer's own list is leather (VENDOR_S_ARMORER_LEATHER) and the
+    // tailor carries some too, which is the fallback for a town without one.
+    const bool haveArmorer = client.NearestShopkeeperWithTrade("armorer") != 0;
     LogLine("gear: no piece for an empty slot in the pack -- buying 0x%04X "
-            "(armor %d, needs str %d) from an armourer",
-            want->graphic, want->armor, want->reqStr);
-    BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
-                  want->graphic, false, 1, "a piece of armour",
-                  GoalKind::UpgradeGear);
+            "(leather, armor %d, needs str %d) from a %s",
+            want->graphic, want->armor, want->reqStr,
+            haveArmorer ? "armorer" : "tailor");
+    if (haveArmorer) {
+        BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
+                      want->graphic, false, 1, "a piece of armour",
+                      GoalKind::UpgradeGear);
+    } else {
+        BuyScrollFrom(client, obs, "tailor", wm::Service::Tailor,
+                      want->graphic, false, 1, "a piece of armour",
+                      GoalKind::UpgradeGear);
+    }
     return false;
 }
 

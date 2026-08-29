@@ -199,6 +199,13 @@ public:
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }
     u32  BackpackSerial() const { return PlayerEquipSerialAt(0x15); }  // layer 21 = backpack
+    // The directory the shard data tables were loaded from, derived from the
+    // atlas path. The life layer needs it to find revolution_creatures.tsv.
+    std::string DataDir() const {
+        const std::string p = cfg_.atlasPath ? cfg_.atlasPath : "";
+        const usize cut = p.find_last_of("/\\");
+        return cut == std::string::npos ? std::string("data") : p.substr(0, cut);
+    }
     // Which paperdoll slot this graphic wears in, from tiledata, or 0 if it is
     // not wearable at all. Public because the life layer needs it to compare a
     // looted piece against the one already in that slot -- without it, "is
@@ -350,7 +357,8 @@ public:
     // answers nothing -- "Caedmen guildmaster, why try to buy from him?
     // guildmaster ONLY for training" (project owner, 2026-08-29). This one
     // skips them, and is what the purchase goals ask.
-    u32  NearestShopkeeperWithTrade(const char* trade) const;
+    u32  NearestShopkeeperWithTrade(const char* trade,
+                                    wm::Service svc = wm::Service::None) const;
     void ServiceSightingTail(u32 serial, const char* title, wm::Service svc);
     // Same scan, skipping mobiles already tried and found useless. Sphere
     // gives no way to ask "will you teach me" except to ask, and some NPCs of

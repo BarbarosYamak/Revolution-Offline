@@ -2709,7 +2709,8 @@ u32 Client::NearestGuildmasterForTrade(const char* trade,
 // lookup below, with the guild title refused: a guildmaster teaches, and a
 // character that asks one to open a shop window waits out the timeout and
 // learns nothing.
-u32 Client::NearestShopkeeperWithTrade(const char* trade) const {
+u32 Client::NearestShopkeeperWithTrade(const char* trade,
+                                       wm::Service svc) const {
     if (!trade || !trade[0]) return 0;
     auto lower = [](std::string s) {
         for (char& c : s)
@@ -2732,7 +2733,17 @@ u32 Client::NearestShopkeeperWithTrade(const char* trade) const {
         std::string job = t.substr(the + 5);
         const usize sp = job.find_first_of(" ,.");
         if (sp != std::string::npos) job.resize(sp);
-        if (job != want) continue;
+        if (job != want) {
+            // MATCH BY SERVICE WHEN THE WORDS DIFFER. A trade is asked for by
+            // ONE name and worn under several: Shika is "the fisherwoman", not
+            // "the fisher". The lookup this was split from has carried that
+            // fallback since a fisher walked past its own buyer three times,
+            // and dropping it here brought the bug straight back -- Nessa
+            // logged "no 'fisher' reachable after 3 trips; trying the next
+            // trade" with a fisherman standing in the shop.
+            if (svc == wm::Service::None) continue;
+            if (ServiceForPaperdollJob(job.c_str()) != svc) continue;
+        }
         const int dx = m.x - playerX_, dy = m.y - playerY_;
         const int d = (dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy);
         if (!best || d < bestD) { best = m.serial; bestD = d; }
