@@ -839,7 +839,21 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
             h = h * 131 + static_cast<unsigned char>(c);
         }
         const std::vector<std::string>& homes = needCfg_.profession->homeCities;
-        state_.homeCity = homes[h % homes.size()];
+        // A LIFE WHOSE WORK IS GEOGRAPHIC LIVES WHERE THE WORK IS.
+        //
+        // "miners home city then minoc" and "lumberjacks too" (project owner,
+        // 2026-08-29). The hash exists to spread a fleet across the map, which
+        // is right for a trade you can practise anywhere -- a scribe, a mage,
+        // an alchemist. It is wrong for one you cannot: Minoc is FIRST in the
+        // miner's list precisely because that is where the ore is, and Corwyn
+        // still rolled Vesper and spent his sessions walking back to it.
+        //
+        // So a profession that GATHERS something takes the first entry, which
+        // the catalogue already orders by where that work actually happens.
+        // Everyone else still spreads out.
+        const bool workIsPlaceBound = !needCfg_.profession->gathers.empty();
+        state_.homeCity = workIsPlaceBound ? homes.front()
+                                           : homes[h % homes.size()];
         LogLine("home: %s lives in %s", state_.identity.characterName.c_str(),
                 HomeOrNearest(state_.homeCity));
     }

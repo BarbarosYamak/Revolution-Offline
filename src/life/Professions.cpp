@@ -1018,7 +1018,10 @@ const std::vector<Profession>& All() {
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.35;
             p.goldReserve = 450;
-            p.homeCities = {"Britain", "Minoc", "Yew"};
+            // Minoc first: this build's creation skills are Mining and Blacksmithing
+            // and it gathers ore, so it lives where the ore is. It was left on
+            // Britain when the build changed earlier today.
+            p.homeCities = {"Minoc", "Britain", "Yew"};
             v.push_back(std::move(p));
         }
 
