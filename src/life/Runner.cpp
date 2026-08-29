@@ -28,7 +28,19 @@ constexpr u16 kAxe[]      = {0x0F49, 0x0F4A};
 constexpr u16 kLog        = 0x1BDD;
 constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
-constexpr u16 kFood[]     = {0x103B, 0x09EB, 0x09F2};
+// WHAT THIS SHARD ACTUALLY SELLS AS FOOD, read from its own itemdefs rather
+// than from generic UO. The first three were all the old list had, and a
+// baker's window is mostly none of them -- Voris stood in front of pizzas and
+// pans of cookies with an empty stomach.
+//
+//   0x103B i_bread_loaf     0x1041 i_pie_baked    0x09E9 i_cake
+//   0x09EA i_muffin         0x098C i_bread_french 0x160B i_pan_cookies
+//   0x1040 i_pizza          0x160A i_lamb_leg     0x1608 i_chicken_leg
+//   0x09B7 i_bird_cooked    0x09C9 i_ham          0x09EB/0x09F2 kept from
+//                                                 the original list
+constexpr u16 kFood[]     = {0x103B, 0x1041, 0x09E9, 0x09EA, 0x098C, 0x160B,
+                             0x1040, 0x160A, 0x1608, 0x09B7, 0x09C9,
+                             0x09EB, 0x09F2};
 constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
 // i_spellbook, ITEMDEF 0efa. A spell scroll's graphic is 0x1F2D + the spell
 // number: Create Food is spell 2 at 0x1F2F, Heal is 4 at 0x1F31, Magic Arrow
@@ -5318,6 +5330,34 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
                     "walking up before speaking", keeperTrade, d, dz);
             travelInFlight_ = client.TravelToEntity(keeper, 1);
             nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        // AND THEN BUY SOMETHING. This step did not exist.
+        //
+        // The goal opened the shop and waited, the tick came round, it found
+        // no food in the pack, and it opened the shop again -- 113 times in
+        // one session, in front of a baker's full window. Every previous
+        // "GET_FOOD failed" was this: the errand had no purchase in it at all,
+        // so it could never once have succeeded, whichever vendor it asked.
+        if (!client.VendorOffer().empty()) {
+            for (const Client::VendorItem& v : client.VendorOffer()) {
+                if (!GraphicIsAny(v.graphic, kFood,
+                                  sizeof(kFood) / sizeof(kFood[0])))
+                    continue;
+                const i32 unit = static_cast<i32>(v.price);
+                if (unit > 0 && unit > obs.gold) continue;
+                LogLine("food: buying %s from the %s at %d gold",
+                        v.name.c_str(), keeperTrade, unit);
+                client.ActionVendorBuy(keeper, v.serial, 2);
+                planner_.NoteAttempt(obs.nowMs);
+                // Longer than kVendorTimeoutMs, or the ask supersedes itself.
+                nextActionMs_ = obs.nowMs + 9000;
+                return false;
+            }
+            LogLine("goal_failed=GET_FOOD reason=\"the %s has nothing edible "
+                    "this life can afford (%d gold)\"", keeperTrade, obs.gold);
+            planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+            planner_.Finish(false, "vendor has no affordable food", obs.nowMs);
             return false;
         }
         LogLine("food: nothing to eat -- asking the %s", keeperTrade);
