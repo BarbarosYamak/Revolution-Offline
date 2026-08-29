@@ -224,6 +224,9 @@ private:
     static constexpr i32 kMaxGhostTrips = 4;
     i32  foodTrips_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
+    // GET_TOOL is in the Emergency family and therefore exempt from
+    // satiation, so a cooldown is its only brake. It had none.
+    static constexpr i64 kNoToolCooldownMs = 3 * 60 * 1000;
     static constexpr i64 kNoFoodCooldownMs = 3 * 60 * 1000;
     // Below this there is no point walking to a shop. A loaf is a few coins;
     // this is "can I buy anything at all", not a price.

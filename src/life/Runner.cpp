@@ -1725,7 +1725,15 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         LogLine("goal_failed=GET_TOOL reason=\"%s\" tool=%s",
                 faucet::RefusalName(faucet::Refusal::NoKnownBuyer),
                 toolName.c_str());
+        // STAND DOWN. No cooldown here meant the goal failed and was
+        // re-picked on the very next tick: Bruin logged 2,058 GET_TOOL goals
+        // in ten minutes at sixty-millisecond intervals (run_m7/f6_Bruin).
+        // GET_TOOL sits in the Emergency family, which is exempt from
+        // satiation by design -- nobody should get bored of needing an axe --
+        // so a cooldown is the ONLY brake it has, and it had none.
+        planner_.Cooldown(GoalKind::GetTool, obs.nowMs + kNoToolCooldownMs);
         planner_.Finish(false, "no trade known to sell it", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
         return false;
     }
 
@@ -1744,7 +1752,11 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         state_.memory.NoteEvent("policy_refused", toolName.c_str(),
                                 econ::VendorClassName(ruling.klass),
                                 obs.x, obs.y, obs.nowMs);
+        // Same stand-down. A policy refusal is a settled answer, not a
+        // temporary one -- re-asking it sixty times a second changes nothing.
+        planner_.Cooldown(GoalKind::GetTool, obs.nowMs + kNoToolCooldownMs);
         planner_.Finish(false, "the vendor policy refuses this tool", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
         return false;
     }
 
