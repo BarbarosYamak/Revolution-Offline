@@ -443,9 +443,23 @@ int main(int argc, char** argv) {
                 // "if it is empty it is britain not yew" (project owner,
                 // 2026-08-29). A fisher with no homeCities at all came into
                 // the world in the Empath Abbey.
+                //
+                // The kStarts ORDER is the shard's own (map0_starts.scp), so
+                // Yew keeps its index and must not be removed from this list.
+                // Yew is excluded by not naming it in any profession's
+                // homeCities instead -- "we dont use yew as starting or
+                // hometown" (project owner, 2026-08-30) -- and the guard below
+                // is the backstop if one is ever added back by accident.
                 cfg.startCity = 2;                    // Britain
                 for (int i = 0; i < 9; ++i) {
                     if (home == kStarts[i]) { cfg.startCity = i; break; }
+                }
+                if (cfg.startCity == 0) {             // Yew
+                    std::fprintf(stderr, "start: %s resolved to Yew, which "
+                                         "this shard does not use as a home "
+                                         "-- starting in Britain instead\n",
+                                 cfg.charName);
+                    cfg.startCity = 2;
                 }
                 std::fprintf(stderr, "start: %s is a %s and lives in %s -> "
                                      "starting city index %d\n",

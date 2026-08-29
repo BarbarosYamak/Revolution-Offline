@@ -274,6 +274,9 @@ public:
 
     // Targeting (answering a cursor the server armed)
     bool ActionTargetObject(u32 serial);
+    // Ask the server for a mobile's health (0x34). Without this a foe's
+    // hpCur stays at its -1 default and every fight reads as a stalemate.
+    void RequestMobileStatus(u32 serial) { SendStatusRequest(serial); }
     bool ActionTargetGround(i32 x, i32 y, i8 z);
     // Answer a cursor with a STATIC tile, naming its graphic. Required for
     // anything the server identifies through CanTouchStatic(&pt, id, ...) --

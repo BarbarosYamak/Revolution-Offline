@@ -32,7 +32,7 @@ i_keg_potion	PLAYER_MARKET	PLAYER_MARKET_GOOD	0	SCRIPT i_keg_potion SKILLMAKE=TI
 i_sewing_kit	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT i_sewing_kit SKILLMAKE=Tinkering 18.8,t_tinker_tools,Tailoring 18.8
 i_scissors	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT i_scissors SKILLMAKE=Tinkering 14.5
 i_pen_and_ink	PLAYER_CRAFTED	BASIC_CRAFT_TOOL	0	SCRIPT i_pen_and_ink SKILLMAKE=Tinkering 44.1 -- the scribe's tool is a TINKER product
-i_bottle_empty	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
+i_bottle_empty	PLAYER_CRAFTED	REVOLUTION_NPC_VERIFIED	0	SCRIPT i_bottle_empty SKILLMAKE=Alchemy 25.0,t_glassblowing_tool
 i_potion_heal	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal
 i_potion_poison	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; RESOURCES=2 i_reag_nightshade,1 i_bottle_empty
 i_potion_cure	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure

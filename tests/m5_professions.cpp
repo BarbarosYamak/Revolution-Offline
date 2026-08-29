@@ -12,6 +12,7 @@
 #include "uo/life.h"
 #include "uo/professions.h"
 #include "uo/rules.h"
+#include "uo/production.h"
 
 #include <cstdio>
 #include <set>
@@ -582,6 +583,49 @@ void TestTheZeroSkillSlot() {
           "at least one build starts a skill from literally nothing");
 }
 
+// EVERY RECIPE INPUT MUST BE DECLARED.
+//
+// Runner.cpp builds obs.pack by counting ONLY the items a profession lists in
+// `produces` or `consumes`. Anything else reads as ZERO however many are
+// actually in the backpack -- so a missing entry does not degrade behaviour,
+// it makes the item invisible and the life buys it forever.
+//
+// This has now bitten three times in one day:
+//   i_kindling  -- unlisted for the fisher, so bought kindling read as zero
+//                  and cooking could never begin
+//   i_reag_nightshade -- unlisted for the alchemist, so Voris bought ten at a
+//                  time, three times over, and was still told
+//                  "i_potion_poison needs 10 x i_reag_nightshade" with an
+//                  empty purse
+//   i_rolling_pin -- needed as a tool before a fisher could cook at all
+//
+// It is a table-consistency error, so it belongs at build time rather than in
+// a live run at two in the morning.
+void TestEveryRecipeInputIsDeclared() {
+    for (const prof::Profession& p : prof::All()) {
+        for (const std::string& made : p.produces) {
+            const prod::Recipe* r = prod::FindRecipe(made.c_str());
+            if (!r) continue;                     // gathered, not crafted
+            for (const prod::Ingredient& in : r->inputs) {
+                if (!in.item || in.qty <= 0) continue;
+                bool declared = false;
+                for (const std::string& c : p.consumes)
+                    if (c == in.item) { declared = true; break; }
+                for (const std::string& m : p.produces)
+                    if (m == in.item) { declared = true; break; }
+                if (!declared) {
+                    std::printf("  FAIL: %s makes %s which needs %s, but that "
+                                "input is in neither produces nor consumes -- "
+                                "it will count as zero in the pack\n",
+                                p.id.c_str(), made.c_str(), in.item);
+                    ++g_failures;
+                }
+                ++g_checks;
+            }
+        }
+    }
+}
+
 int main() {
     std::printf("m5_professions\n");
     TestEveryEntryIsLegal();
@@ -597,6 +641,7 @@ int main() {
     TestTrainerMemory();
     TestSkillRoles();
     TestTierIsObservedNotAssigned();
+    TestEveryRecipeInputIsDeclared();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

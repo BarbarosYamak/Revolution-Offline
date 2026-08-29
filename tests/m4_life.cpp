@@ -1193,19 +1193,30 @@ void TestUnsatisfiableNeedIsBlocked() {
     obs.axeEquipped = true;
     obs.weight = 10; obs.maxWeight = 500;
 
-    // i_bandage is not in the M3.7 vendor matrix at all, so it grades UNKNOWN
-    // and the policy refuses it. The live lumberjack had 1000 gold, so this
-    // need looked satisfiable, won the scoring at 130, and sat on a 30-second
-    // retry forever. It never chopped a log.
+    // UPDATED 2026-08-30. This used to assert the OPPOSITE, and the comment
+    // explained why: i_bandage was not in the vendor matrix at all, so it
+    // graded UNKNOWN and the policy refused it, and the test pinned that
+    // refusal in place as correct behaviour.
+    //
+    // It was not correct, it was a table gap -- the same one as i_kindling and
+    // i_bottle_empty. VENDOR_S_HEALER_SHOP (tm_vend.scp:1072, {5 20}) and
+    // VENDOR_S_VET (:509, {6 66}) both sell bandages outright, and the whole
+    // buy path in DoReplaceEquipment was already wired and waiting. A fencer
+    // could not fight for want of a row in a table, and this test was part of
+    // what kept it that way: it would have failed the moment anyone fixed it.
+    //
+    // So the expectation is inverted: with gold in the purse and a real seller
+    // in the world, wanting bandages is an ERRAND, not a blocked state.
     const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, cfg);
     bool found = false;
     for (const life::Need& n : needs) {
         if (n.kind != life::NeedKind::NeedEquipment) continue;
         if (n.what != "bandages") continue;
         found = true;
-        Check(n.blocked,
-              "the bandage need is BLOCKED despite a purse full of gold");
-        Check(!n.evidence.empty(), "and says why, so the gap is legible");
+        Check(!n.blocked,
+              "a purse full of gold and a healer who sells bandages makes "
+              "this an errand, not a blocked state");
+        Check(!n.evidence.empty(), "and says why, so the reasoning is legible");
     }
     Check(found, "the bandage need is still reported, not silently dropped");
 
@@ -1214,7 +1225,7 @@ void TestUnsatisfiableNeedIsBlocked() {
     const std::vector<life::ScoredGoal> goals = planner.Score(needs, obs, mem);
     for (const life::ScoredGoal& g : goals) {
         if (g.kind != life::GoalKind::ReplaceEquipment) continue;
-        Check(!g.feasible, "REPLACE_EQUIPMENT is not a feasible goal here");
+        Check(g.feasible, "REPLACE_EQUIPMENT is a feasible goal here");
     }
 }
 

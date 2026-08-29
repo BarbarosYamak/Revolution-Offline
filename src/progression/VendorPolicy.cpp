@@ -217,9 +217,40 @@ const Row kMatrix[] = {
     // scribe's income, so the class has to say so.
     {"i_scroll_poison",      VendorClass::RevolutionNpcVerified},
     {"i_scroll_recall",      VendorClass::RevolutionNpcVerified},
-    // i_bottle_empty stays UNKNOWN: nothing has been produced for it, and the
-    // alchemy chain is genuinely blocked until something is.
-    {"i_bottle_empty",       VendorClass::Unknown},
+    // EMPTY BOTTLES. This said "nothing has been produced for it, and the
+    // alchemy chain is genuinely blocked until something is". That was wrong,
+    // and it was wrong in the most instructive way available: the shard writes
+    // the SELL row in a different case from the BUY row --
+    //     tm_vend.scp:597   SELL=i_BOTTLE_EMPTY,250        (VENDOR_S_ALCHEMIST)
+    //     tm_vend.scp:1320  SELL=i_BOTTLE_EMPTY,{5 38}     (VENDOR_S_PROVISIONER)
+    //     tm_vend.scp:606   BUY=i_bottle_empty,{3 18}
+    // so a case-sensitive search for the lowercase defname finds only the BUY
+    // rows and reports that nobody sells them. Sphere scripts are
+    // case-insensitive; our greps have to be too.
+    //
+    // Runner.cpp already maps i_bottle_empty -> "alchemist" as a supplier
+    // route, so the whole path was wired and only this grading refused it. An
+    // alchemist starts with four bottles from the newbie kit and needs one per
+    // potion; without a purchasable bottle the chain stops at four.
+    {"i_bottle_empty",       VendorClass::RevolutionNpcVerified},
+
+    // BANDAGES. The same class of gap as i_kindling: absent from this table,
+    // so ClassifyForVendor fell through to Unknown and DoReplaceEquipment
+    // (life/Runner.cpp) permanently refused to buy them regardless of gold --
+    // "no supplier and the vendor policy grades a bandage UNKNOWN" -- while
+    // the runtime's own vendor stock sells them outright: VENDOR_S_HEALER_SHOP
+    // (runtime/scripts/templates/tm_vend.scp:1072, SELL=i_bandage,{5 20}) and
+    // VENDOR_S_VET (:509, SELL=i_bandage,{6 66}), both live/uncommented rows,
+    // not a TNS-swapped or stock-Sphere-only leftover. life/Needs.cpp already
+    // documents this fact ("Bandages ARE sold here (VENDOR_S_HEALER_SHOP,
+    // VENDOR_S_VET)") and the whole buy path in DoReplaceEquipment -- travel
+    // to a healer, open the vendor, match the graphic, buy -- was already
+    // wired and waiting; only this table's silence was stopping it. A
+    // Sphere-era warrior economy that cannot buy its own bandages cannot
+    // fight, which is exactly the deadlock that cost Kaelen the session
+    // (2026-08-29/30 live runs: bandages=0, no scissors, no sheep found,
+    // hp regen blocked by hunger -- every exit locked behind another).
+    {"i_bandage",            VendorClass::RevolutionNpcVerified},
 };
 
 // Graphic -> defname, for the live buy path. A vendor offer on the wire carries
@@ -259,6 +290,15 @@ const GraphicRow kGraphics[] = {
     {0x1053, "i_gears"},
     {0x14FB, "i_lockpick"},
     {0x0F51, "i_dagger"},        {0x0F52, "i_dagger"},
+    // THE SPELLBOOK. kMatrix already grades i_spellbook PlayerMarketGood,
+    // which is ALLOWED -- but a vendor offer arrives on the wire as a GRAPHIC,
+    // and with no row here ItemNameForGraphic(0x0EFA) returned null and
+    // CanUseNPCVendorForGraphic fell through to Unknown and refused:
+    //   [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is
+    //   not in the audited vendor matrix ... [UNKNOWN]
+    // 32 times in one run. A grading is only reachable if the graphic that
+    // names it is here too -- the two tables have to agree.
+    {0x0EFA, "i_spellbook"},
     {0x1541, "i_sash"},
     {0x1F03, "i_robe"},          {0x1F04, "i_robe"},
     {0x1F14, "i_rune_marker"},
@@ -313,6 +353,11 @@ const GraphicRow kGraphics[] = {
     // and the supplies goal would shop for it forever.
     {0x0DE1, "i_kindling"},      {0x0DE2, "i_kindling"},
     {0x1043, "i_rolling_pin"},
+    // Bandages: [ITEMDEF 0e21] i_profession.scp:158, DUPELIST 0x0EE9. Without
+    // this row CanUseNPCVendorForGraphic(kBandage) (life/Runner.cpp) could
+    // never resolve a defname for the offer on the wire and fell through to
+    // Unknown no matter what the matrix above said.
+    {0x0E21, "i_bandage"},       {0x0EE9, "i_bandage"},
 };
 
 const std::vector<std::pair<const char*, VendorClass>>& Matrix() {

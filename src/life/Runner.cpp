@@ -1201,7 +1201,24 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     // has been told is inside it, which is only populated after the book has
     // been opened once -- so 0 here means "no book, or a book we have not
     // looked in yet", and the goal opens it rather than assuming it is empty.
+    // A BOOK IN THE HAND IS STILL A BOOK. This looked in the backpack only,
+    // while the tools scan a few lines above checks the same graphic in the
+    // pack AND both hands -- so every "needs considered" line reported
+    // held=[spellbook,] while spellbookSerial stayed 0. DoFillSpellbook trusts
+    // this value, so Ilyandra spent a whole life believing she had no book:
+    // "opening the book" never fired once in 1,300 log lines, she tried to BUY
+    // a second spellbook 32 times, and Magery could never be practised
+    // ("Create Food is not in this character's spellbook") because the book she
+    // was wearing was invisible to the only code that reads it.
     obs.spellbookSerial = client.FindBackpackItemByGraphic(kSpellbookGraphic);
+    if (!obs.spellbookSerial) {
+        for (u8 layer : {kLayerHand1, kLayerHand2}) {
+            if (client.EquippedGraphicAt(layer) == kSpellbookGraphic) {
+                obs.spellbookSerial = client.EquippedAtLayer(layer);
+                break;
+            }
+        }
+    }
     obs.spellsKnown =
         obs.spellbookSerial
             ? static_cast<int>(client.ContainerItemCount(obs.spellbookSerial))
@@ -2213,9 +2230,26 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         chaseBestDist_ = dist;
         chaseProgressMs_ = obs.nowMs;
         fightStartedMs_ = obs.nowMs;
+        // ASK FOR ITS HEALTH, or the whole fight is judged blind.
+        //
+        // The stalemate test below reads target->hpCur, and NOTHING in the
+        // life layer ever filled it: SendStatusRequest -- the 0x34 status
+        // query that makes a server send a mobile's health -- was called only
+        // from the JS scenario bindings. So hpCur stayed at its -1 default,
+        // foeHp was always -1.0, `noDent` was UNCONDITIONALLY TRUE, and every
+        // autonomous fight disengaged at 21 seconds as a "stalemate" however
+        // well it was going:
+        //   interrupt=DISENGAGE reason="21s of fighting and Zombie is still at
+        //   unknown health; this is a stalemate"
+        // It then marked the foe unreachable and noted it as dangerous, so the
+        // character taught itself to avoid the very monsters it was beating --
+        // and that verdict persisted across sessions. This is why no bot has
+        // ever recorded a confirmed kill.
+        client.RequestMobileStatus(target->serial);
         foeHpAtStart_ = target->hpCur >= 0 && target->hpMax > 0
                             ? static_cast<double>(target->hpCur) / target->hpMax
                             : -1.0;
+        foeHpAskedMs_ = obs.nowMs;
         LogLine("engaging %s (noto %d) at %d,%d",
                 target->name.empty() ? "a hostile" : target->name.c_str(),
                 target->noto, target->x, target->y);
@@ -2226,6 +2260,19 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     // the goal-level timeout only restarted it every five minutes because
     // something was still attacking. So the fight itself is bounded on the one
     // signal a client actually has -- the foe's health bar.
+    // KEEP ASKING. One query at the start only ever yields the opening value;
+    // the stalemate test needs to see the bar MOVE, so re-ask while swinging.
+    if (obs.nowMs - foeHpAskedMs_ > 3000) {
+        client.RequestMobileStatus(target->serial);
+        foeHpAskedMs_ = obs.nowMs;
+        // The first reply is also the first honest opening reading -- before
+        // it, foeHpAtStart_ could only ever have been -1.
+        if (foeHpAtStart_ < 0.0 && target->hpCur >= 0 && target->hpMax > 0) {
+            foeHpAtStart_ =
+                static_cast<double>(target->hpCur) / target->hpMax;
+        }
+    }
+
     if (obs.nowMs - fightStartedMs_ > kFightAssessMs) {
         const double foeHp = target->hpCur >= 0 && target->hpMax > 0
                                  ? static_cast<double>(target->hpCur) / target->hpMax
@@ -5553,6 +5600,18 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 15000;
             return false;
         }
+
+        // COIN IN THE PACK, NOT IN THE BOX. obs.gold is the status-bar total
+        // and counts the bank on this shard, so "spendable" above can be a
+        // comfortable number while the purse is empty -- and the vendor is the
+        // one who notices:
+        //   supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+        //   Shunnar: Begging thy pardon, but thou canst not afford that.
+        //   supplies: asked to buy i_scroll_blank and the purse did not move
+        // Ysolde repeated that 42 times in one run holding 409 gold, all of it
+        // banked. GET_TOOL and the trainer fee already fetch their coin first;
+        // this path was simply never wired to do the same.
+        if (FetchCoinForPurchase(client, obs, take * unit)) return false;
 
         market::PriceObservation po;
         po.item = supplyItem_;

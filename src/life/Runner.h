@@ -222,6 +222,8 @@ private:
     // foe's health bar.
     static constexpr i64 kFightAssessMs = 20000;
     i64  fightStartedMs_ = 0;
+    // When the foe was last asked for its health (0x34).
+    i64  foeHpAskedMs_ = 0;
     double foeHpAtStart_ = -1.0;
     i64  lastBandageMs_ = 0;
     i64  lastDangerNoteMs_ = 0;   // one danger note per fight, not per tick

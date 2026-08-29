@@ -229,7 +229,17 @@ const std::vector<Profession>& All() {
             // are all MATERIALS and go to players, while a club is a finished
             // weapon the blunt weaponsmith buys. Without it this life crafts
             // all day and has no income at all.
-            p.produces = {"i_log", "i_board", "i_scroll_blank", "i_club"};
+            // i_parchment belongs HERE, not in consumes. A blank scroll is
+            // made from parchment and parchment is made from a log
+            // (Production.cpp: i_parchment <- {i_log 1}, Carpentry 25.7) --
+            // both by this life's own hands, from the wood it cuts itself. It
+            // still has to be DECLARED, because obs.pack counts only what a
+            // profession produces or consumes and an unlisted item reads as
+            // zero; but declaring it as consumed would have made the
+            // deliberately self-sufficient lumberjack look dependent on
+            // somebody else, which it is not.
+            p.produces = {"i_log", "i_board", "i_parchment", "i_scroll_blank",
+                          "i_club"};
             p.tools = {{"hatchet", V(kHatchet, 2), true}};
             p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.55;
@@ -239,8 +249,14 @@ const std::vector<Profession>& All() {
             // the fights that pay for everything. A fighter's reserve is its
             // ability to walk back into a graveyard.
             p.goldReserve = 10000;
-                        // Yew is the forest. Britain and Skara Brae have woods within reach.
-            p.homeCities = {"Yew", "Britain", "Skara Brae"};
+            // NOT YEW. "we dont use yew as starting or hometown" (project
+            // owner, 2026-08-30). Yew is the obvious forest, but the shard's
+            // Yew bank at 652,820 is not reachable to the pathfinder, so a
+            // life based there loses whole errands to "no path" -- and a
+            // gatherer takes homeCities.front() as its home, so Yew first
+            // meant Yew always. Britain and Skara Brae both have woods within
+            // reach and banks that work.
+            p.homeCities = {"Britain", "Skara Brae"};
             v.push_back(std::move(p));
         }
 
@@ -451,8 +467,21 @@ const std::vector<Profession>& All() {
             // Faucets.cpp poison_potion_to_alchemist.
             p.produces = {"i_potion_poison", "i_potion_heal", "i_potion_healgreat",
                           "i_potion_refresh", "i_potion_cure"};
+            // EVERY REAGENT ITS RECIPES ACTUALLY NAME. i_reag_nightshade was
+            // missing, and it is the one poison is made of
+            // (Production.cpp: i_potion_poison <- {i_reag_nightshade 2,
+            // i_bottle_empty 1}; the greater poison wants 8).
+            //
+            // This list is not documentation: Runner.cpp builds obs.pack by
+            // counting ONLY what a profession `produces` or `consumes`, so an
+            // unlisted input reads as ZERO however many are in the backpack.
+            // Voris bought nightshade ten at a time, three times over, and was
+            // still told "i_potion_poison needs 10 x i_reag_nightshade" until
+            // his purse was empty -- the same shape as i_kindling, which read
+            // as zero for every fisher until it was listed.
             p.consumes = {"i_reag_black_pearl", "i_reag_garlic",
-                          "i_reag_ginseng", "i_bottle_empty"};
+                          "i_reag_ginseng", "i_reag_nightshade",
+                          "i_bottle_empty"};
             p.tools = {{"mortar", {kMortar}, false}};
             p.consumables = {Food()};
             p.riskTolerance = 0.25;
@@ -707,7 +736,8 @@ const std::vector<Profession>& All() {
             p.goldReserve = 300;
             // Yew is the forest CR-07 names as the special-log source; Skara
             // Brae and Trinsic sit within bow range of it.
-            p.homeCities = {"Yew", "Skara Brae", "Trinsic"};
+            // Yew removed on the owner's instruction, 2026-08-30.
+            p.homeCities = {"Skara Brae", "Trinsic", "Britain"};
             v.push_back(std::move(p));
         }
 
@@ -1042,7 +1072,16 @@ const std::vector<Profession>& All() {
             // from someone else is the reagent side, and only once it has
             // the gold and supply access for Alchemy at all, which the
             // owner places on day two rather than day one.
-            p.consumes = {"i_reag_garlic"};
+            // AND THE MATERIALS ITS OWN RECIPES NAME. i_log and i_ingot_iron
+            // were missing: this life GATHERS both, and the comment above
+            // reasoned from that to leaving them out. But `consumes` is not a
+            // shopping list -- Runner.cpp builds obs.pack from `produces` plus
+            // `consumes` and nothing else, so an unlisted material reads as
+            // ZERO whether it was bought, mined or chopped. A full crafter
+            // could never have smithed: i_dagger and i_spear_short both want
+            // i_ingot_iron, and i_board wants i_log.
+            p.consumes = {"i_reag_garlic", "i_log", "i_ingot_iron",
+                          "i_cloth", "i_thread"};
             // THE TOOLS THIS LIFE NEEDS TODAY COME FIRST.
             //
             // This listed only production tools -- tongs, saw, mortar -- while
@@ -1069,7 +1108,8 @@ const std::vector<Profession>& All() {
             // Minoc first: this build's creation skills are Mining and Blacksmithing
             // and it gathers ore, so it lives where the ore is. It was left on
             // Britain when the build changed earlier today.
-            p.homeCities = {"Minoc", "Britain", "Yew"};
+            // Yew removed on the owner's instruction, 2026-08-30.
+            p.homeCities = {"Minoc", "Britain"};
             v.push_back(std::move(p));
         }
 
@@ -1127,7 +1167,12 @@ const std::vector<Profession>& All() {
             // Hides are a hunter's product, not something this life gathers
             // itself -- the leather-tunic half of its output depends on
             // someone else's kill.
-            p.consumes = {"i_hides_cut"};
+            // AND EVERY MATERIAL ITS RECIPES NAME. obs.pack is built from
+            // `produces` + `consumes` alone, so an undeclared input counts as
+            // ZERO however many are carried -- a tailor could never have made
+            // a robe or a sash, because the cloth and thread in her pack were
+            // invisible to the code that checks for them.
+            p.consumes = {"i_hides_cut", "i_yarn_ball", "i_cloth", "i_thread"};
             p.tools = {{"sewing kit", {kSewingKit}, false},
                        {"scissors",   {kScissors},  false}};
             p.consumables = {Bandages(), Food()};
@@ -1189,7 +1234,12 @@ const std::vector<Profession>& All() {
                           "i_pickaxe", "i_scissors", "i_sewing_kit",
                           "i_pen_and_ink", "i_barrel_tap", "i_barrel_hoops",
                           "i_keg_potion"};
-            p.consumes = {"i_ingot_iron"};
+            // Same reason as the tailor's list above: a tinker's own recipes
+            // name boards, bowls, needles, thread, yarn, feathers and ink, and
+            // anything left out of this list reads as zero in the pack.
+            p.consumes = {"i_ingot_iron", "i_board", "i_bowl_wood",
+                          "i_feather", "i_ink_well", "i_sewing_needle",
+                          "i_thread", "i_yarn_ball"};
             p.tools = {{"tinker tools", {kTinkerTools}, false},
                        {"pickaxe",      V(kPickaxe, 2), true}};
             p.consumables = {Bandages(), Food()};
