@@ -29,6 +29,52 @@ const char* GoalKindName(GoalKind g) {
     return "?";
 }
 
+const char* GoalFamilyName(GoalFamily f) {
+    switch (f) {
+        case GoalFamily::Emergency: return "emergency";
+        case GoalFamily::Upkeep:    return "upkeep";
+        case GoalFamily::Work:      return "work";
+        case GoalFamily::Training:  return "training";
+        case GoalFamily::Social:    return "social";
+        case GoalFamily::Wander:    return "wander";
+        case GoalFamily::Count:     break;
+    }
+    return "?";
+}
+
+// The mapping is deliberately coarse. It answers "what KIND of thing is the
+// character doing", which is the question a rounded day is measured by -- not
+// "which subsystem owns this goal".
+GoalFamily FamilyOf(GoalKind k) {
+    switch (k) {
+        case GoalKind::Survive:
+        case GoalKind::Heal:
+        case GoalKind::RecoverCorpse:
+        case GoalKind::GetTool:
+            return GoalFamily::Emergency;
+        case GoalKind::Bank:
+        case GoalKind::ReplaceEquipment:
+            return GoalFamily::Upkeep;
+        case GoalKind::GatherLogs:
+        case GoalKind::Fish:
+        case GoalKind::Craft:
+        case GoalKind::BuySupplies:
+        case GoalKind::EarnGold:
+            return GoalFamily::Work;
+        case GoalKind::TrainCombat:
+        case GoalKind::TrainAtNpc:
+            return GoalFamily::Training;
+        case GoalKind::TradeWithPlayer:
+            return GoalFamily::Social;
+        case GoalKind::TravelToRequiredPlace:
+        case GoalKind::IdleBriefly:
+            return GoalFamily::Wander;
+        case GoalKind::Count:
+            break;
+    }
+    return GoalFamily::Wander;
+}
+
 namespace {
 
 std::string Fmt(const char* fmt, ...) {
@@ -211,13 +257,19 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
         }
 
         // --- satiation: let something else have a turn ------------------
-        const double sat = Satiation(spec.kind, obs.nowMs);
+        // The stronger of the two claims wins -- doing the same errand over
+        // and over, or doing the same KIND of thing over and over.
+        const double goalSat = Satiation(spec.kind, obs.nowMs);
+        const double famSat = FamilySatiation(spec.kind, obs.nowMs);
+        const double sat = goalSat > famSat ? goalSat : famSat;
         if (sat > 0.0) {
             const double before = g.score;
             g.score *= (1.0 - sat);
-            g.reasons.push_back(Fmt("done %d times just now, easing off %.0f%% "
+            g.reasons.push_back(Fmt("%s just now, easing off %.0f%% "
                                     "(%.1f -> %.1f)",
-                                    repeatRuns_[static_cast<int>(spec.kind)],
+                                    famSat > goalSat
+                                        ? GoalFamilyName(FamilyOf(spec.kind))
+                                        : "same errand",
                                     sat * 100.0, before, g.score));
         }
 
@@ -396,6 +448,23 @@ void Planner::NoteRan(GoalKind kind, i64 nowMs) {
         lastRanKind_ = kind;
     }
     lastRanMs_[i] = nowMs;
+
+    // And the same, one level up. A family's streak only breaks when a
+    // DIFFERENT family runs -- a crafter cycling buy/craft/sell is one long
+    // Work streak however much its individual goals alternate.
+    const GoalFamily fam = FamilyOf(kind);
+    const int fi = static_cast<int>(fam);
+    if (fi < 0 || fi >= static_cast<int>(GoalFamily::Count)) return;
+    if (fam == lastRanFamily_) {
+        ++famRepeatRuns_[fi];
+    } else {
+        const int pf = static_cast<int>(lastRanFamily_);
+        if (pf >= 0 && pf < static_cast<int>(GoalFamily::Count))
+            famRepeatRuns_[pf] = 0;
+        famRepeatRuns_[fi] = 1;
+        lastRanFamily_ = fam;
+    }
+    famLastRanMs_[fi] = nowMs;
 }
 
 double Planner::Satiation(GoalKind kind, i64 nowMs) const {
@@ -411,6 +480,22 @@ double Planner::Satiation(GoalKind kind, i64 nowMs) const {
                                 static_cast<double>(kSatiationMs));
     const double raw = kSatiationPerRepeat * (repeatRuns_[i] - 1);
     const double capped = raw < kSatiationMax ? raw : kSatiationMax;
+    return capped * fresh;
+}
+
+double Planner::FamilySatiation(GoalKind kind, i64 nowMs) const {
+    if (IsEmergencyGoal(kind)) return 0.0;
+    const GoalFamily fam = FamilyOf(kind);
+    if (fam == GoalFamily::Emergency) return 0.0;
+    const int fi = static_cast<int>(fam);
+    if (fi < 0 || fi >= static_cast<int>(GoalFamily::Count)) return 0.0;
+    if (famRepeatRuns_[fi] <= 2 || famLastRanMs_[fi] <= 0) return 0.0;
+    const i64 age = nowMs - famLastRanMs_[fi];
+    if (age >= kSatiationMs) return 0.0;
+    const double fresh = 1.0 - (static_cast<double>(age) /
+                                static_cast<double>(kSatiationMs));
+    const double raw = kFamilySatiationPerRepeat * (famRepeatRuns_[fi] - 2);
+    const double capped = raw < kFamilySatiationMax ? raw : kFamilySatiationMax;
     return capped * fresh;
 }
 

@@ -1130,19 +1130,40 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // a healthy session until its goals were counted and turned out to
             // be CRAFT / BUY_SUPPLIES / EARN_GOLD in a ring and nothing else.
             {
-                i32 total = 0, families = 0, top = 0;
+                // Counted by FAMILY, not by goal kind. A crafter alternating
+                // BUY_SUPPLIES / CRAFT / EARN_GOLD scores three "kinds" and
+                // is still doing one thing all day; the bar has to measure
+                // what R1 actually asks for.
+                i32 total = 0, top = 0;
+                i32 famCount[static_cast<int>(GoalFamily::Count)] = {};
                 for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
                     const i32 n = session_.goalPicks[i];
                     if (n <= 0) continue;
                     total += n;
+                    famCount[static_cast<int>(FamilyOf(static_cast<GoalKind>(i)))] += n;
+                }
+                i32 families = 0;
+                for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
+                    if (famCount[f] <= 0) continue;
                     ++families;
-                    if (n > top) top = n;
+                    if (famCount[f] > top) top = famCount[f];
                 }
                 std::string hist;
+                for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
+                    if (famCount[f] <= 0) continue;
+                    if (!hist.empty()) hist += " ";
+                    char fc[64];
+                    std::snprintf(fc, sizeof(fc), "%s=%d(%.0f%%)",
+                                  GoalFamilyName(static_cast<GoalFamily>(f)),
+                                  famCount[f],
+                                  total ? (100.0 * famCount[f] / total) : 0.0);
+                    hist += fc;
+                }
+                hist += " |";
                 for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
                     const i32 n = session_.goalPicks[i];
                     if (n <= 0) continue;
-                    if (!hist.empty()) hist += " ";
+                    hist += " ";
                     char cell[64];
                     std::snprintf(cell, sizeof(cell), "%s=%d(%.0f%%)",
                                   GoalKindName(static_cast<GoalKind>(i)), n,

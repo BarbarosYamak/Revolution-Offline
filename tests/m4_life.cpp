@@ -1426,6 +1426,81 @@ void TestSatiationLetsSomethingElseHaveATurn() {
 }
 
 
+// --------------------------------------------------------------------------
+// DAMPING ONE GOAL IS NOT ENOUGH -- THE CROWDING-OUT IS DONE BY A FAMILY.
+//
+// A crafter alternates BUY_SUPPLIES, CRAFT and EARN_GOLD. It never repeats a
+// single goal twice in a row, so per-goal satiation never fires even once --
+// and the whole day is still nothing but work. That is exactly
+// run_m5/p0gate10: three goals in a ring at 47/33/20%, which reads as variety
+// and is not.
+//
+// The family is what has to yield, and it has to yield HARD. BANK scores
+// 240 x 0.72 = 173; TRAIN_COMBAT scores 110 x 0.4 = 44. Nothing short of a
+// ~60% haircut on upkeep ever lets a fighter go hunting, which is why no bot
+// in this project has ever fought.
+void TestFamilySatiationBreaksAMonotonousDay() {
+    Section("planner: a whole FAMILY yields, not just one errand");
+
+    Check(life::FamilyOf(life::GoalKind::Craft) == life::GoalFamily::Work,
+          "crafting is work");
+    Check(life::FamilyOf(life::GoalKind::BuySupplies) == life::GoalFamily::Work,
+          "so is buying the inputs for it");
+    Check(life::FamilyOf(life::GoalKind::EarnGold) == life::GoalFamily::Work,
+          "and so is selling the result -- one family, not three activities");
+    Check(life::FamilyOf(life::GoalKind::Bank) == life::GoalFamily::Upkeep,
+          "banking is upkeep");
+    Check(life::FamilyOf(life::GoalKind::TrainAtNpc) == life::GoalFamily::Training,
+          "buying a skill is training");
+    Check(life::FamilyOf(life::GoalKind::Survive) == life::GoalFamily::Emergency,
+          "staying alive is an emergency");
+
+    // THE CASE THAT MATTERS: alternate three work goals, never repeating one.
+    life::Planner p;
+    const i64 t0 = 1000;
+    p.NoteRan(life::GoalKind::BuySupplies, t0);
+    p.NoteRan(life::GoalKind::Craft, t0);
+    p.NoteRan(life::GoalKind::EarnGold, t0);
+    Check(p.Satiation(life::GoalKind::Craft, t0) == 0.0,
+          "no single goal repeated, so per-goal satiation never fires");
+    p.NoteRan(life::GoalKind::BuySupplies, t0);
+    p.NoteRan(life::GoalKind::Craft, t0);
+    const double fam = p.FamilySatiation(life::GoalKind::Craft, t0);
+    Check(fam > 0.0,
+          "but the WORK family has run five times and must start to yield");
+    Check(p.FamilySatiation(life::GoalKind::EarnGold, t0) > 0.0,
+          "and it yields for every goal in that family, not just the last one");
+
+    // Hard enough to actually matter against a heavier family.
+    life::Planner p2;
+    for (int i = 0; i < 30; ++i) p2.NoteRan(life::GoalKind::Bank, t0);
+    const double up = p2.FamilySatiation(life::GoalKind::Bank, t0);
+    Check(up >= 0.55,
+          "a family that has monopolised the day yields at least ~60%");
+    Check(up <= 0.60 + 1e-9, "but the yielding is bounded");
+    // 240 * 0.72 = 172.8 upkeep, versus 110 * 0.4 = 44 for hunting.
+    Check(172.8 * (1.0 - up) < 110.0 * 0.4 + 30.0,
+          "which brings upkeep down near where hunting can reach it");
+
+    // A different family clears it -- variety, not a standing tax.
+    p2.NoteRan(life::GoalKind::Craft, t0);
+    Check(p2.FamilySatiation(life::GoalKind::Bank, t0) == 0.0,
+          "one turn at something else and upkeep is welcome again");
+
+    // Emergencies are never damped, at either level.
+    life::Planner p3;
+    for (int i = 0; i < 20; ++i) p3.NoteRan(life::GoalKind::Survive, t0);
+    Check(p3.FamilySatiation(life::GoalKind::Survive, t0) == 0.0,
+          "the emergency family is never eased off");
+
+    // And it fades, like the per-goal measure.
+    life::Planner p4;
+    for (int i = 0; i < 10; ++i) p4.NoteRan(life::GoalKind::Craft, t0);
+    Check(p4.FamilySatiation(life::GoalKind::Craft, t0 + 3 * 60 * 1000) == 0.0,
+          "a family worked hard an hour ago is not still being punished");
+}
+
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1500,6 +1575,7 @@ int main(int argc, char** argv) {
     TestUnsatisfiableNeedIsBlocked();
     TestEveryLifeAsksForItsOwnTools();
     TestNerveIsPerProfession();
+    TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();
     TestGoalCooldownStopsChurn();

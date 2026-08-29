@@ -553,6 +553,30 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
 // Goals -- utility selection, with commitment
 // ===========================================================================
 
+// WHICH PART OF A LIFE A GOAL BELONGS TO.
+//
+// Satiation on a single GOAL is not enough to produce a rounded day, because
+// the goals that crowd everything out are not one goal -- they are one FAMILY
+// taking turns among themselves. A crafter alternating BUY_SUPPLIES, CRAFT and
+// EARN_GOLD never repeats a single goal twice in a row, so per-goal damping
+// never fires, and the day is still nothing but work: that is exactly
+// run_m5/p0gate10, three goals in a ring at 47/33/20%.
+//
+// Damping the FAMILY is what lets the next kind of thing have a turn, which is
+// the owner's rule -- "sometimes train, sometimes make money, sometimes sell
+// item, sometimes PvM, socialize in between".
+enum class GoalFamily : u8 {
+    Emergency = 0,   // never damped; nobody gets bored of not dying
+    Upkeep,          // banking, replacing gear -- protects what was earned
+    Work,            // gather, fish, craft, buy inputs, sell
+    Training,        // grow the build, at a trainer or by practice
+    Social,          // needs another character to exist
+    Wander,          // travel for its own sake, and the bounded no-op
+    Count,
+};
+
+const char* GoalFamilyName(GoalFamily f);
+
 enum class GoalKind : u8 {
     Survive = 0,
     Heal,
@@ -578,6 +602,9 @@ enum class GoalKind : u8 {
     IdleBriefly,
     Count,
 };
+
+// Which part of a life a goal belongs to. Declared here, after GoalKind.
+GoalFamily FamilyOf(GoalKind k);
 
 const char* GoalKindName(GoalKind g);
 
@@ -675,6 +702,9 @@ public:
     void NoteRan(GoalKind kind, i64 nowMs);
     // 0.0 = no damping. Exposed so the reason line can print it.
     double Satiation(GoalKind kind, i64 nowMs) const;
+    // The same measure for the goal's whole FAMILY -- the one that actually
+    // breaks a monotonous day. See GoalFamily.
+    double FamilySatiation(GoalKind kind, i64 nowMs) const;
 
     const PlannerConfig& Config() const { return cfg_; }
 
@@ -687,6 +717,18 @@ private:
     i64 lastRanMs_[static_cast<int>(GoalKind::Count)] = {};
     int repeatRuns_[static_cast<int>(GoalKind::Count)] = {};
     GoalKind lastRanKind_ = GoalKind::Count;
+    // The same bookkeeping one level up. A family's streak is what actually
+    // breaks a monotonous day, because the crowding-out is done by a family
+    // rotating internally, not by one goal repeating.
+    i64 famLastRanMs_[static_cast<int>(GoalFamily::Count)] = {};
+    int famRepeatRuns_[static_cast<int>(GoalFamily::Count)] = {};
+    GoalFamily lastRanFamily_ = GoalFamily::Count;
+    // Higher than the per-goal cap: a family has to yield hard enough that a
+    // genuinely lower-weighted kind of thing can win. BANK at 240 x 0.72 is
+    // 173; TRAIN_COMBAT at 110 x 0.4 is 44, so nothing under a ~60% haircut
+    // ever lets a fighter hunt -- which is why no bot has ever fought.
+    static constexpr double kFamilySatiationPerRepeat = 0.15;
+    static constexpr double kFamilySatiationMax = 0.60;
     // How long a finished goal stays "fresh". Beyond this the damping is
     // gone entirely -- a character that banked ten minutes ago is perfectly
     // happy to bank again.
