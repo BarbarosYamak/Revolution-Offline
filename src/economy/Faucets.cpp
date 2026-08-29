@@ -96,6 +96,36 @@ const GoldFaucet kFaucets[] = {
 
 // --- ALLOWED ---------------------------------------------------------------
 
+{"dagger_to_weaponsmith", SourceType::VendorSale, "miner_smith",
+ "i_dagger", "weaponsmith",
+ HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "OWNER DECISION, 2026-08-29: \"brannoc he can make gold by selling daggers he "
+ "crafted, go mine then forge then make dagger and sell them\". This is the "
+ "call the smith_output_to_vendor entry below was explicitly waiting on -- it "
+ "refuses i_spear_short saying no Revolution evidence establishes NPC buyback "
+ "for general smith output, and the risk it names is real: mine -> smith -> "
+ "dump to NPC prints gold from nothing. What makes a DAGGER the narrow "
+ "exception rather than the thin end of it: SKILLMAKE=Blacksmithing 0.0, so "
+ "it is the piece a smith with no skill can actually make on day one, and it "
+ "is the whole point of the loop the owner described. VENDOR_B_WEAPONS_BLADED "
+ "carries the BUY row, so the mechanism is the shard's own. The gold rate is "
+ "bounded by the ore the character has to dig first, which is the shape of a "
+ "faucet rather than a fountain. i_spear_short stays REFUSED"},
+
+{"poison_potion_to_alchemist", SourceType::VendorSale, "alchemist",
+ "i_potion_poison", "alchemist",
+ HistoryEvidence::Unknown, RuntimeEvidence::ScriptSupported, Policy::Allow,
+ "OWNER DECISION, 2026-08-29: \"Voris it can make poison bottle and it can "
+ "sell to npc\". FLAGGED AT THE TIME and recorded here so the conflict is not "
+ "lost: the alchemy_output_to_vendor entry below refuses potion sales on "
+ "CONFIRMED Revolution evidence -- potions were a player-market good and on "
+ "18.08.2009 Night Sight potions STOPPED being sold by NPCs, which is the "
+ "shard deliberately pushing the other way. That evidence still stands and is "
+ "not being deleted. What limits the damage: VENDOR_B_ALCHEMIST pays 3 gold "
+ "for i_potion_Poison (tm_vend.scp), which against the reagent cost is close "
+ "to break-even, so this is a training sink and a trickle of coin rather than "
+ "an income loop. If it turns out to pay, it should be refused again"},
+
 {"fish_raw_to_fisher", SourceType::VendorSale, "fisher",
  "i_fish_big_1", "fisher",
  HistoryEvidence::Confirmed, RuntimeEvidence::ScriptSupported, Policy::Allow,

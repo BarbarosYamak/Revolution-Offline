@@ -269,7 +269,17 @@ const std::vector<Profession>& All() {
             p.targetStr = 100; p.targetDex = 45; p.targetInt = 80;
             p.income = {Income::Craft, Income::Process, Income::Gather};
             p.gathers = "ore";
-            p.produces = {"i_ingot_iron", "i_spear_short"};
+            // "go mine then forge then make dagger and sell them" (owner,
+            // 2026-08-29). The dagger is what makes this life's loop close:
+            // ingots are a player-market good with no NPC buyer and short
+            // spears are refused on authenticity, so before this the character
+            // mined, smithed, and then stood holding goods nobody would take
+            // -- BLOCKED_NEED EARN_GOLD "carrying its own output with nobody
+            // known to buy it", every tick of a session.
+            //
+            // i_dagger is SKILLMAKE=Blacksmithing 0.0, so it is makeable from
+            // the first minute, and VENDOR_B_WEAPONS_BLADED buys it.
+            p.produces = {"i_dagger", "i_ingot_iron", "i_spear_short"};
             // Ore comes out of the world, but the SPEAR does not: it is
             // 6 ingots plus one LOG (Production.cpp:107, script SKILLMAKE
             // Blacksmithing 45.3). That single log is the first real
@@ -416,7 +426,11 @@ const std::vector<Profession>& All() {
             // as a player-market good -- NPCs stopped selling them on
             // 18.08.2009 -- so this is a producer whose only customers are
             // other characters, which is what R4 needs.
-            p.produces = {"i_potion_heal", "i_potion_healgreat",
+            // Poison added 2026-08-29 on the owner's instruction: it is what
+            // this life can make and sell to an NPC, and Poisoning is a skill
+            // the fighters buy the product of. See the flagged conflict in
+            // Faucets.cpp poison_potion_to_alchemist.
+            p.produces = {"i_potion_poison", "i_potion_heal", "i_potion_healgreat",
                           "i_potion_refresh", "i_potion_cure"};
             p.consumes = {"i_reag_black_pearl", "i_reag_garlic",
                           "i_reag_ginseng", "i_bottle_empty"};
