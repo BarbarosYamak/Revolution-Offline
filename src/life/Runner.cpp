@@ -5080,6 +5080,51 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         return false;
     }
 
+    // A MAGE MAKES ITS OWN SUPPER.
+    //
+    // "food was not a problem at all normally in Revolution UO -- mages make
+    // their own food with the spell, you can collect from farms throughout the
+    // world, fishers can sell fish steaks to people" (project owner,
+    // 2026-08-29). Treating hunger as a shopping errand was the mistake under
+    // all of this: it made a solved problem into a goal that could eat a whole
+    // session.
+    //
+    // [SPELL 2] s_create_food is spellflag_playeronly with no target flag at
+    // all (spells_magery.scp:36) -- four mana, MAGERY 10.0 to attempt, cast at
+    // nobody. Anyone who can cast it should, before walking anywhere: it costs
+    // no gold, needs no shop, and works while broke, which is exactly the
+    // predicament the stand-down below was written for. It also raises Magery,
+    // so the errand pays for itself.
+    //
+    // Mana is the renewable resource. Spending 4 of it on dinner is free in a
+    // way that 30 gold is not.
+    if (obs.SkillTenths(rules::kMagery) >= 100) {
+        if (obs.mana >= kCreateFoodMana) {
+            LogLine("food: casting Create Food rather than shopping "
+                    "(magery %.1f, mana %d)",
+                    obs.SkillTenths(rules::kMagery) / 10.0, obs.mana);
+            client.ActionCastSpell(kSpellCreateFood);
+            planner_.NoteProgress();
+            nextActionMs_ = obs.nowMs + 6000;
+            return false;
+        }
+        // Out of mana but able to cast: waiting for mana beats walking to a
+        // shop, and beats standing the goal down while broke.
+        if (obs.gold < kFoodMoney) {
+            LogLine("food: %d mana is short of the %d Create Food needs -- "
+                    "resting for it rather than shopping with %d gold",
+                    obs.mana, kCreateFoodMana, obs.gold);
+            nextActionMs_ = obs.nowMs + 15000;
+            return false;
+        }
+    }
+
+    // STILL TO DO, and deliberately not faked here: crops on the world's farms
+    // are a second free source, and fish steaks bought from a FISHER are the
+    // third -- which is the same errand as R4's first player-to-player trade,
+    // since the fisher selling them will be another bot. Both belong with the
+    // market layer rather than bolted into this goal.
+
     // NOTHING TO EAT AND NOTHING TO BUY WITH.
     //
     // A goal that cannot possibly succeed must stand down, or it eats the
