@@ -63,6 +63,7 @@ constexpr i32 kMaxSpellbookTrips = 3;
 // something else for a while -- hunts, gathers, crafts -- rather than asking
 // again the moment the purse is still empty.
 constexpr i64 kNothingToSellCooldownMs = 180000;   // three minutes
+constexpr i32 kMaxTradeTrips = 3;
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -4093,9 +4094,28 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     if (!obs.atBank && client.BankContainer() == 0) {
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
-            LogLine("trade: taking %d %s to the %s market",
+            // BOUND THE TRIPS. This walk was unbounded, and the flag below
+            // clears on the very next tick, so a character that never arrives
+            // re-issues the journey every two seconds until the goal's 300s
+            // limit kills it -- and is then handed the same errand again.
+            // Brannoc logged "taking 30 i_ingot_iron to the Vesper market" 145
+            // times in one session and reached no market, while training,
+            // eating and crafting all waited their turn behind it. Every other
+            // travelling goal already counts its trips; this one did not.
+            if (++tradeTrips_ > kMaxTradeTrips) {
+                LogLine("goal_failed=TRADE_WITH_PLAYER reason=\"no market "
+                        "reached after %d trips\"", tradeTrips_ - 1);
+                planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                  obs.nowMs + kMarketQuietMs);
+                planner_.Finish(false, "no market reachable", obs.nowMs);
+                tradeTrips_ = 0;
+                nextActionMs_ = obs.nowMs + 5000;
+                return false;
+            }
+            LogLine("trade: taking %d %s to the %s market (trip %d)",
                     offer.qty, offer.item.c_str(),
-                    state_.homeCity.empty() ? "nearest" : state_.homeCity.c_str());
+                    state_.homeCity.empty() ? "nearest" : state_.homeCity.c_str(),
+                    tradeTrips_);
             travelInFlight_ =
                 client.TravelToService(wm::Service::Banker, state_.homeCity.c_str());
             if (!travelInFlight_) {

@@ -233,6 +233,7 @@ private:
     // spellbook." Skill is not capability -- the book is.
     bool noCreateFoodSpell_ = false;
     i32  spellbookTrips_ = 0;
+    i32  tradeTrips_ = 0;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;
