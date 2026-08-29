@@ -254,6 +254,7 @@ private:
     i64  mineSwungMs_ = 0, mineJournalMs_ = 0;
     bool mineCursorPending_ = false;
     i32  tameTrips_ = 0;
+    i32  bankShouts_ = 0;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;

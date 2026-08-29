@@ -389,6 +389,10 @@ constexpr u16 kCampfireGraphic = 0x0DE3;
 constexpr i32 kGoldWorthCarryingRt = 500;
 // Close enough to a mining place to call it a day at work.
 constexpr i32 kAtOreDistance = 40;
+constexpr i32 kMaxBankShouts = 3;
+// How far a spoken offer carries, in tiles.
+constexpr int kTradeEarshot = 16;
+constexpr i64 kNoBankCooldownMs = 120000;
 // THE 36 ARMOUR PIECES AN ARMORER ACTUALLY STOCKS, generated from every
 // SELL row in VENDOR_S_ARMORER_LEATHER / _RING / _CHAIN / _PLATE /
 // _SHIELDS. Everything else with an ARMOR value is smith-crafted or
@@ -2968,12 +2972,31 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         //
         // So: name one when we can see one, and otherwise just say the word.
         // Standing in the bank is what makes "closest NPC" the right NPC.
-        if (obs.atBank || client.BankContainer() != 0 ||
-            state_.memory.BestPlace("bank")) {
-            LogLine("bank: no banker recognised here -- saying 'bank' aloud, "
-                    "which is what a player does");
+        // ...but only while actually STANDING IN ONE.
+        //
+        // The first version accepted "a bank is remembered somewhere", which
+        // is not the same thing at all: Corwyn said "bank" aloud four times
+        // beside a GUILDMASTER, who is not a banker and never answers.
+        // Shouting the word is only sensible where the closest NPC is likely
+        // to be a banker, and that is inside the bank.
+        const KnownPlace* bankHere = state_.memory.BestPlace("bank");
+        const bool standingInABank =
+            obs.atBank || client.BankContainer() != 0 ||
+            (bankHere && TileDist(obs.x, obs.y, bankHere->x, bankHere->y) <= 6);
+        if (standingInABank && ++bankShouts_ <= kMaxBankShouts) {
+            LogLine("bank: no banker recognised here -- saying 'bank' aloud "
+                    "(%d of %d), which is what a player does",
+                    bankShouts_, kMaxBankShouts);
             client.ActionOpenBank(0, "bank");
             nextActionMs_ = obs.nowMs + kBankAskGapMs;
+            return false;
+        }
+        if (bankShouts_ > kMaxBankShouts) {
+            LogLine("goal_failed=BANK reason=\"said 'bank' %d times where the "
+                    "box should be and nobody answered\"", kMaxBankShouts);
+            planner_.Cooldown(GoalKind::Bank, obs.nowMs + kNoBankCooldownMs);
+            planner_.Finish(false, "nobody answered", obs.nowMs);
+            bankShouts_ = 0;
             return false;
         }
     }
@@ -4784,6 +4807,24 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
             return false;
         }
         travelInFlight_ = false;
+        return false;
+    }
+
+    // NOBODY TO SELL TO IS NOT A REASON TO SHOUT. "dont try to sell with WTS
+    // if no one around" (project owner, 2026-08-29).
+    //
+    // The offer is a SPOKEN one -- it only works if a player hears it -- so
+    // announcing to an empty bank is noise, and it is noise the character
+    // repeats on a timer while a real errand waits. A player checks who is
+    // there first.
+    //
+    // Other BOTS count: they are the market. NPCs do not, which is why this
+    // asks for players rather than for mobiles.
+    if (client.PlayersNearby(kTradeEarshot) == 0) {
+        LogLine("trade: nobody within %d tiles to hear an offer -- not "
+                "shouting into an empty room", kTradeEarshot);
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
+        planner_.Finish(false, "no audience", obs.nowMs);
         return false;
     }
 

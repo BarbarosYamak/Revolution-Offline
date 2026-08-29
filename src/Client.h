@@ -710,6 +710,18 @@ public:
     // taming: a sheep is innocent, and innocent is exactly what a tamer wants.
     int ScanMobiles(int maxDist, std::vector<HostileHit>& out) const;
 
+    // HOW MANY PLAYERS (or other bots) are close enough to hear a spoken
+    // offer. A player-market announcement only works if somebody is there.
+    //
+    // The distinction is a HEURISTIC and worth stating plainly: this shard's
+    // NPCs all wear a paperdoll title of the form "<name>, the <trade>" --
+    // vendors, guildmasters, healers, every one of them -- and player
+    // characters do not. So a human-bodied mobile with no " the " in its title
+    // is taken to be a person. It can be fooled by an untitled NPC, and a
+    // player whose title has not arrived yet is counted as a player, which is
+    // the harmless direction to be wrong in.
+    int PlayersNearby(int maxDist) const;
+
     // M7: what OTHER CHARACTERS have said since `sinceMs`, with who said it
     // and where they were standing.
     //

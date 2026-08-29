@@ -1763,6 +1763,23 @@ i64 Client::JournalNowMs() const {
 // Everything nearby, no notoriety filter. Same record as ScanHostiles so a
 // caller can share code; the only difference is who is left out, and here
 // nobody is.
+int Client::PlayersNearby(int maxDist) const {
+    int n = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        // Human bodies only: 0x0190 male, 0x0191 female. A sheep is not an
+        // audience.
+        if (m.body != 0x0190 && m.body != 0x0191) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+        if ((ax > ay ? ax : ay) > maxDist) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (title && std::strstr(title, " the ")) continue;   // a titled NPC
+        ++n;
+    }
+    return n;
+}
+
 int Client::ScanMobiles(int maxDist, std::vector<HostileHit>& out) const {
     out.clear();
     for (const MobileObj& m : mobileCache_) {
