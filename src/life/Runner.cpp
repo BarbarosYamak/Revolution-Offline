@@ -3088,8 +3088,42 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         return false;
     }
 
-    LogLine("earn_gold: this '%s' does not take %s after all; trying the next "
-            "trade", sellTrade_.c_str(), sellItem_.c_str());
+    // NOTHING IT MAKES -- BUT MAYBE SOMETHING IT FOUND.
+    //
+    // Loot is income for a warrior and a mage, and the sell path could not see
+    // it: market::Surplus only ever considers `produces`, which means WHAT I
+    // MAKE. Loot is WHAT I FOUND, and the model had no word for it, so a mage
+    // with a pack of graveyard drops had nothing the economy recognised.
+    //
+    // The fix needs no item table and no guessing. The 0x9E list IS the
+    // server's own answer: it enumerates OUR items this vendor will buy, with
+    // its prices. So offer whatever is in that list that this life has no use
+    // for. A graphic table would have been the wrong foundation anyway --
+    // ItemNameForGraphic maps 63 graphics, nearly all crafting materials and
+    // not one weapon or piece of armour.
+    for (const Client::VendorItem& v : client.VendorSellOffer()) {
+        if (v.amount <= 0 || v.price == 0) continue;
+        if (LifeNeedsGraphic(v.graphic)) continue;   // tool, stock, or input
+
+        i32 qty = static_cast<i32>(v.amount);
+        if (sellLotCap_ > 0) qty = std::min<i32>(qty, sellLotCap_);
+        if (qty <= 0) continue;
+
+        LogLine("earn_gold: selling %d looted 0x%04X at %u each to a '%s' "
+                "(this life has no use for it)",
+                qty, v.graphic, v.price, sellTrade_.c_str());
+        sellWanted_ = qty;
+        sellGoldBefore_ = obs.gold;
+        sellAskedMs_ = obs.nowMs;
+        client.ActionVendorSell(vendor, v.serial, static_cast<u16>(qty));
+        sellSent_ = true;
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    LogLine("earn_gold: this '%s' does not take %s after all, nor anything "
+            "spare we are carrying; trying the next trade",
+            sellTrade_.c_str(), sellItem_.c_str());
     state_.memory.NoteEvent("buyer_list_lacks_item", sellItem_.c_str(),
                             sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
     ++sellBuyerIndex_;
@@ -4762,6 +4796,35 @@ bool Runner::DoTravel(Client& client, const Observation& obs) {
 //
 // Two halves, in the order a person would do them: eat what you are carrying,
 // and if you are carrying none, go and buy some.
+// DOES THIS LIFE HAVE A USE FOR THIS GRAPHIC?
+//
+// The one predicate behind both halves of "everything else is spare": what the
+// dead-weight bank pass puts down, and what the loot pass sells. Gold, the
+// tools this profession declares, the consumables it stocks, what it makes,
+// and what it makes those from -- everything else is spare.
+bool Runner::LifeNeedsGraphic(u16 gfx) const {
+    if (gfx == kGoldCoin) return true;
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return false;
+    for (const prof::ToolNeed& t : me->tools)
+        for (u16 g : t.graphics) if (g == gfx) return true;
+    for (const prof::ConsumableNeed& c : me->consumables)
+        for (u16 g : c.graphics) if (g == gfx) return true;
+    auto named = [&](const std::string& item) {
+        for (u16 g : econ::GraphicsForItem(item.c_str())) if (g == gfx) return true;
+        return false;
+    };
+    for (const std::string& it : me->consumes) if (named(it)) return true;
+    for (const std::string& made : me->produces) {
+        if (named(made)) return true;
+        const prod::Recipe* r = prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        for (const prod::Ingredient& in : r->inputs)
+            if (in.item && named(in.item)) return true;
+    }
+    return false;
+}
+
 bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 

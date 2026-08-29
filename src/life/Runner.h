@@ -119,6 +119,10 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
+    // Gold, declared tools, stocked consumables, what this life makes and
+    // what it makes those from. Everything else is spare -- bankable as dead
+    // weight, or sellable as loot.
+    bool LifeNeedsGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
     bool DoIdle(Client& client, const Observation& obs);
