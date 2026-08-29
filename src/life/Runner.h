@@ -223,6 +223,12 @@ private:
     i32  ghostTrips_ = 0;
     static constexpr i32 kMaxGhostTrips = 4;
     i32  foodTrips_ = 0;
+    // A SPELL YOU DO NOT HAVE STAYS UNCAST, however much Magery you own.
+    // Voris had Magery 50.0 and no Create Food in his book, and asked for it
+    // every six seconds for a whole session: "The spell is not in your
+    // spellbook." Skill is not capability -- the book is.
+    bool noCreateFoodSpell_ = false;
+    i64  createFoodMark_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
     // GET_TOOL is in the Emergency family and therefore exempt from
     // satiation, so a cooldown is its only brake. It had none.

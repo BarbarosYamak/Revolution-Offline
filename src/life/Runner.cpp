@@ -5098,11 +5098,33 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     //
     // Mana is the renewable resource. Spending 4 of it on dinner is free in a
     // way that 30 gold is not.
-    if (obs.SkillTenths(rules::kMagery) >= 100) {
-        if (obs.mana >= kCreateFoodMana) {
+    // HAVING THE SKILL IS NOT HAVING THE SPELL.
+    //
+    // First live outing of the line above: Voris, an alchemist carrying Magery
+    // 50.0 and no spellbook worth the name, asked for Create Food every six
+    // seconds for the whole session and was told every time --
+    //
+    //   [ACTION] cast_spell id=2 target=0x00000000 mana=32
+    //   System: The spell is not in your spellbook.
+    //
+    // -- with mana sitting at 32 the entire time, which is the tell: a cast
+    // that costs nothing never happened. The skill check passed and the
+    // capability check did not exist. Ask once, believe the answer, and go
+    // shopping like anyone else.
+    if (noCreateFoodSpell_) {
+        // fall through to buying
+    } else if (obs.SkillTenths(rules::kMagery) >= 100) {
+        if (createFoodMark_ != 0 &&
+            client.JournalSaidSince("not in your spellbook", createFoodMark_)) {
+            noCreateFoodSpell_ = true;
+            LogLine("food: Create Food is not in this character's spellbook "
+                    "(magery %.1f) -- buying food instead for the rest of the "
+                    "session", obs.SkillTenths(rules::kMagery) / 10.0);
+        } else if (obs.mana >= kCreateFoodMana) {
             LogLine("food: casting Create Food rather than shopping "
                     "(magery %.1f, mana %d)",
                     obs.SkillTenths(rules::kMagery) / 10.0, obs.mana);
+            createFoodMark_ = client.JournalNowMs();
             client.ActionCastSpell(kSpellCreateFood);
             planner_.NoteProgress();
             nextActionMs_ = obs.nowMs + 6000;
@@ -5110,7 +5132,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         }
         // Out of mana but able to cast: waiting for mana beats walking to a
         // shop, and beats standing the goal down while broke.
-        if (obs.gold < kFoodMoney) {
+        else if (obs.gold < kFoodMoney) {
             LogLine("food: %d mana is short of the %d Create Food needs -- "
                     "resting for it rather than shopping with %d gold",
                     obs.mana, kCreateFoodMana, obs.gold);
@@ -5275,6 +5297,19 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     // Deliberately not a combat spell. Practising Magery must not be a way to
     // start fights the life did not choose.
     if (skillId == rules::kMagery) {
+        // And the same capability check the food goal needed. Practising by
+        // casting a spell the character does not own burns the session at one
+        // refusal every six seconds, with mana never moving.
+        if (noCreateFoodSpell_ ||
+            (createFoodMark_ != 0 &&
+             client.JournalSaidSince("not in your spellbook", createFoodMark_))) {
+            noCreateFoodSpell_ = true;
+            LogLine("practice: Create Food is not in this character's spellbook "
+                    "-- Magery cannot be practised this way");
+            planner_.Finish(false, "no create food spell", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+        }
         if (obs.mana < kCreateFoodMana) {
             LogLine("practice: %d mana is not enough to cast (need %d) -- "
                     "resting instead", obs.mana, kCreateFoodMana);
@@ -5283,6 +5318,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         }
         LogLine("practice: casting Create Food to raise Magery (%.1f, mana %d)",
                 have / 10.0, obs.mana);
+        createFoodMark_ = client.JournalNowMs();
         client.ActionCastSpell(kSpellCreateFood);
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 6000;
