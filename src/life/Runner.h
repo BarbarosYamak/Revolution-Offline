@@ -302,6 +302,13 @@ private:
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
+    // The scroll graphic last dropped on the book, and the spell count before
+    // it, so the next tick can tell a real add from a refusal.
+    u16  scrollOfferedGraphic_ = 0;
+    i32  spellsBeforeOffer_ = 0;
+    // Graphics this book refused -- spells it already knows. Never offered
+    // again, which is what stops the drop/refuse/retry loop.
+    std::vector<u16> scrollBookRefused_;
     i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;

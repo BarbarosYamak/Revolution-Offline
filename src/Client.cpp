@@ -1601,6 +1601,18 @@ void Client::OnVendorOfferAccept(const u8* data, usize size) {
     const u32 vendor = LoadBE32(data + 3);
     const u8 flag = data[7];
     LogInfo("[0x3B] vendor transaction closed: vendor=0x%08X flag=%u\n", vendor, flag);
+    // A CLOSED WINDOW IS NOT AN OPEN ONE. The offer list used to outlive this
+    // packet, so VendorOfferFrom() went on naming a shop whose gump the server
+    // had already shut. Five minutes after buying a rolling pin from Lionel
+    // the baker, BUY_SUPPLIES wanted kindling, found the baker's STALE list
+    // still posing as an open window, searched it, and failed "this
+    // 'provisioner' does not stock i_kindling" -- sixteen times a second,
+    // from the wrong town, without ever walking to a provisioner. The stock
+    // list dies with the transaction, exactly as the real gump does.
+    if (vendorOfferVendor_ == vendor) {
+        vendorOfferVendor_ = 0;
+        vendorOffer_.clear();
+    }
     uo::js::EmitVendorDone(vendor, flag);
 }
 

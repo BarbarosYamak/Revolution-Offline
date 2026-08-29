@@ -398,6 +398,13 @@ constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knive
 // i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
 constexpr u16 kKindlingGraphic = 0x0DE1;
 constexpr u16 kCampfireGraphic = 0x0DE3;
+// The three t_cooking itemdefs -- rolling pin, fry pan, flour sifter. Any of
+// them opens the cooking skillmenu (sm_legacy_cooking.scp: "Triggered by
+// DClicking a i_fry_pan, rolling pin or flour sifter") and any satisfies
+// SKILLMAKE=Cooking 0.0,t_cooking on i_fish_cut_cooked. The MATERIAL cannot
+// open this menu: a raw steak is IT_MEAT_RAW and double-clicking it is
+// answered by EATING it (Source-X CCharUse.cpp:1862 -> Use_Eat).
+constexpr u16 kCookingToolGfx[] = {0x1043, 0x097F, 0x103E};
 
 // SMELTING, taken from the shard and not from generic UO lore.
 // runtime/scripts/types/type_ore.scp is the entire mechanic, on t_ore @dclick:
@@ -2435,6 +2442,12 @@ const ToolVendor kToolVendors[] = {
     //   i_scissors  VENDOR_S_TAILOR, VENDOR_S_TINKER, VENDOR_S_WEAVER
     {"saw",          "carpenter",   wm::Service::Carpenter},
     {"scissors",     "tailor",      wm::Service::Tailor},
+    // The fisher's cooking tool. Sold by the BAKER: the stock-Sphere
+    // Scripts-X tm_vend.scp carries SELL=i_rolling_pin,{1 6} in
+    // VENDOR_S_BAKER_TEMPLATE, a row the TNS shop-list swap dropped and the
+    // runtime file restores. A c_baker stands at Britain's bakery
+    // (sphereworld.scp P=1448,1618,20), an easy walk from the dock.
+    {"rolling pin",  "baker",       wm::Service::Baker},
 };
 
 const ToolVendor* VendorForTool(const std::string& tool) {
@@ -5312,6 +5325,13 @@ const CraftMenuPath kCraftMenus[] = {
     // offered, which is how to settle it without guessing twice.
     {"i_dagger",             "Weapons",        "Swords & Blades", "dagger"},
     {"i_spear_short",        "Weapons",        "Spears and Forks", "short spear"},
+    // COOKING. Two levels, from sm_legacy_cooking.scp (this shard runs the
+    // legacy menu: crafting_settings.scp has scp.NewCrafting_Cooking=0):
+    //   ON=i_ribs_cooked Barbecue -> ON=i_fish_cut_cooked <name> (<resmake>)
+    // where <name> resolves off tiledata for 0x097B, "fish steak" -- the
+    // itemdef carries no NAME= of its own. Matching is case-insensitive
+    // substring, and no other Barbecue entry contains it.
+    {"i_fish_cut_cooked",    "Barbecue",       "fish steak",      nullptr},
 };
 
 const CraftMenuPath* CraftMenuFor(const std::string& item) {
@@ -5568,6 +5588,13 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
             supplyTrade_.c_str(), supplyItem_.c_str());
     state_.memory.NoteEvent("vendor_lacks", supplyItem_.c_str(),
                             supplyTrade_.c_str(), obs.x, obs.y, obs.nowMs);
+    // STAND DOWN, do not spin. Finish(false) alone re-picks on the next tick,
+    // and when a stale shop window made this branch reachable from anywhere it
+    // failed sixteen times a SECOND (v_Marla, 23:57:44). The window bug is
+    // fixed at the source -- 0x3B now clears the offer -- but a shop that
+    // truly lacks the item deserves the same brake GET_TOOL has: the stock
+    // will be no different two ticks from now.
+    planner_.Cooldown(GoalKind::BuySupplies, obs.nowMs + 60000);
     planner_.Finish(false, "this vendor does not stock it", obs.nowMs);
     return false;
 }
@@ -5914,12 +5941,28 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         return true;
     }
     if (!intent.missing.empty()) {
-        LogLine("goal_blocked=CRAFT reason=\"%s\" %s short of %d x %s",
-                faucet::RefusalName(faucet::Refusal::RequiredForProduction),
-                intent.item, intent.missing.front().qty,
-                intent.missing.front().item);
-        planner_.Finish(false, "inputs are short", obs.nowMs);
-        return false;
+        // A BURNING FIRE IS KINDLING ALREADY SPENT. The production graph
+        // charges the cooked steak one kindling because that is what a fire
+        // costs -- but the server consumes kindling at LIGHTING time
+        // (Use_Kindling turns the piece itself into the campfire), not per
+        // steak. So a character whose last kindling is currently burning
+        // three tiles away is not short of anything: refusing to cook beside
+        // its own lit fire would send it shopping while the fire went out.
+        const bool onlyKindling =
+            intent.missing.size() == 1 &&
+            std::strcmp(intent.missing.front().item, "i_kindling") == 0;
+        const prod::Recipe* fireCheck = prod::FindRecipe(intent.item);
+        const bool fireBurning =
+            fireCheck && fireCheck->station == prod::Station::Fire &&
+            client.FindWorldItemByGraphic(kCampfireGraphic, 3) != 0;
+        if (!(onlyKindling && fireBurning)) {
+            LogLine("goal_blocked=CRAFT reason=\"%s\" %s short of %d x %s",
+                    faucet::RefusalName(faucet::Refusal::RequiredForProduction),
+                    intent.item, intent.missing.front().qty,
+                    intent.missing.front().item);
+            planner_.Finish(false, "inputs are short", obs.nowMs);
+            return false;
+        }
     }
 
     // A FIRE IS A STATION YOU CARRY. "nessa needs to cut the whole fish with
@@ -5940,6 +5983,31 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     if (const prod::Recipe* r = prod::FindRecipe(intent.item)) {
         if (r->station == prod::Station::Fire &&
             !client.FindWorldItemByGraphic(kCampfireGraphic, 3)) {
+            if (client.ActionBusy()) return false;
+            // STAND STILL FIRST. The goal can begin while a previous goal's
+            // travel is still carrying the character -- the first live run
+            // dropped one kindling at (646,822), walked five tiles on the
+            // leftover leg to the Yew banker, found nothing "on the ground"
+            // within reach, and dropped the second piece too. Both lay in the
+            // street; the pack read empty; the craft blocked.
+            if (client.TravelBusy()) return false;
+            // ON THE GROUND FIRST. Use_Kindling opens with
+            //   if ( !pKindling->IsTopLevel() ) -> DEFMSG_ITEMUSE_KINDLING_CONT
+            // (Source-X CCharUse.cpp:288) -- kindling double-clicked in the
+            // backpack is refused before Camping is even rolled. So the
+            // gesture is two actions: drop a piece at the feet, then light
+            // the piece on the ground. A failed Camping roll leaves it lying
+            // there, which is why the ground is checked before the pack --
+            // relight what is already down rather than dropping another.
+            if (const u32 ground =
+                    client.FindWorldItemByGraphic(kKindlingGraphic, 3)) {
+                LogLine("craft: lighting the kindling on the ground for a "
+                        "campfire to cook %s on", intent.item);
+                client.ActionUseObject(ground);
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 3500;
+                return false;
+            }
             const u32 kindling = client.FindBackpackItemByGraphic(kKindlingGraphic);
             if (!kindling) {
                 LogLine("goal_blocked=CRAFT reason=\"%s\" %s needs a fire and "
@@ -5949,11 +6017,11 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 planner_.Finish(false, "no kindling for a fire", obs.nowMs);
                 return false;
             }
-            LogLine("craft: lighting kindling for a campfire to cook %s on",
-                    intent.item);
-            client.ActionUseObject(kindling);
+            LogLine("craft: putting one kindling on the ground -- "
+                    "Use_Kindling refuses it inside a container");
+            client.ActionDropGround(kindling, 1, obs.x, obs.y, obs.z);
             planner_.NoteAttempt(obs.nowMs);
-            nextActionMs_ = obs.nowMs + 3000;
+            nextActionMs_ = obs.nowMs + 2000;
             return false;
         }
     }
@@ -6094,10 +6162,21 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // than dug -- a scribe should not spend its whole purse on scrolls.
         bool moreToUse = false;
         if (const prod::Recipe* rr = prod::FindRecipe(craftItem_.c_str())) {
-            if (rr->station == prod::Station::Forge) {
+            // Fire recipes carry on for the same reason forge ones do: the
+            // stock in the pack is the honest limit. Kindling is special --
+            // the server spends it at lighting time, so while the campfire
+            // burns the pack owes no more of it (the same carve-out the
+            // blocked check above makes).
+            if (rr->station == prod::Station::Forge ||
+                rr->station == prod::Station::Fire) {
                 moreToUse = true;
                 for (const prod::Ingredient& in : rr->inputs) {
                     if (!in.item) break;
+                    if (rr->station == prod::Station::Fire &&
+                        std::strcmp(in.item, "i_kindling") == 0 &&
+                        client.FindWorldItemByGraphic(kCampfireGraphic, 3)) {
+                        continue;
+                    }
                     if (market::QtyOf(obs.pack, in.item) < in.qty) {
                         moreToUse = false;
                         break;
@@ -6189,10 +6268,16 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     // scroll, a log. For blacksmithing it is the TOOL: t_weapon_mace_smith is
     // a hardcoded engine type (defs_types_hardcoded.scp) whose double-click
     // opens the smith menu, and an ingot's double-click opens nothing at all.
+    // ...except where the material EATS the double-click. For a fire recipe
+    // the opener is the t_cooking tool: using the raw steak itself would be
+    // answered by Use_Eat (CCharUse.cpp:1862) -- the character would swallow
+    // its own stock one click at a time and no menu would ever come.
     const std::vector<u16> openGfx =
         r->tool == prod::Tool::SmithHammer
             ? std::vector<u16>(kSmithToolGfx, kSmithToolGfx + 4)
-            : econ::GraphicsForItem(r->inputs[0].item);
+            : r->station == prod::Station::Fire
+                  ? std::vector<u16>(kCookingToolGfx, kCookingToolGfx + 3)
+                  : econ::GraphicsForItem(r->inputs[0].item);
     u32 opener = 0;
     for (u16 g : openGfx) {
         opener = client.FindBackpackItemByGraphic(g);
@@ -6260,7 +6345,9 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     }
 
     LogLine("craft: making %s -- using a %s to open the menu",
-            craftItem_.c_str(), r->inputs[0].item);
+            craftItem_.c_str(),
+            r->station == prod::Station::Fire ? "cooking tool"
+                                              : r->inputs[0].item);
     client.ActionUseObject(opener);
     craftStartedMs_ = obs.nowMs;
     craftMenuStep_ = 0;
@@ -8134,6 +8221,39 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
         return false;
     }
 
+    // DID THE LAST SCROLL GO IN?
+    //
+    // Dropping a scroll on the book is not the same as the book taking it. A
+    // spell the book ALREADY HOLDS is refused, and the server puts the scroll
+    // straight back in the backpack -- which arrives as
+    //   move_item server_failure ("item landed in a different container")
+    // because the 0x25 names the pack, not the book. Nothing remembered that,
+    // so the very next tick found the same scroll and offered it again:
+    //   "spellbook: adding scroll 0x1F40 to the book (14 spells so far)"
+    // repeated every five seconds for two minutes and forty seconds of a
+    // fourteen-minute life, the count never once moving off 14. The engine's
+    // own backstop eventually called it -- "goal_spinning=PRACTICE_SKILL ...
+    // completed 5 times in a row with progress 0" -- which bounded the waste
+    // without stopping it.
+    //
+    // The book's own count is the honest witness: if it did not rise, that
+    // graphic is one this book will not take, so stop offering it.
+    if (scrollOfferedGraphic_ != 0) {
+        if (obs.spellsKnown > spellsBeforeOffer_) {
+            planner_.NoteProgress();      // a REAL add, unlike the old
+                                          // unconditional call below
+        } else {
+            LogLine("spellbook: the book would not take scroll 0x%04X (still "
+                    "%d spells) -- it already knows that one; not offering it "
+                    "again", scrollOfferedGraphic_, obs.spellsKnown);
+            bool known = false;
+            for (u16 r : scrollBookRefused_)
+                if (r == scrollOfferedGraphic_) { known = true; break; }
+            if (!known) scrollBookRefused_.push_back(scrollOfferedGraphic_);
+        }
+        scrollOfferedGraphic_ = 0;
+    }
+
     // LOOK IN IT BEFORE BUYING ANYTHING.
     //
     // ContainerItemCount is only meaningful once the server has sent the
@@ -8160,14 +8280,21 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     // Looted scrolls arrive here too, which is the only route to circles 7-8,
     // so this runs before any purchase.
     for (u16 g = kFirstScrollGraphic; g <= kLastScrollGraphic; ++g) {
+        bool refused = false;
+        for (u16 r : scrollBookRefused_) if (r == g) { refused = true; break; }
+        if (refused) continue;            // this book already knows that spell
         const u32 scroll = client.FindBackpackItemByGraphic(g);
         if (!scroll) continue;
         LogLine("spellbook: adding scroll 0x%04X to the book (%d spells so far)",
                 g, obs.spellsKnown);
         client.ActionMoveItem(scroll, 1, obs.spellbookSerial);
-        planner_.NoteProgress();
-        // Re-read the book after the drop rather than assuming it took: a
-        // duplicate spell is refused and the scroll stays in the pack.
+        // Progress is claimed ABOVE, next tick, and only if the count rose.
+        // Claiming it here said the goal was working while it achieved
+        // nothing, which is exactly what the anti-spin backstop exists to
+        // catch.
+        scrollOfferedGraphic_ = g;
+        spellsBeforeOffer_ = obs.spellsKnown;
+        // Re-read the book after the drop rather than assuming it took.
         spellbookOpened_ = false;
         nextActionMs_ = obs.nowMs + 2500;
         return false;

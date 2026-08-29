@@ -1,6 +1,7 @@
 #include "uo/life.h"
 #include "uo/professions.h"
 #include "uo/faucets.h"
+#include "uo/vendor_policy.h"
 
 #include <algorithm>
 #include <cctype>
@@ -291,6 +292,9 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
     // The best candidate seen so far whose inputs are NOT all present, kept so
     // a fully-stocked recipe later in the list can win instead.
     CraftIntent firstWorkable;
+    // ...and the best whose shortfall is at least PURCHASABLE, which beats one
+    // that is short of something no vendor may sell.
+    CraftIntent firstBuyable;
     if (batch < 1) batch = 1;
 
     for (const std::string& made : p.produces) {
@@ -362,8 +366,34 @@ CraftIntent ChooseCraft(const prof::Profession& p, const Observation& obs,
             return here;
         }
         here.why = "inputs are short";
-        if (!firstWorkable.item) firstWorkable = here;
+
+        // A SHORTFALL YOU CAN BUY BEATS ONE NOBODY SELLS.
+        //
+        // Being short is not one state. i_fish_cut_raw is short of a WHOLE
+        // FISH, which no NPC may legitimately sell -- that is a dead end, and
+        // NeedSupplies scores it 0.0 and says so. i_fish_cut_cooked is short
+        // of KINDLING, which any provisioner sells for a few coins. Treating
+        // those as equally good candidates is how Marla ended up parked on
+        // the dead end with steaks in her pack:
+        //
+        //   BLOCKED_NEED BUY_SUPPLIES: short of an input no NPC may
+        //   legitimately sell it (i_fish_cut_raw needs 5 x i_fish_big_1)
+        //
+        // ...while the recipe one line further down her produces list needed
+        // only a purchasable thing. So rank the fallbacks: a recipe whose
+        // shortfall can be bought is preferred over one whose cannot, and the
+        // unbuyable one is kept only so the old message still appears when
+        // nothing better exists.
+        const bool buyable =
+            !here.missing.empty() &&
+            econ::CanUseNPCVendorFor(here.missing.front().item).allowed;
+        if (buyable) {
+            if (!firstBuyable.item) firstBuyable = here;
+        } else if (!firstWorkable.item) {
+            firstWorkable = here;
+        }
     }
+    if (firstBuyable.item) return firstBuyable;
     if (firstWorkable.item) return firstWorkable;
     if (!out.why || !*out.why) out.why = "this life makes nothing sellable";
     return out;

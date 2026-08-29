@@ -73,6 +73,31 @@ const Row kMatrix[] = {
     {"i_mortar_pestle", VendorClass::BasicCraftTool},
     {"i_fishing_pole",  VendorClass::BasicCraftTool},
     {"i_pen_and_ink",   VendorClass::BasicCraftTool},
+    // THE COOKING TOOL. i_fish_cut_cooked carries SKILLMAKE=Cooking 0.0,
+    // t_cooking -- no t_cooking item in the pack, no cooking, full stop. The
+    // three t_cooking itemdefs are i_fry_pan (Tinkering 30.0 + 4 ingots),
+    // i_flour_sifter (Tinkering 50.0 + 3 ingots) and i_rolling_pin
+    // (Tinkering 0.0 + 1 log) -- every one of them behind a craft a fisher
+    // does not have, which is precisely the bootstrap deadlock this class
+    // exists to break. Stock Sphere agrees it is shop stock: the pristine
+    // Scripts-X tm_vend.scp sells SELL=i_rolling_pin,{1 6} at the BAKER, a
+    // row the TNS shop-list swap dropped and which the runtime file now
+    // restores. It is a tool in the strict sense too: never consumed,
+    // shortcuts no chain -- the fish still has to be caught, cut and cooked.
+    {"i_rolling_pin",   VendorClass::BasicCraftTool},
+
+    // KINDLING. Not a resource and not a shortcut: it is how a fire -- the
+    // station cooking is hardcoded to demand (Source-X CCharSkill.cpp
+    // Skill_Cooking: IT_FIRE / IT_FORGE / IT_CAMPFIRE within RANGE) -- exists
+    // anywhere a kitchen does not. This shard's own runtime vendor tables,
+    // TNS's swapped-in lists, stock it for sale: VENDOR_S_PROVISIONER carries
+    // SELL=i_kindling,{5 38} (tm_vend.scp:1319), and a live run watched the
+    // provisioner's window offer it. Refusing it as Unknown was the single
+    // link that kept a fisher selling raw steaks at 2gp under a cook paying 5
+    // for cooked ones: every path to the cooked recipe died at "kindling: no
+    // Revolution evidence either way" while the provisioner stood there
+    // selling it.
+    {"i_kindling",      VendorClass::RevolutionNpcVerified},
 
     // --- world-gathered: the shortcuts M3.7 exists to close ------------------
     {"i_ore_iron",        VendorClass::WorldGathered},
@@ -281,6 +306,13 @@ const GraphicRow kGraphics[] = {
     {0x0E9B, "i_mortar_pestle"},
     {0x0DBF, "i_fishing_pole"},  {0x0DC0, "i_fishing_pole"},
     {0x0FBF, "i_pen_and_ink"},   {0x0FC0, "i_pen_and_ink"},
+    // The cooking chain: kindling (0x0DE1, DUPELIST 0x0DE2) and the
+    // rolling pin (0x1043), ids from i_provisions_misc.scp:121 and
+    // i_profession_cook_barkeep_baker.scp:1265. Without these rows the pack
+    // counter could not SEE either one -- bought kindling would read as zero
+    // and the supplies goal would shop for it forever.
+    {0x0DE1, "i_kindling"},      {0x0DE2, "i_kindling"},
+    {0x1043, "i_rolling_pin"},
 };
 
 const std::vector<std::pair<const char*, VendorClass>>& Matrix() {

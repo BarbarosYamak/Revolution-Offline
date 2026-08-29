@@ -46,6 +46,13 @@ constexpr u16 kPickaxe[]  = {0x0E85, 0x0E86};   // i_pickaxe, layer 1, ReqStr=50
 constexpr u16 kYellowPotion = 0x0F0C;
 constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kFishingPole[] = {0x0DBF, 0x0DC0};
+// THE COOKING TOOL IS A TYPE TOO. i_fish_cut_cooked demands SKILLMAKE=Cooking
+// 0.0,t_cooking, and the three t_cooking itemdefs are i_fry_pan (0x097F),
+// i_flour_sifter (0x103E) and i_rolling_pin (0x1043). Any of them satisfies
+// the shard; the rolling pin is the one an NPC sells (the stock-Sphere baker
+// row, restored to the runtime tm_vend.scp), so it leads the list the same
+// way the buyable half of the smith kit does.
+constexpr u16 kCookingTool[] = {0x1043, 0x097F, 0x103E};
 constexpr u16 kMortar     = 0x0E9B;             // i_mortar_pestle
 constexpr u16 kBottle     = 0x0F0E;             // i_bottle_empty
 constexpr u16 kSpellbook  = 0x0EFA;             // i_spellbook
@@ -500,7 +507,19 @@ const std::vector<Profession>& All() {
             p.produces = {"i_fish_big_1", "i_fish_big_2", "i_fish_big_3",
                           "i_fish_big_4", "i_fish_small",
                           "i_fish_cut_raw", "i_fish_cut_cooked"};
-            p.tools = {{"fishing pole", V(kFishingPole, 2), true}};
+            // The pole catches; the rolling pin cooks. i_fish_cut_cooked is
+            // SKILLMAKE=Cooking 0.0,t_cooking, so without a t_cooking item in
+            // the pack the profession's whole cooking half -- and the 5gp the
+            // cook pays for a cooked steak against 2gp raw -- is unreachable.
+            // Any of the three t_cooking graphics satisfies the shard; the
+            // GET_TOOL errand buys the rolling pin from a baker.
+            p.tools = {{"fishing pole", V(kFishingPole, 2), true},
+                       {"rolling pin",  V(kCookingTool, 3), false}};
+            // Kindling is bought, never made: the fire Skill_Cooking demands
+            // is lit from it on the dock. Named here so the pack counter
+            // counts it -- obs.pack is built from produces + consumes, and an
+            // uncounted input reads as forever missing.
+            p.consumes = {"i_kindling"};
             p.consumables = {Food()};
             // A FISHER HAD NO HOME AT ALL. homeCities was simply absent, so
             // Runner::Start skipped the whole selection block, homeCity stayed
