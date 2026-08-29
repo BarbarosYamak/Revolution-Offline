@@ -646,6 +646,7 @@ life::PersistentState SampleState() {
     s.policyAllows = true;
     st.memory.NoteSupplier(s);
     st.memory.NoteDanger(1900, 2800, 12, "grey wolf", 1.0, 5000);
+    st.memory.NoteCreatureOutcome("a lich", life::kCreatureEvidenceDeath, 5500);
     st.memory.NoteEvent("first_logs", "8 logs", "forest", 1776, 2774, 6000);
 
     st.goal.kind = life::GoalKind::GatherLogs;
@@ -711,6 +712,11 @@ void TestStateRoundTrip() {
     Check(loaded.memory.Suppliers()[0].observedPricePerUnit == 21,
           "the observed price survives -- it is a fact we measured");
     Check(loaded.memory.Dangers().size() == 1, "danger memory survives");
+    Check(loaded.memory.Creatures().size() == 1, "learned creature verdicts survive");
+    Check(loaded.memory.Creatures()[0].name == "a lich",
+          "the creature's client-visible name survives");
+    Check(loaded.memory.CreatureDanger("a lich", 5500) > 1.99,
+          "the learned verdict itself round-trips, not just the record shape");
     Check(loaded.memory.Events().size() == 1, "the event history survives");
     Check(loaded.goal.kind == life::GoalKind::GatherLogs, "the current objective survives");
     Check(loaded.goal.progress == 12, "goal progress survives");
@@ -952,6 +958,77 @@ void TestDangerHeatIsCapped() {
     Check(heat > 1.0, "but repeated trouble still reads as much worse than one scare");
 }
 
+void TestCreatureMemory() {
+    Section("memory: per-creature verdicts are learned, decay, and are bounded");
+
+    life::Memory mem;
+    const i64 t0 = 1000000;
+
+    // Unknown creature: no verdict, no opinion.
+    Check(mem.CreatureDanger("a lich", t0) == 0.0,
+          "a creature never fought reads as unknown, not safe or dangerous");
+
+    // --- danger accumulates and decays exactly like DangerMemory ----------
+    mem.NoteCreatureOutcome("a lich", life::kCreatureEvidenceDeath, t0);
+    const double atOnce = mem.CreatureDanger("a lich", t0);
+    const double oneHalfLife =
+        mem.CreatureDanger("a lich", t0 + life::kDangerHalfLifeMs);
+    const double twoHalfLives =
+        mem.CreatureDanger("a lich", t0 + 2 * life::kDangerHalfLifeMs);
+    Check(atOnce > 1.99 && atOnce < 2.01, "a death reads at full evidence weight");
+    Check(atOnce > 0.0, "a death is POSITIVE evidence -- dangerous");
+    Check(oneHalfLife > atOnce * 0.49 && oneHalfLife < atOnce * 0.51,
+          "one half-life halves the verdict, same shape as DangerMemory");
+    Check(twoHalfLives > atOnce * 0.24 && twoHalfLives < atOnce * 0.26,
+          "decay is exponential");
+
+    // A different creature TYPE is unaffected -- this is per-creature, not
+    // positional or global.
+    Check(mem.CreatureDanger("a rat", t0) == 0.0,
+          "learning about a lich says nothing about a rat");
+
+    // --- safety accumulates too, and moves the verdict the OTHER way ------
+    life::Memory clean;
+    clean.NoteCreatureOutcome("a rat", life::kCreatureEvidenceCheapKill, t0);
+    const double ratVerdict = clean.CreatureDanger("a rat", t0);
+    Check(ratVerdict < 0.0, "a cheap kill is NEGATIVE evidence -- it reads as safe");
+
+    // --- repeated trouble compounds ONTO the decayed value ----------------
+    mem.NoteCreatureOutcome("a lich", life::kCreatureEvidenceDeath,
+                            t0 + life::kDangerHalfLifeMs);
+    const double compounded = mem.CreatureDanger("a lich", t0 + life::kDangerHalfLifeMs);
+    Check(compounded > atOnce, "a second death compounds onto the decayed verdict");
+
+    // --- bounded, both directions ------------------------------------------
+    life::Memory grudge;
+    for (int i = 0; i < 100; ++i) {
+        grudge.NoteCreatureOutcome("an ogre", life::kCreatureEvidenceDeath, t0);
+    }
+    Check(grudge.CreatureDanger("an ogre", t0) <= life::kMaxDangerHeat + 0.001,
+          "the dangerous side is capped, exactly like DangerMemory's heat");
+
+    life::Memory confidence;
+    for (int i = 0; i < 100; ++i) {
+        confidence.NoteCreatureOutcome("a chicken", life::kCreatureEvidenceCheapKill, t0);
+    }
+    Check(confidence.CreatureDanger("a chicken", t0) >= -life::kMaxDangerHeat - 0.001,
+          "the safe side is capped too -- confidence is bounded, not infinite");
+
+    // --- a costly kill and a near-death flee are both dangerous evidence,
+    // but weaker than an outright death ------------------------------------
+    life::Memory costly;
+    costly.NoteCreatureOutcome("a troll", life::kCreatureEvidenceCostlyKill, t0);
+    Check(costly.CreatureDanger("a troll", t0) < 0.0,
+          "a costly kill is still net evidence of safety -- we won");
+
+    life::Memory fled;
+    fled.NoteCreatureOutcome("a troll", life::kCreatureEvidenceNearDeathFlee, t0);
+    Check(fled.CreatureDanger("a troll", t0) > 0.0,
+          "fleeing near death is evidence of danger, even without dying");
+    Check(fled.CreatureDanger("a troll", t0) < life::kCreatureEvidenceDeath,
+          "but a flee is not treated as harshly as an actual death");
+}
+
 void TestSchemaV1StillLoads() {
     Section("persistence: a v1 file loads under the v2 reader");
 
@@ -975,6 +1052,9 @@ void TestSchemaV1StillLoads() {
           "an absent `hinted` defaults to false -- v1 recorded only observation, "
           "never seeded knowledge");
     Check(st.memory.Resources()[0].label.empty(), "an absent label defaults empty");
+    Check(st.memory.Creatures().empty(),
+          "a field this file predates -- per-creature verdicts -- defaults to "
+          "empty rather than failing the load");
 }
 
 void TestIdentityId() {
@@ -1651,6 +1731,7 @@ int main(int argc, char** argv) {
     TestReconciliation();
     TestHintsVersusEarnedStands();
     TestDangerHeatIsCapped();
+    TestCreatureMemory();
     TestSchemaV1StillLoads();
     TestIdentityId();
     TestSurplusNeedsSomewhereToGo();

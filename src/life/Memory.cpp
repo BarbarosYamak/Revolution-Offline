@@ -209,6 +209,46 @@ void Memory::ExpireDanger(i64 nowMs, double floorHeat) {
         danger_.end());
 }
 
+void Memory::NoteCreatureOutcome(const char* name, double signedEvidence, i64 nowMs) {
+    if (!name || !name[0]) return;
+    if (signedEvidence == 0.0) return;
+    for (CreatureVerdict& c : creatures_) {
+        if (c.name != name) continue;
+        // Compound onto the DECAYED value, exactly like NoteDanger -- a
+        // verdict earned an hour ago must not be treated as if it were
+        // earned this second.
+        const double halves =
+            static_cast<double>(nowMs - c.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        const double current = c.heat * std::pow(0.5, halves);
+        // CAPPED, both directions. Repeated evidence compounds, which is
+        // right, but an unbounded sum is not a memory -- it is a grudge (or,
+        // on the safe side, overconfidence). Same ceiling NoteDanger uses.
+        c.heat = std::clamp(current + signedEvidence, -kMaxDangerHeat, kMaxDangerHeat);
+        c.atMs = nowMs;
+        c.fights++;
+        return;
+    }
+    CreatureVerdict c;
+    c.name = name;
+    c.heat = std::clamp(signedEvidence, -kMaxDangerHeat, kMaxDangerHeat);
+    c.atMs = nowMs;
+    c.fights = 1;
+    creatures_.push_back(std::move(c));
+    CapOldestFirst(creatures_, kMaxCreatures, &CreatureVerdict::atMs);
+}
+
+double Memory::CreatureDanger(const char* name, i64 nowMs) const {
+    if (!name || !name[0]) return 0.0;
+    for (const CreatureVerdict& c : creatures_) {
+        if (c.name != name) continue;
+        if (nowMs < c.atMs) return c.heat;
+        const double halves =
+            static_cast<double>(nowMs - c.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        return c.heat * std::pow(0.5, halves);
+    }
+    return 0.0;
+}
+
 void Memory::NoteEvent(const char* kind, const char* detail, const char* place,
                        i32 x, i32 y, i64 nowMs) {
     if (!kind || !kind[0]) return;
@@ -296,6 +336,7 @@ void Memory::Clear() {
     danger_.clear();
     events_.clear();
     trainers_.clear();
+    creatures_.clear();
 }
 
 usize Memory::ApproximateBytes() const {
@@ -306,6 +347,7 @@ usize Memory::ApproximateBytes() const {
     for (const DangerMemory& d : danger_)        n += sizeof(d) + d.threat.size();
     for (const LifeEvent& e : events_)           n += sizeof(e) + e.kind.size() + e.detail.size() + e.place.size();
     for (const TrainerVerdict& t : trainers_)    n += sizeof(t) + t.trade.size() + t.why.size();
+    for (const CreatureVerdict& c : creatures_)  n += sizeof(c) + c.name.size();
     return n;
 }
 

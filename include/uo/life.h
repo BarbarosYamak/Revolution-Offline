@@ -185,6 +185,31 @@ struct DangerMemory {
     i64 atMs = 0;
 };
 
+// PER-CREATURE-TYPE verdict, learned by fighting. Keyed on the creature's
+// NAME as the client sees it -- the paperdoll/mobile name that arrives on the
+// wire -- never a server-side chardef id, because no real client can read
+// one. DangerMemory answers "is this SPOT bad"; this answers "is this KIND OF
+// THING bad", and the two live side by side rather than one replacing the
+// other: one death at the graveyard gate should not read as "everything in
+// this graveyard is lethal" when only the lich actually was.
+//
+// SAME DECAY SHAPE AS DangerMemory ON PURPOSE (Memory::NoteDanger /
+// Memory::DangerHeatAt) -- exponential decay toward zero with the same
+// kDangerHalfLifeMs, capped at the same kMaxDangerHeat magnitude. The one
+// difference is sign, because unlike a place, a creature type can be
+// EXONERATED as well as incriminated:
+//   heat > 0  ->  evidence this creature type is dangerous (a death, a
+//                 near-death flee)
+//   heat < 0  ->  evidence this creature type is safe (a kill that cost
+//                 little)
+//   heat == 0 ->  unknown -- never fought, or the evidence fully decayed
+struct CreatureVerdict {
+    std::string name;      // the mobile name, exactly as the client sees it
+    double heat = 0.0;      // signed, decaying, capped at +/- kMaxDangerHeat
+    i64 atMs = 0;
+    i32 fights = 0;         // how many outcomes contributed, for a log line
+};
+
 struct LifeEvent {
     std::string kind;          // "first_logs", "first_death", "supplier_learned", ...
     std::string detail;
@@ -200,6 +225,7 @@ inline constexpr usize kMaxPlaces    = 128;
 inline constexpr usize kMaxResources = 64;
 inline constexpr usize kMaxSuppliers = 64;
 inline constexpr usize kMaxDanger    = 64;
+inline constexpr usize kMaxCreatures = 64;
 inline constexpr usize kMaxEvents    = 256;
 inline constexpr usize kMaxSessions  = 32;
 
@@ -212,6 +238,18 @@ inline constexpr i64 kDangerHalfLifeMs = 45 * 60 * 1000;
 // session reached 499.89 at one spot and the resulting penalty made the
 // character's own profession score negative, so it idled instead of working.
 inline constexpr double kMaxDangerHeat = 4.0;
+
+// Evidence magnitudes a fight's OUTCOME contributes to a CreatureVerdict.
+// Negative = safe, positive = dangerous. Proving danger takes one bad
+// surprise; proving safety takes repetition -- a single cheap kill should not
+// erase a single death, so the danger-side evidence outweighs the safe-side
+// evidence at the same cardinality. Whoever settles a fight (the runner, not
+// this header) picks one of these per outcome and calls
+// Memory::NoteCreatureOutcome with it.
+inline constexpr double kCreatureEvidenceCheapKill  = -0.5;  // won, hardly scratched
+inline constexpr double kCreatureEvidenceCostlyKill = -0.15; // won, but it hurt
+inline constexpr double kCreatureEvidenceNearDeathFlee = 1.0;  // fled below fleeHpFraction
+inline constexpr double kCreatureEvidenceDeath = 2.0;  // it killed us
 
 // What one trade of NPC actually said about teaching one skill.
 //
@@ -276,6 +314,20 @@ public:
     void NoteEvent(const char* kind, const char* detail, const char* place,
                    i32 x, i32 y, i64 nowMs);
 
+    // Learn from ONE fight's outcome against a creature TYPE, keyed on its
+    // client-visible name. `signedEvidence` is one of the
+    // kCreatureEvidence... constants above: negative moves the verdict
+    // toward "safe", positive moves it toward "dangerous". Compounds onto
+    // the DECAYED value exactly the way NoteDanger does -- not the raw one,
+    // so a scare from an hour ago is not treated as if it just happened --
+    // and is capped at +/- kMaxDangerHeat for the same reason NoteDanger's
+    // heat is capped: an unbounded sum is a grudge, not a memory.
+    void NoteCreatureOutcome(const char* name, double signedEvidence, i64 nowMs);
+    // Decayed verdict for one creature type: positive = dangerous, negative
+    // = safe, 0.0 = unknown (never fought, or the evidence fully decayed).
+    // What combat::ChoosePrey asks before picking a fight.
+    double CreatureDanger(const char* name, i64 nowMs) const;
+
     // Record what ONE trainer said about a skill. One row per
     // (skill, trade, npcSerial); a later answer from the same NPC replaces an
     // earlier one.
@@ -314,6 +366,7 @@ public:
     const std::vector<DangerMemory>&        Dangers()   const { return danger_; }
     const std::vector<LifeEvent>&           Events()    const { return events_; }
     const std::vector<TrainerVerdict>&      Trainers()  const { return trainers_; }
+    const std::vector<CreatureVerdict>&     Creatures() const { return creatures_; }
 
     std::vector<KnownPlace>&          MutablePlaces()    { return places_; }
     std::vector<KnownResourceSource>& MutableResources() { return resources_; }
@@ -321,6 +374,7 @@ public:
     std::vector<DangerMemory>&        MutableDangers()   { return danger_; }
     std::vector<LifeEvent>&           MutableEvents()    { return events_; }
     std::vector<TrainerVerdict>&      MutableTrainers()  { return trainers_; }
+    std::vector<CreatureVerdict>&     MutableCreatures() { return creatures_; }
 
     void Clear();
     usize ApproximateBytes() const;
@@ -332,6 +386,7 @@ private:
     std::vector<DangerMemory>        danger_;
     std::vector<LifeEvent>           events_;
     std::vector<TrainerVerdict>      trainers_;
+    std::vector<CreatureVerdict>     creatures_;
 };
 
 // ===========================================================================

@@ -227,7 +227,7 @@ int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
 
 int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
                const CrimeRules& rules, const EngagePolicy& policy,
-               double myHpFraction) {
+               double myHpFraction, const CreatureDangerLookup& creatureDanger) {
     int best = -1;
     double bestScore = -1.0;
     for (usize i = 0; i < candidates.size(); ++i) {
@@ -260,6 +260,18 @@ int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
             if (dx > -kCrowdRadius && dx < kCrowdRadius) ++company;
         }
         score -= 0.35 * company;
+
+        // LEARNED VERDICT -- the third term, and the reason this function
+        // exists in the M4+ sense of "learn which graveyard mobs are safe
+        // and which are dangerous". A creature TYPE this character has
+        // already found costly (a death, a near-death flee) is pushed to the
+        // back even if it looks like the weakest, loneliest thing on today's
+        // board; one already proven cheap is nudged forward. The weight is
+        // sized against `company` above: a creature proven fully dangerous
+        // (heat at its cap) costs as much as being surrounded by several
+        // companions, so a strong learned verdict can outweigh looking safe
+        // right now.
+        if (creatureDanger) score -= 0.5 * creatureDanger(c.name);
 
         // Then prefer the near one, as ChooseTarget does: fewer steps across
         // open ground is less time for something else to notice us.

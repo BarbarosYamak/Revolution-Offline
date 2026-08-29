@@ -16,6 +16,7 @@
 
 #include "uo/types.h"
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -148,6 +149,17 @@ int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
                  double myHpFraction,
                  std::vector<Classification>* verdictsOut = nullptr);
 
+// Per-creature-TYPE danger, looked up by the client-visible mobile name.
+// Returns a signed, decaying confidence: positive means evidence this KIND of
+// creature has been costly to fight (a death, a near-death flee), negative
+// means it has proven cheap, 0.0 means unknown. This is exactly the shape of
+// uo::life::Memory::CreatureDanger -- combat.h stays free of a dependency on
+// life.h (the two headers are peers, like uo/life.h says of itself) by taking
+// the query as a callback instead of a concrete memory type. A caller with no
+// learned-creature memory yet may pass nullptr/{}, and ChoosePrey then falls
+// back to exactly its old behaviour.
+using CreatureDangerLookup = std::function<double(const std::string& name)>;
+
 // The best thing to PICK A FIGHT WITH, or -1 if nothing is worth starting on.
 //
 // NOT the same question as ChooseTarget, and the difference is the whole
@@ -160,16 +172,23 @@ int ChooseTarget(const std::vector<Candidate>& candidates, const Stance& me,
 //    the middle. Fight one target at a time." -- the project owner's warrior
 //   loop, 2026-08-29.
 //
-// So it inverts the threat term (weakest first), and it penalises a candidate
-// that has COMPANY within kCrowdRadius, because two skeletons at once is how a
-// new fencer dies -- which is exactly what happened on this project's first
-// warrior outing (run_m5/r1warrior.console.txt).
+// So it inverts the threat term (weakest first), it penalises a candidate
+// that has COMPANY within kCrowdRadius (two skeletons at once is how a new
+// fencer dies -- which is exactly what happened on this project's first
+// warrior outing, run_m5/r1warrior.console.txt), and -- the same owner's
+// note that a character must "learn which graveyard mobs are safe and which
+// are dangerous" -- it takes a THIRD term from `creatureDanger`: a creature
+// TYPE this character has already found costly is deprioritised as prey even
+// when it looks weak and alone on THIS board, and one already proven cheap is
+// nudged toward the front. Unknown types (the common case for a fresh
+// character, or any lookup that is empty) are unaffected.
 //
 // Anything already attacking us is refused here: that is a fight in progress,
 // not a fight to pick, and ChooseTarget owns it.
 int ChoosePrey(const std::vector<Candidate>& candidates, const Stance& me,
                const CrimeRules& rules, const EngagePolicy& policy,
-               double myHpFraction);
+               double myHpFraction,
+               const CreatureDangerLookup& creatureDanger = nullptr);
 
 // How close another mobile has to be to count as the prey's company.
 inline constexpr i32 kCrowdRadius = 4;

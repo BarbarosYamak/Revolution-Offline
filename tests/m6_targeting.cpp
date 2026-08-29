@@ -400,6 +400,96 @@ void TestChoosePreyPicksTheWeakestLoner() {
     }
 }
 
+// --------------------------------------------------------------------------
+// A LEARNED VERDICT IS A THIRD TERM, ALONGSIDE THREAT AND COMPANY.
+//
+// The project owner's warrior loop asks for a character that "learns which
+// graveyard mobs are safe and which are dangerous" -- not just which SPOT is
+// bad. ChoosePrey's threat/company terms are read fresh off today's board and
+// know nothing about history; `creatureDanger` is the callback that lets a
+// remembered per-creature-type outcome (uo::life::Memory::CreatureDanger, in
+// the life layer this file deliberately does not depend on) override what
+// today's board alone would say. The magnitudes below (+2.0 for a death,
+// -0.5 for a cheap kill) mirror life.h's kCreatureEvidenceDeath /
+// kCreatureEvidenceCheapKill without pulling in uo/life.h here.
+void TestChoosePreyDeprioritisesALearnedDangerousType() {
+    Section("prey: a creature type known to be dangerous is deprioritised");
+
+    const combat::CrimeRules rules = combat::RevolutionCrimeRules();
+    combat::EngagePolicy policy;
+    combat::Stance me;
+
+    auto mob = [](u32 serial, const char* name, i32 dist, i32 hpCur, i32 hpMax) {
+        combat::Candidate c;
+        c.serial = serial; c.name = name; c.dist = dist;
+        c.noto = combat::Noto::Criminal;      // lawful to attack
+        c.hpCur = hpCur; c.hpMax = hpMax;
+        return c;
+    };
+
+    // With no learned memory at all, the two identical-looking mobiles are
+    // both legal choices -- there is nothing yet to tell them apart beyond
+    // today's board.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "a lich",     3, 20, 100));
+        cs.push_back(mob(2, "a skeleton", 3, 20, 100));
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0);
+        Check(prey == 0 || prey == 1,
+              "with no learned memory, either identical mob is a legal choice");
+    }
+
+    // Now the lich has a proven-dangerous verdict (a past death) and the
+    // skeleton has a proven-safe one (a past cheap kill). Same board, same
+    // threat and company terms -- only the learned memory differs.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "a lich",     3, 20, 100));
+        cs.push_back(mob(2, "a skeleton", 3, 20, 100));
+
+        auto danger = [](const std::string& name) -> double {
+            if (name == "a lich") return 2.0;       // a past death
+            if (name == "a skeleton") return -0.5;  // a past cheap kill
+            return 0.0;
+        };
+
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0, danger);
+        Check(prey == 1,
+              "the skeleton is chosen -- the lich is remembered as costly, "
+              "even though the board alone reads them as identical");
+    }
+
+    // A weak, lone, NEARBY creature with a strongly dangerous learned verdict
+    // still loses to a farther, company-free creature with no bad history --
+    // the learned verdict can outweigh looking safe on today's board.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "an ogre", 2, 10, 100));   // looks trivial right now
+        cs.push_back(mob(2, "a rat",   8, 10, 100));   // farther, unknown history
+
+        auto danger = [](const std::string& name) -> double {
+            if (name == "an ogre") return 2.0;   // capped danger, a past death
+            return 0.0;
+        };
+
+        const int prey = combat::ChoosePrey(cs, me, rules, policy, 1.0, danger);
+        Check(prey == 1,
+              "a strongly dangerous learned verdict outweighs looking weak and "
+              "close on today's board");
+    }
+
+    // A default-constructed (empty) lookup must behave exactly like passing
+    // none at all -- the whole point of the default parameter.
+    {
+        std::vector<combat::Candidate> cs;
+        cs.push_back(mob(1, "strong", 2, 100, 100));
+        cs.push_back(mob(2, "weak",   6,  20, 100));
+        combat::CreatureDangerLookup empty;
+        Check(combat::ChoosePrey(cs, me, rules, policy, 1.0, empty) ==
+              combat::ChoosePrey(cs, me, rules, policy, 1.0),
+              "an empty lookup changes nothing from the no-lookup call");
+    }
+}
 
 
 int main() {

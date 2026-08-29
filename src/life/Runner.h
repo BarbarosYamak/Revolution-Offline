@@ -221,6 +221,9 @@ private:
     i32  foodTrips_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
     static constexpr i64 kNoFoodCooldownMs = 3 * 60 * 1000;
+    // Below this there is no point walking to a shop. A loaf is a few coins;
+    // this is "can I buy anything at all", not a price.
+    static constexpr i32 kFoodMoney = 20;
     // Journal mark taken once at session start: hunger is a STATE, and the
     // last thing the server said about it is still true until it speaks again.
     i64  sessionStartJournalMs_ = 0;

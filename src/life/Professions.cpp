@@ -901,7 +901,17 @@ const std::vector<Profession>& All() {
             // written down as fact.
             p.startSkillA = rules::kMining;
             p.startSkillB = rules::kLumberjacking;
-            p.startStr = 40; p.startDex = 24; p.startInt = 16;
+            // STR 50 IS NOT A PREFERENCE, IT IS THE PICKAXE.
+            //
+            // i_pickaxe carries ReqStr=50 (items/weapons/i_weapons.scp:193)
+            // and Source-X REFUSES the equip below it -- CanEquipStr,
+            // CCharStatus.cpp:296-309, answering "Not strong enough to
+            // equip". Mining needs a wielded tool, so at STR 40 this life
+            // could not perform its own startSkillA on the day it was
+            // created. That fault was introduced the same day Mining became
+            // its creation skill, and it is exactly the trap the miner_smith
+            // comment block already warned about.
+            p.startStr = 50; p.startDex = 20; p.startInt = 10;
             p.targets = {
                 // The resource half of the build comes FIRST in priority --
                 // ore and logs are what every other skill here consumes, and a
@@ -1045,7 +1055,10 @@ const std::vector<Profession>& All() {
             p.label = "Merchant / Tinker";
             p.startSkillA = rules::kTinkering;
             p.startSkillB = rules::kMining;
-            p.startStr = 48; p.startDex = 16; p.startInt = 16;
+            // 48 was two points short of the pickaxe it declares as a
+            // WIELDED tool (ReqStr=50). Mining is its second creation
+            // skill, so it too was born unable to do it.
+            p.startStr = 50; p.startDex = 16; p.startInt = 14;
             p.targets = {
                 {rules::kTinkering, 1000, 2, false, SkillRole::Primary},
                 // Held exactly at the 50.0 creation grants: this life buys

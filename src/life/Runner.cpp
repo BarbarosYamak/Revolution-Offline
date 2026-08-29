@@ -4878,9 +4878,30 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         return false;
     }
 
-    // Nothing to eat. Buying food is an ordinary provisioner errand, and it is
-    // NOT a craft input -- so it does not belong in DoBuySupplies, which is
-    // about the things a profession makes other things from.
+    // NOTHING TO EAT AND NOTHING TO BUY WITH.
+    //
+    // A goal that cannot possibly succeed must stand down, or it eats the
+    // session. This one did exactly that on its first live outing: Kaelen died,
+    // lost everything to full loot, and woke with no food and no gold -- so
+    // GET_FOOD failed, was re-picked, and took the WHOLE 25 minutes:
+    //
+    //   session_goals families=1 picks=5 top=100% varied=0 | upkeep=5(100%)
+    //   session_summary goals=0/5 gold=0->0
+    //
+    // Being hungry with an empty purse is a real predicament and the honest
+    // response is to go and earn something, not to keep walking to a shop.
+    if (obs.gold < kFoodMoney) {
+        LogLine("food: hungry with %d gold -- nothing to eat and nothing to buy "
+                "with; standing down to go and earn", obs.gold);
+        planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+        planner_.Finish(false, "no food and no money", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
+        return false;
+    }
+
+    // Buying food is an ordinary provisioner errand, and it is NOT a craft
+    // input -- so it does not belong in DoBuySupplies, which is about the
+    // things a profession makes other things from.
     if (client.TravelBusy()) return false;
     const u32 keeper = client.NearestMobileWithTrade("provisioner");
     if (keeper) {

@@ -185,6 +185,17 @@ json::Value ToJson(const PersistentState& st) {
         }
         m.Set("danger", std::move(dgr));
 
+        json::Value crt = json::Value::MakeArray();
+        for (const CreatureVerdict& k : st.memory.Creatures()) {
+            json::Value o = json::Value::MakeObject();
+            o.Set("name", k.name);
+            o.Set("heat", k.heat);
+            o.Set("at_ms", k.atMs);
+            o.Set("fights", static_cast<i64>(k.fights));
+            crt.Push(std::move(o));
+        }
+        m.Set("creatures", std::move(crt));
+
         json::Value evs = json::Value::MakeArray();
         for (const LifeEvent& k : st.memory.Events()) {
             json::Value o = json::Value::MakeObject();
@@ -486,6 +497,26 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             k.heat = std::min(kMaxDangerHeat, e["heat"].AsDouble(0.0));
             k.atMs = e["at_ms"].AsInt(0);
             st.memory.MutableDangers().push_back(std::move(k));
+        }
+    }
+    {
+        // Absent in any file written before this field existed, which
+        // simply means the character has not fought anything yet -- the
+        // loop below then leaves MutableCreatures() empty, exactly as a
+        // fresh Memory would.
+        const json::Value& a = m["creatures"];
+        for (usize i = 0; i < a.Size(); ++i) {
+            const json::Value& e = a.At(i);
+            CreatureVerdict k;
+            k.name = e["name"].AsString();
+            if (k.name.empty()) continue;
+            // Clamp on LOAD too, for the same reason DangerMemory's heat is
+            // clamped on load: a cap added after the fact must still bind a
+            // value that was written before it existed.
+            k.heat = std::clamp(e["heat"].AsDouble(0.0), -kMaxDangerHeat, kMaxDangerHeat);
+            k.atMs = e["at_ms"].AsInt(0);
+            k.fights = static_cast<i32>(e["fights"].AsInt(0));
+            st.memory.MutableCreatures().push_back(std::move(k));
         }
     }
     {
