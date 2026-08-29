@@ -64,6 +64,11 @@ constexpr i32 kMaxSpellbookTrips = 3;
 // again the moment the purse is still empty.
 constexpr i64 kNothingToSellCooldownMs = 180000;   // three minutes
 constexpr i32 kMaxTradeTrips = 3;
+// A goal that used its whole time limit and finished nothing rests for two
+// minutes. Long enough that something else certainly gets a turn, short enough
+// that a genuinely long errand -- a walk across the map to a trainer -- can be
+// resumed later in the same session.
+constexpr i64 kExhaustedCooldownMs = 120000;
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -1414,10 +1419,30 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
     // keep acting after it has been abandoned.
     std::string exhaustedWhy;
     if (planner_.Exhausted(obs.nowMs, &exhaustedWhy)) {
-        LogLine("goal_failed=%s reason=\"%s\"", GoalKindName(planner_.Current().kind),
+        // AND REST IT. Running the full time limit without finishing is the
+        // strongest possible evidence that this errand is not working right
+        // now, and it was the one failure path with no cooldown -- so the very
+        // next Select() saw the same unchanged need and started the identical
+        // goal again with a fresh five minutes. Brannoc spent an entire
+        // session on it:
+        //
+        //   goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC
+        //       reason="previous goal abandoned: ran 300s without finishing"
+        //
+        // five times over, walking Vesper to Minoc to Magincia looking for a
+        // tinker, and finishing the session with goals=0/5, gold unchanged and
+        // not one tenth of skill gained.
+        //
+        // Note this is NOT the spin the backstop catches. That one ends
+        // instantly and repeatedly; this one never ends at all until the timer
+        // kills it. Opposite symptoms, same cost -- one goal owning every
+        // decision a character makes.
+        const GoalKind spent = planner_.Current().kind;
+        LogLine("goal_failed=%s reason=\"%s\"", GoalKindName(spent),
                 exhaustedWhy.c_str());
         session_.goalsFailed++;
         planner_.Finish(false, exhaustedWhy.c_str(), obs.nowMs);
+        planner_.Cooldown(spent, obs.nowMs + kExhaustedCooldownMs);
         return;
     }
 
