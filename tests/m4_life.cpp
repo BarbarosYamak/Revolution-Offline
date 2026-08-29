@@ -994,7 +994,7 @@ void TestSurplusNeedsSomewhereToGo() {
     Section("needs: a surplus with no buyer is blocked, not a goal");
 
     const prof::Profession* lj = prof::Find("lumberjack_swordsman");
-    const prof::Profession* mg = prof::Find("mage");
+    const prof::Profession* mg = prof::Find("scribe");
     Check(lj && mg, "the two lives exist");
     if (!lj || !mg) return;
 
@@ -1050,7 +1050,7 @@ void TestSurplusNeedsSomewhereToGo() {
     const std::vector<life::Need> manyNeeds = needsFor(*mg, "i_scroll_poison", 40);
     const life::Need* few  = sellNeed(fewNeeds);
     const life::Need* many = sellNeed(manyNeeds);
-    Check(few && many, "a mage's scrolls are a surplus at both sizes");
+    Check(few && many, "a scribe's scrolls are a surplus at both sizes");
     if (few && many) {
         Check(!few->blocked && !many->blocked,
               "and NOT blocked -- the mage shop buys scrolls back");
@@ -1518,7 +1518,7 @@ void TestFamilySatiationBreaksAMonotonousDay() {
 void TestNoSkillGainRegionBlocksPractice() {
     Section("needs: practice is pointless where no skill can advance");
 
-    const prof::Profession* mage = prof::Find("mage");
+    const prof::Profession* mage = prof::Find("scribe");
     if (!mage) { Check(false, "no mage"); return; }
 
     life::NeedConfig cfg;

@@ -295,21 +295,47 @@ const std::vector<Profession>& All() {
             p.label = "Pure Mage";
             p.startSkillA = rules::kMagery;
             p.startSkillB = rules::kMeditation;
-            p.startStr = 24; p.startDex = 16; p.startInt = 40;
+            // HIGH INT, and enough STR/DEX not to be useless. A pure mage
+            // lives on its mana pool; STR is what stops it dying to one hit
+            // and carrying nothing, DEX is what lets it walk away.
+            p.startStr = 20; p.startDex = 12; p.startInt = 48;
             p.targets = {
+                // THREE SKILLS. No melee plan, no crafting plan, no hybrid
+                // thinking (owner's pure-mage spec, 2026-08-29). Inscription
+                // used to sit here at 50.0 and it was scribe thinking wearing
+                // a mage's robe: it gave the build a crafting income and a
+                // reason to stand in a shop, which is a different life.
                 {rules::kMagery,          1000, 5, false, SkillRole::Primary},
                 {rules::kMeditation,      1000, 4, false, SkillRole::Secondary},
                 {rules::kEvaluatingIntel, 1000, 3, true,  SkillRole::Secondary},
-                {rules::kInscription,      500, 1, true,  SkillRole::Utility},
             };
-            p.unresolvedTenths = 3500;
+            // 300.0 resolved across three skills leaves 400.0 UNSPENT, and
+            // that is deliberate rather than an oversight: a pure mage is
+            // three skills, and the rest of the budget stays open until
+            // there is evidence about what Revolution mages actually took
+            // with it. Unresolved is a first-class value in this project.
+            p.unresolvedTenths = 4000;
             p.targetStr = 25; p.targetDex = 25; p.targetInt = 100;
-            p.income = {Income::Craft, Income::Hunt};
+            // LOOT, not crafting. The day-one economy is starting reagents
+            // -> graveyard kills -> loot -> sell -> gold -> more reagents,
+            // and never gold -> reagents first, because a new mage has
+            // reagents and no gold.
+            p.income = {Income::Hunt};
             // What a mage actually MAKES. Blank scrolls are Carpentry 25.7
             // (Production.cpp:123) -- wood, not magic -- so listing them as
             // the mage's output was backwards. It makes SPELL scrolls out of
             // them.
-            p.produces = {"i_scroll_poison", "i_scroll_recall"};
+            // NOTHING. A pure mage makes nothing; it kills things and sells
+            // what they drop.
+            //
+            // THIS EXPOSES A REAL GAP, recorded rather than papered over:
+            // the sell path asks market::Surplus, which only ever considers
+            // `produces`. LOOT IS NOT PRODUCED, so a mage with a pack full
+            // of graveyard drops has nothing the economy layer recognises
+            // as sellable. The same gap blocks a warrior selling the gear
+            // it loots. See docs/M6.md, "Loot is income and the model has
+            // no word for it".
+            p.produces = {};
             // Reagents are bought, never gathered -- the ground-reagent spawns
             // exist but a mage buying from a mage shop is the era behaviour.
             // Blank scrolls are the mage's real bottleneck and it cannot make

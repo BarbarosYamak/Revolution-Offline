@@ -365,8 +365,13 @@ void TestARefusalIsRemembered() {
     const int second = life::NextSkillToBuy(plan, obs, 300);
     Check(second != rules::kEvaluatingIntel,
           "after the refusal the character stops choosing that skill");
-    Check(second == rules::kInscription,
-          "and moves down its own priority order to the next trainable skill");
+    // The pure mage has exactly ONE skill an NPC will teach -- Evaluating
+    // Intelligence. Magery and Meditation are viaTrainer=false because they
+    // are practised, not bought, and Inscription left the build in 2026-08-29
+    // when scroll-writing went back to being the scribe's identity. So the
+    // honest answer after a refusal is "nothing", not a fallback.
+    Check(second == -1,
+          "a pure mage whose one buyable skill is refused wants nothing else");
 
     // Refuse everything: no target at all, rather than looping on the last one.
     obs.trainerRefusedSkills.push_back(rules::kInscription);
@@ -448,7 +453,11 @@ void TestSkillRoles() {
         ++g_checks;
     }
 
-    const prof::Profession* base = prof::Find("mage");
+    // The SCRIBE, not the mage: this exercises the Utility-role rule and
+    // needs a build that HAS a utility skill. The pure mage is three
+    // skills, all Primary/Secondary; the scribe carries Meditation as
+    // Utility, which is exactly the shape this rule is about.
+    const prof::Profession* base = prof::Find("scribe");
     Check(base != nullptr, "the mage exists");
     if (!base) return;
 

@@ -39,7 +39,7 @@ void TestInterdependence() {
     Section("chain: the catalogue expresses a real producer -> consumer link");
 
     const prof::Profession* ms = prof::Find("miner_smith");
-    const prof::Profession* mg = prof::Find("mage");
+    const prof::Profession* mg = prof::Find("scribe");
     const prof::Profession* lj = prof::Find("lumberjack_swordsman");
     Check(ms && mg && lj, "the three lives exist");
     if (!ms || !mg || !lj) return;
@@ -114,7 +114,7 @@ void TestSurplusIsOwnOutputOnly() {
 void TestShortfallSeparatesWorldFromPlayers() {
     Section("shortfall: a raw resource is not a player supplier's job");
 
-    const prof::Profession* mg = prof::Find("mage");
+    const prof::Profession* mg = prof::Find("scribe");
     Check(mg != nullptr, "the mage exists");
     if (!mg) return;
 
@@ -324,7 +324,7 @@ void TestNoClosedVendorLoop() {
 
     // The arbitrage guard is tested on a good that DOES have a tap, so the
     // two gates are exercised separately rather than one masking the other.
-    const prof::Profession* mage = prof::Find("mage");
+    const prof::Profession* mage = prof::Find("scribe");
     Check(mage != nullptr, "the mage exists");
     if (!mage) return;
     Check(MaySellToNpc(*mage, "i_scroll_poison", clean).allowed,
@@ -452,14 +452,21 @@ void TestWhatAnNpcMayStillBuy() {
         }
     }
 
-    // ONLY the mage, from scrolls. The registry refuses smith, carpentry,
+    // ONLY the scribe, from scrolls. The registry refuses smith, carpentry,
     // tailoring, tinkering and alchemy output as NPC faucets -- the stock
     // templates buy all of them, and that is a fact about Sphere.
+    //
+    // This said "mage" until 2026-08-29, and the mage was carrying the
+    // scribe's identity: it produced scrolls, drew a crafting income and had
+    // Inscription in its build. Scroll-writing is what a SCRIBE is, and the
+    // scribe profession already existed -- so the mage is now pure (Magery,
+    // Meditation, Eval Int; income from loot) and the scroll faucet belongs
+    // to the profession that actually writes them.
     //
     // THE ASYMMETRY IS THE POINT. A smith with no NPC faucet has to reach
     // players, hunt, or find another route, and that is the intended shape of
     // a shard economy rather than a gap to be filled in.
-    Check(withNpcIncome.count("mage") == 1,
+    Check(withNpcIncome.count("scribe") == 1,
           "a scribe has an NPC income -- live-proven on this shard");
     Check(withNpcIncome.count("miner_smith") == 0,
           "a smith does NOT: mine -> smith -> dump to NPC would print gold");
@@ -506,7 +513,7 @@ void TestArbitrageGuardStillApplies() {
     // price at all; the ledger decides whether THIS character earned it. A
     // hypothetical NPC-verified good bought from a vendor and sold back is
     // still refused, which is the 66-loop case from economy_arbitrage.py.
-    const prof::Profession* mg = prof::Find("mage");
+    const prof::Profession* mg = prof::Find("scribe");
     Check(mg != nullptr, "the mage exists");
     if (!mg) return;
 
@@ -605,7 +612,7 @@ void TestWhatToAnnounce() {
 
     // A SCROLL has an allowed NPC route, so the player market need not carry
     // it -- that is a shorter errand and the announcement would be noise.
-    const prof::Profession* mg2 = prof::Find("mage");
+    const prof::Profession* mg2 = prof::Find("scribe");
     if (mg2) {
         PriceBook scrollBook;
         PriceObservation cp;
@@ -624,7 +631,7 @@ void TestWhetherToAnswer() {
     Section("trade: a buyer answers only for what its own life needs");
 
     const prof::Profession* ms = prof::Find("miner_smith");
-    const prof::Profession* mg = prof::Find("mage");
+    const prof::Profession* mg = prof::Find("scribe");
     Check(ms && mg, "the smith and the mage exist");
     if (!ms || !mg) return;
 
