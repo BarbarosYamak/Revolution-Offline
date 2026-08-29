@@ -408,7 +408,7 @@ int main(int argc, char** argv) {
             // creation is the city the life then calls home. If a profession's
             // home is not one of the shard's nine starting cities the default
             // stands, which is the honest fallback rather than a guess.
-            if (cfg.startCity == 0 && !pr->homeCities.empty()) {
+            if (cfg.startCity == 0) {
                 std::string ident;
                 auto append = [&ident](const char* t) {
                     for (const char* c = t; c && *c; ++c) {
@@ -425,13 +425,25 @@ int main(int argc, char** argv) {
                 uo::usize h = 0;
                 for (char c : ident)
                     h = h * 131 + static_cast<unsigned char>(c);
-                const std::string& home =
-                    pr->homeCities[h % pr->homeCities.size()];
+                // Same rule the life layer uses: a gatherer lives where the
+                // work is, everyone else spreads. An empty list means Britain.
+                const std::string home =
+                    pr->homeCities.empty()
+                        ? std::string("Britain")
+                        : (!pr->gathers.empty()
+                               ? pr->homeCities.front()
+                               : pr->homeCities[h % pr->homeCities.size()]);
                 // maps/map0/map0_starts.scp, in its own order.
                 static const char* kStarts[] = {
                     "Yew", "Minoc", "Britain", "Moonglow", "Trinsic",
                     "Magincia", "Jhelom", "Skara Brae", "Vesper",
                 };
+                // BRITAIN IS THE DEFAULT, NOT YEW. Index 0 is Yew, so any
+                // profession whose home did not resolve was born inland --
+                // "if it is empty it is britain not yew" (project owner,
+                // 2026-08-29). A fisher with no homeCities at all came into
+                // the world in the Empath Abbey.
+                cfg.startCity = 2;                    // Britain
                 for (int i = 0; i < 9; ++i) {
                     if (home == kStarts[i]) { cfg.startCity = i; break; }
                 }

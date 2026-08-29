@@ -490,6 +490,20 @@ const std::vector<Profession>& All() {
                           "i_fish_cut_raw", "i_fish_cut_cooked"};
             p.tools = {{"fishing pole", V(kFishingPole, 2), true}};
             p.consumables = {Food()};
+            // A FISHER HAD NO HOME AT ALL. homeCities was simply absent, so
+            // Runner::Start skipped the whole selection block, homeCity stayed
+            // empty, and character creation fell back to start location 0 --
+            // Yew, which is inland. "why fisher started in yew come on"
+            // (project owner, 2026-08-29). Quite.
+            //
+            // Chosen from where the fishing actually is, not from taste: the
+            // atlas's 17 fishing PLACEs cluster on Skara Brae and Jhelom, with
+            // docks at Vesper and Nujel'm. All four are start cities the shard
+            // offers (map0_starts.scp), so a fisher is now born on the coast.
+            //
+            // It gathers, so it takes the FIRST of these rather than hashing.
+            p.homeCities = {"Skara Brae", "Jhelom", "Vesper", "Britain"};
+
             p.riskTolerance = 0.20;      // stands on a dock; avoids everything
             p.goldReserve = 150;         // a replacement pole
             v.push_back(std::move(p));

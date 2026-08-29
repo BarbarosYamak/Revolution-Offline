@@ -384,6 +384,8 @@ constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knive
 // i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
 constexpr u16 kKindlingGraphic = 0x0DE1;
 constexpr u16 kCampfireGraphic = 0x0DE3;
+// i_fish_cut_raw 0x097A -- four to a whole fish, and food once cooked.
+constexpr u16 kFishRawSteak = 0x097A;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
 // how much coin a life keeps, or one will ask for a trip the other undoes.
 constexpr i32 kGoldWorthCarryingRt = 500;
@@ -839,6 +841,14 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
     // so the same character always gets the same home even if the state file is
     // lost -- and so a fleet spreads across the map instead of every member
     // rolling the same first entry.
+    if (state_.homeCity.empty() && needCfg_.profession) {
+        if (needCfg_.profession->homeCities.empty()) {
+            // No list at all: Britain, never the index-0 fallback of Yew.
+            state_.homeCity = "Britain";
+            LogLine("home: %s has no home cities in the catalogue -- Britain",
+                    state_.identity.characterName.c_str());
+        }
+    }
     if (state_.homeCity.empty() && needCfg_.profession &&
         !needCfg_.profession->homeCities.empty()) {
         usize h = 0;
@@ -6041,6 +6051,32 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2500;
         return false;
+    }
+
+    // A FISHER MAKES ITS OWN SUPPER TOO.
+    //
+    // "Marla shouldnt buy food she can make food" (project owner,
+    // 2026-08-29). A life that catches fish has dinner in its pack already:
+    // one whole fish cuts into four steaks and a campfire cooks them, and
+    // i_fish_cut_cooked is t_food. Walking to a baker to buy bread with the
+    // river behind you is not a shopping trip, it is a failure to look in
+    // your own backpack.
+    //
+    // The cut and the cook belong to the fishing and crafting goals, which
+    // already know how; what this does is stop the FOOD errand spending gold
+    // when the makings are carried.
+    if (needCfg_.profession && needCfg_.profession->gathers == "fish") {
+        const bool haveMakings =
+            FindAny(client, kWholeFish,
+                    sizeof(kWholeFish) / sizeof(kWholeFish[0])) != 0 ||
+            client.FindBackpackItemByGraphic(kFishRawSteak) != 0;
+        if (haveMakings) {
+            LogLine("food: carrying the catch -- cutting and cooking it rather "
+                    "than buying bread");
+            planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+            planner_.Finish(false, "will cook the catch instead", obs.nowMs);
+            return false;
+        }
     }
 
     // A MAGE MAKES ITS OWN SUPPER.
