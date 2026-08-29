@@ -47,6 +47,10 @@ constexpr i32 kSpellbookMoney = 120;
 constexpr i32 kScrollMoney    = 120;
 constexpr i64 kNoSpellbookCooldownMs = 240000;   // four minutes
 constexpr i32 kMaxSpellbookTrips = 3;
+// Long enough that a character which cannot sell anything goes and does
+// something else for a while -- hunts, gathers, crafts -- rather than asking
+// again the moment the purse is still empty.
+constexpr i64 kNothingToSellCooldownMs = 180000;   // three minutes
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -2898,9 +2902,14 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     if (!me) {
         // A life that predates the catalogue (the M4 lumberjack) has no
         // `produces` list, so there is nothing this goal can honestly sell.
+        // Also a stand-down rather than a completion, for the same reason:
+        // an uncatalogued life would otherwise spin here identically.
         LogLine("earn_gold: '%s' is not in the catalogue -- nothing to sell",
                 state_.plan.family.c_str());
-        return true;
+        planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kNothingToSellCooldownMs);
+        planner_.Finish(false, "not in the catalogue", obs.nowMs);
+        nextActionMs_ = obs.nowMs + 5000;
+        return false;
     }
 
     // --- did the last sale actually pay? ----------------------------------
@@ -3020,9 +3029,32 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         const std::vector<market::Offer> banked =
             market::Surplus(*me, holdings, tp);
         if (banked.empty()) {
+            // AND THIS IS A FAILURE, NOT A COMPLETION.
+            //
+            // The comment above describes this exact bug for the fisher whose
+            // stock was in the bank -- "completed with progress 0, and was
+            // re-picked sixty milliseconds later" -- and fixed only that
+            // branch. The terminal branch still returned true, so a character
+            // with genuinely nothing to sell reported success, freed the
+            // planner, and was handed the same errand again immediately.
+            //
+            // Kaelen did it 13,111 times in one session: died, lost everything
+            // to full loot, woke with no gold and no goods, and spent 25
+            // minutes completing EARN_GOLD at 60ms intervals --
+            //
+            //   goal_completed=EARN_GOLD progress=0
+            //   goal=EARN_GOLD reason="no goal was running"
+            //
+            // -- while a graveyard full of things worth killing sat outside.
+            // A goal that cannot act must stand down and let another have the
+            // turn, exactly as GET_FOOD and GET_TOOL learned to.
             LogLine("earn_gold: nothing spare to sell (neither the pack nor "
-                    "the bank holds a surplus of what this life makes)");
-            return true;
+                    "the bank holds a surplus of what this life makes) -- "
+                    "standing down so something that CAN earn gets a turn");
+            planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kNothingToSellCooldownMs);
+            planner_.Finish(false, "nothing to sell", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
         }
 
         // Only chase stock a buyer would actually take; a bank full of
