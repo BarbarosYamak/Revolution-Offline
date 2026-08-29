@@ -59,6 +59,9 @@ constexpr i32 kSpellShoppingSpare = 1000;
 // fighting stock outright -- and walking to a shop beats shearing a sheep,
 // spinning it, weaving it and cutting it up.
 constexpr i32 kBandagesBuyable = 200;
+// Working change kept on top of the profession's own reserve. Enough for an
+// unplanned purchase without making the character worth robbing.
+constexpr i32 kGoldWorthCarrying = 500;
 
 
 // Does this life carry the thing at all? The catalogue is the answer; a life
@@ -402,6 +405,26 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         add(NeedKind::NeedBank, 0.35, "deposit logs",
             "enough logs carried to be worth securing",
             Fmt("logs=%d threshold=%d", obs.logs, cfg.logsWorthBanking));
+    }
+
+    // GOLD IN THE PACK IS GOLD AT RISK. "nobody carry gold on them unless they
+    // need to buy something -- always put additional items to bank, so they
+    // can get it when they need it" (project owner, 2026-08-29).
+    //
+    // This shard has full loot on death, so every coin carried past what the
+    // errand needs is a coin one bad fight away from another player's pack.
+    // What a life legitimately carries is its own goldReserve -- the sum it
+    // holds back for tools, reagents and lessons -- plus a little working
+    // change; anything above that belongs in the box.
+    if (cfg.profession && !obs.atBank) {
+        const i32 carry = cfg.profession->goldReserve + kGoldWorthCarrying;
+        if (obs.gold > carry) {
+            add(NeedKind::NeedBank, 0.38, "deposit surplus gold",
+                "carrying more coin than this life needs, and death here is "
+                "full loot",
+                Fmt("gold=%d reserve=%d carry=%d", obs.gold,
+                    cfg.profession->goldReserve, carry));
+        }
     }
 
     if (obs.gold < cfg.goldFloor) {

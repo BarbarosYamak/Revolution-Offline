@@ -384,6 +384,9 @@ constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knive
 // i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
 constexpr u16 kKindlingGraphic = 0x0DE1;
 constexpr u16 kCampfireGraphic = 0x0DE3;
+// Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
+// how much coin a life keeps, or one will ask for a trip the other undoes.
+constexpr i32 kGoldWorthCarryingRt = 500;
 // THE 36 ARMOUR PIECES AN ARMORER ACTUALLY STOCKS, generated from every
 // SELL row in VENDOR_S_ARMORER_LEATHER / _RING / _CHAIN / _PLATE /
 // _SHIELDS. Everything else with an ARMOR value is smith-crafted or
@@ -2768,7 +2771,13 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // auditable. Bounded by loadDemandsIt, the same guard the inputs
         // branch uses: below the weight line a character keeps its oddments.
         if (loadDemandsIt && client.BackpackContentsKnown()) {
-            std::vector<u16> keepGfx{kGoldCoin, kLog};
+            // GOLD IS NO LONGER KEPT WHOLESALE. It used to be listed here
+            // beside logs as something never deposited, which meant a
+            // character banked its goods and walked away still carrying every
+            // coin it owned -- into a shard with full loot on death. The
+            // surplus goes in the box below; only what the life actually needs
+            // stays in the pack.
+            std::vector<u16> keepGfx{kLog};
             auto keepAll = [&keepGfx](const std::vector<u16>& g) {
                 keepGfx.insert(keepGfx.end(), g.begin(), g.end());
             };
@@ -2800,11 +2809,36 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 bool named = false;
                 for (u16 k : keepGfx) { if (k == gfx) { named = true; break; } }
                 if (named) continue;
+
+                // GOLD IS DEPOSITED IN PART, NOT WHOLESALE.
+                //
+                // It used to be kept entirely, so a character banked its goods
+                // and walked out carrying every coin it owned -- on a shard
+                // with full loot. Dropping it from the keep list without this
+                // would be the opposite mistake: banking the lot and leaving
+                // the life unable to buy bread. What stays is the profession's
+                // own reserve plus working change; the rest goes in.
+                u16 moving = amount ? amount : 1;
+                if (gfx == kGoldCoin) {
+                    const i32 keep =
+                        (needCfg_.profession ? needCfg_.profession->goldReserve
+                                             : 0) + kGoldWorthCarryingRt;
+                    const i32 spare = static_cast<i32>(moving) - keep;
+                    if (spare <= 0) continue;      // all of it is needed
+                    moving = static_cast<u16>(spare);
+                    LogLine("banking %d gold, keeping %d for this life's own "
+                            "errands -- coin in the pack is coin at risk",
+                            spare, keep);
+                    client.ActionMoveItem(serial, moving, box);
+                    planner_.NoteProgress();
+                    nextActionMs_ = obs.nowMs + 1500;
+                    return false;
+                }
+
                 LogLine("banking dead weight: 0x%04X x%u -- this life has no "
                         "use for it and the pack is at %.0f%%",
-                        gfx, amount ? amount : 1,
-                        obs.WeightFraction() * 100.0);
-                client.ActionMoveItem(serial, amount ? amount : 1, box);
+                        gfx, moving, obs.WeightFraction() * 100.0);
+                client.ActionMoveItem(serial, moving, box);
                 planner_.NoteProgress();
                 nextActionMs_ = obs.nowMs + 1500;
                 return false;
@@ -6310,10 +6344,28 @@ const ArmorPiece* ArmorFor(u16 graphic) {
 }
 
 bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
-    if (obs.SkillTenths(rules::kMagery) > 0 && a.cls == ArmorClass::Metal)
+    // NOT KNOWING IS NOT THE SAME AS ZERO.
+    //
+    // Thessaly is an Apprentice Mage with Magery 50.0, and she was found
+    // WEARING PLATEMAIL GAUNTLETS -- ten pairs in her pack and one on her
+    // paperdoll. The rule below is right and it read her Magery as 0, because
+    // the skill list had not arrived from the server yet: obs.skills was empty
+    // and SkillTenths returns 0 for a skill it cannot find. An empty skill
+    // list is silence, not evidence of a warrior.
+    //
+    // On this shard the mistake is unrecoverable while worn -- a metal set
+    // stops a caster casting at all -- so the safe reading of silence is to
+    // refuse. A character that genuinely has no Magery loses nothing but a few
+    // seconds, until its skills arrive.
+    const bool skillsKnown = !obs.skills.empty();
+    const bool mayBeCaster =
+        !skillsKnown || obs.SkillTenths(rules::kMagery) > 0;
+    if (mayBeCaster && a.cls == ArmorClass::Metal)
         return false;                       // metal ends a caster's casting
-    if (a.cls == ArmorClass::Shield && obs.SkillTenths(rules::kMagery) > 0)
+    if (mayBeCaster && a.cls == ArmorClass::Shield)
         return false;                       // a shield hand is a spell hand
+    // Strength is read the same way: unknown is not "strong enough".
+    if (obs.str <= 0) return false;
     return obs.str >= static_cast<i32>(a.reqStr);
 }
 
