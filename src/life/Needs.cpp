@@ -26,6 +26,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedCatch:     return "NeedCatch";
         case NeedKind::NeedSupplies:  return "NeedSupplies";
         case NeedKind::NeedPractice:  return "NeedPractice";
+        case NeedKind::NeedSpells:    return "NeedSpells";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -33,6 +34,19 @@ const char* NeedKindName(NeedKind k) {
 }
 
 namespace {
+
+// HOW FULL IS FULL ENOUGH, for the purpose of wanting more.
+//
+// Not 64 (the whole eight circles). A book is filled across sessions, and
+// circles 7-8 are sold by nobody on this shard -- they come from dungeon
+// chests and monster loot -- so a need that is only satisfied at 64 would
+// never switch off and would nag forever. 24 is the first three circles, which
+// IS buyable: circles 1-4 come random from any mage shop and a scribe sells
+// 1-5 by name. It is the point where a caster has a working kit rather than a
+// complete one. PLACEHOLDER-ish: no Revolution source states a number, so this
+// is a judgement about bot behaviour, not a claim about the shard.
+constexpr int kSpellbookComfortable = 24;
+
 
 // Does this life carry the thing at all? The catalogue is the answer; a life
 // saved before the catalogue existed (cfg.profession == nullptr) keeps the M4
@@ -641,6 +655,42 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             Fmt("%s %.1f -> %.1f", SkillName(t.skillId), have / 10.0,
                 t.tenths / 10.0),
             blocked);
+    }
+
+    // --- a spellbook worth FILLING -----------------------------------------
+    //
+    // "we need to add that mages tries to fill their book, make it full spell
+    // book" (project owner, 2026-08-29). A mage's book is equipment, and this
+    // shard proved why it matters the hard way: Voris carried Magery 50.0 and
+    // asked for Create Food 26 times in one session, being told every time
+    // that the spell was not in his spellbook. Skill without spells is not a
+    // caster.
+    //
+    // Deliberately a LOW, PATIENT need. A book is filled across many sessions,
+    // never in one errand -- circles 1-4 are bought random from a mage shop,
+    // 5 and part of 6 by name from a scribe, and 7-8 come from dungeon chests
+    // and monster loot and are sold by nobody. See
+    // docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.5. Urgency rises as the book fills
+    // is exactly wrong; it FALLS, because the cheap spells go in first and
+    // what is left gets progressively harder to obtain.
+    if (cfg.profession && obs.SkillTenths(rules::kMagery) > 0) {
+        // The first circle is eight spells, and a caster with none of them is
+        // in a different situation from one with a working core.
+        const int target = kSpellbookComfortable;
+        if (obs.spellsKnown < target) {
+            const double shortfall =
+                static_cast<double>(target - obs.spellsKnown) /
+                static_cast<double>(target);
+            const bool noBook = (obs.spellbookSerial == 0);
+            add(NeedKind::NeedSpells, 0.10 + 0.30 * shortfall, "spells",
+                noBook ? "no spellbook at all -- a mage that cannot cast "
+                         "anything needs one before it needs anything else"
+                       : "the book is short of the spells this life will cast",
+                Fmt("spells %d/%d book=%s magery %.1f", obs.spellsKnown, target,
+                    noBook ? "none" : "carried",
+                    obs.SkillTenths(rules::kMagery) / 10.0),
+                false);
+        }
     }
 
     // --- a skill worth BUYING ---------------------------------------------

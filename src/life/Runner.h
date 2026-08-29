@@ -125,6 +125,9 @@ private:
     bool LifeNeedsGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
+    bool DoFillSpellbook(Client& client, const Observation& obs);
+    bool BuyFromMageShop(Client& client, const Observation& obs, u16 graphic,
+                         u16 qty, const char* what);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -228,6 +231,9 @@ private:
     // every six seconds for a whole session: "The spell is not in your
     // spellbook." Skill is not capability -- the book is.
     bool noCreateFoodSpell_ = false;
+    i32  spellbookTrips_ = 0;
+    bool spellbookOpened_ = false;
+    i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
     // GET_TOOL is in the Emergency family and therefore exempt from

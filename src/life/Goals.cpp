@@ -25,6 +25,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::Craft:                 return "CRAFT";
         case GoalKind::GetFood:               return "GET_FOOD";
         case GoalKind::PracticeSkill:         return "PRACTICE_SKILL";
+        case GoalKind::FillSpellbook:         return "FILL_SPELLBOOK";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -57,6 +58,10 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::Bank:
         case GoalKind::ReplaceEquipment:
         case GoalKind::GetFood:
+        // A spellbook is equipment. Filling it belongs with buying a tool
+        // and replacing armour, not with training -- the character is not
+        // practising anything, it is shopping for the means to cast at all.
+        case GoalKind::FillSpellbook:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Fish:
@@ -150,6 +155,10 @@ const GoalSpec kGoals[] = {
     // all day, and well under buying a skill outright, which is a step
     // change rather than an hour of practice.
     {GoalKind::PracticeSkill,         NeedKind::NeedPractice,      120.0},
+    // Below practice and well below buying supplies. A book fills over many
+    // sessions and must never crowd out the work that pays for it, but it
+    // outranks idling, because a mage without spells is not really a mage.
+    {GoalKind::FillSpellbook,         NeedKind::NeedSpells,        110.0},
 };
 
 }  // namespace

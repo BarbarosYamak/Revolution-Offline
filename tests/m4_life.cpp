@@ -1695,6 +1695,94 @@ void TestNoSkillGainRegionBlocksPractice() {
 }
 
 
+// A mage's book is equipment, and this test exists because a character on this
+// shard carried Magery 50.0 and could cast nothing at all: Voris asked for
+// Create Food 26 times in one session and was told every time that the spell
+// was not in his spellbook. Skill is not capability.
+void TestAMageWantsItsBookFilled() {
+    Section("needs: a mage with an empty book wants spells");
+
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { Check(false, "no mage profession"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = mage;
+    life::BuildPlan plan = life::PlanFromProfession(*mage);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hp = obs.hpMax = 20;
+    obs.mana = 30;
+    obs.gold = 500;
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.skills.push_back({rules::kMagery, 500});
+
+    auto spellNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedSpells) return &n;
+        return nullptr;
+    };
+
+    // No book at all: the need must say so, because buying a book and buying
+    // a scroll are different errands.
+    obs.spellbookSerial = 0;
+    obs.spellsKnown = 0;
+    const std::vector<life::Need> nsNone = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* none = spellNeed(nsNone);
+    Check(none != nullptr, "a mage with no spellbook wants one");
+    if (none) {
+        Check(!none->blocked, "and it is actionable -- shops sell spellbooks");
+        Check(none->reason.find("no spellbook") != std::string::npos,
+              "the reason distinguishes NO BOOK from an empty one");
+        Check(none->evidence.find("book=none") != std::string::npos,
+              "and the evidence is greppable");
+    }
+
+    // A part-filled book still wants more, but less badly than an empty one.
+    obs.spellbookSerial = 0x4001;
+    obs.spellsKnown = 4;
+    const std::vector<life::Need> nsFew = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* few = spellNeed(nsFew);
+    Check(few != nullptr, "four spells is not a finished book");
+    obs.spellsKnown = 20;
+    const std::vector<life::Need> nsMany = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* many = spellNeed(nsMany);
+    Check(many != nullptr, "twenty is still short of the working target");
+    if (few && many)
+        Check(many->urgency < few->urgency,
+              "URGENCY FALLS AS THE BOOK FILLS. The cheap spells go in first "
+              "and what remains gets harder to obtain -- circles 7-8 are sold "
+              "by nobody on this shard -- so a book that nags harder the "
+              "fuller it gets would have it exactly backwards");
+
+    // A working book switches the need off entirely, rather than nagging for
+    // spells that cannot be bought at any price.
+    obs.spellsKnown = 24;
+    const std::vector<life::Need> nsOk = life::AssessNeeds(plan, mem, obs, cfg);
+    Check(spellNeed(nsOk) == nullptr,
+          "a serviceable book stops asking -- the rest is scribe and dungeon "
+          "work, not shopping");
+
+    // And a character with no Magery at all never wants a spellbook.
+    life::Observation warrior;
+    warrior.inWorld = true;
+    warrior.hp = warrior.hpMax = 40;
+    warrior.gold = 500;
+    warrior.weight = 10; warrior.maxWeight = 200;
+    warrior.skills.push_back({rules::kSwordsmanship, 500});
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (fencer) {
+        life::NeedConfig wcfg;
+        wcfg.profession = fencer;
+        life::BuildPlan wplan = life::PlanFromProfession(*fencer);
+        const std::vector<life::Need> nsW =
+            life::AssessNeeds(wplan, mem, warrior, wcfg);
+        Check(spellNeed(nsW) == nullptr,
+              "a fencer with no Magery is never sent shopping for scrolls");
+    }
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -1771,6 +1859,7 @@ int main(int argc, char** argv) {
     TestEveryLifeAsksForItsOwnTools();
     TestNerveIsPerProfession();
     TestNoSkillGainRegionBlocksPractice();
+    TestAMageWantsItsBookFilled();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();

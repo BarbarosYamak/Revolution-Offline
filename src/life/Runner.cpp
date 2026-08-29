@@ -30,6 +30,26 @@ constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
 constexpr u16 kFood[]     = {0x103B, 0x09EB, 0x09F2};
 constexpr u16 kGoldCoin   = 0x0EED;             // i_gold
+// i_spellbook, ITEMDEF 0efa. A spell scroll's graphic is 0x1F2D + the spell
+// number: Create Food is spell 2 at 0x1F2F, Heal is 4 at 0x1F31, Magic Arrow
+// is 5 at 0x1F32 and Recall is 31 at 0x1F4C -- four independent points, all
+// read from this shard's own itemdefs. Circles 1-8 are therefore spells 1-64
+// at 0x1F2E..0x1F6D.
+// A working book rather than a complete one: circles 7-8 are sold by nobody
+// on this shard, so a target of 64 would nag forever. 24 is the first three
+// circles, which ARE obtainable by shopping. Mirrors kSpellbookComfortable in
+// Needs.cpp -- the need and the goal must agree or the goal finishes a book
+// the need still wants filled, and the pair loops.
+constexpr int kSpellbookComfortableRuntime = 24;
+// Enough to be worth a trip. Prices come from the shop window, never from
+// here; these are only "is it worth walking".
+constexpr i32 kSpellbookMoney = 120;
+constexpr i32 kScrollMoney    = 120;
+constexpr i64 kNoSpellbookCooldownMs = 240000;   // four minutes
+constexpr i32 kMaxSpellbookTrips = 3;
+constexpr u16 kSpellbookGraphic = 0x0EFA;
+constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
+constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
 // [SPELL 2] s_create_food -- targetless, 4 mana, MAGERY 10.0 to try.
 // The practice spell: nothing to target wrongly, nobody to anger.
 constexpr int kSpellCreateFood = 2;
@@ -642,6 +662,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         obs.wantPracticeSkill = t.skillId;
         break;
     }
+
+    // THE BOOK, AND WHAT IS IN IT.
+    //
+    // i_spellbook is ITEMDEF 0efa on this shard. The count is what the client
+    // has been told is inside it, which is only populated after the book has
+    // been opened once -- so 0 here means "no book, or a book we have not
+    // looked in yet", and the goal opens it rather than assuming it is empty.
+    obs.spellbookSerial = client.FindBackpackItemByGraphic(kSpellbookGraphic);
+    obs.spellsKnown =
+        obs.spellbookSerial
+            ? static_cast<int>(client.ContainerItemCount(obs.spellbookSerial))
+            : 0;
 
     obs.wantTrainSkill = NextSkillToBuy(state_.plan, obs, 300);
     if (obs.wantTrainSkill >= 0) {
@@ -1376,6 +1408,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::Craft:                 done = DoCraft(client, obs); break;
         case GoalKind::GetFood:               done = DoGetFood(client, obs); break;
         case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
+        case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -5274,6 +5307,174 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     travelInFlight_ = false;
     client.ActionScanMobiles();
     nextActionMs_ = obs.nowMs + 2500;
+    return false;
+}
+
+// Walk to a mage shop, open it, and buy one thing. `graphic` of 0 means "any
+// spell scroll", which is what buying from this shard's mage shop actually is:
+// the stock is random_first_circle .. random_fourth_circle, so the spell that
+// arrives is not chosen. Returns false while still working.
+bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
+                             u16 graphic, u16 qty, const char* what) {
+    if (client.TravelBusy()) return false;
+
+    const u32 keeper = client.NearestMobileWithTrade("mage");
+    if (!keeper) {
+        if (++spellbookTrips_ > kMaxSpellbookTrips) {
+            LogLine("goal_failed=FILL_SPELLBOOK reason=\"no mage shop reachable "
+                    "after %d trips\"", spellbookTrips_ - 1);
+            planner_.Cooldown(GoalKind::FillSpellbook,
+                              obs.nowMs + kNoSpellbookCooldownMs);
+            planner_.Finish(false, "no mage reachable", obs.nowMs);
+            spellbookTrips_ = 0;
+            return false;
+        }
+        LogLine("spellbook: looking for a mage shop to sell %s (trip %d)",
+                what, spellbookTrips_);
+        travelInFlight_ =
+            client.TravelToService(wm::Service::Mage, state_.homeCity.c_str());
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    // Walk up before speaking -- the lesson the food goal had to learn twice.
+    i32 vx = 0, vy = 0; i8 vz = 0;
+    if (!client.MobilePosition(keeper, &vx, &vy, &vz)) {
+        client.ActionScanMobiles();
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+    const i32 d = TileDist(obs.x, obs.y, vx, vy);
+    if (d > 1) {
+        LogLine("spellbook: the mage is %d tiles away -- walking up", d);
+        travelInFlight_ = client.TravelToEntity(keeper, 1);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    if (client.VendorOffer().empty()) {
+        LogLine("spellbook: asking the mage to show %s", what);
+        client.ActionVendorOpen(keeper);
+        nextActionMs_ = obs.nowMs + 9000;
+        return false;
+    }
+
+    for (const Client::VendorItem& v : client.VendorOffer()) {
+        const bool match =
+            graphic ? (v.graphic == graphic)
+                    : (v.graphic >= kFirstScrollGraphic &&
+                       v.graphic <= kLastScrollGraphic);
+        if (!match) continue;
+        LogLine("spellbook: buying %s ('%s', 0x%04X) at %d gold",
+                what, v.name.c_str(), v.graphic, static_cast<i32>(v.price));
+        client.ActionVendorBuy(keeper, v.serial, qty);
+        // An ask, not progress -- same reason as BUY_SUPPLIES: counting a
+        // purchase before the server takes the gold clears the failure ladder
+        // on every retry.
+        planner_.NoteAttempt(obs.nowMs);
+        // A bought scroll must be re-read into the book, so force a re-open.
+        spellbookOpened_ = false;
+        nextActionMs_ = obs.nowMs + 9000;
+        return false;
+    }
+
+    LogLine("goal_failed=FILL_SPELLBOOK reason=\"this mage has no %s\"", what);
+    planner_.Cooldown(GoalKind::FillSpellbook,
+                      obs.nowMs + kNoSpellbookCooldownMs);
+    planner_.Finish(false, "mage has no scrolls", obs.nowMs);
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// FILLING THE BOOK.
+//
+// "we need to add that mages tries to fill their book, make it full spell
+// book" (project owner, 2026-08-29). A mage's spellbook is equipment, and this
+// shard demonstrated why it is not optional: Voris carried Magery 50.0 and
+// asked for Create Food twenty-six times in one session, being told every time
+// "The spell is not in your spellbook".
+//
+// WHERE SCROLLS COME FROM ON THIS SHARD -- read from its own vendor and loot
+// tables, written up in docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.5:
+//
+//   circles 1-4   any mage shop, but as random_first_circle .. fourth, so the
+//                 spell that arrives is NOT chosen
+//   circle 5, part of 6, and Resurrection   a scribe, by name
+//   circles 7-8   nobody sells them: dungeon chests and monster loot only
+//
+// Two consequences this goal is built around. A mage cannot buy its way to a
+// full book, so the goal aims at a working kit rather than completeness. And
+// because purchases are random, the honest loop is buy-then-look, not
+// pick-then-buy -- which is also how a player fills a book on this shard.
+//
+// The book is READ, never assumed: opening it and counting what the server
+// sends back is the only truthful source for what this character can cast.
+bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    // NO BOOK IS A DIFFERENT PROBLEM FROM AN EMPTY ONE.
+    if (obs.spellbookSerial == 0) {
+        if (obs.gold < kSpellbookMoney) {
+            LogLine("spellbook: no book and %d gold -- a book costs about %d, "
+                    "so go and earn first", obs.gold, kSpellbookMoney);
+            planner_.Cooldown(GoalKind::FillSpellbook,
+                              obs.nowMs + kNoSpellbookCooldownMs);
+            planner_.Finish(false, "no book and no money", obs.nowMs);
+            return false;
+        }
+        BuyFromMageShop(client, obs, kSpellbookGraphic, 1, "a spellbook");
+        return false;
+    }
+
+    // LOOK IN IT BEFORE BUYING ANYTHING.
+    //
+    // ContainerItemCount is only meaningful once the server has sent the
+    // contents, which happens when the book is opened. Treating an unopened
+    // book as an empty one would send the character shopping for spells it
+    // already owns.
+    if (!spellbookOpened_) {
+        LogLine("spellbook: opening the book to see what is already in it");
+        client.ActionUseObject(obs.spellbookSerial);
+        spellbookOpened_ = true;
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    if (obs.spellsKnown >= kSpellbookComfortableRuntime) {
+        LogLine("spellbook: %d spells is a working book -- the rest are scribe "
+                "and dungeon work, not shopping", obs.spellsKnown);
+        planner_.Finish(true, "book is serviceable", obs.nowMs);
+        return true;
+    }
+
+    // A SCROLL IN THE PACK BELONGS IN THE BOOK.
+    //
+    // Looted scrolls arrive here too, which is the only route to circles 7-8,
+    // so this runs before any purchase.
+    for (u16 g = kFirstScrollGraphic; g <= kLastScrollGraphic; ++g) {
+        const u32 scroll = client.FindBackpackItemByGraphic(g);
+        if (!scroll) continue;
+        LogLine("spellbook: adding scroll 0x%04X to the book (%d spells so far)",
+                g, obs.spellsKnown);
+        client.ActionMoveItem(scroll, 1, obs.spellbookSerial);
+        planner_.NoteProgress();
+        // Re-read the book after the drop rather than assuming it took: a
+        // duplicate spell is refused and the scroll stays in the pack.
+        spellbookOpened_ = false;
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    // NOTHING TO ADD, SO BUY. Circles 1-4 only, and random at that.
+    if (obs.gold < kScrollMoney) {
+        LogLine("spellbook: %d spells and %d gold -- too poor to buy scrolls, "
+                "standing down to earn", obs.spellsKnown, obs.gold);
+        planner_.Cooldown(GoalKind::FillSpellbook,
+                          obs.nowMs + kNoSpellbookCooldownMs);
+        planner_.Finish(false, "no money for scrolls", obs.nowMs);
+        return false;
+    }
+    BuyFromMageShop(client, obs, 0, 1, "a scroll");
     return false;
 }
 

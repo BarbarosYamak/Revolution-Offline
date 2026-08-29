@@ -491,6 +491,11 @@ struct Observation {
     int wantTrainSkill = -1;
     // Which skill this life should PRACTISE next, and how. -1 = none.
     int wantPracticeSkill = -1;
+    // The spellbook this character is carrying, and how many spells are in it.
+    // 0 serial means no book at all -- which is a different problem from an
+    // empty one, and the goal treats it as such.
+    u32 spellbookSerial = 0;
+    int spellsKnown = 0;
     i32 wantTrainTarget = 0;
 
     i32 SkillTenths(int skillId) const;
@@ -574,6 +579,14 @@ enum class NeedKind : u8 {
     // two is why every non-combat skill sat BLOCKED with the reason
     // "nothing is here to practise combat on" -- including Inscription.
     NeedPractice,
+    // A MAGE'S BOOK IS EQUIPMENT, and it is never finished on day one. Circles
+    // 1-4 are bought from a mage shop but come out RANDOM
+    // (random_first_circle .. random_fourth_circle); circle 5 and part of 6
+    // must be bought by name from a scribe; circles 7 and 8 are sold by
+    // nobody on this shard and come from dungeon chests and monster loot.
+    // See docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.5. So this is a need that is
+    // satisfied slowly, across sessions, and never in one errand.
+    NeedSpells,
     Count,
 };
 
@@ -687,6 +700,10 @@ enum class GoalKind : u8 {
     // until 2026-08-29 -- NeedFood was scored every tick into a void.
     GetFood,
     PracticeSkill,
+    // Buy scrolls and put them in the book. The mage's equivalent of the
+    // warrior buying a better sword, and the reason a mage with Magery 50
+    // could still cast nothing at all.
+    FillSpellbook,
     IdleBriefly,
     Count,
 };
