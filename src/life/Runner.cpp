@@ -5627,11 +5627,30 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
     // Night Sight first: it always succeeds on a healthy character, where Heal
     // on someone at full health does nothing. Create Food last -- it is the
     // one that started all this, and it is still fine when present.
+    // ALL TWELVE of circles 1-4 that are safe to cast at oneself, derived from
+    // spells_magery.scp by excluding everything carrying spellflag_harm or
+    // spellflag_damage and every field spell. The first version of this list
+    // named only four, and Ysolde -- whose book holds fourteen spells -- then
+    // logged "nothing safe to cast at myself is in this book" seventy times in
+    // one session. A book is not obliged to contain the four spells this code
+    // happened to think of.
+    //
+    // Ordered by how reliably each one does something when cast on a healthy
+    // character standing still: Night Sight and the stat buffs always take,
+    // where Heal on someone at full health does nothing at all.
     static const int kSelfSafe[] = {
-        6,   // Night Sight     targ_char | good | playeronly
-        7,   // Reactive Armor  targ_char | good
-        4,   // Heal            targ_char | good | playeronly | heal
-        2,   // Create Food     playeronly, no target at all
+         6,   // Night Sight
+         7,   // Reactive Armor
+        16,   // Strength
+         9,   // Agility
+        10,   // Cunning
+        15,   // Protection
+        26,   // Arch Protection
+        11,   // Cure
+        25,   // Arch Cure
+         4,   // Heal
+        29,   // Greater Heal
+         2,   // Create Food
     };
 
     const usize n = client.ContainerItemCount(obs.spellbookSerial);
@@ -5645,6 +5664,24 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
             if (gfx == wantGfx) return want;
         }
     }
+    // SAY WHAT IS ACTUALLY IN THERE. "Nothing safe to cast" is a claim about
+    // the book, and a claim about the book should be checkable from the log
+    // rather than taken on trust -- especially since this is also the only
+    // place that proves the book's contents can be read at all.
+    std::string had;
+    for (usize i = 0; i < n && i < 32; ++i) {
+        u32 serial = 0; u16 gfx = 0, amount = 0;
+        if (!client.ContainerItemAt(obs.spellbookSerial, i, &serial, &gfx,
+                                    &amount))
+            continue;
+        char buf[32];
+        std::snprintf(buf, sizeof(buf), "%s%d", had.empty() ? "" : ",",
+                      static_cast<int>(gfx) - 0x1F2D);
+        had += buf;
+    }
+    LogLine("practice: the book holds %d item(s), spells [%s] -- none of them "
+            "is one of the twelve safe to cast at oneself",
+            static_cast<int>(n), had.c_str());
     return -1;
 }
 

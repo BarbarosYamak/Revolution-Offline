@@ -646,13 +646,41 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         }
 
         const bool nothingHere = obs.attackersOnMe == 0;
+        // WHEN RESTING CANNOT HELP, THE 80% BAR IS A TRAP.
+        //
+        // Kaelen spent a whole session inside this deadlock. Hungry, so no
+        // HP regeneration; wounded, so under the bar; no bandages, so HEAL
+        // was blocked; no gold, so REPLACE_EQUIPMENT and GET_FOOD both stood
+        // down. He climbed from 10/32 to 25/32 -- 78%, two points short --
+        // and idled for 73% of his picks while every other need reported
+        // BLOCKED. The exits were all locked behind each other:
+        //
+        //   hungry -> no regen -> under 80% -> cannot hunt -> cannot earn
+        //          -> cannot buy food -> hungry
+        //
+        // Hunting is the only door out of that, because loot is the only
+        // thing a broke fighter can turn into gold. So a character who cannot
+        // heal, cannot eat and cannot buy may hunt from half health: waiting
+        // is not caution when nothing is coming.
+        //
+        // Deliberately narrow. It needs ALL of no bandages, no money and
+        // hunger -- a fighter with any of the three still waits for 80%,
+        // because for them resting genuinely does work.
+        const bool outOfOptions =
+            obs.bandages <= 0 && obs.gold < cfg.goldFloor && obs.hungry;
+        const int huntHpPct = outOfOptions ? 50 : 80;
         const bool couldGoHunting =
             nothingHere && cfg.profession && WantsToHunt(*cfg.profession) &&
-            obs.hp * 100 >= obs.hpMax * 80 && obs.WeightFraction() < 0.7;
+            obs.hp * 100 >= obs.hpMax * huntHpPct && obs.WeightFraction() < 0.7;
         const bool blocked = nothingHere && !couldGoHunting;
         add(NeedKind::NeedTraining, 0.15 + 0.25 * gap, SkillName(t.skillId),
             couldGoHunting
-                ? "below target, and there is a graveyard to go and practise in"
+                ? (outOfOptions
+                       ? "below target -- and with no bandages, no money and an "
+                         "empty stomach, hunting is the only way out, so go at "
+                         "whatever health there is"
+                       : "below target, and there is a graveyard to go and "
+                         "practise in")
                 : (nothingHere
                        ? "below target, but nothing is here to practise combat on"
                        : "below the target build value for this skill"),

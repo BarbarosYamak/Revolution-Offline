@@ -1940,6 +1940,80 @@ void TestAGoalThatSucceedsAtNothingIsStopped() {
     }
 }
 
+// THE DEADLOCK THAT COST KAELEN A WHOLE SESSION.
+//
+// Hungry so no HP regeneration, wounded so under the 80% hunting bar, no
+// bandages so HEAL was blocked, no gold so REPLACE_EQUIPMENT and GET_FOOD both
+// stood down. He climbed from 10/32 to 25/32 -- two points short of the bar --
+// and idled through 73% of his picks with every other need reporting BLOCKED.
+void TestACorneredFighterMayHunt() {
+    Section("needs: when resting cannot help, a fighter hunts anyway");
+
+    const prof::Profession* fencer = prof::Find("fencer");
+    if (!fencer) { Check(false, "no fencer"); return; }
+
+    life::NeedConfig cfg;
+    cfg.profession = fencer;
+    life::BuildPlan plan = life::PlanFromProfession(*fencer);
+    life::Memory mem;
+
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.hpMax = 32;
+    obs.hp = 25;                      // 78%: Kaelen's exact ceiling
+    obs.weight = 10; obs.maxWeight = 200;
+    obs.attackersOnMe = 0;
+    obs.skills.push_back({rules::kFencing, 171});
+
+    auto combatNeed = [](const std::vector<life::Need>& ns) -> const life::Need* {
+        for (const life::Need& n : ns)
+            if (n.kind == life::NeedKind::NeedTraining) return &n;
+        return nullptr;
+    };
+
+    // Cornered: no bandages, no money, hungry. Hunting is the only door out.
+    obs.bandages = 0;
+    obs.gold = 0;
+    obs.hungry = true;
+    const std::vector<life::Need> nsStuck = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* stuck = combatNeed(nsStuck);
+    Check(stuck != nullptr, "the combat need is reported");
+    if (stuck) {
+        Check(!stuck->blocked,
+              "a fighter with no bandages, no money and an empty stomach is "
+              "NOT blocked at 78% -- resting cannot help, because nothing is "
+              "coming to heal or feed him");
+        Check(stuck->reason.find("only way out") != std::string::npos,
+              "and the reason says why the usual caution is suspended");
+    }
+
+    // Any ONE of the three restored, and the ordinary bar applies again:
+    // resting genuinely works for that character, so it should wait.
+    obs.gold = 500;
+    const std::vector<life::Need> nsMoney = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* withMoney = combatNeed(nsMoney);
+    if (withMoney)
+        Check(withMoney->blocked,
+              "with money in the purse the 80% bar is back -- he can buy "
+              "bandages and food, so going wounded is recklessness not need");
+
+    obs.gold = 0;
+    obs.bandages = 10;
+    const std::vector<life::Need> nsBand = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* withBandages = combatNeed(nsBand);
+    if (withBandages)
+        Check(withBandages->blocked,
+              "and with bandages he can heal himself up to the bar first");
+
+    // Healthy is healthy: the exception changes nothing for a fit character.
+    obs.bandages = 0;
+    obs.hp = 32;
+    const std::vector<life::Need> nsFit = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* fit = combatNeed(nsFit);
+    if (fit)
+        Check(!fit->blocked, "a fighter at full health hunts either way");
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -2017,6 +2091,7 @@ int main(int argc, char** argv) {
     TestNerveIsPerProfession();
     TestNoSkillGainRegionBlocksPractice();
     TestAMageWantsItsBookFilled();
+    TestACorneredFighterMayHunt();
     TestAGoalThatSucceedsAtNothingIsStopped();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();
