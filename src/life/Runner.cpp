@@ -376,6 +376,11 @@ constexpr ArmorPiece kArmorPieces[] = {
 
 // i_pickaxe, layer 1, ReqStr=50 -- the same pair Professions.cpp names.
 constexpr u16 kMinePickaxe[] = {0x0E85, 0x0E86};
+// The four big fish this shard's water yields, and the blades that cut them.
+// One whole fish becomes four cut steaks; the steaks are what a vendor buys
+// and what a cook can turn into a meal.
+constexpr u16 kWholeFish[] = {0x09CC, 0x09CD, 0x09CE, 0x09CF};
+constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knives
 constexpr u16 kScissorsGraphic  = 0x0F9E;
 constexpr u16 kWoolGraphic      = 0x0DF8;
 constexpr u16 kYarnGraphic      = 0x0E1D;
@@ -1476,11 +1481,25 @@ void Runner::Tick(Client& client, i64 nowMs) {
                             GoalKindName(planner_.Current().kind), why.c_str());
                 }
                 LogGoalChange(obs, why);
-                // A new goal starts from a clean transient slate.
-                chopTargetValid_ = false;
-                chopCursorPending_ = false;
-                travelInFlight_ = false;
-                travelAttempts_ = 0;
+                // A new goal starts from a clean transient slate -- but only
+                // if it is genuinely a NEW goal.
+                //
+                // Re-picking the SAME kind must not wipe the journey already
+                // under way. Corran walked from Vesper to the Minoc tinker;
+                // partway there TRAIN_AT_NPC hit its 300-second limit and was
+                // re-picked as TRAIN_AT_NPC, which cleared travelInFlight_. He
+                // then ARRIVED beside the tinker with the flag false, took the
+                // "start another trip" branch instead of the "arrived, look
+                // around" one, and set off for Britain 856 tiles away 61
+                // milliseconds after getting there. He never scanned Minoc at
+                // all -- one scan in the whole session, back in Vesper.
+                const bool sameErrand = wasActive && previous == planner_.Current().kind;
+                if (!sameErrand) {
+                    chopTargetValid_ = false;
+                    chopCursorPending_ = false;
+                    travelInFlight_ = false;
+                    travelAttempts_ = 0;
+                }
                 // Per-errand counters belong to the errand. vendorChases_
                 // bounds how long a wandering shopkeeper may be followed, and
                 // a fresh goal deserves a fresh allowance -- otherwise one
@@ -5189,6 +5208,32 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
 bool Runner::DoFish(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
+
+    // CUT THE FISH UP. "nessa fishing at same spot constantly -- does he ever
+    // cut fishes into raw fish?" (project owner, 2026-08-29). She did not: she
+    // fished until "pack full" twenty times in a session and stopped, carrying
+    // whole fish that are heavy, unsellable in that form and inedible.
+    //
+    // One whole fish yields FOUR cut steaks (Production.cpp i_fish_cut_raw,
+    // Tool::Blade, no station and no skill), and the gesture is the same
+    // use-one-thing-on-another as the bandage chain -- a dagger, which every
+    // starter kit now carries as ITEMNEWBIE.
+    //
+    // Done BEFORE the pack-full check on purpose: cutting is what makes room,
+    // so a full pack is a reason to cut rather than a reason to stop.
+    if (const u32 blade = FindAny(client, kBlades,
+                                  sizeof(kBlades) / sizeof(kBlades[0]))) {
+        for (u16 g : kWholeFish) {
+            const u32 whole = client.FindBackpackItemByGraphic(g);
+            if (!whole) continue;
+            LogLine("fish: cutting a whole fish (0x%04X) into steaks -- four "
+                    "each, and lighter", g);
+            client.ActionUseItemOn(blade, whole);
+            planner_.NoteProgress();
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+    }
 
     if (obs.WeightFraction() >= 0.95) {
         LogLine("fish: pack full at %.0f%%", obs.WeightFraction() * 100.0);
