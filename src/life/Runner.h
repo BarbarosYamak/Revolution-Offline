@@ -129,6 +129,8 @@ private:
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
     bool DoExplore(Client& client, const Observation& obs);
+    bool DoMine(Client& client, const Observation& obs);
+    bool DoTameAnimal(Client& client, const Observation& obs);
     bool DoUpgradeGear(Client& client, const Observation& obs);
     bool MayWear(const ArmorPiece& a, const Observation& obs) const;
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
@@ -248,6 +250,9 @@ private:
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
     i32  toolTrips_ = 0;
+    i32  mineX_ = 0, mineY_ = 0, mineRing_ = 0;
+    i64  mineSwungMs_ = 0, mineJournalMs_ = 0;
+    bool mineCursorPending_ = false;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;

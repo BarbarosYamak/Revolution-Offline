@@ -510,6 +510,9 @@ struct Observation {
     int wantTrainSkill = -1;
     // Which skill this life should PRACTISE next, and how. -1 = none.
     int wantPracticeSkill = -1;
+    // Does this character already have a tamed animal following it? A tamer
+    // that keeps taming while it owns one is hoarding, not working.
+    bool hasPet = false;
     // The spellbook this character is carrying, and how many spells are in it.
     // 0 serial means no book at all -- which is a different problem from an
     // empty one, and the goal treats it as such.
@@ -618,6 +621,11 @@ enum class NeedKind : u8 {
     // in the pack throughout a life, and on this shard the class rule is
     // absolute -- a metal set stops a caster casting at all.
     NeedGear,
+    // ORE. The miner's equivalent of NeedLogs and NeedCatch, which were both
+    // written for one profession each and left mining with nothing.
+    NeedOre,
+    // AN ANIMAL WORTH TAMING. A tamer with no pet is a tamer in name only.
+    NeedPet,
     Count,
 };
 
@@ -742,6 +750,11 @@ enum class GoalKind : u8 {
     // with nothing to do should be learning the world, because almost every
     // other goal is blocked for want of knowing where something is.
     Explore,
+    // Swing a pickaxe at rock. A miner had NO goal at all -- GatherLogs wants
+    // an axe and a tree, Fish wants a pole and water, and ore had neither.
+    Mine,
+    // Tame an animal. Same gap on the tamer's side.
+    TameAnimal,
     // Wear the best this class is allowed and strong enough for, and buy a
     // piece for an empty slot. Checked constantly, not once at creation.
     UpgradeGear,

@@ -76,6 +76,8 @@ constexpr i64 kExploredAllCooldownMs = 300000;
 // A pair of scissors is a few dozen coins from any tailor. Worth a walk.
 constexpr i32 kScissorsMoney = 60;
 constexpr i32 kMaxToolTrips = 3;
+constexpr i64 kNoOreCooldownMs = 120000;
+constexpr i64 kNoPetCooldownMs = 180000;
 
 // WHAT A CREATURE IS LIKELY TO DO TO YOU, before it has done it.
 //
@@ -98,6 +100,8 @@ constexpr i32 kMaxToolTrips = 3;
 // It is only a PRIOR. Anything this character has actually learned about a
 // creature overrides it, because being killed by something is better evidence
 // than its stat block.
+std::unordered_map<std::string, double>& SeededTaming();
+
 std::unordered_map<std::string, double>& SeededCreatureDanger() {
     static std::unordered_map<std::string, double> table;
     return table;
@@ -128,8 +132,31 @@ void LoadSeededCreatureDanger(const std::string& dataDir) {
             key.push_back(static_cast<char>(std::tolower(
                 static_cast<unsigned char>(c))));
         t[key] = std::atof(dg.c_str());
+        // ... and the taming requirement, which is the LAST column.
+        const usize lastTab = row.find_last_of('	');
+        if (lastTab != std::string::npos && lastTab > t2) {
+            const double tam = std::atof(row.c_str() + lastTab + 1);
+            if (tam >= 0.0) SeededTaming()[key] = tam;
+        }
     }
     std::fclose(f);
+}
+
+// The TAMING requirement from the same table, or -1 for a creature that
+// cannot be tamed at all. 109 of the 450 carry one.
+std::unordered_map<std::string, double>& SeededTaming() {
+    static std::unordered_map<std::string, double> table;
+    return table;
+}
+
+double SeededTamingFor(const std::string& name) {
+    const std::unordered_map<std::string, double>& t = SeededTaming();
+    std::string key;
+    for (char c : name)
+        key.push_back(static_cast<char>(std::tolower(
+            static_cast<unsigned char>(c))));
+    const auto it = t.find(key);
+    return it == t.end() ? -1.0 : it->second;
 }
 
 double SeededDangerFor(const std::string& name) {
@@ -346,6 +373,8 @@ constexpr ArmorPiece kArmorPieces[] = {
     {0xA831, 20,  35, ArmorClass::Shield },  // i_shield_hildebrandt
 };
 
+// i_pickaxe, layer 1, ReqStr=50 -- the same pair Professions.cpp names.
+constexpr u16 kMinePickaxe[] = {0x0E85, 0x0E86};
 constexpr u16 kScissorsGraphic  = 0x0F9E;
 constexpr u16 kWoolGraphic      = 0x0DF8;
 constexpr u16 kYarnGraphic      = 0x0E1D;
@@ -1790,6 +1819,8 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
         case GoalKind::Explore:              done = DoExplore(client, obs); break;
+        case GoalKind::Mine:                 done = DoMine(client, obs); break;
+        case GoalKind::TameAnimal:           done = DoTameAnimal(client, obs); break;
         case GoalKind::UpgradeGear:          done = DoUpgradeGear(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
@@ -6239,6 +6270,194 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
                       want->graphic, false, 1, "a piece of armour",
                       GoalKind::UpgradeGear);
     }
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// MINING.
+//
+// A miner had no goal at all. GatherLogs wants an axe and a tree, Fish wants a
+// pole and water, and ore had neither -- so Corran carried a pickaxe for a
+// whole session, picked TRAIN_AT_NPC three times and mined nothing. "add
+// mining goal so corran can mine" (project owner, 2026-08-29).
+//
+// The mechanics are the shard's, from skills/skill45_mining.scp:
+//   FLAGS=skf_gather, RANGE=2, PROMPT_MSG="Where would you like to mine?"
+//   ON=@PreStart refuses while FINDLAYER.layer_horse -- no mining mounted
+//   ON=@PreStart reads SRC.WEAPON.USESCUR -- the pickaxe must be WIELDED,
+//     not merely carried, and it wears out with use
+//
+// WHICH TILE IS ROCK IS THE SERVER'S JUDGEMENT. Rather than reimplement
+// tiledata classification, this swings at ground near the character and learns
+// what gets refused -- the same shape DoFish uses for water, and for the same
+// reason: the server is the authority and its refusals are free information.
+bool Runner::DoMine(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    if (obs.WeightFraction() >= 0.95) {
+        LogLine("mine: pack full at %.0f%%", obs.WeightFraction() * 100.0);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // THE PICKAXE MUST BE IN HAND. skill45_mining reads SRC.WEAPON, so one
+    // sitting in the backpack mines nothing and explains nothing.
+    bool wielded = false;
+    for (int i = 0; i < 2; ++i) {
+        if (client.EquippedGraphicAt(kLayerHand1) == kMinePickaxe[i] ||
+            client.EquippedGraphicAt(kLayerHand2) == kMinePickaxe[i]) {
+            wielded = true;
+            break;
+        }
+    }
+    if (!wielded) {
+        const u32 inPack = FindAny(client, kMinePickaxe, 2);
+        if (!inPack) {
+            LogLine("goal_failed=MINE reason=\"no pickaxe carried\"");
+            planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
+            planner_.Finish(false, "no pickaxe", obs.nowMs);
+            return false;
+        }
+        LogLine("mine: taking the pickaxe in hand -- mining reads SRC.WEAPON");
+        client.ActionEquip(inPack, kLayerServerChooses);
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    // Answer the cursor the skill arms.
+    if (mineCursorPending_) {
+        if (client.TargetActive()) {
+            client.ActionTargetGround(mineX_, mineY_, obs.z);
+            mineCursorPending_ = false;
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+        }
+        if (obs.nowMs - mineSwungMs_ > 6000) mineCursorPending_ = false;
+        return false;
+    }
+
+    // Did the last swing say anything? Sphere answers a bad tile plainly.
+    if (mineSwungMs_ != 0) {
+        static const char* kNoOre[] = {
+            "no ore here", "can't mine that", "cannot mine that",
+            "try mining in rock", "loosen some rocks",
+        };
+        for (const char* line : kNoOre) {
+            if (client.JournalSaidSince(line, mineJournalMs_)) {
+                LogLine("mine: %d,%d gave nothing (\"%s\") -- trying elsewhere",
+                        mineX_, mineY_, line);
+                deadTargets_.emplace_back(mineX_, mineY_);
+                if (deadTargets_.size() > 32)
+                    deadTargets_.erase(deadTargets_.begin());
+                break;
+            }
+        }
+        if (client.JournalSaidSince("You put", mineJournalMs_)) {
+            LogLine("mine: struck ore at %d,%d", mineX_, mineY_);
+            state_.memory.NoteResource("ore", mineX_, mineY_, obs.z, true,
+                                       obs.nowMs);
+            planner_.NoteProgress();
+        }
+    }
+
+    // The next tile in the ring that has not already refused us. RANGE=2, so
+    // the ring is two tiles out.
+    static const int kdx[] = {2, 2, 0, -2, -2, -2, 0, 2};
+    static const int kdy[] = {0, 2, 2, 2, 0, -2, -2, -2};
+    for (int i = 0; i < 8; ++i) {
+        const int idx = (mineRing_ + i) % 8;
+        const i32 tx = obs.x + kdx[idx], ty = obs.y + kdy[idx];
+        bool dead = false;
+        for (usize k = 0; k < deadTargets_.size(); ++k)
+            dead = dead || (deadTargets_[k].first == tx &&
+                            deadTargets_[k].second == ty);
+        if (dead) continue;
+        mineRing_ = (idx + 1) % 8;
+        mineX_ = tx; mineY_ = ty;
+        LogLine("mine: swinging at %d,%d", tx, ty);
+        mineJournalMs_ = client.JournalNowMs();
+        mineSwungMs_ = obs.nowMs;
+        mineCursorPending_ = true;
+        client.ActionUseSkill(rules::kMining);
+        nextActionMs_ = obs.nowMs + 2500;
+        return false;
+    }
+
+    LogLine("mine: nothing within reach of %d,%d yields ore -- moving on",
+            obs.x, obs.y);
+    deadTargets_.clear();
+    planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
+    planner_.Finish(false, "no rock in reach", obs.nowMs);
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// TAMING.
+//
+// "add taming goal to cassia" (project owner, 2026-08-29). A tamer had no goal
+// either: Cassia spent a whole session doing nothing but EXPLORE, because
+// every other need she had was blocked and taming was not something she could
+// want.
+//
+// skills/skill35_taming.scp: SKILL 35, PROMPT_MSG="Tame which animal?", so it
+// targets a MOBILE and ActionUseSkill answers the cursor itself.
+//
+// WHAT to tame is read from the shard rather than guessed:
+// data/revolution_creatures.tsv carries each chardef's TAMING requirement, and
+// 109 of the 450 creatures are tamable at all. The hardest one this character
+// can actually manage is the right pet -- a Rat needs 0.9, a Sheep 11.1 -- and
+// anything above its skill is refused all day for nothing.
+//
+// ScanMobiles, not ScanHostiles: the latter excludes blue and green BY DESIGN,
+// and a sheep is innocent. Innocent is exactly what a tamer wants.
+bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+    LoadSeededCreatureDanger(client.DataDir());
+
+    const double mySkill = obs.SkillTenths(rules::kTaming) / 10.0;
+
+    std::vector<Client::HostileHit> nearby;
+    client.ScanMobiles(12, nearby);
+
+    u32 best = 0;
+    double bestReq = -1.0;
+    std::string bestName;
+    for (const Client::HostileHit& m : nearby) {
+        if (m.name.empty()) continue;
+        const double req = SeededTamingFor(m.name);
+        if (req < 0.0) continue;            // not a tamable creature at all
+        if (req > mySkill) continue;        // beyond this character today
+        if (best == 0 || req > bestReq) {   // the best it can actually manage
+            best = m.serial; bestReq = req; bestName = m.name;
+        }
+    }
+
+    if (!best) {
+        LogLine("tame: nothing in sight this character can tame (Taming %.1f)",
+                mySkill);
+        planner_.Cooldown(GoalKind::TameAnimal, obs.nowMs + kNoPetCooldownMs);
+        planner_.Finish(false, "nothing tamable in sight", obs.nowMs);
+        return false;
+    }
+
+    i32 tx = 0, ty = 0; i8 tz = 0;
+    if (client.MobilePosition(best, &tx, &ty, &tz)) {
+        const i32 d = TileDist(obs.x, obs.y, tx, ty);
+        if (d > 2) {
+            LogLine("tame: '%s' is %d tiles away -- walking up",
+                    bestName.c_str(), d);
+            travelInFlight_ = client.TravelToEntity(best, 2);
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+    }
+
+    LogLine("tame: trying '%s' (needs Taming %.1f, have %.1f)",
+            bestName.c_str(), bestReq, mySkill);
+    client.ActionUseSkill(rules::kTaming, best);
+    planner_.NoteAttempt(obs.nowMs);
+    // DELAY=2.0 and taming usually takes several attempts.
+    nextActionMs_ = obs.nowMs + 6000;
     return false;
 }
 

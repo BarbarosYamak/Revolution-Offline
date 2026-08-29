@@ -700,6 +700,11 @@ public:
     // how this project lost a character in M3.9.
     int ScanHostiles(int maxDist, std::vector<HostileHit>& out) const;
 
+    // EVERY nearby mobile, whatever its notoriety. ScanHostiles excludes blue
+    // and green BY DESIGN, which is right for picking a fight and useless for
+    // taming: a sheep is innocent, and innocent is exactly what a tamer wants.
+    int ScanMobiles(int maxDist, std::vector<HostileHit>& out) const;
+
     // M7: what OTHER CHARACTERS have said since `sinceMs`, with who said it
     // and where they were standing.
     //

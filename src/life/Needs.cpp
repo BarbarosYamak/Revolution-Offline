@@ -29,6 +29,8 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedSpells:    return "NeedSpells";
         case NeedKind::NeedMakeBandages: return "NeedMakeBandages";
         case NeedKind::NeedGear:      return "NeedGear";
+        case NeedKind::NeedOre:       return "NeedOre";
+        case NeedKind::NeedPet:       return "NeedPet";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -588,6 +590,21 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // Generic by construction: it reads `gathers` from the catalogue rather
     // than assuming the character is a lumberjack, which is the mistake this
     // file has already made three times.
+    // ORE, for the same reason and on the same terms as fish. This was missing
+    // entirely: Corran held a pickaxe for a whole session and mined nothing,
+    // because no need ever said he should.
+    if (cfg.profession && cfg.profession->gathers == "ore") {
+        add(NeedKind::NeedOre, 0.45, "ore",
+            "ore is this life's income and its Mining training",
+            Fmt("carrying %d", QtyIn(obs.pack, "i_ore_iron")), false);
+    }
+    // A PET. A tamer without one is a tamer in name only, and Cassia spent a
+    // session exploring because nothing else in her life was actionable.
+    if (cfg.profession && cfg.profession->id == "tamer" && !obs.hasPet) {
+        add(NeedKind::NeedPet, 0.42, "a pet",
+            "a tamer with no animal has no trade to practise",
+            Fmt("taming %.1f", obs.SkillTenths(rules::kTaming) / 10.0), false);
+    }
     if (cfg.profession && cfg.profession->gathers == "fish") {
         bool havePole = false;
         for (const prof::ToolNeed& t : cfg.profession->tools) {

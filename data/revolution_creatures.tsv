@@ -1,451 +1,451 @@
-defname	name	danger	maxdam	armor	str	magery
-c_llama_ethereal	ethereal llama	0.000	2	1	2	0.0
-c_ostard_ethereal	ethereal ostard	0.000	2	1	2	0.0
-c_kirin_ethereal	ethereal ki-rin	0.000	2	1	2	0.0
-c_unicorn_ethereal	ethereal unicorn	0.000	2	1	2	0.0
-c_ridgeback_ethereal	ethereal ridgeback	0.000	2	1	2	0.0
-c_swamp_dragon_ethereal	ethereal swamp dragon	0.000	2	1	2	0.0
-c_giant_beetle_ethereal	ethereal giant beetle	0.000	2	1	2	0.0
-c_turkey	Turkey	0.001	2	1	10	0.0
-c_rat	Rat	0.004	2	6	9	0.0
-c_man	Man	0.005	4	0	0	0.0
-c_woman	Woman	0.005	4	0	0	0.0
-c_elf_male	Elf Male	0.005	4	0	0	0.0
-c_elf_female	Elf Female	0.005	4	0	0	0.0
-c_gargoyle_male	Gargoyle Male	0.005	4	0	0	0.0
-c_gargoyle_female	Gargoyle Female	0.005	4	0	0	0.0
-c_man_gm	GM	0.005	4	0	0	0.0
-c_crane	Crane	0.005	1	5	35	0.0
-c_grubber	grubber	0.006	2	5	20	0.0
-c_sheep_woolly	Sheep	0.006	2	6	19	0.0
-c_sheep_shorn	Sheep	0.006	2	6	19	0.0
-c_squirrel	Squirrel	0.007	2	10	10	0.0
-c_goat	Goat	0.014	4	10	19	0.0
-c_pig	Pig	0.016	4	12	20	0.0
-c_cow_bw	Cow	0.016	4	10	30	0.0
-c_bullfrog	Bull Frog	0.017	2	8	70	0.0
-c_slime_corrosive	Corrosive Slime	0.017	5	5	35	0.0
-c_slime	Slime	0.019	5	8	34	0.0
-c_snake	Snake	0.020	4	16	34	0.0
-c_boar	Boar	0.021	6	10	25	0.0
-c_chicken_lizard	chicken lizard	0.025	5	0	95	0.0
-c_bird_crow	Crow	0.026	9	10	4	0.0
-c_llama	Llama	0.026	5	16	49	0.0
-c_skittering_hopper	skittering hopper	0.027	5	12	65	0.0
-c_horse_palomino	horse	0.027	4	18	65	0.0
-c_dog	Dog	0.027	7	12	37	0.0
-c_horse_tan	Horse	0.028	4	9	98	0.0
-c_horse_brown_dk	Horse	0.028	4	9	98	0.0
-c_horse_gray	Horse	0.028	4	9	98	0.0
-c_horse_brown_lt	Horse	0.028	4	9	98	0.0
-c_coconut_crab_small	Coconut crab	0.028	4	9	98	0.0
-c_coconut_crab_large	Coconut crab	0.028	4	9	98	0.0
-c_war_boar_mount	War Boar	0.028	4	9	98	0.0
-c_capybara_mount	Capybara	0.028	4	9	98	0.0
-c_capybara_baby	Capybara baby	0.028	4	9	98	0.0
-c_rabbit_doom	Doom Rabbit	0.028	4	9	98	0.0
-c_rabbit_doom_baby	Doom Rabbit baby	0.028	4	9	98	0.0
-c_dog_newfoundland	Newfoundland Dog	0.028	4	9	98	0.0
-c_dog_malamut	Alaskan Malamut Dog	0.028	4	9	98	0.0
-c_dog_dane	Great Dane Dog	0.028	4	9	98	0.0
-c_dog_bernard	Bernard Dog	0.028	4	9	98	0.0
-c_dog_terier	Black Terrier Dog	0.028	4	9	98	0.0
-c_dog_rottweiler	Rottweiler Dog	0.028	4	9	98	0.0
-c_dolphin	Dolphin	0.029	6	16	49	0.0
-c_mountain_goat	Mountain Goat	0.031	7	10	64	0.0
-c_gremlin	gremlin	0.034	7	0	110	0.0
-c_ferret	Ferret	0.035	9	10	50	0.0
-c_llama_pack	Pack Llama	0.035	6	16	80	0.0
-c_zombie	Zombie	0.037	7	18	70	0.0
-c_eagle	Eagle	0.037	10	11	47	0.0
-c_skeleton	Skeleton	0.038	7	16	80	0.0
-c_walrus	Walrus	0.038	10	18	29	0.0
-c_frostooze	Frost Ooze	0.040	11	15	30	0.0
-c_mongbat	Subterranean Mongbat	0.040	9	10	80	0.0
-c_daemon_horde_minion	horde minion	0.040	10	18	40	0.0
-c_headless	Headless One	0.042	10	18	50	0.0
-c_wolf_timber	Timber Wolf	0.044	9	16	80	0.0
-c_wolf_grey	grey wolf	0.046	10	15	80	0.0
-c_wolf_white	white wolf	0.046	10	15	80	0.0
-c_ratman	c_ratman	0.046	5	28	120	0.0
-c_ratman_w_axe	c_ratman_w_axe	0.046	5	28	120	0.0
-c_ratman_w_sword	c_ratman_w_sword	0.046	5	28	120	0.0
-c_cougar	Cougar	0.046	10	16	80	0.0
-c_great_hart	Great Hart	0.047	9	24	71	0.0
-c_krumpus	Krumpus	0.047	4	9	200	0.0
-c_krumpus_small	Krumpus small	0.047	4	9	200	0.0
-c_coconut_crab_mount	Coconut crab	0.047	4	9	200	0.0
-c_skeleton_w_axe	Skeleton	0.048	12	8	80	0.0
-c_rat_giant	giant rat	0.048	11	15	74	0.0
-c_myrmidex_drone	Myrmidex Drone	0.049	12	2	105	0.0
-c_harpy	Harpy	0.050	9	14	120	0.0
-c_myrmidex_larvae	Myrmidex Larvae	0.051	13	2	100	0.0
-c_tiger_cub	Tiger Cub	0.051	12	8	100	0.0
-c_gorilla	Gorilla	0.052	10	20	95	0.0
-c_orc	c_orc	0.052	7	28	120	0.0
-c_lizardman	c_lizardman	0.052	7	28	120	0.0
-c_lizardman_spear	c_lizardman_spear	0.052	7	28	120	0.0
-c_lizardman_mace	c_lizardman_mace	0.052	7	28	120	0.0
-c_solen_worker	Red Solen Worker	0.052	7	28	120	0.0
-c_solen_worker_black	black solen worker	0.052	7	28	120	0.0
-c_panther	Panther	0.053	12	16	85	0.0
-c_ghoul	Ghoul	0.054	9	28	100	0.0
-c_terathan_drone	Terathan Drone	0.054	12	24	65	0.0
-c_bear_black	Black Bear	0.055	10	24	100	0.0
-c_bull_brown_lt	Bull	0.056	9	28	111	0.0
-c_bull_brown_dk	Bull	0.056	9	28	111	0.0
-c_horse_pack	Pack Horse	0.057	11	16	120	0.0
-c_orc_w_club	c_orc_w_club	0.058	12	14	120	0.0
-c_spider_giant	Giant Spider	0.059	13	16	100	0.0
-c_scorpion_giant	Giant Scorpion	0.060	10	28	115	0.0
-c_leopard	leopard	0.060	14	20	80	0.0
-c_leopard_snow	Snow Leopard	0.060	14	20	80	0.0
-c_bear_brown	Brown Bear	0.061	12	24	100	0.0
-c_vampire_bat	Vampire Bat	0.061	17	10	66	0.0
-c_ostard_desert	Desert Ostard	0.062	11	9	170	0.0
-c_bogling	bogling	0.062	12	20	120	0.0
-c_rotworm	rotworm	0.063	5	0	300	0.0
-c_deathwatch_beetle	deathwatch beetle	0.063	10	20	160	0.0
-c_bear_polar	Polar Bear	0.064	12	18	140	0.0
-c_ridgeback	Ridgeback	0.065	12	9	170	0.0
-c_spider_trapdoor	trapdoor spider	0.065	18	0	104	0.0
-c_alligator_small	Alligator	0.067	14	25	100	0.0
-c_scorpion_clockwork	clockwork scorpion	0.067	10	0	245	0.0
-c_gaman	Gaman	0.069	11	20	175	0.0
-c_ostard_forest	Forest Ostard	0.070	14	9	170	0.0
-c_wailing_banshee	Wailing Banshee	0.073	14	19	150	0.0
-c_alligator	Alligator	0.073	15	30	100	0.0
-c_orc_bomber	orc bomber	0.073	8	30	215	0.0
-c_meer_captain	Meer Captain	0.074	15	28	110	0.0
-c_bear_grizzly	Grizzly Bear	0.074	13	24	155	0.0
-c_toad_giant	Giant Toad	0.075	17	24	100	0.0
-c_mound_maggots	Mound of Maggots	0.075	21	10	81	0.0
-c_daemon_chaos	Chaos Daemon	0.075	17	15	130	0.0
-c_dragon_komodo	komodo dragon	0.079	18	25	100	0.0
-c_kappa	Kappa	0.079	12	15	230	0.0
-c_sea_serpent	Sea Serpent	0.080	15	15	185	0.0
-c_ogre	c_ogre	0.080	11	32	195	0.0
-c_meer_warrior	Meer Warrior	0.080	19	22	100	0.0
-c_ostard_frenzied	Zostrich	0.083	17	15	170	0.0
-c_orc_captain	Orc Captain	0.083	15	34	145	0.0
-c_blade_spirit	blade spirit	0.085	14	40	150	0.0
-c_rai_ju	Rai-Ju	0.087	15	15	225	0.0
-c_sea_monster_old	Sea Monster	0.087	15	15	225	0.0
-c_spectral_armor	spectral armor	0.088	22	18	110	0.0
-c_elemental_earth	Earth Elemental	0.088	16	34	155	0.0
-c_slith	slith	0.088	24	0	136	0.0
-c_gibberling	Gibberling	0.089	17	27	165	0.0
-c_vampire_form	vampire	0.090	25	40	0	0.0
-c_shimmering_effusion	Shimmering Effusion	0.090	10	15	90	60.0
-c_changeling	Changeling	0.090	10	15	90	60.0
-c_fetid_essence	Fetid Essence	0.090	10	15	90	60.0
-c_troglodyte	Troglodyte	0.090	14	28	217	0.0
-c_gargoyle_undead	undead gargoyle	0.091	18	0	245	0.0
-c_swamp_tentacles	Swamp Tentacles	0.091	21	25	120	0.0
-c_fire_ant	fire ant	0.092	18	0	250	0.0
-c_troll	Troll	0.092	17	20	205	0.0
-c_goblin_green	green goblin	0.093	7	28	343	0.0
-c_spider_wolf	Wolf spider	0.095	18	0	268	0.0
-c_troll_w_axe	Troll	0.095	14	40	205	0.0
-c_ettin	Ettin	0.095	17	38	165	0.0
-c_ettin_w_hammer	Ettin	0.095	17	38	165	0.0
-c_skeleton_mage	Skeletal Mage	0.097	7	38	100	60.1
-c_bone_magi	Bone Magi	0.097	7	38	100	60.1
-c_solen_warrior	Red Solen Warrior	0.098	15	35	220	0.0
-c_solen_warrior_black	black solen warrior	0.098	15	35	220	0.0
-c_lady_lissith	Lissith	0.098	22	40	95	0.0
-c_terathan_warrior	Terathan Warrior	0.100	17	30	215	0.0
-c_savage_ridgeback	Savage Ridgeback	0.100	23	15	170	0.0
-c_serpent_giant	Giant Serpent	0.101	17	32	215	0.0
-c_spectre	Spectre	0.101	11	28	100	55.1
-c_wraith	Wraith	0.101	11	28	100	55.1
-c_gore_fiend	Gore Fiend	0.102	21	24	185	0.0
-c_energy_vortex	energy vortex	0.103	17	40	200	0.0
-c_corpser	Corpser	0.104	23	18	180	0.0
-c_lasher	Lasher	0.104	4	45	400	0.0
-c_windrunner	Windrunner	0.104	4	45	400	0.0
-c_eowmu	Eowmu	0.104	4	45	400	0.0
-c_skeletal_cat	Skeletal Cat	0.104	4	45	400	0.0
-c_ophidian_warrior	Ophidian Warrior	0.105	11	36	320	0.0
-c_wolf_leather	leather wolf	0.106	23	40	120	0.0
-c_beetle_fire	fire beetle	0.107	20	0	300	0.0
-c_gazer	Gazer	0.107	10	36	125	50.1
-c_kepetch	kepetch	0.108	17	0	354	0.0
-c_satyr	Satyr	0.108	24	15	195	0.0
-c_spider_frost	Frost Spider	0.108	28	25	100	0.0
-c_troll_w_mace	Troll	0.110	23	20	205	0.0
-c_rotting_corpse	Rotting Corpse	0.110	10	40	350	0.0
-c_doppleganger	Doppleganger	0.110	22	55	110	0.0
-c_savage_warrior_male	c_savage_warrior_male	0.111	27	30	115	0.0
-c_savage_warrior_female	c_savage_warrior_female	0.111	27	30	115	0.0
-c_patchwork_skeleton	Patchwork Skeleton	0.111	22	54	120	0.0
-c_swamp_dragon	Swamp Dragon	0.112	24	20	200	0.0
-c_imp	Imp	0.113	14	15	115	90.1
-c_solen_queen_black	black solen queen	0.113	15	30	320	0.0
-c_elemental_fire	Fire Elemental	0.114	9	40	155	60.1
-c_elemental_water	Water Elemental	0.114	9	40	155	60.1
-c_flesh_golem	Flesh Golem	0.114	22	34	200	0.0
-c_bone_knight	Bone Knight	0.115	18	40	250	0.0
-c_wyvern	Wyvern	0.116	19	40	240	0.0
-c_lady_melisande	Lady Melisande	0.116	20	10	90	60.0
-c_gazer_larva	Gazer Larva	0.116	15	17	100	100.0
-c_elemental_air	Air Elemental	0.117	10	40	155	60.1
-c_goblin_gray	gray goblin	0.117	14	40	326	0.0
-c_archaeosaurus	Archaeosaurus	0.118	16	2	421	0.0
-c_evilmage	c_evilmage	0.120	18	15	105	75.0
-c_fan_dancer	Fan Dancer	0.120	17	15	375	0.0
-c_wolf_dire	dire wolf	0.120	32	20	120	0.0
-c_orc_scout	orc scout	0.120	31	25	120	0.0
-c_gargoyle_enslaved	enslaved gargoyle	0.120	14	35	360	0.0
-c_quagmire	Quagmire	0.120	24	57	130	0.0
-c_man_paladin	c_man_paladin	0.121	18	30	125	25.0
-c_solen_queen	Red Solen Queen	0.122	15	45	320	0.0
-c_phantom	phantom	0.122	18	30	150	10.0
-c_skree	skree	0.123	7	0	330	90.2
-c_giant_beetle	Giant Beetle	0.124	20	30	300	0.0
-c_unicorn	Unicorn	0.125	15	20	150	90.0
-c_ophidian_shaman	Ophidian Shaman	0.125	10	30	205	85.1
-c_dryad	Dryad	0.126	20	20	110	60.0
-c_hellhound	hell hound	0.126	31	25	150	0.0
-c_yomotsu_warrior	Yomotsu Warrior	0.128	10	15	530	0.0
-c_charybdis_tentacle	Charybdis Tentacle	0.128	15	35	155	60.0
-c_dragon_serpentine	Serpentine Dragon	0.128	12	36	140	110.1
-c_spider_lord	Mephitis	0.128	35	25	100	0.0
-c_orc_lord	Orc lord	0.129	28	25	215	0.0
-c_raptor	raptor	0.129	17	0	471	0.0
-c_bloodworm	bloodworm	0.129	17	0	473	0.0
-c_frost_troll	Frost Troll	0.129	20	50	265	0.0
-c_chief_paroxysmus	Chief Paroxysmus	0.130	20	30	100	60.0
-c_minotaur	Minotaur	0.130	20	28	340	0.0
-c_dread_horn	Dread Horn	0.131	20	30	105	60.0
-c_wolf_dark	dark wolf	0.131	34	25	130	0.0
-c_wolf_silver	silver wolf	0.131	34	25	130	0.0
-c_gargoyle	Gargoyle	0.132	18	16	175	70.0
-c_familiar_dark_wolf	Dark Wolf Familiar	0.132	33	40	105	0.0
-c_homunculus	Homunculus	0.133	19	35	130	50.0
-c_ravager	Ravager	0.134	20	54	275	0.0
-c_armored_swamp_dragon	Armored Swamp Dragon	0.135	24	50	230	0.0
-c_savage_shaman	c_savage_shaman	0.135	18	30	145	73.0
-c_hellcat	hellcat	0.135	32	25	185	0.0
-c_evilmage_lord	c_evilmage_lord	0.136	18	35	105	95.0
-c_juka_lord	Juka Lord	0.136	12	28	500	0.0
-c_hellhound_leader	Alpha hell hound	0.136	31	35	174	0.0
-c_reaper	Reaper	0.137	11	40	215	90.1
-c_juka_mage	juka mage	0.138	10	16	300	99.1
-c_ant_lion	Ant Lion	0.139	21	45	320	0.0
-c_dryad_insane	Insane Dryad	0.140	20	28	149	70.0
-c_reaper_form	reaper form	0.140	20	0	215	90.0
-c_kepetch_shorn	kepetch	0.140	17	55	355	0.0
-c_najasaurus	Najasaurus	0.140	24	50	260	0.0
-c_elemental_crystal	Crystal Elemental	0.140	15	50	160	70.1
-c_elemental_sand_vortex	sand vortex	0.141	27	80	120	0.0
-c_bake_kitsune	Bake Kitsune	0.143	18	18	220	80.0
-c_anchisaur	Anchisaur	0.144	19	3	511	0.0
-c_savage_rider	c_savage_rider	0.144	34	35	170	0.0
-c_drake_platinum	Platinum Drake	0.145	17	40	430	0.0
-c_drake_platinum_elemental	Platinum Drake	0.145	17	40	430	0.0
-c_drake_crimson	Crimson Drake	0.145	17	40	430	0.0
-c_drake_crimson_elemental	Crimson Drake	0.145	17	40	430	0.0
-c_daemon_moloch	Moloch	0.145	23	32	360	0.0
-c_minotaur_captain	Minotaur Captain	0.146	20	28	425	0.0
-c_daemon_arcane	Arcane Daemon	0.146	16	55	150	80.1
-c_drake_gray	c_drake_gray	0.148	17	46	430	0.0
-c_drake_red	c_drake_red	0.148	17	46	430	0.0
-c_mantra_effervescent	Mantra Effervescent	0.149	30	15	90	60.0
-c_tsuki_wolf	Tsuki Wolf	0.149	18	35	450	0.0
-c_boura	ruddy boura	0.149	20	16	480	0.0
-c_minotaur_scout	Minotaur Scout	0.149	20	50	375	0.0
-c_warhorse_truebritannians	True Britannians warhorse	0.150	20	40	410	0.0
-c_warhorse_magecouncil	Council of Mages warhorse	0.150	20	40	410	0.0
-c_warhorse_minax	Minax warhorse	0.150	20	40	410	0.0
-c_warhorse_shadowlords	Shadowlords warhorse	0.150	20	40	410	0.0
-c_pixie	Pixie	0.150	17	90	30	90.0
-c_orc_shaman	Orc shaman	0.151	25	25	150	60.0
-c_serpent_coil	Coil	0.151	23	50	335	0.0
-c_serpent_arrow	serpent arrow	0.152	35	30	215	0.0
-c_stone_form	stone form	0.153	35	35	200	0.0
-c_boura_armoured	armoured boura	0.153	20	45	410	0.0
-c_blood_fox	Blood Fox	0.153	22	60	330	0.0
-c_werewolf	were wolf	0.155	25	35	375	0.0
-c_juka_warrior	juka warrior	0.157	26	40	350	0.0
-c_shadow_fiend	shadow fiend	0.157	28	20	115	90.0
-c_wisp	Wisp	0.157	18	40	225	80.0
-c_mummy	Mummy	0.157	23	50	370	0.0
-c_cyclops	Cyclopean Warrior	0.159	23	48	385	0.0
-c_harrower	nameless one	0.159	25	40	135	70.0
-c_meer_mage	Meer Mage	0.160	26	16	200	70.1
-c_ossein_ram	Ossein Ram	0.160	23	55	370	0.0
-c_orc_chopper	orc chopper	0.161	37	25	245	0.0
-c_tormented_minotaur	Tormented Minotaur	0.162	30	26	130	60.0
-c_juggernaut	Blackthorn Juggernaught	0.163	19	70	400	0.0
-c_elemental_ore_bronze	bronze elemental	0.166	37	30	255	0.0
-c_elemental_ore_copper	copper elemental	0.166	37	30	255	0.0
-c_elemental_ore_copper_dull	dull copper elemental	0.166	37	30	255	0.0
-c_elemental_ore_shadow	shadow iron elemental	0.166	37	30	255	0.0
-c_elemental_ore_verite	verite elemental	0.166	37	30	255	0.0
-c_gazer_2	Gazer	0.166	24	45	150	90.0
-c_pumpkin_demon	killer pumpkin	0.166	27	30	175	70.0
-c_pumpkin_fright	killer pumpkin	0.166	27	30	175	70.0
-c_lady_of_the_snow	Lady of the Snow	0.168	20	18	305	95.1
-c_skeletal_mount	Skeletal Mount	0.168	22	30	230	100.0
-c_dragon_fairy	Fairy Dragon	0.171	18	39	558	0.0
-c_gargoyle_enforcer	gargoyle enforcer	0.171	13	50	350	80.0
-c_terathan_matriarch	Terathan Matriarch	0.172	14	25	405	90.1
-c_ratman_archer	c_ratman_archer	0.172	42	40	180	0.0
-c_kaze_kemono	Kaze Kemono	0.173	20	35	275	95.1
-c_lava_lizard	lava lizard	0.173	45	35	150	0.0
-c_gallusaurus	Gallusaurus	0.173	17	60	520	0.0
-c_serpent_ice	Ice Serpent	0.175	41	30	245	0.0
-c_ratman_mage	c_ratman_mage	0.176	28	40	180	70.0
-c_theophilus	Master Theophilus	0.177	20	55	189	135.0
-c_lich_form	lich form	0.177	55	40	0	0.0
-c_lich	Lich	0.180	26	50	200	70.1
-c_revenant_lion	Revenant Lion	0.180	24	18	325	80.1
-c_maddening_horror	maddening horror	0.181	27	0	290	120.0
-c_dragon_wolf	dragon wolf	0.181	32	30	420	0.0
-c_yomotsu_priest	Yomotsu Priest	0.182	10	18	530	105.1
-c_elemental_ore_gold	golden elemental	0.183	37	60	255	0.0
-c_skeleton_knight	skeletal knight	0.185	43	35	250	0.0
-c_minotaur_lord	minotaur lord	0.185	40	50	250	0.0
-c_clockwork_exodus	Clockwork Exodus	0.185	40	50	250	0.0
-c_elemental_lava	lava elemental	0.186	18	0	510	80.0
-c_spider_malefic	Malefic	0.186	22	60	225	107.0
-c_gargoyle_stone	Stone Gargoyle	0.187	40	45	275	0.0
-c_jack_in_the_box	Jack in the Box	0.187	18	75	230	120.0
-c_meer_eternal	Meer Eternal	0.192	13	34	505	90.1
-c_rune_beetle	Rune Beetle	0.193	22	0	460	100.1
-c_mimic	mimic	0.194	20	60	300	105.0
-c_kirin	Kirin	0.195	30	35	200	125.0
-c_harpy_stone	Stone Harpy	0.195	40	45	320	0.0
-c_sea_serpent_deep	Deep sea serpent	0.197	37	30	425	0.0
-c_spider_dread	dread spider	0.197	33	40	220	65.0
-c_exodus_overseer	Exodus Overseer	0.197	19	50	650	0.0
-c_revenant_summoned	summoned revenant	0.197	45	60	205	0.0
-c_rising_colossus	rising colossus	0.199	49	45	200	0.0
-c_treefellow	Treefellow	0.201	45	25	335	0.0
-c_ophidian_archmage	ophidian justicar	0.201	27	40	305	95.0
-c_ophidian_matriarch	Ophidian Matriarch	0.202	13	50	505	90.1
-c_sabertoothed_tiger	Saber-Toothed Tiger	0.202	28	55	520	0.0
-c_tiger_wild	Wild Tiger	0.203	24	65	555	0.0
-c_corporeal_brume	corporeal brume	0.204	25	95	450	0.0
-c_dream_wraith	dream wraith	0.205	25	55	300	100.0
-c_daemon	c_daemon	0.205	14	58	505	70.1
-c_abyssmal_horror	Abyssmal Horror	0.205	17	54	420	112.6
-c_steed_dark	dark steed	0.206	35	25	525	0.0
-c_steed_silver	silver steed	0.206	35	25	525	0.0
-c_horrific_beast	horrific beast	0.207	61	60	0	0.0
-c_elemental_ice	ice elemental	0.211	45	35	185	10.0
-c_dimetrosaur	Dimetrosaur	0.214	21	85	600	0.0
-c_elemental_snow	snow elemental	0.216	45	45	355	0.0
-c_myrmidex_warrior	Myrmidex Warrior	0.217	22	5	600	80.0
-c_vollem	vollem	0.217	22	55	525	10.0
-c_titan	Titan	0.218	16	40	585	85.1
-c_lion	Lion	0.221	22	55	720	0.0
-c_efreet	efreet	0.223	32	50	355	60.0
-c_dark_guardian	dark guardian	0.225	48	40	150	50.0
-c_centaur	Centaur	0.232	53	50	300	0.0
-c_abyssal_infernal	Abyssal Infernal	0.234	18	50	600	90.0
-c_serpent_silver	silver serpent	0.234	53	35	360	0.0
-c_vampire	c_vampire	0.235	30	35	450	100.0
-c_vampire_f	c_vampire_f	0.235	30	35	450	100.0
-c_beetle_iron	iron beetle	0.235	20	38	883	0.0
-c_wisp_dark	Wisp dark	0.236	46	35	225	80.0
-c_lich_primeval	primeval lich	0.237	21	40	600	90.0
-c_yomotsu_elder	Yomotsu Elder	0.237	27	22	830	0.0
-c_hydra	Hydra	0.238	26	30	828	0.0
-c_armor_steed	armor Steed	0.239	15	20	1042	0.0
-c_reaper_redux	elder reaper	0.241	35	40	400	90.0
-c_kotl_automaton	Kotl Automaton	0.244	20	48	900	0.0
-c_warhorse_dread	dread warhorse	0.246	26	65	555	35.0
-c_terathan_avenger	Terathan Avenger	0.249	22	50	645	70.3
-c_elemental_acid	acid elemental	0.252	42	45	355	70.0
-c_serpent_lava	Lava Serpent	0.253	56	35	415	0.0
-c_exodus	Exodus	0.256	40	33	690	0.0
-c_elemental_ore_agapite	agapite elemental	0.259	69	30	255	0.0
-c_gargoyle_fire	Fire Gargoyle	0.264	45	30	400	90.0
-c_yamandon	Yamandon	0.266	35	0	930	0.0
-c_ogre_lord	ogre lord	0.268	25	50	945	0.0
-c_orc_brute	Orc Brute	0.268	25	50	945	0.0
-c_lich_lord	lich lord	0.269	38	40	505	90.0
-c_exodus_minion	Exodus Minion	0.269	22	65	950	0.0
-c_daemon_2	c_daemon_2	0.271	39	45	505	70.1
-c_saurosaurus	Saurosaurus	0.273	28	80	824	0.0
-c_iron_golem	Iron Golem	0.277	64	55	350	0.0
-c_dragon	c_dragon	0.279	22	60	825	30.1
-c_dragon_red	c_dragon_red	0.279	22	60	825	30.1
-c_elemental_ore_valorite	valorite elemental	0.280	69	65	255	0.0
-c_reptalon	Reptalon	0.280	28	30	1025	0.0
-c_drake_stygian	Stygian Drake	0.281	17	60	830	100.0
-c_drake_stygian_elemental	Stygian Drake	0.281	17	60	830	100.0
-c_daemon_horde_large	horde daemon lord	0.286	42	35	550	90.0
-c_succubus	Succubus	0.286	28	80	620	99.1
-c_exodus_minionlord	Exodus Minion Lord	0.289	38	50	850	0.0
-c_wyrm_white	White Wyrm	0.291	25	60	760	99.1
-c_khal_ankur	Khal Ankur	0.292	35	85	800	0.0
-c_oni	Oni	0.292	20	40	910	96.1
-c_daemon_ice	Ice Fiend	0.292	50	55	405	80.0
-c_dragon_turtle	Dragon Turtle	0.293	37	78	800	0.0
-c_myrmidex_queen	Myrmidex Queen	0.296	24	85	1000	0.0
-c_allosaurus	Allosaurus	0.298	23	70	830	70.1
-c_frost_mite	Frost Mite	0.298	28	60	1030	0.0
-c_charybdis	Charybdis	0.299	33	70	600	135.0
-c_scalis	Osiredon	0.299	26	80	825	15.0
-c_gazer_elder	Elder Gazer	0.300	59	45	325	90.0
-c_gazer_elder	Elder Gazer	0.300	59	45	325	90.0
-c_zipactriotl	Zipactriotl	0.302	26	85	1000	0.0
-c_flesh_renderer	flesh renderer	0.302	61	80	460	0.0
-c_dragon_turtle_hatchling	Dragon Turtle Hatchling	0.310	33	75	650	130.0
-c_cu_sidhe	Cu Sidhe	0.311	28	20	1225	0.0
-c_impaler	Impaler	0.313	79	90	195	0.0
-c_ophidian_knight	ophidian knight	0.313	65	35	595	0.0
-c_wanderer_void	Wanderer of the Void	0.314	27	35	211	700.0
-c_dragon_crimson	crimson dragon	0.316	50	75	725	0.0
-c_dragon_platinum	platinum dragon	0.316	50	75	725	0.0
-c_devourer_souls	Devourer of Souls	0.318	26	44	950	90.1
-c_steed_fire	fire steed	0.335	86	30	400	0.0
-c_elemental_poison	poison elemental	0.336	57	60	515	80.0
-c_plague_beast	Plague Beast	0.336	75	55	500	0.0
-c_dragon_stygian	stygian dragon	0.336	55	85	725	0.0
-c_lich_ancient	c_lich_ancient	0.338	69	55	305	120.0
-c_slasher_of_veils	Slasher of Veils	0.339	15	65	1150	110.0
-c_darknight_creeper	darknight creeper	0.344	69	60	330	112.0
-c_giant_gorilla	Giant Gorilla	0.348	33	72	1185	0.0
-c_betrayer	Betrayer	0.350	64	65	500	50.1
-c_hiryu	Hiryu	0.350	30	20	1410	0.0
-c_bone_daemon	Bone Daemon	0.353	36	44	1000	77.6
-c_shadow_knight	shadow knight	0.356	73	90	255	95.0
-c_triceratops	Triceratops	0.357	28	75	1300	0.0
-c_nightmare	nightmare	0.357	70	55	525	10.0
-c_hellhound_ancient	ancient hellhound	0.365	36	50	1300	0.0
-c_monstrous_interred_grizzle	Monstrous Interred Grizzle	0.366	18	45	1330	100.0
-c_turkey_giant	Giant Turkey	0.371	30	60	1394	0.0
-c_tyrannosaurus_rex	Tyrannosaurus Rex	0.375	42	72	1185	0.0
-c_dragon_skeletal	Skeletal Dragon	0.377	35	80	1030	80.1
-c_semidar	Semidar	0.379	20	40	300	1000.0
-c_daemon_balron	Balron	0.397	29	90	1185	95.5
-c_wyrm_ancient	Ancient Wyrm	0.400	35	70	1185	80.1
-c_gargoyle_destroyer	Destroyer Gargoyle	0.414	64	50	850	91.0
-c_medusa	Medusa	0.414	28	55	1400	100.0
-c_dawn	Dawn	0.416	60	50	900	110.0
-c_navrey_night_eyes	Navrey Night-Eyes	0.430	29	50	1500	90.0
-c_dragon_greater	greater dragon	0.439	33	60	1425	110.0
-c_forest_queen	Forest Queen	0.449	25	10	400	1250.0
-c_ethereal_warrior	ethereal warrior	0.451	74	80	785	99.0
-c_forest_lord	Lord Oaks	0.451	74	80	785	99.0
-c_elemental_blood	blood elemental	0.452	91	55	615	85.0
-c_bog_thing	Bog Thing	0.456	95	35	900	0.0
-c_daemon_horde_colored	multi colored horde demon	0.465	88	45	750	99.0
-c_phoenix	Phoenix	0.466	92	45	700	90.0
-c_harrower_tentacles	tentacles of the Harrower	0.480	93	55	1000	0.0
-c_ogre_lord_arctic	arctic ogre lord	0.517	111	45	945	0.0
-c_kraken	Kraken	0.517	121	47	780	0.0
-c_stratos	Stratos	0.518	10	70	2200	105.0
-c_pyros	Pyros	0.518	10	70	2200	105.0
-c_lithos	Lithos	0.524	10	80	2200	105.0
-c_hydros	Hydros	0.527	10	85	2200	105.0
-c_sphynx	Sphynx	0.538	80	70	1200	95.0
-c_daemon_blackgate	c_daemon_blackgate	0.678	149	60	900	90.0
-c_reptile_lord	reptile lord	0.743	163	75	1000	80.0
-c_wyrm_shadow	Shadow wyrm	0.749	165	65	1030	80.0
-c_ancient_wyrm	unknown ancient wyrm	0.839	182	85	1185	80.0
-c_champ_rikktor	Rikktor	1.000	272	80	900	0.0
+defname	name	danger	maxdam	armor	str	magery	taming
+c_llama_ethereal	ethereal llama	0.000	2	1	2	0.0	-1.0
+c_ostard_ethereal	ethereal ostard	0.000	2	1	2	0.0	-1.0
+c_kirin_ethereal	ethereal ki-rin	0.000	2	1	2	0.0	-1.0
+c_unicorn_ethereal	ethereal unicorn	0.000	2	1	2	0.0	-1.0
+c_ridgeback_ethereal	ethereal ridgeback	0.000	2	1	2	0.0	-1.0
+c_swamp_dragon_ethereal	ethereal swamp dragon	0.000	2	1	2	0.0	-1.0
+c_giant_beetle_ethereal	ethereal giant beetle	0.000	2	1	2	0.0	-1.0
+c_turkey	Turkey	0.001	2	1	10	0.0	0.1
+c_rat	Rat	0.004	2	6	9	0.0	0.9
+c_man	Man	0.005	4	0	0	0.0	-1.0
+c_woman	Woman	0.005	4	0	0	0.0	-1.0
+c_elf_male	Elf Male	0.005	4	0	0	0.0	-1.0
+c_elf_female	Elf Female	0.005	4	0	0	0.0	-1.0
+c_gargoyle_male	Gargoyle Male	0.005	4	0	0	0.0	-1.0
+c_gargoyle_female	Gargoyle Female	0.005	4	0	0	0.0	-1.0
+c_man_gm	GM	0.005	4	0	0	0.0	-1.0
+c_crane	Crane	0.005	1	5	35	0.0	-1.0
+c_grubber	grubber	0.006	2	5	20	0.0	-1.0
+c_sheep_woolly	Sheep	0.006	2	6	19	0.0	11.1
+c_sheep_shorn	Sheep	0.006	2	6	19	0.0	11.1
+c_squirrel	Squirrel	0.007	2	10	10	0.0	0.1
+c_goat	Goat	0.014	4	10	19	0.0	11.1
+c_pig	Pig	0.016	4	12	20	0.0	11.1
+c_cow_bw	Cow	0.016	4	10	30	0.0	11.1
+c_bullfrog	Bull Frog	0.017	2	8	70	0.0	23.1
+c_slime_corrosive	Corrosive Slime	0.017	5	5	35	0.0	-1.0
+c_slime	Slime	0.019	5	8	34	0.0	-1.0
+c_snake	Snake	0.020	4	16	34	0.0	59.1
+c_boar	Boar	0.021	6	10	25	0.0	29.1
+c_chicken_lizard	chicken lizard	0.025	5	0	95	0.0	-1.0
+c_bird_crow	Crow	0.026	9	10	4	0.0	10.0
+c_llama	Llama	0.026	5	16	49	0.0	35.1
+c_skittering_hopper	skittering hopper	0.027	5	12	65	0.0	12.9
+c_horse_palomino	horse	0.027	4	18	65	0.0	29.1
+c_dog	Dog	0.027	7	12	37	0.0	15.3
+c_horse_tan	Horse	0.028	4	9	98	0.0	29.1
+c_horse_brown_dk	Horse	0.028	4	9	98	0.0	29.1
+c_horse_gray	Horse	0.028	4	9	98	0.0	29.1
+c_horse_brown_lt	Horse	0.028	4	9	98	0.0	29.1
+c_coconut_crab_small	Coconut crab	0.028	4	9	98	0.0	-1.0
+c_coconut_crab_large	Coconut crab	0.028	4	9	98	0.0	-1.0
+c_war_boar_mount	War Boar	0.028	4	9	98	0.0	-1.0
+c_capybara_mount	Capybara	0.028	4	9	98	0.0	-1.0
+c_capybara_baby	Capybara baby	0.028	4	9	98	0.0	-1.0
+c_rabbit_doom	Doom Rabbit	0.028	4	9	98	0.0	-1.0
+c_rabbit_doom_baby	Doom Rabbit baby	0.028	4	9	98	0.0	-1.0
+c_dog_newfoundland	Newfoundland Dog	0.028	4	9	98	0.0	-1.0
+c_dog_malamut	Alaskan Malamut Dog	0.028	4	9	98	0.0	-1.0
+c_dog_dane	Great Dane Dog	0.028	4	9	98	0.0	-1.0
+c_dog_bernard	Bernard Dog	0.028	4	9	98	0.0	-1.0
+c_dog_terier	Black Terrier Dog	0.028	4	9	98	0.0	-1.0
+c_dog_rottweiler	Rottweiler Dog	0.028	4	9	98	0.0	-1.0
+c_dolphin	Dolphin	0.029	6	16	49	0.0	-1.0
+c_mountain_goat	Mountain Goat	0.031	7	10	64	0.0	0.9
+c_gremlin	gremlin	0.034	7	0	110	0.0	-1.0
+c_ferret	Ferret	0.035	9	10	50	0.0	0.1
+c_llama_pack	Pack Llama	0.035	6	16	80	0.0	29.1
+c_zombie	Zombie	0.037	7	18	70	0.0	-1.0
+c_eagle	Eagle	0.037	10	11	47	0.0	17.1
+c_skeleton	Skeleton	0.038	7	16	80	0.0	-1.0
+c_walrus	Walrus	0.038	10	18	29	0.0	35.1
+c_frostooze	Frost Ooze	0.040	11	15	30	0.0	-1.0
+c_mongbat	Subterranean Mongbat	0.040	9	10	80	0.0	-1.0
+c_daemon_horde_minion	horde minion	0.040	10	18	40	0.0	-1.0
+c_headless	Headless One	0.042	10	18	50	0.0	-1.0
+c_wolf_timber	Timber Wolf	0.044	9	16	80	0.0	23.1
+c_wolf_grey	grey wolf	0.046	10	15	80	0.0	50.0
+c_wolf_white	white wolf	0.046	10	15	80	0.0	65.0
+c_ratman	c_ratman	0.046	5	28	120	0.0	-1.0
+c_ratman_w_axe	c_ratman_w_axe	0.046	5	28	120	0.0	-1.0
+c_ratman_w_sword	c_ratman_w_sword	0.046	5	28	120	0.0	-1.0
+c_cougar	Cougar	0.046	10	16	80	0.0	50.0
+c_great_hart	Great Hart	0.047	9	24	71	0.0	59.1
+c_krumpus	Krumpus	0.047	4	9	200	0.0	-1.0
+c_krumpus_small	Krumpus small	0.047	4	9	200	0.0	-1.0
+c_coconut_crab_mount	Coconut crab	0.047	4	9	200	0.0	-1.0
+c_skeleton_w_axe	Skeleton	0.048	12	8	80	0.0	-1.0
+c_rat_giant	giant rat	0.048	11	15	74	0.0	25.0
+c_myrmidex_drone	Myrmidex Drone	0.049	12	2	105	0.0	-1.0
+c_harpy	Harpy	0.050	9	14	120	0.0	-1.0
+c_myrmidex_larvae	Myrmidex Larvae	0.051	13	2	100	0.0	-1.0
+c_tiger_cub	Tiger Cub	0.051	12	8	100	0.0	-1.0
+c_gorilla	Gorilla	0.052	10	20	95	0.0	-1.0
+c_orc	c_orc	0.052	7	28	120	0.0	-1.0
+c_lizardman	c_lizardman	0.052	7	28	120	0.0	-1.0
+c_lizardman_spear	c_lizardman_spear	0.052	7	28	120	0.0	-1.0
+c_lizardman_mace	c_lizardman_mace	0.052	7	28	120	0.0	-1.0
+c_solen_worker	Red Solen Worker	0.052	7	28	120	0.0	-1.0
+c_solen_worker_black	black solen worker	0.052	7	28	120	0.0	-1.0
+c_panther	Panther	0.053	12	16	85	0.0	53.1
+c_ghoul	Ghoul	0.054	9	28	100	0.0	-1.0
+c_terathan_drone	Terathan Drone	0.054	12	24	65	0.0	-1.0
+c_bear_black	Black Bear	0.055	10	24	100	0.0	35.1
+c_bull_brown_lt	Bull	0.056	9	28	111	0.0	71.1
+c_bull_brown_dk	Bull	0.056	9	28	111	0.0	71.1
+c_horse_pack	Pack Horse	0.057	11	16	120	0.0	29.1
+c_orc_w_club	c_orc_w_club	0.058	12	14	120	0.0	-1.0
+c_spider_giant	Giant Spider	0.059	13	16	100	0.0	-1.0
+c_scorpion_giant	Giant Scorpion	0.060	10	28	115	0.0	-1.0
+c_leopard	leopard	0.060	14	20	80	0.0	41.1
+c_leopard_snow	Snow Leopard	0.060	14	20	80	0.0	50.0
+c_bear_brown	Brown Bear	0.061	12	24	100	0.0	41.1
+c_vampire_bat	Vampire Bat	0.061	17	10	66	0.0	-1.0
+c_ostard_desert	Desert Ostard	0.062	11	9	170	0.0	29.1
+c_bogling	bogling	0.062	12	20	120	0.0	-1.0
+c_rotworm	rotworm	0.063	5	0	300	0.0	-1.0
+c_deathwatch_beetle	deathwatch beetle	0.063	10	20	160	0.0	-1.0
+c_bear_polar	Polar Bear	0.064	12	18	140	0.0	35.1
+c_ridgeback	Ridgeback	0.065	12	9	170	0.0	80.0
+c_spider_trapdoor	trapdoor spider	0.065	18	0	104	0.0	-1.0
+c_alligator_small	Alligator	0.067	14	25	100	0.0	35.0
+c_scorpion_clockwork	clockwork scorpion	0.067	10	0	245	0.0	-1.0
+c_gaman	Gaman	0.069	11	20	175	0.0	68.7
+c_ostard_forest	Forest Ostard	0.070	14	9	170	0.0	29.1
+c_wailing_banshee	Wailing Banshee	0.073	14	19	150	0.0	-1.0
+c_alligator	Alligator	0.073	15	30	100	0.0	47.1
+c_orc_bomber	orc bomber	0.073	8	30	215	0.0	-1.0
+c_meer_captain	Meer Captain	0.074	15	28	110	0.0	-1.0
+c_bear_grizzly	Grizzly Bear	0.074	13	24	155	0.0	59.1
+c_toad_giant	Giant Toad	0.075	17	24	100	0.0	-1.0
+c_mound_maggots	Mound of Maggots	0.075	21	10	81	0.0	-1.0
+c_daemon_chaos	Chaos Daemon	0.075	17	15	130	0.0	-1.0
+c_dragon_komodo	komodo dragon	0.079	18	25	100	0.0	45.0
+c_kappa	Kappa	0.079	12	15	230	0.0	-1.0
+c_sea_serpent	Sea Serpent	0.080	15	15	185	0.0	-1.0
+c_ogre	c_ogre	0.080	11	32	195	0.0	-1.0
+c_meer_warrior	Meer Warrior	0.080	19	22	100	0.0	-1.0
+c_ostard_frenzied	Zostrich	0.083	17	15	170	0.0	77.1
+c_orc_captain	Orc Captain	0.083	15	34	145	0.0	-1.0
+c_blade_spirit	blade spirit	0.085	14	40	150	0.0	-1.0
+c_rai_ju	Rai-Ju	0.087	15	15	225	0.0	-1.0
+c_sea_monster_old	Sea Monster	0.087	15	15	225	0.0	-1.0
+c_spectral_armor	spectral armor	0.088	22	18	110	0.0	-1.0
+c_elemental_earth	Earth Elemental	0.088	16	34	155	0.0	-1.0
+c_slith	slith	0.088	24	0	136	0.0	-1.0
+c_gibberling	Gibberling	0.089	17	27	165	0.0	-1.0
+c_vampire_form	vampire	0.090	25	40	0	0.0	-1.0
+c_shimmering_effusion	Shimmering Effusion	0.090	10	15	90	60.0	-1.0
+c_changeling	Changeling	0.090	10	15	90	60.0	-1.0
+c_fetid_essence	Fetid Essence	0.090	10	15	90	60.0	-1.0
+c_troglodyte	Troglodyte	0.090	14	28	217	0.0	-1.0
+c_gargoyle_undead	undead gargoyle	0.091	18	0	245	0.0	-1.0
+c_swamp_tentacles	Swamp Tentacles	0.091	21	25	120	0.0	-1.0
+c_fire_ant	fire ant	0.092	18	0	250	0.0	-1.0
+c_troll	Troll	0.092	17	20	205	0.0	-1.0
+c_goblin_green	green goblin	0.093	7	28	343	0.0	-1.0
+c_spider_wolf	Wolf spider	0.095	18	0	268	0.0	-1.0
+c_troll_w_axe	Troll	0.095	14	40	205	0.0	-1.0
+c_ettin	Ettin	0.095	17	38	165	0.0	-1.0
+c_ettin_w_hammer	Ettin	0.095	17	38	165	0.0	-1.0
+c_skeleton_mage	Skeletal Mage	0.097	7	38	100	60.1	-1.0
+c_bone_magi	Bone Magi	0.097	7	38	100	60.1	-1.0
+c_solen_warrior	Red Solen Warrior	0.098	15	35	220	0.0	-1.0
+c_solen_warrior_black	black solen warrior	0.098	15	35	220	0.0	-1.0
+c_lady_lissith	Lissith	0.098	22	40	95	0.0	-1.0
+c_terathan_warrior	Terathan Warrior	0.100	17	30	215	0.0	-1.0
+c_savage_ridgeback	Savage Ridgeback	0.100	23	15	170	0.0	80.0
+c_serpent_giant	Giant Serpent	0.101	17	32	215	0.0	-1.0
+c_spectre	Spectre	0.101	11	28	100	55.1	-1.0
+c_wraith	Wraith	0.101	11	28	100	55.1	-1.0
+c_gore_fiend	Gore Fiend	0.102	21	24	185	0.0	-1.0
+c_energy_vortex	energy vortex	0.103	17	40	200	0.0	-1.0
+c_corpser	Corpser	0.104	23	18	180	0.0	-1.0
+c_lasher	Lasher	0.104	4	45	400	0.0	29.1
+c_windrunner	Windrunner	0.104	4	45	400	0.0	29.1
+c_eowmu	Eowmu	0.104	4	45	400	0.0	29.1
+c_skeletal_cat	Skeletal Cat	0.104	4	45	400	0.0	29.1
+c_ophidian_warrior	Ophidian Warrior	0.105	11	36	320	0.0	-1.0
+c_wolf_leather	leather wolf	0.106	23	40	120	0.0	-1.0
+c_beetle_fire	fire beetle	0.107	20	0	300	0.0	-1.0
+c_gazer	Gazer	0.107	10	36	125	50.1	-1.0
+c_kepetch	kepetch	0.108	17	0	354	0.0	-1.0
+c_satyr	Satyr	0.108	24	15	195	0.0	-1.0
+c_spider_frost	Frost Spider	0.108	28	25	100	0.0	74.7
+c_troll_w_mace	Troll	0.110	23	20	205	0.0	-1.0
+c_rotting_corpse	Rotting Corpse	0.110	10	40	350	0.0	-1.0
+c_doppleganger	Doppleganger	0.110	22	55	110	0.0	-1.0
+c_savage_warrior_male	c_savage_warrior_male	0.111	27	30	115	0.0	-1.0
+c_savage_warrior_female	c_savage_warrior_female	0.111	27	30	115	0.0	-1.0
+c_patchwork_skeleton	Patchwork Skeleton	0.111	22	54	120	0.0	-1.0
+c_swamp_dragon	Swamp Dragon	0.112	24	20	200	0.0	100.0
+c_imp	Imp	0.113	14	15	115	90.1	-1.0
+c_solen_queen_black	black solen queen	0.113	15	30	320	0.0	-1.0
+c_elemental_fire	Fire Elemental	0.114	9	40	155	60.1	-1.0
+c_elemental_water	Water Elemental	0.114	9	40	155	60.1	-1.0
+c_flesh_golem	Flesh Golem	0.114	22	34	200	0.0	-1.0
+c_bone_knight	Bone Knight	0.115	18	40	250	0.0	-1.0
+c_wyvern	Wyvern	0.116	19	40	240	0.0	-1.0
+c_lady_melisande	Lady Melisande	0.116	20	10	90	60.0	-1.0
+c_gazer_larva	Gazer Larva	0.116	15	17	100	100.0	-1.0
+c_elemental_air	Air Elemental	0.117	10	40	155	60.1	-1.0
+c_goblin_gray	gray goblin	0.117	14	40	326	0.0	-1.0
+c_archaeosaurus	Archaeosaurus	0.118	16	2	421	0.0	-1.0
+c_evilmage	c_evilmage	0.120	18	15	105	75.0	-1.0
+c_fan_dancer	Fan Dancer	0.120	17	15	375	0.0	-1.0
+c_wolf_dire	dire wolf	0.120	32	20	120	0.0	80.0
+c_orc_scout	orc scout	0.120	31	25	120	0.0	-1.0
+c_gargoyle_enslaved	enslaved gargoyle	0.120	14	35	360	0.0	-1.0
+c_quagmire	Quagmire	0.120	24	57	130	0.0	-1.0
+c_man_paladin	c_man_paladin	0.121	18	30	125	25.0	-1.0
+c_solen_queen	Red Solen Queen	0.122	15	45	320	0.0	-1.0
+c_phantom	phantom	0.122	18	30	150	10.0	-1.0
+c_skree	skree	0.123	7	0	330	90.2	95.1
+c_giant_beetle	Giant Beetle	0.124	20	30	300	0.0	29.1
+c_unicorn	Unicorn	0.125	15	20	150	90.0	80.0
+c_ophidian_shaman	Ophidian Shaman	0.125	10	30	205	85.1	-1.0
+c_dryad	Dryad	0.126	20	20	110	60.0	-1.0
+c_hellhound	hell hound	0.126	31	25	150	0.0	85.5
+c_yomotsu_warrior	Yomotsu Warrior	0.128	10	15	530	0.0	-1.0
+c_charybdis_tentacle	Charybdis Tentacle	0.128	15	35	155	60.0	-1.0
+c_dragon_serpentine	Serpentine Dragon	0.128	12	36	140	110.1	-1.0
+c_spider_lord	Mephitis	0.128	35	25	100	0.0	-1.0
+c_orc_lord	Orc lord	0.129	28	25	215	0.0	-1.0
+c_raptor	raptor	0.129	17	0	471	0.0	-1.0
+c_bloodworm	bloodworm	0.129	17	0	473	0.0	-1.0
+c_frost_troll	Frost Troll	0.129	20	50	265	0.0	-1.0
+c_chief_paroxysmus	Chief Paroxysmus	0.130	20	30	100	60.0	-1.0
+c_minotaur	Minotaur	0.130	20	28	340	0.0	-1.0
+c_dread_horn	Dread Horn	0.131	20	30	105	60.0	-1.0
+c_wolf_dark	dark wolf	0.131	34	25	130	0.0	85.0
+c_wolf_silver	silver wolf	0.131	34	25	130	0.0	85.0
+c_gargoyle	Gargoyle	0.132	18	16	175	70.0	-1.0
+c_familiar_dark_wolf	Dark Wolf Familiar	0.132	33	40	105	0.0	-1.0
+c_homunculus	Homunculus	0.133	19	35	130	50.0	-1.0
+c_ravager	Ravager	0.134	20	54	275	0.0	-1.0
+c_armored_swamp_dragon	Armored Swamp Dragon	0.135	24	50	230	0.0	90.0
+c_savage_shaman	c_savage_shaman	0.135	18	30	145	73.0	-1.0
+c_hellcat	hellcat	0.135	32	25	185	0.0	89.1
+c_evilmage_lord	c_evilmage_lord	0.136	18	35	105	95.0	-1.0
+c_juka_lord	Juka Lord	0.136	12	28	500	0.0	-1.0
+c_hellhound_leader	Alpha hell hound	0.136	31	35	174	0.0	-1.0
+c_reaper	Reaper	0.137	11	40	215	90.1	-1.0
+c_juka_mage	juka mage	0.138	10	16	300	99.1	-1.0
+c_ant_lion	Ant Lion	0.139	21	45	320	0.0	-1.0
+c_dryad_insane	Insane Dryad	0.140	20	28	149	70.0	-1.0
+c_reaper_form	reaper form	0.140	20	0	215	90.0	-1.0
+c_kepetch_shorn	kepetch	0.140	17	55	355	0.0	-1.0
+c_najasaurus	Najasaurus	0.140	24	50	260	0.0	101.1
+c_elemental_crystal	Crystal Elemental	0.140	15	50	160	70.1	-1.0
+c_elemental_sand_vortex	sand vortex	0.141	27	80	120	0.0	-1.0
+c_bake_kitsune	Bake Kitsune	0.143	18	18	220	80.0	-1.0
+c_anchisaur	Anchisaur	0.144	19	3	511	0.0	-1.0
+c_savage_rider	c_savage_rider	0.144	34	35	170	0.0	-1.0
+c_drake_platinum	Platinum Drake	0.145	17	40	430	0.0	84.3
+c_drake_platinum_elemental	Platinum Drake	0.145	17	40	430	0.0	84.3
+c_drake_crimson	Crimson Drake	0.145	17	40	430	0.0	84.3
+c_drake_crimson_elemental	Crimson Drake	0.145	17	40	430	0.0	84.3
+c_daemon_moloch	Moloch	0.145	23	32	360	0.0	-1.0
+c_minotaur_captain	Minotaur Captain	0.146	20	28	425	0.0	-1.0
+c_daemon_arcane	Arcane Daemon	0.146	16	55	150	80.1	-1.0
+c_drake_gray	c_drake_gray	0.148	17	46	430	0.0	84.3
+c_drake_red	c_drake_red	0.148	17	46	430	0.0	84.3
+c_mantra_effervescent	Mantra Effervescent	0.149	30	15	90	60.0	-1.0
+c_tsuki_wolf	Tsuki Wolf	0.149	18	35	450	0.0	-1.0
+c_boura	ruddy boura	0.149	20	16	480	0.0	-1.0
+c_minotaur_scout	Minotaur Scout	0.149	20	50	375	0.0	-1.0
+c_warhorse_truebritannians	True Britannians warhorse	0.150	20	40	410	0.0	25.0
+c_warhorse_magecouncil	Council of Mages warhorse	0.150	20	40	410	0.0	25.0
+c_warhorse_minax	Minax warhorse	0.150	20	40	410	0.0	25.0
+c_warhorse_shadowlords	Shadowlords warhorse	0.150	20	40	410	0.0	25.0
+c_pixie	Pixie	0.150	17	90	30	90.0	-1.0
+c_orc_shaman	Orc shaman	0.151	25	25	150	60.0	-1.0
+c_serpent_coil	Coil	0.151	23	50	335	0.0	-1.0
+c_serpent_arrow	serpent arrow	0.152	35	30	215	0.0	-1.0
+c_stone_form	stone form	0.153	35	35	200	0.0	-1.0
+c_boura_armoured	armoured boura	0.153	20	45	410	0.0	15.0
+c_blood_fox	Blood Fox	0.153	22	60	330	0.0	71.1
+c_werewolf	were wolf	0.155	25	35	375	0.0	-1.0
+c_juka_warrior	juka warrior	0.157	26	40	350	0.0	-1.0
+c_shadow_fiend	shadow fiend	0.157	28	20	115	90.0	-1.0
+c_wisp	Wisp	0.157	18	40	225	80.0	-1.0
+c_mummy	Mummy	0.157	23	50	370	0.0	-1.0
+c_cyclops	Cyclopean Warrior	0.159	23	48	385	0.0	-1.0
+c_harrower	nameless one	0.159	25	40	135	70.0	-1.0
+c_meer_mage	Meer Mage	0.160	26	16	200	70.1	-1.0
+c_ossein_ram	Ossein Ram	0.160	23	55	370	0.0	71.1
+c_orc_chopper	orc chopper	0.161	37	25	245	0.0	-1.0
+c_tormented_minotaur	Tormented Minotaur	0.162	30	26	130	60.0	-1.0
+c_juggernaut	Blackthorn Juggernaught	0.163	19	70	400	0.0	-1.0
+c_elemental_ore_bronze	bronze elemental	0.166	37	30	255	0.0	-1.0
+c_elemental_ore_copper	copper elemental	0.166	37	30	255	0.0	-1.0
+c_elemental_ore_copper_dull	dull copper elemental	0.166	37	30	255	0.0	-1.0
+c_elemental_ore_shadow	shadow iron elemental	0.166	37	30	255	0.0	-1.0
+c_elemental_ore_verite	verite elemental	0.166	37	30	255	0.0	-1.0
+c_gazer_2	Gazer	0.166	24	45	150	90.0	-1.0
+c_pumpkin_demon	killer pumpkin	0.166	27	30	175	70.0	-1.0
+c_pumpkin_fright	killer pumpkin	0.166	27	30	175	70.0	-1.0
+c_lady_of_the_snow	Lady of the Snow	0.168	20	18	305	95.1	-1.0
+c_skeletal_mount	Skeletal Mount	0.168	22	30	230	100.0	105.0
+c_dragon_fairy	Fairy Dragon	0.171	18	39	558	0.0	-1.0
+c_gargoyle_enforcer	gargoyle enforcer	0.171	13	50	350	80.0	-1.0
+c_terathan_matriarch	Terathan Matriarch	0.172	14	25	405	90.1	-1.0
+c_ratman_archer	c_ratman_archer	0.172	42	40	180	0.0	-1.0
+c_kaze_kemono	Kaze Kemono	0.173	20	35	275	95.1	-1.0
+c_lava_lizard	lava lizard	0.173	45	35	150	0.0	80.7
+c_gallusaurus	Gallusaurus	0.173	17	60	520	0.0	101.1
+c_serpent_ice	Ice Serpent	0.175	41	30	245	0.0	-1.0
+c_ratman_mage	c_ratman_mage	0.176	28	40	180	70.0	-1.0
+c_theophilus	Master Theophilus	0.177	20	55	189	135.0	-1.0
+c_lich_form	lich form	0.177	55	40	0	0.0	-1.0
+c_lich	Lich	0.180	26	50	200	70.1	-1.0
+c_revenant_lion	Revenant Lion	0.180	24	18	325	80.1	-1.0
+c_maddening_horror	maddening horror	0.181	27	0	290	120.0	-1.0
+c_dragon_wolf	dragon wolf	0.181	32	30	420	0.0	101.1
+c_yomotsu_priest	Yomotsu Priest	0.182	10	18	530	105.1	-1.0
+c_elemental_ore_gold	golden elemental	0.183	37	60	255	0.0	-1.0
+c_skeleton_knight	skeletal knight	0.185	43	35	250	0.0	-1.0
+c_minotaur_lord	minotaur lord	0.185	40	50	250	0.0	-1.0
+c_clockwork_exodus	Clockwork Exodus	0.185	40	50	250	0.0	-1.0
+c_elemental_lava	lava elemental	0.186	18	0	510	80.0	-1.0
+c_spider_malefic	Malefic	0.186	22	60	225	107.0	-1.0
+c_gargoyle_stone	Stone Gargoyle	0.187	40	45	275	0.0	-1.0
+c_jack_in_the_box	Jack in the Box	0.187	18	75	230	120.0	-1.0
+c_meer_eternal	Meer Eternal	0.192	13	34	505	90.1	-1.0
+c_rune_beetle	Rune Beetle	0.193	22	0	460	100.1	-1.0
+c_mimic	mimic	0.194	20	60	300	105.0	-1.0
+c_kirin	Kirin	0.195	30	35	200	125.0	105.0
+c_harpy_stone	Stone Harpy	0.195	40	45	320	0.0	-1.0
+c_sea_serpent_deep	Deep sea serpent	0.197	37	30	425	0.0	-1.0
+c_spider_dread	dread spider	0.197	33	40	220	65.0	95.1
+c_exodus_overseer	Exodus Overseer	0.197	19	50	650	0.0	-1.0
+c_revenant_summoned	summoned revenant	0.197	45	60	205	0.0	-1.0
+c_rising_colossus	rising colossus	0.199	49	45	200	0.0	-1.0
+c_treefellow	Treefellow	0.201	45	25	335	0.0	-1.0
+c_ophidian_archmage	ophidian justicar	0.201	27	40	305	95.0	-1.0
+c_ophidian_matriarch	Ophidian Matriarch	0.202	13	50	505	90.1	-1.0
+c_sabertoothed_tiger	Saber-Toothed Tiger	0.202	28	55	520	0.0	101.1
+c_tiger_wild	Wild Tiger	0.203	24	65	555	0.0	101.1
+c_corporeal_brume	corporeal brume	0.204	25	95	450	0.0	-1.0
+c_dream_wraith	dream wraith	0.205	25	55	300	100.0	-1.0
+c_daemon	c_daemon	0.205	14	58	505	70.1	-1.0
+c_abyssmal_horror	Abyssmal Horror	0.205	17	54	420	112.6	-1.0
+c_steed_dark	dark steed	0.206	35	25	525	0.0	95.0
+c_steed_silver	silver steed	0.206	35	25	525	0.0	95.0
+c_horrific_beast	horrific beast	0.207	61	60	0	0.0	-1.0
+c_elemental_ice	ice elemental	0.211	45	35	185	10.0	-1.0
+c_dimetrosaur	Dimetrosaur	0.214	21	85	600	0.0	101.1
+c_elemental_snow	snow elemental	0.216	45	45	355	0.0	-1.0
+c_myrmidex_warrior	Myrmidex Warrior	0.217	22	5	600	80.0	-1.0
+c_vollem	vollem	0.217	22	55	525	10.0	110.0
+c_titan	Titan	0.218	16	40	585	85.1	-1.0
+c_lion	Lion	0.221	22	55	720	0.0	95.1
+c_efreet	efreet	0.223	32	50	355	60.0	-1.0
+c_dark_guardian	dark guardian	0.225	48	40	150	50.0	-1.0
+c_centaur	Centaur	0.232	53	50	300	0.0	-1.0
+c_abyssal_infernal	Abyssal Infernal	0.234	18	50	600	90.0	-1.0
+c_serpent_silver	silver serpent	0.234	53	35	360	0.0	-1.0
+c_vampire	c_vampire	0.235	30	35	450	100.0	-1.0
+c_vampire_f	c_vampire_f	0.235	30	35	450	100.0	-1.0
+c_beetle_iron	iron beetle	0.235	20	38	883	0.0	-1.0
+c_wisp_dark	Wisp dark	0.236	46	35	225	80.0	-1.0
+c_lich_primeval	primeval lich	0.237	21	40	600	90.0	-1.0
+c_yomotsu_elder	Yomotsu Elder	0.237	27	22	830	0.0	-1.0
+c_hydra	Hydra	0.238	26	30	828	0.0	-1.0
+c_armor_steed	armor Steed	0.239	15	20	1042	0.0	-1.0
+c_reaper_redux	elder reaper	0.241	35	40	400	90.0	-1.0
+c_kotl_automaton	Kotl Automaton	0.244	20	48	900	0.0	-1.0
+c_warhorse_dread	dread warhorse	0.246	26	65	555	35.0	-1.0
+c_terathan_avenger	Terathan Avenger	0.249	22	50	645	70.3	-1.0
+c_elemental_acid	acid elemental	0.252	42	45	355	70.0	-1.0
+c_serpent_lava	Lava Serpent	0.253	56	35	415	0.0	-1.0
+c_exodus	Exodus	0.256	40	33	690	0.0	-1.0
+c_elemental_ore_agapite	agapite elemental	0.259	69	30	255	0.0	-1.0
+c_gargoyle_fire	Fire Gargoyle	0.264	45	30	400	90.0	-1.0
+c_yamandon	Yamandon	0.266	35	0	930	0.0	-1.0
+c_ogre_lord	ogre lord	0.268	25	50	945	0.0	-1.0
+c_orc_brute	Orc Brute	0.268	25	50	945	0.0	-1.0
+c_lich_lord	lich lord	0.269	38	40	505	90.0	-1.0
+c_exodus_minion	Exodus Minion	0.269	22	65	950	0.0	-1.0
+c_daemon_2	c_daemon_2	0.271	39	45	505	70.1	-1.0
+c_saurosaurus	Saurosaurus	0.273	28	80	824	0.0	101.1
+c_iron_golem	Iron Golem	0.277	64	55	350	0.0	-1.0
+c_dragon	c_dragon	0.279	22	60	825	30.1	93.9
+c_dragon_red	c_dragon_red	0.279	22	60	825	30.1	93.9
+c_elemental_ore_valorite	valorite elemental	0.280	69	65	255	0.0	-1.0
+c_reptalon	Reptalon	0.280	28	30	1025	0.0	101.1
+c_drake_stygian	Stygian Drake	0.281	17	60	830	100.0	84.3
+c_drake_stygian_elemental	Stygian Drake	0.281	17	60	830	100.0	84.3
+c_daemon_horde_large	horde daemon lord	0.286	42	35	550	90.0	-1.0
+c_succubus	Succubus	0.286	28	80	620	99.1	-1.0
+c_exodus_minionlord	Exodus Minion Lord	0.289	38	50	850	0.0	-1.0
+c_wyrm_white	White Wyrm	0.291	25	60	760	99.1	96.3
+c_khal_ankur	Khal Ankur	0.292	35	85	800	0.0	-1.0
+c_oni	Oni	0.292	20	40	910	96.1	-1.0
+c_daemon_ice	Ice Fiend	0.292	50	55	405	80.0	-1.0
+c_dragon_turtle	Dragon Turtle	0.293	37	78	800	0.0	-1.0
+c_myrmidex_queen	Myrmidex Queen	0.296	24	85	1000	0.0	-1.0
+c_allosaurus	Allosaurus	0.298	23	70	830	70.1	-1.0
+c_frost_mite	Frost Mite	0.298	28	60	1030	0.0	101.1
+c_charybdis	Charybdis	0.299	33	70	600	135.0	-1.0
+c_scalis	Osiredon	0.299	26	80	825	15.0	-1.0
+c_gazer_elder	Elder Gazer	0.300	59	45	325	90.0	-1.0
+c_gazer_elder	Elder Gazer	0.300	59	45	325	90.0	-1.0
+c_zipactriotl	Zipactriotl	0.302	26	85	1000	0.0	-1.0
+c_flesh_renderer	flesh renderer	0.302	61	80	460	0.0	-1.0
+c_dragon_turtle_hatchling	Dragon Turtle Hatchling	0.310	33	75	650	130.0	104.7
+c_cu_sidhe	Cu Sidhe	0.311	28	20	1225	0.0	101.1
+c_impaler	Impaler	0.313	79	90	195	0.0	-1.0
+c_ophidian_knight	ophidian knight	0.313	65	35	595	0.0	-1.0
+c_wanderer_void	Wanderer of the Void	0.314	27	35	211	700.0	-1.0
+c_dragon_crimson	crimson dragon	0.316	50	75	725	0.0	-1.0
+c_dragon_platinum	platinum dragon	0.316	50	75	725	0.0	-1.0
+c_devourer_souls	Devourer of Souls	0.318	26	44	950	90.1	-1.0
+c_steed_fire	fire steed	0.335	86	30	400	0.0	106.0
+c_elemental_poison	poison elemental	0.336	57	60	515	80.0	-1.0
+c_plague_beast	Plague Beast	0.336	75	55	500	0.0	-1.0
+c_dragon_stygian	stygian dragon	0.336	55	85	725	0.0	-1.0
+c_lich_ancient	c_lich_ancient	0.338	69	55	305	120.0	-1.0
+c_slasher_of_veils	Slasher of Veils	0.339	15	65	1150	110.0	-1.0
+c_darknight_creeper	darknight creeper	0.344	69	60	330	112.0	-1.0
+c_giant_gorilla	Giant Gorilla	0.348	33	72	1185	0.0	-1.0
+c_betrayer	Betrayer	0.350	64	65	500	50.1	-1.0
+c_hiryu	Hiryu	0.350	30	20	1410	0.0	98.7
+c_bone_daemon	Bone Daemon	0.353	36	44	1000	77.6	-1.0
+c_shadow_knight	shadow knight	0.356	73	90	255	95.0	-1.0
+c_triceratops	Triceratops	0.357	28	75	1300	0.0	101.1
+c_nightmare	nightmare	0.357	70	55	525	10.0	95.1
+c_hellhound_ancient	ancient hellhound	0.365	36	50	1300	0.0	-1.0
+c_monstrous_interred_grizzle	Monstrous Interred Grizzle	0.366	18	45	1330	100.0	-1.0
+c_turkey_giant	Giant Turkey	0.371	30	60	1394	0.0	-1.0
+c_tyrannosaurus_rex	Tyrannosaurus Rex	0.375	42	72	1185	0.0	-1.0
+c_dragon_skeletal	Skeletal Dragon	0.377	35	80	1030	80.1	-1.0
+c_semidar	Semidar	0.379	20	40	300	1000.0	-1.0
+c_daemon_balron	Balron	0.397	29	90	1185	95.5	-1.0
+c_wyrm_ancient	Ancient Wyrm	0.400	35	70	1185	80.1	-1.0
+c_gargoyle_destroyer	Destroyer Gargoyle	0.414	64	50	850	91.0	-1.0
+c_medusa	Medusa	0.414	28	55	1400	100.0	-1.0
+c_dawn	Dawn	0.416	60	50	900	110.0	-1.0
+c_navrey_night_eyes	Navrey Night-Eyes	0.430	29	50	1500	90.0	-1.0
+c_dragon_greater	greater dragon	0.439	33	60	1425	110.0	104.7
+c_forest_queen	Forest Queen	0.449	25	10	400	1250.0	-1.0
+c_ethereal_warrior	ethereal warrior	0.451	74	80	785	99.0	-1.0
+c_forest_lord	Lord Oaks	0.451	74	80	785	99.0	-1.0
+c_elemental_blood	blood elemental	0.452	91	55	615	85.0	-1.0
+c_bog_thing	Bog Thing	0.456	95	35	900	0.0	-1.0
+c_daemon_horde_colored	multi colored horde demon	0.465	88	45	750	99.0	-1.0
+c_phoenix	Phoenix	0.466	92	45	700	90.0	101.1
+c_harrower_tentacles	tentacles of the Harrower	0.480	93	55	1000	0.0	-1.0
+c_ogre_lord_arctic	arctic ogre lord	0.517	111	45	945	0.0	-1.0
+c_kraken	Kraken	0.517	121	47	780	0.0	-1.0
+c_stratos	Stratos	0.518	10	70	2200	105.0	-1.0
+c_pyros	Pyros	0.518	10	70	2200	105.0	-1.0
+c_lithos	Lithos	0.524	10	80	2200	105.0	-1.0
+c_hydros	Hydros	0.527	10	85	2200	105.0	-1.0
+c_sphynx	Sphynx	0.538	80	70	1200	95.0	-1.0
+c_daemon_blackgate	c_daemon_blackgate	0.678	149	60	900	90.0	-1.0
+c_reptile_lord	reptile lord	0.743	163	75	1000	80.0	-1.0
+c_wyrm_shadow	Shadow wyrm	0.749	165	65	1030	80.0	104.7
+c_ancient_wyrm	unknown ancient wyrm	0.839	182	85	1185	80.0	-1.0
+c_champ_rikktor	Rikktor	1.000	272	80	900	0.0	-1.0

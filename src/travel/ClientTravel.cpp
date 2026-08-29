@@ -1749,6 +1749,29 @@ i64 Client::JournalNowMs() const {
     return journal_.back().timeMs + 1;
 }
 
+// Everything nearby, no notoriety filter. Same record as ScanHostiles so a
+// caller can share code; the only difference is who is left out, and here
+// nobody is.
+int Client::ScanMobiles(int maxDist, std::vector<HostileHit>& out) const {
+    out.clear();
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) > (dy < 0 ? -dy : dy)
+                          ? (dx < 0 ? -dx : dx)
+                          : (dy < 0 ? -dy : dy);
+        if (d > maxDist) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        h.x = m.x; h.y = m.y; h.z = m.z;
+        h.noto = m.noto;
+        const char* nm = MobileName(m.serial);
+        if (nm) h.name = nm;
+        out.push_back(h);
+    }
+    return static_cast<int>(out.size());
+}
+
 int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {
     out.clear();
     if (maxDist < 0) maxDist = 0;

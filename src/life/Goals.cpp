@@ -28,6 +28,8 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::FillSpellbook:         return "FILL_SPELLBOOK";
         case GoalKind::MakeBandages:         return "MAKE_BANDAGES";
         case GoalKind::Explore:              return "EXPLORE";
+        case GoalKind::Mine:                 return "MINE";
+        case GoalKind::TameAnimal:           return "TAME_ANIMAL";
         case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
@@ -69,6 +71,8 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::UpgradeGear:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
+        case GoalKind::Mine:
+        case GoalKind::TameAnimal:
         case GoalKind::Fish:
         case GoalKind::Craft:
         case GoalKind::BuySupplies:
@@ -149,6 +153,12 @@ const GoalSpec kGoals[] = {
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
+    // Same weight as the other two gathering goals: this IS a miner's work,
+    // exactly as chopping is a lumberjack's and fishing a fisher's.
+    {GoalKind::Mine,                  NeedKind::NeedOre,           130.0},
+    // A little under. A pet is a large step up for a tamer and taming is slow,
+    // but it must not crowd out eating or earning while it fails.
+    {GoalKind::TameAnimal,            NeedKind::NeedPet,           115.0},
     // Making is the same productive work as gathering, so it sits with FISH
     // and GATHER_LOGS. Buying the inputs ranks just above it: a crafter that
     // cannot start is worth a trip to the shop before anything else it does,
