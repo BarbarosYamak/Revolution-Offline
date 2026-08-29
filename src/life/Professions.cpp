@@ -953,9 +953,26 @@ const std::vector<Profession>& All() {
             // the gold and supply access for Alchemy at all, which the
             // owner places on day two rather than day one.
             p.consumes = {"i_reag_garlic"};
-            p.tools = {{"tongs",  V(kTongs, 2), false},
-                       {"saw",    {kSaw},       false},
-                       {"mortar", {kMortar},    false}};
+            // THE TOOLS THIS LIFE NEEDS TODAY COME FIRST.
+            //
+            // This listed only production tools -- tongs, saw, mortar -- while
+            // the creation skills are Mining and Lumberjacking, so the newbie
+            // kit hands over a pickaxe and a hatchet and the catalogue then
+            // declares three DIFFERENT tools missing. Bruin spawned unable to
+            // do the resource work he was designed around, and with 0 gold he
+            // could not buy his way out: GET_TOOL blocked, CRAFT blocked,
+            // EARN_GOLD with nothing to sell, and 85% of a session idling.
+            //
+            // The owner's own rule for this build says which way round it
+            // goes -- "a crafter with 50 Blacksmithy and no ore is useless" --
+            // so the gathering tools lead. The production tools stay, because
+            // he does want them, but they are no longer the only thing he is
+            // told he lacks while standing next to a forest with an axe.
+            p.tools = {{"pickaxe", V(kPickaxe, 2), true},
+                       {"hatchet", V(kHatchet, 2), true},
+                       {"tongs",   V(kTongs, 2),   false},
+                       {"saw",     {kSaw},         false},
+                       {"mortar",  {kMortar},      false}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.35;
             p.goldReserve = 450;
@@ -1150,7 +1167,19 @@ const std::vector<Profession>& All() {
             p.tools = {{"spellbook", {kSpellbook}, false}};
             p.consumables = {Food()};
             p.riskTolerance = 0.20;
-            p.goldReserve = 900;         // the widest reagent basket in the catalogue
+            // A TRAINING FUND, NOT JUST A REAGENT FLOAT.
+            //
+            // "Ysolde should keep at least 2-3K gold so that he can train some
+            // mage or train scribe again" (project owner, 2026-08-29). 900 was
+            // sized for the widest reagent basket in the catalogue and nothing
+            // else, so every copper above it went on supplies and the purse
+            // never reached a lesson.
+            //
+            // A guildmaster teaches to 30.0 for 300 (sphere.ini NPCTrainCost=1
+            // per tenth), and this life wants Inscription and Magery both --
+            // so a few lessons plus a reagent basket is the shape of the
+            // number. 2500 keeps a full basket AND several lessons in hand.
+            p.goldReserve = 2500;
             p.homeCities = {"Moonglow", "Britain"};
             v.push_back(std::move(p));
         }
