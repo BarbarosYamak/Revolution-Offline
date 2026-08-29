@@ -374,6 +374,11 @@ public:
     void   ExpireDanger(i64 nowMs, double floorHeat = 0.05);
 
     const KnownPlace*          BestPlace(const char* kind) const;
+    // THE NEAREST one of a kind, which is what a character standing somewhere
+    // actually wants. BestPlace answers "most recently verified" and knows
+    // nothing about where the asker is -- so a fisher living in Skara Brae who
+    // banked once in Yew walked back to Yew across the map every time.
+    const KnownPlace*          NearestPlace(const char* kind, i32 x, i32 y) const;
     // Unlearn a place that turned out not to be one. Belief that survives
     // being disproved is not memory, it is a loop: a "bank" recorded on the
     // Britain dock sent one character on the same futile walk three times a

@@ -278,6 +278,19 @@ const KnownPlace* Memory::BestPlace(const char* kind) const {
     return best;
 }
 
+const KnownPlace* Memory::NearestPlace(const char* kind, i32 x, i32 y) const {
+    if (!kind) return nullptr;
+    const KnownPlace* best = nullptr;
+    i64 bestD = 0;
+    for (const KnownPlace& p : places_) {
+        if (p.kind != kind) continue;
+        const i64 dx = p.x - x, dy = p.y - y;
+        const i64 d = dx * dx + dy * dy;      // squared; only the order matters
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    return best;
+}
+
 bool Memory::ForgetPlace(const char* kind, i32 x, i32 y) {
     if (!kind) return false;
     for (usize i = 0; i < places_.size(); ++i) {

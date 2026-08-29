@@ -1701,7 +1701,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
             if (client.TravelBusy()) return;
 
-            const KnownPlace* bank = state_.memory.BestPlace("bank");
+            const KnownPlace* bank = state_.memory.NearestPlace(
+                "bank", client.PlayerX(), client.PlayerY());
             const bool safeHere = client.BankContainer() != 0 ||
                                   windDownArrived_ ||
                                   (bank && TileDist(bank->x, bank->y, client.PlayerX(),
@@ -2142,7 +2143,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                     "", obs.x, obs.y, obs.nowMs);
         }
         // Retreat toward somewhere known-safe rather than a random direction.
-        const KnownPlace* bank = state_.memory.BestPlace("bank");
+        const KnownPlace* bank = state_.memory.NearestPlace("bank", obs.x, obs.y);
         if (bank && !client.TravelBusy()) {
             client.TravelToPoint(bank->x, bank->y, 3, "flee_to_bank");
         }
@@ -3217,7 +3218,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             return false;
         }
 
-        const KnownPlace* bankHere = state_.memory.BestPlace("bank");
+        const KnownPlace* bankHere = state_.memory.NearestPlace("bank", obs.x, obs.y);
         const bool standingInABank =
             obs.atBank || client.BankContainer() != 0 ||
             (bankHere && TileDist(obs.x, obs.y, bankHere->x, bankHere->y) <= 6);
@@ -3313,7 +3314,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 30000;
             return false;
         }
-        const KnownPlace* known = state_.memory.BestPlace("bank");
+        const KnownPlace* known = state_.memory.NearestPlace("bank", obs.x, obs.y);
         // A REMEMBERED PLACE THAT KEEPS BEING WRONG IS NOT A MEMORY.
         //
         // Bryn walked to a "bank" on the Britain dock, found nobody, walked
@@ -3326,7 +3327,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             LogLine("bank: two trips to %d,%d found no banker -- forgetting "
                     "that place", known->x, known->y);
             state_.memory.ForgetPlace("bank", known->x, known->y);
-            known = state_.memory.BestPlace("bank");
+            known = state_.memory.NearestPlace("bank", obs.x, obs.y);
         }
         if (known) {
             LogLine("bank: returning to a remembered bank at %d,%d (trip %d)",
@@ -4029,7 +4030,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                     nextActionMs_ = obs.nowMs + 30000;
                     return false;
                 }
-                const KnownPlace* known = state_.memory.BestPlace("bank");
+                const KnownPlace* known = state_.memory.NearestPlace("bank", obs.x, obs.y);
                 LogLine("earn_gold: the stock is in the bank (%d %s) -- going "
                         "to fetch it (trip %d)",
                         market::QtyOf(obs.bank, fetch->item),
