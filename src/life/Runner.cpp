@@ -5522,7 +5522,37 @@ bool Runner::LifeNeedsGraphic(u16 gfx) const {
 bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
-    const u32 food = FindAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]));
+    // WHEN IS SUPPER OVER?
+    //
+    // This goal had no completion at all -- not one `return true` in the whole
+    // body -- so it could never finish. Brannoc ate ONE HUNDRED AND SIXTY
+    // times in a single session and the goal simply kept running until the
+    // planner's 300-second limit killed it, whereupon the same unchanged
+    // hunger picked it straight back:
+    //
+    //   session_goals families=1 picks=6 top=100% | GET_FOOD=6(100%)
+    //   session_summary goals=0/6 gold=837->789
+    //
+    // The gold moving is the proof it was working -- he really did buy bread
+    // twelve times and eat it -- and the goal still reported nothing, took the
+    // whole session, and let no other family have a turn. Voris did the same.
+    //
+    // Fed, with something in the pack for later, is done.
+    if (!obs.hungry && !obs.starving && obs.food >= needCfg_.foodLow) {
+        LogLine("food: fed, and carrying %d for later "
+                "-- this errand is done", obs.food);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // AND EAT ONLY WHEN HUNGRY. "if they are full they dont need to eat"
+    // (project owner, 2026-08-29). The eat branch fired on carrying food
+    // rather than on needing it, so a fed character chewed through its whole
+    // pack -- 160 mouthfuls in one session -- and then had to go and buy more.
+    // Food costs gold; a full stomach wastes it.
+    const u32 food = (obs.hungry || obs.starving)
+                         ? FindAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]))
+                         : 0;
     if (food) {
         LogLine("food: eating (hungry=%d starving=%d, carrying %d)",
                 obs.hungry ? 1 : 0, obs.starving ? 1 : 0, obs.food);
