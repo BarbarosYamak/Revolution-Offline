@@ -46,6 +46,10 @@ namespace {
 // complete one. PLACEHOLDER-ish: no Revolution source states a number, so this
 // is a judgement about bot behaviour, not a claim about the shard.
 constexpr int kSpellbookComfortable = 24;
+// How much spare gold, ABOVE this life's own reserve, counts as "the economy
+// is good enough" to go spell shopping in earnest. At this much clear, the
+// need is at full strength; below it, proportionally less.
+constexpr i32 kSpellShoppingSpare = 1000;
 
 
 // Does this life carry the thing at all? The catalogue is the answer; a life
@@ -682,13 +686,42 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 static_cast<double>(target - obs.spellsKnown) /
                 static_cast<double>(target);
             const bool noBook = (obs.spellbookSerial == 0);
-            add(NeedKind::NeedSpells, 0.10 + 0.30 * shortfall, "spells",
+
+            // A FULL PURSE IS A REASON TO GO SHOPPING FOR SPELLS.
+            //
+            // "mage should also give priority to buy new spells not on the
+            // book if economy is good enough" (project owner, 2026-08-29).
+            // Which is how a player behaves: scrolls are the first thing spare
+            // gold goes on, because every one of them is a permanent increase
+            // in what the character can do, unlike food or reagents which are
+            // spent again.
+            //
+            // Measured against the profession's OWN reserve, not a flat
+            // number -- a mage holds back 800 for reagents where a lumberjack
+            // holds 300 for a trainer -- so "good enough" means good enough
+            // for THIS life. Nothing is added until the reserve is intact, so
+            // this can never pull gold out from under the running costs.
+            const i32 reserve = cfg.profession->goldReserve;
+            const i32 spare = obs.gold - reserve;
+            const double wealth =
+                spare <= 0 ? 0.0
+                           : std::min(1.0, static_cast<double>(spare) /
+                                               static_cast<double>(kSpellShoppingSpare));
+            const double urgency = 0.10 + 0.25 * shortfall + 0.35 * wealth;
+
+            add(NeedKind::NeedSpells, urgency, "spells",
                 noBook ? "no spellbook at all -- a mage that cannot cast "
                          "anything needs one before it needs anything else"
-                       : "the book is short of the spells this life will cast",
-                Fmt("spells %d/%d book=%s magery %.1f", obs.spellsKnown, target,
-                    noBook ? "none" : "carried",
-                    obs.SkillTenths(rules::kMagery) / 10.0),
+                       : (wealth > 0.5
+                              ? "the purse is well clear of the reserve, and "
+                                "spells are what spare gold buys first"
+                              : "the book is short of the spells this life "
+                                "will cast"),
+                Fmt("spells %d/%d book=%s magery %.1f gold %d reserve %d "
+                    "spare %d wealth %.2f",
+                    obs.spellsKnown, target, noBook ? "none" : "carried",
+                    obs.SkillTenths(rules::kMagery) / 10.0, obs.gold, reserve,
+                    spare, wealth),
                 false);
         }
     }

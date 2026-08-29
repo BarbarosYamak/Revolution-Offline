@@ -5441,29 +5441,66 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     return false;
 }
 
-// Walk to a mage shop, open it, and buy one thing. `graphic` of 0 means "any
-// spell scroll", which is what buying from this shard's mage shop actually is:
-// the stock is random_first_circle .. random_fourth_circle, so the spell that
-// arrives is not chosen. Returns false while still working.
-bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
-                             u16 graphic, u16 qty, const char* what) {
+// Is this spell already in the book? The book is a container of items whose
+// graphic is 0x1F2D + the spell number, so a scroll's own graphic answers it.
+bool Runner::BookHasGraphic(Client& client, u32 book, u16 graphic) const {
+    if (!book) return false;
+    const usize n = client.ContainerItemCount(book);
+    for (usize i = 0; i < n; ++i) {
+        u32 serial = 0; u16 g = 0, amount = 0;
+        if (!client.ContainerItemAt(book, i, &serial, &g, &amount)) continue;
+        if (g == graphic) return true;
+    }
+    return false;
+}
+
+// Walk to a scroll seller, open it, and buy one thing.
+//
+// `graphic` of 0 means "any spell scroll". `skipKnown` refuses scrolls the
+// book already holds, which is the difference between the two sellers on this
+// shard and the whole point of preferring one:
+//
+//   a MAGE shop stocks random_first_circle .. random_fourth_circle, so what
+//   arrives is not chosen and a duplicate is quite likely
+//   a SCRIBE stocks 44 NAMED scrolls, so a specific missing spell can be asked
+//   for and nothing is wasted on one already owned
+//
+// "mage should also give priority to buy new spells not on the book" (project
+// owner) -- which is only possible at the scribe, so that is where this goes
+// first. Returns false while still working.
+bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
+                           const char* trade, wm::Service svc, u16 graphic,
+                           bool skipKnown, u16 qty, const char* what) {
     if (client.TravelBusy()) return false;
 
-    const u32 keeper = client.NearestMobileWithTrade("mage");
+    const u32 keeper = client.NearestMobileWithTrade(trade);
     if (!keeper) {
         if (++spellbookTrips_ > kMaxSpellbookTrips) {
-            LogLine("goal_failed=FILL_SPELLBOOK reason=\"no mage shop reachable "
-                    "after %d trips\"", spellbookTrips_ - 1);
+            spellbookTrips_ = 0;
+            // A SELLER WE CANNOT REACH IS NOT THE END OF THE ERRAND.
+            //
+            // The scribe is preferred because only a scribe lets us choose the
+            // spell, but plenty of towns have none. Falling back to the mage
+            // shop -- a random scroll rather than a chosen one -- beats
+            // failing the whole goal and standing down for four minutes.
+            if (!scribeExhausted_ && std::strcmp(trade, "scribe") == 0) {
+                LogLine("spellbook: no scribe reachable after 3 trips -- "
+                        "falling back to a mage shop, where the scroll is "
+                        "random rather than chosen");
+                scribeExhausted_ = true;
+                nextActionMs_ = obs.nowMs + 2000;
+                return false;
+            }
+            LogLine("goal_failed=FILL_SPELLBOOK reason=\"no '%s' reachable "
+                    "after 3 trips\"", trade);
             planner_.Cooldown(GoalKind::FillSpellbook,
                               obs.nowMs + kNoSpellbookCooldownMs);
-            planner_.Finish(false, "no mage reachable", obs.nowMs);
-            spellbookTrips_ = 0;
+            planner_.Finish(false, "no scroll seller reachable", obs.nowMs);
             return false;
         }
-        LogLine("spellbook: looking for a mage shop to sell %s (trip %d)",
-                what, spellbookTrips_);
-        travelInFlight_ =
-            client.TravelToService(wm::Service::Mage, state_.homeCity.c_str());
+        LogLine("spellbook: looking for a '%s' to sell %s (trip %d)",
+                trade, what, spellbookTrips_);
+        travelInFlight_ = client.TravelToService(svc, state_.homeCity.c_str());
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -5477,27 +5514,39 @@ bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
     }
     const i32 d = TileDist(obs.x, obs.y, vx, vy);
     if (d > 1) {
-        LogLine("spellbook: the mage is %d tiles away -- walking up", d);
+        LogLine("spellbook: the %s is %d tiles away -- walking up", trade, d);
         travelInFlight_ = client.TravelToEntity(keeper, 1);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
 
     if (!OfferBelongsTo(client, keeper)) {
-        LogLine("spellbook: asking the mage to show %s", what);
+        LogLine("spellbook: asking the %s to show %s", trade, what);
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
         return false;
     }
 
+    int skipped = 0;
     for (const Client::VendorItem& v : client.VendorOffer()) {
         const bool match =
             graphic ? (v.graphic == graphic)
                     : (v.graphic >= kFirstScrollGraphic &&
                        v.graphic <= kLastScrollGraphic);
         if (!match) continue;
-        LogLine("spellbook: buying %s ('%s', 0x%04X) at %d gold",
-                what, v.name.c_str(), v.graphic, static_cast<i32>(v.price));
+        // DO NOT BUY A SPELL THIS CHARACTER ALREADY HAS. Gold spent on a
+        // duplicate buys nothing at all -- the book refuses it and the scroll
+        // is wasted.
+        if (skipKnown && BookHasGraphic(client, obs.spellbookSerial, v.graphic)) {
+            ++skipped;
+            continue;
+        }
+        if (static_cast<i32>(v.price) > obs.gold) continue;
+        LogLine("spellbook: buying %s ('%s', 0x%04X, spell %d) at %d gold "
+                "-- %d of this shop's scrolls were already in the book",
+                what, v.name.c_str(), v.graphic,
+                static_cast<int>(v.graphic) - 0x1F2D,
+                static_cast<i32>(v.price), skipped);
         client.ActionVendorBuy(keeper, v.serial, qty);
         // An ask, not progress -- same reason as BUY_SUPPLIES: counting a
         // purchase before the server takes the gold clears the failure ladder
@@ -5509,10 +5558,19 @@ bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
         return false;
     }
 
-    LogLine("goal_failed=FILL_SPELLBOOK reason=\"this mage has no %s\"", what);
+    if (!scribeExhausted_ && std::strcmp(trade, "scribe") == 0) {
+        LogLine("spellbook: this scribe has nothing the book lacks (%d of its "
+                "scrolls are already known) -- trying a mage shop", skipped);
+        scribeExhausted_ = true;
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+    LogLine("goal_failed=FILL_SPELLBOOK reason=\"this '%s' has no %s this "
+            "life still needs (%d of its scrolls are already in the book)\"",
+            trade, what, skipped);
     planner_.Cooldown(GoalKind::FillSpellbook,
                       obs.nowMs + kNoSpellbookCooldownMs);
-    planner_.Finish(false, "mage has no scrolls", obs.nowMs);
+    planner_.Finish(false, "no unknown scrolls for sale", obs.nowMs);
     return false;
 }
 
@@ -5602,7 +5660,10 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
             planner_.Finish(false, "no book and no money", obs.nowMs);
             return false;
         }
-        BuyFromMageShop(client, obs, kSpellbookGraphic, 1, "a spellbook");
+        // A spellbook itself: the mage shop sells them (SELL=i_spellbook),
+        // and there is nothing to choose, so no reason to prefer a scribe.
+        BuyScrollFrom(client, obs, "mage", wm::Service::Mage, kSpellbookGraphic,
+                      false, 1, "a spellbook");
         return false;
     }
 
@@ -5654,7 +5715,27 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
         planner_.Finish(false, "no money for scrolls", obs.nowMs);
         return false;
     }
-    BuyFromMageShop(client, obs, 0, 1, "a scroll");
+    // THE SCRIBE FIRST, BECAUSE ONLY THE SCRIBE LETS US CHOOSE.
+    //
+    // A mage shop stocks random_first_circle .. random_fourth_circle, so it
+    // sells a lottery ticket: the spell that arrives is not chosen and may
+    // well be one the book already holds. A scribe stocks 44 named scrolls, so
+    // a spell the character actually lacks can be asked for by name.
+    //
+    // "buy new spells not on the book" is therefore a scribe errand, and this
+    // shard has 19 of them standing in mage shops
+    // (revolution/revolution_scribe_shops.scp) -- the same building, so
+    // preferring one costs no extra walking.
+    //
+    // The mage shop stays as the fallback for a town with no scribe: a random
+    // scroll is worth more than no scroll.
+    if (scribeExhausted_) {
+        BuyScrollFrom(client, obs, "mage", wm::Service::Mage, 0, true, 1,
+                      "a scroll");
+    } else {
+        BuyScrollFrom(client, obs, "scribe", wm::Service::Scribe, 0, true, 1,
+                      "a spell this book lacks");
+    }
     return false;
 }
 

@@ -127,8 +127,10 @@ private:
     bool DoPracticeSkill(Client& client, const Observation& obs);
     int  PickPracticeSpell(Client& client, const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
-    bool BuyFromMageShop(Client& client, const Observation& obs, u16 graphic,
-                         u16 qty, const char* what);
+    bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
+    bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
+                       wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
+                       const char* what);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -233,6 +235,10 @@ private:
     // spellbook." Skill is not capability -- the book is.
     bool noCreateFoodSpell_ = false;
     i32  spellbookTrips_ = 0;
+    // Set when the scribe -- the only seller that lets a spell be CHOSEN --
+    // turns out to be unreachable or to stock nothing this book lacks. After
+    // that the mage shop's random scroll is better than no scroll.
+    bool scribeExhausted_ = false;
     i32  tradeTrips_ = 0;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;

@@ -1756,6 +1756,43 @@ void TestAMageWantsItsBookFilled() {
               "by nobody on this shard -- so a book that nags harder the "
               "fuller it gets would have it exactly backwards");
 
+    // A FULL PURSE RAISES THE PRIORITY. "mage should also give priority to buy
+    // new spells not on the book if economy is good enough" (project owner).
+    // Measured against this profession's OWN reserve, so "good enough" means
+    // good enough for this life -- a mage holds back 800 for reagents where a
+    // lumberjack holds 300 for a trainer.
+    obs.spellbookSerial = 0x4001;
+    obs.spellsKnown = 12;
+    const i32 reserve = mage->goldReserve;
+
+    obs.gold = reserve;                       // nothing spare at all
+    const std::vector<life::Need> nsBroke = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* broke = spellNeed(nsBroke);
+
+    obs.gold = reserve + 1000;                // comfortably clear
+    const std::vector<life::Need> nsRich = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* rich = spellNeed(nsRich);
+
+    Check(broke != nullptr && rich != nullptr,
+          "the same short book is a need either way");
+    if (broke && rich) {
+        Check(rich->urgency > broke->urgency,
+              "spare gold RAISES the priority of buying spells -- every scroll "
+              "is a permanent increase in what the character can do, unlike "
+              "food or reagents, which are spent again");
+        Check(rich->reason.find("spare gold") != std::string::npos,
+              "and the reason says so, rather than only citing the shortfall");
+    }
+
+    // The reserve is never raided: at exactly the reserve there is no wealth
+    // bonus, so this can not pull gold out from under the running costs.
+    obs.gold = reserve - 500;
+    const std::vector<life::Need> nsUnder = life::AssessNeeds(plan, mem, obs, cfg);
+    const life::Need* under = spellNeed(nsUnder);
+    if (under && broke)
+        Check(under->urgency <= broke->urgency + 1e-9,
+              "below the reserve there is no wealth bonus at all");
+
     // A working book switches the need off entirely, rather than nagging for
     // spells that cannot be bought at any price.
     obs.spellsKnown = 24;
