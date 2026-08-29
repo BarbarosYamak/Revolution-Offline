@@ -3123,8 +3123,18 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                     "%d trips\"", trainerTrade_.c_str(), trainTrips_);
             state_.memory.NoteEvent("trainer_unreachable", trainerTrade_.c_str(),
                                     "", obs.x, obs.y, obs.nowMs);
+            // STAND DOWN. Without this the goal was re-picked 60 ms later and
+            // the whole three-trip count began again -- and every one of those
+            // "trips" was a no-op, because the remembered trainer place is the
+            // tile the character is already standing on: run_m5/p0gate9 logs
+            // travel_start and ARRIVED at the same coordinate with legs=0,
+            // three times, then goal_failed, then immediately goal=TRAIN_AT_NPC
+            // again. Nothing about the world changes in two seconds.
+            planner_.Cooldown(GoalKind::TrainAtNpc,
+                              obs.nowMs + kNoTrainerCooldownMs);
             planner_.Finish(false, "no trainer reachable", obs.nowMs);
             trainTrips_ = 0;
+            nextActionMs_ = obs.nowMs + 5000;
             return false;
         }
         if (!travelInFlight_) {
@@ -3284,6 +3294,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                                         rules::SkillName(skillId),
                                         trainerTrade_.c_str(), obs.x, obs.y,
                                         obs.nowMs);
+                planner_.Cooldown(GoalKind::TrainAtNpc,
+                                  obs.nowMs + kNoTrainerCooldownMs);
                 planner_.Finish(false, "the trainer never answered", obs.nowMs);
                 // Do not walk back to this same silent NPC next time. Held for
                 // the session only, and not written to memory: silence is not

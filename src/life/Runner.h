@@ -210,6 +210,10 @@ private:
     i32  bankTrips_ = 0;
     // --- buying a skill from an NPC ------------------------------------
     static constexpr i32 kMaxTrainTrips = 3;
+    // How long TRAIN_AT_NPC rests after finding no trainer, or after one
+    // that never answered. The trainers do not move in two seconds, and
+    // without a rest the bounded trip count simply restarts forever.
+    static constexpr i64 kNoTrainerCooldownMs = 3 * 60 * 1000;
     std::string trainerTrade_;          // paperdoll-title substring to look for
     wm::Service trainerService_ = wm::Service::None;
     i32  trainTrips_ = 0;
