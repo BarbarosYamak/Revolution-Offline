@@ -251,8 +251,12 @@ const std::vector<Profession>& All() {
             p.startSkillB = rules::kBlacksmithing;
             p.startStr = 56; p.startDex = 16; p.startInt = 8;
             p.targets = {
-                {rules::kBlacksmithing, 1000, 5, false, SkillRole::Primary},
-                {rules::kMining,        1000, 4, false, SkillRole::Secondary},
+                // Secondary by ROLE -- a build may declare exactly one
+                // Primary and Mining is it -- but ahead of everything else by
+                // PRIORITY, which is the field that actually orders what gets
+                // trained next.
+                {rules::kBlacksmithing, 1000, 5, false, SkillRole::Secondary},
+                {rules::kMining,        1000, 4, false, SkillRole::Primary  },
                 {rules::kTinkering,      500, 2, true,  SkillRole::Utility},
                 {rules::kArmsLore,       500, 1, true,  SkillRole::Utility},
             };
@@ -899,8 +903,24 @@ const std::vector<Profession>& All() {
             // Tailoring / Tinkering plus Alchemy or Inscription is the SHAPE,
             // and the exact seven needs old build evidence before it is
             // written down as fact.
+            // MINING AND BLACKSMITHING FIRST, on the owner's instruction
+            // 2026-08-29: "lets make bruin focus mining and blacksmithing
+            // first".
+            //
+            // This also settles the tool problem at its source rather than
+            // patching around it. Creation skills decide which [NEWBIE ...]
+            // blocks a character is handed, and [NEWBIE BLACKSMITHING] gives
+            // ITEMNEWBIE tongs, an ITEMNEWBIE pickaxe and 50 iron ingots --
+            // which is exactly the tongs this build's p.tools asks for and
+            // could not afford. With Lumberjacking as the second skill it got
+            // a hatchet instead and was declared short of tongs from its first
+            // minute.
+            //
+            // Mining still leads: it is the resource skill, and the rule for
+            // this build is unchanged -- "a crafter with 50 Blacksmithy and no
+            // ore is useless".
             p.startSkillA = rules::kMining;
-            p.startSkillB = rules::kLumberjacking;
+            p.startSkillB = rules::kBlacksmithing;
             // STR 50 IS NOT A PREFERENCE, IT IS THE PICKAXE.
             //
             // i_pickaxe carries ReqStr=50 (items/weapons/i_weapons.scp:193)
@@ -918,9 +938,12 @@ const std::vector<Profession>& All() {
                 // day spent raising Mining is a day the whole build gets more
                 // capable, not a detour from crafting.
                 {rules::kMining,        1000, 6, false, SkillRole::Primary},
-                {rules::kLumberjacking,  800, 5, false, SkillRole::Secondary},
+                // Promoted above Lumberjacking and Carpentry: ore that is dug
+                // and never smithed is just weight, and this pair is what the
+                // character starts able to do.
+                {rules::kBlacksmithing, 1000, 5, false, SkillRole::Secondary},
+                {rules::kLumberjacking,  800, 4, false, SkillRole::Secondary},
                 {rules::kCarpentry,     1000, 4, false, SkillRole::Secondary},
-                {rules::kBlacksmithing, 1000, 4, false, SkillRole::Secondary},
                 {rules::kTinkering,      700, 3, true,  SkillRole::Secondary},
                 {rules::kTailoring,      600, 2, true,  SkillRole::Utility},
                 {rules::kAlchemy,        400, 1, true,  SkillRole::Utility},
