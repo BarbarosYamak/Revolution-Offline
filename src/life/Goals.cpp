@@ -146,7 +146,22 @@ const GoalSpec kGoals[] = {
     // Above ordinary gathering: buying a skill is a step change in what the
     // character can do, and the gold is already saved by the time the need
     // fires. Below housekeeping, because a full pack still comes first.
-    {GoalKind::TrainAtNpc,            NeedKind::NeedSkillTraining, 200.0},
+    // BUYING TENTHS IS NOT THE JOB. Was 200, above every working goal, so a
+    // miner with a pickaxe, 50.0 Mining and 50.0 Blacksmithing spent an entire
+    // session walking between tinkers and never once swung at rock:
+    // 0.55 x 200 = 110 against mining's 0.45 x 130 = 58. As long as ANY skill
+    // sat below the 30.0 an NPC will sell, work could not win.
+    //
+    // "all these time it couldnt just mine smelt smith sell" (project owner,
+    // 2026-08-29) -- and the owner's own rule says why that is wrong: "npc
+    // training and training are different, normal training is doing actions to
+    // level up your skill to 100". A guildmaster sells a shortcut to 30.0.
+    // That is worth a detour when passing, not a day.
+    //
+    // 110 puts it under gathering and crafting at 130 and under supplies at
+    // 140, so a life that CAN work, works -- and buys its lesson when there is
+    // nothing better to do or the trainer is on the way.
+    {GoalKind::TrainAtNpc,            NeedKind::NeedSkillTraining, 110.0},
     // Just under EARN_GOLD: when a vendor will take the goods that is the
     // shorter errand, and the player market is for what it refuses.
     {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},

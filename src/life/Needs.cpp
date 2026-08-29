@@ -627,9 +627,22 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // entirely: Corran held a pickaxe for a whole session and mined nothing,
     // because no need ever said he should.
     if (cfg.profession && cfg.profession->gathers == "ore") {
-        add(NeedKind::NeedOre, 0.45, "ore",
-            "ore is this life's income and its Mining training",
-            Fmt("carrying %d", QtyIn(obs.pack, "i_ore_iron")), false);
+        // STANDING IN THE MINE IS THE ARGUMENT. A flat 0.45 left mining the
+        // lowest-scoring thing a miner could do -- 0.45 x 130 = 58 against a
+        // trainer errand at 61 -- so Corwyn walked past the ore in Minoc to go
+        // and buy tenths of Tinkering, all session, every session.
+        //
+        // Being AT the rock is what a person weighs: the walk is already paid
+        // for, the pickaxe is in hand, and there is nothing else this life
+        // would rather be doing here.
+        const double here = obs.atWorkSite ? 0.65 : 0.45;
+        add(NeedKind::NeedOre, here, "ore",
+            obs.atWorkSite
+                ? "standing at the rock with a pickaxe -- this is the job"
+                : "ore is this life's income and its Mining training",
+            Fmt("carrying %d at_work_site=%d", QtyIn(obs.pack, "i_ore_iron"),
+                obs.atWorkSite ? 1 : 0),
+            false);
     }
     // A PET. A tamer without one is a tamer in name only, and Cassia spent a
     // session exploring because nothing else in her life was actionable.
