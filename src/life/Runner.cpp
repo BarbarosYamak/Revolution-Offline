@@ -118,6 +118,36 @@ constexpr u16 kClothGraphic     = 0x175D;
 constexpr u16 kSpinWheelGraphic = 0x1015;
 constexpr u16 kLoomGraphic      = 0x105F;
 constexpr u16 kSheepBody        = 0x00CF;
+
+// CLOTHING A FIGHTER CAN CUT UP FOR BANDAGES.
+//
+// Stock Source-X has always allowed this -- CClientTarg.cpp:2154, case
+// IT_CLOTHING, yielding weight/WEIGHT_UNITS bandages -- but this shard's
+// types/type_scissors.scp answered every type except cloth, bolt and hide with
+// RETURN 1, which tells Sphere the use was handled and stops the engine's own
+// behaviour from running. t_clothing was added to that script on 2026-08-29,
+// so a looted shirt is a bandage supply again.
+//
+// This is the cheapest bandage there is: no sheep, no wheel, no loom, and the
+// garment came off a corpse the character had to kill anyway.
+//
+// The list is GENERATED from this shard's itemdefs, not chosen: every
+// TYPE=t_clothing def weighing 6.0 or more with VALUE at or under 60, minus
+// anything named robe / elven / gargish. The weight floor keeps it to garments
+// worth the gesture (yield is weight in tenths, so 6.0 is six bandages) and
+// the value ceiling keeps a character from shredding something it could sell
+// or wear -- the Revolution special robes above all, which are the one piece
+// of clothing a mage genuinely needs.
+constexpr u16 kCuttableClothing[] = {
+    0x1516, 0x1517, 0x152E, 0x1531, 0x1537, 0x1539, 0x153B, 0x153D,  // skirts,
+    0x170B, 0x170F, 0x1713, 0x1716, 0x1717, 0x1718, 0x1719, 0x171A,  // shirts,
+    0x171B, 0x1EFD, 0x1EFF, 0x1F01, 0x1F7B, 0x1FA1, 0x1FFD, 0x25EA,  // pants,
+    0x25F2, 0x2649, 0x264D, 0x264F, 0x2651, 0x2655, 0x265F, 0x2661,  // hats,
+    0x2663, 0x2665, 0x2667, 0x266B, 0x266D, 0x2671, 0x2673, 0x267B,  // dresses,
+    0x267D, 0x267F, 0x2681, 0x2782, 0x2783, 0x2794, 0x2796, 0x27A0,  // aprons
+    0x27A1,
+};
+
 constexpr u16 kSpellbookGraphic = 0x0EFA;
 constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
 constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
@@ -5815,6 +5845,25 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
                 "of the chain needs them\"");
         planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
         planner_.Finish(false, "no scissors", obs.nowMs);
+        return false;
+    }
+
+    // 0. LOOTED CLOTHING -> BANDAGES. The cheapest of the lot: no sheep, no
+    //    wheel, no loom, and the garment came off something the character had
+    //    to kill anyway. A shirt yields 8, a surcoat 14.
+    //
+    //    Only what is in the PACK. FindBackpackItemByGraphic never returns a
+    //    worn item, so a character cannot cut the clothes off its own back --
+    //    and the engine would refuse anyway, since CanUse(item, true) requires
+    //    CanMoveItem.
+    if (const u32 rag = FindAny(client, kCuttableClothing,
+                                sizeof(kCuttableClothing) /
+                                    sizeof(kCuttableClothing[0]))) {
+        LogLine("bandages: cutting up looted clothing (%d bandages so far, "
+                "want %d)", obs.bandages, kBandagesWanted);
+        client.ActionUseItemOn(scissors, rag);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
 
