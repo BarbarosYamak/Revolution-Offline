@@ -715,6 +715,10 @@ enum class GoalKind : u8 {
     // Shear a sheep, spin it, weave it, cut it. What a fighter does when it
     // cannot afford bandages -- which is exactly when it most needs them.
     MakeBandages,
+    // Go and look at somewhere new. The fallback BEFORE standing still: a bot
+    // with nothing to do should be learning the world, because almost every
+    // other goal is blocked for want of knowing where something is.
+    Explore,
     IdleBriefly,
     Count,
 };

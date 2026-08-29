@@ -70,6 +70,8 @@ constexpr i32 kMaxTradeTrips = 3;
 constexpr i32 kBandagesWanted = 60;
 constexpr i32 kMaxBandageTrips = 3;
 constexpr i64 kNoBandageCooldownMs = 180000;
+// When even the map is exhausted, rest a while before asking again.
+constexpr i64 kExploredAllCooldownMs = 300000;
 // A goal that used its whole time limit and finished nothing rests for two
 // minutes. Long enough that something else certainly gets a turn, short enough
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
@@ -1552,6 +1554,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::PracticeSkill:         done = DoPracticeSkill(client, obs); break;
         case GoalKind::FillSpellbook:         done = DoFillSpellbook(client, obs); break;
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
+        case GoalKind::Explore:              done = DoExplore(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Count:                 break;
     }
@@ -5807,6 +5810,64 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
             "is one of the twelve safe to cast at oneself",
             static_cast<int>(n), had.c_str());
     return -1;
+}
+
+// ---------------------------------------------------------------------------
+// EXPLORING.
+//
+// "bots shouldnt be idle unless its state specifically" (project owner). This
+// is what a character does instead of standing still, and it is not filler.
+//
+// Nearly every blocked need in this project is blocked for want of knowing
+// WHERE something is: "no known supplier of a tongs", "carrying its own output
+// with nobody known to buy it", "no 'tinker' reachable". Bruin finished a
+// 25-minute session with session_summary places=1 -- he had seen one location
+// all day, which is precisely why he knew no supplier for any of the three
+// tools he was short of, and why he idled through 85% of his picks.
+//
+// So the fallback goes and looks at an unvisited shop, and reads the paperdolls
+// of whoever is standing in it. That is how NearestMobileWithTrade and the
+// supplier memory get anything to work with.
+bool Runner::DoExplore(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    // Arrived somewhere: LOOK. A place walked to and not looked at teaches
+    // nothing, and the scan is the entire point of the errand.
+    if (travelInFlight_ && !client.TravelBusy()) {
+        travelInFlight_ = false;
+        LogLine("explore: arrived at %d,%d -- reading who is here", obs.x, obs.y);
+        client.ActionScanMobiles();
+        // RECORD IT BY ID, which is what TravelToUnexploredPlace matches
+        // against. Storing an empty name would leave the place forever
+        // unvisited and send the character back to it on the next tick.
+        state_.memory.NotePlace("explored", exploreTarget_.c_str(), obs.x,
+                                obs.y, obs.z, obs.nowMs);
+        exploreTarget_.clear();
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 3000;
+        return true;   // one place per outing; the next tick re-decides
+    }
+    if (client.TravelBusy()) return false;
+
+    // Somewhere with a service, that this character has not been to. The
+    // places it already knows come from its own memory, so two characters
+    // explore differently and a character never re-walks its own ground.
+    std::vector<std::string> seen;
+    for (const KnownPlace& p : state_.memory.Places()) {
+        if (!p.name.empty()) seen.push_back(p.name);
+    }
+    if (!client.TravelToUnexploredPlace(seen, &exploreTarget_)) {
+        LogLine("explore: nowhere new to go (%s) -- standing down",
+                client.TravelFailureText());
+        planner_.Cooldown(GoalKind::Explore, obs.nowMs + kExploredAllCooldownMs);
+        planner_.Finish(false, "nowhere unexplored", obs.nowMs);
+        return false;
+    }
+    travelInFlight_ = true;
+    LogLine("explore: nothing else to do, so going to '%s' -- somewhere new "
+            "(%zu place(s) known so far)", exploreTarget_.c_str(), seen.size());
+    nextActionMs_ = obs.nowMs + 2500;
+    return false;
 }
 
 // ---------------------------------------------------------------------------

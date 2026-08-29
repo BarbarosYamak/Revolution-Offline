@@ -2088,6 +2088,51 @@ void TestAPoorFighterMakesItsOwnBandages() {
           "a fighter already carrying bandages does not go looking for sheep");
 }
 
+// "bots shouldnt be idle unless its state specifically" (project owner,
+// 2026-08-29). Idling was winning 73-85% of picks on some characters because
+// every other goal was blocked and the no-op was the only thing that scored.
+void TestExploringBeatsStandingStill() {
+    Section("planner: with nothing to do, a bot goes somewhere new");
+
+    life::Planner p;
+    life::Memory mem;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.nowMs = 1000000;
+    obs.hp = obs.hpMax = 40;
+    obs.weight = 10; obs.maxWeight = 200;
+
+    // No needs at all: the worst case, and the one that produced the idling.
+    const std::vector<life::Need> none;
+    const std::vector<life::ScoredGoal> scored = p.Score(none, obs, mem);
+
+    const life::ScoredGoal* explore = nullptr;
+    const life::ScoredGoal* idle = nullptr;
+    for (const life::ScoredGoal& g : scored) {
+        if (g.kind == life::GoalKind::Explore)     explore = &g;
+        if (g.kind == life::GoalKind::IdleBriefly) idle    = &g;
+    }
+    Check(explore != nullptr, "exploring is always on the table");
+    Check(idle != nullptr,
+          "and so is idling -- there must never be NO goal at all");
+    if (explore && idle) {
+        Check(explore->feasible && idle->feasible,
+              "both fallbacks are feasible; the question is which wins");
+        Check(explore->score > idle->score,
+              "GOING SOMEWHERE NEW BEATS STANDING STILL. Almost every blocked "
+              "need in this project is blocked for want of knowing where "
+              "something is, so exploring is the useful answer, not filler");
+    }
+    Check(!scored.empty() && scored.front().kind != life::GoalKind::IdleBriefly,
+          "idling is never the top choice when nothing else scores");
+
+    // And exploring belongs to Wander, so family satiation still damps it --
+    // a character must not spend a whole session sightseeing either.
+    Check(life::FamilyOf(life::GoalKind::Explore) == life::GoalFamily::Wander,
+          "exploring is Wander, so the family damping that stops one kind of "
+          "thing owning a day applies to it too");
+}
+
 void TestNerveIsPerProfession() {
     Section("needs: a cautious life bails earlier than a bold one");
 
@@ -2167,6 +2212,7 @@ int main(int argc, char** argv) {
     TestAMageWantsItsBookFilled();
     TestACorneredFighterMayHunt();
     TestAPoorFighterMakesItsOwnBandages();
+    TestExploringBeatsStandingStill();
     TestAGoalThatSucceedsAtNothingIsStopped();
     TestFamilySatiationBreaksAMonotonousDay();
     TestSatiationLetsSomethingElseHaveATurn();

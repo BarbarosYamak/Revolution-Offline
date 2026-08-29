@@ -499,6 +499,17 @@ public:
     // the dungeon mouth, the shrine. What a character needs when it is looking
     // for a fight rather than for a shopkeeper.
     bool TravelToPlaceCategory(wm::PlaceCategory c);
+    // Walk somewhere this character has never been. `seen` are place ids it
+    // already knows, so exploring means going where the map is still blank.
+    //
+    // A bot with nothing else to do should be LEARNING the world, not standing
+    // in it: a full crafter finished a whole session having visited one place,
+    // which is why he knew no supplier for any of the tools he was short of.
+    // `chosenId` receives the place id actually picked, so the caller can
+    // record it as seen. Without that the same nearest unvisited shop is
+    // chosen again on the next tick, forever.
+    bool TravelToUnexploredPlace(const std::vector<std::string>& seen,
+                                 std::string* chosenId);
     bool TravelToRegion(const char* nameOrId);
     // `regionHint` narrows the search to one region ("the bank in Yew");
     // nullptr means the nearest one anywhere.

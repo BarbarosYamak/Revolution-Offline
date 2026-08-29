@@ -286,6 +286,42 @@ try_atlas:
                        p->radius, /*hasZ=*/true, p->position.z);
 }
 
+bool Client::TravelToUnexploredPlace(const std::vector<std::string>& seen,
+                                     std::string* chosenId) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    // Nearest place not already known. Nearest rather than random so a
+    // character explores outward from where it is instead of criss-crossing
+    // the map, and so the walk stays short enough to finish inside a goal.
+    const wm::Place* best = nullptr;
+    i64 bestD = 0;
+    for (const wm::Place& p : world_knowledge_->atlas.Places()) {
+        bool known = false;
+        for (const std::string& s : seen) {
+            if (s == p.id) { known = true; break; }
+        }
+        if (known) continue;
+        // Somewhere worth knowing: a shop, a bank, a healer, an inn. Wilderness
+        // and dungeon mouths are not what a character is short of.
+        if (p.services.empty()) continue;
+        const i64 dx = p.position.x - playerX_;
+        const i64 dy = p.position.y - playerY_;
+        const i64 d = dx * dx + dy * dy;
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    if (!best) {
+        travelFailure_ = "every place with a service is already known";
+        return false;
+    }
+    if (chosenId) *chosenId = best->id;
+    travelEntitySerial_ = 0;
+    const i32 radius = best->radius > 6 ? 6 : best->radius;
+    return TravelBegin(best->name.c_str(), best->position.x, best->position.y,
+                       radius, /*hasZ=*/true, best->position.z);
+}
+
 bool Client::TravelToPlaceCategory(wm::PlaceCategory c) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();

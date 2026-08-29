@@ -27,6 +27,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::PracticeSkill:         return "PRACTICE_SKILL";
         case GoalKind::FillSpellbook:         return "FILL_SPELLBOOK";
         case GoalKind::MakeBandages:         return "MAKE_BANDAGES";
+        case GoalKind::Explore:              return "EXPLORE";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Count:                 break;
     }
@@ -78,6 +79,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::TradeWithPlayer:
             return GoalFamily::Social;
         case GoalKind::TravelToRequiredPlace:
+        case GoalKind::Explore:
         case GoalKind::IdleBriefly:
             return GoalFamily::Wander;
         case GoalKind::Count:
@@ -305,8 +307,36 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
         out.push_back(std::move(g));
     }
 
-    // The bounded no-op always exists, so there is never "no goal". A tick
-    // with nothing to do should say so rather than silently spin.
+    // GOING SOMEWHERE NEW BEATS STANDING STILL.
+    //
+    // "bots shouldnt be idle unless its state specifically" (project owner,
+    // 2026-08-29). Idling was winning 73-85% of picks on some characters,
+    // because every other goal was blocked and the no-op was the only thing
+    // left that scored. That is a bot doing nothing with its life.
+    //
+    // Exploring is the honest answer, not filler: almost every blocked need in
+    // this project is blocked for want of knowing WHERE something is -- no
+    // known supplier of a tongs, no buyer for these ingots, no trainer in
+    // reach. A full crafter finished a whole session having visited ONE place
+    // (session_summary places=1), which is exactly why he knew no supplier for
+    // any of the three tools he was short of. Walking to an unvisited shop and
+    // reading the paperdolls there is how that gets fixed.
+    //
+    // Scored above idle and below every real errand, so it fills the gap and
+    // never competes with work.
+    {
+        ScoredGoal explore;
+        explore.kind = GoalKind::Explore;
+        explore.feasible = true;
+        explore.score = 15.0;
+        explore.reasons.push_back(
+            "fallback: nothing else is actionable, so go and learn the world");
+        out.push_back(std::move(explore));
+    }
+
+    // The bounded no-op always exists, so there is never "no goal". Below
+    // exploring: a character stands still only when it cannot even do that --
+    // when every place with a service in it is already known.
     {
         ScoredGoal idle;
         idle.kind = GoalKind::IdleBriefly;

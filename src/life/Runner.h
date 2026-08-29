@@ -128,6 +128,7 @@ private:
     int  PickPracticeSpell(Client& client, const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
+    bool DoExplore(Client& client, const Observation& obs);
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
@@ -243,6 +244,7 @@ private:
     i32  tradeTrips_ = 0;
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
+    std::string exploreTarget_;
     bool spellbookOpened_ = false;
     i64  scrollBuyMark_ = 0;
     i64  createFoodMark_ = 0;
