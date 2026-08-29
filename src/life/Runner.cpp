@@ -384,6 +384,18 @@ constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knive
 // i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
 constexpr u16 kKindlingGraphic = 0x0DE1;
 constexpr u16 kCampfireGraphic = 0x0DE3;
+// THE 36 ARMOUR PIECES AN ARMORER ACTUALLY STOCKS, generated from every
+// SELL row in VENDOR_S_ARMORER_LEATHER / _RING / _CHAIN / _PLATE /
+// _SHIELDS. Everything else with an ARMOR value is smith-crafted or
+// looted, and shopping for it is a wasted trip.
+constexpr u16 kSoldArmour[] = {
+    0x13BB, 0x13BE, 0x13BF, 0x13C5, 0x13C6, 0x13C7, 0x13CB, 0x13CC,
+    0x13EB, 0x13EC, 0x13EE, 0x13F0, 0x1408, 0x140A, 0x140C, 0x140E,
+    0x1410, 0x1411, 0x1412, 0x1413, 0x1414, 0x1415, 0x1B72, 0x1B73,
+    0x1B74, 0x1B76, 0x1B78, 0x1B7A, 0x1B7B, 0x1C00, 0x1C02, 0x1C06,
+    0x1C08, 0x1C0A, 0x1C0C, 0x1DB9,
+};
+
 constexpr u16 kScissorsGraphic  = 0x0F9E;
 constexpr u16 kWoolGraphic      = 0x0DF8;
 constexpr u16 kYarnGraphic      = 0x0E1D;
@@ -6369,22 +6381,26 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         return false;
     }
 
-    // BUY ONLY WHAT IS ACTUALLY FOR SALE.
+    // BUY ONLY WHAT IS ACTUALLY FOR SALE -- and the list is longer than I first
+    // thought.
     //
-    // Nobody on this shard sells metal armour. Checking every SELL line in
-    // tm_vend.scp against the plate/chain/ring/leather families, the only
-    // templates carrying any are VENDOR_S_ARMORER_LEATHER, VENDOR_S_TAILOR and
-    // VENDOR_S_JEWELER -- and the armorer's list is LEATHER. Plate and chain
-    // are smith-crafted or looted, full stop.
+    // I claimed metal armour was sold by nobody. That was WRONG, and the owner
+    // caught it: "armorers has more to sell at vendors". There are FIVE
+    // armorer templates -- VENDOR_S_ARMORER_LEATHER, _RING, _CHAIN, _PLATE and
+    // _SHIELDS -- carrying 36 distinct pieces between them, ringmail through
+    // platemail and helms and shields. My check had matched
+    // "i_(plate|chain|ring)_", and the defnames are i_platemail_,
+    // i_chainmail_, i_ringmail_, so it found nothing and I concluded from that
+    // nothing existed. Absence of a grep hit is not absence of the thing.
     //
-    // So the first version of this shopped for the best piece the character
-    // could wear, which was usually plate, from a trade that has never stocked
-    // it: five of twelve characters logged goal_failed=UPGRADE_GEAR
-    // "no 'armorer' reachable" in one run. Metal is now WORN when looted and
-    // never shopped for; leather is what gets bought.
+    // kSoldArmour is generated from those templates: every SELL row in any
+    // ARMORER list, resolved to its graphic. Anything outside it is
+    // smith-crafted or looted and must not be shopped for.
     const ArmorPiece* want = nullptr;
     for (const ArmorPiece& a : kArmorPieces) {
-        if (a.cls != ArmorClass::Leather) continue;   // the only kind sold
+        if (!GraphicIsAny(a.graphic, kSoldArmour,
+                          sizeof(kSoldArmour) / sizeof(kSoldArmour[0])))
+            continue;                                  // nobody stocks it
         if (!MayWear(a, obs)) continue;
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
@@ -6401,7 +6417,7 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
     // tailor carries some too, which is the fallback for a town without one.
     const bool haveArmorer = client.NearestShopkeeperWithTrade("armorer") != 0;
     LogLine("gear: no piece for an empty slot in the pack -- buying 0x%04X "
-            "(leather, armor %d, needs str %d) from a %s",
+            "(armor %d, needs str %d) from a %s",
             want->graphic, want->armor, want->reqStr,
             haveArmorer ? "armorer" : "tailor");
     if (haveArmorer) {
