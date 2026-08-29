@@ -42,6 +42,8 @@ namespace {
 
 constexpr u16 kHatchet[]  = {0x0F43, 0x0F44};   // i_hatchet, layer 2
 constexpr u16 kPickaxe[]  = {0x0E85, 0x0E86};   // i_pickaxe, layer 1, ReqStr=50
+// Every heal potion is ID=i_bottle_yellow; the client cannot tell which.
+constexpr u16 kYellowPotion = 0x0F0C;
 constexpr u16 kBandage    = 0x0E21;
 constexpr u16 kFishingPole[] = {0x0DBF, 0x0DC0};
 constexpr u16 kMortar     = 0x0E9B;             // i_mortar_pestle
@@ -78,6 +80,38 @@ ConsumableNeed Bandages() {
     c.graphics = {kBandage};
     c.low = 8;
     c.restockTo = 30;
+    return c;
+}
+
+// HEAL POTIONS -- a fighting life's other way of staying alive.
+//
+// The DrinkPotion tactic has existed and been unit-tested since M3.9.1
+// (CombatPolicy.cpp: healPotions > 0 -> Tactic::DrinkPotion), and it has never
+// once fired, because NO PROFESSION EVER ASKED FOR POTIONS. Only Bandages()
+// and Food() were ever declared, so healPotions was permanently zero. That is
+// the fifth "built but unreachable" found on 2026-08-29 alone.
+//
+// All three strengths share ID=i_bottle_yellow and TYPE=t_potion
+// (items/i_provisions_potions.scp:282-304), so the CLIENT CANNOT TELL a heal
+// potion from any other yellow bottle by graphic. The count is therefore
+// optimistic and DrinkPotion is attempted rather than assumed to work -- which
+// is exactly why SurvivalTick attempts it.
+//
+// AND IT MUST BE BOUGHT FROM A PLAYER. Faucets.cpp records this as CONFIRMED
+// Revolution history: on 18.08.2009 potions stopped being sold by NPCs,
+// deliberately, and demand was large -- a 2008 warrior describes carrying
+// 150 Deadly Poison, 80 Heal and 80 Cure in kegs. So a warrior wanting heal
+// potions is not a shopping errand, it is the alchemist's customer, and this
+// is what makes the fighter/alchemist pair real rather than theoretical.
+ConsumableNeed HealPotions() {
+    ConsumableNeed c;
+    c.name = "heal potion";
+    c.graphics = {kYellowPotion};
+    // Deliberately modest. DERIVED, not documented: no archive source states
+    // what a Revolution warrior carried on an ordinary graveyard trip, and the
+    // keg numbers above are a large battle, not a Tuesday.
+    c.low = 2;
+    c.restockTo = 8;
     return c;
 }
 
@@ -178,7 +212,7 @@ const std::vector<Profession>& All() {
             // all day and has no income at all.
             p.produces = {"i_log", "i_board", "i_scroll_blank", "i_club"};
             p.tools = {{"hatchet", V(kHatchet, 2), true}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.55;
             p.goldReserve = 300;         // one trainer fee held back
                         // Yew is the forest. Britain and Skara Brae have woods within reach.
@@ -334,9 +368,23 @@ const std::vector<Profession>& All() {
             // Bottles are NOT bought: i_bottle_empty is Alchemy 25.0 with a
             // glassblowing tool (Production.cpp:178), so an alchemist makes
             // its own. It buys reagents and nothing else.
-            p.produces = {"i_potion_refresh", "i_potion_cure"};
+            // HEAL AND GREATER HEAL, which are what a fighting life actually
+            // buys. Both recipes already existed in the production graph and
+            // the alchemist simply never claimed them:
+            //   i_potion_heal      ALCHEMY 15.1, 3 ginseng + 1 empty bottle
+            //   i_potion_healgreat ALCHEMY 55.1, 7 ginseng + 1 empty bottle
+            // (Production.cpp:196,205; runtime i_provisions_potions.scp:293).
+            //
+            // 15.1 matters: a brand-new alchemist can make heal potions almost
+            // at once, so the alchemist -> warrior chain is viable on day one
+            // rather than after a long grind. And Revolution CONFIRMED potions
+            // as a player-market good -- NPCs stopped selling them on
+            // 18.08.2009 -- so this is a producer whose only customers are
+            // other characters, which is what R4 needs.
+            p.produces = {"i_potion_heal", "i_potion_healgreat",
+                          "i_potion_refresh", "i_potion_cure"};
             p.consumes = {"i_reag_black_pearl", "i_reag_garlic",
-                          "i_reag_ginseng"};
+                          "i_reag_ginseng", "i_bottle_empty"};
             p.tools = {{"mortar", {kMortar}, false}};
             p.consumables = {Food()};
             p.riskTolerance = 0.25;
@@ -416,7 +464,7 @@ const std::vector<Profession>& All() {
             p.unresolvedTenths = 4000;
             p.targetStr = 80; p.targetDex = 45; p.targetInt = 100;
             p.income = {Income::Hunt};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.40;
             p.goldReserve = 400;
                         // Skara Brae is the ranger town, if a tamer ever becomes playable.
@@ -462,7 +510,7 @@ const std::vector<Profession>& All() {
             // (Production.cpp i_potion_poisondeadly, ALCHEMY 90.1), exactly
             // what this build's Poisoning 100.0 needs applied to a weapon.
             p.consumes = {"i_potion_poisondeadly"};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.75;      // duelist; picks the fight
             p.goldReserve = 350;
             // UNKNOWN: no Revolution-specific evidence places Fencers in a
@@ -507,7 +555,7 @@ const std::vector<Profession>& All() {
             // won on Cure potions, not poison -- the alchemist's product
             // again, a different one than the Fencer buys.
             p.consumes = {"i_potion_cure"};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.70;
             p.goldReserve = 350;
             // UNKNOWN, same caveat as the Fencer: no Revolution-specific
@@ -557,7 +605,7 @@ const std::vector<Profession>& All() {
             p.gathers = "";
             p.produces = {"i_arrow_shaft", "i_arrow", "i_bow"};
             p.consumes = {"i_log", "i_feather"};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.50;      // kites at range, disengages if closed on
             p.goldReserve = 300;
             // Yew is the forest CR-07 names as the special-log source; Skara
@@ -616,7 +664,7 @@ const std::vector<Profession>& All() {
             // this build never touches Inscription, so it buys finished
             // scrolls rather than blank ones.
             p.consumes = {"i_reag_black_pearl", "i_reag_nightshade"};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.65;      // duel-oriented, per the WL-01/WL-03 family
             p.goldReserve = 700;         // reagents AND weapon upkeep
             p.homeCities = {"Britain", "Trinsic"};
@@ -662,7 +710,7 @@ const std::vector<Profession>& All() {
             // finisher. Both are bought, never made -- this build has no
             // Magery or Alchemy of its own.
             p.consumes = {"i_scroll_recall", "i_potion_poisondeadly"};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {Bandages(), HealPotions(), Food()};
             p.riskTolerance = 0.85;      // the highest in the catalogue
             p.goldReserve = 500;
             // UNKNOWN: no Revolution source names a murderer's home city.
