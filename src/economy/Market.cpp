@@ -350,6 +350,22 @@ const NpcBuyer kNpcBuyers[] = {
     // Verified per item -- i_tunic_leather has NO buy row anywhere, so leather
     // armour genuinely has no NPC channel on this shard whatever the policy
     // permits, and NpcBuyersFor correctly returns nothing for it.
+    // THE DAGGER, and the blacksmith is named FIRST because that is where the
+    // smith already stands. The faucet registry has allowed
+    // dagger_to_weaponsmith since the owner called it -- "he can make gold by
+    // selling daggers he crafted" -- but this table had no row for it, so
+    // NpcBuyersFor returned nothing and EARN_GOLD reported "16 x i_dagger
+    // spare, and no buyer known" with fourteen freshly made daggers in the
+    // pack. Permission without a buyer is a goal addressed to nobody.
+    //
+    // Both trades genuinely carry the row: VENDOR_B_WEAPONS_BLADED has
+    // BUY=i_dagger,{10 15} (tm_vend.scp:1794), and this shard's blacksmith is
+    // TNS's c_h_blacksmith, whose shop block takes BUY=VENDOR_B_WEAPONS_BLADED
+    // wholesale -- which is why Olin and Curtis, standing at the Minoc forge,
+    // buy what was just made on it. "yes but you can sell this to vendor it is
+    // ok" (project owner, 2026-08-29).
+    {"i_dagger",             "blacksmith"},
+    {"i_dagger",             "weaponsmith"},
     {"i_spear_short",        "weaponsmith"},   // tm_vend.scp:1716 WEAPONS_BLUNT
     {"i_club",               "weaponsmith"},   // tm_vend.scp:1710 {10 15}
     {"i_robe",               "tailor"},        // tm_vend.scp:865  TAILOR
