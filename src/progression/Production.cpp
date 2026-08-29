@@ -196,6 +196,20 @@ const std::vector<Recipe>& Table() {
     {"i_potion_heal", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 151, kNoSkill, 0, {{"i_reag_ginseng", 3}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 15.1; REVOLUTION guide band 15.1-25.1 Heal"},
+    // Poison, added 2026-08-29 on the owner's instruction ("Voris it can make
+    // poison bottle and it can sell to npc"). Cheapest potion this life can
+    // make -- ALCHEMY 15.1, the same band as Heal -- and the one an NPC will
+    // take, so it is both the training sink and the first coin. Recipe read
+    // from the shard: [ITEMDEF i_potion_Poison] RESOURCES=2 i_reag_nightshade,
+    // 1 i_bottle_empty, SKILLMAKE=ALCHEMY 15.1, t_mortar.
+    //
+    // Note these potion defs use the DEFNAME as the ITEMDEF header rather than
+    // a numeric id with a DEFNAME line, which is why a search for
+    // "DEFNAME=i_potion_poison" finds nothing at all.
+    {"i_potion_poison", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
+     kAlchemy, 151, kNoSkill, 0, {{"i_reag_nightshade", 2}, {"i_bottle_empty", 1}},
+     "SCRIPT i_potion_Poison SKILLMAKE=ALCHEMY 15.1,t_mortar; "
+     "RESOURCES=2 i_reag_nightshade,1 i_bottle_empty"},
     {"i_potion_cure", 1, Provenance::PlayerCrafted, Station::None, Tool::MortarPestle,
      kAlchemy, 251, kNoSkill, 0, {{"i_reag_garlic", 3}, {"i_bottle_empty", 1}},
      "SCRIPT SKILLMAKE=ALCHEMY 25.1; REVOLUTION guide band 25.1-35.1 Cure"},
