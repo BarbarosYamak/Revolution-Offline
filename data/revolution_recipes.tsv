@@ -77,4 +77,5 @@ i_spellbook_runebook	1	i_scroll_recall	1	23	45.0	none		none	pen and ink	0	PLAYER
 i_spellbook_runebook	1	i_scroll_gate_travel	1	23	45.0	none		none	pen and ink	0	PLAYER_MARKET	SCRIPT revolution/revolution_runebook.scp SKILLMAKE=Inscription 45.0,i_pen_and_ink; REVOLUTION cooperative 19.12.2008; NO MENU ENTRY
 i_fish_big_1	1		0	18	1.0	none		none	fishing pole	0	WORLD_GATHERED	SCRIPT r_default_water 60.0 nothing / 10.0 each of four fish; REAPAMOUNT=1,3
 i_fish_cut_cooked	1	i_fish_cut_raw	1	13	0.0	none		campfire	none	0	PLAYER_CRAFTED	SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling -> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3
+i_fish_cut_cooked	1	i_kindling	1	13	0.0	none		campfire	none	0	PLAYER_CRAFTED	SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling -> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3
 i_fish_cut_raw	4	i_fish_big_1	1	none		none		none	blade	0	WORLD_PROCESSED	ENGINE CClientTarg.cpp:1950 SetAmount(4 * GetAmount()); LIVE m3_cut1

@@ -29,6 +29,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::MakeBandages:         return "MAKE_BANDAGES";
         case GoalKind::Explore:              return "EXPLORE";
         case GoalKind::Mine:                 return "MINE";
+        case GoalKind::Smelt:                return "SMELT";
         case GoalKind::TameAnimal:           return "TAME_ANIMAL";
         case GoalKind::UpgradeGear:          return "UPGRADE_GEAR";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
@@ -72,6 +73,7 @@ GoalFamily FamilyOf(GoalKind k) {
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Mine:
+        case GoalKind::Smelt:
         case GoalKind::TameAnimal:
         case GoalKind::Fish:
         case GoalKind::Craft:
@@ -171,6 +173,12 @@ const GoalSpec kGoals[] = {
     // Same weight as the other two gathering goals: this IS a miner's work,
     // exactly as chopping is a lumberjack's and fishing a fisher's.
     {GoalKind::Mine,                  NeedKind::NeedOre,           130.0},
+    // ABOVE Mine on purpose. Both are 130-ish, so what decides between them is
+    // the need: NeedOre falls as the pack fills with ore and NeedSmelt rises,
+    // which is what makes a miner dig a batch and then go and melt it rather
+    // than digging until the weight limit. 140 keeps the crossover comfortably
+    // inside a batch instead of at the very last ore.
+    {GoalKind::Smelt,                 NeedKind::NeedSmelt,         140.0},
     // A little under. A pet is a large step up for a tamer and taming is slow,
     // but it must not crowd out eating or earning while it fails.
     {GoalKind::TameAnimal,            NeedKind::NeedPet,           115.0},

@@ -223,38 +223,185 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
     return TravelToServiceSkipping(s, regionHint, kNoSerials, nullptr);
 }
 
-bool Client::NearestRockFace(i32 fromX, i32 fromY, i8 fromZ, int radius,
-                             i32* standX, i32* standY,
-                             i32* rockX, i32* rockY) const {
-    if (!world_) return false;
-    int bestD = radius + 1;
-    bool found = false;
-    for (int dy = -radius; dy <= radius; ++dy) {
-        for (int dx = -radius; dx <= radius; ++dx) {
-            const i32 rx = fromX + dx, ry = fromY + dy;
-            if (rx < 0 || ry < 0) continue;
-            if (TileIsWalkable(rx, ry, fromZ)) continue;      // not rock
-            // A face is only useful if we can stand beside it.
-            static const int nx[] = {1, -1, 0, 0};
-            static const int ny[] = {0, 0, 1, -1};
-            for (int k = 0; k < 4; ++k) {
-                const i32 sx = rx + nx[k], sy = ry + ny[k];
-                if (sx < 0 || sy < 0) continue;
-                if (!TileIsWalkable(sx, sy, fromZ)) continue;
-                const int ddx = sx - fromX, ddy = sy - fromY;
-                const int ax = ddx < 0 ? -ddx : ddx, ay = ddy < 0 ? -ddy : ddy;
-                const int d = ax > ay ? ax : ay;
-                if (d >= bestD) continue;
-                bestD = d;
-                found = true;
-                if (standX) *standX = sx;
-                if (standY) *standY = sy;
-                if (rockX)  *rockX  = rx;
-                if (rockY)  *rockY  = ry;
+// What the SERVER considers mineable, mirrored exactly rather than guessed.
+//
+// Sphere's gate is CWorldMap::CheckNaturalResource(pt, IT_ROCK) ->
+// IsItemTypeNear(pt, IT_ROCK, 0, false) (Source-X CWorldMap.cpp:52): distance
+// zero, so the STRUCK TILE ITSELF must be rock-typed. FindItemTypeNearby
+// (CWorldMap.cpp:663-795) answers yes for exactly two things we can see from
+// the muls:
+//   1. land whose terrain id GetTerrainItemType maps to t_rock -- and that map
+//      is the shard's own [TYPEDEF t_rock] TERRAIN ranges,
+//      runtime/scripts/types/types_terrain.scp:26-47 (loaded into
+//      g_World.m_TileTypes by CItemTypeDef::r_LoadVal);
+//   2. a static whose ITEMDEF resolves to TYPE=t_rock
+//      (CWorldMap.cpp:781-785, CItemBase::IsType).
+// Everything else -- water, roads, bridges, trees -- is refused with "Try
+// mining elsewhere." (DEFMSG_MINING_1, CCharSkill.cpp:1452). "Unwalkable" was
+// the previous heuristic and it failed both ways: water is unwalkable but not
+// rock (the Minoc bridge incident), and cave floors are walkable AND rock
+// (terrain 0x245-0x259 is in the t_rock list; cave-floor statics 0x53B-0x54F
+// are TYPE=t_rock via DUPEITEM i_floor_cave, i_ground_tiles.scp:7-119).
+
+namespace {
+
+// [TYPEDEF t_rock] TERRAIN ranges, types_terrain.scp:27-46. The file's last
+// entry (0453b-0454f) is item-id space (statics), covered by the static table
+// below instead.
+struct IdRange { u16 lo, hi; };
+constexpr IdRange kRockTerrain[] = {
+    {0x0DC, 0x0E7}, {0x0EC, 0x0F7}, {0x0FC, 0x107}, {0x10C, 0x117},
+    {0x11E, 0x129}, {0x141, 0x144}, {0x1D3, 0x1DA}, {0x1DC, 0x1E7},
+    {0x1EC, 0x1EF}, {0x21F, 0x243}, {0x245, 0x259}, {0x262, 0x265},
+    {0x6CD, 0x6DD}, {0x6EB, 0x6FE}, {0x709, 0x720}, {0x727, 0x73E},
+    {0x745, 0x75C}, {0x7BD, 0x7D4}, {0x7EC, 0x7F1}, {0x834, 0x839},
+};
+
+// Every ITEMDEF the shard scripts resolve to TYPE=t_rock, DUPEITEMs followed
+// (cave floors/edges i_ground_tiles.scp:7-203, stalagmites :205+, boulders
+// :4389+, plus i_offset.scp and i_unsorted.scp entries). Enumerated by
+// parsing runtime/scripts, not recalled from generic UO memory.
+constexpr IdRange kRockStatics[] = {
+    {0x040B, 0x041E}, {0x053B, 0x054F}, {0x0551, 0x0553}, {0x056A, 0x056A},
+    {0x08E0, 0x08EA}, {0x2F62, 0x2FB5}, {0x3341, 0x3351}, {0x3421, 0x3424},
+    {0x3426, 0x3439}, {0x3486, 0x348F}, {0x34AC, 0x34B4}, {0x3539, 0x353C},
+    {0x3DB6, 0x3DB7}, {0x3F28, 0x3F28},
+};
+
+bool InRanges(u16 id, const IdRange* r, usize n) {
+    for (usize i = 0; i < n; ++i)
+        if (id >= r[i].lo && id <= r[i].hi) return true;
+    return false;
+}
+
+}  // namespace
+
+bool Client::RockAt(i32 tx, i32 ty, i8* z, u16* graphic) {
+    if (tx < 0 || ty < 0) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_)
+        return false;
+    map::LandCell cell{};
+    if (worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty),
+                            &cell) &&
+        InRanges(cell.tileId, kRockTerrain,
+                 sizeof(kRockTerrain) / sizeof(kRockTerrain[0]))) {
+        if (z) *z = cell.z;
+        if (graphic) *graphic = 0;
+        return true;
+    }
+    // Rock STATICS: cave floors and the like. Same reasoning as WaterAt's wet
+    // statics -- the server checks the static's scripted type, so an id
+    // whitelist derived from those same scripts is the faithful mirror.
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(tx, ty, 0, hits);
+    for (const world::StaticHit& h : hits) {
+        if (!InRanges(h.itemId, kRockStatics,
+                      sizeof(kRockStatics) / sizeof(kRockStatics[0])))
+            continue;
+        if (z) *z = h.z;
+        if (graphic) *graphic = h.itemId;
+        return true;
+    }
+    return false;
+}
+
+bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
+                               MiningSpot* out,
+                               const std::vector<std::pair<i32, i32>>*
+                                   exclude) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_)
+        return false;
+    if (radius < 1) radius = 1;
+
+    auto excluded = [&](i32 tx, i32 ty) -> bool {
+        if (!exclude) return false;
+        for (const auto& d : *exclude)
+            if (d.first == tx && d.second == ty) return true;
+        return false;
+    };
+
+    // ROCK AT EYE LEVEL FIRST. Being rock is not enough: the strike must
+    // also pass CanSeeLOS(m_Act_p) (CCharSkill.cpp:1442-1444), and LOS is
+    // 3D. Live at the Minoc mine mouth the nearest rock by ring order was
+    // the cliff tile whose land z is 34 over the z=0 path -- "You have no
+    // line of sight to that location", every time -- while the mineable cave
+    // floor sat one tile away at the character's own z. So the first sweep
+    // only accepts rock whose surface is within kMineLosZ of the caller's z
+    // (the scale of RESOURCE_Z_CHECK=8 in the engine's own resource search,
+    // CWorldMap.cpp:355, doubled for slopes); the second sweep takes any
+    // rock at all, since a far stand tile may sit at the rock's own level
+    // and see it fine -- the caller's dead-list absorbs a wrong guess.
+    constexpr int kMineLosZ = 16;
+    for (int pass = 0; pass < 2; ++pass) {
+    // Nearest ring first, and rings start at r=1: the engine refuses a target
+    // under 1 tile off (DEFMSG_MINING_CLOSE, CCharSkill.cpp:1432), so the
+    // tile under our own feet is never a target -- even standing on a cave
+    // floor a character strikes the floor BESIDE itself.
+    for (int r = 1; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 rx = x + dx, ry = y + dy;
+                if (excluded(rx, ry)) continue;
+                i8 rz = 0;
+                u16 gfx = 0;
+                if (!RockAt(rx, ry, &rz, &gfx)) continue;
+                if (pass == 0 && std::abs((int)rz - (int)z) > kMineLosZ)
+                    continue;
+                // Within striking range of the ORIGIN (RANGE=2,
+                // skill45_mining.scp): the origin itself is the stand -- but
+                // only if it can be stood on. When the caller scans from its
+                // own feet that is trivially true; a roaming caller may pass
+                // a jittered origin that landed inside a wall, and handing
+                // that back as a stand tile would aim A* at an unwalkable
+                // goal (the exact failure FishingSpot's vetting exists for).
+                if (r <= 2 && TileIsWalkable(x, y, z)) {
+                    out->standX = x;
+                    out->standY = y;
+                    out->rockX = rx;
+                    out->rockY = ry;
+                    out->rockZ = rz;
+                    out->rockGraphic = gfx;
+                    return true;
+                }
+                // Further out: the spot is only useful with somewhere legal
+                // to swing FROM. Adjacent (all 8 ways -- a diagonal stand is
+                // distance 1 under the shard's Chebyshev DistanceFormula=0,
+                // sphere.ini:1055) and QueryCell-walkable, the same vetting
+                // FishingSpot learned the hard way: a stand A* rejects kills
+                // every walk aimed at it.
+                bool haveStand = false;
+                int bestD = 0;
+                i32 bsx = 0, bsy = 0;
+                for (int ny = -1; ny <= 1; ++ny) {
+                    for (int nx = -1; nx <= 1; ++nx) {
+                        if (!nx && !ny) continue;
+                        const i32 sx = rx + nx, sy = ry + ny;
+                        if (sx < 0 || sy < 0) continue;
+                        if (!TileIsWalkable(sx, sy, rz)) continue;
+                        const int d = std::max(std::abs(sx - x),
+                                               std::abs(sy - y));
+                        if (haveStand && d >= bestD) continue;
+                        haveStand = true;
+                        bestD = d;
+                        bsx = sx;
+                        bsy = sy;
+                    }
+                }
+                if (!haveStand) continue;   // a face with no footing
+                out->standX = bsx;
+                out->standY = bsy;
+                out->rockX = rx;
+                out->rockY = ry;
+                out->rockZ = rz;
+                out->rockGraphic = gfx;
+                return true;
             }
         }
     }
-    return found;
+    }
+    return false;
 }
 
 bool Client::TileIsWalkable(i32 x, i32 y, i8 fromZ) const {
@@ -1725,6 +1872,54 @@ bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
         out->y = h.y;
         out->z = h.z;
         out->graphic = h.itemId;
+        found = true;
+    }
+    return found;
+}
+
+bool Client::NearestForge(i32 x, i32 y, int radius, TreeHit* out) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_) return false;
+    if (radius < 0) radius = 0;
+
+    // WHAT COUNTS AS A FORGE IS THE TYPE, NOT A GRAPHIC I LIKED THE LOOK OF.
+    // Enumerated by walking every ITEMDEF with TYPE=t_forge and then every
+    // DUPEITEM pointing at one of those bases:
+    //   0fb1   i_forge
+    //   0197a  i_forge_large_bellows  +  0197e  i_forge_large
+    //          -- every id in 0197a..019a9 dupes to one of these two. They are
+    //             the animation frames of a lit forge, so the tile actually on
+    //             the map is usually NOT the base id.
+    //   02dd8  i_forge_elven
+    //   0423b / 04263 / 04277 / 044c7  the soulforges, with their own dupe
+    //          runs; they are t_forge too, so they smelt.
+    //
+    // 0fb0 is deliberately ABSENT. It looks like it belongs beside 0fb1, and
+    // an earlier version of this list included it -- but it dupes to 0faf,
+    // which is i_anvil, TYPE=t_anvil. An anvil is not a forge and standing at
+    // one smelts nothing.
+    auto isForgeId = [](u16 id) -> bool {
+        return id == 0x0FB1 || id == 0x2DD8 ||
+               (id >= 0x197A && id <= 0x19A9) ||
+               (id >= 0x423B && id <= 0x4243) ||
+               (id >= 0x4263 && id <= 0x4272) ||
+               (id >= 0x4277 && id <= 0x4286) ||
+               (id >= 0x44C7 && id <= 0x44CA);
+    };
+
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(x, y, radius, hits);
+
+    bool found = false;
+    i32 bestDist = 0;
+    for (const world::StaticHit& h : hits) {
+        if (!isForgeId(h.itemId)) continue;
+        const i32 dx = h.x > x ? h.x - x : x - h.x;
+        const i32 dy = h.y > y ? h.y - y : y - h.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (found && d >= bestDist) continue;
+        bestDist = d;
+        out->x = h.x; out->y = h.y; out->z = h.z; out->graphic = h.itemId;
         found = true;
     }
     return found;

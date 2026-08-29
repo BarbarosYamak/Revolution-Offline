@@ -558,22 +558,41 @@ public:
     // is not, and nothing could previously tell the two apart.
     i32  DistanceToResource(wm::ResourceKind r) const;
 
-    // Can a character stand on this tile? Mining needs the opposite answer:
-    // ore is inside mountain and cave walls, which are exactly the tiles you
-    // cannot walk onto, so "not walkable" is the best cheap signal for "rock".
+    // Can a character stand on this tile? (Pathfinder walkability; used by the
+    // life layer to vet stand tiles.)
     bool TileIsWalkable(i32 x, i32 y, i8 fromZ) const;
 
-    // The nearest ROCK FACE worth mining: an unwalkable tile that has a
-    // walkable neighbour to stand on. Returns the standing spot in
-    // standX/standY and the rock in rockX/rockY.
-    //
-    // A resource area's recorded position is a region CENTROID, and a centroid
-    // can be anywhere in the region -- Corwyn's was a wooden bridge over
-    // water, which is where he stood swinging at the road. A player walks to
-    // the rock they can see.
-    bool NearestRockFace(i32 fromX, i32 fromY, i8 fromZ, int radius,
-                         i32* standX, i32* standY,
-                         i32* rockX, i32* rockY) const;
+    // Is (tx,ty) a tile Sphere will actually MINE? This mirrors the server's
+    // own test, not a walkability heuristic. "Unwalkable == rock" was tried
+    // and was wrong twice over: water is unwalkable (Corwyn stood on the Minoc
+    // bridge swinging at the river), and cave floors ARE walkable yet mine
+    // fine. The engine's gate is CWorldMap::CheckNaturalResource ->
+    // IsItemTypeNear(pt, IT_ROCK, 0) (Source-X CWorldMap.cpp:52), which passes
+    // only when THE STRUCK TILE ITSELF is rock-typed:
+    //   - land whose terrain id falls in a [TYPEDEF t_rock] TERRAIN range
+    //     (runtime/scripts/types/types_terrain.scp:26-47), or
+    //   - a static whose ITEMDEF resolves to TYPE=t_rock (cave floors, ledges,
+    //     stalagmites -- runtime/scripts/items/i_ground_tiles.scp:7-207 etc.),
+    //     checked via CItemBase::IsType in CWorldMap.cpp:781-785.
+    // Fills z with the surface to target and graphic with 0 for rock land or
+    // the rock static's id (statics are answered as statics, like fishing).
+    bool RockAt(i32 tx, i32 ty, i8* z, u16* graphic);
+
+    // A place to MINE FROM: somewhere to stand, and the rock to strike. Same
+    // shape as FishingSpot, for the same reason: the pathfinder can only walk
+    // to the walkable tile BESIDE the resource. The engine wants the target
+    // at least 1 and at most RANGE=2 tiles off (CCharSkill.cpp:1432-1441,
+    // skills/skill45_mining.scp RANGE=2), so standing adjacent is always
+    // legal. `exclude` carries tiles the server already refused.
+    struct MiningSpot {
+        i32 standX = 0, standY = 0;   // walk here (QueryCell-walkable)
+        i32 rockX = 0, rockY = 0;     // strike this
+        i8  rockZ = 0;
+        u16 rockGraphic = 0;          // 0 = rock land; else the rock static id
+    };
+    bool NearestMiningSpot(i32 x, i32 y, i8 z, int radius, MiningSpot* out,
+                           const std::vector<std::pair<i32, i32>>* exclude =
+                               nullptr);
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);
@@ -631,6 +650,15 @@ public:
     // to the next: it asks for "the nearest" at ever-wider radii and is handed
     // the same tree every time, concludes the whole area is exhausted, and
     // loops. One live session swung at a single tree 231 times that way.
+    // THE NEAREST FORGE, read from the map statics.
+    //
+    // Not from the world item list: there are ZERO forges in sphereworld.scp
+    // and zero in spherestatics.scp -- every forge on this shard is original
+    // UO map content baked into statics0.mul, so the server never sends one as
+    // an item and FindWorldItemByGraphic can never see it. Smelting needs to
+    // stand within 2 tiles of one (type_ore.scp), which makes this the only
+    // way to find the thing at all.
+    bool NearestForge(i32 x, i32 y, int radius, TreeHit* out);
     bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
                      const std::vector<std::pair<i32, i32>>* exclude = nullptr);
     // M7: the nearest WATER tile a character could cast a line into.

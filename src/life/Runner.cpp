@@ -384,6 +384,25 @@ constexpr u16 kBlades[]    = {0x0F51, 0x0F52, 0x13F5, 0x13F6};  // dagger, knive
 // i_kindling 0x0DE1 becomes ITEMID_CAMPFIRE 0x0DE3 when lit.
 constexpr u16 kKindlingGraphic = 0x0DE1;
 constexpr u16 kCampfireGraphic = 0x0DE3;
+
+// SMELTING, taken from the shard and not from generic UO lore.
+// runtime/scripts/types/type_ore.scp is the entire mechanic, on t_ore @dclick:
+//   if <cont> != <src.findlayer.21>   -> the ore must be IN THE BACKPACK
+//   elif <src.mining> >= <skillmake.1.value>-100
+//   if <src.isneartype t_forge 2>     -> and within TWO TILES of a forge
+//     serv.newitem <tdata1>           -> which for i_ore_iron is i_ingot_iron
+//   else "You must be near a forge."  (cliloc 1044265)
+// There is no crafting menu anywhere in that path, which is why DoCraft --
+// which knows only how to walk menus -- could never have smelted, and why
+// mining filled a pack with ore that nothing would ever turn into metal.
+//
+// i_ore_iron is ITEMDEF 019b7 with DUPELIST=019b8,019b9,019ba (the 1/2/3/4-ore
+// piles), so all four count as ore. SKILLMAKE=mining 0.0 makes the skill gate
+// `mining >= -10.0` -- always true, so any miner at all can smelt iron.
+constexpr u16 kIronOre[] = {0x19B7, 0x19B8, 0x19B9, 0x19BA};
+// Which graphics are forges lives in Client::NearestForge -- it reads the map
+// statics, and the id set is derived there from TYPE=t_forge.
+constexpr i32 kForgeReach = 2;          // <src.isneartype t_forge 2>
 // i_fish_cut_raw 0x097A -- four to a whole fish, and food once cooked.
 constexpr u16 kFishRawSteak = 0x097A;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
@@ -398,6 +417,18 @@ constexpr i32 kAtOreDistance = 45;
 // beyond a few means walking in rather than hammering the ground.
 constexpr i32 kMineReach = 6;
 constexpr i32 kMaxMineTrips = 3;
+// How far DoMine scans for genuine rock once travel says it has arrived.
+// TravelToResource is satisfied at the resource area's RADIUS (Minoc's is
+// r=20), so "arrived" can still be a full radius from the rock; the scan must
+// out-reach that gap. 24 also covers the mine's real rects from the recorded
+// centroid (a_minoc_mine_1_1 spans y474-504 around P=2558,499,
+// maps/map0/map0_areas.scp:1954-1960).
+constexpr i32 kMineScanRadius = 24;
+// One mining attempt is 2-6 strokes (CCharSkill.cpp:1463) at DELAY=1.6s
+// (skill45_mining.scp), so ~10s of silence is NORMAL. Poll the journal gently
+// and only give up on a verdict well past the longest legitimate attempt.
+constexpr i64 kMinePollMs = 1500;
+constexpr i64 kMineResolveMs = 15000;
 constexpr i32 kMaxBankShouts = 3;
 // How far a spoken offer carries, in tiles.
 constexpr int kTradeEarshot = 16;
@@ -1922,6 +1953,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::MakeBandages:         done = DoMakeBandages(client, obs); break;
         case GoalKind::Explore:              done = DoExplore(client, obs); break;
         case GoalKind::Mine:                 done = DoMine(client, obs); break;
+        case GoalKind::Smelt:                done = DoSmelt(client, obs); break;
         case GoalKind::TameAnimal:           done = DoTameAnimal(client, obs); break;
         case GoalKind::UpgradeGear:          done = DoUpgradeGear(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
@@ -2314,8 +2346,27 @@ struct ToolVendor {
     wm::Service service;
 };
 const ToolVendor kToolVendors[] = {
-    {"hatchet",      "blacksmith",  wm::Service::Blacksmith},
-    {"pickaxe",      "blacksmith",  wm::Service::Blacksmith},
+    // NEITHER OF THESE WAS SOLD WHERE IT SAID. VENDOR_S_BLACKSMITH's entire
+    // stock is i_tongs and i_store_ingot (tm_vend.scp) -- no hatchet, no
+    // pickaxe. So a lumberjack or a miner who lost a tool walked to a smithy,
+    // opened a shop that could not contain the thing, and left; Edrik logged
+    // NeedTool(hatchet 0.90) unsatisfied all session. The same "goal addressed
+    // to nobody" shape as the missing tongs row below.
+    //
+    // Who actually sells them, from tm_vend.scp:
+    //   i_hatchet   VENDOR_S_WEAPONS_BLADED only
+    //   i_pickaxe   VENDOR_S_WEAPONS_BLADED, VENDOR_S_TINKER
+    //
+    // The pickaxe goes to the tinker: 9 tinker shops are in the atlas, and a
+    // miner already visits one for a shovel and tinker tools.
+    //
+    // The hatchet has one seller and no Service of its own -- the atlas files
+    // "Papua weaponsmith" under `blacksmith`, so Blacksmith is the right place
+    // to WALK to, while the trade string must say "weaponsmith" because it is
+    // matched as a paperdoll-title substring and "weaponsmith" does not
+    // contain "blacksmith". 40 c_weaponsmith_* stand in sphereworld.scp.
+    {"hatchet",      "weaponsmith", wm::Service::Blacksmith},
+    {"pickaxe",      "tinker",      wm::Service::Tinker},
     {"fishing pole", "fisherman",   wm::Service::Fisherman},
     {"mortar",       "alchemist",   wm::Service::Alchemist},
     {"spellbook",    "mage",        wm::Service::Mage},
@@ -5026,6 +5077,16 @@ const char* SupplierTradeFor(const std::string& item) {
     if (item == "i_scroll_blank")      return "mage";
     if (item == "i_bottle_empty")      return "alchemist";
     if (item == "i_feather")           return "provisioner";
+    // KINDLING, which is what a campfire is made of and therefore what
+    // cooking needs. Marla caught fish, cut them into steaks and then SOLD
+    // the steaks raw at 2 gold because she could not cook: NeedCraft never
+    // appeared in her list at all, since the recipe wanted a fire and she had
+    // nothing to light. Cooked steaks are worth 6 (i_fish_cut_cooked
+    // VALUE=6), so the missing gap was threefold value on every fish.
+    //
+    // The provisioner stocks it -- her own vendor window showed "kindling
+    // gfx=0x0DE1 qty=36 price=1" while she stood there buying bread.
+    if (item == "i_kindling")          return "provisioner";
     return nullptr;
 }
 
@@ -5304,6 +5365,116 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     state_.memory.NoteEvent("vendor_lacks", supplyItem_.c_str(),
                             supplyTrade_.c_str(), obs.x, obs.y, obs.nowMs);
     planner_.Finish(false, "this vendor does not stock it", obs.nowMs);
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// SMELTING. The missing link in "mine smelt smith sell".
+//
+// "it didnt smelt iron ore" (project owner, 2026-08-29). Corwyn reached the
+// Minoc mine, swung a pickaxe, filled his pack with Iron Ore -- and stopped
+// there, because no goal in the life could turn ore into metal. Downstream
+// everything then failed for the right reason and the wrong cause: EARN_GOLD
+// refused to sell ore because a raw material is a player-market good, and
+// CRAFT was short of the ingots that were sitting in his pack as ore.
+bool Runner::DoSmelt(Client& client, const Observation& obs) {
+    if (client.ActionBusy()) return false;
+
+    const u32 ore = FindAny(client, kIronOre, 4);
+    if (!ore) {
+        LogLine("smelt: no ore in the pack to melt");
+        smeltStartedMs_ = 0;
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
+    }
+
+    // DID THE LAST DOUBLE-CLICK LAND? The pack is the only honest witness.
+    // Both outcomes are clilocs -- 1044270 on success, craft_smelt_fail on a
+    // failed roll -- and 0xC1 is an explicit no-op in this client, so there is
+    // nothing to read in the journal. Counting metal is the truth. This is the
+    // same reasoning DoCraft states for inscription.
+    const i32 metal = market::QtyOf(obs.pack, "i_ingot_iron");
+    if (smeltStartedMs_ != 0 && metal > smeltIngotsBefore_) {
+        LogLine("smelt: +%d ingots (%d in the pack)", metal - smeltIngotsBefore_,
+                metal);
+        planner_.NoteProgress();
+        if (!state_.memory.HasEvent("first_smelt")) {
+            state_.memory.NoteEvent("first_smelt", "i_ingot_iron", "", obs.x,
+                                    obs.y, obs.nowMs);
+        }
+    }
+    smeltIngotsBefore_ = metal;
+
+    // A FORGE WITHIN TWO TILES, or go and find one.
+    //
+    // FROM THE MAP, NOT FROM THE ITEM LIST. sphereworld.scp and
+    // spherestatics.scp contain ZERO forges between them -- every forge here
+    // is original UO map content in statics0.mul, so the server never sends
+    // one as an item and the first version of this, which asked
+    // FindWorldItemByGraphic, stood inside a smithy reporting "no forge within
+    // 2 tiles" three times and gave up.
+    Client::TreeHit forgeTile;
+    const bool sawForge = client.NearestForge(obs.x, obs.y, 24, &forgeTile);
+    const i32 forgeDist =
+        sawForge ? TileDist(obs.x, obs.y, forgeTile.x, forgeTile.y) : 0;
+
+    if (sawForge && forgeDist > kForgeReach) {
+        if (client.TravelBusy()) return false;
+        LogLine("smelt: forge at %d,%d is %d tiles off -- stepping up to it",
+                forgeTile.x, forgeTile.y, forgeDist);
+        travelInFlight_ =
+            client.TravelToPoint(forgeTile.x, forgeTile.y, kForgeReach, "forge");
+        nextActionMs_ = obs.nowMs + 2000;
+        return false;
+    }
+
+    if (!sawForge) {
+        if (client.TravelBusy()) return false;
+        if (!travelInFlight_) {
+            // Forges stand in smithies, and the atlas files smithies -- and
+            // the weaponsmiths beside them -- under `blacksmith`.
+            LogLine("smelt: carrying %d ore with no forge in reach -- walking "
+                    "to a smithy", market::QtyOf(obs.pack, "i_ore_iron"));
+            travelInFlight_ = client.TravelToService(
+                wm::Service::Blacksmith, HomeOrNearest(state_.homeCity));
+            if (!travelInFlight_) {
+                LogLine("goal_blocked=SMELT reason=\"%s\" (%s)",
+                        faucet::RefusalName(faucet::Refusal::VendorUnreachable),
+                        client.TravelFailureText());
+                planner_.NoteAttempt(obs.nowMs);
+                planner_.Cooldown(GoalKind::Smelt, obs.nowMs + 60000);
+                planner_.Finish(false, "no forge reachable", obs.nowMs);
+                return false;
+            }
+            nextActionMs_ = obs.nowMs + 2000;
+            return false;
+        }
+        // Arrived, but the forge is not within the shard's two tiles. Say so
+        // plainly rather than clicking into the void -- a smithy whose forge
+        // cannot be stood next to is worth knowing about.
+        travelInFlight_ = false;
+        if (++smeltTrips_ >= 3) {
+            LogLine("smelt: %d trips to a smithy and no forge within %d tiles "
+                    "-- giving up for now", smeltTrips_, kForgeReach);
+            smeltTrips_ = 0;
+            planner_.Cooldown(GoalKind::Smelt, obs.nowMs + 120000);
+            planner_.Finish(false, "arrived but no forge in reach", obs.nowMs);
+            return false;
+        }
+        LogLine("smelt: at the smithy but no forge within %d tiles (trip %d)",
+                kForgeReach, smeltTrips_);
+        nextActionMs_ = obs.nowMs + 3000;
+        return false;
+    }
+
+    smeltTrips_ = 0;
+    travelInFlight_ = false;
+    LogLine("smelt: melting ore at the forge (%d ore, %d ingots so far)",
+            market::QtyOf(obs.pack, "i_ore_iron"), metal);
+    client.ActionUseObject(ore);
+    smeltStartedMs_ = obs.nowMs;
+    planner_.NoteAttempt(obs.nowMs);
+    nextActionMs_ = obs.nowMs + 2500;
     return false;
 }
 
@@ -6712,10 +6883,18 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
 //   ON=@PreStart reads SRC.WEAPON.USESCUR -- the pickaxe must be WIELDED,
 //     not merely carried, and it wears out with use
 //
-// WHICH TILE IS ROCK IS THE SERVER'S JUDGEMENT. Rather than reimplement
-// tiledata classification, this swings at ground near the character and learns
-// what gets refused -- the same shape DoFish uses for water, and for the same
-// reason: the server is the authority and its refusals are free information.
+// WHICH TILE IS ROCK IS THE SERVER'S JUDGEMENT, AND WE NOW MIRROR IT INSTEAD
+// OF PROBING FOR IT. Swing-and-learn sounded humble but was wrong at both
+// ends: the "unwalkable == rock" pre-filter nominated the RIVER beside the
+// Minoc bridge (water is unwalkable too), and the ring-of-8 fallback swung at
+// roads mid-journey -- 78 identical "Try mining elsewhere" refusals at
+// (2540,503) in one run. The engine's actual gate is knowable from source:
+// CheckNaturalResource(pt, IT_ROCK) demands the struck tile ITSELF be
+// rock-typed land or a t_rock static (Source-X CWorldMap.cpp:52,721,781-785),
+// where "rock-typed" is the shard's own [TYPEDEF t_rock] tables -- so
+// Client::RockAt reads the same muls against the same tables, and refusals
+// are kept only as per-tile memory (a vein rolled mr_nothing stays barren for
+// REGEN=10h, core/regionresources.scp:40-42).
 bool Runner::DoMine(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
@@ -6748,6 +6927,105 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         return false;
     }
 
+    // Answer the cursor the skill arms -- like a classic client click on what
+    // the player SEES. A cave floor is a STATIC and a static reply carries
+    // its graphic; mountainside is rock land and gets a ground reply. Both
+    // carry the ROCK'S OWN z (NearestMiningSpot filled it), not the
+    // character's: the face of a mountain is well above the boots of the
+    // miner striking it, and the engine range check is against m_Act_p as
+    // sent (CCharSkill.cpp:1424-1441).
+    if (mineCursorPending_) {
+        if (client.TargetActive()) {
+            if (mineGraphic_ != 0) {
+                client.ActionTargetStatic(mineX_, mineY_, mineZ_,
+                                          mineGraphic_);
+            } else {
+                client.ActionTargetGround(mineX_, mineY_, mineZ_);
+            }
+            mineCursorPending_ = false;
+            // The attempt is timed from the answer, not the double-click:
+            // the strokes start now.
+            mineSwungMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + kMinePollMs;
+            return false;
+        }
+        if (obs.nowMs - mineSwungMs_ > 6000) mineCursorPending_ = false;
+        return false;
+    }
+
+    // A SWING IS IN FLIGHT: WAIT FOR THE VERDICT, DO NOT SWING OVER IT.
+    // Mining is multi-stroke: SKTRIG_START rolls 2-6 strokes
+    // (CCharSkill.cpp:1463) at DELAY=1.6s each (skill45_mining.scp), so an
+    // attempt legitimately takes up to ~10s of silence before ANY journal
+    // line. The old 2.5s re-swing restarted the skill mid-strokes every
+    // single time -- an attempt never once ran to completion, which is why
+    // whole sessions produced swings and no ore.
+    if (mineSwungMs_ != 0) {
+        // Verdicts about the TILE: dead-list it and move the aim.
+        static const char* kBadTile[] = {
+            "try mining elsewhere",           // MINING_1: not rock, or the
+                                              //   vein rolled mr_nothing
+            "there is nothing here to mine",  // MINING_2: vein exhausted
+            "there is no ore here to mine",   // MINING_3
+            "try mining in rock",             // MINING_4
+            "that is too far away",           // positioning slip; re-aim
+            // MINING_LOS (CCharSkill.cpp:1442-1444): the last gate before
+            // the resource roll. Seen live at the Minoc mine mouth: the
+            // nearest rock by ring order was the cliff at z=34 over the z=0
+            // path, and its top is not visible from its foot. Dead-list it
+            // and the z-aware picker finds the cave floor instead.
+            "no line of sight to that location",
+        };
+        bool resolved = false;
+        for (const char* line : kBadTile) {
+            if (client.JournalSaidSince(line, mineJournalMs_)) {
+                LogLine("mine: %d,%d refused (\"%s\") -- marking it dead",
+                        mineX_, mineY_, line);
+                deadTargets_.emplace_back(mineX_, mineY_);
+                if (deadTargets_.size() > 32)
+                    deadTargets_.erase(deadTargets_.begin());
+                mineRoam_ = true;   // this vein is done; wander before rescanning
+                resolved = true;
+                break;
+            }
+        }
+        // @Fail is a verdict about the SKILL ROLL, not the tile ("You loosen
+        // some rocks but fail to find any useable ore.",
+        // skill45_mining.scp:43). The tile stays live -- dead-listing it here
+        // is how a low-skill miner talks himself out of a perfectly good
+        // vein. Swing at it again.
+        if (!resolved &&
+            client.JournalSaidSince("fail to find any useable ore",
+                                    mineJournalMs_)) {
+            LogLine("mine: failed the roll at %d,%d -- that is how gains "
+                    "happen; striking again", mineX_, mineY_);
+            resolved = true;
+        }
+        if (!resolved && client.JournalSaidSince("You put", mineJournalMs_)) {
+            LogLine("mine: ORE at %d,%d", mineX_, mineY_);
+            state_.memory.NoteResource("ore", mineX_, mineY_, mineZ_, true,
+                                       obs.nowMs);
+            planner_.NoteProgress();
+            resolved = true;
+        }
+        if (!resolved) {
+            if (obs.nowMs - mineSwungMs_ < kMineResolveMs) {
+                nextActionMs_ = obs.nowMs + kMinePollMs;
+                return false;   // still stroking -- leave the skill alone
+            }
+            LogLine("mine: no verdict from %d,%d in %ds -- moving on",
+                    mineX_, mineY_, (int)(kMineResolveMs / 1000));
+        }
+        mineSwungMs_ = 0;
+    }
+
+    // NEVER PICK TARGETS MID-JOURNEY. The bridge screenshots came from
+    // exactly this: travel to the mine was still walking its legs when the
+    // old code scanned from wherever the character happened to be and stopped
+    // him mid-span to swing at the river. En route, there is nothing for this
+    // goal to do but wait.
+    if (client.TravelBusy() || client.GotoBusy()) return false;
+
     // GO TO THE ROCK FIRST. "first he needs to go to mining area" (project
     // owner, 2026-08-29).
     //
@@ -6756,9 +7034,9 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // for "is this a mining town" and far too loose for "can I swing here":
     // Corwyn stood in Minoc hitting ordinary ground and was told "Try mining
     // elsewhere" every time. Walk into the area, then swing.
-    if (!client.TravelBusy()) {
+    {
         const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
-        if (d > kMineReach && !mineCursorPending_) {
+        if (d > kMineReach) {
             if (++mineTrips_ > kMaxMineTrips) {
                 LogLine("goal_failed=MINE reason=\"could not reach a mining "
                         "area in %d trips\"", kMaxMineTrips);
@@ -6776,143 +7054,79 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         mineTrips_ = 0;
     }
 
-    // Answer the cursor the skill arms.
-    if (mineCursorPending_) {
-        if (client.TargetActive()) {
-            client.ActionTargetGround(mineX_, mineY_, obs.z);
-            mineCursorPending_ = false;
-            nextActionMs_ = obs.nowMs + 3000;
-            return false;
-        }
-        if (obs.nowMs - mineSwungMs_ > 6000) mineCursorPending_ = false;
-        return false;
-    }
-
-    // Did the last swing say anything? Sphere answers a bad tile plainly.
-    if (mineSwungMs_ != 0) {
-        static const char* kNoOre[] = {
-            "no ore here", "can't mine that", "cannot mine that",
-            "try mining in rock", "loosen some rocks",
-            // What this shard actually answers for a tile that is not rock.
-            "try mining elsewhere", "that is too far away",
-        };
-        for (const char* line : kNoOre) {
-            if (client.JournalSaidSince(line, mineJournalMs_)) {
-                LogLine("mine: %d,%d gave nothing (\"%s\") -- trying elsewhere",
-                        mineX_, mineY_, line);
-                deadTargets_.emplace_back(mineX_, mineY_);
-                if (deadTargets_.size() > 32)
-                    deadTargets_.erase(deadTargets_.begin());
-                break;
-            }
-        }
-        if (client.JournalSaidSince("You put", mineJournalMs_)) {
-            LogLine("mine: struck ore at %d,%d", mineX_, mineY_);
-            state_.memory.NoteResource("ore", mineX_, mineY_, obs.z, true,
-                                       obs.nowMs);
-            planner_.NoteProgress();
-        }
-    }
-
-    // The next tile in the ring that has not already refused us. RANGE=2, so
-    // the ring is two tiles out.
-    // ADJACENT TILES, NOT THE RING AT TWO.
-    //
-    // skill45_mining.scp declares RANGE=2 and I read that as "target a tile
-    // two away". The server disagrees -- "That is too far away" -- so the rock
-    // a character can actually strike is the tile beside it. A player mines
-    // the wall in front of them.
-    static const int kdx[] = {1, 1, 0, -1, -1, -1, 0, 1};
-    static const int kdy[] = {0, 1, 1, 1, 0, -1, -1, -1};
-    // WALK TO A ROCK FACE FIRST.
+    // FIND GENUINE ROCK, walk to its side if need be, and strike it.
     //
     // The resource area's recorded position is a region CENTROID and a
     // centroid can be anything -- Corwyn's was a wooden bridge over water, and
     // the owner sent a screenshot of him standing on it swinging at planks.
-    // Being "in the mining area" is not being at the rock.
-    //
-    // So find an unwalkable tile with a walkable neighbour, stand on the
-    // neighbour, and strike the rock. That is what the picture shows a player
-    // would do: the stone was twenty tiles up the bank.
-    if (!client.TravelBusy() && !mineCursorPending_) {
-        i32 sx = 0, sy = 0, rx = 0, ry = 0;
-        const bool haveFace =
-            client.NearestRockFace(obs.x, obs.y, obs.z, 24, &sx, &sy, &rx, &ry);
-        if (haveFace && TileDist(obs.x, obs.y, rx, ry) > 2) {
-            LogLine("mine: the rock is at %d,%d, %d tiles off -- standing at "
-                    "%d,%d to reach it", rx, ry,
-                    TileDist(obs.x, obs.y, rx, ry), sx, sy);
-            client.ActionGoto(sx, sy);
-            nextActionMs_ = obs.nowMs + 2500;
-            return false;
-        }
-        // STRIKE ONLY WHEN ACTUALLY BESIDE IT. The walk is issued and the
-        // next tick came round before the character had arrived, so it swung
-        // at rock still several tiles off and the server said "That is too far
-        // away" -- six times in one outing. The engine wants a target at least
-        // 1 and at most RANGE tiles off (CCharSkill.cpp:1432-1441), so the
-        // distance to the ROCK is the thing to check, not the distance to the
-        // spot we meant to stand on.
-        const i32 toRock = haveFace ? TileDist(obs.x, obs.y, rx, ry) : 99;
-        if (haveFace && toRock >= 1 && toRock <= 2) {
-            mineX_ = rx; mineY_ = ry;
-            LogLine("mine: striking the rock at %d,%d (%d tiles)", rx, ry,
-                    toRock);
-            mineJournalMs_ = client.JournalNowMs();
-            mineSwungMs_ = obs.nowMs;
-            mineCursorPending_ = true;
-            client.ActionUseObject(pick);
-            nextActionMs_ = obs.nowMs + 2500;
-            return false;
-        }
+    // Being "in the mining area" is not being at the rock, and "unwalkable" is
+    // not rock (the river was unwalkable too). NearestMiningSpot mirrors the
+    // server's own rock test (see Client::RockAt) and carries the dead list so
+    // a refused tile is never nominated twice -- the previous build re-picked
+    // (2540,503) 78 times because the primary path never consulted it.
+    // ROAM THE MINE, DON'T CAMP ITS MOUTH. "there is more space in the mine
+    // dont only mine at the entrance" (project owner, 2026-08-29). Scanning
+    // nearest-first from the character's boots always re-nominates the rock
+    // beside the last vein, so a miner would chew along the entrance one tile
+    // at a time. When a vein dies, jitter the scan origin up to 8 tiles (the
+    // low bits of the clock are noise enough for a stroll, and the dead-list
+    // already stops him returning to worked-out ground); the walk to the new
+    // stand tile is the wander itself. A jitter that lands where no rock is
+    // found falls back to scanning from where he stands.
+    i32 scanX = obs.x, scanY = obs.y;
+    if (mineRoam_) {
+        scanX += (i32)(obs.nowMs % 17) - 8;
+        scanY += (i32)((obs.nowMs / 17) % 17) - 8;
+        mineRoam_ = false;
+    }
+    Client::MiningSpot spot;
+    if (!client.NearestMiningSpot(scanX, scanY, obs.z, kMineScanRadius, &spot,
+                                  &deadTargets_) &&
+        !client.NearestMiningSpot(obs.x, obs.y, obs.z, kMineScanRadius, &spot,
+                                  &deadTargets_)) {
+        LogLine("mine: no mineable rock within %d tiles of %d,%d -- moving on",
+                kMineScanRadius, obs.x, obs.y);
+        deadTargets_.clear();
+        planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
+        planner_.Finish(false, "no rock in reach", obs.nowMs);
+        return false;
     }
 
-    // TWO PASSES: the rock first, then anything left.
-    //
-    // Ore sits inside mountain and cave walls, and those are precisely the
-    // tiles a character CANNOT walk onto. Aiming at open ground is how Corwyn
-    // spent a session being told "Try mining elsewhere" -- he was standing on
-    // a BRIDGE (the owner watched him do it), swinging at the road.
-    //
-    // The second pass keeps the old behaviour so a spot where the walkability
-    // data disagrees with the server is still tried rather than skipped.
-    for (int pass = 0; pass < 2; ++pass) {
-    for (int i = 0; i < 8; ++i) {
-        const int idx = (mineRing_ + i) % 8;
-        const i32 tx = obs.x + kdx[idx], ty = obs.y + kdy[idx];
-        if (pass == 0 && client.TileIsWalkable(tx, ty, obs.z)) continue;
-        bool dead = false;
-        for (usize k = 0; k < deadTargets_.size(); ++k)
-            dead = dead || (deadTargets_[k].first == tx &&
-                            deadTargets_[k].second == ty);
-        if (dead) continue;
-        mineRing_ = (idx + 1) % 8;
-        mineX_ = tx; mineY_ = ty;
-        LogLine("mine: swinging at %d,%d (%s)", tx, ty,
-                pass == 0 ? "rock" : "any tile left");
-        mineJournalMs_ = client.JournalNowMs();
-        mineSwungMs_ = obs.nowMs;
-        mineCursorPending_ = true;
-        // USE THE PICKAXE, DO NOT INVOKE THE SKILL.
-        //
-        // ActionUseSkill(kMining) is answered by Sphere with "There is no such
-        // skill. Please tell support you saw this" -- thirty times in one
-        // session, which is what "swinging" amounted to. A gathering skill is
-        // not requested by id; it is what the TOOL does. Double-clicking the
-        // pickaxe is what arms the "Where would you like to mine?" cursor that
-        // skill45_mining.scp declares, and DoFish has always done exactly this
-        // with the pole.
-        client.ActionUseObject(pick);
+    // STRIKE ONLY WHEN ACTUALLY BESIDE IT. The engine wants the target at
+    // least 1 and at most RANGE=2 tiles off (CCharSkill.cpp:1432-1441,
+    // skill45_mining.scp RANGE=2); further out, walk to the vetted stand tile
+    // and let the NEXT tick re-measure from wherever the walk actually ended.
+    const i32 toRock = TileDist(obs.x, obs.y, spot.rockX, spot.rockY);
+    if (toRock < 1 || toRock > 2) {
+        LogLine("mine: the rock is at %d,%d, %d tiles off -- standing at "
+                "%d,%d to reach it", spot.rockX, spot.rockY, toRock,
+                spot.standX, spot.standY);
+        client.ActionGoto(spot.standX, spot.standY);
         nextActionMs_ = obs.nowMs + 2500;
         return false;
     }
-    }
 
-    LogLine("mine: nothing within reach of %d,%d yields ore -- moving on",
-            obs.x, obs.y);
-    deadTargets_.clear();
-    planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
-    planner_.Finish(false, "no rock in reach", obs.nowMs);
+    mineX_ = spot.rockX;
+    mineY_ = spot.rockY;
+    mineZ_ = spot.rockZ;
+    mineGraphic_ = spot.rockGraphic;
+    LogLine("mine: striking the rock at %d,%d,%d (%s, %d tiles)",
+            mineX_, mineY_, (int)mineZ_,
+            mineGraphic_ ? "cave floor" : "rock face", toRock);
+    mineJournalMs_ = client.JournalNowMs();
+    mineSwungMs_ = obs.nowMs;
+    mineCursorPending_ = true;
+    // USE THE PICKAXE, DO NOT INVOKE THE SKILL.
+    //
+    // ActionUseSkill(kMining) is answered by Sphere with "There is no such
+    // skill. Please tell support you saw this" -- thirty times in one
+    // session, which is what "swinging" amounted to. A gathering skill is
+    // not requested by id; it is what the TOOL does. Double-clicking the
+    // pickaxe is what arms the "Where would you like to mine?" cursor that
+    // skill45_mining.scp declares, and DoFish has always done exactly this
+    // with the pole.
+    client.ActionUseObject(pick);
+    nextActionMs_ = obs.nowMs + 2500;
     return false;
 }
 

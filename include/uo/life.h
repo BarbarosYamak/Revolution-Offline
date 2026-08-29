@@ -626,6 +626,11 @@ enum class NeedKind : u8 {
     NeedOre,
     // AN ANIMAL WORTH TAMING. A tamer with no pet is a tamer in name only.
     NeedPet,
+    // ORE IN THE PACK AND A FORGE SOMEWHERE. The step between digging and
+    // smithing, and it did not exist: Corwyn mined all session and the ore
+    // just accumulated, because nothing in the life could turn it into metal.
+    // "it didnt smelt iron ore" (project owner, 2026-08-29).
+    NeedSmelt,
     Count,
 };
 
@@ -758,6 +763,11 @@ enum class GoalKind : u8 {
     // Wear the best this class is allowed and strong enough for, and buy a
     // piece for an empty slot. Checked constantly, not once at creation.
     UpgradeGear,
+    // Turn ore into ingots at a forge. NOT a menu craft: the shard smelts by
+    // double-clicking the ore within 2 tiles of a t_forge (type_ore.scp
+    // @dclick), which is why walking the crafting menu could never have done
+    // it and why mine -> smelt -> smith stopped dead at the first arrow.
+    Smelt,
     IdleBriefly,
     Count,
 };

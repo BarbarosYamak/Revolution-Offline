@@ -270,7 +270,8 @@ const std::vector<Recipe>& Table() {
     // goes through the Cooking menu with a fire in reach, exactly as the
     // itemdef says -- SKILLMAKE=Cooking 0.0, t_cooking.
     {"i_fish_cut_cooked", 1, Provenance::PlayerCrafted, Station::Fire,
-     Tool::None, kCooking, 0, kNoSkill, 0, {{"i_fish_cut_raw", 1}},
+     Tool::None, kCooking, 0, kNoSkill, 0,
+     {{"i_fish_cut_raw", 1}, {"i_kindling", 1}},
      "SCRIPT i_fish_cut_cooked RESOURCES=1 i_fish_cut_raw, "
      "SKILLMAKE=Cooking 0.0,t_cooking; ENGINE CCharUse.cpp:294 Use_Kindling "
      "-> Skill_UseQuick(SKILL_CAMPING) -> ITEMID_CAMPFIRE 0x0de3"},

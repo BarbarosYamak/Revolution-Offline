@@ -31,6 +31,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedGear:      return "NeedGear";
         case NeedKind::NeedOre:       return "NeedOre";
         case NeedKind::NeedPet:       return "NeedPet";
+        case NeedKind::NeedSmelt:     return "NeedSmelt";
         case NeedKind::NeedCraft:     return "NeedCraft";
         case NeedKind::Count:         break;
     }
@@ -635,14 +636,56 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // Being AT the rock is what a person weighs: the walk is already paid
         // for, the pickaxe is in hand, and there is nothing else this life
         // would rather be doing here.
-        const double here = obs.atWorkSite ? 0.65 : 0.45;
+        //
+        // A GLUT IS A REASON TO STOP. `here` used to be a bare constant, so a
+        // miner standing on ore mined for the whole session: the need never
+        // fell, CRAFT (0.50 x 130 = 65) could never outrank it (0.65 x 130 =
+        // 84.5), and Corwyn ended up holding 30 ingots he could neither smith
+        // nor sell -- an ingot is a material, and materials do not go to NPCs.
+        // "all these time it couldnt just mine smelt smith sell" (project
+        // owner, 2026-08-29, said twice).
+        //
+        // Ore and ingots are one stock because smelting is 1:1 (Production
+        // .cpp: i_ingot_iron <- {i_ore_iron, 1}). Twenty is five daggers at 4
+        // ingots each, or three short spears at 6 -- a batch worth walking to
+        // a forge with, rather than a token handful.
+        //
+        // It tapers to a floor, not to zero: if the forge turns out to be
+        // unreachable, mining is still better than standing still.
+        constexpr int kEnoughToSmith = 20;
+        constexpr double kMiningFloor = 0.15;
+        const int stock = QtyIn(obs.pack, "i_ore_iron") +
+                          QtyIn(obs.pack, "i_ingot_iron");
+        const double base = obs.atWorkSite ? 0.65 : 0.45;
+        const double glut = stock >= kEnoughToSmith
+                                ? 1.0
+                                : static_cast<double>(stock) / kEnoughToSmith;
+        const double here = base - (base - kMiningFloor) * glut;
         add(NeedKind::NeedOre, here, "ore",
             obs.atWorkSite
                 ? "standing at the rock with a pickaxe -- this is the job"
                 : "ore is this life's income and its Mining training",
-            Fmt("carrying %d at_work_site=%d", QtyIn(obs.pack, "i_ore_iron"),
+            Fmt("carrying %d ore+ingots at_work_site=%d", stock,
                 obs.atWorkSite ? 1 : 0),
             false);
+
+        // AND THE OTHER HALF OF THE SAME DECISION. Ore is not income; metal
+        // is. The mirror of NeedOre above: as the pack fills, digging matters
+        // less and melting matters more, and the crossover is what turns a
+        // miner into a smith for a while.
+        //
+        // Smelting is cheap to want and cheap to abandon -- the forge is in
+        // the same city as the bank and the smithy this life already visits.
+        const int ore = QtyIn(obs.pack, "i_ore_iron");
+        if (ore > 0) {
+            const double ready =
+                ore >= kEnoughToSmith
+                    ? 1.0
+                    : static_cast<double>(ore) / kEnoughToSmith;
+            add(NeedKind::NeedSmelt, 0.25 + 0.50 * ready, "ingots",
+                "ore is dead weight until a forge turns it into metal",
+                Fmt("carrying %d ore", ore), false);
+        }
     }
     // A PET. A tamer without one is a tamer in name only, and Cassia spent a
     // session exploring because nothing else in her life was actionable.

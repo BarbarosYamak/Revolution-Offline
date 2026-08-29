@@ -49,7 +49,15 @@ constexpr u16 kFishingPole[] = {0x0DBF, 0x0DC0};
 constexpr u16 kMortar     = 0x0E9B;             // i_mortar_pestle
 constexpr u16 kBottle     = 0x0F0E;             // i_bottle_empty
 constexpr u16 kSpellbook  = 0x0EFA;             // i_spellbook
-constexpr u16 kTongs[]    = {0x0FBB, 0x0FBC};   // i_tongs
+// THE SMITH TOOL IS A TYPE, NOT AN ITEM. Blacksmithing is gated on
+// TYPE=t_weapon_mace_smith, and i_tongs (0FBB/0FBC) and i_hammer_smith
+// (013E3, with 013E4 as its DUPEITEM flip) both carry it -- so either one in
+// hand satisfies the shard. Listing only the tongs meant a character holding
+// a perfectly good smith hammer still reported itself toolless and went
+// shopping. "you need smith hammer for blacksmith ... I think tinker sells
+// it" (project owner, 2026-08-29) -- and VENDOR_S_TINKER does sell all of
+// i_tongs, i_hammer, i_hammer_smith and i_hammer_sledge.
+constexpr u16 kSmithTool[] = {0x0FBB, 0x0FBC, 0x13E3, 0x13E4};
 constexpr u16 kBread[]    = {0x103B, 0x09EB};
 
 // -- M5.2: graphics for the eleven new archetypes, read off the runtime's
@@ -289,7 +297,7 @@ const std::vector<Profession>& All() {
             // The pickaxe is listed even though a new character cannot lift it:
             // the need model must SAY that, not hide it.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
-                       {"tongs",   V(kTongs, 2),   false}};
+                       {"tongs",   V(kSmithTool, 4),   false}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.35;      // a smith is not looking for a fight
             p.goldReserve = 500;
@@ -889,7 +897,7 @@ const std::vector<Profession>& All() {
             p.consumes = {"i_ore_iron", "i_log", "i_reag_black_pearl",
                           "i_reag_blood_moss", "i_reag_mandrake_root"};
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
-                       {"tongs",   V(kTongs, 2),   false},
+                       {"tongs",   V(kSmithTool, 4),   false},
                        {"spellbook", {kSpellbook}, false}};
             p.consumables = {Bandages(), Food()};
             p.riskTolerance = 0.40;
@@ -1029,7 +1037,7 @@ const std::vector<Profession>& All() {
             // told he lacks while standing next to a forest with an axe.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
                        {"hatchet", V(kHatchet, 2), true},
-                       {"tongs",   V(kTongs, 2),   false},
+                       {"tongs",   V(kSmithTool, 4),   false},
                        {"saw",     {kSaw},         false},
                        {"mortar",  {kMortar},      false}};
             p.consumables = {Bandages(), Food()};

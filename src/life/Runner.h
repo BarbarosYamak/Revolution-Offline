@@ -130,6 +130,7 @@ private:
     bool DoMakeBandages(Client& client, const Observation& obs);
     bool DoExplore(Client& client, const Observation& obs);
     bool DoMine(Client& client, const Observation& obs);
+    bool DoSmelt(Client& client, const Observation& obs);
     bool DoTameAnimal(Client& client, const Observation& obs);
     bool DoUpgradeGear(Client& client, const Observation& obs);
     bool MayWear(const ArmorPiece& a, const Observation& obs) const;
@@ -250,9 +251,24 @@ private:
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
     i32  toolTrips_ = 0;
-    i32  mineX_ = 0, mineY_ = 0, mineRing_ = 0;
+    // The rock currently being struck: position, the z of its visible
+    // surface, and 0 for rock land or the rock static's id (a cave floor is a
+    // static and is answered as one -- see DoMine's cursor reply).
+    i32  mineX_ = 0, mineY_ = 0;
+    // Smelting: when the last double-click went out, how much metal was in the
+    // pack before it, and how many fruitless trips to a smithy have been made.
+    i64  smeltStartedMs_ = 0;
+    i32  smeltIngotsBefore_ = 0;
+    i32  smeltTrips_ = 0;
+    i8   mineZ_ = 0;
+    u16  mineGraphic_ = 0;
     i64  mineSwungMs_ = 0, mineJournalMs_ = 0;
     bool mineCursorPending_ = false;
+    // Set when the current vein dies (dead-listed by a server refusal): the
+    // next scan starts from a jittered point so the miner works INTO the mine
+    // instead of camping its mouth -- "there is more space in the mine dont
+    // only mine at the entrance" (project owner, 2026-08-29).
+    bool mineRoam_ = false;
     i32  tameTrips_ = 0;
     i32  bankShouts_ = 0;
     i32  mineTrips_ = 0;
