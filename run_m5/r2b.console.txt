@@ -1,0 +1,158 @@
+[10:17:49.770] INFO  session 0: 127.0.0.1:2593 user='RevolutionWarrior01' char=Kaelen tag='r2b'
+[10:17:49.772] LOG   [r2b] event session_start: text log opened
+[10:17:49.772] LOG   [r2b] event net_connect_begin: connect 127.0.0.1:2593
+[10:17:49.772] INFO  [r2b] [net] connecting to 127.0.0.1:2593 ...
+[10:17:49.773] LOG   [r2b] event net_connected: connect 127.0.0.1:2593
+[10:17:49.773] INFO  [r2b] [net] connected.
+[10:17:49.773] INFO  [r2b] [seed] sent 0x7F000001 (plaintext)
+[10:17:49.773] LOG   [r2b] event seed_out: 0x7F000001 hex=7f000001
+[10:17:49.773] INFO  [life] loaded persistent state for Kaelen (1 places, 1 suppliers, 4 events, 0 prior sessions)
+[10:17:49.773] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[10:17:49.773] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[10:17:49.773] INFO  [r2b] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[10:17:49.797] INFO  [r2b] [0xA8] 1 server(s):
+[10:17:49.797] INFO  [r2b]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[10:17:49.812] INFO  [r2b] [0x8C] game server = 127.0.0.1:2593  seed=0x3996AFF7
+[10:17:49.812] LOG   [r2b] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3996AFF7
+[10:17:49.812] INFO  [r2b] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[10:17:49.812] LOG   [r2b] event relay_same_socket: no seed re-sent; 0x91 follows
+[10:17:49.813] INFO  [r2b] [0xB9] server features = 0x0005
+[10:17:49.813] INFO  [r2b] [0xA9] 5 slot(s) (populated 1):
+[10:17:49.813] INFO  [r2b]   [0] Kaelen
+[10:17:49.813] INFO  [r2b]   [1] <empty>
+[10:17:49.813] INFO  [r2b]   [2] <empty>
+[10:17:49.813] INFO  [r2b]   [3] <empty>
+[10:17:49.813] INFO  [r2b]   [4] <empty>
+[10:17:49.813] INFO  [r2b] [ui] playing slot 0 ('Kaelen')
+[10:17:49.828] INFO  [r2b] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:17:49.828] LOG   [r2b] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:17:49.828] INFO  [r2b] [STATE] dead (body 0x0192)
+[10:17:49.828] LOG   [r2b] event state_dead: server body change
+[10:17:49.828] LOG   [r2b] event death_location: at=(1384,1497,10) region=? via=body change
+[10:17:49.828] INFO  [r2b] [0x20] player @(1384,1497,10) facing=4
+[10:17:49.828] INFO  [r2b] [0x55] login complete — entering world
+[10:17:49.828] LOG   [r2b] event in_world: 0x55 received
+[10:17:49.828] INFO  [r2b] [backpack] opening 0x40015DF6
+[10:17:49.828] INFO  [r2b] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[10:17:49.828] INFO  [r2b] [chat ascii] System: There is 1 other player here.
+[10:17:49.828] INFO  [r2b] [chat ascii] System: Last logged: 2026/08/29 10:06:33
+[10:17:49.849] INFO  [r2b] [action] requesting the skill list
+[10:17:49.849] INFO  [life] in world; asked the server for the skill list
+[10:17:49.849] INFO  [r2b] [chat ascii] System: Your ghostly hand passes through the object.
+[10:17:52.433] INFO  [r2b] [bot] world data loaded (0 blacklisted spot(s)).
+[10:17:52.433] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[10:17:52.433] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[10:17:52.433] INFO  [life]   str          persisted=20         server=20         -> server value accepted
+[10:17:52.433] INFO  [life]   dex          persisted=25         server=25         -> server value accepted
+[10:17:52.433] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[10:17:52.433] INFO  [life]   skill_42     persisted=50.0       server=50.0       -> server value accepted
+[10:17:52.433] INFO  [life]   skill_27     persisted=50.0       server=50.0       -> server value accepted
+[10:17:52.433] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[10:17:52.433] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[10:17:52.433] INFO  [life]   skill_30     persisted=9.2        server=9.2        -> server value accepted
+[10:17:52.433] INFO  [life]   skill_5      persisted=9.5        server=9.5        -> server value accepted
+[10:17:52.433] INFO  [life]   position     persisted=1384,1497  server=1384,1497  -> server value accepted
+[10:17:52.433] INFO  [life]   alive        persisted=dead       server=dead       -> server value accepted
+[10:17:52.433] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[10:17:52.433] INFO  [r2b] [survival] on
+[10:17:52.433] LOG   [r2b] event survival_mode: on
+[10:17:52.435] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:17:52.500] INFO  [r2b] [ACTION] resurrect start
+[10:17:52.500] INFO  [r2b] [ACTION] resurrect: waiting for the server to raise us
+[10:17:52.500] INFO  [life] dead: walking to a healer (trip 1)
+[10:17:52.500] INFO  [r2b] [travel] Britain healer -> (1471,1611) r=5 from (1384,1497)
+[10:17:52.500] LOG   [r2b] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1384,1497)
+[10:17:52.500] INFO  [r2b] [travel] mode walk             usable   <- chosen
+[10:17:52.500] INFO  [r2b] [travel] mode moongate         no: dead characters cannot use gates
+[10:17:52.500] INFO  [r2b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[10:17:52.501] INFO  [r2b] [travel] mode runebook_recall  no: no runebook page for that destination
+[10:17:52.501] LOG   [r2b] event travel_mode: walk
+[10:17:52.501] INFO  [r2b] [travel] plan Britain healer: ok legs=4 ~152 tiles transit=0 nodes=33
+[10:17:52.501] INFO  [r2b] [chat ascii] System: You are a ghost
+[10:17:52.501] INFO  [r2b] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:17:52.501] LOG   [r2b] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[10:17:52.501] INFO  [r2b] [0x20] player @(1384,1497,10) facing=4
+[10:17:52.501] INFO  [r2b] [0x55] login complete — entering world
+[10:17:52.501] LOG   [r2b] event in_world: 0x55 received
+[10:17:52.501] INFO  [r2b] [backpack] opening 0x40015DF6
+[10:17:52.501] INFO  [r2b] [action] goto (1416,1528) from (1384,1497,10)
+[10:17:52.501] LOG   [r2b] event goto_start: target=(1416,1528) from=(1384,1497)
+[10:17:52.501] INFO  [r2b] [bot] running from (1384,1497,10) to (1416,1528)
+[10:17:52.501] INFO  [r2b] [bot] planning path to (1416,1528) in background
+[10:17:52.501] INFO  [r2b] [chat ascii] System: Your ghostly hand passes through the object.
+[10:17:52.562] INFO  [r2b] [bot] replan to (1416,1528): 40 steps in 2477.2us
+[10:18:04.857] INFO  [r2b] [bot] arrived at (1416,1528,28)
+[10:18:04.857] INFO  [r2b] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[10:18:04.857] LOG   [r2b] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[10:18:04.857] INFO  [r2b] [action] goto (1432,1560) from (1416,1528,28)
+[10:18:04.857] LOG   [r2b] event goto_start: target=(1432,1560) from=(1416,1528)
+[10:18:04.857] INFO  [r2b] [bot] running from (1416,1528,28) to (1432,1560)
+[10:18:04.857] INFO  [r2b] [bot] planning path to (1432,1560) in background
+[10:18:04.918] INFO  [r2b] [bot] replan to (1432,1560): 36 steps in 1003.2us
+[10:18:16.472] INFO  [r2b] [bot] arrived at (1432,1560,30)
+[10:18:16.472] INFO  [r2b] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[10:18:16.472] LOG   [r2b] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[10:18:16.472] INFO  [r2b] [action] goto (1448,1592) from (1432,1560,30)
+[10:18:16.472] LOG   [r2b] event goto_start: target=(1448,1592) from=(1432,1560)
+[10:18:16.472] INFO  [r2b] [bot] running from (1432,1560,30) to (1448,1592)
+[10:18:16.472] INFO  [r2b] [bot] planning path to (1448,1592) in background
+[10:18:16.533] INFO  [r2b] [bot] replan to (1448,1592): 46 steps in 4690.5us
+[10:18:25.777] INFO  [r2b] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[10:18:25.793] INFO  [r2b] [chat ascii] System: Opening door...
+[10:18:25.793] INFO  [r2b] [chat ascii] System: Your ghostly hand passes through the object.
+[10:18:32.415] INFO  [r2b] [bot] arrived at (1448,1592,20)
+[10:18:32.415] INFO  [r2b] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[10:18:32.415] LOG   [r2b] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[10:18:32.415] INFO  [r2b] [travel] avoiding 2 teleporter pad(s) on this leg
+[10:18:32.415] INFO  [r2b] [action] goto (1471,1611) from (1448,1592,20)
+[10:18:32.415] LOG   [r2b] event goto_start: target=(1471,1611) from=(1448,1592)
+[10:18:32.415] INFO  [r2b] [bot] running from (1448,1592,20) to (1471,1611,z20)
+[10:18:32.415] INFO  [r2b] [bot] planning path to (1471,1611) in background
+[10:18:32.476] INFO  [r2b] [bot] replan to (1471,1611): 47 steps in 10294.8us
+[10:18:35.206] INFO  [r2b] [bot] door ahead at (1457,1599,z20); OpenDoor before step
+[10:18:35.206] INFO  [r2b] [chat ascii] System: Opening door...
+[10:18:35.206] INFO  [r2b] [chat ascii] System: Your ghostly hand passes through the object.
+[10:18:44.827] INFO  [r2b] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[10:18:44.827] INFO  [r2b] [chat ascii] System: Opening door...
+[10:18:44.827] INFO  [r2b] [chat ascii] System: Your ghostly hand passes through the object.
+[10:18:46.850] INFO  [r2b] [travel] Britain healer ARRIVED at (1474,1611,20)
+[10:18:46.850] LOG   [r2b] event travel_done: label='Britain healer' ok=1 at=(1474,1611) legs=4 plans=1 why=''
+[10:18:47.664] INFO  [r2b] [bot] arrived at (1471,1611,20)
+[10:18:52.409] INFO  [r2b] [chat ascii] Natasha: Allow me to resurrect thee ghost. Thy time of true death has not yet come.
+[10:18:52.409] INFO  [r2b] [STATE] alive (body 0x0190)
+[10:18:52.409] LOG   [r2b] event state_resurrected: server body change
+[10:18:52.409] INFO  [r2b] [ACTION_RESULT] resurrect success (59909ms) character is alive again
+[10:18:52.409] LOG   [r2b] event action_result: resurrect success took=59909ms character is alive again
+[10:18:52.409] INFO  [r2b] [0x20] player @(1471,1611,20) facing=6
+[10:18:52.409] INFO  [life] goal_changed=GET_FOOD from=SURVIVE reason="GET_FOOD 62.5 superseded SURVIVE 0.0"
+[10:18:52.409] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[10:18:52.409] INFO  [life]   score=62.5
+[10:18:52.409] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[10:18:52.409] INFO  [life]   reason: food=0
+[10:18:52.409] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/20 bandages=0)
+[10:18:52.410] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[10:18:52.410] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 9.5 -> 100.0)
+[10:18:52.410] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 9.5 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[10:18:52.410] INFO  [life] food: looking for a provisioner (trip 1)
+[10:18:52.410] INFO  [r2b] [travel] Britain provisioner -> (1469,1668) r=5 from (1471,1611)
+[10:18:52.410] LOG   [r2b] event travel_start: label='Britain provisioner' target=(1469,1668) radius=5 from=(1471,1611)
+[10:18:52.410] INFO  [r2b] [travel] mode moongate         usable   <- chosen
+[10:18:52.410] INFO  [r2b] [travel] mode walk             usable
+[10:18:52.410] INFO  [r2b] [travel] mode loose_rune_recall no: no rune marked at that destination
+[10:18:52.410] INFO  [r2b] [travel] mode runebook_recall  no: no runebook page for that destination
+[10:18:52.410] LOG   [r2b] event travel_mode: moongate
+[10:18:52.410] INFO  [r2b] [travel] plan Britain provisioner: ok legs=3 ~112 tiles transit=0 nodes=35
+[10:18:52.410] INFO  [r2b] [survival] hp 0/20 (0%) -> rest
+[10:18:52.472] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[10:18:52.472] INFO  [r2b] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[10:18:52.472] LOG   [r2b] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[10:18:52.472] INFO  [r2b] [travel] avoiding 2 teleporter pad(s) on this leg
+[10:18:52.472] INFO  [r2b] [action] goto (1464,1640) from (1471,1611,20)
+[10:18:52.472] LOG   [r2b] event goto_start: target=(1464,1640) from=(1471,1611)
+[10:18:52.472] INFO  [r2b] [bot] running from (1471,1611,20) to (1464,1640)
+[10:18:52.472] INFO  [r2b] [bot] planning path to (1464,1640) in background
+[10:18:52.500] INFO  [r2b] [bot] replan to (1464,1640): 37 steps in 1604.2us
+[10:18:54.460] INFO  [r2b] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[10:18:54.460] INFO  [r2b] [chat ascii] System: Opening door...
+[10:18:55.687] INFO  [r2b] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[10:18:55.687] INFO  [r2b] [chat ascii] System: Opening door...

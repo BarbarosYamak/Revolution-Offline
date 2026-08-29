@@ -215,6 +215,9 @@ private:
     static constexpr i32 kMaxBankTrips = 4;
     i32  bankTrips_ = 0;
     // Bounded food errands, and a rest when there is no provisioner.
+    // A ghost walking to a healer. Bounded, like every other errand.
+    i32  ghostTrips_ = 0;
+    static constexpr i32 kMaxGhostTrips = 4;
     i32  foodTrips_ = 0;
     static constexpr i32 kMaxFoodTrips = 3;
     static constexpr i64 kNoFoodCooldownMs = 3 * 60 * 1000;

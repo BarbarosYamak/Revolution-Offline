@@ -1366,9 +1366,47 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // retry-inside-its-own-deadline fault as the bank, the vendor and the
         // trainer -- and it survived undetected precisely because nothing had
         // ever died to exercise it. "Never fired" and "broken" look identical.
+        // AND GO AND FIND A HEALER, because waiting does not work.
+        //
+        // ActionResurrectAccept only ANSWERS an offer the server has already
+        // made. A ghost standing in a field is never offered anything, so the
+        // previous version waited out a fifteen-minute deadline, failed the
+        // goal, was re-picked and waited again -- for the whole session.
+        // Kaelen died in a graveyard and LOGGED IN STILL DEAD on the next run
+        // (run_m5/r2a.console.txt: "needs considered: StayAlive(resurrection
+        // 1.00)" and nothing else, forever). That is the ghost trap the
+        // project already knew about from the other end: a character that dies
+        // somewhere hostile silently fails every later session.
+        //
+        // A player walks to a healer. So does this.
         if (client.ActionBusy()) return false;
         client.ActionResurrectAccept();
-        nextActionMs_ = obs.nowMs + 10000;
+
+        const u32 healer = client.NearestMobileWithTrade("healer");
+        if (healer) {
+            i32 hx = 0, hy = 0; i8 hz = 0;
+            if (client.MobilePosition(healer, &hx, &hy, &hz) &&
+                TileDist(obs.x, obs.y, hx, hy) > 1 && !client.TravelBusy()) {
+                LogLine("dead: a healer is here -- getting close enough to be "
+                        "raised");
+                travelInFlight_ = client.TravelToEntity(healer, 1);
+            }
+            nextActionMs_ = obs.nowMs + 4000;
+            return false;
+        }
+        if (!client.TravelBusy() && !travelInFlight_) {
+            if (++ghostTrips_ > kMaxGhostTrips) {
+                LogLine("dead: %d trips and no healer found; still a ghost",
+                        ghostTrips_ - 1);
+                ghostTrips_ = 0;
+                nextActionMs_ = obs.nowMs + 30000;
+                return false;
+            }
+            LogLine("dead: walking to a healer (trip %d)", ghostTrips_);
+            travelInFlight_ =
+                client.TravelToService(wm::Service::Healer, state_.homeCity.c_str());
+        }
+        nextActionMs_ = obs.nowMs + 5000;
         return false;
     }
 
