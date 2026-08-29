@@ -963,6 +963,11 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const bool wasActive = planner_.Current().active;
             if (planner_.Select(needs, obs, state_.memory, nowMs, &why)) {
                 session_.goalsAttempted++;
+                {
+                    const int gi = static_cast<int>(planner_.Current().kind);
+                    if (gi >= 0 && gi < static_cast<int>(GoalKind::Count))
+                        session_.goalPicks[gi]++;
+                }
                 if (wasActive) {
                     LogLine("goal_changed=%s from=%s reason=\"%s\"",
                             GoalKindName(planner_.Current().kind),
@@ -1115,6 +1120,41 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     session_.skillTenthsStart / 10.0, session_.skillTenthsEnd / 10.0,
                     session_.logsGathered, session_.deaths,
                     session_.placesLearned, session_.suppliersLearned);
+
+            // HOW THE DAY WAS SPENT, as one greppable line.
+            //
+            // R1's exit proof is "at least four goal families, none above half
+            // the picks", and that has to be checkable without reading fifty
+            // thousand lines by eye. Printing the shape of the day is also the
+            // only way the monotony ever became visible: p0gate10 looked like
+            // a healthy session until its goals were counted and turned out to
+            // be CRAFT / BUY_SUPPLIES / EARN_GOLD in a ring and nothing else.
+            {
+                i32 total = 0, families = 0, top = 0;
+                for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
+                    const i32 n = session_.goalPicks[i];
+                    if (n <= 0) continue;
+                    total += n;
+                    ++families;
+                    if (n > top) top = n;
+                }
+                std::string hist;
+                for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
+                    const i32 n = session_.goalPicks[i];
+                    if (n <= 0) continue;
+                    if (!hist.empty()) hist += " ";
+                    char cell[64];
+                    std::snprintf(cell, sizeof(cell), "%s=%d(%.0f%%)",
+                                  GoalKindName(static_cast<GoalKind>(i)), n,
+                                  total ? (100.0 * n / total) : 0.0);
+                    hist += cell;
+                }
+                const double topFrac = total ? (static_cast<double>(top) / total) : 1.0;
+                LogLine("session_goals families=%d picks=%d top=%.0f%% varied=%d | %s",
+                        families, total, topFrac * 100.0,
+                        (families >= 4 && topFrac <= 0.50) ? 1 : 0,
+                        hist.empty() ? "(none)" : hist.c_str());
+            }
 
             Checkpoint(client, nowMs, "clean logout");
             LogLine("logging out");

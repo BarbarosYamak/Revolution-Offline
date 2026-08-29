@@ -726,6 +726,15 @@ struct SessionSummary {
     i32 deaths = 0;
     i32 placesLearned = 0;
     i32 suppliersLearned = 0;
+    // HOW THE DAY WAS ACTUALLY SPENT, per goal family.
+    //
+    // R1 of the 2026-08-29 re-sequence asks for a rounded life and defines
+    // its exit proof as a histogram: at least four goal families, none
+    // above half the picks. That has to be printed as ONE line at session
+    // end so the check is a grep rather than an argument -- reading it out
+    // of a 50,000-line console log by eye is how "it looks varied enough"
+    // gets said about a session that ran three goals in a ring.
+    i32 goalPicks[static_cast<int>(GoalKind::Count)] = {};
     bool cleanLogout = false;
 };
 
