@@ -1,0 +1,37 @@
+# The fresh twenty, composed 2026-08-29. Replaces the ad-hoc fleet that grew
+# one account at a time and ended up 24 characters across five archetypes with
+# nobody who fought for a living.
+#
+# COMPOSED BY CONSTRUCTION, not by whoever was free, so that every economic
+# relationship the project needs actually has both ends present at once:
+#
+#   miner_smith  -> ingots            consumed by full_crafter, smith goods
+#   lumberjack   -> logs              consumed by full_crafter (spear = 6 ingots + 1 log)
+#   alchemist    -> heal potions      consumed by the four fighters (ALCHEMY 15.1,
+#                                     and NPCs stopped selling potions 18.08.2009,
+#                                     so the fighters have no other source)
+#   fighters     -> loot              sold; they are the alchemist's customers
+#   scribe       -> scrolls           the one proven NPC income on this shard
+#   tailor       -> cloth goods       no NPC buyer at all: forces player trade
+#
+# name	account	profession
+Brannoc	RevolutionFresh01	miner_smith
+Durnholde	RevolutionFresh02	miner_smith
+Tarath	RevolutionFresh03	lumberjack_swordsman
+Balthasar	RevolutionFresh04	lumberjack_swordsman
+Voris	RevolutionFresh05	alchemist
+Xanthe	RevolutionFresh06	alchemist
+Kaelen	RevolutionFresh07	fencer
+Torvald	RevolutionFresh08	macer
+Aldwin	RevolutionFresh09	archer
+Rhalvar	RevolutionFresh10	lumberjack_swordsman
+Ysolde	RevolutionFresh11	scribe
+Sabelle	RevolutionFresh12	scribe
+Ilyandra	RevolutionFresh13	mage
+Elvrin	RevolutionFresh14	mage
+Marta	RevolutionFresh15	tailor
+Bruin	RevolutionFresh16	full_crafter
+Corwin	RevolutionFresh17	full_crafter
+Beleth	RevolutionFresh18	fisher
+Nerys	RevolutionFresh19	tamer
+Kestrel	RevolutionFresh20	treasure_hunter
