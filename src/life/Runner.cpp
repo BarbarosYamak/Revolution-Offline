@@ -73,6 +73,24 @@ struct TrainerFor {
     wm::Service service;
 };
 const TrainerFor kTrainers[] = {
+    // THREE SKILLS PROFESSIONS ASK FOR AND NOBODY COULD TEACH.
+    //
+    // Parrying (fencer, macer, archer), Tailoring (full_crafter) and
+    // Cartography (treasure_hunter) are all marked viaTrainer in the
+    // catalogue and had no row here. TrainerForSkill returned null,
+    // trainerTrade_ stayed EMPTY, and the goal asked
+    // NearestMobileWithTrade("") -- which matches nothing, ever. Live:
+    // goal_failed=TRAIN_AT_NPC reason="no '' reachable after 3 trips",
+    // eight times in one six-bot run (run_m7/f6_*). The comment below this
+    // table has warned about exactly this failure since the fisher hit it.
+    //
+    // Trades chosen from who actually HAS the skill on this shard, not from
+    // generic UO: c_guild_warrior carries PARRYING={75.0 98.0}, the tailor
+    // guildmaster carries TAILORING, and the mapmaker carries
+    // CARTOGRAPHY={50.0 75.0} (c_human_guildmasters.scp, c_vendor_human.scp).
+    {rules::kParrying,        "warrior",     wm::Service::Blacksmith},
+    {rules::kTailoring,       "tailor",      wm::Service::Tailor},
+    {rules::kCartography,     "mapmaker",    wm::Service::GeneralVendor},
     {rules::kSwordsmanship,   "swordsman",   wm::Service::Blacksmith},
     {rules::kTactics,         "swordsman",   wm::Service::Blacksmith},
     {rules::kAnatomy,         "healer",      wm::Service::Healer},
