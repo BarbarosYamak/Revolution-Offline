@@ -1378,6 +1378,23 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         // project already knew about from the other end: a character that dies
         // somewhere hostile silently fails every later session.
         //
+        // WHAT KILLED US, recorded once. DeathRecord carries where and when
+        // but not who (PersonalKnowledge.h:44-52), so the only witness is the
+        // foe we were last fighting. Death is the strongest evidence a
+        // creature type can give about itself, and without this the warrior
+        // would walk back to the same lich next session having learned only
+        // that the graveyard is dangerous -- which it already knew.
+        if (!deathBlamed_) {
+            deathBlamed_ = true;
+            if (!currentFoeName_.empty()) {
+                LogLine("dead: blaming '%s' -- it is what we were fighting",
+                        currentFoeName_.c_str());
+                state_.memory.NoteCreatureOutcome(currentFoeName_.c_str(),
+                                                  kCreatureEvidenceDeath,
+                                                  obs.nowMs);
+            }
+        }
+
         // A player walks to a healer. So does this.
         if (client.ActionBusy()) return false;
         client.ActionResurrectAccept();
@@ -1410,6 +1427,9 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         return false;
     }
 
+    // Alive again: the next death is a new death, and a new verdict.
+    deathBlamed_ = false;
+
     std::vector<Client::HostileHit> hostiles;
     client.ScanHostiles(12, hostiles);
     if (hostiles.empty()) {
@@ -1437,6 +1457,14 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
         client.EnsurePeaceMode();
         state_.memory.NoteDanger(obs.x, obs.y, 18, hostiles.front().name.c_str(), 1.5,
                                  obs.nowMs);
+        // AND WHAT IT WAS, not just where it happened. A place cannot un-scare
+        // you, but a creature type can prove itself safe or dangerous, and
+        // "learn which graveyard mobs are safe and which are dangerous" is the
+        // owner's warrior loop. Fleeing at low health from THIS thing is the
+        // strongest evidence short of dying to it.
+        state_.memory.NoteCreatureOutcome(hostiles.front().name.c_str(),
+                                          kCreatureEvidenceNearDeathFlee,
+                                          obs.nowMs);
         if (!state_.memory.HasEvent("first_near_death")) {
             state_.memory.NoteEvent("first_near_death", hostiles.front().name.c_str(),
                                     "", obs.x, obs.y, obs.nowMs);
@@ -1470,6 +1498,10 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
 
     if (currentFoe_ != target->serial) {
         currentFoe_ = target->serial;
+        // The NAME as well as the serial. A serial dies with the corpse; the
+        // name is what a per-creature verdict is keyed on, and it is the only
+        // thing left to blame once we are a ghost.
+        currentFoeName_ = target->name;
         chaseBestDist_ = dist;
         chaseProgressMs_ = obs.nowMs;
         fightStartedMs_ = obs.nowMs;

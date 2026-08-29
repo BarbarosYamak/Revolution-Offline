@@ -216,6 +216,10 @@ private:
     i32  bankTrips_ = 0;
     // Bounded food errands, and a rest when there is no provisioner.
     // A ghost walking to a healer. Bounded, like every other errand.
+    // Who we were last fighting, by NAME, and whether this death has
+    // already been credited to it. Latched so one death is one verdict.
+    std::string currentFoeName_;
+    bool deathBlamed_ = false;
     i32  ghostTrips_ = 0;
     static constexpr i32 kMaxGhostTrips = 4;
     i32  foodTrips_ = 0;
