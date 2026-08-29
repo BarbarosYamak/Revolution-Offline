@@ -134,7 +134,7 @@ private:
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
-                       const char* what);
+                       const char* what, GoalKind owner);
     bool DoIdle(Client& client, const Observation& obs);
 
     RunnerConfig    cfg_;
@@ -239,6 +239,7 @@ private:
     // spellbook." Skill is not capability -- the book is.
     bool noCreateFoodSpell_ = false;
     i32  spellbookTrips_ = 0;
+    GoalKind buyTripsOwner_ = GoalKind::Count;
     // Set when the scribe -- the only seller that lets a spell be CHOSEN --
     // turns out to be unreachable or to stock nothing this book lacks. After
     // that the mage shop's random scroll is better than no scroll.

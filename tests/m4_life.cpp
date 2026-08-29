@@ -1587,9 +1587,19 @@ void TestFamilySatiationBreaksAMonotonousDay() {
     life::Planner p2;
     for (int i = 0; i < 30; ++i) p2.NoteRan(life::GoalKind::Bank, t0);
     const double up = p2.FamilySatiation(life::GoalKind::Bank, t0);
-    Check(up >= 0.55,
-          "a family that has monopolised the day yields at least ~60%");
-    Check(up <= 0.60 + 1e-9, "but the yielding is bounded");
+    // RAISED 2026-08-29 from 0.60 to 0.85, deliberately, to finish R1. At the
+    // old ceiling a family that had just run six times still kept 40% of its
+    // score, and against TRAIN_AT_NPC's weight of 150 that was enough to keep
+    // winning -- Maribel took 15 of 19 picks in Training and Halric 5 of 6.
+    // The damping was real and simply too gentle to change the outcome.
+    Check(up >= 0.80,
+          "a family that has monopolised the day yields hard -- ~85%, enough "
+          "that the turn actually passes to something else");
+    Check(up <= 0.85 + 1e-9,
+          "but the yielding is BOUNDED. It must never reach 1.0: a family "
+          "silenced completely could not come back even when it was the only "
+          "sensible thing left to do, and satiation is meant to produce a "
+          "rounded day, not an abandoned trade");
     // 240 * 0.72 = 172.8 upkeep, versus 110 * 0.4 = 44 for hunting.
     Check(172.8 * (1.0 - up) < 110.0 * 0.4 + 30.0,
           "which brings upkeep down near where hunting can reach it");

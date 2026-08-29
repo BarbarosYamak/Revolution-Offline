@@ -5816,11 +5816,26 @@ bool Runner::BookHasGraphic(Client& client, u32 book, u16 graphic) const {
 // "mage should also give priority to buy new spells not on the book" (project
 // owner) -- which is only possible at the scribe, so that is where this goes
 // first. Returns false while still working.
+// `owner` is the goal this purchase belongs to. It was hardcoded to
+// FillSpellbook, so when the gear and scissors paths reused this helper their
+// failures were logged as FILL_SPELLBOOK, cooled FILL_SPELLBOOK down, and
+// shared its trip counter -- which is why a fencer produced 1,932 identical
+// "buying armour" lines and a goal_failed=FILL_SPELLBOOK "no 'armorer'
+// reachable". Three errands wearing one name.
 bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                            const char* trade, wm::Service svc, u16 graphic,
-                           bool skipKnown, u16 qty, const char* what) {
+                           bool skipKnown, u16 qty, const char* what,
+                           GoalKind owner) {
     if (client.TravelBusy()) return false;
 
+    // THE TRIP COUNTER BELONGS TO THE ERRAND, not to this helper. Three goals
+    // share it, and without this a gear trip spent the spellbook's allowance
+    // and vice versa -- the fencer's 1,932 identical "buying armour" lines
+    // came out of exactly that confusion.
+    if (buyTripsOwner_ != owner) {
+        buyTripsOwner_ = owner;
+        spellbookTrips_ = 0;
+    }
     const u32 keeper = client.NearestShopkeeperWithTrade(trade);
     if (!keeper) {
         if (++spellbookTrips_ > kMaxSpellbookTrips) {
@@ -5839,11 +5854,10 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
             }
-            LogLine("goal_failed=FILL_SPELLBOOK reason=\"no '%s' reachable "
-                    "after 3 trips\"", trade);
-            planner_.Cooldown(GoalKind::FillSpellbook,
-                              obs.nowMs + kNoSpellbookCooldownMs);
-            planner_.Finish(false, "no scroll seller reachable", obs.nowMs);
+            LogLine("goal_failed=%s reason=\"no '%s' reachable after 3 trips\"",
+                    GoalKindName(owner), trade);
+            planner_.Cooldown(owner, obs.nowMs + kNoSpellbookCooldownMs);
+            planner_.Finish(false, "no seller reachable", obs.nowMs);
             return false;
         }
         LogLine("spellbook: looking for a '%s' to sell %s (trip %d)",
@@ -5913,12 +5927,10 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
-    LogLine("goal_failed=FILL_SPELLBOOK reason=\"this '%s' has no %s this "
-            "life still needs (%d of its scrolls are already in the book)\"",
-            trade, what, skipped);
-    planner_.Cooldown(GoalKind::FillSpellbook,
-                      obs.nowMs + kNoSpellbookCooldownMs);
-    planner_.Finish(false, "no unknown scrolls for sale", obs.nowMs);
+    LogLine("goal_failed=%s reason=\"this '%s' does not stock %s "
+            "(%d already known)\"", GoalKindName(owner), trade, what, skipped);
+    planner_.Cooldown(owner, obs.nowMs + kNoSpellbookCooldownMs);
+    planner_.Finish(false, "seller has none", obs.nowMs);
     return false;
 }
 
@@ -6098,7 +6110,8 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
             "(armor %d, needs str %d) from an armourer",
             want->graphic, want->armor, want->reqStr);
     BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
-                  want->graphic, false, 1, "a piece of armour");
+                  want->graphic, false, 1, "a piece of armour",
+                  GoalKind::UpgradeGear);
     return false;
 }
 
@@ -6207,7 +6220,8 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         // as a money problem, which is the thing that can actually change.
         if (obs.gold >= kScissorsMoney) {
             BuyScrollFrom(client, obs, "tailor", wm::Service::Tailor,
-                          kScissorsGraphic, false, 1, "a pair of scissors");
+                          kScissorsGraphic, false, 1, "a pair of scissors",
+                          GoalKind::MakeBandages);
             return false;
         }
         LogLine("goal_failed=MAKE_BANDAGES reason=\"no scissors and only %d "
@@ -6385,7 +6399,7 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
         // A spellbook itself: the mage shop sells them (SELL=i_spellbook),
         // and there is nothing to choose, so no reason to prefer a scribe.
         BuyScrollFrom(client, obs, "mage", wm::Service::Mage, kSpellbookGraphic,
-                      false, 1, "a spellbook");
+                      false, 1, "a spellbook", GoalKind::FillSpellbook);
         return false;
     }
 
@@ -6453,10 +6467,10 @@ bool Runner::DoFillSpellbook(Client& client, const Observation& obs) {
     // scroll is worth more than no scroll.
     if (scribeExhausted_) {
         BuyScrollFrom(client, obs, "mage", wm::Service::Mage, 0, true, 1,
-                      "a scroll");
+                      "a scroll", GoalKind::FillSpellbook);
     } else {
         BuyScrollFrom(client, obs, "scribe", wm::Service::Scribe, 0, true, 1,
-                      "a spell this book lacks");
+                      "a spell this book lacks", GoalKind::FillSpellbook);
     }
     return false;
 }

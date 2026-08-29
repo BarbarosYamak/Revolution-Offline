@@ -888,8 +888,19 @@ private:
     // genuinely lower-weighted kind of thing can win. BANK at 240 x 0.72 is
     // 173; TRAIN_COMBAT at 110 x 0.4 is 44, so nothing under a ~60% haircut
     // ever lets a fighter hunt -- which is why no bot has ever fought.
-    static constexpr double kFamilySatiationPerRepeat = 0.15;
-    static constexpr double kFamilySatiationMax = 0.60;
+    // RAISED 2026-08-29 to finish R1. At 0.15/0.60 a family that had just run
+    // six times still kept 40% of its score, and with TRAIN_AT_NPC weighted
+    // 150 against BANK's 60 that was more than enough to win again: Maribel
+    // spent 15 of 19 picks in Training, Halric 5 of 6. The damping was real
+    // and simply too gentle to change the outcome.
+    //
+    // 0.20 per repeat to a 0.85 ceiling means a family on its seventh
+    // consecutive turn is down to 15% of score, which genuinely hands the turn
+    // over. It decays across kSatiationMs either way, so a character comes
+    // back to training a few minutes later rather than abandoning it -- which
+    // is the difference between a rounded day and a distracted one.
+    static constexpr double kFamilySatiationPerRepeat = 0.20;
+    static constexpr double kFamilySatiationMax = 0.85;
     // How long a finished goal stays "fresh". Beyond this the damping is
     // gone entirely -- a character that banked ten minutes ago is perfectly
     // happy to bank again.
