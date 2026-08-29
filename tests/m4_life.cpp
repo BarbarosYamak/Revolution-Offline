@@ -1844,6 +1844,43 @@ void TestAGoalThatSucceedsAtNothingIsStopped() {
     Check(p.TakeSpinDetected() == life::GoalKind::Count,
           "reading the flag clears it, so it is reported exactly once");
 
+    // A GOAL THAT FAILS AT SIXTY MILLISECONDS IS THE SAME SPIN.
+    //
+    // The first version of the guard counted successes only, and the very next
+    // live run produced the failure-side instance: 746 x
+    // goal_failed=BUY_SUPPLIES "this 'mage' does not stock i_scroll_blank".
+    life::Planner f;
+    t = 3000000;
+    life::GoalKind failFlagged = life::GoalKind::Count;
+    for (int i = 0; i < 5; ++i) {
+        start(f, life::GoalKind::BuySupplies, t);
+        f.Finish(false, "this vendor does not stock it", t);
+        const life::GoalKind got = f.TakeSpinDetected();
+        if (got != life::GoalKind::Count) failFlagged = got;
+        t += 60;
+    }
+    Check(failFlagged == life::GoalKind::BuySupplies,
+          "repeated FAILURE with no progress is caught too -- from the "
+          "planner's seat it is the same thing as repeated empty success");
+    Check(f.Cooling(life::GoalKind::BuySupplies, t),
+          "and that goal is cooled off as well");
+
+    // IDLING IS EXEMPT. Its whole purpose is to achieve nothing, so counting
+    // it would flag the one goal that is working as designed -- which it did,
+    // three times in one session, before this exemption existed.
+    life::Planner idle;
+    t = 4000000;
+    for (int i = 0; i < 30; ++i) {
+        start(idle, life::GoalKind::IdleBriefly, t);
+        idle.Finish(true, nullptr, t);
+        Check(idle.TakeSpinDetected() == life::GoalKind::Count,
+              "idling is never reported as spinning, however long it goes on");
+        t += 60;
+    }
+    Check(!idle.Cooling(life::GoalKind::IdleBriefly, t),
+          "and is never cooled off -- it is the fallback when nothing else "
+          "can run, so disabling it would leave a character with no goal");
+
     // Real progress in the middle breaks the streak.
     life::Planner q;
     t = 2000000;

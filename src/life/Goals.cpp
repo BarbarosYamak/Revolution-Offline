@@ -462,8 +462,20 @@ constexpr i64 kSpinCooldownMs = 60000;
 
 void Planner::Finish(bool success, const char* why, i64 nowMs) {
     const int i = static_cast<int>(goal_.kind);
-    if (i >= 0 && i < static_cast<int>(GoalKind::Count)) {
-        if (success && goal_.progress == 0) {
+    // IDLING IS SUPPOSED TO ACHIEVE NOTHING. It is the one goal whose whole
+    // purpose is to pass a little time, so it completes with progress 0 every
+    // single time and tripped the backstop three times in one session. Exempt.
+    if (i >= 0 && i < static_cast<int>(GoalKind::Count) &&
+        goal_.kind != GoalKind::IdleBriefly) {
+        // FAILING AT SIXTY MILLISECONDS IS THE SAME SPIN AS SUCCEEDING AT IT.
+        //
+        // The first version of this guard counted successes only, and the very
+        // next run produced a failure-side instance: Ysolde logged
+        // goal_failed=BUY_SUPPLIES "this 'mage' does not stock i_scroll_blank"
+        // 746 times at 60ms intervals. The goal has a real bug either way, and
+        // from the planner's seat the two look identical -- a goal that
+        // terminates having changed nothing, over and over.
+        if (goal_.progress == 0) {
             if (++noopCompletions_[i] >= kNoopSpinLimit) {
                 Cooldown(goal_.kind, nowMs + kSpinCooldownMs);
                 spinDetected_ = goal_.kind;

@@ -267,6 +267,21 @@ u32 FindAny(Client& c, const u16* list, usize n) {
     return 0;
 }
 
+// IS THE OPEN SHOP WINDOW THE ONE WE ARE STANDING IN FRONT OF?
+//
+// It very often is not. A vendor offer persists after the goal that opened it
+// ends, so the next errand inherits somebody else's stock. Ysolde walked from
+// a baker to a mage, searched the BAKER's window for blank scrolls, and
+// concluded "this 'mage' does not stock i_scroll_blank" -- 746 times, at 60ms
+// intervals. The shop was real, the scroll was on its list
+// (VENDOR_S_MAGE_SHOP: SELL=i_scroll_blank,250), and the bot was reading the
+// wrong shop.
+//
+// Client::VendorOfferFrom() has always said whose offer it is. Nothing asked.
+bool OfferBelongsTo(const Client& c, u32 vendor) {
+    return vendor != 0 && c.VendorOfferFrom() == vendor && !c.VendorOffer().empty();
+}
+
 bool GraphicIsAny(u16 graphic, const u16* list, usize n) {
     for (usize i = 0; i < n; ++i) {
         if (graphic == list[i]) return true;
@@ -4460,6 +4475,19 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
     // A shop window is open: find the input in it and buy the shortfall.
+    //
+    // WHOSE window, though. An offer outlives the goal that opened it, so this
+    // loop used to search whatever shop was last visited. Ysolde walked from a
+    // baker to a mage and searched the BAKER's window for blank scrolls,
+    // failing 746 times with "this 'mage' does not stock i_scroll_blank" while
+    // standing in a mage shop that sells them.
+    if (!OfferBelongsTo(client, vendor)) {
+        LogLine("supplies: the open shop window is not this vendor's -- "
+                "asking '%s' for their own list", supplyTrade_.c_str());
+        client.ActionVendorOpen(vendor);
+        nextActionMs_ = obs.nowMs + 9000;
+        return false;
+    }
     const std::vector<u16> gfx = econ::GraphicsForItem(supplyItem_.c_str());
     for (const Client::VendorItem& v : client.VendorOffer()) {
         bool match = false;
@@ -5359,7 +5387,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         // one session, in front of a baker's full window. Every previous
         // "GET_FOOD failed" was this: the errand had no purchase in it at all,
         // so it could never once have succeeded, whichever vendor it asked.
-        if (!client.VendorOffer().empty()) {
+        if (OfferBelongsTo(client, keeper)) {
             for (const Client::VendorItem& v : client.VendorOffer()) {
                 if (!GraphicIsAny(v.graphic, kFood,
                                   sizeof(kFood) / sizeof(kFood[0])))
@@ -5455,7 +5483,7 @@ bool Runner::BuyFromMageShop(Client& client, const Observation& obs,
         return false;
     }
 
-    if (client.VendorOffer().empty()) {
+    if (!OfferBelongsTo(client, keeper)) {
         LogLine("spellbook: asking the mage to show %s", what);
         client.ActionVendorOpen(keeper);
         nextActionMs_ = obs.nowMs + 9000;
