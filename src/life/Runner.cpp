@@ -482,6 +482,10 @@ constexpr u16 kFishRawSteak = 0x097A;
 // How many turns of a never-failing self-use skill (Meditation) before the
 // planner is given another chance to choose. Small: the point is that other
 // needs get looked at, not that practice is discouraged.
+// How long to let a craft resolve before deciding it failed silently. Longer
+// than any single craft delay on this shard, short enough not to stall a
+// batch.
+constexpr i64 kCraftResolveMs = 8000;
 constexpr i32 kSelfPracticeBeforeRethink = 6;
 constexpr i32 kMaxGoldCarriedRt = 800;
 constexpr i32 kGoldWorthCarryingRt = 500;
@@ -5686,7 +5690,25 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         // trip, so a bad price cannot empty a character either.
         constexpr i32 kHardFloor = 100;      // never end a trip broke
         const i32 above = obs.gold - kHardFloor;
-        const i32 spendable = (above < obs.gold / 4) ? above : obs.gold / 4;
+
+        // BUY THE BATCH IN ONE GO. The quarter-purse cap was applied on every
+        // pass, so a life bought three bottles, then two, then one, shrinking
+        // as its own purse shrank -- three vendor trips for one errand:
+        //   the server took 36 gold for i_bottle_empty (purse 180 -> 144)
+        //   the server took 24 gold for i_bottle_empty (purse 144 -> 120)
+        //   the server took 12 gold for i_bottle_empty (purse 120 -> 108)
+        // "buying should be bulk as well not one buy one" (project owner,
+        // 2026-08-30).
+        //
+        // The quarter rule exists so an UNKNOWN price cannot empty a purse in
+        // one go, and that reasoning only holds while the price is unknown.
+        // Here the vendor has already quoted `unit`, so the exposure is known
+        // exactly -- the floor is the protection that matters, and it still
+        // stands. With a quoted price a life may spend everything above it.
+        const bool priceIsKnown = unit > 0;
+        const i32 spendable =
+            priceIsKnown ? above
+                         : ((above < obs.gold / 4) ? above : obs.gold / 4);
         if (unit > 0 && take * unit > spendable) take = spendable / unit;
         if (take <= 0) {
             // SAY WHAT IS BEING WAITED FOR, AND STAND DOWN SO IT CAN HAPPEN.
@@ -6326,6 +6348,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         craftMade_ += now - craftHadBefore_;
         craftHadBefore_ = now;
         craftMenuStep_ = 0;
+        craftAwaitingMs_ = 0;          // the thing we were waiting for arrived
         planner_.NoteProgress();
         LogLine("craft: made one %s (%d this sitting)", craftItem_.c_str(),
                 craftMade_);
@@ -6445,6 +6468,22 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
 
     if (client.ActionBusy()) return false;
 
+    // WAITING ON THE LAST ONE. The pack is the witness: either the count
+    // rises (handled above, which clears this) or the craft failed and the
+    // timeout releases us. Either way, do not start a second craft on top of
+    // the first.
+    if (craftAwaitingMs_ != 0) {
+        if (obs.nowMs - craftAwaitingMs_ < kCraftResolveMs) {
+            if (client.ActionBusy()) return false;
+            nextActionMs_ = obs.nowMs + 700;
+            return false;
+        }
+        LogLine("craft: no result from the last %s in %llds -- trying again",
+                craftItem_.c_str(),
+                static_cast<long long>(kCraftResolveMs / 1000));
+        craftAwaitingMs_ = 0;
+    }
+
     // --- walk the menu -----------------------------------------------------
     if (client.CraftMenuOpen()) {
         // READ THE MENU, DO NOT COUNT STEPS.
@@ -6495,7 +6534,23 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             return false;
         }
         LogLine("craft: chose '%s'", want);
-        nextActionMs_ = obs.nowMs + 2000;
+        // LET THE CRAFT FINISH BEFORE TOUCHING ANYTHING ELSE.
+        //
+        // Two seconds was shorter than the skill itself, so the next menu was
+        // opened while the previous item was still being made:
+        //   02:19:30.091 craft: chose '^Poison'
+        //   02:19:32.137 craft: making ... open the menu
+        //   02:19:32.615 System: You put the Poison in your pack.
+        // -- the re-open landed half a second BEFORE the potion existed.
+        // Sphere answers an interrupted craft with @SkillAbort, so this was
+        // racing the server for no gain. "you are not waiting to finish one
+        // poison" (project owner, 2026-08-30).
+        //
+        // craftAwaitingMs_ makes the wait explicit rather than a guessed
+        // delay: the pack is watched until the count rises, and the timeout
+        // below is only a floor under a craft that failed silently.
+        craftAwaitingMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 1000;
         return false;
     }
 

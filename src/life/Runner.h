@@ -281,6 +281,9 @@ private:
     // the batch command goes out once per sitting rather than once per item.
     // Consecutive turns spent on a self-use skill that cannot fail.
     i32  selfPracticeRuns_ = 0;
+    // When the current item was ordered from the craft menu, so the next one
+    // is not started on top of it.
+    i64  craftAwaitingMs_ = 0;
     bool makeLastIssued_ = false;
     bool craftCursorPending_ = false;
     i64  craftClickedMs_ = 0;
