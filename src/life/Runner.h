@@ -371,6 +371,9 @@ private:
     i64  trainAskedTickMs_ = 0;   // tick mark: how long have we waited
     i64  trainPaidMs_ = 0;
     i32  trainQuoted_ = 0;
+    // The purse before a lesson, so a fee that was taken can be told from
+    // one that was not. See DoTrainAtNpc.
+    i32  trainGoldBefore_ = 0;
     i32  trainSkillBefore_ = 0;
     // Sphere does not push a new skill number after training; a player's
     // client asks for one. Until it does, the old value is all we can see.

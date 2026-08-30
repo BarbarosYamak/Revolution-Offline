@@ -331,3 +331,17 @@ target_include_directories(activity_craft PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_craft COMMAND activity_craft)
+
+# --- Activities: choosing how to train --------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 18 and 20. A guildmaster sells a shortcut
+# to 30.0 and everything above that is earned by doing the thing. The ceiling
+# is PER-NPC, which is the fact Ysolde's session turned into "the skill is
+# unbuyable" when it only meant "not from him".
+add_executable(activity_train activity_train.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/TrainPlan.cpp)
+target_include_directories(activity_train PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_train COMMAND activity_train)

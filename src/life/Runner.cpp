@@ -4,6 +4,7 @@
 #include "uo/log.h"
 #include "uo/builders.h"
 #include "uo/faucets.h"
+#include "uo/interaction/progress.h"
 #include "uo/market.h"
 #include "uo/trade.h"
 #include "uo/combat.h"
@@ -4456,13 +4457,41 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             return false;
         }
         if (obs.nowMs - trainPaidMs_ > 15000) {
-            LogLine("training: paid %d for %s but the server still reports "
-                    "%.1f after 15s", trainQuoted_, rules::SkillName(skillId),
-                    have / 10.0);
-            state_.memory.NoteEvent("training_unverified",
-                                    rules::SkillName(skillId),
-                                    trainerTrade_.c_str(), obs.x, obs.y,
-                                    obs.nowMs);
+            // NAME WHICH FAILURE THIS IS (section 18). The pair of numbers
+            // answers it: the fee either left the purse or it did not, and
+            // the server's own skill value either moved or it did not.
+            life::Expectation want;
+            want.skillId = skillId;
+            want.skillBefore = trainSkillBefore_;
+            want.skillGainMin = 1;
+            want.goldBefore = trainGoldBefore_;
+            want.goldSpendMin = 1;
+            want.goldSpendMax = trainQuoted_;
+
+            life::Observed seen;
+            seen.skillNow = have;
+            seen.goldNow = obs.gold;
+
+            const life::ProgressCheck check = life::Verify(want, seen);
+            const bool feeTaken = check.goldDelta < 0;
+            LogLine("training: paid %d for %s -- %s (purse %+d, skill %+.1f) "
+                    "after 15s", trainQuoted_, rules::SkillName(skillId),
+                    check.reason, check.goldDelta, check.skillDelta / 10.0);
+            state_.memory.NoteEvent(
+                feeTaken ? "training_took_fee_taught_nothing"
+                         : "training_no_answer",
+                rules::SkillName(skillId), trainerTrade_.c_str(),
+                obs.x, obs.y, obs.nowMs);
+            if (feeTaken) {
+                // A TRAINER THAT TAKES THE FEE AND TEACHES NOTHING IS A FACT
+                // ABOUT THAT TRAINER. Write HIM off, not the skill -- the
+                // mistake that cost Ysolde Meditation entirely -- so the next
+                // lesson is bought from somebody else.
+                bool known = false;
+                for (u32 k : trainerSilent_)
+                    if (k == trainerSerial_) { known = true; break; }
+                if (!known && trainerSerial_) trainerSilent_.push_back(trainerSerial_);
+            }
             planner_.NoteAttempt(obs.nowMs);
             trainPaid_ = false;
             trainAsked_ = false;
@@ -4832,6 +4861,12 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     LogLine("training: paying the quoted %d gold for %s (purse %d)",
             quoted, rules::SkillName(skillId), obs.gold);
     trainSkillBefore_ = have;
+    // WHAT THE PURSE HELD BEFORE THE LESSON, so "the fee was taken and
+    // nothing was taught" can be told apart from "the trainer refused and
+    // kept nothing". Both used to log the same `training_unverified` line,
+    // and they are completely different problems: the first is a trainer to
+    // write off, the second a report that simply has not arrived yet.
+    trainGoldBefore_ = obs.gold;
     trainQuoted_ = quoted;
     // The TICK clock, not the journal clock. These are different clocks and
     // mixing them made the ten-second verification window expire in 8.7s.
