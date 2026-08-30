@@ -98,6 +98,10 @@ set(UO_CLIENT_SOURCES
     # why it exists. Making it testable means putting a VendorIo seam
     # under it, which is the next step, not this one.
     src/life/VendorErrand.cpp
+    # The interaction layer proper (docs/BOT_ARCHITECTURE.md sections 14,
+    # 17, 18). Client-free, so unlike VendorErrand.cpp above it IS in the
+    # testable set -- tests/interaction_progress.cpp links it directly.
+    src/life/interaction/Progress.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.

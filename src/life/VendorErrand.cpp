@@ -2,6 +2,7 @@
 
 #include "Client.h"
 #include "uo/life.h"
+#include "uo/interaction/progress.h"
 
 #include <cstdio>
 
@@ -32,6 +33,10 @@ constexpr i32 kMaxScans = 3;
 // How far to chase a shopkeeper that wanders mid-errand before asking from
 // where we stand and letting the server give the definitive no.
 constexpr i32 kMaxChases = 3;
+// How long to wait for the pack and purse to confirm a purchase before
+// calling it NoProgress. Generous: Sphere sends the container update and the
+// gold change as separate packets, and a busy shard delays both.
+constexpr i64 kVerifyWindowMs = 12000;
 
 i32 TileDistance(i32 ax, i32 ay, i32 bx, i32 by) {
     const i32 dx = ax > bx ? ax - bx : bx - ax;
@@ -41,7 +46,7 @@ i32 TileDistance(i32 ax, i32 ay, i32 bx, i32 by) {
 
 VendorErrandResult Working(Wake w, i64 delayMs, std::string why) {
     VendorErrandResult r;
-    r.state = ErrandState::Working;
+    r.status = ActivityStatus::Waiting;
     r.wake = w;
     r.delayMs = delayMs;
     r.why = std::move(why);
@@ -50,7 +55,7 @@ VendorErrandResult Working(Wake w, i64 delayMs, std::string why) {
 
 VendorErrandResult Failed(std::string why) {
     VendorErrandResult r;
-    r.state = ErrandState::Failed;
+    r.status = ActivityStatus::Failed;
     r.wake = Wake::Now;
     r.why = std::move(why);
     return r;
@@ -66,25 +71,6 @@ std::string Fmt(const char* fmt, ...) {
 }
 
 }  // namespace
-
-const char* WakeName(Wake w) {
-    switch (w) {
-        case Wake::Now:            return "now";
-        case Wake::AfterDelay:     return "after a delay";
-        case Wake::ActionResolves: return "the action to resolve";
-        case Wake::TravelArrives:  return "arrival";
-    }
-    return "?";
-}
-
-const char* ErrandStateName(ErrandState s) {
-    switch (s) {
-        case ErrandState::Working: return "working";
-        case ErrandState::Bought:  return "bought";
-        case ErrandState::Failed:  return "failed";
-    }
-    return "?";
-}
 
 void VendorErrand::Begin(const VendorErrandSpec& spec) {
     spec_ = spec;
@@ -226,7 +212,7 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // The caller wants to choose its own row out of the offer.
             if (spec_.graphic == 0) {
                 VendorErrandResult r;
-                r.state = ErrandState::Working;
+                r.status = ActivityStatus::Waiting;
                 r.wake = Wake::Now;
                 r.offerOpen = true;
                 r.keeper = keeper_;
@@ -265,19 +251,33 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
                                       spec_.sellers[seller_].trade));
                 }
 
+                // RECORD WHAT SUCCESS WILL LOOK LIKE, then attempt it.
+                //
+                // Section 18. Until this existed the errand reported "bought"
+                // the instant Sphere accepted the packet, and a healer holding
+                // 19 against an ask of 20 refused the whole order eight times
+                // while the bot recorded eight purchases and its gold never
+                // moved.
+                packBefore_ = static_cast<i32>(
+                    client.BackpackItemCount(spec_.graphic));
+                goldBefore_ = client.PlayerGold();
+                wantQty_ = want;
+                unitPrice_ = unit;
+                verifyDeadlineMs_ = obs.nowMs + kVerifyWindowMs;
+
                 client.ActionVendorBuy(keeper_, v.serial,
                                        static_cast<u16>(want));
-                step_ = Step::Done;
+                step_ = Step::Verify;
                 VendorErrandResult r;
-                r.state = ErrandState::Bought;
-                r.wake = Wake::AfterDelay;
+                r.status = ActivityStatus::Waiting;
+                r.wake = Wake::InventoryChanges;
                 r.delayMs = kAfterAskMs;
                 r.keeper = keeper_;
                 r.offerOpen = true;
                 r.why = Fmt("buying %d %s at %d each from the '%s' "
-                            "(shelf holds %u)", want, spec_.what, unit,
+                            "(shelf holds %u) -- waiting for the pack",
+                            want, spec_.what, unit,
                             spec_.sellers[seller_].trade, v.amount);
-                running_ = false;
                 return r;
             }
 
@@ -286,6 +286,74 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             running_ = false;
             return Failed(Fmt("this '%s' does not stock %s", spec_.sellers[seller_].trade,
                               spec_.what));
+        }
+
+        // ---------------------------------------------------------------
+        case Step::Verify: {
+            // THE WORLD, NOT THE PACKET, DECIDES (section 18).
+            Expectation want;
+            want.itemGraphic = spec_.graphic;
+            want.itemBefore = packBefore_;
+            want.itemGain = 1;                  // one is proof; the rest is luck
+            want.goldBefore = goldBefore_;
+            want.goldSpendMin = unitPrice_ > 0 ? 1 : 0;
+            want.goldSpendMax = unitPrice_ > 0 ? unitPrice_ * wantQty_ : 0;
+
+            Observed seen;
+            seen.itemNow =
+                static_cast<i32>(client.BackpackItemCount(spec_.graphic));
+            seen.goldNow = client.PlayerGold();
+
+            const ProgressCheck check = Verify(want, seen);
+            switch (check.verdict) {
+                case Verdict::Confirmed: {
+                    running_ = false;
+                    step_ = Step::Done;
+                    VendorErrandResult r;
+                    r.status = ActivityStatus::Success;
+                    r.wake = Wake::Now;
+                    r.keeper = keeper_;
+                    r.offerOpen = true;
+                    r.why = Fmt("%d %s in the pack, %d gold gone -- %s",
+                                check.itemDelta, spec_.what, -check.goldDelta,
+                                check.reason);
+                    return r;
+                }
+                case Verdict::Contradicted:
+                    // A DEFINITIVE no. Ending here is the point: the errand
+                    // that could not tell this from "not yet" spent whole
+                    // sessions asking again.
+                    running_ = false;
+                    step_ = Step::Done;
+                    return Failed(Fmt("%s (pack %+d, purse %+d)", check.reason,
+                                      check.itemDelta, check.goldDelta));
+                case Verdict::NotYet:
+                    if (obs.nowMs >= verifyDeadlineMs_) {
+                        // Ran, nothing went wrong, and nothing moved. That is
+                        // NoProgress -- not success, and not a fault to blame
+                        // on the shop either.
+                        running_ = false;
+                        step_ = Step::Done;
+                        VendorErrandResult r;
+                        r.status = ActivityStatus::NoProgress;
+                        r.wake = Wake::Now;
+                        r.keeper = keeper_;
+                        r.why = Fmt("asked for %d %s and %s after %llds",
+                                    wantQty_, spec_.what, check.reason,
+                                    static_cast<long long>(kVerifyWindowMs / 1000));
+                        return r;
+                    }
+                    return Working(Wake::InventoryChanges, kShortMs,
+                                   check.reason);
+                case Verdict::NothingChecked:
+                default:
+                    // Cannot happen: the buy step always records an
+                    // expectation. If it ever does, say so rather than
+                    // inventing a yes.
+                    running_ = false;
+                    step_ = Step::Done;
+                    return Failed("the purchase stated no expectation to check");
+            }
         }
 
         // ---------------------------------------------------------------

@@ -38,6 +38,7 @@
 // it in now is free; retrofitting it across every activity later is not.
 // ---------------------------------------------------------------------------
 
+#include "uo/interaction/activity_result.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
 
@@ -51,26 +52,15 @@ namespace uo::life {
 
 struct Observation;   // uo/life.h
 
-// What the errand is waiting for. The caller may always simply call again --
-// these are hints that let a scheduler sleep instead of poll, never
-// correctness requirements.
-enum class Wake : u8 {
-    Now = 0,          // nothing to wait for; call again next tick
-    AfterDelay,       // a fixed pause; see VendorErrandResult::delayMs
-    ActionResolves,   // an action is in flight; its own deadline governs
-    TravelArrives,    // walking; the travel layer will say when it is there
-};
-
-const char* WakeName(Wake w);
-
-enum class ErrandState : u8 {
-    Working = 0,   // still going; call Tick again
-    Bought,        // the purchase was SENT and accepted by the server
-    Failed,        // definitive: no seller, no stock, or no money
-};
-
-const char* ErrandStateName(ErrandState s);
-
+// The result of one tick. The STATUS and WAKE vocabularies are the shared
+// ones (uo/interaction/activity_result.h) -- this errand used to define its
+// own three-state enum, which could not express "ran, nothing wrong, nothing
+// moved", the state every spinning goal in this project's history was
+// actually in.
+//
+// `why` is a std::string rather than the shared struct's const char* because
+// these reasons are built per tick ("the 'healer' is 7 tiles off (dz 0)"),
+// and a dangling pointer in a log line is a bug that only shows up at 3am.
 // What to buy, and from whom. Filled once by the activity; the errand does
 // not modify it.
 struct VendorErrandSpec {
@@ -116,7 +106,7 @@ struct VendorErrandSpec {
 };
 
 struct VendorErrandResult {
-    ErrandState state = ErrandState::Working;
+    ActivityStatus status = ActivityStatus::Waiting;
     Wake        wake = Wake::Now;
     i64         delayMs = 0;         // meaningful when wake == AfterDelay
     // Always populated, success or failure. This is what the activity logs;
@@ -142,7 +132,7 @@ public:
     VendorErrandResult Tick(Client& client, const Observation& obs);
 
 private:
-    enum class Step : u8 { Find, Approach, Open, Buy, Done };
+    enum class Step : u8 { Find, Approach, Open, Buy, Verify, Done };
 
     VendorErrandSpec spec_;
     Step step_ = Step::Find;
@@ -153,6 +143,17 @@ private:
     i32  chases_ = 0;
     i32  scans_ = 0;
     bool travelInFlight_ = false;
+
+    // WHAT THE WORLD SHOULD LOOK LIKE IF THE PURCHASE WORKED, recorded
+    // BEFORE it is attempted -- section 18. Without these the errand could
+    // only report that Sphere accepted the packet, which is precisely the
+    // "sent packet = success" that let a bot record eight buys while its
+    // gold never moved.
+    i32 packBefore_ = -1;
+    i32 goldBefore_ = -1;
+    i32 wantQty_ = 0;
+    i32 unitPrice_ = 0;
+    i64 verifyDeadlineMs_ = 0;
 };
 
 }  // namespace uo::life

@@ -2902,7 +2902,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
             nextActionMs_ = obs.nowMs + r.delayMs;
 
-        if (r.state == life::ErrandState::Bought) {
+        if (r.status == life::ActivityStatus::Success) {
             // Learn the shop. The errand deliberately knows nothing about
             // memory -- it buys; remembering where from is a life's business.
             for (const Client::VendorItem& v : client.VendorOffer()) {
@@ -2925,7 +2925,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             return false;
         }
-        if (r.state == life::ErrandState::Failed) {
+        if (r.status == life::ActivityStatus::Failed) {
             LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"%s\"",
                     r.why.c_str());
             planner_.Cooldown(GoalKind::ReplaceEquipment,
@@ -7469,7 +7469,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
         nextActionMs_ = obs.nowMs + r.delayMs;
 
-    if (r.state == life::ErrandState::Failed) {
+    if (r.status == life::ActivityStatus::Failed) {
         LogLine("goal_failed=GET_FOOD reason=\"%s\"", r.why.c_str());
         planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
         planner_.Finish(false, "no food seller reachable", obs.nowMs);

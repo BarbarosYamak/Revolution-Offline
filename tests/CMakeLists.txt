@@ -239,3 +239,21 @@ target_include_directories(m7_faucets PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m7_faucets COMMAND m7_faucets)
+
+# --- The interaction layer: progress verification ---------------------------
+#
+# docs/BOT_ARCHITECTURE.md section 18. "sent packet = success" is the rule this
+# suite exists to make impossible, and every case in it is a shape this shard
+# actually produced: the order Sphere refused wholesale while the bot recorded
+# eight buys, the trainer fee with no skill gain (`training_unverified`), the
+# gear that never reached the paperdoll so the next tick bought another.
+#
+# Client-free by construction, exactly like the life and combat layers, so
+# ctest exercises the very object the live bot runs rather than a copy of it.
+add_executable(interaction_progress interaction_progress.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/interaction/Progress.cpp)
+target_include_directories(interaction_progress PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME interaction_progress COMMAND interaction_progress)
