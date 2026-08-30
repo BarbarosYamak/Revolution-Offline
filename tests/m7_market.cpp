@@ -159,6 +159,53 @@ void TestShortfallSeparatesWorldFromPlayers() {
 }
 
 // --------------------------------------------------------------------------
+// A WANT THE PACK CANNOT COUNT IS A WANT THAT NEVER GOES AWAY.
+//
+// obs.pack is keyed by defname, and a defname is only ever reached through
+// econ::ItemNameForGraphicAndHue -- so an item with no row in VendorPolicy's
+// kGraphics can never appear in the pack, QtyOf stays 0 forever, and the want
+// is re-issued on every tick no matter what the character bought.
+// i_potion_poisondeadly is that item: all four poison tiers share
+// ID=i_bottle_green and only i_potion_poison is mapped (deliberately, see
+// VendorPolicy.cpp), so a fencer asked for twenty deadly poisons permanently.
+//
+// UNKNOWN, and NOT papered over here: whether a HUE tells the potion tiers
+// apart on this shard. Until there is evidence, the want is skipped rather
+// than given an invented identity.
+void TestShortfallSkipsWhatThePackCannotCount() {
+    Section("shortfall: an uncountable want is not a want");
+
+    const prof::Profession* fen = prof::Find("fencer");
+    Check(fen != nullptr, "the fencer exists");
+    if (!fen) return;
+
+    // The catalogue still says the fencer consumes it -- the skip belongs to
+    // the shortfall, not to the profession.
+    bool declared = false;
+    for (const std::string& c : fen->consumes)
+        if (c == "i_potion_poisondeadly") declared = true;
+    Check(declared, "the fencer still declares deadly poison as an input");
+    Check(uo::econ::GraphicsForItem("i_potion_poisondeadly").empty(),
+          "and deadly poison still has no graphic row to count it by");
+
+    TradePolicy pol;
+    for (const Want& w : Shortfall(*fen, {}, pol)) {
+        Check(w.item != "i_potion_poisondeadly",
+              "an empty-packed fencer does not ask for what it cannot count");
+    }
+
+    // AND THE SKIP IS NARROW. A want with a real graphic row is untouched --
+    // otherwise this fix would have quietly stopped every smith buying wood.
+    const prof::Profession* ms = prof::Find("miner_smith");
+    Check(ms != nullptr, "the miner-smith exists");
+    if (!ms) return;
+    bool sawLog = false;
+    for (const Want& w : Shortfall(*ms, {}, pol))
+        if (w.item == "i_log") sawLog = true;
+    Check(sawLog, "an empty-packed smith is still short of logs");
+}
+
+// --------------------------------------------------------------------------
 void TestWhoProducesIsCatalogueNotMarket() {
     Section("knowledge: knowing a TRADE exists is not knowing the market");
 
@@ -839,6 +886,7 @@ int main() {
     TestInterdependence();
     TestSurplusIsOwnOutputOnly();
     TestShortfallSeparatesWorldFromPlayers();
+    TestShortfallSkipsWhatThePackCannotCount();
     TestWhoProducesIsCatalogueNotMarket();
     TestPricesMustHaveBeenSeen();
     TestGoldLedger();

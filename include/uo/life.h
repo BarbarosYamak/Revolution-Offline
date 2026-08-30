@@ -494,6 +494,16 @@ struct Observation {
     bool atWorkSite = false;
     bool treeAdjacent = false;
     bool atBank = false;
+    // STANDING AT THE SHARD'S MARKET (market::kMarketBankPlaceId), judged by
+    // GEOMETRY -- Runner::AtMarketBank, not by an open box. The planner needs
+    // it because arriving is the expensive half of a market trip: one leg is
+    // 250 s measured (docs/S5_MARKET_TRIP_PLAN.md section 3), and a character
+    // that has just paid for it must not be walked away again by an ordinary
+    // errand. run_r4/pair_Tarath.console.txt:1812 20:39:34.756 --
+    // "goal_changed=REPLACE_EQUIPMENT from=TRADE_WITH_PLAYER reason=
+    // REPLACE_EQUIPMENT 130.0 superseded TRADE_WITH_PLAYER 79.8" -- fourteen
+    // tiles short of the bank, after a full journey, for heal potions.
+    bool atMarket = false;
     // Standing where NO SKILL CAN ADVANCE (REGION_FLAG_SAFE). Shrines,
     // jails, the great castles, the Lycaeum, Empath Abbey. Nothing the
     // client shows says so, and mana spent practising here is simply
@@ -718,6 +728,19 @@ struct NeedConfig {
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                               const Observation& obs, const NeedConfig& cfg);
 
+// Does this life carry the named tool / consumable AT ALL? The catalogue
+// answers; a life saved before the catalogue existed (cfg.profession ==
+// nullptr) wants everything, which is the pre-M5 behaviour.
+//
+// Public because the ERRAND must ask the same question the NEED asks. The
+// bandage need is gated on WantsConsumable(cfg, "bandage") -- false for every
+// crafting life since "so crafter do not buy bandages" (project owner,
+// 2026-08-30) -- while DoReplaceEquipment asked nothing, so a miner_smith
+// walked to a healer and bought thirty bandages its zero Healing could not
+// use, and the heal-potion branch sitting behind it never ran.
+bool WantsTool(const NeedConfig& cfg, const char* name);
+bool WantsConsumable(const NeedConfig& cfg, const char* name);
+
 // ===========================================================================
 // Goals -- utility selection, with commitment
 // ===========================================================================
@@ -866,6 +889,21 @@ public:
     // True when the running goal has run out of time or attempts.
     bool Exhausted(i64 nowMs, std::string* whyOut) const;
 
+    // HOW LONG THIS KIND OF GOAL MAY RUN, which is not one number.
+    //
+    // `maxGoalMs` is 5 minutes and that is right for everything a character
+    // does within sight of where it is standing. A MARKET TRIP IS NOT THAT:
+    // the rendezvous point is one fixed bank for the whole fleet, and a life
+    // that lives elsewhere has to walk there. Measured Minoc -> Britain by
+    // moongate is 249.8s one way (run_m7/n10_Corran.console.txt:620 ->
+    // 17:43:12.365), so out + one listen window + back is ~560s and the
+    // default kills the errand mid-journey, every single time.
+    //
+    // Deliberately narrow: ONE kind, one number, cited. It is a real
+    // loosening -- a wedged trip now costs 12 minutes instead of 5 -- bounded
+    // only by kMaxTradeTrips and maxAttempts.
+    i64 TimeLimitFor(GoalKind k) const;
+
     // A GOAL THAT RAN AND ACHIEVED NOTHING MUST NOT BE RE-PICKED IMMEDIATELY.
     //
     // Finish() only clears `active`; the very next Select() sees the same top
@@ -997,6 +1035,19 @@ private:
     static constexpr int kMinPicksForShare = 8;
 };
 
+// THE ARITHMETIC BEHIND THE END-OF-SESSION GOAL HISTOGRAM, pulled out as a
+// pure function so it is reachable by ctest instead of living only inside a
+// switch inside Runner::Tick. `families`/`topFrac` are what R1's exit proof
+// reads: at least four goal families, none above half the picks (S2.8).
+struct GoalHistogram {
+    i32    families = 0;
+    i32    picks = 0;
+    i32    top = 0;
+    double topFrac = 0.0;
+    bool   varied = false;
+};
+GoalHistogram SummariseGoalPicks(const i32 picks[static_cast<int>(GoalKind::Count)]);
+
 // ===========================================================================
 // Persistent state, its store, and login reconciliation
 // ===========================================================================
@@ -1018,6 +1069,11 @@ struct SessionSummary {
     i32 goalsAttempted = 0;
     i32 goalsCompleted = 0;
     i32 goalsFailed = 0;
+    // "goal_changed=X from=X" -- Planner::Exhausted cleared the goal and the
+    // same kind was re-picked while it was still active (Runner::Tick, the
+    // goal_changed log site). Greppable before this counter existed; never
+    // totalled. S2.8: printed in the histogram line as self_superseded=%d.
+    i32 selfSupersessions = 0;
     i32 goldStart = 0, goldEnd = 0;
     i32 skillTenthsStart = 0, skillTenthsEnd = 0;
     i32 logsGathered = 0;

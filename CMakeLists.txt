@@ -53,6 +53,7 @@ set(UO_CLIENT_SOURCES
     src/net/Socket.cpp
     src/net/PacketStream.cpp
     src/net/Huffman.cpp
+    src/net/Cliloc.cpp
     src/builders/Builders.cpp
     # Pathfinding.cpp / Blacklist.cpp are compiled into uo_world (the
     # navgrid's edge pass runs the same A*), and uo_client links it --
@@ -113,6 +114,12 @@ set(UO_CLIENT_SOURCES
     src/life/activities/Acquire.cpp
     src/life/activities/CraftPlan.cpp
     src/life/activities/TrainPlan.cpp
+    # S3 -- the one responsibility taken out of DoCraft and DoTrainAtNpc:
+    # deciding, from the world rather than from a timer, whether the last
+    # swing made anything and whether the fee bought a lesson. Client-free,
+    # so tests/interaction_progress.cpp links them directly.
+    src/life/activities/CraftConfirm.cpp
+    src/life/activities/TrainConfirm.cpp
     src/life/activities/GatherPlan.cpp
     src/life/activities/RecoveryPlan.cpp
     src/life/activities/HealPlan.cpp
@@ -189,6 +196,7 @@ set(UO_WORLD_SOURCES
     src/world/Atlas.cpp
     src/world/NavGrid.cpp
     src/world/RoutePlanner.cpp
+    src/world/ServiceSelection.cpp
     src/world/SharedWorld.cpp
 )
 # NavGrid's edge pass runs the bot's own tile A*, so the world library carries

@@ -96,6 +96,30 @@ GoalFamily FamilyOf(GoalKind k) {
     return GoalFamily::Wander;
 }
 
+// THE ARITHMETIC BEHIND session_goals, pulled out of Runner::Tick's WindDown
+// case (S2.8) so it is reachable by ctest. Counted by FAMILY, not by goal
+// kind: a crafter alternating BUY_SUPPLIES / CRAFT / EARN_GOLD scores three
+// "kinds" and is still doing one thing all day -- families=1. R1's exit
+// proof is families>=4 with none above half the picks.
+GoalHistogram SummariseGoalPicks(const i32 picks[static_cast<int>(GoalKind::Count)]) {
+    GoalHistogram h;
+    i32 famCount[static_cast<int>(GoalFamily::Count)] = {};
+    for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
+        const i32 n = picks[i];
+        if (n <= 0) continue;
+        h.picks += n;
+        famCount[static_cast<int>(FamilyOf(static_cast<GoalKind>(i)))] += n;
+    }
+    for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
+        if (famCount[f] <= 0) continue;
+        ++h.families;
+        if (famCount[f] > h.top) h.top = famCount[f];
+    }
+    h.topFrac = h.picks ? (static_cast<double>(h.top) / h.picks) : 1.0;
+    h.varied = (h.families >= 4 && h.topFrac <= 0.50);
+    return h;
+}
+
 namespace {
 
 std::string Fmt(const char* fmt, ...) {
@@ -267,7 +291,23 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
         // --- goal-specific modifiers, each printed ------------------------
         switch (spec.kind) {
             case GoalKind::GatherLogs: {
-                if (obs.axeEquipped) {
+                // SURPLUS DAMPER. Tarath scored GATHER_LOGS 97 (52 need + 25
+                // "proven stand" + 20 "axe in hand") over TRADE_WITH_PLAYER's
+                // 80 while sitting on 97 spare logs -- the two flat bonuses
+                // exist to break ties and get a character moving, but they
+                // kept dragging him back to the axe instead of to the buyer
+                // who would take the pile he was already carrying. Pack AND
+                // bank count as held stock, same as NeedTrade's own Surplus()
+                // read (Needs.cpp) -- goods in the box are still this
+                // character's, it just has to fetch them.
+                const i32 held = market::QtyOf(obs.pack, "i_log") +
+                                 market::QtyOf(obs.bank, "i_log");
+                const i32 keep =
+                    market::PolicyForPurse(obs.goldOnHand).keepOfOwnOutput;
+                const i32 spare = held - keep;
+                const bool surplusDamped = keep > 0 && spare >= 2 * keep;
+
+                if (obs.axeEquipped && !surplusDamped) {
                     g.score += 20.0;
                     g.reasons.push_back("axe already in hand +20");
                 }
@@ -277,13 +317,20 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
                 // worth +25, and none of them worth visiting.
                 const KnownResourceSource* proven =
                     mem.BestProvenResource("logs", obs.x, obs.y, obs.nowMs);
-                if (proven) {
+                if (proven && !surplusDamped) {
                     g.score += 25.0;
                     g.reasons.push_back(Fmt("proven stand at %d,%d (%d successes) +25",
                                             proven->x, proven->y, proven->successes));
-                } else if (mem.BestHint("logs", obs.x, obs.y, obs.nowMs)) {
+                } else if (!proven && mem.BestHint("logs", obs.x, obs.y, obs.nowMs)) {
                     g.score += 10.0;
                     g.reasons.push_back("a known forest to try +10");
+                }
+                if (surplusDamped) {
+                    g.reasons.push_back(Fmt(
+                        "%d logs spare (held %d - keep %d) is %dx keep -- "
+                        "dropping the stand/axe bonuses, TRADE should carry "
+                        "this pile instead", spare, held, keep,
+                        keep > 0 ? spare / keep : 0));
                 }
                 if (obs.WeightFraction() > 0.7) {
                     g.score -= 40.0;
@@ -379,7 +426,27 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
     //
     // Scored above idle and below every real errand, so it fills the gap and
     // never competes with work.
-    {
+    //
+    // MUST HONOUR Cooling(): this block used to add Explore unconditionally,
+    // feasible, after the main loop -- so the cooldown DoExplore already
+    // issues on "nowhere new to go" (kExploredAllCooldownMs) had never had
+    // any effect. IdleBriefly, just below, must NOT get the same guard: it
+    // is the floor that guarantees there is never no goal at all, and
+    // RunGoal dispatches on Current().kind whether or not Select succeeded,
+    // so an empty feasible set would run a stale handler.
+    // See S2_WIRING_PLAN.md S2.2's prerequisite defect.
+    if (Cooling(GoalKind::Explore, obs.nowMs)) {
+        ScoredGoal explore;
+        explore.kind = GoalKind::Explore;
+        explore.feasible = false;
+        explore.blockedWhy = Fmt("on cooldown for another %llds after achieving "
+                                 "nothing",
+                                 static_cast<long long>(
+                                     (cooldownUntilMs_[static_cast<int>(GoalKind::Explore)] -
+                                      obs.nowMs) / 1000));
+        explore.reasons.push_back("COOLING EXPLORE " + explore.blockedWhy);
+        out.push_back(std::move(explore));
+    } else {
         ScoredGoal explore;
         explore.kind = GoalKind::Explore;
         explore.feasible = true;
@@ -408,16 +475,27 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
     return out;
 }
 
+i64 Planner::TimeLimitFor(GoalKind k) const {
+    // A MARKET TRIP IS LONGER THAN A GOAL. Minoc -> Britain measured 249.8s
+    // (run_m7/n10_Corran.console.txt:620 -> 17:43:12.365), and kListenMs is
+    // now 180s, so the round trip is 250+180+250 = 680s and the 12-minute
+    // (720s) limit leaves no room for wind-down. 14 minutes covers the 800s
+    // trip budget (kMarketTripMs + kWindDownBudgetMs) with margin.
+    if (k == GoalKind::TradeWithPlayer) return 14 * 60 * 1000;
+    return cfg_.maxGoalMs;
+}
+
 bool Planner::Exhausted(i64 nowMs, std::string* whyOut) const {
     if (!goal_.active) return false;
     if (goal_.attempts >= cfg_.maxAttempts) {
         if (whyOut) *whyOut = Fmt("attempts %d >= %d", goal_.attempts, cfg_.maxAttempts);
         return true;
     }
-    if (nowMs - goal_.startedAtMs >= cfg_.maxGoalMs) {
+    const i64 limitMs = TimeLimitFor(goal_.kind);
+    if (nowMs - goal_.startedAtMs >= limitMs) {
         if (whyOut) *whyOut = Fmt("ran %llds without finishing (limit %llds)",
                                   static_cast<long long>((nowMs - goal_.startedAtMs) / 1000),
-                                  static_cast<long long>(cfg_.maxGoalMs / 1000));
+                                  static_cast<long long>(limitMs / 1000));
         return true;
     }
     return false;
@@ -492,6 +570,38 @@ bool Planner::Select(const std::vector<Need>& needs, const Observation& obs,
         incumbentScore = g.score;
         incumbentStillFeasible = g.feasible;
         break;
+    }
+
+    // --- ARRIVAL COMMITMENT ------------------------------------------------
+    //
+    // A MARKET TRIP IS PAID FOR ON ARRIVAL. Every other goal can be picked up
+    // again where it was dropped; this one cannot -- the character is standing
+    // at a rendezvous it walked 250 s to reach (docs/S5_MARKET_TRIP_PLAN.md
+    // section 3), the other side is walking its own 250 s leg, and leaving now
+    // throws away both. Measured: run_r4/pair_Tarath.console.txt:1812,
+    // 20:39:34.756, "REPLACE_EQUIPMENT 130.0 superseded TRADE_WITH_PLAYER
+    // 79.8" -- fourteen tiles short of the bank, for heal potions he had been
+    // wanting for the whole journey. He arrived at 20:39:43.017 and walked
+    // straight back out to the healer.
+    //
+    // So while a character is AT the market on this errand, only an EMERGENCY
+    // (cfg_.preemptScore -- hunger to the point of damage, a fight, a death)
+    // may take the goal away. The hold is not open-ended: it lasts exactly as
+    // long as the goal does, and DoTradeWithPlayer ends the goal itself when
+    // its listen window expires (Runner::kListenMs), when nobody answers
+    // kMaxAnnounces offers, or when Exhausted() hits TimeLimitFor().
+    // `incumbentStillFeasible` is the release valve: the moment the trade goal
+    // is cooled or blanked it stops holding anything.
+    if (incumbentStillFeasible && !emergency &&
+        goal_.kind == GoalKind::TradeWithPlayer && obs.atMarket) {
+        if (whyOut) {
+            *whyOut = Fmt("%s %.1f may not take TRADE_WITH_PLAYER away from a "
+                          "character already standing at the market (only an "
+                          "emergency, %.0f+, may)",
+                          GoalKindName(best->kind), best->score,
+                          cfg_.preemptScore);
+        }
+        return false;
     }
 
     if (incumbentStillFeasible && !emergency &&

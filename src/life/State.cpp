@@ -294,6 +294,7 @@ json::Value ToJson(const PersistentState& st) {
         o.Set("goals_attempted", static_cast<i64>(s.goalsAttempted));
         o.Set("goals_completed", static_cast<i64>(s.goalsCompleted));
         o.Set("goals_failed", static_cast<i64>(s.goalsFailed));
+        o.Set("self_supersessions", static_cast<i64>(s.selfSupersessions));
         o.Set("gold_start", static_cast<i64>(s.goldStart));
         o.Set("gold_end", static_cast<i64>(s.goldEnd));
         o.Set("skill_tenths_start", static_cast<i64>(s.skillTenthsStart));
@@ -604,6 +605,8 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
             s.goalsAttempted = static_cast<i32>(e["goals_attempted"].AsInt(0));
             s.goalsCompleted = static_cast<i32>(e["goals_completed"].AsInt(0));
             s.goalsFailed    = static_cast<i32>(e["goals_failed"].AsInt(0));
+            s.selfSupersessions =
+                static_cast<i32>(e["self_supersessions"].AsInt(0));
             s.goldStart = static_cast<i32>(e["gold_start"].AsInt(0));
             s.goldEnd   = static_cast<i32>(e["gold_end"].AsInt(0));
             s.skillTenthsStart = static_cast<i32>(e["skill_tenths_start"].AsInt(0));

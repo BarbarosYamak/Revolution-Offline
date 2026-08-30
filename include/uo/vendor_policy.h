@@ -154,6 +154,35 @@ VendorRuling CanUseNPCVendorForGraphic(u16 graphic);
 // The defname a graphic maps to, or nullptr. For logging a refusal in words.
 const char*  ItemNameForGraphic(u16 graphic);
 
+// Hue-aware resolution (S1, docs/CRAFTER_RUN_2026_08_30.md #20). Some
+// graphics are shared by every metal -- raw ore is one graphic for iron and
+// every special ore, and the iron ingot is one graphic for iron and the
+// twelve special ingots that never got their own ITEMDEF -- and only the
+// wire hue says which. Hue first, graphic fallback: an unrecognised hue on
+// one of those graphics falls back to ItemNameForGraphic's honest default
+// rather than guessing. Metals that already have their own ingot graphic
+// (copper/gold/silver) ignore hue entirely -- ItemNameForGraphic already
+// tells them apart, and this never disagrees with it for them.
+const char*  ItemNameForGraphicAndHue(u16 graphic, u16 hue);
+
+// True when this graphic is one of the two families that several metals
+// share -- raw ore (019b7..019ba) and the iron ingot (01bef..01bf4) -- so a
+// caller holding only a graphic knows it does NOT yet know what the item is.
+// Every other graphic in the table names itself.
+bool         GraphicNeedsHue(u16 graphic);
+
+// What one ore SMELTS INTO, by defname. This is the ore ITEMDEF's own TDATA1
+// (runtime/scripts/items/i_provisions_ore.scp:45, :80, :90 ... :210), which
+// is what f_craft_blacksmith_smelt_targ hands back, so it is the shard's
+// answer rather than ours. Returns nullptr for anything that is not one of
+// the sixteen ores.
+//
+// Needed because ore and ingot are each ONE graphic for most metals: a
+// smelter that measures its progress as "how many i_ingot_iron do I have
+// now" cannot see a valorite ingot appear at all, and reports NoProgress
+// while melting the rarest thing it owns.
+const char*  IngotNameForOre(const char* oreItem);
+
 // The reverse: every graphic this shard uses for `item`. Several items have
 // more than one (iron ingots are 0x1BEF/0x1BF0/0x1BF1 by stack size), so a
 // caller that checks only the first will miss most of a pack.

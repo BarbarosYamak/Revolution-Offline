@@ -108,6 +108,36 @@ const std::vector<Recipe>& Table() {
     {"i_spear_short", 1, Provenance::PlayerCrafted, Station::Forge, Tool::SmithHammer,
      kBlacksmithing, 453, kNoSkill, 0, {{"i_ingot_iron", 6}, {"i_log", 1}},
      "SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100"},
+    // THE SWORDSMAN'S WEAPON, and the cheapest one a smith at 50 can make.
+    //
+    // Chosen from the shard's OWN blacksmithing menu, not from UO lore. Of the
+    // twenty-five entries in the Bladed category
+    // (crafting/interface/def_blacksmithing.scp:170-194,
+    // blacksmithing_category_6_*), these are the ones whose ITEMDEF carries
+    // both TYPE=t_weapon_sword and SKILL=Swordsmanship, with their ingot cost
+    // and SKILLMAKE (items/weapons/i_weapons.scp):
+    //
+    //   i_cutlass        8 ingots   Blacksmithing 24.3   :1221-1240
+    //   i_sword_viking  14 ingots   Blacksmithing 24.3   :797-816
+    //   i_scimitar      10 ingots   Blacksmithing 31.7   :741-760
+    //   i_katana         8 ingots   Blacksmithing 44.1   :966-985
+    //   i_sword_broad   12 ingots   Blacksmithing 48.8   :553-572
+    //   i_sword_long    16 ingots   Blacksmithing 53.8   :581-601
+    //
+    // i_dagger, which the smith already makes, is TYPE=t_weapon_fence
+    // SKILL=Fencing (:496-508) -- it is NOT a swordsman's weapon on this
+    // shard, whatever the menu category calls it.
+    //
+    // The CUTLASS wins on both axes at once: joint-lowest SKILLMAKE and the
+    // lowest ingot count of the pair, so a smith at 50.0 (Durnholde, Brannoc)
+    // makes it with 25.7 points of headroom -- and _chanceatmin is 0.0
+    // (def_blacksmithing.scp:88), so the margin IS the success chance.
+    // ReqStr=25 (:1237) against a lumberjack_swordsman's start STR of 40.
+    {"i_cutlass", 1, Provenance::PlayerCrafted, Station::Forge, Tool::SmithHammer,
+     kBlacksmithing, 243, kNoSkill, 0, {{"i_ingot_iron", 8}},
+     "SCRIPT def_blacksmithing.scp:173 blacksmithing_category_6_4 \"i_cutlass\"; "
+     "sm_legacy_blacksmithing.scp:157-158 MAKEITEM=i_cutlass; "
+     "i_weapons.scp:1232 RESOURCES=8 i_ingot_iron, :1233 SKILLMAKE=Blacksmithing 24.3"},
 
     // --- wood ---------------------------------------------------------------
     {"i_log", 1, Provenance::WorldGathered, Station::None, Tool::Blade,

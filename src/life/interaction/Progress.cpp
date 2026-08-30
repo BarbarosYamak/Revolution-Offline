@@ -112,12 +112,18 @@ ProgressCheck Verify(const Expectation& expect, const Observed& seen) {
             out.reason = "gold left the purse and no goods arrived";
             return out;
         }
-        // GOODS ARRIVED FREE. Not a windfall to celebrate -- it means the
-        // gold moved somewhere this check cannot see, and a ledger that
-        // records a free purchase is a ledger that cannot audit the economy.
+        // GOODS ARRIVED, PACK GOLD UNCHANGED. This shard pays vendors from
+        // the BANK, not the pack (sphere.ini PayFromPackOnly=0), so a
+        // perfectly good purchase can complete with the purse never moving
+        // at all. This branch used to call that a Contradicted "goods
+        // arrived without the purse moving" and it fired on BOTH bots in
+        // tonight's live run even though the goods genuinely arrived --
+        // wrongly failing successful buys. The pack rising by the requested
+        // amount IS success on this shard; only a pack that did NOT rise is
+        // a failure, and every branch below this one already covers that.
         if (out.itemDelta >= expect.itemGain && out.goldDelta == 0) {
-            out.verdict = Verdict::Contradicted;
-            out.reason = "goods arrived without the purse moving";
+            out.verdict = Verdict::Confirmed;
+            out.reason = "the goods arrived; the purse did not move -- bank paid";
             return out;
         }
     }

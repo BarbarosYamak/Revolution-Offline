@@ -15,6 +15,7 @@
 #include "uo/combat_policy.h"
 #include "uo/rules.h"
 #include "uo/world.h"
+#include "world/ServiceSelection.h"
 
 #include "uo/endian.h"
 
@@ -118,6 +119,16 @@ bool Client::WithinPlace(const char* nameOrId) const {
     if (!p) return false;
     return Chebyshev(playerX_, playerY_, p->position.x, p->position.y) <=
            p->radius;
+}
+
+const wm::Place* Client::KnownPlace(const char* nameOrId) const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
+    return world_knowledge_->atlas.FindPlace(nameOrId);
+}
+
+bool Client::PlaceGuarded(const wm::Place& p) const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return false;
+    return world_knowledge_->atlas.PlaceIsGuarded(p);
 }
 
 bool Client::WithinRegion(const char* nameOrId) const {
@@ -308,11 +319,16 @@ bool Client::RockAt(i32 tx, i32 ty, i8* z, u16* graphic) {
 bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
                                MiningSpot* out,
                                const std::vector<std::pair<i32, i32>>*
-                                   exclude) {
+                                   exclude,
+                               bool* allGuarded) {
+    if (allGuarded) *allGuarded = false;
     if (!out) return false;
     if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_)
         return false;
     if (radius < 1) radius = 1;
+    // Atlas is a separate load from the map/statics above; harmless to ask
+    // again if a prior caller already brought it up.
+    EnsureWorldKnowledge();
 
     auto excluded = [&](i32 tx, i32 ty) -> bool {
         if (!exclude) return false;
@@ -320,6 +336,17 @@ bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
             if (d.first == tx && d.second == ty) return true;
         return false;
     };
+
+    // OWNER RULE: no gathering inside guarded zones -- the same rule
+    // NearestTree enforces for chopping. A rock whose own tile sits inside a
+    // guarded region is not a candidate at all.
+    auto guarded = [&](i32 tx, i32 ty) -> bool {
+        if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+        const wm::Region* r = world_knowledge_->atlas.RegionAt(tx, ty);
+        return r && r->flags.guarded;
+    };
+    bool sawCandidate = false;   // rock found by RockAt, before the guard test
+    bool allWereGuarded = true;
 
     // ROCK AT EYE LEVEL FIRST. Being rock is not enough: the strike must
     // also pass CanSeeLOS(m_Act_p) (CCharSkill.cpp:1442-1444), and LOS is
@@ -347,6 +374,13 @@ bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
                 i8 rz = 0;
                 u16 gfx = 0;
                 if (!RockAt(rx, ry, &rz, &gfx)) continue;
+                // Pass 1 is the exhaustive, no-LOS-restriction sweep, so it is
+                // the one that gets to say "every candidate here was guarded"
+                // -- pass 0's LOS rejects are not guard rejects and would
+                // otherwise be miscounted against the forest.
+                if (pass == 1) sawCandidate = true;
+                if (guarded(rx, ry)) continue;
+                if (pass == 1) allWereGuarded = false;
                 if (pass == 0 && std::abs((int)rz - (int)z) > kMineLosZ)
                     continue;
                 // Within striking range of the ORIGIN (RANGE=2,
@@ -401,6 +435,7 @@ bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
         }
     }
     }
+    if (allGuarded) *allGuarded = sawCandidate && allWereGuarded;
     return false;
 }
 
@@ -435,7 +470,8 @@ i32 Client::DistanceToResource(wm::ResourceKind r) const {
 
 bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                      const std::vector<u32>& skipSerials,
-                                     std::vector<std::string>* skipPlaceIds) {
+                                     std::vector<std::string>* skipPlaceIds,
+                                     bool farOk) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();
         return false;
@@ -476,10 +512,82 @@ try_atlas:
     if (regionHint && *regionHint && skipPlaces.empty()) {
         p = world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
                 s, regionHint, playerX_, playerY_);
+        // AN ARMOURY IS NOT A SMITHY (see below) -- a region-scoped pick is
+        // not exempt from that rule either. Fall through to the ranked
+        // search rather than settle for it.
+        if (p && s == wm::Service::Blacksmith &&
+            p->id.find("armorer") != std::string::npos) {
+            p = nullptr;
+        }
+    }
+    // AN ARMOURY IS NOT A SMITHY. The atlas files both under `blacksmith`,
+    // and in Minoc the armorer at 2533,572 is 30 tiles nearer than the real
+    // smithy -- so a smelting errand went there every single time, to a lone
+    // forge with no walkable tile beside it. "do not go that armorer"
+    // (project owner, 2026-08-29, after asking twice for The Forgery).
+    //
+    // Built once here rather than skipped by the caller, so it applies to
+    // every city, not just the one that was noticed -- and only when a real
+    // smithy exists somewhere; an armoury is still better than nothing.
+    std::vector<std::string> effectiveSkip = skipPlaces;
+    if (s == wm::Service::Blacksmith) {
+        bool anyNonArmoury = false;
+        for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+            if (!pl.Offers(s)) continue;
+            bool already = false;
+            for (const std::string& id : skipPlaces)
+                if (id == pl.id) { already = true; break; }
+            if (already) continue;
+            if (pl.id.find("armorer") == std::string::npos) {
+                anyNonArmoury = true;
+                break;
+            }
+        }
+        if (anyNonArmoury) {
+            for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+                if (pl.Offers(s) && pl.id.find("armorer") != std::string::npos)
+                    effectiveSkip.push_back(pl.id);
+            }
+        }
     }
     if (!p) {
-        p = world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
-                s, playerX_, playerY_, skipPlaces);
+        // RANKED BY REAL TRIP COST, not raw map distance. The candidate the
+        // atlas calls "nearest" can be a shop with no walkable ground beside
+        // it or one three moongates away; PickServicePlace tries several
+        // distance-sorted candidates through the actual route planner and
+        // prefers fewer transit hops, capping the trip at ~1200 tiles unless
+        // `farOk` says the errand demands going further
+        // (docs/CRAFTER_RUN_2026_08_30.md defect 4: a Minoc smith was sent to
+        // "Sea Market blacksmith" -- no walkable ground -- then to "Papua
+        // weaponsmith", 904 tiles and three gates into the Lost Lands, while
+        // Minoc's own smithy went unvisited).
+        if (world_knowledge_->planner) {
+            std::vector<world_atlas::ServiceRejection> rejections;
+            const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+                world_knowledge_->atlas, *world_knowledge_->planner, s,
+                playerX_, playerY_, effectiveSkip, farOk, &rejections);
+            for (const world_atlas::ServiceRejection& rej : rejections) {
+                LogInfo("[travel] place: skipping %s -- %s\n",
+                        rej.place->name.c_str(), rej.reason.c_str());
+            }
+            p = pick.place;
+            if (p && pick.exceededCap) {
+                LogInfo("[travel] place: %s is %d tiles / %zu gate(s) -- past "
+                        "the usual trip budget, but nothing closer offers "
+                        "%s\n",
+                        p->name.c_str(), pick.estimatedTiles,
+                        pick.transitHops, wm::ServiceName(s));
+            }
+        } else {
+            // No route planner (navgrid missing) -- fall back to plain
+            // distance, same as before this policy existed.
+            p = world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
+                s, playerX_, playerY_, effectiveSkip);
+        }
+        if (p && skipPlaceIds) {
+            // Armouries stepped over this call stay skipped next time too.
+            *skipPlaceIds = effectiveSkip;
+        }
     }
     if (!p) {
         travelFailure_ = "no known provider of that service";
@@ -489,36 +597,6 @@ try_atlas:
         return false;
     }
     travelEntitySerial_ = 0;
-    // AN ARMOURY IS NOT A SMITHY. The atlas files both under `blacksmith`,
-    // and in Minoc the armorer at 2533,572 is 30 tiles nearer than the real
-    // smithy -- so a smelting errand went there every single time, to a lone
-    // forge with no walkable tile beside it. "do not go that armorer"
-    // (project owner, 2026-08-29, after asking twice for The Forgery).
-    //
-    // Skipping it here rather than in the caller means it is skipped for
-    // every city, not just the one that was noticed.
-    if (s == wm::Service::Blacksmith) {
-        // KEEP GOING PAST ARMOURIES, not just the first one. The earlier
-        // version stepped over one and took whatever came next -- which in
-        // Vesper is another armoury. Walk the list until a real smithy turns
-        // up, and only settle for an armoury if there is nothing else at all.
-        std::vector<std::string> tried =
-            skipPlaceIds ? *skipPlaceIds : noPlaces;
-        int guard = 0;
-        while (p && p->id.find("armorer") != std::string::npos && ++guard < 16) {
-            tried.push_back(p->id);
-            const wm::Place* next =
-                world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
-                    s, playerX_, playerY_, tried);
-            if (!next) break;   // armouries are all there is; use the first
-            p = next;
-        }
-        if (p && p->id.find("armorer") == std::string::npos && skipPlaceIds) {
-            // Record the armouries stepped over so the next call skips them
-            // immediately instead of walking the same dead ends again.
-            *skipPlaceIds = tried;
-        }
-    }
     // Record which shop this was, so a caller that strikes out here asks
     // for a different one next time instead of walking the same road again.
     if (skipPlaceIds) skipPlaceIds->push_back(p->id);
@@ -1874,15 +1952,21 @@ bool GraphicIsTree(u16 graphic) {
 }  // namespace
 
 bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
-                         const std::vector<std::pair<i32, i32>>* exclude) {
+                         const std::vector<std::pair<i32, i32>>* exclude,
+                         bool* allGuarded) {
+    if (allGuarded) *allGuarded = false;
     if (!out) return false;
     if (!EnsureWorldLoaded() || !world_) return false;
     if (radius < 0) radius = 0;
+    // Atlas is a separate load from the map statics above; harmless to ask
+    // again if a prior caller already brought it up.
+    EnsureWorldKnowledge();
 
     std::vector<world::StaticHit> hits;
     world_->CollectStatics(x, y, radius, hits);
 
     bool found = false;
+    bool sawCandidate = false;   // passed graphic+exclude, before the guard test
     i32 bestDist = 0;
     for (const world::StaticHit& h : hits) {
         if (!GraphicIsTree(h.itemId)) continue;
@@ -1892,6 +1976,15 @@ bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
                 if (e.first == h.x && e.second == h.y) { skip = true; break; }
             }
             if (skip) continue;
+        }
+        sawCandidate = true;
+        // OWNER RULE: no gathering inside guarded zones. Tarath chopped a
+        // tree at (1449,1635) inside guarded a_townBritain because nothing
+        // here ever asked the atlas. A candidate whose own tile is guarded
+        // is skipped outright, exactly like a worked-out trunk.
+        if (world_knowledge_ && world_knowledge_->ok) {
+            const wm::Region* r = world_knowledge_->atlas.RegionAt(h.x, h.y);
+            if (r && r->flags.guarded) continue;
         }
         const i32 dx = h.x > x ? h.x - x : x - h.x;
         const i32 dy = h.y > y ? h.y - y : y - h.y;
@@ -1904,6 +1997,9 @@ bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
         out->graphic = h.itemId;
         found = true;
     }
+    // Every survivor of exclude+graphic was guarded away: this is a town
+    // square, not an empty forest.
+    if (allGuarded) *allGuarded = !found && sawCandidate;
     return found;
 }
 

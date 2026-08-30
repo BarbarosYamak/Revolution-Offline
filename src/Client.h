@@ -259,6 +259,21 @@ public:
     act::Result  ActionResult() const { return action_.result; }
     act::Kind    ActionKind() const { return action_.kind; }
     const act::Action& CurrentAction() const { return action_; }
+    // Feeds one already-framed packet (cmd byte first) through the real
+    // dispatcher. Dispatch() itself stays private -- this exists so
+    // deterministic tests (tests/trade_verify.cpp) can script a 0x6F/0x25/
+    // 0xAE sequence at the exact object the live client runs, without a
+    // socket or a server.
+    void DispatchPacketForTest(const u8* data, usize size) { Dispatch(data, size); }
+    // Same idea as DispatchPacketForTest: ConnectAndSendSeed() stays private
+    // (it is a login-flow step, not something a scenario calls mid-session),
+    // but tests/trade_verify.cpp needs a live socket for Client::Send() to
+    // write outbound lift/drop packets into so a MoveItem/TradeOffer action
+    // stays Pending instead of failing InvalidState before its scripted 0x25
+    // ever arrives.
+    bool ConnectForTest(const char* host, u16 port) {
+        return ConnectAndSendSeed(host, port);
+    }
 
     // Objects and containers
     void ActionUseObject(u32 serial);           // double-click anything
@@ -409,8 +424,14 @@ public:
     // graphic of one by index -- enough for a scenario to assert "the corpse is
     // empty" or "the corpse now holds something" without guessing what.
     usize ContainerItemCount(u32 container) const;
+    // `hue` is optional (default nullptr) so every existing call site keeps
+    // compiling unchanged. It carries what the 0x3C/0x25 packets already put
+    // in ContainerItem::hue -- previously read off the wire and dropped one
+    // layer up, which is what let a coloured vein of ore or ingots merge into
+    // the plain-iron count in the pack/bank views (S1,
+    // docs/CRAFTER_RUN_2026_08_30.md #20).
     bool  ContainerItemAt(u32 container, usize index, u32* serial,
-                          u16* graphic, u16* amount) const;
+                          u16* graphic, u16* amount, u16* hue = nullptr) const;
     // Move an item from an open container into the backpack: 0x07 lift + 0x08
     // drop, the same pair a player's client sends.
     void TakeFromContainer(u32 serial, u16 quantity);
@@ -560,9 +581,18 @@ public:
     // Travel to a provider of this service, ignoring mobiles already tried
     // (`skipSerials`) and shops already tried (`skipPlaceIds`, filled in with
     // the place actually chosen so the caller can advance next time).
+    //
+    // Candidates outside the region hint are ranked by real trip cost --
+    // planned tiles and transit hops, not raw map distance -- via
+    // world_atlas::PickServicePlace (world/ServiceSelection.h), and a candidate
+    // whose plan exceeds ~1200 tiles is skipped unless `farOk` is true or
+    // nothing closer exists (docs/CRAFTER_RUN_2026_08_30.md defect 4: a Minoc
+    // smith was sent 904 tiles and three moongates into the Lost Lands for a
+    // service Minoc's own smithy already offered).
     bool TravelToServiceSkipping(wm::Service s, const char* regionHint,
                                  const std::vector<u32>& skipSerials,
-                                 std::vector<std::string>* skipPlaceIds);
+                                 std::vector<std::string>* skipPlaceIds,
+                                 bool farOk = false);
     bool TravelToResource(wm::ResourceKind r);
     // How far the nearest place yielding this resource is, or -1 if none is
     // known. The life layer needs the DISTANCE, not just the ability to walk
@@ -604,9 +634,15 @@ public:
         i8  rockZ = 0;
         u16 rockGraphic = 0;          // 0 = rock land; else the rock static id
     };
+    // `allGuarded` (optional): same OWNER RULE contract as NearestTree's --
+    // reports whether every rock candidate this scan saw (after `exclude`)
+    // was skipped for standing inside a guarded region, so the caller can
+    // tell that apart from "no rock here at all" and head for a proven vein
+    // instead of dead-listing open ground.
     bool NearestMiningSpot(i32 x, i32 y, i8 z, int radius, MiningSpot* out,
                            const std::vector<std::pair<i32, i32>>* exclude =
-                               nullptr);
+                               nullptr,
+                           bool* allGuarded = nullptr);
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);
@@ -641,6 +677,15 @@ public:
     // interaction radius -- the honest "did we arrive" question, since a
     // vendor's spawner range is what decides how close is close enough.
     bool WithinPlace(const char* nameOrId) const;
+    // The atlas record for a named place, or null when the world knowledge is
+    // not loaded or nothing matches. World DATA, not personal knowledge: the
+    // same shard-wide fact every client is handed. A caller that must commit
+    // a whole fleet to one rendezvous point needs to CHECK the point first --
+    // does it exist, does it offer the service, is it guarded -- which is a
+    // question WithinPlace's boolean cannot answer.
+    const wm::Place* KnownPlace(const char* nameOrId) const;
+    // Whether an atlas place sits inside a region a guard will answer in.
+    bool PlaceGuarded(const wm::Place& p) const;
     // True when the character's tile falls inside the named region's own
     // rectangles. Deliberately NOT a group match: Scripts-X files Monster
     // Valley under GROUP=Yew even though it is four hundred tiles away, so a
@@ -674,8 +719,15 @@ public:
     // the FORGE, not the ore: t_forge's @DCLICK arms
     // f_craft_blacksmith_smelt_targ, and that target is then given the ore.
     u32 LastForgeSerial() const { return forgeSerial_; }
+    // `allGuarded` (optional) reports whether every candidate tree this scan
+    // saw (after `exclude`) was skipped because it stands inside a guarded
+    // region -- OWNER RULE: no gathering inside the guard line. The caller
+    // uses that to tell "this stand is genuinely worked out" apart from "this
+    // stand is a town square" and go looking for a proven stand instead of
+    // dead-listing a perfectly good forest.
     bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
-                     const std::vector<std::pair<i32, i32>>* exclude = nullptr);
+                     const std::vector<std::pair<i32, i32>>* exclude = nullptr,
+                     bool* allGuarded = nullptr);
     // M7: the nearest WATER tile a character could cast a line into.
     //
     // Fishing is the one gold faucet in the registry that a starting
@@ -827,6 +879,14 @@ public:
     i32  JournalNumberSince(const char* needle, i64 sinceMs) const;
     // Timestamp of the newest journal entry, for taking a "before" mark.
     i64  JournalNowMs() const;
+    // Test-only: the most recently FILED journal entry's speaker, exactly as
+    // RememberJournalMessage stored it -- not re-resolved the way
+    // JournalHeardSince's Heard::name is. Exists so tests/trade_verify.cpp
+    // can check what ResolveSpeakerName actually put in the journal, rather
+    // than a later live lookup that would recover the same name regardless.
+    std::string LastJournalSpeakerForTest() const {
+        return journal_.empty() ? std::string() : journal_.back().speaker;
+    }
 
     // Per-character knowledge. Session-owned: never shared, never static.
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }
@@ -1030,6 +1090,8 @@ private:
     void OnTargetCursor       (const u8* data, usize size);  // 0x6C
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
+    void OnClilocMessage      (const u8* data, usize size);  // 0xC1
+    void OnClilocMessageAffix (const u8* data, usize size);  // 0xCC
     void OnUnknown            (const u8* data, usize size);
     void OnLogoutAck          (const u8* data, usize size);  // 0xD1
     void OnDragCancel         (const u8* data, usize size);  // 0x27
@@ -1113,6 +1175,10 @@ private:
     // --- M2 action plumbing ------------------------------------------------
     void BeginAction(act::Kind kind, i64 timeoutMs);
     void FinishAction(act::Result r, const char* why);
+    // Records the container currently holding `serial` (and that stack's
+    // amount) in moveSourceContainer_/moveSourceAmount_, before a lift moves
+    // it. 0/0 if not found in the local container cache.
+    void NoteMoveSource(u32 serial);
     void ActionTick();                 // deadline sweep, one per client tick
     void OnTargetArmedForAction();     // a 0x6C arrived while an action waits
     // Confirmation hooks, called from the packet handlers.
@@ -1138,6 +1204,12 @@ private:
     void PrintNearbyMobiles();
     void FlushPendingMobilesList();
     const char* MobileName(u32 serial) const;
+    // If `raw` is non-empty, returns it unchanged. Otherwise tries to resolve
+    // `sourceSerial` through the world cache (our own login name for
+    // ourselves, or a name learned earlier for anyone else) and returns that;
+    // if nothing resolves, returns `raw` (still empty) so raw/unknown
+    // behaviour is preserved rather than guessed at.
+    std::string ResolveSpeakerName(u32 sourceSerial, const std::string& raw) const;
     u32 ResolveFollowSerialByName(const char* name) const;
     void RememberMobileName(u32 serial, const char* name);
     bool ParseSerial(const char* text, u32* out) const;
@@ -1605,6 +1677,13 @@ private:
     std::vector<VendorItem> vendorSellOffer_;   // what the vendor will buy
     i32 manaAtActionStart_ = -1;    // for observing a spell's mana cost
     i32 goldAtActionStart_ = -1;    // for observing a purchase
+    // Where action_.subject sat, and how big that stack was, the instant
+    // before a MoveItem/Unequip/trade offer lifted it -- so a 0x25 that lands
+    // the SAME serial back in that same container with a smaller amount can
+    // be told apart from a real bounce/refusal. See NoteMoveSource() and its
+    // use in ActionOnItemInContainer.
+    u32 moveSourceContainer_ = 0;
+    u16 moveSourceAmount_ = 0;
 
     // --- M2.5 travel state (all session-owned) ----------------------------
     // The atlas / navgrid / planner pointers are into the process-wide

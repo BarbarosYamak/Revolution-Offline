@@ -1,5 +1,6 @@
 #include "world/Atlas.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -399,6 +400,33 @@ const Place* Atlas::NearestPlaceWithServiceSkipping(
         }
     }
     return best;
+}
+
+void Atlas::PlacesWithServiceSkipping(wm::Service s, i32 x, i32 y,
+                                      const std::vector<std::string>& skipIds,
+                                      std::vector<const Place*>& out) const {
+    out.clear();
+    // Same two-pass guarded preference as NearestPlaceWithServiceSkipping:
+    // guarded places are not merely nicer, they are a different proposition,
+    // so the unguarded set is only consulted when nothing guarded offers the
+    // service at all.
+    for (int pass = 0; pass < 2 && out.empty(); ++pass) {
+        const bool wantGuarded = (pass == 0);
+        for (const Place& p : places_) {
+            if (!p.Offers(s)) continue;
+            if (wantGuarded && !PlaceIsGuarded(p)) continue;
+            bool skipped = false;
+            for (const std::string& id : skipIds) {
+                if (p.id == id) { skipped = true; break; }
+            }
+            if (skipped) continue;
+            out.push_back(&p);
+        }
+    }
+    std::sort(out.begin(), out.end(), [x, y](const Place* a, const Place* b) {
+        return Chebyshev(x, y, a->position.x, a->position.y) <
+               Chebyshev(x, y, b->position.x, b->position.y);
+    });
 }
 
 const Place* Atlas::NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,

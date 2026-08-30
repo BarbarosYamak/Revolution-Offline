@@ -8,8 +8,11 @@
 
 #include "uo/interaction/progress.h"
 #include "uo/interaction/activity_result.h"
+#include "uo/activities/craft_confirm.h"
+#include "uo/activities/train_confirm.h"
 
 #include <cstdio>
+#include <cstring>
 
 namespace {
 
@@ -98,10 +101,21 @@ void TestGoldGoneAndNothingArrived() {
                   "120 gold left and the pack is unchanged");
 }
 
-// The ledger's problem, not the bot's luck: a purchase that costs nothing
-// means the gold moved where this check cannot see it.
-void TestFreeGoodsAreContradicted() {
-    std::printf("[progress: goods that cost nothing are a ledger fault]\n");
+// BANK-PAID PURCHASE, NOT A LEDGER FAULT.
+//
+// This used to be TestFreeGoodsAreContradicted, and it was wrong: this shard
+// pays vendors from the BANK box, not the pack (sphere.ini
+// PayFromPackOnly=0), so a genuinely successful buy can complete with the
+// PACK's gold never moving at all. This exact shape -- goods arrived,
+// out.goldDelta == 0 -- fired the old "goods arrived without the purse
+// moving" Contradicted verdict on BOTH bots in tonight's live run
+// (run_r4/pair_Tarath.console.txt, run_r4/pair_Durnholde.console.txt) even
+// though the goods had genuinely arrived. The pack rising by the requested
+// amount IS success here; only a pack that did NOT rise is a failure (see
+// TestTheRefusedOrderIsNotSuccess, just above, for that case).
+void TestBankPaidPurchaseIsConfirmed() {
+    std::printf("[progress: goods arriving with the pack's gold untouched is "
+                "a bank-paid buy, not a ledger fault]\n");
     Expectation e;
     e.itemGraphic = 0x0F0E;
     e.itemBefore = 0;
@@ -111,10 +125,17 @@ void TestFreeGoodsAreContradicted() {
 
     Observed seen;
     seen.itemNow = 5;
-    seen.goldNow = 1000;
+    seen.goldNow = 1000;   // PayFromPackOnly=0: the bank paid, not the pack
 
-    ExpectVerdict(Verify(e, seen), Verdict::Contradicted,
-                  "five bottles for nothing");
+    const ProgressCheck r = Verify(e, seen);
+    ExpectVerdict(r, Verdict::Confirmed,
+                  "five bottles arrived with the pack's gold untouched -- "
+                  "the bank paid");
+    Expect(r.itemDelta == 5, "item delta is reported");
+    Expect(r.goldDelta == 0,
+           "the pack's gold really did not move, and that is not a fault");
+    Expect(std::strstr(r.reason, "bank paid") != nullptr,
+           "the reason names the shard rule, not a ledger fault");
 }
 
 // A price that moved between the quote and the purchase.
@@ -263,6 +284,216 @@ void TestOnlySuccessCountsAsProgress() {
     }
 }
 
+// ---------------------------------------------------------------------------
+// CRAFT (section 18: "crafted item count increased, or a definitive craft
+// failure received"). S3.
+// ---------------------------------------------------------------------------
+
+// Look a failure up by its verbatim shard text, the way the runner does.
+const uo::life::CraftFailure* Failure(const char* text) {
+    uo::usize n = 0;
+    const uo::life::CraftFailure* f = uo::life::CraftFailures(&n);
+    for (uo::usize i = 0; i < n; ++i)
+        if (std::strcmp(f[i].text, text) == 0) return &f[i];
+    return nullptr;
+}
+
+void TestACraftIsTheDaggerArriving() {
+    std::printf("[craft: a craft is the PACK moving, never the click landing]\n");
+    CraftConfirmInput in;
+    in.packBefore = 3;
+    in.packNow = 3;
+    ExpectVerdict(ConfirmCraft(in).check, Verdict::NotYet,
+                  "the menu was answered and nothing came of it yet");
+    Expect(ConfirmCraft(in).verdict == CraftVerdict::Waiting,
+           "a click that has not produced anything is still waiting");
+
+    in.packNow = 4;                 // "craft: made i_dagger pack 3->4"
+    const CraftConfirmResult r = ConfirmCraft(in);
+    Expect(r.verdict == CraftVerdict::Made, "the fourth dagger is a craft");
+    Expect(r.made == 1, "and exactly one of it");
+}
+
+// The 17 ruined scrolls: SRC.SYSMESSAGE in skill23_inscription.scp, heard
+// verbatim in run_m5/run_m7. The blank is consumed and nothing is produced,
+// so the PACK alone looks exactly like silence -- which is why the shard's
+// own words are the second half of the rule.
+void TestARuinedScrollIsAnAnswerNotSilence() {
+    std::printf("[craft: a ruined scroll is a real answer, not a timeout]\n");
+    const CraftFailure* ruined =
+        Failure("you fail to inscribe the scroll, and the scroll is ruined.");
+    Expect(ruined != nullptr, "the shard's inscription failure is in the table");
+    if (!ruined) return;
+    Expect(!ruined->blocking, "a ruined scroll does not end the trade");
+
+    CraftConfirmInput in;
+    in.packBefore = 2;
+    in.packNow = 2;               // nothing arrived, and nothing will
+    in.heard = ruined;
+    const CraftConfirmResult r = ConfirmCraft(in);
+    Expect(r.verdict == CraftVerdict::Spoiled, "spoiled, so the swing is over");
+    Expect(r.verdict != CraftVerdict::Made, "and emphatically not a craft");
+    Expect(r.made == 0, "nothing was made");
+}
+
+// THE PACK OUTRANKS THE COMPLAINT. A batch can ruin one scroll and finish the
+// next inside the same window; reading the complaint first would throw away
+// the item that actually arrived.
+void TestAnItemThatArrivedOutranksAComplaint() {
+    std::printf("[craft: an item that ARRIVED beats a failure line]\n");
+    CraftConfirmInput in;
+    in.packBefore = 0;
+    in.packNow = 1;
+    in.heard =
+        Failure("you fail to inscribe the scroll, and the scroll is ruined.");
+    Expect(ConfirmCraft(in).verdict == CraftVerdict::Made,
+           "one scroll was ruined and the next one landed");
+}
+
+// Blocking failures END the goal: swinging again from the same tile cannot
+// light a fire or make the shard change its mind about the opener.
+void TestBlockingFailuresEndTheGoal() {
+    std::printf("[craft: 'no fire' and 'cannot use that' are stand-downs]\n");
+    const char* blockers[] = {"you must be near a fire source to cook.",
+                              "you can't think of a way to use that item."};
+    for (const char* text : blockers) {
+        const CraftFailure* f = Failure(text);
+        Expect(f != nullptr, "the shard's blocking failure is in the table");
+        if (!f) continue;
+        Expect(f->blocking, "and it is marked blocking");
+        Expect(f->evidence && f->evidence[0],
+               "every string names where it is written down");
+        CraftConfirmInput in;
+        in.packBefore = 0;
+        in.packNow = 0;
+        in.heard = f;
+        Expect(ConfirmCraft(in).verdict == CraftVerdict::ShardRefused,
+               "the shard refused, so the goal stands down");
+    }
+}
+
+// Section 14: the batch produced nothing, and saying so is what lets the
+// planner give the turn to something else. Never Success.
+void TestSpentAttemptsAreNoProgressNotSuccess() {
+    std::printf("[craft: three swings and an empty pack is no_progress]\n");
+    CraftConfirmInput in;
+    in.packBefore = 5;
+    in.packNow = 5;
+    in.deadlineExpired = true;
+    in.attemptsExhausted = true;
+    const CraftConfirmResult r = ConfirmCraft(in);
+    Expect(r.verdict == CraftVerdict::NoProgress, "no_progress, by name");
+    Expect(r.verdict != CraftVerdict::Made, "and never a craft");
+    for (int i = 0; i <= static_cast<int>(CraftVerdict::NoProgress); ++i) {
+        const char* n = CraftVerdictName(static_cast<CraftVerdict>(i));
+        Expect(n && n[0] && n[0] != '?', "every craft verdict has a name");
+    }
+}
+
+// ---------------------------------------------------------------------------
+// TRAIN (section 18: "skill changed, or the trainer definitively refused").
+// ---------------------------------------------------------------------------
+
+// The live purchase that WORKED and was filed as a failure: 11.8 -> 21.1 for
+// 93 gold. Sphere does not push the number, so the errand must ask for it.
+void TestALessonIsTheServersNumberMoving() {
+    std::printf("[train: a lesson is the server's number moving]\n");
+    TrainConfirmInput in;
+    in.skillBefore = 118;
+    in.skillNow = 211;
+    in.goldBefore = 1000;
+    in.goldNow = 907;
+    in.quoted = 93;
+    in.msSincePaid = 3000;
+    in.skillsAsked = true;
+    const TrainConfirmResult r = ConfirmTraining(in);
+    Expect(r.verdict == TrainVerdict::Learned, "11.8 -> 21.1 is a lesson");
+    Expect(r.check.skillDelta == 93, "and the delta is reported in tenths");
+    Expect(r.check.goldDelta == -93, "with the fee that bought it");
+}
+
+// `training_unverified`, named at last. GOLD_DESTROYED_TRAINER with no skill
+// gain -- a fact about THIS trainer, never about the skill.
+void TestTheFeeTakenAndNothingTaught() {
+    std::printf("[train: a fee taken with no gain is not a lesson]\n");
+    TrainConfirmInput in;
+    in.skillBefore = 219;
+    in.skillNow = 219;          // unchanged
+    in.goldBefore = 1000;
+    in.goldNow = 819;           // but the trainer was paid
+    in.quoted = 181;
+    in.msSincePaid = 16000;     // past the window
+    in.skillsAsked = true;
+    const TrainConfirmResult r = ConfirmTraining(in);
+    Expect(r.verdict == TrainVerdict::FeeTakenNoLesson,
+           "the fee went and the skill did not move");
+    Expect(r.verdict != TrainVerdict::Learned, "which is never a lesson");
+    Expect(r.check.verdict != Verdict::Confirmed,
+           "and the progress check refuses to confirm it");
+}
+
+// The give that addressed a serial Sphere had already retired: nothing moved
+// anywhere, and nothing reported an error.
+void TestTheSilentGiveIsNamedSeparately() {
+    std::printf("[train: a give that moved nothing is not the same failure]\n");
+    TrainConfirmInput in;
+    in.skillBefore = 199;
+    in.skillNow = 199;
+    in.goldBefore = 9801;
+    in.goldNow = 9801;          // the purse never moved either
+    in.quoted = 101;
+    in.msSincePaid = 16000;
+    in.skillsAsked = true;
+    Expect(ConfirmTraining(in).verdict == TrainVerdict::NoAnswer,
+           "no fee taken and no lesson given is its own answer");
+}
+
+// Ask for the number ONCE, promptly -- not after the timeout has already
+// written the errand off.
+void TestTheSkillListIsAskedForOnce() {
+    std::printf("[train: ask for the skill report, promptly and once]\n");
+    TrainConfirmInput in;
+    in.skillBefore = 118;
+    in.skillNow = 118;
+    in.goldBefore = 1000;
+    in.goldNow = 907;
+    in.quoted = 93;
+    in.msSincePaid = 2000;      // past askSkillsAfterMs, well inside giveUp
+    in.skillsAsked = false;
+    Expect(ConfirmTraining(in).verdict == TrainVerdict::AskForSkills,
+           "the report has not arrived, so ask for it");
+
+    in.skillsAsked = true;
+    Expect(ConfirmTraining(in).verdict == TrainVerdict::Waiting,
+           "and having asked, wait rather than asking again");
+
+    in.msSincePaid = 500;       // too soon even to ask
+    in.skillsAsked = false;
+    Expect(ConfirmTraining(in).verdict == TrainVerdict::Waiting,
+           "half a second after paying, nothing is wrong yet");
+}
+
+// A refusal is an ANSWER. Silence is not, and must never be in this table.
+void TestTheRefusalsAreTheNpcsOwnWords() {
+    std::printf("[train: a refusal is what the NPC SAID, silence is not]\n");
+    uo::usize n = 0;
+    const TrainerRefusal* r = TrainerRefusals(&n);
+    Expect(n >= 5, "the five refusals this shard's trainers speak");
+    for (uo::usize i = 0; i < n; ++i) {
+        Expect(r[i].text && r[i].text[0], "every refusal has its text");
+        Expect(r[i].why && r[i].why[0], "and a reason for the verdict");
+        // Matched case-insensitively against the journal, so the table itself
+        // must be lower case or the match silently never fires.
+        for (const char* c = r[i].text; *c; ++c)
+            Expect(!(*c >= 'A' && *c <= 'Z'),
+                   "refusal text is lower case for the journal match");
+    }
+    for (int i = 0; i <= static_cast<int>(TrainVerdict::NoAnswer); ++i) {
+        const char* nm = TrainVerdictName(static_cast<TrainVerdict>(i));
+        Expect(nm && nm[0] && nm[0] != '?', "every train verdict has a name");
+    }
+}
+
 }  // namespace
 
 int main() {
@@ -270,7 +501,7 @@ int main() {
     TestAConfirmedPurchase();
     TestTheRefusedOrderIsNotSuccess();
     TestGoldGoneAndNothingArrived();
-    TestFreeGoodsAreContradicted();
+    TestBankPaidPurchaseIsConfirmed();
     TestOverpayingIsContradicted();
     TestSkillMustActuallyMove();
     TestEquipMustReachTheLayer();
@@ -278,6 +509,17 @@ int main() {
     TestAPartialSaleIsNotDone();
     TestSilenceIsNotSuccess();
     TestOnlySuccessCountsAsProgress();
+    // S3 -- craft and train, section 18's remaining two rows.
+    TestACraftIsTheDaggerArriving();
+    TestARuinedScrollIsAnAnswerNotSilence();
+    TestAnItemThatArrivedOutranksAComplaint();
+    TestBlockingFailuresEndTheGoal();
+    TestSpentAttemptsAreNoProgressNotSuccess();
+    TestALessonIsTheServersNumberMoving();
+    TestTheFeeTakenAndNothingTaught();
+    TestTheSilentGiveIsNamedSeparately();
+    TestTheSkillListIsAskedForOnce();
+    TestTheRefusalsAreTheNpcsOwnWords();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

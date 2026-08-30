@@ -69,6 +69,8 @@ void Client::ActionTradeOffer(u32 itemSerial, u16 amount) {
     BeginAction(act::Kind::MoveItem, 8000);
     action_.subject = itemSerial;
     action_.destination = trade_.MyContainer();
+    action_.amount = amount ? amount : 1;
+    NoteMoveSource(itemSerial);
     LogInfo("[trade] putting 0x%08X into the trade window\n", itemSerial);
     if (!SendLift(itemSerial, amount ? amount : 1)) {
         FinishAction(act::Result::Rejected, "could not lift the item");

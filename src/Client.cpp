@@ -23,6 +23,7 @@
 #include "render/RadarColors.h"
 #include "win32/MiniFB.h"
 #include "js/ClientBindings.h"
+#include "net/Cliloc.h"
 
 #include <algorithm>
 #include <cctype>
@@ -522,6 +523,8 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xA8: OnServerList(data, size); break;
         case 0xA9: OnCharacterList(data, size); break;
         case 0xAE: OnUnicodeMessage(data, size); break;
+        case 0xC1: OnClilocMessage(data, size); break;
+        case 0xCC: OnClilocMessageAffix(data, size); break;
         case 0xB9: OnFeatures(data, size); break;
         case 0xBD: OnClientVersionQuery(data, size); break;
         case 0xC8: OnViewRange(data, size); break;
@@ -566,7 +569,7 @@ void Client::Dispatch(const u8* data, usize size) {
 
         // Common in-world packets we just log + ignore for M1.
         case 0xBA: case 0xBC: case 0xBF: case 0xC0:
-        case 0xC1: case 0xCB: case 0xCC:
+        case 0xCB:
             // Logged above; behavior is no-op until later milestones.
             break;
 
@@ -1701,6 +1704,21 @@ u32 Client::ResolveFollowSerialByName(const char* name) const {
 void Client::RememberMobileName(u32 serial, const char* name) {
     if (serial == 0 || !name || !name[0]) return;
     mobileNames_[serial] = name;
+}
+
+std::string Client::ResolveSpeakerName(u32 sourceSerial,
+                                       const std::string& raw) const {
+    if (!raw.empty() || sourceSerial == 0 || sourceSerial == 0xFFFFFFFFu)
+        return raw;
+    const u32 masked = sourceSerial & 0x7FFFFFFFu;
+    // Our own speech echoes back with an empty name field on this opcode;
+    // the login flow already knows what we are called.
+    if (masked == playerSerial_ && selectedChar_ >= 0 &&
+        selectedChar_ < charCount_ && charSlots_[selectedChar_].name[0]) {
+        return charSlots_[selectedChar_].name;
+    }
+    if (const char* known = MobileName(masked)) return known;
+    return raw;
 }
 
 void Client::RememberJournalMessage(u32 sourceSerial, u16 sourceBody, u8 type,
@@ -3071,13 +3089,14 @@ usize Client::ContainerItemCount(u32 container) const {
 }
 
 bool Client::ContainerItemAt(u32 container, usize index, u32* serial,
-                             u16* graphic, u16* amount) const {
+                             u16* graphic, u16* amount, u16* hue) const {
     const auto it = containerItems_.find(container);
     if (it == containerItems_.end() || index >= it->second.size()) return false;
     const ContainerItem& ci = it->second[index];
     if (serial)  *serial  = ci.serial;
     if (graphic) *graphic = ci.graphic;
     if (amount)  *amount  = ci.amount;
+    if (hue)     *hue     = ci.hue;
     return true;
 }
 
@@ -3166,6 +3185,24 @@ void Client::SendDropToGround(u32 serial, i32 x, i32 y, i8 z) {
     LogInfo("[ITEM] drop ground=(%d,%d,%d)\n", x, y, static_cast<int>(z));
 }
 
+// Where `serial` sits (and that stack's full amount) right now, from the
+// local container cache -- captured before a lift so a later 0x25 that lands
+// the same serial back in the SAME container, with a smaller amount, can be
+// read as "the stack split" rather than "the move failed".
+void Client::NoteMoveSource(u32 serial) {
+    moveSourceContainer_ = 0;
+    moveSourceAmount_ = 0;
+    for (const auto& kv : containerItems_) {
+        for (const auto& ci : kv.second) {
+            if (ci.serial == serial) {
+                moveSourceContainer_ = kv.first;
+                moveSourceAmount_ = ci.amount;
+                return;
+            }
+        }
+    }
+}
+
 // A UO move is lift + drop. Nothing is assumed moved until the server says so:
 // success is 0x25 (item added to the destination container), failure is 0x27
 // (drag cancel) with a reason code.
@@ -3174,6 +3211,7 @@ void Client::ActionMoveItem(u32 serial, u16 amount, u32 destContainer) {
     action_.subject = serial;
     action_.destination = destContainer;
     action_.amount = amount;
+    NoteMoveSource(serial);
     if (!serial || !destContainer) {
         FinishAction(act::Result::InvalidState, "null serial/destination");
         return;
@@ -3231,6 +3269,10 @@ void Client::ActionUnequip(u32 serial) {
     action_.subject = serial;
     const u32 pack = PlayerEquipSerialAt(kLayerBackpack);
     action_.destination = pack;
+    // Equipped items are not in the local container cache, so this resolves
+    // to 0/0 -- which also clears any stale source left over from a previous
+    // MoveItem action so it cannot be mistaken for this one's.
+    NoteMoveSource(serial);
     if (!serial || !pack) {
         FinishAction(act::Result::InvalidState, "no item or no backpack");
         return;
@@ -3781,10 +3823,78 @@ void Client::ActionOnItemInContainer(u32 item, u32 container) {
         action_.kind == act::Kind::Unequip) {
         if (action_.destination == container || action_.destination == 0) {
             FinishAction(act::Result::Success, "item is in the destination");
-        } else {
-            FinishAction(act::Result::ServerFailure,
-                         "item landed in a different container");
+            return;
         }
+
+        // A trade window has TWO legitimate containers, and the FIRST 0x25
+        // for an item dropped into our own side sometimes names the OTHER
+        // side's container -- corrected a packet later by a second 0x25 this
+        // client never got to see because the action had already finished.
+        // (run_r4 pair_Tarath.console.txt 20:53:35.052-053: 0x40010870 failed
+        // verification, then "is now in the our window" one line later.)
+        // The resolved bank box is the same kind of alternate-but-legitimate
+        // destination when a deposit's container id does not match the one
+        // ActionMoveItem was called with.
+        const bool inTradeWindow = trade_.Active() &&
+            (container == trade_.MyContainer() ||
+             container == trade_.TheirContainer());
+        const bool inBankBox = bankContainer_ != 0 && container == bankContainer_;
+        if (inTradeWindow || inBankBox) {
+            char why[128];
+            std::snprintf(why, sizeof(why),
+                          "item 0x%08X is in %s 0x%08X (asked for 0x%08X)", item,
+                          inTradeWindow ? "the trade window" : "the bank box",
+                          container, action_.destination);
+            FinishAction(act::Result::Success, why);
+            return;
+        }
+
+        // A partial-stack move: Sphere keeps the ORIGINAL serial on the
+        // remainder left behind in the SOURCE container and reports that with
+        // its own 0x25, which can race the drop's confirmation and arrive
+        // first. If this is that same source container and the amount left
+        // behind is exactly what should remain after moving action_.amount,
+        // the move succeeded -- it was just reported in a container we were
+        // not looking at. (run_r4 pair_Durnholde.console.txt 20:34:17.897:
+        // 40-of-50 i_ingot_iron; pair_Tarath.console.txt 20:53:35.052:
+        // 47-of-133 i_log.) A refusal that bounces the WHOLE stack back
+        // unchanged does not satisfy this arithmetic and falls through to the
+        // failure below, same as before.
+        if (moveSourceContainer_ != 0 && container == moveSourceContainer_ &&
+            action_.amount > 0 && moveSourceAmount_ > action_.amount) {
+            const u16 expectedRemaining =
+                static_cast<u16>(moveSourceAmount_ - action_.amount);
+            u16 remaining = 0;
+            bool found = false;
+            auto it = containerItems_.find(container);
+            if (it != containerItems_.end()) {
+                for (const auto& ci : it->second) {
+                    if (ci.serial == item) {
+                        remaining = ci.amount;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found && remaining == expectedRemaining) {
+                char why[144];
+                std::snprintf(why, sizeof(why),
+                              "partial stack: %u left in source 0x%08X after "
+                              "moving %u of %u to 0x%08X",
+                              remaining, container, action_.amount,
+                              moveSourceAmount_, action_.destination);
+                FinishAction(act::Result::Success, why);
+                return;
+            }
+        }
+
+        // None of the above: a real bounce/refusal, e.g. the item reappeared
+        // whole in the backpack because the destination would not take it.
+        char why[128];
+        std::snprintf(why, sizeof(why),
+                      "item 0x%08X landed in 0x%08X, not the destination 0x%08X",
+                      item, container, action_.destination);
+        FinishAction(act::Result::ServerFailure, why);
     } else if (action_.kind == act::Kind::VendorBuy) {
         FinishAction(act::Result::Success, "purchased item delivered");
     }
@@ -5239,7 +5349,14 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     const u8 type = data[9];
     const u16 hue = LoadBE16(data + 10);
     const u16 font = LoadBE16(data + 12);
-    const std::string speaker = PacketString(data + 14, 30);
+    const std::string rawSpeaker = PacketString(data + 14, 30);
+    // Unlike 0x1C, this opcode's name field comes back empty for the
+    // player's own speech (and possibly other cases) -- resolve it through
+    // the world cache rather than filing/logging a nameless journal line.
+    // See ResolveSpeakerName; run_r4 20:53:30.418-32.277 pair_Tarath: every
+    // uni-chat line for our own "WTS ..."/"WTB ..." announcements had an
+    // empty speaker.
+    const std::string speaker = ResolveSpeakerName(sourceSerial, rawSpeaker);
     if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu)
         RememberMobileName(sourceSerial & 0x7FFFFFFFu, speaker.c_str());
 
@@ -5254,6 +5371,49 @@ void Client::OnUnicodeMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), buf);
     LogInfo("[chat uni  ] %s: %s\n", speaker.c_str(), buf);
+}
+
+// ---------------------------------------------------------------------------
+// 0xC1 Cliloc Message (variable). Layout and the fallback-text rationale are
+// in src/net/Cliloc.h (S6: this used to be a logged no-op at this line --
+// see docs/S3_CHARACTERIZATION.md's "shard messages" section -- so the
+// crafting system's cliloc numbers (crafting/crafting_messages.scp:
+// craft_msg_fail 1044043, craft_msg_noresources 1044253, craft_msg_noskill
+// 1044153) were never reaching the journal at all).
+//
+// Decoded into the SAME journal RememberJournalMessage feeds from 0x1C/0xAE,
+// so every existing journal grep (JournalSaidSince, CraftConfirm.cpp) sees
+// this text without change.
+// ---------------------------------------------------------------------------
+void Client::OnClilocMessage(const u8* data, usize size) {
+    net::ClilocMessage msg;
+    if (!net::ParseClilocMessage(data, size, msg)) return;
+    if (msg.sourceSerial != 0 && msg.sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(msg.sourceSerial & 0x7FFFFFFFu, msg.speaker.c_str());
+    const std::string text = net::FormatClilocJournalText(msg);
+    RememberJournalMessage(msg.sourceSerial, msg.sourceBody, msg.type,
+                           msg.hue, msg.font, msg.speaker.c_str(),
+                           text.c_str());
+    LogInfo("cliloc %u \"%s\"\n", msg.clilocId, text.c_str());
+    ActionOnSysMessage(text.c_str(), msg.sourceSerial & 0x7FFFFFFFu, msg.type);
+}
+
+// ---------------------------------------------------------------------------
+// 0xCC Cliloc Message Affix (variable). Same journal path and fallback text
+// as 0xC1; see src/net/Cliloc.h for the affix prepend/append rule and the
+// documented (and left as documented) args endianness asymmetry.
+// ---------------------------------------------------------------------------
+void Client::OnClilocMessageAffix(const u8* data, usize size) {
+    net::ClilocMessage msg;
+    if (!net::ParseClilocMessageAffix(data, size, msg)) return;
+    if (msg.sourceSerial != 0 && msg.sourceSerial != 0xFFFFFFFFu)
+        RememberMobileName(msg.sourceSerial & 0x7FFFFFFFu, msg.speaker.c_str());
+    const std::string text = net::FormatClilocJournalText(msg);
+    RememberJournalMessage(msg.sourceSerial, msg.sourceBody, msg.type,
+                           msg.hue, msg.font, msg.speaker.c_str(),
+                           text.c_str());
+    LogInfo("cliloc %u \"%s\"\n", msg.clilocId, text.c_str());
+    ActionOnSysMessage(text.c_str(), msg.sourceSerial & 0x7FFFFFFFu, msg.type);
 }
 
 void Client::OnUnknown(const u8* data, usize size) {

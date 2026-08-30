@@ -17,12 +17,19 @@
 
 #include "uo/life.h"
 #include "uo/world_model.h"
+#include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
+#include "uo/activities/craft.h"
 #include "uo/activities/disposal.h"
+#include "uo/activities/heal.h"
+#include "uo/activities/rest.h"
+#include "uo/activities/recovery.h"
+#include "uo/activities/train.h"
 #include "uo/interaction/bank_errand.h"
 #include "uo/vendor_errand.h"
 #include "uo/types.h"
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -103,7 +110,26 @@ private:
     void        MaintainBuildLocks(Client& client, const Observation& obs);
     void        RunGoal(Client& client, const Observation& obs);
     void        LogGoalChange(const Observation& obs, const std::string& why);
+    // HOW THE DAY WAS SPENT, as one greppable line -- R1's exit proof
+    // (families>=4, none above half the picks) plus self_superseded, the
+    // "goal_changed=X from=X" count. Called from the clean WindDown logout
+    // AND from Checkpoint (gated, see kHistogramIntervalMs) so a crash, a
+    // disconnect, or an operator-killed session still leaves a verdict.
+    // Pure formatting -- the arithmetic is uo::life::SummariseGoalPicks
+    // (Goals.cpp), reachable by ctest independent of this method.
+    void        LogGoalHistogram() const;
     void        LogLine(const char* fmt, ...) const;
+    // The one place a plan's step is logged -- once per plan change, not per
+    // tick. Callers pass e.g. HealStepName(p.step); see S2_WIRING_PLAN.md S2.0.
+    void        LogPlan(const char* kind, const char* reason) const;
+    // The ONLY legal way a plan hands the turn to another goal: cools `from`,
+    // finishes it as a no-op, logs the handoff, and delays the next action.
+    // `to` is advisory only -- Planner::Select picks the actual receiver.
+    // Always returns false (the goal did not complete this tick). `nowMs` is
+    // `obs.nowMs` at every call site -- there is no cached Runner-side clock
+    // member, so it is taken as a parameter rather than read from one.
+    bool        HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
+                        i64 nowMs);
 
     // --- goal bodies. Each returns true when the goal is finished. --------
     bool DoSurvive(Client& client, const Observation& obs);
@@ -123,6 +149,20 @@ private:
     bool DoCraft(Client& client, const Observation& obs);
     bool DriveOpenTrade(Client& client, const Observation& obs);
     void ResetTradeState();
+    // Is the shard's market place (market::kMarketBankPlaceId) usable at all:
+    // present in the atlas, offering Service::Banker, and guarded? Resolved
+    // once per life and cached; logs the answer the first time. When it is
+    // not, the trade errand keeps today's nearest-bank behaviour rather than
+    // inventing coordinates for a place the atlas does not have.
+    bool MarketPlaceUsable(Client& client);
+    // Standing at the market, judged by GEOMETRY. `obs.atBank` means the BOX
+    // IS OPEN (Runner::Observe), so a buyer standing at the Britain bank with
+    // a shut box would re-issue the journey forever.
+    bool AtMarketBank(const Client& client) const;
+    // THE BOX IS THE TRUTH; state_.bank is only a memory of it. Called when an
+    // open box has been asked for a remembered stock and has none of it, so
+    // the memory stops sending the character on trips it cannot honour.
+    void ForgetBankedStock(const char* item);
     // Gold, declared tools, stocked consumables, what this life makes and
     // what it makes those from. Everything else is spare -- bankable as dead
     // weight, or sellable as loot.
@@ -138,6 +178,13 @@ private:
     int  PickPracticeSpell(Client& client, const Observation& obs) const;
     bool DoFillSpellbook(Client& client, const Observation& obs);
     bool DoMakeBandages(Client& client, const Observation& obs);
+    // DecideRest (include/uo/activities/rest.h), shared by DoExplore and
+    // DoIdle -- both are now two-line forwarders into this. `owner` is
+    // whichever of the two the planner actually picked, purely for the
+    // goal_stagnant log line and the HandOff `from`; the STEP taken (explore,
+    // rest, settle, stand down as stagnant) is the same regardless of which
+    // one asked. See S2_WIRING_PLAN.md S2.2.
+    bool RestTick(Client& client, const Observation& obs, GoalKind owner);
     bool DoExplore(Client& client, const Observation& obs);
     bool DoMine(Client& client, const Observation& obs);
     bool DoSmelt(Client& client, const Observation& obs);
@@ -166,6 +213,11 @@ private:
 
     i64 sessionStartMs_ = 0;
     i64 lastCheckpointMs_ = 0;
+    // Gate for LogGoalHistogram's Checkpoint call -- the clean-WindDown call
+    // is unconditional and stamps this too, so the periodic Checkpoint right
+    // after a wind-down logout does not immediately reprint it.
+    i64 lastHistogramMs_ = 0;
+    static constexpr i64 kHistogramIntervalMs = 10 * 60 * 1000;
     i64 lastTickMs_ = 0;
     i64 nextActionMs_ = 0;
     // Build-lock bookkeeping. `statLockSent_` holds `wantedState + 1` so 0
@@ -240,6 +292,11 @@ private:
     double foeHpAtStart_ = -1.0;
     i64  lastBandageMs_ = 0;
     i64  lastDangerNoteMs_ = 0;   // one danger note per fight, not per tick
+    // --- combat (S2.6, AvoidCombat branch only) --------------------------
+    // The last CombatMove logged, so LogPlan fires on transition only -- not
+    // once per tick. Wait is the harmless default: DoSurvive never reaches
+    // the AvoidCombat call with nothing decided yet.
+    CombatMove lastCombatMove_ = CombatMove::Wait;
     // Journal watermark for the overflow message. Moved forward once the pack
     // has been emptied, so one past overflow does not pin BANK forever.
     i64  overloadWatchMs_ = 0;
@@ -285,6 +342,34 @@ private:
     life::BuyActivity bandageBuy_;
     // Heal potions, for lives whose Healing skill cannot make a bandage work.
     life::BuyActivity potionBuy_;
+    // --- acquiring gear (S2.7) -------------------------------------------
+    // The last AcquireStep logged for each of the three DoReplaceEquipment
+    // items, so LogPlan fires on transition only. Garment also remembers
+    // WHICH piece it was logged for -- the missing item can change between
+    // ticks (shirt bought, trousers next) without the step itself changing.
+    AcquireStep lastBandageAcquirePlan_ = AcquireStep::Done;
+    AcquireStep lastPotionAcquirePlan_  = AcquireStep::Done;
+    AcquireStep lastGarmentAcquirePlan_ = AcquireStep::Done;
+    std::string lastGarmentAcquireItem_;
+    // Same, for DoGetTool's one-request-per-tool loop -- but PER TOOL NAME,
+    // not one shared sentinel. A profession with two or more tools
+    // (miner_smith: pickaxe AND smith hammer) checks every one of them each
+    // tick up to the first still-missing entry, and a single shared sentinel
+    // cannot remember two tools' states at once: pickaxe (Done) looks like a
+    // transition away from whatever hammer last set the sentinel to, and
+    // hammer (Buy) looks like a transition away from whatever pickaxe just
+    // set it back to -- so BOTH logged, every tick, forever, with neither
+    // tool's own status actually moving. 341 lines in 10 seconds, alternating
+    // plan=done/plan=buy. A map keyed by tool name gives each tool its own
+    // memory instead of trampling its neighbour's.
+    std::map<std::string, AcquireStep> lastToolAcquirePlanByItem_;
+    // HOW MANY TIMES WE HAVE ASKED THE SERVER TO PUT THIS TOOL IN HAND, and
+    // it has not appeared on the paperdoll. Cleared the tick the equip is seen
+    // to have landed -- which is the ONLY place DoGetTool calls NoteProgress
+    // for a wear. Without the count an equip the shard silently refuses is an
+    // infinite 1.2-second loop that keeps resetting the planner's own
+    // failure ladder. (audit 2026-08-30, finding 4.)
+    std::map<std::string, int> toolWearAttemptsByItem_;
 
     // The resurrection robe is worth sixteen bandages, and it is only safely
     // identifiable in the minutes right after coming back. See
@@ -311,6 +396,13 @@ private:
     // pack before it, and how many fruitless trips to a smithy have been made.
     i64  smeltStartedMs_ = 0;
     i32  smeltIngotsBefore_ = 0;
+    // WHICH ingot smeltIngotsBefore_ is a count of (S1). Ore is one graphic
+    // for every metal, so the picker falls back to a coloured vein when the
+    // iron runs out -- and a baseline taken against i_ingot_iron then never
+    // moves again no matter how much valorite is melted. The count and the
+    // name have to travel together, and the baseline is retaken whenever the
+    // metal changes.
+    std::string smeltIngotName_;
     i32  smeltTrips_ = 0;
     i64  toolTitlesAskedMs_ = 0;
     i32  coinLiftFails_ = 0;
@@ -358,6 +450,26 @@ private:
     i32  tameTrips_ = 0;
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
+    // --- rest and roam (S2.2) -----------------------------------------------
+    // TravelToUnexploredPlace both CHOOSES and STARTS a journey, so it cannot
+    // be used as a query for DecideRest's `worthExploring`. Latched instead:
+    // set true at DoExplore's "nowhere new to go" branch, cleared at the
+    // arrival NotePlace("explored", ...) -- see RestTick.
+    bool exploredEverything_ = false;
+    // When a goal outside the Wander family (Explore/IdleBriefly/
+    // TravelToRequiredPlace, per FamilyOf) was last picked -- written in the
+    // Select success block. DecideRest's `blockedForMs` is how long every
+    // REAL errand has been unavailable.
+    i64  lastRealErrandMs_ = 0;
+    // Last RestStep passed to LogPlan, so RestTick logs only on a plan
+    // change, not once per tick. Out-of-range sentinel guarantees the first
+    // real step always logs, matching lastRecoveryPlan_'s pattern.
+    RestStep lastRestPlan_ = static_cast<RestStep>(0xFF);
+    // Past this point in a session, standing still stops being idle and
+    // becomes settling down somewhere safe -- read against sessionLimitMs so
+    // WindDown has time to walk to a bank before the hard deadline, not the
+    // instant it is reached. A threshold, not a mechanic.
+    static constexpr i64 kRestSettleLeadMs = 3 * 60 * 1000;
     bool spellbookOpened_ = false;
     // The scroll graphic last dropped on the book, and the spell count before
     // it, so the next tick can tell a real add from a refusal.
@@ -379,6 +491,12 @@ private:
     // Journal mark taken once at session start: hunger is a STATE, and the
     // last thing the server said about it is still true until it speaks again.
     i64  sessionStartJournalMs_ = 0;
+    // --- healing (S2.1) -----------------------------------------------------
+    // The last HealStep logged, so LogPlan fires on transition only -- not
+    // once per tick, which is what produced the 311-line forge spam this
+    // slice exists to end. HealStep::None at construction matches DoHeal's
+    // "healthy enough" starting assumption.
+    HealStep lastHealPlan_ = HealStep::None;
     // --- buying a skill from an NPC ------------------------------------
     static constexpr i32 kMaxTrainTrips = 3;
     // How long TRAIN_AT_NPC rests after finding no trainer, or after one
@@ -407,6 +525,10 @@ private:
     static constexpr i32 kMaxSilentAsks = 3;
     i32  trainSilentAsks_ = 0;
     u32  trainerSerial_ = 0;
+    // The last TrainStep logged (S2.4), so LogPlan fires on transition only.
+    // Shared by both DecideTrain call sites in DoTrainAtNpc -- they decide
+    // the same question at two different moments, not two questions.
+    TrainStep lastTrainPlan_ = TrainStep::Done;
     // Deposits of one item that keep failing. See DoBank.
     std::string bankDepositItem_;
     int         bankDepositTries_ = 0;
@@ -452,9 +574,19 @@ private:
     i32         pendingBuyGoldBefore_ = 0;
     std::string craftItem_;       // what is being made
     i32         craftHadBefore_ = 0;
-    i64         craftStartedMs_ = 0;
-    int         craftMenuStep_ = 0;   // 0 = not started, 1 = top menu answered
+    // THE JOURNAL MARK FOR THIS SWING. Section 18's craft rule has two
+    // halves -- "the crafted item count increased, OR a definitive craft
+    // failure received" -- and the second half needs a point to read from.
+    // The tick clock will not do: JournalSaidSince measures against the
+    // journal's own clock, and mixing the two is what made a 12-second
+    // window expire in 2.5 seconds in the trainer path.
+    i64         craftJournalMs_ = 0;
     int         craftMade_ = 0;
+    // --- crafting (S2.5) ------------------------------------------------
+    // The last CraftStep logged, so LogPlan fires on transition only -- not
+    // once per tick. Sentinel rather than CraftStep::Done: Done is a real,
+    // reachable verdict and must still log the first time it is seen.
+    CraftStep   lastCraftPlan_ = static_cast<CraftStep>(0xFF);
     // Shops of the trade already walked to this session. Britain has three
     // mage shops in the atlas; without this the character walks to the
     // nearest one forever, however many times it comes away with nothing.
@@ -553,6 +685,74 @@ private:
     // Until when the player market counts as tried-and-empty.
     i64  marketQuietUntilMs_ = 0;
     static constexpr i64 kMarketQuietMs = 10 * 60 * 1000;   // ten minutes
+    // AN EMPTY ROOM IS NOT A DECLINED OFFER. "no audience" fires before a
+    // word is ever said -- nobody was there to answer -- which is a much
+    // weaker signal than "audience already declined" (an offer WAS made and
+    // ignored). Cooling both for the full ten minutes meant a seller and a
+    // buyer arriving out of step (one leg is 250s one-way,
+    // docs/S5_MARKET_TRIP_PLAN.md section 3) rested past the point the other
+    // side could plausibly still be there. Two minutes is long enough to not
+    // spam an empty room every tick, short enough that the pair still has a
+    // chance to overlap within the same session.
+    static constexpr i64 kNoAudienceMs = 2 * 60 * 1000;     // two minutes
+    // Is market::kMarketBankPlaceId usable? -1 not resolved yet, 0 no, 1 yes.
+    int  marketPlaceOk_ = -1;
+    // A BUYER HAS NOTHING TO SAY. It answers what it hears, so its whole
+    // errand at the market is to be present while somebody else announces.
+    // Bounded: one full announce cycle is kMaxAnnounces x kAnnounceIntervalMs
+    // = 48s nominal, measured at 42.4s live (run_m7/fleet7.console.txt, first
+    // announce 16:23:27.633 -> stand-down 16:24:10.031).
+    //
+    // 60s was the original bound -- guarantees a listener present at the
+    // market hears a complete announce cycle, but nothing more. A seller and
+    // a buyer are two lives each walking a 250s one-way leg to the same
+    // rendezvous (docs/S5_MARKET_TRIP_PLAN.md section 3); at 60s the pair
+    // almost never actually overlaps, and kNoAudienceMs above only cools two
+    // minutes before the same buyer is willing to come back and listen again.
+    // Three minutes gives real slack for the two arrivals to land inside the
+    // same window without either side listening indefinitely.
+    static constexpr i64 kListenMs = 3 * 60 * 1000;
+    // When the wait at the market began; 0 = not waiting. SHARED by the buyer
+    // (nothing to say, listening for a seller) and the seller (goods in hand,
+    // nobody yet in earshot). Both are the same fact -- a character that has
+    // paid for the journey standing at the rendezvous -- and both end the same
+    // way, so they end up on one clock.
+    i64  marketListenFromMs_ = 0;
+    // --- the withdrawal, and why it needs three counters -------------------
+    //
+    // run_r4/pair_Durnholde.console.txt:4382-4672: seventy-six identical
+    // "market: withdrawing 20 i_ingot_iron from the bank to sell" lines in two
+    // minutes forty-four seconds, each answered by `drag_cancel: reason=0
+    // cannot lift that`, because the box serial and its cached contents both
+    // survived a walk to the blacksmith guild and back while the server's own
+    // box did not.
+    //
+    // Has a banker opened the box during THIS visit to the market? BankErrand
+    // reports Success the instant Client::BankContainer() is set, so an
+    // inherited box would be rubber-stamped; this is the flag that makes the
+    // handler drop it and ask again.
+    bool marketBoxOpened_ = false;
+    // Refused lifts of the same stack with the pack unchanged, and how many
+    // times the box has been re-asked for over one errand. Both bounded so a
+    // box that genuinely does not hold the goods ends the errand instead of
+    // cycling.
+    i32  marketLiftFails_ = 0;
+    i32  marketLiftPack_ = -1;      // pack count at the last attempt
+    std::string marketLiftItem_;
+    i32  marketBoxReopens_ = 0;
+    static constexpr i32 kMaxMarketLiftFails = 2;   // as coinLiftFails_ in DoBank
+    static constexpr i32 kMaxMarketBoxReopens = 2;
+    // RETRY LONGER THAN THE DEADLINE. Client.cpp's kMoveTimeoutMs is 4000 ms;
+    // the old 2000 ms gap meant every retry superseded its own predecessor
+    // before the server's answer could land ("Retry shorter than timeout").
+    static constexpr i64 kMarketWithdrawRetryMs = 6000;
+    // WHAT A MARKET TRIP COSTS, end to end: 250s out + 3-min listen + 250s back
+    // (docs/S5_MARKET_TRIP_PLAN.md section 3, all three legs measured), plus
+    // kWindDownBudgetMs so the life is not still walking when the session
+    // clock runs out and wind-down finds it in open country. Matches
+    // Planner::TimeLimitFor(TradeWithPlayer).
+    static constexpr i64 kMarketTripMs = 250000 + kListenMs + 250000;  // 680 s: two 250 s legs + the 3-min listen (2026-08-30)
+    static constexpr i64 kMarketTripBudgetMs = kMarketTripMs + kWindDownBudgetMs;
 
     // --- FISH. skill18_fishing.scp: DELAY=8.0, RANGE=4 ---------------------
     // The eight seconds is a CEILING, not a delay: the goal polls for one of
@@ -580,6 +780,10 @@ private:
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;
     bool travelInFlight_ = false;
+    // Last RecoveryStep passed to LogPlan, so DoRecoverCorpse logs only on a
+    // plan change (S2_WIRING_PLAN.md S2.3) instead of once per tick. The
+    // out-of-range sentinel guarantees the first real step always logs.
+    RecoveryStep lastRecoveryPlan_ = static_cast<RecoveryStep>(0xFF);
     // Foes we proved we could not reach, so a mob behind a wall does not
     // restart the approach every tick (audit section 3.7).
     std::vector<std::pair<u32, i64>> unreachable_;

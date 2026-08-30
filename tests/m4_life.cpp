@@ -651,6 +651,75 @@ void TestPlanner() {
 }
 
 // --------------------------------------------------------------------------
+// The bug from tonight's live run (run_r4/pair_Tarath.console.txt): with a
+// proven stand AND the axe already in hand, GATHER_LOGS scored 97
+// (52 need + 25 proven stand + 20 axe in hand) over TRADE_WITH_PLAYER's 80
+// while Tarath was sitting on 97 spare logs -- the two flat bonuses that
+// exist to get an idle character moving were instead dragging a character
+// who already had plenty back to the axe, instead of to the buyer who would
+// take the pile. keepOfOwnOutput is 20 (market.h); 113 logs held is 93
+// spare, comfortably past the 2x-keep (40) damper threshold, and matches the
+// exact figure E's NeedTrade test uses (m8_market_trip.cpp) for urgency 0.55.
+void TestGatherLogsSurplusYieldsToTrade() {
+    Section("planner: a big log surplus damps GATHER_LOGS toward TRADE_WITH_PLAYER");
+
+    const prof::Profession* jack = prof::Find("lumberjack_swordsman");
+    if (!jack) { Check(false, "no lumberjack_swordsman"); return; }
+
+    life::NeedConfig needCfg;
+    needCfg.profession = jack;
+    const life::BuildPlan plan = life::PlanFromProfession(*jack);
+
+    life::Memory mem;
+    life::Observation obs = HealthyLumberjackAtWork();
+    obs.pack.push_back({"i_log", 113});
+    obs.gold = 20000;
+    obs.goldOnHand = 800;
+    // A stand that has ACTUALLY PAID OUT, right where the character stands --
+    // otherwise the "proven stand +25" bonus this test is about never fires,
+    // and the pre-fix bug (which needed it) would not reproduce.
+    mem.NoteResource("logs", obs.x, obs.y, 0, /*success=*/true, obs.nowMs);
+
+    const std::vector<life::Need> needs = life::AssessNeeds(plan, mem, obs, needCfg);
+    const life::Need* logsNeed = Find(needs, life::NeedKind::NeedLogs);
+    Check(logsNeed != nullptr && logsNeed->urgency > 0.39 && logsNeed->urgency < 0.41,
+          "NeedLogs urgency is the flat 0.40 for a canWork lumberjack");
+    const life::Need* tradeNeed = Find(needs, life::NeedKind::NeedTrade);
+    Check(tradeNeed != nullptr && tradeNeed->urgency > 0.54 && tradeNeed->urgency < 0.56,
+          "NeedTrade urgency is 0.55 -- 93 spare logs against a 20-log trip is a full load");
+
+    life::Planner planner;
+    const std::vector<life::ScoredGoal> scored = planner.Score(needs, obs, mem);
+    double gatherScore = -1.0, tradeScore = -1.0;
+    std::string gatherReasons, tradeReasons;
+    for (const life::ScoredGoal& g : scored) {
+        if (g.kind == life::GoalKind::GatherLogs) {
+            gatherScore = g.score;
+            for (const std::string& r : g.reasons) gatherReasons += r + " | ";
+        }
+        if (g.kind == life::GoalKind::TradeWithPlayer) {
+            tradeScore = g.score;
+            for (const std::string& r : g.reasons) tradeReasons += r + " | ";
+        }
+    }
+    Check(gatherScore >= 0.0, "GATHER_LOGS is scored at all");
+    Check(tradeScore >= 0.0, "TRADE_WITH_PLAYER is scored at all");
+    // 130 x 0.40 = 52, with neither bonus added: the damper dropped both.
+    Check(gatherScore > 51.0 && gatherScore < 53.0,
+          "GATHER_LOGS keeps only its bare need score -- the proven-stand "
+          "and axe-in-hand bonuses were dropped by the surplus damper");
+    // 145 x 0.55 = 79.75, unaffected by the gathering-side damper.
+    Check(tradeScore > 79.0 && tradeScore < 80.5,
+          "TRADE_WITH_PLAYER scores its ordinary 79.75");
+    Check(tradeScore > gatherScore,
+          "with the surplus this large, TRADE_WITH_PLAYER now outscores "
+          "GATHER_LOGS -- the live-run bug (97 vs 80, backwards) is fixed");
+    Check(gatherReasons.find("spare") != std::string::npos &&
+              gatherReasons.find("dropping the stand/axe bonuses") != std::string::npos,
+          "the damper explains itself in the reasons vector");
+}
+
+// --------------------------------------------------------------------------
 life::PersistentState SampleState() {
     life::PersistentState st;
     st.identity.identityId    = "revolutionlumber01.balthasar";
@@ -2255,6 +2324,119 @@ void TestNerveIsPerProfession() {
           "nobody flees at full health, however cautious");
 }
 
+
+// --------------------------------------------------------------------------
+// S2.8: THE ARITHMETIC BEHIND session_goals, PULLED OUT SO IT IS TESTABLE.
+//
+// R1's exit proof is "at least four goal families, none above half the
+// picks" -- and the half of that a naive "count the kinds" implementation
+// gets wrong is the SHARE, not the count. A crafter alternating
+// BUY_SUPPLIES / CRAFT / EARN_GOLD scores three "kinds" and is still doing
+// one thing all day (run_m5/p0gate10, 47/33/20%); MINE at 60% of the picks
+// with three other families sharing the rest also has four families present
+// and is still monotonous. Both are guarded here, against
+// life::SummariseGoalPicks directly -- no Runner, no server, no log line.
+void TestGoalHistogramArithmetic() {
+    Section("goals: session histogram arithmetic (S2.8)");
+
+    // p0gate10's ring: CRAFT/BUY_SUPPLIES/EARN_GOLD are all GoalFamily::Work,
+    // so three "kinds" collapse to one family.
+    {
+        i32 picks[static_cast<int>(life::GoalKind::Count)] = {};
+        picks[static_cast<int>(life::GoalKind::Craft)] = 47;
+        picks[static_cast<int>(life::GoalKind::BuySupplies)] = 33;
+        picks[static_cast<int>(life::GoalKind::EarnGold)] = 20;
+        const life::GoalHistogram h = life::SummariseGoalPicks(picks);
+        Check(h.picks == 100, "all three ring goals counted");
+        Check(h.families == 1,
+              "CRAFT/BUY_SUPPLIES/EARN_GOLD are all the WORK family -- three "
+              "kinds, one family, exactly p0gate10");
+        Check(!h.varied, "one family all day is not a rounded day");
+    }
+
+    // Four distinct families, evenly split -- the actual R1 bar.
+    {
+        i32 picks[static_cast<int>(life::GoalKind::Count)] = {};
+        picks[static_cast<int>(life::GoalKind::Heal)] = 10;        // Emergency
+        picks[static_cast<int>(life::GoalKind::Bank)] = 10;        // Upkeep
+        picks[static_cast<int>(life::GoalKind::Mine)] = 10;        // Work
+        picks[static_cast<int>(life::GoalKind::TrainAtNpc)] = 10;  // Training
+        const life::GoalHistogram h = life::SummariseGoalPicks(picks);
+        Check(h.families == 4, "four distinct families");
+        Check(h.topFrac >= 0.25 - 1e-9 && h.topFrac <= 0.25 + 1e-9,
+              "each family holds exactly a quarter of the day");
+        Check(h.varied, "four families, none above half -- a rounded day");
+    }
+
+    // The half a "count the kinds" implementation gets wrong: MINE alone at
+    // 60% still leaves four families present, but one of them owns most of
+    // the day.
+    {
+        i32 picks[static_cast<int>(life::GoalKind::Count)] = {};
+        picks[static_cast<int>(life::GoalKind::Mine)] = 60;         // Work
+        picks[static_cast<int>(life::GoalKind::Heal)] = 15;         // Emergency
+        picks[static_cast<int>(life::GoalKind::Bank)] = 15;         // Upkeep
+        picks[static_cast<int>(life::GoalKind::TrainAtNpc)] = 10;   // Training
+        const life::GoalHistogram h = life::SummariseGoalPicks(picks);
+        Check(h.families == 4, "four families are present");
+        Check(h.topFrac > 0.50,
+              "but MINE alone holds 60% of the picks -- the top-share half "
+              "of the bar, not just the family count");
+        Check(!h.varied,
+              "four families is not enough on its own -- one still "
+              "dominates the day");
+    }
+}
+
+// S2.2's prerequisite defect: Planner::Score used to add Explore and
+// IdleBriefly unconditionally, feasible, after the main loop -- so neither
+// consulted Cooling(), and the cooldown DoExplore already issues on
+// "nowhere new to go" (kExploredAllCooldownMs) had never had any effect.
+// Explore must now honour a cooldown like every other goal; IdleBriefly must
+// NEVER be cooled -- it is the floor that guarantees there is never no goal
+// at all, and RunGoal dispatches on Current().kind whether or not Select
+// succeeded, so an empty feasible set would run a stale handler.
+void TestACooledExploreYieldsToIdleBriefly() {
+    Section("planner: a cooled EXPLORE is not offered as a feasible fallback");
+
+    life::Planner p;
+    life::Memory mem;
+    life::Observation obs;
+    obs.inWorld = true;
+    obs.nowMs = 1000000;
+    obs.hp = obs.hpMax = 40;
+    obs.weight = 10; obs.maxWeight = 200;
+
+    p.Cooldown(life::GoalKind::Explore, obs.nowMs + 5 * 60 * 1000);
+
+    const std::vector<life::Need> none;
+    const std::vector<life::ScoredGoal> scored = p.Score(none, obs, mem);
+
+    const life::ScoredGoal* explore = nullptr;
+    const life::ScoredGoal* idle = nullptr;
+    for (const life::ScoredGoal& g : scored) {
+        if (g.kind == life::GoalKind::Explore)     explore = &g;
+        if (g.kind == life::GoalKind::IdleBriefly) idle    = &g;
+    }
+    Check(explore != nullptr,
+          "a cooling EXPLORE is still REPORTED, not silently dropped");
+    if (explore) {
+        Check(!explore->feasible,
+              "and it is NOT feasible while cooling -- before this fix, "
+              "Explore's fallback entry ignored Cooling() entirely");
+        Check(!explore->blockedWhy.empty(), "and it says why");
+    }
+    Check(idle != nullptr && idle->feasible,
+          "IDLE_BRIEFLY is never cooled -- it is the floor that guarantees "
+          "there is never no goal at all");
+
+    std::string why;
+    Check(p.Select(none, obs, mem, obs.nowMs, &why),
+          "with nothing else on the table, something is still picked");
+    Check(p.Current().kind == life::GoalKind::IdleBriefly,
+          "and with EXPLORE cooling, that something is IDLE_BRIEFLY");
+}
+
 }  // namespace
 
 
@@ -2267,6 +2449,7 @@ int main(int argc, char** argv) {
     TestMemory();
     TestNeeds();
     TestPlanner();
+    TestGatherLogsSurplusYieldsToTrade();
     TestStateRoundTrip();
     TestStore(tmpDir);
     TestReconciliation();
@@ -2290,6 +2473,8 @@ int main(int argc, char** argv) {
     TestSatiationLetsSomethingElseHaveATurn();
     TestOneTrainerIsNotTheTrade();
     TestGoalCooldownStopsChurn();
+    TestGoalHistogramArithmetic();
+    TestACooledExploreYieldsToIdleBriefly();
 
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

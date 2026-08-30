@@ -80,24 +80,6 @@ constexpr i32 kMaxGoldCarried = 800;
 constexpr i32 kGoldWorthCarrying = 500;
 
 
-// Does this life carry the thing at all? The catalogue is the answer; a life
-// saved before the catalogue existed (cfg.profession == nullptr) keeps the M4
-// lumberjack answers, so nothing that already works changes.
-bool WantsTool(const NeedConfig& cfg, const char* name) {
-    if (!cfg.profession) return true;
-    for (const prof::ToolNeed& t : cfg.profession->tools) {
-        if (t.name == name) return true;
-    }
-    return false;
-}
-
-bool WantsConsumable(const NeedConfig& cfg, const char* name) {
-    if (!cfg.profession) return true;
-    for (const prof::ConsumableNeed& c : cfg.profession->consumables) {
-        if (c.name == name) return true;
-    }
-    return false;
-}
 
 // Is the load the character is carrying something it means to SELL, with a
 // buyer that actually exists on this shard?
@@ -196,6 +178,33 @@ PracticeBy HowToPractise(int skillId) {
 
 
 }  // namespace
+
+// Does this life carry the thing at all? The catalogue is the answer; a life
+// saved before the catalogue existed (cfg.profession == nullptr) keeps the M4
+// lumberjack answers, so nothing that already works changes.
+//
+// PUBLIC, not TU-local. The ERRAND has to be able to ask the same question
+// the NEED asks. The bandage need is gated on WantsConsumable(cfg,
+// "bandage") and DoReplaceEquipment was not, so a crafting life -- whose
+// catalogue entry deliberately drops Bandages() for CrafterHealPotions()
+// ("so crafter do not buy bandages", project owner 2026-08-30) -- still
+// walked to the healer and bought thirty of them, and the heal-potion branch
+// behind it never ran at all. ONE test, not a second copy. (audit finding 1)
+bool WantsTool(const NeedConfig& cfg, const char* name) {
+    if (!cfg.profession) return true;
+    for (const prof::ToolNeed& t : cfg.profession->tools) {
+        if (t.name == name) return true;
+    }
+    return false;
+}
+
+bool WantsConsumable(const NeedConfig& cfg, const char* name) {
+    if (!cfg.profession) return true;
+    for (const prof::ConsumableNeed& c : cfg.profession->consumables) {
+        if (c.name == name) return true;
+    }
+    return false;
+}
 
 std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                               const Observation& obs, const NeedConfig& cfg) {
@@ -643,6 +652,70 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                     : Fmt("%d x %s spare, a load is %d, buyer: %s", biggest,
                           spare.front().item.c_str(), trip, route.c_str()),
                 route.empty());
+        }
+
+        // --- the other side of the market ----------------------------------
+        //
+        // A SHORTFALL IS ALSO A REASON TO GO. Everything above reads
+        // Surplus(): a life with goods has an errand. A life SHORT of an input
+        // only another character's profession makes had none -- the only
+        // producer of NeedTrade in this whole file was the Surplus branch --
+        // so a smith 20 logs short of the spear it wants to forge never scored
+        // TRADE_WITH_PLAYER at all and the buyer half of every trade was
+        // unreachable. Half a market is not a market.
+        //
+        // PlayerMarketWants() applies both filters: `rawResource` (the world
+        // makes it -- go and dig, do not go and wait) and affordability at the
+        // worst price this life would accept. Iron ore is filtered out by the
+        // first; a log survives it, which is the one live producer-consumer
+        // edge the catalogue has.
+        //
+        // Only when the seller half did not already raise one: Planner::Score
+        // takes the FIRST need of a kind, and two NeedTrade rows would make
+        // the second dead text.
+        bool alreadyTrading = false;
+        for (const Need& n : needs) {
+            if (n.kind == NeedKind::NeedTrade) { alreadyTrading = true; break; }
+        }
+        if (!alreadyTrading) {
+            const market::TradePolicy buyPolicy =
+                market::PolicyForPurse(obs.goldOnHand);
+            // No refusal string is asked for here: AssessNeeds is pure and
+            // cannot log. The Runner asks for it, on the tick where it can
+            // print it (`market: ... not buying`).
+            //
+            // PACK COIN, NOT THE STATUS-BAR FIGURE. obs.gold counts the bank
+            // box, but DriveOpenTrade only ever offers coin found in the
+            // BACKPACK (FindBackpackItemByGraphic(kGoldCoin)) -- it does not
+            // fetch from the bank first. `buyPolicy` above is already keyed
+            // to obs.goldOnHand; the affordability check inside
+            // PlayerMarketWants has to be too, or a life scores a want it
+            // cannot actually pay for at the trade window.
+            const std::vector<market::Want> buyable = market::PlayerMarketWants(
+                *cfg.profession, holdings, obs.goldOnHand, buyPolicy, nullptr);
+            if (!buyable.empty()) {
+                // SAME SHAPE AS THE SELLER, deliberately, so weight 145 in
+                // kGoals needs no re-tuning: a life 20 short of a 20-restock
+                // input scores 0.55 x 145 = 79.8, the seller's own observed
+                // number.
+                i32 biggest = 0;
+                for (const market::Want& w : buyable)
+                    biggest = std::max(biggest, w.qty);
+                const i32 restock = std::max(1, buyPolicy.restockConsumablesTo);
+                const double frac =
+                    std::min(1.0, static_cast<double>(biggest) / restock);
+                const double urgency = 0.15 + 0.40 * frac;
+                add(NeedKind::NeedTrade, obs.marketQuiet ? 0.0 : urgency,
+                    "buy from a player",
+                    obs.marketQuiet
+                        ? "short of an input only another character's "
+                          "profession makes, and the market was just tried "
+                          "and found empty"
+                        : "short of an input only another character's "
+                          "profession makes",
+                    Fmt("%d x %s short", biggest, buyable.front().item.c_str()),
+                    obs.marketQuiet);
+            }
         }
     }
 

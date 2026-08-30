@@ -90,6 +90,33 @@ struct TradePolicy {
     i32 minimumSurplusToOffer = 5;
 };
 
+// THE SHARD'S MARKET -- one deterministic point for the whole fleet.
+//
+// data/revolution_atlas.txt:2108
+//   PLACE britain_bank_2 bank a_townBritain 1425 1690 0 5 banker
+// which atlasgen derived from the shard's own save,
+// runtime/save/sphereb01w.scp:498579 and :498592 -- two t_custom_spawner_char
+// worldgems at P=1425,1690, SPAWNID=c_banker and SPAWNID=c_minter. The region
+// a_townBritain carries flag 0x1 (kFlagGuarded, src/world/Atlas.cpp:73,85) and
+// RECT a_townBritain 1410 1517 1690 1777 (atlas:903) contains the tile, so
+// ending a session here satisfies the never-log-out-in-the-open rule.
+//
+// WHY THIS BANK AND NOT britain_bank (atlas:2106, 1650,1608):
+//   * REVOLUTION_ECONOMY_FORUM_EVIDENCE.md:372-374 -- "Britain was
+//     overwhelmingly the trade hub" across ~530 market threads.
+//   * :385 (class S, staff) -- "Britain | Provisioner east of the bank".
+//     britain_provisioner_2 is at 1469,1668 (atlas:2102): 44 tiles EAST of
+//     1425,1690 and 181 tiles WEST of 1650,1608. Only the west bank fits.
+//   * :387 (S) -- coop officers "near the banks" in Britain.
+//   * It is the cheaper arrival from the Britain moongate.
+//
+// AN ID, NEVER COORDINATES. TravelToService(Banker, "Britain") would pick the
+// NEARER of the two Britain banks from the caller's position
+// (Atlas::NearestPlaceWithServiceInRegion), so a smith arriving from Minoc
+// lands at 1650,1608 while a Britain resident stands at 1425,1690 and the
+// rendezvous fails 250 tiles apart. A rendezvous has to be ONE place.
+constexpr const char* kMarketBankPlaceId = "britain_bank_2";
+
 // THE THRESHOLD BENDS WHEN THE PURSE IS EMPTY. A small lot is not worth a trip
 // when there is money to work with; when there is not, the small lot IS the
 // way back to work. "sell those poisons buy more bottle" (project owner,
@@ -110,6 +137,34 @@ std::vector<Offer> Surplus(const prof::Profession& p,
 std::vector<Want> Shortfall(const prof::Profession& p,
                             const std::vector<Stock>& pack,
                             const TradePolicy& policy);
+
+// WHAT THIS LIFE WOULD WALK TO A PLAYER MARKET TO BUY.
+//
+// A MARKET HAS TWO SIDES. Only the seller's was ever modelled: a life with a
+// surplus had a reason to go, a life 20 logs short of the spear it wants to
+// forge had none, so half of every trade was unreachable and no smith ever
+// scored TRADE_WITH_PLAYER at all.
+//
+// Shortfall() already marks which wants a player could possibly supply.
+// `rawResource` means WhoProduces() is empty -- the WORLD makes the thing, so
+// the errand is gathering or a vendor, not a rendezvous. Iron ore is exactly
+// that (no profession lists it in `produces`); a log is not
+// (lumberjack_swordsman produces it), which is the one live producer-consumer
+// edge in the catalogue.
+//
+// Affordability is asked HERE, before the journey, with the same refusal
+// ConsiderOffer makes on arrival (Market.cpp): can it pay for ONE at the worst
+// price it would accept -- `blindPriceCeiling` -- without eating the reserve
+// its profession keeps for tools? A life that cannot stays home, which is the
+// requested "nothing to sell and nothing it can afford does not go".
+//
+// `whyNotOut`, when given, receives the refusal whenever the list comes back
+// empty, so the caller can say why rather than merely being silent.
+std::vector<Want> PlayerMarketWants(const prof::Profession& p,
+                                    const std::vector<Stock>& holdings,
+                                    i32 gold,
+                                    const TradePolicy& policy,
+                                    const char** whyNotOut = nullptr);
 
 // Which professions in the catalogue produce `item`. This is CATALOGUE
 // knowledge -- "a smith is the sort of person who makes ingots" -- which a
@@ -409,11 +464,68 @@ struct BuyDecision {
     const char* reason = nullptr;  // always populated
 };
 
+// --- S4: GEAR IS A REASON TO BUY, and Shortfall never said so ---------------
+//
+// Shortfall() reads `consumes` and `consumables`: materials and supplies. A
+// SWORD is neither, so `ConsiderOffer` answered "this life has no use for it"
+// to every weapon ever offered, and a swordsman could not want a sword. The
+// half of the trade predicate that speaks for equipment lives below.
+//
+// What a life has ON, by layer. Only the layers the question needs -- the
+// hands -- so a caller does not have to reconstruct a paperdoll. Empty is a
+// legitimate value and means "nothing observed", which DecideAcquire reads as
+// an empty slot; the caller supplies the truth it has.
+struct WornItem {
+    u8  layer = 0;
+    u16 graphic = 0;    // 0 = the slot is empty
+};
+
+// A PIECE OF EQUIPMENT THIS FLEET CAN TRADE, keyed by the defname that travels
+// in a WTS line.
+//
+// Rows are present only where a script line backs every field, the same rule
+// the production graph follows. `weaponSkill` is the ITEMDEF's own SKILL= line
+// -- which is the ONLY authority on what a weapon trains on this shard, and it
+// disagrees with the crafting menu's categories: i_dagger sits under "Bladed"
+// and is SKILL=Fencing.
+struct GearItem {
+    const char* item;        // itemdef DEFNAME
+    u16         graphic;     // the ITEMDEF id
+    u16         flip;        // DUPELIST id -- the flipped art, seen on the wire
+    u8          layer;       // 1 = one hand, 2 = the other (Client.cpp:51-52)
+    int         weaponSkill; // rules:: skill id; -1 when it is not a weapon
+    u16         reqStr;      // ReqStr from the itemdef
+    const char* evidence;
+};
+
+const GearItem* FindGear(const char* item);
+// By either art id: a weapon on the wire is often the flipped one.
+const GearItem* FindGearByGraphic(u16 graphic);
+
+// WOULD THIS LIFE BUY THE OFFERED PIECE AND PUT IT ON?
+//
+// The held/worn/wearable/reserve arithmetic is NOT re-derived here: it is
+// life::DecideAcquire (include/uo/activities/acquire.h), which exists because
+// six heater shields were bought by a wear-loop and a buy-loop that could not
+// see each other. What this function owns is the two questions DecideAcquire
+// deliberately does not answer -- "is this my class of thing" and "is this
+// price one I will pay sight unseen".
+BuyDecision WantsGear(const prof::Profession& p,
+                      const std::vector<Stock>& pack,
+                      i32 gold,
+                      const TradePolicy& policy,
+                      const TradeIntent& offer,
+                      const std::vector<WornItem>& worn);
+
+// `worn` defaults to empty so a caller with no paperdoll view still gets the
+// material half of the answer unchanged. A caller that HAS one should pass it:
+// without it a life that is already armed will accept a second sword.
 BuyDecision ConsiderOffer(const prof::Profession& p,
                           const std::vector<Stock>& pack,
                           i32 gold,
                           const TradePolicy& policy,
-                          const TradeIntent& offer);
+                          const TradeIntent& offer,
+                          const std::vector<WornItem>& worn = {});
 
 // ---------------------------------------------------------------------------
 // Where the gold went. Telemetry, not a rule.

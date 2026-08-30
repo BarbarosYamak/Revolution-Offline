@@ -348,7 +348,18 @@ const std::vector<Profession>& All() {
             //
             // i_dagger is SKILLMAKE=Blacksmithing 0.0, so it is makeable from
             // the first minute, and VENDOR_B_WEAPONS_BLADED buys it.
-            p.produces = {"i_dagger", "i_ingot_iron", "i_spear_short"};
+            // i_cutlass is the SWORDSMAN'S order (S4). The defname comes from
+            // this shard's own blacksmithing menu -- def_blacksmithing.scp:173
+            // blacksmithing_category_6_4 "i_cutlass" -- and its ITEMDEF is
+            // TYPE=t_weapon_sword SKILL=Swordsmanship, 8 ingots,
+            // SKILLMAKE=Blacksmithing 24.3 (i_weapons.scp:1221-1240). The
+            // dagger above is NOT a sword: it is TYPE=t_weapon_fence
+            // SKILL=Fencing (:496-508), so nothing the smith made before this
+            // was anything a lumberjack_swordsman could use.
+            // APPENDED, not inserted: produces.front() is load-bearing in
+            // tests/m7_market.cpp:172.
+            p.produces = {"i_dagger", "i_ingot_iron", "i_spear_short",
+                          "i_cutlass"};
             // Ore comes out of the world, but the SPEAR does not: it is
             // 6 ingots plus one LOG (Production.cpp:107, script SKILLMAKE
             // Blacksmithing 45.3). That single log is the first real
@@ -439,7 +450,20 @@ const std::vector<Profession>& All() {
                           "i_reag_blood_moss", "i_reag_mandrake_root",
                           "i_reag_nightshade"};
             p.tools = {{"spellbook", {kSpellbook}, false}};
-            p.consumables = {Food()};
+            // A HEAL IT CAN ACTUALLY REACH. This read {Food()} alone, and a
+            // pure mage has no Healing skill in `targets`, no bandages and no
+            // potions -- while Runner::DoHeal hardwires see.canCastHeal = false
+            // (Runner.cpp, "UNKNOWN: this does not prove *Heal* is in the
+            // spellbook"), so this life had NO self-heal of any kind. Casting is
+            // R2's work; until then the potion is the honest stopgap, and it is
+            // the same fix the crafters already carry. HealPotions() rather than
+            // CrafterHealPotions() because this life HUNTS for its income (the
+            // graveyard, p.income = Hunt) -- eight is the fighting number, four
+            // is the walk-to-a-healer number. Of the six Mage-strategy families
+            // only this one lacked a heal: warlock and treasure_hunter carry
+            // Healing skill AND bandages, alchemist / mage_blacksmith / scribe
+            // already carry CrafterHealPotions(). (audit 2026-08-30, finding 2.)
+            p.consumables = {HealPotions(), Food()};
             p.riskTolerance = 0.30;      // squishy; disengages early
             p.goldReserve = 800;         // reagents are a running cost
                         // Moonglow is the mage city; Britain has the largest mage shop.

@@ -4,7 +4,11 @@
 #include "uo/log.h"
 #include "uo/builders.h"
 #include "uo/faucets.h"
+#include "uo/activities/acquire.h"
 #include "uo/activities/gather.h"
+#include "uo/activities/craft_confirm.h"
+#include "uo/activities/train.h"
+#include "uo/activities/train_confirm.h"
 #include "uo/interaction/progress.h"
 #include "uo/market.h"
 #include "uo/trade.h"
@@ -184,6 +188,12 @@ constexpr i32 kMaxBandageTrips = 3;
 constexpr i64 kNoBandageCooldownMs = 180000;
 // When even the map is exhausted, rest a while before asking again.
 constexpr i64 kExploredAllCooldownMs = 300000;
+// How long a STAGNANT verdict (DecideRest: every errand blocked far too
+// long) cools the goal it hands off from, and the TravelToRequiredPlace
+// Wander sibling alongside it. Five minutes -- long enough that the same
+// tick does not immediately re-report the fault, short enough that a
+// genuinely freed-up errand is not left idle for the rest of the session.
+constexpr i64 kStagnantCooldownMs = 5 * 60 * 1000;
 // A pair of scissors is a few dozen coins from any tailor. Worth a walk.
 constexpr i32 kScissorsMoney = 60;
 constexpr i32 kMaxToolTrips = 3;
@@ -313,6 +323,11 @@ constexpr i32 kVendorReach = 3;
 // And a wandering vendor must not own the goal. After this many walk-backs,
 // try the purchase from where we stand and let the server decide.
 constexpr i32 kMaxVendorChases = 4;
+// AND A TOOL THE SHARD WILL NOT LET US WIELD MUST NOT OWN THE GOAL EITHER.
+// Three asks is enough to tell a slow server from a refusal; after that the
+// character banks and does something else, and the gear cooldown paces the
+// next attempt. (audit 2026-08-30, finding 4.)
+constexpr int kMaxToolWearTries = 3;
 // THE TAILORING CHAIN, END TO END. Every graphic read from this shard's own
 // itemdefs and every mechanic from Source-X's source, not from generic UO:
 //
@@ -859,6 +874,93 @@ u32 FindAny(Client& c, const u16* list, usize n) {
     return 0;
 }
 
+// DoSmelt's ore picker (S1, docs/CRAFTER_RUN_2026_08_30.md #20). Plain FindAny
+// over kIronOre returns whichever ore graphic it hits first, and ore is one
+// graphic for every metal -- a coloured vein (valorite, shadow, ...) and
+// plain iron are indistinguishable without the hue. Smelting a rare ore as if
+// it were iron is a real loss, so this prefers hue 0 (plain iron) when both
+// are in the pack and only reaches for a coloured one when there is no iron
+// left to melt instead. `hueOut` reports what was actually picked either way,
+// so DoSmelt can log it rather than smelt silently.
+u32 FindIronOrePreferPlain(Client& c, u16* hueOut) {
+    const u32 pack = c.BackpackSerial();
+    const usize n = c.ContainerItemCount(pack);
+    u32 fallback = 0;
+    u16 fallbackHue = 0;
+    for (usize i = 0; i < n; ++i) {
+        u32 serial = 0; u16 gfx = 0, amount = 0, hue = 0;
+        if (!c.ContainerItemAt(pack, i, &serial, &gfx, &amount, &hue)) continue;
+        bool isOre = false;
+        for (u16 g : kIronOre) {
+            if (g == gfx) { isOre = true; break; }
+        }
+        if (!isOre) continue;
+        if (hue == 0) {
+            if (hueOut) *hueOut = hue;
+            return serial;
+        }
+        if (!fallback) { fallback = serial; fallbackHue = hue; }
+    }
+    if (fallback && hueOut) *hueOut = fallbackHue;
+    return fallback;
+}
+
+// --- HUE-RESOLVED CONTAINER LOOKUPS (S1) ----------------------------------
+//
+// Every one of these exists because a GRAPHIC is not an identity on this
+// shard. Ore is one graphic for all sixteen metals and the iron ingot is one
+// graphic for thirteen, so FindContainerItemByGraphic / BackpackItemCount ask
+// a question that has no single right answer: they will happily hand back a
+// valorite stack when asked for iron, or add it to the iron total. Where a
+// quantity is already computed by NAME (obs.pack and obs.bank are, since S1)
+// and the SERIAL is still found by graphic, the two disagree -- and the gap
+// between them is a wrong item moved, sold or melted.
+//
+// So: find and count over the same hue-resolved name, always.
+
+// Every item in `container` whose hue-resolved defname is `item`: the first
+// one's serial, and the TOTAL amount across all of them (which is what the
+// graphic-keyed BackpackItemCount used to return, minus the other metals).
+u32 FindContainerItemByName(Client& c, u32 container, const char* item,
+                            i32* amountOut) {
+    if (amountOut) *amountOut = 0;
+    if (!item || !container) return 0;
+    u32 first = 0;
+    i32 total = 0;
+    const usize n = c.ContainerItemCount(container);
+    for (usize i = 0; i < n; ++i) {
+        u32 serial = 0; u16 gfx = 0, amount = 0, hue = 0;
+        if (!c.ContainerItemAt(container, i, &serial, &gfx, &amount, &hue))
+            continue;
+        if (!serial) continue;
+        const char* name = econ::ItemNameForGraphicAndHue(gfx, hue);
+        if (!name || std::strcmp(name, item) != 0) continue;
+        if (!first) first = serial;
+        total += amount ? amount : 1;
+    }
+    if (amountOut) *amountOut = total;
+    return first;
+}
+
+u32 FindBackpackItemByName(Client& c, const char* item, i32* amountOut) {
+    return FindContainerItemByName(c, c.BackpackSerial(), item, amountOut);
+}
+
+// The hue-resolved defname of one of OUR items, found by serial in the pack.
+// The vendor's 0x9E sell list carries our own serials but no hue, so this is
+// how a sell offer is joined back to what the item actually is.
+const char* PackItemNameBySerial(Client& c, u32 serial) {
+    if (!serial) return nullptr;
+    const u32 pack = c.BackpackSerial();
+    const usize n = c.ContainerItemCount(pack);
+    for (usize i = 0; i < n; ++i) {
+        u32 s = 0; u16 gfx = 0, amount = 0, hue = 0;
+        if (!c.ContainerItemAt(pack, i, &s, &gfx, &amount, &hue)) continue;
+        if (s == serial) return econ::ItemNameForGraphicAndHue(gfx, hue);
+    }
+    return nullptr;
+}
+
 // IS THE OPEN SHOP WINDOW THE ONE WE ARE STANDING IN FRONT OF?
 //
 // It very often is not. A vendor offer persists after the goal that opened it
@@ -1237,6 +1339,11 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
     obs.atBank = client.BankContainer() != 0 &&
                  client.ContainerKnown(client.BankContainer());
+    // AND WHETHER THIS IS THE MARKET. Geometry only -- the same test the trade
+    // handler uses to decide it has arrived -- because the planner needs to
+    // know a market trip has been PAID FOR before it lets an ordinary errand
+    // walk the character away again. See Observation::atMarket.
+    obs.atMarket = AtMarketBank(client);
 
     // READ THE BOX while it is open, and KEEP what it said.
     //
@@ -1251,9 +1358,12 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         std::vector<market::Stock> fresh;
         const usize n = client.ContainerItemCount(box);
         for (usize i = 0; i < n; ++i) {
-            u32 serial = 0; u16 gfx = 0, amount = 0;
-            if (!client.ContainerItemAt(box, i, &serial, &gfx, &amount)) continue;
-            const char* name = econ::ItemNameForGraphic(gfx);
+            u32 serial = 0; u16 gfx = 0, amount = 0, hue = 0;
+            if (!client.ContainerItemAt(box, i, &serial, &gfx, &amount, &hue)) continue;
+            // Hue first, graphic fallback (S1): ore and the iron ingot are
+            // one graphic for every metal, so a coloured deposit in the bank
+            // must be read by its hue or it merges into the plain-iron count.
+            const char* name = econ::ItemNameForGraphicAndHue(gfx, hue);
             if (!name) continue;          // nothing we have a name for
             if (amount == 0) amount = 1;
             bool merged = false;
@@ -1269,23 +1379,71 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     }
 
     // The pack, as the M7 economy layer wants it: quantities keyed by itemdef
-    // defname. Built from what THIS life produces and consumes, so the loop is
-    // over a handful of names rather than every item on the shard. One name can
-    // have several graphics -- iron ingots are 0x1BEF/0x1BF0/0x1BF1 by stack
-    // size -- so a caller that checked only the first would miss most of a pack.
+    // defname. Built from what THIS life produces and consumes, so the final
+    // list is a handful of names rather than every item on the shard.
+    //
+    // NOT graphic-only anymore (S1, docs/CRAFTER_RUN_2026_08_30.md #20). One
+    // name can have several graphics -- iron ingots are 0x1BEF/0x1BF0/0x1BF1
+    // by stack size -- but the reverse is also true and is the trap the old
+    // per-name GraphicsForItem() sum fell into: ore is ONE graphic for every
+    // metal, and so is the iron ingot for its twelve special colours, so
+    // summing BackpackItemCount() over "every graphic i_ore_iron uses" also
+    // counted every coloured vein in the pack as plain iron. A single
+    // hue-resolved pass over the actual pack contents, mirroring the bank
+    // box above, is the only way to keep them apart.
     if (needCfg_.profession) {
+        std::unordered_map<std::string, i32> packByName;
+        {
+            const u32 packBox = client.BackpackSerial();
+            const usize pn = client.ContainerItemCount(packBox);
+            for (usize i = 0; i < pn; ++i) {
+                u32 serial = 0; u16 gfx = 0, amount = 0, hue = 0;
+                if (!client.ContainerItemAt(packBox, i, &serial, &gfx, &amount, &hue))
+                    continue;
+                const char* name = econ::ItemNameForGraphicAndHue(gfx, hue);
+                if (!name) continue;          // nothing we have a name for
+                packByName[name] += (amount ? amount : 1);
+            }
+        }
         auto countInto = [&](const std::string& item) {
             for (const market::Stock& have : obs.pack) {
                 if (have.item == item) return;   // already counted
             }
-            i32 n = 0;
-            for (u16 g : econ::GraphicsForItem(item.c_str())) {
-                n += static_cast<i32>(client.BackpackItemCount(g));
-            }
-            obs.pack.push_back({item, n});
+            const auto it = packByName.find(item);
+            obs.pack.push_back({item, it != packByName.end() ? it->second : 0});
         };
         for (const std::string& it : needCfg_.profession->produces) countInto(it);
         for (const std::string& it : needCfg_.profession->consumes) countInto(it);
+
+        // AND EVERY METAL THE PACK ACTUALLY HOLDS, listed or not.
+        //
+        // The two loops above only fill names this profession `produces` or
+        // `consumes` -- "i_ore_iron" and "i_ingot_iron" for a mining smith.
+        // The hue pass, though, now names a coloured vein HONESTLY, so
+        // i_ore_rusty / i_ingot_bronze resolve to names that are in neither
+        // list and were simply DROPPED from obs.pack. Before S1 they were at
+        // least counted (wrongly) as iron; after it they vanished, which is
+        // the worse failure: the gather goal cannot see its own haul, the
+        // smelt goal has nothing to melt and the bank goal nothing to put
+        // away, all while the pack is full.
+        //
+        // This is not a rare tail. r_default_rock -- the region type every
+        // ordinary rock on the map uses -- weights, out of ~100 parts
+        // (runtime/scripts/core/regiontypes.scp:19-37):
+        //     50.0 mr_iron, 10.0 mr_nothing, 8.0 mr_rusty,
+        //      6.0 mr_old_copper, 6.0 mr_dull_copper, 5.0 mr_bronze, ...
+        // and every one of those four coloured ores carries SKILL=1.0,30.0,
+        // the same band as mr_iron (core/regionresources.scp:259-285). So a
+        // 50-skill miner is inside the band for all of them and about a
+        // quarter of what it digs up is not iron at all.
+        //
+        // obs.bank needs no equivalent: its pass above is unfiltered and
+        // already keeps every name the hue lookup resolves.
+        for (const auto& kv : packByName) {
+            if (kv.first.compare(0, 6, "i_ore_") == 0 ||
+                kv.first.compare(0, 8, "i_ingot_") == 0)
+                countInto(kv.first);
+        }
     }
 
     // Which of this plan's trainable skills have already been refused. Read
@@ -1651,6 +1809,16 @@ bool Runner::Checkpoint(Client& client, i64 nowMs, const char* why) {
     lastCheckpointMs_ = nowMs;
     LogLine("checkpoint (%s) -> %s", why,
             store_.PathFor(state_.identity.identityId).c_str());
+    // The end-of-session verdict is also the only one a run gets if it never
+    // reaches a clean WindDown -- a crash, a disconnect, an operator kill.
+    // Checkpoint fires far more often than that (periodic + several action
+    // sites), so this is gated to once per kHistogramIntervalMs rather than
+    // reprinting on every save; same "session_goals" prefix as the WindDown
+    // call, so one grep catches both (S2.8).
+    if (nowMs - lastHistogramMs_ >= kHistogramIntervalMs) {
+        LogGoalHistogram();
+        lastHistogramMs_ = nowMs;
+    }
     return true;
 }
 
@@ -1677,6 +1845,13 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (!client.IsInWorld()) return;
             if (sessionStartMs_ == 0) {
                 sessionStartMs_ = nowMs;
+                // RestTick's blockedForMs is obs.nowMs - lastRealErrandMs_;
+                // left at its 0 sentinel, the very first idle tick of a
+                // session reads as "blocked" since session start (S2_WIRING
+                // _PLAN.md S2.2), a false Stagnant before any real errand has
+                // even had a chance to run. Stamping it here gives it the
+                // same origin as the session clock it is measured against.
+                lastRealErrandMs_ = nowMs;
                 sessionStartJournalMs_ = client.JournalNowMs();
                 // The server has to tell us the skills before anything can be
                 // reconciled against them.
@@ -1725,6 +1900,10 @@ void Runner::Tick(Client& client, i64 nowMs) {
             session_.goldStart = obs.gold;
             session_.skillTenthsStart = obs.SkillSumTenths();
             logsAtSessionStart_ = obs.logs;
+            // Fresh gate for this session's histogram, so the "login
+            // reconciled" Checkpoint two lines down does not immediately
+            // fire LogGoalHistogram on an all-zero goalPicks[].
+            lastHistogramMs_ = nowMs;
 
             state_.identity.sessions++;
 
@@ -1782,7 +1961,20 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     if (gi >= 0 && gi < static_cast<int>(GoalKind::Count))
                         session_.goalPicks[gi]++;
                 }
+                // S2.2: DecideRest's `blockedForMs` needs to know when a REAL
+                // errand -- anything outside the Wander family -- was last
+                // picked. One line at one site (S2_WIRING_PLAN.md S2.2).
+                if (FamilyOf(planner_.Current().kind) != GoalFamily::Wander) {
+                    lastRealErrandMs_ = obs.nowMs;
+                }
                 if (wasActive) {
+                    // SELF-SUPERSESSION: "goal_changed=X from=X" -- the
+                    // planner cleared the goal (Exhausted, or a completion)
+                    // and re-picked the identical kind. Greppable before
+                    // S2.8; now totalled for the session_goals verdict line.
+                    if (previous == planner_.Current().kind) {
+                        session_.selfSupersessions++;
+                    }
                     LogLine("goal_changed=%s from=%s reason=\"%s\"",
                             GoalKindName(planner_.Current().kind),
                             GoalKindName(previous), why.c_str());
@@ -1809,6 +2001,26 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     chopCursorPending_ = false;
                     travelInFlight_ = false;
                     travelAttempts_ = 0;
+                    // Each DoXxx handler's lastXxxPlan_ exists only so
+                    // LogPlan fires on a plan transition, not every tick
+                    // (S2_WIRING_PLAN.md S2.0). Left across a goal change, a
+                    // plan whose name happens to match the last one logged
+                    // this session -- e.g. plan=disengage picked up again
+                    // several goals later -- reads as "no change" and never
+                    // logs, even though it is a brand new goal's first tick.
+                    // Reset every one of them to its sentinel here, with the
+                    // rest of the transient slate this guard already wipes
+                    // (review finding 6).
+                    lastCombatMove_ = life::CombatMove::Wait;
+                    lastHealPlan_ = HealStep::None;
+                    lastRestPlan_ = static_cast<RestStep>(0xFF);
+                    lastRecoveryPlan_ = static_cast<RecoveryStep>(0xFF);
+                    lastTrainPlan_ = TrainStep::Done;
+                    lastCraftPlan_ = static_cast<CraftStep>(0xFF);
+                    lastBandageAcquirePlan_ = AcquireStep::Done;
+                    lastPotionAcquirePlan_ = AcquireStep::Done;
+                    lastGarmentAcquirePlan_ = AcquireStep::Done;
+                    lastToolAcquirePlanByItem_.clear();
                 }
                 // Per-errand counters belong to the errand. vendorChases_
                 // bounds how long a wandering shopkeeper may be followed, and
@@ -2033,61 +2245,14 @@ void Runner::Tick(Client& client, i64 nowMs) {
                     session_.logsGathered, session_.kills, session_.deaths,
                     session_.placesLearned, session_.suppliersLearned);
 
-            // HOW THE DAY WAS SPENT, as one greppable line.
-            //
-            // R1's exit proof is "at least four goal families, none above half
-            // the picks", and that has to be checkable without reading fifty
-            // thousand lines by eye. Printing the shape of the day is also the
-            // only way the monotony ever became visible: p0gate10 looked like
-            // a healthy session until its goals were counted and turned out to
-            // be CRAFT / BUY_SUPPLIES / EARN_GOLD in a ring and nothing else.
-            {
-                // Counted by FAMILY, not by goal kind. A crafter alternating
-                // BUY_SUPPLIES / CRAFT / EARN_GOLD scores three "kinds" and
-                // is still doing one thing all day; the bar has to measure
-                // what R1 actually asks for.
-                i32 total = 0, top = 0;
-                i32 famCount[static_cast<int>(GoalFamily::Count)] = {};
-                for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
-                    const i32 n = session_.goalPicks[i];
-                    if (n <= 0) continue;
-                    total += n;
-                    famCount[static_cast<int>(FamilyOf(static_cast<GoalKind>(i)))] += n;
-                }
-                i32 families = 0;
-                for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
-                    if (famCount[f] <= 0) continue;
-                    ++families;
-                    if (famCount[f] > top) top = famCount[f];
-                }
-                std::string hist;
-                for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
-                    if (famCount[f] <= 0) continue;
-                    if (!hist.empty()) hist += " ";
-                    char fc[64];
-                    std::snprintf(fc, sizeof(fc), "%s=%d(%.0f%%)",
-                                  GoalFamilyName(static_cast<GoalFamily>(f)),
-                                  famCount[f],
-                                  total ? (100.0 * famCount[f] / total) : 0.0);
-                    hist += fc;
-                }
-                hist += " |";
-                for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
-                    const i32 n = session_.goalPicks[i];
-                    if (n <= 0) continue;
-                    hist += " ";
-                    char cell[64];
-                    std::snprintf(cell, sizeof(cell), "%s=%d(%.0f%%)",
-                                  GoalKindName(static_cast<GoalKind>(i)), n,
-                                  total ? (100.0 * n / total) : 0.0);
-                    hist += cell;
-                }
-                const double topFrac = total ? (static_cast<double>(top) / total) : 1.0;
-                LogLine("session_goals families=%d picks=%d top=%.0f%% varied=%d | %s",
-                        families, total, topFrac * 100.0,
-                        (families >= 4 && topFrac <= 0.50) ? 1 : 0,
-                        hist.empty() ? "(none)" : hist.c_str());
-            }
+            // HOW THE DAY WAS SPENT, as one greppable line. Extracted to
+            // LogGoalHistogram (S2.8) so a crash or a killed session -- not
+            // just a clean logout -- can still leave a verdict; see the
+            // gated call inside Checkpoint. Unconditional and stamped here:
+            // the clean-logout verdict always prints, and the periodic
+            // Checkpoint call two lines down must not immediately repeat it.
+            LogGoalHistogram();
+            lastHistogramMs_ = nowMs;
 
             Checkpoint(client, nowMs, "clean logout");
             LogLine("logging out");
@@ -2106,6 +2271,61 @@ void Runner::Tick(Client& client, i64 nowMs) {
     }
 }
 
+// HOW THE DAY WAS SPENT, as one greppable line.
+//
+// R1's exit proof is "at least four goal families, none above half the
+// picks", and that has to be checkable without reading fifty thousand
+// lines by eye. Printing the shape of the day is also the only way the
+// monotony ever became visible: p0gate10 looked like a healthy session
+// until its goals were counted and turned out to be CRAFT / BUY_SUPPLIES /
+// EARN_GOLD in a ring and nothing else.
+//
+// S2.8: extracted out of the WindDown case so it is also reachable from
+// Checkpoint (gated, kHistogramIntervalMs) -- a crash, a disconnect, or a
+// session killed by the operator used to print no verdict at all. The
+// arithmetic itself (families/picks/top/topFrac/varied) is
+// uo::life::SummariseGoalPicks (Goals.cpp), a pure function reachable by
+// ctest; this method is formatting only.
+void Runner::LogGoalHistogram() const {
+    const GoalHistogram h = SummariseGoalPicks(session_.goalPicks);
+
+    // Counted by FAMILY, not by goal kind, for the summary numbers above --
+    // but the breakdown text below still wants per-family and per-kind
+    // counts, which is display detail, not the tested arithmetic.
+    i32 famCount[static_cast<int>(GoalFamily::Count)] = {};
+    for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
+        const i32 n = session_.goalPicks[i];
+        if (n <= 0) continue;
+        famCount[static_cast<int>(FamilyOf(static_cast<GoalKind>(i)))] += n;
+    }
+    std::string hist;
+    for (int f = 0; f < static_cast<int>(GoalFamily::Count); ++f) {
+        if (famCount[f] <= 0) continue;
+        if (!hist.empty()) hist += " ";
+        char fc[64];
+        std::snprintf(fc, sizeof(fc), "%s=%d(%.0f%%)",
+                      GoalFamilyName(static_cast<GoalFamily>(f)), famCount[f],
+                      h.picks ? (100.0 * famCount[f] / h.picks) : 0.0);
+        hist += fc;
+    }
+    hist += " |";
+    for (int i = 0; i < static_cast<int>(GoalKind::Count); ++i) {
+        const i32 n = session_.goalPicks[i];
+        if (n <= 0) continue;
+        hist += " ";
+        char cell[64];
+        std::snprintf(cell, sizeof(cell), "%s=%d(%.0f%%)",
+                      GoalKindName(static_cast<GoalKind>(i)), n,
+                      h.picks ? (100.0 * n / h.picks) : 0.0);
+        hist += cell;
+    }
+    LogLine("session_goals families=%d picks=%d top=%.0f%% varied=%d "
+            "self_superseded=%d | %s",
+            h.families, h.picks, h.topFrac * 100.0, h.varied ? 1 : 0,
+            session_.selfSupersessions,
+            hist.empty() ? "(none)" : hist.c_str());
+}
+
 namespace {
 std::string Fmt2(const char* fmt, ...) {
     char buf[160];
@@ -2116,6 +2336,29 @@ std::string Fmt2(const char* fmt, ...) {
     return std::string(buf);
 }
 }  // namespace
+
+// The one place a plan's step is logged. Callers emit this once per plan
+// change (a `lastPlan*_` member compared against the new step), not once per
+// tick -- per-tick emission is what produced the 311-line forge spam this
+// slice exists to end.
+void Runner::LogPlan(const char* kind, const char* reason) const {
+    LogLine("plan=%s reason=\"%s\"", kind, reason);
+}
+
+// The ONLY legal way a plan hands the turn to another goal (S2_WIRING_PLAN.md
+// S2.0). `to` is advisory only -- it is logged, never dispatched; the
+// receiving goal is chosen by Planner::Select on the next tick from whatever
+// need AssessNeeds already produces. The cooldown is load-bearing: without it
+// Planner::Score treats `from` as still feasible and it can simply win again.
+bool Runner::HandOff(GoalKind from, GoalKind to, i64 restMs, const char* why,
+                     i64 nowMs) {
+    planner_.Cooldown(from, nowMs + restMs);
+    planner_.Finish(false, why, nowMs);
+    LogLine("handoff=%s->%s reason=\"%s\"", GoalKindName(from), GoalKindName(to),
+            why);
+    nextActionMs_ = nowMs + 2000;
+    return false;
+}
 
 void Runner::LogGoalChange(const Observation& obs, const std::string& why) {
     // Every need considered, not just the winner and the blocked ones. "Why
@@ -2362,16 +2605,96 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                  0.5, obs.nowMs);
     }
 
+    // AvoidCombat only (S2_WIRING_PLAN.md S2.6). A null profession is a
+    // pre-catalogue life -- combatStrategy defaults to AvoidCombat
+    // (professions.h:235), so gating on the enum alone would silently turn
+    // every legacy character pacifist. Every other strategy falls through to
+    // the body below byte-for-byte; Melee/Ranged/Mage/Tamer tuning is R2's.
+    bool avoidCombatDisengage = false;
+    if (needCfg_.profession &&
+        needCfg_.profession->combatStrategy == life::CombatStrategyId::AvoidCombat) {
+        life::CombatSight see;
+        see.hp = obs.hp;
+        see.hpMax = obs.hpMax;
+        see.mana = obs.mana;
+        // UNKNOWN: no Observation field and no status flag for this on the
+        // shard (the same gap Runner.cpp records for weight). Left 0.
+        see.manaMax = 0;
+        // Neither the hostile nor the target-selection loop has run yet at
+        // this point in the function -- write what we have, the nearest
+        // hostile, same source NoteDanger above just used.
+        see.foeDistance =
+            TileDist(hostiles.front().x, hostiles.front().y, obs.x, obs.y);
+        see.foeHpFraction = hostiles.front().hpCur >= 0 && hostiles.front().hpMax > 0
+                                ? static_cast<double>(hostiles.front().hpCur) /
+                                      hostiles.front().hpMax
+                                : -1.0;
+        see.attackersOnMe = obs.attackersOnMe;
+        see.bandages = obs.bandages;
+        // UNKNOWN: obs.hasPet answers ownership, not health. Left at
+        // defaults (petAlive=false, petHpFraction=-1.0).
+        {
+            bool armedNow = false;
+            for (usize i = 0; i < sizeof(kMeleeWeaponGfx) / sizeof(u16); ++i) {
+                const u16 g = kMeleeWeaponGfx[i];
+                if (client.EquippedGraphicAt(kLayerHand1) == g ||
+                    client.EquippedGraphicAt(kLayerHand2) == g) {
+                    armedNow = true;
+                    break;
+                }
+            }
+            see.armed = armedNow;
+        }
+
+        life::CombatTuning tune;
+        tune.fleeHpFraction = needCfg_.fleeHpFraction;
+        tune.healHpFraction = needCfg_.healHpFraction;
+        // UNKNOWN: neither field exists on NeedConfig or a personality
+        // record. Left at the struct defaults (preferredRange=6,
+        // riskTolerance=0.5).
+
+        const life::CombatDecision d = life::DecideCombat(
+            needCfg_.profession->combatStrategy, see, tune);
+        if (d.move != lastCombatMove_) {
+            LogPlan(life::CombatMoveName(d.move), d.reason);
+            lastCombatMove_ = d.move;
+        }
+
+        // AvoidCombat always decides Disengage (CombatStrategy.cpp:71-73),
+        // before ShouldBreakOff is even consulted -- so this is the only
+        // reachable arm in S2. Every other CombatMove is unreachable here.
+        // Only peace mode happens right here: returning true on the spot
+        // (the earlier version) skipped the bailAt block below entirely,
+        // which meant an AvoidCombat life fled with none of the FLEE
+        // path's creature-outcome evidence, first_near_death event, or
+        // rate-limited danger note -- a second, thinner retreat instead of
+        // the proven one (S2_WIRING_PLAN.md review finding 5).
+        // avoidCombatDisengage forces that block to run below regardless
+        // of HP, since this life never reaches the fight-back code after
+        // it either way.
+        if (d.move == life::CombatMove::Disengage) {
+            client.EnsurePeaceMode();
+            avoidCombatDisengage = true;
+        }
+    }
+
     double bailAt = needCfg_.fleeHpFraction;
     const i32 extra = obs.attackersOnMe - 1;
     if (extra > 0) bailAt = std::min(0.90, bailAt + 0.08 * std::min(3, extra));
 
-    if (obs.HpFraction() < bailAt) {
+    if (avoidCombatDisengage || obs.HpFraction() < bailAt) {
         LogLine("interrupt=FLEE reason=\"HP %.0f%%; %d attacker(s); bail at %.0f%%\"",
                 obs.HpFraction() * 100.0, obs.attackersOnMe, bailAt * 100.0);
         client.EnsurePeaceMode();
-        state_.memory.NoteDanger(obs.x, obs.y, 18, hostiles.front().name.c_str(), 1.5,
-                                 obs.nowMs);
+        // Once per fight, not once per tick -- same guard as the note
+        // above (S2_WIRING_PLAN.md review finding 4). This is now also
+        // where the AvoidCombat arm's danger note lands, since it always
+        // falls through into this block.
+        if (obs.nowMs - lastDangerNoteMs_ > 60000) {
+            lastDangerNoteMs_ = obs.nowMs;
+            state_.memory.NoteDanger(obs.x, obs.y, 18, hostiles.front().name.c_str(),
+                                     1.5, obs.nowMs);
+        }
         // AND WHAT IT WAS, not just where it happened. A place cannot un-scare
         // you, but a creature type can prove itself safe or dangerous, and
         // "learn which graveyard mobs are safe and which are dangerous" is the
@@ -2592,84 +2915,264 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
 }
 
 bool Runner::DoHeal(Client& client, const Observation& obs) {
-    if (obs.HpFraction() >= 0.95) return true;
-    if (obs.bandages <= 0) {
-        LogLine("goal_failed=HEAL reason=\"no bandages carried\"");
-        planner_.NoteAttempt(obs.nowMs);
-        nextActionMs_ = obs.nowMs + 3000;
-        return false;
+    // See docs/S2_WIRING_PLAN.md S2.1 for the field-source table this mirrors.
+    HealSight see;
+    see.hp = obs.hp;
+    see.hpMax = obs.hpMax;
+    see.mana = obs.mana;
+    see.bandages = obs.bandages;
+    see.healPotions = obs.healPotions;
+    // UNKNOWN: this does not prove *Heal* is in the spellbook -- that needs
+    // BookHasGraphic with the book open, not just a skill/spellbook check.
+    // Left false for this slice; a crafter has no Magery at all (the R4 pair
+    // are miner_smith / lumberjack_swordsman), so nothing here loses by it.
+    see.canCastHeal = false;
+    // obs.gold is the BANK total on this shard, not the pack (obs.goldOnHand
+    // is that) -- "can this be fixed with money" is the bank question, not
+    // "can I hand it over right now".
+    see.gold = obs.gold;
+    // The same four graphics DoMakeBandages walks, in the same order.
+    see.hasBandageMaterial =
+        FindAny(client, kCuttableClothing,
+                sizeof(kCuttableClothing) / sizeof(kCuttableClothing[0])) !=
+            0 ||
+        client.FindBackpackItemByGraphic(kClothGraphic) != 0 ||
+        client.FindBackpackItemByGraphic(kClothBoltGraphic) != 0 ||
+        client.FindBackpackItemByGraphic(kWoolGraphic) != 0;
+    see.hungry = obs.hungry;
+    // Under attack right now, not merely near a hostile -- a cow standing
+    // next to the character is not a fight.
+    see.inDanger = obs.underAttack;
+
+    HealTuning tune;
+    tune.healHpFraction = needCfg_.healHpFraction;
+    // UNKNOWN until an observation exists; the struct default of 2 stands in
+    // for it until then.
+    if (const market::PriceObservation* p = state_.prices.Latest(
+            "bandage", market::PriceSource::NpcVendorSells)) {
+        tune.bandagePrice = p->pricePerUnit;
     }
-    // SurvivalTick owns the actual bandage timing (it knows the ~3s skill
-    // delay and will not restart a running heal, which is the bug that made
-    // uo-offline's first bandage loop heal nothing at all). Here we only make
-    // sure nothing else is competing for the body.
-    if (client.WarModeOn() && obs.hostilesNear == 0) client.EnsurePeaceMode();
-    nextActionMs_ = obs.nowMs + 2000;
-    planner_.NoteProgress();
+    // UNKNOWN as a field: needCfg_.goldFloor (100) is the nearest honest
+    // number, but the bandage errand deliberately spends the character's
+    // last coin on purpose (see the reserve comment near Runner.cpp:3314) --
+    // so this is left at the struct default of 0 rather than block the poor
+    // branch on a number that contradicts existing behaviour.
+
+    const HealPlan p = DecideHeal(see, tune);
+    if (p.step != lastHealPlan_) {
+        LogPlan(HealStepName(p.step), p.reason);
+        lastHealPlan_ = p.step;
+    }
+
+    switch (p.step) {
+        case HealStep::None:
+            return true;
+
+        case HealStep::Bandage:
+            // SurvivalTick owns the actual bandage timing (it knows the ~3s
+            // skill delay and will not restart a running heal, which is the
+            // bug that made uo-offline's first bandage loop heal nothing at
+            // all) -- but only at <=60% HP, out of contact (CombatPolicy's
+            // kPotionPercent). DecideHeal fires Bandage anywhere below
+            // healHpFraction (80%), so 61-79% was nobody's: SurvivalTick
+            // would not act (pct > 60) and this arm only delegated, which
+            // meant a HP band where the character silently never healed.
+            // Below 60% we still only make sure nothing else is competing
+            // for the body and let SurvivalTick do the actual bandaging;
+            // above it, apply the bandage ourselves with the same client
+            // call SurvivalTick uses.
+            if (client.WarModeOn() && obs.hostilesNear == 0)
+                client.EnsurePeaceMode();
+            if (obs.HpFraction() <= 0.60) {
+                nextActionMs_ = obs.nowMs + 2000;
+                planner_.NoteAttempt(obs.nowMs);
+                return false;
+            }
+            if (client.ActionBusy()) {
+                nextActionMs_ = obs.nowMs + 2000;
+                planner_.NoteAttempt(obs.nowMs);
+                return false;
+            }
+            {
+                const u32 bandage = client.FindBackpackItemByGraphic(kBandage);
+                if (bandage) {
+                    client.ActionUseBandage(bandage, client.PlayerSerial());
+                    nextActionMs_ = obs.nowMs + 4000;
+                    planner_.NoteProgress();
+                } else {
+                    nextActionMs_ = obs.nowMs + 2000;
+                    planner_.NoteAttempt(obs.nowMs);
+                }
+            }
+            return false;
+
+        case HealStep::DrinkPotion: {
+            // SurvivalTick already drinks autonomously at <=60% HP once out
+            // of contact -- below that line it owns the tick, and a second
+            // click here would race it. DoHeal only acts above 60%, and only
+            // once SurvivalTick's own click (if any) is not still in flight.
+            // The comparison is done in the same integer percent
+            // combat::HealthPercent uses (not obs.HpFraction()'s double), so
+            // the two never disagree about which side of 60% a tick is on.
+            const bool aboveSurvivalLine =
+                obs.hpMax > 0 && (obs.hp * 100) / obs.hpMax > 60;
+            const u32 potion = client.FindBackpackItemByGraphic(kHealPotion);
+            if (aboveSurvivalLine && !client.ActionBusy() && potion != 0) {
+                client.ActionUseObject(potion);
+                nextActionMs_ = obs.nowMs + 2500;
+                planner_.NoteProgress();
+            } else {
+                nextActionMs_ = obs.nowMs + 2000;
+                planner_.NoteAttempt(obs.nowMs);
+            }
+            return false;
+        }
+
+        case HealStep::CastHeal:
+            // Unreachable while canCastHeal is hardwired false above. Casting
+            // a spell id is a new mechanic this slice does not add.
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+
+        case HealStep::BuySupplies:
+            // NOT GoalKind::BuySupplies -- DoBuySupplies shops for craft
+            // inputs only. The bandage/potion buyer is ReplaceEquipment.
+            return HandOff(GoalKind::Heal, GoalKind::ReplaceEquipment, 60000,
+                           "nothing to heal with; going shopping", obs.nowMs);
+
+        case HealStep::MakeBandages:
+            return HandOff(GoalKind::Heal, GoalKind::MakeBandages, 60000,
+                           "too poor to buy; cutting cloth", obs.nowMs);
+
+        case HealStep::Rest:
+            // No NoteProgress -- resting is not progress; five of these trip
+            // the anti-spin backstop, which is correct here.
+            nextActionMs_ = obs.nowMs + 5000;
+            return false;
+
+        case HealStep::Stuck:
+            LogLine("goal_stuck=HEAL reason=\"%s\"", p.reason);
+            return HandOff(GoalKind::Heal, GoalKind::GetFood, 120000, p.reason,
+                           obs.nowMs);
+    }
     return false;
 }
 
 // --- corpse ----------------------------------------------------------------
 
 bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
-    if (obs.dead) {
-        // Same guard as DoSurvive: one outstanding resurrection request, not
-        // one every three seconds against a fifteen-minute deadline. Both
-        // goals can be the one running while the character is a ghost, so
-        // both had the fault.
-        if (client.ActionBusy()) return false;
-        client.ActionResurrectAccept();
-        nextActionMs_ = obs.nowMs + 10000;
-        return false;
-    }
-    if (!obs.corpseKnown) return true;   // nothing to recover
-
     const travel::DeathRecord& death = client.Knowledge().LastDeath();
-    if (TileDist(death.x, death.y, obs.x, obs.y) > 2) {
-        if (client.TravelBusy()) return false;
-        if (!travelInFlight_) {
-            LogLine("corpse run: heading to %d,%d (attempt %d)", death.x, death.y,
-                    death.recoveryAttempts + 1);
-            travelInFlight_ = client.TravelToLastCorpse();
+
+    RecoverySight see;
+    see.dead = obs.dead;
+    see.corpseKnown = obs.corpseKnown;
+    see.corpseDistance = TileDist(death.x, death.y, obs.x, obs.y);
+    // This character's OWN memory of the corpse's place, not of here --
+    // somewhere it died three times is dangerous to it specifically.
+    see.dangerHeatAtCorpse = state_.memory.DangerHeatAt(death.x, death.y, obs.nowMs);
+    see.hpFraction = obs.HpFraction();
+    see.attemptsSoFar = obs.corpseRecoveryAttempts;
+    // Unknown is not empty: only claim corpseEmpty once the container has
+    // actually been opened and counted (mirrors the ContainerKnown gate the
+    // handler always kept before opening).
+    see.corpseEmpty = client.ContainerKnown(death.corpseSerial) &&
+                       client.ContainerItemCount(death.corpseSerial) == 0;
+    // UNKNOWN (S2_WIRING_PLAN.md S2.3): no cheap "loose gear in the pack"
+    // read exists without duplicating MayWear's loop (Runner.cpp:8440-ish).
+    // Left false -- DoUpgradeGear/DoReplaceEquipment re-dress on their own
+    // goal, which is what happens today; ReEquip below is unreachable.
+    see.gearInPack = false;
+
+    // RecoveryTuning: riskTolerance, minHpToReturn and maxAttempts all left
+    // at their struct defaults. riskTolerance is UNKNOWN -- no per-character
+    // personality field exists yet (spec S3 defers it).
+    RecoveryTuning tune;
+
+    const RecoveryPlan plan = DecideRecovery(see, tune);
+    if (plan.step != lastRecoveryPlan_) {
+        LogPlan(RecoveryStepName(plan.step), plan.reason);
+        lastRecoveryPlan_ = plan.step;
+    }
+
+    switch (plan.step) {
+        case RecoveryStep::SeekResurrection:
+            // Same guard as DoSurvive: one outstanding resurrection request,
+            // not one every three seconds against a fifteen-minute deadline.
+            // Both goals can be the one running while the character is a
+            // ghost, so both had the fault.
+            if (client.ActionBusy()) return false;
+            client.ActionResurrectAccept();
+            nextActionMs_ = obs.nowMs + 10000;
+            return false;
+
+        case RecoveryStep::Recover:
+            // Mandatory: without this cooldown RecoverCorpse (950) outscores
+            // Heal (700) forever and the character never heals up to walk
+            // back -- the exact death loop this handler exists to prevent.
+            return HandOff(GoalKind::RecoverCorpse, GoalKind::Heal, 60000,
+                           plan.reason, obs.nowMs);
+
+        case RecoveryStep::TravelToCorpse:
+            if (client.TravelBusy()) return false;
             if (!travelInFlight_) {
-                LogLine("corpse run: no route (%s)", client.TravelFailureText());
+                LogLine("corpse run: heading to %d,%d (attempt %d)", death.x, death.y,
+                        death.recoveryAttempts + 1);
+                travelInFlight_ = client.TravelToLastCorpse();
+                if (!travelInFlight_) {
+                    LogLine("corpse run: no route (%s)", client.TravelFailureText());
+                    planner_.NoteAttempt(obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 5000;
+                }
+                return false;
+            }
+            travelInFlight_ = false;
+            if (!client.TravelSucceeded()) {
+                client.Knowledge().NoteCorpseRecoveryAttempt();
                 planner_.NoteAttempt(obs.nowMs);
-                nextActionMs_ = obs.nowMs + 5000;
             }
             return false;
-        }
-        travelInFlight_ = false;
-        if (!client.TravelSucceeded()) {
-            client.Knowledge().NoteCorpseRecoveryAttempt();
-            planner_.NoteAttempt(obs.nowMs);
-        }
-        return false;
-    }
 
-    // Standing on it. Open, then take everything the container reports.
-    if (!client.ContainerKnown(death.corpseSerial)) {
-        if (client.ActionBusy()) return false;
-        client.ActionOpenContainer(death.corpseSerial);
-        nextActionMs_ = obs.nowMs + 1500;
-        return false;
+        case RecoveryStep::Loot:
+            // Standing on it. Open, then take everything the container
+            // reports.
+            if (!client.ContainerKnown(death.corpseSerial)) {
+                if (client.ActionBusy()) return false;
+                client.ActionOpenContainer(death.corpseSerial);
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+            if (client.ActionBusy()) return false;
+            {
+                u32 serial = 0;
+                u16 graphic = 0, amount = 0;
+                if (client.ContainerItemAt(death.corpseSerial, 0, &serial, &graphic,
+                                           &amount)) {
+                    client.TakeFromContainer(serial, amount ? amount : 1);
+                    planner_.NoteProgress();
+                    nextActionMs_ = obs.nowMs + 900;
+                }
+            }
+            return false;
+
+        case RecoveryStep::ReEquip:
+            // Unreachable while gearInPack is left false above (S2.3 scope).
+            return HandOff(GoalKind::RecoverCorpse, GoalKind::ReplaceEquipment,
+                           30000, plan.reason, obs.nowMs);
+
+        case RecoveryStep::Abandon:
+            // A completed decision, not a failure -- never Finish(false).
+            client.Knowledge().ClearDeath();
+            state_.memory.NoteEvent("corpse_abandoned", plan.reason, "", death.x,
+                                    death.y, obs.nowMs);
+            return true;
+
+        case RecoveryStep::Done:
+            client.Knowledge().ClearDeath();
+            state_.memory.NoteEvent("corpse_recovered", "", "", death.x, death.y,
+                                    obs.nowMs);
+            return true;
     }
-    const usize count = client.ContainerItemCount(death.corpseSerial);
-    if (count == 0) {
-        LogLine("corpse recovered or empty at %d,%d", death.x, death.y);
-        state_.memory.NoteEvent("corpse_recovered", "", "", death.x, death.y,
-                                obs.nowMs);
-        client.Knowledge().ClearDeath();
-        return true;
-    }
-    if (client.ActionBusy()) return false;
-    u32 serial = 0;
-    u16 graphic = 0, amount = 0;
-    if (client.ContainerItemAt(death.corpseSerial, 0, &serial, &graphic, &amount)) {
-        client.TakeFromContainer(serial, amount ? amount : 1);
-        planner_.NoteProgress();
-        nextActionMs_ = obs.nowMs + 900;
-    }
-    return false;
+    return true;
 }
 
 // --- tools and equipment ---------------------------------------------------
@@ -2772,16 +3275,123 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     std::vector<u16> toolGfx;
     if (needCfg_.profession) {
         for (const prof::ToolNeed& t : needCfg_.profession->tools) {
-            bool have = false;
+            // HELD/WORN, ACROSS EVERY GRAPHIC THE TOOL WEARS, and counting
+            // the HANDS as well as the pack -- the same question obs.toolsHeld
+            // asks a few hundred lines above, answered the same way. Three
+            // regressions lived in the narrower version this replaces:
+            //
+            //  * the layer came from t.graphics[0] ALONE, so a tool whose
+            //    first listed graphic has no itemdef layer reported layer 0
+            //    for the whole entry;
+            //  * `held` counted the PACK only, so a tool already in the hand
+            //    read held=0 -- and a flip-graphic tool (kPickaxe and kHatchet
+            //    are two graphics each) also read worn != graphics[0], because
+            //    the wielded half is the OTHER graphic. Together that is
+            //    DecideAcquire's "none held, and it may be bought": the
+            //    character walks to a smith and buys a second pickaxe while
+            //    swinging the first;
+            //  * mustWear was `layer != 0` -- i.e. "anything equippable must
+            //    be equipped" -- which ignored ToolNeed::mustBeWielded, the
+            //    field the catalogue sets for exactly this and which no code
+            //    in src/ read at all. A saw or a sewing kit works from the
+            //    pack; only the SRC.WEAPON skills need the hand.
+            // (audit 2026-08-30, finding 4.)
+            u8 layer = 0;
             for (u16 g : t.graphics) {
-                if (client.FindBackpackItemByGraphic(g) ||
-                    client.EquippedGraphicAt(kLayerHand1) == g ||
-                    client.EquippedGraphicAt(kLayerHand2) == g) {
-                    have = true;
-                    break;
-                }
+                layer = client.ItemEquipLayer(g);
+                if (layer) break;
             }
-            if (have) continue;
+            const u16 canonical = t.graphics.empty() ? 0 : t.graphics[0];
+            i32  held = 0;
+            u32  have = 0;
+            bool wielded = false;
+            for (u16 g : t.graphics) {
+                if (!g) continue;
+                held += static_cast<i32>(client.BackpackItemCount(g));
+                if (!have) have = client.FindBackpackItemByGraphic(g);
+                if (client.EquippedGraphicAt(kLayerHand1) == g ||
+                    client.EquippedGraphicAt(kLayerHand2) == g ||
+                    (layer && client.EquippedGraphicAt(layer) == g))
+                    wielded = true;
+            }
+            // A TOOL IN THE HAND IS A TOOL HELD. Reported as the canonical
+            // graphic so DecideAcquire's `worn == req.graphic` test sees the
+            // tool it asked about rather than whichever flip-frame the server
+            // put on the paperdoll -- the same shape the garment scan in
+            // DoReplaceEquipment uses.
+            if (wielded) ++held;
+            const u16 worn = wielded ? canonical : 0;
+
+            life::AcquireRequest req;
+            req.graphic = canonical;
+            req.item = t.name.c_str();
+            req.desiredTotal = 1;
+            req.layer = layer;
+            req.mustWear = t.mustBeWielded;
+            // A profession that names a tool can use it -- unlike armour,
+            // nothing here gates which tools this life may wield.
+            req.wearable = true;
+
+            const life::AcquirePlan plan = life::DecideAcquire(req, held, worn);
+            // Keyed by THIS tool's own name -- see Runner.h's comment on
+            // lastToolAcquirePlanByItem_ for the alternating-log bug a single
+            // shared sentinel produced here.
+            AcquireStep& lastStep = lastToolAcquirePlanByItem_[t.name];
+            if (plan.step != lastStep) {
+                LogPlan(life::AcquireStepName(plan.step), plan.reason);
+                lastStep = plan.step;
+            }
+            // THE PAPERDOLL IS THE VERIFICATION, AND IT ARRIVES NEXT TICK.
+            // An equip is an ask with a server answer; "I sent the packet" is
+            // not "it is in my hand" (acquire.h, rule 2). The old code called
+            // NoteProgress() the instant it sent ActionEquip, so a shard that
+            // silently refused the wield reset the failure ladder every 1.2
+            // seconds and the planner's backstop -- the thing that ends a goal
+            // doing nothing -- could never fire.
+            int& wearTries = toolWearAttemptsByItem_[t.name];
+            if (plan.step == life::AcquireStep::Done) {
+                // Done AFTER we asked means EquippedGraphicAt now sees it.
+                // THAT is the progress, and it is the only place that says so.
+                if (wearTries > 0) {
+                    LogLine("tool: the %s is in hand now", t.name.c_str());
+                    wearTries = 0;
+                    planner_.NoteProgress();
+                }
+                continue;
+            }
+
+            if (plan.step == life::AcquireStep::Wear) {
+                if (client.ActionBusy()) return false;
+                if (wearTries >= kMaxToolWearTries) {
+                    LogLine("goal_blocked=GET_TOOL reason=\"the %s is in the "
+                            "pack but %d equip attempts left the hand empty\"",
+                            t.name.c_str(), wearTries);
+                    state_.memory.NoteEvent("wield_refused", t.name.c_str(), "",
+                                            obs.x, obs.y, obs.nowMs);
+                    wearTries = 0;
+                    return HandOff(GoalKind::GetTool, GoalKind::Bank,
+                                   kGearCooldownMs,
+                                   "the shard refuses to wield it", obs.nowMs);
+                }
+                ++wearTries;
+                LogLine("tool: putting the %s in hand (attempt %d of %d)",
+                        t.name.c_str(), wearTries, kMaxToolWearTries);
+                client.ActionEquip(have, layer);
+                planner_.NoteAttempt(obs.nowMs);
+                nextActionMs_ = obs.nowMs + 1200;
+                return false;
+            }
+            if (plan.step == life::AcquireStep::Refuse) {
+                // Unreachable while every profession tool is `wearable=true`
+                // above -- kept so the switch stays exhaustive if that
+                // changes (an STR-gated tool, say).
+                LogLine("goal_blocked=GET_TOOL reason=\"%s\"", plan.reason);
+                state_.memory.NoteEvent("policy_refused", t.name.c_str(), "",
+                                        obs.x, obs.y, obs.nowMs);
+                return HandOff(GoalKind::GetTool, GoalKind::Bank,
+                               kGearCooldownMs, plan.reason, obs.nowMs);
+            }
+            // Buy: genuinely missing. Fall through to the shop errand below.
             toolName = t.name;
             toolGfx = t.graphics;
             break;
@@ -2807,10 +3417,9 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
         // GET_TOOL sits in the Emergency family, which is exempt from
         // satiation by design -- nobody should get bored of needing an axe --
         // so a cooldown is the ONLY brake it has, and it had none.
-        planner_.Cooldown(GoalKind::GetTool, obs.nowMs + kNoToolCooldownMs);
-        planner_.Finish(false, "no trade known to sell it", obs.nowMs);
-        nextActionMs_ = obs.nowMs + 5000;
-        return false;
+        return HandOff(GoalKind::GetTool, GoalKind::IdleBriefly,
+                       kNoToolCooldownMs, "no trade known to sell it",
+                       obs.nowMs);
     }
 
     const KnownSupplier* known = state_.memory.BestSupplier(toolName.c_str());
@@ -2830,10 +3439,9 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
                                 obs.x, obs.y, obs.nowMs);
         // Same stand-down. A policy refusal is a settled answer, not a
         // temporary one -- re-asking it sixty times a second changes nothing.
-        planner_.Cooldown(GoalKind::GetTool, obs.nowMs + kNoToolCooldownMs);
-        planner_.Finish(false, "the vendor policy refuses this tool", obs.nowMs);
-        nextActionMs_ = obs.nowMs + 5000;
-        return false;
+        return HandOff(GoalKind::GetTool, GoalKind::IdleBriefly,
+                       kNoToolCooldownMs, "the vendor policy refuses this tool",
+                       obs.nowMs);
     }
 
     // COIN BEFORE THE SHOP TRIP, not after arriving at it. Fetching it later
@@ -3145,35 +3753,167 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             return false;
         }
     }
-    // NOTHING LEFT TO REPLACE -- but "nothing" has to include the potions.
+    // --- BANDAGES, THE MISSING GARMENT, HEAL POTIONS -----------------------
     //
-    // This early-out asked about bandages only, and for a crafter bandageLow
-    // is now zero (they buy potions instead), so `0 >= 0` was true and the
-    // goal reported itself finished before the potion errand below could run:
-    // fifteen picks of REPLACE_EQUIPMENT in one session, every one of them
-    // goal_completed progress=0, while the need that selected it said
-    // "potions=0 low=2 gold=8993".
-    // Missing from BOTH the body and the pack -- the only case worth a shop.
-    const ClothingPiece* missingClothes = nullptr;
-    for (const ClothingPiece& p : kBasicClothing) {
-        if (!client.ItemEquipLayer(p.graphic)) continue;
-        bool worn = false;
-        if (ClothingOnHand(client, p, &worn) || worn) continue;
-        missingClothes = &p;
-        break;
+    // One AcquireRequest per item, decided by DecideAcquire instead of three
+    // copies of "empty slot, more wanted" (S2_WIRING_PLAN.md S2.7). ALL
+    // THREE plans feed the early-out below; dropping one reproduces the
+    // regression this shape exists to prevent -- fifteen picks of
+    // REPLACE_EQUIPMENT in one session, every one of them goal_completed
+    // progress=0, because the old early-out asked about bandages only while
+    // the need that selected the goal said "potions=0 low=2 gold=8993".
+
+    // 1. Bandages -- BUT ONLY FOR A LIFE THAT DECLARES THEM.
+    //
+    // THE ERRAND MUST ASK WHAT THE NEED ASKS. AssessNeeds gates its bandage
+    // clause on WantsConsumable(cfg, "bandage") (Needs.cpp) because a
+    // crafting life's catalogue entry deliberately drops Bandages() in favour
+    // of CrafterHealPotions() -- "you are crafter you dont have heal skill so
+    // buy healing potion 3-4" / "so crafter do not buy bandages" (project
+    // owner, 2026-08-30). This errand asked nothing, so it built the request
+    // unconditionally and a miner_smith bought THIRTY bandages its zero
+    // Healing could never make work. Worse, the Buy branch below returns on
+    // every path, so the heal-potion branch behind it -- the one thing that
+    // WOULD have kept the crafter alive -- was unreachable for exactly the
+    // lives that needed it. (audit 2026-08-30, finding 1.)
+    //
+    // A family with no bandages in `consumables` treats this plan as Done,
+    // which is the truth: it is not short of something it does not carry.
+    const bool wantsBandages = life::WantsConsumable(needCfg_, "bandage");
+    life::AcquirePlan bandagePlan;   // default Done -- vacuously satisfied
+    if (wantsBandages) {
+        life::AcquireRequest bandageReq;
+        bandageReq.graphic = kBandage;
+        bandageReq.item = "bandages";
+        bandageReq.desiredTotal = needCfg_.bandageFull;
+        bandageReq.mustWear = false;
+        bandageReq.wearable = true;
+        // goldFloor stays ZERO here deliberately: bandages ARE the emergency
+        // reserve. A character that will not spend its last coin on the thing
+        // that keeps it alive has misunderstood what the reserve is for.
+        bandageReq.minimumGoldReserve = 0;
+        bandageReq.Sell("healer", wm::Service::Healer);
+        bandagePlan = life::DecideAcquire(bandageReq, obs.bandages, 0);
+    }
+    if (bandagePlan.step != lastBandageAcquirePlan_) {
+        LogPlan(life::AcquireStepName(bandagePlan.step), bandagePlan.reason);
+        lastBandageAcquirePlan_ = bandagePlan.step;
     }
 
-    const bool potionsWanted = needCfg_.profession && [&] {
-        for (const prof::ConsumableNeed& c : needCfg_.profession->consumables)
-            if (c.name == "heal potion")
-                return obs.healPotions < c.low;
-        return false;
-    }();
-    if (obs.weaponEquipped && obs.bandages >= needCfg_.bandageLow &&
-        !potionsWanted && !missingClothes)
+    // 2. The missing garment. Only what the pack could not supply, one piece
+    // per visit: the errand re-runs, and a shirt bought this trip is worn by
+    // WearBasicClothing at the top of the next one before anything else is
+    // considered. Same scan order (shirt, trousers, shoes) as before.
+    const ClothingPiece* garment = nullptr;
+    life::AcquirePlan garmentPlan;   // default Done -- vacuously satisfied
+    for (const ClothingPiece& p : kBasicClothing) {
+        const u8 layer = client.ItemEquipLayer(p.graphic);
+        if (!layer) continue;
+        bool worn = false;
+        const u32 have = ClothingOnHand(client, p, &worn);
+        life::AcquireRequest req;
+        req.graphic = p.graphic;
+        req.item = p.what;
+        req.desiredTotal = 1;
+        req.layer = layer;
+        req.mustWear = true;
+        req.wearable = true;
+        const u16 wornGraphic = worn ? p.graphic : 0;
+        const life::AcquirePlan plan =
+            life::DecideAcquire(req, have ? 1 : 0, wornGraphic);
+        if (plan.step == life::AcquireStep::Done) continue;
+        garment = &p;
+        garmentPlan = plan;
+        break;
+    }
+    if (garment && (garmentPlan.step != lastGarmentAcquirePlan_ ||
+                    garment->what != lastGarmentAcquireItem_)) {
+        LogPlan(life::AcquireStepName(garmentPlan.step), garmentPlan.reason);
+        lastGarmentAcquirePlan_ = garmentPlan.step;
+        lastGarmentAcquireItem_ = garment->what;
+    }
+
+    // 3. Heal potions. HealPotions() has sat in the profession catalogue
+    // since M5 and no code path ever filled it: warriors declared a need for
+    // eight and carried none. "you are crafter you dont have heal skill so
+    // buy healing potion 3-4" and "you can buy from same place you buy
+    // healer" (project owner, 2026-08-30). The healer sells them -- the same
+    // counter the bandage errand above already walks to; the alchemist is
+    // the fallback (tm_vend's ALCHEMIST list carries i_potion_heal at {3 18}).
+    const prof::ConsumableNeed* potions = nullptr;
+    if (needCfg_.profession) {
+        for (const prof::ConsumableNeed& c : needCfg_.profession->consumables) {
+            if (c.name == "heal potion") { potions = &c; break; }
+        }
+    }
+    life::AcquirePlan potionPlan;   // default Done -- vacuously satisfied
+    u16 potionGfx = 0;
+    if (potions && !potions->graphics.empty()) {
+        // The graphic comes from the need itself rather than a second copy
+        // of the constant: one table, one truth.
+        potionGfx = potions->graphics.front();
+        const i32 held = static_cast<i32>(client.BackpackItemCount(potionGfx));
+        life::AcquireRequest req;
+        req.graphic = potionGfx;
+        req.item = "heal potion";
+        req.desiredTotal = potions->restockTo;
+        req.mustWear = false;
+        req.wearable = true;
+        // Unlike bandages this is not the last-coin emergency: a character
+        // that spends its final gold on potions cannot buy the ore that
+        // earns the next lot.
+        req.minimumGoldReserve = 50;
+        req.Sell("healer", wm::Service::Healer);
+        req.Sell("alchemist", wm::Service::Alchemist);
+        potionPlan = life::DecideAcquire(req, held, 0);
+    }
+    if (potionPlan.step != lastPotionAcquirePlan_) {
+        LogPlan(life::AcquireStepName(potionPlan.step), potionPlan.reason);
+        lastPotionAcquirePlan_ = potionPlan.step;
+    }
+
+    // ALL THREE DONE. Every plan in this check, on purpose -- dropping one is
+    // the exact regression named above.
+    if (obs.weaponEquipped && bandagePlan.step == life::AcquireStep::Done &&
+        garmentPlan.step == life::AcquireStep::Done &&
+        potionPlan.step == life::AcquireStep::Done)
         return true;
 
-    if (obs.bandages < needCfg_.bandageLow) {
+    // Refuse: unreachable today -- bandages and potions are never `mustWear`,
+    // and every garment above is `wearable=true`. Kept so the switch stays
+    // exhaustive once armour (MayWear-gated) joins this errand.
+    if (bandagePlan.step == life::AcquireStep::Refuse) {
+        LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", bandagePlan.reason);
+        state_.memory.NoteEvent("policy_refused", "i_bandage", "", obs.x, obs.y,
+                                obs.nowMs);
+        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+                       kGearCooldownMs, bandagePlan.reason, obs.nowMs);
+    }
+    if (garment && garmentPlan.step == life::AcquireStep::Refuse) {
+        LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", garmentPlan.reason);
+        state_.memory.NoteEvent("policy_refused", garment->item, "", obs.x,
+                                obs.y, obs.nowMs);
+        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+                       kGearCooldownMs, garmentPlan.reason, obs.nowMs);
+    }
+    if (potionPlan.step == life::AcquireStep::Refuse) {
+        LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"%s\"", potionPlan.reason);
+        state_.memory.NoteEvent("policy_refused", "i_potion_heal", "", obs.x,
+                                obs.y, obs.nowMs);
+        return HandOff(GoalKind::ReplaceEquipment, GoalKind::Bank,
+                       kGearCooldownMs, potionPlan.reason, obs.nowMs);
+    }
+
+    // Buy: bandages. The `bandageBuy_.Running()` half of the guard keeps an
+    // in-flight purchase ticking to a terminal status even on a tick where
+    // the pack has already crossed back above the decision's own threshold.
+    //
+    // IN CATALOGUE ORDER, FIRST ACTIONABLE WINS: bandages, then the garment,
+    // then heal potions. Each branch runs only when ITS OWN plan says Buy, so
+    // a life that wants no bandages falls straight through to the potion
+    // branch instead of being stopped by a request it never made.
+    if (wantsBandages &&
+        (bandagePlan.step == life::AcquireStep::Buy || bandageBuy_.Running())) {
         const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(kBandage);
         if (!ruling.allowed) {
             // FINISH the goal rather than retrying every 30 seconds forever.
@@ -3205,10 +3945,6 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         // is what makes "I already have thirty" expressible at all -- the
         // version that said "buy twenty" is the one that bought six heater
         // shields because a slot was still empty.
-        //
-        // goldFloor stays ZERO here deliberately: bandages ARE the emergency
-        // reserve. A character that will not spend its last coin on the thing
-        // that keeps it alive has misunderstood what the reserve is for.
         if (!bandageBuy_.Running()) {
             life::BuyRequest req;
             req.graphic = kBandage;
@@ -3261,30 +3997,26 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
                 life::ActivityStatusName(r.status), r.reason);
         const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
                              ? kShortRestMs : kGearCooldownMs;
-        planner_.Cooldown(GoalKind::ReplaceEquipment, obs.nowMs + rest);
-        planner_.Finish(false, "no bandages bought", obs.nowMs);
-        return false;
+        return HandOff(GoalKind::ReplaceEquipment, GoalKind::MakeBandages, rest,
+                       "no bandages bought", obs.nowMs);
     }
 
-    // --- THE MISSING GARMENT ----------------------------------------------
-    //
-    // Only what the pack could not supply. One piece per visit: the errand
-    // re-runs, and a shirt bought this trip is worn by WearBasicClothing at
-    // the top of the next one before anything else is considered.
-    if (missingClothes) {
+    // Buy: the missing garment.
+    if (garment && (garmentPlan.step == life::AcquireStep::Buy ||
+                    clothingBuy_.Running())) {
         if (client.TravelBusy()) return false;
         if (!clothingBuy_.Running()) {
             LogLine("clothes: no %s on the body or in the pack -- buying one",
-                    missingClothes->what);
+                    garment->what);
             life::BuyRequest req;
-            req.graphic = missingClothes->graphic;
-            req.item = missingClothes->item;
+            req.graphic = garment->graphic;
+            req.item = garment->item;
             req.desiredTotal = 1;
             req.minimumGoldReserve = 20;
             // A cobbler for the shoes, a tailor for the cloth -- and the
             // provisioner as the catch-all, because a small town has one of
             // those when it has neither of the others.
-            req.Sell(missingClothes->firstSeller, wm::Service::Tailor);
+            req.Sell(garment->firstSeller, wm::Service::Tailor);
             req.Sell("tailor", wm::Service::Tailor);
             req.Sell("provisioner", wm::Service::Provisioner);
             clothingBuy_.Begin(req);
@@ -3301,69 +4033,44 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             return false;   // worn on the next pass
         }
-        LogLine("clothes: no %s bought (%s)", missingClothes->what, cr.reason);
+        LogLine("clothes: no %s bought (%s)", garment->what, cr.reason);
     }
 
-    // --- HEAL POTIONS, which nothing has ever bought ----------------------
-    //
-    // HealPotions() has sat in the profession catalogue since M5 and no code
-    // path ever filled it: warriors declared a need for eight and carried
-    // none. For a crafter it matters more than for anyone, because the
-    // bandages it does carry are worth what its Healing skill says they are
-    // worth, and a miner-smith has none of that skill at all.
-    //
-    // "you are crafter you dont have heal skill so buy healing potion 3-4"
-    // and "you can buy from same place you buy healer" (project owner,
-    // 2026-08-30). The healer sells them, which is convenient: it is the same
-    // counter the bandage errand above already walks to, and the same one a
-    // ghost walks to anyway. The alchemist is the fallback -- tm_vend's
-    // ALCHEMIST list carries i_potion_heal at {3 18}.
-    const prof::ConsumableNeed* potions = nullptr;
-    if (needCfg_.profession) {
-        for (const prof::ConsumableNeed& c : needCfg_.profession->consumables) {
-            if (c.name == "heal potion") { potions = &c; break; }
+    // Buy: heal potions.
+    if (potions && !potions->graphics.empty() &&
+        (potionPlan.step == life::AcquireStep::Buy || potionBuy_.Running())) {
+        if (client.TravelBusy()) return false;
+        if (!potionBuy_.Running()) {
+            const i32 held =
+                static_cast<i32>(client.BackpackItemCount(potionGfx));
+            LogLine("potions: carrying %d heal potion(s), below %d -- "
+                    "buying up to %d", held, potions->low,
+                    potions->restockTo);
+            life::BuyRequest req;
+            req.graphic = potionGfx;
+            req.item = "heal potion";
+            req.desiredTotal = potions->restockTo;
+            req.minimumGoldReserve = 50;
+            req.Sell("healer", wm::Service::Healer);
+            req.Sell("alchemist", wm::Service::Alchemist);
+            potionBuy_.Begin(req);
         }
-    }
-    if (potions && !potions->graphics.empty()) {
-        // The graphic comes from the need itself rather than a second copy of
-        // the constant: one table, one truth.
-        const u16 potionGfx = potions->graphics.front();
-        const i32 held = static_cast<i32>(client.BackpackItemCount(potionGfx));
-        if (held < potions->low || potionBuy_.Running()) {
-            if (client.TravelBusy()) return false;
-            if (!potionBuy_.Running()) {
-                LogLine("potions: carrying %d heal potion(s), below %d -- "
-                        "buying up to %d", held, potions->low,
-                        potions->restockTo);
-                life::BuyRequest req;
-                req.graphic = potionGfx;
-                req.item = "heal potion";
-                req.desiredTotal = potions->restockTo;
-                // Unlike bandages this is not the last-coin emergency: a
-                // character that spends its final gold on potions cannot buy
-                // the ore that earns the next lot.
-                req.minimumGoldReserve = 50;
-                req.Sell("healer", wm::Service::Healer);
-                req.Sell("alchemist", wm::Service::Alchemist);
-                potionBuy_.Begin(req);
-            }
-            const life::ActivityTickResult pr = potionBuy_.Tick(client, obs);
-            if (pr.reason && pr.reason[0]) LogLine("potions: %s", pr.reason);
-            if (pr.wake == life::Wake::AfterDelay && pr.delayMs > 0)
-                nextActionMs_ = obs.nowMs + pr.delayMs;
+        const life::ActivityTickResult pr = potionBuy_.Tick(client, obs);
+        if (pr.reason && pr.reason[0]) LogLine("potions: %s", pr.reason);
+        if (pr.wake == life::Wake::AfterDelay && pr.delayMs > 0)
+            nextActionMs_ = obs.nowMs + pr.delayMs;
 
-            if (!life::IsTerminal(pr.status)) {
-                planner_.NoteAttempt(obs.nowMs);
-                return false;
-            }
-            if (pr.status == life::ActivityStatus::Success) {
-                planner_.NoteProgress();
-                return false;
-            }
-            // A shop that would not sell is not a reason to keep the goal
-            // spinning; the next errand can have the turn.
-            LogLine("potions: none bought (%s)", pr.reason);
+        if (!life::IsTerminal(pr.status)) {
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
         }
+        if (pr.status == life::ActivityStatus::Success) {
+            planner_.NoteProgress();
+            return false;
+        }
+        // A shop that would not sell is not a reason to keep the goal
+        // spinning; the next errand can have the turn.
+        LogLine("potions: none bought (%s)", pr.reason);
     }
 
     return true;
@@ -3490,16 +4197,16 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (needCfg_.profession && (loadDemandsIt ||
                                     needCfg_.profession->produces.empty())) {
             for (const std::string& made : needCfg_.profession->produces) {
-                const std::vector<u16> gfx = econ::GraphicsForItem(made.c_str());
-                u32 serial = 0;
+                // FIND AND COUNT THE SAME THING (S1). This used to take the
+                // serial from FindBackpackItemByGraphic -- ONE stack, of
+                // whatever hue happened to come first -- and the amount from
+                // BackpackItemCount, which sums EVERY hue of that graphic.
+                // With ore and the iron ingot shared by a dozen metals that
+                // is a request to move N of a stack that is not the one being
+                // counted: "banking 60 i_ingot_iron" pointing at valorite.
                 i32 amount = 0;
-                for (u16 g : gfx) {
-                    const u32 found = client.FindBackpackItemByGraphic(g);
-                    if (!found) continue;
-                    serial = found;
-                    amount = static_cast<i32>(client.BackpackItemCount(g));
-                    break;
-                }
+                const u32 serial =
+                    FindBackpackItemByName(client, made.c_str(), &amount);
                 if (!serial || amount <= 0) continue;
                 // A DEPOSIT THAT NEVER LANDS MUST NOT BE RETRIED FOREVER.
                 //
@@ -3563,16 +4270,10 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                         (std::string("buyer:") + made).c_str()))
                     continue;   // a player buyer is known; that is a sale
 
-                const std::vector<u16> gfx = econ::GraphicsForItem(made.c_str());
-                u32 serial = 0;
+                // Find and count the same NAME -- see the produces loop above.
                 i32 amount = 0;
-                for (u16 g : gfx) {
-                    const u32 found = client.FindBackpackItemByGraphic(g);
-                    if (!found) continue;
-                    serial = found;
-                    amount = static_cast<i32>(client.BackpackItemCount(g));
-                    break;
-                }
+                const u32 serial =
+                    FindBackpackItemByName(client, made.c_str(), &amount);
                 if (!serial || amount <= keepToWorkWith) continue;
 
                 const i32 put = amount - keepToWorkWith;
@@ -3618,16 +4319,10 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 }
             }
             for (const std::string& input : inputs) {
-                const std::vector<u16> gfx = econ::GraphicsForItem(input.c_str());
-                u32 serial = 0;
+                // Find and count the same NAME -- see the produces loop above.
                 i32 amount = 0;
-                for (u16 g : gfx) {
-                    const u32 found = client.FindBackpackItemByGraphic(g);
-                    if (!found) continue;
-                    serial = found;
-                    amount = static_cast<i32>(client.BackpackItemCount(g));
-                    break;
-                }
+                const u32 serial =
+                    FindBackpackItemByName(client, input.c_str(), &amount);
                 if (!serial || amount <= keep) continue;
                 const i32 put = amount - keep;
                 LogLine("banking %d spare %s (keeping %d to work with)", put,
@@ -3678,13 +4373,25 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             // coin it owned -- into a shard with full loot on death. The
             // surplus goes in the box below; only what the life actually needs
             // stays in the pack.
+            // TWO KEEP LISTS, because two kinds of thing are being named.
+            //
+            // Tools and consumables are declared as GRAPHICS by the
+            // profession, and a graphic is all they ever are. Everything a
+            // life makes, consumes or makes FROM is declared as a DEFNAME --
+            // and turning those into graphics threw the answer away (S1):
+            // GraphicsForItem("i_ore_iron") is 019b7..019ba, which is every
+            // metal's ore, so a smith with i_ore_iron on its list quietly
+            // exempted a pack full of valorite and could never put it down.
+            // Named things are therefore matched by hue-resolved NAME.
             std::vector<u16> keepGfx{kLog};
+            std::vector<std::string> keepNames;
             auto keepAll = [&keepGfx](const std::vector<u16>& g) {
                 keepGfx.insert(keepGfx.end(), g.begin(), g.end());
             };
-            auto keepNamed = [&keepGfx](const std::string& item) {
-                const std::vector<u16> g = econ::GraphicsForItem(item.c_str());
-                keepGfx.insert(keepGfx.end(), g.begin(), g.end());
+            auto keepNamed = [&keepNames](const std::string& item) {
+                for (const std::string& have : keepNames)
+                    if (have == item) return;
+                keepNames.push_back(item);
             };
             if (needCfg_.profession) {
                 for (const prof::ToolNeed& t : needCfg_.profession->tools)
@@ -3704,11 +4411,19 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
             const u32 pack = client.BackpackSerial();
             const usize n = client.ContainerItemCount(pack);
             for (usize i = 0; i < n; ++i) {
-                u32 serial = 0; u16 gfx = 0, amount = 0;
-                if (!client.ContainerItemAt(pack, i, &serial, &gfx, &amount)) continue;
+                u32 serial = 0; u16 gfx = 0, amount = 0, hue = 0;
+                if (!client.ContainerItemAt(pack, i, &serial, &gfx, &amount, &hue))
+                    continue;
                 if (!serial) continue;
                 bool named = false;
                 for (u16 k : keepGfx) { if (k == gfx) { named = true; break; } }
+                // The hue-resolved name, so a coloured ore or ingot is judged
+                // as ITSELF against the keep list rather than as iron.
+                const char* itemName = econ::ItemNameForGraphicAndHue(gfx, hue);
+                if (!named && itemName) {
+                    for (const std::string& k : keepNames)
+                        if (k == itemName) { named = true; break; }
+                }
                 if (named) continue;
 
                 // GOLD IS DEPOSITED IN PART, NOT WHOLESALE.
@@ -3736,9 +4451,10 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                     return false;
                 }
 
-                LogLine("banking dead weight: 0x%04X x%u -- this life has no "
-                        "use for it and the pack is at %.0f%%",
-                        gfx, moving, obs.WeightFraction() * 100.0);
+                LogLine("banking dead weight: %s (0x%04X hue 0x%04X) x%u -- "
+                        "this life has no use for it and the pack is at %.0f%%",
+                        itemName ? itemName : "unnamed", gfx, hue, moving,
+                        obs.WeightFraction() * 100.0);
                 client.ActionMoveItem(serial, moving, box);
                 planner_.NoteProgress();
                 nextActionMs_ = obs.nowMs + 1500;
@@ -3980,8 +4696,26 @@ bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
         // same tree, the area reads as exhausted after ONE tree, and the
         // character loops on it -- 231 swings at a single trunk in one live
         // session.
-        const bool found =
-            client.NearestTree(obs.x, obs.y, cfg_.searchRadius, &tree, &visitedTrees_);
+        bool allGuarded = false;
+        const bool found = client.NearestTree(obs.x, obs.y, cfg_.searchRadius,
+                                              &tree, &visitedTrees_,
+                                              &allGuarded);
+        if (!found && allGuarded) {
+            // OWNER RULE: no gathering inside guarded zones. Every candidate
+            // this scan saw stands inside the guard line (Tarath chopped a
+            // tree at 1449,1635 inside guarded a_townBritain before this
+            // check existed) -- this is a town square, not an empty forest,
+            // so do not dead-list the lead. Fall through to the
+            // proven-stand/travel logic above by marking the area exhausted;
+            // the NEXT tick re-enters at "am I actually where the work is?"
+            // and walks to a stand that has actually paid out.
+            LogLine("gather: nothing to take outside the guard line here -- "
+                    "going to the proven stand");
+            areaExhausted_ = true;
+            planner_.NoteAttempt(obs.nowMs);
+            nextActionMs_ = obs.nowMs + 500;
+            return false;
+        }
         if (!found) {
             LogLine("gather: every tree within %d tiles is worked out -> "
                     "this area is done for now", cfg_.searchRadius);
@@ -4604,15 +5338,21 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             return false;
         }
 
-        const std::vector<u16> gfx = econ::GraphicsForItem(fetch->item.c_str());
-        const u32 serial = client.FindContainerItemByGraphic(
-            client.BankContainer(), gfx.data(), gfx.size());
+        // BY NAME, NOT BY GRAPHIC (S1). `take` is read from obs.bank, which
+        // has been hue-resolved since S1 -- but the SERIAL was still found by
+        // graphic, and the ore and iron-ingot graphics are shared by every
+        // metal. A ledger line for i_ingot_iron could therefore pick up the
+        // valorite stack sitting beside it in the box and withdraw THAT,
+        // then hand it to a vendor at the iron price.
+        i32 inBox = 0;
+        const u32 serial = FindContainerItemByName(
+            client, client.BankContainer(), fetch->item.c_str(), &inBox);
         if (!serial) {
             LogLine("earn_gold: the bank ledger says %s but the open box does "
                     "not show it -- the ledger is stale", fetch->item.c_str());
             return true;
         }
-        const i32 take = market::QtyOf(obs.bank, fetch->item);
+        const i32 take = std::min(market::QtyOf(obs.bank, fetch->item), inBox);
         LogLine("earn_gold: withdrawing %d %s to sell", take,
                 fetch->item.c_str());
         client.TakeFromContainer(serial, static_cast<u16>(take));
@@ -4842,15 +5582,35 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         return false;
     }
 
-    // --- sell, matching by GRAPHIC -----------------------------------------
+    // --- sell, matching by NAME -------------------------------------------
     //
     // The 0x9E list carries the serials of OUR OWN items, so this is a join
     // against the pack rather than against the vendor's stock.
+    //
+    // AND THE JOIN IS BY NAME, NOT GRAPHIC (S1). 0x9E carries a graphic and
+    // no hue, and ore is ONE graphic for sixteen metals while the iron ingot
+    // is one graphic for thirteen. Asking to sell "i_ingot_iron" therefore
+    // matched the valorite stack in the same pack and handed it over at the
+    // iron price -- an irreversible loss of the rarest thing a miner owns,
+    // silently, at the moment the bot thought it was doing its job. So each
+    // offer line is resolved back through the PACK, where the hue lives.
+    //
+    // The fail-safe when a serial cannot be found in the pack (a sub-bag, a
+    // stale cache) splits on whether the graphic is ambiguous at all:
+    // GraphicNeedsHue() is true only for the two shared families, and for
+    // those an unresolvable line is REFUSED rather than guessed. Every other
+    // graphic names itself, so it is matched as before.
     const std::vector<u16> mine = econ::GraphicsForItem(sellItem_.c_str());
+    auto isMine = [&](const Client::VendorItem& item) {
+        bool graphicMatches = false;
+        for (u16 g : mine) { if (item.graphic == g) { graphicMatches = true; break; } }
+        if (!graphicMatches) return false;
+        const char* name = PackItemNameBySerial(client, item.serial);
+        if (name) return sellItem_ == name;
+        return !econ::GraphicNeedsHue(item.graphic);
+    };
     for (const Client::VendorItem& v : client.VendorSellOffer()) {
-        bool match = false;
-        for (u16 g : mine) { if (v.graphic == g) { match = true; break; } }
-        if (!match) continue;
+        if (!isMine(v)) continue;
 
         // THE WHOLE LOT, NOT ONE PIECE. "yes dont sell one buy one" (project
         // owner, 2026-08-29). A dagger does not stack, so the vendor's buy
@@ -4870,9 +5630,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         i32 lotQty = 0;
         for (const Client::VendorItem& w : client.VendorSellOffer()) {
             if (lotQty >= remaining) break;
-            bool same = false;
-            for (u16 g : mine) { if (w.graphic == g) { same = true; break; } }
-            if (!same || w.amount <= 0) continue;
+            if (!isMine(w) || w.amount <= 0) continue;
             const i32 take =
                 std::min<i32>(remaining - lotQty, static_cast<i32>(w.amount));
             lot.emplace_back(w.serial, static_cast<u16>(take));
@@ -5021,7 +5779,14 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
 // ---------------------------------------------------------------------------
 bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     const int skillId = obs.wantTrainSkill;
-    if (skillId < 0) return true;
+    // NOTHING TO BUY IS NOT AN ERRAND DONE. Returning true here reported
+    // `goal_completed=TRAIN_AT_NPC progress=0` and freed the planner to hand
+    // the same goal straight back; standing the goal down is what stops that.
+    if (skillId < 0) {
+        planner_.Cooldown(GoalKind::TrainAtNpc, obs.nowMs + kNoTrainerCooldownMs);
+        planner_.Finish(false, "no skill is waiting on a trainer", obs.nowMs);
+        return false;
+    }
 
     const i32 have = client.PlayerSkillBase(static_cast<u16>(skillId));
 
@@ -5030,8 +5795,28 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
     // The proof is the SERVER'S skill number, not our own bookkeeping. Asking
     // for a fresh skill list is what a player's client does anyway.
     if (trainPaid_) {
-        if (have > trainSkillBefore_) {
-            LogLine("training: %s %.1f -> %.1f, bought from a trainer",
+        // DID THE GOLD ACTUALLY BUY ANYTHING? Section 18's train rule --
+        // "skill changed, or the trainer definitively refused" -- and the
+        // judgement now lives in activities/TrainConfirm.cpp, routed through
+        // interaction/progress.h. `training_unverified` is the name this
+        // project gave to skipping it: GOLD_DESTROYED_TRAINER a dozen times
+        // in one fleet run with no confirmed gain to show for any of it.
+        TrainConfirmInput tin;
+        tin.skillBefore = trainSkillBefore_;
+        tin.skillNow    = have;
+        tin.goldBefore  = trainGoldBefore_;
+        tin.goldNow     = obs.gold;
+        tin.quoted      = trainQuoted_;
+        tin.msSincePaid = obs.nowMs - trainPaidMs_;
+        tin.skillsAsked = trainSkillsAsked_;
+        const TrainConfirmResult tconf = ConfirmTraining(tin);
+        if (tconf.verdict == TrainVerdict::Learned) {
+            // THE ONE PLACE THIS GOAL MAY CLAIM PROGRESS, and it was missing:
+            // even a lesson that worked reported `goal_completed=TRAIN_AT_NPC
+            // progress=0`, which is the exact signal the anti-spin backstop
+            // reads as "succeeded at nothing".
+            planner_.NoteProgress();
+            LogLine("train: %s %.1f->%.1f bought from a trainer",
                     rules::SkillName(skillId), trainSkillBefore_ / 10.0, have / 10.0);
             state_.memory.NoteEvent("skill_trained", rules::SkillName(skillId),
                                     trainerTrade_.c_str(), obs.x, obs.y,
@@ -5068,37 +5853,20 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             Checkpoint(client, obs.nowMs, "skill bought from a trainer");
             return true;
         }
-        // The server does not push the new number, so ASK for it -- once,
-        // promptly. The first version only asked after a ten-second timeout
-        // had already declared failure, so a purchase that actually worked
-        // (11.8 -> 21.1 for 93 gold, live) was recorded as "has not moved".
-        if (!trainSkillsAsked_ && obs.nowMs - trainPaidMs_ > 1500) {
+        if (tconf.verdict == TrainVerdict::AskForSkills) {
             client.ActionRequestSkills();
             trainSkillsAsked_ = true;
             nextActionMs_ = obs.nowMs + 1500;
             return false;
         }
-        if (obs.nowMs - trainPaidMs_ > 15000) {
-            // NAME WHICH FAILURE THIS IS (section 18). The pair of numbers
-            // answers it: the fee either left the purse or it did not, and
-            // the server's own skill value either moved or it did not.
-            life::Expectation want;
-            want.skillId = skillId;
-            want.skillBefore = trainSkillBefore_;
-            want.skillGainMin = 1;
-            want.goldBefore = trainGoldBefore_;
-            want.goldSpendMin = 1;
-            want.goldSpendMax = trainQuoted_;
-
-            life::Observed seen;
-            seen.skillNow = have;
-            seen.goldNow = obs.gold;
-
-            const life::ProgressCheck check = life::Verify(want, seen);
-            const bool feeTaken = check.goldDelta < 0;
-            LogLine("training: paid %d for %s -- %s (purse %+d, skill %+.1f) "
-                    "after 15s", trainQuoted_, rules::SkillName(skillId),
-                    check.reason, check.goldDelta, check.skillDelta / 10.0);
+        if (tconf.verdict == TrainVerdict::FeeTakenNoLesson ||
+            tconf.verdict == TrainVerdict::NoAnswer) {
+            const bool feeTaken =
+                tconf.verdict == TrainVerdict::FeeTakenNoLesson;
+            LogLine("train: refused %s -- paid %d for %s "
+                    "(purse %+d, skill %+.1f)", tconf.reason, trainQuoted_,
+                    rules::SkillName(skillId), tconf.check.goldDelta,
+                    tconf.check.skillDelta / 10.0);
             state_.memory.NoteEvent(
                 feeTaken ? "training_took_fee_taught_nothing"
                          : "training_no_answer",
@@ -5125,11 +5893,65 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 1500;
         return false;
     }
-    if (have >= obs.wantTrainTarget) {
-        LogLine("training: %s is already at %.1f -- nothing to buy",
-                rules::SkillName(skillId), have / 10.0);
-        return true;
+    // --- decide: done, buy from an NPC, or grind it (S2.4, DecideTrain) ----
+    //
+    // Whether this skill is worth an NPC's time at all: the catalogue's own
+    // viaTrainer flag for this target, AND no trade-wide refusal has already
+    // written it off (obs.trainerRefusedSkills; see Runner.cpp's need-assess
+    // pass and Memory::TrainerSaysMaxed/TrainerRefused).
+    bool worthBuying = true;
+    for (usize i = 0; i < state_.plan.skills.size(); ++i) {
+        if (state_.plan.skills[i].skillId != skillId) continue;
+        worthBuying = (i < state_.plan.viaTrainer.size()) && state_.plan.viaTrainer[i];
+        break;
     }
+    for (int r : obs.trainerRefusedSkills) {
+        if (r == skillId) { worthBuying = false; break; }
+    }
+    // What an NPC of this trade can teach: a durable TrainerVerdict for this
+    // (skill, trade) outranks any guess -- it is what a trainer here already
+    // SAID about its own ceiling. Absent one, train.h:19-23's own numbers:
+    // 300 for a guildmaster, 225 otherwise, and a guildmaster only counts once
+    // NearestGuildmasterForTrade actually finds one nearby.
+    auto rememberedCeilingTenths = [&]() -> i32 {
+        for (const TrainerVerdict& v : state_.memory.Trainers()) {
+            if (v.skillId != skillId || v.trade != trainerTrade_) continue;
+            if (v.taught) return v.atTenths;
+            if (v.why == "the trainer has nothing left to give") return v.atTenths;
+        }
+        const bool guildmasterNearby =
+            client.NearestGuildmasterForTrade(trainerTrade_.c_str(), trainerSilent_) != 0;
+        return guildmasterNearby ? 300 : 225;
+    };
+
+    TrainRequest req1;
+    req1.skillId = skillId;
+    req1.targetTenths = obs.wantTrainTarget;
+    req1.npcCeilingTenths = rememberedCeilingTenths();
+    req1.feeQuoted = 0;   // no quote yet -- DecideTrain reads 0 as "go ask"
+    req1.gold = obs.gold;
+    req1.worthBuying = worthBuying;
+    const TrainPlan plan1 = DecideTrain(req1, have);
+    if (plan1.step != lastTrainPlan_) {
+        LogPlan(TrainStepName(plan1.step), plan1.reason);
+        lastTrainPlan_ = plan1.step;
+    }
+    if (plan1.step == TrainStep::Done) {
+        // Same rule as before S2.4: the skill is where it should be, so
+        // nothing was achieved and nothing needs to be. Rest the goal rather
+        // than completing it -- `return true` here reported
+        // `goal_completed=TRAIN_AT_NPC progress=0` and the planner handed the
+        // same goal straight back (S3's fix; DecideTrain does not change it).
+        planner_.Cooldown(GoalKind::TrainAtNpc, obs.nowMs + kNoTrainerCooldownMs);
+        planner_.Finish(false, plan1.reason, obs.nowMs);
+        return false;
+    }
+    if (plan1.step == TrainStep::Practise) {
+        return HandOff(GoalKind::TrainAtNpc, GoalKind::PracticeSkill,
+                       kNoTrainerCooldownMs, plan1.reason, obs.nowMs);
+    }
+    // TrainStep::Buy (CannotAfford is unreachable here -- feeQuoted is 0):
+    // fall through to the unchanged travel/approach/ask machinery below.
 
     if (client.TravelBusy()) return false;
 
@@ -5182,12 +6004,10 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             // travel_start and ARRIVED at the same coordinate with legs=0,
             // three times, then goal_failed, then immediately goal=TRAIN_AT_NPC
             // again. Nothing about the world changes in two seconds.
-            planner_.Cooldown(GoalKind::TrainAtNpc,
-                              obs.nowMs + kNoTrainerCooldownMs);
-            planner_.Finish(false, "no trainer reachable", obs.nowMs);
             trainTrips_ = 0;
-            nextActionMs_ = obs.nowMs + 5000;
-            return false;
+            return HandOff(GoalKind::TrainAtNpc, GoalKind::IdleBriefly,
+                           kNoTrainerCooldownMs, "no trainer reachable",
+                           obs.nowMs);
         }
         if (!travelInFlight_) {
             ++trainTrips_;
@@ -5318,25 +6138,19 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
         return false;
     }
 
-    // Refusals first -- each is a real answer, not a timeout.
-    struct Refusal { const char* text; const char* why; };
-    static const Refusal kRefusals[] = {
-        {"i know nothing about",        "this NPC does not teach it"},
-        {"you know more about",         "the character already exceeds the trainer"},
-        {"you already know as much",    "the trainer has nothing left to give"},
-        {"i would never train",         "the trainer refuses this character"},
-        {"there is nothing that i can", "the trainer has nothing to teach"},
-    };
-    for (const Refusal& r : kRefusals) {
+    // Refusals first -- each is a real answer, not a timeout. The table lives
+    // in activities/TrainConfirm.cpp so ctest can hold it to section 18's
+    // "the trainer definitively refused".
+    usize nRefusals = 0;
+    const TrainerRefusal* refusals = TrainerRefusals(&nRefusals);
+    for (usize ri = 0; ri < nRefusals; ++ri) {
+        const TrainerRefusal& r = refusals[ri];
         if (!client.JournalSaidSince(r.text, trainAskedMs_)) continue;
-        LogLine("training: %s refused to teach %s at %.1f -- %s",
-                trainerTrade_.c_str(), rules::SkillName(skillId), have / 10.0,
-                r.why);
-        // A durable verdict, not a log line. The previous version wrote an
-        // event nothing ever read and then reset the trip counter, so the
-        // character re-selected the goal and asked the same NPC again roughly
-        // every two seconds for the rest of the session -- 30+ times in the
-        // first live run, with the NPC patiently refusing each time.
+        LogLine("train: refused %s -- '%s' will not teach %s at %.1f",
+                r.why, trainerTrade_.c_str(), rules::SkillName(skillId),
+                have / 10.0);
+        // A DURABLE verdict, not a log line -- see uo/activities/
+        // train_confirm.h for the session this cost when it was neither.
         TrainerVerdict v;
         v.skillId  = skillId;
         v.trade    = trainerTrade_;
@@ -5357,23 +6171,10 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
 
     const i32 quoted = client.JournalNumberSince("i will train you", trainAskedMs_);
 
-    // PAY WHOEVER ACTUALLY QUOTED.
-    //
-    // The price is read out of the journal by TEXT, with no regard for who
-    // said it, and the fee was then handed to the NPC we had addressed. Those
-    // are not always the same person:
-    //
-    //   [TRAIN] ask 0x00009096 say='Rhyssa train Tinkering'
-    //   Pembroke: For 101 gold I will train you in all I know of Tinkering
-    //   training: paying the quoted 101 gold ... (purse 9801)
-    //   training: paid 101 for Tinkering but the server still reports 19.9
-    //
-    // Two tinkers stand together in Minoc; Sphere answered with the nearer
-    // one. The gold went to Rhyssa, who had offered nothing, and Pembroke --
-    // who had -- was never paid. The skill did not move, the purse did not
-    // move, and the character went round again.
-    //
-    // So the payee is the SPEAKER of the quote when one can be identified.
+    // PAY WHOEVER ACTUALLY QUOTED -- the SPEAKER of the quote when one can be
+    // identified, not the NPC that was addressed. Two tinkers stand together
+    // in Minoc and the fee went to the one who had offered nothing; the log
+    // that proves it is in uo/activities/train_confirm.h.
     u32 payee = trainer;
     if (quoted > 0) {
         std::vector<Client::Heard> said;
@@ -5403,10 +6204,8 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
             // repeating the same words from the same spot.
             trainerApproached_ = false;
             if (trainSilentAsks_ >= kMaxSilentAsks) {
-                // Give up on this NPC for now. Deliberately NOT written as a
-                // trainer verdict: a verdict is what an NPC SAID, and this one
-                // said nothing. Recording silence as a refusal would teach the
-                // character something the world never told it.
+                // Give up on this NPC for now. Deliberately NOT a trainer
+                // verdict: a verdict is what an NPC SAID (train_confirm.h).
                 LogLine("goal_failed=TRAIN_AT_NPC reason=\"'%s' never answered "
                         "about %s\"", trainerTrade_.c_str(),
                         rules::SkillName(skillId));
@@ -5414,9 +6213,6 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                                         rules::SkillName(skillId),
                                         trainerTrade_.c_str(), obs.x, obs.y,
                                         obs.nowMs);
-                planner_.Cooldown(GoalKind::TrainAtNpc,
-                                  obs.nowMs + kNoTrainerCooldownMs);
-                planner_.Finish(false, "the trainer never answered", obs.nowMs);
                 // Do not walk back to this same silent NPC next time. Held for
                 // the session only, and not written to memory: silence is not
                 // something the world told the character, so it is not a
@@ -5431,30 +6227,54 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
                 trainSilentAsks_ = 0;
                 trainerSerial_ = 0;
                 trainerApproached_ = false;
+                return HandOff(GoalKind::TrainAtNpc, GoalKind::IdleBriefly,
+                               kNoTrainerCooldownMs, "the trainer never answered",
+                               obs.nowMs);
             }
         }
         nextActionMs_ = obs.nowMs + 1500;
         return false;
     }
 
-    if (obs.gold < quoted) {
-        LogLine("BLOCKED_NEED %s: the trainer wants %d gold and the purse holds "
-                "%d -- going back to work", rules::SkillName(skillId), quoted, obs.gold);
+    // Call 2 (S2.4): the quote has landed, so DecideTrain now sees the real
+    // fee instead of the "go ask" placeholder of 0. have/target/ceiling and
+    // worthBuying have not changed since call 1 this tick -- only feeQuoted
+    // has -- so only Buy and CannotAfford are actually reachable here.
+    TrainRequest req2;
+    req2.skillId = skillId;
+    req2.targetTenths = obs.wantTrainTarget;
+    req2.npcCeilingTenths = rememberedCeilingTenths();
+    req2.feeQuoted = quoted;
+    req2.gold = obs.gold;
+    req2.worthBuying = worthBuying;
+    const TrainPlan plan2 = DecideTrain(req2, have);
+    if (plan2.step != lastTrainPlan_) {
+        LogPlan(TrainStepName(plan2.step), plan2.reason);
+        lastTrainPlan_ = plan2.step;
+    }
+    if (plan2.step == TrainStep::CannotAfford) {
+        // NOT unbuyable -- too poor TODAY. No TrainerVerdict is written and
+        // the skill is not marked refused: that is the whole point of this
+        // step existing separately from Practise.
         state_.memory.NoteEvent("trainer_quote", rules::SkillName(skillId),
                                 trainerTrade_.c_str(), obs.x, obs.y, obs.nowMs);
-        planner_.Finish(false, "cannot afford the quoted fee", obs.nowMs);
         trainAsked_ = false;
-        return false;
+        return HandOff(GoalKind::TrainAtNpc, GoalKind::EarnGold, 60000,
+                       plan2.reason, obs.nowMs);
     }
+    if (plan2.step == TrainStep::Done || plan2.step == TrainStep::Practise) {
+        // The quote itself changed nothing about have/target/ceiling, so this
+        // is defensive rather than a path call 1 leaves live -- but the quote
+        // is what finally proved the ceiling, so stand down rather than pay.
+        return true;
+    }
+    // TrainStep::Buy: pay exactly what was quoted, below, unchanged.
 
     // --- pay exactly what was quoted ---------------------------------------
     //
-    // Ask for the pack's contents FIRST. Sphere splits a gold stack to make
-    // change, which retires the old serial, and a give addressed to a retired
-    // serial is a silent no-op: no gold moves, the NPC says nothing, and
-    // nothing anywhere reports an error. That is exactly what happened on the
-    // second purchase of the first successful live run -- the first 108gp
-    // give did nothing and only the retry landed.
+    // Ask for the pack's contents FIRST: a give addressed to a serial Sphere
+    // retired when it split the gold stack is a SILENT no-op
+    // (uo/activities/train_confirm.h).
     if (!trainPackRefreshed_) {
         client.ActionOpenBackpack();
         trainPackRefreshed_ = true;
@@ -5515,7 +6335,68 @@ bool Runner::DoTrainAtNpc(Client& client, const Observation& obs) {
 //
 // The listener half is symmetrical: hear a WTS, decide with ConsiderOffer,
 // answer with WTB, and wait to be traded with.
+//
+// S5: AND BOTH HALVES GO TO THE SAME PLACE.
+//
+// The bank this walked to was the NEAREST one (TravelToService(Banker,
+// nullptr)), which is correct for every other errand and fatal for this one.
+// Home is set once from homeCities.front(), so miner_smith always lives in
+// Minoc and lumberjack_swordsman always in Britain -- 1,500 tiles and two
+// different banks apart -- and the producer and the consumer of the one live
+// trade edge in the catalogue could never be inside kTradeEarshot of each
+// other. A market has to be ONE place. It is market::kMarketBankPlaceId,
+// which cites the atlas line and the forum evidence for why that one.
 // ---------------------------------------------------------------------------
+
+bool Runner::MarketPlaceUsable(Client& client) {
+    if (marketPlaceOk_ >= 0) return marketPlaceOk_ == 1;
+    // Not resolved yet -- but the atlas is only there once the world knowledge
+    // has loaded, so do not cache a "no" that is really a "not yet".
+    if (!client.WorldKnowledgeReady()) return false;
+
+    const wm::Place* p = client.KnownPlace(market::kMarketBankPlaceId);
+    const char* bad = nullptr;
+    if (!p)                                  bad = "the atlas has no such place";
+    else if (!p->Offers(wm::Service::Banker)) bad = "it offers no banker";
+    else if (!client.PlaceGuarded(*p))        bad = "it is not in a guarded region";
+
+    if (bad) {
+        // DEGRADE, NEVER SUBSTITUTE. atlasgen slugs place ids, so a
+        // regenerated atlas could renumber britain_bank_2 -- and the answer to
+        // that is the nearest bank the world actually knows about, not a pair
+        // of literal coordinates baked into the bot.
+        LogLine("market: no usable market place '%s' (%s) -- falling back to "
+                "the nearest bank", market::kMarketBankPlaceId, bad);
+        marketPlaceOk_ = 0;
+        return false;
+    }
+    LogLine("market: the market is %s (%s) at %d,%d, radius %d, guarded",
+            market::kMarketBankPlaceId, p->name.c_str(), p->position.x,
+            p->position.y, p->radius);
+    marketPlaceOk_ = 1;
+    return true;
+}
+
+bool Runner::AtMarketBank(const Client& client) const {
+    const wm::Place* p = client.KnownPlace(market::kMarketBankPlaceId);
+    if (!p) return false;
+    // The place's own radius plus two. Arriving is a pathfinder result, not a
+    // tile equality: the walker stops on whatever legal tile it can reach, and
+    // twenty bots converging on one bank cannot all stand on the same one.
+    return TileDist(client.PlayerX(), client.PlayerY(), p->position.x,
+                    p->position.y) <= p->radius + 2;
+}
+
+void Runner::ForgetBankedStock(const char* item) {
+    if (!item || !item[0]) return;
+    for (usize i = 0; i < state_.bank.size(); ++i) {
+        if (state_.bank[i].item != item) continue;
+        state_.bank.erase(state_.bank.begin() +
+                          static_cast<std::ptrdiff_t>(i));
+        return;
+    }
+}
+
 bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
@@ -5589,6 +6470,18 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     //
     // Done BEFORE announcing, so a character that can answer somebody else's
     // offer does that rather than adding its own to the noise.
+    //
+    // AN OFFER GOES STALE. `tradeHeardMs_` only ever advances inside this
+    // handler, so a life that trades, spends ten minutes mining, and comes
+    // back would answer a WTS that expired nine minutes ago -- walk to a
+    // seller who has left, and burn one of its three trips doing it. Clamp the
+    // window to two announce intervals before now. THE JOURNAL CLOCK, not the
+    // tick clock: JournalHeardSince and Heard::timeMs are both on it, and the
+    // two are different clocks (the same mistake made a ten-second training
+    // verification expire in 8.7s).
+    const i64 journalNow = client.JournalNowMs();
+    if (tradeHeardMs_ < journalNow - 2 * kAnnounceIntervalMs)
+        tradeHeardMs_ = journalNow - 2 * kAnnounceIntervalMs;
     std::vector<Client::Heard> heard;
     client.JournalHeardSince(tradeHeardMs_, heard);
     if (!heard.empty()) tradeHeardMs_ = heard.back().timeMs;
@@ -5608,8 +6501,19 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         // Somebody is selling something we need.
         market::TradeIntent offer;
         if (!market::ParseSellOffer(h.text, &offer)) continue;
-        const market::BuyDecision d =
-            market::ConsiderOffer(*me, obs.pack, obs.gold, tradePolicy_, offer);
+        // S4: what is in the hands, so a life already armed does not buy a
+        // second sword. Layers 1 and 2 are the weapon and shield hands
+        // (Client.cpp:51-52); nothing else is a trade decision today.
+        const std::vector<market::WornItem> wornNow = {
+            {1, client.EquippedGraphicAt(1)}, {2, client.EquippedGraphicAt(2)}};
+        // PACK COIN, NOT THE STATUS-BAR FIGURE. obs.gold counts the bank box
+        // (PayFromPackOnly=0 is a buy-from-vendor rule, not a player-trade
+        // one); DriveOpenTrade below only ever offers
+        // FindBackpackItemByGraphic(kGoldCoin), so accepting against obs.gold
+        // let a life commit to a deal its pack could not actually pay for,
+        // then stand there offering nothing once the window opened.
+        const market::BuyDecision d = market::ConsiderOffer(
+            *me, obs.pack, obs.goldOnHand, tradePolicy_, offer, wornNow);
         LogLine("trade: heard '%s' from %s -> %s (%s)", h.text.c_str(),
                 h.name.c_str(), d.accept ? "want it" : "no", d.reason);
         if (!d.accept) continue;
@@ -5622,6 +6526,15 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         tradeSellingQty_ = 0;            // we are the BUYER
         tradeWantQty_ = d.qty;
         tradeOfferPrice_ = offer.pricePerUnit;
+        // STAMP THE CLOCK A BUYER ACTUALLY OWNS. The "seller never opened a
+        // window" timeout below reads tradeAnnouncedMs_, but only the
+        // ANNOUNCE path ever wrote it -- a pure buyer left it at 0, and
+        // obs.nowMs is steady_clock-since-boot, so `obs.nowMs - 0` was
+        // already past 20000 on the very first tick within 2 tiles: the
+        // buyer dropped a seller who had just opened for it. This is the
+        // moment a buyer commits to the deal, so this is the clock the
+        // 20s wait has to start from.
+        tradeAnnouncedMs_ = obs.nowMs;
         return false;
     }
 
@@ -5678,70 +6591,121 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         return false;
     }
 
-    // --- collect the stock before selling it --------------------------------
+    // --- what this life came here for: sell, buy, or neither ----------------
     //
-    // Everything this character ever gathered is in the bank, because banking
-    // is what it does when a pack fills. Announcing goods that are in a box on
-    // the other side of town is an offer it cannot honour, so the withdrawal
-    // is part of the errand.
-    if (obs.atBank) {
-        market::TradeIntent want;
-        std::vector<market::Stock> holdings = obs.pack;
-        for (const market::Stock& b : obs.bank) {
-            bool merged = false;
-            for (market::Stock& h : holdings) {
-                if (h.item == b.item) { h.qty += b.qty; merged = true; break; }
-            }
-            if (!merged) holdings.push_back(b);
+    // A MARKET HAS TWO SIDES and this handler only ever modelled one. The
+    // first thing it did was ask ChooseSellOffer, and a life with nothing
+    // spare fell straight out of the bottom -- so a smith twenty logs short
+    // of the spear it wants to forge could not so much as walk to a bank.
+    // The buyer half is the same errand read the other way round, and it is
+    // decided here, once, before anything moves.
+    //
+    // BOTH read the bank as well as the pack. Everything this character ever
+    // gathered is in a box, because banking is what it does when the pack
+    // fills; a surplus it cannot see is a trip it never makes, and a
+    // shortfall it has already banked against is a trip it should not make.
+    std::vector<market::Stock> holdings = obs.pack;
+    for (const market::Stock& b : obs.bank) {
+        bool merged = false;
+        for (market::Stock& h : holdings) {
+            if (h.item == b.item) { h.qty += b.qty; merged = true; break; }
         }
-        if (market::ChooseSellOffer(*me, holdings, state_.prices, tradePolicy_,
-                                    &want)) {
-            const i32 inPack = market::QtyOf(obs.pack, want.item);
-            const i32 inBank = market::QtyOf(obs.bank, want.item);
-            if (inPack < want.qty && inBank > 0) {
-                const std::vector<u16> gfx = econ::GraphicsForItem(want.item.c_str());
-                const u32 serial = client.FindContainerItemByGraphic(
-                    client.BankContainer(), gfx.data(), gfx.size());
-                if (serial) {
-                    const i32 take = std::min(inBank, want.qty - inPack);
-                    LogLine("trade: withdrawing %d %s from the bank to sell",
-                            take, want.item.c_str());
-                    client.TakeFromContainer(serial, static_cast<u16>(take));
-                    nextActionMs_ = obs.nowMs + 2000;
-                    return false;
-                }
-            }
-        }
+        if (!merged) holdings.push_back(b);
     }
 
-    // --- nothing heard: stand where players are and announce ----------------
     market::TradeIntent offer;
-    if (!market::ChooseSellOffer(*me, obs.pack, state_.prices, tradePolicy_,
-                                 &offer)) {
+    const bool wantsToSell = market::ChooseSellOffer(*me, holdings, state_.prices,
+                                                     tradePolicy_, &offer);
+    const char* noBuyWhy = nullptr;
+    const std::vector<market::Want> buyable =
+        market::PlayerMarketWants(*me, holdings, obs.goldOnHand, tradePolicy_,
+                                  &noBuyWhy);
+    const bool wantsToBuy = !buyable.empty();
+
+    if (!wantsToSell && !wantsToBuy) {
         // Nothing worth announcing -- most often because this character has
-        // never seen a price for what it carries and refuses to invent one.
+        // never seen a price for what it carries and refuses to invent one --
+        // AND nothing it is short of that a player could supply and it could
+        // pay for.
         // SAME DEAD END, SAME COOLDOWN. Returning plain success here let the
         // need score identically on the very next tick and the goal was
         // re-picked sixteen times a second -- a lumberjack logged
         // goal=TRADE_WITH_PLAYER eight times in half a second and did nothing
         // else all session. An errand that cannot even be started is the
         // market being unavailable, not a goal that succeeded.
-        LogLine("trade: nothing to announce (no observed price for what is spare)");
+        LogLine("trade: nothing to announce (no observed price for what is "
+                "spare) and nothing to buy (%s)",
+                noBuyWhy ? noBuyWhy : "nothing short");
         marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+        // AND COOL THE GOAL, not only the need -- same reasoning as every
+        // other stand-down below (fleet7.console.txt: a 244ms re-pick without
+        // it). marketQuietUntilMs_ only blanks NeedTrade on the next Observe;
+        // this dead end returned `true` (success) straight past the planner
+        // without ever telling it to rest, so it was the one stand-down in
+        // this handler still exposed to the instant re-pick.
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
         return true;
     }
-    tradeOffer_ = offer;
+    if (wantsToSell) tradeOffer_ = offer;
 
-    // A market needs a marketplace. The bank is where players actually stand,
-    // and going there is also what makes the fleet visibly congregate instead
-    // of shouting into an empty forest.
-    if (!obs.atBank && client.BankContainer() == 0) {
+    // A BACK, NOT A BANK, CARRIES THE OFFER. i_log is WEIGHT=2.0
+    // (runtime/scripts/items/i_provisions_logs.scp:64): 113 banked logs are 226
+    // stones against a 40-STR cap of 180, so the withdrawal below would ask for
+    // all of them, the server refuses, and the block re-issues it every 2 s for
+    // the whole goal. Two stones per unit is the floor; four fifths of the
+    // headroom is margin.
+    if (wantsToSell) {
+        const i32 fits = ((std::max(0, obs.maxWeight - obs.weight) * 4) / 5) / 2 +
+                         market::QtyOf(obs.pack, offer.item);
+        if (offer.qty > fits) offer.qty = std::max(0, fits);
+    }
+
+    // --- go to the market ---------------------------------------------------
+    //
+    // ONE PLACE FOR THE WHOLE FLEET. The nearest bank is the right answer for
+    // every other errand and the wrong one for this: a rendezvous where each
+    // party picks its own nearest bank is not a rendezvous. See
+    // market::kMarketBankPlaceId for which bank and why.
+    //
+    // ARRIVAL IS GEOMETRY, NOT AN OPEN BOX. `obs.atBank` means the bank
+    // container is open (Observe), which a buyer has no reason to do -- and
+    // gating the journey on it would have a buyer standing at the market
+    // re-issuing the walk forever.
+    const bool haveMarket = MarketPlaceUsable(client);
+    const bool arrived = haveMarket ? AtMarketBank(client)
+                                    : (obs.atBank || client.BankContainer() != 0);
+    if (!arrived) {
+        // NOT AT THE MARKET: whatever box was open is behind us. The serial
+        // and its cached contents both survive the walk (Client keeps them),
+        // so this flag is the only thing that remembers the box was opened
+        // somewhere else and must be asked for again on arrival.
+        marketBoxOpened_ = false;
         if (client.TravelBusy()) return false;
         if (!travelInFlight_) {
+            // DO NOT START A TRIP THE CLOCK CANNOT FINISH. A market attempt is
+            // 250s out + 60s listening + 250s back (all three legs measured,
+            // docs/S5_MARKET_TRIP_PLAN.md section 3), and wind-down needs its
+            // own budget on top. Without this a life spends its last eight
+            // minutes walking and wind-down finds it in open country -- which
+            // is exactly the Corwyn death loop recorded above in the WindDown
+            // phase: logged out in the wild, killed where it stood, full loot.
+            const i64 leftMs = cfg_.sessionLimitMs - (obs.nowMs - sessionStartMs_);
+            if (cfg_.sessionLimitMs > 0 && leftMs < kMarketTripBudgetMs) {
+                LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"not enough "
+                        "session left for the trip\" left=%llds need=%llds",
+                        static_cast<long long>(leftMs / 1000),
+                        static_cast<long long>(kMarketTripBudgetMs / 1000));
+                planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                  obs.nowMs + kMarketQuietMs);
+                planner_.Finish(false, "not enough session left for the trip",
+                                obs.nowMs);
+                marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+                return false;
+            }
             // BOUND THE TRIPS. This walk was unbounded, and the flag below
             // clears on the very next tick, so a character that never arrives
-            // re-issues the journey every two seconds until the goal's 300s
-            // limit kills it -- and is then handed the same errand again.
+            // re-issues the journey every two seconds until the goal's limit
+            // kills it -- and is then handed the same errand again.
             // Brannoc logged "taking 30 i_ingot_iron to the Vesper market" 145
             // times in one session and reached no market, while training,
             // eating and crafting all waited their turn behind it. Every other
@@ -5756,12 +6720,21 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
                 nextActionMs_ = obs.nowMs + 5000;
                 return false;
             }
-            LogLine("trade: taking %d %s to the %s market (trip %d)",
-                    offer.qty, offer.item.c_str(),
-                    state_.homeCity.empty() ? "nearest" : state_.homeCity.c_str(),
-                    tradeTrips_);
+            if (wantsToSell)
+                LogLine("market: taking %d %s to %s (trip %d)", offer.qty,
+                        offer.item.c_str(),
+                        haveMarket ? market::kMarketBankPlaceId
+                                   : "the nearest bank",
+                        tradeTrips_);
+            else
+                LogLine("market: going to %s to buy %d %s (trip %d)",
+                        haveMarket ? market::kMarketBankPlaceId
+                                   : "the nearest bank",
+                        buyable.front().qty, buyable.front().item.c_str(),
+                        tradeTrips_);
             travelInFlight_ =
-                client.TravelToService(wm::Service::Banker, nullptr);
+                haveMarket ? client.TravelToPlace(market::kMarketBankPlaceId)
+                           : client.TravelToService(wm::Service::Banker, nullptr);
             if (!travelInFlight_) {
                 LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"%s\"",
                         client.TravelFailureText());
@@ -5773,6 +6746,270 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         travelInFlight_ = false;
         return false;
     }
+    tradeTrips_ = 0;  // arrived: reset the trip allowance for the errand ahead.
+
+    // --- collect the stock before selling it --------------------------------
+    //
+    // Announcing goods that are in a box on the other side of town is an offer
+    // it cannot honour, so the withdrawal is part of the errand -- and it is
+    // the ONLY reason this goal ever opens a bank box. A seller with the goods
+    // already in its pack, and every buyer, stands at the market with the box
+    // shut. Opening it "just in case" is what bank_errand.h:16-19 warns about:
+    // an empty box sends no 0x3C, nothing ever flips, and the character
+    // re-opens the bank every 2.5 seconds forever.
+    if (wantsToSell) {
+        const i32 inPack = market::QtyOf(obs.pack, offer.item);
+        const i32 inBank = market::QtyOf(obs.bank, offer.item);
+        if (inPack < offer.qty && inBank > 0) {
+            // A LIFT IS AN ACTION AND YOU STAND STILL TO MAKE ONE.
+            //
+            // Neither guard was here, and both are the reason the withdrawal
+            // below became a metronome: run_r4/pair_Durnholde.console.txt:4382
+            // onwards logs "market: withdrawing 20 i_ingot_iron from the bank
+            // to sell" seventy-six times between 20:37:43 and 20:40:27, once
+            // every two seconds, each one answered immediately by
+            // `drag_cancel: reason=0 cannot lift that`. The first of them was
+            // issued at 20:37:43.245 -- 645 ms BEFORE `travel_done` at
+            // 20:37:43.890 -- i.e. while still walking, which is the same
+            // "the open container does not survive being walked away from"
+            // lesson DoBank already carries for coin (see kCoin above).
+            if (client.TravelBusy()) return false;
+            if (client.ActionBusy()) return false;
+            // (a) THE BOX MUST BE OPENED *HERE*, AT THE MARKET.
+            //
+            // `obs.atBank` is a CACHE test, not a proximity one --
+            // `BankContainer() != 0 && ContainerKnown(...)` (Runner::Observe)
+            // -- and neither half expires when the character walks away. So a
+            // box opened in one town is still "open" a thousand tiles later:
+            // Durnholde opened 0x40014400 at 20:34:17.896, walked to the
+            // blacksmith guild and back, and arrived at the market with
+            // obs.atBank still true and a cached stock list the server had
+            // long stopped honouring. BankErrand::Tick returns Success
+            // immediately whenever BankContainer() is set (bank_errand.h: the
+            // box serial IS the success condition), so the inherited box has
+            // to be dropped before asking, or the errand rubber-stamps it.
+            if (!marketBoxOpened_) {
+                if (!bankErrand_.Running()) {
+                    if (client.BankContainer()) {
+                        LogLine("market: the bank box was opened somewhere "
+                                "else -- asking a banker here before trusting "
+                                "what it says it holds");
+                        client.ForgetBankContainer();
+                    }
+                    bankErrand_.Begin();
+                }
+                const life::BankErrandResult br = bankErrand_.Tick(client, obs);
+                if (!br.why.empty())
+                    LogLine("market: the stock is in the bank (%d %s) -- %s",
+                            inBank, offer.item.c_str(), br.why.c_str());
+                if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
+                    nextActionMs_ = obs.nowMs + br.delayMs;
+                if (br.status == life::ActivityStatus::Success) {
+                    // Opened HERE. Cleared again the moment the character
+                    // leaves for the market (the !arrived branch above) or the
+                    // errand ends (ResetTradeState).
+                    marketBoxOpened_ = true;
+                    marketBoxReopens_ = 0;
+                    return false;   // the box is open; the fetch runs next tick
+                }
+                if (life::IsTerminal(br.status)) {
+                    LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"no banker "
+                            "opened a box at the market (%s)\"", br.why.c_str());
+                    bankErrand_.Cancel();
+                    planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                      obs.nowMs + kMarketQuietMs);
+                    planner_.Finish(false, "no banker at the market", obs.nowMs);
+                    marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+                    return false;
+                }
+                planner_.NoteAttempt(obs.nowMs);
+                return false;
+            }
+            // BY NAME, NOT BY GRAPHIC (S1) -- same reasoning as the bank
+            // fetch in DoEarnGold: `inBank` is hue-resolved from obs.bank,
+            // so the serial has to be found the same way or a shared metal
+            // graphic hands over the wrong stack.
+            i32 inBox = 0;
+            const u32 serial = FindContainerItemByName(
+                client, client.BankContainer(), offer.item.c_str(), &inBox);
+            // (b) THE BOX IS THE TRUTH; THE LEDGER IS ONLY A MEMORY OF IT.
+            //
+            // `inBank` comes from obs.bank, which away from a box is
+            // state_.bank -- what this character last SAW in its own box
+            // (Runner::LearnFromObservation). A box that has been opened here
+            // and shows none of it says the memory is wrong, and the memory is
+            // what has to give. Silently falling through, as this did, left
+            // the goal to reach the announce below and shout an offer it could
+            // not honour -- or, with the offer still unsatisfied, to be handed
+            // straight back and try the same lookup again.
+            if (!serial) {
+                LogLine("market: the bank ledger says %d %s but the box shows "
+                        "none -- trusting the box", inBank,
+                        offer.item.c_str());
+                ForgetBankedStock(offer.item.c_str());
+                planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                  obs.nowMs + kNoAudienceMs);
+                planner_.Finish(false, "the bank does not hold the stock",
+                                obs.nowMs);
+                nextActionMs_ = obs.nowMs + kMarketWithdrawRetryMs;
+                return false;
+            }
+            {
+                i32 take = std::min(std::min(inBank, offer.qty - inPack), inBox);
+                // CARRY WEIGHT IS A HARD LIMIT, NOT A SUGGESTION. `take` used
+                // to be bounded only by what the box held and what the offer
+                // asked for -- Tarath's own bank held 113 spare logs, and a
+                // withdrawal of all of them on top of his working stock left
+                // him unable to move. This handler has no per-item weight
+                // table wired to it (tiledata::StaticTile::weight lives
+                // behind Client, unreached here), so it bounds the COUNT by
+                // the raw stones of headroom the status packet already
+                // reports -- obs.maxWeight - obs.weight -- the same fields
+                // DoMine's 0.95-full gate reads. Every tradeable good on this
+                // shard costs at least one stone, so this can only ever
+                // UNDER-admit units, never overload the pack; it is a floor,
+                // not a measured per-item weight, and should be replaced with
+                // real tiledata weight if that ever becomes reachable here.
+                const i32 roomStones = std::max(0, obs.maxWeight - obs.weight);
+                if (take > roomStones) {
+                    LogLine("market: clamping withdrawal of %s from %d to %d "
+                            "-- only %d stone(s) of carry room left (%d/%d)",
+                            offer.item.c_str(), take, roomStones, roomStones,
+                            obs.weight, obs.maxWeight);
+                    take = roomStones;
+                }
+                if (take <= 0) {
+                    LogLine("market: no carry room left for %s (%d/%d) -- "
+                            "leaving it in the bank for now", offer.item.c_str(),
+                            obs.weight, obs.maxWeight);
+                    planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                      obs.nowMs + kNoAudienceMs);
+                    planner_.Finish(false, "no carry room for the stock", obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 5000;
+                    return false;
+                }
+                // A LIFT THE SERVER REFUSES IS AN ANSWER, NOT A HICCUP.
+                //
+                // The box serial outlives the visit and the cached contents
+                // outlive the box, so a stale pair looks exactly like a full
+                // one until the drag comes back "cannot lift that". Count the
+                // refusals and re-ask a banker, which is precisely what
+                // DoBank already does for coin ("the box will not give up its
+                // coin -- reopening", coinLiftFails_ above). Progress -- any
+                // change in what the pack holds -- resets the count.
+                if (marketLiftItem_ != offer.item || marketLiftPack_ != inPack) {
+                    marketLiftItem_ = offer.item;
+                    marketLiftPack_ = inPack;
+                    marketLiftFails_ = 0;
+                }
+                if (marketLiftFails_ >= kMaxMarketLiftFails) {
+                    marketLiftFails_ = 0;
+                    if (++marketBoxReopens_ > kMaxMarketBoxReopens) {
+                        // Asked twice, opened twice, refused every time. The
+                        // remembered stock is not really there.
+                        LogLine("market: the bank ledger says %d %s but the "
+                                "box will not give it up after %d reopenings "
+                                "-- trusting the box", inBank,
+                                offer.item.c_str(), marketBoxReopens_ - 1);
+                        ForgetBankedStock(offer.item.c_str());
+                        marketBoxReopens_ = 0;
+                        planner_.Cooldown(GoalKind::TradeWithPlayer,
+                                          obs.nowMs + kNoAudienceMs);
+                        planner_.Finish(false,
+                                        "the bank does not hold the stock",
+                                        obs.nowMs);
+                        nextActionMs_ = obs.nowMs + kMarketWithdrawRetryMs;
+                        return false;
+                    }
+                    LogLine("market: the box will not give up its %s -- "
+                            "asking a banker to open it again",
+                            offer.item.c_str());
+                    client.ForgetBankContainer();
+                    marketBoxOpened_ = false;
+                    nextActionMs_ = obs.nowMs + kMarketWithdrawRetryMs;
+                    return false;
+                }
+                LogLine("market: withdrawing %d %s from the bank to sell",
+                        take, offer.item.c_str());
+                ++marketLiftFails_;   // cleared above the moment the pack moves
+                // THROUGH THE ACTION SYSTEM, not around it. TakeFromContainer
+                // sends 0x07/0x08 raw: no deadline, no ActionBusy, no verdict,
+                // so a refused lift left nothing behind for the next tick to
+                // read and the handler re-issued it every 2 s, seventy-six
+                // times (run_r4/pair_Durnholde.console.txt:4382-4672).
+                // ActionMoveItem is the same two packets with a 4 s deadline
+                // (Client.cpp kMoveTimeoutMs) and a Rejected verdict on 0x27.
+                client.ActionMoveItem(serial, static_cast<u16>(take),
+                                      client.BackpackSerial());
+                // (c) RETRY LONGER THAN THE DEADLINE. 2 s was shorter than the
+                // 4 s move deadline, so every retry only ever superseded its
+                // own predecessor and no attempt was ever allowed to resolve.
+                nextActionMs_ = obs.nowMs + kMarketWithdrawRetryMs;
+                return false;
+            }
+        }
+        // The stock is in the pack: nothing is being lifted any more.
+        marketLiftFails_ = 0;
+        marketLiftItem_.clear();
+        marketBoxReopens_ = 0;
+    }
+
+    // --- a buyer has nothing to say -----------------------------------------
+    //
+    // It answers what it hears, so its whole errand at the market is to BE
+    // PRESENT while somebody else announces. The listen loop at the top of
+    // this function already ran this tick; all that is needed here is a
+    // bounded reason to keep standing here rather than walking away.
+    if (!wantsToSell) {
+        if (marketListenFromMs_ == 0) {
+            marketListenFromMs_ = obs.nowMs;
+            LogLine("market: at the market to buy %d %s -- listening %llds for "
+                    "somebody selling it", buyable.front().qty,
+                    buyable.front().item.c_str(),
+                    static_cast<long long>(kListenMs / 1000));
+        }
+        if (obs.nowMs - marketListenFromMs_ >= kListenMs) {
+            LogLine("market: nobody offered %s in %llds -- back to work",
+                    buyable.front().item.c_str(),
+                    static_cast<long long>(kListenMs / 1000));
+            marketListenFromMs_ = 0;
+            state_.memory.NoteEvent("no_player_seller",
+                                    buyable.front().item.c_str(), "", obs.x,
+                                    obs.y, obs.nowMs);
+            marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+            planner_.Cooldown(GoalKind::TradeWithPlayer,
+                              obs.nowMs + kMarketQuietMs);
+            planner_.Finish(false, "nobody was selling", obs.nowMs);
+            return false;
+        }
+        nextActionMs_ = obs.nowMs + 1000;
+        return false;
+    }
+    // NOTE: `marketListenFromMs_` used to be cleared here, on the grounds that
+    // only a buyer waits. A SELLER WAITS TOO -- see the empty-room branch
+    // below -- and the two share this one window, so clearing it here would
+    // restart a seller's wait on every tick.
+
+    // ANNOUNCE ONLY WHAT IS IN THE HAND.
+    //
+    // `offer` was chosen from the pack AND the bank, because a surplus in a
+    // box is a perfectly good reason to make the trip. An OFFER is a promise,
+    // and a promise has to be honourable without a second errand: "WTS 113
+    // i_log" from a character carrying none is a deal that cancels itself in
+    // the trade window. If the withdrawal above did not move the goods, say so
+    // and stand down rather than shouting a number that is not true.
+    market::TradeIntent announce;
+    if (!market::ChooseSellOffer(*me, obs.pack, state_.prices, tradePolicy_,
+                                 &announce)) {
+        LogLine("goal_blocked=TRADE_WITH_PLAYER reason=\"the stock is still in "
+                "the bank (%d %s) and the box did not give it up\"",
+                market::QtyOf(obs.bank, offer.item), offer.item.c_str());
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
+        planner_.Finish(false, "the goods never left the bank", obs.nowMs);
+        marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+        return false;
+    }
+    tradeOffer_ = announce;
 
     // NOBODY TO SELL TO IS NOT A REASON TO SHOUT. "dont try to sell with WTS
     // if no one around" (project owner, 2026-08-29).
@@ -5785,9 +7022,44 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     // Other BOTS count: they are the market. NPCs do not, which is why this
     // asks for players rather than for mobiles.
     if (client.PlayersNearby(kTradeEarshot) == 0) {
-        LogLine("trade: nobody within %d tiles to hear an offer -- not "
-                "shouting into an empty room", kTradeEarshot);
-        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
+        // A SELLER WHO WALKED 250 SECONDS DOES NOT LEAVE AGAIN IN ONE TICK.
+        //
+        // Not shouting into an empty room is right; treating an empty room as
+        // the END of the errand is not. Durnholde stood down at 20:34:09.148
+        // (run_r4/pair_Durnholde.console.txt:3787) one second before his own
+        // `travel_done` at 20:34:10.194 -- the room was empty because he had
+        // only just got there. Tarath was on his way to the same bank and
+        // arrived at 20:39:43. Two lives each walking an independent 250 s leg
+        // to one rendezvous will essentially never land on the same tick, so
+        // the seller has to HOLD, exactly as the buyer above already does, and
+        // announce the moment somebody is in earshot. Same window, same
+        // constant: kListenMs.
+        if (marketListenFromMs_ == 0) {
+            marketListenFromMs_ = obs.nowMs;
+            LogLine("trade: at the market with %d %s to sell and nobody within "
+                    "%d tiles -- waiting %llds for somebody to arrive",
+                    announce.qty, announce.item.c_str(), kTradeEarshot,
+                    static_cast<long long>(kListenMs / 1000));
+        }
+        if (obs.nowMs - marketListenFromMs_ < kListenMs) {
+            // Re-checked every second; PlayersNearby is re-read at the top of
+            // this branch on each tick, so the announce fires on the very tick
+            // somebody walks in.
+            nextActionMs_ = obs.nowMs + 1000;
+            return false;
+        }
+        marketListenFromMs_ = 0;
+        LogLine("trade: nobody came within %d tiles in %llds -- not shouting "
+                "into an empty room", kTradeEarshot,
+                static_cast<long long>(kListenMs / 1000));
+        // SHORTER REST THAN A DECLINED OFFER. Nobody was even here to say no
+        // -- unlike "audience already declined" below, which cools the full
+        // kMarketQuietMs because an offer WAS heard and refused. A seller and
+        // a buyer approach this same market on two independent 250s one-way
+        // legs (docs/S5_MARKET_TRIP_PLAN.md section 3); cooling the full ten
+        // minutes on an empty room routinely put the seller back to sleep
+        // before the buyer's own listen window ever arrived. kNoAudienceMs.
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kNoAudienceMs);
         planner_.Finish(false, "no audience", obs.nowMs);
         return false;
     }
@@ -5805,13 +7077,14 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     if (audience == tradeAudienceIgnored_) {
         LogLine("trade: the same people who ignored the last offer are still "
                 "here -- not repeating it");
+        marketListenFromMs_ = 0;   // the wait is over; do not inherit it
         planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
         planner_.Finish(false, "audience already declined", obs.nowMs);
         return false;
     }
 
     if (obs.nowMs - tradeAnnouncedMs_ >= kAnnounceIntervalMs) {
-        const std::string line = market::FormatSellOffer(offer);
+        const std::string line = market::FormatSellOffer(announce);
         LogLine("trade: announcing '%s'", line.c_str());
         client.ActionSay(line.c_str());
         tradeAnnouncedMs_ = obs.nowMs;
@@ -5819,17 +7092,29 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     }
     if (tradeAnnounceCount_ >= kMaxAnnounces) {
         LogLine("trade: nobody answered %d offers of %s -- back to work",
-                tradeAnnounceCount_, offer.item.c_str());
+                tradeAnnounceCount_, announce.item.c_str());
         tradeAudienceIgnored_ = client.AudienceFingerprint(kTradeEarshot);
-        state_.memory.NoteEvent("no_player_buyer", offer.item.c_str(), "",
+        state_.memory.NoteEvent("no_player_buyer", announce.item.c_str(), "",
                                 obs.x, obs.y, obs.nowMs);
         tradeAnnounceCount_ = 0;
+        marketListenFromMs_ = 0;   // the wait is over; do not inherit it
         // AND STOP SCHEDULING IT for a while. Finishing the goal was not
         // enough: the need scored the same on the very next tick, the errand
         // was re-picked, and a lumberjack spent whole sessions announcing logs
         // to an empty Yew while its own training and hunting needs -- which it
         // could actually have finished -- sat underneath it.
         marketQuietUntilMs_ = obs.nowMs + kMarketQuietMs;
+        // AND COOL THE GOAL, not only the need. This line was missing while
+        // both sibling stand-downs above it ("no audience", "audience already
+        // declined") had it, and the gap is measured: fleet7.console.txt:3245
+        // stood down at 16:24:10.031 and the planner re-selected
+        // TRADE_WITH_PLAYER at 16:24:10.275 -- 244 ms later, reason "previous
+        // goal abandoned: nobody wanted it", NeedTrade 0.55 x 145 = 79.8. The
+        // whole cycle repeated end-to-end every 50.9s. marketQuietUntilMs_
+        // only blanks the NEED on the next Observe; the planner needed telling
+        // too. A wasted market trip now costs 8m20s of walking, so the rest
+        // after one has to exceed it: kMarketQuietMs is 10 minutes.
+        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
         planner_.Finish(false, "nobody wanted it", obs.nowMs);
         return false;
     }
@@ -5906,6 +7191,20 @@ void Runner::ResetTradeState() {
     tradeGoldBefore_ = 0;
     tradeAnnounceCount_ = 0;
     travelInFlight_ = false;
+    // THE TRIP ALLOWANCE IS PER ERRAND, NOT PER LIFE. It was reset only in the
+    // failure branch, so a session that made one successful trip and later
+    // wanted a second started from 1 of 3 and burned the whole allowance
+    // across the day rather than across the errand.
+    tradeTrips_ = 0;
+    marketListenFromMs_ = 0;
+    marketBoxOpened_ = false;
+    marketLiftFails_ = 0;
+    marketLiftPack_ = -1;
+    marketLiftItem_.clear();
+    marketBoxReopens_ = 0;
+    // `bankErrand_` is deliberately NOT cancelled here: it is shared with the
+    // bank and earn-gold errands, and an open box is useful to whatever runs
+    // next. Only the market's own failure path cancels it.
 }
 
 // ---------------------------------------------------------------------------
@@ -6081,6 +7380,15 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" item=%s",
                 faucet::RefusalName(faucet::Refusal::NoKnownBuyer),
                 supplyItem_.c_str());
+        // STAND DOWN, like the two failure paths below already do. CRAFT hands
+        // off to BUY_SUPPLIES on kCraftStuckCooldownMs (Runner.cpp, "nothing
+        // carried or worn to open the menu with"), so with Craft on a two
+        // minute brake and this path finishing with none, Finish(false) alone
+        // lets the planner re-pick BUY_SUPPLIES on the very next tick and the
+        // pair alternates for the rest of the session. No trade sells this
+        // input; that verdict is a table lookup and will not change today.
+        // (audit 2026-08-30, finding 5.)
+        planner_.Cooldown(GoalKind::BuySupplies, obs.nowMs + kCraftStuckCooldownMs);
         planner_.Finish(false, "no trade known to sell it", obs.nowMs);
         return false;
     }
@@ -6098,6 +7406,10 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         state_.memory.NoteEvent("policy_refused", supplyItem_.c_str(),
                                 econ::VendorClassName(ruling.klass), obs.x,
                                 obs.y, obs.nowMs);
+        // Same brake, and this is the case the audit named: an input the
+        // vendor matrix refuses is refused for the whole session, so retrying
+        // it next tick is not a retry, it is a character standing still.
+        planner_.Cooldown(GoalKind::BuySupplies, obs.nowMs + kCraftStuckCooldownMs);
         planner_.Finish(false, "the vendor policy refuses this input", obs.nowMs);
         return false;
     }
@@ -6437,7 +7749,11 @@ bool Runner::FetchCoinForPurchase(Client& client, const Observation& obs,
 bool Runner::DoSmelt(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
-    const u32 ore = FindAny(client, kIronOre, 4);
+    // Prefer plain iron (hue 0) over a coloured vein when both are in the
+    // pack -- see FindIronOrePreferPlain's comment. oreHue is what actually
+    // got picked, logged below at the point the ore is targeted.
+    u16 oreHue = 0;
+    const u32 ore = FindIronOrePreferPlain(client, &oreHue);
     if (!ore) {
         LogLine("smelt: no ore in the pack to melt");
         smeltStartedMs_ = 0;
@@ -6445,18 +7761,39 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
         return true;
     }
 
+    // WHAT THIS ORE WILL BECOME (S1). FindIronOrePreferPlain reaches for a
+    // COLOURED vein once the plain iron is gone, and the ore's hue is the
+    // only thing that says which metal it is -- so the ingot it smelts into
+    // is decided here, from that hue, and not assumed to be iron. The ore ->
+    // ingot step is the ore ITEMDEF's own TDATA1; see econ::IngotNameForOre.
+    const char* pickedOre = econ::ItemNameForGraphicAndHue(kIronOre[0], oreHue);
+    const char* pickedIngot = pickedOre ? econ::IngotNameForOre(pickedOre) : nullptr;
+    if (!pickedIngot) pickedIngot = "i_ingot_iron";   // honest fallback
+
     // DID THE LAST DOUBLE-CLICK LAND? The pack is the only honest witness.
     // Both outcomes are clilocs -- 1044270 on success, craft_smelt_fail on a
     // failed roll -- and 0xC1 is an explicit no-op in this client, so there is
     // nothing to read in the journal. Counting metal is the truth. This is the
     // same reasoning DoCraft states for inscription.
-    const i32 metal = market::QtyOf(obs.pack, "i_ingot_iron");
+    //
+    // COUNT THE METAL THAT IS ACTUALLY BEING MADE. This used to read
+    // i_ingot_iron unconditionally: melt a bag of valorite ore and the count
+    // never moved, so the goal reported no progress while producing the most
+    // valuable thing on the shard -- and if it had moved it would have been
+    // crediting a number nobody made.
+    const i32 metal = market::QtyOf(obs.pack, pickedIngot);
+    if (smeltIngotName_ != pickedIngot) {
+        // The metal changed under us -- the old baseline counted a different
+        // ingot entirely, so retake it rather than compare across metals.
+        smeltIngotName_ = pickedIngot;
+        smeltIngotsBefore_ = metal;
+    }
     if (smeltStartedMs_ != 0 && metal > smeltIngotsBefore_) {
-        LogLine("smelt: +%d ingots (%d in the pack)", metal - smeltIngotsBefore_,
-                metal);
+        LogLine("smelt: +%d %s (%d in the pack)", metal - smeltIngotsBefore_,
+                pickedIngot, metal);
         planner_.NoteProgress();
         if (!state_.memory.HasEvent("first_smelt")) {
-            state_.memory.NoteEvent("first_smelt", "i_ingot_iron", "", obs.x,
+            state_.memory.NoteEvent("first_smelt", pickedIngot, "", obs.x,
                                     obs.y, obs.nowMs);
         }
     }
@@ -6609,9 +7946,8 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
                         faucet::RefusalName(faucet::Refusal::VendorUnreachable),
                         client.TravelFailureText());
                 planner_.NoteAttempt(obs.nowMs);
-                planner_.Cooldown(GoalKind::Smelt, obs.nowMs + 60000);
-                planner_.Finish(false, "no forge reachable", obs.nowMs);
-                return false;
+                return HandOff(GoalKind::Smelt, GoalKind::IdleBriefly, 60000,
+                               "no forge reachable", obs.nowMs);
             }
             nextActionMs_ = obs.nowMs + 2000;
             return false;
@@ -6624,9 +7960,8 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
             LogLine("smelt: %d trips to a smithy and no forge within %d tiles "
                     "-- giving up for now", smeltTrips_, kForgeReach);
             smeltTrips_ = 0;
-            planner_.Cooldown(GoalKind::Smelt, obs.nowMs + 120000);
-            planner_.Finish(false, "arrived but no forge in reach", obs.nowMs);
-            return false;
+            return HandOff(GoalKind::Smelt, GoalKind::IdleBriefly, 120000,
+                           "arrived but no forge in reach", obs.nowMs);
         }
         LogLine("smelt: at the smithy but no forge within %d tiles (trip %d)",
                 kForgeReach, smeltTrips_);
@@ -6662,9 +7997,18 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
     // near a forge to smelt" from two tiles away, over and over.
     if (smeltCursorPending_) {
         if (client.TargetActive()) {
-            LogLine("smelt: giving the forge's cursor the ore (%d ore, %d "
-                    "ingots so far)", market::QtyOf(obs.pack, "i_ore_iron"),
-                    metal);
+            // What is actually being melted -- hue-resolved at the top of
+            // this function, so a coloured vein is named honestly instead of
+            // logged as "i_ore_iron" (S1,
+            // docs/CRAFTER_RUN_2026_08_30.md #20). The ore count is read
+            // against that same name too: obs.pack now keys a coloured vein
+            // by its own defname, so asking it for "i_ore_iron" while melting
+            // rusty ore printed "0 ore" with a full pack.
+            LogLine("smelt: giving the forge's cursor the ore (%s hue 0x%04X, "
+                    "%d ore, %d %s so far)", pickedOre ? pickedOre : "?",
+                    oreHue,
+                    market::QtyOf(obs.pack, pickedOre ? pickedOre : "i_ore_iron"),
+                    metal, pickedIngot);
             client.ActionTargetObject(ore);
             smeltCursorPending_ = false;
             smeltReachFails_ = 0;   // the forge answered; the spot is good
@@ -6744,21 +8088,29 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
 
 bool Runner::DoCraft(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
-    if (!me) return true;
+    if (!me) {
+        // A character with no trade cannot craft, and saying "done" would
+        // report progress=0 forever. Stand down instead.
+        planner_.Cooldown(GoalKind::Craft, obs.nowMs + kCraftStuckCooldownMs);
+        planner_.Finish(false, "this character has no trade", obs.nowMs);
+        return false;
+    }
 
     const CraftIntent intent = ChooseCraft(*me, obs, 1);
     if (!intent.item) {
-        LogLine("craft: nothing this life can make and sell (%s)", intent.why);
-        return true;
+        LogLine("goal_failed=CRAFT status=no_progress reason=\"nothing this "
+                "life can make and sell (%s)\"", intent.why);
+        // NOT A COMPLETED ERRAND. This returned true, so the planner logged
+        // `goal_completed=CRAFT progress=0` and handed the goal straight back
+        // -- the shape the anti-spin backstop exists to catch.
+        planner_.Cooldown(GoalKind::Craft, obs.nowMs + kCraftStuckCooldownMs);
+        planner_.Finish(false, "nothing to make", obs.nowMs);
+        return false;
     }
     if (!intent.missing.empty()) {
-        // A BURNING FIRE IS KINDLING ALREADY SPENT. The production graph
-        // charges the cooked steak one kindling because that is what a fire
-        // costs -- but the server consumes kindling at LIGHTING time
-        // (Use_Kindling turns the piece itself into the campfire), not per
-        // steak. So a character whose last kindling is currently burning
-        // three tiles away is not short of anything: refusing to cook beside
-        // its own lit fire would send it shopping while the fire went out.
+        // A BURNING FIRE IS KINDLING ALREADY SPENT: the server consumes it at
+        // LIGHTING time, not per steak, so a character cooking beside its own
+        // lit fire is not short of anything.
         const bool onlyKindling =
             intent.missing.size() == 1 &&
             std::strcmp(intent.missing.front().item, "i_kindling") == 0;
@@ -6771,45 +8123,24 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                     faucet::RefusalName(faucet::Refusal::RequiredForProduction),
                     intent.item, intent.missing.front().qty,
                     intent.missing.front().item);
-            planner_.Finish(false, "inputs are short", obs.nowMs);
-            return false;
+            return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
+                           kCraftStuckCooldownMs, "inputs are short", obs.nowMs);
         }
     }
 
-    // A FIRE IS A STATION YOU CARRY. "nessa needs to cut the whole fish with
-    // dagger to have raw fish then cook it with kindling and camping skill"
-    // (project owner, 2026-08-29).
-    //
-    // Cooking's source is t_cooking, and the way to have one on a shore is to
-    // light kindling: double-clicking it runs Skill_UseQuick(SKILL_CAMPING)
-    // and on success turns the kindling itself into ITEMID_CAMPFIRE 0x0DE3
-    // (Source-X CCharUse.cpp:294-300). Unlike a forge, this is a station the
-    // character makes on the spot -- which is exactly why a fisher can cook
-    // where it fished.
-    //
-    // Note the raw steak cannot simply be double-clicked onto the fire:
-    // Source-X answers a double-click on IT_FOOD_RAW by EATING it
-    // (CCharUse.cpp:1860), so the cooking itself goes through the menu with a
-    // fire in reach.
+    // A FIRE IS A STATION YOU CARRY -- lighting kindling turns the piece
+    // itself into ITEMID_CAMPFIRE, so a fisher can cook where it fished. The
+    // engine citations, and why the raw steak cannot be clicked onto the fire:
+    // docs/SHARD_MECHANICS_LEARNED.md section 12.
     if (const prod::Recipe* r = prod::FindRecipe(intent.item)) {
         if (r->station == prod::Station::Fire &&
             !client.FindWorldItemByGraphic(kCampfireGraphic, 3)) {
             if (client.ActionBusy()) return false;
-            // STAND STILL FIRST. The goal can begin while a previous goal's
-            // travel is still carrying the character -- the first live run
-            // dropped one kindling at (646,822), walked five tiles on the
-            // leftover leg to the Yew banker, found nothing "on the ground"
-            // within reach, and dropped the second piece too. Both lay in the
-            // street; the pack read empty; the craft blocked.
+            // STAND STILL FIRST, then light what is ALREADY on the ground
+            // before dropping another piece: Use_Kindling refuses kindling in
+            // a container, and a failed Camping roll leaves the piece lying
+            // there. docs/SHARD_MECHANICS_LEARNED.md section 12.
             if (client.TravelBusy()) return false;
-            // ON THE GROUND FIRST. Use_Kindling opens with
-            //   if ( !pKindling->IsTopLevel() ) -> DEFMSG_ITEMUSE_KINDLING_CONT
-            // (Source-X CCharUse.cpp:288) -- kindling double-clicked in the
-            // backpack is refused before Camping is even rolled. So the
-            // gesture is two actions: drop a piece at the feet, then light
-            // the piece on the ground. A failed Camping roll leaves it lying
-            // there, which is why the ground is checked before the pack --
-            // relight what is already down rather than dropping another.
             if (const u32 ground =
                     client.FindWorldItemByGraphic(kKindlingGraphic, 3)) {
                 LogLine("craft: lighting the kindling on the ground for a "
@@ -6825,8 +8156,9 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                         "there is no kindling to light one",
                         faucet::RefusalName(faucet::Refusal::RequiredForProduction),
                         intent.item);
-                planner_.Finish(false, "no kindling for a fire", obs.nowMs);
-                return false;
+                return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
+                               kCraftStuckCooldownMs, "no kindling for a fire",
+                               obs.nowMs);
             }
             LogLine("craft: putting one kindling on the ground -- "
                     "Use_Kindling refuses it inside a container");
@@ -6884,6 +8216,22 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 nextActionMs_ = obs.nowMs + 2000;
                 return false;
             }
+            // A FORGE THAT WORKS ENDS THE SEARCH -- same rule DoSmelt already
+            // follows (search above, "A FORGE THAT WORKS ENDS THE SEARCH").
+            // TravelToServiceSkipping records every place it is ever SENT to
+            // in smeltSkipPlaces_, success or not (ClientTravel.cpp), and
+            // CRAFT shares that list with SMELT. Without clearing it here, a
+            // smith who wandered off this forge to bank or sell and then
+            // needed it again could never be sent back to it: Durnholde used
+            // Minoc's own smithy at 21:18, wandered out of NearestForge's
+            // 20-tile sight at 21:20, and because "Minoc blacksmith" was
+            // already on the list, TravelToServiceSkipping picked "Sea
+            // Market blacksmith" (no walkable ground) and then "Papua
+            // weaponsmith" -- 904 tiles and three moongates into the Lost
+            // Lands -- for a service Minoc had offered the whole time
+            // (docs/CRAFTER_RUN_2026_08_30.md defect 4, run_r4/pair_Durnholde
+            // .console.txt 21:16-21:25).
+            smeltSkipPlaces_.clear();
         }
         // THE TOOL MUST BE IN HAND1, not merely in the pack.
         if (fr->tool == prod::Tool::SmithHammer) {
@@ -6907,8 +8255,9 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                             "to open the forge menu with (tongs cannot be "
                             "wielded)",
                             faucet::RefusalName(faucet::Refusal::MissingTool));
-                    planner_.Finish(false, "no smith hammer", obs.nowMs);
-                    return false;
+                    return HandOff(GoalKind::Craft, GoalKind::GetTool,
+                                   kCraftStuckCooldownMs, "no smith hammer",
+                                   obs.nowMs);
                 }
                 // EMPTY THE HAND FIRST. Naming the layer was still not
                 // enough: a miner_smith carries a pickaxe AND tongs, mining
@@ -6947,49 +8296,134 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                                                kCraftResolveMs, 1000});
         craftWait_.Reset();
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
+        craftJournalMs_ = client.JournalNowMs();
         craftMade_ = 0;
-        craftMenuStep_ = 0;
     }
 
-    // Did the last attempt land? The pack is the only honest witness -- Sphere
-    // answers a failed inscription with "the scroll is ruined", which consumes
-    // the input and produces nothing, so counting attempts would count wrong.
+    // DID THE LAST SWING LAND? Section 18's craft rule and both of its halves
+    // -- the pack count rose, or the shard said in words that it did not --
+    // decided in uo/activities/craft_confirm.h, which also carries the shard
+    // strings and their evidence. Exhausted() AND out of ActionIssued: the
+    // counter rises at NoteIssued, so Exhausted() alone would stand the goal
+    // down while the last swing was still inside its own deadline.
     const i32 now = market::QtyOf(obs.pack, craftItem_);
-    if (now > craftHadBefore_) {
-        craftMade_ += now - craftHadBefore_;
+    CraftConfirmInput cin;
+    cin.packBefore = craftHadBefore_;
+    cin.packNow = now;
+    cin.deadlineExpired = craftWait_.Expired(obs.nowMs);
+    cin.attemptsExhausted =
+        craftWait_.Exhausted() &&
+        craftWait_.State() != life::HandshakeState::ActionIssued &&
+        craftWait_.State() != life::HandshakeState::WaitingForServer;
+    usize nCraftFails = 0;
+    const CraftFailure* craftFails = CraftFailures(&nCraftFails);
+    for (usize fi = 0; fi < nCraftFails; ++fi) {
+        if (client.JournalSaidSince(craftFails[fi].text, craftJournalMs_)) {
+            cin.heard = &craftFails[fi];
+            break;
+        }
+    }
+    const CraftConfirmResult conf = ConfirmCraft(cin);
+    if (conf.verdict == CraftVerdict::ShardRefused ||
+        conf.verdict == CraftVerdict::NoProgress) {
+        // A goal that achieved nothing says so and stands DOWN, so the planner
+        // gives the turn to something else instead of re-picking it in 60 ms.
+        LogLine("goal_failed=CRAFT status=no_progress reason=\"%s\" (%s, "
+                "attempt %d of %d)", conf.reason, craftItem_.c_str(),
+                craftWait_.Attempts(), kMaxCraftAttempts);
+        craftWait_.Reset();
+        // A fresh window: the refusal that ended THIS sitting must not end the
+        // next one before a single click has gone out.
+        craftJournalMs_ = client.JournalNowMs();
+        return HandOff(GoalKind::Craft, GoalKind::IdleBriefly,
+                       kCraftStuckCooldownMs, conf.reason, obs.nowMs);
+    }
+    if (conf.verdict == CraftVerdict::Spoiled) {
+        // A real answer, so the swing is over -- but the trade is not. An
+        // ATTEMPT, never progress; ChooseCraft ends the goal when stock runs out.
+        LogLine("craft: %s -- taking another swing at %s", conf.reason,
+                craftItem_.c_str());
+        craftWait_.Reset();
+        craftJournalMs_ = client.JournalNowMs();
+        planner_.NoteAttempt(obs.nowMs);
+    }
+    if (conf.verdict == CraftVerdict::Made) {
+        craftMade_ += conf.made;
         craftHadBefore_ = now;
-        craftMenuStep_ = 0;
         craftWait_.Reset();            // the thing we were waiting for arrived
         planner_.NoteProgress();
-        LogLine("craft: made one %s (%d this sitting)", craftItem_.c_str(),
-                craftMade_);
+        LogLine("craft: made %s pack %d->%d (%d this sitting)",
+                craftItem_.c_str(), now - conf.made, now, craftMade_);
         if (!state_.memory.HasEvent("first_craft")) {
             state_.memory.NoteEvent("first_craft", craftItem_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
         }
-        // KEEP GOING WHILE THE MATERIAL LASTS. "craft till you are out of iron
-        // on your bag" (project owner, 2026-08-29). Stopping at craftBatch
-        // left a smith standing at the forge with fifty-odd ingots still in
-        // the pack, walking off to sell four daggers and coming back.
+        // KEEP GOING WHILE THE MATERIAL LASTS, for ANY trade -- the stock in
+        // the pack is the honest limit, and kindling is the one carve-out
+        // because the server spends it at lighting time. The evidence and the
+        // owner's wording: docs/SHARD_MECHANICS_LEARNED.md section 12.
         //
-        // The stock is the honest limit: when the inputs no longer cover one
-        // more, ChooseCraft reports it missing and the goal ends on its own.
-        // The batch still applies to trades whose material is bought rather
-        // than dug -- a scribe should not spend its whole purse on scrolls.
-        bool moreToUse = false;
-        if (const prod::Recipe* rr = prod::FindRecipe(craftItem_.c_str())) {
-            // Fire recipes carry on for the same reason forge ones do: the
-            // stock in the pack is the honest limit. Kindling is special --
-            // the server spends it at lighting time, so while the campfire
-            // burns the pack owes no more of it (the same carve-out the
-            // blocked check above makes).
-            // ANY TRADE, not just the ones at a station. This was limited to
-            // Forge and then Fire, so a smith and a cook batched their work
-            // while an alchemist brewed ONE potion, walked off to sell it and
-            // came back. "also do like blacksmith craft a lot then sell"
-            // (project owner, 2026-08-30).
-            {
-                moreToUse = true;
+        // ONE INGREDIENT-SETS WALK, not two. The old moreToUse (bool) and
+        // canMake (int) loops both iterated rr->inputs, both carved out lit
+        // kindling, both compared against market::QtyOf -- lifted here and
+        // fed to DecideCraft, which needs exactly this count for both the
+        // continue/stop verdict and the .makelast quantity
+        // (S2_WIRING_PLAN.md S2.5).
+        i32 inputsAvailable = 0;
+        const prod::Recipe* rr = prod::FindRecipe(craftItem_.c_str());
+        if (rr) {
+            inputsAvailable = 500;
+            for (const prod::Ingredient& in : rr->inputs) {
+                if (!in.item || in.qty <= 0) continue;
+                if (rr->station == prod::Station::Fire &&
+                    std::strcmp(in.item, "i_kindling") == 0 &&
+                    client.FindWorldItemByGraphic(kCampfireGraphic, 3)) {
+                    continue;   // the fire is already lit
+                }
+                const i32 have = market::QtyOf(obs.pack, in.item);
+                const i32 fits = have / in.qty;
+                if (fits < inputsAvailable) inputsAvailable = fits;
+            }
+            if (inputsAvailable > 500) inputsAvailable = 500;
+        }
+
+        CraftRequest req;
+        req.item = craftItem_.c_str();
+        // A TOTAL, not a delta. `now` (== held below) already includes
+        // whatever was in the pack before this sitting started, and
+        // craftMade_ cancels out of desiredTotal-held across every call --
+        // the batch target stays craftBatch above the pre-sitting stock
+        // regardless of which Made event this is. Re-buying/re-making what
+        // is already held is the exact bug craft.h:45-47 and the
+        // craftHadBefore_ tracking above both warn about.
+        req.desiredTotal = craftMade_ + needCfg_.craftBatch;
+        // UNKNOWN: no profession field carries a working reserve
+        // (S2_WIRING_PLAN.md S2.5). 0 for gathered inputs is the honest
+        // default -- "craft till you are out of iron on your bag" is a
+        // reserve of 0 and it applies to ore a miner dug. A reserve for
+        // bought inputs is its own measured slice.
+        req.minimumMaterialsReserve = 0;
+        const CraftPlan plan = DecideCraft(req, /*held=*/now, inputsAvailable);
+        if (plan.step != lastCraftPlan_) {
+            LogPlan(CraftStepName(plan.step), plan.reason);
+            lastCraftPlan_ = plan.step;
+        }
+
+        if (plan.step == CraftStep::Done) {
+            LogLine("craft: %d %s made -- %s", craftMade_, craftItem_.c_str(),
+                    plan.reason);
+            craftItem_.clear();
+            return true;
+        }
+
+        if (plan.step == CraftStep::ShortOfInputs ||
+            plan.step == CraftStep::ReserveHit) {
+            // Not a failure: some progress already happened this call
+            // (NoteProgress fired above). Find the first ingredient actually
+            // short, so the handoff and any vendor lookup name the real
+            // thing rather than the recipe's headline material.
+            const char* missing = craftItem_.c_str();
+            if (rr) {
                 for (const prod::Ingredient& in : rr->inputs) {
                     if (!in.item) break;
                     if (rr->station == prod::Station::Fire &&
@@ -6998,84 +8432,51 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                         continue;
                     }
                     if (market::QtyOf(obs.pack, in.item) < in.qty) {
-                        moreToUse = false;
+                        missing = in.item;
                         break;
                     }
                 }
             }
-        }
-        if (moreToUse && obs.WeightFraction() < 0.90) {
-            // REPEAT WITH .makelast RATHER THAN RE-WALKING THE MENU.
-            //
-            // revolution_makelast.scp (a PLEVEL 1 command, so it is invoked by
-            // speech with sphere.ini's CommandPrefix ".") repeats the last
-            // COMPLETED craft: crafting_events.scp's @skillmakeitem stores the
-            // baseid in TAG.revo.makelast.item, for the legacy menus as well
-            // as the modern gump. So the first item still goes through the
-            // menu -- that is what sets the tag -- and the rest of the batch
-            // is one command instead of four dialog round-trips each.
-            //
-            // IT WAS A **CTAG** UNTIL 2026-08-30, WHICH MEANT THIS HAD NEVER
-            // WORKED. CTAG is a CLIENT key and CChar::r_LoadVal has no
-            // forward to the client, so every write fell through to
-            // CScriptObj::r_LoadVal and logged "Undefined keyword" -- the tag
-            // was never set and .makelast answered "You have not successfully
-            // crafted an item yet", every time, for as long as this code has
-            // existed. Fixed in scripts/revolution/revolution_makelast.scp;
-            // the first live exercise of it is still pending, because the
-            // craft has to COMPLETE once before there is anything to repeat.
-            //
-            // The server re-checks CANMAKE every repetition, so skill,
-            // materials, tool and station are all still enforced; it stops by
-            // itself with "Make Last stopped: you can no longer craft ..." the
-            // moment the stock runs out. It also cancels on war mode, attack,
-            // spellcast, death and logout -- all of which are things this
-            // character would want to stop crafting for anyway.
-            //
-            // Gathering is untouched: mining and fishing are TARGETED skills,
-            // not menu crafts, and have no last-item to repeat. "most of
-            // professions can use makelast ... except mining or fishing since
-            // they require target and not craft" (project owner, 2026-08-30).
-            if (!makeLastIssued_) {
-                i32 canMake = 0;
-                if (const prod::Recipe* rr =
-                        prod::FindRecipe(craftItem_.c_str())) {
-                    canMake = 500;
-                    for (const prod::Ingredient& in : rr->inputs) {
-                        if (!in.item || in.qty <= 0) continue;
-                        if (rr->station == prod::Station::Fire &&
-                            std::strcmp(in.item, "i_kindling") == 0 &&
-                            client.FindWorldItemByGraphic(kCampfireGraphic, 3))
-                            continue;   // the fire is already lit
-                        const i32 have = market::QtyOf(obs.pack, in.item);
-                        const i32 fits = have / in.qty;
-                        if (fits < canMake) canMake = fits;
-                    }
-                }
-                if (canMake > 500) canMake = 500;
-                if (canMake > 1) {
-                    char cmd[64];
-                    std::snprintf(cmd, sizeof(cmd), ".makelast %d",
-                                  static_cast<int>(canMake));
-                    LogLine("craft: %d %s made -- repeating the other %d with "
-                            "'%s' instead of walking the menu again",
-                            craftMade_, craftItem_.c_str(),
-                            static_cast<int>(canMake), cmd);
-                    client.ActionSay(cmd);
-                    makeLastIssued_ = true;
-                    nextActionMs_ = obs.nowMs + 3000;
-                    return false;
-                }
+            if (econ::CanUseNPCVendorFor(missing).allowed) {
+                return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
+                               kCraftStuckCooldownMs, plan.reason, obs.nowMs);
             }
-            LogLine("craft: %d %s made and the material is not finished -- "
-                    "carrying on", craftMade_, craftItem_.c_str());
-        } else if (craftMade_ >= needCfg_.craftBatch || !moreToUse) {
-            LogLine("craft: %d %s made -- %s", craftMade_, craftItem_.c_str(),
-                    moreToUse ? "enough for a trip to a buyer"
-                              : "the material is spent");
-            craftItem_.clear();
-            return true;
+            const std::string gathers =
+                needCfg_.profession ? needCfg_.profession->gathers
+                                    : std::string("logs");
+            const GoalKind gatherGoal =
+                gathers == "ore" ? GoalKind::Mine : GoalKind::GatherLogs;
+            return HandOff(GoalKind::Craft, gatherGoal, kCraftStuckCooldownMs,
+                           plan.reason, obs.nowMs);
         }
+
+        // CraftStep::Make. plan.remaining is the batch target already
+        // clamped to what the materials allow -- feed it straight to
+        // .makelast rather than the old raw material-availability count,
+        // which ignored needCfg_.craftBatch entirely.
+        if (!makeLastIssued_ && obs.WeightFraction() < 0.90 &&
+            plan.remaining > 1) {
+            // REPEAT WITH .makelast RATHER THAN RE-WALKING THE MENU. The
+            // first item still goes through the menu -- that is what sets
+            // TAG.revo.makelast.item -- and the server re-checks CANMAKE
+            // every repetition, so skill, materials, tool and station stay
+            // enforced. Why it had never worked before 2026-08-30, and why
+            // gathering is untouched: docs/SHARD_MECHANICS_LEARNED.md
+            // section 12.
+            char cmd[64];
+            std::snprintf(cmd, sizeof(cmd), ".makelast %d",
+                          static_cast<int>(plan.remaining));
+            LogLine("craft: %d %s made -- repeating the other %d with "
+                    "'%s' instead of walking the menu again",
+                    craftMade_, craftItem_.c_str(),
+                    static_cast<int>(plan.remaining), cmd);
+            client.ActionSay(cmd);
+            makeLastIssued_ = true;
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+        }
+        LogLine("craft: %d %s made and the material is not finished -- "
+                "carrying on", craftMade_, craftItem_.c_str());
     }
 
     const CraftMenuPath* path = CraftMenuFor(craftItem_);
@@ -7089,30 +8490,14 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
 
     if (client.ActionBusy()) return false;
 
-    // WAITING ON THE LAST ONE. The pack is the witness: either the count
-    // rises (handled above, which clears this) or the craft failed and the
-    // timeout releases us. Either way, do not start a second craft on top of
-    // the first.
-    // ENTER ONLY WHILE AN ATTEMPT IS ACTUALLY OUTSTANDING.
-    //
-    // Not `State() != Idle`: NoteExpiry leaves the handshake in Backoff, and
-    // testing against Idle would re-enter this branch on the next tick and
-    // spin at 700 ms without ever reaching the code that re-issues. Backoff
-    // means "the last swing is closed out, take another" -- which is the
-    // fall-through below.
+    // WAITING ON THE LAST ONE -- enter ONLY while an attempt is outstanding.
+    // Not `State() != Idle`: NoteExpiry leaves the handshake in Backoff, which
+    // means "the last swing is closed out, take another" and is the
+    // fall-through below. Why the pack and a Handshake rather than a timer,
+    // and the session Voris spent proving it: uo/activities/craft_confirm.h
+    // and uo/activities/craft.h.
     if (craftWait_.State() == life::HandshakeState::ActionIssued ||
         craftWait_.State() == life::HandshakeState::WaitingForServer) {
-        // THE PACK IS THE WITNESS, and the deadline belongs to a Handshake
-        // rather than to a hand-rolled timestamp. Section 19: "Never start
-        // another craft merely because 2 seconds passed."
-        //
-        // WHAT THIS FIXES. The old timer expired and simply started over --
-        // "craft: no result from the last i_potion_poison in 8s -- trying
-        // again" -- which re-opened a menu THAT WAS ALREADY OPEN, because the
-        // 0x7C had arrived while the action layer was still calling the click
-        // a timeout. Voris spent his session on that loop. A Handshake counts
-        // the attempts, so a craft that never lands gives up and lets another
-        // goal have the turn instead of repeating forever.
         if (client.ActionBusy()) return false;
 
         if (!craftWait_.Expired(obs.nowMs)) {
@@ -7126,17 +8511,11 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 craftWait_.Attempts(), kMaxCraftAttempts);
 
         if (craftWait_.Exhausted()) {
-            // NOT SUCCESS, AND NOT SILENCE EITHER. The batch produced
-            // nothing, and saying so is what lets the planner give the turn
-            // to something else -- the NoProgress state that did not exist
-            // when this loop was written.
-            LogLine("goal_failed=CRAFT status=no_progress reason=\"%d "
-                    "attempts at %s and the pack never moved\"",
-                    craftWait_.Attempts(), craftItem_.c_str());
-            craftWait_.Reset();
-            craftMenuStep_ = 0;
-            planner_.Cooldown(GoalKind::Craft, obs.nowMs + kCraftStuckCooldownMs);
-            planner_.Finish(false, "the craft produced nothing", obs.nowMs);
+            // The swing is closed out and there are none left. Come straight
+            // back rather than deciding here: the confirmation at the top of
+            // this handler is the ONE place that says no_progress, and now
+            // that the handshake is out of ActionIssued it can.
+            nextActionMs_ = obs.nowMs;
             return false;
         }
     }
@@ -7191,22 +8570,14 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             return false;
         }
         LogLine("craft: chose '%s'", want);
-        // LET THE CRAFT FINISH BEFORE TOUCHING ANYTHING ELSE.
-        //
-        // Two seconds was shorter than the skill itself, so the next menu was
-        // opened while the previous item was still being made:
-        //   02:19:30.091 craft: chose '^Poison'
-        //   02:19:32.137 craft: making ... open the menu
-        //   02:19:32.615 System: You put the Poison in your pack.
-        // -- the re-open landed half a second BEFORE the potion existed.
-        // Sphere answers an interrupted craft with @SkillAbort, so this was
-        // racing the server for no gain. "you are not waiting to finish one
-        // poison" (project owner, 2026-08-30).
-        //
-        // craftAwaitingMs_ makes the wait explicit rather than a guessed
-        // delay: the pack is watched until the count rises, and the timeout
-        // below is only a floor under a craft that failed silently.
+        // LET THE CRAFT FINISH BEFORE TOUCHING ANYTHING ELSE. The swing now
+        // belongs to the Handshake and its answer to uo/activities/
+        // craft_confirm.h: the pack is watched until the count rises or the
+        // shard says why not, and the deadline is only a floor under a craft
+        // that failed silently. "you are not waiting to finish one poison"
+        // (project owner, 2026-08-30).
         craftWait_.NoteIssued(obs.nowMs);
+        craftJournalMs_ = client.JournalNowMs();   // read the answer from here
         nextActionMs_ = obs.nowMs + 1000;
         return false;
     }
@@ -7268,8 +8639,9 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 "open the %s menu with (%s)",
                 faucet::RefusalName(faucet::Refusal::MissingTool),
                 craftItem_.c_str(), r->inputs[0].item);
-        planner_.Finish(false, "no material to start from", obs.nowMs);
-        return false;
+        return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
+                       kCraftStuckCooldownMs, "no material to start from",
+                       obs.nowMs);
     }
 
     // BLACKSMITHING TAKES THREE ACTIONS, NOT ONE.
@@ -7307,8 +8679,6 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                         r->inputs[0].item);
                 client.ActionTargetObject(mat);
                 craftCursorPending_ = false;
-                craftStartedMs_ = obs.nowMs;
-                craftMenuStep_ = 0;
                 nextActionMs_ = obs.nowMs + 2500;
                 return false;
             }
@@ -7330,8 +8700,6 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                 ? "a cooking tool"
                 : (opener_tool ? "its own tool" : r->inputs[0].item));
     client.ActionUseObject(opener);
-    craftStartedMs_ = obs.nowMs;
-    craftMenuStep_ = 0;
     nextActionMs_ = obs.nowMs + 2000;
     return false;
 }
@@ -8904,10 +10272,22 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         mineRoam_ = false;
     }
     Client::MiningSpot spot;
+    bool allGuarded1 = false, allGuarded2 = false;
     if (!client.NearestMiningSpot(scanX, scanY, obs.z, kMineScanRadius, &spot,
-                                  &deadTargets_) &&
+                                  &deadTargets_, &allGuarded1) &&
         !client.NearestMiningSpot(obs.x, obs.y, obs.z, kMineScanRadius, &spot,
-                                  &deadTargets_)) {
+                                  &deadTargets_, &allGuarded2)) {
+        // OWNER RULE: no gathering inside guarded zones. Both scans saw rock
+        // and rejected every candidate for standing inside the guard line --
+        // this is a walled-off cave mouth in town, not an empty vein, so do
+        // not cool the goal down or dead-list open ground. The known-vein
+        // fallback right below is already the proven-stand/travel logic this
+        // rule wants; it just needs the right sentence ahead of it.
+        const bool allGuarded = allGuarded1 && allGuarded2;
+        if (allGuarded) {
+            LogLine("mine: nothing to take outside the guard line here -- "
+                    "going to the proven stand");
+        }
         // NO ROCK HERE IS A REASON TO WALK, NOT A REASON TO GIVE UP.
         //
         // The gate above measures DistanceToResource, which is the distance
@@ -8948,8 +10328,10 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
             }
         }
 
-        LogLine("mine: no mineable rock within %d tiles of %d,%d -- moving on",
-                kMineScanRadius, obs.x, obs.y);
+        if (!allGuarded) {
+            LogLine("mine: no mineable rock within %d tiles of %d,%d -- moving on",
+                    kMineScanRadius, obs.x, obs.y);
+        }
         deadTargets_.clear();
         mineTrips_ = 0;
         planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
@@ -9093,7 +10475,12 @@ bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
 }
 
 // ---------------------------------------------------------------------------
-// EXPLORING.
+// REST AND ROAM -- what a life does when nothing is pressing
+// (include/uo/activities/rest.h, S2_WIRING_PLAN.md S2.2). DoExplore and
+// DoIdle are both two-line forwarders into RestTick: DecideRest is the one
+// place that turns "idle" into EXPLORE (go and learn something), REST (stand
+// still and mean it), SETTLE (the session is ending, go somewhere safe) or
+// STAGNANT (a fault to report, not a rest to take).
 //
 // "bots shouldnt be idle unless its state specifically" (project owner). This
 // is what a character does instead of standing still, and it is not filler.
@@ -9105,79 +10492,157 @@ bool Runner::DoTameAnimal(Client& client, const Observation& obs) {
 // all day, which is precisely why he knew no supplier for any of the three
 // tools he was short of, and why he idled through 85% of his picks.
 //
-// So the fallback goes and looks at an unvisited shop, and reads the paperdolls
-// of whoever is standing in it. That is how NearestMobileWithTrade and the
-// supplier memory get anything to work with.
-bool Runner::DoExplore(Client& client, const Observation& obs) {
-    if (client.ActionBusy()) return false;
+// So the EXPLORE step goes and looks at an unvisited shop, and reads the
+// paperdolls of whoever is standing in it. That is how NearestMobileWithTrade
+// and the supplier memory get anything to work with.
+bool Runner::RestTick(Client& client, const Observation& obs, GoalKind owner) {
+    RestSight see;
+    see.sessionEnding = cfg_.sessionLimitMs > 0 &&
+        (obs.nowMs - sessionStartMs_) >= cfg_.sessionLimitMs - kRestSettleLeadMs;
+    // The same guarded-region read as MayWear's caller (Runner.cpp, around
+    // inGuardedRegion) -- NOT flags.safe, which is the no-skill-gain flag, a
+    // different fact. An open bank box counts too, matching wind-down's
+    // safeHere.
+    const wm::Region* here = client.CurrentRegion();
+    see.somewhereSafe = (here && here->flags.guarded) || client.BankContainer() != 0;
+    see.worthExploring = !exploredEverything_;
+    // No direct regen signal exists on this shard; hunger stopping HP
+    // regeneration is the fact include/uo/activities/heal.h is written
+    // around, so "not hungry and not full" is the cheapest honest proxy.
+    see.regenerating = !obs.hungry && obs.hp < obs.hpMax;
+    see.hpFraction = obs.HpFraction();
+    see.blockedForMs = obs.nowMs - lastRealErrandMs_;
 
-    // Arrived somewhere: LOOK. A place walked to and not looked at teaches
-    // nothing, and the scan is the entire point of the errand.
-    if (travelInFlight_ && !client.TravelBusy()) {
-        travelInFlight_ = false;
-        LogLine("explore: arrived at %d,%d -- reading who is here", obs.x, obs.y);
-        client.ActionScanMobiles();
-        // RECORD IT BY ID, which is what TravelToUnexploredPlace matches
-        // against. Storing an empty name would leave the place forever
-        // unvisited and send the character back to it on the next tick.
-        state_.memory.NotePlace("explored", exploreTarget_.c_str(), obs.x,
-                                obs.y, obs.z, obs.nowMs);
-        // AND REMEMBER THE NAME SEPARATELY, because the place record cannot.
-        //
-        // NotePlace matches on kind AND position (Memory.cpp:34-40), so two
-        // atlas entries that resolve to the SAME tile collapse into one
-        // record -- and the later one OVERWRITES the name. Minoc's cobbler
-        // and provisioner both sit on 2453,430, so the single record's name
-        // flipped between them, `seen` never contained both at once, and the
-        // pair was re-nominated forever:
-        //
-        //   going to 'minoc_cobbler' -- somewhere new (15 place(s) known)
-        //   arrived at 2453,430 -- reading who is here
-        //   going to 'minoc_provisioner' -- somewhere new (15 place(s) known)
-        //   arrived at 2453,430 -- reading who is here
-        //
-        // Eleven picks in a three-minute session, half of everything the
-        // character did, and the place count never moved off 15. Keeping the
-        // visited IDs here means an id is spent once whatever tile it shares.
-        if (!exploreTarget_.empty()) {
-            bool already = false;
-            for (const std::string& id : exploredIds_)
-                if (id == exploreTarget_) { already = true; break; }
-            if (!already) exploredIds_.push_back(exploreTarget_);
+    RestTuning tune;
+    tune.restWhileBelowHp = needCfg_.healHpFraction;   // agrees with DecideHeal
+
+    const RestPlan plan = DecideRest(see, tune);
+    if (plan.step != lastRestPlan_) {
+        LogPlan(RestStepName(plan.step), plan.reason);
+        lastRestPlan_ = plan.step;
+    }
+
+    switch (plan.step) {
+        case RestStep::Explore: {
+            if (client.ActionBusy()) return false;
+
+            // Arrived somewhere: LOOK. A place walked to and not looked at
+            // teaches nothing, and the scan is the entire point of the errand.
+            if (travelInFlight_ && !client.TravelBusy()) {
+                travelInFlight_ = false;
+                LogLine("explore: arrived at %d,%d -- reading who is here",
+                        obs.x, obs.y);
+                client.ActionScanMobiles();
+                // RECORD IT BY ID, which is what TravelToUnexploredPlace
+                // matches against. Storing an empty name would leave the
+                // place forever unvisited and send the character back to it
+                // on the next tick.
+                state_.memory.NotePlace("explored", exploreTarget_.c_str(),
+                                        obs.x, obs.y, obs.z, obs.nowMs);
+                // AND REMEMBER THE NAME SEPARATELY, because the place record
+                // cannot.
+                //
+                // NotePlace matches on kind AND position (Memory.cpp:34-40),
+                // so two atlas entries that resolve to the SAME tile collapse
+                // into one record -- and the later one OVERWRITES the name.
+                // Minoc's cobbler and provisioner both sit on 2453,430, so
+                // the single record's name flipped between them, `seen`
+                // never contained both at once, and the pair was
+                // re-nominated forever:
+                //
+                //   going to 'minoc_cobbler' -- somewhere new (15 place(s) known)
+                //   arrived at 2453,430 -- reading who is here
+                //   going to 'minoc_provisioner' -- somewhere new (15 place(s) known)
+                //   arrived at 2453,430 -- reading who is here
+                //
+                // Eleven picks in a three-minute session, half of everything
+                // the character did, and the place count never moved off 15.
+                // Keeping the visited IDs here means an id is spent once
+                // whatever tile it shares.
+                if (!exploreTarget_.empty()) {
+                    bool already = false;
+                    for (const std::string& id : exploredIds_)
+                        if (id == exploreTarget_) { already = true; break; }
+                    if (!already) exploredIds_.push_back(exploreTarget_);
+                }
+                exploreTarget_.clear();
+                // A newly-learned place may reveal more still unexplored;
+                // only "nowhere new to go" below is allowed to latch this.
+                exploredEverything_ = false;
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 3000;
+                return true;   // one place per outing; the next tick re-decides
+            }
+            if (client.TravelBusy()) return false;
+
+            // Somewhere with a service, that this character has not been to.
+            // The places it already knows come from its own memory, so two
+            // characters explore differently and a character never re-walks
+            // its own ground.
+            std::vector<std::string> seen;
+            for (const KnownPlace& p : state_.memory.Places()) {
+                if (!p.name.empty()) seen.push_back(p.name);
+            }
+            // Plus every id already walked to this session -- see the
+            // arrival branch above for why the place records alone cannot
+            // answer this.
+            for (const std::string& id : exploredIds_) {
+                bool dup = false;
+                for (const std::string& s : seen) if (s == id) { dup = true; break; }
+                if (!dup) seen.push_back(id);
+            }
+            if (!client.TravelToUnexploredPlace(seen, &exploreTarget_)) {
+                LogLine("explore: nowhere new to go (%s) -- standing down",
+                        client.TravelFailureText());
+                exploredEverything_ = true;
+                return HandOff(GoalKind::Explore, GoalKind::IdleBriefly,
+                               kExploredAllCooldownMs, "nowhere unexplored",
+                               obs.nowMs);
+            }
+            travelInFlight_ = true;
+            LogLine("explore: nothing else to do, so going to '%s' -- somewhere "
+                    "new (%zu place(s) known so far)", exploreTarget_.c_str(),
+                    seen.size());
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
         }
-        exploreTarget_.clear();
-        planner_.NoteProgress();
-        nextActionMs_ = obs.nowMs + 3000;
-        return true;   // one place per outing; the next tick re-decides
+        case RestStep::Rest: {
+            // A bounded no-op. It exists so a tick with nothing to do SAYS so
+            // rather than spinning, and so the planner is never in a "no
+            // goal" state.
+            nextActionMs_ = obs.nowMs + 5000;
+            return obs.nowMs - planner_.Current().startedAtMs > 15000;
+        }
+        case RestStep::Settle: {
+            // Phase::WindDown owns the walk to safety and already refuses to
+            // log out unsafe -- nothing new is built here.
+            EndSession(plan.reason);
+            return false;
+        }
+        case RestStep::Stagnant: {
+            LogLine("goal_stagnant=%s reason=\"%s\"", GoalKindName(owner),
+                    plan.reason);
+            // The third Wander kind, cooled alongside the handoff so it does
+            // not simply win the very next Select.
+            planner_.Cooldown(GoalKind::TravelToRequiredPlace,
+                              obs.nowMs + kStagnantCooldownMs);
+            // The advisory `to` is only ever logged, never dispatched -- but
+            // when the owner IS Explore, HandOff(Explore, Explore, ...)
+            // still reads as a goal advising itself, which is nonsense on
+            // its face. IdleBriefly is the honest advisory here: Explore
+            // itself is what just went stagnant.
+            const GoalKind to = owner == GoalKind::Explore
+                                     ? GoalKind::IdleBriefly
+                                     : GoalKind::Explore;
+            return HandOff(owner, to, kStagnantCooldownMs, plan.reason,
+                          obs.nowMs);
+        }
     }
-    if (client.TravelBusy()) return false;
-
-    // Somewhere with a service, that this character has not been to. The
-    // places it already knows come from its own memory, so two characters
-    // explore differently and a character never re-walks its own ground.
-    std::vector<std::string> seen;
-    for (const KnownPlace& p : state_.memory.Places()) {
-        if (!p.name.empty()) seen.push_back(p.name);
-    }
-    // Plus every id already walked to this session -- see the arrival branch
-    // above for why the place records alone cannot answer this.
-    for (const std::string& id : exploredIds_) {
-        bool dup = false;
-        for (const std::string& s : seen) if (s == id) { dup = true; break; }
-        if (!dup) seen.push_back(id);
-    }
-    if (!client.TravelToUnexploredPlace(seen, &exploreTarget_)) {
-        LogLine("explore: nowhere new to go (%s) -- standing down",
-                client.TravelFailureText());
-        planner_.Cooldown(GoalKind::Explore, obs.nowMs + kExploredAllCooldownMs);
-        planner_.Finish(false, "nowhere unexplored", obs.nowMs);
-        return false;
-    }
-    travelInFlight_ = true;
-    LogLine("explore: nothing else to do, so going to '%s' -- somewhere new "
-            "(%zu place(s) known so far)", exploreTarget_.c_str(), seen.size());
-    nextActionMs_ = obs.nowMs + 2500;
     return false;
+}
+
+bool Runner::DoExplore(Client& client, const Observation& obs) {
+    return RestTick(client, obs, GoalKind::Explore);
 }
 
 // ---------------------------------------------------------------------------
@@ -9233,9 +10698,9 @@ bool Runner::DoMakeBandages(Client& client, const Observation& obs) {
         }
         LogLine("goal_failed=MAKE_BANDAGES reason=\"no scissors and only %d "
                 "gold to buy a pair with\"", obs.gold);
-        planner_.Cooldown(GoalKind::MakeBandages, obs.nowMs + kNoBandageCooldownMs);
-        planner_.Finish(false, "no scissors and no money", obs.nowMs);
-        return false;
+        return HandOff(GoalKind::MakeBandages, GoalKind::EarnGold,
+                       kNoBandageCooldownMs, "no scissors and no money",
+                       obs.nowMs);
     }
 
     // 0. LOOTED CLOTHING -> BANDAGES. The cheapest of the lot: no sheep, no
@@ -9633,12 +11098,7 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
 }
 
 bool Runner::DoIdle(Client& client, const Observation& obs) {
-    (void)client;
-    // A bounded no-op. It exists so a tick with nothing to do SAYS so rather
-    // than spinning, and so the planner is never in a "no goal" state.
-    nextActionMs_ = obs.nowMs + 5000;
-    if (obs.nowMs - planner_.Current().startedAtMs > 15000) return true;
-    return false;
+    return RestTick(client, obs, GoalKind::IdleBriefly);
 }
 
 }  // namespace uo::life

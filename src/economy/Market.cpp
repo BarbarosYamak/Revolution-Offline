@@ -3,6 +3,9 @@
 #include "uo/production.h"
 #include "uo/faucets.h"
 #include "uo/vendor_policy.h"
+// S4: the held/worn/wearable/reserve arithmetic is DecideAcquire's, not a
+// second copy of it living in the trade predicate.
+#include "uo/activities/acquire.h"
 
 #include <algorithm>
 #include <cstring>
@@ -142,6 +145,34 @@ std::vector<Want> Shortfall(const prof::Profession& p,
 
     // Inputs the profession's own recipes eat.
     for (const std::string& item : p.consumes) {
+        // AN ITEM THE PACK CANNOT COUNT IS AN ITEM THIS LIST MUST NOT NAME.
+        //
+        // obs.pack is keyed by defname, resolved from graphic+hue through
+        // econ::ItemNameForGraphicAndHue -- so a defname with NO row in
+        // kGraphics (VendorPolicy.cpp) can never appear in `pack`, QtyOf is
+        // permanently 0, and the want is re-issued forever no matter what the
+        // character is carrying. i_potion_poisondeadly is exactly that: every
+        // fencer and pk asked for 20 of it on every single tick, for good.
+        //
+        // DELIBERATELY NOT FIXED BY ADDING A GRAPHIC ROW. All four poison
+        // tiers share ID=i_bottle_green (0f0a) and the wire carries no way to
+        // tell them apart; mapping the strong tier to the shared graphic is
+        // the change that already cost Voris his sales (VendorPolicy.cpp:412-
+        // 440). Whether a HUE separates the potion tiers on this shard is
+        // UNKNOWN -- no evidence either way -- so the honest answer is to say
+        // nothing about a want we cannot verify rather than to invent an
+        // identity for it. When a graphic row (or a hue rule) exists, this
+        // want comes back on its own.
+        //
+        // The cost is real and recorded: ConsiderOffer reads Shortfall too, so
+        // a fencer will now answer "this life has no use for it" to an
+        // alchemist offering deadly poison. A trade it cannot verify
+        // afterwards is a trade it should not be making blind.
+        // (audit 2026-08-30, finding 3.)
+        // Reads, in one line: "uncountable in the pack -- skipping until it
+        // has a graphic row". Not LOGGED: Shortfall is a pure function with
+        // no logger and the skipped want has no Want to carry a reason on.
+        if (uo::econ::GraphicsForItem(item.c_str()).empty()) continue;
         const i32 have = QtyOf(pack, item);
         if (have >= policy.restockConsumablesTo) continue;
         Want w;
@@ -165,6 +196,39 @@ std::vector<Want> Shortfall(const prof::Profession& p,
         w.rawResource = WhoProduces(c.name.c_str()).empty();
         w.reason = "below this life's own floor for it";
         out.push_back(std::move(w));
+    }
+    return out;
+}
+
+std::vector<Want> PlayerMarketWants(const prof::Profession& p,
+                                    const std::vector<Stock>& holdings,
+                                    i32 gold,
+                                    const TradePolicy& policy,
+                                    const char** whyNotOut) {
+    std::vector<Want> out;
+    if (whyNotOut) *whyNotOut = nullptr;
+
+    // ASKED BEFORE THE JOURNEY, not after it. The identical test lives in
+    // ConsiderOffer -- `gold - cost < p.goldReserve` -- and one unit at the
+    // blind ceiling is the worst single purchase this life would ever agree
+    // to. Below that the trip is wasted before it starts.
+    if (gold - policy.blindPriceCeiling < p.goldReserve) {
+        if (whyNotOut)
+            *whyNotOut = "would eat into the reserve this life keeps for tools";
+        return out;
+    }
+
+    const std::vector<Want> shortOf = Shortfall(p, holdings, policy);
+    for (const Want& w : shortOf) {
+        // The world makes it. Go and gather it, or buy it from a vendor --
+        // either way nobody is standing at a bank with any to sell.
+        if (w.rawResource) continue;
+        out.push_back(w);
+    }
+    if (out.empty() && whyNotOut) {
+        *whyNotOut = shortOf.empty()
+            ? "stocked on everything this life buys"
+            : "short only of things the world makes, not another player";
     }
     return out;
 }
@@ -779,11 +843,178 @@ bool ChooseSellOffer(const prof::Profession& p,
     return false;
 }
 
+// ---------------------------------------------------------------------------
+// S4 -- gear.
+//
+// EVERY FIELD IS OFF THE SHARD'S OWN ITEMDEFS. The one that matters is SKILL=:
+// the blacksmithing menu files these six and the dagger together under
+// "Bladed" (def_blacksmithing.scp:170-194) and the categories are ART, not
+// mechanics. i_dagger is TYPE=t_weapon_fence SKILL=Fencing, so a swordsman
+// wants none of it, and the smith's whole output before this slice was a
+// fencer's weapon and two materials.
+//
+// One-handed swords only, because those are the rows whose layer is certain:
+// TWOHANDS=N and Client.cpp:51-52 name layer 1 the weapon hand. Two-handed
+// swords, axes, maces, bows and every piece of armour are ABSENT rather than
+// guessed -- kArmorPieces (Runner.cpp) already carries the armour numbers and
+// lives in a translation unit this one cannot reach, and duplicating it here
+// would create a second table to drift.
+const GearItem kGear[] = {
+    {"i_cutlass",      0x1440, 0x1441, 1, rules::kSwordsmanship, 25,
+     "i_weapons.scp:1221-1240 TYPE=t_weapon_sword SKILL=Swordsmanship "
+     "TWOHANDS=N ReqStr=25 DUPELIST=01441; def_blacksmithing.scp:173"},
+    {"i_katana",       0x13FE, 0x13FF, 1, rules::kSwordsmanship, 25,
+     "i_weapons.scp:966-985 SKILL=Swordsmanship ReqStr=25 DUPELIST=013ff; "
+     "def_blacksmithing.scp:175"},
+    {"i_scimitar",     0x13B5, 0x13B6, 1, rules::kSwordsmanship, 25,
+     "i_weapons.scp:741-760 SKILL=Swordsmanship ReqStr=25 DUPELIST=013b6; "
+     "def_blacksmithing.scp:178"},
+    {"i_sword_viking", 0x13B9, 0x13BA, 1, rules::kSwordsmanship, 40,
+     "i_weapons.scp:797-816 SKILL=Swordsmanship ReqStr=40 DUPELIST=013ba; "
+     "def_blacksmithing.scp:179"},
+    {"i_sword_broad",  0x0F5E, 0x0F5F, 1, rules::kSwordsmanship, 24,
+     "i_weapons.scp:553-572 SKILL=Swordsmanship ReqStr=24 DUPELIST=0f5f; "
+     "def_blacksmithing.scp:171"},
+    {"i_sword_long",   0x0F60, 0x0F61, 1, rules::kSwordsmanship, 32,
+     "i_weapons.scp:581-601 SKILL=Swordsmanship ReqStr=32 DUPELIST=0f61; "
+     "def_blacksmithing.scp:177"},
+    // LISTED SO IT CAN BE REFUSED. The smith already makes daggers and will
+    // announce them; without this row the predicate would have no basis to
+    // say WHY a swordsman does not want one.
+    {"i_dagger",       0x0F51, 0x0F52, 1, rules::kFencing,       10,
+     "i_weapons.scp:496-515 TYPE=t_weapon_fence SKILL=Fencing ReqStr=10 "
+     "DUPELIST=0f52; def_blacksmithing.scp:174"},
+};
+
+const GearItem* FindGear(const char* item) {
+    if (!item) return nullptr;
+    for (const GearItem& g : kGear)
+        if (std::strcmp(g.item, item) == 0) return &g;
+    return nullptr;
+}
+
+const GearItem* FindGearByGraphic(u16 graphic) {
+    if (!graphic) return nullptr;
+    for (const GearItem& g : kGear)
+        if (g.graphic == graphic || g.flip == graphic) return &g;
+    return nullptr;
+}
+
+namespace {
+
+// What is on `layer`, or 0. An unobserved paperdoll is an empty one -- see the
+// note on WornItem: the caller supplies the truth it has.
+u16 WornOnLayer(const std::vector<WornItem>& worn, u8 layer) {
+    for (const WornItem& w : worn)
+        if (w.layer == layer) return w.graphic;
+    return 0;
+}
+
+// Does this build actually TRAIN the weapon's skill? `targets` is the finished
+// build the character is working towards, so this is the same question a
+// player answers by looking at their own skill plan.
+bool TrainsSkill(const prof::Profession& p, int skillId) {
+    if (skillId < 0) return false;
+    for (const prof::SkillTargetSpec& t : p.targets)
+        if (t.skillId == skillId && t.tenths > 0) return true;
+    return false;
+}
+
+}  // namespace
+
+BuyDecision WantsGear(const prof::Profession& p,
+                      const std::vector<Stock>& pack,
+                      i32 gold,
+                      const TradePolicy& policy,
+                      const TradeIntent& offer,
+                      const std::vector<WornItem>& worn) {
+    BuyDecision d;
+    d.reason = "not a piece of equipment this fleet trades";
+    if (!offer.Valid()) {
+        d.reason = "not a well-formed offer";
+        return d;
+    }
+
+    const GearItem* g = FindGear(offer.item.c_str());
+    if (!g) return d;
+
+    // --- is this MY class of thing? -----------------------------------------
+    //
+    // For a WEAPON the answer is the SKILL, not `wears`. `wears` is the armour
+    // grade, and the shard's own evidence for it is about armour: the mining
+    // guide's "bu setleri giyen karakterler buyu atamazlar" is said of ore
+    // metal SETS. Whether a metal WEAPON hinders a caster on this shard is
+    // UNKNOWN -- no script line and no forum entry says -- so it is not
+    // asserted here in either direction. What IS certain is that a weapon
+    // whose skill the build never trains is a weapon this life will not use,
+    // and that alone refuses the mage the swordsman's cutlass.
+    if (g->weaponSkill >= 0 && !TrainsSkill(p, g->weaponSkill)) {
+        d.reason = "this life does not train the skill that weapon uses";
+        return d;
+    }
+
+    // --- am I already carrying that kind of thing? --------------------------
+    //
+    // DecideAcquire compares GRAPHIC against graphic, which is right for the
+    // question it was written for -- "is the piece for this slot on the
+    // paperdoll" -- and wrong for a trade: a swordsman holding a katana does
+    // not need a cutlass, and the two graphics differ. So the CLASS check
+    // comes first, and only then the piece-level arithmetic.
+    const u16 wornGfx = WornOnLayer(worn, g->layer);
+    if (const GearItem* on = FindGearByGraphic(wornGfx)) {
+        if (on->weaponSkill == g->weaponSkill) {
+            d.reason = "already carrying one of those";
+            return d;
+        }
+    }
+    const i32 held = QtyOf(pack, offer.item);
+
+    // --- the arithmetic, which is DecideAcquire's ---------------------------
+    life::AcquireRequest req;
+    req.graphic = g->graphic;
+    req.item = g->item;
+    req.desiredTotal = 1;          // the second shield was never the point
+    req.layer = g->layer;
+    req.mustWear = true;
+    req.wearable = true;           // decided above, and handed in, not re-derived
+    req.minimumGoldReserve = p.goldReserve;
+    const life::AcquirePlan plan = life::DecideAcquire(req, held, wornGfx);
+    if (plan.step != life::AcquireStep::Buy) {
+        d.reason = plan.reason;
+        return d;
+    }
+
+    // --- can I pay for it without eating the reserve? -----------------------
+    //
+    // ONE. Equipment is not stock, and a life that buys five swords because
+    // five were offered is the heater-shield bug wearing a different hat.
+    const i32 qty = 1;
+    const i32 cost = qty * offer.pricePerUnit;
+    if (cost > gold) {
+        d.reason = "cannot afford it";
+        return d;
+    }
+    if (gold - cost < p.goldReserve) {
+        d.reason = "would eat into the reserve this life keeps for tools";
+        return d;
+    }
+    if (offer.pricePerUnit > policy.blindPriceCeiling) {
+        d.reason = "more than this life will pay sight unseen";
+        return d;
+    }
+
+    d.accept = true;
+    d.qty = qty;
+    d.reason = "would wear it";
+    return d;
+}
+
 BuyDecision ConsiderOffer(const prof::Profession& p,
                           const std::vector<Stock>& pack,
                           i32 gold,
                           const TradePolicy& policy,
-                          const TradeIntent& offer) {
+                          const TradeIntent& offer,
+                          const std::vector<WornItem>& worn) {
     BuyDecision d;
     if (!offer.Valid()) {
         d.reason = "not a well-formed offer";
@@ -798,7 +1029,15 @@ BuyDecision ConsiderOffer(const prof::Profession& p,
         if (w.item == offer.item) { want = w.qty; break; }
     }
     if (want <= 0) {
-        d.reason = "this life has no use for it";
+        // MATERIALS ARE NOT THE ONLY REASON TO BUY. Shortfall reads `consumes`
+        // and `consumables`; a sword is in neither, and saying "no use for it"
+        // to a swordsman being offered a sword was the whole of S4's defect.
+        const BuyDecision gear = WantsGear(p, pack, gold, policy, offer, worn);
+        if (gear.accept) return gear;
+        // The gear half's refusal is the more specific one whenever it
+        // recognised the item at all; otherwise the material answer stands.
+        d.reason = FindGear(offer.item.c_str()) ? gear.reason
+                                                : "this life has no use for it";
         return d;
     }
 

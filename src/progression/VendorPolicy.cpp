@@ -346,6 +346,29 @@ const GraphicRow kGraphics[] = {
     {0x1053, "i_gears"},
     {0x14FB, "i_lockpick"},
     {0x0F51, "i_dagger"},        {0x0F52, "i_dagger"},
+    // THE SMITH'S OTHER TWO WEAPONS. i_dagger was the only one here, and the
+    // smith makes three: data/revolution_recipes.tsv:17-19 and
+    // life/Professions.cpp:361 both list i_spear_short and i_cutlass beside
+    // it. obs.pack is keyed by defname and is built from graphics, so with no
+    // row a finished cutlass is INVISIBLE to the pack view -- DoCraft's
+    // verdict is a pack delta, so every cutlass a smith ever hammered read
+    // back as NoProgress, and the sell path could not find what it had made.
+    // The same silence i_shield_* and the crafted scrolls were fixed for.
+    //
+    // Ids from the runtime's own ITEMDEFs, DUPELIST included (a weapon flips
+    // graphic when it is turned over):
+    //   items/weapons/i_weapons.scp:1022 [ITEMDEF 01402] DEFNAME=i_spear_short
+    //                                :1041 DUPELIST=01403
+    //   items/weapons/i_weapons.scp:1221 [ITEMDEF 01440] DEFNAME=i_cutlass
+    //                                :1238 DUPELIST=01441
+    // economy/Market.cpp:835 already carries the same cutlass pair.
+    //
+    // NOTE this deliberately adds NO kMatrix row for either: economy/
+    // Faucets.cpp:106 records that no Revolution evidence establishes NPC
+    // buyback for i_spear_short, so both stay ungraded and therefore refused
+    // for NPC sale. This row only lets the pack SEE them.
+    {0x1402, "i_spear_short"},   {0x1403, "i_spear_short"},
+    {0x1440, "i_cutlass"},       {0x1441, "i_cutlass"},
     // THE SPELLBOOK. kMatrix already grades i_spellbook PlayerMarketGood,
     // which is ALLOWED -- but a vendor offer arrives on the wire as a GRAPHIC,
     // and with no row here ItemNameForGraphic(0x0EFA) returned null and
@@ -481,6 +504,80 @@ const GraphicRow kGraphics[] = {
     {0x0E21, "i_bandage"},       {0x0EE9, "i_bandage"},
 };
 
+// HUE-AWARE METAL (S1, docs/CRAFTER_RUN_2026_08_30.md #20).
+//
+// The comment above kGraphics's ore rows explains the gap this closes: ore is
+// ONE graphic for every metal -- i_ore_copper, i_ore_gold, i_ore_shadow and
+// the rest are all `ID=i_ore_iron` in items/i_provisions_ore.scp, told apart
+// ONLY by an `ON=@Create COLOR=color_o_*` line. The iron INGOT graphic is the
+// same story for the twelve metals that never got their own ITEMDEF -- shadow,
+// agapite, verite, rose, mytheril, blackrock, bloodrock, valorite, bronze,
+// rusty, old_copper, dull_copper all carry `ID=i_ingot_iron` plus a COLOR.
+// Copper, gold and silver ingots are NOT in that family: they have their own
+// ITEMDEFs (01be3/01be9/01bf5) and no COLOR line, so their own graphic already
+// says which metal it is and hue never needs consulting -- ItemNameForGraphic
+// alone is already correct for them, which is why they are absent below.
+//
+// The hue constants are read from i_provisions_ore.scp's own
+// [DEFNAME COLOR_ORE] block (color_o_iron 0, color_o_valorite 0515, ...).
+struct HueRow { u16 hue; const char* item; };
+
+// Ore: the pile-size graphics (019b7 small .. 019ba leftover, DUPELIST of
+// 019b7) all carry the colour, so any of the four resolves the same way.
+const HueRow kOreHues[] = {
+    {0x0000, "i_ore_iron"},
+    {0x06D6, "i_ore_bronze"},
+    {0x045E, "i_ore_gold"},
+    {0x0641, "i_ore_copper"},
+    {0x0590, "i_ore_old_copper"},
+    {0x060A, "i_ore_dull_copper"},
+    {0x0482, "i_ore_silver"},
+    {0x0770, "i_ore_shadow"},
+    {0x04C2, "i_ore_bloodrock"},
+    {0x0455, "i_ore_blackrock"},
+    {0x052D, "i_ore_mytheril"},
+    {0x0665, "i_ore_rose"},
+    {0x07D1, "i_ore_verite"},
+    {0x0400, "i_ore_agapite"},
+    {0x0750, "i_ore_rusty"},
+    {0x0515, "i_ore_valorite"},
+};
+
+// Ingot: only the twelve metals that share iron's ITEMDEF (ID=i_ingot_iron)
+// need a hue lookup at all. Gold/copper/silver are deliberately absent -- see
+// the block comment above.
+const HueRow kIngotHues[] = {
+    {0x0000, "i_ingot_iron"},
+    {0x06D6, "i_ingot_bronze"},
+    {0x0590, "i_ingot_old_copper"},
+    {0x060A, "i_ingot_dull_copper"},
+    {0x0770, "i_ingot_shadow"},
+    {0x04C2, "i_ingot_bloodrock"},
+    {0x0455, "i_ingot_blackrock"},
+    {0x052D, "i_ingot_mytheril"},
+    {0x0665, "i_ingot_rose"},
+    {0x07D1, "i_ingot_verite"},
+    {0x0400, "i_ingot_agapite"},
+    {0x0750, "i_ingot_rusty"},
+    {0x0515, "i_ingot_valorite"},
+};
+
+// The four ore graphics: 019b7 plus its DUPELIST piles 019b8/019b9/019ba.
+bool IsOreGraphic(u16 g) { return g >= 0x19B7 && g <= 0x19BA; }
+
+// The iron ingot graphic and its five pile flips (01bef, DUPELIST
+// 01bf0..01bf4). Only 01bef is ever produced with a COLOR in the scripts
+// today, but the whole family is treated as colourable so a hue on a pile
+// flip -- if one is ever produced that way -- still resolves instead of
+// silently falling back to iron.
+bool IsColorableIngotGraphic(u16 g) { return g >= 0x1BEF && g <= 0x1BF4; }
+
+const char* LookupHue(const HueRow* rows, usize count, u16 hue) {
+    for (usize i = 0; i < count; ++i)
+        if (rows[i].hue == hue) return rows[i].item;
+    return nullptr;
+}
+
 const std::vector<std::pair<const char*, VendorClass>>& Matrix() {
     static const std::vector<std::pair<const char*, VendorClass>> kV = [] {
         std::vector<std::pair<const char*, VendorClass>> v;
@@ -516,6 +613,62 @@ const std::vector<std::pair<const char*, VendorClass>>& VendorMatrix() { return 
 const char* ItemNameForGraphic(u16 graphic) {
     for (const GraphicRow& g : kGraphics) {
         if (g.graphic == graphic) return g.item;
+    }
+    return nullptr;
+}
+
+// Hue first, graphic fallback -- see the kOreHues/kIngotHues block comment.
+// A graphic that is not one of the two colourable families ignores hue
+// entirely and behaves exactly like ItemNameForGraphic (e.g. copper's own
+// ingot graphic). A colourable graphic with a hue this table has never seen
+// falls back to ItemNameForGraphic too, rather than guessing -- the same
+// fail-safe default as an unmapped graphic.
+const char* ItemNameForGraphicAndHue(u16 graphic, u16 hue) {
+    if (IsOreGraphic(graphic)) {
+        if (const char* name = LookupHue(kOreHues, sizeof(kOreHues) / sizeof(kOreHues[0]), hue))
+            return name;
+    } else if (IsColorableIngotGraphic(graphic)) {
+        if (const char* name = LookupHue(kIngotHues, sizeof(kIngotHues) / sizeof(kIngotHues[0]), hue))
+            return name;
+    }
+    return ItemNameForGraphic(graphic);
+}
+
+bool GraphicNeedsHue(u16 graphic) {
+    return IsOreGraphic(graphic) || IsColorableIngotGraphic(graphic);
+}
+
+// ORE -> INGOT, straight off the ore ITEMDEF's TDATA1 in
+// runtime/scripts/items/i_provisions_ore.scp -- :45 (iron), :80 (copper),
+// :90 (gold), :100 (silver), :109 (shadow), :118 (agapite), :127 (verite),
+// :136 (rose), :145 (mytheril), :154 (blackrock), :163 (bloodrock),
+// :172 (valorite), :181 (bronze), :190 (rusty), :200 (old_copper),
+// :210 (dull_copper). Written out rather than derived by swapping the
+// "i_ore_" prefix so that a name that is not an ore cannot be turned into an
+// ingot defname that does not exist.
+const char* IngotNameForOre(const char* oreItem) {
+    struct SmeltRow { const char* ore; const char* ingot; };
+    static const SmeltRow kSmelt[] = {
+        {"i_ore_iron",        "i_ingot_iron"},
+        {"i_ore_copper",      "i_ingot_copper"},
+        {"i_ore_gold",        "i_ingot_gold"},
+        {"i_ore_silver",      "i_ingot_silver"},
+        {"i_ore_shadow",      "i_ingot_shadow"},
+        {"i_ore_agapite",     "i_ingot_agapite"},
+        {"i_ore_verite",      "i_ingot_verite"},
+        {"i_ore_rose",        "i_ingot_rose"},
+        {"i_ore_mytheril",    "i_ingot_mytheril"},
+        {"i_ore_blackrock",   "i_ingot_blackrock"},
+        {"i_ore_bloodrock",   "i_ingot_bloodrock"},
+        {"i_ore_valorite",    "i_ingot_valorite"},
+        {"i_ore_bronze",      "i_ingot_bronze"},
+        {"i_ore_rusty",       "i_ingot_rusty"},
+        {"i_ore_old_copper",  "i_ingot_old_copper"},
+        {"i_ore_dull_copper", "i_ingot_dull_copper"},
+    };
+    if (!oreItem) return nullptr;
+    for (const SmeltRow& r : kSmelt) {
+        if (std::strcmp(r.ore, oreItem) == 0) return r.ingot;
     }
     return nullptr;
 }

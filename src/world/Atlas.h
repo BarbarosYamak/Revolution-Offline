@@ -78,6 +78,15 @@ public:
     const wm::Place* NearestPlaceWithServiceSkipping(
         wm::Service s, i32 x, i32 y,
         const std::vector<std::string>& skipIds, i32 maxDist = 0) const;
+    // Same guarded-first preference as NearestPlaceWithServiceSkipping, but
+    // returns every candidate, nearest first, instead of only the winner.
+    // world::PickServicePlace (world/ServiceSelection.h) needs more than one
+    // candidate to rank by real trip cost -- gates and tiles, not raw map
+    // distance -- rather than committing to whichever is geometrically
+    // closest and finding out later it needs three moongates.
+    void PlacesWithServiceSkipping(wm::Service s, i32 x, i32 y,
+                                   const std::vector<std::string>& skipIds,
+                                   std::vector<const wm::Place*>& out) const;
     const wm::Place* NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,
                                               i32 maxDist = 0) const;
     const wm::Place* NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,

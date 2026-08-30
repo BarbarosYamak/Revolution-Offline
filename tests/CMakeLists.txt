@@ -138,6 +138,9 @@ add_executable(m4_life m4_life.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Json.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    # S4: Market.cpp asks life::DecideAcquire whether a life would buy and
+    # wear an offered piece, rather than keeping a second copy of that sum.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
@@ -187,6 +190,9 @@ add_executable(m5_professions m5_professions.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    # S4: Market.cpp asks life::DecideAcquire whether a life would buy and
+    # wear an offered piece, rather than keeping a second copy of that sum.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp)
 target_include_directories(m5_professions PRIVATE
     ${CMAKE_SOURCE_DIR}/include
@@ -216,6 +222,9 @@ add_test(NAME m6_targeting COMMAND m6_targeting)
 # copy of the recipe list for the economy layer to consult.
 add_executable(m7_market m7_market.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    # S4: Market.cpp asks life::DecideAcquire whether a life would buy and
+    # wear an offered piece, rather than keeping a second copy of that sum.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
     ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
@@ -255,12 +264,34 @@ add_test(NAME m7_faucets COMMAND m7_faucets)
 # Client-free by construction, exactly like the life and combat layers, so
 # ctest exercises the very object the live bot runs rather than a copy of it.
 add_executable(interaction_progress interaction_progress.cpp
-    ${CMAKE_SOURCE_DIR}/src/life/interaction/Progress.cpp)
+    ${CMAKE_SOURCE_DIR}/src/life/interaction/Progress.cpp
+    # S3: the craft and train halves of section 18's table, extracted out of
+    # Runner.cpp so the very rule the live bot applies is the one under test.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/CraftConfirm.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/TrainConfirm.cpp)
 target_include_directories(interaction_progress PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME interaction_progress COMMAND interaction_progress)
+
+# --- S6: cliloc message decode (0xC1 / 0xCC) --------------------------------
+#
+# docs/S3_CHARACTERIZATION.md's "shard messages" section: 0xC1 used to be
+# discarded as a no-op at Client.cpp:569, so the crafting system's
+# cliloc-numbered messages (crafting_messages.scp) never reached the bot.
+# Links src/net/Cliloc.cpp (the client-free packet decode/format) and
+# CraftConfirm.cpp (to confirm the decoded fallback text lands in
+# CraftFailures()'s table) -- no Client, no server, no MULs.
+add_executable(cliloc_decode cliloc_decode.cpp
+    ${CMAKE_SOURCE_DIR}/src/net/Cliloc.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/CraftConfirm.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/interaction/Progress.cpp)
+target_include_directories(cliloc_decode PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME cliloc_decode COMMAND cliloc_decode)
 
 # --- The interaction layer: the handshake -----------------------------------
 #
@@ -455,3 +486,119 @@ target_include_directories(activity_disposal PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_disposal COMMAND activity_disposal)
+
+# --- S1: hue-aware metal (docs/CRAFTER_RUN_2026_08_30.md #20) --------------
+# (graphic, hue) -> defname against the shard's own COLOR_ORE table. Links
+# the same trio as m37_economy: VendorPolicy.cpp calls into the production
+# graph (prod::MissingInputs/FindRecipe) even though this suite only reaches
+# the two ItemNameForGraphic* lookups. Pure data and logic -- no server, no
+# MULs, no world data.
+add_executable(hue_metal hue_metal.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(hue_metal PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME hue_metal COMMAND hue_metal)
+
+# --- S5: traders go to the market (docs/S5_MARKET_TRIP_PLAN.md) ------------
+# The market is an ATLAS PLACE ID, never a coordinate pair, so this suite has
+# to load the real generated atlas -- the data dir arrives as argv[1], the same
+# way m38_closure gets it. It also links the planner and the need model,
+# because the other half of the slice is a goal that must rest after achieving
+# nothing and a clock long enough for a 560 s round trip.
+add_executable(m8_market_trip m8_market_trip.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    # S4: Market.cpp asks life::DecideAcquire whether a life would buy and
+    # wear an offered piece, rather than keeping a second copy of that sum.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    # S4: Market.cpp's gear predicate calls DecideAcquire, so anything that
+    # links Market.cpp now links the acquire decision with it.
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Needs.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Goals.cpp)
+target_include_directories(m8_market_trip PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(m8_market_trip PRIVATE uo_world)
+
+add_test(NAME m8_market_trip COMMAND m8_market_trip ${CMAKE_SOURCE_DIR}/data)
+
+# --- Service-place SELECTION policy (docs/CRAFTER_RUN_2026_08_30.md defect 4)
+# world_atlas::PickServicePlace ranks candidate places by real trip cost --
+# the route planner's tiles and gates, not raw map distance -- so it needs
+# uo_world (Atlas + NavGrid + RoutePlanner) and, for the regression half, the
+# real generated atlas and navgrid; the data dir arrives as argv[1].
+add_executable(m9_service_selection m9_service_selection.cpp)
+target_include_directories(m9_service_selection PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(m9_service_selection PRIVATE uo_world)
+
+add_test(NAME m9_service_selection COMMAND m9_service_selection ${CMAKE_SOURCE_DIR}/data)
+
+# --- S4: the gear half of the trade predicate ------------------------------
+#
+# docs/CRAFTER_RUN_2026_08_30.md section 1, slice S4. `ConsiderOffer` asked
+# `Shortfall`, `Shortfall` reads `consumes` and `consumables`, and a SWORD is
+# in neither -- so `Profession::wears` had never been consulted by the economy
+# layer at all and a swordsman could not want a sword.
+#
+# The weapon itself is not assumed: every field asserted here is cited to
+# runtime/scripts/crafting/interface/def_blacksmithing.scp (the shard's own
+# smithing menu) and runtime/scripts/items/weapons/i_weapons.scp (the ITEMDEF).
+# AcquirePlan.cpp comes along because the held/worn/reserve arithmetic is
+# DecideAcquire's -- the same object the live bot runs, not a copy.
+add_executable(trade_gear trade_gear.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(trade_gear PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME trade_gear COMMAND trade_gear)
+
+# --- trade_verify: move-item verification + unicode speech resolution -----
+#
+# Two false-negative bugs found live in run_r4/pair_Tarath.console.txt and
+# pair_Durnholde.console.txt (20:34:17-20:53:38): ActionOnItemInContainer
+# (Client.cpp) reporting "server_failure ... item landed in a different
+# container" for moves that actually succeeded -- a trade-window drop whose
+# confirming 0x25 named the OTHER side's container, and a partial-stack move
+# whose remainder echo used the SOURCE container -- and OnUnicodeMessage
+# filing an empty speaker name it could have resolved through the world
+# cache. Unlike every other suite in this file, this one needs the real
+# Client -- its packet handlers are not seamed out from sockets -- so it
+# links the WHOLE client (minus main.cpp) exactly the way uo_viewer does in
+# the root CMakeLists.txt, and opens a loopback listener of its own so
+# Client::Send() has somewhere real to write outbound packets (never
+# inspected; only local state is asserted on).
+set(TRADE_VERIFY_SOURCES ${UO_CLIENT_SOURCES})
+list(REMOVE_ITEM TRADE_VERIFY_SOURCES src/main.cpp)
+list(TRANSFORM TRADE_VERIFY_SOURCES PREPEND ${CMAKE_SOURCE_DIR}/)
+
+add_executable(trade_verify trade_verify.cpp ${TRADE_VERIFY_SOURCES})
+target_include_directories(trade_verify PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src
+    ${quickjs_SOURCE_DIR})
+target_link_libraries(trade_verify PRIVATE uo_mul uo_world qjs)
+if(WIN32)
+    target_link_libraries(trade_verify PRIVATE ws2_32 user32 gdi32)
+endif()
+
+add_test(NAME trade_verify COMMAND trade_verify)
