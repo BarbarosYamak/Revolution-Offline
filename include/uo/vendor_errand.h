@@ -104,6 +104,10 @@ struct VendorErrandSpec {
     // Never spend below this. The activity owns the policy; the errand only
     // enforces the number it is given.
     i32 goldFloor = 0;
+    // A price ceiling, section 16's "verify price". Zero means none. The
+    // activity decides what it is willing to pay; the errand refuses rows
+    // above it rather than buying whatever the shop happens to quote.
+    i32 maxPricePerUnit = 0;
 };
 
 struct VendorErrandResult {

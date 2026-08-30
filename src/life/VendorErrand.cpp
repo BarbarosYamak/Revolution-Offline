@@ -280,6 +280,17 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             for (const Client::VendorItem& v : client.VendorOffer()) {
                 if (v.graphic != spec_.graphic) continue;
                 if (v.amount == 0) continue;
+                // A PRICE CEILING (section 16). A bot with a full purse will
+                // otherwise pay whatever number the shop says.
+                if (spec_.maxPricePerUnit > 0 &&
+                    static_cast<i32>(v.price) > spec_.maxPricePerUnit) {
+                    running_ = false;
+                    return Failed(Fmt("the '%s' wants %d for %s, above the %d "
+                                      "this errand will pay",
+                                      spec_.sellers[seller_].trade,
+                                      static_cast<i32>(v.price), spec_.what,
+                                      spec_.maxPricePerUnit));
+                }
 
                 // Quantity is clamped in Client::ActionVendorBuy, where it
                 // belongs -- Sphere refuses the WHOLE order when the ask

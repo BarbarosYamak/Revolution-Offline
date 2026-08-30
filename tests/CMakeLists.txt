@@ -272,3 +272,20 @@ target_include_directories(interaction_handshake PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME interaction_handshake COMMAND interaction_handshake)
+
+# --- Activities: the arithmetic of buying -----------------------------------
+#
+# docs/BOT_ARCHITECTURE.md section 15. Every purchase bug this project has had
+# lived in the sums, not the packets: a request phrased "buy one" that could
+# not see six shields already in the pack, and a death reserve charged against
+# working capital until a scribe refused three 3-gold scrolls all session.
+#
+# BuyPlan.cpp is deliberately a separate translation unit from Buy.cpp so the
+# decision half links without Client and ctest can reach it.
+add_executable(activity_buy activity_buy.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/BuyPlan.cpp)
+target_include_directories(activity_buy PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_buy COMMAND activity_buy)

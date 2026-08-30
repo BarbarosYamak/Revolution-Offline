@@ -17,6 +17,7 @@
 
 #include "uo/life.h"
 #include "uo/world_model.h"
+#include "uo/activities/buy.h"
 #include "uo/vendor_errand.h"
 #include "uo/types.h"
 
@@ -270,7 +271,11 @@ private:
     // One per buying goal, deliberately: the trip and chase counters used to
     // be Runner members shared between goals, and a gear trip spent the
     // spellbook's allowance.
-    life::VendorErrand bandageErrand_;
+    // Purchases, as activities rather than inline steps. One per buying
+    // goal deliberately: the trip and chase counters used to be Runner
+    // members shared between goals, and a gear trip spent the spellbook's
+    // allowance.
+    life::BuyActivity bandageBuy_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible

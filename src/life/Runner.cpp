@@ -2880,41 +2880,52 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         }
         if (client.TravelBusy()) return false;
 
-        // --- THE ERRAND OWNS THE HANDSHAKE FROM HERE ---------------------
+        // --- ONE ACTIVITY, EVERY PURCHASE --------------------------------
         //
-        // Everything between "I want bandages" and "the server took the gold"
-        // used to live inline, and every step of it was learned the hard way
-        // in this one function: ask who is here, do not address the
-        // guildmaster, walk into reach, wait past the action's own deadline,
-        // never ask for more than the shelf holds. life::VendorErrand holds
-        // that sequence once, so the next buyer inherits it instead of
-        // rediscovering it. What stays HERE is what is genuinely this goal's
-        // business: the vendor POLICY above, how many bandages are wanted,
-        // and what to remember afterwards.
-        if (!bandageErrand_.Running()) {
-            life::VendorErrandSpec spec;
-            spec.Sell("healer", wm::Service::Healer);
-            spec.graphic = kBandage;
-            spec.qty = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
-            spec.what = "clean bandages";
-            spec.goldFloor = 0;   // bandages ARE the emergency reserve
-            bandageErrand_.Begin(spec);
+        // This goal no longer knows how buying works. It states WHAT it wants
+        // to end up holding and who might sell it; BuyActivity does the sums
+        // (shortfall, reserve, ceiling) and VendorErrand does the handshake
+        // (find a shopkeeper who is not a guildmaster, ask who is present,
+        // walk into reach, open, clamp to stock, verify the pack moved).
+        //
+        // Note the request is a TOTAL, not a quantity to buy. That phrasing
+        // is what makes "I already have thirty" expressible at all -- the
+        // version that said "buy twenty" is the one that bought six heater
+        // shields because a slot was still empty.
+        //
+        // goldFloor stays ZERO here deliberately: bandages ARE the emergency
+        // reserve. A character that will not spend its last coin on the thing
+        // that keeps it alive has misunderstood what the reserve is for.
+        if (!bandageBuy_.Running()) {
+            life::BuyRequest req;
+            req.graphic = kBandage;
+            req.item = "clean bandages";
+            req.desiredTotal = needCfg_.bandageFull;
+            req.minimumGoldReserve = 0;
+            req.Sell("healer", wm::Service::Healer);
+            bandageBuy_.Begin(req);
         }
-        const life::VendorErrandResult r = bandageErrand_.Tick(client, obs);
-        if (!r.why.empty()) LogLine("bandages: %s", r.why.c_str());
+        const life::ActivityTickResult r = bandageBuy_.Tick(client, obs);
+        if (r.reason && r.reason[0]) LogLine("bandages: %s", r.reason);
         if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
             nextActionMs_ = obs.nowMs + r.delayMs;
 
+        if (!life::IsTerminal(r.status)) {
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+
         if (r.status == life::ActivityStatus::Success) {
-            // Learn the shop. The errand deliberately knows nothing about
-            // memory -- it buys; remembering where from is a life's business.
+            // Learn the shop. The activity deliberately does not write
+            // memory -- remembering where the bandages came from is a life's
+            // business, not a purchase's.
             for (const Client::VendorItem& v : client.VendorOffer()) {
                 if (v.graphic != kBandage) continue;
                 KnownSupplier s;
                 s.need = "bandage";
                 s.name = v.name;
                 s.sourceType = "npc_vendor";
-                s.serial = r.keeper;
+                s.serial = bandageBuy_.Keeper();
                 s.x = obs.x; s.y = obs.y; s.z = obs.z;
                 s.observedQuantity = v.amount;
                 s.observedPricePerUnit = static_cast<i32>(v.price);
@@ -2928,25 +2939,17 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             return false;
         }
-        // EVERY TERMINAL STATE ENDS THE GOAL, not just Failed.
-        //
-        // The errand stops running the moment it reaches any terminal state,
-        // so a caller that only recognises Failed would let a finished errand
-        // be Begin()-ed again on the very next tick -- which is the spin this
-        // whole layer exists to end, reintroduced at the seam. NoProgress and
-        // RetryableFailure are the two that would have slipped through.
-        if (life::IsTerminal(r.status)) {
-            LogLine("goal_failed=REPLACE_EQUIPMENT status=%s reason=\"%s\"",
-                    life::ActivityStatusName(r.status), r.why.c_str());
-            // A shop that would not open is not the same as bandages being
-            // unobtainable: rest briefly and let another town be tried.
-            const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
-                                 ? kShortRestMs : kGearCooldownMs;
-            planner_.Cooldown(GoalKind::ReplaceEquipment, obs.nowMs + rest);
-            planner_.Finish(false, "no bandages bought", obs.nowMs);
-            return false;
-        }
-        planner_.NoteAttempt(obs.nowMs);
+
+        // Every other terminal status ends the goal. The activity has stopped
+        // running, so a caller that recognised only Failed would Begin() a
+        // fresh one next tick -- the spin this whole layer exists to end,
+        // reintroduced at the seam.
+        LogLine("goal_failed=REPLACE_EQUIPMENT status=%s reason=\"%s\"",
+                life::ActivityStatusName(r.status), r.reason);
+        const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
+                             ? kShortRestMs : kGearCooldownMs;
+        planner_.Cooldown(GoalKind::ReplaceEquipment, obs.nowMs + rest);
+        planner_.Finish(false, "no bandages bought", obs.nowMs);
         return false;
     }
     return true;
