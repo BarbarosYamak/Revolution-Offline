@@ -305,7 +305,10 @@ private:
     i32  selfPracticeRuns_ = 0;
     // When the current item was ordered from the craft menu, so the next one
     // is not started on top of it.
-    i64  craftAwaitingMs_ = 0;
+    // The wait for a craft to actually produce something. A Handshake, not
+    // a timestamp: it counts attempts, so a recipe that never lands gives
+    // up instead of repeating for a whole session.
+    life::Handshake craftWait_;
     bool makeLastIssued_ = false;
     bool craftCursorPending_ = false;
     i64  craftClickedMs_ = 0;

@@ -494,6 +494,14 @@ constexpr u16 kFishRawSteak = 0x097A;
 // than any single craft delay on this shard, short enough not to stall a
 // batch.
 constexpr i64 kCraftResolveMs = 8000;
+// How many times to swing at one recipe with nothing appearing before
+// admitting the batch is going nowhere. Voris repeated it for a whole
+// session; three is enough to ride out a slow shard and few enough to hand
+// the turn on.
+constexpr i32 kMaxCraftAttempts = 3;
+// And how long to leave it alone afterwards -- long enough that the planner
+// picks something else, short enough that a transient problem is retried.
+constexpr i64 kCraftStuckCooldownMs = 120000;
 constexpr i32 kSelfPracticeBeforeRethink = 6;
 constexpr i32 kMaxGoldCarriedRt = 800;
 constexpr i32 kGoldWorthCarryingRt = 500;
@@ -6260,6 +6268,9 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     if (craftItem_ != intent.item) {
         makeLastIssued_ = false;   // a different item needs its own first make
         craftItem_ = intent.item;
+        craftWait_.Configure(life::RetryPolicy{kMaxCraftAttempts,
+                                               kCraftResolveMs, 1000});
+        craftWait_.Reset();
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
         craftMade_ = 0;
         craftMenuStep_ = 0;
@@ -6273,7 +6284,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         craftMade_ += now - craftHadBefore_;
         craftHadBefore_ = now;
         craftMenuStep_ = 0;
-        craftAwaitingMs_ = 0;          // the thing we were waiting for arrived
+        craftWait_.Reset();            // the thing we were waiting for arrived
         planner_.NoteProgress();
         LogLine("craft: made one %s (%d this sitting)", craftItem_.c_str(),
                 craftMade_);
@@ -6397,16 +6408,52 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     // rises (handled above, which clears this) or the craft failed and the
     // timeout releases us. Either way, do not start a second craft on top of
     // the first.
-    if (craftAwaitingMs_ != 0) {
-        if (obs.nowMs - craftAwaitingMs_ < kCraftResolveMs) {
-            if (client.ActionBusy()) return false;
+    // ENTER ONLY WHILE AN ATTEMPT IS ACTUALLY OUTSTANDING.
+    //
+    // Not `State() != Idle`: NoteExpiry leaves the handshake in Backoff, and
+    // testing against Idle would re-enter this branch on the next tick and
+    // spin at 700 ms without ever reaching the code that re-issues. Backoff
+    // means "the last swing is closed out, take another" -- which is the
+    // fall-through below.
+    if (craftWait_.State() == life::HandshakeState::ActionIssued ||
+        craftWait_.State() == life::HandshakeState::WaitingForServer) {
+        // THE PACK IS THE WITNESS, and the deadline belongs to a Handshake
+        // rather than to a hand-rolled timestamp. Section 19: "Never start
+        // another craft merely because 2 seconds passed."
+        //
+        // WHAT THIS FIXES. The old timer expired and simply started over --
+        // "craft: no result from the last i_potion_poison in 8s -- trying
+        // again" -- which re-opened a menu THAT WAS ALREADY OPEN, because the
+        // 0x7C had arrived while the action layer was still calling the click
+        // a timeout. Voris spent his session on that loop. A Handshake counts
+        // the attempts, so a craft that never lands gives up and lets another
+        // goal have the turn instead of repeating forever.
+        if (client.ActionBusy()) return false;
+
+        if (!craftWait_.Expired(obs.nowMs)) {
             nextActionMs_ = obs.nowMs + 700;
             return false;
         }
-        LogLine("craft: no result from the last %s in %llds -- trying again",
+        craftWait_.NoteExpiry(obs.nowMs);
+        LogLine("craft: no result from the last %s in %llds (attempt %d of %d)",
                 craftItem_.c_str(),
-                static_cast<long long>(kCraftResolveMs / 1000));
-        craftAwaitingMs_ = 0;
+                static_cast<long long>(kCraftResolveMs / 1000),
+                craftWait_.Attempts(), kMaxCraftAttempts);
+
+        if (craftWait_.Exhausted()) {
+            // NOT SUCCESS, AND NOT SILENCE EITHER. The batch produced
+            // nothing, and saying so is what lets the planner give the turn
+            // to something else -- the NoProgress state that did not exist
+            // when this loop was written.
+            LogLine("goal_failed=CRAFT status=no_progress reason=\"%d "
+                    "attempts at %s and the pack never moved\"",
+                    craftWait_.Attempts(), craftItem_.c_str());
+            craftWait_.Reset();
+            craftMenuStep_ = 0;
+            planner_.Cooldown(GoalKind::Craft, obs.nowMs + kCraftStuckCooldownMs);
+            planner_.Finish(false, "the craft produced nothing", obs.nowMs);
+            return false;
+        }
     }
 
     // --- walk the menu -----------------------------------------------------
@@ -6474,7 +6521,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         // craftAwaitingMs_ makes the wait explicit rather than a guessed
         // delay: the pack is watched until the count rises, and the timeout
         // below is only a floor under a craft that failed silently.
-        craftAwaitingMs_ = obs.nowMs;
+        craftWait_.NoteIssued(obs.nowMs);
         nextActionMs_ = obs.nowMs + 1000;
         return false;
     }

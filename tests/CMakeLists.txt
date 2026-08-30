@@ -317,3 +317,17 @@ target_include_directories(interaction_rotation PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME interaction_rotation COMMAND interaction_rotation)
+
+# --- Activities: the arithmetic of crafting ---------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 18 and 19. The WAIT is covered by
+# interaction_progress and interaction_handshake; this is the decision that
+# precedes it -- how many are still wanted, and whether the only inputs left
+# are the working reserve a smith needs to smith tomorrow.
+add_executable(activity_craft activity_craft.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/CraftPlan.cpp)
+target_include_directories(activity_craft PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_craft COMMAND activity_craft)
