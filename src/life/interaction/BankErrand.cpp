@@ -16,9 +16,21 @@ namespace {
 // this whole layer exists to make unwritable.
 constexpr i64 kBankActionDeadlineMs = 8000;
 
-// Arm's length for a banker. Tighter than a shop counter: Sphere wants the
-// speech to reach them.
-constexpr i32 kBankerReach = 2;
+// HOW CLOSE TO STAND TO A BANKER, and why it is ONE tile rather than two.
+//
+// Sphere gates hearing on LINE OF SIGHT, not merely distance: Event_Talk
+// skips any NPC failing CanSeeLOS unless sphere.ini's NPCDistanceHear is
+// negative (CClientEvent.cpp:1892, :1949). That setting is GLOBAL -- there is
+// no banker-only form of it, and the only banker-specific branch lives inside
+// Source-X, which this project does not modify.
+//
+// So a banker in the next room of the same building simply cannot hear the
+// word, however close in tiles the character stands. v3_Corwyn proved it:
+// two bankers asked, 95 attempts, no box ever opened (2026-08-30 15:08-15:13).
+//
+// Standing ON the counter tile is what a player does, and it is the only
+// thing that reliably puts a wall behind us rather than between us.
+constexpr i32 kBankerReach = 1;
 
 // How many times to ask ONE banker before deciding it is not listening, and
 // how many bankers are worth trying before the errand fails honestly.

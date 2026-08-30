@@ -442,3 +442,16 @@ target_include_directories(activity_eat PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_eat COMMAND activity_eat)
+
+# How much of a thing a life keeps, which is a COUNT and never a flag.
+# v4_Corwyn read a sell list holding two daggers and six heater shields, sold
+# the daggers for 72 gold and left 366 gold of shields in his pack -- because
+# a smith produces shields, so "do I need this graphic?" answered yes for the
+# sixth as loudly as for the first.
+add_executable(activity_disposal activity_disposal.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/DisposalPlan.cpp)
+target_include_directories(activity_disposal PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_disposal COMMAND activity_disposal)

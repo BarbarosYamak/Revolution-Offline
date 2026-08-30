@@ -18,6 +18,7 @@
 #include "uo/life.h"
 #include "uo/world_model.h"
 #include "uo/activities/buy.h"
+#include "uo/activities/disposal.h"
 #include "uo/interaction/bank_errand.h"
 #include "uo/vendor_errand.h"
 #include "uo/types.h"
@@ -126,6 +127,12 @@ private:
     // what it makes those from. Everything else is spare -- bankable as dead
     // weight, or sellable as loot.
     bool LifeNeedsGraphic(u16 gfx) const;
+    // WHAT THIS GRAPHIC MEANS TO THIS CHARACTER. The same heater shield is
+    // Produce to the smith who makes them and Wearable to the fencer who
+    // fights with one, and how many of it stays in the pack follows from
+    // that. See uo/activities/disposal.h -- the count lives there, the
+    // classification here, because only the Runner knows the profession.
+    ItemRole RoleOfGraphic(u16 gfx) const;
     bool DoGetFood(Client& client, const Observation& obs);
     bool DoPracticeSkill(Client& client, const Observation& obs);
     int  PickPracticeSpell(Client& client, const Observation& obs) const;
@@ -238,7 +245,6 @@ private:
     i64  overloadWatchMs_ = 0;
     // Bounded bank trips, for the same reason gathering needed one.
     static constexpr i32 kMaxBankTrips = 4;
-    i32  bankTrips_ = 0;
     // Bounded food errands, and a rest when there is no provisioner.
     // A ghost walking to a healer. Bounded, like every other errand.
     // Who we were last fighting, by NAME, and whether this death has
@@ -454,6 +460,23 @@ private:
     // quoted sale leaves the purse unmoved -- an NPC vendor's own gold is
     // finite and it will list an offer it cannot pay for. 0 = no cap.
     i32   sellLotCap_ = 0;
+    // ONE VISIT, EVERYTHING SPARE. The vendor names its whole buy list in a
+    // single 0x9E, and the old path sold the one item the goal was about and
+    // reported success -- v4_Corwyn took 72 gold for two daggers and left six
+    // heater shields worth 366 in his pack. After each confirmed sale the
+    // errand re-asks the same vendor and offers whatever else is surplus;
+    // this bounds that, so a mispriced list cannot loop.
+    static constexpr i32 kMaxSellSweeps = 8;
+    i32   sellSweeps_ = 0;
+    i32   sellSweepGold_ = 0;          // gold taken across this whole visit
+    // WHICH ITEM THE PENDING SALE SHOULD BE VERIFIED AGAINST. Usually
+    // sellItem_, but a surplus sweep offers whatever the vendor listed, and
+    // checking the pack for the goal's item while selling shields would credit
+    // a sale that never happened. Empty means the pack half cannot be checked
+    // -- econ maps only 63 graphics to defnames -- and the purse alone decides.
+    std::string sellVerifyItem_;
+    // How many disposal tuning says stays behind, per role.
+    life::DisposalTuning disposal_;
     // How long EARN_GOLD stands down once every buyer trade has failed.
     // The vendors need a restock cycle; nothing changes in three seconds.
     static constexpr i64 kNoBuyerCooldownMs = 3 * 60 * 1000;

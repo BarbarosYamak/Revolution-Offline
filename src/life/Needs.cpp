@@ -392,6 +392,11 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // Only suppresses banking when there is somewhere to actually take it:
     // a load with no buyer is exactly what the bank is for.
     bool loadIsSellable = false;
+    // ...AND WHAT IS CARRIED THAT NOBODY WILL TAKE AT ALL. Distinct from the
+    // above: `loadIsSellable` asks whether ANY of the load has a buyer, this
+    // counts the part that has none.
+    i32 unsoldStock = 0;
+    std::string unsoldName;
     if (cfg.profession) {
         const std::vector<market::Offer> onHand =
             market::Surplus(*cfg.profession, obs.pack,
@@ -400,7 +405,11 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             if (market::HasNpcBuyer(o.item.c_str()) ||
                 mem.BestSupplier((std::string("buyer:") + o.item).c_str())) {
                 loadIsSellable = true;
-                break;
+                continue;
+            }
+            if (o.qty > unsoldStock) {
+                unsoldStock = o.qty;
+                unsoldName = o.item;
             }
         }
     }
@@ -422,6 +431,39 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         add(NeedKind::NeedBank, 0.35, "deposit logs",
             "enough logs carried to be worth securing",
             Fmt("logs=%d threshold=%d", obs.logs, cfg.logsWorthBanking));
+    } else if (unsoldStock > 0) {
+        // STOCK NOBODY WILL BUY *YET* WAITS IN THE BOX.
+        //
+        // "until they have orders they keep other ingots in the bank"
+        // (project owner, 2026-08-30). A smith mines special ore, smelts it,
+        // and makes whole sets to an order placed by another bot -- and until
+        // an order exists that output has nowhere to go.
+        //
+        // This is deliberately NOT the case SellableInstead guards against.
+        // That rule says a life which produces something has a market for it
+        // "by definition: an NPC buys it, or a player does", and refuses to
+        // let a lumberjack bank logs it means to sell. Both halves of that
+        // definition are FALSE for what `unsoldStock` counts: no NPC buys it
+        // (HasNpcBuyer) and no player buyer is known (BestSupplier).
+        //
+        // AND IT MUST NOT DEPEND ON HAVING TRIED THE MARKET THIS SESSION. The
+        // first version also required obs.marketQuiet, which is set only by an
+        // actual trade attempt and is not persisted -- so Corwyn, sitting on
+        // 9,938 gold, never scored NeedTrade highly enough to try, never set
+        // the flag, and carried the same seventeen ingots through a fourth
+        // session. A condition reachable only from the state it is meant to
+        // resolve is not a condition.
+        //
+        // 0.40 is deliberately below NeedTrade's live urgency (0.49 when
+        // carrying spare goods), so a character that CAN still announce its
+        // stock does that first and only banks what the market ignored. And
+        // below the weight clauses: a full pack is a more urgent reason to
+        // visit a box than a tidy one.
+        add(NeedKind::NeedBank, 0.40, "put unsold stock away",
+            "carrying output no NPC buys and no player is known to want -- it "
+            "waits in the box until there is an order for it",
+            Fmt("%d x %s spare with no buyer", unsoldStock,
+                unsoldName.c_str()));
     }
 
     // A BANK TRIP IS ALSO FOR TAKING MONEY OUT. Depositing was implemented

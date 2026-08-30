@@ -1496,7 +1496,6 @@ void Runner::LearnFromObservation(Client& client, const Observation& obs) {
     // real Yew woods. A stand is recorded only where a chop YIELDED (see
     // DoGatherLogs), and leads come from HintResource.
     if (obs.atBank) {
-        bankTrips_ = 0;
         // Pack emptied: stop reacting to the overflow message that got us here.
         // (The `+ 1` that used to be here is now inside JournalNowMs, which
         // returns an exclusive mark for every caller rather than only this one.)
@@ -3128,6 +3127,61 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
                 return false;
             }
         }
+        // STOCK NOBODY WILL BUY YET, WHATEVER THE PACK WEIGHS.
+        //
+        // "until they have orders they keep other ingots in the bank"
+        // (project owner, 2026-08-30). Every branch around this one is gated
+        // on `loadDemandsIt` -- carried weight -- and seventeen iron ingots
+        // are not heavy. So Corwyn carried them through three sessions while
+        // EARN_GOLD logged, every single time:
+        //
+        //   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known
+        //   to buy it (17 x i_ingot_iron spare, and no buyer known)
+        //
+        // Unsellable is not worthless. It is stock waiting for an order, and
+        // stock waits in the box. NeedBank scores this same condition (see
+        // Needs.cpp, "put unsold stock away") so the need and the action
+        // agree -- without that pairing the goal completes having done
+        // nothing and is picked again immediately. The two buyer checks below
+        // are the whole test, and they are the same two the need uses.
+        //
+        // A WORKING BATCH STAYS. Ingots are both what a smith makes and what
+        // it makes FROM; banking every one would leave it standing at a forge
+        // with nothing to hammer.
+        if (needCfg_.profession) {
+            const i32 keepToWorkWith = needCfg_.craftBatch * 2;
+            for (const std::string& made : needCfg_.profession->produces) {
+                if (market::MaySellToNpc(*needCfg_.profession, made.c_str(),
+                                         state_.ledger).allowed)
+                    continue;   // it has an NPC route; selling beats storing
+                if (state_.memory.BestSupplier(
+                        (std::string("buyer:") + made).c_str()))
+                    continue;   // a player buyer is known; that is a sale
+
+                const std::vector<u16> gfx = econ::GraphicsForItem(made.c_str());
+                u32 serial = 0;
+                i32 amount = 0;
+                for (u16 g : gfx) {
+                    const u32 found = client.FindBackpackItemByGraphic(g);
+                    if (!found) continue;
+                    serial = found;
+                    amount = static_cast<i32>(client.BackpackItemCount(g));
+                    break;
+                }
+                if (!serial || amount <= keepToWorkWith) continue;
+
+                const i32 put = amount - keepToWorkWith;
+                LogLine("bank: storing %d %s until there is an order for it "
+                        "(keeping %d to work with; no NPC buys it and the "
+                        "player market was quiet)",
+                        put, made.c_str(), keepToWorkWith);
+                client.ActionMoveItem(serial, static_cast<u16>(put), box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
+
         // AND THE INPUTS, when the load demands it. DoBank could only ever
         // deposit what a life PRODUCES, so a scribe carrying two hundred and
         // thirty blank scrolls at 97% of its carry limit reached the bank,
@@ -3890,6 +3944,11 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     // purchase read as a failure earlier in M5.
     if (sellSent_) {
         // BOTH HALVES, through the shared check (section 18).
+        // AGAINST WHAT WAS ACTUALLY OFFERED. A surplus sweep sells whatever
+        // the vendor listed, not the item the goal is named after.
+        const std::string& soldItem =
+            sellVerifyItem_.empty() ? sellItem_ : sellVerifyItem_;
+
         life::Expectation want;
         want.itemBefore = sellItemBefore_;
         want.itemLoss = 1;          // one leaving proves the sale happened
@@ -3897,7 +3956,7 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         want.goldGainMin = 1;
 
         life::Observed seen;
-        seen.itemNow = market::QtyOf(obs.pack, sellItem_);
+        seen.itemNow = market::QtyOf(obs.pack, soldItem);
         seen.goldNow = obs.gold;
 
         const life::ProgressCheck sale = life::Verify(want, seen);
@@ -3906,13 +3965,13 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             const i32 sold = -sale.itemDelta;
             const i32 each = sold > 0 ? paid / sold : paid;
             LogLine("earn_gold: sold %d %s for %d gold (%d each) to a '%s'",
-                    sellWanted_, sellItem_.c_str(), paid, each,
+                    sellWanted_, soldItem.c_str(), paid, each,
                     sellTrade_.c_str());
 
             // What it was worth, as OBSERVED. This is the only kind of price
             // this project lets a character know.
             market::PriceObservation po;
-            po.item = sellItem_;
+            po.item = soldItem;
             po.pricePerUnit = each;
             po.source = market::PriceSource::NpcVendorBuys;
             po.who = sellTrade_;
@@ -3923,10 +3982,10 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             // Selling to an NPC CREATES gold. Recording it as a source is what
             // makes the anti-arbitrage invariant checkable afterwards.
             state_.ledger.Note(market::GoldFlow::CreatedVendor, paid,
-                               sellItem_.c_str(), obs.nowMs);
+                               soldItem.c_str(), obs.nowMs);
 
             KnownSupplier sup;
-            sup.need = std::string("buyer:") + sellItem_;
+            sup.need = std::string("buyer:") + soldItem;
             sup.name = sellTrade_;
             sup.sourceType = "npc_vendor";
             sup.x = obs.x; sup.y = obs.y; sup.z = obs.z;
@@ -3935,14 +3994,39 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             sup.policyAllows = true;
             state_.memory.NoteSupplier(sup);
 
-            state_.memory.NoteEvent("sold_to_vendor", sellItem_.c_str(),
+            state_.memory.NoteEvent("sold_to_vendor", soldItem.c_str(),
                                     sellTrade_.c_str(), obs.x, obs.y, obs.nowMs);
             planner_.NoteProgress();
             sellSent_ = false;
             sellAsked_ = false;
             sellTrips_ = 0;
             sellLotCap_ = 0;   // this buyer could pay; stop rationing
+            sellSweepGold_ += paid;
             Checkpoint(client, obs.nowMs, "sold to a vendor");
+
+            // ONE VISIT, EVERYTHING SPARE.
+            //
+            // The old code returned success here, and that is the whole of
+            // v4_Corwyn's 366 lost gold: Curtis had ALREADY named the six
+            // heater shields he would buy, in the same 0x9E that listed the
+            // two daggers. Corwyn took 72 gold for the daggers, reported the
+            // errand done, and walked to the forge to make more daggers.
+            //
+            // A player empties their pack at the counter they are already
+            // standing at. So re-ask the same vendor -- the sold items are
+            // gone from the refreshed list, and whatever else is surplus is
+            // still on it -- and only finish when nothing is left that this
+            // buyer will take.
+            if (++sellSweeps_ < kMaxSellSweeps) {
+                LogLine("earn_gold: %d gold so far at this counter -- asking "
+                        "the '%s' what else it will take before leaving",
+                        sellSweepGold_, sellTrade_.c_str());
+                sellVerifyItem_.clear();
+                nextActionMs_ = obs.nowMs + 1200;
+                return false;
+            }
+            LogLine("earn_gold: %d gold at this counter over %d sales -- "
+                    "enough for one visit", sellSweepGold_, sellSweeps_);
             return true;
         }
         if (obs.nowMs - sellAskedMs_ > 12000) {
@@ -3986,11 +4070,25 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     }
 
     // --- what is there to sell? -------------------------------------------
+    //
+    // MID-SWEEP, THIS QUESTION IS ALREADY ANSWERED -- BY THE VENDOR.
+    //
+    // market::Surplus only knows what this life PRODUCES, and that is a
+    // narrower question than "what will this counter take off my hands". The
+    // first sweep proved it: Corwyn sold his daggers, said he would ask what
+    // else Curtis wanted, and this chooser answered "nothing spare to sell"
+    // and stood the goal down -- with six saleable shields in his pack -- one
+    // second later. The 0x9E list is the authority once we are standing at
+    // the counter, so keep the errand aimed where it is and let the sell
+    // stage read it.
+    const bool sweeping = sellSweeps_ > 0 && sellSweeps_ < kMaxSellSweeps &&
+                          sellSweepGold_ > 0 && sellVendorSerial_ != 0;
+
     // The threshold bends when the purse is empty: see PolicyForPurse.
     const market::TradePolicy tp = market::PolicyForPurse(obs.goldOnHand);
     const std::vector<market::Offer> offers =
         market::Surplus(*me, obs.pack, tp);
-    if (offers.empty()) {
+    if (offers.empty() && !sweeping) {
         // THE STOCK MAY BE IN THE BOX. The need layer scores this errand from
         // pack AND bank on purpose -- goods in the bank are still this
         // character's stock, "it just has to go and fetch them, which is a
@@ -4065,65 +4163,41 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             // it did: eight identical "going to fetch it" lines in twelve
             // seconds, never once opening the box. Same shape as the no-op
             // travel loop that pinned GATHER_LOGS.
-            if (client.TravelBusy()) return false;
-            const u32 banker = client.NearestMobileWithTrade("banker");
-            if (banker) {
-                LogLine("earn_gold: the stock is in the bank (%d %s) -- opening "
-                        "the box", market::QtyOf(obs.bank, fetch->item),
-                        fetch->item.c_str());
-                client.ActionOpenBank(banker);
+            // THE SAME ERRAND AS DoBank'S, not a second hand-written one.
+            //
+            // This was the last unported bank-open, and it spun live within
+            // three minutes of being left alone: "earn_gold: the stock is in
+            // the bank (1 i_dagger) -- opening the box", every 2.5 seconds
+            // against an 8-second deadline, so each ask cancelled the one
+            // before it (v3_Corwyn, 15:08). The commit that left it here
+            // predicted exactly that -- "no rotation, no deadline discipline
+            // and no check that a box ever opened" -- which is an argument
+            // for porting a known defect rather than annotating it.
+            if (!bankErrand_.Running()) bankErrand_.Begin();
+            const life::BankErrandResult br = bankErrand_.Tick(client, obs);
+            if (!br.why.empty())
+                LogLine("earn_gold: fetching %s -- %s", fetch->item.c_str(),
+                        br.why.c_str());
+            if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
+                nextActionMs_ = obs.nowMs + br.delayMs;
+
+            if (br.status == life::ActivityStatus::Success) {
                 i32 bx = 0, by = 0; i8 bz = 0;
-                if (client.MobilePosition(banker, &bx, &by, &bz)) {
+                if (br.banker && client.MobilePosition(br.banker, &bx, &by, &bz))
                     state_.memory.NotePlace("bank", "bank", bx, by, bz,
                                             obs.nowMs);
-                }
-                // TODO(bank): this is a SECOND hand-written bank-open, and
-                // it should be a BankErrand like DoBank's. It asks whoever is
-                // nearest with no rotation, no deadline discipline and no
-                // check that a box ever opened -- all three of which
-                // BankErrand now owns. Left as-is in this commit because
-                // porting it is a change to DoEarnGold's flow, not a rename.
-                // (bankOpenedMs_ was assigned here and read nowhere, so it
-                // has simply gone.)
-                nextActionMs_ = obs.nowMs + 2500;
+                return false;   // the box is open; the fetch continues below
+            }
+            if (life::IsTerminal(br.status)) {
+                LogLine("goal_failed=EARN_GOLD status=%s reason=\"%s\"",
+                        life::ActivityStatusName(br.status), br.why.c_str());
+                planner_.Cooldown(GoalKind::EarnGold, obs.nowMs + kShortRestMs);
+                planner_.Finish(false, "no banker opened a box", obs.nowMs);
                 return false;
             }
-            if (!travelInFlight_) {
-                if (++bankTrips_ > kMaxBankTrips) {
-                    LogLine("goal_failed=EARN_GOLD reason=\"%d trips and still "
-                            "no banker in reach\"", bankTrips_);
-                    planner_.Finish(false, "no banker reachable", obs.nowMs);
-                    bankTrips_ = 0;
-                    nextActionMs_ = obs.nowMs + 30000;
-                    return false;
-                }
-                const KnownPlace* known = state_.memory.NearestPlace("bank", obs.x, obs.y);
-                LogLine("earn_gold: the stock is in the bank (%d %s) -- going "
-                        "to fetch it (trip %d)",
-                        market::QtyOf(obs.bank, fetch->item),
-                        fetch->item.c_str(), bankTrips_);
-                travelInFlight_ =
-                    known ? client.TravelToPoint(known->x, known->y, 2, "bank")
-                          : client.TravelToService(wm::Service::Banker,
-                                                   HomeOrNearest(state_.homeCity));
-                if (!travelInFlight_) {
-                    LogLine("goal_blocked=EARN_GOLD reason=\"%s\" (%s)",
-                            faucet::RefusalName(faucet::Refusal::VendorUnreachable),
-                            client.TravelFailureText());
-                    planner_.NoteAttempt(obs.nowMs);
-                    nextActionMs_ = obs.nowMs + 15000;
-                }
-                nextActionMs_ = obs.nowMs + 2000;
-                return false;
-            }
-            travelInFlight_ = false;
-            // Arrived. A title only exists after a name request, so ask who is
-            // here before concluding no banker is.
-            client.ActionScanMobiles();
-            nextActionMs_ = obs.nowMs + 2500;
+            planner_.NoteAttempt(obs.nowMs);
             return false;
         }
-        bankTrips_ = 0;
 
         const std::vector<u16> gfx = econ::GraphicsForItem(fetch->item.c_str());
         const u32 serial = client.FindContainerItemByGraphic(
@@ -4157,20 +4231,29 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         chosen = &o;
         break;
     }
-    if (!chosen) {
+    if (!chosen && !sweeping) {
         LogLine("earn_gold: everything spare is barred from an NPC sale; "
                 "banking instead");
         return true;
     }
 
-    if (sellItem_ != chosen->item) {
-        sellItem_ = chosen->item;
-        sellBuyerIndex_ = 0;
-        sellTrade_.clear();
-        sellTrips_ = 0;
-        sellLotCap_ = 0;
+    // Mid-sweep there is no new item to choose: the errand stays aimed at the
+    // counter it is standing at, and the vendor's own list decides what goes.
+    if (chosen) {
+        if (sellItem_ != chosen->item) {
+            sellItem_ = chosen->item;
+            sellBuyerIndex_ = 0;
+            sellTrade_.clear();
+            sellTrips_ = 0;
+            sellLotCap_ = 0;
+            // A new item to sell is a new visit; what the last counter paid
+            // says nothing about this one.
+            sellSweeps_ = 0;
+            sellSweepGold_ = 0;
+            sellVerifyItem_.clear();
+        }
+        sellWanted_ = chosen->qty;
     }
-    sellWanted_ = chosen->qty;
 
     // --- who buys it? ------------------------------------------------------
     const std::vector<const market::NpcBuyer*> buyers =
@@ -4266,6 +4349,9 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     if (sellVendorSerial_ != vendor) {
         sellVendorSerial_ = vendor;
         sellApproached_ = false;
+        // A different counter. Its purse and its buy list are its own.
+        sellSweeps_ = 0;
+        sellSweepGold_ = 0;
     }
     if (!sellApproached_) {
         i32 vx = 0, vy = 0; i8 vz = 0;
@@ -4373,7 +4459,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
         // gold alone also rises from loot, a player trade and a bank
         // withdrawal, and crediting this sale for one of those teaches the
         // price book a number nobody paid. See interaction/progress.h.
-        sellItemBefore_ = market::QtyOf(obs.pack, sellItem_);
+        sellVerifyItem_ = sellItem_;
+        sellItemBefore_ = market::QtyOf(obs.pack, sellVerifyItem_);
         sellAskedMs_ = obs.nowMs;
         client.ActionVendorSellMany(vendor, lot);
         sellSent_ = true;
@@ -4396,27 +4483,80 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     // not one weapon or piece of armour.
     for (const Client::VendorItem& v : client.VendorSellOffer()) {
         if (v.amount <= 0 || v.price == 0) continue;
-        if (LifeNeedsGraphic(v.graphic)) continue;   // tool, stock, or input
 
-        i32 qty = static_cast<i32>(v.amount);
-        if (sellLotCap_ > 0) qty = std::min<i32>(qty, sellLotCap_);
-        if (qty <= 0) continue;
+        // HOW MANY OF IT STAYS, not whether any of it is wanted. The role
+        // says what it is for; disposal.h says how many that means keeping.
+        const ItemRole role = RoleOfGraphic(v.graphic);
 
-        LogLine("earn_gold: selling %d looted 0x%04X at %u each to a '%s' "
-                "(this life has no use for it)",
-                qty, v.graphic, v.price, sellTrade_.c_str());
+        // Every entry of this graphic the vendor listed, and every one in the
+        // pack -- a dagger does not stack, so one entry is one dagger and the
+        // count has to be gathered rather than read off a single row.
+        i32 listed = 0;
+        for (const Client::VendorItem& w : client.VendorSellOffer())
+            if (w.graphic == v.graphic && w.amount > 0)
+                listed += static_cast<i32>(w.amount);
+
+        life::DisposalSight see;
+        see.role = role;
+        // The 0x9E list is built FROM the backpack, so what it lists is what
+        // is carried. An equipped shield is not in it, which is exactly why
+        // selling every spare cannot strip a character of the one it wears.
+        see.carried = listed;
+        see.vendorTakes = listed;
+        see.pricePerUnit = static_cast<i32>(v.price);
+        see.lotCap = sellLotCap_;
+
+        const life::DisposalPlan plan = life::DecideDisposal(see, disposal_);
+        if (plan.step != life::DisposalStep::Sell) continue;
+
+        const i32 qty = plan.quantity;
+
+        LogLine("earn_gold: selling %d of 0x%04X at %u each to a '%s' "
+                "(%s -- %s)",
+                qty, v.graphic, v.price, sellTrade_.c_str(),
+                life::ItemRoleName(role), plan.reason);
         sellWanted_ = qty;
         sellGoldBefore_ = obs.gold;
-        // AND WHAT THE PACK HELD. A sale is gold arriving AND goods leaving;
-        // gold alone also rises from loot, a player trade and a bank
-        // withdrawal, and crediting this sale for one of those teaches the
-        // price book a number nobody paid. See interaction/progress.h.
-        sellItemBefore_ = market::QtyOf(obs.pack, sellItem_);
+        // AND WHAT THE PACK HELD -- OF THE THING ACTUALLY BEING SOLD. Counting
+        // the goal's item while offering shields would credit a sale of
+        // daggers that never happened. econ names only 63 graphics; when this
+        // one is not among them the purse alone decides, which Verify()
+        // already expresses as itemBefore = -1.
+        const char* def = econ::ItemNameForGraphic(v.graphic);
+        sellVerifyItem_ = def ? def : "";
+        sellItemBefore_ = sellVerifyItem_.empty()
+                              ? -1
+                              : market::QtyOf(obs.pack, sellVerifyItem_);
         sellAskedMs_ = obs.nowMs;
-        client.ActionVendorSell(vendor, v.serial, static_cast<u16>(qty));
+
+        // THE WHOLE LOT, IN ONE TRANSACTION -- the same rule the primary path
+        // learnt. Armour and weapons do not stack, so `qty` spans that many
+        // separate serials and sending one row of amount N sells exactly one.
+        std::vector<std::pair<u32, u16>> lot;
+        i32 taken = 0;
+        for (const Client::VendorItem& w : client.VendorSellOffer()) {
+            if (taken >= qty) break;
+            if (w.graphic != v.graphic || w.amount <= 0) continue;
+            const i32 take = std::min<i32>(qty - taken, static_cast<i32>(w.amount));
+            lot.emplace_back(w.serial, static_cast<u16>(take));
+            taken += take;
+        }
+        if (lot.empty()) continue;
+        client.ActionVendorSellMany(vendor, lot);
         sellSent_ = true;
         nextActionMs_ = obs.nowMs + 3000;
         return false;
+    }
+
+    // A SWEEP THAT RAN OUT OF THINGS TO SELL HAS SUCCEEDED, NOT FAILED. If
+    // gold changed hands at this counter, the pack is as empty as this buyer
+    // can make it; marching on to the next trade would be looking for a
+    // buyer for nothing.
+    if (sellSweepGold_ > 0) {
+        LogLine("earn_gold: %d gold from this '%s' over %d sale(s), and it "
+                "will take nothing else we carry -- done here",
+                sellSweepGold_, sellTrade_.c_str(), sellSweeps_);
+        return true;
     }
 
     LogLine("earn_gold: this '%s' does not take %s after all, nor anything "
@@ -6422,10 +6562,20 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             // revolution_makelast.scp (a PLEVEL 1 command, so it is invoked by
             // speech with sphere.ini's CommandPrefix ".") repeats the last
             // COMPLETED craft: crafting_events.scp's @skillmakeitem stores the
-            // baseid in CTAG.revo.makelast.item, for the legacy menus as well
+            // baseid in TAG.revo.makelast.item, for the legacy menus as well
             // as the modern gump. So the first item still goes through the
             // menu -- that is what sets the tag -- and the rest of the batch
             // is one command instead of four dialog round-trips each.
+            //
+            // IT WAS A **CTAG** UNTIL 2026-08-30, WHICH MEANT THIS HAD NEVER
+            // WORKED. CTAG is a CLIENT key and CChar::r_LoadVal has no
+            // forward to the client, so every write fell through to
+            // CScriptObj::r_LoadVal and logged "Undefined keyword" -- the tag
+            // was never set and .makelast answered "You have not successfully
+            // crafted an item yet", every time, for as long as this code has
+            // existed. Fixed in scripts/revolution/revolution_makelast.scp;
+            // the first live exercise of it is still pending, because the
+            // craft has to COMPLETE once before there is anything to repeat.
             //
             // The server re-checks CANMAKE every repetition, so skill,
             // materials, tool and station are all still enforced; it stops by
@@ -7268,6 +7418,58 @@ bool Runner::LifeNeedsGraphic(u16 gfx) const {
     return false;
 }
 
+// WHAT THIS GRAPHIC IS FOR, in this character's hands.
+//
+// LifeNeedsGraphic above answers yes/no, and yes/no is the wrong question for
+// anything a life can own more than one of. A smith PRODUCES heater shields,
+// so it answered "needed" for Corwyn's sixth shield exactly as loudly as for
+// his first, and six of them rode along unsold past a vendor offering 61 gold
+// each. The role decides the KEEP-COUNT; see uo/activities/disposal.h.
+//
+// Order matters. A thing can be both an input and a product -- iron ingots
+// are made by a smith and consumed by one -- and being needed for the next
+// item on the bench outranks being stock to sell.
+ItemRole Runner::RoleOfGraphic(u16 gfx) const {
+    if (gfx == kGoldCoin) return ItemRole::Money;
+
+    const prof::Profession* me = needCfg_.profession;
+    if (!me) return ItemRole::Unknown;
+
+    auto named = [&](const std::string& item) {
+        for (u16 g : econ::GraphicsForItem(item.c_str()))
+            if (g == gfx) return true;
+        return false;
+    };
+
+    for (const prof::ToolNeed& t : me->tools)
+        for (u16 g : t.graphics) if (g == gfx) return ItemRole::Tool;
+
+    for (const prof::ConsumableNeed& c : me->consumables)
+        for (u16 g : c.graphics) if (g == gfx) return ItemRole::Consumable;
+
+    for (const std::string& it : me->consumes)
+        if (named(it)) return ItemRole::CraftInput;
+
+    // An input to something on the recipe list is stock for the next make,
+    // and outranks being a product in its own right.
+    for (const std::string& made : me->produces) {
+        const prod::Recipe* r = prod::FindRecipe(made.c_str());
+        if (!r) continue;
+        for (const prod::Ingredient& in : r->inputs)
+            if (in.item && named(in.item)) return ItemRole::CraftInput;
+    }
+
+    // WHAT IT MAKES IS STOCK, AND STOCK IS FOR SELLING. Nothing here keeps a
+    // spare back: the one being worn is equipped, and an equipped item is not
+    // in the backpack the vendor's list is built from.
+    for (const std::string& made : me->produces)
+        if (named(made)) return ItemRole::Produce;
+
+    // Anything else in the pack is loot, a gift, or a mistake. None of those
+    // is a reason to keep carrying it.
+    return ItemRole::Unknown;
+}
+
 bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (client.ActionBusy()) return false;
 
@@ -7432,6 +7634,19 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // things a profession makes other things from.
     if (client.TravelBusy()) return false;
 
+    // CORRECTION, 2026-08-30: A PROVISIONER *DOES* SELL FOOD HERE.
+    //
+    // The note below is kept because its reasoning is still right, but its
+    // FACT is now wrong and acting on it would be a mistake. The four SELL
+    // lines it calls commented out are live in the current tm_vend.scp
+    // (1350-1353: bread, lamb, chicken, cooked bird at {5 38}), and the
+    // project owner confirms provisioners sold food on Revolution.
+    //
+    // What actually failed in v1_Corwyn was not stock but the HANDSHAKE:
+    // "food: the 'provisioner' would not open a shop". The shop never
+    // opened, so its list was never read. Different problem, same afternoon.
+    //
+    // --- the original note, now historical -------------------------------
     // A PROVISIONER ON THIS SHARD CANNOT SELL FOOD.
     //
     // This goal asked one anyway, all session, and never ate. The shop window

@@ -3,6 +3,9 @@ i_pet_horse_pack	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records a
 i_pet_llama_pack	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_cloth_bolt	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_ingot_iron	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
+i_ingot_copper	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
+i_ingot_gold	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
+i_ingot_silver	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_arrow	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_xbolt	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_keg_potion	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
@@ -54,6 +57,16 @@ i_sash	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a p
 i_robe	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_leather_tunic	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_parchment	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_buckler	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_round_bronze	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_round_metal	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_heater	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_kite_metal	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_kite_wood	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_wood	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_chaos	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_order	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
+i_shield_scale	PLAYER_CRAFTED	0	0	a player craft produces this; craft it or buy from a player
 i_rune_marker	STOCK_SPHERE_ONLY	0	0	on a stock Sphere vendor with no Revolution evidence
 i_reag_black_pearl	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_reag_blood_moss	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this

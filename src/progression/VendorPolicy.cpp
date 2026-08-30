@@ -42,6 +42,12 @@ const Row kMatrix[] = {
     // the matrix; blocking arrows would INVENT a restriction.
     {"i_cloth_bolt",      VendorClass::PlayerMarketGood},
     {"i_ingot_iron",      VendorClass::PlayerMarketGood},
+    // The other three metals a miner can actually smelt on this shard
+    // (i_provisions_ore.scp). Same standing as iron: a smith's own output,
+    // and a player-market good rather than something to dump on an NPC.
+    {"i_ingot_copper",    VendorClass::PlayerMarketGood},
+    {"i_ingot_gold",      VendorClass::PlayerMarketGood},
+    {"i_ingot_silver",    VendorClass::PlayerMarketGood},
     {"i_arrow",           VendorClass::PlayerMarketGood},
     {"i_xbolt",           VendorClass::PlayerMarketGood},
     {"i_keg_potion",      VendorClass::PlayerMarketGood},
@@ -131,6 +137,21 @@ const Row kMatrix[] = {
     {"i_robe",            VendorClass::PlayerCrafted},
     {"i_leather_tunic",   VendorClass::PlayerCrafted},
     {"i_parchment",       VendorClass::PlayerCrafted},
+    // Shields, the whole smithing menu of them (def_blacksmithing.scp:156-164).
+    // Finished goods, exactly like i_dagger above -- which a blacksmith buys
+    // at 18 gold without argument -- and not materials, so the "materials
+    // never go to an NPC" rule does not reach them. The graphic table below
+    // has to carry every one of these or the pack cannot see them at all.
+    {"i_shield_buckler",     VendorClass::PlayerCrafted},
+    {"i_shield_round_bronze",VendorClass::PlayerCrafted},
+    {"i_shield_round_metal", VendorClass::PlayerCrafted},
+    {"i_shield_heater",      VendorClass::PlayerCrafted},
+    {"i_shield_kite_metal",  VendorClass::PlayerCrafted},
+    {"i_shield_kite_wood",   VendorClass::PlayerCrafted},
+    {"i_shield_wood",        VendorClass::PlayerCrafted},
+    {"i_shield_chaos",       VendorClass::PlayerCrafted},
+    {"i_shield_order",       VendorClass::PlayerCrafted},
+    {"i_shield_scale",       VendorClass::PlayerCrafted},
 
     // --- stock Sphere only ---------------------------------------------------
     // Revolution players MARKED runes; that a stock vendor sells blanks is a
@@ -268,8 +289,37 @@ const GraphicRow kGraphics[] = {
     {0x0F95, "i_cloth_bolt"},    {0x0F96, "i_cloth_bolt"}, {0x0F97, "i_cloth_bolt"},
     {0x0DF9, "i_cotton"},        {0x0DEF, "i_cotton"},
     {0x1A9C, "i_flax_bundle"},   {0x1A9D, "i_flax_bundle"},
+    // ORE IS ONE GRAPHIC FOR EVERY METAL. i_ore_copper, i_ore_gold,
+    // i_ore_silver, i_ore_shadow, i_ore_agapite, i_ore_verite, i_ore_valorite
+    // and the rest are all `ID=i_ore_iron` in items/i_provisions_ore.scp and
+    // differ ONLY by COLOR (color_o_copper, color_o_gold, ...). So a graphic
+    // table can never tell them apart, and this row is honestly iron-or-
+    // unknown rather than iron. Telling special ore from iron needs the HUE,
+    // which the pack view does not carry yet -- recorded as the open work
+    // rather than papered over with a wrong row.
     {0x19B7, "i_ore_iron"},      {0x19B8, "i_ore_iron"},   {0x19B9, "i_ore_iron"},
+    {0x19BA, "i_ore_iron"},      // DUPEITEM=019B7, and it was missing
+
+    // INGOTS, THOUGH, ARE DISTINCT PER METAL -- each has its own ITEMDEF and
+    // its own DUPELIST of five flips (i_provisions_ore.scp:220-351). Only
+    // iron was here, and only three of its six graphics, so a smith carrying
+    // copper or silver could not see it owned anything at all: obs.pack is
+    // keyed by defname, and a graphic with no row produces no pack line, no
+    // Surplus offer, and no bank deposit.
+    //
+    // What each ore smelts into is the ore's TDATA1, so this list is exactly
+    // what a miner's smelting produces.
     {0x1BEF, "i_ingot_iron"},    {0x1BF0, "i_ingot_iron"}, {0x1BF1, "i_ingot_iron"},
+    {0x1BF2, "i_ingot_iron"},    {0x1BF3, "i_ingot_iron"}, {0x1BF4, "i_ingot_iron"},
+    {0x1BE3, "i_ingot_copper"},  {0x1BE4, "i_ingot_copper"},
+    {0x1BE5, "i_ingot_copper"},  {0x1BE6, "i_ingot_copper"},
+    {0x1BE7, "i_ingot_copper"},  {0x1BE8, "i_ingot_copper"},
+    {0x1BE9, "i_ingot_gold"},    {0x1BEA, "i_ingot_gold"},
+    {0x1BEB, "i_ingot_gold"},    {0x1BEC, "i_ingot_gold"},
+    {0x1BED, "i_ingot_gold"},    {0x1BEE, "i_ingot_gold"},
+    {0x1BF5, "i_ingot_silver"},  {0x1BF6, "i_ingot_silver"},
+    {0x1BF7, "i_ingot_silver"},  {0x1BF8, "i_ingot_silver"},
+    {0x1BF9, "i_ingot_silver"},  {0x1BFA, "i_ingot_silver"},
     {0x1BDD, "i_log"},
     {0x1BD7, "i_board"},
     {0x1078, "i_hide"},
@@ -299,6 +349,37 @@ const GraphicRow kGraphics[] = {
     // 32 times in one run. A grading is only reachable if the graphic that
     // names it is here too -- the two tables have to agree.
     {0x0EFA, "i_spellbook"},
+
+    // SHIELDS. Not one of them was in this table, and a table is where the
+    // pack view comes from: obs.pack is keyed by defname, so a shield with no
+    // row here is a shield the character cannot see it owns. Corwyn carried
+    // SIX heater shields for three sessions while market::Surplus reported
+    // nothing spare, EARN_GOLD never scored on them, and a blacksmith stood in
+    // front of him offering 61 gold each (v4_Corwyn, 2026-08-30 15:36).
+    //
+    // Every one of these is on the smithing menu -- def_blacksmithing.scp
+    // lines 156-164 -- so they are exactly what a smith makes to sell.
+    //
+    // BOTH GRAPHICS OF EACH FLIP PAIR. Shields carry FLIP=1 and the second
+    // ITEMDEF is a DUPEITEM of the first (items/i_provisions_shields.scp), so
+    // the same shield reaches the pack under either id depending on how it
+    // was laid down. Mapping only the named one loses half of them.
+    {0x1B72, "i_shield_round_bronze"},
+    {0x1B73, "i_shield_buckler"},
+    {0x1B74, "i_shield_kite_metal"},
+    {0x1B75, "i_shield_kite_metal"},    // DUPEITEM=01b74
+    {0x1B76, "i_shield_heater"},        // VALUE=72, so 61 gp at a vendor
+    {0x1B77, "i_shield_heater"},        // DUPEITEM=01b76
+    {0x1B78, "i_shield_kite_wood"},
+    {0x1B79, "i_shield_kite_wood"},     // DUPEITEM=01b78
+    {0x1B7A, "i_shield_wood"},
+    {0x1B7B, "i_shield_round_metal"},
+    {0x1BC3, "i_shield_chaos"},
+    {0x1BC4, "i_shield_order"},
+    {0x1BC5, "i_shield_order"},         // DUPEITEM=01bc4
+    {0x1BC6, "i_shield_scale"},
+    {0x1BC7, "i_shield_scale"},         // DUPEITEM=01bc6
+
     // POTIONS. None of these were here at all, so GraphicsForItem returned
     // nothing for them and market::QtyOf could never count one: Voris brewed
     // Poison after Poison ("System: You put the Poison in your pack.") while
