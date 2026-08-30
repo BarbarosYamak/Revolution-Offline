@@ -43,12 +43,19 @@ struct Expectation {
     u16 itemGraphic = 0;
     i32 itemBefore = -1;      // -1 = not measured, so not checked
     i32 itemGain = 0;         // how many more we expect to hold
+    // ...or how many FEWER. Selling is the mirror of buying and needs both
+    // halves checked: gold rising on its own is not a sale, because gold also
+    // rises from loot, a player trade, and a bank withdrawal. The goods have
+    // to have LEFT. Set one of itemGain/itemLoss, never both.
+    i32 itemLoss = 0;
 
     // GOLD. A purchase must COST something: a buy that leaves the purse
-    // untouched did not happen, whatever the packet said.
+    // untouched did not happen, whatever the packet said. A SALE is the
+    // mirror -- set goldGainMin instead.
     i32 goldBefore = -1;      // -1 = not measured
     i32 goldSpendMin = 0;     // at least this much must have left
     i32 goldSpendMax = 0;     // and no more than this (0 = no ceiling)
+    i32 goldGainMin = 0;      // at least this much must have ARRIVED
 
     // EQUIPMENT. A piece that never reached the layer is still in the pack,
     // and buying another will not change that.
@@ -61,8 +68,8 @@ struct Expectation {
     i32 skillGainMin = 1;     // a tenth is a real gain; zero is not
 
     bool ChecksAnything() const {
-        return (itemBefore >= 0 && itemGain > 0) ||
-               (goldBefore >= 0 && goldSpendMin > 0) ||
+        return (itemBefore >= 0 && (itemGain > 0 || itemLoss > 0)) ||
+               (goldBefore >= 0 && (goldSpendMin > 0 || goldGainMin > 0)) ||
                (equipLayer != 0) ||
                (skillId >= 0 && skillBefore >= 0);
     }

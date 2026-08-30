@@ -168,6 +168,66 @@ void TestEquipMustReachTheLayer() {
     ExpectVerdict(Verify(e, worn), Verdict::Confirmed, "on the paperdoll");
 }
 
+// A SALE IS GOLD ARRIVING AND GOODS LEAVING. Either half on its own is
+// something else: gold rises from loot, from a player trade and from a bank
+// withdrawal, and crediting a sale for it teaches the price book a number
+// nobody paid.
+void TestASaleIsBothHalves() {
+    std::printf("[progress: a sale is gold IN and goods OUT, not either one]\n");
+    Expectation e;
+    e.itemGraphic = 0x0F9E;      // a dagger
+    e.itemBefore = 12;
+    e.itemLoss = 12;
+    e.goldBefore = 1000;
+    e.goldGainMin = 1;
+
+    Observed sold;
+    sold.itemNow = 0;
+    sold.goldNow = 1132;
+    const ProgressCheck ok = Verify(e, sold);
+    ExpectVerdict(ok, Verdict::Confirmed, "twelve gone, 132 gold in");
+    Expect(ok.itemDelta == -12, "the loss is reported as negative");
+    Expect(ok.goldDelta == 132, "and the gain as positive");
+
+    // The goods went and nothing came back: a give, a drop, a theft.
+    Observed robbed;
+    robbed.itemNow = 0;
+    robbed.goldNow = 1000;
+    ExpectVerdict(Verify(e, robbed), Verdict::Contradicted,
+                  "goods gone, purse unchanged");
+
+    // Gold arrived and the pack is untouched: something else paid us.
+    Observed windfall;
+    windfall.itemNow = 12;
+    windfall.goldNow = 1500;
+    ExpectVerdict(Verify(e, windfall), Verdict::Contradicted,
+                  "paid without selling anything");
+
+    // Still in progress: the vendor has taken the goods but not paid yet.
+    Observed pending;
+    pending.itemNow = 12;
+    pending.goldNow = 1000;
+    ExpectVerdict(Verify(e, pending), Verdict::NotYet, "nothing has moved");
+}
+
+// A partial sale is not a completed one. Selling a lot of twelve and seeing
+// four leave means the buyer took what it could afford.
+void TestAPartialSaleIsNotDone() {
+    std::printf("[progress: a partial lot is not the lot]\n");
+    Expectation e;
+    e.itemGraphic = 0x0F9E;
+    e.itemBefore = 12;
+    e.itemLoss = 12;
+    e.goldBefore = 1000;
+    e.goldGainMin = 1;
+
+    Observed partial;
+    partial.itemNow = 8;         // only four left
+    partial.goldNow = 1044;
+    ExpectVerdict(Verify(e, partial), Verdict::NotYet,
+                  "four of twelve sold is not twelve sold");
+}
+
 // An activity that states no expectation gets told so, rather than being
 // handed a cheerful yes it did not earn.
 void TestSilenceIsNotSuccess() {
@@ -214,6 +274,8 @@ int main() {
     TestOverpayingIsContradicted();
     TestSkillMustActuallyMove();
     TestEquipMustReachTheLayer();
+    TestASaleIsBothHalves();
+    TestAPartialSaleIsNotDone();
     TestSilenceIsNotSuccess();
     TestOnlySuccessCountsAsProgress();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

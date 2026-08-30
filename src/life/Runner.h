@@ -458,6 +458,9 @@ private:
     // The vendors need a restock cycle; nothing changes in three seconds.
     static constexpr i64 kNoBuyerCooldownMs = 3 * 60 * 1000;
     i32   sellGoldBefore_ = -1;        // purse before the sale, to verify it
+    // ...and what the pack held, so a sale is confirmed by goods LEAVING as
+    // well as gold arriving. See DoEarnGold.
+    i32  sellItemBefore_ = -1;
     bool  sellAsked_ = false;          // 0x9E requested
     i64   sellAskedMs_ = 0;
     bool  sellSent_ = false;           // ActionVendorSell issued

@@ -3860,9 +3860,22 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     // gold arriving is the same silent failure that made a working trainer
     // purchase read as a failure earlier in M5.
     if (sellSent_) {
-        if (sellGoldBefore_ >= 0 && obs.gold > sellGoldBefore_) {
-            const i32 paid = obs.gold - sellGoldBefore_;
-            const i32 each = sellWanted_ > 0 ? paid / sellWanted_ : paid;
+        // BOTH HALVES, through the shared check (section 18).
+        life::Expectation want;
+        want.itemBefore = sellItemBefore_;
+        want.itemLoss = 1;          // one leaving proves the sale happened
+        want.goldBefore = sellGoldBefore_;
+        want.goldGainMin = 1;
+
+        life::Observed seen;
+        seen.itemNow = market::QtyOf(obs.pack, sellItem_);
+        seen.goldNow = obs.gold;
+
+        const life::ProgressCheck sale = life::Verify(want, seen);
+        if (sale.verdict == life::Verdict::Confirmed) {
+            const i32 paid = sale.goldDelta;
+            const i32 sold = -sale.itemDelta;
+            const i32 each = sold > 0 ? paid / sold : paid;
             LogLine("earn_gold: sold %d %s for %d gold (%d each) to a '%s'",
                     sellWanted_, sellItem_.c_str(), paid, each,
                     sellTrade_.c_str());
@@ -4327,6 +4340,11 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 lotQty, static_cast<unsigned>(lot.size()));
         sellWanted_ = lotQty;
         sellGoldBefore_ = obs.gold;
+        // AND WHAT THE PACK HELD. A sale is gold arriving AND goods leaving;
+        // gold alone also rises from loot, a player trade and a bank
+        // withdrawal, and crediting this sale for one of those teaches the
+        // price book a number nobody paid. See interaction/progress.h.
+        sellItemBefore_ = market::QtyOf(obs.pack, sellItem_);
         sellAskedMs_ = obs.nowMs;
         client.ActionVendorSellMany(vendor, lot);
         sellSent_ = true;
@@ -4360,6 +4378,11 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                 qty, v.graphic, v.price, sellTrade_.c_str());
         sellWanted_ = qty;
         sellGoldBefore_ = obs.gold;
+        // AND WHAT THE PACK HELD. A sale is gold arriving AND goods leaving;
+        // gold alone also rises from loot, a player trade and a bank
+        // withdrawal, and crediting this sale for one of those teaches the
+        // price book a number nobody paid. See interaction/progress.h.
+        sellItemBefore_ = market::QtyOf(obs.pack, sellItem_);
         sellAskedMs_ = obs.nowMs;
         client.ActionVendorSell(vendor, v.serial, static_cast<u16>(qty));
         sellSent_ = true;

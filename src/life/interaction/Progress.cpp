@@ -61,13 +61,15 @@ ProgressCheck Verify(const Expectation& expect, const Observed& seen) {
     }
 
     const bool wantItems = expect.itemBefore >= 0 && expect.itemGain > 0;
+    const bool loseItems = expect.itemBefore >= 0 && expect.itemLoss > 0;
     const bool wantGold  = expect.goldBefore >= 0 && expect.goldSpendMin > 0;
+    const bool earnGold  = expect.goldBefore >= 0 && expect.goldGainMin > 0;
     const bool wantEquip = expect.equipLayer != 0;
     const bool wantSkill = expect.skillId >= 0 && expect.skillBefore >= 0;
 
-    if (wantItems && seen.itemNow >= 0)
+    if ((wantItems || loseItems) && seen.itemNow >= 0)
         out.itemDelta = seen.itemNow - expect.itemBefore;
-    if (wantGold && seen.goldNow >= 0)
+    if ((wantGold || earnGold) && seen.goldNow >= 0)
         out.goldDelta = seen.goldNow - expect.goldBefore;
     if (wantSkill && seen.skillNow >= 0)
         out.skillDelta = seen.skillNow - expect.skillBefore;
@@ -77,6 +79,29 @@ ProgressCheck Verify(const Expectation& expect, const Observed& seen) {
     // A no is worth more than a not-yet: it ends the errand honestly instead
     // of leaving it to time out, which is how a bot spends a session on one
     // shop.
+
+    // --- the SALE contradictions ------------------------------------------
+    //
+    // A sale is gold arriving AND goods leaving. Either half on its own is
+    // something else entirely, and recording it as a sale corrupts both the
+    // ledger and the price book the bot trades on.
+    if (loseItems && earnGold && seen.itemNow >= 0 && seen.goldNow >= 0) {
+        // THE GOODS WENT AND NOTHING CAME BACK. A give, a theft, a drop --
+        // whatever it was, the character is poorer for it.
+        if (out.itemDelta < 0 && out.goldDelta <= 0) {
+            out.verdict = Verdict::Contradicted;
+            out.reason = "the goods left and no gold arrived";
+            return out;
+        }
+        // GOLD ARRIVED AND THE PACK IS UNTOUCHED. Gold rises from loot, from
+        // a player trade, from a bank withdrawal -- crediting THIS sale for
+        // it teaches the price book a number nobody paid.
+        if (out.goldDelta >= expect.goldGainMin && out.itemDelta >= 0) {
+            out.verdict = Verdict::Contradicted;
+            out.reason = "gold arrived but nothing left the pack";
+            return out;
+        }
+    }
 
     // GOLD LEFT AND NOTHING CAME BACK. The exact shape of the vendor bug:
     // Sphere took nothing and gave nothing, or took the money on a different
@@ -118,6 +143,32 @@ ProgressCheck Verify(const Expectation& expect, const Observed& seen) {
         if (out.itemDelta < expect.itemGain) {
             out.verdict = Verdict::NotYet;
             out.reason = "the goods have not arrived in the pack";
+            return out;
+        }
+    }
+
+    if (loseItems) {
+        if (seen.itemNow < 0) {
+            out.verdict = Verdict::NotYet;
+            out.reason = "the pack has not been read since the attempt";
+            return out;
+        }
+        if (-out.itemDelta < expect.itemLoss) {
+            out.verdict = Verdict::NotYet;
+            out.reason = "the goods are still in the pack";
+            return out;
+        }
+    }
+
+    if (earnGold) {
+        if (seen.goldNow < 0) {
+            out.verdict = Verdict::NotYet;
+            out.reason = "the purse has not been read since the attempt";
+            return out;
+        }
+        if (out.goldDelta < expect.goldGainMin) {
+            out.verdict = Verdict::NotYet;
+            out.reason = "the buyer has not paid yet";
             return out;
         }
     }
