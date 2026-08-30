@@ -107,6 +107,8 @@ set(UO_CLIENT_SOURCES
     # arithmetic links into ctest without dragging Client along.
     src/life/activities/BuyPlan.cpp
     src/life/activities/Buy.cpp
+    src/life/activities/AcquirePlan.cpp
+    src/life/activities/Acquire.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.

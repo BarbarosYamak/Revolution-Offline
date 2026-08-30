@@ -289,3 +289,17 @@ target_include_directories(activity_buy PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_buy COMMAND activity_buy)
+
+# --- Activities: acquiring and equipping ------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 15 and 18. The six heater shields, as a
+# test: each was bought because the hand slot was empty, and nothing asked
+# whether STR 56 could wear a shield needing 90. AcquirePlan.cpp is split from
+# Acquire.cpp so the decision links without Client.
+add_executable(activity_acquire activity_acquire.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp)
+target_include_directories(activity_acquire PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_acquire COMMAND activity_acquire)
