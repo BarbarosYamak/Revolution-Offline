@@ -5689,12 +5689,36 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
         const i32 spendable = (above < obs.gold / 4) ? above : obs.gold / 4;
         if (unit > 0 && take * unit > spendable) take = spendable / unit;
         if (take <= 0) {
-            LogLine("goal_blocked=BUY_SUPPLIES reason=\"%s\" %s costs %d each, "
-                    "purse %d, spendable %d",
-                    faucet::RefusalName(faucet::Refusal::EconomicRouteBlocked),
-                    supplyItem_.c_str(), unit, obs.gold, spendable);
+            // SAY WHAT IS BEING WAITED FOR, AND STAND DOWN SO IT CAN HAPPEN.
+            //
+            // This used to log "blocked" and retry every fifteen seconds
+            // forever without ever finishing, so the planner was never asked
+            // again -- and the thing that would have unblocked it was sitting
+            // in the same pack. Voris stood outside the alchemist with 108
+            // gold, unable to afford a 12 gold bottle (the floor of 100 plus
+            // the quarter-purse rule leaves 8 spendable), while carrying five
+            // poison potions worth about a hundred. "it should see what is it
+            // waiting?" (project owner, 2026-08-30).
+            //
+            // What it is waiting for is GOLD, so name that, and finish so
+            // EARN_GOLD gets a turn. If there is genuinely nothing to sell the
+            // planner will come back here and the cooldown paces the retry.
+            const std::vector<market::Offer> couldSell =
+                needCfg_.profession
+                    ? market::Surplus(*needCfg_.profession, obs.pack,
+                                      market::PolicyForPurse(obs.goldOnHand))
+                    : std::vector<market::Offer>{};
+            i32 sellable = 0;
+            for (const market::Offer& o : couldSell) sellable += o.qty;
+            LogLine("supplies: %s costs %d each and only %d of %d gold is "
+                    "spendable -- waiting on GOLD, and there %s %d thing(s) "
+                    "in the pack to sell; standing down so that can happen",
+                    supplyItem_.c_str(), unit, spendable, obs.gold,
+                    sellable == 1 ? "is" : "are", sellable);
             planner_.NoteAttempt(obs.nowMs);
-            nextActionMs_ = obs.nowMs + 15000;
+            planner_.Cooldown(GoalKind::BuySupplies, obs.nowMs + 45000);
+            planner_.Finish(false, "cannot afford the inputs yet", obs.nowMs);
+            nextActionMs_ = obs.nowMs + 1000;
             return false;
         }
 
