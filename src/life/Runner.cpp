@@ -6698,14 +6698,32 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
         client.ActionResult() == act::Result::Rejected &&
         client.CurrentAction().subject == client.LastForgeSerial()) {
         if (++smeltReachFails_ > kMaxSmeltReachFails) {
-            LogLine("goal_failed=SMELT reason=\"the forge at %d,%d refused "
-                    "every approach after %d tries\"",
+            // RETIRE IT IN THE LIST THE FORGE FINDER ACTUALLY READS.
+            //
+            // This wrote to deadTargets_ -- the MINING dead list -- while
+            // NearestForge is passed deadForges_ (see the call above). So the
+            // unreachable forge was never skipped, and the same one was
+            // nominated again on the next pick, and the next:
+            //
+            //   goal_failed=SMELT reason="the forge at 2561,501 refused every
+            //   approach after 3 tries"
+            //
+            // -- at 17:53 and again at 18:01, the identical tile, with a
+            // pack of ore each time. (2561,501) sits just inside Minoc Mine
+            // 1, so the forge a miner naturally walks to is the one he cannot
+            // stand beside; there are others in Minoc, and now he can reach
+            // for them.
+            LogLine("smelt: the forge at %d,%d refused every approach after "
+                    "%d tries -- writing it off and looking for another",
                     forgeTile.x, forgeTile.y, smeltReachFails_ - 1);
-            deadTargets_.emplace_back(forgeTile.x, forgeTile.y);
-            if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+            deadForges_.emplace_back(forgeTile.x, forgeTile.y);
+            if (deadForges_.size() > 16) deadForges_.erase(deadForges_.begin());
             smeltReachFails_ = 0;
-            planner_.Cooldown(GoalKind::Smelt, obs.nowMs + kGearCooldownMs);
-            planner_.Finish(false, "the forge cannot be reached", obs.nowMs);
+            smeltForgeX_ = smeltForgeY_ = 0;
+            // NOT a goal failure: the errand still has ore to melt and another
+            // forge to melt it at. Failing here cooled SMELT down for minutes
+            // and sent the character back to mining ore it could not process.
+            nextActionMs_ = obs.nowMs + 1000;
             return false;
         }
         LogLine("smelt: \"you can't reach that\" from %d,%d -- walking onto "

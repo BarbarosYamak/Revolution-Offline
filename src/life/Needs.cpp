@@ -775,19 +775,52 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // unreachable, mining is still better than standing still.
         constexpr int kEnoughToSmith = 20;
         constexpr double kMiningFloor = 0.15;
+
+        // AND THE STOCK IS IN THE BOX, NOT THE PACK. Unsold ingots are banked
+        // the moment they have no buyer (see DoBank, "put unsold stock
+        // away"), so counting the pack alone reports a smith with six hundred
+        // ingots as having none, and he mines forever.
         const int stock = QtyIn(obs.pack, "i_ore_iron") +
-                          QtyIn(obs.pack, "i_ingot_iron");
+                          QtyIn(obs.pack, "i_ingot_iron") +
+                          QtyIn(obs.bank, "i_ore_iron") +
+                          QtyIn(obs.bank, "i_ingot_iron");
+
+        // TWENTY INGOTS IS A BATCH. IT IS NOT A TRAINING STOCK.
+        //
+        // "you cant train with only 15-20 iron first you need to stock some
+        // maybe 500-600 then you start train blacksmith" (project owner,
+        // 2026-08-30). Raising Blacksmithing means making and unmaking
+        // hundreds of items; twenty ingots is five daggers, an afternoon's
+        // pocket money and about 1% of what the skill costs.
+        //
+        // So a smith who has not finished training keeps digging against the
+        // bigger number. Once the skill is where the build wants it, twenty is
+        // the right threshold again -- at that point metal is stock to sell,
+        // not fuel for a skill, and a full pack is a reason to go and smith.
+        constexpr int kSmithTrainingStock = 550;   // the owner's 500-600
+        int wantStock = kEnoughToSmith;
+        const i32 smithNow = obs.SkillTenths(rules::kBlacksmithing);
+        for (const SkillTarget& t : plan.skills) {
+            if (t.skillId != rules::kBlacksmithing) continue;
+            if (smithNow < t.tenths) wantStock = kSmithTrainingStock;
+            break;
+        }
+
         const double base = obs.atWorkSite ? 0.65 : 0.45;
-        const double glut = stock >= kEnoughToSmith
+        const double glut = stock >= wantStock
                                 ? 1.0
-                                : static_cast<double>(stock) / kEnoughToSmith;
+                                : static_cast<double>(stock) / wantStock;
         const double here = base - (base - kMiningFloor) * glut;
         add(NeedKind::NeedOre, here, "ore",
             obs.atWorkSite
                 ? "standing at the rock with a pickaxe -- this is the job"
                 : "ore is this life's income and its Mining training",
-            Fmt("carrying %d ore+ingots at_work_site=%d", stock,
-                obs.atWorkSite ? 1 : 0),
+            wantStock > kEnoughToSmith
+                ? Fmt("%d ore+ingots of the %d wanted before smith training "
+                      "(smithing %.1f) at_work_site=%d",
+                      stock, wantStock, smithNow / 10.0, obs.atWorkSite ? 1 : 0)
+                : Fmt("carrying %d ore+ingots at_work_site=%d", stock,
+                      obs.atWorkSite ? 1 : 0),
             false);
 
         // AND THE OTHER HALF OF THE SAME DECISION. Ore is not income; metal
