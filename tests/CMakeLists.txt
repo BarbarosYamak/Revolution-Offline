@@ -381,3 +381,19 @@ target_include_directories(strategy_combat PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME strategy_combat COMMAND strategy_combat)
+
+# --- Activities: corpse recovery --------------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 25 and 47. Death here is FULL LOOT, so the
+# corpse run is a life's whole equipment -- which is exactly why it has to be
+# able to say no. The handler these rules replace walked straight back with no
+# health check, no danger memory and no attempt limit, which is the precise
+# shape of a death loop. Written BEFORE the first death, because in 21
+# recorded runs no bot has ever died and the path has never fired.
+add_executable(activity_recovery activity_recovery.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/RecoveryPlan.cpp)
+target_include_directories(activity_recovery PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_recovery COMMAND activity_recovery)

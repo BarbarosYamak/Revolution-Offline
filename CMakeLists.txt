@@ -114,6 +114,7 @@ set(UO_CLIENT_SOURCES
     src/life/activities/CraftPlan.cpp
     src/life/activities/TrainPlan.cpp
     src/life/activities/GatherPlan.cpp
+    src/life/activities/RecoveryPlan.cpp
     # Strategies (section 21): the one place archetypes differ by algorithm.
     src/life/strategies/CombatStrategy.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
