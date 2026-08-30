@@ -200,6 +200,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "lumberjack_swordsman";
+            // Wears: Metal. a swordsman in the open takes the heaviest armour its STR allows, and a shield hand is free
+            p.wears = Profession::Wear::Metal;
+            p.maysShield = true;
             p.label = "Lumberjack / Carpenter";
             p.startSkillA = rules::kLumberjacking;
             p.startSkillB = rules::kSwordsmanship;
@@ -283,6 +286,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "miner_smith";
+            // Wears: Metal. it makes the plate; it is not going to refuse to wear it
+            p.wears = Profession::Wear::Metal;
+            p.maysShield = true;
             // Tinkering starts at literally 0.0: its [NEWBIE] section is empty
             // (sp_tm_newbie.scp:545), so the slot costs nothing.
             p.startZeroSkill = rules::kTinkering;
@@ -343,6 +349,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "mage";
+            // Wears: Cloth. metal ends casting on this shard and a shield hand is a spell hand
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // Evaluating Intelligence has an empty [NEWBIE] section
             // (sp_tm_newbie.scp:376), so a mage may start it at literally 0.0.
             p.startZeroSkill = rules::kEvaluatingIntel;
@@ -414,6 +423,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "alchemist";
+            // Wears: Cloth. a brewer that also casts; robes only
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // Meditation begins at LITERALLY 0.0, not at the 0.0-19.9 the
             // server rolls for every other skill. It has no [NEWBIE] section
             // at all, so claiming the third creation slot for it costs the
@@ -520,6 +532,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "fisher";
+            // Wears: Cloth. "for crafter upgrade gear just wear normal clothing for now" (owner)
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             p.label = "Fisher";
             // Fishing is the PRIMARY and leads, which is what the paperdoll
             // title reads. Tested both orders live: the kit outcome is the
@@ -587,6 +602,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "tamer";
+            // Wears: Leather. UNKNOWN what Revolution's tamers wore; leather is the light-armour reading and it keeps casting available
+            p.wears = Profession::Wear::Leather;
+            p.maysShield = false;
             p.label = "Animal Tamer";
             p.startSkillA = rules::kTaming;
             p.startSkillB = rules::kAnimalLore;
@@ -623,6 +641,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "fencer";
+            // Wears: Metal. a dexxer, and fencing is one-handed
+            p.wears = Profession::Wear::Metal;
+            p.maysShield = true;
             p.label = "Fencer";
             p.startSkillA = kFencing;
             p.startSkillB = rules::kTactics;
@@ -671,6 +692,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "macer";
+            // Wears: Metal. a dexxer, and the shield is part of the school
+            p.wears = Profession::Wear::Metal;
+            p.maysShield = true;
             p.label = "Macer";
             p.startSkillA = kMaceFighting;
             p.startSkillB = rules::kAnatomy;
@@ -718,6 +742,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "archer";
+            // Wears: Leather. the bow needs BOTH hands, so never a shield. Leather rather than plate is the classic archer reading and is UNKNOWN for Revolution specifically
+            p.wears = Profession::Wear::Leather;
+            p.maysShield = false;
             p.label = "Archer";
             p.startSkillA = kArchery;
             p.startSkillB = rules::kBowcraft;
@@ -773,6 +800,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "warlock";
+            // Wears: Cloth. casts; same rule as the mage
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // Meditation begins at LITERALLY 0.0, not at the 0.0-19.9 the
             // server rolls for every other skill. It has no [NEWBIE] section
             // at all, so claiming the third creation slot for it costs the
@@ -828,6 +858,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "pk";
+            // Wears: Metal. kills players for a living and wears everything it can
+            p.wears = Profession::Wear::Metal;
+            p.maysShield = true;
             p.label = "Player Killer";
             p.startSkillA = rules::kSwordsmanship;
             p.startSkillB = rules::kPoisoning;
@@ -878,6 +911,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "treasure_hunter";
+            // Wears: Leather. travels by Recall and casts to survive, so nothing metal
+            p.wears = Profession::Wear::Leather;
+            p.maysShield = false;
             // Meditation begins at LITERALLY 0.0, not at the 0.0-19.9 the
             // server rolls for every other skill. It has no [NEWBIE] section
             // at all, so claiming the third creation slot for it costs the
@@ -937,6 +973,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "mage_blacksmith";
+            // Wears: Cloth. the smithing half does not change the fact that it casts
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             p.label = "Mage Blacksmith";
             p.startSkillA = rules::kBlacksmithing;
             p.startSkillB = rules::kMagery;
@@ -989,6 +1028,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "full_crafter";
+            // Wears: Cloth. "for crafter upgrade gear just wear normal clothing for now" (owner)
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // As miner_smith: Tinkering grants no kit, so it can start at 0.0.
             p.startZeroSkill = rules::kTinkering;
             p.label = "Full Crafter";
@@ -1148,6 +1190,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "tailor";
+            // Wears: Cloth. a crafter in ordinary clothes
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // As miner_smith: Tinkering grants no kit, so it can start at 0.0.
             p.startZeroSkill = rules::kTinkering;
             p.label = "Tailor";
@@ -1216,6 +1261,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "merchant_tinker";
+            // Wears: Cloth. a crafter in ordinary clothes
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             p.label = "Merchant / Tinker";
             p.startSkillA = rules::kTinkering;
             p.startSkillB = rules::kMining;
@@ -1290,6 +1338,9 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "scribe";
+            // Wears: Cloth. casts, and sells what it scribes
+            p.wears = Profession::Wear::Cloth;
+            p.maysShield = false;
             // Meditation begins at LITERALLY 0.0, not at the 0.0-19.9 the
             // server rolls for every other skill. It has no [NEWBIE] section
             // at all, so claiming the third creation slot for it costs the

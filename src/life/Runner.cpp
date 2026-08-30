@@ -7746,6 +7746,36 @@ const ArmorPiece* ArmorFor(u16 graphic) {
 }
 
 bool Runner::MayWear(const ArmorPiece& a, const Observation& obs) const {
+    // THE PROFESSION ANSWERS FIRST, because it knows before login.
+    //
+    // "mage wears only mage equipment" (project owner). Read off the
+    // catalogue's `wears`/`maysShield` (M5, professions.h) rather than
+    // re-derived here. This closes a gap the Magery test never covered: a
+    // tailor has no Magery and plenty of STR, so nothing stopped it putting on
+    // a platemail gorget it had looted -- it was allowed to wear anything it
+    // could lift.
+    if (const prof::Profession* pr = needCfg_.profession) {
+        const bool metal = (a.cls == ArmorClass::Metal);
+        const bool leather = (a.cls == ArmorClass::Leather);
+        if (a.cls == ArmorClass::Shield) {
+            if (!pr->maysShield) return false;
+        } else if (metal && pr->wears != prof::Profession::Wear::Metal) {
+            return false;
+        } else if (leather && pr->wears == prof::Profession::Wear::Cloth) {
+            return false;
+        }
+    }
+
+    // The Magery test below is the answer ONLY for a life with no profession.
+    // A profession that says Metal must not then be talked out of it by its
+    // own utility Magery -- a swordsman who learned Recall is still a
+    // swordsman, and the earlier version of this function would have kept him
+    // in cloth forever.
+    if (needCfg_.profession) {
+        if (obs.str <= 0) return false;      // unknown STR is not "strong enough"
+        return obs.str >= static_cast<i32>(a.reqStr);
+    }
+
     // NOT KNOWING IS NOT THE SAME AS ZERO.
     //
     // Thessaly is an Apprentice Mage with Magery 50.0, and she was found
@@ -7803,6 +7833,35 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 2000;
         return false;
+    }
+
+
+    // --- WHAT THIS LIFE WILL NOT WEAR ------------------------------------
+    //
+    // M7's disposal order, applied to the pack. Until now the wear pass simply
+    // skipped a piece the class refuses and said nothing, so a mage carried
+    // looted platemail around for a whole session with no record of why it was
+    // never worn and no decision about where it should go.
+    //
+    // market::DisposeOfGear owns the order -- wear, then offer to players,
+    // then sell to an NPC only where the Gold Faucet Registry establishes that
+    // route. For armour it does not (monster_loot_resale is UNKNOWN), so the
+    // answer today is the bank box, and the BANK goal already carries pack
+    // weight to a bank. What this adds is the RECORD: one line per item naming
+    // the step the order reached and the reason it stopped there.
+    if (needCfg_.profession && !dispositionLogged_) {
+        for (const ArmorPiece& a : kArmorPieces) {
+            if (MayWear(a, obs)) continue;              // the wear pass has it
+            if (!client.FindBackpackItemByGraphic(a.graphic)) continue;
+            const char* name = econ::ItemNameForGraphic(a.graphic);
+            const market::DisposalRuling r = market::DisposeOfGear(
+                *needCfg_.profession, name ? name : "", false,
+                /*playersDeclined=*/false, state_.ledger);
+            LogLine("gear: carrying 0x%04X (%s) this life will not wear -- %s: %s",
+                    a.graphic, name ? name : "unmapped item",
+                    market::DisposalName(r.what), r.reason ? r.reason : "");
+        }
+        dispositionLogged_ = true;
     }
 
     // --- BUY A PIECE FOR AN EMPTY SLOT -----------------------------------

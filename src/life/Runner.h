@@ -164,6 +164,9 @@ private:
     i64 nextLockCheckMs_ = 0;
     u8  statLockSent_[3] = {0, 0, 0};
     bool lockGateLogged_ = false;
+    // M7 disposal: the "will not wear" inventory is reported once per
+    // session, not on every gear tick.
+    bool dispositionLogged_ = false;
     i64 windDownStartedMs_ = 0;
     i32 windDownTrips_ = 0;
     bool windDownArrived_ = false;

@@ -325,6 +325,86 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     return out;
 }
 
+
+const char* DisposalName(Disposal d) {
+    switch (d) {
+        case Disposal::Wear:           return "wear";
+        case Disposal::OfferToPlayers: return "offer to players";
+        case Disposal::SellToNpc:      return "sell to an NPC";
+        case Disposal::Bank:           return "bank";
+    }
+    return "?";
+}
+
+DisposalRuling DisposeOfGear(const prof::Profession& p, const char* item,
+                             bool wearable, bool playersDeclined,
+                             const Ledger& ledger) {
+    (void)p;
+    DisposalRuling out;
+    if (!item || !*item) {
+        out.what = Disposal::Bank;
+        out.reason = "no item named";
+        return out;
+    }
+
+    // 1. WEAR IT.
+    if (wearable) {
+        out.what = Disposal::Wear;
+        out.reason = "it fits this life's class and beats what is worn";
+        return out;
+    }
+
+    // 2. OFFER IT TO PLAYERS -- first, and whatever an NPC would pay.
+    if (!playersDeclined) {
+        out.what = Disposal::OfferToPlayers;
+        out.reason = "this life will not wear it, and the owner's rule is "
+                     "players before vendors for everything it did not make";
+        return out;
+    }
+
+    // 3. SELL IT TO AN NPC, only where the registry establishes the route.
+    //
+    // Deliberately NOT MaySellToNpc(): that function's first question is
+    // "does this life PRODUCE it", and the answer for looted gear is always
+    // no, which is the right answer to a different question (a smith must not
+    // become a fence for other people's goods). Here the item is already in
+    // the character's own hands and has already been offered; what is left to
+    // decide is whether the vendor channel for THIS item is established.
+    // The ledger still gets the last word, for the same reason it does there:
+    // a route is not legitimate if the character bought the thing from an NPC
+    // to begin with.
+    const std::vector<const faucet::GoldFaucet*> routes = faucet::ForItem(item);
+    for (const faucet::GoldFaucet* f : routes) {
+        if (!faucet::Allowed(f->policy)) continue;
+        bool boughtItself = false;
+        for (const GoldEntry& e : ledger.entries) {
+            if (e.flow != GoldFlow::DestroyedVendorPurchase) continue;
+            if (e.detail != item) continue;
+            boughtItself = true;
+            break;
+        }
+        if (boughtItself) {
+            out.what = Disposal::Bank;
+            out.reason = "an NPC sold this character the very same item -- "
+                         "selling it back is a vendor loop, not income";
+            return out;
+        }
+        out.what = Disposal::SellToNpc;
+        out.via = f;
+        out.reason = f->reason;
+        return out;
+    }
+
+    out.what = Disposal::Bank;
+    out.reason = routes.empty()
+        ? "nobody wanted it and no faucet in the registry pays for it -- it "
+          "goes in the box rather than being dumped for gold that would come "
+          "from nowhere"
+        : "nobody wanted it and every NPC route for it is unestablished "
+          "(monster_loot_resale is UNKNOWN) -- banked, not dumped";
+    return out;
+}
+
 namespace {
 
 // What the STOCK SCRIPTS allow, with tm_vend.scp line numbers as the citation.

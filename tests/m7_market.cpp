@@ -739,6 +739,101 @@ void TestTheChainCanActuallyClose() {
 
 }  // namespace
 
+// M7 -- THE DISPOSAL ORDER for what a life will not wear.
+//
+// "mage wears only mage equipment, sell the rest -- studded is ok -- to
+// players first, NPC only if nobody buys" (project owner). Three steps, in
+// order, and the third one is gated by the Gold Faucet Registry rather than by
+// convenience -- which today means looted armour is BANKED, because
+// monster_loot_resale is Policy::Unknown.
+void TestTheDisposalOrder() {
+    std::printf("[disposal: wear it, then offer it, then -- only if the "
+                "registry says so -- sell it]\n");
+    const prof::Profession* mage = prof::Find("mage");
+    if (!mage) { std::printf("  FAIL: no mage in the catalogue\n"); ++g_failures; return; }
+    market::Ledger empty;
+
+    // 1. It fits: wear it, and no further question is asked.
+    {
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_leather_tunic", true, false, empty);
+        if (r.what != market::Disposal::Wear) {
+            std::printf("  FAIL: something wearable was not worn (%s)\n",
+                        market::DisposalName(r.what));
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // 2. It does not fit: the players hear about it FIRST. This is the step
+    //    that inverts the ordinary surplus rule, where an NPC buyer means the
+    //    player market is skipped as the longer errand.
+    {
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_platemail_gorget", false, false, empty);
+        if (r.what != market::Disposal::OfferToPlayers) {
+            std::printf("  FAIL: unwearable gear went to %s before the players "
+                        "were asked\n", market::DisposalName(r.what));
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // 3a. Nobody wanted it, and no established NPC route exists for armour.
+    //     It is BANKED. Refusing to dump it is the point: gold from an NPC is
+    //     new gold, and this route is UNKNOWN, not merely unprofitable.
+    {
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_platemail_gorget", false, true, empty);
+        if (r.what != market::Disposal::Bank) {
+            std::printf("  FAIL: looted armour was %s -- the registry does not "
+                        "establish that route\n", market::DisposalName(r.what));
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // 3b. And where the registry DOES establish a route, step 3 is reached.
+    //     i_bow carries Policy::Allow on Revolution's own Bowcraft guidance.
+    {
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_bow", false, true, empty);
+        if (r.what != market::Disposal::SellToNpc || !r.via) {
+            std::printf("  FAIL: an item with an ALLOWED faucet route was %s\n",
+                        market::DisposalName(r.what));
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // 3c. Unless this very character bought it from an NPC to begin with --
+    //     then selling it back is a vendor loop and the box is the answer.
+    {
+        market::Ledger bought;
+        bought.Note(market::GoldFlow::DestroyedVendorPurchase, 40, "i_bow", 0);
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_bow", false, true, bought);
+        if (r.what != market::Disposal::Bank) {
+            std::printf("  FAIL: an item bought from a vendor was %s back to "
+                        "one\n", market::DisposalName(r.what));
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+
+    // Every ruling names its reason. A silent refusal is the thing this whole
+    // layer exists to avoid.
+    for (bool declined : {false, true}) {
+        const market::DisposalRuling r =
+            market::DisposeOfGear(*mage, "i_platemail_gorget", false, declined, empty);
+        if (!r.reason || !*r.reason) {
+            std::printf("  FAIL: a disposal ruling carried no reason\n");
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+}
+
 int main() {
     std::printf("m7_market\n");
     TestInterdependence();
@@ -756,6 +851,7 @@ int main() {
     TestWhatToAnnounce();
     TestWhetherToAnswer();
     TestTheChainCanActuallyClose();
+    TestTheDisposalOrder();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

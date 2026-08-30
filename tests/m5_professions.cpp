@@ -626,6 +626,53 @@ void TestEveryRecipeInputIsDeclared() {
     }
 }
 
+// M5 -- WHAT EACH LIFE WEARS.
+//
+// "mage wears only mage equipment, sell the rest" (project owner). The
+// catalogue now states it (Profession::wears / maysShield) instead of the
+// runner inferring it from whether the character happens to have Magery. What
+// is checked here is CONSISTENCY, not taste: a life that casts for a living
+// must not be listed as wearing metal, and an archer must never be listed as
+// carrying a shield, because the bow needs both hands.
+void TestWhatEachLifeWears() {
+    std::printf("[gear: what each life will wear, stated not inferred]\n");
+    using W = prof::Profession::Wear;
+    for (const prof::Profession& p : prof::All()) {
+        const bool casts =
+            p.startSkillA == rules::kMagery || p.startSkillB == rules::kMagery;
+        bool magePrimary = false;
+        for (const prof::SkillTargetSpec& t : p.targets) {
+            if (t.skillId == rules::kMagery &&
+                t.role == prof::SkillRole::Primary)
+                magePrimary = true;
+        }
+        if (casts || magePrimary) {
+            if (p.wears != W::Cloth) {
+                std::printf("  FAIL: %s casts for a living but wears armour\n",
+                            p.id.c_str());
+                ++g_failures;
+            }
+            if (p.maysShield) {
+                std::printf("  FAIL: %s casts, and a shield hand is a spell "
+                            "hand\n", p.id.c_str());
+                ++g_failures;
+            }
+            ++g_checks;
+        }
+        if (p.id == "archer" && p.maysShield) {
+            std::printf("  FAIL: an archer cannot hold a shield and a bow\n");
+            ++g_failures;
+        }
+        // A shield is armour too: nothing that refuses armour may carry one.
+        if (p.wears == W::Cloth && p.maysShield) {
+            std::printf("  FAIL: %s wears cloth but is allowed a shield\n",
+                        p.id.c_str());
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+}
+
 int main() {
     std::printf("m5_professions\n");
     TestEveryEntryIsLegal();
@@ -642,6 +689,7 @@ int main() {
     TestSkillRoles();
     TestTierIsObservedNotAssigned();
     TestEveryRecipeInputIsDeclared();
+    TestWhatEachLifeWears();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

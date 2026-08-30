@@ -194,6 +194,33 @@ struct Profession {
     // cave and a swordsman on the road should not behave alike.
     double riskTolerance = 0.5;   // 0 = flee everything, 1 = stand and fight
 
+    // THE HEAVIEST ARMOUR THIS LIFE WILL WEAR.
+    //
+    // "mage wears only mage equipment, sell the rest -- studded is ok -- to
+    // players first, NPC only if nobody buys" (project owner). The rule has
+    // two halves and they belong in different milestones: WHAT a life may
+    // wear is a property of the profession and lives here (M5); what happens
+    // to everything else is the disposal order and lives in the Gold Faucet
+    // Registry (M7).
+    //
+    // Until now the answer was inferred at the moment of dressing, from
+    // whether the character had any Magery at all (Runner::MayWear). That
+    // heuristic is right about mages and says nothing about anyone else: it
+    // let a tailor put on a platemail gorget looted off a corpse, because a
+    // tailor has no Magery and enough STR. A profession knows what it wears
+    // before it ever logs in, so the answer belongs in the table.
+    //
+    // Cloth means "ordinary clothing", which is what the owner asked for for
+    // crafters -- not nakedness. Leather includes STUDDED: this build's
+    // ArmorClass puts i_studded_* in Leather, which is exactly the reading
+    // that makes "studded is ok" true.
+    enum class Wear : u8 { Cloth, Leather, Metal };
+    Wear wears = Wear::Leather;
+    // A shield is a second decision, not a heavier grade of the first: an
+    // archer may wear full plate and still never carry one, because a bow
+    // needs both hands. Same for anyone who casts.
+    bool maysShield = false;
+
     // Gold this life keeps back rather than spending -- the reserve that pays
     // for a replacement tool after a death.
     // SAVINGS, not pocket money. This is what a life wants to have TO ITS

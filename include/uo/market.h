@@ -221,6 +221,58 @@ NpcSellClass ClassifyForNpcSale(const char* item);
 SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
                         const Ledger& ledger);
 
+
+// --- M7: the disposal order for what a life will NOT wear --------------------
+//
+// "mage wears only mage equipment, sell the rest -- studded is ok -- to
+// players first, NPC only if nobody buys" (project owner).
+//
+// The rule splits across two milestones and this is the second half. WHAT a
+// life may wear is a catalogue fact and lives on Profession::wears (M5). What
+// happens to everything else is a gold-flow question and lives here, because
+// the last step of it -- handing an item to an NPC -- is the one flow on this
+// shard that CREATES gold, and the Gold Faucet Registry is what decides
+// whether a given item may take that route.
+//
+// The order is not a preference, it is the order:
+//
+//   1. WEAR IT. Free, immediate, and the reason the character picked it up.
+//   2. OFFER IT TO PLAYERS. Even when an NPC would take it -- this is exactly
+//      where the ordinary surplus rule inverts. Surplus() skips anything an
+//      NPC buys because that is a shorter errand for goods the life MAKES;
+//      for gear it did not make, the owner's rule puts players first, and a
+//      player sale moves gold sideways instead of printing it.
+//   3. SELL IT TO AN NPC, and only if the registry says that route is
+//      established for this item. For looted armour it currently does NOT:
+//      `monster_loot_resale` is Policy::Unknown -- "whether Revolution
+//      intended corpse-loot resale as an income strategy is unestablished,
+//      and it is the classic route by which a hunting bot becomes a
+//      vendor-dumping bot". So today step 3 refuses, by evidence and not by
+//      omission, and the item is banked instead.
+enum class Disposal : u8 {
+    Wear = 0,        // it fits the life's class and beats what is worn
+    OfferToPlayers,  // step 2 -- announce it, whatever the NPCs would pay
+    SellToNpc,       // step 3 -- only where the registry allows the route
+    Bank,            // nobody may have it: it goes in the box, not the bin
+};
+
+const char* DisposalName(Disposal d);
+
+struct DisposalRuling {
+    Disposal        what = Disposal::Bank;
+    const char*     reason = nullptr;      // always populated
+    const faucet::GoldFaucet* via = nullptr;  // set when what == SellToNpc
+};
+
+// `wearable` is the caller's answer to "does this fit the life's class and
+// improve on what is worn" -- Runner::MayWear owns that, because it needs the
+// live paperdoll. `playersDeclined` is set once the item has been offered and
+// nobody wanted it; until then step 2 has not finished and step 3 is not
+// reached.
+DisposalRuling DisposeOfGear(const prof::Profession& p, const char* item,
+                             bool wearable, bool playersDeclined,
+                             const Ledger& ledger);
+
 // --- who on this shard will buy a thing -------------------------------------
 //
 // Read off the shard's own vendor buy-templates
