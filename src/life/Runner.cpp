@@ -574,6 +574,11 @@ constexpr i32 kMaxMineTrips = 3;
 // centroid (a_minoc_mine_1_1 spans y474-504 around P=2558,499,
 // maps/map0/map0_areas.scp:1954-1960).
 constexpr i32 kMineScanRadius = 24;
+// How far away a remembered productive spot may be and still be worth
+// scanning from instead of from the boots. Comfortably more than the scan
+// radius -- the point is to reach INSIDE the mine from its mouth -- but not
+// so far that a miner walks to another county for it.
+constexpr i32 kMineKnownSpotWithin = 60;
 // One mining attempt is 2-6 strokes (CCharSkill.cpp:1463) at DELAY=1.6s
 // (skill45_mining.scp), so ~10s of silence is NORMAL. Poll the journal gently
 // and only give up on a verdict well past the longest legitimate attempt.
@@ -8846,6 +8851,35 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // stand tile is the wander itself. A jitter that lands where no rock is
     // found falls back to scanning from where he stands.
     i32 scanX = obs.x, scanY = obs.y;
+
+    // START FROM GROUND THAT HAS ACTUALLY GIVEN ORE.
+    //
+    // A rock GRAPHIC is not a rock RESOURCE. The server draws the distinction
+    // itself: "Try mining elsewhere" (DEFMSG_MINING_1) means
+    // CheckNaturalResource returned NULL -- there is no ore region on that
+    // tile at all -- which is a different failure from DEFMSG_MINING_2, the
+    // depleted vein. Corwyn collected the first kind twice in a row at
+    // (2554,500) and (2554,498), because Minoc Mine 1 is
+    // RECT=2556,474,2582,501 and both of those are OUTSIDE it: he was hitting
+    // the cliff beside the doorway. "because he was at the entrance of the
+    // mine" (project owner, 2026-08-30).
+    //
+    // Scanning from the character's boots always finds that entrance wall
+    // first, since it is the nearest thing shaped like rock. But this life
+    // already knows where the ore is -- Minoc Mine 1 at 2558,499, twenty-six
+    // successes -- so start the search from the remembered spot whenever one
+    // is close enough to walk to. The existing jitter still spreads him
+    // around inside once he is there, and the dead list still retires worked
+    // ground.
+    if (const KnownResourceSource* known =
+            state_.memory.BestResource("ore", obs.x, obs.y, obs.nowMs)) {
+        if (known->successes > 0 &&
+            TileDist(known->x, known->y, obs.x, obs.y) <= kMineKnownSpotWithin) {
+            scanX = known->x;
+            scanY = known->y;
+        }
+    }
+
     if (mineRoam_) {
         scanX += (i32)(obs.nowMs % 17) - 8;
         scanY += (i32)((obs.nowMs / 17) % 17) - 8;
