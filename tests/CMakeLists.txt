@@ -397,3 +397,33 @@ target_include_directories(activity_recovery PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_recovery COMMAND activity_recovery)
+
+# --- Activities: healing ----------------------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 3 and 47. Four ways to patch up and one
+# decision. The case that matters most is Kaelen's deadlock -- hungry, so no
+# regeneration; wounded, so under the bar; no bandages, no money -- which the
+# old code could only describe as "idle". He spent 73% of a session in it
+# while every other need reported BLOCKED and nothing could say why.
+add_executable(activity_heal activity_heal.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/HealPlan.cpp)
+target_include_directories(activity_heal PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_heal COMMAND activity_heal)
+
+# --- Activities: rest, roam, and knowing when idling is a fault -------------
+#
+# docs/BOT_ARCHITECTURE.md sections 12, 32 and 47. Idling used to WIN -- 73%
+# of one session's picks and up to 85% elsewhere -- because every real errand
+# was blocked and the no-op was the only thing that scored. Three states
+# looked identical in the logs and are not: explore (blocked for want of
+# knowing), rest (a real reason to stand still), stagnant (a fault to report).
+add_executable(activity_rest activity_rest.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/RestPlan.cpp)
+target_include_directories(activity_rest PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_rest COMMAND activity_rest)
