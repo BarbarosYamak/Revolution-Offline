@@ -83,6 +83,35 @@ enum class VendorClass : u8 {
     // It stays narrow deliberately: staples a character eats, not prepared
     // goods a cook would sell for profit.
     BasicFood,
+    // BASIC HEALING. Permitted, and forced into existence the same way the two
+    // classes above were -- by a character that could not survive without it.
+    //
+    // A crafter has no Healing skill, so a bandage in its pack does close to
+    // nothing; a potion asks nothing of the drinker and is the only self-heal
+    // it has. "you are crafter you dont have heal skill so buy healing potion
+    // 3-4" and "you can buy from same place you buy healer" (project owner,
+    // 2026-08-30).
+    //
+    // The live case: Corwyn walked to Erskine the healer four times in one
+    // session, opened the shop, was quoted 30 gold each with nine on the
+    // shelf, and was refused every time by OUR OWN policy --
+    //
+    //   [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy
+    //   refuses this NPC purchase
+    //
+    // -- because i_potion_heal has no matrix row and Unknown fails safe. The
+    // need never cleared, so the goal re-picked and he walked back. Death on
+    // this shard is full loot, and he had already died three times.
+    //
+    // The permission passes the same test as BasicFood: this undercuts no
+    // player market. The shard's own healer template sells both
+    // (tm_vend.scp VENDOR_S_HEALER_SHOP: i_bandage, i_potion_heal), an
+    // alchemist's craft is the GREATER potions and the volume trade, and
+    // nobody makes a living selling three bandages to a miner.
+    //
+    // Narrow deliberately: what keeps a character alive between fights, not
+    // the potion kegs a real alchemist sells.
+    BasicHealing,
     WorldGathered,        // a gathering skill produces it
     WorldProcessed,       // a station transforms it
     PlayerCrafted,        // a live skill menu makes it

@@ -332,6 +332,49 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 obs.axeEquipped ? 1 : 0));
     }
 
+    // DRESSED. Cutting up the resurrection robe leaves a character standing
+    // in a city in its underwear, and full loot leaves it there anyway.
+    //
+    // Low urgency on purpose -- being unclothed is embarrassing, not fatal,
+    // so it must never outrank food, healing or a weapon. It only needs to be
+    // ABOVE nothing, so that a character with no more pressing errand goes
+    // and dresses instead of mining half naked.
+    if (obs.clothingMissing > 0) {
+        add(NeedKind::NeedEquipment, 0.28, "clothes",
+            "not dressed -- shirt, trousers or shoes missing from both the "
+            "body and the pack",
+            Fmt("missing=%d of 3", obs.clothingMissing));
+    }
+
+    // A CRAFTER'S SELF-HEAL, which nothing ever asked for.
+    //
+    // "you are crafter you dont have heal skill so buy healing potion 3-4"
+    // and "so crafter do not buy bandages" (project owner, 2026-08-30). The
+    // bandage clause below is gated on WantsConsumable(cfg, "bandage"), which
+    // is now false for every crafting life -- so without this they would ask
+    // for nothing at all and walk the world with no way to heal.
+    //
+    // Sits at the same 0.5 as bandages: it is the same need wearing different
+    // clothes. The potion is graded a BasicCraftTool-class purchase by the
+    // vendor matrix, and the healer that sells it is the one the bandage
+    // errand already walks to.
+    // NOTE the profession check: WantsConsumable answers TRUE when there is no
+    // profession at all (a life with no catalogue entry wants everything), so
+    // reading ->consumables off the back of it is a null dereference. m4_life
+    // runs exactly that way and segfaulted on the first build.
+    if (cfg.profession && WantsConsumable(cfg, "heal potion")) {
+        i32 low = 2;
+        for (const prof::ConsumableNeed& c : cfg.profession->consumables)
+            if (c.name == "heal potion") { low = c.low; break; }
+        if (obs.healPotions < low) {
+            add(NeedKind::NeedEquipment, 0.5, "heal potions",
+                "no Healing skill to make a bandage work -- a potion is the "
+                "only self-heal this life has",
+                Fmt("potions=%d low=%d gold=%d", obs.healPotions, low,
+                    obs.gold));
+        }
+    }
+
     if (WantsConsumable(cfg, "bandage") && obs.bandages < cfg.bandageLow) {
         const KnownSupplier* supplier = mem.BestSupplier("bandage");
         // Gold is not the question. i_bandage is not in the M3.7 vendor

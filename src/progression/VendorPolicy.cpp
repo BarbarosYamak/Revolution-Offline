@@ -41,6 +41,12 @@ const Row kMatrix[] = {
     // so a player market and an NPC floor demonstrably coexisted. See §3.2 of
     // the matrix; blocking arrows would INVENT a restriction.
     {"i_cloth_bolt",      VendorClass::PlayerMarketGood},
+    // Healing a character can actually use. See VendorClass::BasicHealing --
+    // Corwyn was refused these four times in one session by our own policy
+    // while standing at the healer that stocks them.
+    {"i_potion_heal",     VendorClass::BasicHealing},
+    {"i_bandage",         VendorClass::BasicHealing},
+
     {"i_ingot_iron",      VendorClass::PlayerMarketGood},
     // The other three metals a miner can actually smelt on this shard
     // (i_provisions_ore.scp). Same standing as iron: a smith's own output,
@@ -490,6 +496,7 @@ const std::vector<std::pair<const char*, VendorClass>>& Matrix() {
 const char* VendorClassName(VendorClass c) {
     switch (c) {
         case VendorClass::Unknown:               return "UNKNOWN";
+        case VendorClass::BasicHealing:          return "BASIC_HEALING";
         case VendorClass::BasicCraftTool:        return "BASIC_CRAFT_TOOL";
         case VendorClass::BasicFood:             return "BASIC_FOOD";
         case VendorClass::RevolutionNpcVerified: return "REVOLUTION_NPC_VERIFIED";
@@ -560,6 +567,12 @@ VendorRuling CanUseNPCVendorFor(const char* item) {
             out.reason = "basic food: a character with hunger enabled must be "
                          "able to eat, and Revolution's cooking economy shows "
                          "food was not an income good";
+            break;
+        case VendorClass::BasicHealing:
+            out.allowed = true;
+            out.reason  = "basic healing: a life with no Healing skill has no "
+                          "other way to treat itself, and the shard's own "
+                          "healer sells it";
             break;
         case VendorClass::BasicCraftTool:
             out.allowed = true;

@@ -30,6 +30,57 @@ constexpr u16 kHatchet[]  = {0x0F43, 0x0F44};
 constexpr u16 kAxe[]      = {0x0F49, 0x0F4A};
 constexpr u16 kLog        = 0x1BDD;
 constexpr u16 kBandage    = 0x0E21;
+// Every heal potion is the same yellow bottle -- HealLess, Heal and HealGreat
+// are all ID=i_bottle_yellow -- so this counts strength-blind, which is what
+// a player squinting at their own pack does too.
+constexpr u16 kHealPotion = 0x0F0C;
+
+// SHIRT, TROUSERS, SHOES. Not armour and not decoration -- what a person
+// wears so as not to be standing in a city in their underwear. Plain and
+// cheap on purpose: a tailor's shirt is 2-24 gold and a cobbler's shoes 2-6
+// (tm_vend.scp VENDOR_S_TAILOR, VENDOR_S_COBBLER).
+struct ClothingPiece {
+    u16         graphic;   // what to BUY when the slot is empty
+    const char* item;      // defname, for the buy request
+    const char* what;      // for the log
+    // WHO SELLS IT FIRST. A cobbler does not stock trousers, and the first
+    // live run walked to one for a pair: the seller list is tried in order,
+    // so a single shared order sends every garment to the wrong counter twice
+    // out of three times. Cloth to the tailor, footwear to the cobbler.
+    const char* firstSeller;
+    // ANYTHING THAT FILLS THE SAME SLOT COUNTS AS FILLING IT. Naming one
+    // graphic per slot made the bot shop for what it was already carrying:
+    // "you have shhort pants on your bag" (project owner, 2026-08-30) while
+    // it walked to a cobbler for long ones. A player wears the trousers they
+    // own. Zero-terminated.
+    u16 alsoWorn[5];
+};
+constexpr ClothingPiece kBasicClothing[] = {
+    {0x1517, "i_shirt_plain", "shirt",    "tailor",
+     {0x1517, 0x1EFD, 0, 0, 0}},                       // plain, fancy
+    {0x1539, "i_pants_long",  "trousers", "tailor",
+     {0x1539, 0x152E, 0x1537, 0, 0}},                  // long, short, kilt
+    {0x170F, "i_shoes_plain", "shoes",    "cobbler",
+     {0x170F, 0x170B, 0x1711, 0x170D, 0}},             // shoes, calf, thigh, sandals
+};
+
+// Is this slot already dealt with -- worn, or in the pack ready to wear?
+// Returns the pack serial when there is something to put on, 0 otherwise, and
+// sets `worn` when the slot is already filled.
+u32 ClothingOnHand(Client& client, const ClothingPiece& p, bool* worn) {
+    *worn = false;
+    for (const u16 g : p.alsoWorn) {
+        if (!g) break;
+        const u8 layer = client.ItemEquipLayer(g);
+        if (!layer) continue;
+        if (client.EquippedGraphicAt(layer)) { *worn = true; return 0; }
+    }
+    for (const u16 g : p.alsoWorn) {
+        if (!g) break;
+        if (const u32 have = client.FindBackpackItemByGraphic(g)) return have;
+    }
+    return 0;
+}
 constexpr u16 kKatana[]   = {0x13FE, 0x13FF};
 // WHAT THIS SHARD ACTUALLY SELLS AS FOOD, read from its own itemdefs rather
 // than from generic UO. The first three were all the old list had, and a
@@ -1087,6 +1138,18 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
     obs.overloaded = client.JournalSaidSince("it is too heavy", overloadWatchMs_);
 
     obs.bandages = static_cast<i32>(client.BackpackItemCount(kBandage));
+    obs.healPotions = static_cast<i32>(client.BackpackItemCount(kHealPotion));
+    // Counted here rather than in the goal, because a need that cannot see
+    // the condition cannot select the goal that fixes it.
+    for (const ClothingPiece& p : kBasicClothing) {
+        // No tiledata, no layer, no opinion. Without it there is no way to
+        // ask what is worn, and guessing would report a dressed character
+        // naked.
+        if (!client.ItemEquipLayer(p.graphic)) continue;
+        bool worn = false;
+        if (ClothingOnHand(client, p, &worn) || worn) continue;
+        ++obs.clothingMissing;
+    }
     obs.logs     = static_cast<i32>(client.BackpackItemCount(kLog));
     obs.food     = CountAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]));
     // HUNGER AS THE SERVER SAYS IT. "You are <level>" over the eight levels
@@ -1673,6 +1736,15 @@ void Runner::Tick(Client& client, i64 nowMs) {
         case Phase::Live: {
             if (!client.IsInWorld()) return;
             const Observation obs = Observe(client, nowMs);
+
+            // WHEN DID THIS LIFE COME BACK? The robe the server hands out at a
+            // resurrection is only identifiable by the moment it appears (see
+            // CutResurrectionRobe), so the dead->alive transition has to be
+            // noticed as it happens rather than inferred later from a robe
+            // that might be anyone's.
+            if (wasDead_ && !obs.dead) resurrectedAtMs_ = nowMs;
+            wasDead_ = obs.dead;
+
             LearnFromObservation(client, obs);
             MaintainBuildLocks(client, obs);
 
@@ -1780,10 +1852,48 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // never arrived held the wind-down open for fourteen minutes --
             // the timeout was unreachable while travel was busy, which is not
             // a bound at all.
-            const bool outOfTime = nowMs - windDownStartedMs_ > 2 * 60 * 1000;
+            // LOGGING OUT LATE IS CHEAP. LOGGING OUT IN THE WILD IS FATAL.
+            //
+            // Source-X leaves the body standing in the world after the
+            // disconnect, so whatever is wandering past finishes the job:
+            // Corwyn was killed by a Gazer a minute after one logout and by a
+            // Wudgh in the same minute as the next, losing his tools, his
+            // ingots and six shields. Four wild logouts in a row, each one
+            // starting the next ghost walk.
+            //
+            // So the abort is bounded twice over rather than once. The plain
+            // deadline still applies when the character is nowhere near
+            // safety -- an unreachable target must not hold the session open
+            // for fourteen minutes, which is what happened before it existed.
+            // But when a safe spot is CLOSE and the trip is still moving, the
+            // last stretch is worth another minute; giving up thirty tiles
+            // out is how a 3-minute session ends in open country.
+            // IS IT STILL WALKING, or is it stuck? That is the question the
+            // original deadline was really asking. A trip that cannot arrive
+            // must not hold the session open -- but one that is visibly
+            // covering ground deserves to finish, and the old fixed bound
+            // could not tell the two apart. It cut Corwyn off mid-stride in
+            // Britain with the bank in sight.
+            const i64 windDownMs = nowMs - windDownStartedMs_;
+            if (client.PlayerX() != windDownLastX_ ||
+                client.PlayerY() != windDownLastY_) {
+                windDownLastX_ = client.PlayerX();
+                windDownLastY_ = client.PlayerY();
+                windDownMovedMs_ = nowMs;
+            }
+            const bool stillMoving =
+                windDownMovedMs_ != 0 &&
+                nowMs - windDownMovedMs_ < kWindDownStalledMs;
+            const i64 budgetMs =
+                stillMoving ? kWindDownGraceMs : kWindDownBudgetMs;
+
+            const bool outOfTime = windDownMs > budgetMs;
             if (outOfTime && client.TravelBusy()) {
-                LogLine("wind-down: the trip has run past its deadline; abandoning "
-                        "it and logging out where I stand");
+                LogLine("wind-down: the trip has run past its deadline (%llds, "
+                        "%s); abandoning it and logging out where I stand",
+                        static_cast<long long>(windDownMs / 1000),
+                        stillMoving ? "still moving, but far too long"
+                                    : "not moving");
                 client.TravelAbort("wind-down deadline");
                 travelInFlight_ = false;
                 return;
@@ -1820,14 +1930,52 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // never proves anything about resuming one.
             if (!safeHere && !outOfTime && windDownTrips_ < 2) {
                 windDownTrips_++;
-                if (bank) {
-                    LogLine("wind-down: travelling to a known bank at %d,%d before "
-                            "logout (attempt %d)", bank->x, bank->y, windDownTrips_);
+
+                // THE NEAREST SAFE PLACE, NOT THE NEAREST *REMEMBERED* ONE.
+                //
+                // NearestPlace already sorts by distance -- but only over what
+                // this character has personally learned, and Corwyn had learned
+                // nothing but Minoc. So standing in Britain, twenty tiles from
+                // a bank, "nearest" meant Minoc: 1,752 tiles away.
+                //
+                // That produced a self-sustaining death loop. Four logouts in
+                // the wild, every one of them in the Britain region --
+                // (1422,1555), (1330,1978), (1618,1442), (1701,1367) -- and
+                // Source-X leaves the body standing in the world after the
+                // disconnect, so each one was killed where it stopped:
+                //
+                //   16:17 disconnected   16:18 'Corwyn' was killed by N'Gazer'
+                //   16:25 disconnected   16:25 'Corwyn' was killed by N'Wudgh'
+                //
+                // He then woke as a ghost, walked to the Britain healer,
+                // resurrected, was ordered home to Minoc, ran out of clock in
+                // open country, and did it all again. Full loot took his tools,
+                // his ingots and six heater shields on the way round.
+                //
+                // "That should be nearest, or near work place" (project owner,
+                // 2026-08-30). The atlas knows every city's bank, so when the
+                // remembered one is a journey, ask the world for a closer one.
+                // Britain was a perfectly good place to log out; going home was
+                // the whole mistake.
+                const i32 known = bank
+                                      ? TileDist(bank->x, bank->y, client.PlayerX(),
+                                                 client.PlayerY())
+                                      : -1;
+                if (bank && known <= kWindDownPreferKnownWithin) {
+                    LogLine("wind-down: travelling to a known bank at %d,%d, "
+                            "%d tiles off (attempt %d)",
+                            bank->x, bank->y, known, windDownTrips_);
                     travelInFlight_ =
                         client.TravelToPoint(bank->x, bank->y, 3, "logout_safe");
                 } else {
-                    LogLine("wind-down: no bank learned yet; asking the world for one "
-                            "(attempt %d)", windDownTrips_);
+                    if (bank)
+                        LogLine("wind-down: the nearest bank this life has "
+                                "learned is %d tiles away -- asking the world "
+                                "for a closer one (attempt %d)",
+                                known, windDownTrips_);
+                    else
+                        LogLine("wind-down: no bank learned yet; asking the "
+                                "world for one (attempt %d)", windDownTrips_);
                     travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
                 }
                 if (!travelInFlight_) {
@@ -2851,7 +2999,132 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     return false;
 }
 
+// SIXTEEN FREE BANDAGES, OFF YOUR OWN BACK.
+//
+// "unequip the resurrection robe and cut into bandages with scissors" and
+// "not any robe only resurrection robe" (project owner, 2026-08-30).
+//
+// The shard side already works: types/type_scissors.scp cuts t_clothing, and
+// a robe's 16.1 weight yields sixteen bandages. It also refuses to cut WORN
+// clothing -- the engine calls CanUse(pItemTarg, true) -- which is exactly why
+// the robe has to come off first.
+//
+// WHICH ROBE. Source-X hands out ITEMID_ROBE on LAYER_ROBE at a resurrection
+// (CCharSpell.cpp:509-514) and names it "Resurrection Robe". The client reads
+// names from tiledata rather than per item, so the name is not available here
+// -- but the MOMENT is. Death on this shard is full loot, so in the minutes
+// after coming back the only robe a character can possibly be wearing is the
+// one the server just conjured. A mage's own robe went to the corpse with
+// everything else. Outside that window this does nothing at all, which is the
+// point: nobody's real robe gets cut up.
+bool Runner::CutResurrectionRobe(Client& client, const Observation& obs) {
+    constexpr u16 kResRobe = 0x1F03;      // ITEMID_ROBE
+    constexpr u8  kLayerRobe = 22;        // LAYER_ROBE, "robe over all"
+    constexpr u16 kScissors[] = {0x0F9E, 0x0DFC};
+    // Long enough to walk out of the healer's and find the scissors; far too
+    // short to catch a robe bought later in the session.
+    constexpr i64 kResRobeWindowMs = 5 * 60 * 1000;
+
+    if (obs.dead || client.ActionBusy()) return false;
+
+    // WHOSE ROBE IS IT? Two ways to be sure, because the robe outlives the
+    // session that earned it.
+    //
+    // 1. This life does not wear cloth. A miner-smith's kit is metal and
+    //    leather; a robe on LAYER_ROBE is not part of it and never was, so
+    //    whatever put it there, it is spare cloth. This is the case that
+    //    matters in practice -- Corwyn resurrected in one process and was
+    //    still wearing the robe three sessions later, because a transition
+    //    that happened before this program started cannot be observed by it.
+    //
+    // 2. This life DOES wear cloth (a mage), so a robe might genuinely be
+    //    its own -- and only the minutes right after a resurrection are
+    //    safe, since full loot means its real robe went to the corpse.
+    const bool wearsCloth = needCfg_.profession &&
+                            needCfg_.profession->wears == prof::Profession::Wear::Cloth;
+    const bool freshlyRaised =
+        resurrectedAtMs_ && obs.nowMs - resurrectedAtMs_ <= kResRobeWindowMs;
+    if (wearsCloth && !freshlyRaised) return false;
+
+    // Still wearing it: take it off. The server will not let scissors touch
+    // worn cloth.
+    if (client.EquippedGraphicAt(kLayerRobe) == kResRobe) {
+        const u32 worn = client.EquippedAtLayer(kLayerRobe);
+        if (worn) {
+            LogLine("robe: taking off the resurrection robe -- it is worth "
+                    "sixteen bandages");
+            client.ActionUnequip(worn);
+            nextActionMs_ = obs.nowMs + 1500;
+            return true;
+        }
+    }
+
+    const u32 robe = client.FindBackpackItemByGraphic(kResRobe);
+    if (!robe) return false;
+
+    u32 scissors = 0;
+    for (u16 g : kScissors) {
+        scissors = client.FindBackpackItemByGraphic(g);
+        if (scissors) break;
+    }
+    if (!scissors) {
+        // Not a failure worth stalling on -- the robe keeps. Said once per
+        // resurrection rather than every tick.
+        if (!state_.memory.HasEvent("no_scissors_for_robe")) {
+            LogLine("robe: the resurrection robe is in the pack but there are "
+                    "no scissors to cut it with");
+            state_.memory.NoteEvent("no_scissors_for_robe", "i_scissors", "",
+                                    obs.x, obs.y, obs.nowMs);
+        }
+        return false;
+    }
+
+    LogLine("robe: cutting the resurrection robe into bandages");
+    client.ActionUseItemOn(scissors, robe);
+    nextActionMs_ = obs.nowMs + 2000;
+    return true;
+}
+
+// SHIRT, TROUSERS, SHOES -- in that order, and out of the pack before the shop.
+//
+// "nice you did it but now wear your shirt short shoes etc" and "if you have
+// your clothing on your bag wear them, you can buy missing parts" (project
+// owner, 2026-08-30). Cutting up the resurrection robe leaves a character
+// standing in Britain in its underwear, which is not what a player looks
+// like.
+//
+// Wearing costs nothing and needs nobody, so it always comes first; the shop
+// is only for what is genuinely absent. The layer comes from tiledata rather
+// than a hand-written table, exactly as the armour path does.
+bool Runner::WearBasicClothing(Client& client, const Observation& obs) {
+    if (obs.dead || client.ActionBusy()) return false;
+    for (const ClothingPiece& p : kBasicClothing) {
+        bool worn = false;
+        const u32 have = ClothingOnHand(client, p, &worn);
+        if (worn || !have) continue;
+        LogLine("clothes: putting on the %s that was already in the pack",
+                p.what);
+        // Let the server pick the layer: the pack piece may be any of the
+        // slot's variants, not the one this row is named after.
+        client.ActionEquip(have, kLayerServerChooses);
+        nextActionMs_ = obs.nowMs + 1200;
+        return true;
+    }
+    return false;
+}
+
 bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
+    // FREE BANDAGES BEFORE BOUGHT ONES.
+    if (CutResurrectionRobe(client, obs)) {
+        planner_.NoteProgress();
+        return false;
+    }
+    // AND DRESS FROM THE PACK BEFORE WALKING TO A SHOP.
+    if (WearBasicClothing(client, obs)) {
+        planner_.NoteProgress();
+        return false;
+    }
+
     // The cheapest fix first: something usable is already in the pack. The axe
     // is preferred -- it is this build's weapon AND its tool, so arming it
     // solves both needs at once.
@@ -2867,7 +3140,33 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             return false;
         }
     }
-    if (obs.weaponEquipped && obs.bandages >= needCfg_.bandageLow) return true;
+    // NOTHING LEFT TO REPLACE -- but "nothing" has to include the potions.
+    //
+    // This early-out asked about bandages only, and for a crafter bandageLow
+    // is now zero (they buy potions instead), so `0 >= 0` was true and the
+    // goal reported itself finished before the potion errand below could run:
+    // fifteen picks of REPLACE_EQUIPMENT in one session, every one of them
+    // goal_completed progress=0, while the need that selected it said
+    // "potions=0 low=2 gold=8993".
+    // Missing from BOTH the body and the pack -- the only case worth a shop.
+    const ClothingPiece* missingClothes = nullptr;
+    for (const ClothingPiece& p : kBasicClothing) {
+        if (!client.ItemEquipLayer(p.graphic)) continue;
+        bool worn = false;
+        if (ClothingOnHand(client, p, &worn) || worn) continue;
+        missingClothes = &p;
+        break;
+    }
+
+    const bool potionsWanted = needCfg_.profession && [&] {
+        for (const prof::ConsumableNeed& c : needCfg_.profession->consumables)
+            if (c.name == "heal potion")
+                return obs.healPotions < c.low;
+        return false;
+    }();
+    if (obs.weaponEquipped && obs.bandages >= needCfg_.bandageLow &&
+        !potionsWanted && !missingClothes)
+        return true;
 
     if (obs.bandages < needCfg_.bandageLow) {
         const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(kBandage);
@@ -2961,6 +3260,107 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         planner_.Finish(false, "no bandages bought", obs.nowMs);
         return false;
     }
+
+    // --- THE MISSING GARMENT ----------------------------------------------
+    //
+    // Only what the pack could not supply. One piece per visit: the errand
+    // re-runs, and a shirt bought this trip is worn by WearBasicClothing at
+    // the top of the next one before anything else is considered.
+    if (missingClothes) {
+        if (client.TravelBusy()) return false;
+        if (!clothingBuy_.Running()) {
+            LogLine("clothes: no %s on the body or in the pack -- buying one",
+                    missingClothes->what);
+            life::BuyRequest req;
+            req.graphic = missingClothes->graphic;
+            req.item = missingClothes->item;
+            req.desiredTotal = 1;
+            req.minimumGoldReserve = 20;
+            // A cobbler for the shoes, a tailor for the cloth -- and the
+            // provisioner as the catch-all, because a small town has one of
+            // those when it has neither of the others.
+            req.Sell(missingClothes->firstSeller, wm::Service::Tailor);
+            req.Sell("tailor", wm::Service::Tailor);
+            req.Sell("provisioner", wm::Service::Provisioner);
+            clothingBuy_.Begin(req);
+        }
+        const life::ActivityTickResult cr = clothingBuy_.Tick(client, obs);
+        if (cr.reason && cr.reason[0]) LogLine("clothes: %s", cr.reason);
+        if (cr.wake == life::Wake::AfterDelay && cr.delayMs > 0)
+            nextActionMs_ = obs.nowMs + cr.delayMs;
+        if (!life::IsTerminal(cr.status)) {
+            planner_.NoteAttempt(obs.nowMs);
+            return false;
+        }
+        if (cr.status == life::ActivityStatus::Success) {
+            planner_.NoteProgress();
+            return false;   // worn on the next pass
+        }
+        LogLine("clothes: no %s bought (%s)", missingClothes->what, cr.reason);
+    }
+
+    // --- HEAL POTIONS, which nothing has ever bought ----------------------
+    //
+    // HealPotions() has sat in the profession catalogue since M5 and no code
+    // path ever filled it: warriors declared a need for eight and carried
+    // none. For a crafter it matters more than for anyone, because the
+    // bandages it does carry are worth what its Healing skill says they are
+    // worth, and a miner-smith has none of that skill at all.
+    //
+    // "you are crafter you dont have heal skill so buy healing potion 3-4"
+    // and "you can buy from same place you buy healer" (project owner,
+    // 2026-08-30). The healer sells them, which is convenient: it is the same
+    // counter the bandage errand above already walks to, and the same one a
+    // ghost walks to anyway. The alchemist is the fallback -- tm_vend's
+    // ALCHEMIST list carries i_potion_heal at {3 18}.
+    const prof::ConsumableNeed* potions = nullptr;
+    if (needCfg_.profession) {
+        for (const prof::ConsumableNeed& c : needCfg_.profession->consumables) {
+            if (c.name == "heal potion") { potions = &c; break; }
+        }
+    }
+    if (potions && !potions->graphics.empty()) {
+        // The graphic comes from the need itself rather than a second copy of
+        // the constant: one table, one truth.
+        const u16 potionGfx = potions->graphics.front();
+        const i32 held = static_cast<i32>(client.BackpackItemCount(potionGfx));
+        if (held < potions->low || potionBuy_.Running()) {
+            if (client.TravelBusy()) return false;
+            if (!potionBuy_.Running()) {
+                LogLine("potions: carrying %d heal potion(s), below %d -- "
+                        "buying up to %d", held, potions->low,
+                        potions->restockTo);
+                life::BuyRequest req;
+                req.graphic = potionGfx;
+                req.item = "heal potion";
+                req.desiredTotal = potions->restockTo;
+                // Unlike bandages this is not the last-coin emergency: a
+                // character that spends its final gold on potions cannot buy
+                // the ore that earns the next lot.
+                req.minimumGoldReserve = 50;
+                req.Sell("healer", wm::Service::Healer);
+                req.Sell("alchemist", wm::Service::Alchemist);
+                potionBuy_.Begin(req);
+            }
+            const life::ActivityTickResult pr = potionBuy_.Tick(client, obs);
+            if (pr.reason && pr.reason[0]) LogLine("potions: %s", pr.reason);
+            if (pr.wake == life::Wake::AfterDelay && pr.delayMs > 0)
+                nextActionMs_ = obs.nowMs + pr.delayMs;
+
+            if (!life::IsTerminal(pr.status)) {
+                planner_.NoteAttempt(obs.nowMs);
+                return false;
+            }
+            if (pr.status == life::ActivityStatus::Success) {
+                planner_.NoteProgress();
+                return false;
+            }
+            // A shop that would not sell is not a reason to keep the goal
+            // spinning; the next errand can have the turn.
+            LogLine("potions: none bought (%s)", pr.reason);
+        }
+    }
+
     return true;
 }
 
@@ -4312,12 +4712,37 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
             ++sellTrips_;
             const KnownSupplier* known = state_.memory.BestSupplier(
                 (std::string("buyer:") + sellItem_).c_str());
-            if (known && known->name == sellTrade_) {
+            // A REMEMBERED BUYER IS ONLY WORTH RETURNING TO IF IT IS NEARBY.
+            //
+            // This branch had no distance test at all, and it is how Corwyn
+            // kept dying between the cities. Standing in Britain after a
+            // resurrection, his only remembered buyer:i_dagger was the Minoc
+            // blacksmith, so EARN_GOLD sent him:
+            //
+            //   [travel] buyer -> (2473,562) r=2 from (1450,1617)
+            //
+            // A thousand tiles on foot, unmounted, through open country, to
+            // sell daggers at eighteen gold. Britain has blacksmiths -- he had
+            // just walked past them -- but familiarity outranked distance.
+            //
+            // Same shape as the wind-down bank: "nearest known" is not
+            // "nearest". Below the threshold a familiar counter is worth the
+            // walk; beyond it, ask the atlas for whatever is close, which is
+            // what HomeOrNearest already does by returning nullptr.
+            const i32 knownDist =
+                known ? TileDist(known->x, known->y, obs.x, obs.y) : -1;
+            if (known && known->name == sellTrade_ &&
+                knownDist <= kReturnToKnownBuyerWithin) {
                 LogLine("earn_gold: back to a buyer we have used before, "
-                        "'%s' at %d,%d", known->name.c_str(), known->x, known->y);
+                        "'%s' at %d,%d (%d tiles)", known->name.c_str(),
+                        known->x, known->y, knownDist);
                 travelInFlight_ =
                     client.TravelToPoint(known->x, known->y, 2, "buyer");
             } else {
+                if (known && known->name == sellTrade_)
+                    LogLine("earn_gold: the '%s' we know is %d tiles away -- "
+                            "looking for a nearer one instead",
+                            known->name.c_str(), knownDist);
                 LogLine("earn_gold: looking for a '%s' to buy %d %s (trip %d)",
                         sellTrade_.c_str(), sellWanted_, sellItem_.c_str(),
                         sellTrips_);

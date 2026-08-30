@@ -452,6 +452,13 @@ struct Observation {
 
     // Pack contents that matter to this build. Counted from the real backpack.
     i32  bandages = 0;
+    // Heal potions carried. A crafter's only self-heal: its Healing skill
+    // cannot make a bandage work, so this is what NeedEquipment watches for
+    // those lives instead. See Professions.cpp CrafterHealPotions.
+    i32  healPotions = 0;
+    // How many of shirt/trousers/shoes are on neither the body nor in the
+    // pack. A resurrected character has three, and looks it.
+    i32  clothingMissing = 0;
     i32  logs = 0;
     i32  food = 0;
     // HUNGER, as the server itself says it. Sphere sends "You are <level>"

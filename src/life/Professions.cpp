@@ -122,6 +122,30 @@ ConsumableNeed Bandages() {
 // 150 Deadly Poison, 80 Heal and 80 Cure in kegs. So a warrior wanting heal
 // potions is not a shopping errand, it is the alchemist's customer, and this
 // is what makes the fighter/alchemist pair real rather than theoretical.
+// A CRAFTER'S ONLY WAY TO HEAL ITSELF.
+//
+// "you are crafter you dont have heal skill so buy healing potion 3-4"
+// (project owner, 2026-08-30). A bandage is worth what your Healing skill
+// says it is worth, and a miner-smith has none -- so the Bandages() every
+// crafter carried were close to decoration. A potion asks nothing of the
+// drinker.
+//
+// Smaller than the warrior's eight: this is for surviving the walk to a
+// healer, not for standing in a fight.
+//
+// And it REPLACES Bandages() for these lives rather than joining it -- "so
+// crafter do not buy bandages" (project owner). Buying a consumable your
+// skills cannot use is gold spent on nothing, and it was crowding out the
+// thing that would actually have worked.
+ConsumableNeed CrafterHealPotions() {
+    ConsumableNeed c;
+    c.name = "heal potion";
+    c.graphics = {kYellowPotion};
+    c.low = 2;
+    c.restockTo = 4;
+    return c;
+}
+
 ConsumableNeed HealPotions() {
     ConsumableNeed c;
     c.name = "heal potion";
@@ -335,7 +359,7 @@ const std::vector<Profession>& All() {
             // the need model must SAY that, not hide it.
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
                        {"smith hammer", V(kSmithHammer, 2), false}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.35;      // a smith is not looking for a fight
             p.goldReserve = 500;
                         // Minoc is the mining town -- the mountain is why it is there. Vesper
@@ -512,7 +536,7 @@ const std::vector<Profession>& All() {
                           "i_reag_ginseng", "i_reag_nightshade",
                           "i_bottle_empty"};
             p.tools = {{"mortar", {kMortar}, false}};
-            p.consumables = {Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.25;
             p.goldReserve = 600;
                         // Reagents and a mortar; Britain has the deepest reagent supply.
@@ -583,7 +607,7 @@ const std::vector<Profession>& All() {
             // counts it -- obs.pack is built from produces + consumes, and an
             // uncounted input reads as forever missing.
             p.consumes = {"i_kindling"};
-            p.consumables = {Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             // A FISHER HAD NO HOME AT ALL. homeCities was simply absent, so
             // Runner::Start skipped the whole selection block, homeCity stayed
             // empty, and character creation fell back to start location 0 --
@@ -1026,7 +1050,7 @@ const std::vector<Profession>& All() {
             p.tools = {{"pickaxe", V(kPickaxe, 2), true},
                        {"smith hammer", V(kSmithHammer, 2), false},
                        {"spellbook", {kSpellbook}, false}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.40;
             p.goldReserve = 550;
             p.homeCities = {"Minoc", "Moonglow", "Britain"};
@@ -1181,7 +1205,7 @@ const std::vector<Profession>& All() {
                        {"smith hammer", V(kSmithHammer, 2), false},
                        {"saw",     {kSaw},         false},
                        {"mortar",  {kMortar},      false}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.35;
             p.goldReserve = 450;
             // Minoc first: this build's creation skills are Mining and Blacksmithing
@@ -1259,7 +1283,7 @@ const std::vector<Profession>& All() {
             p.consumes = {"i_hides_cut", "i_yarn_ball", "i_cloth", "i_thread"};
             p.tools = {{"sewing kit", {kSewingKit}, false},
                        {"scissors",   {kScissors},  false}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.15;      // the most peaceful life in the catalogue
             p.goldReserve = 400;
             // UNKNOWN: no Revolution source names a tailor's city; Britain
@@ -1331,7 +1355,7 @@ const std::vector<Profession>& All() {
                           "i_thread", "i_yarn_ball"};
             p.tools = {{"tinker tools", {kTinkerTools}, false},
                        {"pickaxe",      V(kPickaxe, 2), true}};
-            p.consumables = {Bandages(), Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.30;
             p.goldReserve = 250;         // spends rather than hoards; that IS the business
             p.homeCities = {"Britain", "Minoc"};
@@ -1410,7 +1434,7 @@ const std::vector<Profession>& All() {
                           "i_reag_mandrake_root", "i_reag_garlic",
                           "i_reag_ginseng", "i_reag_sulfur_ash"};
             p.tools = {{"spellbook", {kSpellbook}, false}};
-            p.consumables = {Food()};
+            p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.20;
             // A TRAINING FUND, NOT JUST A REAGENT FLOAT.
             //

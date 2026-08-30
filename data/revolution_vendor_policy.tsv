@@ -2,6 +2,8 @@ item	vendor_class	npc_purchase_allowed	authenticity_gap	reason
 i_pet_horse_pack	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_pet_llama_pack	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_cloth_bolt	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
+i_potion_heal	BASIC_HEALING	1	0	basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it
+i_bandage	BASIC_HEALING	1	0	basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it
 i_ingot_iron	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_ingot_copper	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
 i_ingot_gold	PLAYER_MARKET_GOOD	1	0	a player-market good with a documented NPC floor (guide: sell to other players OR to vendors)
@@ -98,4 +100,4 @@ i_scroll_blank	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an 
 i_scroll_poison	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_scroll_recall	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
 i_bottle_empty	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
-i_bandage	REVOLUTION_NPC_VERIFIED	1	0	a dated Revolution update records an NPC selling this
+i_bandage	REVOLUTION_NPC_VERIFIED	1	0	basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it

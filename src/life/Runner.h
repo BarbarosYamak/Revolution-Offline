@@ -283,6 +283,19 @@ private:
     // members shared between goals, and a gear trip spent the spellbook's
     // allowance.
     life::BuyActivity bandageBuy_;
+    // Heal potions, for lives whose Healing skill cannot make a bandage work.
+    life::BuyActivity potionBuy_;
+
+    // The resurrection robe is worth sixteen bandages, and it is only safely
+    // identifiable in the minutes right after coming back. See
+    // CutResurrectionRobe.
+    bool wasDead_ = false;
+    i64  resurrectedAtMs_ = 0;
+    bool CutResurrectionRobe(Client& client, const Observation& obs);
+    // Shirt, trousers, shoes. Not armour and not decoration -- a character
+    // that has just been resurrected owns nothing else.
+    bool WearBasicClothing(Client& client, const Observation& obs);
+    life::BuyActivity clothingBuy_;
     life::BankErrand   bankErrand_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
@@ -459,6 +472,26 @@ private:
     // A ceiling this buyer has proved it can afford. Halved each time a
     // quoted sale leaves the purse unmoved -- an NPC vendor's own gold is
     // finite and it will list an offer it cannot pay for. 0 = no cap.
+    // How far a REMEMBERED safe spot may be before the wind-down asks the
+    // atlas for a nearer one instead. Roughly "still in this town": a walk
+    // across Britain is fine, a walk to the next city is how a character ends
+    // its session in open country and is killed after the disconnect.
+    static constexpr i32 kWindDownPreferKnownWithin = 150;
+    // Same rule for a remembered shop: familiar is worth a walk across town,
+    // never a walk across the world. Corwyn died twice making the latter.
+    static constexpr i32 kReturnToKnownBuyerWithin = 150;
+    // How long the wind-down may spend reaching safety, and the longer grace
+    // it gets once safety is nearly in reach. An unreachable target must not
+    // hold the session open forever; a target thirty tiles away is worth
+    // waiting for, because the alternative is a corpse.
+    static constexpr i64 kWindDownBudgetMs = 2 * 60 * 1000;
+    static constexpr i64 kWindDownGraceMs  = 5 * 60 * 1000;
+    // No step in this long means stuck, not slow.
+    static constexpr i64 kWindDownStalledMs = 12 * 1000;
+    i32 windDownLastX_ = -1;
+    i32 windDownLastY_ = -1;
+    i64 windDownMovedMs_ = 0;
+
     i32   sellLotCap_ = 0;
     // ONE VISIT, EVERYTHING SPARE. The vendor names its whole buy list in a
     // single 0x9E, and the old path sold the one item the goal was about and
