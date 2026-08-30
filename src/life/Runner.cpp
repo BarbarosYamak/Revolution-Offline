@@ -2885,12 +2885,54 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             travelInFlight_ = false;
             const u32 keeper = client.NearestMobileWithTrade("healer");
             if (!keeper) {
-                planner_.NoteAttempt(obs.nowMs);
-                nextActionMs_ = obs.nowMs + 5000;
+                // ASK BEFORE CONCLUDING NOBODY IS THERE.
+                //
+                // NearestMobileWithTrade matches on the PAPERDOLL TITLE, and a
+                // title only exists once it has been requested. This branch
+                // never asked, so it read "no healer here" off an empty name
+                // table -- and then travelled to the same tile again. Corwyn
+                // spent an entire 12-minute session that way on 2026-08-30:
+                // 24 REPLACE_EQUIPMENT picks, 0 completed, 100% of the day in
+                // one goal family, standing at Minoc's healer shop the whole
+                // time. c_healer is at (2577,601) in the world save; the bot
+                // was at (2582,603) and could not see him because it had not
+                // asked his name.
+                //
+                // "arrived somewhere and found nobody" is also a DEFINITIVE
+                // answer once the question has actually been put. After a few
+                // scans it stands the goal down with a cooldown rather than
+                // re-walking to a tile it is already standing on -- and a
+                // cooldown, not a write-off, because one silent shop is not
+                // evidence about the trade (the lesson the trainer path
+                // already learned).
+                if (++healerScans_ <= 3) {
+                    client.ActionScanMobiles();
+                    LogLine("bandages: at the healer's, asking who is here "
+                            "(scan %d of 3)", healerScans_);
+                    planner_.NoteAttempt(obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 3000;
+                    return false;
+                }
+                LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"stood at the "
+                        "healer's and nobody with that trade answered in %d "
+                        "scans\"", healerScans_ - 1);
+                healerScans_ = 0;
+                planner_.Cooldown(GoalKind::ReplaceEquipment,
+                                  obs.nowMs + kGearCooldownMs);
+                planner_.Finish(false, "no healer answered", obs.nowMs);
                 return false;
             }
+            healerScans_ = 0;
+            // A RETRY SHORTER THAN THE ACTION'S OWN DEADLINE ONLY SUPERSEDES
+            // ITSELF. Asking again 2.5 seconds later produced
+            // "vendor_buy invalid_state ... superseded" on every single tick
+            // -- Riley the healer was standing right there, being asked to
+            // open his shop eleven times in thirty seconds and never given
+            // long enough to answer. Nine seconds is what the spellbook path
+            // uses against the same kVendorTimeoutMs, and it is clear of it.
+            if (client.ActionBusy()) return false;
             client.ActionVendorOpen(keeper);
-            nextActionMs_ = obs.nowMs + 2500;
+            nextActionMs_ = obs.nowMs + 9000;
             return false;
         }
         for (const Client::VendorItem& v : client.VendorOffer()) {

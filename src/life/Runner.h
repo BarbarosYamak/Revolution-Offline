@@ -259,6 +259,10 @@ private:
     i32  tradeTrips_ = 0;
     i32  vendorChases_ = 0;
     i32  bandageTrips_ = 0;
+    // How many times the bandage errand has asked who is standing in the
+    // healer's shop. Reset on success; three unanswered scans stand the
+    // goal down instead of re-walking to the same tile.
+    i32  healerScans_ = 0;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
     // surface, and 0 for rock land or the rock static's id (a cave floor is a

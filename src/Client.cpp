@@ -2981,9 +2981,26 @@ u32 Client::NearestMobileWithTrade(const char* trade,
         const std::string t = lower(title);
         const usize the = t.rfind(" the ");
         if (the == std::string::npos) continue;
-        std::string job = t.substr(the + 5);
+        const std::string rest = t.substr(the + 5);
+        std::string job = rest;
         const usize sp = job.find_first_of(" ,.");
         if (sp != std::string::npos) job.resize(sp);
+        // A GUILDMASTER IS NOT A SHOPKEEPER, AND TRUNCATION HIDES THAT.
+        //
+        // The job is cut at the first space, so "Riley, the healer
+        // guildmaster" reduces to "healer" and wins on distance -- and a
+        // guildmaster does not keep a shop. Corwyn stood in Minoc asking
+        // Riley to open a bandage list eight seconds at a time, twice, and
+        // got silence, while c_healer was four tiles further on
+        // (2577,601 against Riley's 2581,601).
+        //
+        // The mirror of this was already fixed in the other direction:
+        // NearestGuildmasterForTrade exists because the same truncation sent
+        // every TRAINING trip to the shopkeeper. Both queries mean something
+        // specific and neither may collapse into the other.
+        if (rest.find("guildmaster") != std::string::npos ||
+            rest.find("guildmistress") != std::string::npos)
+            continue;
         if (job != want) {
             if (wantSvc == wm::Service::None) continue;
             if (ServiceForPaperdollJob(job.c_str()) != wantSvc) continue;
