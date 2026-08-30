@@ -234,6 +234,9 @@ constexpr i64 kNoToolCooldownMs = 180000;
 // sensible rather than reckless.
 constexpr i32 kArmorMoney = 400;
 constexpr i64 kGearCooldownMs = 240000;
+// A rest, not a write-off. RetryableFailure means THIS door said no and
+// another may not -- one silent shop is not evidence about a trade.
+constexpr i64 kShortRestMs = 30000;
 // How many times to answer "you can't reach that" by moving before
 // concluding the forge itself is the problem. Three, matching the
 // vendor chase: enough to get round a wall, not enough to spend a
@@ -2925,11 +2928,21 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             planner_.NoteProgress();
             return false;
         }
-        if (r.status == life::ActivityStatus::Failed) {
-            LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"%s\"",
-                    r.why.c_str());
-            planner_.Cooldown(GoalKind::ReplaceEquipment,
-                              obs.nowMs + kGearCooldownMs);
+        // EVERY TERMINAL STATE ENDS THE GOAL, not just Failed.
+        //
+        // The errand stops running the moment it reaches any terminal state,
+        // so a caller that only recognises Failed would let a finished errand
+        // be Begin()-ed again on the very next tick -- which is the spin this
+        // whole layer exists to end, reintroduced at the seam. NoProgress and
+        // RetryableFailure are the two that would have slipped through.
+        if (life::IsTerminal(r.status)) {
+            LogLine("goal_failed=REPLACE_EQUIPMENT status=%s reason=\"%s\"",
+                    life::ActivityStatusName(r.status), r.why.c_str());
+            // A shop that would not open is not the same as bandages being
+            // unobtainable: rest briefly and let another town be tried.
+            const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
+                                 ? kShortRestMs : kGearCooldownMs;
+            planner_.Cooldown(GoalKind::ReplaceEquipment, obs.nowMs + rest);
             planner_.Finish(false, "no bandages bought", obs.nowMs);
             return false;
         }
@@ -7469,9 +7482,13 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
         nextActionMs_ = obs.nowMs + r.delayMs;
 
-    if (r.status == life::ActivityStatus::Failed) {
-        LogLine("goal_failed=GET_FOOD reason=\"%s\"", r.why.c_str());
-        planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+    // Any terminal state ends it -- see the note in DoReplaceEquipment.
+    if (life::IsTerminal(r.status) && r.status != life::ActivityStatus::Success) {
+        LogLine("goal_failed=GET_FOOD status=%s reason=\"%s\"",
+                life::ActivityStatusName(r.status), r.why.c_str());
+        const i64 rest = (r.status == life::ActivityStatus::RetryableFailure)
+                             ? kShortRestMs : kNoFoodCooldownMs;
+        planner_.Cooldown(GoalKind::GetFood, obs.nowMs + rest);
         planner_.Finish(false, "no food seller reachable", obs.nowMs);
         return false;
     }

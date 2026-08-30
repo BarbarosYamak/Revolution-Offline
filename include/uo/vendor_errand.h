@@ -39,6 +39,7 @@
 // ---------------------------------------------------------------------------
 
 #include "uo/interaction/activity_result.h"
+#include "uo/interaction/handshake.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
 
@@ -154,6 +155,10 @@ private:
     i32 wantQty_ = 0;
     i32 unitPrice_ = 0;
     i64 verifyDeadlineMs_ = 0;
+
+    // The ask that opens the shop, disciplined by the shared rule rather
+    // than by a hand-picked millisecond count. See interaction/handshake.h.
+    Handshake open_;
 };
 
 }  // namespace uo::life

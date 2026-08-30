@@ -37,6 +37,9 @@ constexpr i32 kMaxChases = 3;
 // calling it NoProgress. Generous: Sphere sends the container update and the
 // gold change as separate packets, and a busy shard delays both.
 constexpr i64 kVerifyWindowMs = 12000;
+// What the CLIENT allows a vendor action, mirrored here so the handshake
+// derives its retry gap from the real number. Client.cpp's kVendorTimeoutMs.
+constexpr i64 kVendorActionDeadlineMs = 8000;
 
 i32 TileDistance(i32 ax, i32 ay, i32 bx, i32 by) {
     const i32 dx = ax > bx ? ax - bx : bx - ax;
@@ -82,6 +85,17 @@ void VendorErrand::Begin(const VendorErrandSpec& spec) {
     scans_ = 0;
     seller_ = 0;
     travelInFlight_ = false;
+
+    // The deadline is the CLIENT's, not a guess: kVendorTimeoutMs is what
+    // Client applies to a vendor action, and the retry gap is derived from
+    // it rather than chosen. That derivation is the entire reason the four
+    // hand-written 2.5-second retries could exist at all.
+    RetryPolicy rp;
+    rp.actionDeadlineMs = kVendorActionDeadlineMs;
+    rp.maxAttempts = 3;
+    rp.backoffMs = 2000;
+    open_.Configure(rp);
+    open_.Reset();
 }
 
 VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
@@ -198,13 +212,56 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // a shop we never walked to.
             if (client.VendorOfferFrom() == keeper_ &&
                 !client.VendorOffer().empty()) {
+                open_.Note(Outcome::Succeeded, obs.nowMs);
                 step_ = Step::Buy;
                 return Working(Wake::Now, 0, "the shop is open");
             }
+
+            // THE SERVER'S ANSWER, READ RATHER THAN DISCARDED. A rejection is
+            // definitive and ends this door now; a timeout says nothing about
+            // the world and only backs off.
+            if (!client.ActionBusy() &&
+                client.ActionKind() == act::Kind::VendorBuy) {
+                const act::Result res = client.ActionResult();
+                if (res == act::Result::Rejected ||
+                    res == act::Result::Unavailable ||
+                    res == act::Result::ServerFailure) {
+                    open_.Note(Outcome::Refused, obs.nowMs,
+                               act::ResultName(res));
+                }
+            }
+            if (open_.Expired(obs.nowMs)) open_.NoteExpiry(obs.nowMs);
+
+            // THE DEADLINE RULE, ENFORCED BY A TYPE. This branch used to be
+            // "issue, then nextActionMs_ = now + 9000", a number chosen by
+            // hand in four separate files and got wrong in three of them.
+            const char* whyNot = "";
+            if (!open_.MayIssue(obs.nowMs, &whyNot)) {
+                if (open_.Exhausted() ||
+                    open_.State() == HandshakeState::ConfirmedFailure) {
+                    // This shopkeeper will not open. Another town might, and
+                    // the seller list is how the errand gets there -- so this
+                    // is retryable, not a flat failure.
+                    const char* said = open_.Refusal();
+                    VendorErrandResult r;
+                    r.status = ActivityStatus::RetryableFailure;
+                    r.wake = Wake::Now;
+                    r.why = Fmt("the '%s' would not open a shop%s%s",
+                                spec_.sellers[seller_].trade,
+                                (said && said[0]) ? ": " : "",
+                                (said && said[0]) ? said : "");
+                    running_ = false;
+                    return r;
+                }
+                return Working(Wake::ActionResolves, kShortMs, whyNot);
+            }
+
             client.ActionVendorOpen(keeper_);
-            return Working(Wake::AfterDelay, kAfterAskMs,
-                           Fmt("asking the '%s' to show %s", spec_.sellers[seller_].trade,
-                               spec_.what));
+            open_.NoteIssued(obs.nowMs);
+            return Working(Wake::ActionResolves, 0,
+                           Fmt("asking the '%s' to show %s (attempt %d)",
+                               spec_.sellers[seller_].trade, spec_.what,
+                               open_.Attempts()));
         }
 
         // ---------------------------------------------------------------
