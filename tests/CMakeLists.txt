@@ -257,3 +257,18 @@ target_include_directories(interaction_progress PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME interaction_progress COMMAND interaction_progress)
+
+# --- The interaction layer: the handshake -----------------------------------
+#
+# docs/BOT_ARCHITECTURE.md section 17. One rule, broken five times in five
+# files before it became a type: a retry issued inside the action's own
+# deadline cannot resolve, only supersede itself. Also that a definitive
+# refusal ends the wait AT ONCE -- "You can't reach that." was read and
+# discarded 311 times in one session.
+add_executable(interaction_handshake interaction_handshake.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/interaction/Handshake.cpp)
+target_include_directories(interaction_handshake PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME interaction_handshake COMMAND interaction_handshake)

@@ -102,6 +102,7 @@ set(UO_CLIENT_SOURCES
     # 17, 18). Client-free, so unlike VendorErrand.cpp above it IS in the
     # testable set -- tests/interaction_progress.cpp links it directly.
     src/life/interaction/Progress.cpp
+    src/life/interaction/Handshake.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.
