@@ -1,0 +1,15 @@
+start: Corwyn is a miner_smith and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[18:57:46.130] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path
+[18:57:56.050] WARN  [v_Corwyn] [travel] route exhausted at (2883,680,0); trying to reach (2872,680,0) to get somewhere routable (escape 1/3)
+[18:57:57.213] WARN  [v_Corwyn] [bot] no path to (2872,680) avoiding 0 block(s); stopping (search 1121729.4us)
+[18:57:57.213] WARN  [v_Corwyn] [bot] start (2883,680,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 322 item(s), 2 mobile(s))
+[18:57:57.274] WARN  [v_Corwyn] [travel] route exhausted at (2883,680,0); trying to reach (2872,664,1) to get somewhere routable (escape 2/3)
+[18:58:13.390] WARN  [v_Corwyn] [travel] route exhausted at (2872,664,1); trying to reach (2878,648,0) to get somewhere routable (escape 3/3)
+[18:59:29.946] WARN  [v_Corwyn] [0x21] move REJECTED seq=66; server says (2858,816,-1) facing=2
+[18:59:31.071] WARN  [v_Corwyn] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1085742.4us)
+[18:59:31.071] WARN  [v_Corwyn] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 374 item(s), 10 mobile(s))
+[18:59:33.548] WARN  [v_Corwyn] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1161165.1us)
+[18:59:33.548] WARN  [v_Corwyn] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 374 item(s), 10 mobile(s))
+[18:59:52.114] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path

@@ -1,0 +1,2317 @@
+[15:21:54.791] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh05' char=Voris tag='f6_Voris'
+[15:21:54.792] LOG   [f6_Voris] event session_start: text log opened
+[15:21:54.792] LOG   [f6_Voris] event net_connect_begin: connect 127.0.0.1:2593
+[15:21:54.792] INFO  [f6_Voris] [net] connecting to 127.0.0.1:2593 ...
+[15:21:54.793] LOG   [f6_Voris] event net_connected: connect 127.0.0.1:2593
+[15:21:54.793] INFO  [f6_Voris] [net] connected.
+[15:21:54.794] INFO  [f6_Voris] [seed] sent 0x7F000001 (plaintext)
+[15:21:54.794] LOG   [f6_Voris] event seed_out: 0x7F000001 hex=7f000001
+[15:21:54.794] INFO  [life] loaded persistent state for Voris (2 places, 0 suppliers, 3 events, 7 prior sessions)
+[15:21:54.794] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[15:21:54.794] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[15:21:54.794] INFO  [f6_Voris] [life] autonomous player active for 'Voris' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[15:21:54.795] INFO  [f6_Voris] [0xA8] 1 server(s):
+[15:21:54.795] INFO  [f6_Voris]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[15:21:54.801] INFO  [f6_Voris] [0x8C] game server = 127.0.0.1:2593  seed=0x3C5206B0
+[15:21:54.801] LOG   [f6_Voris] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3C5206B0
+[15:21:54.801] INFO  [f6_Voris] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:21:54.801] LOG   [f6_Voris] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:21:54.802] INFO  [f6_Voris] [0xB9] server features = 0x0005
+[15:21:54.802] INFO  [f6_Voris] [0xA9] 5 slot(s) (populated 1):
+[15:21:54.802] INFO  [f6_Voris]   [0] Voris
+[15:21:54.802] INFO  [f6_Voris]   [1] <empty>
+[15:21:54.802] INFO  [f6_Voris]   [2] <empty>
+[15:21:54.802] INFO  [f6_Voris]   [3] <empty>
+[15:21:54.802] INFO  [f6_Voris]   [4] <empty>
+[15:21:54.802] INFO  [f6_Voris] [ui] playing slot 0 ('Voris')
+[15:21:54.817] INFO  [f6_Voris] [0x1B] serial=0x00014094 body=0x0190 pos=(1428,1691,0)
+[15:21:54.818] LOG   [f6_Voris] event login_confirm: serial=0x00014094 body=0x0190 pos=(1428,1691,0)
+[15:21:54.818] INFO  [f6_Voris] [0x20] player @(1428,1691,0) facing=6
+[15:21:54.818] INFO  [f6_Voris] [0x55] login complete — entering world
+[15:21:54.818] LOG   [f6_Voris] event in_world: 0x55 received
+[15:21:54.818] INFO  [f6_Voris] [backpack] opening 0x40014088
+[15:21:54.818] INFO  [f6_Voris] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:21:54.818] INFO  [f6_Voris] [chat ascii] System: There are 3 other players here.
+[15:21:54.818] INFO  [f6_Voris] [chat ascii] System: Last logged: 2026/08/29 15:47:44
+[15:21:54.818] INFO  [f6_Voris] [chat ascii] System: You are under the protection of the city guards
+[15:21:54.822] INFO  [f6_Voris] [action] requesting the skill list
+[15:21:54.822] INFO  [life] in world; asked the server for the skill list
+[15:21:54.822] INFO  [f6_Voris] [0x24] open container 0x40014088 gump=60
+[15:21:54.822] INFO  [f6_Voris] [0x3C] container contents: 12 item(s)
+[15:21:54.822] LOG   [f6_Voris] event backpack_contents: serial=0x40014088 items=12
+[15:21:54.824] INFO  [f6_Voris] [chat ascii] System: You are hungry
+[15:21:54.824] INFO  [f6_Voris] [chat ascii] Voris: *You looks hungry*
+[15:21:54.848] INFO  [f6_Voris] [chat ascii] System: Kaelen has arrived in Britain.
+[15:21:54.879] INFO  [f6_Voris] [chat ascii] System: Ysolde has arrived in Britain.
+[15:21:54.893] INFO  [f6_Voris] [chat ascii] Ysolde: *You see Ysolde looks hungry*
+[15:21:55.033] INFO  [f6_Voris] [chat ascii] System: Bruin has arrived in Yew.
+[15:21:57.435] INFO  [f6_Voris] [bot] world data loaded (0 blacklisted spot(s)).
+[15:21:57.436] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[15:21:57.436] INFO  [life]   gold         persisted=684        server=684        -> server value accepted
+[15:21:57.436] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[15:21:57.436] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[15:21:57.436] INFO  [life]   int          persisted=32         server=32         -> server value accepted
+[15:21:57.436] INFO  [life]   skill_0      persisted=50.0       server=50.0       -> server value accepted
+[15:21:57.436] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[15:21:57.436] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[15:21:57.436] INFO  [life]   position     persisted=1428,1691  server=1428,1691  -> server value accepted
+[15:21:57.436] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:21:57.436] INFO  [life]   restored objective KEPT: PRACTICE_SKILL (progress 15)
+[15:21:57.436] INFO  [f6_Voris] [survival] on
+[15:21:57.436] LOG   [f6_Voris] event survival_mode: on
+[15:21:57.438] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:21:57.438] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:21:57.490] INFO  [life] practice: using Meditation to raise it (30.0)
+[15:21:57.490] INFO  [f6_Voris] [ACTION] use_skill start
+[15:21:57.490] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[15:21:57.490] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[15:21:57.490] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[15:21:57.490] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[15:22:02.489] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:07.529] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:09.504] INFO  [life] practice: using Meditation to raise it (30.0)
+[15:22:09.504] INFO  [f6_Voris] [ACTION] use_skill start
+[15:22:09.504] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[15:22:09.504] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[15:22:09.504] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[15:22:09.504] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[15:22:12.556] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:17.462] INFO  [life] goal_changed=GET_FOOD from=PRACTICE_SKILL reason="GET_FOOD 112.5 superseded PRACTICE_SKILL 36.0"
+[15:22:17.462] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:22:17.462] INFO  [life]   score=112.5
+[15:22:17.462] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:22:17.462] INFO  [life]   reason: food=2 hungry=1
+[15:22:17.462] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:17.585] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:21.531] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:22:21.531] INFO  [f6_Voris] [ACTION] use_object start
+[15:22:21.531] INFO  [f6_Voris] [ACTION] use_object serial=0x4001981F
+[15:22:21.546] INFO  [f6_Voris] [chat ascii] Voris: *You eat some bread loaves*
+[15:22:21.546] INFO  [f6_Voris] [chat ascii] System: You eat the food, and begin to feel more satiated.
+[15:22:22.612] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:25.569] LOG   [f6_Voris] event action_result: use_object timeout
+[15:22:25.630] INFO  [life] food: eating (hungry=1 starving=0, carrying 1)
+[15:22:25.630] INFO  [f6_Voris] [ACTION] use_object start
+[15:22:25.630] INFO  [f6_Voris] [ACTION] use_object serial=0x4001981F
+[15:22:25.646] INFO  [f6_Voris] [chat ascii] Voris: *You eat some bread loaf*
+[15:22:25.646] INFO  [f6_Voris] [chat ascii] System: You are nearly stuffed, but manage to eat the food.
+[15:22:27.674] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:29.639] LOG   [f6_Voris] event action_result: use_object timeout
+[15:22:29.699] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 32)
+[15:22:29.700] INFO  [f6_Voris] [ACTION] cast_spell start
+[15:22:29.700] INFO  [f6_Voris] [ACTION] cast_spell id=2 target=0x00000000 mana=32
+[15:22:29.716] INFO  [f6_Voris] [chat ascii] System: The spell is not in your spellbook.
+[15:22:29.716] LOG   [f6_Voris] event action_result: cast_spell server_failure took=17ms The spell is not in your spellbook.
+[15:22:32.696] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:35.722] INFO  [life] food: Create Food is not in this character's spellbook (magery 50.0) -- buying food instead for the rest of the session
+[15:22:35.722] INFO  [life] food: looking for a baker (trip 1)
+[15:22:35.722] INFO  [f6_Voris] [travel] Britain baker -> (1450,1617) r=5 from (1428,1691)
+[15:22:35.722] LOG   [f6_Voris] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1428,1691)
+[15:22:35.722] INFO  [f6_Voris] [travel] mode moongate         usable   <- chosen
+[15:22:35.722] INFO  [f6_Voris] [travel] mode walk             usable
+[15:22:35.722] INFO  [f6_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:22:35.722] INFO  [f6_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:22:35.722] LOG   [f6_Voris] event travel_mode: moongate
+[15:22:35.722] INFO  [f6_Voris] [travel] plan Britain baker: ok legs=2 ~88 tiles transit=0 nodes=18
+[15:22:35.784] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:35.784] INFO  [f6_Voris] [action] goto (1448,1656) from (1428,1691,0)
+[15:22:35.784] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1428,1691)
+[15:22:35.784] INFO  [f6_Voris] [bot] running from (1428,1691,0) to (1448,1656)
+[15:22:35.784] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[15:22:35.846] INFO  [f6_Voris] [bot] replan to (1448,1656): 61 steps in 7655.8us
+[15:22:37.734] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:39.187] INFO  [f6_Voris] [bot] step (1438,1692,0)->(1439,1693,0) rejected; OpenDoor + retry
+[15:22:39.202] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:22:39.202] INFO  [f6_Voris] [0x20] player @(1438,1692,0) facing=2
+[15:22:39.203] INFO  [f6_Voris] [action] goto finished at (1438,1692,0); target (1448,1656); stopped short (off by 46 tile(s))
+[15:22:39.203] LOG   [f6_Voris] event goto_done: at=(1438,1692) target=(1448,1656) arrived=0 off=46
+[15:22:40.439] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:40.439] INFO  [f6_Voris] [action] goto (1448,1656) from (1438,1692,0)
+[15:22:40.440] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1438,1692)
+[15:22:40.440] INFO  [f6_Voris] [bot] running from (1438,1692,0) to (1448,1656)
+[15:22:40.440] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[15:22:40.499] INFO  [f6_Voris] [bot] replan to (1448,1656): 50 steps in 7838.8us
+[15:22:40.988] INFO  [f6_Voris] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[15:22:40.989] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:22:40.989] INFO  [f6_Voris] [0x20] player @(1439,1693,0) facing=2
+[15:22:40.989] INFO  [f6_Voris] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[15:22:40.989] LOG   [f6_Voris] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[15:22:42.209] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:42.209] INFO  [f6_Voris] [action] goto (1448,1656) from (1439,1693,0)
+[15:22:42.209] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1439,1693)
+[15:22:42.209] INFO  [f6_Voris] [bot] running from (1439,1693,0) to (1448,1656)
+[15:22:42.209] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[15:22:42.270] INFO  [f6_Voris] [bot] replan to (1448,1656): 49 steps in 8879.1us
+[15:22:42.760] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:47.819] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:52.859] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:22:56.456] INFO  [f6_Voris] [bot] arrived at (1448,1656,10)
+[15:22:56.456] INFO  [f6_Voris] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[15:22:56.456] LOG   [f6_Voris] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[15:22:56.456] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:22:56.456] INFO  [f6_Voris] [action] goto (1450,1617) from (1448,1656,10)
+[15:22:56.456] LOG   [f6_Voris] event goto_start: target=(1450,1617) from=(1448,1656)
+[15:22:56.456] INFO  [f6_Voris] [bot] running from (1448,1656,10) to (1450,1617,z20)
+[15:22:56.456] INFO  [f6_Voris] [bot] planning path to (1450,1617) in background
+[15:22:56.516] INFO  [f6_Voris] [bot] replan to (1450,1617): 65 steps in 16802.7us
+[15:22:57.467] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:22:57.898] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:02.935] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:07.993] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:13.035] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:14.047] INFO  [f6_Voris] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[15:23:14.047] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:23:16.426] INFO  [f6_Voris] [travel] Britain baker ARRIVED at (1455,1614,20)
+[15:23:16.426] LOG   [f6_Voris] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=2 plans=1 why=''
+[15:23:16.487] INFO  [f6_Voris] [action] scanning nearby mobiles for names
+[15:23:16.487] INFO  [f6_Voris] [action] requested 1 paperdoll(s) for trade titles
+[15:23:16.503] INFO  [f6_Voris] [mobiles] nearby (4):
+[15:23:16.503] INFO  [f6_Voris]   Lionel 0x000010B3
+[15:23:16.503] INFO  [f6_Voris]   Dale 0x000010C1
+[15:23:16.503] INFO  [f6_Voris]   Natasha 0x00001194
+[15:23:16.503] INFO  [f6_Voris]   Kaelen 0x00013DF0
+[15:23:16.503] INFO  [f6_Voris] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[15:23:16.503] INFO  [f6_Voris] [world] Lionel, the baker is a baker at (1453,1614)
+[15:23:18.077] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:18.335] INFO  [f6_Voris] [bot] arrived at (1450,1617,20)
+[15:23:19.005] INFO  [life] food: nothing to eat -- asking the baker
+[15:23:19.005] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:23:19.005] INFO  [f6_Voris] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[15:23:19.006] INFO  [f6_Voris] [chat uni  ] : Lionel buy
+[15:23:19.006] INFO  [f6_Voris] [chat ascii] Lionel: What's thou need?
+[15:23:19.006] INFO  [f6_Voris] [chat ascii] Lionel: Thou surely wants all the things that I can sell thee.
+[15:23:19.006] INFO  [f6_Voris] [0x3C] container contents: 10 item(s)
+[15:23:19.006] INFO  [f6_Voris] [0x74] vendor shop data: cont=0x400010A9 10 item(s), layer=0x1A
+[15:23:19.006] INFO  [f6_Voris] [0x74]   bread loaves                 gfx=0x103B qty=60   price=8
+[15:23:19.006] INFO  [f6_Voris] [0x74]   baked pie                    gfx=0x1041 qty=18   price=17
+[15:23:19.006] INFO  [f6_Voris] [0x74]   cake                         gfx=0x09E9 qty=37   price=38
+[15:23:19.006] INFO  [f6_Voris] [0x74]   muffins                      gfx=0x09EA qty=30   price=8
+[15:23:19.006] INFO  [f6_Voris] [0x74]   sack of flour                gfx=0x1039 qty=61   price=6
+[15:23:19.006] INFO  [f6_Voris] [0x74]   french bread                 gfx=0x098C qty=66   price=9
+[15:23:19.006] INFO  [f6_Voris] [0x74]   pan of cookies               gfx=0x160B qty=51   price=7
+[15:23:19.006] INFO  [f6_Voris] [0x74]   pizzas                       gfx=0x1040 qty=42   price=15
+[15:23:19.006] INFO  [f6_Voris] [0x74]   jars of honey                gfx=0x09EC qty=39   price=10
+[15:23:19.006] INFO  [f6_Voris] [0x74]   dough                        gfx=0x103D qty=62   price=12
+[15:23:19.006] INFO  [f6_Voris] [0x3C] container contents: 0 item(s)
+[15:23:19.006] INFO  [f6_Voris] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[15:23:19.006] INFO  [f6_Voris] [VENDOR] offer from 0x000010B3: 10 item(s)
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C343 bread loaves           x60  8 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C342 baked pie              x18  17 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C341 cake                   x37  38 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C33E muffins                x30  8 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C33D sack of flour          x61  6 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C33C french bread           x66  9 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C33B pan of cookies         x51  7 gp
+[15:23:19.006] INFO  [f6_Voris] [VENDOR]   0x4000C33A pizzas                 x42  15 gp
+[15:23:19.006] LOG   [f6_Voris] event vendor_offer: vendor=0x000010B3 items=10
+[15:23:19.006] INFO  [f6_Voris] [ACTION_RESULT] vendor_buy success (2ms) vendor offer received
+[15:23:19.006] LOG   [f6_Voris] event action_result: vendor_buy success took=2ms vendor offer received
+[15:23:19.006] INFO  [f6_Voris] [0x24] vendor buy gump for 0x000010B3
+[15:23:23.129] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:28.018] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:23:28.018] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:23:28.018] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:23:28.018] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:23:28.019] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:23:28.019] LOG   [f6_Voris] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[15:23:28.139] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:33.144] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:37.026] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:23:37.026] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:23:37.026] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:23:37.026] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:23:37.026] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:23:37.026] LOG   [f6_Voris] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[15:23:38.201] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:43.260] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:46.059] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:23:46.059] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:23:46.059] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:23:46.059] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:23:46.059] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:23:46.059] LOG   [f6_Voris] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[15:23:48.320] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:53.373] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:23:55.095] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:23:55.095] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:23:55.096] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:23:55.096] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:23:55.110] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:23:55.111] LOG   [f6_Voris] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[15:23:57.497] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:23:58.409] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:03.432] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:04.104] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:24:04.105] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:24:04.105] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:04.105] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:24:04.120] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:24:04.120] LOG   [f6_Voris] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[15:24:04.120] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[15:24:04.120] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:24:04.120] INFO  [life]   score=112.5
+[15:24:04.120] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:24:04.120] INFO  [life]   reason: food=0 hungry=1
+[15:24:04.120] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:24:08.471] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:13.117] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:24:13.117] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:24:13.117] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:13.117] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:24:13.117] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:24:13.117] LOG   [f6_Voris] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[15:24:13.482] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:18.526] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:22.156] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:24:22.156] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:24:22.156] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:22.156] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:24:22.156] INFO  [f6_Voris] [chat ascii] System: You can't reach the Vendor
+[15:24:22.156] LOG   [f6_Voris] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[15:24:23.565] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:27.389] INFO  [f6_Voris] [chat ascii] Lionel: Nice speaking to you Voris
+[15:24:28.570] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:29.611] INFO  [f6_Voris] [chat ascii] System: Ilyana has arrived in Yew.
+[15:24:29.793] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[15:24:31.201] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:24:31.201] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:24:31.201] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:31.201] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=684
+[15:24:31.217] INFO  [f6_Voris] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[15:24:31.217] LOG   [f6_Voris] event action_result: vendor_buy success took=16ms purchased item delivered
+[15:24:31.217] INFO  [f6_Voris] [chat ascii] Lionel: Here you are, Voris That will be 16 gold coins.  I thank thee for thy business.
+[15:24:31.217] INFO  [f6_Voris] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[15:24:33.624] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:38.669] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:39.777] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[15:24:40.201] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:40.201] INFO  [f6_Voris] [ACTION] use_object start
+[15:24:40.201] INFO  [f6_Voris] [ACTION] use_object serial=0x400191F3
+[15:24:43.676] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:44.230] LOG   [f6_Voris] event action_result: use_object timeout
+[15:24:44.263] INFO  [f6_Voris] [chat ascii] Voris: *You eat some bread loaves*
+[15:24:44.263] INFO  [f6_Voris] [chat ascii] System: You feel quite full after consuming the food.
+[15:24:44.263] INFO  [life] food: eating (hungry=1 starving=0, carrying 1)
+[15:24:44.263] INFO  [f6_Voris] [ACTION] use_object start
+[15:24:44.263] INFO  [f6_Voris] [ACTION] use_object serial=0x400191F3
+[15:24:44.278] INFO  [f6_Voris] [chat ascii] Voris: *You eat some bread loaf*
+[15:24:44.278] INFO  [f6_Voris] [chat ascii] System: You are stuffed!
+[15:24:48.318] LOG   [f6_Voris] event action_result: use_object timeout
+[15:24:48.334] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[15:24:48.334] INFO  [f6_Voris] [ACTION] vendor_buy start
+[15:24:48.334] INFO  [f6_Voris] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[15:24:48.334] INFO  [f6_Voris] [VENDOR] buy item=0x4000C343 qty=2 from vendor=0x000010B3 gold=668
+[15:24:48.334] INFO  [f6_Voris] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[15:24:48.334] LOG   [f6_Voris] event action_result: vendor_buy success took=0ms purchased item delivered
+[15:24:48.334] INFO  [f6_Voris] [chat ascii] Lionel: Here you are, Voris That will be 16 gold coins.  I thank thee for thy business.
+[15:24:48.334] INFO  [f6_Voris] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[15:24:48.717] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:53.727] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:24:57.368] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:24:57.368] INFO  [f6_Voris] [ACTION] use_object start
+[15:24:57.368] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:24:57.369] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:24:57.554] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:24:58.775] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:01.387] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:01.402] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:01.402] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:01.402] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:01.402] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:03.800] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:05.457] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:05.517] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:05.517] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:05.517] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:05.518] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:08.802] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:09.534] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:09.595] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:09.595] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:09.595] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:09.595] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:13.625] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:13.688] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:13.688] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:13.688] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:13.689] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:13.811] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:17.710] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:17.770] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:17.770] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:17.770] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:17.785] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:18.838] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:21.777] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:21.837] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:21.837] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:21.837] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:21.853] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:23.848] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:25.872] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:25.934] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:25.934] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:25.934] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:25.950] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:28.892] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:29.991] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:30.053] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:30.053] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:30.053] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:30.069] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:33.946] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:34.067] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:34.127] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:34.127] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:34.127] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:34.142] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:38.128] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:38.189] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:38.189] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:38.189] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:38.206] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:38.954] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:42.246] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:42.307] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:42.307] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:42.307] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:42.308] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:43.964] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:46.345] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:46.406] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:46.406] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:46.406] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:46.406] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:48.991] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:50.458] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:50.520] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:50.520] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:50.520] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:50.535] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:54.017] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:25:54.571] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:54.633] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:54.633] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:54.633] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:54.633] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:57.561] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:25:58.658] LOG   [f6_Voris] event action_result: use_object timeout
+[15:25:58.720] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:25:58.720] INFO  [f6_Voris] [ACTION] use_object start
+[15:25:58.720] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:25:58.735] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:25:59.058] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:02.732] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:02.791] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:02.792] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:02.792] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:02.792] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:04.074] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:06.794] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:06.853] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:06.853] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:06.853] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:06.868] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:09.129] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:10.863] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:10.924] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:10.924] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:10.924] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:10.925] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:14.169] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:14.969] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:15.029] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:15.029] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:15.029] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:15.029] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:19.065] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:19.126] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:19.126] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:19.126] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:19.126] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:19.187] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:23.157] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:23.219] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:23.219] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:23.219] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:23.219] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:24.187] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:27.232] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:27.292] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:27.292] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:27.292] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:27.292] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:29.194] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:31.345] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:31.407] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:31.407] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:31.407] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:31.422] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:34.238] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:35.415] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:35.415] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:35.415] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:35.415] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:35.416] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:39.239] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:39.424] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:39.486] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:39.486] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:39.486] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:39.486] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:43.488] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:43.549] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:43.549] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:43.549] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:43.564] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:44.241] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:47.562] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:47.623] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:47.623] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:47.623] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:47.638] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:49.290] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:51.667] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:51.727] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:51.727] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:51.727] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:51.728] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:54.347] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:55.756] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:55.815] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:55.815] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:55.815] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:55.831] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:26:57.613] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:26:59.352] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:26:59.843] LOG   [f6_Voris] event action_result: use_object timeout
+[15:26:59.904] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:26:59.904] INFO  [f6_Voris] [ACTION] use_object start
+[15:26:59.904] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:26:59.919] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:03.912] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:03.975] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:03.975] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:03.975] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:03.975] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:04.407] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:07.978] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:08.040] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:08.040] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:08.040] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:08.040] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:09.446] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:12.082] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:12.143] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:12.143] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:12.143] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:12.144] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:14.498] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:16.200] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:16.262] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:16.262] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:16.262] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:16.278] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:19.531] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:20.269] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:20.330] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:20.330] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:20.330] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:20.330] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:24.381] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:24.443] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:24.443] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:24.443] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:24.459] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:24.582] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:28.447] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:28.509] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:28.509] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:28.509] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:28.509] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:29.609] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:32.547] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:32.608] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:32.608] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:32.608] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:32.624] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:34.653] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:36.625] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:36.686] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:36.686] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:36.686] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:36.686] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:39.684] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:40.723] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:40.785] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:40.785] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:40.785] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:40.801] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:44.739] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:44.814] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:44.876] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:44.876] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:44.876] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:44.892] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:48.886] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:48.947] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:48.947] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:48.947] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:48.947] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:49.743] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:52.958] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:53.019] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:53.019] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:53.019] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:53.019] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:54.776] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:27:57.053] LOG   [f6_Voris] event action_result: use_object timeout
+[15:27:57.115] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:27:57.115] INFO  [f6_Voris] [ACTION] use_object start
+[15:27:57.115] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:27:57.116] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:27:57.670] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:27:59.779] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:01.124] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:01.184] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:01.184] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:01.184] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:01.185] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:04.836] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:05.205] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:05.265] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:05.265] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:05.265] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:05.266] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:09.286] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:09.286] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:09.286] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:09.286] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:09.287] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:09.897] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:13.291] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:13.352] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:13.352] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:13.352] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:13.352] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:14.949] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:17.394] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:17.455] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:17.455] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:17.455] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:17.470] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:19.972] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:21.504] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:21.566] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:21.566] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:21.566] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:21.566] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:24.601] INFO  [f6_Voris] [chat ascii] Lionel: Thou hast mine attention.
+[15:28:25.028] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:25.575] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:25.635] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:25.636] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:25.636] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:25.636] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:29.655] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:29.715] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:29.715] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:29.715] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:29.715] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:30.084] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:33.730] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:33.792] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:33.792] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:33.792] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:33.807] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:35.100] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:37.817] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:37.878] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:37.878] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:37.878] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:37.878] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:40.108] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:41.892] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:41.952] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:41.952] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:41.952] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:41.952] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:45.114] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:45.971] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:46.032] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:46.032] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:46.032] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:46.049] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:50.052] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:50.098] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:50.098] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:50.098] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:50.099] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:50.159] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:54.146] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:54.207] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:54.207] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:54.207] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:54.208] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:28:55.205] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:28:57.700] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:28:58.250] LOG   [f6_Voris] event action_result: use_object timeout
+[15:28:58.310] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:28:58.310] INFO  [f6_Voris] [ACTION] use_object start
+[15:28:58.310] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:28:58.310] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:00.207] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:02.350] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:02.410] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:02.410] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:02.410] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:02.411] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:04.127] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:29:04.127] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.37) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:29:04.127] INFO  [life]   score=112.5
+[15:29:04.127] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:29:04.127] INFO  [life]   reason: food=2 hungry=1
+[15:29:04.127] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:29:05.229] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:06.454] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:06.516] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:06.517] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:06.517] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:06.532] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:10.280] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:10.525] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:10.588] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:10.588] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:10.588] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:10.589] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:14.642] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:14.702] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:14.702] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:14.702] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:14.718] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:15.284] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:18.761] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:18.822] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:18.822] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:18.822] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:18.837] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:20.305] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:22.858] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:22.921] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:22.921] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:22.921] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:22.921] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:25.313] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:26.956] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:27.017] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:27.017] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:27.017] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:27.017] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:30.334] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:31.067] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:31.129] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:31.129] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:31.129] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:31.130] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:34.309] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[15:29:35.166] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:35.227] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:35.227] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:35.227] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:35.227] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:35.351] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:39.271] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:39.333] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:39.333] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:39.333] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:39.333] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:40.368] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:43.375] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:43.435] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:43.435] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:43.435] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:43.452] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:44.334] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[15:29:45.431] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:47.494] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:47.556] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:47.556] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:47.556] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:47.557] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:50.440] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:51.601] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:51.662] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:51.662] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:51.662] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:51.678] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:55.493] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:29:55.676] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:55.737] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:55.737] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:55.737] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:55.737] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:29:57.750] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:29:59.794] LOG   [f6_Voris] event action_result: use_object timeout
+[15:29:59.858] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:29:59.858] INFO  [f6_Voris] [ACTION] use_object start
+[15:29:59.858] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:29:59.858] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:00.537] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:03.866] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:03.927] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:03.927] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:03.927] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:03.943] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:05.553] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:07.946] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:08.006] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:08.006] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:08.006] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:08.021] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:10.579] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:12.057] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:12.088] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:12.088] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:12.088] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:12.088] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:15.586] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:16.142] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:16.202] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:16.202] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:16.202] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:16.218] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:20.260] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:20.322] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:20.322] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:20.322] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:20.322] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:20.613] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:24.324] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:24.384] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:24.384] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:24.384] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:24.399] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:25.626] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:28.398] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:28.459] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:28.459] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:28.459] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:28.460] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:30.665] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:32.489] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:32.550] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:32.550] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:32.550] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:32.550] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:35.719] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:36.574] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:36.637] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:36.637] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:36.637] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:36.653] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:40.667] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:40.728] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:40.728] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:40.728] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:40.728] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:40.728] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:44.730] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:44.790] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:44.790] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:44.790] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:44.791] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:45.784] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:48.841] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:48.903] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:48.903] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:48.903] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:48.903] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:50.816] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:52.959] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:53.021] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:53.021] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:53.021] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:53.036] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:55.821] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:30:57.044] LOG   [f6_Voris] event action_result: use_object timeout
+[15:30:57.106] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:30:57.106] INFO  [f6_Voris] [ACTION] use_object start
+[15:30:57.106] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:30:57.106] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:30:57.783] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:31:00.877] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:01.121] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:01.182] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:01.182] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:01.182] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:01.198] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:05.182] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:05.243] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:05.243] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:05.243] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:05.244] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:05.917] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:09.244] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:09.303] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:09.303] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:09.303] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:09.303] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:10.960] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:13.355] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:13.418] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:13.418] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:13.418] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:13.418] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:16.007] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:17.459] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:17.521] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:17.521] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:17.521] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:17.521] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:21.026] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:21.576] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:21.636] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:21.636] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:21.636] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:21.652] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:25.693] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:25.753] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:25.754] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:25.754] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:25.754] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:26.055] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:29.792] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:29.853] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:29.853] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:29.853] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:29.853] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:31.077] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:33.884] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:33.946] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:33.946] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:33.946] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:33.946] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:36.121] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:37.946] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:38.007] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:38.007] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:38.007] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:38.008] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:41.164] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:42.028] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:42.090] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:42.090] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:42.090] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:42.090] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:46.104] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:46.134] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:46.134] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:46.134] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:46.134] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:46.196] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:50.176] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:50.238] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:50.238] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:50.238] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:50.253] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:51.208] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:54.284] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:54.345] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:54.345] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:54.345] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:54.346] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:31:56.237] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:31:57.786] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:31:58.365] LOG   [f6_Voris] event action_result: use_object timeout
+[15:31:58.426] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:31:58.426] INFO  [f6_Voris] [ACTION] use_object start
+[15:31:58.426] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:31:58.426] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:01.246] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:02.470] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:02.530] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:02.530] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:02.530] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:02.545] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:06.305] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:06.552] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:06.612] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:06.612] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:06.612] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:06.627] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:10.611] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:10.672] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:10.672] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:10.672] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:10.673] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:11.347] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:14.672] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:14.734] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:14.734] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:14.734] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:14.734] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:16.387] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:18.759] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:18.820] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:18.820] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:18.820] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:18.820] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:21.409] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:22.851] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:22.912] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:22.912] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:22.912] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:22.913] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:26.433] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:26.925] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:26.986] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:26.986] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:26.986] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:27.002] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:31.025] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:31.087] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:31.087] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:31.087] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:31.102] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:31.443] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:35.106] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:35.169] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:35.169] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:35.169] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:35.184] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:36.467] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:39.180] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:39.241] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:39.241] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:39.241] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:39.255] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:41.518] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:43.295] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:43.355] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:43.355] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:43.355] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:43.371] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:46.574] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:47.368] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:47.428] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:47.428] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:47.428] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:47.428] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:51.429] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:51.490] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:51.490] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:51.490] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:51.505] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:51.628] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:55.511] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:55.573] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:55.573] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:55.573] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:55.573] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:32:56.671] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:32:57.809] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:32:59.586] LOG   [f6_Voris] event action_result: use_object timeout
+[15:32:59.647] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:32:59.647] INFO  [f6_Voris] [ACTION] use_object start
+[15:32:59.647] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:32:59.647] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:01.688] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:03.658] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:03.718] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:03.718] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:03.718] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:03.719] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:06.736] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:07.778] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:07.840] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:07.840] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:07.840] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:07.856] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:11.756] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:11.879] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:11.940] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:11.940] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:11.940] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:11.940] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:15.952] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:16.015] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:16.015] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:16.015] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:16.016] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:16.813] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:20.061] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:20.122] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:20.122] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:20.122] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:20.139] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:21.841] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:24.146] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:24.206] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:24.206] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:24.206] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:24.207] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:26.878] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:28.226] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:28.286] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:28.286] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:28.286] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:28.287] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:31.923] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:32.290] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:32.352] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:32.352] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:32.352] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:32.352] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:36.409] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:36.469] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:36.469] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:36.469] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:36.484] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:36.962] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:37.392] INFO  [f6_Voris] [chat ascii] Lionel: Thou hast mine attention.
+[15:33:40.521] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:40.583] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:40.583] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:40.583] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:40.583] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:42.004] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:44.632] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:44.694] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:44.694] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:44.694] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:44.694] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:47.018] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:48.744] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:48.807] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:48.807] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:48.807] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:48.822] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:52.060] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:52.856] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:52.916] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:52.916] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:52.916] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:52.931] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:56.963] LOG   [f6_Voris] event action_result: use_object timeout
+[15:33:57.024] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:33:57.024] INFO  [f6_Voris] [ACTION] use_object start
+[15:33:57.024] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:33:57.024] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:33:57.085] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:33:57.824] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:34:01.069] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:01.130] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:01.130] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:01.130] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:01.130] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:02.124] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:04.146] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:34:04.146] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.37) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:34:04.146] INFO  [life]   score=112.5
+[15:34:04.146] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:34:04.146] INFO  [life]   reason: food=2 hungry=1
+[15:34:04.146] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:34:05.165] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:05.226] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:05.226] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:05.226] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:05.226] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:07.156] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:09.249] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:09.310] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:09.310] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:09.310] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:09.310] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:12.183] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:13.345] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:13.407] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:13.407] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:13.408] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:13.408] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:17.196] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:17.440] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:17.501] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:17.501] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:17.501] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:17.501] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:21.540] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:21.601] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:21.601] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:21.601] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:21.601] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:22.215] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:25.618] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:25.679] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:25.679] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:25.679] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:25.694] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:27.272] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:29.693] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:29.754] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:29.754] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:29.754] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:29.770] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:32.330] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:33.811] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:33.872] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:33.872] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:33.872] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:33.888] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:34.747] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[15:34:37.363] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:37.916] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:37.976] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:37.976] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:37.976] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:37.976] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:42.006] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:42.068] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:42.068] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:42.068] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:42.068] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:42.406] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:44.737] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[15:34:46.102] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:46.164] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:46.164] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:46.164] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:46.164] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:47.449] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:50.222] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:50.282] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:50.282] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:50.282] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:50.283] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:52.491] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:54.325] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:54.387] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:54.387] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:54.387] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:54.403] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:34:57.547] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:34:57.857] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:34:58.406] LOG   [f6_Voris] event action_result: use_object timeout
+[15:34:58.466] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:34:58.466] INFO  [f6_Voris] [ACTION] use_object start
+[15:34:58.466] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:34:58.482] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:02.484] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:02.546] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:02.547] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:02.547] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:02.547] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:02.608] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:06.559] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:06.619] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:06.619] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:06.619] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:06.619] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:07.661] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:10.647] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:10.707] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:10.707] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:10.707] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:10.708] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:12.678] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:14.765] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:14.826] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:14.826] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:14.826] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:14.826] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:17.737] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:18.842] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:18.904] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:18.904] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:18.904] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:18.904] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:22.794] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:22.917] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:22.979] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:22.979] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:22.979] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:22.995] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:27.009] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:27.069] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:27.069] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:27.069] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:27.069] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:27.805] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:31.119] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:31.181] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:31.181] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:31.181] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:31.181] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:32.839] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:35.186] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:35.248] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:35.248] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:35.248] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:35.248] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:37.862] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:39.264] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:39.324] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:39.324] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:39.324] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:39.324] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:42.895] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:43.326] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:43.388] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:43.388] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:43.388] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:43.388] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:47.431] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:47.492] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:47.492] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:47.492] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:47.492] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:47.909] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:51.532] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:51.595] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:51.595] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:51.595] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:51.596] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:52.943] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:55.623] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:55.685] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:55.685] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:55.685] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:55.685] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:35:57.878] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:35:57.999] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:35:59.709] LOG   [f6_Voris] event action_result: use_object timeout
+[15:35:59.770] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:35:59.770] INFO  [f6_Voris] [ACTION] use_object start
+[15:35:59.770] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:35:59.770] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:03.053] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:03.788] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:03.849] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:03.849] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:03.849] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:03.864] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:07.895] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:07.956] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:07.956] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:07.956] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:07.972] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:08.095] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:11.958] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:12.020] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:12.020] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:12.020] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:12.020] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:13.125] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:16.063] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:16.126] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:16.126] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:16.126] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:16.142] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:18.130] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:20.166] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:20.228] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:20.228] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:20.228] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:20.228] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:23.141] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:24.247] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:24.308] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:24.308] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:24.308] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:24.630] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:28.189] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:28.312] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:28.374] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:28.374] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:28.374] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:28.374] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:32.412] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:32.472] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:32.472] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:32.472] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:32.472] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:33.201] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:36.532] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:36.594] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:36.594] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:36.594] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:36.609] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:38.203] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:40.627] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:40.687] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:40.687] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:40.687] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:40.687] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:43.249] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:44.723] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:44.785] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:44.785] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:44.785] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:44.785] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:48.263] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:48.809] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:48.871] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:48.871] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:48.871] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:48.886] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:52.881] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:52.943] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:52.943] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:52.943] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:52.943] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:53.311] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:36:56.946] LOG   [f6_Voris] event action_result: use_object timeout
+[15:36:57.008] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:36:57.008] INFO  [f6_Voris] [ACTION] use_object start
+[15:36:57.008] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:36:57.008] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:36:57.924] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:36:58.349] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:01.061] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:01.125] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:01.125] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:01.125] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:01.125] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:03.378] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:05.126] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:05.187] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:05.187] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:05.187] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:05.188] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:08.405] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:09.197] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:09.259] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:09.259] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:09.259] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:09.259] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:13.318] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:13.381] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:13.381] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:13.381] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:13.381] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:13.442] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:17.394] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:17.455] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:17.455] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:17.455] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:17.455] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:18.452] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:21.462] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:21.524] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:21.524] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:21.524] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:21.539] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:23.507] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:25.526] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:25.587] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:25.587] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:25.587] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:25.587] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:28.536] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:29.640] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:29.702] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:29.702] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:29.702] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:29.702] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:33.583] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:33.707] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:33.768] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:33.768] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:33.768] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:33.768] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:37.779] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:37.840] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:37.840] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:37.840] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:37.840] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:38.607] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:41.877] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:41.923] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:41.923] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:41.923] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:41.923] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:43.640] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:45.950] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:46.011] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:46.011] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:46.011] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:46.011] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:48.655] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:50.065] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:50.127] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:50.127] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:50.127] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:50.128] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:53.702] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:37:54.174] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:54.236] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:54.236] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:54.236] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:54.252] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:57.978] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:37:58.284] LOG   [f6_Voris] event action_result: use_object timeout
+[15:37:58.346] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:37:58.346] INFO  [f6_Voris] [ACTION] use_object start
+[15:37:58.346] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:37:58.346] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:37:58.712] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:02.363] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:02.424] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:02.424] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:02.424] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:02.440] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:03.723] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:06.483] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:06.543] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:06.543] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:06.543] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:06.543] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:08.776] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:10.557] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:10.618] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:10.618] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:10.618] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:10.619] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:13.782] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:14.637] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:14.699] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:14.699] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:14.699] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:14.714] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:18.712] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:18.773] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:18.773] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:18.773] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:18.773] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:18.835] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:22.790] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:22.853] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:22.853] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:22.853] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:22.853] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:23.879] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:26.858] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:26.918] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:26.918] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:26.918] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:26.919] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:28.932] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:30.936] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:30.998] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:30.998] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:30.998] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:30.998] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:33.976] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:35.020] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:35.081] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:35.081] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:35.081] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:35.097] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:39.035] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:39.097] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:39.157] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:39.157] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:39.157] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:39.172] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:43.167] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:43.167] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:43.167] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:43.167] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:43.167] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:44.055] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:47.184] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:47.244] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:47.244] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:47.244] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:47.259] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:49.094] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:51.270] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:51.331] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:51.331] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:51.331] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:51.346] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:54.104] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:55.349] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:55.410] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:55.410] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:55.410] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:55.426] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:38:58.024] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:38:59.129] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:38:59.438] LOG   [f6_Voris] event action_result: use_object timeout
+[15:38:59.499] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:38:59.499] INFO  [f6_Voris] [ACTION] use_object start
+[15:38:59.499] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:38:59.499] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:03.522] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:03.583] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:03.583] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:03.583] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:03.583] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:04.136] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:04.197] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:39:04.197] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.37) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:39:04.197] INFO  [life]   score=112.5
+[15:39:04.197] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:39:04.197] INFO  [life]   reason: food=2 hungry=1
+[15:39:04.197] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:39:07.624] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:07.687] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:07.687] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:07.687] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:07.687] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:09.162] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:11.691] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:11.752] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:11.752] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:11.753] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:11.753] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:14.224] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:15.761] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:15.822] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:15.822] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:15.822] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:15.837] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:17.170] INFO  [f6_Voris] [chat ascii] Lionel: What is it thou wishest?
+[15:39:19.272] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:19.825] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:19.886] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:19.886] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:19.886] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:19.901] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:23.938] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:24.000] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:24.000] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:24.000] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:24.015] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:24.309] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:28.007] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:28.068] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:28.068] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:28.068] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:28.084] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:29.363] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:32.096] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:32.158] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:32.158] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:32.158] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:32.425] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:34.377] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:35.043] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[15:39:36.214] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:36.277] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:36.277] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:36.277] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:36.278] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:39.431] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:40.296] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:40.358] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:40.359] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:40.359] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:40.359] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:44.360] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:44.423] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:44.423] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:44.423] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:44.484] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:44.484] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:45.291] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[15:39:48.454] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:48.514] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:48.514] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:48.514] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:48.561] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:49.514] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:52.553] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:52.614] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:52.614] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:52.614] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:52.614] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:54.519] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:39:56.672] LOG   [f6_Voris] event action_result: use_object timeout
+[15:39:56.733] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:39:56.733] INFO  [f6_Voris] [ACTION] use_object start
+[15:39:56.733] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:39:56.734] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:39:58.083] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:39:59.569] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:00.739] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:00.800] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:00.800] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:00.800] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:00.800] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:04.609] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:04.853] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:04.913] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:04.913] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:04.913] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:04.914] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:08.926] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:08.986] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:08.986] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:08.986] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:08.986] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:09.659] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:13.010] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:13.071] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:13.071] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:13.071] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:13.087] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:14.672] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:17.108] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:17.168] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:17.168] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:17.168] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:17.183] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:19.694] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:21.210] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:21.225] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:21.225] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:21.225] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:21.226] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:24.718] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:25.270] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:25.332] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:25.332] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:25.332] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:25.332] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:29.382] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:29.442] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:29.442] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:29.442] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:29.442] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:29.753] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:33.493] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:33.554] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:33.554] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:33.554] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:33.554] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:34.784] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:37.606] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:37.667] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:37.667] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:37.667] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:37.682] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:39.821] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:41.720] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:41.782] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:41.782] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:41.782] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:41.782] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:44.828] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:45.810] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:45.872] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:45.872] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:45.872] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:45.873] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:49.854] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:49.915] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:49.979] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:49.979] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:49.979] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:49.979] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:53.980] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:54.042] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:54.042] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:54.042] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:54.042] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:54.898] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:40:58.042] LOG   [f6_Voris] event action_result: use_object timeout
+[15:40:58.103] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:40:58.103] INFO  [f6_Voris] [ACTION] use_object start
+[15:40:58.103] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:40:58.106] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:40:58.106] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:40:59.943] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:02.117] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:02.178] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:02.178] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:02.178] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:02.178] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:04.946] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:06.230] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:06.290] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:06.290] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:06.290] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:06.290] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:09.972] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:10.338] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:10.399] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:10.399] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:10.399] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:10.414] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:14.403] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:14.462] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:14.462] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:14.462] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:14.462] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:15.014] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:18.521] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:18.582] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:18.582] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:18.582] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:18.599] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:20.071] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:22.642] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:22.703] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:22.703] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:22.703] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:22.704] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:25.095] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:26.762] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:26.823] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:26.823] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:26.823] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:26.823] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:30.151] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:30.824] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:30.885] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:30.885] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:30.885] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:30.901] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:34.886] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:34.948] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:34.948] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:34.948] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:34.963] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:35.194] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:38.970] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:39.031] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:39.031] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:39.031] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:39.031] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:40.250] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:43.071] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:43.132] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:43.132] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:43.132] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:43.133] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:45.290] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:47.168] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:47.230] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:47.230] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:47.230] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:47.230] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:50.335] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:51.257] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:51.318] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:51.318] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:51.318] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:51.333] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:55.346] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:41:55.346] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:55.409] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:55.409] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:55.409] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:55.409] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:41:58.158] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:41:59.448] LOG   [f6_Voris] event action_result: use_object timeout
+[15:41:59.509] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:41:59.509] INFO  [f6_Voris] [ACTION] use_object start
+[15:41:59.509] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:41:59.524] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:00.385] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:03.545] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:03.605] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:03.605] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:03.605] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:03.605] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:05.438] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:07.642] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:07.704] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:07.704] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:07.704] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:07.705] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:10.493] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:11.723] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:11.784] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:11.784] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:11.784] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:11.784] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:15.530] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:15.839] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:15.901] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:15.901] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:15.901] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:15.901] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:19.905] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:19.967] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:19.967] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:19.967] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:19.967] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:20.586] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:24.019] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:24.081] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:24.081] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:24.081] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:24.081] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:25.620] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:28.091] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:28.153] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:28.153] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:28.153] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:28.168] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:30.641] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:32.201] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:32.262] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:32.262] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:32.262] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:32.370] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:35.661] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:36.278] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:36.340] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:36.340] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:36.340] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:36.340] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:40.393] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:40.454] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:40.455] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:40.455] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:40.455] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:40.702] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:44.458] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:44.518] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:44.518] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:44.518] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:44.533] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:45.759] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:48.534] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:48.595] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:48.595] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:48.595] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:48.610] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:50.815] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:52.647] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:52.707] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:52.707] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:52.707] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:52.707] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:55.843] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:42:56.760] LOG   [f6_Voris] event action_result: use_object timeout
+[15:42:56.821] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:42:56.821] INFO  [f6_Voris] [ACTION] use_object start
+[15:42:56.821] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:42:56.821] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:42:58.179] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:43:00.867] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:00.867] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:00.927] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:00.927] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:00.927] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:00.928] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:04.939] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:05.001] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:05.001] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:05.001] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:05.002] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:05.922] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:09.061] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:09.122] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:09.122] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:09.122] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:09.122] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:10.956] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:13.161] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:13.222] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:13.222] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:13.222] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:13.223] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:15.981] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:17.267] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:17.328] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:17.328] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:17.328] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:17.328] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:20.982] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:21.349] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:21.410] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:21.410] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:21.410] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:21.426] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:25.444] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:25.504] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:25.504] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:25.504] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:25.505] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:25.992] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:29.534] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:29.594] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:29.595] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:29.595] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:29.595] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:31.018] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:33.651] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:33.711] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:33.711] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:33.711] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:33.711] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:36.035] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:37.729] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:37.793] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:37.793] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:37.793] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:37.793] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:41.088] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:41.833] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:41.896] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:41.896] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:41.896] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:41.927] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:45.938] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:46.000] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:46.000] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:46.000] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:46.001] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:46.124] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:50.040] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:50.101] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:50.101] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:50.101] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:50.101] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:51.158] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:54.126] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:54.187] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:54.187] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:54.187] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:54.203] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:43:56.160] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:43:58.191] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:43:58.192] LOG   [f6_Voris] event action_result: use_object timeout
+[15:43:58.252] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:43:58.252] INFO  [f6_Voris] [ACTION] use_object start
+[15:43:58.252] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:43:58.267] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:01.186] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:02.288] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:02.350] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:02.350] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:02.350] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:02.350] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:04.235] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[15:44:04.235] INFO  [life] needs considered: NeedFood(food 0.45) NeedSpells(spells 0.37) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[15:44:04.235] INFO  [life]   score=112.5
+[15:44:04.235] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:44:04.235] INFO  [life]   reason: food=2 hungry=1
+[15:44:04.235] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:06.197] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:06.381] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:06.411] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:06.411] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:06.411] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:06.412] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:10.465] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:10.525] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:10.525] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:10.525] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:10.541] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:11.244] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:14.548] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:14.609] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:14.609] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:14.609] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:14.609] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:16.281] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:18.660] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:18.723] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:18.723] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:18.723] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:18.738] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:21.291] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:21.352] INFO  [f6_Voris] [chat ascii] Lionel: Aye?
+[15:44:22.761] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:22.821] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:22.821] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:22.821] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:22.837] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:26.349] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:26.839] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:26.901] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:26.901] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:26.901] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:26.902] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:30.943] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:31.004] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:31.004] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:31.004] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:31.004] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:31.403] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:35.014] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:35.075] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:35.075] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:35.075] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:35.075] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:36.414] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:36.902] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[15:44:39.104] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:39.166] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:39.166] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:39.166] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:39.167] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:41.424] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:43.194] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:43.254] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:43.254] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:43.254] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:43.271] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:46.451] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:46.925] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[15:44:47.296] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:47.357] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:47.357] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:47.357] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:47.373] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:51.395] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:51.456] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:51.456] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:51.456] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:51.456] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:51.472] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:55.456] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:55.517] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:55.517] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:55.517] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:55.517] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:44:56.496] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:44:58.242] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:44:59.529] LOG   [f6_Voris] event action_result: use_object timeout
+[15:44:59.591] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:44:59.591] INFO  [f6_Voris] [ACTION] use_object start
+[15:44:59.591] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:44:59.591] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:01.504] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:03.649] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:03.710] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:03.710] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:03.710] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:03.710] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:06.530] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:07.752] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:07.783] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:07.783] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:07.783] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:07.783] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:11.548] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:11.791] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:11.851] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:11.851] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:11.851] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:11.867] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:15.868] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:15.928] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:15.928] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:15.928] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:15.928] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:16.600] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:19.963] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:20.025] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:20.025] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:20.025] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:20.025] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:21.617] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:24.063] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:24.124] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:24.124] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:24.124] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:24.124] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:26.619] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:28.150] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:28.210] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:28.210] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:28.210] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:28.226] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:31.654] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:32.265] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:32.326] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:32.327] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:32.327] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:32.327] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:36.365] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:36.426] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:36.426] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:36.426] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:36.426] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:36.673] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:40.450] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:40.512] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:40.512] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:40.512] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:40.512] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:41.732] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:44.545] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:44.606] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:44.606] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:44.606] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:44.607] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:46.749] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:48.646] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:48.707] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:48.707] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:48.707] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:48.708] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:51.774] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:52.754] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:52.814] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:52.815] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:52.815] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:52.830] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:56.817] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:45:56.817] LOG   [f6_Voris] event action_result: use_object timeout
+[15:45:56.877] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:45:56.877] INFO  [f6_Voris] [ACTION] use_object start
+[15:45:56.877] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:45:56.877] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:45:58.286] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:46:00.935] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:00.996] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:00.996] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:00.996] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:01.010] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:01.864] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:05.053] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:05.114] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:05.114] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:05.114] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:05.130] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:06.887] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:09.138] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:09.199] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:09.199] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:09.199] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:09.199] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:11.901] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:13.231] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:13.292] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:13.292] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:13.292] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:13.307] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:16.950] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:17.302] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:17.363] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:17.363] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:17.363] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:17.363] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:21.387] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:21.418] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:21.418] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:21.418] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:21.419] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:21.968] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:25.436] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:25.497] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:25.497] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:25.497] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:25.497] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:26.983] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:29.547] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:29.608] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:29.608] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:29.608] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:29.623] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:31.984] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:33.637] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:33.698] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:33.698] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:33.698] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:33.698] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:37.038] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:37.713] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:37.773] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:37.774] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:37.774] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:37.774] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:41.833] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:41.893] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:41.893] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:41.893] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:41.908] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:42.092] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:45.919] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:45.980] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:45.980] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:45.980] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:45.980] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:47.142] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:49.995] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:50.056] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:50.056] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:50.056] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:50.056] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:52.172] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:54.074] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:54.135] INFO  [life] food: eating (hungry=1 starving=0, carrying 2)
+[15:46:54.135] INFO  [f6_Voris] [ACTION] use_object start
+[15:46:54.135] INFO  [f6_Voris] [ACTION] use_object serial=0x40018FE2
+[15:46:54.150] INFO  [f6_Voris] [chat ascii] System: You are simply too full to eat any more!
+[15:46:54.825] INFO  [life] session_end_requested reason="session time limit reached"
+[15:46:54.886] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[15:46:54.886] INFO  [f6_Voris] [travel] Britain banker -> (1425,1690) r=5 from (1450,1617)
+[15:46:54.886] LOG   [f6_Voris] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1450,1617)
+[15:46:54.886] INFO  [f6_Voris] [travel] mode moongate         usable   <- chosen
+[15:46:54.886] INFO  [f6_Voris] [travel] mode walk             usable
+[15:46:54.886] INFO  [f6_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:46:54.886] INFO  [f6_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:46:54.886] LOG   [f6_Voris] event travel_mode: moongate
+[15:46:54.886] INFO  [f6_Voris] [travel] plan Britain banker: ok legs=2 ~88 tiles transit=0 nodes=11
+[15:46:54.947] INFO  [f6_Voris] [action] goto finished at (1450,1617,20); target (1450,1617); ARRIVED (off by 0 tile(s))
+[15:46:54.947] LOG   [f6_Voris] event goto_done: at=(1450,1617) target=(1450,1617) arrived=1 off=0
+[15:46:54.947] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:46:54.947] INFO  [f6_Voris] [action] goto (1464,1656) from (1450,1617,20)
+[15:46:54.947] LOG   [f6_Voris] event goto_start: target=(1464,1656) from=(1450,1617)
+[15:46:54.947] INFO  [f6_Voris] [bot] running from (1450,1617,20) to (1464,1656)
+[15:46:54.947] INFO  [f6_Voris] [bot] planning path to (1464,1656) in background
+[15:46:55.007] INFO  [f6_Voris] [bot] replan to (1464,1656): 55 steps in 3770.2us
+[15:46:55.285] INFO  [f6_Voris] [chat ascii] System: Bruin has departed from Yew.
+[15:46:57.212] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:46:58.143] LOG   [f6_Voris] event action_result: use_object timeout
+[15:46:58.602] INFO  [f6_Voris] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[15:46:58.617] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:47:00.074] INFO  [f6_Voris] [bot] step (1460,1612,20)->(1461,1613,20) rejected; OpenDoor + retry
+[15:47:00.089] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:47:00.089] INFO  [f6_Voris] [0x20] player @(1460,1612,20) facing=4
+[15:47:00.089] INFO  [f6_Voris] [action] goto finished at (1460,1612,20); target (1464,1656); stopped short (off by 48 tile(s))
+[15:47:00.089] LOG   [f6_Voris] event goto_done: at=(1460,1612) target=(1464,1656) arrived=0 off=48
+[15:47:01.318] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:47:01.318] INFO  [f6_Voris] [action] goto (1464,1656) from (1460,1612,20)
+[15:47:01.318] LOG   [f6_Voris] event goto_start: target=(1464,1656) from=(1460,1612)
+[15:47:01.318] INFO  [f6_Voris] [bot] running from (1460,1612,20) to (1464,1656)
+[15:47:01.318] INFO  [f6_Voris] [bot] planning path to (1464,1656) in background
+[15:47:01.380] INFO  [f6_Voris] [bot] replan to (1464,1656): 44 steps in 1657.9us
+[15:47:02.241] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:07.297] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:12.345] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:14.609] INFO  [f6_Voris] [bot] arrived at (1464,1656,10)
+[15:47:14.609] INFO  [f6_Voris] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[15:47:14.609] LOG   [f6_Voris] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[15:47:14.609] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:47:14.610] INFO  [f6_Voris] [action] goto (1425,1690) from (1464,1656,10)
+[15:47:14.610] LOG   [f6_Voris] event goto_start: target=(1425,1690) from=(1464,1656)
+[15:47:14.610] INFO  [f6_Voris] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[15:47:14.610] INFO  [f6_Voris] [bot] planning path to (1425,1690) in background
+[15:47:14.670] INFO  [f6_Voris] [bot] replan to (1425,1690): 61 steps in 14301.9us
+[15:47:17.391] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:21.776] INFO  [f6_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=36 in 129.5us
+[15:47:22.402] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:22.540] INFO  [f6_Voris] [chat ascii] System: Tarath has departed from Britain.
+[15:47:26.666] INFO  [f6_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=23 in 315.9us
+[15:47:27.169] INFO  [f6_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=23 in 238.7us
+[15:47:27.412] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:29.581] INFO  [f6_Voris] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[15:47:29.581] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:47:30.618] INFO  [f6_Voris] [chat ascii] System: Ysolde has departed from Britain.
+[15:47:31.002] INFO  [f6_Voris] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[15:47:31.018] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[15:47:31.740] INFO  [f6_Voris] [chat ascii] System: Kaelen has departed from Britain.
+[15:47:32.469] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[15:47:33.226] INFO  [f6_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=12 in 477.6us
+[15:47:34.943] INFO  [f6_Voris] [travel] Britain banker ARRIVED at (1430,1688,0)
+[15:47:34.943] LOG   [f6_Voris] event travel_done: label='Britain banker' ok=1 at=(1430,1688) legs=2 plans=1 why=''
+[15:47:34.944] INFO  [life] wind-down: arrived somewhere safe at 1429,1688
+[15:47:35.005] INFO  [life] session_summary duration=1540s goals=0/6 gold=684->652 skills=130.0->130.0 logs=+0 deaths=0 places=2 suppliers=0
+[15:47:35.005] INFO  [life] session_goals families=1 picks=6 top=100% varied=0 | upkeep=6(100%) | GET_FOOD=6(100%)
+[15:47:35.008] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[15:47:35.008] INFO  [life] logging out
+[15:47:35.008] INFO  [f6_Voris] [action] logout requested
+[15:47:35.008] LOG   [f6_Voris] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:47:35.008] INFO  [f6_Voris] [0xD1] logout acknowledged (accepted=1)
+[15:47:35.008] LOG   [f6_Voris] event logout_ack: accepted
+[15:47:35.008] INFO  [f6_Voris] [net] closing connection (logout acknowledged)
+[15:47:35.008] LOG   [f6_Voris] event logout_complete: acked

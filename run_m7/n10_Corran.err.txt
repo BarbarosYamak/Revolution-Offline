@@ -1,0 +1,47 @@
+start: Corran is a miner_smith and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[17:31:34.920] WARN  [n10_Corran] [0x21] move REJECTED seq=9; server says (2767,768,0) facing=3
+[17:31:35.639] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2767,768,0) facing=3
+[17:32:34.111] WARN  [n10_Corran] [0x21] move REJECTED seq=40; server says (2800,952,0) facing=3
+[17:32:34.842] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2800,952,0) facing=3
+[17:32:49.381] WARN  [n10_Corran] [0x21] move REJECTED seq=60; server says (2827,927,0) facing=1
+[17:32:50.148] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2827,927,0) facing=1
+[17:33:31.324] WARN  [n10_Corran] [0x21] move REJECTED seq=55; server says (2856,816,0) facing=2
+[17:33:32.619] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1293717.4us)
+[17:33:32.619] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 249 item(s), 14 mobile(s))
+[17:33:37.251] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 3266715.9us)
+[17:33:37.251] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 249 item(s), 14 mobile(s))
+[17:34:04.775] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:34:29.858] WARN  [n10_Corran] [0x21] move REJECTED seq=94; server says (2855,816,0) facing=2
+[17:34:31.156] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1249296.6us)
+[17:34:31.156] WARN  [n10_Corran] [bot] start (2855,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 353 item(s), 15 mobile(s))
+[17:34:33.560] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1082302.7us)
+[17:34:33.560] WARN  [n10_Corran] [bot] start (2855,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 353 item(s), 15 mobile(s))
+[17:45:02.853] WARN  [n10_Corran] [bot] THREAT (HP 56 -> 51): halting travel (TODO engage/flee/recall)
+[17:45:05.915] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:45:11.409] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:45:14.312] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:45:22.942] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:45:24.292] WARN  [n10_Corran] [bot] THREAT (HP 41 -> 37): halting travel (TODO engage/flee/recall)
+[17:45:28.800] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:45:32.053] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:47:42.523] WARN  [n10_Corran] [0x21] move REJECTED seq=145; server says (2828,890,0) facing=0
+[17:49:25.394] WARN  [n10_Corran] [0x21] move REJECTED seq=20; server says (2888,673,0) facing=3
+[17:49:25.396] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[17:50:21.357] WARN  [n10_Corran] [0x21] move REJECTED seq=77; server says (2856,816,0) facing=2
+[17:50:23.751] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2338955.8us)
+[17:50:23.751] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1349 item(s), 12 mobile(s))
+[17:50:27.382] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2312754.9us)
+[17:50:27.382] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1349 item(s), 12 mobile(s))
+[17:53:27.178] WARN  [n10_Corran] [0x21] move REJECTED seq=45; server says (3623,2139,86) facing=1
+[17:53:28.764] WARN  [n10_Corran] [0x21] move REJECTED seq=4; server says (3624,2137,84) facing=1
+[17:53:30.742] WARN  [n10_Corran] [0x21] move REJECTED seq=5; server says (3624,2137,84) facing=1
+[17:53:32.621] WARN  [n10_Corran] [0x21] move REJECTED seq=3; server says (3624,2137,84) facing=1
+[17:54:19.335] WARN  [n10_Corran] [ACTION_RESULT] npc_train invalid_state (1ms) You already know as much as I can teach of Tinkering
+[17:54:59.916] WARN  [n10_Corran] [0x21] move REJECTED seq=71; server says (3647,2150,37) facing=5
+[17:55:00.651] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (3647,2150,37) facing=5
+[17:55:01.272] WARN  [n10_Corran] [0x21] move REJECTED seq=1; server says (3647,2150,37) facing=6
+[17:55:02.010] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (3647,2150,37) facing=6
+[17:55:19.387] WARN  [n10_Corran] [0x21] move REJECTED seq=41; server says (3597,2151,61) facing=7
+[17:55:20.116] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (3597,2151,61) facing=7

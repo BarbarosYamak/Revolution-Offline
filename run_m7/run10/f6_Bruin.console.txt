@@ -1,0 +1,1639 @@
+[15:21:54.953] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh16' char=Bruin tag='f6_Bruin'
+[15:21:54.954] LOG   [f6_Bruin] event session_start: text log opened
+[15:21:54.955] LOG   [f6_Bruin] event net_connect_begin: connect 127.0.0.1:2593
+[15:21:54.955] INFO  [f6_Bruin] [net] connecting to 127.0.0.1:2593 ...
+[15:21:54.956] LOG   [f6_Bruin] event net_connected: connect 127.0.0.1:2593
+[15:21:54.956] INFO  [f6_Bruin] [net] connected.
+[15:21:54.956] INFO  [f6_Bruin] [seed] sent 0x7F000001 (plaintext)
+[15:21:54.956] LOG   [f6_Bruin] event seed_out: 0x7F000001 hex=7f000001
+[15:21:54.957] INFO  [life] loaded persistent state for Bruin (1 places, 0 suppliers, 23 events, 7 prior sessions)
+[15:21:54.957] INFO  [life] needs: reading 'full_crafter' from the profession catalogue
+[15:21:54.957] INFO  [life] build plan 'full_crafter': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/60/65 = 225
+[15:21:54.957] INFO  [f6_Bruin] [life] autonomous player active for 'Bruin' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[15:21:55.001] INFO  [f6_Bruin] [0xA8] 1 server(s):
+[15:21:55.001] INFO  [f6_Bruin]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[15:21:55.017] INFO  [f6_Bruin] [0x8C] game server = 127.0.0.1:2593  seed=0xBC40664B
+[15:21:55.017] LOG   [f6_Bruin] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xBC40664B
+[15:21:55.017] INFO  [f6_Bruin] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[15:21:55.017] LOG   [f6_Bruin] event relay_same_socket: no seed re-sent; 0x91 follows
+[15:21:55.017] INFO  [f6_Bruin] [0xB9] server features = 0x0005
+[15:21:55.017] INFO  [f6_Bruin] [0xA9] 5 slot(s) (populated 1):
+[15:21:55.017] INFO  [f6_Bruin]   [0] Bruin
+[15:21:55.017] INFO  [f6_Bruin]   [1] <empty>
+[15:21:55.017] INFO  [f6_Bruin]   [2] <empty>
+[15:21:55.017] INFO  [f6_Bruin]   [3] <empty>
+[15:21:55.017] INFO  [f6_Bruin]   [4] <empty>
+[15:21:55.017] INFO  [f6_Bruin] [ui] playing slot 0 ('Bruin')
+[15:21:55.033] INFO  [f6_Bruin] [0x1B] serial=0x00013A1A body=0x0190 pos=(648,820,0)
+[15:21:55.033] LOG   [f6_Bruin] event login_confirm: serial=0x00013A1A body=0x0190 pos=(648,820,0)
+[15:21:55.033] INFO  [f6_Bruin] [0x20] player @(648,820,0) facing=1
+[15:21:55.033] INFO  [f6_Bruin] [0x55] login complete — entering world
+[15:21:55.033] LOG   [f6_Bruin] event in_world: 0x55 received
+[15:21:55.033] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[15:21:55.033] INFO  [f6_Bruin] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[15:21:55.033] INFO  [f6_Bruin] [chat ascii] System: There are 6 other players here.
+[15:21:55.034] INFO  [f6_Bruin] [chat ascii] System: Last logged: 2026/08/29 15:47:45
+[15:21:55.034] INFO  [f6_Bruin] [chat ascii] System: You are under the protection of the town guards
+[15:21:55.038] INFO  [f6_Bruin] [action] requesting the skill list
+[15:21:55.038] INFO  [life] in world; asked the server for the skill list
+[15:21:55.038] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[15:21:55.038] INFO  [f6_Bruin] [0x3C] container contents: 6 item(s)
+[15:21:55.038] LOG   [f6_Bruin] event backpack_contents: serial=0x40013A18 items=6
+[15:21:55.047] INFO  [f6_Bruin] [chat ascii] System: You are hungry
+[15:21:55.047] INFO  [f6_Bruin] [chat ascii] Bruin: *You looks hungry*
+[15:21:57.664] INFO  [f6_Bruin] [bot] world data loaded (0 blacklisted spot(s)).
+[15:21:57.665] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[15:21:57.665] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[15:21:57.665] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[15:21:57.665] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[15:21:57.665] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[15:21:57.665] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[15:21:57.665] INFO  [life]   skill_7      persisted=5.4        server=5.4        -> server value accepted
+[15:21:57.665] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[15:21:57.665] INFO  [life]   skill_11     persisted=8.1        server=8.1        -> server value accepted
+[15:21:57.665] INFO  [life]   skill_37     persisted=16.3       server=16.3       -> server value accepted
+[15:21:57.665] INFO  [life]   skill_34     persisted=10.6       server=10.6       -> server value accepted
+[15:21:57.665] INFO  [life]   skill_0      persisted=17.9       server=17.9       -> server value accepted
+[15:21:57.665] INFO  [life]   position     persisted=648,820    server=648,820    -> server value accepted
+[15:21:57.665] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[15:21:57.665] INFO  [life]   restored objective KEPT: IDLE_BRIEFLY (progress 0)
+[15:21:57.665] INFO  [f6_Bruin] [survival] on
+[15:21:57.665] LOG   [f6_Bruin] event survival_mode: on
+[15:21:57.667] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:21:57.667] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:02.674] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:07.699] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:12.754] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:12.816] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:22:12.819] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:22:12.878] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:22:12.878] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:22:12.878] INFO  [life]   score=112.5
+[15:22:12.878] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:22:12.878] INFO  [life]   reason: food=0 hungry=1
+[15:22:12.878] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:22:12.878] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:22:12.878] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:22:12.878] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:17.785] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:17.846] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:22:17.907] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:22:17.907] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:22:17.907] INFO  [life]   score=45.0
+[15:22:17.907] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:22:17.907] INFO  [life]   reason: gold=0 floor=100
+[15:22:17.907] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:22:17.907] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:22:17.907] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:22:17.907] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:22:17.907] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:22.813] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:22.875] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:22:22.938] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:22:22.938] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:22:22.938] INFO  [life]   score=10.0
+[15:22:22.938] INFO  [life]   reason: fallback: nothing else scored
+[15:22:22.938] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:22:22.938] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:22:22.938] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:22:22.938] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:22:22.938] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:22:22.938] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:27.858] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:32.544] INFO  [f6_Bruin] [chat ascii] Basia: I am listening to thee.
+[15:22:32.896] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:37.905] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:37.968] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:22:37.970] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:22:38.030] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:22:38.030] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:22:38.030] INFO  [life]   score=10.0
+[15:22:38.030] INFO  [life]   reason: fallback: nothing else scored
+[15:22:38.030] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:22:38.030] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:22:38.030] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:22:38.030] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:22:38.030] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:22:38.030] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:42.929] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:47.942] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:52.998] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:22:53.058] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:22:53.061] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:22:53.120] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:22:53.120] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:22:53.120] INFO  [life]   score=10.0
+[15:22:53.120] INFO  [life]   reason: fallback: nothing else scored
+[15:22:53.120] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:22:53.120] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:22:53.120] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:22:53.120] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:22:53.120] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:22:53.120] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:22:58.050] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:03.059] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:08.117] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:08.178] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:23:08.180] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:23:08.240] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:23:08.240] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:23:08.240] INFO  [life]   score=10.0
+[15:23:08.240] INFO  [life]   reason: fallback: nothing else scored
+[15:23:08.240] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:23:08.240] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:23:08.240] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:23:08.240] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:23:08.240] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:23:08.240] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:23:13.128] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:18.185] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:23.221] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:23.281] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:23:23.283] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:23:23.342] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:23:23.342] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:23:23.342] INFO  [life]   score=10.0
+[15:23:23.342] INFO  [life]   reason: fallback: nothing else scored
+[15:23:23.342] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:23:23.342] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:23:23.342] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[15:23:23.342] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[15:23:23.342] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:23:23.342] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:23:28.279] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:33.299] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:38.341] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:38.402] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:23:38.404] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:23:38.461] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:23:38.461] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:23:38.461] INFO  [life]   score=10.0
+[15:23:38.461] INFO  [life]   reason: fallback: nothing else scored
+[15:23:38.461] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:23:38.461] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:23:38.461] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[15:23:38.461] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[15:23:38.461] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:23:38.461] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:23:43.399] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:48.442] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:53.495] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:23:53.555] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:23:53.558] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:23:53.601] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:23:53.601] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:23:53.601] INFO  [life]   score=10.0
+[15:23:53.601] INFO  [life]   reason: fallback: nothing else scored
+[15:23:53.601] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:23:53.601] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:23:53.601] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[15:23:53.601] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[15:23:53.601] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:23:53.601] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:23:58.548] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:03.571] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:08.595] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:08.657] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:24:08.659] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:24:08.719] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:24:08.719] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:24:08.719] INFO  [life]   score=10.0
+[15:24:08.719] INFO  [life]   reason: fallback: nothing else scored
+[15:24:08.719] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:24:08.719] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:24:08.719] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[15:24:08.719] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[15:24:08.719] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:24:08.719] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:24:13.651] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:18.712] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:23.750] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:23.810] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:24:23.813] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:24:23.873] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:24:23.874] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:24:23.874] INFO  [life]   score=10.0
+[15:24:23.874] INFO  [life]   reason: fallback: nothing else scored
+[15:24:23.874] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:24:23.874] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:24:23.874] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 53s after achieving nothing
+[15:24:23.874] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[15:24:23.874] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:24:23.874] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:24:28.769] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:29.611] INFO  [f6_Bruin] [chat ascii] System: Ilyana has arrived in Yew.
+[15:24:29.794] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[15:24:33.796] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:38.808] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:39.777] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[15:24:43.862] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:43.924] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:24:43.926] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:24:43.986] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:24:43.986] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:24:43.986] INFO  [life]   score=10.0
+[15:24:43.986] INFO  [life]   reason: fallback: nothing else scored
+[15:24:43.986] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:24:43.986] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:24:43.986] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 33s after achieving nothing
+[15:24:43.986] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 38s after achieving nothing
+[15:24:43.986] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:24:43.986] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:24:48.886] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:53.913] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:58.915] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:24:59.007] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:24:59.009] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:24:59.069] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:24:59.069] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:24:59.069] INFO  [life]   score=10.0
+[15:24:59.069] INFO  [life]   reason: fallback: nothing else scored
+[15:24:59.069] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:24:59.069] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:24:59.069] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 18s after achieving nothing
+[15:24:59.069] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 23s after achieving nothing
+[15:24:59.069] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:24:59.069] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:03.925] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:08.970] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:14.028] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:14.151] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:25:14.153] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:25:14.212] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:25:14.212] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:25:14.212] INFO  [life]   score=10.0
+[15:25:14.212] INFO  [life]   reason: fallback: nothing else scored
+[15:25:14.213] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:25:14.213] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:25:14.213] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 3s after achieving nothing
+[15:25:14.213] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 8s after achieving nothing
+[15:25:14.213] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:25:14.213] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:19.055] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:24.091] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:29.120] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:29.241] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:25:29.244] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:25:29.302] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:25:29.302] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:25:29.302] INFO  [life]   score=112.5
+[15:25:29.302] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:25:29.302] INFO  [life]   reason: food=0 hungry=1
+[15:25:29.302] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:25:29.302] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:25:29.302] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:25:29.302] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:34.175] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:34.299] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:25:34.360] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:25:34.360] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:25:34.360] INFO  [life]   score=45.0
+[15:25:34.360] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:25:34.360] INFO  [life]   reason: gold=0 floor=100
+[15:25:34.360] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:25:34.360] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:25:34.360] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:25:34.360] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:25:34.360] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:39.201] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:39.322] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:25:39.382] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:25:39.382] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:25:39.382] INFO  [life]   score=10.0
+[15:25:39.382] INFO  [life]   reason: fallback: nothing else scored
+[15:25:39.382] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:25:39.382] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:25:39.382] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:25:39.382] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:25:39.382] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:25:39.382] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:44.214] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:49.222] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:54.279] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:25:54.402] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:25:54.404] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:25:54.464] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:25:54.464] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:25:54.464] INFO  [life]   score=10.0
+[15:25:54.464] INFO  [life]   reason: fallback: nothing else scored
+[15:25:54.464] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:25:54.464] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:25:54.464] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:25:54.464] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:25:54.464] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:25:54.464] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:25:59.334] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:04.368] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:09.390] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:09.513] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:26:09.516] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:26:09.575] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:26:09.575] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:26:09.575] INFO  [life]   score=10.0
+[15:26:09.575] INFO  [life]   reason: fallback: nothing else scored
+[15:26:09.575] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:26:09.575] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:26:09.575] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:26:09.575] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:26:09.575] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:26:09.575] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:26:14.416] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:19.444] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:24.464] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:24.585] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:26:24.587] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:26:24.648] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:26:24.648] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:26:24.648] INFO  [life]   score=10.0
+[15:26:24.648] INFO  [life]   reason: fallback: nothing else scored
+[15:26:24.648] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:26:24.648] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:26:24.648] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:26:24.648] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:26:24.648] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:26:24.648] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:26:29.486] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:34.513] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:39.533] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:39.655] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:26:39.657] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:26:39.716] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:26:39.716] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:26:39.716] INFO  [life]   score=10.0
+[15:26:39.716] INFO  [life]   reason: fallback: nothing else scored
+[15:26:39.716] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:26:39.716] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:26:39.716] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[15:26:39.716] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[15:26:39.716] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:26:39.716] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:26:44.547] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:49.601] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:54.655] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:26:54.717] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:26:54.719] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:26:54.779] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:26:54.779] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:26:54.779] INFO  [life]   score=10.0
+[15:26:54.779] INFO  [life]   reason: fallback: nothing else scored
+[15:26:54.779] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:26:54.779] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:26:54.779] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[15:26:54.779] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[15:26:54.779] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:26:54.779] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:26:59.690] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:04.711] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:09.737] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:09.829] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:27:09.831] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:27:09.889] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:27:09.889] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:27:09.889] INFO  [life]   score=10.0
+[15:27:09.889] INFO  [life]   reason: fallback: nothing else scored
+[15:27:09.889] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:27:09.889] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:27:09.889] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[15:27:09.889] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[15:27:09.889] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:27:09.889] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:27:14.742] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:19.793] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:24.844] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:24.966] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:27:24.968] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:27:25.027] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:27:25.027] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:27:25.027] INFO  [life]   score=10.0
+[15:27:25.027] INFO  [life]   reason: fallback: nothing else scored
+[15:27:25.027] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:27:25.027] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:27:25.027] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[15:27:25.027] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[15:27:25.027] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:27:25.027] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:27:29.885] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:34.898] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:39.915] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:40.037] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:27:40.039] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:27:40.099] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:27:40.099] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:27:40.099] INFO  [life]   score=10.0
+[15:27:40.099] INFO  [life]   reason: fallback: nothing else scored
+[15:27:40.099] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:27:40.099] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:27:40.099] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 54s after achieving nothing
+[15:27:40.099] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[15:27:40.099] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:27:40.099] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:27:44.938] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:49.957] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:50.200] INFO  [f6_Bruin] [chat ascii] Basia: Thou hast mine attention.
+[15:27:54.960] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:27:59.979] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:00.087] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:28:00.090] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:28:00.148] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:28:00.148] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:00.148] INFO  [life]   score=10.0
+[15:28:00.148] INFO  [life]   reason: fallback: nothing else scored
+[15:28:00.148] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:00.148] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:00.148] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 34s after achieving nothing
+[15:28:00.148] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 39s after achieving nothing
+[15:28:00.148] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:00.148] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:28:04.991] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:10.051] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:15.056] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:15.178] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:28:15.180] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:28:15.239] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:28:15.239] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:15.239] INFO  [life]   score=10.0
+[15:28:15.239] INFO  [life]   reason: fallback: nothing else scored
+[15:28:15.239] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:15.239] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:15.239] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 19s after achieving nothing
+[15:28:15.239] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 24s after achieving nothing
+[15:28:15.239] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:15.239] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:28:20.095] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:25.135] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:30.147] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:30.268] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:28:30.271] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:28:30.330] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:28:30.330] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:30.330] INFO  [life]   score=10.0
+[15:28:30.330] INFO  [life]   reason: fallback: nothing else scored
+[15:28:30.330] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:30.330] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:30.330] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 3s after achieving nothing
+[15:28:30.330] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 8s after achieving nothing
+[15:28:30.330] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:30.330] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:28:35.207] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:40.232] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:45.239] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:50.299] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:50.360] INFO  [life] goal_changed=GET_FOOD from=IDLE_BRIEFLY reason="GET_FOOD 112.5 superseded IDLE_BRIEFLY 10.0"
+[15:28:50.360] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:50.360] INFO  [life]   score=112.5
+[15:28:50.360] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:28:50.360] INFO  [life]   reason: food=0 hungry=1
+[15:28:50.360] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:50.360] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:50.360] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:50.360] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:28:50.360] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:28:50.422] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:28:50.423] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:50.423] INFO  [life]   score=45.0
+[15:28:50.423] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:28:50.423] INFO  [life]   reason: gold=0 floor=100
+[15:28:50.423] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:50.423] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:50.423] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:28:50.423] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:50.423] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:28:55.361] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:28:55.361] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:28:55.422] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:28:55.422] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:28:55.422] INFO  [life]   score=10.0
+[15:28:55.422] INFO  [life]   reason: fallback: nothing else scored
+[15:28:55.422] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:28:55.422] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:28:55.422] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:28:55.422] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:28:55.422] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:28:55.422] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:29:00.408] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:05.415] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:10.465] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:29:10.467] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:29:10.467] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:10.526] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:29:10.526] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:29:10.526] INFO  [life]   score=10.0
+[15:29:10.526] INFO  [life]   reason: fallback: nothing else scored
+[15:29:10.526] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:29:10.526] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:29:10.526] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:29:10.526] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:29:10.526] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:29:10.526] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:29:15.501] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:20.537] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:25.590] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:29:25.593] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:29:25.593] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:25.650] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:29:25.650] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:29:25.651] INFO  [life]   score=10.0
+[15:29:25.651] INFO  [life]   reason: fallback: nothing else scored
+[15:29:25.651] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:29:25.651] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:29:25.651] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:29:25.651] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:29:25.651] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:29:25.651] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:29:30.612] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:34.309] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[15:29:35.644] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:40.674] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:29:40.676] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:29:40.676] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:40.735] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:29:40.735] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:29:40.735] INFO  [life]   score=10.0
+[15:29:40.735] INFO  [life]   reason: fallback: nothing else scored
+[15:29:40.735] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:29:40.735] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:29:40.735] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:29:40.735] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:29:40.735] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:29:40.735] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:29:44.334] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[15:29:45.680] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:50.717] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:55.753] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:29:55.755] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:29:55.755] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:29:55.767] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:29:55.767] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:29:55.767] INFO  [life]   score=10.0
+[15:29:55.767] INFO  [life]   reason: fallback: nothing else scored
+[15:29:55.767] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:29:55.767] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:29:55.767] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[15:29:55.767] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[15:29:55.767] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:29:55.767] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:30:00.802] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:05.802] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:10.828] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:30:10.832] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:30:10.832] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:10.888] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:30:10.889] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:30:10.889] INFO  [life]   score=10.0
+[15:30:10.889] INFO  [life]   reason: fallback: nothing else scored
+[15:30:10.889] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:30:10.889] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:30:10.889] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[15:30:10.889] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[15:30:10.889] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:30:10.889] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:30:15.879] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:20.936] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:25.977] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:30:25.979] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:30:25.979] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:26.037] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:30:26.037] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:30:26.037] INFO  [life]   score=10.0
+[15:30:26.037] INFO  [life]   reason: fallback: nothing else scored
+[15:30:26.037] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:30:26.037] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:30:26.037] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[15:30:26.037] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[15:30:26.037] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:30:26.037] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:30:31.019] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:36.071] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:41.128] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:30:41.130] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:30:41.130] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:41.188] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:30:41.188] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:30:41.188] INFO  [life]   score=10.0
+[15:30:41.188] INFO  [life]   reason: fallback: nothing else scored
+[15:30:41.188] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:30:41.189] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:30:41.189] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[15:30:41.189] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[15:30:41.189] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:30:41.189] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:30:46.167] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:51.201] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:56.248] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:30:56.250] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:30:56.250] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:30:56.309] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:30:56.309] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:30:56.309] INFO  [life]   score=10.0
+[15:30:56.309] INFO  [life]   reason: fallback: nothing else scored
+[15:30:56.309] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:30:56.309] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:30:56.309] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 54s after achieving nothing
+[15:30:56.309] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[15:30:56.309] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:30:56.309] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:31:01.307] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:06.315] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:11.329] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:31:11.331] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:31:11.331] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:11.344] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:31:11.344] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:31:11.344] INFO  [life]   score=10.0
+[15:31:11.344] INFO  [life]   reason: fallback: nothing else scored
+[15:31:11.344] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:31:11.344] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:31:11.344] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 39s after achieving nothing
+[15:31:11.344] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 44s after achieving nothing
+[15:31:11.344] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:31:11.344] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:31:16.361] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:21.422] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:26.380] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:31:26.382] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:31:26.441] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:31:26.441] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:31:26.441] INFO  [life]   score=10.0
+[15:31:26.441] INFO  [life]   reason: fallback: nothing else scored
+[15:31:26.441] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:31:26.441] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:31:26.441] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 23s after achieving nothing
+[15:31:26.441] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 28s after achieving nothing
+[15:31:26.441] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:31:26.441] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:31:26.441] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:31.480] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:36.535] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:41.535] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:31:41.538] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:31:41.538] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:41.598] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:31:41.598] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:31:41.598] INFO  [life]   score=10.0
+[15:31:41.598] INFO  [life]   reason: fallback: nothing else scored
+[15:31:41.598] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:31:41.598] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:31:41.598] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 8s after achieving nothing
+[15:31:41.598] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 13s after achieving nothing
+[15:31:41.598] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:31:41.598] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:31:46.593] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:51.636] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:56.654] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:31:56.656] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:31:56.656] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:31:56.714] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:31:56.714] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:31:56.714] INFO  [life]   score=112.5
+[15:31:56.714] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:31:56.714] INFO  [life]   reason: food=0 hungry=1
+[15:31:56.714] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:31:56.714] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:31:56.714] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:31:56.714] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:01.706] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:32:01.707] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:01.766] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:32:01.766] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:32:01.766] INFO  [life]   score=45.0
+[15:32:01.766] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:32:01.766] INFO  [life]   reason: gold=0 floor=100
+[15:32:01.766] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:32:01.766] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:32:01.766] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:32:01.766] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:32:01.766] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:06.736] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:32:06.736] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:06.798] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:32:06.798] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:32:06.798] INFO  [life]   score=10.0
+[15:32:06.798] INFO  [life]   reason: fallback: nothing else scored
+[15:32:06.798] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:32:06.798] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:32:06.798] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:32:06.798] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:32:06.798] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:32:06.798] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:11.760] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:16.787] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:21.809] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:32:21.811] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:32:21.811] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:21.870] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:32:21.870] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:32:21.870] INFO  [life]   score=10.0
+[15:32:21.870] INFO  [life]   reason: fallback: nothing else scored
+[15:32:21.870] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:32:21.870] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:32:21.870] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:32:21.870] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:32:21.870] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:32:21.870] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:26.818] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:31.842] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:36.885] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:32:36.887] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:32:36.887] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:36.945] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:32:36.945] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:32:36.945] INFO  [life]   score=10.0
+[15:32:36.945] INFO  [life]   reason: fallback: nothing else scored
+[15:32:36.945] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:32:36.945] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:32:36.945] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:32:36.945] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:32:36.945] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:32:36.945] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:41.904] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:46.944] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:51.966] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:32:51.969] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:32:51.969] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:32:52.028] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:32:52.028] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:32:52.028] INFO  [life]   score=10.0
+[15:32:52.028] INFO  [life]   reason: fallback: nothing else scored
+[15:32:52.028] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:32:52.028] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:32:52.028] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:32:52.028] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:32:52.028] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:32:52.028] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:32:55.160] INFO  [f6_Bruin] [chat ascii] Basia: I am listening to thee.
+[15:32:57.023] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:02.026] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:07.028] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:12.065] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:33:12.067] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:33:12.067] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:12.128] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:33:12.128] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:33:12.128] INFO  [life]   score=10.0
+[15:33:12.128] INFO  [life]   reason: fallback: nothing else scored
+[15:33:12.128] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:33:12.128] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:33:12.128] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[15:33:12.128] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[15:33:12.128] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:33:12.128] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:33:17.104] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:22.148] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:27.200] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:33:27.202] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:33:27.202] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:27.263] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:33:27.263] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:33:27.263] INFO  [life]   score=10.0
+[15:33:27.263] INFO  [life]   reason: fallback: nothing else scored
+[15:33:27.263] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:33:27.263] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:33:27.263] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 94s after achieving nothing
+[15:33:27.263] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 99s after achieving nothing
+[15:33:27.263] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:33:27.263] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:33:32.261] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:37.316] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:42.355] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:33:42.357] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:33:42.357] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:42.418] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:33:42.418] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:33:42.418] INFO  [life]   score=10.0
+[15:33:42.418] INFO  [life]   reason: fallback: nothing else scored
+[15:33:42.418] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:33:42.418] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:33:42.418] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 79s after achieving nothing
+[15:33:42.418] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 84s after achieving nothing
+[15:33:42.418] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:33:42.418] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:33:47.416] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:52.443] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:57.469] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:33:57.471] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:33:57.471] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:33:57.530] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:33:57.530] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:33:57.531] INFO  [life]   score=10.0
+[15:33:57.531] INFO  [life]   reason: fallback: nothing else scored
+[15:33:57.531] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:33:57.531] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:33:57.531] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 64s after achieving nothing
+[15:33:57.531] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 69s after achieving nothing
+[15:33:57.531] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:33:57.531] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:34:02.523] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:07.571] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:12.583] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:34:12.585] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:34:12.585] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:12.644] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:34:12.644] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:34:12.644] INFO  [life]   score=10.0
+[15:34:12.644] INFO  [life]   reason: fallback: nothing else scored
+[15:34:12.644] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:34:12.644] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:34:12.644] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[15:34:12.644] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 54s after achieving nothing
+[15:34:12.644] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:34:12.644] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:34:17.595] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:22.616] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:27.654] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:34:27.656] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:34:27.656] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:27.715] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:34:27.715] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:34:27.715] INFO  [life]   score=10.0
+[15:34:27.715] INFO  [life]   reason: fallback: nothing else scored
+[15:34:27.715] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:34:27.715] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:34:27.715] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 33s after achieving nothing
+[15:34:27.715] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 39s after achieving nothing
+[15:34:27.715] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:34:27.715] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:34:32.679] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:34.747] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[15:34:37.701] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:42.745] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:34:42.747] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:34:42.747] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:42.806] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:34:42.806] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:34:42.806] INFO  [life]   score=10.0
+[15:34:42.806] INFO  [life]   reason: fallback: nothing else scored
+[15:34:42.806] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:34:42.806] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:34:42.806] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 18s after achieving nothing
+[15:34:42.806] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 23s after achieving nothing
+[15:34:42.806] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:34:42.806] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:34:44.737] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[15:34:47.789] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:52.831] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:57.855] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:34:57.857] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:34:57.857] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:34:57.916] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:34:57.916] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:34:57.916] INFO  [life]   score=10.0
+[15:34:57.916] INFO  [life]   reason: fallback: nothing else scored
+[15:34:57.916] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:34:57.916] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:34:57.916] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 3s after achieving nothing
+[15:34:57.916] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 8s after achieving nothing
+[15:34:57.916] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:34:57.916] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:02.868] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:07.906] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:12.941] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:35:12.944] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:35:12.944] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:13.004] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:35:13.004] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:35:13.004] INFO  [life]   score=112.5
+[15:35:13.004] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:35:13.004] INFO  [life]   reason: food=0 hungry=1
+[15:35:13.004] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:35:13.004] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:35:13.004] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:35:13.004] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:17.953] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:35:17.953] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:18.015] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:35:18.015] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:35:18.015] INFO  [life]   score=45.0
+[15:35:18.015] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:35:18.015] INFO  [life]   reason: gold=0 floor=100
+[15:35:18.015] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:35:18.015] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:35:18.015] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:35:18.015] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:35:18.015] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:22.980] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:35:22.980] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:23.042] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:35:23.042] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:35:23.042] INFO  [life]   score=10.0
+[15:35:23.042] INFO  [life]   reason: fallback: nothing else scored
+[15:35:23.042] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:35:23.042] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:35:23.042] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:35:23.042] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:35:23.042] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:35:23.042] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:28.017] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:33.055] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:38.062] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:35:38.062] INFO  [life] goal_spinning=EARN_GOLD reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[15:35:38.064] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:35:38.064] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:38.122] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:35:38.123] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:35:38.123] INFO  [life]   score=10.0
+[15:35:38.123] INFO  [life]   reason: fallback: nothing else scored
+[15:35:38.123] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:35:38.123] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:35:38.123] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:35:38.123] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:35:38.123] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:35:38.123] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:43.095] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:48.139] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:53.157] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:35:53.159] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:35:53.159] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:35:53.219] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:35:53.219] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:35:53.219] INFO  [life]   score=10.0
+[15:35:53.219] INFO  [life]   reason: fallback: nothing else scored
+[15:35:53.219] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:35:53.219] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:35:53.219] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:35:53.219] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:35:53.219] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:35:53.219] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:35:58.199] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:03.207] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:08.235] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:36:08.238] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:36:08.238] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:08.296] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:36:08.296] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:36:08.296] INFO  [life]   score=10.0
+[15:36:08.296] INFO  [life]   reason: fallback: nothing else scored
+[15:36:08.296] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:36:08.296] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:36:08.296] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:36:08.296] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:36:08.296] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:36:08.296] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:36:13.263] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:18.316] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:23.370] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:36:23.374] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:36:23.374] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:23.432] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:36:23.432] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:36:23.432] INFO  [life]   score=10.0
+[15:36:23.432] INFO  [life]   reason: fallback: nothing else scored
+[15:36:23.432] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:36:23.432] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:36:23.432] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[15:36:23.432] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[15:36:23.432] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:36:23.432] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:36:28.390] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:33.402] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:38.419] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:43.465] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:36:43.468] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:36:43.468] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:43.526] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:36:43.526] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:36:43.526] INFO  [life]   score=10.0
+[15:36:43.526] INFO  [life]   reason: fallback: nothing else scored
+[15:36:43.526] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:36:43.526] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:36:43.526] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 94s after achieving nothing
+[15:36:43.526] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 99s after achieving nothing
+[15:36:43.526] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:36:43.526] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:36:48.476] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:53.499] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:36:58.503] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:03.564] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:37:03.566] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:37:03.566] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:03.624] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:37:03.625] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:37:03.625] INFO  [life]   score=10.0
+[15:37:03.625] INFO  [life]   reason: fallback: nothing else scored
+[15:37:03.625] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:37:03.625] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:37:03.625] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[15:37:03.625] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[15:37:03.625] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:37:03.625] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:37:08.603] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:13.613] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:18.651] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:37:18.653] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:37:18.653] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:18.713] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:37:18.713] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:37:18.713] INFO  [life]   score=10.0
+[15:37:18.713] INFO  [life]   reason: fallback: nothing else scored
+[15:37:18.713] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:37:18.713] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:37:18.713] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[15:37:18.713] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[15:37:18.713] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:37:18.713] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:37:23.692] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:28.733] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:33.769] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:37:33.771] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:37:33.771] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:33.829] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:37:33.829] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:37:33.829] INFO  [life]   score=10.0
+[15:37:33.829] INFO  [life]   reason: fallback: nothing else scored
+[15:37:33.829] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:37:33.829] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:37:33.829] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 44s after achieving nothing
+[15:37:33.829] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 49s after achieving nothing
+[15:37:33.829] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:37:33.829] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:37:38.807] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:43.840] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:48.840] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:37:48.843] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:37:48.843] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:48.901] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:37:48.901] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:37:48.901] INFO  [life]   score=10.0
+[15:37:48.901] INFO  [life]   reason: fallback: nothing else scored
+[15:37:48.901] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:37:48.901] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:37:48.901] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[15:37:48.901] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[15:37:48.901] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:37:48.901] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:37:53.871] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:37:58.897] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:01.274] INFO  [f6_Bruin] [chat ascii] Basia: What is it thou wishest?
+[15:38:03.939] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:38:03.941] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:38:03.941] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:04.000] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:38:04.000] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:38:04.000] INFO  [life]   score=10.0
+[15:38:04.000] INFO  [life]   reason: fallback: nothing else scored
+[15:38:04.000] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:38:04.000] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:38:04.000] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 13s after achieving nothing
+[15:38:04.000] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 18s after achieving nothing
+[15:38:04.000] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:38:04.000] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:38:08.993] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:14.012] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:19.066] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:38:19.068] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:38:19.068] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:19.127] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:38:19.127] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:38:19.127] INFO  [life]   score=112.5
+[15:38:19.127] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:38:19.127] INFO  [life]   reason: food=0 hungry=1
+[15:38:19.127] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:38:19.127] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:38:19.127] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 3s after achieving nothing
+[15:38:19.127] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:38:19.127] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:38:24.111] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:38:24.111] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:24.172] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:38:24.172] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:38:24.172] INFO  [life]   score=45.0
+[15:38:24.172] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:38:24.172] INFO  [life]   reason: gold=0 floor=100
+[15:38:24.172] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:38:24.172] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:38:24.172] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:38:24.172] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:38:24.172] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:38:29.132] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:38:29.132] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:29.194] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:38:29.194] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:38:29.194] INFO  [life]   score=10.0
+[15:38:29.194] INFO  [life]   reason: fallback: nothing else scored
+[15:38:29.194] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:38:29.194] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:38:29.194] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:38:29.194] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:38:29.194] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:38:29.194] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:38:34.159] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:39.187] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:44.223] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:38:44.226] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:38:44.226] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:44.286] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:38:44.286] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:38:44.286] INFO  [life]   score=10.0
+[15:38:44.286] INFO  [life]   reason: fallback: nothing else scored
+[15:38:44.286] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:38:44.286] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:38:44.286] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:38:44.286] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:38:44.286] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:38:44.286] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:38:49.235] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:54.258] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:38:59.284] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:04.290] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:39:04.292] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:39:04.292] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:04.352] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:39:04.352] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:39:04.352] INFO  [life]   score=10.0
+[15:39:04.352] INFO  [life]   reason: fallback: nothing else scored
+[15:39:04.352] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:39:04.352] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:39:04.352] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 139s after achieving nothing
+[15:39:04.352] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 144s after achieving nothing
+[15:39:04.352] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:39:04.352] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:39:09.348] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:14.394] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:19.425] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:39:19.427] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:39:19.427] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:19.487] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:39:19.487] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:39:19.487] INFO  [life]   score=10.0
+[15:39:19.487] INFO  [life]   reason: fallback: nothing else scored
+[15:39:19.487] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:39:19.487] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:39:19.487] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 124s after achieving nothing
+[15:39:19.487] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 129s after achieving nothing
+[15:39:19.487] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:39:19.487] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:39:24.447] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:29.485] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:34.518] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:39:34.522] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:39:34.522] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:34.579] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:39:34.579] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:39:34.579] INFO  [life]   score=10.0
+[15:39:34.579] INFO  [life]   reason: fallback: nothing else scored
+[15:39:34.579] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:39:34.579] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:39:34.579] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[15:39:34.579] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[15:39:34.579] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:39:34.579] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:39:35.043] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[15:39:39.554] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:44.610] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:45.291] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[15:39:49.624] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:39:49.628] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:39:49.628] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:49.687] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:39:49.687] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:39:49.687] INFO  [life]   score=10.0
+[15:39:49.687] INFO  [life]   reason: fallback: nothing else scored
+[15:39:49.687] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:39:49.687] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:39:49.687] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 94s after achieving nothing
+[15:39:49.687] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 99s after achieving nothing
+[15:39:49.687] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:39:49.687] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:39:54.659] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:39:59.664] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:04.701] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:40:04.704] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:40:04.704] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:04.762] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:40:04.762] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:40:04.762] INFO  [life]   score=10.0
+[15:40:04.762] INFO  [life]   reason: fallback: nothing else scored
+[15:40:04.762] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:40:04.762] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:40:04.762] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 79s after achieving nothing
+[15:40:04.762] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 84s after achieving nothing
+[15:40:04.762] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:40:04.762] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:40:09.722] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:14.733] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:19.770] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:40:19.772] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:40:19.772] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:19.831] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:40:19.831] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:40:19.831] INFO  [life]   score=10.0
+[15:40:19.831] INFO  [life]   reason: fallback: nothing else scored
+[15:40:19.831] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:40:19.831] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:40:19.831] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 64s after achieving nothing
+[15:40:19.831] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 69s after achieving nothing
+[15:40:19.831] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:40:19.831] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:40:24.810] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:29.830] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:34.846] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:40:34.849] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:40:34.849] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:34.909] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:40:34.909] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:40:34.909] INFO  [life]   score=10.0
+[15:40:34.909] INFO  [life]   reason: fallback: nothing else scored
+[15:40:34.909] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:40:34.909] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:40:34.909] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[15:40:34.909] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 54s after achieving nothing
+[15:40:34.909] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:40:34.909] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:40:39.900] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:44.937] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:49.963] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:40:49.966] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:40:49.966] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:40:50.025] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:40:50.025] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:40:50.025] INFO  [life]   score=10.0
+[15:40:50.025] INFO  [life]   reason: fallback: nothing else scored
+[15:40:50.025] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:40:50.025] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:40:50.025] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 34s after achieving nothing
+[15:40:50.025] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 39s after achieving nothing
+[15:40:50.025] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:40:50.025] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:40:54.990] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:00.036] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:05.054] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:41:05.056] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:41:05.057] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:05.114] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:41:05.114] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:41:05.114] INFO  [life]   score=10.0
+[15:41:05.114] INFO  [life]   reason: fallback: nothing else scored
+[15:41:05.114] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:41:05.114] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:41:05.114] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 18s after achieving nothing
+[15:41:05.114] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 24s after achieving nothing
+[15:41:05.114] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:41:05.114] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:41:10.080] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:15.138] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:20.181] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:41:20.183] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:41:20.183] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:20.241] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:41:20.242] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:41:20.242] INFO  [life]   score=10.0
+[15:41:20.242] INFO  [life]   reason: fallback: nothing else scored
+[15:41:20.242] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:41:20.242] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:41:20.242] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 3s after achieving nothing
+[15:41:20.242] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 8s after achieving nothing
+[15:41:20.242] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:41:20.242] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:41:25.188] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:30.227] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:35.241] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:40.295] INFO  [life] goal_changed=GET_FOOD from=IDLE_BRIEFLY reason="GET_FOOD 112.5 superseded IDLE_BRIEFLY 10.0"
+[15:41:40.296] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:41:40.296] INFO  [life]   score=112.5
+[15:41:40.296] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:41:40.296] INFO  [life]   reason: food=0 hungry=1
+[15:41:40.296] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:41:40.296] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:41:40.296] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:41:40.296] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:41:40.296] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:41:40.296] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:40.355] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:41:40.355] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:41:40.355] INFO  [life]   score=45.0
+[15:41:40.355] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:41:40.355] INFO  [life]   reason: gold=0 floor=100
+[15:41:40.355] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:41:40.355] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:41:40.355] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:41:40.355] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:41:40.355] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:41:45.321] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:41:45.321] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:45.382] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:41:45.382] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:41:45.382] INFO  [life]   score=10.0
+[15:41:45.382] INFO  [life]   reason: fallback: nothing else scored
+[15:41:45.382] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:41:45.382] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:41:45.382] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:41:45.382] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:41:45.382] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:41:45.382] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:41:50.336] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:41:55.394] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:00.433] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:42:00.436] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:42:00.436] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:00.449] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:42:00.449] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:42:00.449] INFO  [life]   score=10.0
+[15:42:00.449] INFO  [life]   reason: fallback: nothing else scored
+[15:42:00.449] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:42:00.449] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:42:00.449] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:42:00.449] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:42:00.449] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:42:00.449] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:42:05.486] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:10.524] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:15.531] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:42:15.534] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:42:15.534] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:15.592] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:42:15.592] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:42:15.592] INFO  [life]   score=10.0
+[15:42:15.592] INFO  [life]   reason: fallback: nothing else scored
+[15:42:15.592] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:42:15.592] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:42:15.592] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:42:15.592] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:42:15.592] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:42:15.592] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:42:20.557] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:25.573] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:30.581] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:35.601] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:42:35.603] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:42:35.603] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:35.661] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:42:35.662] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:42:35.662] INFO  [life]   score=10.0
+[15:42:35.662] INFO  [life]   reason: fallback: nothing else scored
+[15:42:35.662] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:42:35.662] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:42:35.662] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 124s after achieving nothing
+[15:42:35.662] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 129s after achieving nothing
+[15:42:35.662] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:42:35.662] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:42:40.656] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:45.715] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:50.770] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:42:50.772] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:42:50.772] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:42:50.773] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:42:50.773] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:42:50.773] INFO  [life]   score=10.0
+[15:42:50.773] INFO  [life]   reason: fallback: nothing else scored
+[15:42:50.773] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:42:50.773] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:42:50.773] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[15:42:50.773] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[15:42:50.773] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:42:50.773] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:42:55.798] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:00.821] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:05.862] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:43:05.867] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:43:05.867] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:05.924] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:43:05.924] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:43:05.924] INFO  [life]   score=10.0
+[15:43:05.924] INFO  [life]   reason: fallback: nothing else scored
+[15:43:05.924] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:43:05.924] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:43:05.924] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 94s after achieving nothing
+[15:43:05.924] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 99s after achieving nothing
+[15:43:05.924] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:43:05.924] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:43:10.894] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:15.951] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:19.985] INFO  [f6_Bruin] [chat ascii] Basia: Thou wishest to speak with me?
+[15:43:20.983] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:43:20.985] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:43:20.986] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:21.043] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:43:21.043] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:43:21.043] INFO  [life]   score=10.0
+[15:43:21.043] INFO  [life]   reason: fallback: nothing else scored
+[15:43:21.043] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:43:21.043] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:43:21.043] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 79s after achieving nothing
+[15:43:21.043] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 84s after achieving nothing
+[15:43:21.043] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:43:21.043] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:43:25.993] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:31.006] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:36.067] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:41.028] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:43:41.032] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:43:41.089] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:43:41.089] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:43:41.089] INFO  [life]   score=10.0
+[15:43:41.089] INFO  [life]   reason: fallback: nothing else scored
+[15:43:41.089] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:43:41.089] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:43:41.089] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[15:43:41.089] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[15:43:41.089] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:43:41.089] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:43:41.089] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:46.094] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:51.098] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:43:56.146] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:01.125] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:44:01.127] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:44:01.187] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:44:01.187] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:01.187] INFO  [life]   score=10.0
+[15:44:01.187] INFO  [life]   reason: fallback: nothing else scored
+[15:44:01.187] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:01.187] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:01.187] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 39s after achieving nothing
+[15:44:01.187] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 44s after achieving nothing
+[15:44:01.187] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:01.187] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:01.187] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:06.227] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:11.276] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:16.250] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:44:16.253] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:44:16.312] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:44:16.312] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:16.312] INFO  [life]   score=10.0
+[15:44:16.312] INFO  [life]   reason: fallback: nothing else scored
+[15:44:16.312] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:16.312] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:16.312] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 23s after achieving nothing
+[15:44:16.312] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 29s after achieving nothing
+[15:44:16.312] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:16.312] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:16.312] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:21.337] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:26.395] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:31.374] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:44:31.376] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:44:31.435] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:44:31.435] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:31.435] INFO  [life]   score=10.0
+[15:44:31.435] INFO  [life]   reason: fallback: nothing else scored
+[15:44:31.435] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:31.435] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:31.435] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 8s after achieving nothing
+[15:44:31.435] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 13s after achieving nothing
+[15:44:31.435] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:31.435] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:31.435] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:36.446] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:36.903] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[15:44:41.486] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:46.467] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:44:46.469] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:44:46.528] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[15:44:46.528] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:46.528] INFO  [life]   score=112.5
+[15:44:46.528] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[15:44:46.528] INFO  [life]   reason: food=0 hungry=1
+[15:44:46.528] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:46.528] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:46.528] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:46.528] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:46.528] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:46.925] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[15:44:51.503] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[15:44:51.563] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[15:44:51.563] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:51.563] INFO  [life]   score=45.0
+[15:44:51.563] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[15:44:51.563] INFO  [life]   reason: gold=0 floor=100
+[15:44:51.563] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:51.563] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:51.563] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[15:44:51.564] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:51.564] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:51.564] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:44:56.512] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[15:44:56.574] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[15:44:56.574] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:44:56.574] INFO  [life]   score=10.0
+[15:44:56.574] INFO  [life]   reason: fallback: nothing else scored
+[15:44:56.574] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:44:56.574] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:44:56.574] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[15:44:56.574] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[15:44:56.574] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:44:56.574] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:44:56.574] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:01.582] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:06.621] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:11.608] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:45:11.611] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:45:11.669] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:45:11.669] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:45:11.669] INFO  [life]   score=10.0
+[15:45:11.669] INFO  [life]   reason: fallback: nothing else scored
+[15:45:11.669] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:45:11.669] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:45:11.669] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[15:45:11.669] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[15:45:11.669] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:45:11.669] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:45:11.669] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:16.693] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:21.739] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:26.710] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:45:26.712] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:45:26.772] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:45:26.772] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:45:26.772] INFO  [life]   score=10.0
+[15:45:26.772] INFO  [life]   reason: fallback: nothing else scored
+[15:45:26.772] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:45:26.772] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:45:26.772] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[15:45:26.772] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[15:45:26.772] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:45:26.772] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:45:26.772] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:31.777] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:36.780] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:41.778] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:45:41.781] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:45:41.781] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:41.840] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:45:41.840] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:45:41.840] INFO  [life]   score=10.0
+[15:45:41.840] INFO  [life]   reason: fallback: nothing else scored
+[15:45:41.840] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:45:41.840] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:45:41.840] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[15:45:41.840] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[15:45:41.840] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:45:41.840] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:45:46.796] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:51.835] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:56.862] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:45:56.864] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:45:56.864] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:45:56.924] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:45:56.924] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:45:56.924] INFO  [life]   score=10.0
+[15:45:56.924] INFO  [life]   reason: fallback: nothing else scored
+[15:45:56.924] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:45:56.924] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:45:56.924] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[15:45:56.924] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[15:45:56.924] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:45:56.924] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:46:01.896] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:06.950] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:11.962] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:46:11.964] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:46:11.964] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:12.023] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:46:12.023] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:46:12.023] INFO  [life]   score=10.0
+[15:46:12.023] INFO  [life]   reason: fallback: nothing else scored
+[15:46:12.024] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:46:12.024] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:46:12.024] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[15:46:12.024] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[15:46:12.024] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:46:12.024] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:46:16.982] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:22.031] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:27.046] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:46:27.048] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:46:27.048] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:27.107] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:46:27.107] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:46:27.107] INFO  [life]   score=10.0
+[15:46:27.107] INFO  [life]   reason: fallback: nothing else scored
+[15:46:27.107] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:46:27.107] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:46:27.107] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[15:46:27.107] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[15:46:27.107] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:46:27.107] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:46:32.092] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:37.131] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:42.184] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[15:46:42.186] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:46:42.186] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:42.245] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[15:46:42.245] INFO  [life] needs considered: NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tinkering (target 70.0)
+[15:46:42.245] INFO  [life]   score=10.0
+[15:46:42.245] INFO  [life]   reason: fallback: nothing else scored
+[15:46:42.245] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[15:46:42.245] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[15:46:42.245] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[15:46:42.245] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[15:46:42.245] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[15:46:42.245] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[15:46:47.217] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:52.250] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[15:46:55.040] INFO  [life] session_end_requested reason="session time limit reached"
+[15:46:55.100] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[15:46:55.100] INFO  [f6_Bruin] [travel] Yew banker -> (652,820) r=5 from (648,820)
+[15:46:55.100] LOG   [f6_Bruin] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(648,820)
+[15:46:55.100] INFO  [f6_Bruin] [travel] Yew banker ARRIVED at (648,820,0)
+[15:46:55.100] LOG   [f6_Bruin] event travel_done: label='Yew banker' ok=1 at=(648,820) legs=0 plans=0 why=''
+[15:46:55.162] INFO  [life] wind-down: arrived somewhere safe at 648,820
+[15:46:55.222] INFO  [life] session_summary duration=1500s goals=88/106 gold=0->0 skills=158.3->158.3 logs=+0 deaths=0 places=1 suppliers=0
+[15:46:55.223] INFO  [life] session_goals families=3 picks=106 top=85% varied=0 | upkeep=8(8%) work=8(8%) wander=90(85%) | EARN_GOLD=8(8%) GET_FOOD=8(8%) IDLE_BRIEFLY=90(85%)
+[15:46:55.225] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[15:46:55.225] INFO  [life] logging out
+[15:46:55.225] INFO  [f6_Bruin] [action] logout requested
+[15:46:55.225] LOG   [f6_Bruin] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:46:55.238] INFO  [f6_Bruin] [0xD1] logout acknowledged (accepted=1)
+[15:46:55.238] LOG   [f6_Bruin] event logout_ack: accepted
+[15:46:55.238] INFO  [f6_Bruin] [net] closing connection (logout acknowledged)
+[15:46:55.238] LOG   [f6_Bruin] event logout_complete: acked

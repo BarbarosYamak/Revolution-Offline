@@ -1,0 +1,1936 @@
+[14:39:48.678] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='v1_Corwyn'
+[14:39:48.679] LOG   [v1_Corwyn] event session_start: text log opened
+[14:39:48.679] LOG   [v1_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[14:39:48.680] INFO  [v1_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[14:39:48.680] LOG   [v1_Corwyn] event net_connected: connect 127.0.0.1:2593
+[14:39:48.680] INFO  [v1_Corwyn] [net] connected.
+[14:39:48.681] INFO  [v1_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[14:39:48.681] LOG   [v1_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[14:39:48.694] INFO  [life] loaded persistent state for Corwyn (7 places, 4 suppliers, 25 events, 4 prior sessions)
+[14:39:48.694] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[14:39:48.694] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[14:39:48.694] INFO  [v1_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[14:39:48.717] INFO  [v1_Corwyn] [0xA8] 1 server(s):
+[14:39:48.717] INFO  [v1_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[14:39:48.732] INFO  [v1_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[14:39:48.733] LOG   [v1_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[14:39:48.733] INFO  [v1_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:39:48.733] LOG   [v1_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:39:48.733] INFO  [v1_Corwyn] [0xB9] server features = 0x0005
+[14:39:48.733] INFO  [v1_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[14:39:48.733] INFO  [v1_Corwyn]   [0] Corwyn
+[14:39:48.733] INFO  [v1_Corwyn]   [1] <empty>
+[14:39:48.733] INFO  [v1_Corwyn]   [2] <empty>
+[14:39:48.733] INFO  [v1_Corwyn]   [3] <empty>
+[14:39:48.733] INFO  [v1_Corwyn]   [4] <empty>
+[14:39:48.733] INFO  [v1_Corwyn] [ui] playing slot 0 ('Corwyn')
+[14:39:48.748] INFO  [v1_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2533,502,30)
+[14:39:48.748] LOG   [v1_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2533,502,30)
+[14:39:48.748] INFO  [v1_Corwyn] [0x20] player @(2533,502,30) facing=6
+[14:39:48.748] INFO  [v1_Corwyn] [0x55] login complete — entering world
+[14:39:48.748] LOG   [v1_Corwyn] event in_world: 0x55 received
+[14:39:48.748] INFO  [v1_Corwyn] [backpack] opening 0x40014DDB
+[14:39:48.748] INFO  [v1_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:39:48.748] INFO  [v1_Corwyn] [chat ascii] System: There is 1 other player here.
+[14:39:48.748] INFO  [v1_Corwyn] [chat ascii] System: Last logged: 2026/08/30 11:58:04
+[14:39:48.748] INFO  [v1_Corwyn] [chat ascii] System: You are under the protection of the town guards
+[14:39:48.767] INFO  [v1_Corwyn] [action] requesting the skill list
+[14:39:48.767] INFO  [life] in world; asked the server for the skill list
+[14:39:48.767] INFO  [v1_Corwyn] [0x24] open container 0x40014DDB gump=60
+[14:39:48.767] INFO  [v1_Corwyn] [0x3C] container contents: 18 item(s)
+[14:39:48.767] LOG   [v1_Corwyn] event backpack_contents: serial=0x40014DDB items=18
+[14:39:51.389] INFO  [v1_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[14:39:51.389] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[14:39:51.389] INFO  [life]   gold         persisted=9310       server=9310       -> server value accepted
+[14:39:51.389] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[14:39:51.389] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[14:39:51.389] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[14:39:51.389] INFO  [life]   skill_7      persisted=50.5       server=50.5       -> server value accepted
+[14:39:51.389] INFO  [life]   skill_45     persisted=51.2       server=51.2       -> server value accepted
+[14:39:51.389] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[14:39:51.389] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[14:39:51.389] INFO  [life]   position     persisted=2560,500   server=2533,502   -> server value accepted
+[14:39:51.389] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:39:51.389] INFO  [life]   restored objective KEPT: SMELT (progress 0)
+[14:39:51.389] INFO  [v1_Corwyn] [survival] on
+[14:39:51.389] LOG   [v1_Corwyn] event survival_mode: on
+[14:39:51.391] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:39:51.391] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:39:51.448] INFO  [life] smelt: carrying 8 ore with no forge in reach -- walking to a smithy (0 already tried)
+[14:39:51.448] INFO  [v1_Corwyn] [travel] Minoc blacksmith -> (2471,564) r=5 from (2533,502)
+[14:39:51.448] LOG   [v1_Corwyn] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2533,502)
+[14:39:51.448] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:39:51.448] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:39:51.448] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:39:51.448] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:39:51.448] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:39:51.448] INFO  [v1_Corwyn] [travel] plan Minoc blacksmith: ok legs=2 ~104 tiles transit=0 nodes=24
+[14:39:51.508] INFO  [v1_Corwyn] [action] goto (2504,536) from (2533,502,30)
+[14:39:51.508] LOG   [v1_Corwyn] event goto_start: target=(2504,536) from=(2533,502)
+[14:39:51.508] INFO  [v1_Corwyn] [bot] running from (2533,502,30) to (2504,536)
+[14:39:51.508] INFO  [v1_Corwyn] [bot] planning path to (2504,536) in background
+[14:39:51.571] INFO  [v1_Corwyn] [bot] replan to (2504,536): 46 steps in 3350.5us
+[14:39:56.411] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:01.423] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:06.477] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:06.738] INFO  [v1_Corwyn] [bot] arrived at (2504,536,0)
+[14:40:06.738] INFO  [v1_Corwyn] [action] goto finished at (2504,536,0); target (2504,536); ARRIVED (off by 0 tile(s))
+[14:40:06.738] LOG   [v1_Corwyn] event goto_done: at=(2504,536) target=(2504,536) arrived=1 off=0
+[14:40:06.738] INFO  [v1_Corwyn] [action] goto (2471,564) from (2504,536,0)
+[14:40:06.738] LOG   [v1_Corwyn] event goto_start: target=(2471,564) from=(2504,536)
+[14:40:06.739] INFO  [v1_Corwyn] [bot] running from (2504,536,0) to (2471,564,z5)
+[14:40:06.739] INFO  [v1_Corwyn] [bot] planning path to (2471,564) in background
+[14:40:06.801] INFO  [v1_Corwyn] [bot] replan to (2471,564): 73 steps in 39934.2us
+[14:40:11.486] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:16.543] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:21.548] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:26.606] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:28.582] INFO  [v1_Corwyn] [travel] Minoc blacksmith ARRIVED at (2476,569,5)
+[14:40:28.582] LOG   [v1_Corwyn] event travel_done: label='Minoc blacksmith' ok=1 at=(2476,569) legs=2 plans=1 why=''
+[14:40:28.643] INFO  [life] smelt: forge at 2469,557 is 12 tiles off -- standing at 2468,556
+[14:40:28.643] INFO  [v1_Corwyn] [travel] forge -> (2468,556) r=0 from (2476,569)
+[14:40:28.643] LOG   [v1_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2476,569)
+[14:40:28.643] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:40:28.643] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:40:28.643] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:40:28.643] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:40:28.643] LOG   [v1_Corwyn] event travel_mode: walk
+[14:40:28.643] INFO  [v1_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[14:40:31.092] INFO  [v1_Corwyn] [bot] arrived at (2471,564,5)
+[14:40:31.092] INFO  [v1_Corwyn] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[14:40:31.092] LOG   [v1_Corwyn] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[14:40:31.092] INFO  [v1_Corwyn] [action] goto (2468,556) from (2471,564,5)
+[14:40:31.092] LOG   [v1_Corwyn] event goto_start: target=(2468,556) from=(2471,564)
+[14:40:31.092] INFO  [v1_Corwyn] [bot] running from (2471,564,5) to (2468,556)
+[14:40:31.092] INFO  [v1_Corwyn] [bot] planning path to (2468,556) in background
+[14:40:31.153] INFO  [v1_Corwyn] [bot] replan to (2468,556): 13 steps in 342.1us
+[14:40:31.624] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:35.976] INFO  [v1_Corwyn] [travel] forge ARRIVED at (2469,556,5)
+[14:40:35.976] LOG   [v1_Corwyn] event travel_done: label='forge' ok=1 at=(2469,556) legs=1 plans=1 why=''
+[14:40:35.990] INFO  [life] smelt: opening the forge at 2469,555
+[14:40:35.990] INFO  [v1_Corwyn] [ACTION] use_object start
+[14:40:35.990] INFO  [v1_Corwyn] [ACTION] use_object serial=0x4000742C
+[14:40:36.007] INFO  [v1_Corwyn] [0x20] player @(2469,556,5) facing=0
+[14:40:36.007] INFO  [v1_Corwyn] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=1
+[14:40:36.007] LOG   [v1_Corwyn] event target_requested: id=0x000002C3 type=0 subtype=0 gen=1
+[14:40:36.007] INFO  [v1_Corwyn] [ACTION_RESULT] use_object success (17ms) server armed a target cursor
+[14:40:36.007] LOG   [v1_Corwyn] event action_result: use_object success took=17ms server armed a target cursor
+[14:40:36.666] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:37.525] INFO  [life] smelt: giving the forge's cursor the ore (8 ore, 2 ingots so far)
+[14:40:37.525] INFO  [v1_Corwyn] [TARGET] reply serial=0x40004A94 gen=1
+[14:40:37.525] INFO  [v1_Corwyn] [target] object 0x40004A94 (0,0,0) model 0x0000
+[14:40:37.526] INFO  [v1_Corwyn] [chat ascii] Corwyn: *You smelt Iron Ore*
+[14:40:37.526] INFO  [v1_Corwyn] [chat ascii] System: You put the iron ingots in your pack.
+[14:40:37.526] INFO  [life] goal_changed=CRAFT from=SMELT reason="CRAFT 65.0 superseded SMELT 0.0"
+[14:40:37.526] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:37.526] INFO  [life]   score=65.0
+[14:40:37.526] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:40:37.526] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:40:37.526] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:40.056] INFO  [life] craft: putting away what is in hand to free HAND1 for the smith tool
+[14:40:40.056] INFO  [v1_Corwyn] [ACTION] unequip start
+[14:40:40.056] INFO  [v1_Corwyn] [ACTION] unequip serial=0x40014DC7 -> backpack 0x40014DDB
+[14:40:40.056] INFO  [v1_Corwyn] [ITEM] drag serial=0x40014DC7 amount=1
+[14:40:40.056] INFO  [v1_Corwyn] [ITEM] drop container=0x40014DDB
+[14:40:40.071] INFO  [v1_Corwyn] [ACTION_RESULT] unequip success (16ms) item is in the destination
+[14:40:40.071] LOG   [v1_Corwyn] event action_result: unequip success took=16ms item is in the destination
+[14:40:41.684] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:43.091] INFO  [life] craft: taking the smith tool into HAND1 -- the menu reads LAYER_HAND1
+[14:40:43.091] INFO  [v1_Corwyn] [ACTION] equip start
+[14:40:43.091] INFO  [v1_Corwyn] [ACTION] equip serial=0x400147E4 layer=1
+[14:40:43.091] INFO  [v1_Corwyn] [ITEM] drag serial=0x400147E4 amount=1
+[14:40:43.107] INFO  [v1_Corwyn] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[14:40:43.107] LOG   [v1_Corwyn] event action_result: equip success took=16ms worn on the requested layer
+[14:40:46.730] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:47.095] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:40:47.158] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:40:47.158] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:47.158] INFO  [life]   score=65.0
+[14:40:47.158] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:40:47.158] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:40:47.158] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:47.158] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:40:47.219] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:40:47.219] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:47.219] INFO  [life]   score=65.0
+[14:40:47.219] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:40:47.219] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:40:47.219] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:47.219] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:40:47.279] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:40:47.279] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:47.279] INFO  [life]   score=65.0
+[14:40:47.279] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:40:47.279] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:40:47.279] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:47.279] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:40:47.341] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:40:47.341] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:47.341] INFO  [life]   score=65.0
+[14:40:47.341] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:40:47.341] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:40:47.341] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:47.341] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:40:47.403] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no material to start from"
+[14:40:47.403] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:40:47.403] INFO  [life]   score=62.5
+[14:40:47.403] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:40:47.403] INFO  [life]   reason: food=0
+[14:40:47.403] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:40:47.403] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 59s after achieving nothing
+[14:40:47.403] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2469,556)
+[14:40:47.403] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2469,556)
+[14:40:47.403] INFO  [life] food: walking to a 'baker' (trip 1)
+[14:40:47.403] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:40:47.403] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:40:47.403] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:40:47.403] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:40:47.403] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:40:47.411] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:40:47.411] INFO  [v1_Corwyn] [action] goto finished at (2469,556,5); target (2468,556); stopped short (off by 1 tile(s))
+[14:40:47.411] LOG   [v1_Corwyn] event goto_done: at=(2469,556) target=(2468,556) arrived=0 off=1
+[14:40:47.411] LOG   [v1_Corwyn] event travel_escape: from=(2469,556,5) to=(2472,568) attempt=1
+[14:40:47.411] INFO  [v1_Corwyn] [action] goto (2472,568) from (2469,556,5)
+[14:40:47.411] LOG   [v1_Corwyn] event goto_start: target=(2472,568) from=(2469,556)
+[14:40:47.411] INFO  [v1_Corwyn] [bot] running from (2469,556,5) to (2472,568,z5)
+[14:40:47.411] INFO  [v1_Corwyn] [bot] planning path to (2472,568) in background
+[14:40:47.464] INFO  [v1_Corwyn] [bot] replan to (2472,568): 15 steps in 325.4us
+[14:40:51.352] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:40:51.766] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:40:52.577] INFO  [v1_Corwyn] [bot] arrived at (2472,568,5)
+[14:40:52.577] INFO  [v1_Corwyn] [action] goto finished at (2472,568,5); target (2472,568); ARRIVED (off by 0 tile(s))
+[14:40:52.577] LOG   [v1_Corwyn] event goto_done: at=(2472,568) target=(2472,568) arrived=1 off=0
+[14:40:52.577] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2472,568,5) (off 0); attempt 1/3
+[14:40:52.577] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2472,568,5) off=0 attempt=1
+[14:40:52.638] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:40:52.638] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:40:52.638] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:40:52.638] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:40:52.638] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:40:52.646] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:40:52.646] LOG   [v1_Corwyn] event travel_escape: from=(2472,568,5) to=(2456,552) attempt=2
+[14:40:52.646] INFO  [v1_Corwyn] [action] goto (2456,552) from (2472,568,5)
+[14:40:52.646] LOG   [v1_Corwyn] event goto_start: target=(2456,552) from=(2472,568)
+[14:40:52.646] INFO  [v1_Corwyn] [bot] running from (2472,568,5) to (2456,552,z0)
+[14:40:52.646] INFO  [v1_Corwyn] [bot] planning path to (2456,552) in background
+[14:40:52.700] INFO  [v1_Corwyn] [bot] replan to (2456,552): 27 steps in 2889.2us
+[14:40:56.805] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:01.630] INFO  [v1_Corwyn] [bot] arrived at (2456,552,0)
+[14:41:01.630] INFO  [v1_Corwyn] [action] goto finished at (2456,552,0); target (2456,552); ARRIVED (off by 0 tile(s))
+[14:41:01.630] LOG   [v1_Corwyn] event goto_done: at=(2456,552) target=(2456,552) arrived=1 off=0
+[14:41:01.630] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,552,0) (off 0); attempt 2/3
+[14:41:01.630] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,552,0) off=0 attempt=2
+[14:41:01.693] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:01.693] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:01.693] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:01.693] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:01.693] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:01.702] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:01.702] LOG   [v1_Corwyn] event travel_escape: from=(2456,552,0) to=(2456,566) attempt=3
+[14:41:01.702] INFO  [v1_Corwyn] [action] goto (2456,566) from (2456,552,0)
+[14:41:01.702] LOG   [v1_Corwyn] event goto_start: target=(2456,566) from=(2456,552)
+[14:41:01.702] INFO  [v1_Corwyn] [bot] running from (2456,552,0) to (2456,566,z0)
+[14:41:01.702] INFO  [v1_Corwyn] [bot] planning path to (2456,566) in background
+[14:41:01.756] INFO  [v1_Corwyn] [bot] replan to (2456,566): 18 steps in 1204.8us
+[14:41:01.817] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:06.858] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:09.409] INFO  [v1_Corwyn] [bot] arrived at (2456,566,0)
+[14:41:09.409] INFO  [v1_Corwyn] [action] goto finished at (2456,566,0); target (2456,566); ARRIVED (off by 0 tile(s))
+[14:41:09.409] LOG   [v1_Corwyn] event goto_done: at=(2456,566) target=(2456,566) arrived=1 off=0
+[14:41:09.409] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,566,0) (off 0); attempt 3/3
+[14:41:09.409] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,566,0) off=0 attempt=3
+[14:41:09.470] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:09.470] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:09.470] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:09.470] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:09.470] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:09.481] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:09.481] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2456,566,0) -- no world route to the destination
+[14:41:09.481] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2456,566) legs=0 plans=1 why='no world route to the destination'
+[14:41:09.533] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:09.534] INFO  [v1_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[14:41:09.534] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:41:09.534] INFO  [v1_Corwyn] [mobiles] nearby (2):
+[14:41:09.534] INFO  [v1_Corwyn]   Olin 0x00009646
+[14:41:09.534] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:41:09.534] INFO  [v1_Corwyn] [0x20] player @(2456,566,0) facing=2
+[14:41:09.534] INFO  [v1_Corwyn] [0x88] paperdoll 0x00009646: "Olin, the blacksmith"
+[14:41:09.534] INFO  [v1_Corwyn] [world] Olin, the blacksmith is a blacksmith at (2466,567)
+[14:41:11.869] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:12.546] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:12.546] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:41:12.546] INFO  [v1_Corwyn] [mobiles] nearby (2):
+[14:41:12.546] INFO  [v1_Corwyn]   Olin 0x00009646
+[14:41:12.546] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:41:15.600] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:15.600] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[14:41:15.600] INFO  [v1_Corwyn] [mobiles] nearby (2):
+[14:41:15.600] INFO  [v1_Corwyn]   Olin 0x00009646
+[14:41:15.600] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:41:16.884] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:18.607] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2456,566)
+[14:41:18.607] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2456,566)
+[14:41:18.607] INFO  [life] food: walking to a 'baker' (trip 2)
+[14:41:18.607] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:18.607] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:18.608] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:18.608] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:18.608] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:18.615] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:18.615] LOG   [v1_Corwyn] event travel_escape: from=(2456,566,0) to=(2456,552) attempt=1
+[14:41:18.615] INFO  [v1_Corwyn] [action] goto (2456,552) from (2456,566,0)
+[14:41:18.615] LOG   [v1_Corwyn] event goto_start: target=(2456,552) from=(2456,566)
+[14:41:18.615] INFO  [v1_Corwyn] [bot] running from (2456,566,0) to (2456,552,z0)
+[14:41:18.615] INFO  [v1_Corwyn] [bot] planning path to (2456,552) in background
+[14:41:18.667] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:41:18.667] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:41:18.667] INFO  [life]   score=62.5
+[14:41:18.667] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:41:18.667] INFO  [life]   reason: food=0
+[14:41:18.667] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:41:18.667] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 28s after achieving nothing
+[14:41:18.668] INFO  [v1_Corwyn] [bot] replan to (2456,552): 18 steps in 676.4us
+[14:41:21.899] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:25.446] INFO  [v1_Corwyn] [bot] arrived at (2456,552,0)
+[14:41:25.446] INFO  [v1_Corwyn] [action] goto finished at (2456,552,0); target (2456,552); ARRIVED (off by 0 tile(s))
+[14:41:25.446] LOG   [v1_Corwyn] event goto_done: at=(2456,552) target=(2456,552) arrived=1 off=0
+[14:41:25.446] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,552,0) (off 0); attempt 1/3
+[14:41:25.446] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,552,0) off=0 attempt=1
+[14:41:25.507] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:25.507] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:25.507] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:25.507] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:25.507] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:25.518] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:25.518] LOG   [v1_Corwyn] event travel_escape: from=(2456,552,0) to=(2456,566) attempt=2
+[14:41:25.518] INFO  [v1_Corwyn] [action] goto (2456,566) from (2456,552,0)
+[14:41:25.518] LOG   [v1_Corwyn] event goto_start: target=(2456,566) from=(2456,552)
+[14:41:25.518] INFO  [v1_Corwyn] [bot] running from (2456,552,0) to (2456,566,z0)
+[14:41:25.518] INFO  [v1_Corwyn] [bot] planning path to (2456,566) in background
+[14:41:25.570] INFO  [v1_Corwyn] [bot] replan to (2456,566): 18 steps in 1148.1us
+[14:41:26.950] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:31.963] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:33.113] INFO  [v1_Corwyn] [bot] arrived at (2456,566,0)
+[14:41:33.113] INFO  [v1_Corwyn] [action] goto finished at (2456,566,0); target (2456,566); ARRIVED (off by 0 tile(s))
+[14:41:33.113] LOG   [v1_Corwyn] event goto_done: at=(2456,566) target=(2456,566) arrived=1 off=0
+[14:41:33.113] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,566,0) (off 0); attempt 2/3
+[14:41:33.113] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,566,0) off=0 attempt=2
+[14:41:33.173] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:33.173] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:33.173] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:33.173] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:33.173] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:33.181] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:33.181] LOG   [v1_Corwyn] event travel_escape: from=(2456,566,0) to=(2440,550) attempt=3
+[14:41:33.181] INFO  [v1_Corwyn] [action] goto (2440,550) from (2456,566,0)
+[14:41:33.181] LOG   [v1_Corwyn] event goto_start: target=(2440,550) from=(2456,566)
+[14:41:33.181] INFO  [v1_Corwyn] [bot] running from (2456,566,0) to (2440,550,z0)
+[14:41:33.181] INFO  [v1_Corwyn] [bot] planning path to (2440,550) in background
+[14:41:33.234] INFO  [v1_Corwyn] [bot] replan to (2440,550): 22 steps in 395.8us
+[14:41:36.972] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:42.009] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:42.209] INFO  [v1_Corwyn] [bot] arrived at (2440,550,0)
+[14:41:42.209] INFO  [v1_Corwyn] [action] goto finished at (2440,550,0); target (2440,550); ARRIVED (off by 0 tile(s))
+[14:41:42.209] LOG   [v1_Corwyn] event goto_done: at=(2440,550) target=(2440,550) arrived=1 off=0
+[14:41:42.209] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,550,0) (off 0); attempt 3/3
+[14:41:42.209] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,550,0) off=0 attempt=3
+[14:41:42.269] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:42.269] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:42.269] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:42.269] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:42.269] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:42.277] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:42.277] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2440,550,0) -- no world route to the destination
+[14:41:42.277] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2440,550) legs=0 plans=1 why='no world route to the destination'
+[14:41:42.331] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:42.331] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:41:42.346] INFO  [v1_Corwyn] [mobiles] nearby (2):
+[14:41:42.346] INFO  [v1_Corwyn]   Ochen 0x0000972B
+[14:41:42.346] INFO  [v1_Corwyn]   Damaris 0x00009709
+[14:41:45.342] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:45.343] INFO  [v1_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[14:41:45.343] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:41:45.343] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:41:45.343] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:41:45.343] INFO  [v1_Corwyn]   Ochen 0x0000972B
+[14:41:45.343] INFO  [v1_Corwyn]   Damaris 0x00009709
+[14:41:45.358] INFO  [v1_Corwyn] [0x20] player @(2440,550,0) facing=1
+[14:41:45.358] INFO  [v1_Corwyn] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[14:41:47.044] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:48.398] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:41:48.399] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[14:41:48.414] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:41:48.414] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:41:48.414] INFO  [v1_Corwyn]   Ochen 0x0000972B
+[14:41:48.414] INFO  [v1_Corwyn]   Damaris 0x00009709
+[14:41:51.358] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:41:51.417] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2440,550)
+[14:41:51.417] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2440,550)
+[14:41:51.417] INFO  [life] food: walking to a 'baker' (trip 3)
+[14:41:51.417] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:51.417] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:51.417] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:51.417] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:51.417] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:51.425] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:51.425] LOG   [v1_Corwyn] event travel_escape: from=(2440,550,0) to=(2440,536) attempt=1
+[14:41:51.425] INFO  [v1_Corwyn] [action] goto (2440,536) from (2440,550,0)
+[14:41:51.425] LOG   [v1_Corwyn] event goto_start: target=(2440,536) from=(2440,550)
+[14:41:51.425] INFO  [v1_Corwyn] [bot] running from (2440,550,0) to (2440,536,z0)
+[14:41:51.425] INFO  [v1_Corwyn] [bot] planning path to (2440,536) in background
+[14:41:51.478] INFO  [v1_Corwyn] [bot] replan to (2440,536): 14 steps in 199.8us
+[14:41:52.060] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:55.464] INFO  [v1_Corwyn] [bot] arrived at (2440,536,0)
+[14:41:55.464] INFO  [v1_Corwyn] [action] goto finished at (2440,536,0); target (2440,536); ARRIVED (off by 0 tile(s))
+[14:41:55.464] LOG   [v1_Corwyn] event goto_done: at=(2440,536) target=(2440,536) arrived=1 off=0
+[14:41:55.464] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,536,0) (off 0); attempt 1/3
+[14:41:55.464] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,536,0) off=0 attempt=1
+[14:41:55.525] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:41:55.525] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:41:55.525] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:55.525] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:55.525] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:41:55.533] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:41:55.533] LOG   [v1_Corwyn] event travel_escape: from=(2440,536,0) to=(2440,550) attempt=2
+[14:41:55.533] INFO  [v1_Corwyn] [action] goto (2440,550) from (2440,536,0)
+[14:41:55.533] LOG   [v1_Corwyn] event goto_start: target=(2440,550) from=(2440,536)
+[14:41:55.533] INFO  [v1_Corwyn] [bot] running from (2440,536,0) to (2440,550,z0)
+[14:41:55.533] INFO  [v1_Corwyn] [bot] planning path to (2440,550) in background
+[14:41:55.587] INFO  [v1_Corwyn] [bot] replan to (2440,550): 14 steps in 243.5us
+[14:41:57.112] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:41:59.998] INFO  [v1_Corwyn] [bot] arrived at (2440,550,0)
+[14:41:59.999] INFO  [v1_Corwyn] [action] goto finished at (2440,550,0); target (2440,550); ARRIVED (off by 0 tile(s))
+[14:41:59.999] LOG   [v1_Corwyn] event goto_done: at=(2440,550) target=(2440,550) arrived=1 off=0
+[14:41:59.999] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,550,0) (off 0); attempt 2/3
+[14:41:59.999] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,550,0) off=0 attempt=2
+[14:42:00.058] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:42:00.058] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:42:00.058] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:42:00.058] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:42:00.058] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:42:00.069] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:42:00.069] LOG   [v1_Corwyn] event travel_escape: from=(2440,550,0) to=(2434,564) attempt=3
+[14:42:00.069] INFO  [v1_Corwyn] [action] goto (2434,564) from (2440,550,0)
+[14:42:00.069] LOG   [v1_Corwyn] event goto_start: target=(2434,564) from=(2440,550)
+[14:42:00.069] INFO  [v1_Corwyn] [bot] running from (2440,550,0) to (2434,564,z0)
+[14:42:00.069] INFO  [v1_Corwyn] [bot] planning path to (2434,564) in background
+[14:42:00.119] INFO  [v1_Corwyn] [bot] replan to (2434,564): 17 steps in 1392.9us
+[14:42:02.128] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:05.823] INFO  [v1_Corwyn] [bot] arrived at (2434,564,0)
+[14:42:05.823] INFO  [v1_Corwyn] [action] goto finished at (2434,564,0); target (2434,564); ARRIVED (off by 0 tile(s))
+[14:42:05.823] LOG   [v1_Corwyn] event goto_done: at=(2434,564) target=(2434,564) arrived=1 off=0
+[14:42:05.823] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2434,564,0) (off 0); attempt 3/3
+[14:42:05.823] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2434,564,0) off=0 attempt=3
+[14:42:05.884] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:42:05.884] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:42:05.884] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:42:05.884] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:42:05.884] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:42:05.892] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:42:05.892] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2434,564,0) -- no world route to the destination
+[14:42:05.892] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2434,564) legs=0 plans=1 why='no world route to the destination'
+[14:42:05.945] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:42:05.945] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:42:05.945] INFO  [life] goal_changed=CRAFT from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:42:05.945] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:05.945] INFO  [life]   score=65.0
+[14:42:05.945] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:42:05.945] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:42:05.945] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:05.945] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:42:05.945] INFO  [v1_Corwyn]   Ochen 0x0000972B
+[14:42:05.945] INFO  [v1_Corwyn]   Damaris 0x00009709
+[14:42:05.945] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:42:07.190] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:08.969] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[14:42:08.969] INFO  [v1_Corwyn] [travel] blacksmith (seen) -> (2466,567) r=2 from (2434,564)
+[14:42:08.969] LOG   [v1_Corwyn] event travel_start: label='blacksmith (seen)' target=(2466,567) radius=2 from=(2434,564)
+[14:42:08.969] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:42:08.969] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:42:08.969] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:42:08.969] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:42:08.969] LOG   [v1_Corwyn] event travel_mode: walk
+[14:42:08.969] INFO  [v1_Corwyn] [travel] plan blacksmith (seen): ok legs=1 ~32 tiles transit=0 nodes=0
+[14:42:09.031] INFO  [v1_Corwyn] [action] goto (2466,567) from (2434,564,0)
+[14:42:09.031] LOG   [v1_Corwyn] event goto_start: target=(2466,567) from=(2434,564)
+[14:42:09.031] INFO  [v1_Corwyn] [bot] running from (2434,564,0) to (2466,567,z5)
+[14:42:09.031] INFO  [v1_Corwyn] [bot] planning path to (2466,567) in background
+[14:42:09.092] INFO  [v1_Corwyn] [bot] replan to (2466,567): 74 steps in 18545.6us
+[14:42:12.195] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:17.230] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:22.252] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:27.263] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:29.740] INFO  [v1_Corwyn] [travel] blacksmith (seen) ARRIVED at (2464,569,5)
+[14:42:29.740] LOG   [v1_Corwyn] event travel_done: label='blacksmith (seen)' ok=1 at=(2464,569) legs=1 plans=1 why=''
+[14:42:29.740] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[14:42:29.740] INFO  [v1_Corwyn] [travel] forge -> (2468,556) r=0 from (2465,569)
+[14:42:29.740] LOG   [v1_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2465,569)
+[14:42:29.740] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:42:29.740] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:42:29.740] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:42:29.740] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:42:29.740] LOG   [v1_Corwyn] event travel_mode: walk
+[14:42:29.740] INFO  [v1_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[14:42:32.303] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:32.304] INFO  [v1_Corwyn] [chat ascii] Curtis: Hmm?
+[14:42:33.453] INFO  [v1_Corwyn] [chat ascii] Curtis: I'd ask thee to stand away some.
+[14:42:33.453] INFO  [v1_Corwyn] [chat ascii] System: You shove Curtis out of the way.
+[14:42:33.865] INFO  [v1_Corwyn] [chat ascii] Olin: Could thou back off a bit?
+[14:42:33.865] INFO  [v1_Corwyn] [bot] reject at (2466,567): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[14:42:33.865] INFO  [v1_Corwyn] [bot] planning path to (2466,567) in background
+[14:42:34.971] INFO  [v1_Corwyn] [action] goto finished at (2467,567,5); target (2466,567); stopped short (off by 1 tile(s))
+[14:42:34.971] LOG   [v1_Corwyn] event goto_done: at=(2467,567) target=(2466,567) arrived=0 off=1
+[14:42:34.971] INFO  [v1_Corwyn] [action] goto (2468,556) from (2467,567,5)
+[14:42:34.971] LOG   [v1_Corwyn] event goto_start: target=(2468,556) from=(2467,567)
+[14:42:34.971] INFO  [v1_Corwyn] [bot] running from (2467,567,5) to (2468,556)
+[14:42:34.971] INFO  [v1_Corwyn] [bot] planning path to (2468,556) in background
+[14:42:35.031] INFO  [v1_Corwyn] [bot] replan to (2468,556): 17 steps in 460.0us
+[14:42:37.317] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:39.356] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:42:39.418] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:42:39.418] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:39.418] INFO  [life]   score=65.0
+[14:42:39.418] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:42:39.418] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:42:39.418] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:39.418] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:42:39.479] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:42:39.480] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:39.480] INFO  [life]   score=65.0
+[14:42:39.480] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:42:39.480] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:42:39.480] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:39.480] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:42:39.541] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:42:39.541] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:39.541] INFO  [life]   score=65.0
+[14:42:39.541] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:42:39.541] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:42:39.541] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:39.541] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:42:39.603] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:42:39.603] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:39.603] INFO  [life]   score=65.0
+[14:42:39.603] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:42:39.603] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:42:39.603] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:39.603] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:42:39.604] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no material to start from"
+[14:42:39.604] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:42:39.604] INFO  [life]   score=62.5
+[14:42:39.604] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:42:39.604] INFO  [life]   reason: food=0
+[14:42:39.604] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:42:39.604] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 59s after achieving nothing
+[14:42:41.393] INFO  [v1_Corwyn] [travel] forge ARRIVED at (2469,556,5)
+[14:42:41.393] LOG   [v1_Corwyn] event travel_done: label='forge' ok=1 at=(2469,556) legs=1 plans=1 why=''
+[14:42:41.409] INFO  [v1_Corwyn] [bot] arrived at (2468,556,5)
+[14:42:41.409] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:42:41.410] INFO  [v1_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[14:42:41.410] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:42:41.424] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:42:41.424] INFO  [v1_Corwyn]   Olin 0x00009646
+[14:42:41.424] INFO  [v1_Corwyn]   Curtis 0x00009693
+[14:42:41.424] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:42:41.424] INFO  [v1_Corwyn] [0x20] player @(2468,556,5) facing=4
+[14:42:41.424] INFO  [v1_Corwyn] [0x88] paperdoll 0x00009693: "Curtis, the blacksmith"
+[14:42:41.424] INFO  [v1_Corwyn] [world] Curtis, the blacksmith is a blacksmith at (2468,567)
+[14:42:42.343] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:44.416] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:42:44.416] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[14:42:44.431] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:42:44.431] INFO  [v1_Corwyn]   Curtis 0x00009693
+[14:42:44.431] INFO  [v1_Corwyn]   Olin 0x00009646
+[14:42:44.431] INFO  [v1_Corwyn]   Observer 0x0000063C
+[14:42:47.389] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:47.452] INFO  [life] food: no 'baker' answered -- trying a 'provisioner'
+[14:42:47.513] INFO  [v1_Corwyn] [travel] Minoc provisioner -> (2526,546) r=5 from (2468,556)
+[14:42:47.513] LOG   [v1_Corwyn] event travel_start: label='Minoc provisioner' target=(2526,546) radius=5 from=(2468,556)
+[14:42:47.513] INFO  [life] food: walking to a 'provisioner' (trip 1)
+[14:42:47.513] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:42:47.513] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:42:47.513] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:42:47.513] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:42:47.513] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:42:47.513] INFO  [v1_Corwyn] [travel] plan Minoc provisioner: ok legs=2 ~48 tiles transit=0 nodes=4
+[14:42:47.574] INFO  [v1_Corwyn] [action] goto finished at (2468,556,5); target (2468,556); ARRIVED (off by 0 tile(s))
+[14:42:47.574] LOG   [v1_Corwyn] event goto_done: at=(2468,556) target=(2468,556) arrived=1 off=0
+[14:42:47.574] INFO  [v1_Corwyn] [action] goto (2504,552) from (2468,556,5)
+[14:42:47.574] LOG   [v1_Corwyn] event goto_start: target=(2504,552) from=(2468,556)
+[14:42:47.574] INFO  [v1_Corwyn] [bot] running from (2468,556,5) to (2504,552)
+[14:42:47.574] INFO  [v1_Corwyn] [bot] planning path to (2504,552) in background
+[14:42:47.635] INFO  [v1_Corwyn] [bot] replan to (2504,552): 54 steps in 3789.3us
+[14:42:51.382] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:42:52.416] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:42:57.429] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:00.870] INFO  [v1_Corwyn] [bot] door ahead at (2503,559,z0); OpenDoor before step
+[14:43:00.885] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:43:02.481] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:03.877] INFO  [v1_Corwyn] [bot] arrived at (2504,552,0)
+[14:43:03.877] INFO  [v1_Corwyn] [action] goto finished at (2504,552,0); target (2504,552); ARRIVED (off by 0 tile(s))
+[14:43:03.877] LOG   [v1_Corwyn] event goto_done: at=(2504,552) target=(2504,552) arrived=1 off=0
+[14:43:03.877] INFO  [v1_Corwyn] [action] goto (2526,546) from (2504,552,0)
+[14:43:03.877] LOG   [v1_Corwyn] event goto_start: target=(2526,546) from=(2504,552)
+[14:43:03.877] INFO  [v1_Corwyn] [bot] running from (2504,552,0) to (2526,546,z0)
+[14:43:03.877] INFO  [v1_Corwyn] [bot] planning path to (2526,546) in background
+[14:43:03.938] INFO  [v1_Corwyn] [bot] replan to (2526,546): 50 steps in 6338.9us
+[14:43:06.257] INFO  [v1_Corwyn] [bot] door ahead at (2505,560,z0); OpenDoor before step
+[14:43:06.257] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:43:07.533] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:12.587] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:13.231] INFO  [v1_Corwyn] [bot] door ahead at (2531,559,z0); OpenDoor before step
+[14:43:13.247] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:43:16.322] INFO  [v1_Corwyn] [travel] Minoc provisioner ARRIVED at (2529,551,0)
+[14:43:16.322] LOG   [v1_Corwyn] event travel_done: label='Minoc provisioner' ok=1 at=(2529,551) legs=2 plans=1 why=''
+[14:43:16.384] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:43:16.384] INFO  [v1_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[14:43:16.384] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:43:16.384] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:43:16.384] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:43:16.384] INFO  [life]   score=62.5
+[14:43:16.384] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:43:16.384] INFO  [life]   reason: food=0
+[14:43:16.384] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:43:16.384] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 23s after achieving nothing
+[14:43:16.384] INFO  [v1_Corwyn] [mobiles] nearby (3):
+[14:43:16.384] INFO  [v1_Corwyn]   Colton 0x00009652
+[14:43:16.384] INFO  [v1_Corwyn]   Bryson 0x000096A1
+[14:43:16.384] INFO  [v1_Corwyn]   Dog 0x0000A005
+[14:43:16.384] INFO  [v1_Corwyn] [0x20] player @(2529,551,0) facing=6
+[14:43:16.384] INFO  [v1_Corwyn] [0x88] paperdoll 0x00009652: "Colton, the cobbler"
+[14:43:16.384] INFO  [v1_Corwyn] [world] Colton, the cobbler is a tailor at (2523,549)
+[14:43:16.384] INFO  [v1_Corwyn] [0x21] stale reject seq=48 (block already handled); pose resynced
+[14:43:17.597] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:19.443] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:43:19.443] INFO  [v1_Corwyn] [action] requested 1 paperdoll(s) for trade titles
+[14:43:19.443] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:43:19.443] INFO  [v1_Corwyn] [mobiles] nearby (2):
+[14:43:19.443] INFO  [v1_Corwyn]   Bryson 0x000096A1
+[14:43:19.443] INFO  [v1_Corwyn]   Colton 0x00009652
+[14:43:19.443] INFO  [v1_Corwyn] [0x20] player @(2529,551,0) facing=7
+[14:43:19.443] INFO  [v1_Corwyn] [0x88] paperdoll 0x000096A1: "Bryson, the provisioner"
+[14:43:19.443] INFO  [v1_Corwyn] [world] Bryson, the provisioner is a provisioner at (2523,546)
+[14:43:22.471] INFO  [life] food: found a 'provisioner'
+[14:43:22.532] INFO  [v1_Corwyn] [travel] mobile 0x000096A1 -> (2523,547) r=1 from (2529,551)
+[14:43:22.532] LOG   [v1_Corwyn] event travel_start: label='mobile 0x000096A1' target=(2523,547) radius=1 from=(2529,551)
+[14:43:22.532] INFO  [life] food: the 'provisioner' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[14:43:22.532] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:43:22.532] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:43:22.532] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:43:22.532] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:43:22.532] LOG   [v1_Corwyn] event travel_mode: walk
+[14:43:22.532] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~6 tiles transit=0 nodes=0
+[14:43:22.594] INFO  [v1_Corwyn] [action] goto finished at (2529,551,0); target (2526,546); stopped short (off by 8 tile(s))
+[14:43:22.594] LOG   [v1_Corwyn] event goto_done: at=(2529,551) target=(2526,546) arrived=0 off=8
+[14:43:22.594] INFO  [v1_Corwyn] [action] goto (2523,547) from (2529,551,0)
+[14:43:22.594] LOG   [v1_Corwyn] event goto_start: target=(2523,547) from=(2529,551)
+[14:43:22.594] INFO  [v1_Corwyn] [bot] running from (2529,551,0) to (2523,547,z0)
+[14:43:22.594] INFO  [v1_Corwyn] [bot] planning path to (2523,547) in background
+[14:43:22.655] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:23.821] INFO  [v1_Corwyn] [action] goto finished at (2529,551,0); target (2523,547); stopped short (off by 10 tile(s))
+[14:43:23.821] LOG   [v1_Corwyn] event goto_done: at=(2529,551) target=(2523,547) arrived=0 off=10
+[14:43:25.064] INFO  [v1_Corwyn] [action] goto (2523,547) from (2529,551,0)
+[14:43:25.064] LOG   [v1_Corwyn] event goto_start: target=(2523,547) from=(2529,551)
+[14:43:25.064] INFO  [v1_Corwyn] [bot] running from (2529,551,0) to (2523,547,z0)
+[14:43:25.064] INFO  [v1_Corwyn] [bot] planning path to (2523,547) in background
+[14:43:26.176] INFO  [v1_Corwyn] [action] goto finished at (2529,551,0); target (2523,547); stopped short (off by 10 tile(s))
+[14:43:26.176] LOG   [v1_Corwyn] event goto_done: at=(2529,551) target=(2523,547) arrived=0 off=10
+[14:43:27.430] INFO  [v1_Corwyn] [action] goto (2523,547) from (2529,551,0)
+[14:43:27.431] LOG   [v1_Corwyn] event goto_start: target=(2523,547) from=(2529,551)
+[14:43:27.431] INFO  [v1_Corwyn] [bot] running from (2529,551,0) to (2523,547,z0)
+[14:43:27.431] INFO  [v1_Corwyn] [bot] planning path to (2523,547) in background
+[14:43:27.493] INFO  [v1_Corwyn] [bot] replan to (2523,547): 7 steps in 164.3us
+[14:43:27.676] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:28.493] INFO  [v1_Corwyn] [bot] door ahead at (2525,548,z0); OpenDoor before step
+[14:43:28.493] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:43:28.994] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:43:28.994] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:43:28.994] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:43:28.994] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:43:28.994] LOG   [v1_Corwyn] event travel_mode: walk
+[14:43:28.994] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:43:29.009] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2523,547); stopped short (off by 5 tile(s))
+[14:43:29.009] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2523,547) arrived=0 off=5
+[14:43:29.009] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:29.009] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:29.009] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:29.009] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:30.070] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:30.070] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:31.324] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:31.324] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:31.324] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:31.324] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:32.491] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:32.491] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:32.737] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:33.714] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:33.714] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:33.714] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:33.714] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:34.884] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:34.884] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:36.113] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:43:36.113] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:43:36.113] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:43:36.113] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:43:36.113] LOG   [v1_Corwyn] event travel_mode: walk
+[14:43:36.113] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:43:37.643] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:37.643] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:37.643] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:37.643] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:37.765] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:38.752] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:38.752] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:39.970] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:39.970] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:39.970] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:39.970] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:41.031] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:41.031] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:41.365] INFO  [v1_Corwyn] [chat uni  ] enu: bank
+[14:43:42.288] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:42.288] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:42.288] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:42.288] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:42.779] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:43.497] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:43.498] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:44.746] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:43:44.746] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:43:44.746] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:43:44.746] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:43:44.746] LOG   [v1_Corwyn] event travel_mode: walk
+[14:43:44.746] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:43:47.748] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:47.749] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:47.749] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:47.749] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:47.811] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:48.857] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:48.857] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:50.063] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:50.063] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:50.063] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:50.063] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:50.554] INFO  [v1_Corwyn] [chat ascii] System: World save in 10 seconds
+[14:43:51.185] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:51.185] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:51.433] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:43:52.411] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:52.411] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:52.411] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:52.411] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:43:52.839] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:53.497] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:43:53.497] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:43:54.720] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:43:54.720] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:43:54.720] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:43:54.720] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:43:54.720] LOG   [v1_Corwyn] event travel_mode: walk
+[14:43:54.720] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:43:57.845] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:43:59.251] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:43:59.251] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:43:59.251] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:43:59.251] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:00.339] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:00.339] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:00.590] INFO  [v1_Corwyn] [chat ascii] System: World save has been initiated.
+[14:44:01.568] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:01.569] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:01.569] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:01.569] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:02.657] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:02.658] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:02.904] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:03.885] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:03.886] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:03.886] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:03.886] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:04.961] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:04.961] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:04.961] INFO  [v1_Corwyn] [travel] mobile 0x000096A1 ARRIVED at (2526,549,0) -- arrived nearby; the destination tile was not free
+[14:44:04.961] LOG   [v1_Corwyn] event travel_done: label='mobile 0x000096A1' ok=1 at=(2526,549) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[14:44:05.022] INFO  [v1_Corwyn] [travel] mobile 0x000096A1 -> (2522,550) r=1 from (2526,549)
+[14:44:05.022] LOG   [v1_Corwyn] event travel_start: label='mobile 0x000096A1' target=(2522,550) radius=1 from=(2526,549)
+[14:44:05.022] INFO  [life] food: the 'provisioner' is 4 tiles off (dz 0) -- walking into reach (chase 2 of 3)
+[14:44:05.022] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:05.022] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:05.022] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:05.022] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:05.022] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:05.022] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:44:05.083] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:05.083] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:05.083] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:05.083] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:06.176] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:06.176] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:07.391] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:07.391] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:07.391] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:07.391] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:07.912] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:08.481] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:08.481] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:09.719] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:09.719] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:09.719] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:09.719] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:10.765] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:10.765] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:12.003] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:12.004] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:12.004] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:12.004] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:12.004] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:12.004] INFO  [v1_Corwyn] [travel] plan mobile 0x000096A1: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:44:12.930] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:13.544] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:13.544] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:13.544] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:13.544] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:14.617] INFO  [v1_Corwyn] [action] goto finished at (2526,549,0); target (2522,550); stopped short (off by 5 tile(s))
+[14:44:14.617] LOG   [v1_Corwyn] event goto_done: at=(2526,549) target=(2522,550) arrived=0 off=5
+[14:44:15.848] INFO  [v1_Corwyn] [action] goto (2522,550) from (2526,549,0)
+[14:44:15.848] LOG   [v1_Corwyn] event goto_start: target=(2522,550) from=(2526,549)
+[14:44:15.848] INFO  [v1_Corwyn] [bot] running from (2526,549,0) to (2522,550,z0)
+[14:44:15.848] INFO  [v1_Corwyn] [bot] planning path to (2522,550) in background
+[14:44:15.909] INFO  [v1_Corwyn] [bot] replan to (2522,550): 8 steps in 203.6us
+[14:44:16.597] INFO  [v1_Corwyn] [bot] door ahead at (2524,547,z0); OpenDoor before step
+[14:44:16.612] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:44:17.317] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=7 in 140.5us
+[14:44:17.974] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:18.939] INFO  [v1_Corwyn] [chat ascii] Bryson: What's thee wantin'?
+[14:44:18.999] INFO  [v1_Corwyn] [travel] mobile 0x000096A1 ARRIVED at (2523,550,0)
+[14:44:18.999] LOG   [v1_Corwyn] event travel_done: label='mobile 0x000096A1' ok=1 at=(2523,550) legs=1 plans=2 why=''
+[14:44:19.061] INFO  [life] food: within reach
+[14:44:19.122] INFO  [life] goal_changed=CRAFT from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:44:19.122] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:19.122] INFO  [life]   score=65.0
+[14:44:19.122] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:44:19.122] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:44:19.122] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:19.122] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[14:44:19.122] INFO  [v1_Corwyn] [travel] blacksmith (seen) -> (2468,567) r=2 from (2523,550)
+[14:44:19.122] LOG   [v1_Corwyn] event travel_start: label='blacksmith (seen)' target=(2468,567) radius=2 from=(2523,550)
+[14:44:19.122] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:19.122] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:19.122] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:19.122] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:19.122] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:19.122] INFO  [v1_Corwyn] [travel] plan blacksmith (seen): ok legs=2 ~56 tiles transit=0 nodes=9
+[14:44:19.812] INFO  [v1_Corwyn] [bot] arrived at (2522,550,0)
+[14:44:19.812] INFO  [v1_Corwyn] [action] goto finished at (2522,550,0); target (2522,550); ARRIVED (off by 0 tile(s))
+[14:44:19.812] LOG   [v1_Corwyn] event goto_done: at=(2522,550) target=(2522,550) arrived=1 off=0
+[14:44:19.812] INFO  [v1_Corwyn] [action] goto (2488,568) from (2522,550,0)
+[14:44:19.812] LOG   [v1_Corwyn] event goto_start: target=(2488,568) from=(2522,550)
+[14:44:19.812] INFO  [v1_Corwyn] [bot] running from (2522,550,0) to (2488,568)
+[14:44:19.812] INFO  [v1_Corwyn] [bot] planning path to (2488,568) in background
+[14:44:19.873] INFO  [v1_Corwyn] [bot] replan to (2488,568): 63 steps in 4781.5us
+[14:44:21.948] INFO  [v1_Corwyn] [bot] door ahead at (2525,548,z0); OpenDoor before step
+[14:44:21.963] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:44:23.010] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:27.153] INFO  [v1_Corwyn] [bot] door ahead at (2531,559,z0); OpenDoor before step
+[14:44:27.168] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:44:28.042] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:28.364] INFO  [v1_Corwyn] [bot] door ahead at (2530,560,z0); OpenDoor before step
+[14:44:28.364] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:44:33.082] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:38.127] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:40.982] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:40.982] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:40.982] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:40.982] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:40.982] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:40.982] INFO  [v1_Corwyn] [travel] plan blacksmith (seen): ok legs=1 ~18 tiles transit=0 nodes=0
+[14:44:41.042] INFO  [v1_Corwyn] [action] goto finished at (2490,566,5); target (2488,568); stopped short (off by 4 tile(s))
+[14:44:41.042] LOG   [v1_Corwyn] event goto_done: at=(2490,566) target=(2488,568) arrived=0 off=4
+[14:44:41.042] INFO  [v1_Corwyn] [action] goto (2472,567) from (2490,566,5)
+[14:44:41.042] LOG   [v1_Corwyn] event goto_start: target=(2472,567) from=(2490,566)
+[14:44:41.042] INFO  [v1_Corwyn] [bot] running from (2490,566,5) to (2472,567,z5)
+[14:44:41.042] INFO  [v1_Corwyn] [bot] planning path to (2472,567) in background
+[14:44:42.147] INFO  [v1_Corwyn] [action] goto finished at (2490,566,5); target (2472,567); stopped short (off by 19 tile(s))
+[14:44:42.147] LOG   [v1_Corwyn] event goto_done: at=(2490,566) target=(2472,567) arrived=0 off=19
+[14:44:43.187] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:43.372] INFO  [v1_Corwyn] [action] goto (2472,567) from (2490,566,5)
+[14:44:43.372] LOG   [v1_Corwyn] event goto_start: target=(2472,567) from=(2490,566)
+[14:44:43.372] INFO  [v1_Corwyn] [bot] running from (2490,566,5) to (2472,567,z5)
+[14:44:43.372] INFO  [v1_Corwyn] [bot] planning path to (2472,567) in background
+[14:44:43.432] INFO  [v1_Corwyn] [bot] replan to (2472,567): 19 steps in 761.0us
+[14:44:45.886] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:45.886] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:45.886] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:45.886] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:45.886] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:45.886] INFO  [v1_Corwyn] [travel] plan blacksmith (seen): ok legs=1 ~6 tiles transit=0 nodes=0
+[14:44:45.946] INFO  [v1_Corwyn] [action] goto finished at (2481,569,5); target (2472,567); stopped short (off by 11 tile(s))
+[14:44:45.946] LOG   [v1_Corwyn] event goto_done: at=(2481,569) target=(2472,567) arrived=0 off=11
+[14:44:45.946] INFO  [v1_Corwyn] [action] goto (2475,567) from (2481,569,5)
+[14:44:45.946] LOG   [v1_Corwyn] event goto_start: target=(2475,567) from=(2481,569)
+[14:44:45.946] INFO  [v1_Corwyn] [bot] running from (2481,569,5) to (2475,567,z5)
+[14:44:45.947] INFO  [v1_Corwyn] [bot] planning path to (2475,567) in background
+[14:44:46.993] INFO  [v1_Corwyn] [action] goto finished at (2481,569,5); target (2475,567); stopped short (off by 8 tile(s))
+[14:44:46.993] LOG   [v1_Corwyn] event goto_done: at=(2481,569) target=(2475,567) arrived=0 off=8
+[14:44:48.218] INFO  [v1_Corwyn] [action] goto (2475,567) from (2481,569,5)
+[14:44:48.218] LOG   [v1_Corwyn] event goto_start: target=(2475,567) from=(2481,569)
+[14:44:48.218] INFO  [v1_Corwyn] [bot] running from (2481,569,5) to (2475,567,z5)
+[14:44:48.218] INFO  [v1_Corwyn] [bot] planning path to (2475,567) in background
+[14:44:48.218] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:48.281] INFO  [v1_Corwyn] [bot] replan to (2475,567): 12 steps in 207.1us
+[14:44:49.610] INFO  [v1_Corwyn] [travel] blacksmith (seen) ARRIVED at (2476,569,5)
+[14:44:49.610] LOG   [v1_Corwyn] event travel_done: label='blacksmith (seen)' ok=1 at=(2476,569) legs=1 plans=1 why=''
+[14:44:49.672] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[14:44:49.672] INFO  [v1_Corwyn] [travel] forge -> (2468,556) r=0 from (2476,569)
+[14:44:49.672] LOG   [v1_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2476,569)
+[14:44:49.672] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:44:49.672] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:44:49.672] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:44:49.672] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:44:49.672] LOG   [v1_Corwyn] event travel_mode: walk
+[14:44:49.672] INFO  [v1_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[14:44:50.740] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 2: anchor=3 new segment=5 path=5 in 88.0us
+[14:44:51.490] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:44:51.732] INFO  [v1_Corwyn] [chat ascii] Olin: What's thee wantin'?
+[14:44:52.782] INFO  [v1_Corwyn] [bot] arrived at (2475,567,5)
+[14:44:52.783] INFO  [v1_Corwyn] [action] goto finished at (2475,567,5); target (2475,567); ARRIVED (off by 0 tile(s))
+[14:44:52.783] LOG   [v1_Corwyn] event goto_done: at=(2475,567) target=(2475,567) arrived=1 off=0
+[14:44:52.783] INFO  [v1_Corwyn] [action] goto (2468,556) from (2475,567,5)
+[14:44:52.783] LOG   [v1_Corwyn] event goto_start: target=(2468,556) from=(2475,567)
+[14:44:52.783] INFO  [v1_Corwyn] [bot] running from (2475,567,5) to (2468,556)
+[14:44:52.783] INFO  [v1_Corwyn] [bot] planning path to (2468,556) in background
+[14:44:52.842] INFO  [v1_Corwyn] [bot] replan to (2468,556): 14 steps in 445.3us
+[14:44:53.224] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:44:55.850] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:44:55.912] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:44:55.912] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:55.912] INFO  [life]   score=65.0
+[14:44:55.912] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:44:55.912] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:44:55.912] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:55.912] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:44:55.975] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:44:55.975] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:55.975] INFO  [life]   score=65.0
+[14:44:55.975] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:44:55.975] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:44:55.975] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:55.975] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:44:56.037] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:44:56.037] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:56.037] INFO  [life]   score=65.0
+[14:44:56.037] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:44:56.037] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:44:56.037] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:56.037] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:44:56.098] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:44:56.098] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:56.098] INFO  [life]   score=65.0
+[14:44:56.098] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:44:56.098] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:44:56.098] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:56.098] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:44:56.115] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no material to start from"
+[14:44:56.115] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:44:56.115] INFO  [life]   score=62.5
+[14:44:56.115] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:44:56.115] INFO  [life]   reason: food=0
+[14:44:56.115] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:44:56.115] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 59s after achieving nothing
+[14:44:57.938] INFO  [v1_Corwyn] [bot] arrived at (2468,556,5)
+[14:44:57.939] INFO  [v1_Corwyn] [action] goto finished at (2468,556,5); target (2468,556); ARRIVED (off by 0 tile(s))
+[14:44:57.939] LOG   [v1_Corwyn] event goto_done: at=(2468,556) target=(2468,556) arrived=1 off=0
+[14:44:57.939] INFO  [v1_Corwyn] [travel] forge ARRIVED at (2468,556,5)
+[14:44:57.939] LOG   [v1_Corwyn] event travel_done: label='forge' ok=1 at=(2468,556) legs=1 plans=1 why=''
+[14:44:57.999] INFO  [v1_Corwyn] [ACTION] vendor_buy start
+[14:44:57.999] INFO  [v1_Corwyn] [VENDOR] open vendor=0x000096A1 say='Bryson buy'
+[14:44:57.999] INFO  [life] food: asking the 'provisioner' to show something to eat (attempt 1)
+[14:44:58.014] INFO  [v1_Corwyn] [chat uni  ] : Bryson buy
+[14:44:58.259] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:03.285] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:06.025] LOG   [v1_Corwyn] event action_result: vendor_buy timeout
+[14:45:06.086] INFO  [life] food: resting after a failure
+[14:45:06.147] INFO  [life] food: resting after a failure
+[14:45:06.208] INFO  [life] food: resting after a failure
+[14:45:06.270] INFO  [life] food: resting after a failure
+[14:45:06.332] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:06.332] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:06.332] INFO  [life]   score=62.5
+[14:45:06.332] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:06.332] INFO  [life]   reason: food=0
+[14:45:06.332] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:06.332] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 49s after achieving nothing
+[14:45:06.332] INFO  [life] food: resting after a failure
+[14:45:06.392] INFO  [life] food: resting after a failure
+[14:45:06.392] INFO  [life] food: resting after a failure
+[14:45:06.453] INFO  [life] food: resting after a failure
+[14:45:06.515] INFO  [life] food: resting after a failure
+[14:45:06.576] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:06.576] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:06.576] INFO  [life]   score=62.5
+[14:45:06.576] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:06.576] INFO  [life]   reason: food=0
+[14:45:06.576] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:06.576] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 49s after achieving nothing
+[14:45:06.576] INFO  [life] food: resting after a failure
+[14:45:06.637] INFO  [life] food: resting after a failure
+[14:45:06.699] INFO  [life] food: resting after a failure
+[14:45:06.760] INFO  [life] food: resting after a failure
+[14:45:06.821] INFO  [life] food: resting after a failure
+[14:45:06.883] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:06.883] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:06.883] INFO  [life]   score=62.5
+[14:45:06.883] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:06.883] INFO  [life]   reason: food=0
+[14:45:06.883] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:06.883] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 49s after achieving nothing
+[14:45:06.883] INFO  [life] food: resting after a failure
+[14:45:06.945] INFO  [life] food: resting after a failure
+[14:45:07.008] INFO  [life] food: resting after a failure
+[14:45:07.069] INFO  [life] food: resting after a failure
+[14:45:07.130] INFO  [life] food: resting after a failure
+[14:45:07.192] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:07.192] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:07.192] INFO  [life]   score=62.5
+[14:45:07.192] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:07.192] INFO  [life]   reason: food=0
+[14:45:07.192] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:07.192] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 48s after achieving nothing
+[14:45:07.192] INFO  [life] food: resting after a failure
+[14:45:07.253] INFO  [life] food: resting after a failure
+[14:45:07.314] INFO  [life] food: resting after a failure
+[14:45:07.376] INFO  [life] food: resting after a failure
+[14:45:07.438] INFO  [life] food: resting after a failure
+[14:45:07.499] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:07.499] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:07.499] INFO  [life]   score=62.5
+[14:45:07.499] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:07.499] INFO  [life]   reason: food=0
+[14:45:07.499] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:07.499] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 48s after achieving nothing
+[14:45:07.499] INFO  [life] food: resting after a failure
+[14:45:07.561] INFO  [life] food: resting after a failure
+[14:45:07.622] INFO  [life] food: resting after a failure
+[14:45:07.683] INFO  [life] food: resting after a failure
+[14:45:07.744] INFO  [life] food: resting after a failure
+[14:45:07.805] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:07.805] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:07.805] INFO  [life]   score=62.5
+[14:45:07.805] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:07.805] INFO  [life]   reason: food=0
+[14:45:07.805] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:07.805] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 48s after achieving nothing
+[14:45:07.805] INFO  [life] food: resting after a failure
+[14:45:07.867] INFO  [life] food: resting after a failure
+[14:45:07.928] INFO  [life] food: resting after a failure
+[14:45:07.929] INFO  [life] food: resting after a failure
+[14:45:07.990] INFO  [life] food: resting after a failure
+[14:45:08.052] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:08.053] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:08.053] INFO  [life]   score=62.5
+[14:45:08.053] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:08.053] INFO  [life]   reason: food=0
+[14:45:08.053] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:08.053] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 48s after achieving nothing
+[14:45:08.053] INFO  [life] food: resting after a failure
+[14:45:08.113] INFO  [v1_Corwyn] [ACTION] vendor_buy start
+[14:45:08.113] INFO  [v1_Corwyn] [VENDOR] open vendor=0x000096A1 say='Bryson buy'
+[14:45:08.113] INFO  [life] food: asking the 'provisioner' to show something to eat (attempt 2)
+[14:45:08.113] INFO  [v1_Corwyn] [chat uni  ] : Bryson buy
+[14:45:08.297] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:13.326] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:16.144] LOG   [v1_Corwyn] event action_result: vendor_buy timeout
+[14:45:16.205] INFO  [life] food: resting after a failure
+[14:45:16.266] INFO  [life] food: resting after a failure
+[14:45:16.326] INFO  [life] food: resting after a failure
+[14:45:16.388] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:16.388] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:16.388] INFO  [life]   score=62.5
+[14:45:16.388] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:16.388] INFO  [life]   reason: food=0
+[14:45:16.388] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:16.388] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 39s after achieving nothing
+[14:45:16.388] INFO  [life] food: resting after a failure
+[14:45:16.450] INFO  [life] food: resting after a failure
+[14:45:16.513] INFO  [life] food: resting after a failure
+[14:45:16.574] INFO  [life] food: resting after a failure
+[14:45:16.635] INFO  [life] food: resting after a failure
+[14:45:16.696] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:16.697] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:16.697] INFO  [life]   score=62.5
+[14:45:16.697] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:16.697] INFO  [life]   reason: food=0
+[14:45:16.697] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:16.697] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 39s after achieving nothing
+[14:45:16.697] INFO  [life] food: resting after a failure
+[14:45:16.757] INFO  [life] food: resting after a failure
+[14:45:16.820] INFO  [life] food: resting after a failure
+[14:45:16.880] INFO  [life] food: resting after a failure
+[14:45:16.941] INFO  [life] food: resting after a failure
+[14:45:17.001] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:17.001] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:17.001] INFO  [life]   score=62.5
+[14:45:17.001] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:17.001] INFO  [life]   reason: food=0
+[14:45:17.001] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:17.001] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 39s after achieving nothing
+[14:45:17.001] INFO  [life] food: resting after a failure
+[14:45:17.063] INFO  [life] food: resting after a failure
+[14:45:17.123] INFO  [life] food: resting after a failure
+[14:45:17.185] INFO  [life] food: resting after a failure
+[14:45:17.245] INFO  [life] food: resting after a failure
+[14:45:17.306] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:17.306] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:17.306] INFO  [life]   score=62.5
+[14:45:17.306] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:17.306] INFO  [life]   reason: food=0
+[14:45:17.306] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:17.306] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 38s after achieving nothing
+[14:45:17.306] INFO  [life] food: resting after a failure
+[14:45:17.368] INFO  [life] food: resting after a failure
+[14:45:17.383] INFO  [life] food: resting after a failure
+[14:45:17.443] INFO  [life] food: resting after a failure
+[14:45:17.505] INFO  [life] food: resting after a failure
+[14:45:17.568] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:17.568] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:17.568] INFO  [life]   score=62.5
+[14:45:17.568] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:17.568] INFO  [life]   reason: food=0
+[14:45:17.568] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:17.568] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 38s after achieving nothing
+[14:45:17.568] INFO  [life] food: resting after a failure
+[14:45:17.629] INFO  [life] food: resting after a failure
+[14:45:17.690] INFO  [life] food: resting after a failure
+[14:45:17.752] INFO  [life] food: resting after a failure
+[14:45:17.813] INFO  [life] food: resting after a failure
+[14:45:17.874] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:17.874] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:17.874] INFO  [life]   score=62.5
+[14:45:17.874] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:17.874] INFO  [life]   reason: food=0
+[14:45:17.874] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:17.874] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 38s after achieving nothing
+[14:45:17.874] INFO  [life] food: resting after a failure
+[14:45:17.935] INFO  [life] food: resting after a failure
+[14:45:17.996] INFO  [life] food: resting after a failure
+[14:45:18.058] INFO  [life] food: resting after a failure
+[14:45:18.119] INFO  [life] food: resting after a failure
+[14:45:18.180] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:45:18.180] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:18.180] INFO  [life]   score=62.5
+[14:45:18.180] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:45:18.180] INFO  [life]   reason: food=0
+[14:45:18.180] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:18.180] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 37s after achieving nothing
+[14:45:18.180] INFO  [life] food: resting after a failure
+[14:45:18.241] INFO  [v1_Corwyn] [ACTION] vendor_buy start
+[14:45:18.241] INFO  [v1_Corwyn] [VENDOR] open vendor=0x000096A1 say='Bryson buy'
+[14:45:18.241] INFO  [life] food: asking the 'provisioner' to show something to eat (attempt 3)
+[14:45:18.241] INFO  [v1_Corwyn] [chat uni  ] : Bryson buy
+[14:45:18.365] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:23.405] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:26.287] LOG   [v1_Corwyn] event action_result: vendor_buy timeout
+[14:45:26.349] INFO  [life] food: the 'provisioner' would not open a shop
+[14:45:26.349] INFO  [life] goal_failed=GET_FOOD status=retryable_failure reason="the 'provisioner' would not open a shop"
+[14:45:26.364] INFO  [life] goal=MINE reason="previous goal abandoned: no food seller reachable"
+[14:45:26.364] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:26.364] INFO  [life]   score=52.0
+[14:45:26.364] INFO  [life]   reason: NeedOre urgency 0.40 x 130 = 52.0
+[14:45:26.364] INFO  [life]   reason: carrying 10 ore+ingots at_work_site=1
+[14:45:26.364] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:45:26.364] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:26.364] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 29s after achieving nothing
+[14:45:26.365] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[14:45:26.365] INFO  [v1_Corwyn] [ACTION] equip start
+[14:45:26.365] INFO  [v1_Corwyn] [ACTION] equip serial=0x40014DC7 layer=0
+[14:45:26.365] INFO  [v1_Corwyn] [ITEM] drag serial=0x40014DC7 amount=1
+[14:45:26.380] INFO  [v1_Corwyn] [chat ascii] System: You put the smith's hammer in your pack.
+[14:45:26.380] INFO  [v1_Corwyn] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[14:45:26.380] LOG   [v1_Corwyn] event action_result: equip success took=16ms worn on the requested layer
+[14:45:28.410] INFO  [life] mine: the ore is 43 tiles off -- walking into the mining area first (trip 1)
+[14:45:28.410] INFO  [v1_Corwyn] [travel] Minoc Miner's Guild -> (2456,493) r=20 from (2468,556)
+[14:45:28.410] LOG   [v1_Corwyn] event travel_start: label='Minoc Miner's Guild' target=(2456,493) radius=20 from=(2468,556)
+[14:45:28.410] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:45:28.410] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:45:28.410] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:45:28.410] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:45:28.410] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:45:28.410] INFO  [v1_Corwyn] [travel] plan Minoc Miner's Guild: ok legs=2 ~72 tiles transit=0 nodes=18
+[14:45:28.410] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:28.472] INFO  [v1_Corwyn] [action] goto (2456,520) from (2468,556,5)
+[14:45:28.472] LOG   [v1_Corwyn] event goto_start: target=(2456,520) from=(2468,556)
+[14:45:28.472] INFO  [v1_Corwyn] [bot] running from (2468,556,5) to (2456,520)
+[14:45:28.472] INFO  [v1_Corwyn] [bot] planning path to (2456,520) in background
+[14:45:28.534] INFO  [v1_Corwyn] [bot] replan to (2456,520): 83 steps in 14671.7us
+[14:45:33.423] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:38.449] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:43.504] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:48.562] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:51.523] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:45:53.405] INFO  [v1_Corwyn] [bot] arrived at (2456,520,15)
+[14:45:53.405] INFO  [v1_Corwyn] [action] goto finished at (2456,520,15); target (2456,520); ARRIVED (off by 0 tile(s))
+[14:45:53.405] LOG   [v1_Corwyn] event goto_done: at=(2456,520) target=(2456,520) arrived=1 off=0
+[14:45:53.405] INFO  [v1_Corwyn] [action] goto (2456,493) from (2456,520,15)
+[14:45:53.405] LOG   [v1_Corwyn] event goto_start: target=(2456,493) from=(2456,520)
+[14:45:53.405] INFO  [v1_Corwyn] [bot] running from (2456,520,15) to (2456,493)
+[14:45:53.405] INFO  [v1_Corwyn] [bot] planning path to (2456,493) in background
+[14:45:53.466] INFO  [v1_Corwyn] [bot] replan to (2456,493): 28 steps in 1990.4us
+[14:45:53.589] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:45:55.505] INFO  [v1_Corwyn] [travel] Minoc Miner's Guild ARRIVED at (2456,512,15)
+[14:45:55.505] LOG   [v1_Corwyn] event travel_done: label='Minoc Miner's Guild' ok=1 at=(2456,512) legs=2 plans=1 why=''
+[14:45:56.149] INFO  [life] goal_changed=CRAFT from=MINE reason="CRAFT 65.0 superseded MINE 52.0"
+[14:45:56.149] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:45:56.149] INFO  [life]   score=65.0
+[14:45:56.149] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:45:56.149] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:45:56.149] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 0s after achieving nothing
+[14:45:56.149] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:45:56.149] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[14:45:56.149] INFO  [v1_Corwyn] [travel] Minoc blacksmith -> (2471,564) r=5 from (2455,510)
+[14:45:56.149] LOG   [v1_Corwyn] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2455,510)
+[14:45:56.149] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:45:56.149] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:45:56.149] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:45:56.149] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:45:56.149] LOG   [v1_Corwyn] event travel_mode: walk
+[14:45:56.149] INFO  [v1_Corwyn] [travel] plan Minoc blacksmith: ok legs=2 ~72 tiles transit=0 nodes=8
+[14:45:58.614] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:00.885] INFO  [v1_Corwyn] [bot] door ahead at (2458,495,z15); OpenDoor before step
+[14:46:00.900] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:46:02.546] INFO  [v1_Corwyn] [bot] arrived at (2456,493,15)
+[14:46:02.546] INFO  [v1_Corwyn] [action] goto finished at (2456,493,15); target (2456,493); ARRIVED (off by 0 tile(s))
+[14:46:02.546] LOG   [v1_Corwyn] event goto_done: at=(2456,493) target=(2456,493) arrived=1 off=0
+[14:46:02.546] INFO  [v1_Corwyn] [action] goto (2456,536) from (2456,493,15)
+[14:46:02.546] LOG   [v1_Corwyn] event goto_start: target=(2456,536) from=(2456,493)
+[14:46:02.546] INFO  [v1_Corwyn] [bot] running from (2456,493,15) to (2456,536)
+[14:46:02.546] INFO  [v1_Corwyn] [bot] planning path to (2456,536) in background
+[14:46:02.607] INFO  [v1_Corwyn] [bot] replan to (2456,536): 44 steps in 2663.9us
+[14:46:03.617] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:04.018] INFO  [v1_Corwyn] [bot] door ahead at (2459,496,z15); OpenDoor before step
+[14:46:04.018] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:46:08.651] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:13.658] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:16.874] INFO  [v1_Corwyn] [bot] arrived at (2456,536,15)
+[14:46:16.875] INFO  [v1_Corwyn] [action] goto finished at (2456,536,15); target (2456,536); ARRIVED (off by 0 tile(s))
+[14:46:16.875] LOG   [v1_Corwyn] event goto_done: at=(2456,536) target=(2456,536) arrived=1 off=0
+[14:46:16.875] INFO  [v1_Corwyn] [action] goto (2471,564) from (2456,536,15)
+[14:46:16.875] LOG   [v1_Corwyn] event goto_start: target=(2471,564) from=(2456,536)
+[14:46:16.875] INFO  [v1_Corwyn] [bot] running from (2456,536,15) to (2471,564,z5)
+[14:46:16.875] INFO  [v1_Corwyn] [bot] planning path to (2471,564) in background
+[14:46:16.936] INFO  [v1_Corwyn] [bot] replan to (2471,564): 55 steps in 17957.0us
+[14:46:18.681] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:23.693] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:28.740] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:32.702] INFO  [v1_Corwyn] [travel] Minoc blacksmith ARRIVED at (2467,569,5)
+[14:46:32.702] LOG   [v1_Corwyn] event travel_done: label='Minoc blacksmith' ok=1 at=(2467,569) legs=2 plans=1 why=''
+[14:46:32.717] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[14:46:32.717] INFO  [v1_Corwyn] [travel] forge -> (2468,556) r=0 from (2468,569)
+[14:46:32.717] LOG   [v1_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2468,569)
+[14:46:32.717] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:46:32.717] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:46:32.717] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:46:32.717] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:46:32.717] LOG   [v1_Corwyn] event travel_mode: walk
+[14:46:32.717] INFO  [v1_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[14:46:33.751] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:35.679] INFO  [v1_Corwyn] [bot] arrived at (2471,564,5)
+[14:46:35.679] INFO  [v1_Corwyn] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[14:46:35.679] LOG   [v1_Corwyn] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[14:46:35.679] INFO  [v1_Corwyn] [action] goto (2468,556) from (2471,564,5)
+[14:46:35.679] LOG   [v1_Corwyn] event goto_start: target=(2468,556) from=(2471,564)
+[14:46:35.679] INFO  [v1_Corwyn] [bot] running from (2471,564,5) to (2468,556)
+[14:46:35.679] INFO  [v1_Corwyn] [bot] planning path to (2468,556) in background
+[14:46:35.709] INFO  [v1_Corwyn] [bot] replan to (2468,556): 13 steps in 367.1us
+[14:46:38.670] INFO  [life] craft: putting away what is in hand to free HAND1 for the smith tool
+[14:46:38.670] INFO  [v1_Corwyn] [ACTION] unequip start
+[14:46:38.670] INFO  [v1_Corwyn] [ACTION] unequip serial=0x40014DC7 -> backpack 0x40014DDB
+[14:46:38.670] INFO  [v1_Corwyn] [ITEM] drag serial=0x40014DC7 amount=1
+[14:46:38.670] INFO  [v1_Corwyn] [ITEM] drop container=0x40014DDB
+[14:46:38.671] INFO  [life] goal_changed=GET_TOOL from=CRAFT reason="GET_TOOL 468.0 superseded CRAFT 65.0"
+[14:46:38.671] INFO  [life] needs considered: NeedTool(pickaxe 0.90) NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedOre(ore 0.30) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[smith hammer,] want_train=nothing (target 0.0)
+[14:46:38.671] INFO  [life]   score=468.0
+[14:46:38.671] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[14:46:38.671] INFO  [life]   reason: no known supplier of a pickaxe
+[14:46:38.671] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:38.685] INFO  [v1_Corwyn] [ACTION_RESULT] unequip success (15ms) item is in the destination
+[14:46:38.685] LOG   [v1_Corwyn] event action_result: unequip success took=15ms item is in the destination
+[14:46:38.763] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:40.604] INFO  [v1_Corwyn] [travel] forge ARRIVED at (2469,556,5)
+[14:46:40.604] LOG   [v1_Corwyn] event travel_done: label='forge' ok=1 at=(2469,556) legs=1 plans=1 why=''
+[14:46:40.789] INFO  [v1_Corwyn] [bot] arrived at (2468,556,5)
+[14:46:41.726] INFO  [life] goal_completed=GET_TOOL progress=0
+[14:46:41.726] INFO  [life] goal_spinning=CRAFT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[14:46:41.728] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:46:41.787] INFO  [life] goal=CRAFT reason="no goal was running"
+[14:46:41.787] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:41.787] INFO  [life]   score=65.0
+[14:46:41.787] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:46:41.787] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:46:41.787] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:41.787] INFO  [life] craft: taking the smith tool into HAND1 -- the menu reads LAYER_HAND1
+[14:46:41.787] INFO  [v1_Corwyn] [ACTION] equip start
+[14:46:41.787] INFO  [v1_Corwyn] [ACTION] equip serial=0x400147E4 layer=1
+[14:46:41.787] INFO  [v1_Corwyn] [ITEM] drag serial=0x400147E4 amount=1
+[14:46:41.788] INFO  [v1_Corwyn] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[14:46:41.788] LOG   [v1_Corwyn] event action_result: equip success took=1ms worn on the requested layer
+[14:46:43.797] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:45.792] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:46:45.853] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:46:45.853] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:45.853] INFO  [life]   score=65.0
+[14:46:45.853] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:46:45.853] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:46:45.853] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:45.853] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:46:45.915] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:46:45.915] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:45.915] INFO  [life]   score=65.0
+[14:46:45.915] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:46:45.915] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:46:45.915] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:45.915] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:46:45.976] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:46:45.976] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:45.976] INFO  [life]   score=65.0
+[14:46:45.976] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:46:45.976] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:46:45.976] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:45.976] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:46:46.037] INFO  [life] goal=CRAFT reason="previous goal abandoned: no material to start from"
+[14:46:46.037] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:46.037] INFO  [life]   score=65.0
+[14:46:46.037] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:46:46.037] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:46:46.037] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:46.037] INFO  [life] goal_blocked=CRAFT reason="REFUSE_MISSING_TOOL" nothing in the pack to open the i_dagger menu with (i_ingot_iron)
+[14:46:46.099] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no material to start from"
+[14:46:46.099] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:46:46.099] INFO  [life]   score=62.5
+[14:46:46.099] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:46:46.099] INFO  [life]   reason: food=0
+[14:46:46.099] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:46:46.099] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 59s after achieving nothing
+[14:46:46.099] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2468,556)
+[14:46:46.099] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2468,556)
+[14:46:46.099] INFO  [life] food: walking to a 'baker' (trip 1)
+[14:46:46.099] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:46:46.099] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:46:46.099] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:46:46.099] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:46:46.099] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:46:46.107] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:46:46.107] INFO  [v1_Corwyn] [action] goto finished at (2468,556,5); target (2468,556); ARRIVED (off by 0 tile(s))
+[14:46:46.107] LOG   [v1_Corwyn] event goto_done: at=(2468,556) target=(2468,556) arrived=1 off=0
+[14:46:46.107] LOG   [v1_Corwyn] event travel_escape: from=(2468,556,5) to=(2456,566) attempt=1
+[14:46:46.107] INFO  [v1_Corwyn] [action] goto (2456,566) from (2468,556,5)
+[14:46:46.107] LOG   [v1_Corwyn] event goto_start: target=(2456,566) from=(2468,556)
+[14:46:46.107] INFO  [v1_Corwyn] [bot] running from (2468,556,5) to (2456,566,z0)
+[14:46:46.107] INFO  [v1_Corwyn] [bot] planning path to (2456,566) in background
+[14:46:46.160] INFO  [v1_Corwyn] [bot] replan to (2456,566): 32 steps in 1306.7us
+[14:46:47.837] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=28 in 307.5us
+[14:46:48.847] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:53.908] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:46:57.310] INFO  [v1_Corwyn] [bot] arrived at (2456,566,0)
+[14:46:57.310] INFO  [v1_Corwyn] [action] goto finished at (2456,566,0); target (2456,566); ARRIVED (off by 0 tile(s))
+[14:46:57.311] LOG   [v1_Corwyn] event goto_done: at=(2456,566) target=(2456,566) arrived=1 off=0
+[14:46:57.311] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,566,0) (off 0); attempt 1/3
+[14:46:57.311] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,566,0) off=0 attempt=1
+[14:46:57.372] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:46:57.372] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:46:57.372] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:46:57.372] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:46:57.372] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:46:57.381] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:46:57.381] LOG   [v1_Corwyn] event travel_escape: from=(2456,566,0) to=(2456,552) attempt=2
+[14:46:57.381] INFO  [v1_Corwyn] [action] goto (2456,552) from (2456,566,0)
+[14:46:57.381] LOG   [v1_Corwyn] event goto_start: target=(2456,552) from=(2456,566)
+[14:46:57.381] INFO  [v1_Corwyn] [bot] running from (2456,566,0) to (2456,552,z0)
+[14:46:57.381] INFO  [v1_Corwyn] [bot] planning path to (2456,552) in background
+[14:46:57.434] INFO  [v1_Corwyn] [bot] replan to (2456,552): 18 steps in 855.9us
+[14:46:58.923] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:03.972] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:04.357] INFO  [v1_Corwyn] [bot] arrived at (2456,552,0)
+[14:47:04.357] INFO  [v1_Corwyn] [action] goto finished at (2456,552,0); target (2456,552); ARRIVED (off by 0 tile(s))
+[14:47:04.357] LOG   [v1_Corwyn] event goto_done: at=(2456,552) target=(2456,552) arrived=1 off=0
+[14:47:04.357] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2456,552,0) (off 0); attempt 2/3
+[14:47:04.357] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2456,552,0) off=0 attempt=2
+[14:47:04.418] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:04.418] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:04.419] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:04.419] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:04.419] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:04.426] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:04.426] LOG   [v1_Corwyn] event travel_escape: from=(2456,552,0) to=(2440,536) attempt=3
+[14:47:04.426] INFO  [v1_Corwyn] [action] goto (2440,536) from (2456,552,0)
+[14:47:04.426] LOG   [v1_Corwyn] event goto_start: target=(2440,536) from=(2456,552)
+[14:47:04.426] INFO  [v1_Corwyn] [bot] running from (2456,552,0) to (2440,536,z0)
+[14:47:04.426] INFO  [v1_Corwyn] [bot] planning path to (2440,536) in background
+[14:47:04.481] INFO  [v1_Corwyn] [bot] replan to (2440,536): 21 steps in 862.5us
+[14:47:08.998] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:11.328] INFO  [v1_Corwyn] [bot] arrived at (2440,536,0)
+[14:47:11.328] INFO  [v1_Corwyn] [action] goto finished at (2440,536,0); target (2440,536); ARRIVED (off by 0 tile(s))
+[14:47:11.328] LOG   [v1_Corwyn] event goto_done: at=(2440,536) target=(2440,536) arrived=1 off=0
+[14:47:11.328] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,536,0) (off 0); attempt 3/3
+[14:47:11.328] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,536,0) off=0 attempt=3
+[14:47:11.390] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:11.390] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:11.390] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:11.390] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:11.390] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:11.400] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:11.400] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2440,536,0) -- no world route to the destination
+[14:47:11.400] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2440,536) legs=0 plans=1 why='no world route to the destination'
+[14:47:11.452] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:11.453] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:47:11.453] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:11.453] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:14.026] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:14.453] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:14.453] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:47:14.468] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:14.468] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:17.484] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:17.484] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[14:47:17.484] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:17.484] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:19.035] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:20.514] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2440,536)
+[14:47:20.514] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2440,536)
+[14:47:20.515] INFO  [life] food: walking to a 'baker' (trip 2)
+[14:47:20.515] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:20.515] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:20.515] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:20.515] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:20.515] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:20.524] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:20.524] LOG   [v1_Corwyn] event travel_escape: from=(2440,536,0) to=(2440,550) attempt=1
+[14:47:20.524] INFO  [v1_Corwyn] [action] goto (2440,550) from (2440,536,0)
+[14:47:20.524] LOG   [v1_Corwyn] event goto_start: target=(2440,550) from=(2440,536)
+[14:47:20.524] INFO  [v1_Corwyn] [bot] running from (2440,536,0) to (2440,550,z0)
+[14:47:20.524] INFO  [v1_Corwyn] [bot] planning path to (2440,550) in background
+[14:47:20.577] INFO  [life] goal_changed=GET_FOOD from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:47:20.577] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:47:20.577] INFO  [life]   score=62.5
+[14:47:20.577] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:47:20.577] INFO  [life]   reason: food=0
+[14:47:20.577] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:47:20.577] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 25s after achieving nothing
+[14:47:20.577] INFO  [v1_Corwyn] [bot] replan to (2440,550): 14 steps in 331.6us
+[14:47:24.089] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:24.934] INFO  [v1_Corwyn] [bot] arrived at (2440,550,0)
+[14:47:24.934] INFO  [v1_Corwyn] [action] goto finished at (2440,550,0); target (2440,550); ARRIVED (off by 0 tile(s))
+[14:47:24.934] LOG   [v1_Corwyn] event goto_done: at=(2440,550) target=(2440,550) arrived=1 off=0
+[14:47:24.934] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,550,0) (off 0); attempt 1/3
+[14:47:24.934] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,550,0) off=0 attempt=1
+[14:47:24.995] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:24.995] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:24.995] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:24.995] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:24.995] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:25.002] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:25.002] LOG   [v1_Corwyn] event travel_escape: from=(2440,550,0) to=(2440,536) attempt=2
+[14:47:25.002] INFO  [v1_Corwyn] [action] goto (2440,536) from (2440,550,0)
+[14:47:25.002] LOG   [v1_Corwyn] event goto_start: target=(2440,536) from=(2440,550)
+[14:47:25.002] INFO  [v1_Corwyn] [bot] running from (2440,550,0) to (2440,536,z0)
+[14:47:25.002] INFO  [v1_Corwyn] [bot] planning path to (2440,536) in background
+[14:47:25.055] INFO  [v1_Corwyn] [bot] replan to (2440,536): 14 steps in 157.0us
+[14:47:29.117] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:29.319] INFO  [v1_Corwyn] [bot] arrived at (2440,536,0)
+[14:47:29.320] INFO  [v1_Corwyn] [action] goto finished at (2440,536,0); target (2440,536); ARRIVED (off by 0 tile(s))
+[14:47:29.320] LOG   [v1_Corwyn] event goto_done: at=(2440,536) target=(2440,536) arrived=1 off=0
+[14:47:29.320] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2440,536,0) (off 0); attempt 2/3
+[14:47:29.320] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2440,536,0) off=0 attempt=2
+[14:47:29.380] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:29.380] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:29.380] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:29.380] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:29.380] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:29.388] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:29.388] LOG   [v1_Corwyn] event travel_escape: from=(2440,536,0) to=(2424,520) attempt=3
+[14:47:29.388] INFO  [v1_Corwyn] [action] goto (2424,520) from (2440,536,0)
+[14:47:29.388] LOG   [v1_Corwyn] event goto_start: target=(2424,520) from=(2440,536)
+[14:47:29.388] INFO  [v1_Corwyn] [bot] running from (2440,536,0) to (2424,520,z0)
+[14:47:29.388] INFO  [v1_Corwyn] [bot] planning path to (2424,520) in background
+[14:47:29.396] INFO  [v1_Corwyn] [bot] replan to (2424,520): 30 steps in 2012.5us
+[14:47:33.122] INFO  [v1_Corwyn] [bot] door ahead at (2426,535,z0); OpenDoor before step
+[14:47:33.123] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:47:34.118] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:38.035] INFO  [v1_Corwyn] [bot] arrived at (2424,520,0)
+[14:47:38.035] INFO  [v1_Corwyn] [action] goto finished at (2424,520,0); target (2424,520); ARRIVED (off by 0 tile(s))
+[14:47:38.035] LOG   [v1_Corwyn] event goto_done: at=(2424,520) target=(2424,520) arrived=1 off=0
+[14:47:38.035] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2424,520,0) (off 0); attempt 3/3
+[14:47:38.035] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2424,520,0) off=0 attempt=3
+[14:47:38.097] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:38.097] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:38.097] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:38.097] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:38.097] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:38.105] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:38.105] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2424,520,0) -- no world route to the destination
+[14:47:38.105] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2424,520) legs=0 plans=1 why='no world route to the destination'
+[14:47:38.158] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:38.158] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:47:38.158] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:38.158] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:39.138] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:41.220] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:41.220] INFO  [life] food: at the shop, asking who is here (scan 2 of 3)
+[14:47:41.220] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:41.220] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:41.776] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:47:44.180] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:44.242] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:47:44.242] INFO  [life] food: at the shop, asking who is here (scan 3 of 3)
+[14:47:44.257] INFO  [v1_Corwyn] [mobiles] nearby (1):
+[14:47:44.257] INFO  [v1_Corwyn]   Dog 0x0000A58D
+[14:47:47.246] INFO  [v1_Corwyn] [travel] Vesper baker -> (2998,760) r=5 from (2424,520)
+[14:47:47.246] LOG   [v1_Corwyn] event travel_start: label='Vesper baker' target=(2998,760) radius=5 from=(2424,520)
+[14:47:47.246] INFO  [life] food: walking to a 'baker' (trip 3)
+[14:47:47.246] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:47:47.246] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:47:47.246] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:47.246] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:47.246] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:47:47.254] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:47:47.254] LOG   [v1_Corwyn] event travel_escape: from=(2424,520,0) to=(2410,520) attempt=1
+[14:47:47.254] INFO  [v1_Corwyn] [action] goto (2410,520) from (2424,520,0)
+[14:47:47.254] LOG   [v1_Corwyn] event goto_start: target=(2410,520) from=(2424,520)
+[14:47:47.254] INFO  [v1_Corwyn] [bot] running from (2424,520,0) to (2410,520,z0)
+[14:47:47.254] INFO  [v1_Corwyn] [bot] planning path to (2410,520) in background
+[14:47:47.307] INFO  [v1_Corwyn] [bot] replan to (2410,520): 43 steps in 5388.7us
+[14:47:49.207] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:51.924] INFO  [v1_Corwyn] [bot] door ahead at (2424,536,z0); OpenDoor before step
+[14:47:51.940] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:47:54.211] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:47:57.204] INFO  [v1_Corwyn] [chat ascii] System: You have left the protection of the town guards
+[14:47:59.260] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:00.727] INFO  [v1_Corwyn] [bot] arrived at (2410,520,0)
+[14:48:00.727] INFO  [v1_Corwyn] [action] goto finished at (2410,520,0); target (2410,520); ARRIVED (off by 0 tile(s))
+[14:48:00.727] LOG   [v1_Corwyn] event goto_done: at=(2410,520) target=(2410,520) arrived=1 off=0
+[14:48:00.727] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2410,520,0) (off 0); attempt 1/3
+[14:48:00.727] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2410,520,0) off=0 attempt=1
+[14:48:00.787] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:48:00.787] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:48:00.787] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:00.787] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:00.787] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:48:00.794] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:48:00.794] LOG   [v1_Corwyn] event travel_escape: from=(2410,520,0) to=(2424,520) attempt=2
+[14:48:00.794] INFO  [v1_Corwyn] [action] goto (2424,520) from (2410,520,0)
+[14:48:00.794] LOG   [v1_Corwyn] event goto_start: target=(2424,520) from=(2410,520)
+[14:48:00.794] INFO  [v1_Corwyn] [bot] running from (2410,520,0) to (2424,520,z0)
+[14:48:00.794] INFO  [v1_Corwyn] [bot] planning path to (2424,520) in background
+[14:48:00.849] INFO  [v1_Corwyn] [bot] replan to (2424,520): 43 steps in 2413.1us
+[14:48:04.266] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:05.432] INFO  [v1_Corwyn] [chat ascii] System: You are now under the protection of the town guards
+[14:48:09.126] INFO  [v1_Corwyn] [bot] door ahead at (2425,535,z0); OpenDoor before step
+[14:48:09.126] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:48:09.312] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:14.030] INFO  [v1_Corwyn] [bot] arrived at (2424,520,0)
+[14:48:14.030] INFO  [v1_Corwyn] [action] goto finished at (2424,520,0); target (2424,520); ARRIVED (off by 0 tile(s))
+[14:48:14.030] LOG   [v1_Corwyn] event goto_done: at=(2424,520) target=(2424,520) arrived=1 off=0
+[14:48:14.030] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2424,520,0) (off 0); attempt 2/3
+[14:48:14.030] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2424,520,0) off=0 attempt=2
+[14:48:14.091] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:48:14.091] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:48:14.091] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:14.091] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:14.091] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:48:14.099] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:48:14.099] LOG   [v1_Corwyn] event travel_escape: from=(2424,520,0) to=(2408,504) attempt=3
+[14:48:14.099] INFO  [v1_Corwyn] [action] goto (2408,504) from (2424,520,0)
+[14:48:14.099] LOG   [v1_Corwyn] event goto_start: target=(2408,504) from=(2424,520)
+[14:48:14.099] INFO  [v1_Corwyn] [bot] running from (2424,520,0) to (2408,504,z15)
+[14:48:14.099] INFO  [v1_Corwyn] [bot] planning path to (2408,504) in background
+[14:48:14.152] INFO  [v1_Corwyn] [bot] replan to (2408,504): 96 steps in 33388.7us
+[14:48:14.352] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:19.010] INFO  [v1_Corwyn] [bot] door ahead at (2427,536,z0); OpenDoor before step
+[14:48:19.025] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:48:19.395] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:24.449] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:29.460] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:34.483] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:39.537] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:41.831] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:48:44.548] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:44.942] INFO  [v1_Corwyn] [chat ascii] System: You have left the protection of the town guards
+[14:48:46.520] INFO  [v1_Corwyn] [bot] arrived at (2408,504,15)
+[14:48:46.520] INFO  [v1_Corwyn] [action] goto finished at (2408,504,15); target (2408,504); ARRIVED (off by 0 tile(s))
+[14:48:46.520] LOG   [v1_Corwyn] event goto_done: at=(2408,504) target=(2408,504) arrived=1 off=0
+[14:48:46.520] INFO  [v1_Corwyn] [travel] recovery walk reached its anchor at (2408,504,15) (off 0); attempt 3/3
+[14:48:46.520] LOG   [v1_Corwyn] event travel_recovery_done: reached=1 at=(2408,504,15) off=0 attempt=3
+[14:48:46.582] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:48:46.582] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:48:46.582] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:46.582] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:46.582] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:48:46.591] INFO  [v1_Corwyn] [travel] plan Vesper baker: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25431
+[14:48:46.591] INFO  [v1_Corwyn] [travel] Vesper baker FAILED at (2408,504,15) -- no world route to the destination
+[14:48:46.591] LOG   [v1_Corwyn] event travel_failed: label='Vesper baker' ok=0 at=(2408,504) legs=0 plans=1 why='no world route to the destination'
+[14:48:46.644] INFO  [v1_Corwyn] [action] scanning nearby mobiles for names
+[14:48:46.644] INFO  [v1_Corwyn] [mobiles] no mobiles cached yet
+[14:48:46.644] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[14:48:46.706] INFO  [life] goal_changed=CRAFT from=GET_FOOD reason="previous goal abandoned: attempts 5 >= 5"
+[14:48:46.706] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedOre(ore 0.40) NeedTrade(sell to a player 0.35) NeedGold(sell surplus BLOCKED 0.35) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[14:48:46.706] INFO  [life]   score=65.0
+[14:48:46.706] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[14:48:46.706] INFO  [life]   reason: i_dagger: every input is in the pack
+[14:48:46.706] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (10 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[14:48:49.581] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:49.705] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[14:48:49.706] INFO  [v1_Corwyn] [travel] Britain blacksmith -> (1418,1547) r=5 from (2408,504)
+[14:48:49.706] LOG   [v1_Corwyn] event travel_start: label='Britain blacksmith' target=(1418,1547) radius=5 from=(2408,504)
+[14:48:49.706] INFO  [v1_Corwyn] [travel] mode moongate         usable   <- chosen
+[14:48:49.706] INFO  [v1_Corwyn] [travel] mode walk             usable
+[14:48:49.706] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:49.706] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:49.706] LOG   [v1_Corwyn] event travel_mode: moongate
+[14:48:49.706] INFO  [v1_Corwyn] [travel] plan Britain blacksmith: ok legs=25 ~1008 tiles transit=1 nodes=1439
+[14:48:49.767] INFO  [v1_Corwyn] [action] goto (2440,502) from (2408,504,15)
+[14:48:49.767] LOG   [v1_Corwyn] event goto_start: target=(2440,502) from=(2408,504)
+[14:48:49.767] INFO  [v1_Corwyn] [bot] running from (2408,504,15) to (2440,502)
+[14:48:49.767] INFO  [v1_Corwyn] [bot] planning path to (2440,502) in background
+[14:48:49.829] INFO  [v1_Corwyn] [bot] replan to (2440,502): 32 steps in 1433.0us
+[14:48:50.937] INFO  [v1_Corwyn] [chat ascii] System: World save in 10 seconds
+[14:48:51.200] INFO  [v1_Corwyn] [chat ascii] System: You are now under the protection of the town guards
+[14:48:54.594] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:59.619] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:48:59.940] INFO  [v1_Corwyn] [bot] arrived at (2440,502,15)
+[14:48:59.940] INFO  [v1_Corwyn] [action] goto finished at (2440,502,15); target (2440,502); ARRIVED (off by 0 tile(s))
+[14:48:59.940] LOG   [v1_Corwyn] event goto_done: at=(2440,502) target=(2440,502) arrived=1 off=0
+[14:48:59.940] INFO  [v1_Corwyn] [action] goto (2472,502) from (2440,502,15)
+[14:48:59.940] LOG   [v1_Corwyn] event goto_start: target=(2472,502) from=(2440,502)
+[14:48:59.940] INFO  [v1_Corwyn] [bot] running from (2440,502,15) to (2472,502)
+[14:48:59.941] INFO  [v1_Corwyn] [bot] planning path to (2472,502) in background
+[14:49:00.001] INFO  [v1_Corwyn] [bot] replan to (2472,502): 32 steps in 4329.1us
+[14:49:00.928] INFO  [v1_Corwyn] [chat ascii] System: World save has been initiated.
+[14:49:04.630] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:09.668] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:12.743] INFO  [v1_Corwyn] [bot] arrived at (2472,502,15)
+[14:49:12.743] INFO  [v1_Corwyn] [action] goto finished at (2472,502,15); target (2472,502); ARRIVED (off by 0 tile(s))
+[14:49:12.743] LOG   [v1_Corwyn] event goto_done: at=(2472,502) target=(2472,502) arrived=1 off=0
+[14:49:12.743] INFO  [v1_Corwyn] [action] goto (2504,520) from (2472,502,15)
+[14:49:12.743] LOG   [v1_Corwyn] event goto_start: target=(2504,520) from=(2472,502)
+[14:49:12.743] INFO  [v1_Corwyn] [bot] running from (2472,502,15) to (2504,520)
+[14:49:12.744] INFO  [v1_Corwyn] [bot] planning path to (2504,520) in background
+[14:49:12.805] INFO  [v1_Corwyn] [bot] replan to (2504,520): 36 steps in 3451.2us
+[14:49:14.703] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:19.750] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:24.794] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:25.364] INFO  [v1_Corwyn] [bot] arrived at (2504,520,0)
+[14:49:25.364] INFO  [v1_Corwyn] [action] goto finished at (2504,520,0); target (2504,520); ARRIVED (off by 0 tile(s))
+[14:49:25.364] LOG   [v1_Corwyn] event goto_done: at=(2504,520) target=(2504,520) arrived=1 off=0
+[14:49:25.364] INFO  [v1_Corwyn] [action] goto (2536,552) from (2504,520,0)
+[14:49:25.364] LOG   [v1_Corwyn] event goto_start: target=(2536,552) from=(2504,520)
+[14:49:25.364] INFO  [v1_Corwyn] [bot] running from (2504,520,0) to (2536,552)
+[14:49:25.364] INFO  [v1_Corwyn] [bot] planning path to (2536,552) in background
+[14:49:25.424] INFO  [v1_Corwyn] [bot] replan to (2536,552): 50 steps in 12392.5us
+[14:49:29.815] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:34.844] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:39.882] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:40.527] INFO  [v1_Corwyn] [bot] arrived at (2536,552,0)
+[14:49:40.527] INFO  [v1_Corwyn] [action] goto finished at (2536,552,0); target (2536,552); ARRIVED (off by 0 tile(s))
+[14:49:40.527] LOG   [v1_Corwyn] event goto_done: at=(2536,552) target=(2536,552) arrived=1 off=0
+[14:49:40.527] INFO  [v1_Corwyn] [action] goto (2568,584) from (2536,552,0)
+[14:49:40.527] LOG   [v1_Corwyn] event goto_start: target=(2568,584) from=(2536,552)
+[14:49:40.527] INFO  [v1_Corwyn] [bot] running from (2536,552,0) to (2568,584)
+[14:49:40.527] INFO  [v1_Corwyn] [bot] planning path to (2568,584) in background
+[14:49:40.587] INFO  [v1_Corwyn] [bot] replan to (2568,584): 44 steps in 9130.1us
+[14:49:41.840] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:49:44.892] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:48.846] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=17 in 161.2us
+[14:49:49.936] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:49:50.444] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=12 in 71.9us
+[14:49:54.611] INFO  [v1_Corwyn] [bot] arrived at (2568,584,0)
+[14:49:54.611] INFO  [v1_Corwyn] [action] goto finished at (2568,584,0); target (2568,584); ARRIVED (off by 0 tile(s))
+[14:49:54.611] LOG   [v1_Corwyn] event goto_done: at=(2568,584) target=(2568,584) arrived=1 off=0
+[14:49:54.611] INFO  [v1_Corwyn] [action] goto (2602,616) from (2568,584,0)
+[14:49:54.611] LOG   [v1_Corwyn] event goto_start: target=(2602,616) from=(2568,584)
+[14:49:54.611] INFO  [v1_Corwyn] [bot] running from (2568,584,0) to (2602,616)
+[14:49:54.611] INFO  [v1_Corwyn] [bot] planning path to (2602,616) in background
+[14:49:54.672] INFO  [v1_Corwyn] [bot] replan to (2602,616): 49 steps in 7517.8us
+[14:49:54.981] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:00.019] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:05.040] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:10.089] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:11.529] INFO  [v1_Corwyn] [bot] arrived at (2602,616,0)
+[14:50:11.529] INFO  [v1_Corwyn] [action] goto finished at (2602,616,0); target (2602,616); ARRIVED (off by 0 tile(s))
+[14:50:11.529] LOG   [v1_Corwyn] event goto_done: at=(2602,616) target=(2602,616) arrived=1 off=0
+[14:50:11.529] INFO  [v1_Corwyn] [action] goto (2632,632) from (2602,616,0)
+[14:50:11.529] LOG   [v1_Corwyn] event goto_start: target=(2632,632) from=(2602,616)
+[14:50:11.529] INFO  [v1_Corwyn] [bot] running from (2602,616,0) to (2632,632)
+[14:50:11.529] INFO  [v1_Corwyn] [bot] planning path to (2632,632) in background
+[14:50:11.589] INFO  [v1_Corwyn] [bot] replan to (2632,632): 33 steps in 2236.4us
+[14:50:15.137] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:20.068] INFO  [v1_Corwyn] [chat ascii] System: You have left the protection of the town guards
+[14:50:20.192] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:22.946] INFO  [v1_Corwyn] [bot] arrived at (2632,632,0)
+[14:50:22.946] INFO  [v1_Corwyn] [action] goto finished at (2632,632,0); target (2632,632); ARRIVED (off by 0 tile(s))
+[14:50:22.946] LOG   [v1_Corwyn] event goto_done: at=(2632,632) target=(2632,632) arrived=1 off=0
+[14:50:22.946] INFO  [v1_Corwyn] [action] goto (2664,664) from (2632,632,0)
+[14:50:22.946] LOG   [v1_Corwyn] event goto_start: target=(2664,664) from=(2632,632)
+[14:50:22.946] INFO  [v1_Corwyn] [bot] running from (2632,632,0) to (2664,664)
+[14:50:22.946] INFO  [v1_Corwyn] [bot] planning path to (2664,664) in background
+[14:50:23.008] INFO  [v1_Corwyn] [bot] replan to (2664,664): 43 steps in 3446.7us
+[14:50:25.206] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:30.222] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:35.234] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:39.057] INFO  [v1_Corwyn] [bot] arrived at (2664,664,5)
+[14:50:39.057] INFO  [v1_Corwyn] [action] goto finished at (2664,664,5); target (2664,664); ARRIVED (off by 0 tile(s))
+[14:50:39.057] LOG   [v1_Corwyn] event goto_done: at=(2664,664) target=(2664,664) arrived=1 off=0
+[14:50:39.057] INFO  [v1_Corwyn] [action] goto (2696,694) from (2664,664,5)
+[14:50:39.057] LOG   [v1_Corwyn] event goto_start: target=(2696,694) from=(2664,664)
+[14:50:39.057] INFO  [v1_Corwyn] [bot] running from (2664,664,5) to (2696,694)
+[14:50:39.057] INFO  [v1_Corwyn] [bot] planning path to (2696,694) in background
+[14:50:39.120] INFO  [v1_Corwyn] [bot] replan to (2696,694): 40 steps in 5167.9us
+[14:50:40.260] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:41.858] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:50:45.308] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:50.367] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:50:51.720] INFO  [v1_Corwyn] [bot] arrived at (2696,694,0)
+[14:50:51.720] INFO  [v1_Corwyn] [action] goto finished at (2696,694,0); target (2696,694); ARRIVED (off by 0 tile(s))
+[14:50:51.720] LOG   [v1_Corwyn] event goto_done: at=(2696,694) target=(2696,694) arrived=1 off=0
+[14:50:51.720] INFO  [v1_Corwyn] [action] goto (2701,692) from (2696,694,0)
+[14:50:51.720] LOG   [v1_Corwyn] event goto_start: target=(2701,692) from=(2696,694)
+[14:50:51.720] INFO  [v1_Corwyn] [bot] running from (2696,694,0) to (2701,692)
+[14:50:51.720] INFO  [v1_Corwyn] [bot] planning path to (2701,692) in background
+[14:50:51.781] INFO  [v1_Corwyn] [bot] replan to (2701,692): 5 steps in 209.5us
+[14:50:53.787] INFO  [v1_Corwyn] [gump] 0x4000289D context=0x80A0044A: 13 option(s), 15 text(s)
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   button 1000 = 'OKAY'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   button 0 = 'CANCEL'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   button 1 = 'Felucca'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 1 = 'Moonglow'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 2 = 'Britain'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 3 = 'Jhelom'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 4 = 'Yew'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 5 = 'New Magincia'
+[14:50:53.787] INFO  [v1_Corwyn] [gump]   choice 6 = 'Minoc'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   choice 7 = 'Trinsic'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   choice 8 = 'Skara Brae'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   choice 9 = 'Buccaneer's Den'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 0 = 'Pick your destination:'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 1 = 'OKAY'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 2 = 'CANCEL'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 3 = 'Felucca'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 4 = 'Felucca'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 5 = 'Moonglow'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 6 = 'Britain'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 7 = 'Jhelom'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 8 = 'Yew'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 9 = 'New Magincia'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 10 = 'Minoc'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 11 = 'Trinsic'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 12 = 'Skara Brae'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 13 = 'Buccaneer's Den'
+[14:50:53.788] INFO  [v1_Corwyn] [gump]   text 14 = 'Ocllo (Newplayers)'
+[14:50:53.788] LOG   [v1_Corwyn] event gump_open: serial=0x4000289D context=0x80A0044A options=13
+[14:50:53.788] INFO  [v1_Corwyn] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[14:50:53.788] LOG   [v1_Corwyn] event moongate_use: destination='Britain' choice=2 button=1000
+[14:50:53.788] INFO  [v1_Corwyn] [bot] arrived at (2701,692,5)
+[14:50:53.788] INFO  [v1_Corwyn] [action] goto finished at (2701,692,5); target (2701,692); ARRIVED (off by 0 tile(s))
+[14:50:53.788] LOG   [v1_Corwyn] event goto_done: at=(2701,692) target=(2701,692) arrived=1 off=0
+[14:50:53.788] INFO  [v1_Corwyn] [travel] using moongate 0x4000289D for 'Britain' (gump active=0 serial=0x00000000)
+[14:50:53.788] INFO  [v1_Corwyn] [0x20] player @(1336,1997,5) facing=2
+[14:50:53.788] INFO  [v1_Corwyn] [0x20] player @(1336,1997,5) facing=2
+[14:50:53.802] INFO  [v1_Corwyn] [chat ascii] System: You can't see the target
+[14:50:53.864] INFO  [v1_Corwyn] [action] goto (1336,1960) from (1336,1997,5)
+[14:50:53.864] LOG   [v1_Corwyn] event goto_start: target=(1336,1960) from=(1336,1997)
+[14:50:53.864] INFO  [v1_Corwyn] [bot] running from (1336,1997,5) to (1336,1960)
+[14:50:53.864] INFO  [v1_Corwyn] [bot] planning path to (1336,1960) in background
+[14:50:53.926] INFO  [v1_Corwyn] [bot] replan to (1336,1960): 37 steps in 19770.6us
+[14:50:54.231] INFO  [v1_Corwyn] [chat ascii] System: You have been revealed
+[14:50:55.426] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:00.471] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:05.489] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:06.411] INFO  [v1_Corwyn] [bot] arrived at (1336,1960,0)
+[14:51:06.411] INFO  [v1_Corwyn] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[14:51:06.411] LOG   [v1_Corwyn] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[14:51:06.411] INFO  [v1_Corwyn] [action] goto (1336,1928) from (1336,1960,0)
+[14:51:06.411] LOG   [v1_Corwyn] event goto_start: target=(1336,1928) from=(1336,1960)
+[14:51:06.411] INFO  [v1_Corwyn] [bot] running from (1336,1960,0) to (1336,1928)
+[14:51:06.411] INFO  [v1_Corwyn] [bot] planning path to (1336,1928) in background
+[14:51:06.472] INFO  [v1_Corwyn] [bot] replan to (1336,1928): 33 steps in 8298.6us
+[14:51:10.508] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:15.524] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:17.094] INFO  [v1_Corwyn] [bot] arrived at (1336,1928,0)
+[14:51:17.094] INFO  [v1_Corwyn] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[14:51:17.094] LOG   [v1_Corwyn] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[14:51:17.094] INFO  [v1_Corwyn] [action] goto (1336,1896) from (1336,1928,0)
+[14:51:17.094] LOG   [v1_Corwyn] event goto_start: target=(1336,1896) from=(1336,1928)
+[14:51:17.094] INFO  [v1_Corwyn] [bot] running from (1336,1928,0) to (1336,1896)
+[14:51:17.094] INFO  [v1_Corwyn] [bot] planning path to (1336,1896) in background
+[14:51:17.155] INFO  [v1_Corwyn] [bot] replan to (1336,1896): 32 steps in 10518.1us
+[14:51:20.583] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:25.632] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:27.901] INFO  [v1_Corwyn] [bot] arrived at (1336,1896,0)
+[14:51:27.901] INFO  [v1_Corwyn] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[14:51:27.901] LOG   [v1_Corwyn] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[14:51:27.901] INFO  [v1_Corwyn] [action] goto (1336,1864) from (1336,1896,0)
+[14:51:27.901] LOG   [v1_Corwyn] event goto_start: target=(1336,1864) from=(1336,1896)
+[14:51:27.901] INFO  [v1_Corwyn] [bot] running from (1336,1896,0) to (1336,1864)
+[14:51:27.901] INFO  [v1_Corwyn] [bot] planning path to (1336,1864) in background
+[14:51:27.961] INFO  [v1_Corwyn] [bot] replan to (1336,1864): 37 steps in 7775.0us
+[14:51:30.686] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:33.433] INFO  [v1_Corwyn] [bot] step (1332,1882,0)->(1331,1881,0) rejected; OpenDoor + retry
+[14:51:34.143] INFO  [v1_Corwyn] [bot] step (1332,1882,0)->(1331,1881,0) rejected; avoiding edge + rerouting
+[14:51:34.143] INFO  [v1_Corwyn] [bot] planning path to (1336,1864) in background
+[14:51:35.402] INFO  [v1_Corwyn] [action] goto finished at (1332,1882,0); target (1336,1864); stopped short (off by 22 tile(s))
+[14:51:35.402] LOG   [v1_Corwyn] event goto_done: at=(1332,1882) target=(1336,1864) arrived=0 off=22
+[14:51:35.708] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:36.632] INFO  [v1_Corwyn] [action] goto (1336,1864) from (1332,1882,0)
+[14:51:36.632] LOG   [v1_Corwyn] event goto_start: target=(1336,1864) from=(1332,1882)
+[14:51:36.632] INFO  [v1_Corwyn] [bot] running from (1332,1882,0) to (1336,1864)
+[14:51:36.632] INFO  [v1_Corwyn] [bot] planning path to (1336,1864) in background
+[14:51:37.910] INFO  [v1_Corwyn] [action] goto finished at (1332,1882,0); target (1336,1864); stopped short (off by 22 tile(s))
+[14:51:37.910] LOG   [v1_Corwyn] event goto_done: at=(1332,1882) target=(1336,1864) arrived=0 off=22
+[14:51:39.168] INFO  [v1_Corwyn] [action] goto (1336,1864) from (1332,1882,0)
+[14:51:39.168] LOG   [v1_Corwyn] event goto_start: target=(1336,1864) from=(1332,1882)
+[14:51:39.168] INFO  [v1_Corwyn] [bot] running from (1332,1882,0) to (1336,1864)
+[14:51:39.168] INFO  [v1_Corwyn] [bot] planning path to (1336,1864) in background
+[14:51:39.231] INFO  [v1_Corwyn] [bot] replan to (1336,1864): 22 steps in 3587.3us
+[14:51:40.732] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:41.887] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:51:45.758] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:47.513] INFO  [v1_Corwyn] [bot] arrived at (1336,1864,0)
+[14:51:47.513] INFO  [v1_Corwyn] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[14:51:47.513] LOG   [v1_Corwyn] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[14:51:47.513] INFO  [v1_Corwyn] [action] goto (1336,1832) from (1336,1864,0)
+[14:51:47.513] LOG   [v1_Corwyn] event goto_start: target=(1336,1832) from=(1336,1864)
+[14:51:47.513] INFO  [v1_Corwyn] [bot] running from (1336,1864,0) to (1336,1832)
+[14:51:47.513] INFO  [v1_Corwyn] [bot] planning path to (1336,1832) in background
+[14:51:47.573] INFO  [v1_Corwyn] [bot] replan to (1336,1832): 33 steps in 7581.0us
+[14:51:48.814] INFO  [life] session_end_requested reason="session time limit reached"
+[14:51:50.775] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:51:55.822] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:00.126] INFO  [v1_Corwyn] [bot] arrived at (1336,1832,0)
+[14:52:00.126] INFO  [v1_Corwyn] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[14:52:00.126] LOG   [v1_Corwyn] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[14:52:00.126] INFO  [v1_Corwyn] [action] goto (1336,1800) from (1336,1832,0)
+[14:52:00.126] LOG   [v1_Corwyn] event goto_start: target=(1336,1800) from=(1336,1832)
+[14:52:00.126] INFO  [v1_Corwyn] [bot] running from (1336,1832,0) to (1336,1800)
+[14:52:00.126] INFO  [v1_Corwyn] [bot] planning path to (1336,1800) in background
+[14:52:00.187] INFO  [v1_Corwyn] [bot] replan to (1336,1800): 32 steps in 7046.1us
+[14:52:00.872] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:05.926] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:09.970] INFO  [v1_Corwyn] [bot] arrived at (1336,1800,0)
+[14:52:09.970] INFO  [v1_Corwyn] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[14:52:09.970] LOG   [v1_Corwyn] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[14:52:09.970] INFO  [v1_Corwyn] [action] goto (1352,1766) from (1336,1800,0)
+[14:52:09.970] LOG   [v1_Corwyn] event goto_start: target=(1352,1766) from=(1336,1800)
+[14:52:09.970] INFO  [v1_Corwyn] [bot] running from (1336,1800,0) to (1352,1766)
+[14:52:09.971] INFO  [v1_Corwyn] [bot] planning path to (1352,1766) in background
+[14:52:10.032] INFO  [v1_Corwyn] [bot] replan to (1352,1766): 49 steps in 21961.5us
+[14:52:10.971] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:16.001] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:21.007] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:24.780] INFO  [v1_Corwyn] [bot] arrived at (1352,1766,15)
+[14:52:24.780] INFO  [v1_Corwyn] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[14:52:24.780] LOG   [v1_Corwyn] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[14:52:24.780] INFO  [v1_Corwyn] [action] goto (1386,1728) from (1352,1766,15)
+[14:52:24.780] LOG   [v1_Corwyn] event goto_start: target=(1386,1728) from=(1352,1766)
+[14:52:24.780] INFO  [v1_Corwyn] [bot] running from (1352,1766,15) to (1386,1728)
+[14:52:24.780] INFO  [v1_Corwyn] [bot] planning path to (1386,1728) in background
+[14:52:24.841] INFO  [v1_Corwyn] [bot] replan to (1386,1728): 64 steps in 41210.9us
+[14:52:26.066] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:31.116] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:36.049] INFO  [v1_Corwyn] [chat ascii] System: You are now under the protection of the city guards
+[14:52:36.172] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:37.776] INFO  [v1_Corwyn] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 743.5us
+[14:52:41.227] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:43.662] INFO  [v1_Corwyn] [chat ascii] System: You have left the protection of the city guards
+[14:52:44.092] INFO  [v1_Corwyn] [bot] arrived at (1386,1728,0)
+[14:52:44.092] INFO  [v1_Corwyn] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[14:52:44.092] LOG   [v1_Corwyn] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[14:52:44.092] INFO  [v1_Corwyn] [action] goto (1416,1688) from (1386,1728,0)
+[14:52:44.092] LOG   [v1_Corwyn] event goto_start: target=(1416,1688) from=(1386,1728)
+[14:52:44.092] INFO  [v1_Corwyn] [bot] running from (1386,1728,0) to (1416,1688)
+[14:52:44.092] INFO  [v1_Corwyn] [bot] planning path to (1416,1688) in background
+[14:52:44.153] INFO  [v1_Corwyn] [bot] replan to (1416,1688): 52 steps in 9954.5us
+[14:52:45.040] INFO  [v1_Corwyn] [chat ascii] System: You are now under the protection of the city guards
+[14:52:46.234] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:51.244] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:52:56.250] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:00.540] INFO  [v1_Corwyn] [bot] arrived at (1416,1688,0)
+[14:53:00.540] INFO  [v1_Corwyn] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[14:53:00.540] LOG   [v1_Corwyn] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[14:53:00.540] INFO  [v1_Corwyn] [action] goto (1416,1656) from (1416,1688,0)
+[14:53:00.540] LOG   [v1_Corwyn] event goto_start: target=(1416,1656) from=(1416,1688)
+[14:53:00.540] INFO  [v1_Corwyn] [bot] running from (1416,1688,0) to (1416,1656)
+[14:53:00.540] INFO  [v1_Corwyn] [bot] planning path to (1416,1656) in background
+[14:53:00.600] INFO  [v1_Corwyn] [bot] replan to (1416,1656): 32 steps in 558.5us
+[14:53:01.302] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:06.323] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:08.411] INFO  [v1_Corwyn] [bot] arrived at (1416,1656,10)
+[14:53:08.411] INFO  [v1_Corwyn] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[14:53:08.411] LOG   [v1_Corwyn] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[14:53:08.411] INFO  [v1_Corwyn] [action] goto (1416,1624) from (1416,1656,10)
+[14:53:08.411] LOG   [v1_Corwyn] event goto_start: target=(1416,1624) from=(1416,1656)
+[14:53:08.411] INFO  [v1_Corwyn] [bot] running from (1416,1656,10) to (1416,1624)
+[14:53:08.411] INFO  [v1_Corwyn] [bot] planning path to (1416,1624) in background
+[14:53:08.472] INFO  [v1_Corwyn] [bot] replan to (1416,1624): 32 steps in 2489.0us
+[14:53:11.329] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:16.361] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:16.880] INFO  [v1_Corwyn] [bot] arrived at (1416,1624,22)
+[14:53:16.880] INFO  [v1_Corwyn] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[14:53:16.880] LOG   [v1_Corwyn] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[14:53:16.880] INFO  [v1_Corwyn] [action] goto (1416,1592) from (1416,1624,22)
+[14:53:16.880] LOG   [v1_Corwyn] event goto_start: target=(1416,1592) from=(1416,1624)
+[14:53:16.880] INFO  [v1_Corwyn] [bot] running from (1416,1624,22) to (1416,1592)
+[14:53:16.880] INFO  [v1_Corwyn] [bot] planning path to (1416,1592) in background
+[14:53:16.941] INFO  [v1_Corwyn] [bot] replan to (1416,1592): 36 steps in 2690.7us
+[14:53:21.369] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:24.746] INFO  [v1_Corwyn] [bot] step (1423,1599,20)->(1422,1598,25) rejected; OpenDoor + retry
+[14:53:25.500] INFO  [v1_Corwyn] [bot] step (1423,1599,20)->(1422,1598,25) rejected; avoiding edge + rerouting
+[14:53:25.500] INFO  [v1_Corwyn] [bot] planning path to (1416,1592) in background
+[14:53:26.425] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:27.105] INFO  [v1_Corwyn] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[14:53:27.105] LOG   [v1_Corwyn] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[14:53:28.337] INFO  [v1_Corwyn] [action] goto (1416,1592) from (1423,1599,20)
+[14:53:28.337] LOG   [v1_Corwyn] event goto_start: target=(1416,1592) from=(1423,1599)
+[14:53:28.337] INFO  [v1_Corwyn] [bot] running from (1423,1599,20) to (1416,1592)
+[14:53:28.337] INFO  [v1_Corwyn] [bot] planning path to (1416,1592) in background
+[14:53:30.055] INFO  [v1_Corwyn] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[14:53:30.056] LOG   [v1_Corwyn] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[14:53:31.283] INFO  [v1_Corwyn] [travel] mode walk             usable   <- chosen
+[14:53:31.283] INFO  [v1_Corwyn] [travel] mode moongate         usable
+[14:53:31.283] INFO  [v1_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:53:31.283] INFO  [v1_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:53:31.283] LOG   [v1_Corwyn] event travel_mode: walk
+[14:53:31.283] INFO  [v1_Corwyn] [travel] plan Britain blacksmith: ok legs=2 ~64 tiles transit=0 nodes=12
+[14:53:31.437] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:32.798] INFO  [v1_Corwyn] [action] goto (1432,1560) from (1423,1599,20)
+[14:53:32.798] LOG   [v1_Corwyn] event goto_start: target=(1432,1560) from=(1423,1599)
+[14:53:32.798] INFO  [v1_Corwyn] [bot] running from (1423,1599,20) to (1432,1560)
+[14:53:32.798] INFO  [v1_Corwyn] [bot] planning path to (1432,1560) in background
+[14:53:32.857] INFO  [v1_Corwyn] [bot] replan to (1432,1560): 42 steps in 1790.1us
+[14:53:36.479] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:41.484] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:45.180] INFO  [v1_Corwyn] [bot] arrived at (1432,1560,30)
+[14:53:45.180] INFO  [v1_Corwyn] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[14:53:45.180] LOG   [v1_Corwyn] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[14:53:45.180] INFO  [v1_Corwyn] [action] goto (1418,1547) from (1432,1560,30)
+[14:53:45.180] LOG   [v1_Corwyn] event goto_start: target=(1418,1547) from=(1432,1560)
+[14:53:45.180] INFO  [v1_Corwyn] [bot] running from (1432,1560,30) to (1418,1547,z30)
+[14:53:45.180] INFO  [v1_Corwyn] [bot] planning path to (1418,1547) in background
+[14:53:45.239] INFO  [v1_Corwyn] [bot] replan to (1418,1547): 20 steps in 4589.1us
+[14:53:46.534] INFO  [v1_Corwyn] [survival] hp 56/56 (100%) -> fight
+[14:53:48.312] INFO  [v1_Corwyn] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[14:53:48.312] INFO  [v1_Corwyn] [chat ascii] System: Opening door...
+[14:53:48.863] INFO  [life] wind-down: the trip has run past its deadline; abandoning it and logging out where I stand
+[14:53:48.863] INFO  [v1_Corwyn] [travel] Britain blacksmith FAILED at (1422,1555,30) -- wind-down deadline
+[14:53:48.863] LOG   [v1_Corwyn] event travel_failed: label='Britain blacksmith' ok=0 at=(1422,1555) legs=2 plans=2 why='wind-down deadline'
+[14:53:48.925] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 1422,1555 and recording it
+[14:53:48.925] INFO  [life] session_summary duration=840s goals=1/45 gold=9310->9310 skills=140.9->140.9 logs=+0 kills=0 deaths=0 places=7 suppliers=4
+[14:53:48.925] INFO  [life] session_goals families=3 picks=45 top=51% varied=0 | emergency=1(2%) upkeep=21(47%) work=23(51%) | GET_TOOL=1(2%) CRAFT=22(49%) GET_FOOD=21(47%) MINE=1(2%)
+[14:53:48.928] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[14:53:48.928] INFO  [life] logging out
+[14:53:48.928] INFO  [v1_Corwyn] [action] logout requested
+[14:53:48.928] LOG   [v1_Corwyn] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[14:53:48.928] INFO  [v1_Corwyn] [0xD1] logout acknowledged (accepted=1)
+[14:53:48.928] LOG   [v1_Corwyn] event logout_ack: accepted
+[14:53:48.928] INFO  [v1_Corwyn] [net] closing connection (logout acknowledged)
+[14:53:48.928] LOG   [v1_Corwyn] event logout_complete: acked

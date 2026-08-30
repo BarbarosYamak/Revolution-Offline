@@ -1,0 +1,124 @@
+start: Ilyandra is a mage and lives in Nujel'm -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[22:05:06.687] WARN  [w_Ilyandra] [ACTION_RESULT] move_item timeout (no server confirmation)
+[22:05:06.687] WARN  [w_Ilyandra] [ITEM] drag of 0x40013A68 abandoned after timeout
+[22:05:09.299] WARN  [w_Ilyandra] [ACTION_RESULT] move_item server_failure (1ms) item 0x40013A67 landed in 0x40013A74, not the destination 0x40013A6B
+[22:05:14.380] WARN  [w_Ilyandra] [ACTION_RESULT] move_item server_failure (15ms) item 0x40013A65 landed in 0x40013A74, not the destination 0x40013A6B
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[22:05:56.845] WARN  [w_Ilyandra] [0x21] move REJECTED seq=18; server says (1443,1584,20) facing=5
+[22:05:56.845] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:06:42.974] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:06:47.778] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1604372.7us)
+[22:06:47.778] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 4 mobile(s))
+[22:06:51.008] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1880334.6us)
+[22:06:51.008] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 4 mobile(s))
+[22:06:55.675] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1815286.4us)
+[22:06:55.675] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 4 mobile(s))
+[22:06:58.487] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1503728.1us)
+[22:06:58.487] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 4 mobile(s))
+[22:07:01.627] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1788940.8us)
+[22:07:01.627] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 4 mobile(s))
+[22:07:07.449] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1435731.4us)
+[22:07:07.449] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 5 mobile(s))
+[22:07:10.624] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1830688.1us)
+[22:07:10.624] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 5 mobile(s))
+[22:07:17.906] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1434268.9us)
+[22:07:17.906] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=3 terrain=3 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 5 mobile(s))
+[22:07:21.089] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1882057.1us)
+[22:07:21.089] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 5 mobile(s))
+[22:07:24.158] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1787759.9us)
+[22:07:24.158] WARN  [w_Ilyandra] [bot] start (1476,1611,20) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:24.209] WARN  [w_Ilyandra] [travel] route exhausted at (1476,1611,20); trying to reach (1464,1608,20) to get somewhere routable (escape 1/3)
+[22:07:33.670] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1773346.3us)
+[22:07:33.670] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:36.809] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1837478.9us)
+[22:07:36.809] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:41.335] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1666434.6us)
+[22:07:41.335] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:44.157] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1519503.0us)
+[22:07:44.157] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:46.881] WARN  [w_Ilyandra] [bot] no path to (1468,1611) avoiding 0 block(s); stopping (search 1412836.4us)
+[22:07:46.881] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:07:55.050] WARN  [w_Ilyandra] [bot] no path to (1471,1612) avoiding 0 block(s); stopping (search 2225480.3us)
+[22:07:55.050] WARN  [w_Ilyandra] [bot] start (1464,1608,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 520 item(s), 6 mobile(s))
+[22:08:32.531] WARN  [w_Ilyandra] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 1689191.9us)
+[22:08:32.531] WARN  [w_Ilyandra] [bot] start (1471,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 4 mobile(s))
+[22:08:35.410] WARN  [w_Ilyandra] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 1529035.3us)
+[22:08:35.410] WARN  [w_Ilyandra] [bot] start (1471,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 4 mobile(s))
+[22:08:38.319] WARN  [w_Ilyandra] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 1555943.2us)
+[22:08:38.319] WARN  [w_Ilyandra] [bot] start (1471,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 4 mobile(s))
+[22:08:44.037] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:10:21.877] WARN  [w_Ilyandra] [0x21] move REJECTED seq=53; server says (1503,1561,30) facing=1
+[22:10:22.616] WARN  [w_Ilyandra] [0x21] move REJECTED seq=0; server says (1503,1561,30) facing=1
+[22:10:29.710] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:10:34.662] WARN  [w_Ilyandra] [0x21] move REJECTED seq=8; server says (1516,1552,25) facing=5
+[22:10:34.662] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:11:31.673] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:11:39.243] WARN  [w_Ilyandra] [0x21] move REJECTED seq=19; server says (1488,1579,27) facing=4
+[22:11:39.982] WARN  [w_Ilyandra] [0x21] move REJECTED seq=0; server says (1488,1579,27) facing=4
+[22:12:07.540] WARN  [w_Ilyandra] [bot] 0x20 resync; aborting path
+[22:12:50.691] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:12:52.049] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:12:53.403] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:12:56.293] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:12:57.565] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:12:58.921] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:03.299] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:04.653] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:05.939] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:11.855] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:13.192] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:14.554] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:14.616] WARN  [w_Ilyandra] [travel] route exhausted at (1431,1612,20); trying to reach (1432,1624,20) to get somewhere routable (escape 1/3)
+[22:13:23.666] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:24.957] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:26.309] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:29.139] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:30.431] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:31.727] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:36.096] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:37.449] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:38.775] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:44.588] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:45.945] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:47.300] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:13:47.361] WARN  [w_Ilyandra] [travel] route exhausted at (1432,1624,20); trying to reach (1416,1608,30) to get somewhere routable (escape 2/3)
+[22:13:48.899] WARN  [w_Ilyandra] [bot] no path to (1416,1608) avoiding 0 block(s); stopping (search 1508125.1us)
+[22:13:48.899] WARN  [w_Ilyandra] [bot] start (1432,1624,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 686 item(s), 2 mobile(s))
+[22:13:48.961] WARN  [w_Ilyandra] [travel] route exhausted at (1432,1624,20); trying to reach (1448,1608,20) to get somewhere routable (escape 3/3)
+[22:14:05.568] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:06.862] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:08.152] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:11.063] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:12.358] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:13.704] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:18.107] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:19.488] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:20.786] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:26.664] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:27.998] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:14:29.352] WARN  [w_Ilyandra] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[22:15:02.388] WARN  [w_Ilyandra] [bot] no path to (1487,1547) avoiding 0 block(s); stopping (search 1663593.0us)
+[22:15:02.388] WARN  [w_Ilyandra] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[22:15:02.450] WARN  [w_Ilyandra] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[22:15:05.385] WARN  [w_Ilyandra] [bot] no path to (1487,1547) avoiding 0 block(s); stopping (search 1648610.9us)
+[22:15:05.385] WARN  [w_Ilyandra] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[22:15:05.446] WARN  [w_Ilyandra] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[22:15:08.208] WARN  [w_Ilyandra] [bot] no path to (1487,1547) avoiding 0 block(s); stopping (search 1520186.7us)
+[22:15:08.208] WARN  [w_Ilyandra] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 687 item(s), 4 mobile(s))
+[22:15:08.269] WARN  [w_Ilyandra] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[22:15:39.763] WARN  [w_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x1F30): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[22:15:39.763] WARN  [w_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[22:15:39.763] WARN  [w_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[22:15:51.337] WARN  [w_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x1F30): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[22:15:51.338] WARN  [w_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[22:15:51.338] WARN  [w_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[22:16:02.867] WARN  [w_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x1F30): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[22:16:02.867] WARN  [w_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[22:16:02.867] WARN  [w_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[22:16:14.406] WARN  [w_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x1F30): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[22:16:14.406] WARN  [w_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[22:16:14.406] WARN  [w_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[22:16:51.101] WARN  [w_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x1F30): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[22:16:51.101] WARN  [w_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[22:16:51.101] WARN  [w_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase

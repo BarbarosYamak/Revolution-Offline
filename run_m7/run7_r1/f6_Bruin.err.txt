@@ -1,0 +1,26 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[13:44:35.236] WARN  [f6_Bruin] [0x21] move REJECTED seq=30; server says (1864,2687,0) facing=5
+[13:44:35.995] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1864,2687,0) facing=5
+[13:44:47.363] WARN  [f6_Bruin] [0x21] move REJECTED seq=7; server says (1850,2678,0) facing=3
+[13:44:47.364] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:45:03.547] WARN  [f6_Bruin] [0x21] move REJECTED seq=6; server says (1852,2712,10) facing=3
+[13:45:03.561] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:45:15.324] WARN  [f6_Bruin] [0x21] move REJECTED seq=45; server says (1864,2743,4) facing=5
+[13:45:16.065] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1864,2743,4) facing=5
+[13:48:22.557] WARN  [f6_Bruin] [0x21] move REJECTED seq=53; server says (1720,2392,5) facing=7
+[13:48:23.297] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1720,2392,5) facing=7
+[13:48:23.298] WARN  [f6_Bruin] [bot] no path to (1720,2392) avoiding 1 block(s); stopping (search 0.2us)
+[13:48:23.298] WARN  [f6_Bruin] [bot] start (1720,2392,5) exits: open=6 terrain=1 mobile=0 dynamic=0 door=0 blacklist=1 (overlay saw 430 item(s), 4 mobile(s))
+[13:50:55.591] WARN  [f6_Bruin] [bot] THREAT (HP 50 -> 43): halting travel (TODO engage/flee/recall)
+[13:51:01.291] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:51:02.619] WARN  [f6_Bruin] [bot] THREAT (HP 43 -> 37): halting travel (TODO engage/flee/recall)
+[13:51:07.363] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:51:14.625] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:51:18.632] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:51:22.672] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:52:00.729] WARN  [f6_Bruin] [bot] THREAT (HP 22 -> 17): halting travel (TODO engage/flee/recall)
+[13:52:14.988] WARN  [f6_Bruin] [bot] THREAT (HP 17 -> 13): halting travel (TODO engage/flee/recall)
+[13:52:17.555] WARN  [f6_Bruin] [bot] THREAT (HP 13 -> 8): halting travel (TODO engage/flee/recall)
+[13:52:27.772] WARN  [f6_Bruin] [bot] THREAT (HP 8 -> 4): halting travel (TODO engage/flee/recall)
+[13:52:48.397] WARN  [f6_Bruin] [bot] THREAT (HP 5 -> 1): halting travel (TODO engage/flee/recall)

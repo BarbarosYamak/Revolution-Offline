@@ -1,0 +1,55 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[12:42:16.224] WARN  [f6_Bruin] [0x21] move REJECTED seq=40; server says (2000,2856,14) facing=7
+[12:42:16.925] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2000,2856,14) facing=7
+[12:42:32.413] WARN  [f6_Bruin] [0x21] move REJECTED seq=31; server says (1948,2848,7) facing=7
+[12:42:33.147] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1948,2848,7) facing=7
+[12:42:41.673] WARN  [f6_Bruin] [0x21] move REJECTED seq=33; server says (1947,2822,0) facing=1
+[12:42:42.418] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1947,2822,0) facing=1
+[12:42:56.300] WARN  [f6_Bruin] [0x21] move REJECTED seq=38; server says (1952,2798,10) facing=7
+[12:42:57.041] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1952,2798,10) facing=7
+[12:43:35.916] WARN  [f6_Bruin] [0x21] move REJECTED seq=38; server says (1912,2692,3) facing=7
+[12:43:36.681] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1912,2692,3) facing=7
+[12:44:12.112] WARN  [f6_Bruin] [0x21] move REJECTED seq=99; server says (1872,2671,-10) facing=5
+[12:44:12.847] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1872,2671,-10) facing=5
+[12:44:24.356] WARN  [f6_Bruin] [0x21] move REJECTED seq=44; server says (1852,2680,0) facing=7
+[12:44:25.109] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1852,2680,0) facing=7
+[12:44:37.937] WARN  [f6_Bruin] [0x21] move REJECTED seq=36; server says (1872,2698,3) facing=2
+[12:44:39.869] WARN  [f6_Bruin] [0x21] move REJECTED seq=5; server says (1872,2698,3) facing=1
+[12:44:41.815] WARN  [f6_Bruin] [0x21] move REJECTED seq=5; server says (1872,2698,3) facing=1
+[12:44:42.814] WARN  [f6_Bruin] [0x21] move REJECTED seq=3; server says (1872,2699,4) facing=1
+[12:44:44.304] WARN  [f6_Bruin] [0x21] move REJECTED seq=3; server says (1872,2698,3) facing=2
+[12:46:08.362] WARN  [f6_Bruin] [0x21] move REJECTED seq=23; server says (1942,2794,0) facing=3
+[12:46:08.363] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[12:51:46.167] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:47.524] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:48.816] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:51.722] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:53.100] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:54.469] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:51:58.891] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:00.272] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:01.627] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:07.472] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:08.822] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:10.113] WARN  [f6_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[12:52:10.174] WARN  [f6_Bruin] [travel] route exhausted at (552,888,0); trying to reach (536,872,0) to get somewhere routable (escape 1/3)
+[12:59:31.277] WARN  [f6_Bruin] [0x21] move REJECTED seq=57; server says (2800,952,0) facing=3
+[12:59:32.011] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2800,952,0) facing=3
+[12:59:46.874] WARN  [f6_Bruin] [0x21] move REJECTED seq=60; server says (2827,927,0) facing=1
+[12:59:47.610] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2827,927,0) facing=1
+[13:00:30.151] WARN  [f6_Bruin] [0x21] move REJECTED seq=57; server says (2858,816,-1) facing=2
+[13:00:32.257] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2074451.2us)
+[13:00:32.257] WARN  [f6_Bruin] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1830 item(s), 10 mobile(s))
+[13:00:35.641] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2091067.1us)
+[13:00:35.641] WARN  [f6_Bruin] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1830 item(s), 10 mobile(s))
+[13:01:32.023] WARN  [f6_Bruin] [0x21] move REJECTED seq=105; server says (2857,816,0) facing=2
+[13:01:34.595] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2559718.4us)
+[13:01:34.595] WARN  [f6_Bruin] [bot] start (2857,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1933 item(s), 13 mobile(s))
+[13:01:38.247] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2289167.4us)
+[13:01:38.247] WARN  [f6_Bruin] [bot] start (2857,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1933 item(s), 12 mobile(s))
+[13:04:33.766] WARN  [f6_Bruin] [0x21] move REJECTED seq=44; server says (3623,2139,86) facing=1
+[13:04:34.488] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (3623,2139,86) facing=1
+[13:04:37.642] WARN  [f6_Bruin] [0x21] move REJECTED seq=3; server says (3624,2137,84) facing=1
+[13:05:05.178] WARN  [f6_Bruin] [0x21] move REJECTED seq=24; server says (3710,2125,20) facing=3
+[13:05:05.914] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (3710,2125,20) facing=3

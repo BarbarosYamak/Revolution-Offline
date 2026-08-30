@@ -1,0 +1,479 @@
+[11:08:51.944] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh06' char=Xanthe tag='mk_Xanthe'
+[11:08:51.945] LOG   [mk_Xanthe] event session_start: text log opened
+[11:08:51.946] LOG   [mk_Xanthe] event net_connect_begin: connect 127.0.0.1:2593
+[11:08:51.946] INFO  [mk_Xanthe] [net] connecting to 127.0.0.1:2593 ...
+[11:08:51.947] LOG   [mk_Xanthe] event net_connected: connect 127.0.0.1:2593
+[11:08:51.947] INFO  [mk_Xanthe] [net] connected.
+[11:08:51.947] INFO  [mk_Xanthe] [seed] sent 0x7F000001 (plaintext)
+[11:08:51.947] LOG   [mk_Xanthe] event seed_out: 0x7F000001 hex=7f000001
+[11:08:51.947] INFO  [life] no prior state for revolutionfresh06.xanthe: a new Alchemist
+[11:08:51.947] INFO  [life] creation request: Alchemy 50.0 + Magery 50.0, stats 32/16/32 = 80
+[11:08:51.947] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[11:08:51.947] INFO  [life] home: Xanthe lives in Moonglow
+[11:08:51.947] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[11:08:51.947] INFO  [mk_Xanthe] [life] autonomous player active for 'Xanthe' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[11:08:51.949] INFO  [mk_Xanthe] [0xA8] 1 server(s):
+[11:08:51.949] INFO  [mk_Xanthe]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[11:08:51.958] INFO  [mk_Xanthe] [0x8C] game server = 127.0.0.1:2593  seed=0xA55B570A
+[11:08:51.958] LOG   [mk_Xanthe] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA55B570A
+[11:08:51.958] INFO  [mk_Xanthe] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:08:51.958] LOG   [mk_Xanthe] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:08:51.958] INFO  [mk_Xanthe] [0xB9] server features = 0x0005
+[11:08:51.958] INFO  [mk_Xanthe] [0xA9] 5 slot(s) (populated 0):
+[11:08:51.958] INFO  [mk_Xanthe]   [0] <empty>
+[11:08:51.958] INFO  [mk_Xanthe]   [1] <empty>
+[11:08:51.958] INFO  [mk_Xanthe]   [2] <empty>
+[11:08:51.958] INFO  [mk_Xanthe]   [3] <empty>
+[11:08:51.958] INFO  [mk_Xanthe]   [4] <empty>
+[11:08:51.958] INFO  [mk_Xanthe] [0x00] requested skills 0:50 25:50 46:0
+[11:08:51.958] INFO  [mk_Xanthe] [0x00] requested stats STR 32 DEX 16 INT 32
+[11:08:51.958] INFO  [mk_Xanthe] [0x00] creating character 'Xanthe' in slot 0
+[11:08:51.958] LOG   [mk_Xanthe] event char_create_sent: Xanthe
+[11:08:51.973] INFO  [mk_Xanthe] [0x1B] serial=0x00013EF7 body=0x0190 pos=(633,858,0)
+[11:08:51.973] LOG   [mk_Xanthe] event login_confirm: serial=0x00013EF7 body=0x0190 pos=(633,858,0)
+[11:08:51.973] INFO  [mk_Xanthe] [0x20] player @(633,858,0) facing=3
+[11:08:51.973] INFO  [mk_Xanthe] [0x55] login complete — entering world
+[11:08:51.973] LOG   [mk_Xanthe] event in_world: 0x55 received
+[11:08:51.973] INFO  [mk_Xanthe] [backpack] opening 0x40013EF0
+[11:08:51.973] INFO  [mk_Xanthe] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:08:51.973] INFO  [mk_Xanthe] [chat ascii] System: There are 6 other players here.
+[11:08:51.973] INFO  [mk_Xanthe] [chat ascii] System: You are under the protection of the town guards
+[11:08:51.977] INFO  [mk_Xanthe] [action] requesting the skill list
+[11:08:51.977] INFO  [life] in world; asked the server for the skill list
+[11:08:51.989] INFO  [mk_Xanthe] [0x24] open container 0x40013EF0 gump=60
+[11:08:51.989] INFO  [mk_Xanthe] [0x3C] container contents: 9 item(s)
+[11:08:51.989] LOG   [mk_Xanthe] event backpack_contents: serial=0x40013EF0 items=9
+[11:08:51.997] INFO  [mk_Xanthe] [chat ascii] System: Kaelen has arrived in Yew.
+[11:08:52.021] INFO  [mk_Xanthe] [chat ascii] System: Torvald has arrived in Yew.
+[11:08:52.069] INFO  [mk_Xanthe] [chat ascii] System: Aldwin has arrived in Yew.
+[11:08:52.069] INFO  [mk_Xanthe] [chat ascii] System: Rhalvar has arrived in Yew.
+[11:08:52.096] INFO  [mk_Xanthe] [chat ascii] System: Ysolde has arrived in Yew.
+[11:08:52.124] INFO  [mk_Xanthe] [chat ascii] System: Sabelle has arrived in Yew.
+[11:08:52.148] INFO  [mk_Xanthe] [chat ascii] System: Ilyandra has arrived in Yew.
+[11:08:52.173] INFO  [mk_Xanthe] [chat ascii] System: Elvrin has arrived in Yew.
+[11:08:52.200] INFO  [mk_Xanthe] [chat ascii] System: Marta has arrived in Yew.
+[11:08:52.226] INFO  [mk_Xanthe] [chat ascii] System: Bruin has arrived in Yew.
+[11:08:52.251] INFO  [mk_Xanthe] [chat ascii] System: Corwin has arrived in Yew.
+[11:08:52.280] INFO  [mk_Xanthe] [chat ascii] System: Beleth has arrived in Yew.
+[11:08:52.307] INFO  [mk_Xanthe] [chat ascii] System: Nerys has arrived in Yew.
+[11:08:52.327] INFO  [mk_Xanthe] [chat ascii] System: Kestrel has arrived in Yew.
+[11:08:54.504] INFO  [mk_Xanthe] [bot] world data loaded (0 blacklisted spot(s)).
+[11:08:54.504] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[11:08:54.504] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[11:08:54.504] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[11:08:54.504] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[11:08:54.504] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[11:08:54.504] INFO  [life]   skill_0      persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.504] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.504] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[11:08:54.504] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[11:08:54.504] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:08:54.504] INFO  [mk_Xanthe] [survival] on
+[11:08:54.504] LOG   [mk_Xanthe] event survival_mode: on
+[11:08:54.507] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh06.xanthe/state.json
+[11:08:54.507] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:08:54.572] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[11:08:54.572] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedPractice(Meditation 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[11:08:54.572] INFO  [life]   score=110.0
+[11:08:54.572] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[11:08:54.572] INFO  [life]   reason: Meditation 0.0 -> 50.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[11:08:54.572] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[11:08:54.572] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[11:08:54.572] INFO  [mk_Xanthe] [travel] Guild of Arcane Arts mage -> (4448,1090) r=5 from (633,858)
+[11:08:54.572] LOG   [mk_Xanthe] event travel_start: label='Guild of Arcane Arts mage' target=(4448,1090) radius=5 from=(633,858)
+[11:08:54.572] INFO  [mk_Xanthe] [travel] mode moongate         usable   <- chosen
+[11:08:54.572] INFO  [mk_Xanthe] [travel] mode walk             usable
+[11:08:54.572] INFO  [mk_Xanthe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:08:54.572] INFO  [mk_Xanthe] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:08:54.572] LOG   [mk_Xanthe] event travel_mode: moongate
+[11:08:54.572] INFO  [mk_Xanthe] [travel] plan Guild of Arcane Arts mage: ok legs=13 ~512 tiles transit=1 nodes=418
+[11:08:54.572] INFO  [mk_Xanthe] [action] goto (664,856) from (633,858,0)
+[11:08:54.572] LOG   [mk_Xanthe] event goto_start: target=(664,856) from=(633,858)
+[11:08:54.572] INFO  [mk_Xanthe] [bot] running from (633,858,0) to (664,856)
+[11:08:54.572] INFO  [mk_Xanthe] [bot] planning path to (664,856) in background
+[11:08:54.636] INFO  [mk_Xanthe] [bot] replan to (664,856): 31 steps in 7402.1us
+[11:08:54.652] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=32 in 77.9us
+[11:08:54.958] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=35 in 160.5us
+[11:08:55.445] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=33 in 17.9us
+[11:08:55.659] INFO  [mk_Xanthe] [chat ascii] System: You shove Voris out of the way.
+[11:08:55.872] INFO  [mk_Xanthe] [bot] reject at (633,856): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[11:08:55.872] INFO  [mk_Xanthe] [bot] planning path to (664,856) in background
+[11:08:55.888] INFO  [mk_Xanthe] [bot] replan to (664,856): 32 steps in 9191.1us
+[11:08:56.381] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=33 in 82.5us
+[11:08:56.909] INFO  [mk_Xanthe] [bot] reject at (634,857): mobile in the way — waiting 500ms, retrying (2) [no blacklist]
+[11:08:56.909] INFO  [mk_Xanthe] [bot] planning path to (664,856) in background
+[11:08:56.954] INFO  [mk_Xanthe] [action] goto finished at (633,857,0); target (664,856); stopped short (off by 32 tile(s))
+[11:08:56.954] LOG   [mk_Xanthe] event goto_done: at=(633,857) target=(664,856) arrived=0 off=32
+[11:08:58.176] INFO  [mk_Xanthe] [action] goto (664,856) from (633,857,0)
+[11:08:58.176] LOG   [mk_Xanthe] event goto_start: target=(664,856) from=(633,857)
+[11:08:58.176] INFO  [mk_Xanthe] [bot] running from (633,857,0) to (664,856)
+[11:08:58.176] INFO  [mk_Xanthe] [bot] planning path to (664,856) in background
+[11:08:58.236] INFO  [mk_Xanthe] [bot] replan to (664,856): 33 steps in 8995.2us
+[11:08:58.666] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=32 in 65.3us
+[11:08:58.756] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=34 in 68.9us
+[11:08:58.879] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=32 in 74.0us
+[11:08:59.182] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=31 in 41.4us
+[11:08:59.400] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=30 in 52.6us
+[11:08:59.522] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:08:59.615] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=31 in 100.8us
+[11:09:00.258] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=3 path=27 in 17.3us
+[11:09:00.318] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=27 in 53.0us
+[11:09:01.375] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=25 in 95.0us
+[11:09:01.835] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 106.5us
+[11:09:02.049] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=22 in 47.1us
+[11:09:03.145] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=20 in 74.9us
+[11:09:03.761] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=17 in 74.1us
+[11:09:04.407] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 61.8us
+[11:09:04.530] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:04.608] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=16 in 62.4us
+[11:09:05.339] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 34.0us
+[11:09:05.992] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=15 in 76.9us
+[11:09:06.192] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=13 in 28.8us
+[11:09:06.206] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=14 in 96.7us
+[11:09:07.125] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=6 new segment=5 path=11 in 60.7us
+[11:09:07.645] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=10 in 93.7us
+[11:09:07.923] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=10 in 73.8us
+[11:09:08.350] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=9 in 70.3us
+[11:09:08.550] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=7 in 41.6us
+[11:09:08.794] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 101.8us
+[11:09:09.479] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=4 new segment=5 path=5 in 22.1us
+[11:09:09.554] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:09.894] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=3 new segment=6 path=6 in 90.9us
+[11:09:12.508] INFO  [mk_Xanthe] [bot] arrived at (664,856,0)
+[11:09:12.508] INFO  [mk_Xanthe] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[11:09:12.508] LOG   [mk_Xanthe] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[11:09:12.508] INFO  [mk_Xanthe] [action] goto (696,840) from (664,856,0)
+[11:09:12.508] LOG   [mk_Xanthe] event goto_start: target=(696,840) from=(664,856)
+[11:09:12.508] INFO  [mk_Xanthe] [bot] running from (664,856,0) to (696,840)
+[11:09:12.508] INFO  [mk_Xanthe] [bot] planning path to (696,840) in background
+[11:09:12.523] INFO  [mk_Xanthe] [bot] replan to (696,840): 38 steps in 12197.2us
+[11:09:12.971] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=37 in 73.8us
+[11:09:13.200] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 152.5us
+[11:09:13.634] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=34 in 71.1us
+[11:09:14.063] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=33 in 51.5us
+[11:09:14.400] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=33 in 51.7us
+[11:09:14.492] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=32 in 47.6us
+[11:09:14.613] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:14.690] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=33 in 72.8us
+[11:09:15.044] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=31 in 54.8us
+[11:09:15.106] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 77.0us
+[11:09:16.508] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=28 in 118.0us
+[11:09:16.953] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=27 in 36.9us
+[11:09:19.619] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:20.661] INFO  [mk_Xanthe] [chat ascii] System: You have left the protection of the town guards
+[11:09:24.311] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 162.6us
+[11:09:24.619] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:25.384] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=3 new segment=6 path=6 in 120.9us
+[11:09:27.687] INFO  [mk_Xanthe] [bot] reject at (696,840): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[11:09:27.687] INFO  [mk_Xanthe] [bot] planning path to (696,840) in background
+[11:09:28.897] INFO  [mk_Xanthe] [action] goto finished at (696,841,0); target (696,840); stopped short (off by 1 tile(s))
+[11:09:28.898] LOG   [mk_Xanthe] event goto_done: at=(696,841) target=(696,840) arrived=0 off=1
+[11:09:28.898] INFO  [mk_Xanthe] [action] goto (728,808) from (696,841,0)
+[11:09:28.898] LOG   [mk_Xanthe] event goto_start: target=(728,808) from=(696,841)
+[11:09:28.898] INFO  [mk_Xanthe] [bot] running from (696,841,0) to (728,808)
+[11:09:28.898] INFO  [mk_Xanthe] [bot] planning path to (728,808) in background
+[11:09:28.959] INFO  [mk_Xanthe] [bot] replan to (728,808): 40 steps in 20003.1us
+[11:09:29.620] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:30.998] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=35 in 121.3us
+[11:09:31.214] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=35 in 51.4us
+[11:09:31.656] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 1: anchor=6 new segment=7 path=35 in 134.2us
+[11:09:32.086] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=33 in 27.2us
+[11:09:32.147] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=34 in 145.3us
+[11:09:32.288] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=35 in 79.2us
+[11:09:32.826] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=34 in 116.2us
+[11:09:33.305] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=3 path=30 in 45.0us
+[11:09:33.366] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=30 in 224.8us
+[11:09:33.443] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=31 in 150.2us
+[11:09:33.720] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=29 in 117.2us
+[11:09:34.670] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:36.968] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=21 in 155.0us
+[11:09:37.196] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 95.7us
+[11:09:38.265] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 94.6us
+[11:09:39.364] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=13 in 83.6us
+[11:09:39.730] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:40.645] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 102.4us
+[11:09:41.030] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=10 in 59.2us
+[11:09:43.201] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=3 new segment=3 path=3 in 23.5us
+[11:09:44.272] INFO  [mk_Xanthe] [bot] arrived at (728,808,0)
+[11:09:44.273] INFO  [mk_Xanthe] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[11:09:44.273] LOG   [mk_Xanthe] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[11:09:44.273] INFO  [mk_Xanthe] [action] goto (760,776) from (728,808,0)
+[11:09:44.273] LOG   [mk_Xanthe] event goto_start: target=(760,776) from=(728,808)
+[11:09:44.273] INFO  [mk_Xanthe] [bot] running from (728,808,0) to (760,776)
+[11:09:44.273] INFO  [mk_Xanthe] [bot] planning path to (760,776) in background
+[11:09:44.333] INFO  [mk_Xanthe] [bot] replan to (760,776): 42 steps in 15597.3us
+[11:09:44.486] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=44 in 112.5us
+[11:09:44.761] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:45.129] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=41 in 70.2us
+[11:09:45.375] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=40 in 64.5us
+[11:09:45.806] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=39 in 37.5us
+[11:09:46.232] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=38 in 63.1us
+[11:09:46.445] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=37 in 47.8us
+[11:09:46.646] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=38 in 66.4us
+[11:09:47.047] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=35 in 85.4us
+[11:09:47.463] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=34 in 92.5us
+[11:09:47.664] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=33 in 80.4us
+[11:09:47.864] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=32 in 61.2us
+[11:09:48.065] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=31 in 89.0us
+[11:09:48.465] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=29 in 29.4us
+[11:09:48.680] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=30 in 162.8us
+[11:09:48.883] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=27 in 35.0us
+[11:09:49.283] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=26 in 74.9us
+[11:09:49.484] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=24 in 67.0us
+[11:09:49.792] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:50.147] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=22 in 50.7us
+[11:09:50.346] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=23 in 99.8us
+[11:09:51.036] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=21 in 61.7us
+[11:09:51.282] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=20 in 78.2us
+[11:09:51.697] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=17 in 29.0us
+[11:09:52.098] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 60.7us
+[11:09:52.727] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=14 in 59.2us
+[11:09:54.363] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 112.4us
+[11:09:54.551] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh06.xanthe/state.json
+[11:09:54.780] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 69.6us
+[11:09:54.840] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:09:55.210] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=7 in 52.8us
+[11:09:56.084] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=4 new segment=5 path=5 in 134.9us
+[11:09:56.284] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=5 in 88.8us
+[11:09:57.920] INFO  [mk_Xanthe] [bot] arrived at (760,776,0)
+[11:09:57.920] INFO  [mk_Xanthe] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[11:09:57.920] LOG   [mk_Xanthe] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[11:09:57.920] INFO  [mk_Xanthe] [action] goto (776,760) from (760,776,0)
+[11:09:57.920] LOG   [mk_Xanthe] event goto_start: target=(776,760) from=(760,776)
+[11:09:57.920] INFO  [mk_Xanthe] [bot] running from (760,776,0) to (776,760)
+[11:09:57.920] INFO  [mk_Xanthe] [bot] planning path to (776,760) in background
+[11:09:57.981] INFO  [mk_Xanthe] [bot] replan to (776,760): 22 steps in 3253.4us
+[11:09:58.122] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=21 in 92.3us
+[11:09:58.825] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=20 in 68.8us
+[11:09:59.287] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=19 in 54.1us
+[11:09:59.564] INFO  [mk_Xanthe] [chat ascii] System: World save in 10 seconds
+[11:09:59.854] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:01.687] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=10 path=16 in 422.3us
+[11:10:04.868] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:05.773] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=4 new segment=4 path=4 in 33.4us
+[11:10:06.044] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 2: anchor=3 new segment=4 path=4 in 178.4us
+[11:10:07.719] INFO  [mk_Xanthe] [bot] arrived at (776,760,0)
+[11:10:07.719] INFO  [mk_Xanthe] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[11:10:07.719] LOG   [mk_Xanthe] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[11:10:07.719] INFO  [mk_Xanthe] [action] goto (771,752) from (776,760,0)
+[11:10:07.719] LOG   [mk_Xanthe] event goto_start: target=(771,752) from=(776,760)
+[11:10:07.719] INFO  [mk_Xanthe] [bot] running from (776,760,0) to (771,752)
+[11:10:07.720] INFO  [mk_Xanthe] [bot] planning path to (771,752) in background
+[11:10:07.736] INFO  [mk_Xanthe] [bot] replan to (771,752): 9 steps in 213.0us
+[11:10:08.423] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=11 in 235.8us
+[11:10:09.564] INFO  [mk_Xanthe] [chat ascii] System: World save has been initiated.
+[11:10:09.875] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:13.891] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=5 in 48.0us
+[11:10:14.336] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 3: anchor=4 new segment=4 path=4 in 94.6us
+[11:10:14.904] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:16.495] INFO  [mk_Xanthe] [gump] 0x400028B7 context=0x80A003FB: 13 option(s), 15 text(s)
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   button 1000 = 'OKAY'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   button 0 = 'CANCEL'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   button 1 = 'Felucca'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 1 = 'Moonglow'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 2 = 'Britain'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 3 = 'Jhelom'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 4 = 'Yew'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 5 = 'New Magincia'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 6 = 'Minoc'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 7 = 'Trinsic'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 8 = 'Skara Brae'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 9 = 'Buccaneer's Den'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 0 = 'Pick your destination:'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 1 = 'OKAY'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 2 = 'CANCEL'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 3 = 'Felucca'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 4 = 'Felucca'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 5 = 'Moonglow'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 6 = 'Britain'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 7 = 'Jhelom'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 8 = 'Yew'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 9 = 'New Magincia'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 10 = 'Minoc'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 11 = 'Trinsic'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 12 = 'Skara Brae'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 13 = 'Buccaneer's Den'
+[11:10:16.495] INFO  [mk_Xanthe] [gump]   text 14 = 'Ocllo (Newplayers)'
+[11:10:16.495] LOG   [mk_Xanthe] event gump_open: serial=0x400028B7 context=0x80A003FB options=13
+[11:10:16.495] INFO  [mk_Xanthe] [travel] gate gump: choosing 'Moonglow' (choice 1, button 1000)
+[11:10:16.495] LOG   [mk_Xanthe] event moongate_use: destination='Moonglow' choice=1 button=1000
+[11:10:16.495] INFO  [mk_Xanthe] [bot] arrived at (771,752,5)
+[11:10:16.495] INFO  [mk_Xanthe] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[11:10:16.495] LOG   [mk_Xanthe] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[11:10:16.495] INFO  [mk_Xanthe] [travel] using moongate 0x400028B7 for 'Moonglow' (gump active=0 serial=0x00000000)
+[11:10:16.496] INFO  [mk_Xanthe] [0x20] player @(4467,1283,5) facing=6
+[11:10:16.496] INFO  [mk_Xanthe] [0x20] player @(4467,1283,5) facing=6
+[11:10:16.509] INFO  [mk_Xanthe] [chat ascii] System: You can't see the target
+[11:10:16.631] INFO  [mk_Xanthe] [action] goto (4472,1256) from (4467,1283,5)
+[11:10:16.631] LOG   [mk_Xanthe] event goto_start: target=(4472,1256) from=(4467,1283)
+[11:10:16.631] INFO  [mk_Xanthe] [bot] running from (4467,1283,5) to (4472,1256)
+[11:10:16.631] INFO  [mk_Xanthe] [bot] planning path to (4472,1256) in background
+[11:10:16.693] INFO  [mk_Xanthe] [bot] replan to (4472,1256): 28 steps in 7109.7us
+[11:10:16.983] INFO  [mk_Xanthe] [chat ascii] System: You have been revealed
+[11:10:19.964] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:24.989] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:26.322] INFO  [mk_Xanthe] [bot] arrived at (4472,1256,0)
+[11:10:26.322] INFO  [mk_Xanthe] [action] goto finished at (4472,1256,0); target (4472,1256); ARRIVED (off by 0 tile(s))
+[11:10:26.322] LOG   [mk_Xanthe] event goto_done: at=(4472,1256) target=(4472,1256) arrived=1 off=0
+[11:10:26.322] INFO  [mk_Xanthe] [action] goto (4472,1224) from (4472,1256,0)
+[11:10:26.322] LOG   [mk_Xanthe] event goto_start: target=(4472,1224) from=(4472,1256)
+[11:10:26.322] INFO  [mk_Xanthe] [bot] running from (4472,1256,0) to (4472,1224)
+[11:10:26.322] INFO  [mk_Xanthe] [bot] planning path to (4472,1224) in background
+[11:10:26.383] INFO  [mk_Xanthe] [bot] replan to (4472,1224): 32 steps in 6146.5us
+[11:10:29.994] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:35.025] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:37.755] INFO  [mk_Xanthe] [bot] arrived at (4472,1224,0)
+[11:10:37.755] INFO  [mk_Xanthe] [action] goto finished at (4472,1224,0); target (4472,1224); ARRIVED (off by 0 tile(s))
+[11:10:37.755] LOG   [mk_Xanthe] event goto_done: at=(4472,1224) target=(4472,1224) arrived=1 off=0
+[11:10:37.755] INFO  [mk_Xanthe] [action] goto (4472,1192) from (4472,1224,0)
+[11:10:37.755] LOG   [mk_Xanthe] event goto_start: target=(4472,1192) from=(4472,1224)
+[11:10:37.755] INFO  [mk_Xanthe] [bot] running from (4472,1224,0) to (4472,1192)
+[11:10:37.755] INFO  [mk_Xanthe] [bot] planning path to (4472,1192) in background
+[11:10:37.816] INFO  [mk_Xanthe] [bot] replan to (4472,1192): 37 steps in 4649.3us
+[11:10:40.061] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:45.108] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:50.119] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:10:51.390] INFO  [mk_Xanthe] [bot] arrived at (4472,1192,0)
+[11:10:51.390] INFO  [mk_Xanthe] [action] goto finished at (4472,1192,0); target (4472,1192); ARRIVED (off by 0 tile(s))
+[11:10:51.390] LOG   [mk_Xanthe] event goto_done: at=(4472,1192) target=(4472,1192) arrived=1 off=0
+[11:10:51.390] INFO  [mk_Xanthe] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:10:51.390] INFO  [mk_Xanthe] [action] goto (4456,1160) from (4472,1192,0)
+[11:10:51.390] LOG   [mk_Xanthe] event goto_start: target=(4456,1160) from=(4472,1192)
+[11:10:51.390] INFO  [mk_Xanthe] [bot] running from (4472,1192,0) to (4456,1160)
+[11:10:51.390] INFO  [mk_Xanthe] [bot] planning path to (4456,1160) in background
+[11:10:51.451] INFO  [mk_Xanthe] [bot] replan to (4456,1160): 46 steps in 9924.7us
+[11:10:54.600] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh06.xanthe/state.json
+[11:10:55.173] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:00.197] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:01.708] INFO  [mk_Xanthe] [chat ascii] System: You are now under the protection of the town guards
+[11:11:05.254] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:05.530] INFO  [mk_Xanthe] [bot] arrived at (4456,1160,0)
+[11:11:05.530] INFO  [mk_Xanthe] [action] goto finished at (4456,1160,0); target (4456,1160); ARRIVED (off by 0 tile(s))
+[11:11:05.530] LOG   [mk_Xanthe] event goto_done: at=(4456,1160) target=(4456,1160) arrived=1 off=0
+[11:11:05.530] INFO  [mk_Xanthe] [travel] avoiding 4 teleporter pad(s) on this leg
+[11:11:05.530] INFO  [mk_Xanthe] [action] goto (4456,1128) from (4456,1160,0)
+[11:11:05.530] LOG   [mk_Xanthe] event goto_start: target=(4456,1128) from=(4456,1160)
+[11:11:05.530] INFO  [mk_Xanthe] [bot] running from (4456,1160,0) to (4456,1128)
+[11:11:05.530] INFO  [mk_Xanthe] [bot] planning path to (4456,1128) in background
+[11:11:05.544] INFO  [mk_Xanthe] [bot] replan to (4456,1128): 32 steps in 391.4us
+[11:11:10.285] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:13.239] INFO  [mk_Xanthe] [bot] arrived at (4456,1128,0)
+[11:11:13.239] INFO  [mk_Xanthe] [action] goto finished at (4456,1128,0); target (4456,1128); ARRIVED (off by 0 tile(s))
+[11:11:13.239] LOG   [mk_Xanthe] event goto_done: at=(4456,1128) target=(4456,1128) arrived=1 off=0
+[11:11:13.239] INFO  [mk_Xanthe] [travel] avoiding 4 teleporter pad(s) on this leg
+[11:11:13.239] INFO  [mk_Xanthe] [action] goto (4448,1090) from (4456,1128,0)
+[11:11:13.239] LOG   [mk_Xanthe] event goto_start: target=(4448,1090) from=(4456,1128)
+[11:11:13.239] INFO  [mk_Xanthe] [bot] running from (4456,1128,0) to (4448,1090,z0)
+[11:11:13.239] INFO  [mk_Xanthe] [bot] planning path to (4448,1090) in background
+[11:11:13.301] INFO  [mk_Xanthe] [bot] replan to (4448,1090): 50 steps in 7261.5us
+[11:11:15.291] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:20.341] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:24.652] INFO  [mk_Xanthe] [travel] Guild of Arcane Arts mage ARRIVED at (4451,1086,0)
+[11:11:24.652] LOG   [mk_Xanthe] event travel_done: label='Guild of Arcane Arts mage' ok=1 at=(4451,1086) legs=13 plans=1 why=''
+[11:11:24.683] INFO  [life] training: arrived at 4451,1086 -- asking who is here
+[11:11:24.683] INFO  [mk_Xanthe] [action] scanning nearby mobiles for names
+[11:11:24.683] INFO  [mk_Xanthe] [action] requested 5 paperdoll(s) for trade titles
+[11:11:24.698] INFO  [mk_Xanthe] [mobiles] nearby (13):
+[11:11:24.699] INFO  [mk_Xanthe]   Sabelle 0x00013B43
+[11:11:24.699] INFO  [mk_Xanthe]   Neva 0x000092F4
+[11:11:24.699] INFO  [mk_Xanthe]   Chander 0x000094A9
+[11:11:24.699] INFO  [mk_Xanthe]   Killian 0x00004C79
+[11:11:24.699] INFO  [mk_Xanthe]   Cat 0x00013376
+[11:11:24.699] INFO  [mk_Xanthe]   Ambrose 0x0000E086
+[11:11:24.699] INFO  [mk_Xanthe]   Dog 0x0000D299
+[11:11:24.699] INFO  [mk_Xanthe]   Plover 0x0000D544
+[11:11:24.699] INFO  [mk_Xanthe]   Rat 0x00017072
+[11:11:24.699] INFO  [mk_Xanthe]   Dog 0x0000C6C7
+[11:11:24.699] INFO  [mk_Xanthe]   Skylark 0x00016A68
+[11:11:24.699] INFO  [mk_Xanthe]   Rat 0x00014BA5
+[11:11:24.699] INFO  [mk_Xanthe]   Elvrin 0x00013A62
+[11:11:24.699] INFO  [mk_Xanthe] [0x20] player @(4451,1086,0) facing=4
+[11:11:24.699] INFO  [mk_Xanthe] [0x88] paperdoll 0x0000E086: "Ambrose, the scribe"
+[11:11:24.699] INFO  [mk_Xanthe] [world] Ambrose, the scribe is a scribe at (4449,1096)
+[11:11:24.699] INFO  [mk_Xanthe] [0x20] player @(4451,1086,0) facing=5
+[11:11:24.699] INFO  [mk_Xanthe] [0x88] paperdoll 0x000094A9: "Chander, the mage"
+[11:11:24.699] INFO  [mk_Xanthe] [world] Chander, the mage is a mage at (4444,1091)
+[11:11:24.699] INFO  [mk_Xanthe] [0x20] player @(4451,1086,0) facing=6
+[11:11:24.699] INFO  [mk_Xanthe] [0x88] paperdoll 0x00004C79: "Killian, the mage guildmaster"
+[11:11:24.699] INFO  [mk_Xanthe] [world] Killian, the mage guildmaster is a mage at (4444,1086)
+[11:11:24.699] INFO  [mk_Xanthe] [0x20] player @(4451,1086,0) facing=5
+[11:11:24.699] INFO  [mk_Xanthe] [0x88] paperdoll 0x00013B43: "Sabelle, Apprentice Mage"
+[11:11:24.699] INFO  [mk_Xanthe] [0x20] player @(4451,1086,0) facing=6
+[11:11:24.699] INFO  [mk_Xanthe] [0x88] paperdoll 0x000092F4: "Neva, the alchemist"
+[11:11:24.699] INFO  [mk_Xanthe] [world] Neva, the alchemist is a alchemist at (4445,1085)
+[11:11:25.371] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:27.197] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[11:11:27.197] INFO  [life] training: 'mage' is 7 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[11:11:27.197] INFO  [mk_Xanthe] [travel] mobile 0x00004C79 -> (4444,1086) r=1 from (4451,1086)
+[11:11:27.197] LOG   [mk_Xanthe] event travel_start: label='mobile 0x00004C79' target=(4444,1086) radius=1 from=(4451,1086)
+[11:11:27.197] INFO  [mk_Xanthe] [travel] mode walk             usable   <- chosen
+[11:11:27.197] INFO  [mk_Xanthe] [travel] mode moongate         usable
+[11:11:27.197] INFO  [mk_Xanthe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:11:27.197] INFO  [mk_Xanthe] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:11:27.197] LOG   [mk_Xanthe] event travel_mode: walk
+[11:11:27.197] INFO  [mk_Xanthe] [travel] plan mobile 0x00004C79: ok legs=1 ~7 tiles transit=0 nodes=0
+[11:11:27.257] INFO  [mk_Xanthe] [action] goto finished at (4451,1086,0); target (4448,1090); stopped short (off by 7 tile(s))
+[11:11:27.257] LOG   [mk_Xanthe] event goto_done: at=(4451,1086) target=(4448,1090) arrived=0 off=7
+[11:11:27.258] INFO  [mk_Xanthe] [travel] avoiding 3 teleporter pad(s) on this leg
+[11:11:27.258] INFO  [mk_Xanthe] [action] goto (4444,1086) from (4451,1086,0)
+[11:11:27.258] LOG   [mk_Xanthe] event goto_start: target=(4444,1086) from=(4451,1086)
+[11:11:27.258] INFO  [mk_Xanthe] [bot] running from (4451,1086,0) to (4444,1086,z0)
+[11:11:27.258] INFO  [mk_Xanthe] [bot] planning path to (4444,1086) in background
+[11:11:29.107] INFO  [mk_Xanthe] [action] goto finished at (4451,1086,0); target (4444,1086); stopped short (off by 7 tile(s))
+[11:11:29.107] LOG   [mk_Xanthe] event goto_done: at=(4451,1086) target=(4444,1086) arrived=0 off=7
+[11:11:30.321] INFO  [mk_Xanthe] [travel] avoiding 3 teleporter pad(s) on this leg
+[11:11:30.321] INFO  [mk_Xanthe] [action] goto (4444,1086) from (4451,1086,0)
+[11:11:30.321] LOG   [mk_Xanthe] event goto_start: target=(4444,1086) from=(4451,1086)
+[11:11:30.321] INFO  [mk_Xanthe] [bot] running from (4451,1086,0) to (4444,1086,z0)
+[11:11:30.321] INFO  [mk_Xanthe] [bot] planning path to (4444,1086) in background
+[11:11:30.381] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:30.381] INFO  [mk_Xanthe] [bot] replan to (4444,1086): 31 steps in 4986.1us
+[11:11:30.810] INFO  [mk_Xanthe] [chat ascii] Chander: Aye?
+[11:11:32.148] INFO  [mk_Xanthe] [chat uni  ] : Killian train Meditation
+[11:11:32.148] INFO  [mk_Xanthe] [chat ascii] Killian: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[11:11:35.404] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:35.882] INFO  [mk_Xanthe] [chat ascii] Killian: Let me show you something of how this is done
+[11:11:35.882] INFO  [mk_Xanthe] [chat ascii] Killian: That is all I can teach.
+[11:11:37.131] INFO  [mk_Xanthe] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=12 in 101.1us
+[11:11:38.316] INFO  [mk_Xanthe] [chat ascii] Chander: Aye?
+[11:11:40.406] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:40.866] INFO  [mk_Xanthe] [chat ascii] System: You shove Sabelle out of the way.
+[11:11:40.866] INFO  [mk_Xanthe] [bot] arrived at (4444,1086,0)
+[11:11:40.866] INFO  [mk_Xanthe] [action] goto finished at (4444,1086,0); target (4444,1086); ARRIVED (off by 0 tile(s))
+[11:11:40.866] LOG   [mk_Xanthe] event goto_done: at=(4444,1086) target=(4444,1086) arrived=1 off=0
+[11:11:40.866] INFO  [mk_Xanthe] [travel] mobile 0x00004C79 ARRIVED at (4444,1086,0)
+[11:11:40.866] LOG   [mk_Xanthe] event travel_done: label='mobile 0x00004C79' ok=1 at=(4444,1086) legs=1 plans=1 why=''
+[11:11:40.895] INFO  [life] training: asking the trainer about Meditation
+[11:11:40.895] INFO  [mk_Xanthe] [ACTION] npc_train start
+[11:11:40.895] INFO  [mk_Xanthe] [TRAIN] ask 0x00004C79 say='Killian train Meditation'
+[11:11:40.896] LOG   [mk_Xanthe] event npc_train_ask: Killian train Meditation
+[11:11:40.896] INFO  [mk_Xanthe] [chat uni  ] : Killian train Meditation
+[11:11:40.896] INFO  [mk_Xanthe] [chat ascii] Killian: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[11:11:40.896] INFO  [mk_Xanthe] [ACTION_RESULT] npc_train success (1ms) For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[11:11:40.896] LOG   [mk_Xanthe] event action_result: npc_train success took=1ms For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[11:11:43.441] INFO  [mk_Xanthe] [action] open backpack
+[11:11:43.441] INFO  [mk_Xanthe] [backpack] opening 0x40013EF0
+[11:11:43.442] INFO  [mk_Xanthe] [0x24] open container 0x40013EF0 gump=60
+[11:11:43.442] INFO  [mk_Xanthe] [0x3C] container contents: 9 item(s)
+[11:11:43.858] INFO  [mk_Xanthe] [chat ascii] Neva: Aye?
+[11:11:44.699] INFO  [life] training: paying the quoted 300 gold for Meditation (purse 1000)
+[11:11:44.699] INFO  [mk_Xanthe] [GIVE] 0x40013EE0 x300 -> 0x00004C79 (gold 1000)
+[11:11:44.699] INFO  [mk_Xanthe] [ITEM] drag serial=0x40013EE0 amount=300
+[11:11:44.699] INFO  [mk_Xanthe] [ITEM] drop container=0x00004C79
+[11:11:44.699] LOG   [mk_Xanthe] event npc_give: item=0x40013EE0 amount=300 to=0x00004C79
+[11:11:45.425] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:48.700] INFO  [mk_Xanthe] [action] requesting the skill list
+[11:11:50.436] INFO  [mk_Xanthe] [survival] hp 32/32 (100%) -> fight
+[11:11:51.995] INFO  [life] session_end_requested reason="session time limit reached"
+[11:11:52.011] INFO  [life] wind-down: arrived somewhere safe at 4444,1086
+[11:11:52.072] INFO  [life] session_summary duration=180s goals=0/1 gold=1000->1000 skills=100.0->100.0 logs=+0 deaths=0 places=1 suppliers=0
+[11:11:52.072] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 | training=1(100%) | TRAIN_AT_NPC=1(100%)
+[11:11:52.075] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh06.xanthe/state.json
+[11:11:52.075] INFO  [life] logging out
+[11:11:52.075] INFO  [mk_Xanthe] [action] logout requested
+[11:11:52.075] LOG   [mk_Xanthe] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[11:11:52.088] INFO  [mk_Xanthe] [0xD1] logout acknowledged (accepted=1)
+[11:11:52.088] LOG   [mk_Xanthe] event logout_ack: accepted
+[11:11:52.088] INFO  [mk_Xanthe] [net] closing connection (logout acknowledged)
+[11:11:52.088] LOG   [mk_Xanthe] event logout_complete: acked

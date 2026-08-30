@@ -1,0 +1,173 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[15:51:11.723] WARN  [n10_Thessaly] [0x21] move REJECTED seq=5; server says (634,857,0) facing=2
+[15:51:33.078] WARN  [n10_Thessaly] [0x21] move REJECTED seq=46; server says (687,843,0) facing=2
+[15:51:50.258] WARN  [n10_Thessaly] [0x21] move REJECTED seq=12; server says (729,799,0) facing=0
+[15:54:22.626] WARN  [n10_Thessaly] [0x21] move REJECTED seq=38; server says (1432,1666,10) facing=1
+[15:54:23.375] WARN  [n10_Thessaly] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[15:55:16.931] WARN  [n10_Thessaly] [bot] 0x20 resync; aborting path
+[15:55:21.157] WARN  [n10_Thessaly] [bot] no path to (1487,1548) avoiding 0 block(s); stopping (search 1642175.7us)
+[15:55:21.157] WARN  [n10_Thessaly] [bot] start (1490,1555,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 833 item(s), 7 mobile(s))
+[15:55:22.462] WARN  [n10_Thessaly] [bot] goal (1487,1548) is not walkable; skipping A* and stopping
+[15:55:25.070] WARN  [n10_Thessaly] [bot] no path to (1488,1551) avoiding 0 block(s); stopping (search 2026087.8us)
+[15:55:25.070] WARN  [n10_Thessaly] [bot] start (1490,1555,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 833 item(s), 7 mobile(s))
+[15:56:28.360] WARN  [n10_Thessaly] [ACTION_RESULT] move_item timeout (no server confirmation)
+[15:56:28.360] WARN  [n10_Thessaly] [ITEM] drag of 0x40012B19 abandoned after timeout
+[15:56:34.982] WARN  [n10_Thessaly] [ACTION_RESULT] move_item timeout (no server confirmation)
+[15:56:34.982] WARN  [n10_Thessaly] [ITEM] drag of 0x40012B18 abandoned after timeout
+[15:56:49.531] WARN  [n10_Thessaly] [0x21] move REJECTED seq=13; server says (1488,1579,27) facing=4
+[15:56:50.239] WARN  [n10_Thessaly] [0x21] move REJECTED seq=0; server says (1488,1579,27) facing=4
+[15:58:14.611] WARN  [n10_Thessaly] [0x21] move REJECTED seq=44; server says (1559,1689,30) facing=1
+[15:58:15.362] WARN  [n10_Thessaly] [0x21] move REJECTED seq=0; server says (1559,1689,30) facing=1
+[15:58:17.336] WARN  [n10_Thessaly] [bot] no path to (1560,1688) avoiding 1 block(s); stopping (search 1943365.9us)
+[15:58:17.336] WARN  [n10_Thessaly] [bot] start (1559,1689,30) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 1163 item(s), 1 mobile(s))
+[15:58:37.206] WARN  [n10_Thessaly] [ACTION_RESULT] cast_spell server_failure (0ms) The spell is not in your spellbook.
+[15:59:17.427] WARN  [n10_Thessaly] [0x21] move REJECTED seq=33; server says (1532,1670,20) facing=5
+[15:59:18.180] WARN  [n10_Thessaly] [0x21] move REJECTED seq=0; server says (1532,1670,20) facing=5
+[15:59:54.383] WARN  [n10_Thessaly] [bot] 0x20 resync; aborting path
+[16:00:05.924] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (1ms) You can't reach the Vendor
+[16:00:14.976] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:00:24.038] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (15ms) You can't reach the Vendor
+[16:00:33.065] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:00:42.097] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (1ms) You can't reach the Vendor
+[16:00:51.124] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (1ms) You can't reach the Vendor
+[16:01:00.162] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (16ms) You can't reach the Vendor
+[16:01:09.156] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (1ms) You can't reach the Vendor
+[16:01:20.798] WARN  [n10_Thessaly] [bot] no path to (1454,1618) avoiding 0 block(s); stopping (search 2576352.3us)
+[16:01:20.798] WARN  [n10_Thessaly] [bot] start (1455,1614,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1252 item(s), 3 mobile(s))
+[16:01:24.321] WARN  [n10_Thessaly] [bot] no path to (1454,1618) avoiding 0 block(s); stopping (search 2177261.9us)
+[16:01:24.321] WARN  [n10_Thessaly] [bot] start (1455,1614,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1252 item(s), 3 mobile(s))
+[16:01:29.682] WARN  [n10_Thessaly] [bot] no path to (1454,1618) avoiding 0 block(s); stopping (search 2496782.4us)
+[16:01:29.682] WARN  [n10_Thessaly] [bot] start (1455,1614,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1252 item(s), 3 mobile(s))
+[16:01:33.357] WARN  [n10_Thessaly] [bot] no path to (1454,1618) avoiding 0 block(s); stopping (search 2370082.4us)
+[16:01:33.357] WARN  [n10_Thessaly] [bot] start (1455,1614,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1252 item(s), 3 mobile(s))
+[16:01:39.804] WARN  [n10_Thessaly] [bot] no path to (1454,1618) avoiding 0 block(s); stopping (search 2125925.7us)
+[16:01:39.804] WARN  [n10_Thessaly] [bot] start (1455,1614,20) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1252 item(s), 3 mobile(s))
+[16:01:42.826] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (17ms) You can't reach the Vendor
+[16:01:54.052] WARN  [n10_Thessaly] [bot] no path to (1453,1613) avoiding 0 block(s); stopping (search 2129996.3us)
+[16:01:54.052] WARN  [n10_Thessaly] [bot] start (1454,1618,20) exits: open=3 terrain=5 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1256 item(s), 3 mobile(s))
+[16:02:33.786] WARN  [n10_Thessaly] [0x21] move REJECTED seq=10; server says (1460,1611,20) facing=1
+[16:02:33.786] WARN  [n10_Thessaly] [bot] 0x20 resync; aborting path
+[16:02:56.092] WARN  [n10_Thessaly] [0x21] move REJECTED seq=20; server says (1488,1582,24) facing=0
+[16:02:56.825] WARN  [n10_Thessaly] [0x21] move REJECTED seq=0; server says (1488,1582,24) facing=0
+[16:03:16.050] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:03:26.052] WARN  [n10_Thessaly] [policy] REFUSED NPC purchase of unmapped item (0x1F33): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:26.052] WARN  [n10_Thessaly] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:26.052] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:37.597] WARN  [n10_Thessaly] [policy] REFUSED NPC purchase of unmapped item (0x1F33): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:37.598] WARN  [n10_Thessaly] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:37.598] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:49.184] WARN  [n10_Thessaly] [policy] REFUSED NPC purchase of unmapped item (0x1F33): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:49.184] WARN  [n10_Thessaly] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:49.184] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:00.733] WARN  [n10_Thessaly] [policy] REFUSED NPC purchase of unmapped item (0x1F33): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:00.733] WARN  [n10_Thessaly] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:00.733] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:12.279] WARN  [n10_Thessaly] [policy] REFUSED NPC purchase of unmapped item (0x1F33): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:12.279] WARN  [n10_Thessaly] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:12.279] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:43.406] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:04:49.535] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:04:55.639] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:01.725] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:07.842] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:32.119] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:38.197] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:44.264] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:50.401] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:56.524] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:05:58.534] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:06:07.592] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:06:38.700] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:06:44.763] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:06:49.359] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:06:54.404] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:06:59.436] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:07:04.507] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:07:09.611] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:07:14.690] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (17ms) item landed in a different container
+[16:07:19.743] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:07:24.795] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:07:29.830] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:07:34.895] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:07:39.892] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:07:44.993] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:07:50.032] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:07:55.089] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:08:00.149] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:08:05.249] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:08:10.294] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:08:15.356] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:08:20.390] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:08:25.479] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:08:30.552] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:08:35.582] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:08:40.673] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:08:45.674] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:08:50.714] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:08:55.807] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:00.812] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:05.861] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:09:10.914] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:09:16.023] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:21.133] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:26.145] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:31.166] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:09:36.201] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:09:41.283] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (17ms) item landed in a different container
+[16:09:46.356] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:09:51.443] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:09:56.505] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (17ms) item landed in a different container
+[16:10:01.571] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (17ms) item landed in a different container
+[16:10:06.646] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:11.712] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:16.759] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:21.782] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:10:26.866] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:31.936] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:10:37.049] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:42.125] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:10:47.224] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:10:52.285] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:10:57.341] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:11:02.433] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (15ms) item landed in a different container
+[16:11:07.507] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:11:12.593] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:11:17.621] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (1ms) item landed in a different container
+[16:11:22.714] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:11:27.783] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:11:32.880] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:11:37.914] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (0ms) item landed in a different container
+[16:11:43.002] WARN  [n10_Thessaly] [ACTION_RESULT] move_item server_failure (16ms) item landed in a different container
+[16:11:52.068] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:11:58.147] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:12:04.284] WARN  [n10_Thessaly] [ACTION_RESULT] use_object timeout (no server confirmation)
+[16:12:14.394] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:12:23.470] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:12:24.466] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:12:41.552] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:12:50.549] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:12:59.602] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:08.664] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:17.754] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:26.788] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:35.816] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:44.899] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:13:53.889] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:02.969] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:11.969] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:21.039] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:30.068] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:39.090] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:48.072] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:14:49.100] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (0ms) You can't reach the Vendor
+[16:15:06.156] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:15:15.196] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:15:24.203] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:15:25.199] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy rejected (16ms) You can't reach the Vendor
+[16:15:42.232] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:15:51.218] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:16:00.244] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:16:09.312] WARN  [n10_Thessaly] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:17:07.844] WARN  [n10_Thessaly] [0x21] move REJECTED seq=37; server says (1439,1693,0) facing=7
+[16:17:07.859] WARN  [n10_Thessaly] [bot] 0x20 resync; aborting path

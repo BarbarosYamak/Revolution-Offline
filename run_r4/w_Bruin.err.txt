@@ -1,0 +1,55 @@
+start: Bruin is a full_crafter and lives in Minoc -> starting city index 1
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[22:06:20.723] WARN  [w_Bruin] [bot] 0x20 resync; aborting path
+[22:06:25.135] WARN  [w_Bruin] [bot] no path to (539,967) avoiding 0 block(s); stopping (search 1276771.9us)
+[22:06:25.135] WARN  [w_Bruin] [bot] start (544,962,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[22:06:27.742] WARN  [w_Bruin] [bot] no path to (539,967) avoiding 0 block(s); stopping (search 1311479.6us)
+[22:06:27.742] WARN  [w_Bruin] [bot] start (544,962,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[22:06:30.674] WARN  [w_Bruin] [bot] no path to (539,967) avoiding 0 block(s); stopping (search 1599392.3us)
+[22:06:30.674] WARN  [w_Bruin] [bot] start (544,962,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[22:06:35.442] WARN  [w_Bruin] [bot] no path to (539,967) avoiding 0 block(s); stopping (search 1885658.2us)
+[22:06:35.442] WARN  [w_Bruin] [bot] start (544,962,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[22:06:39.716] WARN  [w_Bruin] [bot] no path to (542,968) avoiding 0 block(s); stopping (search 1335077.7us)
+[22:06:39.716] WARN  [w_Bruin] [bot] start (544,966,0) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 410 item(s), 6 mobile(s))
+[22:06:44.099] WARN  [w_Bruin] [bot] no path to (542,968) avoiding 0 block(s); stopping (search 1498457.0us)
+[22:06:44.099] WARN  [w_Bruin] [bot] start (544,966,0) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 410 item(s), 6 mobile(s))
+[22:06:56.777] WARN  [w_Bruin] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[22:10:50.702] WARN  [w_Bruin] [bot] THREAT (HP 50 -> 45): halting travel (TODO engage/flee/recall)
+[22:10:51.986] WARN  [w_Bruin] [bot] THREAT (HP 40 -> 34): halting travel (TODO engage/flee/recall)
+[22:10:56.117] WARN  [w_Bruin] [bot] THREAT (HP 34 -> 29): halting travel (TODO engage/flee/recall)
+[22:11:00.089] WARN  [w_Bruin] [bot] 0x20 resync; aborting path
+[22:11:10.766] WARN  [w_Bruin] [bot] THREAT (HP 30 -> 24): halting travel (TODO engage/flee/recall)
+[22:11:17.923] WARN  [w_Bruin] [bot] THREAT (HP 24 -> 18): halting travel (TODO engage/flee/recall)
+[22:11:28.457] WARN  [w_Bruin] [bot] THREAT (HP 18 -> 13): halting travel (TODO engage/flee/recall)
+[22:11:36.595] WARN  [w_Bruin] [0x21] move REJECTED seq=35; server says (812,1640,0) facing=5
+[22:11:37.350] WARN  [w_Bruin] [0x21] move REJECTED seq=0; server says (812,1640,0) facing=5
+[22:11:37.812] WARN  [w_Bruin] [bot] THREAT (HP 13 -> 6): halting travel (TODO engage/flee/recall)
+[22:12:57.166] WARN  [w_Bruin] [bot] THREAT (HP 8 -> 2): halting travel (TODO engage/flee/recall)
+[22:16:11.858] WARN  [w_Bruin] [bot] 0x20 resync; aborting path
+[22:17:33.098] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:34.376] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:35.743] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:38.545] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:39.819] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:41.126] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:45.525] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:46.815] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:48.137] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:54.028] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:55.323] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:56.619] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:17:56.681] WARN  [w_Bruin] [travel] route exhausted at (568,904,0); trying to reach (552,888,0) to get somewhere routable (escape 1/3)
+[22:18:04.109] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:05.395] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:06.711] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:09.578] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:10.931] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:12.203] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:16.513] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:17.815] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:19.089] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:24.927] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:26.188] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:27.467] WARN  [w_Bruin] [bot] goal (535,867) is not walkable; skipping A* and stopping
+[22:18:27.529] WARN  [w_Bruin] [travel] route exhausted at (552,888,0); trying to reach (536,872,0) to get somewhere routable (escape 2/3)

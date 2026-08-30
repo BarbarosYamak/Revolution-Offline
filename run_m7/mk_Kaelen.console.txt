@@ -1,0 +1,445 @@
+[11:08:51.968] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh07' char=Kaelen tag='mk_Kaelen'
+[11:08:51.969] LOG   [mk_Kaelen] event session_start: text log opened
+[11:08:51.969] LOG   [mk_Kaelen] event net_connect_begin: connect 127.0.0.1:2593
+[11:08:51.969] INFO  [mk_Kaelen] [net] connecting to 127.0.0.1:2593 ...
+[11:08:51.970] LOG   [mk_Kaelen] event net_connected: connect 127.0.0.1:2593
+[11:08:51.970] INFO  [mk_Kaelen] [net] connected.
+[11:08:51.970] INFO  [mk_Kaelen] [seed] sent 0x7F000001 (plaintext)
+[11:08:51.970] LOG   [mk_Kaelen] event seed_out: 0x7F000001 hex=7f000001
+[11:08:51.970] INFO  [life] no prior state for revolutionfresh07.kaelen: a new Fencer
+[11:08:51.970] INFO  [life] creation request: skill 42 50.0 + Tactics 50.0, stats 32/40/8 = 80
+[11:08:51.970] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[11:08:51.970] INFO  [life] home: Kaelen lives in Britain
+[11:08:51.970] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[11:08:51.970] INFO  [mk_Kaelen] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[11:08:51.973] INFO  [mk_Kaelen] [0xA8] 1 server(s):
+[11:08:51.973] INFO  [mk_Kaelen]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[11:08:51.989] INFO  [mk_Kaelen] [0x8C] game server = 127.0.0.1:2593  seed=0xD25C679C
+[11:08:51.989] LOG   [mk_Kaelen] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD25C679C
+[11:08:51.989] INFO  [mk_Kaelen] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:08:51.989] LOG   [mk_Kaelen] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:08:51.989] INFO  [mk_Kaelen] [0xB9] server features = 0x0005
+[11:08:51.989] INFO  [mk_Kaelen] [0xA9] 5 slot(s) (populated 0):
+[11:08:51.989] INFO  [mk_Kaelen]   [0] <empty>
+[11:08:51.989] INFO  [mk_Kaelen]   [1] <empty>
+[11:08:51.989] INFO  [mk_Kaelen]   [2] <empty>
+[11:08:51.989] INFO  [mk_Kaelen]   [3] <empty>
+[11:08:51.989] INFO  [mk_Kaelen]   [4] <empty>
+[11:08:51.989] INFO  [mk_Kaelen] [0x00] requested skills 42:50 27:50 48:0
+[11:08:51.989] INFO  [mk_Kaelen] [0x00] requested stats STR 32 DEX 40 INT 8
+[11:08:51.989] INFO  [mk_Kaelen] [0x00] creating character 'Kaelen' in slot 0
+[11:08:51.989] LOG   [mk_Kaelen] event char_create_sent: Kaelen
+[11:08:51.997] INFO  [mk_Kaelen] [0x1B] serial=0x00013DF0 body=0x0190 pos=(633,858,0)
+[11:08:51.997] LOG   [mk_Kaelen] event login_confirm: serial=0x00013DF0 body=0x0190 pos=(633,858,0)
+[11:08:51.997] INFO  [mk_Kaelen] [0x20] player @(633,858,0) facing=3
+[11:08:51.997] INFO  [mk_Kaelen] [0x55] login complete — entering world
+[11:08:51.997] LOG   [mk_Kaelen] event in_world: 0x55 received
+[11:08:51.997] INFO  [mk_Kaelen] [backpack] opening 0x40013DED
+[11:08:51.997] INFO  [mk_Kaelen] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:08:51.997] INFO  [mk_Kaelen] [chat ascii] System: There are 7 other players here.
+[11:08:51.997] INFO  [mk_Kaelen] [chat ascii] System: You are under the protection of the town guards
+[11:08:52.001] INFO  [mk_Kaelen] [action] requesting the skill list
+[11:08:52.001] INFO  [life] in world; asked the server for the skill list
+[11:08:52.004] INFO  [mk_Kaelen] [0x24] open container 0x40013DED gump=60
+[11:08:52.004] INFO  [mk_Kaelen] [0x3C] container contents: 5 item(s)
+[11:08:52.004] LOG   [mk_Kaelen] event backpack_contents: serial=0x40013DED items=5
+[11:08:52.021] INFO  [mk_Kaelen] [chat ascii] System: Torvald has arrived in Yew.
+[11:08:52.069] INFO  [mk_Kaelen] [chat ascii] System: Aldwin has arrived in Yew.
+[11:08:52.069] INFO  [mk_Kaelen] [chat ascii] System: Rhalvar has arrived in Yew.
+[11:08:52.096] INFO  [mk_Kaelen] [chat ascii] System: Ysolde has arrived in Yew.
+[11:08:52.124] INFO  [mk_Kaelen] [chat ascii] System: Sabelle has arrived in Yew.
+[11:08:52.148] INFO  [mk_Kaelen] [chat ascii] System: Ilyandra has arrived in Yew.
+[11:08:52.173] INFO  [mk_Kaelen] [chat ascii] System: Elvrin has arrived in Yew.
+[11:08:52.200] INFO  [mk_Kaelen] [chat ascii] System: Marta has arrived in Yew.
+[11:08:52.226] INFO  [mk_Kaelen] [chat ascii] System: Bruin has arrived in Yew.
+[11:08:52.251] INFO  [mk_Kaelen] [chat ascii] System: Corwin has arrived in Yew.
+[11:08:52.280] INFO  [mk_Kaelen] [chat ascii] System: Beleth has arrived in Yew.
+[11:08:52.307] INFO  [mk_Kaelen] [chat ascii] System: Nerys has arrived in Yew.
+[11:08:52.327] INFO  [mk_Kaelen] [chat ascii] System: Kestrel has arrived in Yew.
+[11:08:54.581] INFO  [mk_Kaelen] [bot] world data loaded (0 blacklisted spot(s)).
+[11:08:54.581] INFO  [life] reconciliation: first ever login, 11 field(s) differed
+[11:08:54.581] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[11:08:54.581] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[11:08:54.581] INFO  [life]   dex          persisted=0          server=40         -> server value accepted
+[11:08:54.581] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[11:08:54.581] INFO  [life]   skill_42     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.581] INFO  [life]   skill_27     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.581] INFO  [life]   skill_1      persisted=0.0        server=11.6       -> server value accepted
+[11:08:54.581] INFO  [life]   skill_17     persisted=0.0        server=0.3        -> server value accepted
+[11:08:54.582] INFO  [life]   skill_30     persisted=0.0        server=13.9       -> server value accepted
+[11:08:54.582] INFO  [life]   skill_5      persisted=0.0        server=17.1       -> server value accepted
+[11:08:54.582] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[11:08:54.582] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:08:54.582] INFO  [mk_Kaelen] [survival] on
+[11:08:54.582] LOG   [mk_Kaelen] event survival_mode: on
+[11:08:54.584] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:08:54.584] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:08:54.636] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[11:08:54.636] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Anatomy 0.45) NeedTraining(Anatomy 0.37) NeedTraining(skill 5 0.36) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[11:08:54.636] INFO  [life]   score=90.0
+[11:08:54.636] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[11:08:54.636] INFO  [life]   reason: Anatomy 11.6 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[11:08:54.636] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[11:08:54.636] INFO  [life] training: looking for a 'healer' to teach Anatomy (trip 1)
+[11:08:54.636] INFO  [mk_Kaelen] [travel] Britain healer -> (1471,1611) r=5 from (633,858)
+[11:08:54.636] LOG   [mk_Kaelen] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(633,858)
+[11:08:54.636] INFO  [mk_Kaelen] [travel] mode moongate         usable   <- chosen
+[11:08:54.636] INFO  [mk_Kaelen] [travel] mode walk             usable
+[11:08:54.636] INFO  [mk_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:08:54.636] INFO  [mk_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:08:54.636] LOG   [mk_Kaelen] event travel_mode: moongate
+[11:08:54.636] INFO  [mk_Kaelen] [travel] plan Britain healer: ok legs=19 ~760 tiles transit=1 nodes=916
+[11:08:54.652] INFO  [mk_Kaelen] [action] goto (664,856) from (633,858,0)
+[11:08:54.652] LOG   [mk_Kaelen] event goto_start: target=(664,856) from=(633,858)
+[11:08:54.652] INFO  [mk_Kaelen] [bot] running from (633,858,0) to (664,856)
+[11:08:54.652] INFO  [mk_Kaelen] [bot] planning path to (664,856) in background
+[11:08:54.711] INFO  [mk_Kaelen] [bot] replan to (664,856): 32 steps in 9927.5us
+[11:08:55.965] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=28 in 44.2us
+[11:08:56.180] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=27 in 32.5us
+[11:08:56.397] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=28 in 82.2us
+[11:08:56.831] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=27 in 72.7us
+[11:08:57.046] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 93.3us
+[11:08:57.260] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=25 in 84.6us
+[11:08:57.474] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 50.1us
+[11:08:57.690] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 70.4us
+[11:08:57.903] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=22 in 89.5us
+[11:08:58.115] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 88.3us
+[11:08:58.328] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 90.5us
+[11:08:58.543] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=18 in 41.0us
+[11:08:58.970] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=18 in 82.1us
+[11:08:59.400] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 76.1us
+[11:08:59.599] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:08:59.615] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=15 in 55.3us
+[11:09:00.029] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=13 in 49.4us
+[11:09:00.458] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=12 in 85.1us
+[11:09:00.916] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=11 in 114.7us
+[11:09:01.176] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=9 in 94.4us
+[11:09:01.606] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=7 in 59.6us
+[11:09:01.850] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=8 in 96.7us
+[11:09:02.310] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=5 in 50.5us
+[11:09:02.725] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=3 new segment=3 path=3 in 77.0us
+[11:09:03.975] INFO  [mk_Kaelen] [bot] arrived at (664,856,0)
+[11:09:03.976] INFO  [mk_Kaelen] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[11:09:03.976] LOG   [mk_Kaelen] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[11:09:03.976] INFO  [mk_Kaelen] [action] goto (696,840) from (664,856,0)
+[11:09:03.976] LOG   [mk_Kaelen] event goto_start: target=(696,840) from=(664,856)
+[11:09:03.976] INFO  [mk_Kaelen] [bot] running from (664,856,0) to (696,840)
+[11:09:03.976] INFO  [mk_Kaelen] [bot] planning path to (696,840) in background
+[11:09:04.052] INFO  [mk_Kaelen] [bot] replan to (696,840): 35 steps in 15421.6us
+[11:09:04.608] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:07.660] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=24 in 52.8us
+[11:09:08.151] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=23 in 41.3us
+[11:09:09.283] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=19 in 148.3us
+[11:09:09.617] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:09.894] INFO  [mk_Kaelen] [chat ascii] System: You have left the protection of the town guards
+[11:09:09.894] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=18 in 103.3us
+[11:09:10.137] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=17 in 45.6us
+[11:09:11.013] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=14 in 41.3us
+[11:09:11.876] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=10 in 60.7us
+[11:09:13.215] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=7 in 89.9us
+[11:09:14.674] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:14.676] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=3 new segment=3 path=3 in 66.8us
+[11:09:15.319] INFO  [mk_Kaelen] [chat ascii] System: You shove Brannoc out of the way.
+[11:09:15.319] INFO  [mk_Kaelen] [bot] arrived at (696,840,0)
+[11:09:15.319] INFO  [mk_Kaelen] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[11:09:15.319] LOG   [mk_Kaelen] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[11:09:15.319] INFO  [mk_Kaelen] [action] goto (728,808) from (696,840,0)
+[11:09:15.319] LOG   [mk_Kaelen] event goto_start: target=(728,808) from=(696,840)
+[11:09:15.319] INFO  [mk_Kaelen] [bot] running from (696,840,0) to (728,808)
+[11:09:15.319] INFO  [mk_Kaelen] [bot] planning path to (728,808) in background
+[11:09:15.334] INFO  [mk_Kaelen] [bot] replan to (728,808): 40 steps in 11730.6us
+[11:09:15.548] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=41 in 110.7us
+[11:09:16.006] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=40 in 80.0us
+[11:09:16.264] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=40 in 62.7us
+[11:09:16.523] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=39 in 74.2us
+[11:09:16.723] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=38 in 64.7us
+[11:09:16.969] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=37 in 62.2us
+[11:09:17.228] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=36 in 50.4us
+[11:09:17.872] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=33 in 89.1us
+[11:09:18.760] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=32 in 181.5us
+[11:09:19.189] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=31 in 145.9us
+[11:09:19.405] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=29 in 66.1us
+[11:09:19.680] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:19.819] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=28 in 57.9us
+[11:09:20.018] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=28 in 125.4us
+[11:09:20.891] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=27 in 119.1us
+[11:09:21.094] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 56.6us
+[11:09:24.681] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:24.712] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 37.0us
+[11:09:25.384] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=14 in 109.1us
+[11:09:25.384] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=16 in 254.9us
+[11:09:26.014] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=2 path=10 in 39.6us
+[11:09:26.014] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 122.8us
+[11:09:26.429] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=9 in 41.5us
+[11:09:26.430] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 52.2us
+[11:09:26.643] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=10 in 167.0us
+[11:09:27.688] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=5 in 66.8us
+[11:09:29.619] INFO  [mk_Kaelen] [bot] arrived at (728,808,0)
+[11:09:29.620] INFO  [mk_Kaelen] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[11:09:29.620] LOG   [mk_Kaelen] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[11:09:29.620] INFO  [mk_Kaelen] [action] goto (760,776) from (728,808,0)
+[11:09:29.620] LOG   [mk_Kaelen] event goto_start: target=(760,776) from=(728,808)
+[11:09:29.620] INFO  [mk_Kaelen] [bot] running from (728,808,0) to (760,776)
+[11:09:29.620] INFO  [mk_Kaelen] [bot] planning path to (760,776) in background
+[11:09:29.696] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:29.696] INFO  [mk_Kaelen] [bot] replan to (760,776): 43 steps in 20397.7us
+[11:09:34.732] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:36.325] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=22 in 43.6us
+[11:09:36.770] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=20 in 46.8us
+[11:09:37.211] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=20 in 61.4us
+[11:09:37.638] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=18 in 82.8us
+[11:09:38.068] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=17 in 83.5us
+[11:09:38.280] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=16 in 55.7us
+[11:09:38.494] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 94.0us
+[11:09:38.707] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 77.8us
+[11:09:39.121] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 88.1us
+[11:09:39.333] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=14 in 148.1us
+[11:09:39.745] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:39.746] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=11 in 49.2us
+[11:09:40.021] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=11 in 107.7us
+[11:09:40.233] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=10 in 66.7us
+[11:09:44.241] INFO  [mk_Kaelen] [bot] arrived at (760,776,0)
+[11:09:44.241] INFO  [mk_Kaelen] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[11:09:44.241] LOG   [mk_Kaelen] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[11:09:44.241] INFO  [mk_Kaelen] [action] goto (776,760) from (760,776,0)
+[11:09:44.241] LOG   [mk_Kaelen] event goto_start: target=(776,760) from=(760,776)
+[11:09:44.241] INFO  [mk_Kaelen] [bot] running from (760,776,0) to (776,760)
+[11:09:44.241] INFO  [mk_Kaelen] [bot] planning path to (776,760) in background
+[11:09:44.257] INFO  [mk_Kaelen] [bot] replan to (776,760): 20 steps in 4074.6us
+[11:09:44.746] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:49.792] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:50.316] INFO  [mk_Kaelen] [bot] arrived at (776,760,0)
+[11:09:50.316] INFO  [mk_Kaelen] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[11:09:50.316] LOG   [mk_Kaelen] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[11:09:50.316] INFO  [mk_Kaelen] [action] goto (771,752) from (776,760,0)
+[11:09:50.316] LOG   [mk_Kaelen] event goto_start: target=(771,752) from=(776,760)
+[11:09:50.316] INFO  [mk_Kaelen] [bot] running from (776,760,0) to (771,752)
+[11:09:50.316] INFO  [mk_Kaelen] [bot] planning path to (771,752) in background
+[11:09:50.331] INFO  [mk_Kaelen] [bot] replan to (771,752): 9 steps in 184.6us
+[11:09:50.562] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 124.0us
+[11:09:54.550] INFO  [mk_Kaelen] [gump] 0x400028B7 context=0x80A003FB: 13 option(s), 15 text(s)
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   button 1000 = 'OKAY'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   button 0 = 'CANCEL'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   button 1 = 'Felucca'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 1 = 'Moonglow'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 2 = 'Britain'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 3 = 'Jhelom'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 4 = 'Yew'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 5 = 'New Magincia'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 6 = 'Minoc'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 7 = 'Trinsic'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 8 = 'Skara Brae'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 9 = 'Buccaneer's Den'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 0 = 'Pick your destination:'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 1 = 'OKAY'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 2 = 'CANCEL'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 3 = 'Felucca'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 4 = 'Felucca'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 5 = 'Moonglow'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 6 = 'Britain'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 7 = 'Jhelom'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 8 = 'Yew'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 9 = 'New Magincia'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 10 = 'Minoc'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 11 = 'Trinsic'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 12 = 'Skara Brae'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 13 = 'Buccaneer's Den'
+[11:09:54.550] INFO  [mk_Kaelen] [gump]   text 14 = 'Ocllo (Newplayers)'
+[11:09:54.550] LOG   [mk_Kaelen] event gump_open: serial=0x400028B7 context=0x80A003FB options=13
+[11:09:54.550] INFO  [mk_Kaelen] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[11:09:54.550] LOG   [mk_Kaelen] event moongate_use: destination='Britain' choice=2 button=1000
+[11:09:54.550] INFO  [mk_Kaelen] [bot] arrived at (771,752,5)
+[11:09:54.550] INFO  [mk_Kaelen] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[11:09:54.550] LOG   [mk_Kaelen] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[11:09:54.550] INFO  [mk_Kaelen] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[11:09:54.564] INFO  [mk_Kaelen] [0x20] player @(1336,1997,5) facing=7
+[11:09:54.564] INFO  [mk_Kaelen] [0x20] player @(1336,1997,5) facing=7
+[11:09:54.564] INFO  [mk_Kaelen] [chat ascii] System: You can't see the target
+[11:09:54.627] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:09:54.809] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:09:54.995] INFO  [mk_Kaelen] [action] goto (1336,1960) from (1336,1997,5)
+[11:09:54.995] LOG   [mk_Kaelen] event goto_start: target=(1336,1960) from=(1336,1997)
+[11:09:54.995] INFO  [mk_Kaelen] [bot] running from (1336,1997,5) to (1336,1960)
+[11:09:54.995] INFO  [mk_Kaelen] [bot] planning path to (1336,1960) in background
+[11:09:55.057] INFO  [mk_Kaelen] [bot] replan to (1336,1960): 37 steps in 15614.0us
+[11:09:55.318] INFO  [mk_Kaelen] [chat ascii] System: You have been revealed
+[11:09:59.564] INFO  [mk_Kaelen] [chat ascii] System: World save in 10 seconds
+[11:09:59.824] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:04.884] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:07.260] INFO  [mk_Kaelen] [bot] arrived at (1336,1960,0)
+[11:10:07.260] INFO  [mk_Kaelen] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[11:10:07.260] LOG   [mk_Kaelen] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[11:10:07.260] INFO  [mk_Kaelen] [action] goto (1336,1928) from (1336,1960,0)
+[11:10:07.260] LOG   [mk_Kaelen] event goto_start: target=(1336,1928) from=(1336,1960)
+[11:10:07.260] INFO  [mk_Kaelen] [bot] running from (1336,1960,0) to (1336,1928)
+[11:10:07.260] INFO  [mk_Kaelen] [bot] planning path to (1336,1928) in background
+[11:10:07.320] INFO  [mk_Kaelen] [bot] replan to (1336,1928): 33 steps in 8043.0us
+[11:10:09.564] INFO  [mk_Kaelen] [chat ascii] System: World save has been initiated.
+[11:10:09.937] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:14.981] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:20.026] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:20.793] INFO  [mk_Kaelen] [bot] arrived at (1336,1928,0)
+[11:10:20.793] INFO  [mk_Kaelen] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[11:10:20.793] LOG   [mk_Kaelen] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[11:10:20.793] INFO  [mk_Kaelen] [action] goto (1336,1896) from (1336,1928,0)
+[11:10:20.793] LOG   [mk_Kaelen] event goto_start: target=(1336,1896) from=(1336,1928)
+[11:10:20.793] INFO  [mk_Kaelen] [bot] running from (1336,1928,0) to (1336,1896)
+[11:10:20.793] INFO  [mk_Kaelen] [bot] planning path to (1336,1896) in background
+[11:10:20.809] INFO  [mk_Kaelen] [bot] replan to (1336,1896): 32 steps in 10138.1us
+[11:10:25.035] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:30.085] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:31.575] INFO  [mk_Kaelen] [bot] arrived at (1336,1896,0)
+[11:10:31.575] INFO  [mk_Kaelen] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[11:10:31.575] LOG   [mk_Kaelen] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[11:10:31.575] INFO  [mk_Kaelen] [action] goto (1336,1864) from (1336,1896,0)
+[11:10:31.575] LOG   [mk_Kaelen] event goto_start: target=(1336,1864) from=(1336,1896)
+[11:10:31.575] INFO  [mk_Kaelen] [bot] running from (1336,1896,0) to (1336,1864)
+[11:10:31.575] INFO  [mk_Kaelen] [bot] planning path to (1336,1864) in background
+[11:10:31.634] INFO  [mk_Kaelen] [bot] replan to (1336,1864): 35 steps in 7919.7us
+[11:10:35.117] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:35.118] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 328.9us
+[11:10:35.610] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=22 in 73.8us
+[11:10:36.116] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 81.2us
+[11:10:36.865] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=18 in 58.6us
+[11:10:36.927] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 64.9us
+[11:10:37.390] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=16 in 48.7us
+[11:10:37.861] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=14 in 31.2us
+[11:10:38.543] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=11 in 68.8us
+[11:10:39.294] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=9 in 37.9us
+[11:10:39.955] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=7 in 66.6us
+[11:10:40.136] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:41.105] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=4 in 45.5us
+[11:10:43.055] INFO  [mk_Kaelen] [bot] arrived at (1336,1864,0)
+[11:10:43.055] INFO  [mk_Kaelen] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[11:10:43.055] LOG   [mk_Kaelen] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[11:10:43.055] INFO  [mk_Kaelen] [action] goto (1336,1832) from (1336,1864,0)
+[11:10:43.055] LOG   [mk_Kaelen] event goto_start: target=(1336,1832) from=(1336,1864)
+[11:10:43.055] INFO  [mk_Kaelen] [bot] running from (1336,1864,0) to (1336,1832)
+[11:10:43.055] INFO  [mk_Kaelen] [bot] planning path to (1336,1832) in background
+[11:10:43.116] INFO  [mk_Kaelen] [bot] replan to (1336,1832): 33 steps in 9698.5us
+[11:10:43.438] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=34 in 230.5us
+[11:10:43.928] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=32 in 53.4us
+[11:10:44.446] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=30 in 42.3us
+[11:10:45.155] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:45.171] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=29 in 71.6us
+[11:10:46.071] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=26 in 77.8us
+[11:10:47.085] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=22 in 43.0us
+[11:10:48.021] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=19 in 95.3us
+[11:10:49.000] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=16 in 48.9us
+[11:10:50.150] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=13 in 136.5us
+[11:10:50.211] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:10:50.639] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=12 in 36.7us
+[11:10:51.129] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=11 in 55.6us
+[11:10:52.135] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=8 in 29.3us
+[11:10:52.577] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=6 in 44.5us
+[11:10:54.662] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:10:54.662] INFO  [mk_Kaelen] [bot] arrived at (1336,1832,0)
+[11:10:54.662] INFO  [mk_Kaelen] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[11:10:54.662] LOG   [mk_Kaelen] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[11:10:54.662] INFO  [mk_Kaelen] [action] goto (1336,1800) from (1336,1832,0)
+[11:10:54.662] LOG   [mk_Kaelen] event goto_start: target=(1336,1800) from=(1336,1832)
+[11:10:54.662] INFO  [mk_Kaelen] [bot] running from (1336,1832,0) to (1336,1800)
+[11:10:54.662] INFO  [mk_Kaelen] [bot] planning path to (1336,1800) in background
+[11:10:54.721] INFO  [mk_Kaelen] [bot] replan to (1336,1800): 32 steps in 6651.9us
+[11:10:55.219] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:00.228] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:04.148] INFO  [mk_Kaelen] [bot] arrived at (1336,1800,0)
+[11:11:04.148] INFO  [mk_Kaelen] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[11:11:04.148] LOG   [mk_Kaelen] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[11:11:04.148] INFO  [mk_Kaelen] [action] goto (1352,1766) from (1336,1800,0)
+[11:11:04.148] LOG   [mk_Kaelen] event goto_start: target=(1352,1766) from=(1336,1800)
+[11:11:04.148] INFO  [mk_Kaelen] [bot] running from (1336,1800,0) to (1352,1766)
+[11:11:04.148] INFO  [mk_Kaelen] [bot] planning path to (1352,1766) in background
+[11:11:04.209] INFO  [mk_Kaelen] [bot] replan to (1352,1766): 49 steps in 19636.5us
+[11:11:05.254] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:10.300] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:15.306] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:18.263] INFO  [mk_Kaelen] [bot] arrived at (1352,1766,15)
+[11:11:18.263] INFO  [mk_Kaelen] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[11:11:18.263] LOG   [mk_Kaelen] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[11:11:18.263] INFO  [mk_Kaelen] [action] goto (1386,1728) from (1352,1766,15)
+[11:11:18.263] LOG   [mk_Kaelen] event goto_start: target=(1386,1728) from=(1352,1766)
+[11:11:18.263] INFO  [mk_Kaelen] [bot] running from (1352,1766,15) to (1386,1728)
+[11:11:18.263] INFO  [mk_Kaelen] [bot] planning path to (1386,1728) in background
+[11:11:18.324] INFO  [mk_Kaelen] [bot] replan to (1386,1728): 64 steps in 36269.7us
+[11:11:20.356] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:25.402] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:29.199] INFO  [mk_Kaelen] [chat ascii] System: You are now under the protection of the city guards
+[11:11:29.199] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=26 in 187.7us
+[11:11:30.426] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:31.933] INFO  [mk_Kaelen] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 591.8us
+[11:11:35.465] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:37.700] INFO  [mk_Kaelen] [chat ascii] System: You have left the protection of the city guards
+[11:11:38.100] INFO  [mk_Kaelen] [bot] arrived at (1386,1728,0)
+[11:11:38.100] INFO  [mk_Kaelen] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[11:11:38.100] LOG   [mk_Kaelen] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[11:11:38.100] INFO  [mk_Kaelen] [action] goto (1416,1688) from (1386,1728,0)
+[11:11:38.101] LOG   [mk_Kaelen] event goto_start: target=(1416,1688) from=(1386,1728)
+[11:11:38.101] INFO  [mk_Kaelen] [bot] running from (1386,1728,0) to (1416,1688)
+[11:11:38.101] INFO  [mk_Kaelen] [bot] planning path to (1416,1688) in background
+[11:11:38.161] INFO  [mk_Kaelen] [bot] replan to (1416,1688): 52 steps in 11873.0us
+[11:11:39.009] INFO  [mk_Kaelen] [chat ascii] System: You are now under the protection of the city guards
+[11:11:40.498] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:45.502] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:50.511] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:11:52.012] INFO  [life] session_end_requested reason="session time limit reached"
+[11:11:52.136] INFO  [mk_Kaelen] [chat ascii] System: Xanthe has departed from Moonglow.
+[11:11:53.534] INFO  [mk_Kaelen] [chat ascii] System: Elvrin has departed from Moonglow.
+[11:11:53.902] INFO  [mk_Kaelen] [bot] arrived at (1416,1688,0)
+[11:11:53.902] INFO  [mk_Kaelen] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[11:11:53.902] LOG   [mk_Kaelen] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[11:11:53.902] INFO  [mk_Kaelen] [action] goto (1448,1656) from (1416,1688,0)
+[11:11:53.902] LOG   [mk_Kaelen] event goto_start: target=(1448,1656) from=(1416,1688)
+[11:11:53.902] INFO  [mk_Kaelen] [bot] running from (1416,1688,0) to (1448,1656)
+[11:11:53.902] INFO  [mk_Kaelen] [bot] planning path to (1448,1656) in background
+[11:11:53.962] INFO  [mk_Kaelen] [bot] replan to (1448,1656): 46 steps in 5723.9us
+[11:11:55.559] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:00.608] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:02.192] INFO  [mk_Kaelen] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[11:12:02.928] INFO  [mk_Kaelen] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[11:12:02.928] INFO  [mk_Kaelen] [bot] planning path to (1448,1656) in background
+[11:12:02.988] INFO  [mk_Kaelen] [bot] replan to (1448,1656): 20 steps in 960.1us
+[11:12:04.936] INFO  [mk_Kaelen] [chat ascii] System: Bruin has departed from Yew.
+[11:12:05.632] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:06.587] INFO  [mk_Kaelen] [chat ascii] System: Corwin has departed from Yew.
+[11:12:09.169] INFO  [mk_Kaelen] [chat ascii] System: Durnholde has departed from Minoc.
+[11:12:09.614] INFO  [mk_Kaelen] [bot] arrived at (1448,1656,10)
+[11:12:09.614] INFO  [mk_Kaelen] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[11:12:09.614] LOG   [mk_Kaelen] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[11:12:09.614] INFO  [mk_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:12:09.614] INFO  [mk_Kaelen] [action] goto (1464,1624) from (1448,1656,10)
+[11:12:09.614] LOG   [mk_Kaelen] event goto_start: target=(1464,1624) from=(1448,1656)
+[11:12:09.614] INFO  [mk_Kaelen] [bot] running from (1448,1656,10) to (1464,1624)
+[11:12:09.614] INFO  [mk_Kaelen] [bot] planning path to (1464,1624) in background
+[11:12:09.675] INFO  [mk_Kaelen] [bot] replan to (1464,1624): 43 steps in 4334.9us
+[11:12:10.677] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:15.416] INFO  [mk_Kaelen] [chat ascii] System: Rhalvar has departed from Skara Brae.
+[11:12:15.722] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:20.769] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:23.464] INFO  [mk_Kaelen] [bot] arrived at (1464,1624,20)
+[11:12:23.464] INFO  [mk_Kaelen] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[11:12:23.464] LOG   [mk_Kaelen] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[11:12:23.464] INFO  [mk_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:12:23.464] INFO  [mk_Kaelen] [action] goto (1471,1611) from (1464,1624,20)
+[11:12:23.464] LOG   [mk_Kaelen] event goto_start: target=(1471,1611) from=(1464,1624)
+[11:12:23.464] INFO  [mk_Kaelen] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[11:12:23.464] INFO  [mk_Kaelen] [bot] planning path to (1471,1611) in background
+[11:12:23.524] INFO  [mk_Kaelen] [bot] replan to (1471,1611): 31 steps in 10278.6us
+[11:12:25.778] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:30.448] INFO  [mk_Kaelen] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[11:12:30.464] INFO  [mk_Kaelen] [chat ascii] System: Opening door...
+[11:12:30.834] INFO  [mk_Kaelen] [survival] hp 32/32 (100%) -> fight
+[11:12:32.149] INFO  [mk_Kaelen] [travel] Britain healer ARRIVED at (1475,1612,20)
+[11:12:32.150] LOG   [mk_Kaelen] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=19 plans=1 why=''
+[11:12:32.211] INFO  [life] wind-down: arrived somewhere safe at 1475,1612
+[11:12:32.212] INFO  [life] session_summary duration=220s goals=0/1 gold=1000->1000 skills=142.9->142.9 logs=+0 deaths=0 places=1 suppliers=0
+[11:12:32.212] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 | training=1(100%) | TRAIN_AT_NPC=1(100%)
+[11:12:32.214] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[11:12:32.214] INFO  [life] logging out
+[11:12:32.214] INFO  [mk_Kaelen] [action] logout requested
+[11:12:32.214] LOG   [mk_Kaelen] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[11:12:32.227] INFO  [mk_Kaelen] [0xD1] logout acknowledged (accepted=1)
+[11:12:32.227] LOG   [mk_Kaelen] event logout_ack: accepted
+[11:12:32.227] INFO  [mk_Kaelen] [net] closing connection (logout acknowledged)
+[11:12:32.227] LOG   [mk_Kaelen] event logout_complete: acked

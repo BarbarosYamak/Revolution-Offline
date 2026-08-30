@@ -1,0 +1,105 @@
+start: Rowan is a lumberjack_swordsman and lives in Skara Brae -> starting city index 7
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[16:40:00.934] WARN  [n10_Rowan] [bot] 0x20 resync; aborting path
+[16:43:04.671] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:06.030] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:07.376] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:10.259] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:11.603] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:12.948] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:17.303] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:18.604] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:19.954] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:25.839] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:27.121] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:28.470] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:28.531] WARN  [n10_Rowan] [travel] route exhausted at (1416,1624,22); trying to reach (1416,1640,20) to get somewhere routable (escape 1/3)
+[16:43:34.719] WARN  [n10_Rowan] [travel] route exhausted at (1416,1640,20); trying to reach (1400,1624,28) to get somewhere routable (escape 2/3)
+[16:43:44.545] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:45.811] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:47.099] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:49.922] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:51.215] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:52.564] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:56.944] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:58.297] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:43:59.646] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:44:05.554] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:44:06.909] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:44:08.254] WARN  [n10_Rowan] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[16:44:08.315] WARN  [n10_Rowan] [travel] route exhausted at (1400,1624,28); trying to reach (1384,1608,30) to get somewhere routable (escape 3/3)
+[16:46:38.322] WARN  [n10_Rowan] [bot] THREAT (HP 40 -> 35): halting travel (TODO engage/flee/recall)
+[16:49:03.847] WARN  [n10_Rowan] [bot] 0x20 resync; aborting path
+[16:49:07.961] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1496826.2us)
+[16:49:07.961] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 5 mobile(s))
+[16:49:10.803] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1486330.4us)
+[16:49:10.803] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:13.773] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1667618.4us)
+[16:49:13.773] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 5 mobile(s))
+[16:49:18.320] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1689752.9us)
+[16:49:18.320] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 6 mobile(s))
+[16:49:21.078] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1443275.1us)
+[16:49:21.078] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 5 mobile(s))
+[16:49:26.839] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1412816.7us)
+[16:49:26.839] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:29.693] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1501479.8us)
+[16:49:29.693] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:32.411] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1438566.5us)
+[16:49:32.411] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:39.768] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1565533.6us)
+[16:49:39.768] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:42.500] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1442700.9us)
+[16:49:42.500] WARN  [n10_Rowan] [bot] start (553,990,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 838 item(s), 4 mobile(s))
+[16:49:42.561] WARN  [n10_Rowan] [travel] route exhausted at (553,990,0); trying to reach (552,1000,0) to get somewhere routable (escape 1/3)
+[16:49:48.962] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1652272.1us)
+[16:49:48.962] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:49:51.900] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1571590.6us)
+[16:49:51.900] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:49:54.640] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1407005.3us)
+[16:49:54.640] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:49:58.937] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1430594.6us)
+[16:49:58.937] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:50:02.020] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1753734.0us)
+[16:50:02.020] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:50:05.285] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1973258.8us)
+[16:50:05.285] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:50:11.504] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1869367.3us)
+[16:50:11.504] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:50:14.682] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1853210.6us)
+[16:50:14.682] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 6 mobile(s))
+[16:50:22.577] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 2062658.9us)
+[16:50:22.577] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 5 mobile(s))
+[16:50:25.385] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1497839.3us)
+[16:50:25.385] WARN  [n10_Rowan] [bot] start (552,1000,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 840 item(s), 5 mobile(s))
+[16:50:25.446] WARN  [n10_Rowan] [travel] route exhausted at (552,1000,0); trying to reach (536,984,0) to get somewhere routable (escape 2/3)
+[16:50:33.199] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1791729.8us)
+[16:50:33.199] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 4 mobile(s))
+[16:50:35.942] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1413345.3us)
+[16:50:35.942] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:50:40.136] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1428391.2us)
+[16:50:40.136] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:50:43.022] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1590744.7us)
+[16:50:43.022] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:50:45.864] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1532606.9us)
+[16:50:45.864] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:50:51.641] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1406570.5us)
+[16:50:51.641] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 6 mobile(s))
+[16:50:54.346] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1414921.9us)
+[16:50:54.346] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:51:01.575] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1423915.8us)
+[16:51:01.575] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 6 mobile(s))
+[16:51:04.389] WARN  [n10_Rowan] [bot] no path to (554,984) avoiding 0 block(s); stopping (search 1462620.7us)
+[16:51:04.389] WARN  [n10_Rowan] [bot] start (536,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 869 item(s), 5 mobile(s))
+[16:51:04.449] WARN  [n10_Rowan] [travel] route exhausted at (536,984,0); trying to reach (520,968,0) to get somewhere routable (escape 3/3)
+[16:53:26.346] WARN  [n10_Rowan] [0x21] move REJECTED seq=18; server says (752,794,0) facing=1
+[16:53:32.872] WARN  [n10_Rowan] [0x21] move REJECTED seq=25; server says (764,784,0) facing=1
+[16:53:33.591] WARN  [n10_Rowan] [0x21] move REJECTED seq=0; server says (764,784,0) facing=1
+[16:55:23.171] WARN  [n10_Rowan] [bot] 0x20 resync; aborting path
+[16:55:27.257] WARN  [n10_Rowan] [bot] no path to (2515,477) avoiding 0 block(s); stopping (search 1477395.1us)
+[16:55:27.257] WARN  [n10_Rowan] [bot] start (2514,482,15) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1124 item(s), 7 mobile(s))
+[16:55:29.991] WARN  [n10_Rowan] [bot] no path to (2515,477) avoiding 0 block(s); stopping (search 1446828.6us)
+[16:55:29.991] WARN  [n10_Rowan] [bot] start (2514,482,15) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1124 item(s), 7 mobile(s))
+[16:55:42.052] WARN  [n10_Rowan] [ACTION_RESULT] npc_train invalid_state (0ms) You already know as much as I can teach of Carpentry
+[17:00:22.708] WARN  [n10_Rowan] [bot] 0x20 resync; aborting path
+[17:01:38.802] WARN  [n10_Rowan] [bot] 0x20 resync; aborting path

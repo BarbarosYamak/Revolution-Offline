@@ -1,0 +1,1739 @@
+[13:44:16.496] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh16' char=Bruin tag='f6_Bruin'
+[13:44:16.497] LOG   [f6_Bruin] event session_start: text log opened
+[13:44:16.497] LOG   [f6_Bruin] event net_connect_begin: connect 127.0.0.1:2593
+[13:44:16.497] INFO  [f6_Bruin] [net] connecting to 127.0.0.1:2593 ...
+[13:44:16.498] LOG   [f6_Bruin] event net_connected: connect 127.0.0.1:2593
+[13:44:16.498] INFO  [f6_Bruin] [net] connected.
+[13:44:16.498] INFO  [f6_Bruin] [seed] sent 0x7F000001 (plaintext)
+[13:44:16.498] LOG   [f6_Bruin] event seed_out: 0x7F000001 hex=7f000001
+[13:44:16.499] INFO  [life] loaded persistent state for Bruin (1 places, 0 suppliers, 23 events, 4 prior sessions)
+[13:44:16.499] INFO  [life] needs: reading 'full_crafter' from the profession catalogue
+[13:44:16.499] INFO  [life] build plan 'full_crafter': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/60/65 = 225
+[13:44:16.499] INFO  [f6_Bruin] [life] autonomous player active for 'Bruin' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[13:44:16.500] INFO  [f6_Bruin] [0xA8] 1 server(s):
+[13:44:16.500] INFO  [f6_Bruin]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[13:44:16.509] INFO  [f6_Bruin] [0x8C] game server = 127.0.0.1:2593  seed=0xBC40664B
+[13:44:16.509] LOG   [f6_Bruin] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xBC40664B
+[13:44:16.509] INFO  [f6_Bruin] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:44:16.509] LOG   [f6_Bruin] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:44:16.509] INFO  [f6_Bruin] [0xB9] server features = 0x0005
+[13:44:16.509] INFO  [f6_Bruin] [0xA9] 5 slot(s) (populated 1):
+[13:44:16.509] INFO  [f6_Bruin]   [0] Bruin
+[13:44:16.509] INFO  [f6_Bruin]   [1] <empty>
+[13:44:16.510] INFO  [f6_Bruin]   [2] <empty>
+[13:44:16.510] INFO  [f6_Bruin]   [3] <empty>
+[13:44:16.510] INFO  [f6_Bruin]   [4] <empty>
+[13:44:16.510] INFO  [f6_Bruin] [ui] playing slot 0 ('Bruin')
+[13:44:16.525] INFO  [f6_Bruin] [0x1B] serial=0x00013A1A body=0x0190 pos=(1906,2671,0)
+[13:44:16.525] LOG   [f6_Bruin] event login_confirm: serial=0x00013A1A body=0x0190 pos=(1906,2671,0)
+[13:44:16.525] INFO  [f6_Bruin] [0x20] player @(1906,2671,0) facing=6
+[13:44:16.525] INFO  [f6_Bruin] [0x55] login complete — entering world
+[13:44:16.525] LOG   [f6_Bruin] event in_world: 0x55 received
+[13:44:16.525] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:44:16.525] INFO  [f6_Bruin] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:44:16.525] INFO  [f6_Bruin] [chat ascii] System: There are 5 other players here.
+[13:44:16.525] INFO  [f6_Bruin] [chat ascii] System: Last logged: 2026/08/29 13:13:48
+[13:44:16.525] INFO  [f6_Bruin] [chat ascii] System: You are under the protection of the town guards
+[13:44:16.529] INFO  [f6_Bruin] [action] requesting the skill list
+[13:44:16.529] INFO  [life] in world; asked the server for the skill list
+[13:44:16.529] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:44:16.529] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:44:16.529] LOG   [f6_Bruin] event backpack_contents: serial=0x40013A18 items=9
+[13:44:19.105] INFO  [f6_Bruin] [bot] world data loaded (0 blacklisted spot(s)).
+[13:44:19.106] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[13:44:19.106] INFO  [life]   gold         persisted=837        server=837        -> server value accepted
+[13:44:19.106] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[13:44:19.106] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[13:44:19.106] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[13:44:19.106] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[13:44:19.106] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[13:44:19.106] INFO  [life]   skill_11     persisted=8.1        server=8.1        -> server value accepted
+[13:44:19.106] INFO  [life]   skill_7      persisted=5.4        server=5.4        -> server value accepted
+[13:44:19.106] INFO  [life]   skill_37     persisted=16.3       server=16.3       -> server value accepted
+[13:44:19.106] INFO  [life]   skill_34     persisted=10.6       server=10.6       -> server value accepted
+[13:44:19.106] INFO  [life]   skill_0      persisted=17.9       server=17.9       -> server value accepted
+[13:44:19.106] INFO  [life]   position     persisted=1906,2671  server=1906,2671  -> server value accepted
+[13:44:19.106] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:44:19.106] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[13:44:19.106] INFO  [f6_Bruin] [survival] on
+[13:44:19.106] LOG   [f6_Bruin] event survival_mode: on
+[13:44:19.108] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:44:19.108] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:19.161] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[13:44:19.161] INFO  [f6_Bruin] [travel] Trinsic's Order of Engineers tinkerguildmaster -> (1848,2680) r=5 from (1906,2671)
+[13:44:19.161] LOG   [f6_Bruin] event travel_start: label='Trinsic's Order of Engineers tinkerguildmaster' target=(1848,2680) radius=5 from=(1906,2671)
+[13:44:19.161] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:44:19.161] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:44:19.161] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:44:19.161] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:44:19.161] LOG   [f6_Bruin] event travel_mode: moongate
+[13:44:19.161] INFO  [f6_Bruin] [travel] plan Trinsic's Order of Engineers tinkerguildmaster: ok legs=2 ~72 tiles transit=0 nodes=14
+[13:44:19.224] INFO  [f6_Bruin] [action] goto (1880,2664) from (1906,2671,0)
+[13:44:19.224] LOG   [f6_Bruin] event goto_start: target=(1880,2664) from=(1906,2671)
+[13:44:19.224] INFO  [f6_Bruin] [bot] running from (1906,2671,0) to (1880,2664)
+[13:44:19.224] INFO  [f6_Bruin] [bot] planning path to (1880,2664) in background
+[13:44:19.286] INFO  [f6_Bruin] [bot] replan to (1880,2664): 26 steps in 363.5us
+[13:44:24.156] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:28.175] INFO  [f6_Bruin] [bot] arrived at (1880,2664,-4)
+[13:44:28.176] INFO  [f6_Bruin] [action] goto finished at (1880,2664,-4); target (1880,2664); ARRIVED (off by 0 tile(s))
+[13:44:28.176] LOG   [f6_Bruin] event goto_done: at=(1880,2664) target=(1880,2664) arrived=1 off=0
+[13:44:28.176] INFO  [f6_Bruin] [action] goto (1848,2680) from (1880,2664,-4)
+[13:44:28.176] LOG   [f6_Bruin] event goto_start: target=(1848,2680) from=(1880,2664)
+[13:44:28.176] INFO  [f6_Bruin] [bot] running from (1880,2664,-4) to (1848,2680,z0)
+[13:44:28.176] INFO  [f6_Bruin] [bot] planning path to (1848,2680) in background
+[13:44:28.235] INFO  [f6_Bruin] [bot] replan to (1848,2680): 46 steps in 9530.0us
+[13:44:29.217] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:34.221] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:35.236] INFO  [f6_Bruin] [bot] step (1864,2687,0)->(1863,2688,0) rejected; OpenDoor + retry
+[13:44:35.995] INFO  [f6_Bruin] [bot] step (1864,2687,0)->(1863,2688,0) rejected; avoiding edge + rerouting
+[13:44:35.995] INFO  [f6_Bruin] [bot] planning path to (1848,2680) in background
+[13:44:36.057] INFO  [f6_Bruin] [bot] replan to (1848,2680): 23 steps in 1894.8us
+[13:44:38.756] INFO  [f6_Bruin] [bot] door ahead at (1857,2687,z0); OpenDoor before step
+[13:44:38.769] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:44:39.109] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 90.0"
+[13:44:39.109] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:44:39.109] INFO  [life]   score=468.0
+[13:44:39.109] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:44:39.109] INFO  [life]   reason: no known supplier of a tongs
+[13:44:39.109] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:44:39.109] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:44:39.109] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:44:39.170] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:44:39.170] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:44:39.170] INFO  [life]   score=90.0
+[13:44:39.170] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:44:39.170] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:44:39.170] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:44:39.170] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:44:39.170] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:44:39.230] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:42.365] INFO  [f6_Bruin] [travel] Trinsic's Order of Engineers tinkerguildmaster ARRIVED at (1852,2679,0)
+[13:44:42.365] LOG   [f6_Bruin] event travel_done: label='Trinsic's Order of Engineers tinkerguildmaster' ok=1 at=(1852,2679) legs=2 plans=1 why=''
+[13:44:43.487] INFO  [f6_Bruin] [bot] door ahead at (1849,2678,z0); OpenDoor before step
+[13:44:43.502] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:44:44.113] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[13:44:44.113] INFO  [f6_Bruin] [travel] Britain tinkerguildmaster -> (1422,1654) r=5 from (1850,2678)
+[13:44:44.113] LOG   [f6_Bruin] event travel_start: label='Britain tinkerguildmaster' target=(1422,1654) radius=5 from=(1850,2678)
+[13:44:44.113] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:44:44.113] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:44:44.113] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:44:44.113] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:44:44.113] LOG   [f6_Bruin] event travel_mode: moongate
+[13:44:44.113] INFO  [f6_Bruin] [travel] plan Britain tinkerguildmaster: ok legs=38 ~1504 tiles transit=0 nodes=1805
+[13:44:44.238] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:45.408] INFO  [f6_Bruin] [bot] arrived at (1848,2680,0)
+[13:44:45.409] INFO  [f6_Bruin] [action] goto finished at (1848,2680,0); target (1848,2680); ARRIVED (off by 0 tile(s))
+[13:44:45.409] LOG   [f6_Bruin] event goto_done: at=(1848,2680) target=(1848,2680) arrived=1 off=0
+[13:44:45.409] INFO  [f6_Bruin] [action] goto (1848,2712) from (1848,2680,0)
+[13:44:45.409] LOG   [f6_Bruin] event goto_start: target=(1848,2712) from=(1848,2680)
+[13:44:45.409] INFO  [f6_Bruin] [bot] running from (1848,2680,0) to (1848,2712)
+[13:44:45.409] INFO  [f6_Bruin] [bot] planning path to (1848,2712) in background
+[13:44:45.469] INFO  [f6_Bruin] [bot] replan to (1848,2712): 42 steps in 6556.3us
+[13:44:47.364] INFO  [f6_Bruin] [bot] step (1850,2678,0)->(1851,2679,0) rejected; OpenDoor + retry
+[13:44:47.364] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:44:47.364] INFO  [f6_Bruin] [0x20] player @(1850,2678,0) facing=4
+[13:44:47.365] INFO  [f6_Bruin] [action] goto finished at (1850,2678,0); target (1848,2712); stopped short (off by 36 tile(s))
+[13:44:47.365] LOG   [f6_Bruin] event goto_done: at=(1850,2678) target=(1848,2712) arrived=0 off=36
+[13:44:48.593] INFO  [f6_Bruin] [action] goto (1848,2712) from (1850,2678,0)
+[13:44:48.593] LOG   [f6_Bruin] event goto_start: target=(1848,2712) from=(1850,2678)
+[13:44:48.593] INFO  [f6_Bruin] [bot] running from (1850,2678,0) to (1848,2712)
+[13:44:48.593] INFO  [f6_Bruin] [bot] planning path to (1848,2712) in background
+[13:44:48.656] INFO  [f6_Bruin] [bot] replan to (1848,2712): 38 steps in 8979.7us
+[13:44:49.255] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:54.297] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:59.317] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:44:59.935] INFO  [f6_Bruin] [bot] door ahead at (1851,2712,z10); OpenDoor before step
+[13:44:59.936] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:45:01.798] INFO  [f6_Bruin] [bot] arrived at (1848,2712,10)
+[13:45:01.798] INFO  [f6_Bruin] [action] goto finished at (1848,2712,10); target (1848,2712); ARRIVED (off by 0 tile(s))
+[13:45:01.798] LOG   [f6_Bruin] event goto_done: at=(1848,2712) target=(1848,2712) arrived=1 off=0
+[13:45:01.798] INFO  [f6_Bruin] [action] goto (1848,2744) from (1848,2712,10)
+[13:45:01.798] LOG   [f6_Bruin] event goto_start: target=(1848,2744) from=(1848,2712)
+[13:45:01.798] INFO  [f6_Bruin] [bot] running from (1848,2712,10) to (1848,2744)
+[13:45:01.798] INFO  [f6_Bruin] [bot] planning path to (1848,2744) in background
+[13:45:01.859] INFO  [f6_Bruin] [bot] replan to (1848,2744): 61 steps in 7781.2us
+[13:45:03.547] INFO  [f6_Bruin] [bot] step (1852,2712,10)->(1853,2713,10) rejected; OpenDoor + retry
+[13:45:03.561] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:45:03.561] INFO  [f6_Bruin] [0x20] player @(1852,2712,10) facing=4
+[13:45:03.562] INFO  [f6_Bruin] [action] goto finished at (1852,2712,10); target (1848,2744); stopped short (off by 36 tile(s))
+[13:45:03.562] LOG   [f6_Bruin] event goto_done: at=(1852,2712) target=(1848,2744) arrived=0 off=36
+[13:45:04.364] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:04.796] INFO  [f6_Bruin] [action] goto (1848,2744) from (1852,2712,10)
+[13:45:04.796] LOG   [f6_Bruin] event goto_start: target=(1848,2744) from=(1852,2712)
+[13:45:04.796] INFO  [f6_Bruin] [bot] running from (1852,2712,10) to (1848,2744)
+[13:45:04.796] INFO  [f6_Bruin] [bot] planning path to (1848,2744) in background
+[13:45:04.857] INFO  [f6_Bruin] [bot] replan to (1848,2744): 57 steps in 7034.3us
+[13:45:09.386] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:14.436] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:15.324] INFO  [f6_Bruin] [bot] step (1864,2743,4)->(1863,2744,3) rejected; OpenDoor + retry
+[13:45:16.065] INFO  [f6_Bruin] [bot] step (1864,2743,4)->(1863,2744,3) rejected; avoiding edge + rerouting
+[13:45:16.065] INFO  [f6_Bruin] [bot] planning path to (1848,2744) in background
+[13:45:16.066] INFO  [f6_Bruin] [bot] replan to (1848,2744): 18 steps in 287.5us
+[13:45:19.101] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:45:19.465] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:21.736] INFO  [f6_Bruin] [bot] arrived at (1848,2744,0)
+[13:45:21.737] INFO  [f6_Bruin] [action] goto finished at (1848,2744,0); target (1848,2744); ARRIVED (off by 0 tile(s))
+[13:45:21.737] LOG   [f6_Bruin] event goto_done: at=(1848,2744) target=(1848,2744) arrived=1 off=0
+[13:45:21.737] INFO  [f6_Bruin] [action] goto (1816,2776) from (1848,2744,0)
+[13:45:21.737] LOG   [f6_Bruin] event goto_start: target=(1816,2776) from=(1848,2744)
+[13:45:21.737] INFO  [f6_Bruin] [bot] running from (1848,2744,0) to (1816,2776)
+[13:45:21.737] INFO  [f6_Bruin] [bot] planning path to (1816,2776) in background
+[13:45:21.797] INFO  [f6_Bruin] [bot] replan to (1816,2776): 90 steps in 28990.5us
+[13:45:24.506] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:29.548] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:34.558] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:39.596] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:42.314] INFO  [f6_Bruin] [chat ascii] System: You have left the protection of the town guards
+[13:45:44.651] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:46.560] INFO  [f6_Bruin] [bot] arrived at (1816,2776,0)
+[13:45:46.561] INFO  [f6_Bruin] [action] goto finished at (1816,2776,0); target (1816,2776); ARRIVED (off by 0 tile(s))
+[13:45:46.561] LOG   [f6_Bruin] event goto_done: at=(1816,2776) target=(1816,2776) arrived=1 off=0
+[13:45:46.561] INFO  [f6_Bruin] [action] goto (1784,2744) from (1816,2776,0)
+[13:45:46.561] LOG   [f6_Bruin] event goto_start: target=(1784,2744) from=(1816,2776)
+[13:45:46.561] INFO  [f6_Bruin] [bot] running from (1816,2776,0) to (1784,2744)
+[13:45:46.561] INFO  [f6_Bruin] [bot] planning path to (1784,2744) in background
+[13:45:46.622] INFO  [f6_Bruin] [bot] replan to (1784,2744): 50 steps in 19101.4us
+[13:45:49.701] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:54.707] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:45:59.709] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:02.595] INFO  [f6_Bruin] [bot] arrived at (1784,2744,0)
+[13:46:02.596] INFO  [f6_Bruin] [action] goto finished at (1784,2744,0); target (1784,2744); ARRIVED (off by 0 tile(s))
+[13:46:02.596] LOG   [f6_Bruin] event goto_done: at=(1784,2744) target=(1784,2744) arrived=1 off=0
+[13:46:02.596] INFO  [f6_Bruin] [action] goto (1784,2712) from (1784,2744,0)
+[13:46:02.596] LOG   [f6_Bruin] event goto_start: target=(1784,2712) from=(1784,2744)
+[13:46:02.596] INFO  [f6_Bruin] [bot] running from (1784,2744,0) to (1784,2712)
+[13:46:02.596] INFO  [f6_Bruin] [bot] planning path to (1784,2712) in background
+[13:46:02.655] INFO  [f6_Bruin] [bot] replan to (1784,2712): 38 steps in 22096.3us
+[13:46:04.720] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:09.755] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:14.771] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:14.847] INFO  [f6_Bruin] [bot] arrived at (1784,2712,0)
+[13:46:14.848] INFO  [f6_Bruin] [action] goto finished at (1784,2712,0); target (1784,2712); ARRIVED (off by 0 tile(s))
+[13:46:14.848] LOG   [f6_Bruin] event goto_done: at=(1784,2712) target=(1784,2712) arrived=1 off=0
+[13:46:14.848] INFO  [f6_Bruin] [action] goto (1784,2680) from (1784,2712,0)
+[13:46:14.848] LOG   [f6_Bruin] event goto_start: target=(1784,2680) from=(1784,2712)
+[13:46:14.848] INFO  [f6_Bruin] [bot] running from (1784,2712,0) to (1784,2680)
+[13:46:14.848] INFO  [f6_Bruin] [bot] planning path to (1784,2680) in background
+[13:46:14.909] INFO  [f6_Bruin] [bot] replan to (1784,2680): 32 steps in 6875.6us
+[13:46:19.131] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:46:19.775] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:24.799] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:24.981] INFO  [f6_Bruin] [bot] arrived at (1784,2680,0)
+[13:46:24.982] INFO  [f6_Bruin] [action] goto finished at (1784,2680,0); target (1784,2680); ARRIVED (off by 0 tile(s))
+[13:46:24.982] LOG   [f6_Bruin] event goto_done: at=(1784,2680) target=(1784,2680) arrived=1 off=0
+[13:46:24.982] INFO  [f6_Bruin] [action] goto (1784,2648) from (1784,2680,0)
+[13:46:24.982] LOG   [f6_Bruin] event goto_start: target=(1784,2648) from=(1784,2680)
+[13:46:24.982] INFO  [f6_Bruin] [bot] running from (1784,2680,0) to (1784,2648)
+[13:46:24.982] INFO  [f6_Bruin] [bot] planning path to (1784,2648) in background
+[13:46:25.042] INFO  [f6_Bruin] [bot] replan to (1784,2648): 33 steps in 15890.6us
+[13:46:29.841] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:34.870] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:35.681] INFO  [f6_Bruin] [bot] arrived at (1784,2648,0)
+[13:46:35.682] INFO  [f6_Bruin] [action] goto finished at (1784,2648,0); target (1784,2648); ARRIVED (off by 0 tile(s))
+[13:46:35.682] LOG   [f6_Bruin] event goto_done: at=(1784,2648) target=(1784,2648) arrived=1 off=0
+[13:46:35.682] INFO  [f6_Bruin] [action] goto (1744,2622) from (1784,2648,0)
+[13:46:35.682] LOG   [f6_Bruin] event goto_start: target=(1744,2622) from=(1784,2648)
+[13:46:35.682] INFO  [f6_Bruin] [bot] running from (1784,2648,0) to (1744,2622)
+[13:46:35.682] INFO  [f6_Bruin] [bot] planning path to (1744,2622) in background
+[13:46:35.742] INFO  [f6_Bruin] [bot] replan to (1744,2622): 49 steps in 13307.6us
+[13:46:39.876] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:44.899] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:49.954] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:46:53.004] INFO  [f6_Bruin] [bot] arrived at (1744,2622,0)
+[13:46:53.005] INFO  [f6_Bruin] [action] goto finished at (1744,2622,0); target (1744,2622); ARRIVED (off by 0 tile(s))
+[13:46:53.005] LOG   [f6_Bruin] event goto_done: at=(1744,2622) target=(1744,2622) arrived=1 off=0
+[13:46:53.005] INFO  [f6_Bruin] [action] goto (1736,2584) from (1744,2622,0)
+[13:46:53.005] LOG   [f6_Bruin] event goto_start: target=(1736,2584) from=(1744,2622)
+[13:46:53.005] INFO  [f6_Bruin] [bot] running from (1744,2622,0) to (1736,2584)
+[13:46:53.005] INFO  [f6_Bruin] [bot] planning path to (1736,2584) in background
+[13:46:53.066] INFO  [f6_Bruin] [bot] replan to (1736,2584): 38 steps in 6634.4us
+[13:46:54.961] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:00.019] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:05.074] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:07.759] INFO  [f6_Bruin] [bot] arrived at (1736,2584,0)
+[13:47:07.759] INFO  [f6_Bruin] [action] goto finished at (1736,2584,0); target (1736,2584); ARRIVED (off by 0 tile(s))
+[13:47:07.759] LOG   [f6_Bruin] event goto_done: at=(1736,2584) target=(1736,2584) arrived=1 off=0
+[13:47:07.759] INFO  [f6_Bruin] [action] goto (1736,2552) from (1736,2584,0)
+[13:47:07.759] LOG   [f6_Bruin] event goto_start: target=(1736,2552) from=(1736,2584)
+[13:47:07.759] INFO  [f6_Bruin] [bot] running from (1736,2584,0) to (1736,2552)
+[13:47:07.759] INFO  [f6_Bruin] [bot] planning path to (1736,2552) in background
+[13:47:07.819] INFO  [f6_Bruin] [bot] replan to (1736,2552): 35 steps in 9276.3us
+[13:47:10.086] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:15.088] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:19.170] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:47:20.123] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:20.800] INFO  [f6_Bruin] [bot] arrived at (1736,2552,0)
+[13:47:20.801] INFO  [f6_Bruin] [action] goto finished at (1736,2552,0); target (1736,2552); ARRIVED (off by 0 tile(s))
+[13:47:20.801] LOG   [f6_Bruin] event goto_done: at=(1736,2552) target=(1736,2552) arrived=1 off=0
+[13:47:20.801] INFO  [f6_Bruin] [action] goto (1736,2520) from (1736,2552,0)
+[13:47:20.801] LOG   [f6_Bruin] event goto_start: target=(1736,2520) from=(1736,2552)
+[13:47:20.801] INFO  [f6_Bruin] [bot] running from (1736,2552,0) to (1736,2520)
+[13:47:20.801] INFO  [f6_Bruin] [bot] planning path to (1736,2520) in background
+[13:47:20.862] INFO  [f6_Bruin] [bot] replan to (1736,2520): 32 steps in 8764.3us
+[13:47:25.153] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:30.184] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:32.940] INFO  [f6_Bruin] [bot] arrived at (1736,2520,0)
+[13:47:32.941] INFO  [f6_Bruin] [action] goto finished at (1736,2520,0); target (1736,2520); ARRIVED (off by 0 tile(s))
+[13:47:32.941] LOG   [f6_Bruin] event goto_done: at=(1736,2520) target=(1736,2520) arrived=1 off=0
+[13:47:32.941] INFO  [f6_Bruin] [action] goto (1736,2488) from (1736,2520,0)
+[13:47:32.941] LOG   [f6_Bruin] event goto_start: target=(1736,2488) from=(1736,2520)
+[13:47:32.941] INFO  [f6_Bruin] [bot] running from (1736,2520,0) to (1736,2488)
+[13:47:32.941] INFO  [f6_Bruin] [bot] planning path to (1736,2488) in background
+[13:47:33.001] INFO  [f6_Bruin] [bot] replan to (1736,2488): 32 steps in 8912.7us
+[13:47:35.220] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:39.155] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 90.0"
+[13:47:39.155] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:47:39.155] INFO  [life]   score=468.0
+[13:47:39.155] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:47:39.155] INFO  [life]   reason: no known supplier of a tongs
+[13:47:39.155] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:47:39.155] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:47:39.155] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:47:39.215] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:47:39.215] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:47:39.215] INFO  [life]   score=90.0
+[13:47:39.215] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:47:39.215] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:47:39.215] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:47:39.216] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:47:39.216] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:47:40.241] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:45.297] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:45.556] INFO  [f6_Bruin] [bot] arrived at (1736,2488,5)
+[13:47:45.557] INFO  [f6_Bruin] [action] goto finished at (1736,2488,5); target (1736,2488); ARRIVED (off by 0 tile(s))
+[13:47:45.557] LOG   [f6_Bruin] event goto_done: at=(1736,2488) target=(1736,2488) arrived=1 off=0
+[13:47:45.557] INFO  [f6_Bruin] [action] goto (1736,2456) from (1736,2488,5)
+[13:47:45.557] LOG   [f6_Bruin] event goto_start: target=(1736,2456) from=(1736,2488)
+[13:47:45.557] INFO  [f6_Bruin] [bot] running from (1736,2488,5) to (1736,2456)
+[13:47:45.557] INFO  [f6_Bruin] [bot] planning path to (1736,2456) in background
+[13:47:45.619] INFO  [f6_Bruin] [bot] replan to (1736,2456): 38 steps in 16039.7us
+[13:47:50.305] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:55.347] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:47:55.899] INFO  [f6_Bruin] [chat ascii] Cougar: *Cougar is attacking you!*
+[13:47:58.378] INFO  [f6_Bruin] [bot] arrived at (1736,2456,10)
+[13:47:58.379] INFO  [f6_Bruin] [action] goto finished at (1736,2456,10); target (1736,2456); ARRIVED (off by 0 tile(s))
+[13:47:58.379] LOG   [f6_Bruin] event goto_done: at=(1736,2456) target=(1736,2456) arrived=1 off=0
+[13:47:58.379] INFO  [f6_Bruin] [action] goto (1736,2424) from (1736,2456,10)
+[13:47:58.379] LOG   [f6_Bruin] event goto_start: target=(1736,2424) from=(1736,2456)
+[13:47:58.379] INFO  [f6_Bruin] [bot] running from (1736,2456,10) to (1736,2424)
+[13:47:58.379] INFO  [f6_Bruin] [bot] planning path to (1736,2424) in background
+[13:47:58.439] INFO  [f6_Bruin] [bot] replan to (1736,2424): 32 steps in 2866.2us
+[13:48:00.360] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:05.380] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:09.847] INFO  [f6_Bruin] [bot] arrived at (1736,2424,10)
+[13:48:09.847] INFO  [f6_Bruin] [action] goto finished at (1736,2424,10); target (1736,2424); ARRIVED (off by 0 tile(s))
+[13:48:09.847] LOG   [f6_Bruin] event goto_done: at=(1736,2424) target=(1736,2424) arrived=1 off=0
+[13:48:09.847] INFO  [f6_Bruin] [action] goto (1720,2392) from (1736,2424,10)
+[13:48:09.847] LOG   [f6_Bruin] event goto_start: target=(1720,2392) from=(1736,2424)
+[13:48:09.847] INFO  [f6_Bruin] [bot] running from (1736,2424,10) to (1720,2392)
+[13:48:09.847] INFO  [f6_Bruin] [bot] planning path to (1720,2392) in background
+[13:48:09.908] INFO  [f6_Bruin] [bot] replan to (1720,2392): 34 steps in 8825.4us
+[13:48:10.417] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:15.434] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:18.847] INFO  [f6_Bruin] [chat ascii] Giant Spider: *Giant Spider is attacking you!*
+[13:48:19.218] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:48:20.492] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:22.557] INFO  [f6_Bruin] [bot] step (1720,2392,5)->(1719,2391,5) rejected; OpenDoor + retry
+[13:48:23.297] INFO  [f6_Bruin] [bot] step (1720,2392,5)->(1719,2391,5) rejected; avoiding edge + rerouting
+[13:48:23.297] INFO  [f6_Bruin] [bot] planning path to (1720,2392) in background
+[13:48:23.358] INFO  [f6_Bruin] [action] goto finished at (1720,2392,5); target (1720,2392); ARRIVED (off by 0 tile(s))
+[13:48:23.358] LOG   [f6_Bruin] event goto_done: at=(1720,2392) target=(1720,2392) arrived=1 off=0
+[13:48:23.358] INFO  [f6_Bruin] [action] goto (1688,2360) from (1720,2392,5)
+[13:48:23.358] LOG   [f6_Bruin] event goto_start: target=(1688,2360) from=(1720,2392)
+[13:48:23.358] INFO  [f6_Bruin] [bot] running from (1720,2392,5) to (1688,2360)
+[13:48:23.358] INFO  [f6_Bruin] [bot] planning path to (1688,2360) in background
+[13:48:23.420] INFO  [f6_Bruin] [bot] replan to (1688,2360): 45 steps in 23103.3us
+[13:48:24.726] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[13:48:25.497] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:30.549] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:34.758] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[13:48:35.579] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:39.531] INFO  [f6_Bruin] [bot] arrived at (1688,2360,5)
+[13:48:39.532] INFO  [f6_Bruin] [action] goto finished at (1688,2360,5); target (1688,2360); ARRIVED (off by 0 tile(s))
+[13:48:39.532] LOG   [f6_Bruin] event goto_done: at=(1688,2360) target=(1688,2360) arrived=1 off=0
+[13:48:39.532] INFO  [f6_Bruin] [action] goto (1656,2326) from (1688,2360,5)
+[13:48:39.532] LOG   [f6_Bruin] event goto_start: target=(1656,2326) from=(1688,2360)
+[13:48:39.532] INFO  [f6_Bruin] [bot] running from (1688,2360,5) to (1656,2326)
+[13:48:39.532] INFO  [f6_Bruin] [bot] planning path to (1656,2326) in background
+[13:48:39.594] INFO  [f6_Bruin] [bot] replan to (1656,2326): 43 steps in 15979.5us
+[13:48:40.625] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:45.682] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:50.701] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:48:54.261] INFO  [f6_Bruin] [bot] arrived at (1656,2326,0)
+[13:48:54.262] INFO  [f6_Bruin] [action] goto finished at (1656,2326,0); target (1656,2326); ARRIVED (off by 0 tile(s))
+[13:48:54.262] LOG   [f6_Bruin] event goto_done: at=(1656,2326) target=(1656,2326) arrived=1 off=0
+[13:48:54.262] INFO  [f6_Bruin] [action] goto (1624,2296) from (1656,2326,0)
+[13:48:54.262] LOG   [f6_Bruin] event goto_start: target=(1624,2296) from=(1656,2326)
+[13:48:54.262] INFO  [f6_Bruin] [bot] running from (1656,2326,0) to (1624,2296)
+[13:48:54.262] INFO  [f6_Bruin] [bot] planning path to (1624,2296) in background
+[13:48:54.322] INFO  [f6_Bruin] [bot] replan to (1624,2296): 46 steps in 21938.2us
+[13:48:55.754] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:00.792] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:05.816] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:10.827] INFO  [f6_Bruin] [bot] arrived at (1624,2296,0)
+[13:49:10.828] INFO  [f6_Bruin] [action] goto finished at (1624,2296,0); target (1624,2296); ARRIVED (off by 0 tile(s))
+[13:49:10.828] LOG   [f6_Bruin] event goto_done: at=(1624,2296) target=(1624,2296) arrived=1 off=0
+[13:49:10.828] INFO  [f6_Bruin] [action] goto (1592,2264) from (1624,2296,0)
+[13:49:10.828] LOG   [f6_Bruin] event goto_start: target=(1592,2264) from=(1624,2296)
+[13:49:10.828] INFO  [f6_Bruin] [bot] running from (1624,2296,0) to (1592,2264)
+[13:49:10.828] INFO  [f6_Bruin] [bot] planning path to (1592,2264) in background
+[13:49:10.828] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:10.873] INFO  [f6_Bruin] [bot] replan to (1592,2264): 38 steps in 19378.4us
+[13:49:15.857] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:19.262] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:49:20.872] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:23.521] INFO  [f6_Bruin] [bot] arrived at (1592,2264,0)
+[13:49:23.521] INFO  [f6_Bruin] [action] goto finished at (1592,2264,0); target (1592,2264); ARRIVED (off by 0 tile(s))
+[13:49:23.521] LOG   [f6_Bruin] event goto_done: at=(1592,2264) target=(1592,2264) arrived=1 off=0
+[13:49:23.521] INFO  [f6_Bruin] [action] goto (1560,2230) from (1592,2264,0)
+[13:49:23.521] LOG   [f6_Bruin] event goto_start: target=(1560,2230) from=(1592,2264)
+[13:49:23.521] INFO  [f6_Bruin] [bot] running from (1592,2264,0) to (1560,2230)
+[13:49:23.521] INFO  [f6_Bruin] [bot] planning path to (1560,2230) in background
+[13:49:23.552] INFO  [f6_Bruin] [bot] replan to (1560,2230): 42 steps in 19582.6us
+[13:49:25.880] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:30.921] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:35.968] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:37.337] INFO  [f6_Bruin] [bot] arrived at (1560,2230,10)
+[13:49:37.337] INFO  [f6_Bruin] [action] goto finished at (1560,2230,10); target (1560,2230); ARRIVED (off by 0 tile(s))
+[13:49:37.337] LOG   [f6_Bruin] event goto_done: at=(1560,2230) target=(1560,2230) arrived=1 off=0
+[13:49:37.337] INFO  [f6_Bruin] [action] goto (1528,2200) from (1560,2230,10)
+[13:49:37.337] LOG   [f6_Bruin] event goto_start: target=(1528,2200) from=(1560,2230)
+[13:49:37.337] INFO  [f6_Bruin] [bot] running from (1560,2230,10) to (1528,2200)
+[13:49:37.337] INFO  [f6_Bruin] [bot] planning path to (1528,2200) in background
+[13:49:37.399] INFO  [f6_Bruin] [bot] replan to (1528,2200): 45 steps in 21146.8us
+[13:49:38.032] INFO  [f6_Bruin] [chat ascii] Giant Spider: *Giant Spider is attacking you!*
+[13:49:41.001] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:46.007] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:51.055] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:49:52.526] INFO  [f6_Bruin] [bot] arrived at (1528,2200,5)
+[13:49:52.527] INFO  [f6_Bruin] [action] goto finished at (1528,2200,5); target (1528,2200); ARRIVED (off by 0 tile(s))
+[13:49:52.527] LOG   [f6_Bruin] event goto_done: at=(1528,2200) target=(1528,2200) arrived=1 off=0
+[13:49:52.527] INFO  [f6_Bruin] [action] goto (1496,2168) from (1528,2200,5)
+[13:49:52.527] LOG   [f6_Bruin] event goto_start: target=(1496,2168) from=(1528,2200)
+[13:49:52.527] INFO  [f6_Bruin] [bot] running from (1528,2200,5) to (1496,2168)
+[13:49:52.527] INFO  [f6_Bruin] [bot] planning path to (1496,2168) in background
+[13:49:52.587] INFO  [f6_Bruin] [bot] replan to (1496,2168): 46 steps in 21165.2us
+[13:49:56.058] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:01.064] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:06.068] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:09.067] INFO  [f6_Bruin] [bot] arrived at (1496,2168,0)
+[13:50:09.068] INFO  [f6_Bruin] [action] goto finished at (1496,2168,0); target (1496,2168); ARRIVED (off by 0 tile(s))
+[13:50:09.068] LOG   [f6_Bruin] event goto_done: at=(1496,2168) target=(1496,2168) arrived=1 off=0
+[13:50:09.068] INFO  [f6_Bruin] [action] goto (1480,2134) from (1496,2168,0)
+[13:50:09.068] LOG   [f6_Bruin] event goto_start: target=(1480,2134) from=(1496,2168)
+[13:50:09.068] INFO  [f6_Bruin] [bot] running from (1496,2168,0) to (1480,2134)
+[13:50:09.068] INFO  [f6_Bruin] [bot] planning path to (1480,2134) in background
+[13:50:09.129] INFO  [f6_Bruin] [bot] replan to (1480,2134): 55 steps in 31206.1us
+[13:50:11.095] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:16.103] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:19.321] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:50:21.116] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:24.992] INFO  [f6_Bruin] [bot] arrived at (1480,2134,0)
+[13:50:24.992] INFO  [f6_Bruin] [action] goto finished at (1480,2134,0); target (1480,2134); ARRIVED (off by 0 tile(s))
+[13:50:24.992] LOG   [f6_Bruin] event goto_done: at=(1480,2134) target=(1480,2134) arrived=1 off=0
+[13:50:24.992] INFO  [f6_Bruin] [action] goto (1480,2104) from (1480,2134,0)
+[13:50:24.993] LOG   [f6_Bruin] event goto_start: target=(1480,2104) from=(1480,2134)
+[13:50:24.993] INFO  [f6_Bruin] [bot] running from (1480,2134,0) to (1480,2104)
+[13:50:24.993] INFO  [f6_Bruin] [bot] planning path to (1480,2104) in background
+[13:50:25.052] INFO  [f6_Bruin] [bot] replan to (1480,2104): 31 steps in 7899.8us
+[13:50:26.142] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:31.183] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:35.107] INFO  [f6_Bruin] [bot] arrived at (1480,2104,0)
+[13:50:35.108] INFO  [f6_Bruin] [action] goto finished at (1480,2104,0); target (1480,2104); ARRIVED (off by 0 tile(s))
+[13:50:35.108] LOG   [f6_Bruin] event goto_done: at=(1480,2104) target=(1480,2104) arrived=1 off=0
+[13:50:35.108] INFO  [f6_Bruin] [action] goto (1480,2072) from (1480,2104,0)
+[13:50:35.108] LOG   [f6_Bruin] event goto_start: target=(1480,2072) from=(1480,2104)
+[13:50:35.108] INFO  [f6_Bruin] [bot] running from (1480,2104,0) to (1480,2072)
+[13:50:35.108] INFO  [f6_Bruin] [bot] planning path to (1480,2072) in background
+[13:50:35.169] INFO  [f6_Bruin] [bot] replan to (1480,2072): 32 steps in 6883.9us
+[13:50:36.213] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:39.163] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 90.0"
+[13:50:39.163] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:50:39.163] INFO  [life]   score=468.0
+[13:50:39.163] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:50:39.163] INFO  [life]   reason: no known supplier of a tongs
+[13:50:39.163] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:50:39.163] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:50:39.163] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:50:39.225] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:50:39.225] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:50:39.225] INFO  [life]   score=90.0
+[13:50:39.225] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:50:39.225] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:50:39.225] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:50:39.225] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:50:39.225] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:50:40.412] INFO  [f6_Bruin] [chat ascii] Prikdarok: *Prikdarok is attacking you!*
+[13:50:41.229] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:44.671] INFO  [f6_Bruin] [bot] arrived at (1480,2072,0)
+[13:50:44.673] INFO  [f6_Bruin] [action] goto finished at (1480,2072,0); target (1480,2072); ARRIVED (off by 0 tile(s))
+[13:50:44.673] LOG   [f6_Bruin] event goto_done: at=(1480,2072) target=(1480,2072) arrived=1 off=0
+[13:50:44.673] INFO  [f6_Bruin] [action] goto (1478,2040) from (1480,2072,0)
+[13:50:44.673] LOG   [f6_Bruin] event goto_start: target=(1478,2040) from=(1480,2072)
+[13:50:44.673] INFO  [f6_Bruin] [bot] running from (1480,2072,0) to (1478,2040)
+[13:50:44.673] INFO  [f6_Bruin] [bot] planning path to (1478,2040) in background
+[13:50:44.734] INFO  [f6_Bruin] [bot] replan to (1478,2040): 32 steps in 8102.2us
+[13:50:46.274] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:51.277] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:50:55.591] LOG   [f6_Bruin] event threat: HP 50 -> 43
+[13:50:55.591] INFO  [f6_Bruin] [action] goto finished at (1479,2041,0); target (1478,2040); stopped short (off by 2 tile(s))
+[13:50:55.591] LOG   [f6_Bruin] event goto_done: at=(1479,2041) target=(1478,2040) arrived=0 off=2
+[13:50:55.592] INFO  [f6_Bruin] [action] goto (1480,2008) from (1479,2041,0)
+[13:50:55.592] LOG   [f6_Bruin] event goto_start: target=(1480,2008) from=(1479,2041)
+[13:50:55.592] INFO  [f6_Bruin] [bot] running from (1479,2041,0) to (1480,2008)
+[13:50:55.592] INFO  [f6_Bruin] [bot] planning path to (1480,2008) in background
+[13:50:55.622] INFO  [f6_Bruin] [bot] replan to (1480,2008): 33 steps in 10287.5us
+[13:50:56.297] INFO  [f6_Bruin] [survival] hp 43/50 (86%) -> fight
+[13:51:01.291] INFO  [f6_Bruin] [0x20] player @(1481,2023,0) facing=4
+[13:51:01.291] INFO  [f6_Bruin] [0x21] stale reject seq=25 (block already handled); pose resynced
+[13:51:01.292] INFO  [f6_Bruin] [action] goto finished at (1481,2023,0); target (1480,2008); stopped short (off by 16 tile(s))
+[13:51:01.292] LOG   [f6_Bruin] event goto_done: at=(1481,2023) target=(1480,2008) arrived=0 off=16
+[13:51:01.353] INFO  [f6_Bruin] [survival] hp 43/50 (86%) -> fight
+[13:51:02.527] INFO  [f6_Bruin] [action] goto (1480,2008) from (1481,2023,0)
+[13:51:02.527] LOG   [f6_Bruin] event goto_start: target=(1480,2008) from=(1481,2023)
+[13:51:02.527] INFO  [f6_Bruin] [bot] running from (1481,2023,0) to (1480,2008)
+[13:51:02.527] INFO  [f6_Bruin] [bot] planning path to (1480,2008) in background
+[13:51:02.543] INFO  [f6_Bruin] [bot] replan to (1480,2008): 15 steps in 2589.6us
+[13:51:02.619] LOG   [f6_Bruin] event threat: HP 43 -> 37
+[13:51:02.620] INFO  [f6_Bruin] [action] goto finished at (1481,2023,0); target (1480,2008); stopped short (off by 16 tile(s))
+[13:51:02.620] LOG   [f6_Bruin] event goto_done: at=(1481,2023) target=(1480,2008) arrived=0 off=16
+[13:51:03.819] INFO  [f6_Bruin] [action] goto (1480,2008) from (1481,2023,0)
+[13:51:03.819] LOG   [f6_Bruin] event goto_start: target=(1480,2008) from=(1481,2023)
+[13:51:03.819] INFO  [f6_Bruin] [bot] running from (1481,2023,0) to (1480,2008)
+[13:51:03.819] INFO  [f6_Bruin] [bot] planning path to (1480,2008) in background
+[13:51:03.851] INFO  [f6_Bruin] [bot] replan to (1480,2008): 15 steps in 1966.8us
+[13:51:05.156] INFO  [f6_Bruin] [chat ascii] Subterranean Mongbat: *Subterranean Mongbat is attacking you!*
+[13:51:06.355] INFO  [f6_Bruin] [survival] hp 37/50 (74%) -> fight
+[13:51:07.363] INFO  [f6_Bruin] [0x20] player @(1483,2012,0) facing=4
+[13:51:07.364] INFO  [f6_Bruin] [action] goto finished at (1483,2012,0); target (1480,2008); stopped short (off by 7 tile(s))
+[13:51:07.364] LOG   [f6_Bruin] event goto_done: at=(1483,2012) target=(1480,2008) arrived=0 off=7
+[13:51:08.578] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:51:08.578] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:51:08.578] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:51:08.578] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:51:08.578] LOG   [f6_Bruin] event travel_mode: moongate
+[13:51:08.578] INFO  [f6_Bruin] [travel] plan Britain tinkerguildmaster: ok legs=11 ~416 tiles transit=0 nodes=223
+[13:51:10.129] INFO  [f6_Bruin] [action] goto (1480,1976) from (1483,2012,0)
+[13:51:10.129] LOG   [f6_Bruin] event goto_start: target=(1480,1976) from=(1483,2012)
+[13:51:10.129] INFO  [f6_Bruin] [bot] running from (1483,2012,0) to (1480,1976)
+[13:51:10.129] INFO  [f6_Bruin] [bot] planning path to (1480,1976) in background
+[13:51:10.145] INFO  [f6_Bruin] [bot] replan to (1480,1976): 36 steps in 12081.4us
+[13:51:11.365] INFO  [f6_Bruin] [survival] hp 37/50 (74%) -> fight
+[13:51:11.765] INFO  [f6_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=32 in 189.7us
+[13:51:14.625] INFO  [f6_Bruin] [0x20] player @(1479,2001,0) facing=4
+[13:51:14.626] INFO  [f6_Bruin] [action] goto finished at (1479,2001,0); target (1480,1976); stopped short (off by 26 tile(s))
+[13:51:14.626] LOG   [f6_Bruin] event goto_done: at=(1479,2001) target=(1480,1976) arrived=0 off=26
+[13:51:15.826] INFO  [f6_Bruin] [action] goto (1480,1976) from (1479,2001,0)
+[13:51:15.826] LOG   [f6_Bruin] event goto_start: target=(1480,1976) from=(1479,2001)
+[13:51:15.826] INFO  [f6_Bruin] [bot] running from (1479,2001,0) to (1480,1976)
+[13:51:15.826] INFO  [f6_Bruin] [bot] planning path to (1480,1976) in background
+[13:51:15.889] INFO  [f6_Bruin] [bot] replan to (1480,1976): 25 steps in 3709.2us
+[13:51:16.397] INFO  [f6_Bruin] [survival] hp 32/50 (64%) -> fight
+[13:51:18.632] INFO  [f6_Bruin] [0x20] player @(1479,1994,0) facing=4
+[13:51:18.633] INFO  [f6_Bruin] [action] goto finished at (1479,1994,0); target (1480,1976); stopped short (off by 19 tile(s))
+[13:51:18.633] LOG   [f6_Bruin] event goto_done: at=(1479,1994) target=(1480,1976) arrived=0 off=19
+[13:51:19.363] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:51:19.837] INFO  [f6_Bruin] [action] goto (1480,1976) from (1479,1994,0)
+[13:51:19.837] LOG   [f6_Bruin] event goto_start: target=(1480,1976) from=(1479,1994)
+[13:51:19.837] INFO  [f6_Bruin] [bot] running from (1479,1994,0) to (1480,1976)
+[13:51:19.837] INFO  [f6_Bruin] [bot] planning path to (1480,1976) in background
+[13:51:19.898] INFO  [f6_Bruin] [bot] replan to (1480,1976): 18 steps in 2169.3us
+[13:51:21.398] INFO  [f6_Bruin] [survival] hp 33/50 (66%) -> fight
+[13:51:22.673] INFO  [f6_Bruin] [0x20] player @(1478,1987,0) facing=4
+[13:51:22.673] INFO  [f6_Bruin] [action] goto finished at (1478,1987,0); target (1480,1976); stopped short (off by 13 tile(s))
+[13:51:22.673] LOG   [f6_Bruin] event goto_done: at=(1478,1987) target=(1480,1976) arrived=0 off=13
+[13:51:23.883] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:51:23.884] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:51:23.884] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:51:23.884] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:51:23.884] LOG   [f6_Bruin] event travel_mode: moongate
+[13:51:23.884] INFO  [f6_Bruin] [travel] plan Britain tinkerguildmaster: ok legs=10 ~400 tiles transit=0 nodes=205
+[13:51:26.416] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:26.892] INFO  [f6_Bruin] [action] goto (1464,1960) from (1478,1987,0)
+[13:51:26.892] LOG   [f6_Bruin] event goto_start: target=(1464,1960) from=(1478,1987)
+[13:51:26.892] INFO  [f6_Bruin] [bot] running from (1478,1987,0) to (1464,1960)
+[13:51:26.892] INFO  [f6_Bruin] [bot] planning path to (1464,1960) in background
+[13:51:26.952] INFO  [f6_Bruin] [bot] replan to (1464,1960): 28 steps in 9836.5us
+[13:51:29.006] INFO  [f6_Bruin] [chat ascii] Vivackuk: *Vivackuk is attacking you!*
+[13:51:31.417] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:36.293] INFO  [f6_Bruin] [bot] arrived at (1464,1960,0)
+[13:51:36.294] INFO  [f6_Bruin] [action] goto finished at (1464,1960,0); target (1464,1960); ARRIVED (off by 0 tile(s))
+[13:51:36.294] LOG   [f6_Bruin] event goto_done: at=(1464,1960) target=(1464,1960) arrived=1 off=0
+[13:51:36.294] INFO  [f6_Bruin] [action] goto (1464,1928) from (1464,1960,0)
+[13:51:36.294] LOG   [f6_Bruin] event goto_start: target=(1464,1928) from=(1464,1960)
+[13:51:36.294] INFO  [f6_Bruin] [bot] running from (1464,1960,0) to (1464,1928)
+[13:51:36.294] INFO  [f6_Bruin] [bot] planning path to (1464,1928) in background
+[13:51:36.322] INFO  [f6_Bruin] [bot] replan to (1464,1928): 34 steps in 9200.2us
+[13:51:36.446] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:41.126] INFO  [f6_Bruin] [war] dropping war mode: no combat event within the timeout
+[13:51:41.126] LOG   [f6_Bruin] event war_timeout: no combat event within the timeout
+[13:51:41.126] INFO  [f6_Bruin] [war] leaving war mode
+[13:51:41.482] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:46.490] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:48.166] INFO  [f6_Bruin] [bot] arrived at (1464,1928,0)
+[13:51:48.166] INFO  [f6_Bruin] [action] goto finished at (1464,1928,0); target (1464,1928); ARRIVED (off by 0 tile(s))
+[13:51:48.166] LOG   [f6_Bruin] event goto_done: at=(1464,1928) target=(1464,1928) arrived=1 off=0
+[13:51:48.167] INFO  [f6_Bruin] [action] goto (1464,1896) from (1464,1928,0)
+[13:51:48.167] LOG   [f6_Bruin] event goto_start: target=(1464,1896) from=(1464,1928)
+[13:51:48.167] INFO  [f6_Bruin] [bot] running from (1464,1928,0) to (1464,1896)
+[13:51:48.167] INFO  [f6_Bruin] [bot] planning path to (1464,1896) in background
+[13:51:48.182] INFO  [f6_Bruin] [bot] replan to (1464,1896): 32 steps in 5321.2us
+[13:51:51.504] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:56.555] INFO  [f6_Bruin] [survival] hp 21/50 (42%) -> fight
+[13:51:58.103] INFO  [f6_Bruin] [bot] arrived at (1464,1896,0)
+[13:51:58.104] INFO  [f6_Bruin] [action] goto finished at (1464,1896,0); target (1464,1896); ARRIVED (off by 0 tile(s))
+[13:51:58.104] LOG   [f6_Bruin] event goto_done: at=(1464,1896) target=(1464,1896) arrived=1 off=0
+[13:51:58.104] INFO  [f6_Bruin] [action] goto (1430,1864) from (1464,1896,0)
+[13:51:58.104] LOG   [f6_Bruin] event goto_start: target=(1430,1864) from=(1464,1896)
+[13:51:58.104] INFO  [f6_Bruin] [bot] running from (1464,1896,0) to (1430,1864)
+[13:51:58.104] INFO  [f6_Bruin] [bot] planning path to (1430,1864) in background
+[13:51:58.164] INFO  [f6_Bruin] [bot] replan to (1430,1864): 49 steps in 23851.7us
+[13:52:00.730] LOG   [f6_Bruin] event threat: HP 22 -> 17
+[13:52:00.730] INFO  [f6_Bruin] [action] goto finished at (1458,1897,0); target (1430,1864); stopped short (off by 61 tile(s))
+[13:52:00.730] LOG   [f6_Bruin] event goto_done: at=(1458,1897) target=(1430,1864) arrived=0 off=61
+[13:52:00.730] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> disengage
+[13:52:00.730] LOG   [f6_Bruin] event survival_disengage: disengage
+[13:52:00.730] INFO  [f6_Bruin] [war] leaving war mode
+[13:52:01.944] INFO  [f6_Bruin] [action] goto (1430,1864) from (1458,1897,0)
+[13:52:01.944] LOG   [f6_Bruin] event goto_start: target=(1430,1864) from=(1458,1897)
+[13:52:01.944] INFO  [f6_Bruin] [bot] running from (1458,1897,0) to (1430,1864)
+[13:52:01.944] INFO  [f6_Bruin] [bot] planning path to (1430,1864) in background
+[13:52:02.007] INFO  [f6_Bruin] [bot] replan to (1430,1864): 43 steps in 16257.7us
+[13:52:02.283] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[13:52:08.290] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[13:52:14.374] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[13:52:14.988] LOG   [f6_Bruin] event threat: HP 17 -> 13
+[13:52:14.989] INFO  [f6_Bruin] [action] goto finished at (1431,1868,0); target (1430,1864); stopped short (off by 5 tile(s))
+[13:52:14.989] LOG   [f6_Bruin] event goto_done: at=(1431,1868) target=(1430,1864) arrived=0 off=5
+[13:52:16.202] INFO  [f6_Bruin] [action] goto (1430,1864) from (1431,1868,0)
+[13:52:16.202] LOG   [f6_Bruin] event goto_start: target=(1430,1864) from=(1431,1868)
+[13:52:16.202] INFO  [f6_Bruin] [bot] running from (1431,1868,0) to (1430,1864)
+[13:52:16.202] INFO  [f6_Bruin] [bot] planning path to (1430,1864) in background
+[13:52:16.232] INFO  [f6_Bruin] [bot] replan to (1430,1864): 4 steps in 278.0us
+[13:52:17.404] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> disengage
+[13:52:17.404] LOG   [f6_Bruin] event survival_disengage: disengage
+[13:52:17.404] INFO  [f6_Bruin] [war] leaving war mode
+[13:52:17.563] LOG   [f6_Bruin] event threat: HP 13 -> 8
+[13:52:17.564] INFO  [f6_Bruin] [action] goto finished at (1430,1865,0); target (1430,1864); stopped short (off by 1 tile(s))
+[13:52:17.564] LOG   [f6_Bruin] event goto_done: at=(1430,1865) target=(1430,1864) arrived=0 off=1
+[13:52:17.564] INFO  [f6_Bruin] [action] goto (1432,1832) from (1430,1865,0)
+[13:52:17.564] LOG   [f6_Bruin] event goto_start: target=(1432,1832) from=(1430,1865)
+[13:52:17.564] INFO  [f6_Bruin] [bot] running from (1430,1865,0) to (1432,1832)
+[13:52:17.564] INFO  [f6_Bruin] [bot] planning path to (1432,1832) in background
+[13:52:17.603] INFO  [f6_Bruin] [bot] replan to (1432,1832): 35 steps in 7884.0us
+[13:52:18.907] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> flee
+[13:52:18.907] LOG   [f6_Bruin] event survival_disengage: flee
+[13:52:18.907] INFO  [f6_Bruin] [war] leaving war mode
+[13:52:19.372] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:52:20.433] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[13:52:26.469] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[13:52:27.772] LOG   [f6_Bruin] event threat: HP 8 -> 4
+[13:52:27.773] INFO  [f6_Bruin] [action] goto finished at (1428,1835,0); target (1432,1832); stopped short (off by 7 tile(s))
+[13:52:27.773] LOG   [f6_Bruin] event goto_done: at=(1428,1835) target=(1432,1832) arrived=0 off=7
+[13:52:28.982] INFO  [f6_Bruin] [action] goto (1432,1832) from (1428,1835,0)
+[13:52:28.982] LOG   [f6_Bruin] event goto_start: target=(1432,1832) from=(1428,1835)
+[13:52:28.982] INFO  [f6_Bruin] [bot] running from (1428,1835,0) to (1432,1832)
+[13:52:28.982] INFO  [f6_Bruin] [bot] planning path to (1432,1832) in background
+[13:52:29.043] INFO  [f6_Bruin] [bot] replan to (1432,1832): 5 steps in 224.4us
+[13:52:29.520] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> flee
+[13:52:29.520] LOG   [f6_Bruin] event survival_disengage: flee
+[13:52:29.520] INFO  [f6_Bruin] [war] leaving war mode
+[13:52:31.047] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:52:31.062] INFO  [f6_Bruin] [bot] arrived at (1432,1832,0)
+[13:52:31.063] INFO  [f6_Bruin] [action] goto finished at (1432,1832,0); target (1432,1832); ARRIVED (off by 0 tile(s))
+[13:52:31.063] LOG   [f6_Bruin] event goto_done: at=(1432,1832) target=(1432,1832) arrived=1 off=0
+[13:52:31.063] INFO  [f6_Bruin] [action] goto (1416,1800) from (1432,1832,0)
+[13:52:31.063] LOG   [f6_Bruin] event goto_start: target=(1416,1800) from=(1432,1832)
+[13:52:31.063] INFO  [f6_Bruin] [bot] running from (1432,1832,0) to (1416,1800)
+[13:52:31.063] INFO  [f6_Bruin] [bot] planning path to (1416,1800) in background
+[13:52:31.124] INFO  [f6_Bruin] [bot] replan to (1416,1800): 34 steps in 9086.3us
+[13:52:31.216] INFO  [f6_Bruin] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=35 in 133.9us
+[13:52:37.113] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:52:43.174] INFO  [f6_Bruin] [survival] hp 5/50 (10%) -> rest
+[13:52:44.192] INFO  [f6_Bruin] [bot] arrived at (1416,1800,0)
+[13:52:44.193] INFO  [f6_Bruin] [action] goto finished at (1416,1800,0); target (1416,1800); ARRIVED (off by 0 tile(s))
+[13:52:44.193] LOG   [f6_Bruin] event goto_done: at=(1416,1800) target=(1416,1800) arrived=1 off=0
+[13:52:44.193] INFO  [f6_Bruin] [action] goto (1382,1768) from (1416,1800,0)
+[13:52:44.193] LOG   [f6_Bruin] event goto_start: target=(1382,1768) from=(1416,1800)
+[13:52:44.193] INFO  [f6_Bruin] [bot] running from (1416,1800,0) to (1382,1768)
+[13:52:44.193] INFO  [f6_Bruin] [bot] planning path to (1382,1768) in background
+[13:52:44.254] INFO  [f6_Bruin] [bot] replan to (1382,1768): 36 steps in 11211.7us
+[13:52:48.397] LOG   [f6_Bruin] event threat: HP 5 -> 1
+[13:52:48.397] INFO  [f6_Bruin] [action] goto finished at (1404,1789,13); target (1382,1768); stopped short (off by 43 tile(s))
+[13:52:48.397] LOG   [f6_Bruin] event goto_done: at=(1404,1789) target=(1382,1768) arrived=0 off=43
+[13:52:49.222] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> flee
+[13:52:49.222] LOG   [f6_Bruin] event survival_disengage: flee
+[13:52:49.222] INFO  [f6_Bruin] [war] leaving war mode
+[13:52:49.641] INFO  [f6_Bruin] [action] goto (1382,1768) from (1404,1789,13)
+[13:52:49.641] LOG   [f6_Bruin] event goto_start: target=(1382,1768) from=(1404,1789)
+[13:52:49.641] INFO  [f6_Bruin] [bot] running from (1404,1789,13) to (1382,1768)
+[13:52:49.641] INFO  [f6_Bruin] [bot] planning path to (1382,1768) in background
+[13:52:49.703] INFO  [f6_Bruin] [bot] replan to (1382,1768): 23 steps in 3759.6us
+[13:52:50.731] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> rest
+[13:52:56.171] INFO  [f6_Bruin] [bot] arrived at (1382,1768,3)
+[13:52:56.172] INFO  [f6_Bruin] [action] goto finished at (1382,1768,3); target (1382,1768); ARRIVED (off by 0 tile(s))
+[13:52:56.172] LOG   [f6_Bruin] event goto_done: at=(1382,1768) target=(1382,1768) arrived=1 off=0
+[13:52:56.172] INFO  [f6_Bruin] [action] goto (1386,1728) from (1382,1768,3)
+[13:52:56.172] LOG   [f6_Bruin] event goto_start: target=(1386,1728) from=(1382,1768)
+[13:52:56.172] INFO  [f6_Bruin] [bot] running from (1382,1768,3) to (1386,1728)
+[13:52:56.172] INFO  [f6_Bruin] [bot] planning path to (1386,1728) in background
+[13:52:56.234] INFO  [f6_Bruin] [bot] replan to (1386,1728): 54 steps in 30441.2us
+[13:52:56.802] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> rest
+[13:53:02.861] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> rest
+[13:53:04.525] INFO  [f6_Bruin] [chat ascii] System: You are now under the protection of the city guards
+[13:53:06.198] INFO  [f6_Bruin] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 936.9us
+[13:53:08.923] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> rest
+[13:53:11.962] INFO  [f6_Bruin] [chat ascii] System: You have left the protection of the city guards
+[13:53:12.408] INFO  [f6_Bruin] [bot] arrived at (1386,1728,0)
+[13:53:12.409] INFO  [f6_Bruin] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[13:53:12.409] LOG   [f6_Bruin] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[13:53:12.409] INFO  [f6_Bruin] [action] goto (1416,1688) from (1386,1728,0)
+[13:53:12.409] LOG   [f6_Bruin] event goto_start: target=(1416,1688) from=(1386,1728)
+[13:53:12.409] INFO  [f6_Bruin] [bot] running from (1386,1728,0) to (1416,1688)
+[13:53:12.409] INFO  [f6_Bruin] [bot] planning path to (1416,1688) in background
+[13:53:12.469] INFO  [f6_Bruin] [bot] replan to (1416,1688): 52 steps in 11327.9us
+[13:53:13.346] INFO  [f6_Bruin] [chat ascii] System: You are now under the protection of the city guards
+[13:53:14.971] INFO  [f6_Bruin] [survival] hp 1/50 (2%) -> rest
+[13:53:19.404] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:53:21.045] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:25.066] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[13:53:27.116] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:28.740] INFO  [f6_Bruin] [bot] arrived at (1416,1688,0)
+[13:53:28.741] INFO  [f6_Bruin] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[13:53:28.741] LOG   [f6_Bruin] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[13:53:28.741] INFO  [f6_Bruin] [action] goto (1422,1654) from (1416,1688,0)
+[13:53:28.741] LOG   [f6_Bruin] event goto_start: target=(1422,1654) from=(1416,1688)
+[13:53:28.741] INFO  [f6_Bruin] [bot] running from (1416,1688,0) to (1422,1654,z10)
+[13:53:28.741] INFO  [f6_Bruin] [bot] planning path to (1422,1654) in background
+[13:53:28.801] INFO  [f6_Bruin] [bot] replan to (1422,1654): 47 steps in 8879.6us
+[13:53:33.141] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:35.085] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[13:53:35.921] INFO  [f6_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=25 in 320.4us
+[13:53:39.218] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 90.0"
+[13:53:39.218] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:53:39.218] INFO  [life]   score=468.0
+[13:53:39.218] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:53:39.218] INFO  [life]   reason: no known supplier of a tongs
+[13:53:39.218] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=2/50 bandages=0)
+[13:53:39.218] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:53:39.218] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:53:39.218] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:53:39.219] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:39.280] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:53:39.280] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:53:39.280] INFO  [life]   score=90.0
+[13:53:39.280] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:53:39.280] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:53:39.280] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=2/50 bandages=0)
+[13:53:39.280] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:53:39.280] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:53:39.280] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:53:39.757] INFO  [f6_Bruin] [bot] door ahead at (1431,1659,z10); OpenDoor before step
+[13:53:39.758] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:53:40.938] INFO  [f6_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 324.7us
+[13:53:42.007] INFO  [f6_Bruin] [travel] Britain tinkerguildmaster ARRIVED at (1427,1658,10)
+[13:53:42.007] LOG   [f6_Bruin] event travel_done: label='Britain tinkerguildmaster' ok=1 at=(1427,1658) legs=10 plans=3 why=''
+[13:53:44.245] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 3)
+[13:53:44.245] INFO  [f6_Bruin] [travel] Minoc tinker -> (2461,457) r=5 from (1423,1656)
+[13:53:44.245] LOG   [f6_Bruin] event travel_start: label='Minoc tinker' target=(2461,457) radius=5 from=(1423,1656)
+[13:53:44.245] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:53:44.245] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:53:44.245] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:53:44.245] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:53:44.245] LOG   [f6_Bruin] event travel_mode: moongate
+[13:53:44.247] INFO  [f6_Bruin] [travel] plan Minoc tinker: ok legs=20 ~864 tiles transit=1 nodes=3723
+[13:53:45.177] INFO  [f6_Bruin] [bot] arrived at (1422,1654,10)
+[13:53:45.178] INFO  [f6_Bruin] [action] goto finished at (1422,1654,10); target (1422,1654); ARRIVED (off by 0 tile(s))
+[13:53:45.178] LOG   [f6_Bruin] event goto_done: at=(1422,1654) target=(1422,1654) arrived=1 off=0
+[13:53:45.178] INFO  [f6_Bruin] [action] goto (1416,1688) from (1422,1654,10)
+[13:53:45.178] LOG   [f6_Bruin] event goto_start: target=(1416,1688) from=(1422,1654)
+[13:53:45.178] INFO  [f6_Bruin] [bot] running from (1422,1654,10) to (1416,1688)
+[13:53:45.178] INFO  [f6_Bruin] [bot] planning path to (1416,1688) in background
+[13:53:45.237] INFO  [f6_Bruin] [bot] replan to (1416,1688): 48 steps in 5638.6us
+[13:53:45.297] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:49.429] INFO  [f6_Bruin] [bot] door ahead at (1432,1660,z10); OpenDoor before step
+[13:53:49.443] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[13:53:51.323] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:53:57.387] INFO  [f6_Bruin] [survival] hp 2/50 (4%) -> rest
+[13:54:00.108] INFO  [f6_Bruin] [bot] arrived at (1416,1688,0)
+[13:54:00.108] INFO  [f6_Bruin] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[13:54:00.108] LOG   [f6_Bruin] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[13:54:00.108] INFO  [f6_Bruin] [action] goto (1416,1720) from (1416,1688,0)
+[13:54:00.108] LOG   [f6_Bruin] event goto_start: target=(1416,1720) from=(1416,1688)
+[13:54:00.108] INFO  [f6_Bruin] [bot] running from (1416,1688,0) to (1416,1720)
+[13:54:00.108] INFO  [f6_Bruin] [bot] planning path to (1416,1720) in background
+[13:54:00.168] INFO  [f6_Bruin] [bot] replan to (1416,1720): 32 steps in 816.7us
+[13:54:03.470] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:08.004] INFO  [f6_Bruin] [bot] arrived at (1416,1720,20)
+[13:54:08.005] INFO  [f6_Bruin] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[13:54:08.005] LOG   [f6_Bruin] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[13:54:08.005] INFO  [f6_Bruin] [action] goto (1402,1760) from (1416,1720,20)
+[13:54:08.005] LOG   [f6_Bruin] event goto_start: target=(1402,1760) from=(1416,1720)
+[13:54:08.005] INFO  [f6_Bruin] [bot] running from (1416,1720,20) to (1402,1760)
+[13:54:08.005] INFO  [f6_Bruin] [bot] planning path to (1402,1760) in background
+[13:54:08.067] INFO  [f6_Bruin] [bot] replan to (1402,1760): 40 steps in 12771.1us
+[13:54:09.516] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:15.531] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:19.435] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:54:19.494] INFO  [f6_Bruin] [bot] arrived at (1402,1760,0)
+[13:54:19.495] INFO  [f6_Bruin] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[13:54:19.495] LOG   [f6_Bruin] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[13:54:19.495] INFO  [f6_Bruin] [action] goto (1368,1800) from (1402,1760,0)
+[13:54:19.495] LOG   [f6_Bruin] event goto_start: target=(1368,1800) from=(1402,1760)
+[13:54:19.495] INFO  [f6_Bruin] [bot] running from (1402,1760,0) to (1368,1800)
+[13:54:19.495] INFO  [f6_Bruin] [bot] planning path to (1368,1800) in background
+[13:54:19.555] INFO  [f6_Bruin] [bot] replan to (1368,1800): 79 steps in 27303.1us
+[13:54:21.615] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:23.977] INFO  [f6_Bruin] [chat ascii] System: You have left the protection of the city guards
+[13:54:27.694] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:33.800] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:39.891] INFO  [f6_Bruin] [survival] hp 3/50 (6%) -> rest
+[13:54:41.977] INFO  [f6_Bruin] [bot] arrived at (1368,1800,3)
+[13:54:41.978] INFO  [f6_Bruin] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[13:54:41.978] LOG   [f6_Bruin] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[13:54:41.978] INFO  [f6_Bruin] [action] goto (1368,1832) from (1368,1800,3)
+[13:54:41.978] LOG   [f6_Bruin] event goto_start: target=(1368,1832) from=(1368,1800)
+[13:54:41.978] INFO  [f6_Bruin] [bot] running from (1368,1800,3) to (1368,1832)
+[13:54:41.978] INFO  [f6_Bruin] [bot] planning path to (1368,1832) in background
+[13:54:42.038] INFO  [f6_Bruin] [bot] replan to (1368,1832): 32 steps in 3786.3us
+[13:54:46.000] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:54:51.747] INFO  [f6_Bruin] [bot] arrived at (1368,1832,0)
+[13:54:51.748] INFO  [f6_Bruin] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[13:54:51.748] LOG   [f6_Bruin] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[13:54:51.748] INFO  [f6_Bruin] [action] goto (1368,1864) from (1368,1832,0)
+[13:54:51.748] LOG   [f6_Bruin] event goto_start: target=(1368,1864) from=(1368,1832)
+[13:54:51.748] INFO  [f6_Bruin] [bot] running from (1368,1832,0) to (1368,1864)
+[13:54:51.748] INFO  [f6_Bruin] [bot] planning path to (1368,1864) in background
+[13:54:51.810] INFO  [f6_Bruin] [bot] replan to (1368,1864): 38 steps in 9785.9us
+[13:54:52.025] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:54:58.084] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:55:03.389] INFO  [f6_Bruin] [bot] arrived at (1368,1864,0)
+[13:55:03.390] INFO  [f6_Bruin] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[13:55:03.390] LOG   [f6_Bruin] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[13:55:03.390] INFO  [f6_Bruin] [action] goto (1368,1894) from (1368,1864,0)
+[13:55:03.390] LOG   [f6_Bruin] event goto_start: target=(1368,1894) from=(1368,1864)
+[13:55:03.390] INFO  [f6_Bruin] [bot] running from (1368,1864,0) to (1368,1894)
+[13:55:03.390] INFO  [f6_Bruin] [bot] planning path to (1368,1894) in background
+[13:55:03.450] INFO  [f6_Bruin] [bot] replan to (1368,1894): 31 steps in 12832.0us
+[13:55:04.142] INFO  [f6_Bruin] [survival] hp 4/50 (8%) -> rest
+[13:55:09.171] INFO  [f6_Bruin] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[13:55:09.171] LOG   [f6_Bruin] event war_timeout: no combat target and the bot is doing something peaceful
+[13:55:09.171] INFO  [f6_Bruin] [war] leaving war mode
+[13:55:09.232] INFO  [f6_Bruin] [0x3C] container contents: 4 item(s)
+[13:55:09.232] INFO  [f6_Bruin] [0x2C] resurrection menu action=0
+[13:55:09.232] LOG   [f6_Bruin] event resurrect_menu: prompt
+[13:55:09.232] INFO  [f6_Bruin] [STATE] dead (0x2C resurrect menu)
+[13:55:09.232] LOG   [f6_Bruin] event state_dead: 0x2C received
+[13:55:09.232] LOG   [f6_Bruin] event death_location: at=(1366,1882,0) region=a_britain_territory_1 via=0x2C resurrect menu
+[13:55:09.232] INFO  [f6_Bruin] [travel] Minoc tinker FAILED at (1366,1882,0) -- died
+[13:55:09.232] LOG   [f6_Bruin] event travel_failed: label='Minoc tinker' ok=0 at=(1366,1882) legs=20 plans=1 why='died'
+[13:55:09.232] INFO  [f6_Bruin] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[13:55:09.232] LOG   [f6_Bruin] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[13:55:09.233] INFO  [life] goal_changed=SURVIVE from=TRAIN_AT_NPC reason="SURVIVE 1000.0 superseded TRAIN_AT_NPC 0.0 (emergency preempt)"
+[13:55:09.233] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:55:09.233] INFO  [life]   score=1000.0
+[13:55:09.233] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[13:55:09.233] INFO  [life]   reason: life=dead
+[13:55:09.233] INFO  [f6_Bruin] [ACTION] resurrect start
+[13:55:09.233] INFO  [f6_Bruin] [ACTION] resurrect: waiting for the server to raise us
+[13:55:09.233] INFO  [life] dead: walking to a healer (trip 1)
+[13:55:09.233] INFO  [f6_Bruin] [travel] Deep Forest Healing healer -> (643,1083) r=5 from (1366,1882)
+[13:55:09.233] LOG   [f6_Bruin] event travel_start: label='Deep Forest Healing healer' target=(643,1083) radius=5 from=(1366,1882)
+[13:55:09.233] INFO  [f6_Bruin] [travel] mode walk             usable   <- chosen
+[13:55:09.233] INFO  [f6_Bruin] [travel] mode moongate         no: dead characters cannot use gates
+[13:55:09.233] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:55:09.233] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:55:09.233] LOG   [f6_Bruin] event travel_mode: walk
+[13:55:09.233] INFO  [f6_Bruin] [travel] plan Deep Forest Healing healer: ok legs=36 ~1376 tiles transit=0 nodes=2285
+[13:55:09.233] INFO  [f6_Bruin] [chat ascii] System: You are a ghost
+[13:55:09.234] INFO  [f6_Bruin] [0x1B] serial=0x00013A1A body=0x0192 pos=(1366,1882,0)
+[13:55:09.234] LOG   [f6_Bruin] event login_confirm: serial=0x00013A1A body=0x0192 pos=(1366,1882,0)
+[13:55:09.234] INFO  [f6_Bruin] [0x20] player @(1366,1882,0) facing=4
+[13:55:09.234] LOG   [f6_Bruin] event corpse_located: corpse=0x40012A91 at=(1366,1882,0)
+[13:55:09.234] INFO  [f6_Bruin] [0x3C] container contents: 4 item(s)
+[13:55:09.234] INFO  [f6_Bruin] [0x55] login complete — entering world
+[13:55:09.234] LOG   [f6_Bruin] event in_world: 0x55 received
+[13:55:09.234] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:55:09.234] INFO  [f6_Bruin] [action] goto finished at (1366,1882,0); target (1368,1894); stopped short (off by 14 tile(s))
+[13:55:09.234] LOG   [f6_Bruin] event goto_done: at=(1366,1882) target=(1368,1894) arrived=0 off=14
+[13:55:09.234] INFO  [f6_Bruin] [action] goto (1336,1880) from (1366,1882,0)
+[13:55:09.234] LOG   [f6_Bruin] event goto_start: target=(1336,1880) from=(1366,1882)
+[13:55:09.234] INFO  [f6_Bruin] [bot] running from (1366,1882,0) to (1336,1880)
+[13:55:09.234] INFO  [f6_Bruin] [bot] planning path to (1336,1880) in background
+[13:55:09.246] INFO  [f6_Bruin] [chat ascii] System: Your ghostly hand passes through the object.
+[13:55:09.307] INFO  [f6_Bruin] [bot] replan to (1336,1880): 34 steps in 15968.1us
+[13:55:19.461] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:55:20.975] INFO  [f6_Bruin] [bot] arrived at (1336,1880,0)
+[13:55:20.976] INFO  [f6_Bruin] [action] goto finished at (1336,1880,0); target (1336,1880); ARRIVED (off by 0 tile(s))
+[13:55:20.976] LOG   [f6_Bruin] event goto_done: at=(1336,1880) target=(1336,1880) arrived=1 off=0
+[13:55:20.976] INFO  [f6_Bruin] [action] goto (1304,1880) from (1336,1880,0)
+[13:55:20.976] LOG   [f6_Bruin] event goto_start: target=(1304,1880) from=(1336,1880)
+[13:55:20.976] INFO  [f6_Bruin] [bot] running from (1336,1880,0) to (1304,1880)
+[13:55:20.976] INFO  [f6_Bruin] [bot] planning path to (1304,1880) in background
+[13:55:21.036] INFO  [f6_Bruin] [bot] replan to (1304,1880): 32 steps in 19344.4us
+[13:55:33.996] INFO  [f6_Bruin] [bot] arrived at (1304,1880,0)
+[13:55:33.997] INFO  [f6_Bruin] [action] goto finished at (1304,1880,0); target (1304,1880); ARRIVED (off by 0 tile(s))
+[13:55:33.997] LOG   [f6_Bruin] event goto_done: at=(1304,1880) target=(1304,1880) arrived=1 off=0
+[13:55:33.997] INFO  [f6_Bruin] [action] goto (1272,1880) from (1304,1880,0)
+[13:55:33.997] LOG   [f6_Bruin] event goto_start: target=(1272,1880) from=(1304,1880)
+[13:55:33.997] INFO  [f6_Bruin] [bot] running from (1304,1880,0) to (1272,1880)
+[13:55:33.997] INFO  [f6_Bruin] [bot] planning path to (1272,1880) in background
+[13:55:34.058] INFO  [f6_Bruin] [bot] replan to (1272,1880): 34 steps in 26293.7us
+[13:55:44.220] INFO  [f6_Bruin] [bot] arrived at (1272,1880,0)
+[13:55:44.220] INFO  [f6_Bruin] [action] goto finished at (1272,1880,0); target (1272,1880); ARRIVED (off by 0 tile(s))
+[13:55:44.220] LOG   [f6_Bruin] event goto_done: at=(1272,1880) target=(1272,1880) arrived=1 off=0
+[13:55:44.221] INFO  [f6_Bruin] [action] goto (1240,1880) from (1272,1880,0)
+[13:55:44.221] LOG   [f6_Bruin] event goto_start: target=(1240,1880) from=(1272,1880)
+[13:55:44.221] INFO  [f6_Bruin] [bot] running from (1272,1880,0) to (1240,1880)
+[13:55:44.221] INFO  [f6_Bruin] [bot] planning path to (1240,1880) in background
+[13:55:44.281] INFO  [f6_Bruin] [bot] replan to (1240,1880): 32 steps in 6624.6us
+[13:55:53.387] INFO  [f6_Bruin] [bot] arrived at (1240,1880,0)
+[13:55:53.388] INFO  [f6_Bruin] [action] goto finished at (1240,1880,0); target (1240,1880); ARRIVED (off by 0 tile(s))
+[13:55:53.388] LOG   [f6_Bruin] event goto_done: at=(1240,1880) target=(1240,1880) arrived=1 off=0
+[13:55:53.388] INFO  [f6_Bruin] [action] goto (1208,1880) from (1240,1880,0)
+[13:55:53.388] LOG   [f6_Bruin] event goto_start: target=(1208,1880) from=(1240,1880)
+[13:55:53.388] INFO  [f6_Bruin] [bot] running from (1240,1880,0) to (1208,1880)
+[13:55:53.388] INFO  [f6_Bruin] [bot] planning path to (1208,1880) in background
+[13:55:53.449] INFO  [f6_Bruin] [bot] replan to (1208,1880): 32 steps in 9709.9us
+[13:56:01.076] INFO  [f6_Bruin] [bot] arrived at (1208,1880,0)
+[13:56:01.076] INFO  [f6_Bruin] [action] goto finished at (1208,1880,0); target (1208,1880); ARRIVED (off by 0 tile(s))
+[13:56:01.076] LOG   [f6_Bruin] event goto_done: at=(1208,1880) target=(1208,1880) arrived=1 off=0
+[13:56:01.076] INFO  [f6_Bruin] [action] goto (1176,1880) from (1208,1880,0)
+[13:56:01.076] LOG   [f6_Bruin] event goto_start: target=(1176,1880) from=(1208,1880)
+[13:56:01.076] INFO  [f6_Bruin] [bot] running from (1208,1880,0) to (1176,1880)
+[13:56:01.077] INFO  [f6_Bruin] [bot] planning path to (1176,1880) in background
+[13:56:01.139] INFO  [f6_Bruin] [bot] replan to (1176,1880): 35 steps in 17117.0us
+[13:56:11.614] INFO  [f6_Bruin] [bot] arrived at (1176,1880,0)
+[13:56:11.614] INFO  [f6_Bruin] [action] goto finished at (1176,1880,0); target (1176,1880); ARRIVED (off by 0 tile(s))
+[13:56:11.614] LOG   [f6_Bruin] event goto_done: at=(1176,1880) target=(1176,1880) arrived=1 off=0
+[13:56:11.614] INFO  [f6_Bruin] [action] goto (1140,1880) from (1176,1880,0)
+[13:56:11.614] LOG   [f6_Bruin] event goto_start: target=(1140,1880) from=(1176,1880)
+[13:56:11.614] INFO  [f6_Bruin] [bot] running from (1176,1880,0) to (1140,1880)
+[13:56:11.614] INFO  [f6_Bruin] [bot] planning path to (1140,1880) in background
+[13:56:11.675] INFO  [f6_Bruin] [bot] replan to (1140,1880): 45 steps in 4679.2us
+[13:56:19.497] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:56:25.604] INFO  [f6_Bruin] [bot] arrived at (1140,1880,0)
+[13:56:25.605] INFO  [f6_Bruin] [action] goto finished at (1140,1880,0); target (1140,1880); ARRIVED (off by 0 tile(s))
+[13:56:25.605] LOG   [f6_Bruin] event goto_done: at=(1140,1880) target=(1140,1880) arrived=1 off=0
+[13:56:25.605] INFO  [f6_Bruin] [action] goto (1112,1912) from (1140,1880,0)
+[13:56:25.605] LOG   [f6_Bruin] event goto_start: target=(1112,1912) from=(1140,1880)
+[13:56:25.605] INFO  [f6_Bruin] [bot] running from (1140,1880,0) to (1112,1912)
+[13:56:25.605] INFO  [f6_Bruin] [bot] planning path to (1112,1912) in background
+[13:56:25.666] INFO  [f6_Bruin] [bot] replan to (1112,1912): 32 steps in 1143.6us
+[13:56:34.564] INFO  [f6_Bruin] [bot] arrived at (1112,1912,0)
+[13:56:34.564] INFO  [f6_Bruin] [action] goto finished at (1112,1912,0); target (1112,1912); ARRIVED (off by 0 tile(s))
+[13:56:34.565] LOG   [f6_Bruin] event goto_done: at=(1112,1912) target=(1112,1912) arrived=1 off=0
+[13:56:34.565] INFO  [f6_Bruin] [action] goto (1080,1928) from (1112,1912,0)
+[13:56:34.565] LOG   [f6_Bruin] event goto_start: target=(1080,1928) from=(1112,1912)
+[13:56:34.565] INFO  [f6_Bruin] [bot] running from (1112,1912,0) to (1080,1928)
+[13:56:34.565] INFO  [f6_Bruin] [bot] planning path to (1080,1928) in background
+[13:56:34.625] INFO  [f6_Bruin] [bot] replan to (1080,1928): 36 steps in 12970.4us
+[13:56:46.235] INFO  [f6_Bruin] [bot] arrived at (1080,1928,0)
+[13:56:46.236] INFO  [f6_Bruin] [action] goto finished at (1080,1928,0); target (1080,1928); ARRIVED (off by 0 tile(s))
+[13:56:46.236] LOG   [f6_Bruin] event goto_done: at=(1080,1928) target=(1080,1928) arrived=1 off=0
+[13:56:46.236] INFO  [f6_Bruin] [action] goto (1048,1894) from (1080,1928,0)
+[13:56:46.236] LOG   [f6_Bruin] event goto_start: target=(1048,1894) from=(1080,1928)
+[13:56:46.236] INFO  [f6_Bruin] [bot] running from (1080,1928,0) to (1048,1894)
+[13:56:46.236] INFO  [f6_Bruin] [bot] planning path to (1048,1894) in background
+[13:56:46.296] INFO  [f6_Bruin] [bot] replan to (1048,1894): 44 steps in 22973.8us
+[13:57:01.473] INFO  [f6_Bruin] [bot] arrived at (1048,1894,0)
+[13:57:01.474] INFO  [f6_Bruin] [action] goto finished at (1048,1894,0); target (1048,1894); ARRIVED (off by 0 tile(s))
+[13:57:01.474] LOG   [f6_Bruin] event goto_done: at=(1048,1894) target=(1048,1894) arrived=1 off=0
+[13:57:01.474] INFO  [f6_Bruin] [action] goto (1046,1864) from (1048,1894,0)
+[13:57:01.474] LOG   [f6_Bruin] event goto_start: target=(1046,1864) from=(1048,1894)
+[13:57:01.474] INFO  [f6_Bruin] [bot] running from (1048,1894,0) to (1046,1864)
+[13:57:01.474] INFO  [f6_Bruin] [bot] planning path to (1046,1864) in background
+[13:57:01.533] INFO  [f6_Bruin] [bot] replan to (1046,1864): 30 steps in 7482.0us
+[13:57:10.890] INFO  [f6_Bruin] [bot] arrived at (1046,1864,0)
+[13:57:10.891] INFO  [f6_Bruin] [action] goto finished at (1046,1864,0); target (1046,1864); ARRIVED (off by 0 tile(s))
+[13:57:10.891] LOG   [f6_Bruin] event goto_done: at=(1046,1864) target=(1046,1864) arrived=1 off=0
+[13:57:10.891] INFO  [f6_Bruin] [action] goto (1042,1832) from (1046,1864,0)
+[13:57:10.891] LOG   [f6_Bruin] event goto_start: target=(1042,1832) from=(1046,1864)
+[13:57:10.891] INFO  [f6_Bruin] [bot] running from (1046,1864,0) to (1042,1832)
+[13:57:10.891] INFO  [f6_Bruin] [bot] planning path to (1042,1832) in background
+[13:57:10.937] INFO  [f6_Bruin] [bot] replan to (1042,1832): 32 steps in 7790.4us
+[13:57:15.901] INFO  [f6_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=18 in 370.6us
+[13:57:19.548] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:57:20.986] INFO  [f6_Bruin] [bot] arrived at (1042,1832,0)
+[13:57:20.987] INFO  [f6_Bruin] [action] goto finished at (1042,1832,0); target (1042,1832); ARRIVED (off by 0 tile(s))
+[13:57:20.987] LOG   [f6_Bruin] event goto_done: at=(1042,1832) target=(1042,1832) arrived=1 off=0
+[13:57:20.987] INFO  [f6_Bruin] [action] goto (1042,1800) from (1042,1832,0)
+[13:57:20.987] LOG   [f6_Bruin] event goto_start: target=(1042,1800) from=(1042,1832)
+[13:57:20.987] INFO  [f6_Bruin] [bot] running from (1042,1832,0) to (1042,1800)
+[13:57:20.987] INFO  [f6_Bruin] [bot] planning path to (1042,1800) in background
+[13:57:21.048] INFO  [f6_Bruin] [bot] replan to (1042,1800): 33 steps in 7428.1us
+[13:57:33.394] INFO  [f6_Bruin] [bot] arrived at (1042,1800,0)
+[13:57:33.394] INFO  [f6_Bruin] [action] goto finished at (1042,1800,0); target (1042,1800); ARRIVED (off by 0 tile(s))
+[13:57:33.394] LOG   [f6_Bruin] event goto_done: at=(1042,1800) target=(1042,1800) arrived=1 off=0
+[13:57:33.394] INFO  [f6_Bruin] [action] goto (1032,1768) from (1042,1800,0)
+[13:57:33.394] LOG   [f6_Bruin] event goto_start: target=(1032,1768) from=(1042,1800)
+[13:57:33.394] INFO  [f6_Bruin] [bot] running from (1042,1800,0) to (1032,1768)
+[13:57:33.394] INFO  [f6_Bruin] [bot] planning path to (1032,1768) in background
+[13:57:33.455] INFO  [f6_Bruin] [bot] replan to (1032,1768): 34 steps in 6709.1us
+[13:57:46.209] INFO  [f6_Bruin] [bot] arrived at (1032,1768,0)
+[13:57:46.210] INFO  [f6_Bruin] [action] goto finished at (1032,1768,0); target (1032,1768); ARRIVED (off by 0 tile(s))
+[13:57:46.210] LOG   [f6_Bruin] event goto_done: at=(1032,1768) target=(1032,1768) arrived=1 off=0
+[13:57:46.210] INFO  [f6_Bruin] [action] goto (1032,1736) from (1032,1768,0)
+[13:57:46.210] LOG   [f6_Bruin] event goto_start: target=(1032,1736) from=(1032,1768)
+[13:57:46.210] INFO  [f6_Bruin] [bot] running from (1032,1768,0) to (1032,1736)
+[13:57:46.210] INFO  [f6_Bruin] [bot] planning path to (1032,1736) in background
+[13:57:46.270] INFO  [f6_Bruin] [bot] replan to (1032,1736): 34 steps in 17038.5us
+[13:57:58.943] INFO  [f6_Bruin] [bot] arrived at (1032,1736,0)
+[13:57:58.943] INFO  [f6_Bruin] [action] goto finished at (1032,1736,0); target (1032,1736); ARRIVED (off by 0 tile(s))
+[13:57:58.943] LOG   [f6_Bruin] event goto_done: at=(1032,1736) target=(1032,1736) arrived=1 off=0
+[13:57:58.943] INFO  [f6_Bruin] [action] goto (1032,1702) from (1032,1736,0)
+[13:57:58.943] LOG   [f6_Bruin] event goto_start: target=(1032,1702) from=(1032,1736)
+[13:57:58.943] INFO  [f6_Bruin] [bot] running from (1032,1736,0) to (1032,1702)
+[13:57:58.943] INFO  [f6_Bruin] [bot] planning path to (1032,1702) in background
+[13:57:59.005] INFO  [f6_Bruin] [bot] replan to (1032,1702): 34 steps in 11596.4us
+[13:58:01.993] INFO  [f6_Bruin] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=24 in 151.9us
+[13:58:09.864] INFO  [f6_Bruin] [bot] arrived at (1032,1702,0)
+[13:58:09.864] INFO  [f6_Bruin] [action] goto finished at (1032,1702,0); target (1032,1702); ARRIVED (off by 0 tile(s))
+[13:58:09.864] LOG   [f6_Bruin] event goto_done: at=(1032,1702) target=(1032,1702) arrived=1 off=0
+[13:58:09.864] INFO  [f6_Bruin] [action] goto (1032,1672) from (1032,1702,0)
+[13:58:09.864] LOG   [f6_Bruin] event goto_start: target=(1032,1672) from=(1032,1702)
+[13:58:09.864] INFO  [f6_Bruin] [bot] running from (1032,1702,0) to (1032,1672)
+[13:58:09.864] INFO  [f6_Bruin] [bot] planning path to (1032,1672) in background
+[13:58:09.925] INFO  [f6_Bruin] [bot] replan to (1032,1672): 31 steps in 9554.8us
+[13:58:19.569] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:58:21.532] INFO  [f6_Bruin] [bot] arrived at (1032,1672,0)
+[13:58:21.533] INFO  [f6_Bruin] [action] goto finished at (1032,1672,0); target (1032,1672); ARRIVED (off by 0 tile(s))
+[13:58:21.533] LOG   [f6_Bruin] event goto_done: at=(1032,1672) target=(1032,1672) arrived=1 off=0
+[13:58:21.533] INFO  [f6_Bruin] [action] goto (1032,1646) from (1032,1672,0)
+[13:58:21.533] LOG   [f6_Bruin] event goto_start: target=(1032,1646) from=(1032,1672)
+[13:58:21.533] INFO  [f6_Bruin] [bot] running from (1032,1672,0) to (1032,1646)
+[13:58:21.533] INFO  [f6_Bruin] [bot] planning path to (1032,1646) in background
+[13:58:21.563] INFO  [f6_Bruin] [bot] replan to (1032,1646): 27 steps in 8362.5us
+[13:58:25.473] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[13:58:30.164] INFO  [f6_Bruin] [bot] arrived at (1032,1646,0)
+[13:58:30.165] INFO  [f6_Bruin] [action] goto finished at (1032,1646,0); target (1032,1646); ARRIVED (off by 0 tile(s))
+[13:58:30.165] LOG   [f6_Bruin] event goto_done: at=(1032,1646) target=(1032,1646) arrived=1 off=0
+[13:58:30.165] INFO  [f6_Bruin] [action] goto (1000,1606) from (1032,1646,0)
+[13:58:30.165] LOG   [f6_Bruin] event goto_start: target=(1000,1606) from=(1032,1646)
+[13:58:30.165] INFO  [f6_Bruin] [bot] running from (1032,1646,0) to (1000,1606)
+[13:58:30.165] INFO  [f6_Bruin] [bot] planning path to (1000,1606) in background
+[13:58:30.224] INFO  [f6_Bruin] [bot] replan to (1000,1606): 51 steps in 33383.2us
+[13:58:35.481] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[13:58:49.932] INFO  [f6_Bruin] [bot] arrived at (1000,1606,0)
+[13:58:49.932] INFO  [f6_Bruin] [action] goto finished at (1000,1606,0); target (1000,1606); ARRIVED (off by 0 tile(s))
+[13:58:49.932] LOG   [f6_Bruin] event goto_done: at=(1000,1606) target=(1000,1606) arrived=1 off=0
+[13:58:49.932] INFO  [f6_Bruin] [action] goto (966,1578) from (1000,1606,0)
+[13:58:49.932] LOG   [f6_Bruin] event goto_start: target=(966,1578) from=(1000,1606)
+[13:58:49.932] INFO  [f6_Bruin] [bot] running from (1000,1606,0) to (966,1578)
+[13:58:49.932] INFO  [f6_Bruin] [bot] planning path to (966,1578) in background
+[13:58:49.993] INFO  [f6_Bruin] [bot] replan to (966,1578): 41 steps in 23952.7us
+[13:59:05.082] INFO  [f6_Bruin] [bot] arrived at (966,1578,6)
+[13:59:05.083] INFO  [f6_Bruin] [action] goto finished at (966,1578,6); target (966,1578); ARRIVED (off by 0 tile(s))
+[13:59:05.083] LOG   [f6_Bruin] event goto_done: at=(966,1578) target=(966,1578) arrived=1 off=0
+[13:59:05.083] INFO  [f6_Bruin] [action] goto (928,1544) from (966,1578,6)
+[13:59:05.083] LOG   [f6_Bruin] event goto_start: target=(928,1544) from=(966,1578)
+[13:59:05.083] INFO  [f6_Bruin] [bot] running from (966,1578,6) to (928,1544)
+[13:59:05.083] INFO  [f6_Bruin] [bot] planning path to (928,1544) in background
+[13:59:05.143] INFO  [f6_Bruin] [bot] replan to (928,1544): 50 steps in 30258.4us
+[13:59:19.616] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:59:22.439] INFO  [f6_Bruin] [bot] arrived at (928,1544,0)
+[13:59:22.440] INFO  [f6_Bruin] [action] goto finished at (928,1544,0); target (928,1544); ARRIVED (off by 0 tile(s))
+[13:59:22.440] LOG   [f6_Bruin] event goto_done: at=(928,1544) target=(928,1544) arrived=1 off=0
+[13:59:22.440] INFO  [f6_Bruin] [action] goto (916,1510) from (928,1544,0)
+[13:59:22.440] LOG   [f6_Bruin] event goto_start: target=(916,1510) from=(928,1544)
+[13:59:22.440] INFO  [f6_Bruin] [bot] running from (928,1544,0) to (916,1510)
+[13:59:22.440] INFO  [f6_Bruin] [bot] planning path to (916,1510) in background
+[13:59:22.501] INFO  [f6_Bruin] [bot] replan to (916,1510): 42 steps in 13756.6us
+[13:59:35.507] INFO  [f6_Bruin] [bot] arrived at (916,1510,0)
+[13:59:35.507] INFO  [f6_Bruin] [action] goto finished at (916,1510,0); target (916,1510); ARRIVED (off by 0 tile(s))
+[13:59:35.507] LOG   [f6_Bruin] event goto_done: at=(916,1510) target=(916,1510) arrived=1 off=0
+[13:59:35.507] INFO  [f6_Bruin] [action] goto (898,1480) from (916,1510,0)
+[13:59:35.507] LOG   [f6_Bruin] event goto_start: target=(898,1480) from=(916,1510)
+[13:59:35.507] INFO  [f6_Bruin] [bot] running from (916,1510,0) to (898,1480)
+[13:59:35.507] INFO  [f6_Bruin] [bot] planning path to (898,1480) in background
+[13:59:35.568] INFO  [f6_Bruin] [bot] replan to (898,1480): 35 steps in 8384.2us
+[13:59:48.076] INFO  [f6_Bruin] [bot] arrived at (898,1480,0)
+[13:59:48.076] INFO  [f6_Bruin] [action] goto finished at (898,1480,0); target (898,1480); ARRIVED (off by 0 tile(s))
+[13:59:48.077] LOG   [f6_Bruin] event goto_done: at=(898,1480) target=(898,1480) arrived=1 off=0
+[13:59:48.077] INFO  [f6_Bruin] [action] goto (888,1448) from (898,1480,0)
+[13:59:48.077] LOG   [f6_Bruin] event goto_start: target=(888,1448) from=(898,1480)
+[13:59:48.077] INFO  [f6_Bruin] [bot] running from (898,1480,0) to (888,1448)
+[13:59:48.077] INFO  [f6_Bruin] [bot] planning path to (888,1448) in background
+[13:59:48.137] INFO  [f6_Bruin] [bot] replan to (888,1448): 33 steps in 8389.7us
+[14:00:00.609] INFO  [f6_Bruin] [bot] arrived at (888,1448,0)
+[14:00:00.610] INFO  [f6_Bruin] [action] goto finished at (888,1448,0); target (888,1448); ARRIVED (off by 0 tile(s))
+[14:00:00.610] LOG   [f6_Bruin] event goto_done: at=(888,1448) target=(888,1448) arrived=1 off=0
+[14:00:00.610] INFO  [f6_Bruin] [action] goto (880,1416) from (888,1448,0)
+[14:00:00.610] LOG   [f6_Bruin] event goto_start: target=(880,1416) from=(888,1448)
+[14:00:00.610] INFO  [f6_Bruin] [bot] running from (888,1448,0) to (880,1416)
+[14:00:00.610] INFO  [f6_Bruin] [bot] planning path to (880,1416) in background
+[14:00:00.670] INFO  [f6_Bruin] [bot] replan to (880,1416): 32 steps in 6859.0us
+[14:00:09.272] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[14:00:09.272] INFO  [life] needs considered: StayAlive(resurrection 1.00) RecoverCorpse(own corpse 0.75)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:00:09.272] INFO  [life]   score=1000.0
+[14:00:09.272] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[14:00:09.272] INFO  [life]   reason: life=dead
+[14:00:12.802] INFO  [f6_Bruin] [bot] arrived at (880,1416,0)
+[14:00:12.803] INFO  [f6_Bruin] [action] goto finished at (880,1416,0); target (880,1416); ARRIVED (off by 0 tile(s))
+[14:00:12.803] LOG   [f6_Bruin] event goto_done: at=(880,1416) target=(880,1416) arrived=1 off=0
+[14:00:12.803] INFO  [f6_Bruin] [action] goto (856,1384) from (880,1416,0)
+[14:00:12.803] LOG   [f6_Bruin] event goto_start: target=(856,1384) from=(880,1416)
+[14:00:12.803] INFO  [f6_Bruin] [bot] running from (880,1416,0) to (856,1384)
+[14:00:12.803] INFO  [f6_Bruin] [bot] planning path to (856,1384) in background
+[14:00:12.864] INFO  [f6_Bruin] [bot] replan to (856,1384): 36 steps in 15603.4us
+[14:00:19.621] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:00:25.920] INFO  [f6_Bruin] [bot] arrived at (856,1384,1)
+[14:00:25.920] INFO  [f6_Bruin] [action] goto finished at (856,1384,1); target (856,1384); ARRIVED (off by 0 tile(s))
+[14:00:25.920] LOG   [f6_Bruin] event goto_done: at=(856,1384) target=(856,1384) arrived=1 off=0
+[14:00:25.921] INFO  [f6_Bruin] [action] goto (840,1352) from (856,1384,1)
+[14:00:25.921] LOG   [f6_Bruin] event goto_start: target=(840,1352) from=(856,1384)
+[14:00:25.921] INFO  [f6_Bruin] [bot] running from (856,1384,1) to (840,1352)
+[14:00:25.921] INFO  [f6_Bruin] [bot] planning path to (840,1352) in background
+[14:00:25.983] INFO  [f6_Bruin] [bot] replan to (840,1352): 40 steps in 8674.1us
+[14:00:39.076] INFO  [f6_Bruin] [bot] arrived at (840,1352,0)
+[14:00:39.076] INFO  [f6_Bruin] [action] goto finished at (840,1352,0); target (840,1352); ARRIVED (off by 0 tile(s))
+[14:00:39.076] LOG   [f6_Bruin] event goto_done: at=(840,1352) target=(840,1352) arrived=1 off=0
+[14:00:39.076] INFO  [f6_Bruin] [action] goto (824,1318) from (840,1352,0)
+[14:00:39.076] LOG   [f6_Bruin] event goto_start: target=(824,1318) from=(840,1352)
+[14:00:39.076] INFO  [f6_Bruin] [bot] running from (840,1352,0) to (824,1318)
+[14:00:39.076] INFO  [f6_Bruin] [bot] planning path to (824,1318) in background
+[14:00:39.137] INFO  [f6_Bruin] [bot] replan to (824,1318): 40 steps in 12053.9us
+[14:00:54.213] INFO  [f6_Bruin] [bot] arrived at (824,1318,0)
+[14:00:54.213] INFO  [f6_Bruin] [action] goto finished at (824,1318,0); target (824,1318); ARRIVED (off by 0 tile(s))
+[14:00:54.214] LOG   [f6_Bruin] event goto_done: at=(824,1318) target=(824,1318) arrived=1 off=0
+[14:00:54.214] INFO  [f6_Bruin] [action] goto (824,1288) from (824,1318,0)
+[14:00:54.214] LOG   [f6_Bruin] event goto_start: target=(824,1288) from=(824,1318)
+[14:00:54.214] INFO  [f6_Bruin] [bot] running from (824,1318,0) to (824,1288)
+[14:00:54.214] INFO  [f6_Bruin] [bot] planning path to (824,1288) in background
+[14:00:54.273] INFO  [f6_Bruin] [bot] replan to (824,1288): 31 steps in 10458.7us
+[14:01:04.952] INFO  [f6_Bruin] [bot] arrived at (824,1288,0)
+[14:01:04.952] INFO  [f6_Bruin] [action] goto finished at (824,1288,0); target (824,1288); ARRIVED (off by 0 tile(s))
+[14:01:04.952] LOG   [f6_Bruin] event goto_done: at=(824,1288) target=(824,1288) arrived=1 off=0
+[14:01:04.952] INFO  [f6_Bruin] [action] goto (808,1256) from (824,1288,0)
+[14:01:04.952] LOG   [f6_Bruin] event goto_start: target=(808,1256) from=(824,1288)
+[14:01:04.952] INFO  [f6_Bruin] [bot] running from (824,1288,0) to (808,1256)
+[14:01:04.952] INFO  [f6_Bruin] [bot] planning path to (808,1256) in background
+[14:01:05.013] INFO  [f6_Bruin] [bot] replan to (808,1256): 37 steps in 21741.0us
+[14:01:16.276] INFO  [f6_Bruin] [bot] arrived at (808,1256,0)
+[14:01:16.276] INFO  [f6_Bruin] [action] goto finished at (808,1256,0); target (808,1256); ARRIVED (off by 0 tile(s))
+[14:01:16.276] LOG   [f6_Bruin] event goto_done: at=(808,1256) target=(808,1256) arrived=1 off=0
+[14:01:16.276] INFO  [f6_Bruin] [action] goto (776,1222) from (808,1256,0)
+[14:01:16.276] LOG   [f6_Bruin] event goto_start: target=(776,1222) from=(808,1256)
+[14:01:16.276] INFO  [f6_Bruin] [bot] running from (808,1256,0) to (776,1222)
+[14:01:16.276] INFO  [f6_Bruin] [bot] planning path to (776,1222) in background
+[14:01:16.336] INFO  [f6_Bruin] [bot] replan to (776,1222): 44 steps in 25897.5us
+[14:01:19.661] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:01:32.876] INFO  [f6_Bruin] [bot] arrived at (776,1222,0)
+[14:01:32.876] INFO  [f6_Bruin] [action] goto finished at (776,1222,0); target (776,1222); ARRIVED (off by 0 tile(s))
+[14:01:32.876] LOG   [f6_Bruin] event goto_done: at=(776,1222) target=(776,1222) arrived=1 off=0
+[14:01:32.876] INFO  [f6_Bruin] [action] goto (744,1192) from (776,1222,0)
+[14:01:32.876] LOG   [f6_Bruin] event goto_start: target=(744,1192) from=(776,1222)
+[14:01:32.876] INFO  [f6_Bruin] [bot] running from (776,1222,0) to (744,1192)
+[14:01:32.876] INFO  [f6_Bruin] [bot] planning path to (744,1192) in background
+[14:01:32.937] INFO  [f6_Bruin] [bot] replan to (744,1192): 40 steps in 36522.7us
+[14:01:47.133] INFO  [f6_Bruin] [bot] arrived at (744,1192,0)
+[14:01:47.133] INFO  [f6_Bruin] [action] goto finished at (744,1192,0); target (744,1192); ARRIVED (off by 0 tile(s))
+[14:01:47.133] LOG   [f6_Bruin] event goto_done: at=(744,1192) target=(744,1192) arrived=1 off=0
+[14:01:47.133] INFO  [f6_Bruin] [action] goto (712,1160) from (744,1192,0)
+[14:01:47.133] LOG   [f6_Bruin] event goto_start: target=(712,1160) from=(744,1192)
+[14:01:47.133] INFO  [f6_Bruin] [bot] running from (744,1192,0) to (712,1160)
+[14:01:47.133] INFO  [f6_Bruin] [bot] planning path to (712,1160) in background
+[14:01:47.193] INFO  [f6_Bruin] [bot] replan to (712,1160): 39 steps in 13756.7us
+[14:02:01.287] INFO  [f6_Bruin] [bot] arrived at (712,1160,0)
+[14:02:01.287] INFO  [f6_Bruin] [action] goto finished at (712,1160,0); target (712,1160); ARRIVED (off by 0 tile(s))
+[14:02:01.287] LOG   [f6_Bruin] event goto_done: at=(712,1160) target=(712,1160) arrived=1 off=0
+[14:02:01.287] INFO  [f6_Bruin] [action] goto (680,1126) from (712,1160,0)
+[14:02:01.287] LOG   [f6_Bruin] event goto_start: target=(680,1126) from=(712,1160)
+[14:02:01.287] INFO  [f6_Bruin] [bot] running from (712,1160,0) to (680,1126)
+[14:02:01.287] INFO  [f6_Bruin] [bot] planning path to (680,1126) in background
+[14:02:01.346] INFO  [f6_Bruin] [bot] replan to (680,1126): 44 steps in 19956.7us
+[14:02:16.265] INFO  [f6_Bruin] [bot] arrived at (680,1126,0)
+[14:02:16.265] INFO  [f6_Bruin] [action] goto finished at (680,1126,0); target (680,1126); ARRIVED (off by 0 tile(s))
+[14:02:16.265] LOG   [f6_Bruin] event goto_done: at=(680,1126) target=(680,1126) arrived=1 off=0
+[14:02:16.265] INFO  [f6_Bruin] [action] goto (648,1096) from (680,1126,0)
+[14:02:16.265] LOG   [f6_Bruin] event goto_start: target=(648,1096) from=(680,1126)
+[14:02:16.265] INFO  [f6_Bruin] [bot] running from (680,1126,0) to (648,1096)
+[14:02:16.265] INFO  [f6_Bruin] [bot] planning path to (648,1096) in background
+[14:02:16.325] INFO  [f6_Bruin] [bot] replan to (648,1096): 43 steps in 11157.4us
+[14:02:19.667] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:02:31.104] INFO  [f6_Bruin] [bot] arrived at (648,1096,0)
+[14:02:31.105] INFO  [f6_Bruin] [action] goto finished at (648,1096,0); target (648,1096); ARRIVED (off by 0 tile(s))
+[14:02:31.105] LOG   [f6_Bruin] event goto_done: at=(648,1096) target=(648,1096) arrived=1 off=0
+[14:02:31.105] INFO  [f6_Bruin] [action] goto (643,1083) from (648,1096,0)
+[14:02:31.105] LOG   [f6_Bruin] event goto_start: target=(643,1083) from=(648,1096)
+[14:02:31.105] INFO  [f6_Bruin] [bot] running from (648,1096,0) to (643,1083,z0)
+[14:02:31.105] INFO  [f6_Bruin] [bot] planning path to (643,1083) in background
+[14:02:31.165] INFO  [f6_Bruin] [bot] replan to (643,1083): 15 steps in 1196.9us
+[14:02:32.649] INFO  [f6_Bruin] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[14:02:32.650] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[14:02:32.650] INFO  [f6_Bruin] [chat ascii] System: Your ghostly hand passes through the object.
+[14:02:34.921] INFO  [f6_Bruin] [travel] Deep Forest Healing healer ARRIVED at (645,1088,0)
+[14:02:34.921] LOG   [f6_Bruin] event travel_done: label='Deep Forest Healing healer' ok=1 at=(645,1088) legs=36 plans=1 why=''
+[14:02:37.075] INFO  [f6_Bruin] [bot] arrived at (643,1083,0)
+[14:02:42.096] INFO  [f6_Bruin] [chat ascii] Dunstan: What is it thou wishest?
+[14:02:42.096] INFO  [f6_Bruin] [chat ascii] Dunstan: I shall attempt to resurrect thee.
+[14:02:42.096] INFO  [f6_Bruin] [STATE] alive (body 0x0190)
+[14:02:42.096] LOG   [f6_Bruin] event state_resurrected: server body change
+[14:02:42.096] INFO  [f6_Bruin] [ACTION_RESULT] resurrect success (452863ms) character is alive again
+[14:02:42.096] LOG   [f6_Bruin] event action_result: resurrect success took=452863ms character is alive again
+[14:02:42.096] INFO  [f6_Bruin] [0x20] player @(643,1083,0) facing=7
+[14:02:42.097] INFO  [life] goal_changed=GET_FOOD from=SURVIVE reason="GET_FOOD 62.5 superseded SURVIVE 0.0"
+[14:02:42.097] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:02:42.097] INFO  [life]   score=62.5
+[14:02:42.097] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:02:42.097] INFO  [life]   reason: food=0
+[14:02:42.097] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/50 bandages=0)
+[14:02:42.097] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:02:42.097] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:02:42.097] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:02:42.097] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:02:42.097] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:02:42.097] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:02:42.159] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:02:42.159] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:02:42.159] INFO  [life]   score=45.0
+[14:02:42.159] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:02:42.159] INFO  [life]   reason: gold=0 floor=100
+[14:02:42.159] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/50 bandages=0)
+[14:02:42.159] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:02:42.159] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:02:42.159] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:02:42.159] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:02:42.159] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:02:42.236] INFO  [f6_Bruin] [chat ascii] Dunstan: Nice speaking to you Bruin
+[14:02:47.140] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:02:47.201] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:02:47.201] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:02:47.201] INFO  [life]   score=10.0
+[14:02:47.201] INFO  [life]   reason: fallback: nothing else scored
+[14:02:47.201] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/50 bandages=0)
+[14:02:47.201] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:02:47.201] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:02:47.201] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:02:47.201] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:02:47.201] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:02:47.201] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:02:48.183] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:02:54.261] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:03:00.332] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:03:06.355] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:03:07.235] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:03:07.237] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:03:07.297] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:03:07.297] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:03:07.297] INFO  [life]   score=10.0
+[14:03:07.297] INFO  [life]   reason: fallback: nothing else scored
+[14:03:07.297] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/50 bandages=0)
+[14:03:07.297] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:03:07.297] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:03:07.297] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 154s after achieving nothing
+[14:03:07.297] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 159s after achieving nothing
+[14:03:07.297] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:03:07.297] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:03:12.409] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:03:18.483] INFO  [f6_Bruin] [survival] hp 6/50 (12%) -> rest
+[14:03:22.370] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:03:22.372] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:03:22.401] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:03:22.401] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:03:22.401] INFO  [life]   score=10.0
+[14:03:22.401] INFO  [life]   reason: fallback: nothing else scored
+[14:03:22.401] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/50 bandages=0)
+[14:03:22.401] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:03:22.401] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:03:22.401] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 139s after achieving nothing
+[14:03:22.401] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 144s after achieving nothing
+[14:03:22.401] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:03:22.401] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:03:24.553] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:03:25.776] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[14:03:30.599] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:03:35.795] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[14:03:36.673] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:03:37.433] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:03:37.435] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:03:37.493] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:03:37.493] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:03:37.493] INFO  [life]   score=10.0
+[14:03:37.493] INFO  [life]   reason: fallback: nothing else scored
+[14:03:37.493] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/50 bandages=0)
+[14:03:37.493] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:03:37.493] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:03:37.493] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 124s after achieving nothing
+[14:03:37.493] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 129s after achieving nothing
+[14:03:37.493] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:03:37.493] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:03:42.706] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:03:48.728] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:03:52.541] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:03:52.544] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:03:52.602] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:03:52.602] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:03:52.602] INFO  [life]   score=10.0
+[14:03:52.602] INFO  [life]   reason: fallback: nothing else scored
+[14:03:52.602] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/50 bandages=0)
+[14:03:52.602] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:03:52.602] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:03:52.602] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[14:03:52.602] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[14:03:52.602] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:03:52.602] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:03:54.793] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:04:00.863] INFO  [f6_Bruin] [survival] hp 7/50 (14%) -> rest
+[14:04:06.941] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:07.631] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:04:07.633] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:04:07.691] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:04:07.691] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:04:07.692] INFO  [life]   score=10.0
+[14:04:07.692] INFO  [life]   reason: fallback: nothing else scored
+[14:04:07.692] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/50 bandages=0)
+[14:04:07.692] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:04:07.692] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:04:07.692] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 94s after achieving nothing
+[14:04:07.692] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 99s after achieving nothing
+[14:04:07.692] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:04:07.692] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:04:12.996] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:19.051] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:25.111] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:27.710] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:04:27.712] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:04:27.771] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:04:27.771] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:04:27.771] INFO  [life]   score=10.0
+[14:04:27.771] INFO  [life]   reason: fallback: nothing else scored
+[14:04:27.771] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/50 bandages=0)
+[14:04:27.771] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:04:27.771] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:04:27.771] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[14:04:27.771] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[14:04:27.771] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:04:27.771] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:04:31.173] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:37.241] INFO  [f6_Bruin] [survival] hp 8/50 (16%) -> rest
+[14:04:42.792] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:04:42.794] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:04:42.854] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:04:42.854] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:04:42.854] INFO  [life]   score=10.0
+[14:04:42.854] INFO  [life]   reason: fallback: nothing else scored
+[14:04:42.854] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/50 bandages=0)
+[14:04:42.854] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:04:42.854] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:04:42.854] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[14:04:42.854] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[14:04:42.854] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:04:42.854] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:04:43.284] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:04:49.315] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:04:55.411] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:04:57.856] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:04:57.858] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:04:57.916] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:04:57.916] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:04:57.916] INFO  [life]   score=10.0
+[14:04:57.916] INFO  [life]   reason: fallback: nothing else scored
+[14:04:57.916] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/50 bandages=0)
+[14:04:57.916] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:04:57.916] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:04:57.916] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 44s after achieving nothing
+[14:04:57.916] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 49s after achieving nothing
+[14:04:57.916] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:04:57.916] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:01.514] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:05:07.535] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:05:12.936] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:05:12.938] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:05:12.999] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:05:12.999] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:05:12.999] INFO  [life]   score=10.0
+[14:05:12.999] INFO  [life]   reason: fallback: nothing else scored
+[14:05:12.999] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/50 bandages=0)
+[14:05:12.999] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:05:12.999] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:05:12.999] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:05:12.999] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[14:05:12.999] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:05:12.999] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:13.616] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:05:19.679] INFO  [f6_Bruin] [survival] hp 9/50 (18%) -> rest
+[14:05:25.747] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:05:28.019] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:05:28.021] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:05:28.079] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:05:28.080] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:05:28.080] INFO  [life]   score=10.0
+[14:05:28.080] INFO  [life]   reason: fallback: nothing else scored
+[14:05:28.080] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/50 bandages=0)
+[14:05:28.080] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:05:28.080] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:05:28.080] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 14s after achieving nothing
+[14:05:28.080] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 19s after achieving nothing
+[14:05:28.080] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:05:28.080] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:31.770] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:05:37.827] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:05:43.083] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:05:43.085] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:05:43.145] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:05:43.145] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:05:43.145] INFO  [life]   score=62.5
+[14:05:43.145] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:05:43.145] INFO  [life]   reason: food=0
+[14:05:43.145] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/50 bandages=0)
+[14:05:43.145] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:05:43.145] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:05:43.145] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 3s after achieving nothing
+[14:05:43.145] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:05:43.145] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:43.856] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:05:48.130] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:05:48.192] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:05:48.192] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:05:48.192] INFO  [life]   score=45.0
+[14:05:48.192] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:05:48.192] INFO  [life]   reason: gold=0 floor=100
+[14:05:48.192] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/50 bandages=0)
+[14:05:48.192] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:05:48.192] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:05:48.192] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:05:48.192] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:05:48.192] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:49.915] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:05:53.179] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:05:53.196] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:05:53.196] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:05:53.196] INFO  [life]   score=10.0
+[14:05:53.196] INFO  [life]   reason: fallback: nothing else scored
+[14:05:53.196] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/50 bandages=0)
+[14:05:53.196] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:05:53.196] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:05:53.196] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:05:53.196] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:05:53.196] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:05:53.196] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:05:55.984] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:06:02.050] INFO  [f6_Bruin] [survival] hp 10/50 (20%) -> rest
+[14:06:08.084] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:08.222] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:06:08.224] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:06:08.282] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:06:08.282] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:06:08.282] INFO  [life]   score=10.0
+[14:06:08.282] INFO  [life]   reason: fallback: nothing else scored
+[14:06:08.282] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/50 bandages=0)
+[14:06:08.282] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:06:08.282] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:06:08.282] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:06:08.282] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:06:08.282] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:06:08.282] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:06:14.141] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:20.191] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:23.297] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:06:23.299] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:06:23.360] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:06:23.360] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:06:23.360] INFO  [life]   score=10.0
+[14:06:23.360] INFO  [life]   reason: fallback: nothing else scored
+[14:06:23.360] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/50 bandages=0)
+[14:06:23.360] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:06:23.360] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:06:23.360] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:06:23.360] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:06:23.360] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:06:23.360] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:06:26.240] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:32.361] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:38.395] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:06:38.397] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:06:38.456] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:06:38.456] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:06:38.456] INFO  [life]   score=10.0
+[14:06:38.457] INFO  [life]   reason: fallback: nothing else scored
+[14:06:38.457] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/50 bandages=0)
+[14:06:38.457] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:06:38.457] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:06:38.457] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[14:06:38.457] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[14:06:38.457] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:06:38.457] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:06:38.457] INFO  [f6_Bruin] [survival] hp 11/50 (22%) -> rest
+[14:06:44.538] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:06:50.583] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:06:53.526] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:06:53.528] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:06:53.588] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:06:53.588] INFO  [life] needs considered: Heal(bandage BLOCKED 0.96) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:06:53.588] INFO  [life]   score=10.0
+[14:06:53.588] INFO  [life]   reason: fallback: nothing else scored
+[14:06:53.588] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/50 bandages=0)
+[14:06:53.588] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:06:53.588] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:06:53.588] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[14:06:53.588] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[14:06:53.588] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:06:53.588] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:06:56.613] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:07:02.718] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:07:08.598] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:07:08.600] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:07:08.659] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:07:08.659] INFO  [life] needs considered: Heal(bandage BLOCKED 0.96) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:07:08.659] INFO  [life]   score=10.0
+[14:07:08.659] INFO  [life]   reason: fallback: nothing else scored
+[14:07:08.659] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/50 bandages=0)
+[14:07:08.659] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:07:08.659] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:07:08.659] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[14:07:08.659] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[14:07:08.659] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:07:08.659] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:07:08.797] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:07:14.824] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:07:20.879] INFO  [f6_Bruin] [survival] hp 12/50 (24%) -> rest
+[14:07:23.678] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:07:23.680] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:07:23.740] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:07:23.740] INFO  [life] needs considered: Heal(bandage BLOCKED 0.94) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:07:23.740] INFO  [life]   score=10.0
+[14:07:23.740] INFO  [life]   reason: fallback: nothing else scored
+[14:07:23.740] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/50 bandages=0)
+[14:07:23.740] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:07:23.740] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:07:23.740] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[14:07:23.740] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[14:07:23.740] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:07:23.740] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:07:26.928] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:07:32.937] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:07:38.757] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:07:38.759] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:07:38.819] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:07:38.819] INFO  [life] needs considered: Heal(bandage BLOCKED 0.94) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:07:38.819] INFO  [life]   score=10.0
+[14:07:38.819] INFO  [life]   reason: fallback: nothing else scored
+[14:07:38.819] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/50 bandages=0)
+[14:07:38.819] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:07:38.819] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:07:38.819] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[14:07:38.819] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[14:07:38.819] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:07:38.819] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:07:39.000] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:07:45.091] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:07:51.140] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:07:53.855] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:07:53.857] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:07:53.916] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:07:53.916] INFO  [life] needs considered: Heal(bandage BLOCKED 0.94) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:07:53.916] INFO  [life]   score=10.0
+[14:07:53.916] INFO  [life]   reason: fallback: nothing else scored
+[14:07:53.916] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/50 bandages=0)
+[14:07:53.916] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:07:53.916] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:07:53.916] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 54s after achieving nothing
+[14:07:53.916] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[14:07:53.916] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:07:53.916] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:07:57.199] INFO  [f6_Bruin] [survival] hp 13/50 (26%) -> rest
+[14:08:01.158] INFO  [f6_Bruin] [chat ascii] Dunstan: I am listening to thee.
+[14:08:03.269] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:08.933] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:08.936] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:08:08.995] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:08:08.996] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:08:08.996] INFO  [life]   score=10.0
+[14:08:08.996] INFO  [life]   reason: fallback: nothing else scored
+[14:08:08.996] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=14/50 bandages=0)
+[14:08:08.996] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:08:08.996] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:08:08.996] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 39s after achieving nothing
+[14:08:08.996] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 44s after achieving nothing
+[14:08:08.996] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:08:08.996] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:08:09.303] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:15.364] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:21.462] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:24.017] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:24.019] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:08:24.080] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:08:24.080] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:08:24.080] INFO  [life]   score=10.0
+[14:08:24.080] INFO  [life]   reason: fallback: nothing else scored
+[14:08:24.080] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=14/50 bandages=0)
+[14:08:24.080] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:08:24.080] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:08:24.080] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 24s after achieving nothing
+[14:08:24.080] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 29s after achieving nothing
+[14:08:24.080] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:08:24.080] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:08:26.097] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[14:08:27.534] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:33.611] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:36.108] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[14:08:39.123] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:39.125] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:08:39.184] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:08:39.184] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:08:39.184] INFO  [life]   score=10.0
+[14:08:39.184] INFO  [life]   reason: fallback: nothing else scored
+[14:08:39.184] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=14/50 bandages=0)
+[14:08:39.184] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:08:39.184] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:08:39.184] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 8s after achieving nothing
+[14:08:39.184] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 13s after achieving nothing
+[14:08:39.184] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:08:39.184] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:08:39.628] INFO  [f6_Bruin] [survival] hp 14/50 (28%) -> rest
+[14:08:45.671] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:08:51.734] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:08:54.220] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:08:54.222] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:08:54.282] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:08:54.282] INFO  [life] needs considered: Heal(bandage BLOCKED 0.90) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:08:54.282] INFO  [life]   score=62.5
+[14:08:54.282] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:08:54.282] INFO  [life]   reason: food=0
+[14:08:54.282] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/50 bandages=0)
+[14:08:54.282] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:08:54.282] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:08:54.282] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:08:54.282] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:08:57.753] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:08:59.264] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:08:59.325] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:08:59.325] INFO  [life] needs considered: Heal(bandage BLOCKED 0.90) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:08:59.325] INFO  [life]   score=45.0
+[14:08:59.325] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:08:59.325] INFO  [life]   reason: gold=0 floor=100
+[14:08:59.325] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/50 bandages=0)
+[14:08:59.325] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:08:59.326] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:08:59.326] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:08:59.326] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:08:59.326] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:09:03.776] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:09:04.268] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:09:04.331] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:09:04.331] INFO  [life] needs considered: Heal(bandage BLOCKED 0.90) NeedTool(tongs BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedGold(gold 0.30) NeedSkillTraining(Tinkering BLOCKED 0.30) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[14:09:04.331] INFO  [life]   score=10.0
+[14:09:04.331] INFO  [life]   reason: fallback: nothing else scored
+[14:09:04.331] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/50 bandages=0)
+[14:09:04.331] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a tongs)
+[14:09:04.331] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:09:04.331] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:09:04.331] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:09:04.331] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tinkering 16.3 -> 70.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:09:04.331] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:09:09.825] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:09:15.878] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:09:16.549] INFO  [life] session_end_requested reason="session time limit reached"
+[14:09:16.609] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[14:09:16.610] INFO  [f6_Bruin] [travel] Yew banker -> (652,820) r=5 from (643,1083)
+[14:09:16.610] LOG   [f6_Bruin] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(643,1083)
+[14:09:16.610] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[14:09:16.610] INFO  [f6_Bruin] [travel] mode walk             usable
+[14:09:16.610] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:09:16.610] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:09:16.610] LOG   [f6_Bruin] event travel_mode: moongate
+[14:09:16.610] INFO  [f6_Bruin] [travel] plan Yew banker: ok legs=8 ~296 tiles transit=0 nodes=127
+[14:09:16.671] INFO  [f6_Bruin] [action] goto finished at (643,1083,0); target (643,1083); ARRIVED (off by 0 tile(s))
+[14:09:16.671] LOG   [f6_Bruin] event goto_done: at=(643,1083) target=(643,1083) arrived=1 off=0
+[14:09:16.671] INFO  [f6_Bruin] [action] goto (664,1048) from (643,1083,0)
+[14:09:16.671] LOG   [f6_Bruin] event goto_start: target=(664,1048) from=(643,1083)
+[14:09:16.671] INFO  [f6_Bruin] [bot] running from (643,1083,0) to (664,1048)
+[14:09:16.671] INFO  [f6_Bruin] [bot] planning path to (664,1048) in background
+[14:09:16.733] INFO  [f6_Bruin] [bot] replan to (664,1048): 58 steps in 23018.7us
+[14:09:16.748] INFO  [f6_Bruin] [chat ascii] System: Ysolde has departed from Britain.
+[14:09:19.292] INFO  [f6_Bruin] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[14:09:19.306] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[14:09:20.917] INFO  [f6_Bruin] [chat ascii] System: You are now under the protection of the town guards
+[14:09:21.163] INFO  [f6_Bruin] [chat ascii] System: You have left the protection of the town guards
+[14:09:21.942] INFO  [f6_Bruin] [survival] hp 15/50 (30%) -> rest
+[14:09:23.996] INFO  [f6_Bruin] [chat ascii] System: You are now under the protection of the town guards
+[14:09:28.019] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:09:34.050] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:09:35.993] INFO  [f6_Bruin] [bot] arrived at (664,1048,0)
+[14:09:35.994] INFO  [f6_Bruin] [action] goto finished at (664,1048,0); target (664,1048); ARRIVED (off by 0 tile(s))
+[14:09:35.994] LOG   [f6_Bruin] event goto_done: at=(664,1048) target=(664,1048) arrived=1 off=0
+[14:09:35.994] INFO  [f6_Bruin] [action] goto (664,1016) from (664,1048,0)
+[14:09:35.994] LOG   [f6_Bruin] event goto_start: target=(664,1016) from=(664,1048)
+[14:09:35.994] INFO  [f6_Bruin] [bot] running from (664,1048,0) to (664,1016)
+[14:09:35.994] INFO  [f6_Bruin] [bot] planning path to (664,1016) in background
+[14:09:36.055] INFO  [f6_Bruin] [bot] replan to (664,1016): 32 steps in 8778.7us
+[14:09:40.140] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:09:46.184] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:09:47.907] INFO  [f6_Bruin] [bot] arrived at (664,1016,0)
+[14:09:47.907] INFO  [f6_Bruin] [action] goto finished at (664,1016,0); target (664,1016); ARRIVED (off by 0 tile(s))
+[14:09:47.907] LOG   [f6_Bruin] event goto_done: at=(664,1016) target=(664,1016) arrived=1 off=0
+[14:09:47.907] INFO  [f6_Bruin] [action] goto (648,982) from (664,1016,0)
+[14:09:47.907] LOG   [f6_Bruin] event goto_start: target=(648,982) from=(664,1016)
+[14:09:47.907] INFO  [f6_Bruin] [bot] running from (664,1016,0) to (648,982)
+[14:09:47.907] INFO  [f6_Bruin] [bot] planning path to (648,982) in background
+[14:09:47.968] INFO  [f6_Bruin] [bot] replan to (648,982): 42 steps in 8487.8us
+[14:09:52.220] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:09:58.328] INFO  [f6_Bruin] [survival] hp 16/50 (32%) -> rest
+[14:10:01.404] INFO  [f6_Bruin] [bot] arrived at (648,982,0)
+[14:10:01.404] INFO  [f6_Bruin] [action] goto finished at (648,982,0); target (648,982); ARRIVED (off by 0 tile(s))
+[14:10:01.404] LOG   [f6_Bruin] event goto_done: at=(648,982) target=(648,982) arrived=1 off=0
+[14:10:01.404] INFO  [f6_Bruin] [action] goto (648,952) from (648,982,0)
+[14:10:01.404] LOG   [f6_Bruin] event goto_start: target=(648,952) from=(648,982)
+[14:10:01.404] INFO  [f6_Bruin] [bot] running from (648,982,0) to (648,952)
+[14:10:01.404] INFO  [f6_Bruin] [bot] planning path to (648,952) in background
+[14:10:01.465] INFO  [f6_Bruin] [bot] replan to (648,952): 30 steps in 1604.0us
+[14:10:04.387] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:09.861] INFO  [f6_Bruin] [bot] arrived at (648,952,0)
+[14:10:09.861] INFO  [f6_Bruin] [action] goto finished at (648,952,0); target (648,952); ARRIVED (off by 0 tile(s))
+[14:10:09.861] LOG   [f6_Bruin] event goto_done: at=(648,952) target=(648,952) arrived=1 off=0
+[14:10:09.861] INFO  [f6_Bruin] [action] goto (632,920) from (648,952,0)
+[14:10:09.861] LOG   [f6_Bruin] event goto_start: target=(632,920) from=(648,952)
+[14:10:09.861] INFO  [f6_Bruin] [bot] running from (648,952,0) to (632,920)
+[14:10:09.861] INFO  [f6_Bruin] [bot] planning path to (632,920) in background
+[14:10:09.921] INFO  [f6_Bruin] [bot] replan to (632,920): 40 steps in 15968.7us
+[14:10:10.197] INFO  [f6_Bruin] [chat ascii] System: Voris has departed from Britain.
+[14:10:10.441] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:16.450] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:22.553] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:24.308] INFO  [f6_Bruin] [bot] arrived at (632,920,0)
+[14:10:24.308] INFO  [f6_Bruin] [action] goto finished at (632,920,0); target (632,920); ARRIVED (off by 0 tile(s))
+[14:10:24.308] LOG   [f6_Bruin] event goto_done: at=(632,920) target=(632,920) arrived=1 off=0
+[14:10:24.308] INFO  [f6_Bruin] [action] goto (632,888) from (632,920,0)
+[14:10:24.308] LOG   [f6_Bruin] event goto_start: target=(632,888) from=(632,920)
+[14:10:24.308] INFO  [f6_Bruin] [bot] running from (632,920,0) to (632,888)
+[14:10:24.308] INFO  [f6_Bruin] [bot] planning path to (632,888) in background
+[14:10:24.369] INFO  [f6_Bruin] [bot] replan to (632,888): 32 steps in 10352.3us
+[14:10:28.624] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:34.675] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:36.855] INFO  [f6_Bruin] [bot] arrived at (632,888,0)
+[14:10:36.856] INFO  [f6_Bruin] [action] goto finished at (632,888,0); target (632,888); ARRIVED (off by 0 tile(s))
+[14:10:36.856] LOG   [f6_Bruin] event goto_done: at=(632,888) target=(632,888) arrived=1 off=0
+[14:10:36.856] INFO  [f6_Bruin] [action] goto (632,856) from (632,888,0)
+[14:10:36.856] LOG   [f6_Bruin] event goto_start: target=(632,856) from=(632,888)
+[14:10:36.856] INFO  [f6_Bruin] [bot] running from (632,888,0) to (632,856)
+[14:10:36.856] INFO  [f6_Bruin] [bot] planning path to (632,856) in background
+[14:10:36.917] INFO  [f6_Bruin] [bot] replan to (632,856): 32 steps in 1882.4us
+[14:10:40.740] INFO  [f6_Bruin] [survival] hp 17/50 (34%) -> rest
+[14:10:43.789] INFO  [f6_Bruin] [survival] hp 18/50 (36%) -> fight
+[14:10:45.631] INFO  [f6_Bruin] [bot] arrived at (632,856,0)
+[14:10:45.631] INFO  [f6_Bruin] [action] goto finished at (632,856,0); target (632,856); ARRIVED (off by 0 tile(s))
+[14:10:45.631] LOG   [f6_Bruin] event goto_done: at=(632,856) target=(632,856) arrived=1 off=0
+[14:10:45.631] INFO  [f6_Bruin] [action] goto (652,820) from (632,856,0)
+[14:10:45.631] LOG   [f6_Bruin] event goto_start: target=(652,820) from=(632,856)
+[14:10:45.632] INFO  [f6_Bruin] [bot] running from (632,856,0) to (652,820,z0)
+[14:10:45.632] INFO  [f6_Bruin] [bot] planning path to (652,820) in background
+[14:10:45.693] INFO  [f6_Bruin] [bot] replan to (652,820): 45 steps in 9174.0us
+[14:10:46.047] INFO  [f6_Bruin] [chat ascii] System: Kaelen has departed from Britain.
+[14:10:46.495] INFO  [f6_Bruin] [bot] door ahead at (634,855,z0); OpenDoor before step
+[14:10:46.510] INFO  [f6_Bruin] [chat ascii] System: Opening door...
+[14:10:48.798] INFO  [f6_Bruin] [survival] hp 18/50 (36%) -> fight
+[14:10:53.799] INFO  [f6_Bruin] [survival] hp 18/50 (36%) -> fight
+[14:10:58.607] INFO  [f6_Bruin] [travel] Yew banker ARRIVED at (647,821,0)
+[14:10:58.607] LOG   [f6_Bruin] event travel_done: label='Yew banker' ok=1 at=(647,821) legs=8 plans=1 why=''
+[14:10:58.607] INFO  [life] wind-down: arrived somewhere safe at 648,820
+[14:10:58.668] INFO  [life] session_summary duration=1602s goals=23/40 gold=837->0 skills=158.3->158.3 logs=+0 deaths=0 places=1 suppliers=0
+[14:10:58.668] INFO  [life] session_goals families=5 picks=40 top=60% varied=0 | emergency=6(15%) upkeep=3(8%) work=3(8%) training=4(10%) wander=24(60%) | SURVIVE=2(5%) GET_TOOL=4(10%) EARN_GOLD=3(8%) TRAIN_AT_NPC=4(10%) GET_FOOD=3(8%) IDLE_BRIEFLY=24(60%)
+[14:10:58.670] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[14:10:58.670] INFO  [life] logging out
+[14:10:58.670] INFO  [f6_Bruin] [action] logout requested
+[14:10:58.670] LOG   [f6_Bruin] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[14:10:58.670] INFO  [f6_Bruin] [0xD1] logout acknowledged (accepted=1)
+[14:10:58.670] LOG   [f6_Bruin] event logout_ack: accepted
+[14:10:58.670] INFO  [f6_Bruin] [net] closing connection (logout acknowledged)
+[14:10:58.670] LOG   [f6_Bruin] event logout_complete: acked

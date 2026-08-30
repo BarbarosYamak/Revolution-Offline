@@ -1,0 +1,37 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[13:14:19.661] WARN  [f6_Bruin] [0x21] move REJECTED seq=40; server says (2800,952,0) facing=3
+[13:14:20.391] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2800,952,0) facing=3
+[13:14:34.885] WARN  [f6_Bruin] [0x21] move REJECTED seq=60; server says (2827,927,0) facing=1
+[13:14:35.622] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2827,927,0) facing=1
+[13:15:17.253] WARN  [f6_Bruin] [0x21] move REJECTED seq=61; server says (2858,816,-1) facing=2
+[13:15:18.265] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 971820.7us)
+[13:15:18.265] WARN  [f6_Bruin] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 228 item(s), 9 mobile(s))
+[13:15:20.598] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1003725.5us)
+[13:15:20.598] WARN  [f6_Bruin] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 228 item(s), 10 mobile(s))
+[13:15:23.174] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1252375.3us)
+[13:15:23.174] WARN  [f6_Bruin] [bot] start (2858,816,-1) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 228 item(s), 10 mobile(s))
+[13:16:19.482] WARN  [f6_Bruin] [0x21] move REJECTED seq=105; server says (2857,816,0) facing=2
+[13:16:20.584] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1089205.8us)
+[13:16:20.584] WARN  [f6_Bruin] [bot] start (2857,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 331 item(s), 11 mobile(s))
+[13:16:23.015] WARN  [f6_Bruin] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1054443.6us)
+[13:16:23.015] WARN  [f6_Bruin] [bot] start (2857,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 331 item(s), 11 mobile(s))
+[13:28:49.351] WARN  [f6_Bruin] [bot] no path to (553,985) avoiding 0 block(s); stopping (search 1677397.6us)
+[13:28:49.351] WARN  [f6_Bruin] [bot] start (568,984,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1148 item(s), 5 mobile(s))
+[13:33:10.504] WARN  [f6_Bruin] [bot] THREAT (HP 50 -> 46): halting travel (TODO engage/flee/recall)
+[13:33:10.504] WARN  [f6_Bruin] [0x22] unsolicited ack seq=12
+[13:33:12.151] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:33:19.256] WARN  [f6_Bruin] [bot] 0x20 resync; aborting path
+[13:37:20.131] WARN  [f6_Bruin] [travel] leg to (1864,2936) is 2184 tiles from (771,752); the plan is stale, replanning
+[13:37:21.345] WARN  [f6_Bruin] [travel] leg to (1864,2936) is 2184 tiles from (771,752); the plan is stale, replanning
+[13:37:22.576] WARN  [f6_Bruin] [travel] leg to (1864,2936) is 2184 tiles from (771,752); the plan is stale, replanning
+[13:39:03.717] WARN  [f6_Bruin] [0x21] move REJECTED seq=40; server says (2000,2856,14) facing=7
+[13:39:04.473] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (2000,2856,14) facing=7
+[13:39:19.473] WARN  [f6_Bruin] [0x21] move REJECTED seq=31; server says (1948,2848,7) facing=7
+[13:39:20.226] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1948,2848,7) facing=7
+[13:39:28.189] WARN  [f6_Bruin] [0x21] move REJECTED seq=33; server says (1947,2822,0) facing=1
+[13:39:28.945] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1947,2822,0) facing=1
+[13:39:42.678] WARN  [f6_Bruin] [0x21] move REJECTED seq=38; server says (1952,2798,10) facing=7
+[13:39:43.416] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1952,2798,10) facing=7
+[13:40:21.700] WARN  [f6_Bruin] [0x21] move REJECTED seq=38; server says (1912,2692,3) facing=7
+[13:40:22.443] WARN  [f6_Bruin] [0x21] move REJECTED seq=0; server says (1912,2692,3) facing=7

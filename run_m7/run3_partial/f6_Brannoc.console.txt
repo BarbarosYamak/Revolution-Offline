@@ -1,0 +1,413 @@
+[12:35:04.100] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh01' char=Brannoc tag='f6_Brannoc'
+[12:35:04.101] LOG   [f6_Brannoc] event session_start: text log opened
+[12:35:04.101] LOG   [f6_Brannoc] event net_connect_begin: connect 127.0.0.1:2593
+[12:35:04.101] INFO  [f6_Brannoc] [net] connecting to 127.0.0.1:2593 ...
+[12:35:04.102] LOG   [f6_Brannoc] event net_connected: connect 127.0.0.1:2593
+[12:35:04.102] INFO  [f6_Brannoc] [net] connected.
+[12:35:04.102] INFO  [f6_Brannoc] [seed] sent 0x7F000001 (plaintext)
+[12:35:04.102] LOG   [f6_Brannoc] event seed_out: 0x7F000001 hex=7f000001
+[12:35:04.103] INFO  [life] loaded persistent state for Brannoc (2 places, 1 suppliers, 10 events, 2 prior sessions)
+[12:35:04.103] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[12:35:04.103] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[12:35:04.103] INFO  [f6_Brannoc] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[12:35:04.103] INFO  [f6_Brannoc] [0xA8] 1 server(s):
+[12:35:04.103] INFO  [f6_Brannoc]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[12:35:04.105] INFO  [f6_Brannoc] [0x8C] game server = 127.0.0.1:2593  seed=0x3B3FC2A9
+[12:35:04.105] LOG   [f6_Brannoc] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3B3FC2A9
+[12:35:04.105] INFO  [f6_Brannoc] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[12:35:04.105] LOG   [f6_Brannoc] event relay_same_socket: no seed re-sent; 0x91 follows
+[12:35:04.106] INFO  [f6_Brannoc] [0xB9] server features = 0x0005
+[12:35:04.106] INFO  [f6_Brannoc] [0xA9] 5 slot(s) (populated 1):
+[12:35:04.106] INFO  [f6_Brannoc]   [0] Brannoc
+[12:35:04.106] INFO  [f6_Brannoc]   [1] <empty>
+[12:35:04.106] INFO  [f6_Brannoc]   [2] <empty>
+[12:35:04.106] INFO  [f6_Brannoc]   [3] <empty>
+[12:35:04.106] INFO  [f6_Brannoc]   [4] <empty>
+[12:35:04.106] INFO  [f6_Brannoc] [ui] playing slot 0 ('Brannoc')
+[12:35:04.121] INFO  [f6_Brannoc] [0x1B] serial=0x00014501 body=0x0190 pos=(2901,795,0)
+[12:35:04.121] LOG   [f6_Brannoc] event login_confirm: serial=0x00014501 body=0x0190 pos=(2901,795,0)
+[12:35:04.121] INFO  [f6_Brannoc] [0x20] player @(2901,795,0) facing=4
+[12:35:04.121] INFO  [f6_Brannoc] [0x55] login complete — entering world
+[12:35:04.121] LOG   [f6_Brannoc] event in_world: 0x55 received
+[12:35:04.121] INFO  [f6_Brannoc] [backpack] opening 0x400144BD
+[12:35:04.121] INFO  [f6_Brannoc] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[12:35:04.121] INFO  [f6_Brannoc] [chat ascii] System: There are 0 other players here.
+[12:35:04.121] INFO  [f6_Brannoc] [chat ascii] System: Last logged: 2026/08/29 13:18:32
+[12:35:04.121] INFO  [f6_Brannoc] [chat ascii] System: You are under the protection of the town guards
+[12:35:04.125] INFO  [f6_Brannoc] [action] requesting the skill list
+[12:35:04.125] INFO  [life] in world; asked the server for the skill list
+[12:35:04.125] INFO  [f6_Brannoc] [0x24] open container 0x400144BD gump=60
+[12:35:04.125] INFO  [f6_Brannoc] [0x3C] container contents: 6 item(s)
+[12:35:04.125] LOG   [f6_Brannoc] event backpack_contents: serial=0x400144BD items=6
+[12:35:04.151] INFO  [f6_Brannoc] [chat ascii] System: Tarath has arrived in Britain.
+[12:35:04.176] INFO  [f6_Brannoc] [chat ascii] System: Voris has arrived in Britain.
+[12:35:04.198] INFO  [f6_Brannoc] [chat ascii] System: Kaelen has arrived in Britain.
+[12:35:04.229] INFO  [f6_Brannoc] [chat ascii] System: Ysolde has arrived in Britain.
+[12:35:04.259] INFO  [f6_Brannoc] [chat ascii] System: Bruin has arrived in Yew Territory.
+[12:35:04.274] INFO  [f6_Brannoc] [chat ascii] Nastassia: Thou wishest to speak with me?
+[12:35:06.727] INFO  [f6_Brannoc] [bot] world data loaded (0 blacklisted spot(s)).
+[12:35:06.727] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[12:35:06.727] INFO  [life]   gold         persisted=842        server=842        -> server value accepted
+[12:35:06.727] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[12:35:06.727] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[12:35:06.727] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[12:35:06.727] INFO  [life]   skill_7      persisted=50.0       server=50.0       -> server value accepted
+[12:35:06.727] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[12:35:06.727] INFO  [life]   skill_37     persisted=15.8       server=15.8       -> server value accepted
+[12:35:06.727] INFO  [life]   skill_4      persisted=16.3       server=16.3       -> server value accepted
+[12:35:06.727] INFO  [life]   position     persisted=2888,723   server=2901,795   -> server value accepted
+[12:35:06.727] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[12:35:06.727] INFO  [life]   restored objective KEPT: TRADE_WITH_PLAYER (progress 0)
+[12:35:06.727] INFO  [f6_Brannoc] [survival] on
+[12:35:06.727] LOG   [f6_Brannoc] event survival_mode: on
+[12:35:06.729] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[12:35:06.729] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:06.783] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:35:06.784] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2901,795)
+[12:35:06.784] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2901,795)
+[12:35:06.784] INFO  [f6_Brannoc] [travel] mode moongate         usable   <- chosen
+[12:35:06.784] INFO  [f6_Brannoc] [travel] mode walk             usable
+[12:35:06.784] INFO  [f6_Brannoc] [travel] mode loose_rune_recall no: no rune marked at that destination
+[12:35:06.784] INFO  [f6_Brannoc] [travel] mode runebook_recall  no: no runebook page for that destination
+[12:35:06.784] LOG   [f6_Brannoc] event travel_mode: moongate
+[12:35:06.784] INFO  [f6_Brannoc] [travel] plan Vesper banker: ok legs=4 ~136 tiles transit=0 nodes=38
+[12:35:06.845] INFO  [f6_Brannoc] [action] goto (2888,756) from (2901,795,0)
+[12:35:06.845] LOG   [f6_Brannoc] event goto_start: target=(2888,756) from=(2901,795)
+[12:35:06.845] INFO  [f6_Brannoc] [bot] running from (2901,795,0) to (2888,756)
+[12:35:06.845] INFO  [f6_Brannoc] [bot] planning path to (2888,756) in background
+[12:35:06.860] INFO  [f6_Brannoc] [bot] replan to (2888,756): 64 steps in 7789.0us
+[12:35:07.348] INFO  [f6_Brannoc] [bot] door ahead at (2903,796,z0); OpenDoor before step
+[12:35:07.363] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[12:35:08.546] INFO  [f6_Brannoc] [bot] door ahead at (2904,797,z0); OpenDoor before step
+[12:35:08.547] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[12:35:11.785] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:16.827] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:21.841] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:25.841] INFO  [f6_Brannoc] [bot] arrived at (2888,756,0)
+[12:35:25.841] INFO  [f6_Brannoc] [action] goto finished at (2888,756,0); target (2888,756); ARRIVED (off by 0 tile(s))
+[12:35:25.841] LOG   [f6_Brannoc] event goto_done: at=(2888,756) target=(2888,756) arrived=1 off=0
+[12:35:25.841] INFO  [f6_Brannoc] [action] goto (2872,728) from (2888,756,0)
+[12:35:25.841] LOG   [f6_Brannoc] event goto_start: target=(2872,728) from=(2888,756)
+[12:35:25.841] INFO  [f6_Brannoc] [bot] running from (2888,756,0) to (2872,728)
+[12:35:25.841] INFO  [f6_Brannoc] [bot] planning path to (2872,728) in background
+[12:35:25.902] INFO  [f6_Brannoc] [bot] replan to (2872,728): 35 steps in 1167.8us
+[12:35:26.855] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:31.128] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=19 in 90.5us
+[12:35:31.896] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:32.127] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=16 in 29.0us
+[12:35:36.943] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:37.019] INFO  [f6_Brannoc] [bot] arrived at (2872,728,0)
+[12:35:37.020] INFO  [f6_Brannoc] [action] goto finished at (2872,728,0); target (2872,728); ARRIVED (off by 0 tile(s))
+[12:35:37.020] LOG   [f6_Brannoc] event goto_done: at=(2872,728) target=(2872,728) arrived=1 off=0
+[12:35:37.020] INFO  [f6_Brannoc] [action] goto (2888,696) from (2872,728,0)
+[12:35:37.020] LOG   [f6_Brannoc] event goto_start: target=(2888,696) from=(2872,728)
+[12:35:37.020] INFO  [f6_Brannoc] [bot] running from (2872,728,0) to (2888,696)
+[12:35:37.020] INFO  [f6_Brannoc] [bot] planning path to (2888,696) in background
+[12:35:37.081] INFO  [f6_Brannoc] [bot] replan to (2888,696): 49 steps in 1912.3us
+[12:35:40.486] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=35 in 42.5us
+[12:35:41.991] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:47.029] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:50.189] INFO  [f6_Brannoc] [bot] arrived at (2888,696,0)
+[12:35:50.190] INFO  [f6_Brannoc] [action] goto finished at (2888,696,0); target (2888,696); ARRIVED (off by 0 tile(s))
+[12:35:50.190] LOG   [f6_Brannoc] event goto_done: at=(2888,696) target=(2888,696) arrived=1 off=0
+[12:35:50.190] INFO  [f6_Brannoc] [action] goto (2881,684) from (2888,696,0)
+[12:35:50.190] LOG   [f6_Brannoc] event goto_start: target=(2881,684) from=(2888,696)
+[12:35:50.190] INFO  [f6_Brannoc] [bot] running from (2888,696,0) to (2881,684,z0)
+[12:35:50.190] INFO  [f6_Brannoc] [bot] planning path to (2881,684) in background
+[12:35:50.249] INFO  [f6_Brannoc] [bot] replan to (2881,684): 41 steps in 10201.5us
+[12:35:52.064] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:55.481] INFO  [f6_Brannoc] [bot] door ahead at (2895,676,z0); OpenDoor before step
+[12:35:55.496] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[12:35:57.087] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:35:58.406] INFO  [f6_Brannoc] [bot] door ahead at (2887,673,z0); OpenDoor before step
+[12:35:58.419] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[12:36:01.214] INFO  [f6_Brannoc] [bot] door ahead at (2883,679,z0); OpenDoor before step
+[12:36:01.215] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[12:36:02.135] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:02.196] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2883,679,0)
+[12:36:02.196] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2883,679) legs=4 plans=1 why=''
+[12:36:02.242] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:02.242] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2883,680)
+[12:36:02.242] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2883,680)
+[12:36:02.242] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2883,680,0)
+[12:36:02.242] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2883,680) legs=0 plans=0 why=''
+[12:36:03.611] INFO  [f6_Brannoc] [bot] arrived at (2881,684,0)
+[12:36:04.315] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:04.315] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:04.315] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:04.315] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:04.315] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:06.411] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:06.411] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:06.411] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:06.411] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:06.411] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:06.771] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[12:36:07.136] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:08.523] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:08.523] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:08.523] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:08.523] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:08.523] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:10.626] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:10.626] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:10.626] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:10.626] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:10.626] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:12.177] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:12.688] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:12.688] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:12.688] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:12.688] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:12.688] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:14.780] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:14.780] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:14.780] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:14.780] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:14.780] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:16.855] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:16.855] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:16.855] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:16.855] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:16.855] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:17.208] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:18.882] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:18.882] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:18.882] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:18.882] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:18.882] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:20.988] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:20.988] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:20.988] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:20.988] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:20.988] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:22.248] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:23.094] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:23.094] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:23.094] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:23.094] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:23.094] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:25.204] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:25.204] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:25.204] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:25.204] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:25.204] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:27.311] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:27.311] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:27.311] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:27.311] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:27.311] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:27.311] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:29.403] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:29.403] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:29.403] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:29.403] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:29.403] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:30.245] INFO  [f6_Brannoc] [chat ascii] Annette: Hmm?
+[12:36:31.520] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:31.520] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:31.520] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:31.520] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:31.520] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:32.365] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:33.596] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:33.596] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:33.596] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:33.596] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:33.596] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:35.668] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:35.668] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:35.668] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:35.668] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:35.668] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:37.426] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:37.780] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:37.780] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:37.780] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:37.780] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:37.780] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:39.851] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:39.851] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:39.851] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:39.851] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:39.851] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:41.951] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:41.951] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:41.951] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:41.951] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:41.951] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:42.457] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:44.052] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:44.052] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:44.052] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:44.052] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:44.052] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:46.142] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:46.142] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:46.142] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:46.142] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:46.142] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:47.492] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:48.228] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:48.228] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:48.228] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:48.228] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:48.228] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:50.319] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:50.319] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:50.319] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:50.319] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:50.319] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:52.423] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:52.423] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:52.423] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:52.423] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:52.423] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:52.544] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:54.541] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:54.542] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:54.542] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:54.542] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:54.542] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:56.653] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:56.653] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:56.653] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:56.653] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:56.653] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:36:57.575] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:36:58.722] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:36:58.722] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:36:58.722] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:36:58.723] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:36:58.723] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:00.831] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:00.831] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:00.831] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:00.831] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:00.831] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:02.598] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:02.907] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:02.907] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:02.907] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:02.907] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:02.907] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:04.997] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:04.997] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:04.997] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:04.997] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:04.997] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:06.793] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[12:37:07.098] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:07.098] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:07.098] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:07.098] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:07.098] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:07.648] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:09.216] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:09.216] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:09.216] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:09.216] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:09.216] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:11.335] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:11.335] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:11.335] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:11.335] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:11.335] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:12.673] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:13.410] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:13.410] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:13.410] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:13.410] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:13.410] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:15.495] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:15.495] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:15.495] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:15.495] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:15.495] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:17.585] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:17.585] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:17.585] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:17.585] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:17.585] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:17.706] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:19.667] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:19.667] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:19.667] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:19.667] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:19.667] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:21.752] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:21.752] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:21.752] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:21.752] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:21.752] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:22.739] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:23.835] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:23.835] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:23.835] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:23.836] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:23.836] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:25.955] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:25.955] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:25.955] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:25.955] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:25.955] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:27.771] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:28.017] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:28.017] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:28.017] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:28.017] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:28.017] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:30.101] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:30.101] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:30.101] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:30.101] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:30.101] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:32.223] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:32.223] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:32.223] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:32.223] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:32.223] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:32.774] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:34.306] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:34.306] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:34.307] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:34.307] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:34.307] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:36.416] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:36.416] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:36.416] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:36.416] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:36.416] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:37.815] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:38.523] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:38.523] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:38.523] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:38.523] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:38.523] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:40.584] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:40.584] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:40.584] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:40.584] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:40.584] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:42.628] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:42.628] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:42.628] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:42.628] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:42.628] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:42.875] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:44.732] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:44.732] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:44.732] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:44.732] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:44.732] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:46.823] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:46.823] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:46.823] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:46.823] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:46.823] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''
+[12:37:47.881] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[12:37:48.906] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market
+[12:37:48.906] INFO  [f6_Brannoc] [travel] Vesper banker -> (2881,684) r=5 from (2881,684)
+[12:37:48.906] LOG   [f6_Brannoc] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(2881,684)
+[12:37:48.906] INFO  [f6_Brannoc] [travel] Vesper banker ARRIVED at (2881,684,0)
+[12:37:48.906] LOG   [f6_Brannoc] event travel_done: label='Vesper banker' ok=1 at=(2881,684) legs=0 plans=0 why=''

@@ -1,0 +1,54 @@
+start: Delwyn is a tailor and lives in Trinsic -> starting city index 4
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[16:38:18.504] WARN  [n10_Delwyn] [0x21] move REJECTED seq=41; server says (1872,2698,3) facing=2
+[16:38:20.497] WARN  [n10_Delwyn] [0x21] move REJECTED seq=5; server says (1872,2698,3) facing=1
+[16:38:22.457] WARN  [n10_Delwyn] [0x21] move REJECTED seq=5; server says (1872,2698,3) facing=1
+[16:38:23.443] WARN  [n10_Delwyn] [0x21] move REJECTED seq=3; server says (1872,2699,4) facing=1
+[16:38:24.858] WARN  [n10_Delwyn] [0x21] move REJECTED seq=3; server says (1872,2698,3) facing=2
+[16:38:41.815] WARN  [n10_Delwyn] [0x21] move REJECTED seq=71; server says (1911,2671,0) facing=3
+[16:38:42.566] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1911,2671,0) facing=3
+[16:38:49.251] WARN  [n10_Delwyn] [0x21] move REJECTED seq=27; server says (1905,2691,0) facing=5
+[16:38:49.985] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1905,2691,0) facing=5
+[16:39:30.697] WARN  [n10_Delwyn] [0x21] move REJECTED seq=11; server says (1904,2687,7) facing=1
+[16:39:30.712] WARN  [n10_Delwyn] [bot] 0x20 resync; aborting path
+[16:39:44.399] WARN  [n10_Delwyn] [bot] 0x20 resync; aborting path
+[16:39:47.457] WARN  [n10_Delwyn] [travel] route exhausted at (1895,2658,0); trying to reach (1898,2648,10) to get somewhere routable (escape 1/3)
+[16:39:51.391] WARN  [n10_Delwyn] [travel] route exhausted at (1898,2648,10); trying to reach (1912,2648,0) to get somewhere routable (escape 2/3)
+[16:39:53.132] WARN  [n10_Delwyn] [bot] no path to (1912,2648) avoiding 0 block(s); stopping (search 1733783.0us)
+[16:39:53.132] WARN  [n10_Delwyn] [bot] start (1898,2648,10) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 222 item(s), 2 mobile(s))
+[16:39:53.194] WARN  [n10_Delwyn] [travel] route exhausted at (1898,2648,10); trying to reach (1896,2664,0) to get somewhere routable (escape 3/3)
+[16:40:06.956] WARN  [n10_Delwyn] [travel] route exhausted at (1895,2653,10); trying to reach (1896,2664,0) to get somewhere routable (escape 1/3)
+[16:40:10.124] WARN  [n10_Delwyn] [travel] route exhausted at (1896,2664,0); trying to reach (1880,2648,0) to get somewhere routable (escape 2/3)
+[16:40:18.109] WARN  [n10_Delwyn] [travel] route exhausted at (1880,2648,0); trying to reach (1864,2664,-10) to get somewhere routable (escape 3/3)
+[16:40:54.105] WARN  [n10_Delwyn] [travel] route exhausted at (1864,2664,-10); trying to reach (1848,2648,0) to get somewhere routable (escape 1/3)
+[16:42:53.004] WARN  [n10_Delwyn] [travel] route exhausted at (1848,2648,0); trying to reach (1832,2632,20) to get somewhere routable (escape 2/3)
+[16:42:54.775] WARN  [n10_Delwyn] [bot] no path to (1832,2632) avoiding 0 block(s); stopping (search 1716989.0us)
+[16:42:54.775] WARN  [n10_Delwyn] [bot] start (1848,2648,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 486 item(s), 0 mobile(s))
+[16:42:54.836] WARN  [n10_Delwyn] [travel] route exhausted at (1848,2648,0); trying to reach (1848,2632,0) to get somewhere routable (escape 3/3)
+[16:43:00.394] WARN  [n10_Delwyn] [travel] route exhausted at (1848,2632,0); trying to reach (1832,2616,25) to get somewhere routable (escape 1/3)
+[16:43:01.612] WARN  [n10_Delwyn] [bot] no path to (1832,2616) avoiding 0 block(s); stopping (search 1195082.2us)
+[16:43:01.612] WARN  [n10_Delwyn] [bot] start (1848,2632,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 486 item(s), 0 mobile(s))
+[16:43:01.674] WARN  [n10_Delwyn] [travel] route exhausted at (1848,2632,0); trying to reach (1848,2616,10) to get somewhere routable (escape 2/3)
+[16:43:03.272] WARN  [n10_Delwyn] [bot] no path to (1848,2616) avoiding 0 block(s); stopping (search 1587750.5us)
+[16:43:03.272] WARN  [n10_Delwyn] [bot] start (1848,2632,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 486 item(s), 0 mobile(s))
+[16:43:03.334] WARN  [n10_Delwyn] [travel] route exhausted at (1848,2632,0); trying to reach (1864,2616,15) to get somewhere routable (escape 3/3)
+[16:43:04.578] WARN  [n10_Delwyn] [bot] no path to (1864,2616) avoiding 0 block(s); stopping (search 1216603.6us)
+[16:43:04.578] WARN  [n10_Delwyn] [bot] start (1848,2632,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 486 item(s), 0 mobile(s))
+[16:45:01.171] WARN  [n10_Delwyn] [0x21] move REJECTED seq=35; server says (1973,2777,17) facing=1
+[16:45:01.923] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1973,2777,17) facing=1
+[16:45:09.991] WARN  [n10_Delwyn] [0x21] move REJECTED seq=25; server says (1999,2776,20) facing=1
+[16:45:10.730] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1999,2776,20) facing=1
+[16:45:18.191] WARN  [n10_Delwyn] [0x21] move REJECTED seq=29; server says (2000,2752,30) facing=7
+[16:45:18.931] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (2000,2752,30) facing=7
+[16:46:10.594] WARN  [n10_Delwyn] [0x21] move REJECTED seq=68; server says (1962,2782,17) facing=5
+[16:46:11.344] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1962,2782,17) facing=5
+[16:46:21.963] WARN  [n10_Delwyn] [0x21] move REJECTED seq=24; server says (1959,2813,0) facing=3
+[16:46:22.717] WARN  [n10_Delwyn] [0x21] move REJECTED seq=0; server says (1959,2813,0) facing=3
+[16:46:40.493] WARN  [n10_Delwyn] [0x21] move REJECTED seq=28; server says (2006,2805,0) facing=1
+[16:46:40.495] WARN  [n10_Delwyn] [bot] 0x20 resync; aborting path
+[16:46:52.275] WARN  [n10_Delwyn] [bot] 0x20 resync; aborting path
+[16:47:00.453] WARN  [n10_Delwyn] [bot] goal (2024,2840) is not walkable; skipping A* and stopping
+[16:47:01.808] WARN  [n10_Delwyn] [bot] goal (2024,2840) is not walkable; skipping A* and stopping
+[16:47:03.154] WARN  [n10_Delwyn] [bot] goal (2024,2840) is not walkable; skipping A* and stopping
+[16:47:04.447] WARN  [n10_Delwyn] [travel] route exhausted at (2030,2804,10); trying to reach (2040,2808,0) to get somewhere routable (escape 1/3)

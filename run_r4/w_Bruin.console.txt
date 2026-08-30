@@ -1,0 +1,1928 @@
+[22:05:03.447] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh16' char=Bruin tag='w_Bruin'
+[22:05:03.449] LOG   [w_Bruin] event session_start: text log opened
+[22:05:03.449] LOG   [w_Bruin] event net_connect_begin: connect 127.0.0.1:2593
+[22:05:03.449] INFO  [w_Bruin] [net] connecting to 127.0.0.1:2593 ...
+[22:05:03.450] LOG   [w_Bruin] event net_connected: connect 127.0.0.1:2593
+[22:05:03.450] INFO  [w_Bruin] [net] connected.
+[22:05:03.450] INFO  [w_Bruin] [seed] sent 0x7F000001 (plaintext)
+[22:05:03.450] LOG   [w_Bruin] event seed_out: 0x7F000001 hex=7f000001
+[22:05:03.450] INFO  [life] loaded persistent state for Bruin (1 places, 0 suppliers, 23 events, 8 prior sessions)
+[22:05:03.451] INFO  [life] needs: reading 'full_crafter' from the profession catalogue
+[22:05:03.451] INFO  [life] build plan 'full_crafter': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/60/65 = 225
+[22:05:03.451] INFO  [w_Bruin] [life] autonomous player active for 'Bruin' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[22:05:03.475] INFO  [w_Bruin] [0xA8] 1 server(s):
+[22:05:03.475] INFO  [w_Bruin]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[22:05:03.490] INFO  [w_Bruin] [0x8C] game server = 127.0.0.1:2593  seed=0xBC40664B
+[22:05:03.491] LOG   [w_Bruin] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xBC40664B
+[22:05:03.491] INFO  [w_Bruin] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:05:03.491] LOG   [w_Bruin] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:05:03.491] INFO  [w_Bruin] [0xB9] server features = 0x0005
+[22:05:03.491] INFO  [w_Bruin] [0xA9] 5 slot(s) (populated 1):
+[22:05:03.491] INFO  [w_Bruin]   [0] Bruin
+[22:05:03.491] INFO  [w_Bruin]   [1] <empty>
+[22:05:03.491] INFO  [w_Bruin]   [2] <empty>
+[22:05:03.491] INFO  [w_Bruin]   [3] <empty>
+[22:05:03.491] INFO  [w_Bruin]   [4] <empty>
+[22:05:03.491] INFO  [w_Bruin] [ui] playing slot 0 ('Bruin')
+[22:05:03.507] INFO  [w_Bruin] [0x1B] serial=0x00013A1A body=0x0190 pos=(648,820,0)
+[22:05:03.507] LOG   [w_Bruin] event login_confirm: serial=0x00013A1A body=0x0190 pos=(648,820,0)
+[22:05:03.507] INFO  [w_Bruin] [0x20] player @(648,820,0) facing=1
+[22:05:03.507] INFO  [w_Bruin] [0x55] login complete — entering world
+[22:05:03.507] LOG   [w_Bruin] event in_world: 0x55 received
+[22:05:03.507] INFO  [w_Bruin] [backpack] opening 0x40013A18
+[22:05:03.507] INFO  [w_Bruin] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:05:03.507] INFO  [w_Bruin] [chat ascii] System: There are 3 other players here.
+[22:05:03.507] INFO  [w_Bruin] [chat ascii] System: Last logged: 2026/08/29 23:21:55
+[22:05:03.507] INFO  [w_Bruin] [chat ascii] System: You are under the protection of the town guards
+[22:05:03.511] INFO  [w_Bruin] [action] requesting the skill list
+[22:05:03.511] INFO  [life] in world; asked the server for the skill list
+[22:05:03.511] INFO  [w_Bruin] [0x24] open container 0x40013A18 gump=60
+[22:05:03.511] INFO  [w_Bruin] [0x3C] container contents: 6 item(s)
+[22:05:03.511] LOG   [w_Bruin] event backpack_contents: serial=0x40013A18 items=6
+[22:05:03.522] INFO  [w_Bruin] [chat ascii] System: You are hungry
+[22:05:03.522] INFO  [w_Bruin] [chat ascii] Bruin: *You looks hungry*
+[22:05:06.105] INFO  [w_Bruin] [bot] world data loaded (0 blacklisted spot(s)).
+[22:05:06.105] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[22:05:06.105] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[22:05:06.105] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[22:05:06.105] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[22:05:06.105] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[22:05:06.105] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[22:05:06.105] INFO  [life]   skill_7      persisted=5.4        server=5.4        -> server value accepted
+[22:05:06.105] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[22:05:06.105] INFO  [life]   skill_11     persisted=8.1        server=8.1        -> server value accepted
+[22:05:06.105] INFO  [life]   skill_37     persisted=16.3       server=16.3       -> server value accepted
+[22:05:06.105] INFO  [life]   skill_34     persisted=10.6       server=10.6       -> server value accepted
+[22:05:06.105] INFO  [life]   skill_0      persisted=17.9       server=17.9       -> server value accepted
+[22:05:06.105] INFO  [life]   position     persisted=648,820    server=648,820    -> server value accepted
+[22:05:06.105] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:05:06.105] INFO  [life]   restored objective KEPT: IDLE_BRIEFLY (progress 0)
+[22:05:06.105] INFO  [w_Bruin] [survival] on
+[22:05:06.105] LOG   [w_Bruin] event survival_mode: on
+[22:05:06.108] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:05:06.108] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:06.160] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[22:05:06.160] INFO  [w_Bruin] [travel] Yew banker -> (652,820) r=5 from (648,820)
+[22:05:06.160] LOG   [w_Bruin] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(648,820)
+[22:05:06.160] INFO  [life] explore: nothing else to do, so going to 'yew_bank' -- somewhere new (1 place(s) known so far)
+[22:05:06.160] INFO  [w_Bruin] [travel] Yew banker ARRIVED at (648,820,0)
+[22:05:06.160] LOG   [w_Bruin] event travel_done: label='Yew banker' ok=1 at=(648,820) legs=0 plans=0 why=''
+[22:05:08.684] INFO  [life] explore: arrived at 648,820 -- reading who is here
+[22:05:08.684] INFO  [w_Bruin] [action] scanning nearby mobiles for names
+[22:05:08.684] INFO  [w_Bruin] [action] requested 2 paperdoll(s) for trade titles
+[22:05:08.684] INFO  [life] goal_completed=IDLE_BRIEFLY progress=1
+[22:05:08.686] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:05:08.686] INFO  [w_Bruin] [mobiles] nearby (2):
+[22:05:08.686] INFO  [w_Bruin]   Basia 0x00001858
+[22:05:08.686] INFO  [w_Bruin]   Filbert 0x0000183F
+[22:05:08.686] INFO  [w_Bruin] [0x20] player @(648,820,0) facing=3
+[22:05:08.686] INFO  [w_Bruin] [0x88] paperdoll 0x00001858: "Basia, the banker"
+[22:05:08.686] INFO  [w_Bruin] [world] Basia, the banker is a banker at (651,824)
+[22:05:08.686] INFO  [w_Bruin] [0x88] paperdoll 0x0000183F: "Filbert, the minter"
+[22:05:08.686] INFO  [w_Bruin] [world] Filbert, the minter is a banker at (654,824)
+[22:05:08.686] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[22:05:08.687] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedEquipment(weapon 0.45) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:05:08.687] INFO  [life]   score=130.0
+[22:05:08.687] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:05:08.687] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:05:08.687] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:05:08.687] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:05:08.687] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:05:11.123] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:11.722] INFO  [life] clothes: putting on the shirt that was already in the pack
+[22:05:11.722] INFO  [w_Bruin] [ACTION] equip start
+[22:05:11.722] INFO  [w_Bruin] [ACTION] equip serial=0x40013977 layer=0
+[22:05:11.722] INFO  [w_Bruin] [ITEM] drag serial=0x40013977 amount=1
+[22:05:11.722] INFO  [w_Bruin] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[22:05:11.722] LOG   [w_Bruin] event action_result: equip success took=1ms worn on the requested layer
+[22:05:12.967] INFO  [life] clothes: putting on the trousers that was already in the pack
+[22:05:12.967] INFO  [w_Bruin] [ACTION] equip start
+[22:05:12.967] INFO  [w_Bruin] [ACTION] equip serial=0x40013970 layer=0
+[22:05:12.967] INFO  [w_Bruin] [ITEM] drag serial=0x40013970 amount=1
+[22:05:12.983] INFO  [w_Bruin] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[22:05:12.983] LOG   [w_Bruin] event action_result: equip success took=16ms worn on the requested layer
+[22:05:14.198] INFO  [life] clothes: putting on the shoes that was already in the pack
+[22:05:14.198] INFO  [w_Bruin] [ACTION] equip start
+[22:05:14.198] INFO  [w_Bruin] [ACTION] equip serial=0x4001396A layer=0
+[22:05:14.198] INFO  [w_Bruin] [ITEM] drag serial=0x4001396A amount=1
+[22:05:14.214] INFO  [w_Bruin] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[22:05:14.214] LOG   [w_Bruin] event action_result: equip success took=16ms worn on the requested layer
+[22:05:15.421] INFO  [life] arming the axe
+[22:05:15.421] INFO  [w_Bruin] [ACTION] equip start
+[22:05:15.421] INFO  [w_Bruin] [ACTION] equip serial=0x40013968 layer=0
+[22:05:15.421] INFO  [w_Bruin] [ITEM] drag serial=0x40013968 amount=1
+[22:05:15.438] INFO  [w_Bruin] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[22:05:15.438] LOG   [w_Bruin] event action_result: equip success took=17ms worn on the requested layer
+[22:05:16.131] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:17.055] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:05:17.055] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:05:17.058] INFO  [w_Bruin] [travel] Yew healer -> (540,966) r=5 from (648,820)
+[22:05:17.058] LOG   [w_Bruin] event travel_start: label='Yew healer' target=(540,966) radius=5 from=(648,820)
+[22:05:17.058] INFO  [life] potions: walking to a 'healer' (trip 1)
+[22:05:17.058] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:05:17.058] INFO  [w_Bruin] [travel] mode walk             usable
+[22:05:17.058] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:05:17.058] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:05:17.058] LOG   [w_Bruin] event travel_mode: moongate
+[22:05:17.058] INFO  [w_Bruin] [travel] plan Yew healer: ok legs=5 ~200 tiles transit=0 nodes=55
+[22:05:17.118] INFO  [w_Bruin] [action] goto (632,856) from (648,820,0)
+[22:05:17.118] LOG   [w_Bruin] event goto_start: target=(632,856) from=(648,820)
+[22:05:17.118] INFO  [w_Bruin] [bot] running from (648,820,0) to (632,856)
+[22:05:17.118] INFO  [w_Bruin] [bot] planning path to (632,856) in background
+[22:05:17.178] INFO  [w_Bruin] [bot] replan to (632,856): 41 steps in 2416.9us
+[22:05:21.186] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:26.222] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:27.326] INFO  [w_Bruin] [bot] door ahead at (634,855,z0); OpenDoor before step
+[22:05:27.326] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:05:28.563] INFO  [w_Bruin] [bot] door ahead at (633,856,z0); OpenDoor before step
+[22:05:28.593] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:05:29.702] INFO  [w_Bruin] [bot] arrived at (632,856,0)
+[22:05:29.702] INFO  [w_Bruin] [action] goto finished at (632,856,0); target (632,856); ARRIVED (off by 0 tile(s))
+[22:05:29.702] LOG   [w_Bruin] event goto_done: at=(632,856) target=(632,856) arrived=1 off=0
+[22:05:29.702] INFO  [w_Bruin] [action] goto (616,888) from (632,856,0)
+[22:05:29.702] LOG   [w_Bruin] event goto_start: target=(616,888) from=(632,856)
+[22:05:29.702] INFO  [w_Bruin] [bot] running from (632,856,0) to (616,888)
+[22:05:29.702] INFO  [w_Bruin] [bot] planning path to (616,888) in background
+[22:05:29.764] INFO  [w_Bruin] [bot] replan to (616,888): 39 steps in 2495.4us
+[22:05:31.273] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:36.312] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:37.820] INFO  [w_Bruin] [bot] door ahead at (623,884,z0); OpenDoor before step
+[22:05:37.835] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:05:38.809] INFO  [w_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=9 in 344.4us
+[22:05:41.327] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:42.371] INFO  [w_Bruin] [bot] arrived at (616,888,0)
+[22:05:42.371] INFO  [w_Bruin] [action] goto finished at (616,888,0); target (616,888); ARRIVED (off by 0 tile(s))
+[22:05:42.371] LOG   [w_Bruin] event goto_done: at=(616,888) target=(616,888) arrived=1 off=0
+[22:05:42.371] INFO  [w_Bruin] [action] goto (584,920) from (616,888,0)
+[22:05:42.371] LOG   [w_Bruin] event goto_start: target=(584,920) from=(616,888)
+[22:05:42.371] INFO  [w_Bruin] [bot] running from (616,888,0) to (584,920)
+[22:05:42.371] INFO  [w_Bruin] [bot] planning path to (584,920) in background
+[22:05:42.432] INFO  [w_Bruin] [bot] replan to (584,920): 68 steps in 29183.8us
+[22:05:46.372] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:51.426] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:05:56.459] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:01.511] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:05.450] INFO  [w_Bruin] [bot] arrived at (584,920,0)
+[22:06:05.450] INFO  [w_Bruin] [action] goto finished at (584,920,0); target (584,920); ARRIVED (off by 0 tile(s))
+[22:06:05.450] LOG   [w_Bruin] event goto_done: at=(584,920) target=(584,920) arrived=1 off=0
+[22:06:05.450] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:05.450] INFO  [w_Bruin] [action] goto (552,952) from (584,920,0)
+[22:06:05.450] LOG   [w_Bruin] event goto_start: target=(552,952) from=(584,920)
+[22:06:05.450] INFO  [w_Bruin] [bot] running from (584,920,0) to (552,952)
+[22:06:05.450] INFO  [w_Bruin] [bot] planning path to (552,952) in background
+[22:06:05.511] INFO  [w_Bruin] [bot] replan to (552,952): 43 steps in 4768.7us
+[22:06:06.555] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:08.705] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:11.600] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:16.656] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:18.074] INFO  [w_Bruin] [bot] arrived at (552,952,0)
+[22:06:18.074] INFO  [w_Bruin] [action] goto finished at (552,952,0); target (552,952); ARRIVED (off by 0 tile(s))
+[22:06:18.074] LOG   [w_Bruin] event goto_done: at=(552,952) target=(552,952) arrived=1 off=0
+[22:06:18.074] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:18.074] INFO  [w_Bruin] [action] goto (540,966) from (552,952,0)
+[22:06:18.074] LOG   [w_Bruin] event goto_start: target=(540,966) from=(552,952)
+[22:06:18.074] INFO  [w_Bruin] [bot] running from (552,952,0) to (540,966,z0)
+[22:06:18.074] INFO  [w_Bruin] [bot] planning path to (540,966) in background
+[22:06:18.134] INFO  [w_Bruin] [bot] replan to (540,966): 18 steps in 1043.2us
+[22:06:20.692] INFO  [w_Bruin] [travel] Yew healer ARRIVED at (545,961,0)
+[22:06:20.692] LOG   [w_Bruin] event travel_done: label='Yew healer' ok=1 at=(545,961) legs=5 plans=1 why=''
+[22:06:20.708] INFO  [w_Bruin] [action] scanning nearby mobiles for names
+[22:06:20.708] INFO  [w_Bruin] [action] requested 2 paperdoll(s) for trade titles
+[22:06:20.708] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[22:06:20.723] INFO  [w_Bruin] [mobiles] nearby (5):
+[22:06:20.723] INFO  [w_Bruin]   Martina 0x00000811
+[22:06:20.723] INFO  [w_Bruin]   Cat 0x0000023A
+[22:06:20.723] INFO  [w_Bruin]   Gareth 0x000007EA
+[22:06:20.723] INFO  [w_Bruin]   magpie 0x000000AC
+[22:06:20.723] INFO  [w_Bruin]   Cat 0x0000090A
+[22:06:20.723] INFO  [w_Bruin] [0x20] player @(544,962,0) facing=6
+[22:06:20.723] INFO  [w_Bruin] [0x88] paperdoll 0x000007EA: "Gareth, the healer guildmaster"
+[22:06:20.723] INFO  [w_Bruin] [world] Gareth, the healer guildmaster is a healer at (536,965)
+[22:06:20.723] INFO  [w_Bruin] [0x20] player @(544,962,0) facing=5
+[22:06:20.724] INFO  [w_Bruin] [0x88] paperdoll 0x00000811: "Martina, the healer"
+[22:06:20.724] INFO  [w_Bruin] [world] Martina, the healer is a healer at (539,967)
+[22:06:21.716] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:23.717] INFO  [life] potions: found a 'healer'
+[22:06:23.779] INFO  [w_Bruin] [travel] mobile 0x00000811 -> (539,967) r=1 from (544,962)
+[22:06:23.779] LOG   [w_Bruin] event travel_start: label='mobile 0x00000811' target=(539,967) radius=1 from=(544,962)
+[22:06:23.779] INFO  [life] potions: the 'healer' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[22:06:23.779] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:06:23.779] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:06:23.779] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:23.779] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:23.779] LOG   [w_Bruin] event travel_mode: walk
+[22:06:23.779] INFO  [w_Bruin] [travel] plan mobile 0x00000811: ok legs=1 ~5 tiles transit=0 nodes=0
+[22:06:23.840] INFO  [w_Bruin] [action] goto finished at (544,962,0); target (540,966); stopped short (off by 8 tile(s))
+[22:06:23.840] LOG   [w_Bruin] event goto_done: at=(544,962) target=(540,966) arrived=0 off=8
+[22:06:23.840] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:23.840] INFO  [w_Bruin] [action] goto (539,967) from (544,962,0)
+[22:06:23.840] LOG   [w_Bruin] event goto_start: target=(539,967) from=(544,962)
+[22:06:23.840] INFO  [w_Bruin] [bot] running from (544,962,0) to (539,967,z0)
+[22:06:23.840] INFO  [w_Bruin] [bot] planning path to (539,967) in background
+[22:06:25.196] INFO  [w_Bruin] [action] goto finished at (544,962,0); target (539,967); stopped short (off by 10 tile(s))
+[22:06:25.196] LOG   [w_Bruin] event goto_done: at=(544,962) target=(539,967) arrived=0 off=10
+[22:06:26.406] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:26.406] INFO  [w_Bruin] [action] goto (539,967) from (544,962,0)
+[22:06:26.406] LOG   [w_Bruin] event goto_start: target=(539,967) from=(544,962)
+[22:06:26.406] INFO  [w_Bruin] [bot] running from (544,962,0) to (539,967,z0)
+[22:06:26.406] INFO  [w_Bruin] [bot] planning path to (539,967) in background
+[22:06:26.775] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:27.802] INFO  [w_Bruin] [action] goto finished at (544,962,0); target (539,967); stopped short (off by 10 tile(s))
+[22:06:27.802] LOG   [w_Bruin] event goto_done: at=(544,962) target=(539,967) arrived=0 off=10
+[22:06:29.062] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:29.062] INFO  [w_Bruin] [action] goto (539,967) from (544,962,0)
+[22:06:29.062] LOG   [w_Bruin] event goto_start: target=(539,967) from=(544,962)
+[22:06:29.062] INFO  [w_Bruin] [bot] running from (544,962,0) to (539,967,z0)
+[22:06:29.062] INFO  [w_Bruin] [bot] planning path to (539,967) in background
+[22:06:30.736] INFO  [w_Bruin] [action] goto finished at (544,962,0); target (539,967); stopped short (off by 10 tile(s))
+[22:06:30.736] LOG   [w_Bruin] event goto_done: at=(544,962) target=(539,967) arrived=0 off=10
+[22:06:31.827] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:31.950] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:06:31.950] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:06:31.950] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:31.950] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:31.950] LOG   [w_Bruin] event travel_mode: walk
+[22:06:31.950] INFO  [w_Bruin] [travel] plan mobile 0x00000811: ok legs=1 ~5 tiles transit=0 nodes=0
+[22:06:33.507] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:33.507] INFO  [w_Bruin] [action] goto (539,967) from (544,962,0)
+[22:06:33.507] LOG   [w_Bruin] event goto_start: target=(539,967) from=(544,962)
+[22:06:33.507] INFO  [w_Bruin] [bot] running from (544,962,0) to (539,967,z0)
+[22:06:33.507] INFO  [w_Bruin] [bot] planning path to (539,967) in background
+[22:06:35.503] INFO  [w_Bruin] [action] goto finished at (544,962,0); target (539,967); stopped short (off by 10 tile(s))
+[22:06:35.503] LOG   [w_Bruin] event goto_done: at=(544,962) target=(539,967) arrived=0 off=10
+[22:06:36.731] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:36.731] INFO  [w_Bruin] [action] goto (539,967) from (544,962,0)
+[22:06:36.731] LOG   [w_Bruin] event goto_start: target=(539,967) from=(544,962)
+[22:06:36.731] INFO  [w_Bruin] [bot] running from (544,962,0) to (539,967,z0)
+[22:06:36.731] INFO  [w_Bruin] [bot] planning path to (539,967) in background
+[22:06:36.792] INFO  [w_Bruin] [bot] replan to (539,967): 10 steps in 764.5us
+[22:06:36.870] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:38.176] INFO  [w_Bruin] [bot] door ahead at (543,967,z0); OpenDoor before step
+[22:06:38.191] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:06:38.315] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:06:38.315] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:06:38.315] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:38.315] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:38.315] LOG   [w_Bruin] event travel_mode: walk
+[22:06:38.315] INFO  [w_Bruin] [travel] plan mobile 0x00000811: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:06:38.376] INFO  [w_Bruin] [action] goto finished at (544,966,0); target (539,967); stopped short (off by 6 tile(s))
+[22:06:38.376] LOG   [w_Bruin] event goto_done: at=(544,966) target=(539,967) arrived=0 off=6
+[22:06:38.376] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:38.376] INFO  [w_Bruin] [action] goto (542,968) from (544,966,0)
+[22:06:38.376] LOG   [w_Bruin] event goto_start: target=(542,968) from=(544,966)
+[22:06:38.376] INFO  [w_Bruin] [bot] running from (544,966,0) to (542,968,z0)
+[22:06:38.376] INFO  [w_Bruin] [bot] planning path to (542,968) in background
+[22:06:39.778] INFO  [w_Bruin] [action] goto finished at (544,966,0); target (542,968); stopped short (off by 4 tile(s))
+[22:06:39.778] LOG   [w_Bruin] event goto_done: at=(544,966) target=(542,968) arrived=0 off=4
+[22:06:41.008] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:06:41.008] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:06:41.008] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:41.008] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:41.008] LOG   [w_Bruin] event travel_mode: walk
+[22:06:41.008] INFO  [w_Bruin] [travel] plan mobile 0x00000811: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:06:41.930] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:42.545] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:42.545] INFO  [w_Bruin] [action] goto (542,968) from (544,966,0)
+[22:06:42.545] LOG   [w_Bruin] event goto_start: target=(542,968) from=(544,966)
+[22:06:42.545] INFO  [w_Bruin] [bot] running from (544,966,0) to (542,968,z0)
+[22:06:42.545] INFO  [w_Bruin] [bot] planning path to (542,968) in background
+[22:06:44.161] INFO  [w_Bruin] [action] goto finished at (544,966,0); target (542,968); stopped short (off by 4 tile(s))
+[22:06:44.161] LOG   [w_Bruin] event goto_done: at=(544,966) target=(542,968) arrived=0 off=4
+[22:06:45.422] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:06:45.422] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:06:45.422] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:06:45.422] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:06:45.422] LOG   [w_Bruin] event travel_mode: walk
+[22:06:45.422] INFO  [w_Bruin] [travel] plan mobile 0x00000811: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:06:46.989] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:48.423] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:06:48.423] INFO  [w_Bruin] [action] goto (542,968) from (544,966,0)
+[22:06:48.423] LOG   [w_Bruin] event goto_start: target=(542,968) from=(544,966)
+[22:06:48.423] INFO  [w_Bruin] [bot] running from (544,966,0) to (542,968,z0)
+[22:06:48.424] INFO  [w_Bruin] [bot] planning path to (542,968) in background
+[22:06:48.484] INFO  [w_Bruin] [bot] replan to (542,968): 3 steps in 132.6us
+[22:06:48.685] INFO  [w_Bruin] [travel] mobile 0x00000811 ARRIVED at (543,967,0)
+[22:06:48.685] LOG   [w_Bruin] event travel_done: label='mobile 0x00000811' ok=1 at=(543,967) legs=1 plans=3 why=''
+[22:06:48.685] INFO  [life] potions: within reach
+[22:06:48.746] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:48.746] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:48.746] INFO  [life]   score=130.0
+[22:06:48.746] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:48.746] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:48.746] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:48.746] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:48.746] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:48.746] INFO  [w_Bruin] [ACTION] vendor_buy start
+[22:06:48.746] INFO  [w_Bruin] [VENDOR] open vendor=0x00000811 say='Martina buy'
+[22:06:48.746] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[22:06:48.747] INFO  [w_Bruin] [chat uni  ] Bruin: Martina buy
+[22:06:48.747] INFO  [life] potions: an action is already in flight
+[22:06:48.808] INFO  [life] potions: an action is already in flight
+[22:06:48.870] INFO  [life] potions: an action is already in flight
+[22:06:48.931] INFO  [life] potions: an action is already in flight
+[22:06:48.931] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:48.931] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:48.931] INFO  [life]   score=130.0
+[22:06:48.931] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:48.931] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:48.931] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:48.931] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:48.931] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:48.931] INFO  [life] potions: an action is already in flight
+[22:06:48.992] INFO  [life] potions: an action is already in flight
+[22:06:49.054] INFO  [life] potions: an action is already in flight
+[22:06:49.100] INFO  [life] potions: an action is already in flight
+[22:06:49.162] INFO  [life] potions: an action is already in flight
+[22:06:49.223] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:49.223] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:49.223] INFO  [life]   score=130.0
+[22:06:49.223] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:49.223] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:49.223] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:49.223] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:49.223] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:49.223] INFO  [life] potions: an action is already in flight
+[22:06:49.283] INFO  [life] potions: an action is already in flight
+[22:06:49.345] INFO  [life] potions: an action is already in flight
+[22:06:49.362] INFO  [life] potions: an action is already in flight
+[22:06:49.422] INFO  [life] potions: an action is already in flight
+[22:06:49.484] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:49.484] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:49.484] INFO  [life]   score=130.0
+[22:06:49.484] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:49.484] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:49.484] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:49.484] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:49.484] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:49.484] INFO  [life] potions: an action is already in flight
+[22:06:49.548] INFO  [life] potions: an action is already in flight
+[22:06:49.548] INFO  [life] potions: an action is already in flight
+[22:06:49.609] INFO  [life] potions: an action is already in flight
+[22:06:49.670] INFO  [life] potions: an action is already in flight
+[22:06:49.730] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:49.731] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:49.731] INFO  [life]   score=130.0
+[22:06:49.731] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:49.731] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:49.731] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:49.731] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:49.731] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:49.731] INFO  [life] potions: an action is already in flight
+[22:06:49.793] INFO  [life] potions: an action is already in flight
+[22:06:49.808] INFO  [w_Bruin] [bot] arrived at (542,968,0)
+[22:06:49.809] INFO  [life] potions: an action is already in flight
+[22:06:49.869] INFO  [life] potions: an action is already in flight
+[22:06:49.931] INFO  [life] potions: an action is already in flight
+[22:06:49.993] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:49.993] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:49.993] INFO  [life]   score=130.0
+[22:06:49.993] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:49.993] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:49.993] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:49.993] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:49.993] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:49.993] INFO  [life] potions: an action is already in flight
+[22:06:50.055] INFO  [life] potions: an action is already in flight
+[22:06:50.115] INFO  [life] potions: an action is already in flight
+[22:06:50.131] INFO  [life] potions: an action is already in flight
+[22:06:50.191] INFO  [life] potions: an action is already in flight
+[22:06:50.254] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:50.254] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:50.254] INFO  [life]   score=130.0
+[22:06:50.254] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:50.254] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:50.254] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:50.254] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:50.254] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:50.254] INFO  [life] potions: an action is already in flight
+[22:06:50.317] INFO  [life] potions: an action is already in flight
+[22:06:50.378] INFO  [life] potions: an action is already in flight
+[22:06:50.440] INFO  [life] potions: an action is already in flight
+[22:06:50.501] INFO  [life] potions: an action is already in flight
+[22:06:50.563] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:50.563] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:50.563] INFO  [life]   score=130.0
+[22:06:50.563] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:50.563] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:50.563] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:50.563] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:50.563] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:50.563] INFO  [life] potions: an action is already in flight
+[22:06:50.624] INFO  [life] potions: an action is already in flight
+[22:06:50.686] INFO  [life] potions: an action is already in flight
+[22:06:50.748] INFO  [life] potions: an action is already in flight
+[22:06:50.809] INFO  [life] potions: an action is already in flight
+[22:06:50.870] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:50.871] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:50.871] INFO  [life]   score=130.0
+[22:06:50.871] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:50.871] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:50.871] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:50.871] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:50.871] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:50.871] INFO  [life] potions: an action is already in flight
+[22:06:50.932] INFO  [life] potions: an action is already in flight
+[22:06:50.992] INFO  [life] potions: an action is already in flight
+[22:06:51.054] INFO  [life] potions: an action is already in flight
+[22:06:51.116] INFO  [life] potions: an action is already in flight
+[22:06:51.176] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:51.176] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:51.176] INFO  [life]   score=130.0
+[22:06:51.176] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:51.176] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:51.176] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:51.176] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:51.176] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:51.176] INFO  [life] potions: an action is already in flight
+[22:06:51.237] INFO  [life] potions: an action is already in flight
+[22:06:51.300] INFO  [life] potions: an action is already in flight
+[22:06:51.360] INFO  [life] potions: an action is already in flight
+[22:06:51.422] INFO  [life] potions: an action is already in flight
+[22:06:51.482] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:51.482] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:51.482] INFO  [life]   score=130.0
+[22:06:51.482] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:51.482] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:51.482] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:51.482] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:51.482] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:51.483] INFO  [life] potions: an action is already in flight
+[22:06:51.543] INFO  [life] potions: an action is already in flight
+[22:06:51.605] INFO  [life] potions: an action is already in flight
+[22:06:51.667] INFO  [life] potions: an action is already in flight
+[22:06:51.728] INFO  [life] potions: an action is already in flight
+[22:06:51.790] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:51.790] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:51.790] INFO  [life]   score=130.0
+[22:06:51.790] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:51.790] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:51.790] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:51.790] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:51.790] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:51.790] INFO  [life] potions: an action is already in flight
+[22:06:51.852] INFO  [life] potions: an action is already in flight
+[22:06:51.852] INFO  [life] potions: an action is already in flight
+[22:06:51.913] INFO  [life] potions: an action is already in flight
+[22:06:51.974] INFO  [life] potions: an action is already in flight
+[22:06:52.036] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:52.036] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:52.036] INFO  [life]   score=130.0
+[22:06:52.036] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:52.036] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:52.036] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:52.036] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:52.036] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:52.036] INFO  [life] potions: an action is already in flight
+[22:06:52.036] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:52.096] INFO  [life] potions: an action is already in flight
+[22:06:52.157] INFO  [life] potions: an action is already in flight
+[22:06:52.218] INFO  [life] potions: an action is already in flight
+[22:06:52.280] INFO  [life] potions: an action is already in flight
+[22:06:52.340] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:52.340] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:52.341] INFO  [life]   score=130.0
+[22:06:52.341] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:52.341] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:52.341] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:52.341] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:52.341] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:52.341] INFO  [life] potions: an action is already in flight
+[22:06:52.402] INFO  [life] potions: an action is already in flight
+[22:06:52.463] INFO  [life] potions: an action is already in flight
+[22:06:52.463] INFO  [life] potions: an action is already in flight
+[22:06:52.526] INFO  [life] potions: an action is already in flight
+[22:06:52.587] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:52.587] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:52.587] INFO  [life]   score=130.0
+[22:06:52.587] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:52.587] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:52.587] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:52.587] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:52.587] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:52.587] INFO  [life] potions: an action is already in flight
+[22:06:52.649] INFO  [life] potions: an action is already in flight
+[22:06:52.710] INFO  [life] potions: an action is already in flight
+[22:06:52.773] INFO  [life] potions: an action is already in flight
+[22:06:52.834] INFO  [life] potions: an action is already in flight
+[22:06:52.896] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:52.896] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:52.896] INFO  [life]   score=130.0
+[22:06:52.896] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:52.896] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:52.896] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:52.896] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:52.896] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:52.896] INFO  [life] potions: an action is already in flight
+[22:06:52.958] INFO  [life] potions: an action is already in flight
+[22:06:53.019] INFO  [life] potions: an action is already in flight
+[22:06:53.080] INFO  [life] potions: an action is already in flight
+[22:06:53.141] INFO  [life] potions: an action is already in flight
+[22:06:53.203] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:53.203] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:53.203] INFO  [life]   score=130.0
+[22:06:53.203] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:53.203] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:53.203] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:53.203] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:53.203] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:53.203] INFO  [life] potions: an action is already in flight
+[22:06:53.265] INFO  [life] potions: an action is already in flight
+[22:06:53.326] INFO  [life] potions: an action is already in flight
+[22:06:53.389] INFO  [life] potions: an action is already in flight
+[22:06:53.451] INFO  [life] potions: an action is already in flight
+[22:06:53.511] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:53.511] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:53.511] INFO  [life]   score=130.0
+[22:06:53.511] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:53.511] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:53.511] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:53.511] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:53.511] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:53.511] INFO  [life] potions: an action is already in flight
+[22:06:53.571] INFO  [life] potions: an action is already in flight
+[22:06:53.632] INFO  [life] potions: an action is already in flight
+[22:06:53.694] INFO  [life] potions: an action is already in flight
+[22:06:53.754] INFO  [life] potions: an action is already in flight
+[22:06:53.754] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:53.754] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:53.754] INFO  [life]   score=130.0
+[22:06:53.754] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:53.754] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:53.754] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:53.754] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:53.754] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:53.754] INFO  [life] potions: an action is already in flight
+[22:06:53.815] INFO  [life] potions: an action is already in flight
+[22:06:53.876] INFO  [life] potions: an action is already in flight
+[22:06:53.938] INFO  [life] potions: an action is already in flight
+[22:06:54.000] INFO  [life] potions: an action is already in flight
+[22:06:54.062] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:54.062] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:54.062] INFO  [life]   score=130.0
+[22:06:54.062] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:54.062] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:54.062] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:54.062] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:54.062] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:54.062] INFO  [life] potions: an action is already in flight
+[22:06:54.123] INFO  [life] potions: an action is already in flight
+[22:06:54.185] INFO  [life] potions: an action is already in flight
+[22:06:54.247] INFO  [life] potions: an action is already in flight
+[22:06:54.309] INFO  [life] potions: an action is already in flight
+[22:06:54.370] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:54.370] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:54.370] INFO  [life]   score=130.0
+[22:06:54.370] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:54.370] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:54.370] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:54.370] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:54.370] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:54.370] INFO  [life] potions: an action is already in flight
+[22:06:54.432] INFO  [life] potions: an action is already in flight
+[22:06:54.493] INFO  [life] potions: an action is already in flight
+[22:06:54.552] INFO  [life] potions: an action is already in flight
+[22:06:54.613] INFO  [life] potions: an action is already in flight
+[22:06:54.675] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:54.675] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:54.675] INFO  [life]   score=130.0
+[22:06:54.675] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:54.675] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:54.675] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:54.675] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:54.675] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:54.675] INFO  [life] potions: an action is already in flight
+[22:06:54.735] INFO  [life] potions: an action is already in flight
+[22:06:54.782] INFO  [life] potions: an action is already in flight
+[22:06:54.844] INFO  [life] potions: an action is already in flight
+[22:06:54.905] INFO  [life] potions: an action is already in flight
+[22:06:54.967] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:54.967] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:54.967] INFO  [life]   score=130.0
+[22:06:54.967] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:54.967] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:54.967] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:54.967] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:54.967] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:54.967] INFO  [life] potions: an action is already in flight
+[22:06:54.967] INFO  [w_Bruin] [chat ascii] Martina: Aye?
+[22:06:54.968] INFO  [life] potions: an action is already in flight
+[22:06:55.028] INFO  [life] potions: an action is already in flight
+[22:06:55.090] INFO  [life] potions: an action is already in flight
+[22:06:55.151] INFO  [life] potions: an action is already in flight
+[22:06:55.212] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:55.212] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:55.212] INFO  [life]   score=130.0
+[22:06:55.212] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:55.212] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:55.212] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:55.212] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:55.212] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:55.212] INFO  [life] potions: an action is already in flight
+[22:06:55.274] INFO  [life] potions: an action is already in flight
+[22:06:55.337] INFO  [life] potions: an action is already in flight
+[22:06:55.398] INFO  [life] potions: an action is already in flight
+[22:06:55.460] INFO  [life] potions: an action is already in flight
+[22:06:55.521] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:55.521] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:55.521] INFO  [life]   score=130.0
+[22:06:55.521] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:55.521] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:55.521] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:55.521] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:55.521] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:55.521] INFO  [life] potions: an action is already in flight
+[22:06:55.582] INFO  [life] potions: an action is already in flight
+[22:06:55.644] INFO  [life] potions: an action is already in flight
+[22:06:55.705] INFO  [life] potions: an action is already in flight
+[22:06:55.766] INFO  [life] potions: an action is already in flight
+[22:06:55.796] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:55.796] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:55.796] INFO  [life]   score=130.0
+[22:06:55.796] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:55.796] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:55.796] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:55.796] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:55.796] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:55.796] INFO  [life] potions: an action is already in flight
+[22:06:55.857] INFO  [life] potions: an action is already in flight
+[22:06:55.918] INFO  [life] potions: an action is already in flight
+[22:06:55.979] INFO  [life] potions: an action is already in flight
+[22:06:56.040] INFO  [life] potions: an action is already in flight
+[22:06:56.102] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:56.102] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:56.102] INFO  [life]   score=130.0
+[22:06:56.102] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:56.102] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:56.102] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:56.102] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:56.102] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:56.102] INFO  [life] potions: an action is already in flight
+[22:06:56.164] INFO  [life] potions: an action is already in flight
+[22:06:56.224] INFO  [life] potions: an action is already in flight
+[22:06:56.286] INFO  [life] potions: an action is already in flight
+[22:06:56.347] INFO  [life] potions: an action is already in flight
+[22:06:56.409] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:56.409] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:56.409] INFO  [life]   score=130.0
+[22:06:56.409] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:56.409] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:56.409] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:56.409] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:56.409] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:56.409] INFO  [life] potions: an action is already in flight
+[22:06:56.470] INFO  [life] potions: an action is already in flight
+[22:06:56.530] INFO  [life] potions: an action is already in flight
+[22:06:56.591] INFO  [life] potions: an action is already in flight
+[22:06:56.654] INFO  [life] potions: an action is already in flight
+[22:06:56.716] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:56.716] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:56.716] INFO  [life]   score=130.0
+[22:06:56.716] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:56.716] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:56.716] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:56.716] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:56.716] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:56.716] INFO  [life] potions: an action is already in flight
+[22:06:56.777] INFO  [life] potions: an action is already in flight
+[22:06:56.777] LOG   [w_Bruin] event action_result: vendor_buy timeout
+[22:06:56.839] INFO  [life] potions: resting after a failure
+[22:06:56.900] INFO  [life] potions: resting after a failure
+[22:06:56.947] INFO  [life] potions: resting after a failure
+[22:06:57.009] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:57.009] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:57.009] INFO  [life]   score=130.0
+[22:06:57.009] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:57.009] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:57.009] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:57.009] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:57.009] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:57.009] INFO  [life] potions: resting after a failure
+[22:06:57.070] INFO  [life] potions: resting after a failure
+[22:06:57.070] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:06:57.132] INFO  [life] potions: resting after a failure
+[22:06:57.194] INFO  [life] potions: resting after a failure
+[22:06:57.256] INFO  [life] potions: resting after a failure
+[22:06:57.317] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:57.317] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:57.317] INFO  [life]   score=130.0
+[22:06:57.317] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:57.317] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:57.317] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:57.317] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:57.317] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:57.317] INFO  [life] potions: resting after a failure
+[22:06:57.378] INFO  [life] potions: resting after a failure
+[22:06:57.410] INFO  [life] potions: resting after a failure
+[22:06:57.471] INFO  [life] potions: resting after a failure
+[22:06:57.531] INFO  [life] potions: resting after a failure
+[22:06:57.593] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:57.593] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:57.593] INFO  [life]   score=130.0
+[22:06:57.593] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:57.593] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:57.593] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:57.593] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:57.593] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:57.593] INFO  [life] potions: resting after a failure
+[22:06:57.655] INFO  [life] potions: resting after a failure
+[22:06:57.717] INFO  [life] potions: resting after a failure
+[22:06:57.779] INFO  [life] potions: resting after a failure
+[22:06:57.840] INFO  [life] potions: resting after a failure
+[22:06:57.903] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:57.903] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:57.903] INFO  [life]   score=130.0
+[22:06:57.903] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:57.903] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:57.903] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:57.903] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:57.903] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:57.903] INFO  [life] potions: resting after a failure
+[22:06:57.965] INFO  [life] potions: resting after a failure
+[22:06:58.027] INFO  [life] potions: resting after a failure
+[22:06:58.088] INFO  [life] potions: resting after a failure
+[22:06:58.150] INFO  [life] potions: resting after a failure
+[22:06:58.150] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:58.150] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:58.150] INFO  [life]   score=130.0
+[22:06:58.150] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:58.150] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:58.150] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:58.150] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:58.150] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:58.150] INFO  [life] potions: resting after a failure
+[22:06:58.211] INFO  [life] potions: resting after a failure
+[22:06:58.242] INFO  [life] potions: resting after a failure
+[22:06:58.304] INFO  [life] potions: resting after a failure
+[22:06:58.365] INFO  [life] potions: resting after a failure
+[22:06:58.426] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:58.427] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:58.427] INFO  [life]   score=130.0
+[22:06:58.427] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:58.427] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:58.427] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:58.427] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:58.427] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:58.427] INFO  [life] potions: resting after a failure
+[22:06:58.487] INFO  [life] potions: resting after a failure
+[22:06:58.519] INFO  [life] potions: resting after a failure
+[22:06:58.580] INFO  [life] potions: resting after a failure
+[22:06:58.643] INFO  [life] potions: resting after a failure
+[22:06:58.705] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:58.705] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:58.705] INFO  [life]   score=130.0
+[22:06:58.705] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:58.705] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:58.705] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:58.705] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:58.705] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:58.705] INFO  [life] potions: resting after a failure
+[22:06:58.767] INFO  [life] potions: resting after a failure
+[22:06:58.827] INFO  [life] potions: resting after a failure
+[22:06:58.889] INFO  [w_Bruin] [ACTION] vendor_buy start
+[22:06:58.889] INFO  [w_Bruin] [VENDOR] open vendor=0x00000811 say='Martina buy'
+[22:06:58.889] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 2)
+[22:06:58.890] INFO  [w_Bruin] [chat uni  ] Bruin: Martina buy
+[22:06:58.890] INFO  [w_Bruin] [chat ascii] Martina: I'm here to sell thee supplies.
+[22:06:58.890] INFO  [w_Bruin] [0x3C] container contents: 5 item(s)
+[22:06:58.890] INFO  [w_Bruin] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[22:06:58.890] INFO  [w_Bruin] [0x74] vendor shop data: cont=0x4000080C 5 item(s), layer=0x1A
+[22:06:58.890] INFO  [w_Bruin] [0x74]   clean bandages               gfx=0x0E21 qty=6    price=1
+[22:06:58.890] INFO  [w_Bruin] [0x74]   Heal                         gfx=0x0F0C qty=9    price=30
+[22:06:58.890] INFO  [w_Bruin] [0x74]   Ginseng                      gfx=0x0F85 qty=12   price=3
+[22:06:58.890] INFO  [w_Bruin] [0x74]   Garlic                       gfx=0x0F84 qty=20   price=3
+[22:06:58.890] INFO  [w_Bruin] [0x74]   Refresh                      gfx=0x0F0B qty=18   price=16
+[22:06:58.890] INFO  [w_Bruin] [0x3C] container contents: 0 item(s)
+[22:06:58.890] INFO  [w_Bruin] [0x74] vendor shop data: cont=0x40000322 0 item(s), layer=0x1B
+[22:06:58.890] INFO  [w_Bruin] [VENDOR] offer from 0x00000811: 5 item(s)
+[22:06:58.890] INFO  [w_Bruin] [VENDOR]   0x4000CBDD clean bandages         x6   1 gp
+[22:06:58.890] INFO  [w_Bruin] [VENDOR]   0x4000CBD9 Heal                   x9   30 gp
+[22:06:58.890] INFO  [w_Bruin] [VENDOR]   0x4000CBC1 Ginseng                x12  3 gp
+[22:06:58.890] INFO  [w_Bruin] [VENDOR]   0x4000CBBB Garlic                 x20  3 gp
+[22:06:58.890] INFO  [w_Bruin] [VENDOR]   0x4000CBBA Refresh                x18  16 gp
+[22:06:58.890] LOG   [w_Bruin] event vendor_offer: vendor=0x00000811 items=5
+[22:06:58.890] INFO  [w_Bruin] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[22:06:58.890] LOG   [w_Bruin] event action_result: vendor_buy success took=1ms vendor offer received
+[22:06:58.890] INFO  [w_Bruin] [0x24] vendor buy gump for 0x00000811
+[22:06:58.890] INFO  [life] potions: the shop is open
+[22:06:58.950] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[22:06:58.950] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:58.950] INFO  [life]   score=130.0
+[22:06:58.950] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:58.950] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:58.950] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:58.950] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:58.950] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:58.950] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[22:06:58.950] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[22:06:58.950] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:06:58.952] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:59.011] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[22:06:59.011] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:59.011] INFO  [life]   score=130.0
+[22:06:59.011] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:59.011] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:59.011] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:59.011] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:59.011] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:59.011] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:06:59.011] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:06:59.011] INFO  [life] potions: found a 'healer'
+[22:06:59.073] INFO  [life] potions: within reach
+[22:06:59.135] INFO  [life] potions: the shop is open
+[22:06:59.197] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[22:06:59.197] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[22:06:59.197] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:06:59.199] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:59.258] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[22:06:59.258] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:59.258] INFO  [life]   score=114.4
+[22:06:59.258] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:59.258] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:59.258] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[22:06:59.258] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:59.258] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:59.258] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:59.258] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:06:59.258] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:06:59.258] INFO  [life] potions: found a 'healer'
+[22:06:59.259] INFO  [life] potions: within reach
+[22:06:59.320] INFO  [life] potions: the shop is open
+[22:06:59.380] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[22:06:59.380] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[22:06:59.380] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:06:59.382] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:59.441] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[22:06:59.441] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:59.441] INFO  [life]   score=98.8
+[22:06:59.441] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:59.441] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:59.441] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[22:06:59.441] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:59.441] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:59.441] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:59.441] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:06:59.441] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:06:59.441] INFO  [life] potions: found a 'healer'
+[22:06:59.502] INFO  [life] potions: within reach
+[22:06:59.564] INFO  [life] potions: the shop is open
+[22:06:59.624] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[22:06:59.624] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[22:06:59.624] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:06:59.627] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:59.685] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[22:06:59.686] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:59.686] INFO  [life]   score=78.0
+[22:06:59.686] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:06:59.686] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:06:59.686] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[22:06:59.686] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:59.686] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:59.686] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:59.686] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:06:59.686] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:06:59.686] INFO  [life] potions: found a 'healer'
+[22:06:59.747] INFO  [life] potions: within reach
+[22:06:59.808] INFO  [life] potions: the shop is open
+[22:06:59.870] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[22:06:59.870] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[22:06:59.870] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[22:06:59.870] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[22:06:59.872] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:06:59.932] INFO  [life] goal=MINE reason="no goal was running"
+[22:06:59.932] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:06:59.932] INFO  [life]   score=58.5
+[22:06:59.932] INFO  [life]   reason: NeedOre urgency 0.45 x 130 = 58.5
+[22:06:59.932] INFO  [life]   reason: 0 ore+ingots of the 550 wanted before smith training (smithing 5.4) at_work_site=0
+[22:06:59.932] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:06:59.932] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[22:06:59.932] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:06:59.932] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:06:59.932] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[22:06:59.932] INFO  [w_Bruin] [ACTION] equip start
+[22:06:59.932] INFO  [w_Bruin] [ACTION] equip serial=0x40013969 layer=0
+[22:06:59.932] INFO  [w_Bruin] [ITEM] drag serial=0x40013969 amount=1
+[22:06:59.933] INFO  [w_Bruin] [chat ascii] System: You put the hatchet in your pack.
+[22:06:59.933] INFO  [w_Bruin] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[22:06:59.933] LOG   [w_Bruin] event action_result: equip success took=1ms worn on the requested layer
+[22:07:01.979] INFO  [w_Bruin] [action] goto finished at (542,968,0); target (542,968); ARRIVED (off by 0 tile(s))
+[22:07:01.979] LOG   [w_Bruin] event goto_done: at=(542,968) target=(542,968) arrived=1 off=0
+[22:07:01.979] INFO  [life] mine: the ore is 704 tiles off -- walking into the mining area first (trip 1)
+[22:07:01.979] INFO  [w_Bruin] [travel] Yew Cave1 -> (773,1684) r=12 from (542,968)
+[22:07:01.979] LOG   [w_Bruin] event travel_start: label='Yew Cave1' target=(773,1684) radius=12 from=(542,968)
+[22:07:01.979] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:07:01.979] INFO  [w_Bruin] [travel] mode walk             usable
+[22:07:01.979] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:07:01.979] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:07:01.979] LOG   [w_Bruin] event travel_mode: moongate
+[22:07:01.979] INFO  [w_Bruin] [travel] plan Yew Cave1: ok legs=24 ~912 tiles transit=0 nodes=1091
+[22:07:02.042] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:07:02.042] INFO  [w_Bruin] [action] goto (536,1000) from (542,968,0)
+[22:07:02.042] LOG   [w_Bruin] event goto_start: target=(536,1000) from=(542,968)
+[22:07:02.042] INFO  [w_Bruin] [bot] running from (542,968,0) to (536,1000)
+[22:07:02.042] INFO  [w_Bruin] [bot] planning path to (536,1000) in background
+[22:07:02.103] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:02.103] INFO  [w_Bruin] [bot] replan to (536,1000): 37 steps in 1926.2us
+[22:07:03.346] INFO  [w_Bruin] [bot] door ahead at (544,968,z0); OpenDoor before step
+[22:07:03.346] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:07:07.114] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:12.116] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:13.670] INFO  [w_Bruin] [bot] arrived at (536,1000,0)
+[22:07:13.670] INFO  [w_Bruin] [action] goto finished at (536,1000,0); target (536,1000); ARRIVED (off by 0 tile(s))
+[22:07:13.670] LOG   [w_Bruin] event goto_done: at=(536,1000) target=(536,1000) arrived=1 off=0
+[22:07:13.670] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:07:13.670] INFO  [w_Bruin] [action] goto (536,1032) from (536,1000,0)
+[22:07:13.670] LOG   [w_Bruin] event goto_start: target=(536,1032) from=(536,1000)
+[22:07:13.670] INFO  [w_Bruin] [bot] running from (536,1000,0) to (536,1032)
+[22:07:13.670] INFO  [w_Bruin] [bot] planning path to (536,1032) in background
+[22:07:13.732] INFO  [w_Bruin] [bot] replan to (536,1032): 34 steps in 4302.2us
+[22:07:17.168] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:22.229] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:24.084] INFO  [w_Bruin] [bot] arrived at (536,1032,0)
+[22:07:24.084] INFO  [w_Bruin] [action] goto finished at (536,1032,0); target (536,1032); ARRIVED (off by 0 tile(s))
+[22:07:24.084] LOG   [w_Bruin] event goto_done: at=(536,1032) target=(536,1032) arrived=1 off=0
+[22:07:24.084] INFO  [w_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[22:07:24.084] INFO  [w_Bruin] [action] goto (536,1064) from (536,1032,0)
+[22:07:24.084] LOG   [w_Bruin] event goto_start: target=(536,1064) from=(536,1032)
+[22:07:24.084] INFO  [w_Bruin] [bot] running from (536,1032,0) to (536,1064)
+[22:07:24.084] INFO  [w_Bruin] [bot] planning path to (536,1064) in background
+[22:07:24.146] INFO  [w_Bruin] [bot] replan to (536,1064): 32 steps in 6929.8us
+[22:07:27.273] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:32.330] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:34.778] INFO  [w_Bruin] [bot] arrived at (536,1064,0)
+[22:07:34.778] INFO  [w_Bruin] [action] goto finished at (536,1064,0); target (536,1064); ARRIVED (off by 0 tile(s))
+[22:07:34.778] LOG   [w_Bruin] event goto_done: at=(536,1064) target=(536,1064) arrived=1 off=0
+[22:07:34.778] INFO  [w_Bruin] [action] goto (536,1096) from (536,1064,0)
+[22:07:34.778] LOG   [w_Bruin] event goto_start: target=(536,1096) from=(536,1064)
+[22:07:34.778] INFO  [w_Bruin] [bot] running from (536,1064,0) to (536,1096)
+[22:07:34.778] INFO  [w_Bruin] [bot] planning path to (536,1096) in background
+[22:07:34.839] INFO  [w_Bruin] [bot] replan to (536,1096): 33 steps in 5296.2us
+[22:07:37.364] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:42.379] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:45.384] INFO  [w_Bruin] [bot] arrived at (536,1096,0)
+[22:07:45.384] INFO  [w_Bruin] [action] goto finished at (536,1096,0); target (536,1096); ARRIVED (off by 0 tile(s))
+[22:07:45.384] LOG   [w_Bruin] event goto_done: at=(536,1096) target=(536,1096) arrived=1 off=0
+[22:07:45.384] INFO  [w_Bruin] [action] goto (536,1128) from (536,1096,0)
+[22:07:45.385] LOG   [w_Bruin] event goto_start: target=(536,1128) from=(536,1096)
+[22:07:45.385] INFO  [w_Bruin] [bot] running from (536,1096,0) to (536,1128)
+[22:07:45.385] INFO  [w_Bruin] [bot] planning path to (536,1128) in background
+[22:07:45.446] INFO  [w_Bruin] [bot] replan to (536,1128): 32 steps in 2469.4us
+[22:07:47.400] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:52.449] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:55.158] INFO  [w_Bruin] [bot] arrived at (536,1128,0)
+[22:07:55.158] INFO  [w_Bruin] [action] goto finished at (536,1128,0); target (536,1128); ARRIVED (off by 0 tile(s))
+[22:07:55.158] LOG   [w_Bruin] event goto_done: at=(536,1128) target=(536,1128) arrived=1 off=0
+[22:07:55.158] INFO  [w_Bruin] [action] goto (536,1160) from (536,1128,0)
+[22:07:55.158] LOG   [w_Bruin] event goto_start: target=(536,1160) from=(536,1128)
+[22:07:55.158] INFO  [w_Bruin] [bot] running from (536,1128,0) to (536,1160)
+[22:07:55.158] INFO  [w_Bruin] [bot] planning path to (536,1160) in background
+[22:07:55.220] INFO  [w_Bruin] [bot] replan to (536,1160): 33 steps in 10725.6us
+[22:07:57.495] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:07:59.297] INFO  [life] goal_changed=GET_FOOD from=MINE reason="GET_FOOD 67.3 superseded MINE 58.5"
+[22:07:59.297] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:07:59.297] INFO  [life]   score=67.3
+[22:07:59.297] INFO  [life]   reason: NeedFood urgency 0.45 x 250 = 112.5
+[22:07:59.297] INFO  [life]   reason: food=0 hungry=1
+[22:07:59.297] INFO  [life]   reason: upkeep just now, easing off 40% (112.5 -> 67.3)
+[22:07:59.297] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:07:59.297] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 0s after achieving nothing
+[22:07:59.297] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:07:59.297] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:07:59.297] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[22:07:59.359] INFO  [life] goal=MINE reason="previous goal abandoned: no food and no money"
+[22:07:59.360] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:07:59.360] INFO  [life]   score=58.5
+[22:07:59.360] INFO  [life]   reason: NeedOre urgency 0.45 x 130 = 58.5
+[22:07:59.360] INFO  [life]   reason: 0 ore+ingots of the 550 wanted before smith training (smithing 5.4) at_work_site=0
+[22:07:59.360] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:07:59.360] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 0s after achieving nothing
+[22:07:59.360] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[22:07:59.360] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:07:59.360] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:07:59.916] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:08:02.556] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:05.812] INFO  [w_Bruin] [bot] arrived at (536,1160,0)
+[22:08:05.812] INFO  [w_Bruin] [action] goto finished at (536,1160,0); target (536,1160); ARRIVED (off by 0 tile(s))
+[22:08:05.812] LOG   [w_Bruin] event goto_done: at=(536,1160) target=(536,1160) arrived=1 off=0
+[22:08:05.812] INFO  [w_Bruin] [action] goto (536,1192) from (536,1160,0)
+[22:08:05.812] LOG   [w_Bruin] event goto_start: target=(536,1192) from=(536,1160)
+[22:08:05.812] INFO  [w_Bruin] [bot] running from (536,1160,0) to (536,1192)
+[22:08:05.812] INFO  [w_Bruin] [bot] planning path to (536,1192) in background
+[22:08:05.872] INFO  [w_Bruin] [bot] replan to (536,1192): 32 steps in 18782.4us
+[22:08:07.588] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:12.628] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:16.592] INFO  [w_Bruin] [bot] arrived at (536,1192,0)
+[22:08:16.592] INFO  [w_Bruin] [action] goto finished at (536,1192,0); target (536,1192); ARRIVED (off by 0 tile(s))
+[22:08:16.592] LOG   [w_Bruin] event goto_done: at=(536,1192) target=(536,1192) arrived=1 off=0
+[22:08:16.592] INFO  [w_Bruin] [action] goto (536,1222) from (536,1192,0)
+[22:08:16.592] LOG   [w_Bruin] event goto_start: target=(536,1222) from=(536,1192)
+[22:08:16.592] INFO  [w_Bruin] [bot] running from (536,1192,0) to (536,1222)
+[22:08:16.592] INFO  [w_Bruin] [bot] planning path to (536,1222) in background
+[22:08:16.653] INFO  [w_Bruin] [bot] replan to (536,1222): 31 steps in 16380.1us
+[22:08:17.638] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:19.406] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=MINE reason="REPLACE_EQUIPMENT 86.5 superseded MINE 58.5"
+[22:08:19.406] INFO  [life] needs considered: NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedGold(sell surplus 0.17) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,] want_train=Tailoring (target 60.0)
+[22:08:19.406] INFO  [life]   score=86.5
+[22:08:19.406] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[22:08:19.406] INFO  [life]   reason: potions=0 low=2 gold=0
+[22:08:19.406] INFO  [life]   reason: upkeep just now, easing off 33% (130.0 -> 86.5)
+[22:08:19.406] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a smith hammer)
+[22:08:19.406] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[22:08:19.406] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:08:19.406] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:08:19.406] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:08:22.664] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:27.717] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:27.732] INFO  [w_Bruin] [bot] arrived at (536,1222,0)
+[22:08:27.733] INFO  [w_Bruin] [action] goto finished at (536,1222,0); target (536,1222); ARRIVED (off by 0 tile(s))
+[22:08:27.733] LOG   [w_Bruin] event goto_done: at=(536,1222) target=(536,1222) arrived=1 off=0
+[22:08:27.733] INFO  [w_Bruin] [action] goto (536,1256) from (536,1222,0)
+[22:08:27.733] LOG   [w_Bruin] event goto_start: target=(536,1256) from=(536,1222)
+[22:08:27.733] INFO  [w_Bruin] [bot] running from (536,1222,0) to (536,1256)
+[22:08:27.733] INFO  [w_Bruin] [bot] planning path to (536,1256) in background
+[22:08:27.793] INFO  [w_Bruin] [bot] replan to (536,1256): 34 steps in 17024.7us
+[22:08:32.746] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:37.779] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:40.688] INFO  [w_Bruin] [bot] arrived at (536,1256,0)
+[22:08:40.688] INFO  [w_Bruin] [action] goto finished at (536,1256,0); target (536,1256); ARRIVED (off by 0 tile(s))
+[22:08:40.688] LOG   [w_Bruin] event goto_done: at=(536,1256) target=(536,1256) arrived=1 off=0
+[22:08:40.688] INFO  [w_Bruin] [action] goto (536,1288) from (536,1256,0)
+[22:08:40.688] LOG   [w_Bruin] event goto_start: target=(536,1288) from=(536,1256)
+[22:08:40.688] INFO  [w_Bruin] [bot] running from (536,1256,0) to (536,1288)
+[22:08:40.688] INFO  [w_Bruin] [bot] planning path to (536,1288) in background
+[22:08:40.749] INFO  [w_Bruin] [bot] replan to (536,1288): 34 steps in 16950.3us
+[22:08:42.821] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:44.251] INFO  [w_Bruin] [chat ascii] System: You have left the protection of the town guards
+[22:08:47.836] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:51.360] INFO  [w_Bruin] [chat ascii] System: World save in 10 seconds
+[22:08:52.660] INFO  [w_Bruin] [bot] arrived at (536,1288,0)
+[22:08:52.660] INFO  [w_Bruin] [action] goto finished at (536,1288,0); target (536,1288); ARRIVED (off by 0 tile(s))
+[22:08:52.660] LOG   [w_Bruin] event goto_done: at=(536,1288) target=(536,1288) arrived=1 off=0
+[22:08:52.660] INFO  [w_Bruin] [action] goto (536,1320) from (536,1288,0)
+[22:08:52.660] LOG   [w_Bruin] event goto_start: target=(536,1320) from=(536,1288)
+[22:08:52.660] INFO  [w_Bruin] [bot] running from (536,1288,0) to (536,1320)
+[22:08:52.660] INFO  [w_Bruin] [bot] planning path to (536,1320) in background
+[22:08:52.721] INFO  [w_Bruin] [bot] replan to (536,1320): 32 steps in 14984.5us
+[22:08:52.844] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:57.875] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:08:59.965] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:09:01.399] INFO  [w_Bruin] [chat ascii] System: World save has been initiated.
+[22:09:02.895] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:03.580] INFO  [w_Bruin] [bot] arrived at (536,1320,0)
+[22:09:03.580] INFO  [w_Bruin] [action] goto finished at (536,1320,0); target (536,1320); ARRIVED (off by 0 tile(s))
+[22:09:03.580] LOG   [w_Bruin] event goto_done: at=(536,1320) target=(536,1320) arrived=1 off=0
+[22:09:03.580] INFO  [w_Bruin] [action] goto (552,1352) from (536,1320,0)
+[22:09:03.580] LOG   [w_Bruin] event goto_start: target=(552,1352) from=(536,1320)
+[22:09:03.580] INFO  [w_Bruin] [bot] running from (536,1320,0) to (552,1352)
+[22:09:03.580] INFO  [w_Bruin] [bot] planning path to (552,1352) in background
+[22:09:03.610] INFO  [w_Bruin] [bot] replan to (552,1352): 36 steps in 12358.2us
+[22:09:07.907] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:12.913] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:16.461] INFO  [w_Bruin] [bot] arrived at (552,1352,-2)
+[22:09:16.461] INFO  [w_Bruin] [action] goto finished at (552,1352,-2); target (552,1352); ARRIVED (off by 0 tile(s))
+[22:09:16.461] LOG   [w_Bruin] event goto_done: at=(552,1352) target=(552,1352) arrived=1 off=0
+[22:09:16.461] INFO  [w_Bruin] [action] goto (574,1378) from (552,1352,-2)
+[22:09:16.461] LOG   [w_Bruin] event goto_start: target=(574,1378) from=(552,1352)
+[22:09:16.461] INFO  [w_Bruin] [bot] running from (552,1352,-2) to (574,1378)
+[22:09:16.462] INFO  [w_Bruin] [bot] planning path to (574,1378) in background
+[22:09:16.522] INFO  [w_Bruin] [bot] replan to (574,1378): 37 steps in 10954.4us
+[22:09:17.967] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:23.000] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:28.014] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:30.151] INFO  [w_Bruin] [bot] arrived at (574,1378,-3)
+[22:09:30.152] INFO  [w_Bruin] [action] goto finished at (574,1378,-3); target (574,1378); ARRIVED (off by 0 tile(s))
+[22:09:30.152] LOG   [w_Bruin] event goto_done: at=(574,1378) target=(574,1378) arrived=1 off=0
+[22:09:30.152] INFO  [w_Bruin] [action] goto (600,1416) from (574,1378,-3)
+[22:09:30.152] LOG   [w_Bruin] event goto_start: target=(600,1416) from=(574,1378)
+[22:09:30.152] INFO  [w_Bruin] [bot] running from (574,1378,-3) to (600,1416)
+[22:09:30.152] INFO  [w_Bruin] [bot] planning path to (600,1416) in background
+[22:09:30.213] INFO  [w_Bruin] [bot] replan to (600,1416): 41 steps in 11836.9us
+[22:09:33.048] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:38.084] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:43.119] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:45.746] INFO  [w_Bruin] [bot] arrived at (600,1416,0)
+[22:09:45.746] INFO  [w_Bruin] [action] goto finished at (600,1416,0); target (600,1416); ARRIVED (off by 0 tile(s))
+[22:09:45.746] LOG   [w_Bruin] event goto_done: at=(600,1416) target=(600,1416) arrived=1 off=0
+[22:09:45.746] INFO  [w_Bruin] [action] goto (632,1448) from (600,1416,0)
+[22:09:45.746] LOG   [w_Bruin] event goto_start: target=(632,1448) from=(600,1416)
+[22:09:45.746] INFO  [w_Bruin] [bot] running from (600,1416,0) to (632,1448)
+[22:09:45.746] INFO  [w_Bruin] [bot] planning path to (632,1448) in background
+[22:09:45.807] INFO  [w_Bruin] [bot] replan to (632,1448): 45 steps in 27992.7us
+[22:09:48.127] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:53.130] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:58.136] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:09:59.972] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:10:01.447] INFO  [w_Bruin] [bot] arrived at (632,1448,0)
+[22:10:01.448] INFO  [w_Bruin] [action] goto finished at (632,1448,0); target (632,1448); ARRIVED (off by 0 tile(s))
+[22:10:01.448] LOG   [w_Bruin] event goto_done: at=(632,1448) target=(632,1448) arrived=1 off=0
+[22:10:01.448] INFO  [w_Bruin] [action] goto (664,1480) from (632,1448,0)
+[22:10:01.448] LOG   [w_Bruin] event goto_start: target=(664,1480) from=(632,1448)
+[22:10:01.448] INFO  [w_Bruin] [bot] running from (632,1448,0) to (664,1480)
+[22:10:01.448] INFO  [w_Bruin] [bot] planning path to (664,1480) in background
+[22:10:01.510] INFO  [w_Bruin] [bot] replan to (664,1480): 45 steps in 25954.6us
+[22:10:02.523] INFO  [w_Bruin] [chat ascii] Guthug: *Guthug is attacking you!*
+[22:10:03.148] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:08.192] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:10.148] INFO  [w_Bruin] [chat ascii] Speghat: *Speghat is attacking you!*
+[22:10:13.253] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:16.262] INFO  [w_Bruin] [bot] arrived at (664,1480,0)
+[22:10:16.262] INFO  [w_Bruin] [action] goto finished at (664,1480,0); target (664,1480); ARRIVED (off by 0 tile(s))
+[22:10:16.262] LOG   [w_Bruin] event goto_done: at=(664,1480) target=(664,1480) arrived=1 off=0
+[22:10:16.262] INFO  [w_Bruin] [action] goto (696,1510) from (664,1480,0)
+[22:10:16.262] LOG   [w_Bruin] event goto_start: target=(696,1510) from=(664,1480)
+[22:10:16.262] INFO  [w_Bruin] [bot] running from (664,1480,0) to (696,1510)
+[22:10:16.262] INFO  [w_Bruin] [bot] planning path to (696,1510) in background
+[22:10:16.293] INFO  [w_Bruin] [bot] replan to (696,1510): 35 steps in 28771.7us
+[22:10:18.287] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:23.309] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:26.673] INFO  [w_Bruin] [bot] arrived at (696,1510,0)
+[22:10:26.673] INFO  [w_Bruin] [action] goto finished at (696,1510,0); target (696,1510); ARRIVED (off by 0 tile(s))
+[22:10:26.673] LOG   [w_Bruin] event goto_done: at=(696,1510) target=(696,1510) arrived=1 off=0
+[22:10:26.673] INFO  [w_Bruin] [action] goto (728,1544) from (696,1510,0)
+[22:10:26.673] LOG   [w_Bruin] event goto_start: target=(728,1544) from=(696,1510)
+[22:10:26.673] INFO  [w_Bruin] [bot] running from (696,1510,0) to (728,1544)
+[22:10:26.673] INFO  [w_Bruin] [bot] planning path to (728,1544) in background
+[22:10:26.733] INFO  [w_Bruin] [bot] replan to (728,1544): 44 steps in 37949.8us
+[22:10:28.367] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:33.412] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:38.457] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:41.675] INFO  [w_Bruin] [bot] arrived at (728,1544,0)
+[22:10:41.675] INFO  [w_Bruin] [action] goto finished at (728,1544,0); target (728,1544); ARRIVED (off by 0 tile(s))
+[22:10:41.675] LOG   [w_Bruin] event goto_done: at=(728,1544) target=(728,1544) arrived=1 off=0
+[22:10:41.675] INFO  [w_Bruin] [action] goto (760,1576) from (728,1544,0)
+[22:10:41.675] LOG   [w_Bruin] event goto_start: target=(760,1576) from=(728,1544)
+[22:10:41.675] INFO  [w_Bruin] [bot] running from (728,1544,0) to (760,1576)
+[22:10:41.675] INFO  [w_Bruin] [bot] planning path to (760,1576) in background
+[22:10:41.735] INFO  [w_Bruin] [bot] replan to (760,1576): 49 steps in 28352.7us
+[22:10:43.472] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:48.517] INFO  [w_Bruin] [survival] hp 50/50 (100%) -> fight
+[22:10:50.702] LOG   [w_Bruin] event threat: HP 50 -> 45
+[22:10:50.702] INFO  [w_Bruin] [action] goto finished at (755,1555,0); target (760,1576); stopped short (off by 26 tile(s))
+[22:10:50.702] LOG   [w_Bruin] event goto_done: at=(755,1555) target=(760,1576) arrived=0 off=26
+[22:10:51.934] INFO  [w_Bruin] [action] goto (760,1576) from (755,1555,0)
+[22:10:51.934] LOG   [w_Bruin] event goto_start: target=(760,1576) from=(755,1555)
+[22:10:51.934] INFO  [w_Bruin] [bot] running from (755,1555,0) to (760,1576)
+[22:10:51.934] INFO  [w_Bruin] [bot] planning path to (760,1576) in background
+[22:10:51.965] INFO  [w_Bruin] [bot] replan to (760,1576): 22 steps in 3625.1us
+[22:10:51.986] LOG   [w_Bruin] event threat: HP 40 -> 34
+[22:10:51.987] INFO  [w_Bruin] [action] goto finished at (756,1556,0); target (760,1576); stopped short (off by 24 tile(s))
+[22:10:51.987] LOG   [w_Bruin] event goto_done: at=(756,1556) target=(760,1576) arrived=0 off=24
+[22:10:52.475] INFO  [w_Bruin] [0x20] player @(756,1556,0) facing=6
+[22:10:53.195] INFO  [w_Bruin] [action] goto (760,1576) from (756,1556,0)
+[22:10:53.195] LOG   [w_Bruin] event goto_start: target=(760,1576) from=(756,1556)
+[22:10:53.195] INFO  [w_Bruin] [bot] running from (756,1556,0) to (760,1576)
+[22:10:53.196] INFO  [w_Bruin] [bot] planning path to (760,1576) in background
+[22:10:53.226] INFO  [w_Bruin] [bot] replan to (760,1576): 20 steps in 2659.5us
+[22:10:53.565] INFO  [w_Bruin] [survival] hp 34/50 (68%) -> fight
+[22:10:55.947] INFO  [w_Bruin] [chat ascii] Cougar: *Cougar is attacking you!*
+[22:10:56.117] LOG   [w_Bruin] event threat: HP 34 -> 29
+[22:10:56.118] INFO  [w_Bruin] [action] goto finished at (758,1563,0); target (760,1576); stopped short (off by 15 tile(s))
+[22:10:56.118] LOG   [w_Bruin] event goto_done: at=(758,1563) target=(760,1576) arrived=0 off=15
+[22:10:57.092] INFO  [w_Bruin] [0x20] player @(758,1563,0) facing=0
+[22:10:57.353] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:10:57.353] INFO  [w_Bruin] [travel] mode walk             usable
+[22:10:57.353] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:10:57.353] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:10:57.353] LOG   [w_Bruin] event travel_mode: moongate
+[22:10:57.353] INFO  [w_Bruin] [travel] plan Yew Cave1: ok legs=5 ~208 tiles transit=0 nodes=82
+[22:10:58.616] INFO  [w_Bruin] [survival] hp 29/50 (58%) -> fight
+[22:10:58.878] INFO  [w_Bruin] [action] goto (776,1586) from (758,1563,0)
+[22:10:58.878] LOG   [w_Bruin] event goto_start: target=(776,1586) from=(758,1563)
+[22:10:58.878] INFO  [w_Bruin] [bot] running from (758,1563,0) to (776,1586)
+[22:10:58.878] INFO  [w_Bruin] [bot] planning path to (776,1586) in background
+[22:10:58.939] INFO  [w_Bruin] [bot] replan to (776,1586): 27 steps in 5734.9us
+[22:10:59.983] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:11:00.089] INFO  [w_Bruin] [0x20] player @(758,1567,0) facing=0
+[22:11:00.089] INFO  [w_Bruin] [action] goto finished at (758,1567,0); target (776,1586); stopped short (off by 37 tile(s))
+[22:11:00.089] LOG   [w_Bruin] event goto_done: at=(758,1567) target=(776,1586) arrived=0 off=37
+[22:11:01.319] INFO  [w_Bruin] [action] goto (776,1586) from (758,1567,0)
+[22:11:01.319] LOG   [w_Bruin] event goto_start: target=(776,1586) from=(758,1567)
+[22:11:01.319] INFO  [w_Bruin] [bot] running from (758,1567,0) to (776,1586)
+[22:11:01.319] INFO  [w_Bruin] [bot] planning path to (776,1586) in background
+[22:11:01.334] INFO  [w_Bruin] [bot] replan to (776,1586): 23 steps in 3130.8us
+[22:11:03.652] INFO  [w_Bruin] [survival] hp 29/50 (58%) -> fight
+[22:11:08.708] INFO  [w_Bruin] [survival] hp 30/50 (60%) -> fight
+[22:11:10.186] INFO  [w_Bruin] [bot] arrived at (776,1586,0)
+[22:11:10.186] INFO  [w_Bruin] [action] goto finished at (776,1586,0); target (776,1586); ARRIVED (off by 0 tile(s))
+[22:11:10.186] LOG   [w_Bruin] event goto_done: at=(776,1586) target=(776,1586) arrived=1 off=0
+[22:11:10.186] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:10.186] INFO  [w_Bruin] [action] goto (796,1622) from (776,1586,0)
+[22:11:10.186] LOG   [w_Bruin] event goto_start: target=(796,1622) from=(776,1586)
+[22:11:10.186] INFO  [w_Bruin] [bot] running from (776,1586,0) to (796,1622)
+[22:11:10.186] INFO  [w_Bruin] [bot] planning path to (796,1622) in background
+[22:11:10.201] INFO  [w_Bruin] [bot] replan to (796,1622): 46 steps in 10492.3us
+[22:11:10.766] LOG   [w_Bruin] event threat: HP 30 -> 24
+[22:11:10.766] INFO  [w_Bruin] [action] goto finished at (776,1585,4); target (796,1622); stopped short (off by 57 tile(s))
+[22:11:10.766] LOG   [w_Bruin] event goto_done: at=(776,1585) target=(796,1622) arrived=0 off=57
+[22:11:12.015] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:12.015] INFO  [w_Bruin] [action] goto (796,1622) from (776,1585,4)
+[22:11:12.015] LOG   [w_Bruin] event goto_start: target=(796,1622) from=(776,1585)
+[22:11:12.015] INFO  [w_Bruin] [bot] running from (776,1585,4) to (796,1622)
+[22:11:12.015] INFO  [w_Bruin] [bot] planning path to (796,1622) in background
+[22:11:12.092] INFO  [w_Bruin] [bot] replan to (796,1622): 45 steps in 17711.7us
+[22:11:13.709] INFO  [w_Bruin] [survival] hp 24/50 (48%) -> fight
+[22:11:17.924] LOG   [w_Bruin] event threat: HP 24 -> 18
+[22:11:17.924] INFO  [w_Bruin] [action] goto finished at (791,1594,0); target (796,1622); stopped short (off by 33 tile(s))
+[22:11:17.924] LOG   [w_Bruin] event goto_done: at=(791,1594) target=(796,1622) arrived=0 off=33
+[22:11:18.770] INFO  [w_Bruin] [survival] hp 18/50 (36%) -> fight
+[22:11:19.169] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:19.169] INFO  [w_Bruin] [action] goto (796,1622) from (791,1594,0)
+[22:11:19.169] LOG   [w_Bruin] event goto_start: target=(796,1622) from=(791,1594)
+[22:11:19.169] INFO  [w_Bruin] [bot] running from (791,1594,0) to (796,1622)
+[22:11:19.169] INFO  [w_Bruin] [bot] planning path to (796,1622) in background
+[22:11:19.184] INFO  [w_Bruin] [bot] replan to (796,1622): 28 steps in 4097.4us
+[22:11:23.801] INFO  [w_Bruin] [survival] hp 18/50 (36%) -> fight
+[22:11:25.906] INFO  [w_Bruin] [chat ascii] Zupaugh: *Zupaugh is attacking you!*
+[22:11:28.457] LOG   [w_Bruin] event threat: HP 18 -> 13
+[22:11:28.457] INFO  [w_Bruin] [action] goto finished at (796,1620,3); target (796,1622); stopped short (off by 2 tile(s))
+[22:11:28.457] LOG   [w_Bruin] event goto_done: at=(796,1620) target=(796,1622) arrived=0 off=2
+[22:11:28.457] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:28.457] INFO  [w_Bruin] [action] goto (808,1656) from (796,1620,3)
+[22:11:28.457] LOG   [w_Bruin] event goto_start: target=(808,1656) from=(796,1620)
+[22:11:28.457] INFO  [w_Bruin] [bot] running from (796,1620,3) to (808,1656)
+[22:11:28.457] INFO  [w_Bruin] [bot] planning path to (808,1656) in background
+[22:11:28.457] INFO  [w_Bruin] [survival] hp 13/50 (26%) -> disengage
+[22:11:28.457] LOG   [w_Bruin] event survival_disengage: disengage
+[22:11:28.457] INFO  [w_Bruin] [war] leaving war mode
+[22:11:28.518] INFO  [w_Bruin] [bot] replan to (808,1656): 39 steps in 13227.4us
+[22:11:28.733] INFO  [w_Bruin] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=40 in 178.0us
+[22:11:29.055] INFO  [w_Bruin] [chat ascii] System: You shove Speghat out of the way.
+[22:11:29.996] INFO  [w_Bruin] [survival] hp 13/50 (26%) -> rest
+[22:11:30.811] INFO  [w_Bruin] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=34 in 105.7us
+[22:11:32.808] INFO  [w_Bruin] [chat ascii] Zarfu: *Zarfu is attacking you!*
+[22:11:36.072] INFO  [w_Bruin] [survival] hp 13/50 (26%) -> rest
+[22:11:36.595] INFO  [w_Bruin] [bot] step (812,1640,0)->(811,1641,0) rejected; OpenDoor + retry
+[22:11:37.350] INFO  [w_Bruin] [bot] step (812,1640,0)->(811,1641,0) rejected; avoiding edge + rerouting
+[22:11:37.350] INFO  [w_Bruin] [bot] planning path to (808,1656) in background
+[22:11:37.411] INFO  [w_Bruin] [bot] replan to (808,1656): 17 steps in 3583.9us
+[22:11:37.812] LOG   [w_Bruin] event threat: HP 13 -> 6
+[22:11:37.812] INFO  [w_Bruin] [action] goto finished at (812,1640,0); target (808,1656); stopped short (off by 20 tile(s))
+[22:11:37.812] LOG   [w_Bruin] event goto_done: at=(812,1640) target=(808,1656) arrived=0 off=20
+[22:11:39.043] INFO  [w_Bruin] [action] goto (808,1656) from (812,1640,0)
+[22:11:39.043] LOG   [w_Bruin] event goto_start: target=(808,1656) from=(812,1640)
+[22:11:39.043] INFO  [w_Bruin] [bot] running from (812,1640,0) to (808,1656)
+[22:11:39.043] INFO  [w_Bruin] [bot] planning path to (808,1656) in background
+[22:11:39.104] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> flee
+[22:11:39.104] LOG   [w_Bruin] event survival_disengage: flee
+[22:11:39.104] INFO  [w_Bruin] [war] leaving war mode
+[22:11:39.104] INFO  [w_Bruin] [bot] replan to (808,1656): 17 steps in 3873.6us
+[22:11:40.610] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:11:44.915] INFO  [w_Bruin] [bot] arrived at (808,1656,0)
+[22:11:44.915] INFO  [w_Bruin] [action] goto finished at (808,1656,0); target (808,1656); ARRIVED (off by 0 tile(s))
+[22:11:44.915] LOG   [w_Bruin] event goto_done: at=(808,1656) target=(808,1656) arrived=1 off=0
+[22:11:44.915] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:44.915] INFO  [w_Bruin] [action] goto (794,1688) from (808,1656,0)
+[22:11:44.915] LOG   [w_Bruin] event goto_start: target=(794,1688) from=(808,1656)
+[22:11:44.915] INFO  [w_Bruin] [bot] running from (808,1656,0) to (794,1688)
+[22:11:44.916] INFO  [w_Bruin] [bot] planning path to (794,1688) in background
+[22:11:44.976] INFO  [w_Bruin] [bot] replan to (794,1688): 36 steps in 12679.0us
+[22:11:46.647] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:11:52.747] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:11:57.725] INFO  [w_Bruin] [bot] arrived at (794,1688,2)
+[22:11:57.725] INFO  [w_Bruin] [action] goto finished at (794,1688,2); target (794,1688); ARRIVED (off by 0 tile(s))
+[22:11:57.725] LOG   [w_Bruin] event goto_done: at=(794,1688) target=(794,1688) arrived=1 off=0
+[22:11:57.725] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:11:57.725] INFO  [w_Bruin] [action] goto (773,1684) from (794,1688,2)
+[22:11:57.725] LOG   [w_Bruin] event goto_start: target=(773,1684) from=(794,1688)
+[22:11:57.725] INFO  [w_Bruin] [bot] running from (794,1688,2) to (773,1684)
+[22:11:57.725] INFO  [w_Bruin] [bot] planning path to (773,1684) in background
+[22:11:57.788] INFO  [w_Bruin] [bot] replan to (773,1684): 34 steps in 8461.6us
+[22:11:58.815] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:12:00.008] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:12:02.535] INFO  [w_Bruin] [travel] Yew Cave1 ARRIVED at (785,1696,0)
+[22:12:02.535] LOG   [w_Bruin] event travel_done: label='Yew Cave1' ok=1 at=(785,1696) legs=5 plans=2 why=''
+[22:12:02.596] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[22:12:02.598] INFO  [w_Bruin] [travel] place: skipping Trinsic Healer healer -- 1208 tiles and 1 gate for a service Deep Forest Healing healer offers
+[22:12:02.598] INFO  [w_Bruin] [travel] place: skipping Cove healer -- 1616 tiles and 1 gate for a service Deep Forest Healing healer offers
+[22:12:02.598] INFO  [w_Bruin] [travel] Deep Forest Healing healer -> (643,1083) r=5 from (785,1696)
+[22:12:02.598] LOG   [w_Bruin] event travel_start: label='Deep Forest Healing healer' target=(643,1083) radius=5 from=(785,1696)
+[22:12:02.598] INFO  [life] potions: walking to a 'healer' (trip 1)
+[22:12:02.598] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:12:02.598] INFO  [w_Bruin] [travel] mode walk             usable
+[22:12:02.598] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:12:02.598] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:12:02.598] LOG   [w_Bruin] event travel_mode: moongate
+[22:12:02.598] INFO  [w_Bruin] [travel] plan Deep Forest Healing healer: ok legs=19 ~712 tiles transit=0 nodes=572
+[22:12:04.895] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:12:10.523] INFO  [w_Bruin] [bot] arrived at (773,1684,0)
+[22:12:10.524] INFO  [w_Bruin] [action] goto finished at (773,1684,0); target (773,1684); ARRIVED (off by 0 tile(s))
+[22:12:10.524] LOG   [w_Bruin] event goto_done: at=(773,1684) target=(773,1684) arrived=1 off=0
+[22:12:10.524] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:12:10.524] INFO  [w_Bruin] [action] goto (808,1656) from (773,1684,0)
+[22:12:10.524] LOG   [w_Bruin] event goto_start: target=(808,1656) from=(773,1684)
+[22:12:10.524] INFO  [w_Bruin] [bot] running from (773,1684,0) to (808,1656)
+[22:12:10.524] INFO  [w_Bruin] [bot] planning path to (808,1656) in background
+[22:12:10.584] INFO  [w_Bruin] [bot] replan to (808,1656): 70 steps in 44882.0us
+[22:12:10.950] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:12:16.959] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:12:23.021] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:12:29.111] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:12:35.162] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:12:36.316] INFO  [w_Bruin] [bot] arrived at (808,1656,0)
+[22:12:36.316] INFO  [w_Bruin] [action] goto finished at (808,1656,0); target (808,1656); ARRIVED (off by 0 tile(s))
+[22:12:36.316] LOG   [w_Bruin] event goto_done: at=(808,1656) target=(808,1656) arrived=1 off=0
+[22:12:36.316] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:12:36.316] INFO  [w_Bruin] [action] goto (808,1624) from (808,1656,0)
+[22:12:36.316] LOG   [w_Bruin] event goto_start: target=(808,1624) from=(808,1656)
+[22:12:36.316] INFO  [w_Bruin] [bot] running from (808,1656,0) to (808,1624)
+[22:12:36.316] INFO  [w_Bruin] [bot] planning path to (808,1624) in background
+[22:12:36.346] INFO  [w_Bruin] [bot] replan to (808,1624): 32 steps in 10558.0us
+[22:12:38.008] INFO  [w_Bruin] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=28 in 135.9us
+[22:12:41.244] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:12:44.496] INFO  [w_Bruin] [chat ascii] Ettin: *Ettin is attacking you!*
+[22:12:46.785] INFO  [w_Bruin] [bot] arrived at (808,1624,0)
+[22:12:46.785] INFO  [w_Bruin] [action] goto finished at (808,1624,0); target (808,1624); ARRIVED (off by 0 tile(s))
+[22:12:46.785] LOG   [w_Bruin] event goto_done: at=(808,1624) target=(808,1624) arrived=1 off=0
+[22:12:46.785] INFO  [w_Bruin] [travel] avoiding 2 teleporter pad(s) on this leg
+[22:12:46.785] INFO  [w_Bruin] [action] goto (808,1592) from (808,1624,0)
+[22:12:46.785] LOG   [w_Bruin] event goto_start: target=(808,1592) from=(808,1624)
+[22:12:46.785] INFO  [w_Bruin] [bot] running from (808,1624,0) to (808,1592)
+[22:12:46.785] INFO  [w_Bruin] [bot] planning path to (808,1592) in background
+[22:12:46.847] INFO  [w_Bruin] [bot] replan to (808,1592): 34 steps in 11554.0us
+[22:12:47.291] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:12:53.311] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:12:57.166] LOG   [w_Bruin] event threat: HP 8 -> 2
+[22:12:57.166] INFO  [w_Bruin] [action] goto finished at (808,1595,0); target (808,1592); stopped short (off by 3 tile(s))
+[22:12:57.166] LOG   [w_Bruin] event goto_done: at=(808,1595) target=(808,1592) arrived=0 off=3
+[22:12:57.166] INFO  [w_Bruin] [action] goto (808,1558) from (808,1595,0)
+[22:12:57.166] LOG   [w_Bruin] event goto_start: target=(808,1558) from=(808,1595)
+[22:12:57.166] INFO  [w_Bruin] [bot] running from (808,1595,0) to (808,1558)
+[22:12:57.166] INFO  [w_Bruin] [bot] planning path to (808,1558) in background
+[22:12:57.226] INFO  [w_Bruin] [bot] replan to (808,1558): 38 steps in 17981.8us
+[22:12:59.413] INFO  [w_Bruin] [survival] hp 2/50 (4%) -> flee
+[22:12:59.413] LOG   [w_Bruin] event survival_disengage: flee
+[22:12:59.413] INFO  [w_Bruin] [war] leaving war mode
+[22:13:00.030] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:13:00.949] INFO  [w_Bruin] [survival] hp 2/50 (4%) -> rest
+[22:13:01.010] INFO  [w_Bruin] [chat ascii] grey wolf: *grey wolf is attacking you!*
+[22:13:07.003] INFO  [w_Bruin] [survival] hp 3/50 (6%) -> rest
+[22:13:08.518] INFO  [w_Bruin] [0x3C] container contents: 2 item(s)
+[22:13:08.519] INFO  [w_Bruin] [0x2C] resurrection menu action=0
+[22:13:08.519] LOG   [w_Bruin] event resurrect_menu: prompt
+[22:13:08.519] INFO  [w_Bruin] [STATE] dead (0x2C resurrect menu)
+[22:13:08.519] LOG   [w_Bruin] event state_dead: 0x2C received
+[22:13:08.519] LOG   [w_Bruin] event death_location: at=(806,1561,0) region=a_Yew_Ter via=0x2C resurrect menu
+[22:13:08.519] INFO  [w_Bruin] [travel] Deep Forest Healing healer FAILED at (806,1561,0) -- died
+[22:13:08.519] LOG   [w_Bruin] event travel_failed: label='Deep Forest Healing healer' ok=0 at=(806,1561) legs=19 plans=1 why='died'
+[22:13:08.519] INFO  [w_Bruin] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[22:13:08.519] LOG   [w_Bruin] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[22:13:08.519] INFO  [life] goal_changed=SURVIVE from=REPLACE_EQUIPMENT reason="SURVIVE 1000.0 superseded REPLACE_EQUIPMENT 0.0 (emergency preempt)"
+[22:13:08.519] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=5 held=[] want_train=Tailoring (target 60.0)
+[22:13:08.519] INFO  [life]   score=1000.0
+[22:13:08.519] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[22:13:08.519] INFO  [life]   reason: life=dead
+[22:13:08.519] INFO  [w_Bruin] [ACTION] resurrect start
+[22:13:08.519] INFO  [w_Bruin] [ACTION] resurrect: waiting for the server to raise us
+[22:13:08.519] INFO  [life] dead: walking to a healer (trip 1)
+[22:13:08.522] INFO  [w_Bruin] [travel] place: skipping Trinsic Healer healer -- 1328 tiles and 1 gate for a service Deep Forest Healing healer offers
+[22:13:08.522] INFO  [w_Bruin] [travel] place: skipping Cove healer -- 1736 tiles and 1 gate for a service Deep Forest Healing healer offers
+[22:13:08.522] INFO  [w_Bruin] [travel] Deep Forest Healing healer -> (643,1083) r=5 from (806,1561)
+[22:13:08.522] LOG   [w_Bruin] event travel_start: label='Deep Forest Healing healer' target=(643,1083) radius=5 from=(806,1561)
+[22:13:08.522] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:13:08.522] INFO  [w_Bruin] [travel] mode moongate         no: dead characters cannot use gates
+[22:13:08.522] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:13:08.522] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:13:08.522] LOG   [w_Bruin] event travel_mode: walk
+[22:13:08.522] INFO  [w_Bruin] [travel] plan Deep Forest Healing healer: ok legs=15 ~560 tiles transit=0 nodes=446
+[22:13:08.522] INFO  [w_Bruin] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[22:13:08.522] LOG   [w_Bruin] event war_timeout: no combat target and the bot is doing something peaceful
+[22:13:08.522] INFO  [w_Bruin] [war] leaving war mode
+[22:13:08.522] INFO  [w_Bruin] [chat ascii] System: You are a ghost
+[22:13:08.522] INFO  [w_Bruin] [0x1B] serial=0x00013A1A body=0x0192 pos=(806,1561,0)
+[22:13:08.522] LOG   [w_Bruin] event login_confirm: serial=0x00013A1A body=0x0192 pos=(806,1561,0)
+[22:13:08.522] INFO  [w_Bruin] [0x20] player @(806,1561,0) facing=1
+[22:13:08.522] LOG   [w_Bruin] event corpse_located: corpse=0x4001011C at=(806,1561,0)
+[22:13:08.522] INFO  [w_Bruin] [0x3C] container contents: 2 item(s)
+[22:13:08.522] INFO  [w_Bruin] [0x55] login complete — entering world
+[22:13:08.522] LOG   [w_Bruin] event in_world: 0x55 received
+[22:13:08.522] INFO  [w_Bruin] [backpack] opening 0x40013A18
+[22:13:08.522] INFO  [w_Bruin] [action] goto finished at (806,1561,0); target (808,1558); stopped short (off by 5 tile(s))
+[22:13:08.522] LOG   [w_Bruin] event goto_done: at=(806,1561) target=(808,1558) arrived=0 off=5
+[22:13:08.522] INFO  [w_Bruin] [action] goto (808,1528) from (806,1561,0)
+[22:13:08.522] LOG   [w_Bruin] event goto_start: target=(808,1528) from=(806,1561)
+[22:13:08.522] INFO  [w_Bruin] [bot] running from (806,1561,0) to (808,1528)
+[22:13:08.522] INFO  [w_Bruin] [bot] planning path to (808,1528) in background
+[22:13:08.522] INFO  [w_Bruin] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[22:13:08.522] LOG   [w_Bruin] event war_timeout: no combat target and the bot is doing something peaceful
+[22:13:08.522] INFO  [w_Bruin] [war] leaving war mode
+[22:13:08.529] INFO  [w_Bruin] [chat ascii] System: Your ghostly hand passes through the object.
+[22:13:08.591] INFO  [w_Bruin] [bot] replan to (808,1528): 33 steps in 17696.4us
+[22:13:19.835] INFO  [w_Bruin] [bot] arrived at (808,1528,0)
+[22:13:19.835] INFO  [w_Bruin] [action] goto finished at (808,1528,0); target (808,1528); ARRIVED (off by 0 tile(s))
+[22:13:19.835] LOG   [w_Bruin] event goto_done: at=(808,1528) target=(808,1528) arrived=1 off=0
+[22:13:19.835] INFO  [w_Bruin] [action] goto (808,1496) from (808,1528,0)
+[22:13:19.835] LOG   [w_Bruin] event goto_start: target=(808,1496) from=(808,1528)
+[22:13:19.835] INFO  [w_Bruin] [bot] running from (808,1528,0) to (808,1496)
+[22:13:19.835] INFO  [w_Bruin] [bot] planning path to (808,1496) in background
+[22:13:19.897] INFO  [w_Bruin] [bot] replan to (808,1496): 33 steps in 11583.2us
+[22:13:32.945] INFO  [w_Bruin] [bot] arrived at (808,1496,0)
+[22:13:32.945] INFO  [w_Bruin] [action] goto finished at (808,1496,0); target (808,1496); ARRIVED (off by 0 tile(s))
+[22:13:32.945] LOG   [w_Bruin] event goto_done: at=(808,1496) target=(808,1496) arrived=1 off=0
+[22:13:32.945] INFO  [w_Bruin] [action] goto (808,1464) from (808,1496,0)
+[22:13:32.945] LOG   [w_Bruin] event goto_start: target=(808,1464) from=(808,1496)
+[22:13:32.945] INFO  [w_Bruin] [bot] running from (808,1496,0) to (808,1464)
+[22:13:32.945] INFO  [w_Bruin] [bot] planning path to (808,1464) in background
+[22:13:33.007] INFO  [w_Bruin] [bot] replan to (808,1464): 32 steps in 24728.8us
+[22:13:42.726] INFO  [w_Bruin] [bot] arrived at (808,1464,0)
+[22:13:42.726] INFO  [w_Bruin] [action] goto finished at (808,1464,0); target (808,1464); ARRIVED (off by 0 tile(s))
+[22:13:42.726] LOG   [w_Bruin] event goto_done: at=(808,1464) target=(808,1464) arrived=1 off=0
+[22:13:42.726] INFO  [w_Bruin] [action] goto (808,1432) from (808,1464,0)
+[22:13:42.726] LOG   [w_Bruin] event goto_start: target=(808,1432) from=(808,1464)
+[22:13:42.726] INFO  [w_Bruin] [bot] running from (808,1464,0) to (808,1432)
+[22:13:42.726] INFO  [w_Bruin] [bot] planning path to (808,1432) in background
+[22:13:42.787] INFO  [w_Bruin] [bot] replan to (808,1432): 32 steps in 29901.1us
+[22:13:51.433] INFO  [w_Bruin] [bot] arrived at (808,1432,0)
+[22:13:51.433] INFO  [w_Bruin] [action] goto finished at (808,1432,0); target (808,1432); ARRIVED (off by 0 tile(s))
+[22:13:51.433] LOG   [w_Bruin] event goto_done: at=(808,1432) target=(808,1432) arrived=1 off=0
+[22:13:51.433] INFO  [w_Bruin] [action] goto (808,1400) from (808,1432,0)
+[22:13:51.433] LOG   [w_Bruin] event goto_start: target=(808,1400) from=(808,1432)
+[22:13:51.433] INFO  [w_Bruin] [bot] running from (808,1432,0) to (808,1400)
+[22:13:51.433] INFO  [w_Bruin] [bot] planning path to (808,1400) in background
+[22:13:51.493] INFO  [w_Bruin] [bot] replan to (808,1400): 33 steps in 23865.6us
+[22:13:51.709] INFO  [w_Bruin] [chat ascii] System: World save in 10 seconds
+[22:14:00.073] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:14:01.760] INFO  [w_Bruin] [chat ascii] System: World save has been initiated.
+[22:14:02.620] INFO  [w_Bruin] [bot] arrived at (808,1400,0)
+[22:14:02.620] INFO  [w_Bruin] [action] goto finished at (808,1400,0); target (808,1400); ARRIVED (off by 0 tile(s))
+[22:14:02.620] LOG   [w_Bruin] event goto_done: at=(808,1400) target=(808,1400) arrived=1 off=0
+[22:14:02.620] INFO  [w_Bruin] [action] goto (808,1366) from (808,1400,0)
+[22:14:02.620] LOG   [w_Bruin] event goto_start: target=(808,1366) from=(808,1400)
+[22:14:02.620] INFO  [w_Bruin] [bot] running from (808,1400,0) to (808,1366)
+[22:14:02.620] INFO  [w_Bruin] [bot] planning path to (808,1366) in background
+[22:14:02.682] INFO  [w_Bruin] [bot] replan to (808,1366): 34 steps in 17170.7us
+[22:14:14.370] INFO  [w_Bruin] [bot] arrived at (808,1366,0)
+[22:14:14.370] INFO  [w_Bruin] [action] goto finished at (808,1366,0); target (808,1366); ARRIVED (off by 0 tile(s))
+[22:14:14.370] LOG   [w_Bruin] event goto_done: at=(808,1366) target=(808,1366) arrived=1 off=0
+[22:14:14.370] INFO  [w_Bruin] [action] goto (808,1336) from (808,1366,0)
+[22:14:14.370] LOG   [w_Bruin] event goto_start: target=(808,1336) from=(808,1366)
+[22:14:14.370] INFO  [w_Bruin] [bot] running from (808,1366,0) to (808,1336)
+[22:14:14.370] INFO  [w_Bruin] [bot] planning path to (808,1336) in background
+[22:14:14.431] INFO  [w_Bruin] [bot] replan to (808,1336): 31 steps in 12612.2us
+[22:14:25.511] INFO  [w_Bruin] [bot] arrived at (808,1336,0)
+[22:14:25.512] INFO  [w_Bruin] [action] goto finished at (808,1336,0); target (808,1336); ARRIVED (off by 0 tile(s))
+[22:14:25.512] LOG   [w_Bruin] event goto_done: at=(808,1336) target=(808,1336) arrived=1 off=0
+[22:14:25.512] INFO  [w_Bruin] [action] goto (808,1304) from (808,1336,0)
+[22:14:25.512] LOG   [w_Bruin] event goto_start: target=(808,1304) from=(808,1336)
+[22:14:25.512] INFO  [w_Bruin] [bot] running from (808,1336,0) to (808,1304)
+[22:14:25.512] INFO  [w_Bruin] [bot] planning path to (808,1304) in background
+[22:14:25.573] INFO  [w_Bruin] [bot] replan to (808,1304): 32 steps in 8803.5us
+[22:14:37.063] INFO  [w_Bruin] [bot] arrived at (808,1304,0)
+[22:14:37.063] INFO  [w_Bruin] [action] goto finished at (808,1304,0); target (808,1304); ARRIVED (off by 0 tile(s))
+[22:14:37.063] LOG   [w_Bruin] event goto_done: at=(808,1304) target=(808,1304) arrived=1 off=0
+[22:14:37.063] INFO  [w_Bruin] [action] goto (808,1270) from (808,1304,0)
+[22:14:37.063] LOG   [w_Bruin] event goto_start: target=(808,1270) from=(808,1304)
+[22:14:37.063] INFO  [w_Bruin] [bot] running from (808,1304,0) to (808,1270)
+[22:14:37.063] INFO  [w_Bruin] [bot] planning path to (808,1270) in background
+[22:14:37.124] INFO  [w_Bruin] [bot] replan to (808,1270): 34 steps in 3164.0us
+[22:14:48.222] INFO  [w_Bruin] [bot] arrived at (808,1270,0)
+[22:14:48.222] INFO  [w_Bruin] [action] goto finished at (808,1270,0); target (808,1270); ARRIVED (off by 0 tile(s))
+[22:14:48.222] LOG   [w_Bruin] event goto_done: at=(808,1270) target=(808,1270) arrived=1 off=0
+[22:14:48.222] INFO  [w_Bruin] [action] goto (792,1240) from (808,1270,0)
+[22:14:48.222] LOG   [w_Bruin] event goto_start: target=(792,1240) from=(808,1270)
+[22:14:48.222] INFO  [w_Bruin] [bot] running from (808,1270,0) to (792,1240)
+[22:14:48.222] INFO  [w_Bruin] [bot] planning path to (792,1240) in background
+[22:14:48.283] INFO  [w_Bruin] [bot] replan to (792,1240): 34 steps in 8497.3us
+[22:15:00.125] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:15:00.819] INFO  [w_Bruin] [bot] arrived at (792,1240,0)
+[22:15:00.819] INFO  [w_Bruin] [action] goto finished at (792,1240,0); target (792,1240); ARRIVED (off by 0 tile(s))
+[22:15:00.819] LOG   [w_Bruin] event goto_done: at=(792,1240) target=(792,1240) arrived=1 off=0
+[22:15:00.819] INFO  [w_Bruin] [action] goto (760,1208) from (792,1240,0)
+[22:15:00.819] LOG   [w_Bruin] event goto_start: target=(760,1208) from=(792,1240)
+[22:15:00.819] INFO  [w_Bruin] [bot] running from (792,1240,0) to (760,1208)
+[22:15:00.819] INFO  [w_Bruin] [bot] planning path to (760,1208) in background
+[22:15:00.880] INFO  [w_Bruin] [bot] replan to (760,1208): 46 steps in 50360.8us
+[22:15:16.453] INFO  [w_Bruin] [bot] arrived at (760,1208,0)
+[22:15:16.453] INFO  [w_Bruin] [action] goto finished at (760,1208,0); target (760,1208); ARRIVED (off by 0 tile(s))
+[22:15:16.453] LOG   [w_Bruin] event goto_done: at=(760,1208) target=(760,1208) arrived=1 off=0
+[22:15:16.453] INFO  [w_Bruin] [action] goto (728,1176) from (760,1208,0)
+[22:15:16.453] LOG   [w_Bruin] event goto_start: target=(728,1176) from=(760,1208)
+[22:15:16.453] INFO  [w_Bruin] [bot] running from (760,1208,0) to (728,1176)
+[22:15:16.453] INFO  [w_Bruin] [bot] planning path to (728,1176) in background
+[22:15:16.513] INFO  [w_Bruin] [bot] replan to (728,1176): 47 steps in 27778.6us
+[22:15:33.573] INFO  [w_Bruin] [bot] arrived at (728,1176,0)
+[22:15:33.573] INFO  [w_Bruin] [action] goto finished at (728,1176,0); target (728,1176); ARRIVED (off by 0 tile(s))
+[22:15:33.573] LOG   [w_Bruin] event goto_done: at=(728,1176) target=(728,1176) arrived=1 off=0
+[22:15:33.573] INFO  [w_Bruin] [action] goto (696,1144) from (728,1176,0)
+[22:15:33.573] LOG   [w_Bruin] event goto_start: target=(696,1144) from=(728,1176)
+[22:15:33.573] INFO  [w_Bruin] [bot] running from (728,1176,0) to (696,1144)
+[22:15:33.573] INFO  [w_Bruin] [bot] planning path to (696,1144) in background
+[22:15:33.635] INFO  [w_Bruin] [bot] replan to (696,1144): 40 steps in 19405.3us
+[22:15:47.794] INFO  [w_Bruin] [bot] arrived at (696,1144,0)
+[22:15:47.794] INFO  [w_Bruin] [action] goto finished at (696,1144,0); target (696,1144); ARRIVED (off by 0 tile(s))
+[22:15:47.794] LOG   [w_Bruin] event goto_done: at=(696,1144) target=(696,1144) arrived=1 off=0
+[22:15:47.794] INFO  [w_Bruin] [action] goto (664,1112) from (696,1144,0)
+[22:15:47.794] LOG   [w_Bruin] event goto_start: target=(664,1112) from=(696,1144)
+[22:15:47.794] INFO  [w_Bruin] [bot] running from (696,1144,0) to (664,1112)
+[22:15:47.794] INFO  [w_Bruin] [bot] planning path to (664,1112) in background
+[22:15:47.856] INFO  [w_Bruin] [bot] replan to (664,1112): 40 steps in 22288.7us
+[22:16:00.179] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:16:00.179] INFO  [life] session_goals families=3 picks=47 top=94% varied=0 self_superseded=37 | emergency=1(2%) upkeep=44(94%) work=2(4%) | SURVIVE=1(2%) REPLACE_EQUIPMENT=43(91%) GET_FOOD=1(2%) MINE=2(4%)
+[22:16:02.425] INFO  [w_Bruin] [bot] arrived at (664,1112,0)
+[22:16:02.425] INFO  [w_Bruin] [action] goto finished at (664,1112,0); target (664,1112); ARRIVED (off by 0 tile(s))
+[22:16:02.425] LOG   [w_Bruin] event goto_done: at=(664,1112) target=(664,1112) arrived=1 off=0
+[22:16:02.425] INFO  [w_Bruin] [action] goto (643,1083) from (664,1112,0)
+[22:16:02.425] LOG   [w_Bruin] event goto_start: target=(643,1083) from=(664,1112)
+[22:16:02.425] INFO  [w_Bruin] [bot] running from (664,1112,0) to (643,1083,z0)
+[22:16:02.425] INFO  [w_Bruin] [bot] planning path to (643,1083) in background
+[22:16:02.485] INFO  [w_Bruin] [bot] replan to (643,1083): 32 steps in 8684.1us
+[22:16:10.350] INFO  [w_Bruin] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[22:16:10.365] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:16:10.365] INFO  [w_Bruin] [chat ascii] System: Your ghostly hand passes through the object.
+[22:16:11.105] INFO  [w_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 513.7us
+[22:16:11.858] INFO  [w_Bruin] [chat ascii] Carver: I shall attempt to resurrect thee.
+[22:16:11.858] INFO  [w_Bruin] [STATE] alive (body 0x0190)
+[22:16:11.858] LOG   [w_Bruin] event state_resurrected: server body change
+[22:16:11.858] INFO  [w_Bruin] [ACTION_RESULT] resurrect success (183340ms) character is alive again
+[22:16:11.858] LOG   [w_Bruin] event action_result: resurrect success took=183340ms character is alive again
+[22:16:11.858] INFO  [w_Bruin] [0x20] player @(646,1090,0) facing=0
+[22:16:11.859] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=SURVIVE reason="REPLACE_EQUIPMENT 182.0 superseded SURVIVE 0.0"
+[22:16:11.859] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedTool(pickaxe BLOCKED 0.90) NeedTool(hatchet BLOCKED 0.90) NeedTool(smith hammer BLOCKED 0.90) NeedTool(saw BLOCKED 0.90) NeedTool(mortar BLOCKED 0.90) NeedEquipment(weapon 0.70) NeedEquipment(heal potions 0.50) NeedFood(food 0.45) NeedOre(ore 0.45) NeedGold(gold 0.30) NeedSkillTraining(Tailoring BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools de
+[22:16:11.859] INFO  [life]   score=182.0
+[22:16:11.859] INFO  [life]   reason: NeedEquipment urgency 0.70 x 260 = 182.0
+[22:16:11.859] INFO  [life]   reason: axe_pack=0 axe_worn=0
+[22:16:11.859] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/50 bandages=0)
+[22:16:11.859] INFO  [life]   BLOCKED_NEED GET_TOOL: this life cannot do its own work without one (no known supplier of a pickaxe)
+[22:16:11.859] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tailoring 10.6 -> 60.0, gold 0 (fee is quoted on arrival, roughly 300))
+[22:16:11.859] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_dagger needs 20 x i_ingot_iron -- and the purse is empty)
+[22:16:11.859] INFO  [life] robe: taking off the resurrection robe -- it is worth sixteen bandages
+[22:16:11.859] INFO  [w_Bruin] [ACTION] unequip start
+[22:16:11.859] INFO  [w_Bruin] [ACTION] unequip serial=0x40014791 -> backpack 0x40013A18
+[22:16:11.859] INFO  [w_Bruin] [ITEM] drag serial=0x40014791 amount=1
+[22:16:11.859] INFO  [w_Bruin] [ITEM] drop container=0x40013A18
+[22:16:11.859] INFO  [w_Bruin] [travel] Deep Forest Healing healer FAILED at (646,1090,0) -- resurrected mid-journey
+[22:16:11.859] LOG   [w_Bruin] event travel_failed: label='Deep Forest Healing healer' ok=0 at=(646,1090) legs=15 plans=1 why='resurrected mid-journey'
+[22:16:11.859] INFO  [w_Bruin] [survival] hp 0/50 (0%) -> rest
+[22:16:11.873] INFO  [w_Bruin] [ACTION_RESULT] unequip success (15ms) item is in the destination
+[22:16:11.873] LOG   [w_Bruin] event action_result: unequip success took=15ms item is in the destination
+[22:16:13.376] INFO  [life] robe: the resurrection robe is in the pack but there are no scissors to cut it with
+[22:16:13.376] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:16:13.376] INFO  [life] plan=buy reason="none held, and it may be bought"
+[22:16:13.376] INFO  [life] clothes: no shirt on the body or in the pack -- buying one
+[22:16:13.380] INFO  [w_Bruin] [travel] Yew provisioner -> (535,867) r=5 from (646,1090)
+[22:16:13.380] LOG   [w_Bruin] event travel_start: label='Yew provisioner' target=(535,867) radius=5 from=(646,1090)
+[22:16:13.380] INFO  [life] clothes: walking to a 'tailor' (trip 1)
+[22:16:13.380] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:16:13.380] INFO  [w_Bruin] [travel] mode walk             usable
+[22:16:13.380] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:16:13.380] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:16:13.380] LOG   [w_Bruin] event travel_mode: moongate
+[22:16:13.380] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=7 ~280 tiles transit=0 nodes=137
+[22:16:13.437] INFO  [w_Bruin] [action] goto finished at (646,1090,0); target (643,1083); stopped short (off by 10 tile(s))
+[22:16:13.437] LOG   [w_Bruin] event goto_done: at=(646,1090) target=(643,1083) arrived=0 off=10
+[22:16:13.437] INFO  [w_Bruin] [action] goto (632,1064) from (646,1090,0)
+[22:16:13.437] LOG   [w_Bruin] event goto_start: target=(632,1064) from=(646,1090)
+[22:16:13.437] INFO  [w_Bruin] [bot] running from (646,1090,0) to (632,1064)
+[22:16:13.437] INFO  [w_Bruin] [bot] planning path to (632,1064) in background
+[22:16:13.498] INFO  [w_Bruin] [bot] replan to (632,1064): 52 steps in 29995.2us
+[22:16:13.977] INFO  [w_Bruin] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[22:16:13.977] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:16:15.162] INFO  [w_Bruin] [bot] door ahead at (648,1092,z0); OpenDoor before step
+[22:16:15.162] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:16:17.871] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:17.997] INFO  [w_Bruin] [chat ascii] System: You are now under the protection of the town guards
+[22:16:18.443] INFO  [w_Bruin] [chat ascii] System: You have left the protection of the town guards
+[22:16:19.860] INFO  [w_Bruin] [chat ascii] System: You are now under the protection of the town guards
+[22:16:23.888] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:29.904] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:31.242] INFO  [w_Bruin] [bot] arrived at (632,1064,0)
+[22:16:31.242] INFO  [w_Bruin] [action] goto finished at (632,1064,0); target (632,1064); ARRIVED (off by 0 tile(s))
+[22:16:31.242] LOG   [w_Bruin] event goto_done: at=(632,1064) target=(632,1064) arrived=1 off=0
+[22:16:31.242] INFO  [w_Bruin] [action] goto (632,1030) from (632,1064,0)
+[22:16:31.242] LOG   [w_Bruin] event goto_start: target=(632,1030) from=(632,1064)
+[22:16:31.242] INFO  [w_Bruin] [bot] running from (632,1064,0) to (632,1030)
+[22:16:31.242] INFO  [w_Bruin] [bot] planning path to (632,1030) in background
+[22:16:31.303] INFO  [w_Bruin] [bot] replan to (632,1030): 47 steps in 31742.6us
+[22:16:35.947] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:41.956] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:45.387] INFO  [w_Bruin] [bot] arrived at (632,1030,0)
+[22:16:45.387] INFO  [w_Bruin] [action] goto finished at (632,1030,0); target (632,1030); ARRIVED (off by 0 tile(s))
+[22:16:45.387] LOG   [w_Bruin] event goto_done: at=(632,1030) target=(632,1030) arrived=1 off=0
+[22:16:45.387] INFO  [w_Bruin] [action] goto (632,1000) from (632,1030,0)
+[22:16:45.387] LOG   [w_Bruin] event goto_start: target=(632,1000) from=(632,1030)
+[22:16:45.387] INFO  [w_Bruin] [bot] running from (632,1030,0) to (632,1000)
+[22:16:45.387] INFO  [w_Bruin] [bot] planning path to (632,1000) in background
+[22:16:45.448] INFO  [w_Bruin] [bot] replan to (632,1000): 32 steps in 13992.7us
+[22:16:48.043] INFO  [w_Bruin] [survival] hp 6/50 (12%) -> rest
+[22:16:54.091] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:16:58.090] INFO  [w_Bruin] [bot] arrived at (632,1000,0)
+[22:16:58.090] INFO  [w_Bruin] [action] goto finished at (632,1000,0); target (632,1000); ARRIVED (off by 0 tile(s))
+[22:16:58.090] LOG   [w_Bruin] event goto_done: at=(632,1000) target=(632,1000) arrived=1 off=0
+[22:16:58.090] INFO  [w_Bruin] [action] goto (632,968) from (632,1000,0)
+[22:16:58.090] LOG   [w_Bruin] event goto_start: target=(632,968) from=(632,1000)
+[22:16:58.090] INFO  [w_Bruin] [bot] running from (632,1000,0) to (632,968)
+[22:16:58.090] INFO  [w_Bruin] [bot] planning path to (632,968) in background
+[22:16:58.150] INFO  [w_Bruin] [bot] replan to (632,968): 32 steps in 8196.2us
+[22:17:00.150] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:00.214] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:17:03.566] INFO  [life] session_end_requested reason="session time limit reached"
+[22:17:06.242] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:08.724] INFO  [w_Bruin] [bot] arrived at (632,968,0)
+[22:17:08.724] INFO  [w_Bruin] [action] goto finished at (632,968,0); target (632,968); ARRIVED (off by 0 tile(s))
+[22:17:08.724] LOG   [w_Bruin] event goto_done: at=(632,968) target=(632,968) arrived=1 off=0
+[22:17:08.724] INFO  [w_Bruin] [action] goto (600,936) from (632,968,0)
+[22:17:08.724] LOG   [w_Bruin] event goto_start: target=(600,936) from=(632,968)
+[22:17:08.724] INFO  [w_Bruin] [bot] running from (632,968,0) to (600,936)
+[22:17:08.724] INFO  [w_Bruin] [bot] planning path to (600,936) in background
+[22:17:08.785] INFO  [w_Bruin] [bot] replan to (600,936): 35 steps in 2521.2us
+[22:17:12.302] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:18.356] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:19.400] INFO  [w_Bruin] [bot] arrived at (600,936,0)
+[22:17:19.400] INFO  [w_Bruin] [action] goto finished at (600,936,0); target (600,936); ARRIVED (off by 0 tile(s))
+[22:17:19.400] LOG   [w_Bruin] event goto_done: at=(600,936) target=(600,936) arrived=1 off=0
+[22:17:19.400] INFO  [w_Bruin] [action] goto (568,904) from (600,936,0)
+[22:17:19.400] LOG   [w_Bruin] event goto_start: target=(568,904) from=(600,936)
+[22:17:19.400] INFO  [w_Bruin] [bot] running from (600,936,0) to (568,904)
+[22:17:19.401] INFO  [w_Bruin] [bot] planning path to (568,904) in background
+[22:17:19.462] INFO  [w_Bruin] [bot] replan to (568,904): 43 steps in 5023.0us
+[22:17:24.416] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:26.020] INFO  [w_Bruin] [chat ascii] System: Kaelen has departed from Britain.
+[22:17:30.453] INFO  [w_Bruin] [survival] hp 7/50 (14%) -> rest
+[22:17:33.037] INFO  [w_Bruin] [bot] arrived at (568,904,0)
+[22:17:33.037] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (568,904); ARRIVED (off by 0 tile(s))
+[22:17:33.037] LOG   [w_Bruin] event goto_done: at=(568,904) target=(568,904) arrived=1 off=0
+[22:17:33.037] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:33.037] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:33.037] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:33.037] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:33.159] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:33.159] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:34.375] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:34.376] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:34.376] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:34.376] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:34.436] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:34.437] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:35.681] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:35.681] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:35.681] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:35.681] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:35.806] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:35.806] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:36.481] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:17:37.036] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:17:37.036] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:17:37.036] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:17:37.036] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:17:37.036] LOG   [w_Bruin] event travel_mode: walk
+[22:17:37.036] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:17:38.545] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:38.545] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:38.545] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:38.545] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:38.605] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:38.605] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:39.819] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:39.819] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:39.819] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:39.819] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:39.880] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:39.880] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:41.126] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:41.126] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:41.126] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:41.126] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:41.188] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:41.188] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:42.420] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:17:42.420] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:17:42.420] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:17:42.420] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:17:42.420] LOG   [w_Bruin] event travel_mode: walk
+[22:17:42.420] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:17:42.545] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:17:45.464] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:45.464] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:45.464] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:45.464] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:45.588] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:45.588] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:46.815] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:46.815] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:46.815] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:46.815] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:46.876] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:46.876] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:48.077] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:48.077] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:48.077] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:48.077] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:48.199] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:48.200] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:48.613] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:17:49.428] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:17:49.428] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:17:49.428] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:17:49.428] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:17:49.428] LOG   [w_Bruin] event travel_mode: walk
+[22:17:49.428] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~37 tiles transit=0 nodes=0
+[22:17:53.966] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:53.967] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:53.967] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:53.967] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:54.089] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:54.090] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:54.644] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:17:55.323] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:55.323] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:55.323] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:55.323] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:55.386] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:55.386] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:56.619] INFO  [w_Bruin] [action] goto (535,867) from (568,904,0)
+[22:17:56.619] LOG   [w_Bruin] event goto_start: target=(535,867) from=(568,904)
+[22:17:56.619] INFO  [w_Bruin] [bot] running from (568,904,0) to (535,867,z0)
+[22:17:56.619] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:17:56.681] INFO  [w_Bruin] [action] goto finished at (568,904,0); target (535,867); stopped short (off by 70 tile(s))
+[22:17:56.681] LOG   [w_Bruin] event goto_done: at=(568,904) target=(535,867) arrived=0 off=70
+[22:17:56.681] LOG   [w_Bruin] event travel_escape: from=(568,904,0) to=(552,888) attempt=1
+[22:17:56.681] INFO  [w_Bruin] [action] goto (552,888) from (568,904,0)
+[22:17:56.681] LOG   [w_Bruin] event goto_start: target=(552,888) from=(568,904)
+[22:17:56.681] INFO  [w_Bruin] [bot] running from (568,904,0) to (552,888,z0)
+[22:17:56.681] INFO  [w_Bruin] [bot] planning path to (552,888) in background
+[22:17:56.726] INFO  [w_Bruin] [bot] replan to (552,888): 20 steps in 1218.6us
+[22:17:57.141] INFO  [w_Bruin] [chat ascii] System: Ilyandra has departed from Britain.
+[22:17:58.184] INFO  [w_Bruin] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 432.1us
+[22:18:00.663] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:18:03.923] INFO  [w_Bruin] [bot] arrived at (552,888,0)
+[22:18:03.923] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (552,888); ARRIVED (off by 0 tile(s))
+[22:18:03.923] LOG   [w_Bruin] event goto_done: at=(552,888) target=(552,888) arrived=1 off=0
+[22:18:03.923] INFO  [w_Bruin] [travel] recovery walk reached its anchor at (552,888,0) (off 0); attempt 1/3
+[22:18:03.923] LOG   [w_Bruin] event travel_recovery_done: reached=1 at=(552,888,0) off=0 attempt=1
+[22:18:03.985] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:18:03.985] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:18:03.985] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:18:03.985] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:18:03.985] LOG   [w_Bruin] event travel_mode: walk
+[22:18:03.985] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~21 tiles transit=0 nodes=0
+[22:18:04.047] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:04.047] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:04.047] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:04.047] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:04.171] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:04.172] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:05.395] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:05.395] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:05.395] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:05.395] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:05.457] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:05.457] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:06.711] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:06.711] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:06.711] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:06.711] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:06.711] INFO  [w_Bruin] [survival] hp 8/50 (16%) -> rest
+[22:18:06.771] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:06.771] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:07.985] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:18:07.985] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:18:07.985] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:18:07.985] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:18:07.985] LOG   [w_Bruin] event travel_mode: walk
+[22:18:07.985] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~21 tiles transit=0 nodes=0
+[22:18:09.517] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:09.517] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:09.517] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:09.517] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:09.639] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:09.639] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:10.869] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:10.869] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:10.869] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:10.869] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:10.993] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:10.993] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:12.202] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:12.202] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:12.202] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:12.203] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:12.263] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:12.264] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:12.772] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:13.495] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:18:13.495] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:18:13.495] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:18:13.495] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:18:13.495] LOG   [w_Bruin] event travel_mode: walk
+[22:18:13.495] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~21 tiles transit=0 nodes=0
+[22:18:16.513] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:16.513] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:16.513] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:16.513] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:16.574] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:16.574] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:17.815] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:17.815] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:17.815] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:17.815] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:17.876] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:17.876] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:18.812] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:19.089] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:19.089] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:19.089] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:19.089] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:19.150] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:19.150] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:20.401] INFO  [w_Bruin] [travel] mode walk             usable   <- chosen
+[22:18:20.401] INFO  [w_Bruin] [travel] mode moongate         usable
+[22:18:20.401] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:18:20.401] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:18:20.401] LOG   [w_Bruin] event travel_mode: walk
+[22:18:20.401] INFO  [w_Bruin] [travel] plan Yew provisioner: ok legs=1 ~21 tiles transit=0 nodes=0
+[22:18:24.865] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:24.926] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:24.926] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:24.926] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:24.926] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:24.988] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:24.988] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:26.187] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:26.188] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:26.188] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:26.188] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:26.249] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:26.249] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:27.467] INFO  [w_Bruin] [action] goto (535,867) from (552,888,0)
+[22:18:27.467] LOG   [w_Bruin] event goto_start: target=(535,867) from=(552,888)
+[22:18:27.467] INFO  [w_Bruin] [bot] running from (552,888,0) to (535,867,z0)
+[22:18:27.467] INFO  [w_Bruin] [bot] planning path to (535,867) in background
+[22:18:27.529] INFO  [w_Bruin] [action] goto finished at (552,888,0); target (535,867); stopped short (off by 38 tile(s))
+[22:18:27.529] LOG   [w_Bruin] event goto_done: at=(552,888) target=(535,867) arrived=0 off=38
+[22:18:27.529] LOG   [w_Bruin] event travel_escape: from=(552,888,0) to=(536,872) attempt=2
+[22:18:27.529] INFO  [w_Bruin] [action] goto (536,872) from (552,888,0)
+[22:18:27.529] LOG   [w_Bruin] event goto_start: target=(536,872) from=(552,888)
+[22:18:27.529] INFO  [w_Bruin] [bot] running from (552,888,0) to (536,872,z0)
+[22:18:27.529] INFO  [w_Bruin] [bot] planning path to (536,872) in background
+[22:18:27.592] INFO  [w_Bruin] [bot] replan to (536,872): 21 steps in 7514.1us
+[22:18:30.931] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:33.146] INFO  [w_Bruin] [chat ascii] Ashlan: Thou wishest to speak with me?
+[22:18:33.695] INFO  [w_Bruin] [travel] Yew provisioner ARRIVED at (539,872,0)
+[22:18:33.695] LOG   [w_Bruin] event travel_done: label='Yew provisioner' ok=1 at=(539,872) legs=1 plans=4 why=''
+[22:18:33.756] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[22:18:33.759] INFO  [w_Bruin] [travel] Yew banker -> (652,820) r=5 from (539,872)
+[22:18:33.759] LOG   [w_Bruin] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(539,872)
+[22:18:33.759] INFO  [w_Bruin] [travel] mode moongate         usable   <- chosen
+[22:18:33.759] INFO  [w_Bruin] [travel] mode walk             usable
+[22:18:33.759] INFO  [w_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:18:33.759] INFO  [w_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:18:33.759] LOG   [w_Bruin] event travel_mode: moongate
+[22:18:33.759] INFO  [w_Bruin] [travel] plan Yew banker: ok legs=4 ~176 tiles transit=0 nodes=51
+[22:18:34.509] INFO  [w_Bruin] [bot] arrived at (536,872,0)
+[22:18:34.509] INFO  [w_Bruin] [action] goto finished at (536,872,0); target (536,872); ARRIVED (off by 0 tile(s))
+[22:18:34.509] LOG   [w_Bruin] event goto_done: at=(536,872) target=(536,872) arrived=1 off=0
+[22:18:34.509] INFO  [w_Bruin] [action] goto (568,888) from (536,872,0)
+[22:18:34.509] LOG   [w_Bruin] event goto_start: target=(568,888) from=(536,872)
+[22:18:34.509] INFO  [w_Bruin] [bot] running from (536,872,0) to (568,888)
+[22:18:34.509] INFO  [w_Bruin] [bot] planning path to (568,888) in background
+[22:18:34.570] INFO  [w_Bruin] [bot] replan to (568,888): 32 steps in 9705.8us
+[22:18:34.982] INFO  [w_Bruin] [chat ascii] Balayna: What is it thou wishest?
+[22:18:36.653] INFO  [w_Bruin] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=27 in 307.7us
+[22:18:36.960] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:42.988] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:46.686] INFO  [w_Bruin] [bot] arrived at (568,888,0)
+[22:18:46.686] INFO  [w_Bruin] [action] goto finished at (568,888,0); target (568,888); ARRIVED (off by 0 tile(s))
+[22:18:46.686] LOG   [w_Bruin] event goto_done: at=(568,888) target=(568,888) arrived=1 off=0
+[22:18:46.686] INFO  [w_Bruin] [action] goto (600,870) from (568,888,0)
+[22:18:46.686] LOG   [w_Bruin] event goto_start: target=(600,870) from=(568,888)
+[22:18:46.686] INFO  [w_Bruin] [bot] running from (568,888,0) to (600,870)
+[22:18:46.686] INFO  [w_Bruin] [bot] planning path to (600,870) in background
+[22:18:46.810] INFO  [w_Bruin] [bot] replan to (600,870): 69 steps in 115426.2us
+[22:18:49.022] INFO  [w_Bruin] [survival] hp 9/50 (18%) -> rest
+[22:18:52.136] INFO  [w_Bruin] [chat ascii] System: World save in 10 seconds
+[22:18:55.130] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:01.174] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:02.160] INFO  [w_Bruin] [chat ascii] System: World save has been initiated.
+[22:19:07.203] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:08.916] INFO  [w_Bruin] [bot] arrived at (600,870,0)
+[22:19:08.916] INFO  [w_Bruin] [action] goto finished at (600,870,0); target (600,870); ARRIVED (off by 0 tile(s))
+[22:19:08.916] LOG   [w_Bruin] event goto_done: at=(600,870) target=(600,870) arrived=1 off=0
+[22:19:08.916] INFO  [w_Bruin] [action] goto (632,840) from (600,870,0)
+[22:19:08.916] LOG   [w_Bruin] event goto_start: target=(632,840) from=(600,870)
+[22:19:08.916] INFO  [w_Bruin] [bot] running from (600,870,0) to (632,840)
+[22:19:08.916] INFO  [w_Bruin] [bot] planning path to (632,840) in background
+[22:19:08.976] INFO  [w_Bruin] [bot] replan to (632,840): 50 steps in 24680.6us
+[22:19:13.290] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:18.681] INFO  [w_Bruin] [bot] door ahead at (634,855,z0); OpenDoor before step
+[22:19:18.681] INFO  [w_Bruin] [chat ascii] System: Opening door...
+[22:19:19.357] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:23.489] INFO  [w_Bruin] [bot] arrived at (632,840,0)
+[22:19:23.489] INFO  [w_Bruin] [action] goto finished at (632,840,0); target (632,840); ARRIVED (off by 0 tile(s))
+[22:19:23.489] LOG   [w_Bruin] event goto_done: at=(632,840) target=(632,840) arrived=1 off=0
+[22:19:23.489] INFO  [w_Bruin] [action] goto (652,820) from (632,840,0)
+[22:19:23.489] LOG   [w_Bruin] event goto_start: target=(652,820) from=(632,840)
+[22:19:23.489] INFO  [w_Bruin] [bot] running from (632,840,0) to (652,820,z0)
+[22:19:23.489] INFO  [w_Bruin] [bot] planning path to (652,820) in background
+[22:19:23.550] INFO  [w_Bruin] [bot] replan to (652,820): 27 steps in 4281.6us
+[22:19:25.375] INFO  [w_Bruin] [survival] hp 10/50 (20%) -> rest
+[22:19:30.246] INFO  [w_Bruin] [travel] Yew banker ARRIVED at (647,820,0)
+[22:19:30.246] LOG   [w_Bruin] event travel_done: label='Yew banker' ok=1 at=(647,820) legs=4 plans=1 why=''
+[22:19:30.307] INFO  [life] wind-down: arrived somewhere safe at 647,820
+[22:19:30.307] INFO  [life] session_summary duration=866s goals=6/48 gold=0->0 skills=158.3->158.3 logs=+0 kills=0 deaths=0 places=3 suppliers=0
+[22:19:30.307] INFO  [life] session_goals families=3 picks=48 top=94% varied=0 self_superseded=37 | emergency=1(2%) upkeep=45(94%) work=2(4%) | SURVIVE=1(2%) REPLACE_EQUIPMENT=44(92%) GET_FOOD=1(2%) MINE=2(4%)
+[22:19:30.309] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[22:19:30.309] INFO  [life] logging out
+[22:19:30.309] INFO  [w_Bruin] [action] logout requested
+[22:19:30.309] LOG   [w_Bruin] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[22:19:30.309] INFO  [w_Bruin] [0xD1] logout acknowledged (accepted=1)
+[22:19:30.309] LOG   [w_Bruin] event logout_ack: accepted
+[22:19:30.309] INFO  [w_Bruin] [net] closing connection (logout acknowledged)
+[22:19:30.309] LOG   [w_Bruin] event logout_complete: acked

@@ -1,0 +1,855 @@
+[13:05:55.203] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh16' char=Bruin tag='f6_Bruin'
+[13:05:55.204] LOG   [f6_Bruin] event session_start: text log opened
+[13:05:55.205] LOG   [f6_Bruin] event net_connect_begin: connect 127.0.0.1:2593
+[13:05:55.205] INFO  [f6_Bruin] [net] connecting to 127.0.0.1:2593 ...
+[13:05:55.206] LOG   [f6_Bruin] event net_connected: connect 127.0.0.1:2593
+[13:05:55.206] INFO  [f6_Bruin] [net] connected.
+[13:05:55.206] INFO  [f6_Bruin] [seed] sent 0x7F000001 (plaintext)
+[13:05:55.206] LOG   [f6_Bruin] event seed_out: 0x7F000001 hex=7f000001
+[13:05:55.206] INFO  [life] loaded persistent state for Bruin (1 places, 0 suppliers, 6 events, 3 prior sessions)
+[13:05:55.206] INFO  [life] needs: reading 'full_crafter' from the profession catalogue
+[13:05:55.206] INFO  [life] build plan 'full_crafter': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/60/65 = 225
+[13:05:55.206] INFO  [f6_Bruin] [life] autonomous player active for 'Bruin' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[13:05:55.206] INFO  [f6_Bruin] [0xA8] 1 server(s):
+[13:05:55.206] INFO  [f6_Bruin]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[13:05:55.210] INFO  [f6_Bruin] [0x8C] game server = 127.0.0.1:2593  seed=0xBC40664B
+[13:05:55.210] LOG   [f6_Bruin] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xBC40664B
+[13:05:55.210] INFO  [f6_Bruin] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:05:55.210] LOG   [f6_Bruin] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:05:55.210] INFO  [f6_Bruin] [0xB9] server features = 0x0005
+[13:05:55.210] INFO  [f6_Bruin] [0xA9] 5 slot(s) (populated 1):
+[13:05:55.210] INFO  [f6_Bruin]   [0] Bruin
+[13:05:55.210] INFO  [f6_Bruin]   [1] <empty>
+[13:05:55.210] INFO  [f6_Bruin]   [2] <empty>
+[13:05:55.210] INFO  [f6_Bruin]   [3] <empty>
+[13:05:55.210] INFO  [f6_Bruin]   [4] <empty>
+[13:05:55.210] INFO  [f6_Bruin] [ui] playing slot 0 ('Bruin')
+[13:05:55.226] INFO  [f6_Bruin] [chat ascii] System: Ysolde has arrived in Britain.
+[13:05:55.226] INFO  [f6_Bruin] [0x1B] serial=0x00013A1A body=0x0190 pos=(3714,2133,20)
+[13:05:55.226] LOG   [f6_Bruin] event login_confirm: serial=0x00013A1A body=0x0190 pos=(3714,2133,20)
+[13:05:55.226] INFO  [f6_Bruin] [0x20] player @(3714,2133,20) facing=4
+[13:05:55.226] INFO  [f6_Bruin] [0x55] login complete — entering world
+[13:05:55.226] LOG   [f6_Bruin] event in_world: 0x55 received
+[13:05:55.226] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:05:55.226] INFO  [f6_Bruin] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:05:55.226] INFO  [f6_Bruin] [chat ascii] System: There are 5 other players here.
+[13:05:55.226] INFO  [f6_Bruin] [chat ascii] System: Last logged: 2026/08/29 12:38:16
+[13:05:55.226] INFO  [f6_Bruin] [chat ascii] System: You are under the protection of the town guards
+[13:05:55.230] INFO  [f6_Bruin] [action] requesting the skill list
+[13:05:55.230] INFO  [life] in world; asked the server for the skill list
+[13:05:55.241] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:05:55.241] INFO  [f6_Bruin] [0x3C] container contents: 5 item(s)
+[13:05:55.241] LOG   [f6_Bruin] event backpack_contents: serial=0x40013A18 items=5
+[13:05:57.790] INFO  [f6_Bruin] [bot] world data loaded (0 blacklisted spot(s)).
+[13:05:57.791] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[13:05:57.791] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[13:05:57.791] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[13:05:57.791] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[13:05:57.791] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[13:05:57.791] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[13:05:57.791] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[13:05:57.791] INFO  [life]   skill_11     persisted=8.1        server=8.1        -> server value accepted
+[13:05:57.791] INFO  [life]   skill_7      persisted=5.4        server=5.4        -> server value accepted
+[13:05:57.791] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[13:05:57.791] INFO  [life]   skill_34     persisted=10.6       server=10.6       -> server value accepted
+[13:05:57.791] INFO  [life]   skill_0      persisted=17.9       server=17.9       -> server value accepted
+[13:05:57.791] INFO  [life]   position     persisted=3714,2133  server=3714,2133  -> server value accepted
+[13:05:57.791] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:05:57.791] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[13:05:57.791] INFO  [f6_Bruin] [survival] on
+[13:05:57.791] LOG   [f6_Bruin] event survival_mode: on
+[13:05:57.793] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:05:57.793] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:05:57.847] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[13:05:57.847] INFO  [f6_Bruin] [travel] Magincia tinker -> (3720,2126) r=5 from (3714,2133)
+[13:05:57.847] LOG   [f6_Bruin] event travel_start: label='Magincia tinker' target=(3720,2126) radius=5 from=(3714,2133)
+[13:05:57.847] INFO  [f6_Bruin] [travel] mode walk             usable   <- chosen
+[13:05:57.847] INFO  [f6_Bruin] [travel] mode moongate         usable
+[13:05:57.847] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:05:57.847] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:05:57.847] LOG   [f6_Bruin] event travel_mode: walk
+[13:05:57.847] INFO  [f6_Bruin] [travel] plan Magincia tinker: ok legs=1 ~7 tiles transit=0 nodes=0
+[13:05:57.908] INFO  [f6_Bruin] [action] goto (3720,2126) from (3714,2133,20)
+[13:05:57.908] LOG   [f6_Bruin] event goto_start: target=(3720,2126) from=(3714,2133)
+[13:05:57.908] INFO  [f6_Bruin] [bot] running from (3714,2133,20) to (3720,2126,z20)
+[13:05:57.908] INFO  [f6_Bruin] [bot] planning path to (3720,2126) in background
+[13:05:57.970] INFO  [f6_Bruin] [bot] replan to (3720,2126): 7 steps in 96.1us
+[13:05:58.924] INFO  [f6_Bruin] [travel] Magincia tinker ARRIVED at (3715,2131,20)
+[13:05:58.924] LOG   [f6_Bruin] event travel_done: label='Magincia tinker' ok=1 at=(3715,2131) legs=1 plans=1 why=''
+[13:05:59.866] INFO  [life] training: arrived at 3718,2128 -- asking who is here
+[13:05:59.866] INFO  [f6_Bruin] [action] scanning nearby mobiles for names
+[13:05:59.866] INFO  [f6_Bruin] [action] requested 2 paperdoll(s) for trade titles
+[13:05:59.881] INFO  [f6_Bruin] [mobiles] nearby (4):
+[13:05:59.881] INFO  [f6_Bruin]   Odell 0x00002A79
+[13:05:59.881] INFO  [f6_Bruin]   Cat 0x000178CE
+[13:05:59.881] INFO  [f6_Bruin]   Vinson 0x00002A85
+[13:05:59.881] INFO  [f6_Bruin]   Dog 0x00017C06
+[13:05:59.882] INFO  [f6_Bruin] [0x20] player @(3718,2128,20) facing=0
+[13:05:59.882] INFO  [f6_Bruin] [0x88] paperdoll 0x00002A85: "Vinson, the engineer guildmaster"
+[13:05:59.882] INFO  [f6_Bruin] [0x20] player @(3718,2128,20) facing=7
+[13:05:59.882] INFO  [f6_Bruin] [0x88] paperdoll 0x00002A79: "Odell, the tinker"
+[13:05:59.882] INFO  [f6_Bruin] [world] Odell, the tinker is a tinker at (3715,2124)
+[13:05:59.882] INFO  [f6_Bruin] [0x21] stale reject seq=8 (block already handled); pose resynced
+[13:06:02.415] INFO  [life] training: 'tinker' is 4 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[13:06:02.415] INFO  [f6_Bruin] [travel] mobile 0x00002A79 -> (3716,2124) r=1 from (3718,2128)
+[13:06:02.415] LOG   [f6_Bruin] event travel_start: label='mobile 0x00002A79' target=(3716,2124) radius=1 from=(3718,2128)
+[13:06:02.415] INFO  [f6_Bruin] [travel] mode walk             usable   <- chosen
+[13:06:02.415] INFO  [f6_Bruin] [travel] mode moongate         usable
+[13:06:02.415] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:02.415] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:02.415] LOG   [f6_Bruin] event travel_mode: walk
+[13:06:02.415] INFO  [f6_Bruin] [travel] plan mobile 0x00002A79: ok legs=1 ~4 tiles transit=0 nodes=0
+[13:06:02.476] INFO  [f6_Bruin] [action] goto finished at (3718,2128,20); target (3720,2126); stopped short (off by 4 tile(s))
+[13:06:02.476] LOG   [f6_Bruin] event goto_done: at=(3718,2128) target=(3720,2126) arrived=0 off=4
+[13:06:02.476] INFO  [f6_Bruin] [action] goto (3716,2124) from (3718,2128,20)
+[13:06:02.477] LOG   [f6_Bruin] event goto_start: target=(3716,2124) from=(3718,2128)
+[13:06:02.477] INFO  [f6_Bruin] [bot] running from (3718,2128,20) to (3716,2124,z20)
+[13:06:02.477] INFO  [f6_Bruin] [bot] planning path to (3716,2124) in background
+[13:06:02.831] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:03.200] INFO  [f6_Bruin] [action] goto finished at (3718,2128,20); target (3716,2124); stopped short (off by 6 tile(s))
+[13:06:03.200] LOG   [f6_Bruin] event goto_done: at=(3718,2128) target=(3716,2124) arrived=0 off=6
+[13:06:04.413] INFO  [f6_Bruin] [action] goto (3716,2124) from (3718,2128,20)
+[13:06:04.413] LOG   [f6_Bruin] event goto_start: target=(3716,2124) from=(3718,2128)
+[13:06:04.413] INFO  [f6_Bruin] [bot] running from (3718,2128,20) to (3716,2124,z20)
+[13:06:04.413] INFO  [f6_Bruin] [bot] planning path to (3716,2124) in background
+[13:06:05.092] INFO  [f6_Bruin] [action] goto finished at (3718,2128,20); target (3716,2124); stopped short (off by 6 tile(s))
+[13:06:05.092] LOG   [f6_Bruin] event goto_done: at=(3718,2128) target=(3716,2124) arrived=0 off=6
+[13:06:06.337] INFO  [f6_Bruin] [action] goto (3716,2124) from (3718,2128,20)
+[13:06:06.337] LOG   [f6_Bruin] event goto_start: target=(3716,2124) from=(3718,2128)
+[13:06:06.337] INFO  [f6_Bruin] [bot] running from (3718,2128,20) to (3716,2124,z20)
+[13:06:06.337] INFO  [f6_Bruin] [bot] planning path to (3716,2124) in background
+[13:06:06.399] INFO  [f6_Bruin] [bot] replan to (3716,2124): 4 steps in 46.8us
+[13:06:07.277] INFO  [f6_Bruin] [travel] mobile 0x00002A79 ARRIVED at (3716,2125,20)
+[13:06:07.277] LOG   [f6_Bruin] event travel_done: label='mobile 0x00002A79' ok=1 at=(3716,2125) legs=1 plans=1 why=''
+[13:06:07.338] INFO  [life] training: asking the trainer about Tinkering
+[13:06:07.339] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:06:07.339] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:06:07.339] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:06:07.339] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:06:07.339] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:07.339] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:07.339] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:07.463] INFO  [f6_Bruin] [bot] arrived at (3716,2124,20)
+[13:06:07.892] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:09.889] INFO  [f6_Bruin] [action] open backpack
+[13:06:09.889] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:06:09.904] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:06:09.904] INFO  [f6_Bruin] [0x3C] container contents: 5 item(s)
+[13:06:11.101] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:06:11.101] INFO  [f6_Bruin] [GIVE] 0x40013A16 x163 -> 0x00002A79 (gold 1000)
+[13:06:11.101] INFO  [f6_Bruin] [ITEM] drag serial=0x40013A16 amount=163
+[13:06:11.101] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:06:11.101] LOG   [f6_Bruin] event npc_give: item=0x40013A16 amount=163 to=0x00002A79
+[13:06:12.951] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:15.132] INFO  [f6_Bruin] [action] requesting the skill list
+[13:06:17.820] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 110.0"
+[13:06:17.820] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:06:17.820] INFO  [life]   score=468.0
+[13:06:17.820] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:06:17.820] INFO  [life]   reason: no known supplier of a tongs
+[13:06:17.820] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:06:17.820] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:06:17.960] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:18.210] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:06:18.271] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:06:18.271] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:06:18.271] INFO  [life]   score=110.0
+[13:06:18.271] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:06:18.271] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:06:18.271] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:06:18.271] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:06:18.271] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:06:23.017] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:26.340] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:06:27.860] INFO  [life] training: asking the trainer about Tinkering
+[13:06:27.860] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:06:27.860] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:06:27.860] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:06:27.875] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:06:27.875] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:27.875] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (15ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:27.875] LOG   [f6_Bruin] event action_result: npc_train success took=15ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:28.059] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:30.363] INFO  [f6_Bruin] [action] open backpack
+[13:06:30.363] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:06:30.364] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:06:30.364] INFO  [f6_Bruin] [0x3C] container contents: 6 item(s)
+[13:06:31.604] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:06:31.604] INFO  [f6_Bruin] [GIVE] 0x40019AAE x163 -> 0x00002A79 (gold 1000)
+[13:06:31.604] INFO  [f6_Bruin] [ITEM] drag serial=0x40019AAE amount=163
+[13:06:31.604] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:06:31.604] LOG   [f6_Bruin] event npc_give: item=0x40019AAE amount=163 to=0x00002A79
+[13:06:33.100] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:35.640] INFO  [f6_Bruin] [action] requesting the skill list
+[13:06:38.161] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:43.173] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:47.925] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:06:48.228] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:49.429] INFO  [life] training: asking the trainer about Tinkering
+[13:06:49.429] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:06:49.429] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:06:49.429] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:06:49.430] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:06:49.430] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:49.430] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:49.430] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:06:51.980] INFO  [f6_Bruin] [action] open backpack
+[13:06:51.980] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:06:51.980] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:06:51.980] INFO  [f6_Bruin] [0x3C] container contents: 7 item(s)
+[13:06:53.227] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:06:53.227] INFO  [f6_Bruin] [GIVE] 0x40013A16 x163 -> 0x00002A79 (gold 1000)
+[13:06:53.227] INFO  [f6_Bruin] [ITEM] drag serial=0x40013A16 amount=163
+[13:06:53.227] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:06:53.227] LOG   [f6_Bruin] event npc_give: item=0x40013A16 amount=163 to=0x00002A79
+[13:06:53.242] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:06:57.234] INFO  [f6_Bruin] [action] requesting the skill list
+[13:06:57.805] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:06:58.279] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:03.325] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:08.357] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:09.555] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:07:11.057] INFO  [life] training: asking the trainer about Tinkering
+[13:07:11.057] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:07:11.057] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:07:11.057] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:07:11.072] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:07:11.072] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:11.072] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (16ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:11.072] LOG   [f6_Bruin] event action_result: npc_train success took=16ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:13.376] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:13.560] INFO  [f6_Bruin] [action] open backpack
+[13:07:13.560] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:07:13.560] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:07:13.560] INFO  [f6_Bruin] [0x3C] container contents: 7 item(s)
+[13:07:14.784] INFO  [life] goal_failed=TRAIN_AT_NPC reason="3 attempts to hand over 163 gold all failed"
+[13:07:14.846] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: could not hand over the fee"
+[13:07:14.847] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:07:14.847] INFO  [life]   score=110.0
+[13:07:14.847] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:07:14.847] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:07:14.847] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 123s after achieving nothing
+[13:07:14.847] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:07:14.847] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:07:14.847] INFO  [life] training: asking the trainer about Tinkering
+[13:07:14.847] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:07:14.847] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:07:14.847] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:07:14.861] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:07:14.861] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:14.861] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (15ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:14.861] LOG   [f6_Bruin] event action_result: npc_train success took=15ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:17.357] INFO  [f6_Bruin] [action] open backpack
+[13:07:17.357] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:07:17.373] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:07:17.373] INFO  [f6_Bruin] [0x3C] container contents: 7 item(s)
+[13:07:18.385] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:18.570] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:07:18.570] INFO  [f6_Bruin] [GIVE] 0x40019A6E x163 -> 0x00002A79 (gold 1000)
+[13:07:18.570] INFO  [f6_Bruin] [ITEM] drag serial=0x40019A6E amount=163
+[13:07:18.570] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:07:18.570] LOG   [f6_Bruin] event npc_give: item=0x40019A6E amount=163 to=0x00002A79
+[13:07:22.631] INFO  [f6_Bruin] [action] requesting the skill list
+[13:07:23.388] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:28.447] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:33.492] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:34.871] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:07:36.413] INFO  [life] training: asking the trainer about Tinkering
+[13:07:36.413] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:07:36.413] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:07:36.413] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:07:36.413] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:07:36.413] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:36.413] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:36.413] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:38.548] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:38.918] INFO  [f6_Bruin] [action] open backpack
+[13:07:38.918] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:07:38.918] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:07:38.918] INFO  [f6_Bruin] [0x3C] container contents: 8 item(s)
+[13:07:40.163] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:07:40.163] INFO  [f6_Bruin] [GIVE] 0x40019AAE x163 -> 0x00002A79 (gold 1000)
+[13:07:40.163] INFO  [f6_Bruin] [ITEM] drag serial=0x40019AAE amount=163
+[13:07:40.163] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:07:40.163] LOG   [f6_Bruin] event npc_give: item=0x40019AAE amount=163 to=0x00002A79
+[13:07:43.583] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:44.165] INFO  [f6_Bruin] [action] requesting the skill list
+[13:07:48.607] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:53.620] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:07:56.399] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:07:57.816] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:07:57.936] INFO  [life] training: asking the trainer about Tinkering
+[13:07:57.936] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:07:57.936] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:07:57.936] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:07:57.937] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:07:57.937] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:57.937] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:57.937] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:07:58.623] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:00.437] INFO  [f6_Bruin] [action] open backpack
+[13:08:00.437] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:08:00.437] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:08:00.437] INFO  [f6_Bruin] [0x3C] container contents: 8 item(s)
+[13:08:01.667] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:08:01.667] INFO  [f6_Bruin] [GIVE] 0x40013A16 x163 -> 0x00002A79 (gold 1000)
+[13:08:01.667] INFO  [f6_Bruin] [ITEM] drag serial=0x40013A16 amount=163
+[13:08:01.667] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:08:01.667] LOG   [f6_Bruin] event npc_give: item=0x40013A16 amount=163 to=0x00002A79
+[13:08:03.635] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:05.673] INFO  [f6_Bruin] [action] requesting the skill list
+[13:08:08.647] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:13.695] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:18.010] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:08:18.747] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:19.534] INFO  [life] training: asking the trainer about Tinkering
+[13:08:19.534] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:08:19.534] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:08:19.534] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:08:19.549] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:08:19.550] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:19.550] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (15ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:19.550] LOG   [f6_Bruin] event action_result: npc_train success took=15ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:22.036] INFO  [f6_Bruin] [action] open backpack
+[13:08:22.036] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:08:22.036] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:08:22.036] INFO  [f6_Bruin] [0x3C] container contents: 8 item(s)
+[13:08:22.082] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[13:08:23.265] INFO  [life] goal_failed=TRAIN_AT_NPC reason="3 attempts to hand over 163 gold all failed"
+[13:08:23.326] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: could not hand over the fee"
+[13:08:23.326] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:08:23.326] INFO  [life]   score=110.0
+[13:08:23.326] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:08:23.326] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:08:23.326] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 54s after achieving nothing
+[13:08:23.326] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:08:23.326] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:08:23.326] INFO  [life] training: asking the trainer about Tinkering
+[13:08:23.326] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:08:23.326] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:08:23.326] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:08:23.341] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:08:23.341] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:23.342] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (15ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:23.342] LOG   [f6_Bruin] event action_result: npc_train success took=15ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:23.774] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:25.855] INFO  [f6_Bruin] [action] open backpack
+[13:08:25.855] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:08:25.855] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:08:25.855] INFO  [f6_Bruin] [0x3C] container contents: 8 item(s)
+[13:08:27.071] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:08:27.071] INFO  [f6_Bruin] [GIVE] 0x400197BC x163 -> 0x00002A79 (gold 1000)
+[13:08:27.071] INFO  [f6_Bruin] [ITEM] drag serial=0x400197BC amount=163
+[13:08:27.071] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:08:27.071] LOG   [f6_Bruin] event npc_give: item=0x400197BC amount=163 to=0x00002A79
+[13:08:28.816] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:31.113] INFO  [f6_Bruin] [action] requesting the skill list
+[13:08:32.120] INFO  [f6_Bruin] [chat ascii] System: World save has been initiated.
+[13:08:33.854] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:38.881] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:43.395] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:08:43.905] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:44.920] INFO  [life] training: asking the trainer about Tinkering
+[13:08:44.920] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:08:44.920] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:08:44.920] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:08:44.921] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:08:44.921] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:44.921] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:44.921] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:08:47.430] INFO  [f6_Bruin] [action] open backpack
+[13:08:47.430] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:08:47.430] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:08:47.430] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:08:48.667] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:08:48.667] INFO  [f6_Bruin] [GIVE] 0x40019A6E x163 -> 0x00002A79 (gold 1000)
+[13:08:48.667] INFO  [f6_Bruin] [ITEM] drag serial=0x40019A6E amount=163
+[13:08:48.667] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:08:48.667] LOG   [f6_Bruin] event npc_give: item=0x40019A6E amount=163 to=0x00002A79
+[13:08:48.913] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:52.727] INFO  [f6_Bruin] [action] requesting the skill list
+[13:08:53.949] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:08:57.865] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:08:58.982] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:04.039] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:04.979] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:09:06.514] INFO  [life] training: asking the trainer about Tinkering
+[13:09:06.514] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:09:06.514] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:09:06.514] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:09:06.514] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:09:06.514] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:06.514] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:06.514] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:09.055] INFO  [f6_Bruin] [action] open backpack
+[13:09:09.056] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:09:09.056] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:09.070] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:09:09.070] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:09:10.312] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:09:10.312] INFO  [f6_Bruin] [GIVE] 0x40019AAE x163 -> 0x00002A79 (gold 1000)
+[13:09:10.312] INFO  [f6_Bruin] [ITEM] drag serial=0x40019AAE amount=163
+[13:09:10.312] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:09:10.312] LOG   [f6_Bruin] event npc_give: item=0x40019AAE amount=163 to=0x00002A79
+[13:09:14.064] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:14.313] INFO  [f6_Bruin] [action] requesting the skill list
+[13:09:18.226] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 110.0"
+[13:09:18.226] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:09:18.226] INFO  [life]   score=468.0
+[13:09:18.226] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:09:18.226] INFO  [life]   reason: no known supplier of a tongs
+[13:09:18.226] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:09:18.226] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:09:18.916] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:09:18.978] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:09:18.978] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:09:18.978] INFO  [life]   score=110.0
+[13:09:18.978] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:09:18.978] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:09:18.978] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:09:18.978] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:09:18.978] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:09:19.114] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:24.145] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:25.519] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:09:27.034] INFO  [life] training: asking the trainer about Tinkering
+[13:09:27.034] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:09:27.034] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:09:27.034] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:09:27.034] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:09:27.034] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:27.034] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:27.034] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:29.172] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:29.540] INFO  [f6_Bruin] [action] open backpack
+[13:09:29.540] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:09:29.540] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:09:29.540] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:09:30.752] INFO  [life] goal_failed=TRAIN_AT_NPC reason="3 attempts to hand over 163 gold all failed"
+[13:09:30.798] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: could not hand over the fee"
+[13:09:30.798] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:09:30.798] INFO  [life]   score=110.0
+[13:09:30.798] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:09:30.798] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:09:30.798] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 168s after achieving nothing
+[13:09:30.798] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:09:30.798] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:09:30.798] INFO  [life] training: asking the trainer about Tinkering
+[13:09:30.798] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:09:30.798] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:09:30.798] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:09:30.799] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:09:30.799] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:30.799] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:30.799] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:33.359] INFO  [f6_Bruin] [action] open backpack
+[13:09:33.359] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:09:33.359] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:09:33.359] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:09:34.175] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:34.607] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:09:34.607] INFO  [f6_Bruin] [GIVE] 0x40013A16 x163 -> 0x00002A79 (gold 1000)
+[13:09:34.607] INFO  [f6_Bruin] [ITEM] drag serial=0x40013A16 amount=163
+[13:09:34.607] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:09:34.607] LOG   [f6_Bruin] event npc_give: item=0x40013A16 amount=163 to=0x00002A79
+[13:09:38.659] INFO  [f6_Bruin] [action] requesting the skill list
+[13:09:39.231] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:44.274] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:49.331] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:50.906] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:09:52.412] INFO  [life] training: asking the trainer about Tinkering
+[13:09:52.412] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:09:52.412] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:09:52.412] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:09:52.412] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:09:52.412] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:52.412] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:52.412] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:09:54.340] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:09:54.924] INFO  [f6_Bruin] [action] open backpack
+[13:09:54.924] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:09:54.938] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:09:54.938] INFO  [f6_Bruin] [0x3C] container contents: 9 item(s)
+[13:09:56.183] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:09:56.183] INFO  [f6_Bruin] [GIVE] 0x400194DC x163 -> 0x00002A79 (gold 1000)
+[13:09:56.183] INFO  [f6_Bruin] [ITEM] drag serial=0x400194DC amount=163
+[13:09:56.183] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:09:56.183] LOG   [f6_Bruin] event npc_give: item=0x400194DC amount=163 to=0x00002A79
+[13:09:57.922] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:09:59.377] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:00.188] INFO  [f6_Bruin] [action] requesting the skill list
+[13:10:04.391] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:09.411] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:12.390] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:10:13.904] INFO  [life] training: asking the trainer about Tinkering
+[13:10:13.904] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:10:13.904] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:10:13.904] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:10:13.905] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:10:13.905] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:13.905] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:13.905] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:14.425] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:16.410] INFO  [f6_Bruin] [action] open backpack
+[13:10:16.410] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:10:16.411] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:10:16.411] INFO  [f6_Bruin] [0x3C] container contents: 10 item(s)
+[13:10:17.626] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:10:17.626] INFO  [f6_Bruin] [GIVE] 0x400197BC x163 -> 0x00002A79 (gold 1000)
+[13:10:17.626] INFO  [f6_Bruin] [ITEM] drag serial=0x400197BC amount=163
+[13:10:17.626] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:10:17.626] LOG   [f6_Bruin] event npc_give: item=0x400197BC amount=163 to=0x00002A79
+[13:10:19.425] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:21.660] INFO  [f6_Bruin] [action] requesting the skill list
+[13:10:24.486] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:29.529] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:33.797] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:10:34.582] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:35.332] INFO  [life] training: asking the trainer about Tinkering
+[13:10:35.332] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:10:35.332] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:10:35.332] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:10:35.332] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:10:35.333] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:35.333] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:35.333] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:37.892] INFO  [f6_Bruin] [action] open backpack
+[13:10:37.892] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:10:37.892] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:10:37.892] INFO  [f6_Bruin] [0x3C] container contents: 10 item(s)
+[13:10:39.152] INFO  [life] goal_failed=TRAIN_AT_NPC reason="3 attempts to hand over 163 gold all failed"
+[13:10:39.183] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: could not hand over the fee"
+[13:10:39.183] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:10:39.183] INFO  [life]   score=110.0
+[13:10:39.183] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[13:10:39.183] INFO  [life]   reason: Tinkering 0.0 -> 70.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[13:10:39.183] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 99s after achieving nothing
+[13:10:39.183] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:10:39.183] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:10:39.183] INFO  [life] training: asking the trainer about Tinkering
+[13:10:39.183] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:10:39.183] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:10:39.183] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:10:39.183] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:10:39.183] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:39.183] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (0ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:39.183] LOG   [f6_Bruin] event action_result: npc_train success took=0ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:10:39.614] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:41.724] INFO  [f6_Bruin] [action] open backpack
+[13:10:41.724] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:10:41.724] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:10:41.724] INFO  [f6_Bruin] [0x3C] container contents: 10 item(s)
+[13:10:42.935] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:10:42.935] INFO  [f6_Bruin] [GIVE] 0x40019A6E x163 -> 0x00002A79 (gold 1000)
+[13:10:42.935] INFO  [f6_Bruin] [ITEM] drag serial=0x40019A6E amount=163
+[13:10:42.935] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:10:42.935] LOG   [f6_Bruin] event npc_give: item=0x40019A6E amount=163 to=0x00002A79
+[13:10:44.669] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:46.967] INFO  [f6_Bruin] [action] requesting the skill list
+[13:10:49.677] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:54.685] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:10:57.951] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:10:59.083] INFO  [life] training: paid 163 for Tinkering but the server still reports 0.0 after 15s
+[13:10:59.700] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:00.626] INFO  [life] training: asking the trainer about Tinkering
+[13:11:00.626] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:11:00.626] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:11:00.626] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:11:00.627] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:11:00.627] INFO  [f6_Bruin] [chat ascii] Odell: For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:11:00.627] INFO  [f6_Bruin] [ACTION_RESULT] npc_train success (1ms) For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:11:00.627] LOG   [f6_Bruin] event action_result: npc_train success took=1ms For 163 gold I will train you in all I know of Tinkering. For less gold I will teach you less
+[13:11:03.139] INFO  [f6_Bruin] [action] open backpack
+[13:11:03.139] INFO  [f6_Bruin] [backpack] opening 0x40013A18
+[13:11:03.155] INFO  [f6_Bruin] [0x24] open container 0x40013A18 gump=60
+[13:11:03.155] INFO  [f6_Bruin] [0x3C] container contents: 10 item(s)
+[13:11:04.399] INFO  [life] training: paying the quoted 163 gold for Tinkering (purse 1000)
+[13:11:04.399] INFO  [f6_Bruin] [GIVE] 0x40019AAE x163 -> 0x00002A79 (gold 1000)
+[13:11:04.399] INFO  [f6_Bruin] [ITEM] drag serial=0x40019AAE amount=163
+[13:11:04.399] INFO  [f6_Bruin] [ITEM] drop container=0x00002A79
+[13:11:04.399] LOG   [f6_Bruin] event npc_give: item=0x40019AAE amount=163 to=0x00002A79
+[13:11:04.414] INFO  [f6_Bruin] [chat ascii] Odell: Let me show you something of how this is done
+[13:11:04.414] INFO  [f6_Bruin] [chat ascii] Odell: That is all I can teach.
+[13:11:04.724] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:08.404] INFO  [f6_Bruin] [action] requesting the skill list
+[13:11:09.756] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:09.940] INFO  [life] training: Tinkering 0.0 -> 16.3, bought from a trainer
+[13:11:09.942] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:11:09.942] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[13:11:09.943] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:11:10.001] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[13:11:10.001] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:11:10.001] INFO  [life]   score=90.0
+[13:11:10.001] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:11:10.001] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:11:10.001] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 68s after achieving nothing
+[13:11:10.001] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:11:10.001] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:11:10.001] INFO  [life] training: asking the trainer about Tinkering
+[13:11:10.001] INFO  [f6_Bruin] [ACTION] npc_train start
+[13:11:10.001] INFO  [f6_Bruin] [TRAIN] ask 0x00002A79 say='Odell train Tinkering'
+[13:11:10.001] LOG   [f6_Bruin] event npc_train_ask: Odell train Tinkering
+[13:11:10.002] INFO  [f6_Bruin] [chat uni  ] : Odell train Tinkering
+[13:11:10.002] INFO  [f6_Bruin] [chat ascii] Odell: You already know as much as I can teach of Tinkering
+[13:11:10.002] LOG   [f6_Bruin] event action_result: npc_train invalid_state took=1ms You already know as much as I can teach of Tinkering
+[13:11:12.553] INFO  [life] training: tinker refused to teach Tinkering at 16.3 -- the trainer has nothing left to give
+[13:11:12.555] INFO  [life] checkpoint (trainer refusal) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:11:12.614] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: the trainer has nothing left to give"
+[13:11:12.614] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:11:12.614] INFO  [life]   score=90.0
+[13:11:12.614] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:11:12.614] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:11:12.614] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 66s after achieving nothing
+[13:11:12.614] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:11:12.614] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:11:12.614] INFO  [life] training: no 'tinker' where we remembered one at 3716,2124 -- forgetting it and looking properly
+[13:11:12.614] INFO  [f6_Bruin] [action] scanning nearby mobiles for names
+[13:11:12.629] INFO  [f6_Bruin] [mobiles] nearby (6):
+[13:11:12.629] INFO  [f6_Bruin]   Odell 0x00002A79
+[13:11:12.629] INFO  [f6_Bruin]   Vinson 0x00002A85
+[13:11:12.629] INFO  [f6_Bruin]   Dog 0x00017C06
+[13:11:12.629] INFO  [f6_Bruin]   Dog 0x0001559D
+[13:11:12.629] INFO  [f6_Bruin]   Cat 0x000178CE
+[13:11:12.629] INFO  [f6_Bruin]   Crossbill 0x0000AB27
+[13:11:14.651] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[13:11:14.651] INFO  [f6_Bruin] [travel] Sea Market tinker -> (4561,2328) r=3 from (3716,2124)
+[13:11:14.651] LOG   [f6_Bruin] event travel_start: label='Sea Market tinker' target=(4561,2328) radius=3 from=(3716,2124)
+[13:11:14.651] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:11:14.651] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:11:14.651] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:14.651] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:14.651] LOG   [f6_Bruin] event travel_mode: moongate
+[13:11:14.651] INFO  [f6_Bruin] [travel] plan Sea Market tinker: no walkable ground near the destination legs=0 ~0 tiles transit=0 nodes=0
+[13:11:14.651] INFO  [f6_Bruin] [action] goto finished at (3716,2124,20); target (3716,2124); ARRIVED (off by 0 tile(s))
+[13:11:14.651] LOG   [f6_Bruin] event goto_done: at=(3716,2124) target=(3716,2124) arrived=1 off=0
+[13:11:14.651] LOG   [f6_Bruin] event travel_escape: from=(3716,2124,20) to=(3704,2136) attempt=1
+[13:11:14.651] INFO  [f6_Bruin] [action] goto (3704,2136) from (3716,2124,20)
+[13:11:14.651] LOG   [f6_Bruin] event goto_start: target=(3704,2136) from=(3716,2124)
+[13:11:14.651] INFO  [f6_Bruin] [bot] running from (3716,2124,20) to (3704,2136,z20)
+[13:11:14.651] INFO  [f6_Bruin] [bot] planning path to (3704,2136) in background
+[13:11:14.712] INFO  [f6_Bruin] [bot] replan to (3704,2136): 22 steps in 422.9us
+[13:11:14.789] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:19.845] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:21.054] INFO  [f6_Bruin] [bot] arrived at (3704,2136,20)
+[13:11:21.055] INFO  [f6_Bruin] [action] goto finished at (3704,2136,20); target (3704,2136); ARRIVED (off by 0 tile(s))
+[13:11:21.055] LOG   [f6_Bruin] event goto_done: at=(3704,2136) target=(3704,2136) arrived=1 off=0
+[13:11:21.055] INFO  [f6_Bruin] [travel] recovery walk reached its anchor at (3704,2136,20) (off 0); attempt 1/3
+[13:11:21.055] LOG   [f6_Bruin] event travel_recovery_done: reached=1 at=(3704,2136,20) off=0 attempt=1
+[13:11:21.115] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:11:21.115] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:11:21.115] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:21.115] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:21.115] LOG   [f6_Bruin] event travel_mode: moongate
+[13:11:21.115] INFO  [f6_Bruin] [travel] plan Sea Market tinker: no walkable ground near the destination legs=0 ~0 tiles transit=0 nodes=0
+[13:11:21.115] LOG   [f6_Bruin] event travel_escape: from=(3704,2136,20) to=(3688,2120) attempt=2
+[13:11:21.115] INFO  [f6_Bruin] [action] goto (3688,2120) from (3704,2136,20)
+[13:11:21.115] LOG   [f6_Bruin] event goto_start: target=(3688,2120) from=(3704,2136)
+[13:11:21.115] INFO  [f6_Bruin] [bot] running from (3704,2136,20) to (3688,2120,z20)
+[13:11:21.115] INFO  [f6_Bruin] [bot] planning path to (3688,2120) in background
+[13:11:21.178] INFO  [f6_Bruin] [bot] replan to (3688,2120): 32 steps in 3896.0us
+[13:11:24.889] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:29.910] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:30.634] INFO  [f6_Bruin] [bot] arrived at (3688,2120,20)
+[13:11:30.634] INFO  [f6_Bruin] [action] goto finished at (3688,2120,20); target (3688,2120); ARRIVED (off by 0 tile(s))
+[13:11:30.634] LOG   [f6_Bruin] event goto_done: at=(3688,2120) target=(3688,2120) arrived=1 off=0
+[13:11:30.634] INFO  [f6_Bruin] [travel] recovery walk reached its anchor at (3688,2120,20) (off 0); attempt 2/3
+[13:11:30.634] LOG   [f6_Bruin] event travel_recovery_done: reached=1 at=(3688,2120,20) off=0 attempt=2
+[13:11:30.695] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:11:30.695] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:11:30.695] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:30.695] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:30.695] LOG   [f6_Bruin] event travel_mode: moongate
+[13:11:30.695] INFO  [f6_Bruin] [travel] plan Sea Market tinker: no walkable ground near the destination legs=0 ~0 tiles transit=0 nodes=0
+[13:11:30.695] LOG   [f6_Bruin] event travel_escape: from=(3688,2120,20) to=(3672,2104) attempt=3
+[13:11:30.695] INFO  [f6_Bruin] [action] goto (3672,2104) from (3688,2120,20)
+[13:11:30.695] LOG   [f6_Bruin] event goto_start: target=(3672,2104) from=(3688,2120)
+[13:11:30.695] INFO  [f6_Bruin] [bot] running from (3688,2120,20) to (3672,2104,z20)
+[13:11:30.695] INFO  [f6_Bruin] [bot] planning path to (3672,2104) in background
+[13:11:30.755] INFO  [f6_Bruin] [bot] replan to (3672,2104): 19 steps in 413.5us
+[13:11:34.945] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:36.488] INFO  [f6_Bruin] [bot] arrived at (3672,2104,20)
+[13:11:36.489] INFO  [f6_Bruin] [action] goto finished at (3672,2104,20); target (3672,2104); ARRIVED (off by 0 tile(s))
+[13:11:36.489] LOG   [f6_Bruin] event goto_done: at=(3672,2104) target=(3672,2104) arrived=1 off=0
+[13:11:36.489] INFO  [f6_Bruin] [travel] recovery walk reached its anchor at (3672,2104,20) (off 0); attempt 3/3
+[13:11:36.489] LOG   [f6_Bruin] event travel_recovery_done: reached=1 at=(3672,2104,20) off=0 attempt=3
+[13:11:36.547] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:11:36.547] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:11:36.547] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:36.547] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:36.547] LOG   [f6_Bruin] event travel_mode: moongate
+[13:11:36.547] INFO  [f6_Bruin] [travel] plan Sea Market tinker: no walkable ground near the destination legs=0 ~0 tiles transit=0 nodes=0
+[13:11:36.547] INFO  [f6_Bruin] [travel] Sea Market tinker FAILED at (3672,2104,20) -- no walkable ground near the destination
+[13:11:36.547] LOG   [f6_Bruin] event travel_failed: label='Sea Market tinker' ok=0 at=(3672,2104) legs=0 plans=1 why='no walkable ground near the destination'
+[13:11:36.609] INFO  [life] training: arrived at 3672,2104 -- asking who is here
+[13:11:36.609] INFO  [f6_Bruin] [action] scanning nearby mobiles for names
+[13:11:36.610] INFO  [f6_Bruin] [mobiles] nearby (4):
+[13:11:36.610] INFO  [f6_Bruin]   Cat 0x000151FB
+[13:11:36.610] INFO  [f6_Bruin]   Cat 0x00017F6A
+[13:11:36.610] INFO  [f6_Bruin]   Rat 0x00004AE1
+[13:11:36.610] INFO  [f6_Bruin]   Wren 0x0001253C
+[13:11:39.144] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[13:11:39.144] INFO  [f6_Bruin] [travel] Vesper tinker -> (2899,790) r=5 from (3672,2104)
+[13:11:39.144] LOG   [f6_Bruin] event travel_start: label='Vesper tinker' target=(2899,790) radius=5 from=(3672,2104)
+[13:11:39.144] INFO  [f6_Bruin] [travel] mode moongate         usable   <- chosen
+[13:11:39.144] INFO  [f6_Bruin] [travel] mode walk             usable
+[13:11:39.144] INFO  [f6_Bruin] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:39.144] INFO  [f6_Bruin] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:39.144] LOG   [f6_Bruin] event travel_mode: moongate
+[13:11:39.144] INFO  [f6_Bruin] [travel] plan Vesper tinker: ok legs=17 ~752 tiles transit=1 nodes=517
+[13:11:39.206] INFO  [f6_Bruin] [action] goto (3640,2120) from (3672,2104,20)
+[13:11:39.206] LOG   [f6_Bruin] event goto_start: target=(3640,2120) from=(3672,2104)
+[13:11:39.206] INFO  [f6_Bruin] [bot] running from (3672,2104,20) to (3640,2120)
+[13:11:39.206] INFO  [f6_Bruin] [bot] planning path to (3640,2120) in background
+[13:11:39.267] INFO  [f6_Bruin] [bot] replan to (3640,2120): 48 steps in 18119.5us
+[13:11:39.973] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:45.014] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:49.588] INFO  [f6_Bruin] [chat ascii] System: You have left the protection of the town guards
+[13:11:50.031] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:11:54.244] INFO  [f6_Bruin] [bot] arrived at (3640,2120,33)
+[13:11:54.244] INFO  [f6_Bruin] [action] goto finished at (3640,2120,33); target (3640,2120); ARRIVED (off by 0 tile(s))
+[13:11:54.244] LOG   [f6_Bruin] event goto_done: at=(3640,2120) target=(3640,2120) arrived=1 off=0
+[13:11:54.245] INFO  [f6_Bruin] [action] goto (3608,2120) from (3640,2120,33)
+[13:11:54.245] LOG   [f6_Bruin] event goto_start: target=(3608,2120) from=(3640,2120)
+[13:11:54.245] INFO  [f6_Bruin] [bot] running from (3640,2120,33) to (3608,2120)
+[13:11:54.245] INFO  [f6_Bruin] [bot] planning path to (3608,2120) in background
+[13:11:54.305] INFO  [f6_Bruin] [bot] replan to (3608,2120): 32 steps in 3126.8us
+[13:11:55.059] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:00.092] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:05.116] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:05.996] INFO  [f6_Bruin] [bot] arrived at (3608,2120,45)
+[13:12:05.997] INFO  [f6_Bruin] [action] goto finished at (3608,2120,45); target (3608,2120); ARRIVED (off by 0 tile(s))
+[13:12:05.997] LOG   [f6_Bruin] event goto_done: at=(3608,2120) target=(3608,2120) arrived=1 off=0
+[13:12:05.997] INFO  [f6_Bruin] [action] goto (3576,2118) from (3608,2120,45)
+[13:12:05.997] LOG   [f6_Bruin] event goto_start: target=(3576,2118) from=(3608,2120)
+[13:12:05.997] INFO  [f6_Bruin] [bot] running from (3608,2120,45) to (3576,2118)
+[13:12:05.997] INFO  [f6_Bruin] [bot] planning path to (3576,2118) in background
+[13:12:06.059] INFO  [f6_Bruin] [bot] replan to (3576,2118): 33 steps in 4305.8us
+[13:12:10.146] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:12.596] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:12:15.189] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:16.879] INFO  [f6_Bruin] [bot] arrived at (3576,2118,23)
+[13:12:16.880] INFO  [f6_Bruin] [action] goto finished at (3576,2118,23); target (3576,2118); ARRIVED (off by 0 tile(s))
+[13:12:16.880] LOG   [f6_Bruin] event goto_done: at=(3576,2118) target=(3576,2118) arrived=1 off=0
+[13:12:16.880] INFO  [f6_Bruin] [action] goto (3560,2136) from (3576,2118,23)
+[13:12:16.880] LOG   [f6_Bruin] event goto_start: target=(3560,2136) from=(3576,2118)
+[13:12:16.880] INFO  [f6_Bruin] [bot] running from (3576,2118,23) to (3560,2136)
+[13:12:16.880] INFO  [f6_Bruin] [bot] planning path to (3560,2136) in background
+[13:12:16.940] INFO  [f6_Bruin] [bot] replan to (3560,2136): 25 steps in 418.0us
+[13:12:18.965] INFO  [life] goal_changed=GET_TOOL from=TRAIN_AT_NPC reason="GET_TOOL 468.0 superseded TRAIN_AT_NPC 90.0"
+[13:12:18.965] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:12:18.965] INFO  [life]   score=468.0
+[13:12:18.965] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[13:12:18.965] INFO  [life]   reason: no known supplier of a tongs
+[13:12:18.965] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:12:18.965] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:12:18.965] INFO  [life] goal_failed=GET_TOOL reason="REFUSE_NO_KNOWN_BUYER" tool=tongs
+[13:12:19.028] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no trade known to sell it"
+[13:12:19.028] INFO  [life] needs considered: NeedTool(tongs 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=3 held=[] want_train=Tinkering (target 70.0)
+[13:12:19.028] INFO  [life]   score=90.0
+[13:12:19.028] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:12:19.028] INFO  [life]   reason: Tinkering 16.3 -> 70.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:12:19.028] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 179s after achieving nothing
+[13:12:19.028] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:12:19.028] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:12:20.246] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:25.258] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:25.706] INFO  [f6_Bruin] [bot] arrived at (3560,2136,22)
+[13:12:25.707] INFO  [f6_Bruin] [action] goto finished at (3560,2136,22); target (3560,2136); ARRIVED (off by 0 tile(s))
+[13:12:25.707] LOG   [f6_Bruin] event goto_done: at=(3560,2136) target=(3560,2136) arrived=1 off=0
+[13:12:25.707] INFO  [f6_Bruin] [action] goto (3564,2140) from (3560,2136,22)
+[13:12:25.707] LOG   [f6_Bruin] event goto_start: target=(3564,2140) from=(3560,2136)
+[13:12:25.707] INFO  [f6_Bruin] [bot] running from (3560,2136,22) to (3564,2140)
+[13:12:25.707] INFO  [f6_Bruin] [bot] planning path to (3564,2140) in background
+[13:12:25.768] INFO  [f6_Bruin] [bot] replan to (3564,2140): 4 steps in 66.0us
+[13:12:27.038] INFO  [f6_Bruin] [gump] 0x4000289E context=0x80A00437: 13 option(s), 15 text(s)
+[13:12:27.038] INFO  [f6_Bruin] [gump]   button 1000 = 'OKAY'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   button 0 = 'CANCEL'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   button 1 = 'Felucca'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 1 = 'Moonglow'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 2 = 'Britain'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 3 = 'Jhelom'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 4 = 'Yew'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 5 = 'New Magincia'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 6 = 'Minoc'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 7 = 'Trinsic'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 8 = 'Skara Brae'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 9 = 'Buccaneer's Den'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 0 = 'Pick your destination:'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 1 = 'OKAY'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 2 = 'CANCEL'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 3 = 'Felucca'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 4 = 'Felucca'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 5 = 'Moonglow'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 6 = 'Britain'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 7 = 'Jhelom'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 8 = 'Yew'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 9 = 'New Magincia'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 10 = 'Minoc'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 11 = 'Trinsic'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 12 = 'Skara Brae'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 13 = 'Buccaneer's Den'
+[13:12:27.038] INFO  [f6_Bruin] [gump]   text 14 = 'Ocllo (Newplayers)'
+[13:12:27.038] LOG   [f6_Bruin] event gump_open: serial=0x4000289E context=0x80A00437 options=13
+[13:12:27.038] INFO  [f6_Bruin] [travel] gate gump: choosing 'Minoc' (choice 6, button 1000)
+[13:12:27.038] LOG   [f6_Bruin] event moongate_use: destination='Minoc' choice=6 button=1000
+[13:12:27.038] INFO  [f6_Bruin] [bot] arrived at (3564,2140,34)
+[13:12:27.039] INFO  [f6_Bruin] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
+[13:12:27.039] LOG   [f6_Bruin] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
+[13:12:27.039] INFO  [f6_Bruin] [travel] using moongate 0x4000289E for 'Minoc' (gump active=0 serial=0x00000000)
+[13:12:27.051] INFO  [f6_Bruin] [0x20] player @(2701,692,5) facing=3
+[13:12:27.051] INFO  [f6_Bruin] [0x20] player @(2701,692,5) facing=3
+[13:12:27.051] INFO  [f6_Bruin] [chat ascii] System: You can't see the target
+[13:12:27.560] INFO  [f6_Bruin] [action] goto (2728,728) from (2701,692,5)
+[13:12:27.560] LOG   [f6_Bruin] event goto_start: target=(2728,728) from=(2701,692)
+[13:12:27.560] INFO  [f6_Bruin] [bot] running from (2701,692,5) to (2728,728)
+[13:12:27.560] INFO  [f6_Bruin] [bot] planning path to (2728,728) in background
+[13:12:27.623] INFO  [f6_Bruin] [bot] replan to (2728,728): 42 steps in 8267.2us
+[13:12:27.882] INFO  [f6_Bruin] [chat ascii] System: You have been revealed
+[13:12:30.293] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:35.328] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:40.330] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:42.387] INFO  [f6_Bruin] [bot] arrived at (2728,728,0)
+[13:12:42.388] INFO  [f6_Bruin] [action] goto finished at (2728,728,0); target (2728,728); ARRIVED (off by 0 tile(s))
+[13:12:42.388] LOG   [f6_Bruin] event goto_done: at=(2728,728) target=(2728,728) arrived=1 off=0
+[13:12:42.388] INFO  [f6_Bruin] [action] goto (2760,760) from (2728,728,0)
+[13:12:42.388] LOG   [f6_Bruin] event goto_start: target=(2760,760) from=(2728,728)
+[13:12:42.388] INFO  [f6_Bruin] [bot] running from (2728,728,0) to (2760,760)
+[13:12:42.388] INFO  [f6_Bruin] [bot] planning path to (2760,760) in background
+[13:12:42.449] INFO  [f6_Bruin] [bot] replan to (2760,760): 45 steps in 23801.9us
+[13:12:45.357] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:50.394] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:55.409] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:12:58.555] INFO  [f6_Bruin] [bot] arrived at (2760,760,0)
+[13:12:58.556] INFO  [f6_Bruin] [action] goto finished at (2760,760,0); target (2760,760); ARRIVED (off by 0 tile(s))
+[13:12:58.556] LOG   [f6_Bruin] event goto_done: at=(2760,760) target=(2760,760) arrived=1 off=0
+[13:12:58.556] INFO  [f6_Bruin] [action] goto (2792,790) from (2760,760,0)
+[13:12:58.556] LOG   [f6_Bruin] event goto_start: target=(2792,790) from=(2760,760)
+[13:12:58.556] INFO  [f6_Bruin] [bot] running from (2760,760,0) to (2792,790)
+[13:12:58.556] INFO  [f6_Bruin] [bot] planning path to (2792,790) in background
+[13:12:58.616] INFO  [f6_Bruin] [bot] replan to (2792,790): 42 steps in 17546.4us
+[13:13:00.437] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:13:05.487] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:13:10.491] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:13:12.188] INFO  [f6_Bruin] [bot] arrived at (2792,790,0)
+[13:13:12.188] INFO  [f6_Bruin] [action] goto finished at (2792,790,0); target (2792,790); ARRIVED (off by 0 tile(s))
+[13:13:12.188] LOG   [f6_Bruin] event goto_done: at=(2792,790) target=(2792,790) arrived=1 off=0
+[13:13:12.188] INFO  [f6_Bruin] [action] goto (2792,824) from (2792,790,0)
+[13:13:12.188] LOG   [f6_Bruin] event goto_start: target=(2792,824) from=(2792,790)
+[13:13:12.188] INFO  [f6_Bruin] [bot] running from (2792,790,0) to (2792,824)
+[13:13:12.188] INFO  [f6_Bruin] [bot] planning path to (2792,824) in background
+[13:13:12.248] INFO  [f6_Bruin] [bot] replan to (2792,824): 34 steps in 974.0us
+[13:13:12.604] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh16.bruin/state.json
+[13:13:15.514] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:13:20.531] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight
+[13:13:22.417] INFO  [f6_Bruin] [chat ascii] System: World save in 10 seconds
+[13:13:22.417] INFO  [f6_Bruin] [bot] arrived at (2792,824,0)
+[13:13:22.418] INFO  [f6_Bruin] [action] goto finished at (2792,824,0); target (2792,824); ARRIVED (off by 0 tile(s))
+[13:13:22.418] LOG   [f6_Bruin] event goto_done: at=(2792,824) target=(2792,824) arrived=1 off=0
+[13:13:22.418] INFO  [f6_Bruin] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:13:22.418] INFO  [f6_Bruin] [action] goto (2792,856) from (2792,824,0)
+[13:13:22.418] LOG   [f6_Bruin] event goto_start: target=(2792,856) from=(2792,824)
+[13:13:22.418] INFO  [f6_Bruin] [bot] running from (2792,824,0) to (2792,856)
+[13:13:22.418] INFO  [f6_Bruin] [bot] planning path to (2792,856) in background
+[13:13:22.480] INFO  [f6_Bruin] [bot] replan to (2792,856): 32 steps in 810.0us
+[13:13:25.556] INFO  [f6_Bruin] [survival] hp 50/50 (100%) -> fight

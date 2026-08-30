@@ -1,0 +1,28 @@
+# name	account	profession -- the fleet identity.
+# Stable by design: these accounts have characters now, so
+# free_accounts() would skip them and the next launch would
+# be twenty strangers instead of the same twenty lives.
+Itheth	revolutionbot01	lumberjack_swordsman
+Rhalazar	revolutionbot02	lumberjack_swordsman
+Rhalvar	RevolutionFighter01	lumberjack_swordsman
+Zaror	RevolutionFighter02	lumberjack_swordsman
+Loradan	RevolutionFighter03	lumberjack_swordsman
+Dorthor	RevolutionFighter04	miner_smith
+Aeryn	RevolutionFighter05	miner_smith
+Dravazar	RevolutionFighter06	miner_smith
+Galrin	RevolutionFighter07	miner_smith
+Ravan	RevolutionFighter08	mage
+Beleth	revolutionfisher01	mage
+Elvrin	revolutionmage02	mage
+Ardor	revolutionmagegm01	mage
+Voris	revolutionmedic01	alchemist
+Calar	RevolutionSoak13	alchemist
+Malazar	RevolutionSoak14	alchemist
+Baelos	RevolutionSoak15	lumberjack_swordsman
+Vorath	RevolutionSoak16	miner_smith
+Galthor	RevolutionSoak17	mage
+Rhalthor	RevolutionSoak18	alchemist
+Aurir	RevolutionSoak24	fisher
+Zaran	RevolutionSoak25	fisher
+Talran	RevolutionSoak26	fisher
+Ithvar	RevolutionSoak27	fisher

@@ -1,0 +1,233 @@
+[12:35:04.198] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh11' char=Ysolde tag='f6_Ysolde'
+[12:35:04.199] LOG   [f6_Ysolde] event session_start: text log opened
+[12:35:04.199] LOG   [f6_Ysolde] event net_connect_begin: connect 127.0.0.1:2593
+[12:35:04.199] INFO  [f6_Ysolde] [net] connecting to 127.0.0.1:2593 ...
+[12:35:04.200] LOG   [f6_Ysolde] event net_connected: connect 127.0.0.1:2593
+[12:35:04.200] INFO  [f6_Ysolde] [net] connected.
+[12:35:04.200] INFO  [f6_Ysolde] [seed] sent 0x7F000001 (plaintext)
+[12:35:04.200] LOG   [f6_Ysolde] event seed_out: 0x7F000001 hex=7f000001
+[12:35:04.201] INFO  [life] loaded persistent state for Ysolde (2 places, 0 suppliers, 1 events, 2 prior sessions)
+[12:35:04.201] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[12:35:04.201] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[12:35:04.201] INFO  [f6_Ysolde] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[12:35:04.213] INFO  [f6_Ysolde] [0xA8] 1 server(s):
+[12:35:04.213] INFO  [f6_Ysolde]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[12:35:04.225] INFO  [f6_Ysolde] [0x8C] game server = 127.0.0.1:2593  seed=0x2224F3E8
+[12:35:04.225] LOG   [f6_Ysolde] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2224F3E8
+[12:35:04.225] INFO  [f6_Ysolde] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[12:35:04.225] LOG   [f6_Ysolde] event relay_same_socket: no seed re-sent; 0x91 follows
+[12:35:04.225] INFO  [f6_Ysolde] [0xB9] server features = 0x0005
+[12:35:04.225] INFO  [f6_Ysolde] [0xA9] 5 slot(s) (populated 1):
+[12:35:04.225] INFO  [f6_Ysolde]   [0] Ysolde
+[12:35:04.225] INFO  [f6_Ysolde]   [1] <empty>
+[12:35:04.225] INFO  [f6_Ysolde]   [2] <empty>
+[12:35:04.225] INFO  [f6_Ysolde]   [3] <empty>
+[12:35:04.225] INFO  [f6_Ysolde]   [4] <empty>
+[12:35:04.225] INFO  [f6_Ysolde] [ui] playing slot 0 ('Ysolde')
+[12:35:04.229] INFO  [f6_Ysolde] [0x1B] serial=0x00013C94 body=0x0190 pos=(1604,1712,20)
+[12:35:04.229] LOG   [f6_Ysolde] event login_confirm: serial=0x00013C94 body=0x0190 pos=(1604,1712,20)
+[12:35:04.229] INFO  [f6_Ysolde] [0x20] player @(1604,1712,20) facing=0
+[12:35:04.230] INFO  [f6_Ysolde] [0x55] login complete — entering world
+[12:35:04.230] LOG   [f6_Ysolde] event in_world: 0x55 received
+[12:35:04.230] INFO  [f6_Ysolde] [backpack] opening 0x40013C90
+[12:35:04.230] INFO  [f6_Ysolde] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[12:35:04.230] INFO  [f6_Ysolde] [chat ascii] System: There are 5 other players here.
+[12:35:04.230] INFO  [f6_Ysolde] [chat ascii] System: Last logged: 2026/08/29 13:18:32
+[12:35:04.230] INFO  [f6_Ysolde] [chat ascii] System: You are under the protection of the city guards
+[12:35:04.234] INFO  [f6_Ysolde] [action] requesting the skill list
+[12:35:04.234] INFO  [life] in world; asked the server for the skill list
+[12:35:04.244] INFO  [f6_Ysolde] [0x24] open container 0x40013C90 gump=60
+[12:35:04.244] INFO  [f6_Ysolde] [0x3C] container contents: 10 item(s)
+[12:35:04.244] LOG   [f6_Ysolde] event backpack_contents: serial=0x40013C90 items=10
+[12:35:04.260] INFO  [f6_Ysolde] [chat ascii] System: Bruin has arrived in Yew Territory.
+[12:35:06.851] INFO  [f6_Ysolde] [bot] world data loaded (0 blacklisted spot(s)).
+[12:35:06.852] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[12:35:06.852] INFO  [life]   gold         persisted=700        server=700        -> server value accepted
+[12:35:06.852] INFO  [life]   str          persisted=16         server=16         -> server value accepted
+[12:35:06.852] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[12:35:06.852] INFO  [life]   int          persisted=48         server=48         -> server value accepted
+[12:35:06.852] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[12:35:06.852] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[12:35:06.852] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[12:35:06.852] INFO  [life]   position     persisted=1604,1712  server=1604,1712  -> server value accepted
+[12:35:06.852] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[12:35:06.852] INFO  [life]   restored objective KEPT: GET_FOOD (progress 0)
+[12:35:06.852] INFO  [f6_Ysolde] [survival] on
+[12:35:06.852] LOG   [f6_Ysolde] event survival_mode: on
+[12:35:06.854] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[12:35:06.854] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:06.905] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:06.905] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:06.905] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:06.921] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:06.921] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=16ms The spell is not in your spellbook.
+[12:35:11.893] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:12.935] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:12.935] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:12.935] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:12.935] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:12.935] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:35:16.949] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:17.229] INFO  [f6_Ysolde] [chat ascii] Wakanda: What is it thou wishest?
+[12:35:18.966] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:18.966] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:18.966] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:18.966] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:18.966] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:35:21.994] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:25.014] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:25.014] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:25.014] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:25.014] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:25.014] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:35:27.025] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:31.051] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:31.051] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:31.051] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:31.051] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:31.051] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:35:32.080] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:37.065] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:37.065] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:37.065] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:37.080] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:37.080] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=16ms The spell is not in your spellbook.
+[12:35:37.141] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:42.190] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:43.107] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:43.107] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:43.107] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:43.108] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:43.108] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:35:47.196] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:49.160] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:49.160] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:49.160] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:49.176] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:49.176] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=16ms The spell is not in your spellbook.
+[12:35:52.247] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:35:55.202] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:35:55.202] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:35:55.202] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:35:55.202] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:35:55.203] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:35:57.256] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:01.244] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:01.244] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:01.244] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:01.244] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:01.244] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:36:02.287] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:06.860] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[12:36:07.289] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:07.289] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:07.289] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:07.289] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:07.289] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:07.290] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:36:12.331] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:13.332] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:13.332] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:13.332] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:13.333] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:13.333] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:36:17.393] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:19.340] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:19.340] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:19.340] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:19.340] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:19.340] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:36:22.447] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:25.388] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:25.388] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:25.388] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:25.388] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:25.388] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:36:27.479] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:31.427] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:31.427] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:31.428] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:31.428] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:31.428] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:36:32.533] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:37.456] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:37.456] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:37.457] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:37.457] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:37.457] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:36:37.579] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:42.609] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:43.483] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:43.483] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:43.483] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:43.483] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:43.483] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:36:47.662] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:49.534] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:49.534] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:49.534] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:49.534] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:49.534] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:36:52.697] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:36:55.549] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:36:55.549] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:36:55.549] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:36:55.549] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:36:55.549] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:36:57.727] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:01.584] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:01.584] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:01.584] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:01.600] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:01.600] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=15ms The spell is not in your spellbook.
+[12:37:02.766] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:06.869] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[12:37:07.602] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:07.602] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:07.602] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:07.602] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:07.602] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:37:07.786] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:12.827] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:13.653] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:13.653] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:13.653] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:13.654] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:13.654] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:37:17.876] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:19.712] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:19.712] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:19.712] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:19.713] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:19.713] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:37:22.907] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:25.722] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:25.722] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:25.722] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:25.722] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:25.722] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[12:37:27.955] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:31.730] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:31.730] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:31.730] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:31.745] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:31.745] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=16ms The spell is not in your spellbook.
+[12:37:32.973] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:37.752] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:37.752] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:37.752] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:37.753] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:37.753] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=0ms The spell is not in your spellbook.
+[12:37:37.999] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:43.041] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:43.780] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:43.780] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:43.780] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:43.796] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:43.796] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=16ms The spell is not in your spellbook.
+[12:37:48.050] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[12:37:49.828] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[12:37:49.828] INFO  [f6_Ysolde] [ACTION] cast_spell start
+[12:37:49.828] INFO  [f6_Ysolde] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[12:37:49.843] INFO  [f6_Ysolde] [chat ascii] System: The spell is not in your spellbook.
+[12:37:49.843] LOG   [f6_Ysolde] event action_result: cast_spell server_failure took=15ms The spell is not in your spellbook.

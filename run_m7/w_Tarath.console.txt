@@ -1,0 +1,1079 @@
+[03:13:43.448] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh03' char=Tarath tag='w_Tarath'
+[03:13:43.449] LOG   [w_Tarath] event session_start: text log opened
+[03:13:43.449] LOG   [w_Tarath] event net_connect_begin: connect 127.0.0.1:2593
+[03:13:43.449] INFO  [w_Tarath] [net] connecting to 127.0.0.1:2593 ...
+[03:13:43.450] LOG   [w_Tarath] event net_connected: connect 127.0.0.1:2593
+[03:13:43.450] INFO  [w_Tarath] [net] connected.
+[03:13:43.450] INFO  [w_Tarath] [seed] sent 0x7F000001 (plaintext)
+[03:13:43.450] LOG   [w_Tarath] event seed_out: 0x7F000001 hex=7f000001
+[03:13:43.451] INFO  [life] loaded persistent state for Tarath (6 places, 1 suppliers, 25 events, 8 prior sessions)
+[03:13:43.451] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[03:13:43.451] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[03:13:43.451] INFO  [w_Tarath] [life] autonomous player active for 'Tarath' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[03:13:43.467] INFO  [w_Tarath] [0xA8] 1 server(s):
+[03:13:43.467] INFO  [w_Tarath]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[03:13:43.482] INFO  [w_Tarath] [0x8C] game server = 127.0.0.1:2593  seed=0xD531A385
+[03:13:43.482] LOG   [w_Tarath] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD531A385
+[03:13:43.482] INFO  [w_Tarath] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[03:13:43.482] LOG   [w_Tarath] event relay_same_socket: no seed re-sent; 0x91 follows
+[03:13:43.483] INFO  [w_Tarath] [0xB9] server features = 0x0005
+[03:13:43.483] INFO  [w_Tarath] [0xA9] 5 slot(s) (populated 1):
+[03:13:43.483] INFO  [w_Tarath]   [0] Tarath
+[03:13:43.483] INFO  [w_Tarath]   [1] <empty>
+[03:13:43.483] INFO  [w_Tarath]   [2] <empty>
+[03:13:43.483] INFO  [w_Tarath]   [3] <empty>
+[03:13:43.483] INFO  [w_Tarath]   [4] <empty>
+[03:13:43.483] INFO  [w_Tarath] [ui] playing slot 0 ('Tarath')
+[03:13:43.498] INFO  [w_Tarath] [0x1B] serial=0x000143D5 body=0x0190 pos=(1429,1691,0)
+[03:13:43.498] LOG   [w_Tarath] event login_confirm: serial=0x000143D5 body=0x0190 pos=(1429,1691,0)
+[03:13:43.498] INFO  [w_Tarath] [0x20] player @(1429,1691,0) facing=7
+[03:13:43.498] INFO  [w_Tarath] [0x55] login complete — entering world
+[03:13:43.498] LOG   [w_Tarath] event in_world: 0x55 received
+[03:13:43.498] INFO  [w_Tarath] [backpack] opening 0x400143D3
+[03:13:43.498] INFO  [w_Tarath] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[03:13:43.498] INFO  [w_Tarath] [chat ascii] System: There are 0 other players here.
+[03:13:43.498] INFO  [w_Tarath] [chat ascii] System: Last logged: 2026/08/29 20:21:54
+[03:13:43.498] INFO  [w_Tarath] [chat ascii] System: You are under the protection of the city guards
+[03:13:43.502] INFO  [w_Tarath] [action] requesting the skill list
+[03:13:43.502] INFO  [life] in world; asked the server for the skill list
+[03:13:43.502] INFO  [w_Tarath] [0x24] open container 0x400143D3 gump=60
+[03:13:43.502] INFO  [w_Tarath] [0x3C] container contents: 7 item(s)
+[03:13:43.502] LOG   [w_Tarath] event backpack_contents: serial=0x400143D3 items=7
+[03:13:46.110] INFO  [w_Tarath] [bot] world data loaded (0 blacklisted spot(s)).
+[03:13:46.111] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[03:13:46.111] INFO  [life]   gold         persisted=407        server=407        -> server value accepted
+[03:13:46.111] INFO  [life]   str          persisted=40         server=40         -> server value accepted
+[03:13:46.111] INFO  [life]   dex          persisted=32         server=32         -> server value accepted
+[03:13:46.111] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[03:13:46.111] INFO  [life]   skill_44     persisted=51.5       server=51.5       -> server value accepted
+[03:13:46.111] INFO  [life]   skill_40     persisted=50.1       server=50.1       -> server value accepted
+[03:13:46.111] INFO  [life]   skill_27     persisted=22.2       server=22.2       -> server value accepted
+[03:13:46.111] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[03:13:46.111] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[03:13:46.111] INFO  [life]   skill_11     persisted=22.0       server=22.0       -> server value accepted
+[03:13:46.111] INFO  [life]   position     persisted=1429,1691  server=1429,1691  -> server value accepted
+[03:13:46.111] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[03:13:46.111] INFO  [life]   restored objective KEPT: GET_FOOD (progress 67)
+[03:13:46.111] INFO  [w_Tarath] [survival] on
+[03:13:46.111] LOG   [w_Tarath] event survival_mode: on
+[03:13:46.113] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:13:46.113] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:13:46.166] INFO  [life] food: fed, and carrying 2 for later -- this errand is done
+[03:13:46.166] INFO  [life] goal_completed=GET_FOOD progress=67
+[03:13:46.168] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:13:46.228] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[03:13:46.228] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:13:46.228] INFO  [life]   score=130.0
+[03:13:46.228] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:13:46.228] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:13:46.228] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:13:46.228] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:13:46.228] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:13:46.228] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1429,1691)
+[03:13:46.228] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1429,1691)
+[03:13:46.228] INFO  [w_Tarath] [travel] mode moongate         usable   <- chosen
+[03:13:46.228] INFO  [w_Tarath] [travel] mode walk             usable
+[03:13:46.228] INFO  [w_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[03:13:46.228] INFO  [w_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[03:13:46.228] LOG   [w_Tarath] event travel_mode: moongate
+[03:13:46.229] INFO  [w_Tarath] [travel] plan Britain healer: ok legs=3 ~96 tiles transit=0 nodes=21
+[03:13:46.289] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:13:46.289] INFO  [w_Tarath] [action] goto (1448,1656) from (1429,1691,0)
+[03:13:46.289] LOG   [w_Tarath] event goto_start: target=(1448,1656) from=(1429,1691)
+[03:13:46.289] INFO  [w_Tarath] [bot] running from (1429,1691,0) to (1448,1656)
+[03:13:46.289] INFO  [w_Tarath] [bot] planning path to (1448,1656) in background
+[03:13:46.350] INFO  [w_Tarath] [bot] replan to (1448,1656): 60 steps in 5472.8us
+[03:13:48.700] INFO  [w_Tarath] [bot] door ahead at (1439,1692,z0); OpenDoor before step
+[03:13:48.700] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:13:50.351] INFO  [w_Tarath] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[03:13:50.352] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:13:50.352] INFO  [w_Tarath] [0x20] player @(1439,1693,0) facing=2
+[03:13:50.352] INFO  [w_Tarath] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[03:13:50.352] LOG   [w_Tarath] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[03:13:51.148] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:13:51.581] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:13:51.581] INFO  [w_Tarath] [action] goto (1448,1656) from (1439,1693,0)
+[03:13:51.581] LOG   [w_Tarath] event goto_start: target=(1448,1656) from=(1439,1693)
+[03:13:51.581] INFO  [w_Tarath] [bot] running from (1439,1693,0) to (1448,1656)
+[03:13:51.581] INFO  [w_Tarath] [bot] planning path to (1448,1656) in background
+[03:13:51.627] INFO  [w_Tarath] [bot] replan to (1448,1656): 49 steps in 8523.4us
+[03:13:56.153] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:01.165] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:05.321] INFO  [w_Tarath] [bot] arrived at (1448,1656,10)
+[03:14:05.321] INFO  [w_Tarath] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[03:14:05.321] LOG   [w_Tarath] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[03:14:05.321] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:14:05.321] INFO  [w_Tarath] [action] goto (1464,1624) from (1448,1656,10)
+[03:14:05.322] LOG   [w_Tarath] event goto_start: target=(1464,1624) from=(1448,1656)
+[03:14:05.322] INFO  [w_Tarath] [bot] running from (1448,1656,10) to (1464,1624)
+[03:14:05.322] INFO  [w_Tarath] [bot] planning path to (1464,1624) in background
+[03:14:05.382] INFO  [w_Tarath] [bot] replan to (1464,1624): 43 steps in 3010.2us
+[03:14:06.221] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:11.273] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:16.325] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:18.877] INFO  [w_Tarath] [bot] arrived at (1464,1624,20)
+[03:14:18.877] INFO  [w_Tarath] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[03:14:18.877] LOG   [w_Tarath] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[03:14:18.877] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:14:18.877] INFO  [w_Tarath] [action] goto (1471,1611) from (1464,1624,20)
+[03:14:18.877] LOG   [w_Tarath] event goto_start: target=(1471,1611) from=(1464,1624)
+[03:14:18.877] INFO  [w_Tarath] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[03:14:18.877] INFO  [w_Tarath] [bot] planning path to (1471,1611) in background
+[03:14:18.938] INFO  [w_Tarath] [bot] replan to (1471,1611): 31 steps in 6509.0us
+[03:14:21.335] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:25.909] INFO  [w_Tarath] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[03:14:25.910] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:14:26.340] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:27.354] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1476,1612,20)
+[03:14:27.354] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=3 plans=1 why=''
+[03:14:29.100] INFO  [w_Tarath] [bot] arrived at (1471,1611,20)
+[03:14:31.349] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:32.435] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:32.435] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:32.435] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:32.435] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:14:36.378] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:37.548] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:37.548] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:37.548] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:37.548] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:14:41.381] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:42.618] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:42.618] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:42.618] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:42.618] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:14:46.204] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:14:46.387] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:47.698] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:47.698] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:47.698] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:47.698] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:14:47.822] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:14:47.822] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:14:47.822] INFO  [life]   score=130.0
+[03:14:47.822] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:14:47.822] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:14:47.822] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:14:47.822] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:14:47.822] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:14:51.419] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:52.773] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:52.773] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:52.773] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:52.773] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:14:56.461] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:14:57.843] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:14:57.843] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:14:57.843] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:14:57.843] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:01.495] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:02.908] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:02.908] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:02.908] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:02.908] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:06.553] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:07.794] INFO  [w_Tarath] [chat ascii] Dale: Thou wishest to speak with me?
+[03:15:07.980] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:07.980] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:07.980] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:07.980] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:11.588] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:13.061] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:13.061] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:13.061] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:13.061] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:13.184] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:15:13.184] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:15:13.184] INFO  [life]   score=130.0
+[03:15:13.184] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:15:13.184] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:15:13.184] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:15:13.184] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:15:13.184] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:15:16.594] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:18.147] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:18.147] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:18.147] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:18.147] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:21.624] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:23.232] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:23.232] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:23.232] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:23.232] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:26.675] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:28.318] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:28.318] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:28.318] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:28.318] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:31.730] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:33.381] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:33.381] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:33.381] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:33.381] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:36.776] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:38.450] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:38.450] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:38.450] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:38.450] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:38.572] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:15:38.572] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:15:38.572] INFO  [life]   score=130.0
+[03:15:38.572] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:15:38.572] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:15:38.572] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:15:38.572] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:15:38.572] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:15:41.825] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:43.519] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:43.519] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:43.519] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:43.519] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:46.228] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:15:46.835] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:48.602] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:48.602] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:48.602] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:48.602] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:51.879] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:53.710] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:53.710] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:53.710] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:53.710] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:15:56.912] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:15:58.788] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:15:58.788] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:15:58.788] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:15:58.788] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:01.969] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:03.884] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:03.884] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:03.884] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:03.884] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:04.006] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:16:04.007] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:16:04.007] INFO  [life]   score=130.0
+[03:16:04.007] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:16:04.007] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:16:04.007] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:16:04.007] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:16:04.007] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:16:06.987] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:08.949] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:08.949] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:08.949] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:08.949] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:11.992] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:13.980] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:13.980] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:13.980] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:13.980] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:17.051] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:19.055] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:19.055] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:19.055] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:19.055] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:22.110] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:24.127] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:24.128] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:24.128] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:24.128] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:27.113] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:29.200] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:29.200] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:29.200] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:29.200] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:29.323] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:16:29.323] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:16:29.323] INFO  [life]   score=130.0
+[03:16:29.323] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:16:29.323] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:16:29.323] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:16:29.323] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:16:29.323] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:16:32.124] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:34.315] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:34.315] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:34.315] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:34.315] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:37.140] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:39.414] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:39.414] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:39.414] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:39.414] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:42.199] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:44.528] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:44.528] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:44.528] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:44.528] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:46.265] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:16:47.227] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:49.592] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:49.592] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:49.592] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:49.592] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:52.245] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:54.687] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:54.687] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:54.687] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:54.687] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:16:54.810] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:16:54.810] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:16:54.810] INFO  [life]   score=130.0
+[03:16:54.810] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:16:54.810] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:16:54.810] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:16:54.810] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:16:54.810] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:16:57.265] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:16:59.795] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:16:59.795] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:16:59.795] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:16:59.795] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:02.273] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:04.912] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:04.912] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:04.912] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:04.912] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:07.324] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:09.995] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:09.996] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:09.996] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:09.996] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:12.378] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:15.119] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:15.119] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:15.119] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:15.119] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:17.423] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:20.227] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:20.227] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:20.227] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:20.227] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:20.350] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:17:20.350] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:17:20.350] INFO  [life]   score=130.0
+[03:17:20.350] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:17:20.350] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:17:20.350] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:17:20.350] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:17:20.350] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:17:22.465] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:25.324] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:25.324] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:25.324] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:25.324] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:27.508] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:30.403] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:30.403] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:30.403] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:30.403] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:32.552] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:35.410] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:35.410] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:35.410] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:35.410] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:37.601] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:40.520] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:40.520] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:40.520] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:40.520] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:42.629] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:45.618] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:45.618] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:45.618] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:45.618] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:45.743] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:17:45.743] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:17:45.743] INFO  [life]   score=130.0
+[03:17:45.743] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:17:45.743] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:17:45.743] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:17:45.743] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:17:45.743] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:17:46.297] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:17:47.641] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:50.719] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:50.719] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:50.719] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:50.719] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:52.680] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:17:55.823] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:17:55.823] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:17:55.823] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:17:55.823] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:17:57.740] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:00.887] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:00.887] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:00.887] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:00.887] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:02.745] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:05.984] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:05.984] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:05.984] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:05.984] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:06.243] INFO  [w_Tarath] [chat ascii] System: World save in 10 seconds
+[03:18:07.794] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:11.072] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:11.072] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:11.072] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:11.072] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:11.192] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:18:11.192] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:18:11.192] INFO  [life]   score=130.0
+[03:18:11.192] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:18:11.192] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:18:11.192] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:18:11.192] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:18:11.192] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:18:12.849] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:16.184] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:16.184] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:16.184] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:16.184] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:16.249] INFO  [w_Tarath] [chat ascii] System: World save has been initiated.
+[03:18:17.859] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:21.274] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:21.274] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:21.274] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:21.274] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:22.866] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:26.347] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:26.347] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:26.347] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:26.347] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:27.877] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:31.446] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:31.446] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:31.446] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:31.446] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:32.925] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:36.517] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:36.517] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:36.517] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:36.517] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:36.625] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:18:36.625] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:18:36.625] INFO  [life]   score=130.0
+[03:18:36.625] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:18:36.625] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:18:36.625] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:18:36.625] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:18:36.625] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:18:37.979] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:41.569] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:41.569] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:41.569] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:41.569] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:43.012] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:46.340] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:18:46.642] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:46.642] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:46.642] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:46.642] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:48.043] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:51.757] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:51.758] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:51.758] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:51.758] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:53.092] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:18:56.846] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:18:56.846] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:18:56.846] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:18:56.846] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:18:58.098] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:01.936] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:01.936] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:01.936] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:01.936] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:02.028] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:19:02.028] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:19:02.028] INFO  [life]   score=130.0
+[03:19:02.028] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:19:02.028] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:19:02.028] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:19:02.028] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:19:02.028] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:19:03.118] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:07.000] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:07.000] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:07.000] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:07.000] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:08.123] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:12.115] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:12.115] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:12.115] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:12.115] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:13.158] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:17.213] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:17.213] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:17.213] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:17.213] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:18.180] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:22.280] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:22.280] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:22.280] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:22.280] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:23.185] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:27.373] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:27.373] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:27.373] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:27.373] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:27.496] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:19:27.496] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:19:27.496] INFO  [life]   score=130.0
+[03:19:27.496] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:19:27.496] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:19:27.496] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:19:27.496] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:19:27.496] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:19:28.237] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:32.454] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:32.454] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:32.454] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:32.454] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:33.253] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:37.539] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:37.539] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:37.539] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:37.539] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:38.306] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:42.605] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:42.605] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:42.605] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:42.605] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:43.340] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:46.374] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:19:47.723] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:47.723] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:47.723] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:47.723] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:48.400] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:52.755] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:52.755] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:52.755] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:52.755] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:52.832] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:19:52.832] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:19:52.832] INFO  [life]   score=130.0
+[03:19:52.832] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:19:52.832] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:19:52.832] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:19:52.832] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:19:52.832] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:19:53.443] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:19:57.825] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:19:57.825] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:19:57.825] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:19:57.825] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:19:58.482] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:02.866] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:02.866] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:02.866] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:02.866] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:03.538] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:07.985] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:07.985] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:07.985] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:07.985] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:08.597] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:13.054] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:13.054] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:13.054] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:13.054] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:13.636] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:18.167] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:18.167] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:18.167] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:18.167] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:18.290] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:20:18.290] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:20:18.290] INFO  [life]   score=130.0
+[03:20:18.290] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:20:18.290] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:20:18.290] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:20:18.290] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:20:18.290] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:20:18.658] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:23.271] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:23.271] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:23.271] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:23.271] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:23.696] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:28.330] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:28.330] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:28.330] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:28.330] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:28.700] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:33.451] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:33.451] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:33.451] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:33.451] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:33.727] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:38.529] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:38.529] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:38.529] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:38.529] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:38.776] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:43.636] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:43.636] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:43.636] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:43.636] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:43.760] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:20:43.760] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:20:43.760] INFO  [life]   score=130.0
+[03:20:43.760] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:20:43.760] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:20:43.760] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:20:43.760] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:20:43.760] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:20:43.822] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:46.410] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:20:48.729] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:48.729] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:48.729] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:48.729] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:48.850] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:53.811] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:53.811] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:53.811] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:53.811] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:53.858] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:20:58.871] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:20:58.871] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:20:58.871] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:20:58.871] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:20:58.871] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:03.881] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:03.881] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:03.881] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:03.881] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:03.881] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:08.937] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:08.998] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:08.998] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:08.998] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:08.998] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:09.121] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:21:09.121] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:21:09.121] INFO  [life]   score=130.0
+[03:21:09.121] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:21:09.121] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:21:09.121] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:21:09.121] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:21:09.121] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:21:13.949] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:14.072] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:14.072] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:14.072] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:14.072] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:19.002] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:19.125] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:19.125] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:19.125] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:19.125] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:24.018] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:24.203] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:24.203] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:24.203] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:24.203] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:29.045] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:29.290] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:29.290] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:29.290] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:29.290] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:34.070] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:34.377] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:34.377] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:34.377] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:34.377] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:34.469] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:21:34.469] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:21:34.469] INFO  [life]   score=130.0
+[03:21:34.469] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:21:34.469] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:21:34.469] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:21:34.469] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:21:34.469] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:21:39.078] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:39.449] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:39.449] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:39.449] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:39.449] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:44.091] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:44.521] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:44.521] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:44.521] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:44.521] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:46.458] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:21:49.111] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:49.599] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:49.599] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:49.599] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:49.599] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:54.153] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:54.661] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:54.661] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:54.661] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:54.661] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:59.204] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:21:59.742] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:21:59.742] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:21:59.742] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:21:59.742] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:21:59.865] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:21:59.865] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:21:59.865] INFO  [life]   score=130.0
+[03:21:59.865] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:21:59.865] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:21:59.865] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:21:59.865] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:21:59.865] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:22:03.698] INFO  [w_Tarath] [chat ascii] Dale: Aye?
+[03:22:04.250] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:04.817] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:04.817] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:04.817] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:04.817] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:09.267] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:09.926] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:09.926] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:09.926] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:09.926] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:14.272] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:15.014] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:15.014] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:15.014] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:15.014] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:19.324] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:20.075] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:20.075] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:20.075] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:20.075] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:24.360] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:25.152] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:25.152] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:25.152] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:25.152] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:25.276] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:22:25.276] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:22:25.276] INFO  [life]   score=130.0
+[03:22:25.276] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:22:25.276] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:22:25.276] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:22:25.276] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:22:25.276] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:22:29.395] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:30.254] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:30.254] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:30.254] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:30.254] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:34.450] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:35.343] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:35.343] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:35.343] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:35.343] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:39.509] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:40.431] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:40.431] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:40.431] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:40.431] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:44.524] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:45.508] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:45.508] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:45.508] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:45.508] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:46.507] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:22:49.533] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:50.591] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:50.591] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:50.591] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:50.591] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:50.713] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:22:50.713] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:22:50.713] INFO  [life]   score=130.0
+[03:22:50.713] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:22:50.713] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:22:50.713] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:22:50.713] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:22:50.713] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:22:54.543] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:22:55.708] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:22:55.708] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:22:55.708] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:22:55.708] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:22:59.577] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:00.817] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:00.817] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:00.817] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:00.817] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:04.623] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:05.910] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:05.910] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:05.910] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:05.910] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:06.580] INFO  [w_Tarath] [chat ascii] System: World save in 10 seconds
+[03:23:09.627] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:10.982] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:10.982] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:10.982] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:10.982] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:14.640] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:16.066] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:16.066] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:16.066] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:16.066] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:16.190] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:23:16.190] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:23:16.190] INFO  [life]   score=130.0
+[03:23:16.190] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:23:16.190] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:23:16.190] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:23:16.190] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:23:16.190] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:23:16.577] INFO  [w_Tarath] [chat ascii] System: World save has been initiated.
+[03:23:19.650] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:21.136] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:21.136] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:21.136] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:21.136] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:24.711] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:26.226] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:26.226] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:26.226] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:26.226] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:29.753] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:31.306] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:31.306] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:31.306] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:31.306] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:34.798] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:36.414] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:36.414] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:36.414] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:36.414] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:39.826] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:41.530] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:41.530] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:41.530] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:41.530] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:41.653] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:23:41.653] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:23:41.653] INFO  [life]   score=130.0
+[03:23:41.653] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:23:41.653] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:23:41.653] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:23:41.653] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:23:41.653] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:23:44.863] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:46.538] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:23:46.596] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:46.596] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:46.596] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:46.596] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:49.892] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:51.661] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:51.661] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:51.661] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:51.661] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:54.946] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:23:56.721] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:23:56.721] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:23:56.721] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:23:56.721] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:23:59.990] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:01.833] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:01.833] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:01.833] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:01.833] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:05.009] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:06.955] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:06.955] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:06.955] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:06.955] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:07.078] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:24:07.078] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:24:07.078] INFO  [life]   score=130.0
+[03:24:07.078] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:24:07.078] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:24:07.078] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:24:07.078] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:24:07.078] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:24:10.054] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:12.058] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:12.058] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:12.058] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:12.058] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:15.089] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:17.147] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:17.147] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:17.148] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:17.148] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:20.095] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:22.245] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:22.245] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:22.245] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:22.245] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:25.124] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:27.340] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:27.340] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:27.340] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:27.340] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:30.179] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:32.444] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:32.444] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:32.444] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:32.444] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:32.566] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:24:32.566] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:24:32.566] INFO  [life]   score=130.0
+[03:24:32.566] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:24:32.566] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:24:32.566] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:24:32.566] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:24:32.566] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:24:35.236] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:37.552] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:37.552] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:37.552] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:37.552] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:40.295] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:42.631] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:42.631] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:42.631] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:42.631] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:45.336] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:46.560] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:24:47.724] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:47.724] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:47.724] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:47.724] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:50.342] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:52.829] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:52.829] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:52.829] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:52.829] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:55.389] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:24:57.951] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:24:57.951] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:24:57.951] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:24:57.951] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:24:58.074] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:24:58.074] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:24:58.074] INFO  [life]   score=130.0
+[03:24:58.074] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:24:58.074] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:24:58.074] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:24:58.074] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:24:58.074] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:25:00.414] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:03.021] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:03.021] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:03.021] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:03.021] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:05.448] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:08.092] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:08.092] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:08.092] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:08.092] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:10.452] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:13.156] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:13.156] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:13.156] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:13.156] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:15.455] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:18.228] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:18.228] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:18.228] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:18.228] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:20.478] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:23.313] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:23.313] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:23.313] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:23.313] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:23.375] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[03:25:23.375] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages 0.50) NeedLogs(logs 0.40) NeedTraining(Tactics 0.34) NeedTraining(Anatomy 0.32) NeedTraining(Swordsmanship 0.27) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=nothing (target 0.0)
+[03:25:23.375] INFO  [life]   score=130.0
+[03:25:23.375] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:25:23.375] INFO  [life]   reason: bandages=0 low=8, no supplier and the vendor policy grades a bandage REVOLUTION_NPC_VERIFIED
+[03:25:23.375] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (97 x i_log spare, and no buyer known -- on this shard it is a player-market good)
+[03:25:23.375] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[03:25:23.375] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 407 (buyable at 200))
+[03:25:25.486] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:28.417] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:28.417] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:28.417] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:28.417] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:30.487] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:33.536] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:33.536] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:33.536] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:33.536] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:35.510] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:38.632] INFO  [w_Tarath] [travel] Britain healer -> (1471,1611) r=5 from (1471,1611)
+[03:25:38.632] LOG   [w_Tarath] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1611)
+[03:25:38.632] INFO  [w_Tarath] [travel] Britain healer ARRIVED at (1471,1611,20)
+[03:25:38.632] LOG   [w_Tarath] event travel_done: label='Britain healer' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[03:25:40.550] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:43.547] INFO  [life] session_end_requested reason="session time limit reached"
+[03:25:43.608] INFO  [life] wind-down: travelling to a known bank at 1426,1688 before logout (attempt 1)
+[03:25:43.608] INFO  [w_Tarath] [travel] logout_safe -> (1426,1688) r=3 from (1471,1611)
+[03:25:43.608] LOG   [w_Tarath] event travel_start: label='logout_safe' target=(1426,1688) radius=3 from=(1471,1611)
+[03:25:43.608] INFO  [w_Tarath] [travel] mode moongate         usable   <- chosen
+[03:25:43.608] INFO  [w_Tarath] [travel] mode walk             usable
+[03:25:43.608] INFO  [w_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[03:25:43.608] INFO  [w_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[03:25:43.608] LOG   [w_Tarath] event travel_mode: moongate
+[03:25:43.608] INFO  [w_Tarath] [travel] plan logout_safe: ok legs=3 ~96 tiles transit=0 nodes=11
+[03:25:43.670] INFO  [w_Tarath] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[03:25:43.670] LOG   [w_Tarath] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[03:25:43.670] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:25:43.670] INFO  [w_Tarath] [action] goto (1464,1640) from (1471,1611,20)
+[03:25:43.670] LOG   [w_Tarath] event goto_start: target=(1464,1640) from=(1471,1611)
+[03:25:43.670] INFO  [w_Tarath] [bot] running from (1471,1611,20) to (1464,1640)
+[03:25:43.670] INFO  [w_Tarath] [bot] planning path to (1464,1640) in background
+[03:25:43.733] INFO  [w_Tarath] [bot] replan to (1464,1640): 37 steps in 1322.8us
+[03:25:45.561] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:45.623] INFO  [w_Tarath] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[03:25:45.638] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:25:46.831] INFO  [w_Tarath] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[03:25:46.831] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:25:50.572] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:55.581] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:25:55.842] INFO  [w_Tarath] [bot] arrived at (1464,1640,20)
+[03:25:55.842] INFO  [w_Tarath] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[03:25:55.842] LOG   [w_Tarath] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[03:25:55.842] INFO  [w_Tarath] [travel] avoiding 2 teleporter pad(s) on this leg
+[03:25:55.842] INFO  [w_Tarath] [action] goto (1448,1672) from (1464,1640,20)
+[03:25:55.842] LOG   [w_Tarath] event goto_start: target=(1448,1672) from=(1464,1640)
+[03:25:55.842] INFO  [w_Tarath] [bot] running from (1464,1640,20) to (1448,1672)
+[03:25:55.842] INFO  [w_Tarath] [bot] planning path to (1448,1672) in background
+[03:25:55.902] INFO  [w_Tarath] [bot] replan to (1448,1672): 37 steps in 1976.6us
+[03:26:00.634] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:26:05.676] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:26:07.147] INFO  [w_Tarath] [bot] arrived at (1448,1672,10)
+[03:26:07.147] INFO  [w_Tarath] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[03:26:07.147] LOG   [w_Tarath] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[03:26:07.147] INFO  [w_Tarath] [action] goto (1426,1688) from (1448,1672,10)
+[03:26:07.147] LOG   [w_Tarath] event goto_start: target=(1426,1688) from=(1448,1672)
+[03:26:07.147] INFO  [w_Tarath] [bot] running from (1448,1672,10) to (1426,1688)
+[03:26:07.147] INFO  [w_Tarath] [bot] planning path to (1426,1688) in background
+[03:26:07.209] INFO  [w_Tarath] [bot] replan to (1426,1688): 41 steps in 5246.0us
+[03:26:10.688] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:26:14.509] INFO  [w_Tarath] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[03:26:14.509] INFO  [w_Tarath] [chat ascii] System: Opening door...
+[03:26:15.706] INFO  [w_Tarath] [survival] hp 40/40 (100%) -> fight
+[03:26:17.454] INFO  [w_Tarath] [chat ascii] Lyndon: Hmm?
+[03:26:17.592] INFO  [w_Tarath] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=7 in 106.4us
+[03:26:19.615] INFO  [w_Tarath] [travel] logout_safe ARRIVED at (1427,1689,0)
+[03:26:19.615] LOG   [w_Tarath] event travel_done: label='logout_safe' ok=1 at=(1427,1689) legs=3 plans=1 why=''
+[03:26:19.675] INFO  [life] wind-down: arrived somewhere safe at 1427,1689
+[03:26:19.737] INFO  [life] session_summary duration=756s goals=1/27 gold=407->407 skills=205.8->205.8 logs=+0 kills=0 deaths=0 places=6 suppliers=1
+[03:26:19.737] INFO  [life] session_goals families=1 picks=27 top=100% varied=0 | upkeep=27(100%) | REPLACE_EQUIPMENT=27(100%)
+[03:26:19.740] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[03:26:19.740] INFO  [life] logging out
+[03:26:19.740] INFO  [w_Tarath] [action] logout requested
+[03:26:19.740] LOG   [w_Tarath] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[03:26:19.740] INFO  [w_Tarath] [0xD1] logout acknowledged (accepted=1)
+[03:26:19.740] LOG   [w_Tarath] event logout_ack: accepted
+[03:26:19.740] INFO  [w_Tarath] [net] closing connection (logout acknowledged)
+[03:26:19.740] LOG   [w_Tarath] event logout_complete: acked

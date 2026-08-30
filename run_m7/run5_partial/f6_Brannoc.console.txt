@@ -1,0 +1,525 @@
+[13:05:55.080] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh01' char=Brannoc tag='f6_Brannoc'
+[13:05:55.081] LOG   [f6_Brannoc] event session_start: text log opened
+[13:05:55.081] LOG   [f6_Brannoc] event net_connect_begin: connect 127.0.0.1:2593
+[13:05:55.081] INFO  [f6_Brannoc] [net] connecting to 127.0.0.1:2593 ...
+[13:05:55.082] LOG   [f6_Brannoc] event net_connected: connect 127.0.0.1:2593
+[13:05:55.082] INFO  [f6_Brannoc] [net] connected.
+[13:05:55.082] INFO  [f6_Brannoc] [seed] sent 0x7F000001 (plaintext)
+[13:05:55.082] LOG   [f6_Brannoc] event seed_out: 0x7F000001 hex=7f000001
+[13:05:55.083] INFO  [life] loaded persistent state for Brannoc (3 places, 0 suppliers, 13 events, 3 prior sessions)
+[13:05:55.083] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[13:05:55.083] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[13:05:55.083] INFO  [f6_Brannoc] [life] autonomous player active for 'Brannoc' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[13:05:55.086] INFO  [f6_Brannoc] [0xA8] 1 server(s):
+[13:05:55.086] INFO  [f6_Brannoc]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[13:05:55.101] INFO  [f6_Brannoc] [0x8C] game server = 127.0.0.1:2593  seed=0x3B3FC2A9
+[13:05:55.101] LOG   [f6_Brannoc] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3B3FC2A9
+[13:05:55.101] INFO  [f6_Brannoc] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:05:55.101] LOG   [f6_Brannoc] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:05:55.101] INFO  [f6_Brannoc] [0xB9] server features = 0x0005
+[13:05:55.101] INFO  [f6_Brannoc] [0xA9] 5 slot(s) (populated 1):
+[13:05:55.101] INFO  [f6_Brannoc]   [0] Brannoc
+[13:05:55.101] INFO  [f6_Brannoc]   [1] <empty>
+[13:05:55.101] INFO  [f6_Brannoc]   [2] <empty>
+[13:05:55.101] INFO  [f6_Brannoc]   [3] <empty>
+[13:05:55.101] INFO  [f6_Brannoc]   [4] <empty>
+[13:05:55.101] INFO  [f6_Brannoc] [ui] playing slot 0 ('Brannoc')
+[13:05:55.109] INFO  [f6_Brannoc] [0x1B] serial=0x00014501 body=0x0190 pos=(1852,2679,0)
+[13:05:55.109] LOG   [f6_Brannoc] event login_confirm: serial=0x00014501 body=0x0190 pos=(1852,2679,0)
+[13:05:55.109] INFO  [f6_Brannoc] [0x20] player @(1852,2679,0) facing=6
+[13:05:55.109] INFO  [f6_Brannoc] [0x55] login complete — entering world
+[13:05:55.109] LOG   [f6_Brannoc] event in_world: 0x55 received
+[13:05:55.109] INFO  [f6_Brannoc] [backpack] opening 0x400144BD
+[13:05:55.109] INFO  [f6_Brannoc] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:05:55.109] INFO  [f6_Brannoc] [chat ascii] System: There is 1 other player here.
+[13:05:55.109] INFO  [f6_Brannoc] [chat ascii] System: Last logged: 2026/08/29 12:38:15
+[13:05:55.109] INFO  [f6_Brannoc] [chat ascii] System: You are under the protection of the guards
+[13:05:55.113] INFO  [f6_Brannoc] [action] requesting the skill list
+[13:05:55.113] INFO  [life] in world; asked the server for the skill list
+[13:05:55.117] INFO  [f6_Brannoc] [0x24] open container 0x400144BD gump=60
+[13:05:55.117] INFO  [f6_Brannoc] [0x3C] container contents: 6 item(s)
+[13:05:55.117] LOG   [f6_Brannoc] event backpack_contents: serial=0x400144BD items=6
+[13:05:55.132] INFO  [f6_Brannoc] [chat ascii] System: Tarath has arrived in Britain.
+[13:05:55.158] INFO  [f6_Brannoc] [chat ascii] System: Voris has arrived in Britain.
+[13:05:55.178] INFO  [f6_Brannoc] [chat ascii] System: Kaelen has arrived in Britain.
+[13:05:55.225] INFO  [f6_Brannoc] [chat ascii] System: Ysolde has arrived in Britain.
+[13:05:55.225] INFO  [f6_Brannoc] [chat ascii] System: Bruin has arrived in Magincia.
+[13:05:57.696] INFO  [f6_Brannoc] [bot] world data loaded (0 blacklisted spot(s)).
+[13:05:57.697] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[13:05:57.697] INFO  [life]   gold         persisted=837        server=837        -> server value accepted
+[13:05:57.697] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[13:05:57.697] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[13:05:57.697] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[13:05:57.697] INFO  [life]   skill_7      persisted=50.0       server=50.0       -> server value accepted
+[13:05:57.697] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[13:05:57.697] INFO  [life]   skill_37     persisted=16.3       server=16.3       -> server value accepted
+[13:05:57.697] INFO  [life]   skill_4      persisted=16.3       server=16.3       -> server value accepted
+[13:05:57.697] INFO  [life]   position     persisted=1852,2679  server=1852,2679  -> server value accepted
+[13:05:57.697] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:05:57.697] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[13:05:57.697] INFO  [f6_Brannoc] [survival] on
+[13:05:57.697] LOG   [f6_Brannoc] event survival_mode: on
+[13:05:57.699] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:05:57.699] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:05:57.754] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[13:05:57.754] INFO  [f6_Brannoc] [travel] Vesper tinker -> (2899,790) r=5 from (1852,2679)
+[13:05:57.754] LOG   [f6_Brannoc] event travel_start: label='Vesper tinker' target=(2899,790) radius=5 from=(1852,2679)
+[13:05:57.754] INFO  [f6_Brannoc] [travel] mode moongate         usable   <- chosen
+[13:05:57.754] INFO  [f6_Brannoc] [travel] mode walk             usable
+[13:05:57.754] INFO  [f6_Brannoc] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:05:57.754] INFO  [f6_Brannoc] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:05:57.754] LOG   [f6_Brannoc] event travel_mode: moongate
+[13:05:57.755] INFO  [f6_Brannoc] [travel] plan Vesper tinker: ok legs=26 ~1160 tiles transit=1 nodes=2716
+[13:05:57.816] INFO  [f6_Brannoc] [action] goto (1880,2696) from (1852,2679,0)
+[13:05:57.816] LOG   [f6_Brannoc] event goto_start: target=(1880,2696) from=(1852,2679)
+[13:05:57.816] INFO  [f6_Brannoc] [bot] running from (1852,2679,0) to (1880,2696)
+[13:05:57.816] INFO  [f6_Brannoc] [bot] planning path to (1880,2696) in background
+[13:05:57.878] INFO  [f6_Brannoc] [bot] replan to (1880,2696): 31 steps in 3732.9us
+[13:06:00.575] INFO  [f6_Brannoc] [bot] door ahead at (1859,2688,z0); OpenDoor before step
+[13:06:00.575] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[13:06:02.754] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:05.324] INFO  [f6_Brannoc] [bot] step (1872,2698,3)->(1873,2697,3) rejected; OpenDoor + retry
+[13:06:06.061] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=10 in 65.3us
+[13:06:07.247] INFO  [f6_Brannoc] [bot] step (1872,2698,3)->(1873,2697,3) rejected; avoiding edge + rerouting
+[13:06:07.247] INFO  [f6_Brannoc] [bot] planning path to (1880,2696) in background
+[13:06:07.248] INFO  [f6_Brannoc] [bot] replan to (1880,2696): 9 steps in 540.3us
+[13:06:07.800] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:08.292] INFO  [f6_Brannoc] [bot] step (1872,2699,4)->(1873,2698,4) rejected; OpenDoor + retry
+[13:06:09.031] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=9 in 35.9us
+[13:06:09.796] INFO  [f6_Brannoc] [bot] step (1872,2698,3)->(1873,2698,3) rejected; OpenDoor + retry
+[13:06:10.532] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=10 in 64.2us
+[13:06:11.669] INFO  [f6_Brannoc] [bot] step (1872,2698,3)->(1873,2698,3) rejected; avoiding edge + rerouting
+[13:06:11.669] INFO  [f6_Brannoc] [bot] planning path to (1880,2696) in background
+[13:06:11.791] INFO  [f6_Brannoc] [bot] replan to (1880,2696): 116 steps in 95715.9us
+[13:06:12.858] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:17.899] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:22.956] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:27.999] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:28.874] INFO  [f6_Brannoc] [bot] step (1911,2671,0)->(1912,2672,0) rejected; OpenDoor + retry
+[13:06:29.629] INFO  [f6_Brannoc] [bot] step (1911,2671,0)->(1912,2672,0) rejected; avoiding edge + rerouting
+[13:06:29.629] INFO  [f6_Brannoc] [bot] planning path to (1880,2696) in background
+[13:06:29.690] INFO  [f6_Brannoc] [bot] replan to (1880,2696): 51 steps in 32068.7us
+[13:06:33.008] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:36.273] INFO  [f6_Brannoc] [bot] step (1905,2691,0)->(1904,2692,0) rejected; OpenDoor + retry
+[13:06:37.013] INFO  [f6_Brannoc] [bot] step (1905,2691,0)->(1904,2692,0) rejected; avoiding edge + rerouting
+[13:06:37.013] INFO  [f6_Brannoc] [bot] planning path to (1880,2696) in background
+[13:06:37.075] INFO  [f6_Brannoc] [bot] replan to (1880,2696): 29 steps in 13713.4us
+[13:06:38.024] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:43.051] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:45.986] INFO  [f6_Brannoc] [bot] arrived at (1880,2696,0)
+[13:06:45.987] INFO  [f6_Brannoc] [action] goto finished at (1880,2696,0); target (1880,2696); ARRIVED (off by 0 tile(s))
+[13:06:45.987] LOG   [f6_Brannoc] event goto_done: at=(1880,2696) target=(1880,2696) arrived=1 off=0
+[13:06:45.987] INFO  [f6_Brannoc] [action] goto (1912,2728) from (1880,2696,0)
+[13:06:45.987] LOG   [f6_Brannoc] event goto_start: target=(1912,2728) from=(1880,2696)
+[13:06:45.987] INFO  [f6_Brannoc] [bot] running from (1880,2696,0) to (1912,2728)
+[13:06:45.987] INFO  [f6_Brannoc] [bot] planning path to (1912,2728) in background
+[13:06:46.049] INFO  [f6_Brannoc] [bot] replan to (1912,2728): 71 steps in 3934.6us
+[13:06:48.108] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:53.118] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:06:57.713] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:06:58.141] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:03.156] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:04.748] INFO  [f6_Brannoc] [bot] arrived at (1912,2728,20)
+[13:07:04.749] INFO  [f6_Brannoc] [action] goto finished at (1912,2728,20); target (1912,2728); ARRIVED (off by 0 tile(s))
+[13:07:04.749] LOG   [f6_Brannoc] event goto_done: at=(1912,2728) target=(1912,2728) arrived=1 off=0
+[13:07:04.749] INFO  [f6_Brannoc] [action] goto (1912,2760) from (1912,2728,20)
+[13:07:04.749] LOG   [f6_Brannoc] event goto_start: target=(1912,2760) from=(1912,2728)
+[13:07:04.749] INFO  [f6_Brannoc] [bot] running from (1912,2728,20) to (1912,2760)
+[13:07:04.749] INFO  [f6_Brannoc] [bot] planning path to (1912,2760) in background
+[13:07:04.808] INFO  [f6_Brannoc] [bot] replan to (1912,2760): 32 steps in 521.3us
+[13:07:08.173] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:13.205] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:13.714] INFO  [f6_Brannoc] [bot] arrived at (1912,2760,0)
+[13:07:13.714] INFO  [f6_Brannoc] [action] goto finished at (1912,2760,0); target (1912,2760); ARRIVED (off by 0 tile(s))
+[13:07:13.715] LOG   [f6_Brannoc] event goto_done: at=(1912,2760) target=(1912,2760) arrived=1 off=0
+[13:07:13.715] INFO  [f6_Brannoc] [action] goto (1928,2792) from (1912,2760,0)
+[13:07:13.715] LOG   [f6_Brannoc] event goto_start: target=(1928,2792) from=(1912,2760)
+[13:07:13.715] INFO  [f6_Brannoc] [bot] running from (1912,2760,0) to (1928,2792)
+[13:07:13.715] INFO  [f6_Brannoc] [bot] planning path to (1928,2792) in background
+[13:07:13.776] INFO  [f6_Brannoc] [bot] replan to (1928,2792): 62 steps in 10289.4us
+[13:07:18.262] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:23.311] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:27.507] INFO  [f6_Brannoc] [bot] door ahead at (1941,2793,z0); OpenDoor before step
+[13:07:27.508] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[13:07:28.323] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:31.986] INFO  [f6_Brannoc] [bot] arrived at (1928,2792,0)
+[13:07:31.987] INFO  [f6_Brannoc] [action] goto finished at (1928,2792,0); target (1928,2792); ARRIVED (off by 0 tile(s))
+[13:07:31.987] LOG   [f6_Brannoc] event goto_done: at=(1928,2792) target=(1928,2792) arrived=1 off=0
+[13:07:31.987] INFO  [f6_Brannoc] [action] goto (1944,2824) from (1928,2792,0)
+[13:07:31.987] LOG   [f6_Brannoc] event goto_start: target=(1944,2824) from=(1928,2792)
+[13:07:31.987] INFO  [f6_Brannoc] [bot] running from (1928,2792,0) to (1944,2824)
+[13:07:31.987] INFO  [f6_Brannoc] [bot] planning path to (1944,2824) in background
+[13:07:32.048] INFO  [f6_Brannoc] [bot] replan to (1944,2824): 51 steps in 9168.9us
+[13:07:33.370] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:36.505] INFO  [f6_Brannoc] [bot] step (1942,2794,0)->(1943,2795,1) rejected; OpenDoor + retry
+[13:07:36.506] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[13:07:36.506] INFO  [f6_Brannoc] [0x20] player @(1942,2794,0) facing=4
+[13:07:36.507] INFO  [f6_Brannoc] [action] goto finished at (1942,2794,0); target (1944,2824); stopped short (off by 32 tile(s))
+[13:07:36.507] LOG   [f6_Brannoc] event goto_done: at=(1942,2794) target=(1944,2824) arrived=0 off=32
+[13:07:37.765] INFO  [f6_Brannoc] [action] goto (1944,2824) from (1942,2794,0)
+[13:07:37.765] LOG   [f6_Brannoc] event goto_start: target=(1944,2824) from=(1942,2794)
+[13:07:37.765] INFO  [f6_Brannoc] [bot] running from (1942,2794,0) to (1944,2824)
+[13:07:37.765] INFO  [f6_Brannoc] [bot] planning path to (1944,2824) in background
+[13:07:37.826] INFO  [f6_Brannoc] [bot] replan to (1944,2824): 37 steps in 3357.4us
+[13:07:38.380] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:43.415] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:47.744] INFO  [f6_Brannoc] [bot] arrived at (1944,2824,1)
+[13:07:47.745] INFO  [f6_Brannoc] [action] goto finished at (1944,2824,1); target (1944,2824); ARRIVED (off by 0 tile(s))
+[13:07:47.745] LOG   [f6_Brannoc] event goto_done: at=(1944,2824) target=(1944,2824) arrived=1 off=0
+[13:07:47.745] INFO  [f6_Brannoc] [action] goto (1976,2856) from (1944,2824,1)
+[13:07:47.745] LOG   [f6_Brannoc] event goto_start: target=(1976,2856) from=(1944,2824)
+[13:07:47.745] INFO  [f6_Brannoc] [bot] running from (1944,2824,1) to (1976,2856)
+[13:07:47.745] INFO  [f6_Brannoc] [bot] planning path to (1976,2856) in background
+[13:07:47.806] INFO  [f6_Brannoc] [bot] replan to (1976,2856): 52 steps in 5683.1us
+[13:07:48.437] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:53.451] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:07:55.044] INFO  [f6_Brannoc] [bot] step (1947,2847,8)->(1948,2848,7) rejected; OpenDoor + retry
+[13:07:55.800] INFO  [f6_Brannoc] [bot] step (1947,2847,8)->(1948,2848,7) rejected; avoiding edge + rerouting
+[13:07:55.800] INFO  [f6_Brannoc] [bot] planning path to (1976,2856) in background
+[13:07:55.862] INFO  [f6_Brannoc] [bot] replan to (1976,2856): 31 steps in 3285.5us
+[13:07:57.740] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:07:58.471] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:03.481] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:06.555] INFO  [f6_Brannoc] [bot] arrived at (1976,2856,15)
+[13:08:06.555] INFO  [f6_Brannoc] [action] goto finished at (1976,2856,15); target (1976,2856); ARRIVED (off by 0 tile(s))
+[13:08:06.555] LOG   [f6_Brannoc] event goto_done: at=(1976,2856) target=(1976,2856) arrived=1 off=0
+[13:08:06.555] INFO  [f6_Brannoc] [action] goto (1992,2888) from (1976,2856,15)
+[13:08:06.555] LOG   [f6_Brannoc] event goto_start: target=(1992,2888) from=(1976,2856)
+[13:08:06.555] INFO  [f6_Brannoc] [bot] running from (1976,2856,15) to (1992,2888)
+[13:08:06.555] INFO  [f6_Brannoc] [bot] planning path to (1992,2888) in background
+[13:08:06.617] INFO  [f6_Brannoc] [bot] replan to (1992,2888): 65 steps in 15694.6us
+[13:08:08.538] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:12.910] INFO  [f6_Brannoc] [bot] step (1999,2855,15)->(2000,2856,15) rejected; OpenDoor + retry
+[13:08:13.558] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:13.634] INFO  [f6_Brannoc] [bot] step (1999,2855,15)->(2000,2856,15) rejected; avoiding edge + rerouting
+[13:08:13.634] INFO  [f6_Brannoc] [bot] planning path to (1992,2888) in background
+[13:08:13.695] INFO  [f6_Brannoc] [bot] replan to (1992,2888): 44 steps in 6801.5us
+[13:08:18.579] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:20.087] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 132.8us
+[13:08:22.082] INFO  [f6_Brannoc] [chat ascii] System: World save in 10 seconds
+[13:08:23.604] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:27.837] INFO  [f6_Brannoc] [bot] arrived at (1992,2888,5)
+[13:08:27.838] INFO  [f6_Brannoc] [action] goto finished at (1992,2888,5); target (1992,2888); ARRIVED (off by 0 tile(s))
+[13:08:27.838] LOG   [f6_Brannoc] event goto_done: at=(1992,2888) target=(1992,2888) arrived=1 off=0
+[13:08:27.838] INFO  [f6_Brannoc] [action] goto (1992,2918) from (1992,2888,5)
+[13:08:27.838] LOG   [f6_Brannoc] event goto_start: target=(1992,2918) from=(1992,2888)
+[13:08:27.838] INFO  [f6_Brannoc] [bot] running from (1992,2888,5) to (1992,2918)
+[13:08:27.838] INFO  [f6_Brannoc] [bot] planning path to (1992,2918) in background
+[13:08:27.884] INFO  [f6_Brannoc] [bot] replan to (1992,2918): 48 steps in 5306.2us
+[13:08:28.662] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:32.120] INFO  [f6_Brannoc] [chat ascii] System: World save has been initiated.
+[13:08:33.703] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:38.728] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:40.943] INFO  [f6_Brannoc] [chat ascii] System: You have left the protection of the town guards
+[13:08:43.720] INFO  [f6_Brannoc] [bot] arrived at (1992,2918,0)
+[13:08:43.721] INFO  [f6_Brannoc] [action] goto finished at (1992,2918,0); target (1992,2918); ARRIVED (off by 0 tile(s))
+[13:08:43.721] LOG   [f6_Brannoc] event goto_done: at=(1992,2918) target=(1992,2918) arrived=1 off=0
+[13:08:43.721] INFO  [f6_Brannoc] [action] goto (1960,2936) from (1992,2918,0)
+[13:08:43.721] LOG   [f6_Brannoc] event goto_start: target=(1960,2936) from=(1992,2918)
+[13:08:43.721] INFO  [f6_Brannoc] [bot] running from (1992,2918,0) to (1960,2936)
+[13:08:43.721] INFO  [f6_Brannoc] [bot] planning path to (1960,2936) in background
+[13:08:43.780] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:43.780] INFO  [f6_Brannoc] [bot] replan to (1960,2936): 65 steps in 11423.4us
+[13:08:46.936] INFO  [f6_Brannoc] [chat ascii] System: You are now under the protection of the town guards
+[13:08:48.822] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:50.912] INFO  [f6_Brannoc] [chat ascii] System: You have left the protection of the town guards
+[13:08:53.857] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:08:57.756] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:08:58.875] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:03.885] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:05.451] INFO  [f6_Brannoc] [bot] arrived at (1960,2936,0)
+[13:09:05.452] INFO  [f6_Brannoc] [action] goto finished at (1960,2936,0); target (1960,2936); ARRIVED (off by 0 tile(s))
+[13:09:05.452] LOG   [f6_Brannoc] event goto_done: at=(1960,2936) target=(1960,2936) arrived=1 off=0
+[13:09:05.452] INFO  [f6_Brannoc] [action] goto (1928,2936) from (1960,2936,0)
+[13:09:05.452] LOG   [f6_Brannoc] event goto_start: target=(1928,2936) from=(1960,2936)
+[13:09:05.452] INFO  [f6_Brannoc] [bot] running from (1960,2936,0) to (1928,2936)
+[13:09:05.452] INFO  [f6_Brannoc] [bot] planning path to (1928,2936) in background
+[13:09:05.513] INFO  [f6_Brannoc] [bot] replan to (1928,2936): 61 steps in 38030.8us
+[13:09:08.936] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:13.940] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:18.963] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:23.976] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:25.363] INFO  [f6_Brannoc] [bot] arrived at (1928,2936,39)
+[13:09:25.364] INFO  [f6_Brannoc] [action] goto finished at (1928,2936,39); target (1928,2936); ARRIVED (off by 0 tile(s))
+[13:09:25.364] LOG   [f6_Brannoc] event goto_done: at=(1928,2936) target=(1928,2936) arrived=1 off=0
+[13:09:25.364] INFO  [f6_Brannoc] [action] goto (1896,2952) from (1928,2936,39)
+[13:09:25.364] LOG   [f6_Brannoc] event goto_start: target=(1896,2952) from=(1928,2936)
+[13:09:25.364] INFO  [f6_Brannoc] [bot] running from (1928,2936,39) to (1896,2952)
+[13:09:25.364] INFO  [f6_Brannoc] [bot] planning path to (1896,2952) in background
+[13:09:25.410] INFO  [f6_Brannoc] [bot] replan to (1896,2952): 33 steps in 2585.5us
+[13:09:29.032] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:29.616] INFO  [f6_Brannoc] [chat ascii] Ghoul: *Ghoul is attacking you!*
+[13:09:30.476] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=18 in 110.1us
+[13:09:34.037] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:36.451] INFO  [f6_Brannoc] [bot] arrived at (1896,2952,20)
+[13:09:36.451] INFO  [f6_Brannoc] [action] goto finished at (1896,2952,20); target (1896,2952); ARRIVED (off by 0 tile(s))
+[13:09:36.451] LOG   [f6_Brannoc] event goto_done: at=(1896,2952) target=(1896,2952) arrived=1 off=0
+[13:09:36.451] INFO  [f6_Brannoc] [action] goto (1864,2936) from (1896,2952,20)
+[13:09:36.451] LOG   [f6_Brannoc] event goto_start: target=(1864,2936) from=(1896,2952)
+[13:09:36.451] INFO  [f6_Brannoc] [bot] running from (1896,2952,20) to (1864,2936)
+[13:09:36.452] INFO  [f6_Brannoc] [bot] planning path to (1864,2936) in background
+[13:09:36.513] INFO  [f6_Brannoc] [bot] replan to (1864,2936): 34 steps in 4862.1us
+[13:09:39.061] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:44.073] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:47.709] INFO  [f6_Brannoc] [bot] arrived at (1864,2936,15)
+[13:09:47.709] INFO  [f6_Brannoc] [action] goto finished at (1864,2936,15); target (1864,2936); ARRIVED (off by 0 tile(s))
+[13:09:47.709] LOG   [f6_Brannoc] event goto_done: at=(1864,2936) target=(1864,2936) arrived=1 off=0
+[13:09:47.709] INFO  [f6_Brannoc] [action] goto (1832,2950) from (1864,2936,15)
+[13:09:47.709] LOG   [f6_Brannoc] event goto_start: target=(1832,2950) from=(1864,2936)
+[13:09:47.709] INFO  [f6_Brannoc] [bot] running from (1864,2936,15) to (1832,2950)
+[13:09:47.709] INFO  [f6_Brannoc] [bot] planning path to (1832,2950) in background
+[13:09:47.771] INFO  [f6_Brannoc] [bot] replan to (1832,2950): 39 steps in 20844.3us
+[13:09:49.102] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:54.140] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:09:57.785] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:09:58.980] INFO  [f6_Brannoc] [bot] arrived at (1832,2950,-25)
+[13:09:58.981] INFO  [f6_Brannoc] [action] goto finished at (1832,2950,-25); target (1832,2950); ARRIVED (off by 0 tile(s))
+[13:09:58.981] LOG   [f6_Brannoc] event goto_done: at=(1832,2950) target=(1832,2950) arrived=1 off=0
+[13:09:58.981] INFO  [f6_Brannoc] [action] goto (1828,2948) from (1832,2950,-25)
+[13:09:58.981] LOG   [f6_Brannoc] event goto_start: target=(1828,2948) from=(1832,2950)
+[13:09:58.981] INFO  [f6_Brannoc] [bot] running from (1832,2950,-25) to (1828,2948)
+[13:09:58.981] INFO  [f6_Brannoc] [bot] planning path to (1828,2948) in background
+[13:09:59.042] INFO  [f6_Brannoc] [bot] replan to (1828,2948): 4 steps in 89.0us
+[13:09:59.163] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:00.589] INFO  [f6_Brannoc] [gump] 0x4000289C context=0x80A00437: 13 option(s), 15 text(s)
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   button 1000 = 'OKAY'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   button 0 = 'CANCEL'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   button 1 = 'Felucca'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 1 = 'Moonglow'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 2 = 'Britain'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 3 = 'Jhelom'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 4 = 'Yew'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 5 = 'New Magincia'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 6 = 'Minoc'
+[13:10:00.589] INFO  [f6_Brannoc] [gump]   choice 7 = 'Trinsic'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   choice 8 = 'Skara Brae'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   choice 9 = 'Buccaneer's Den'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 0 = 'Pick your destination:'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 1 = 'OKAY'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 2 = 'CANCEL'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 3 = 'Felucca'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 4 = 'Felucca'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 5 = 'Moonglow'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 6 = 'Britain'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 7 = 'Jhelom'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 8 = 'Yew'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 9 = 'New Magincia'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 10 = 'Minoc'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 11 = 'Trinsic'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 12 = 'Skara Brae'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 13 = 'Buccaneer's Den'
+[13:10:00.590] INFO  [f6_Brannoc] [gump]   text 14 = 'Ocllo (Newplayers)'
+[13:10:00.590] LOG   [f6_Brannoc] event gump_open: serial=0x4000289C context=0x80A00437 options=13
+[13:10:00.590] INFO  [f6_Brannoc] [travel] gate gump: choosing 'Minoc' (choice 6, button 1000)
+[13:10:00.590] LOG   [f6_Brannoc] event moongate_use: destination='Minoc' choice=6 button=1000
+[13:10:00.590] INFO  [f6_Brannoc] [bot] arrived at (1828,2948,-20)
+[13:10:00.590] INFO  [f6_Brannoc] [action] goto finished at (1828,2948,-20); target (1828,2948); ARRIVED (off by 0 tile(s))
+[13:10:00.590] LOG   [f6_Brannoc] event goto_done: at=(1828,2948) target=(1828,2948) arrived=1 off=0
+[13:10:00.590] INFO  [f6_Brannoc] [travel] using moongate 0x4000289C for 'Minoc' (gump active=0 serial=0x00000000)
+[13:10:00.603] INFO  [f6_Brannoc] [0x20] player @(2701,692,5) facing=7
+[13:10:00.603] INFO  [f6_Brannoc] [0x20] player @(2701,692,5) facing=7
+[13:10:00.603] INFO  [f6_Brannoc] [chat ascii] System: You can't see the target
+[13:10:00.604] INFO  [f6_Brannoc] [action] goto (2728,728) from (2701,692,5)
+[13:10:00.604] LOG   [f6_Brannoc] event goto_start: target=(2728,728) from=(2701,692)
+[13:10:00.604] INFO  [f6_Brannoc] [bot] running from (2701,692,5) to (2728,728)
+[13:10:00.604] INFO  [f6_Brannoc] [bot] planning path to (2728,728) in background
+[13:10:00.665] INFO  [f6_Brannoc] [bot] replan to (2728,728): 42 steps in 10917.1us
+[13:10:01.094] INFO  [f6_Brannoc] [chat ascii] System: You have been revealed
+[13:10:04.175] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:09.182] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:14.242] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:15.558] INFO  [f6_Brannoc] [bot] arrived at (2728,728,0)
+[13:10:15.559] INFO  [f6_Brannoc] [action] goto finished at (2728,728,0); target (2728,728); ARRIVED (off by 0 tile(s))
+[13:10:15.559] LOG   [f6_Brannoc] event goto_done: at=(2728,728) target=(2728,728) arrived=1 off=0
+[13:10:15.559] INFO  [f6_Brannoc] [action] goto (2760,760) from (2728,728,0)
+[13:10:15.559] LOG   [f6_Brannoc] event goto_start: target=(2760,760) from=(2728,728)
+[13:10:15.559] INFO  [f6_Brannoc] [bot] running from (2728,728,0) to (2760,760)
+[13:10:15.559] INFO  [f6_Brannoc] [bot] planning path to (2760,760) in background
+[13:10:15.622] INFO  [f6_Brannoc] [bot] replan to (2760,760): 45 steps in 31292.4us
+[13:10:19.257] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:24.303] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:28.888] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 1: anchor=6 new segment=7 path=11 in 171.2us
+[13:10:29.362] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:32.922] INFO  [f6_Brannoc] [bot] arrived at (2760,760,0)
+[13:10:32.923] INFO  [f6_Brannoc] [action] goto finished at (2760,760,0); target (2760,760); ARRIVED (off by 0 tile(s))
+[13:10:32.923] LOG   [f6_Brannoc] event goto_done: at=(2760,760) target=(2760,760) arrived=1 off=0
+[13:10:32.923] INFO  [f6_Brannoc] [action] goto (2792,790) from (2760,760,0)
+[13:10:32.923] LOG   [f6_Brannoc] event goto_start: target=(2792,790) from=(2760,760)
+[13:10:32.923] INFO  [f6_Brannoc] [bot] running from (2760,760,0) to (2792,790)
+[13:10:32.923] INFO  [f6_Brannoc] [bot] planning path to (2792,790) in background
+[13:10:32.985] INFO  [f6_Brannoc] [bot] replan to (2792,790): 41 steps in 21863.1us
+[13:10:34.411] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:39.459] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:44.483] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:45.160] INFO  [f6_Brannoc] [bot] arrived at (2792,790,0)
+[13:10:45.161] INFO  [f6_Brannoc] [action] goto finished at (2792,790,0); target (2792,790); ARRIVED (off by 0 tile(s))
+[13:10:45.161] LOG   [f6_Brannoc] event goto_done: at=(2792,790) target=(2792,790) arrived=1 off=0
+[13:10:45.161] INFO  [f6_Brannoc] [action] goto (2792,824) from (2792,790,0)
+[13:10:45.161] LOG   [f6_Brannoc] event goto_start: target=(2792,824) from=(2792,790)
+[13:10:45.161] INFO  [f6_Brannoc] [bot] running from (2792,790,0) to (2792,824)
+[13:10:45.161] INFO  [f6_Brannoc] [bot] planning path to (2792,824) in background
+[13:10:45.222] INFO  [f6_Brannoc] [bot] replan to (2792,824): 34 steps in 1283.3us
+[13:10:49.492] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:54.501] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:10:55.502] INFO  [f6_Brannoc] [bot] arrived at (2792,824,0)
+[13:10:55.503] INFO  [f6_Brannoc] [action] goto finished at (2792,824,0); target (2792,824); ARRIVED (off by 0 tile(s))
+[13:10:55.503] LOG   [f6_Brannoc] event goto_done: at=(2792,824) target=(2792,824) arrived=1 off=0
+[13:10:55.503] INFO  [f6_Brannoc] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:10:55.503] INFO  [f6_Brannoc] [action] goto (2792,856) from (2792,824,0)
+[13:10:55.503] LOG   [f6_Brannoc] event goto_start: target=(2792,856) from=(2792,824)
+[13:10:55.503] INFO  [f6_Brannoc] [bot] running from (2792,824,0) to (2792,856)
+[13:10:55.503] INFO  [f6_Brannoc] [bot] planning path to (2792,856) in background
+[13:10:55.564] INFO  [f6_Brannoc] [bot] replan to (2792,856): 32 steps in 1039.8us
+[13:10:57.719] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[13:10:57.719] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Tinkering 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[13:10:57.719] INFO  [life]   score=90.0
+[13:10:57.719] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:10:57.719] INFO  [life]   reason: Tinkering 16.3 -> 50.0, gold 837 (fee is quoted on arrival, roughly 300)
+[13:10:57.719] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:10:57.719] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[13:10:57.719] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:10:57.845] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:10:59.515] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:04.305] INFO  [f6_Brannoc] [bot] arrived at (2792,856,0)
+[13:11:04.306] INFO  [f6_Brannoc] [action] goto finished at (2792,856,0); target (2792,856); ARRIVED (off by 0 tile(s))
+[13:11:04.306] LOG   [f6_Brannoc] event goto_done: at=(2792,856) target=(2792,856) arrived=1 off=0
+[13:11:04.306] INFO  [f6_Brannoc] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:11:04.306] INFO  [f6_Brannoc] [action] goto (2792,888) from (2792,856,0)
+[13:11:04.306] LOG   [f6_Brannoc] event goto_start: target=(2792,888) from=(2792,856)
+[13:11:04.306] INFO  [f6_Brannoc] [bot] running from (2792,856,0) to (2792,888)
+[13:11:04.306] INFO  [f6_Brannoc] [bot] planning path to (2792,888) in background
+[13:11:04.368] INFO  [f6_Brannoc] [bot] replan to (2792,888): 32 steps in 550.0us
+[13:11:04.539] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:09.572] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:13.076] INFO  [f6_Brannoc] [bot] arrived at (2792,888,0)
+[13:11:13.077] INFO  [f6_Brannoc] [action] goto finished at (2792,888,0); target (2792,888); ARRIVED (off by 0 tile(s))
+[13:11:13.077] LOG   [f6_Brannoc] event goto_done: at=(2792,888) target=(2792,888) arrived=1 off=0
+[13:11:13.077] INFO  [f6_Brannoc] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:11:13.077] INFO  [f6_Brannoc] [action] goto (2792,920) from (2792,888,0)
+[13:11:13.077] LOG   [f6_Brannoc] event goto_start: target=(2792,920) from=(2792,888)
+[13:11:13.077] INFO  [f6_Brannoc] [bot] running from (2792,888,0) to (2792,920)
+[13:11:13.077] INFO  [f6_Brannoc] [bot] planning path to (2792,920) in background
+[13:11:13.138] INFO  [f6_Brannoc] [bot] replan to (2792,920): 32 steps in 1581.1us
+[13:11:14.574] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:19.584] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:22.795] INFO  [f6_Brannoc] [bot] arrived at (2792,920,0)
+[13:11:22.796] INFO  [f6_Brannoc] [action] goto finished at (2792,920,0); target (2792,920); ARRIVED (off by 0 tile(s))
+[13:11:22.796] LOG   [f6_Brannoc] event goto_done: at=(2792,920) target=(2792,920) arrived=1 off=0
+[13:11:22.796] INFO  [f6_Brannoc] [travel] avoiding 1 teleporter pad(s) on this leg
+[13:11:22.796] INFO  [f6_Brannoc] [action] goto (2826,888) from (2792,920,0)
+[13:11:22.796] LOG   [f6_Brannoc] event goto_start: target=(2826,888) from=(2792,920)
+[13:11:22.796] INFO  [f6_Brannoc] [bot] running from (2792,920,0) to (2826,888)
+[13:11:22.796] INFO  [f6_Brannoc] [bot] planning path to (2826,888) in background
+[13:11:22.918] INFO  [f6_Brannoc] [bot] replan to (2826,888): 121 steps in 81141.9us
+[13:11:24.627] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:29.679] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:31.195] INFO  [f6_Brannoc] [chat ascii] System: You are now under the protection of the town guards
+[13:11:32.392] INFO  [f6_Brannoc] [bot] step (2800,952,0)->(2801,953,5) rejected; OpenDoor + retry
+[13:11:33.129] INFO  [f6_Brannoc] [bot] step (2800,952,0)->(2801,953,5) rejected; avoiding edge + rerouting
+[13:11:33.129] INFO  [f6_Brannoc] [bot] planning path to (2826,888) in background
+[13:11:33.190] INFO  [f6_Brannoc] [bot] replan to (2826,888): 91 steps in 21863.6us
+[13:11:34.683] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:39.713] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:44.722] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:47.453] INFO  [f6_Brannoc] [bot] step (2827,927,0)->(2828,926,0) rejected; OpenDoor + retry
+[13:11:48.193] INFO  [f6_Brannoc] [bot] step (2827,927,0)->(2828,926,0) rejected; avoiding edge + rerouting
+[13:11:48.193] INFO  [f6_Brannoc] [bot] planning path to (2826,888) in background
+[13:11:48.254] INFO  [f6_Brannoc] [bot] replan to (2826,888): 39 steps in 2338.3us
+[13:11:49.771] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:52.758] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 174.9us
+[13:11:54.828] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:11:57.883] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:11:59.477] INFO  [f6_Brannoc] [bot] arrived at (2826,888,-2)
+[13:11:59.478] INFO  [f6_Brannoc] [action] goto finished at (2826,888,-2); target (2826,888); ARRIVED (off by 0 tile(s))
+[13:11:59.478] LOG   [f6_Brannoc] event goto_done: at=(2826,888) target=(2826,888) arrived=1 off=0
+[13:11:59.478] INFO  [f6_Brannoc] [action] goto (2856,856) from (2826,888,-2)
+[13:11:59.478] LOG   [f6_Brannoc] event goto_start: target=(2856,856) from=(2826,888)
+[13:11:59.478] INFO  [f6_Brannoc] [bot] running from (2826,888,-2) to (2856,856)
+[13:11:59.478] INFO  [f6_Brannoc] [bot] planning path to (2856,856) in background
+[13:11:59.540] INFO  [f6_Brannoc] [bot] replan to (2856,856): 54 steps in 5645.7us
+[13:11:59.879] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:04.809] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=33 in 277.2us
+[13:12:04.932] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:09.975] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:14.715] INFO  [f6_Brannoc] [bot] arrived at (2856,856,0)
+[13:12:14.715] INFO  [f6_Brannoc] [action] goto finished at (2856,856,0); target (2856,856); ARRIVED (off by 0 tile(s))
+[13:12:14.715] LOG   [f6_Brannoc] event goto_done: at=(2856,856) target=(2856,856) arrived=1 off=0
+[13:12:14.715] INFO  [f6_Brannoc] [action] goto (2864,816) from (2856,856,0)
+[13:12:14.715] LOG   [f6_Brannoc] event goto_start: target=(2864,816) from=(2856,856)
+[13:12:14.715] INFO  [f6_Brannoc] [bot] running from (2856,856,0) to (2864,816)
+[13:12:14.715] INFO  [f6_Brannoc] [bot] planning path to (2864,816) in background
+[13:12:14.776] INFO  [f6_Brannoc] [bot] replan to (2864,816): 54 steps in 17352.9us
+[13:12:15.021] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:18.032] INFO  [f6_Brannoc] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=43 in 199.8us
+[13:12:20.062] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:25.117] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:28.880] INFO  [f6_Brannoc] [chat ascii] System: You shove Cat out of the way.
+[13:12:29.280] INFO  [f6_Brannoc] [bot] reject at (2859,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[13:12:29.280] INFO  [f6_Brannoc] [bot] planning path to (2864,816) in background
+[13:12:30.139] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:31.123] INFO  [f6_Brannoc] [action] goto finished at (2858,816,-1); target (2864,816); stopped short (off by 6 tile(s))
+[13:12:31.123] LOG   [f6_Brannoc] event goto_done: at=(2858,816) target=(2864,816) arrived=0 off=6
+[13:12:32.356] INFO  [f6_Brannoc] [action] goto (2864,816) from (2858,816,-1)
+[13:12:32.356] LOG   [f6_Brannoc] event goto_start: target=(2864,816) from=(2858,816)
+[13:12:32.356] INFO  [f6_Brannoc] [bot] running from (2858,816,-1) to (2864,816)
+[13:12:32.356] INFO  [f6_Brannoc] [bot] planning path to (2864,816) in background
+[13:12:33.958] INFO  [f6_Brannoc] [action] goto finished at (2858,816,-1); target (2864,816); stopped short (off by 6 tile(s))
+[13:12:33.958] LOG   [f6_Brannoc] event goto_done: at=(2858,816) target=(2864,816) arrived=0 off=6
+[13:12:35.190] INFO  [f6_Brannoc] [travel] mode walk             usable   <- chosen
+[13:12:35.190] INFO  [f6_Brannoc] [travel] mode moongate         usable
+[13:12:35.190] INFO  [f6_Brannoc] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:12:35.190] INFO  [f6_Brannoc] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:12:35.190] LOG   [f6_Brannoc] event travel_mode: walk
+[13:12:35.190] INFO  [f6_Brannoc] [travel] plan Vesper tinker: ok legs=2 ~64 tiles transit=0 nodes=9
+[13:12:35.190] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:36.719] INFO  [f6_Brannoc] [action] goto (2890,800) from (2858,816,-1)
+[13:12:36.719] LOG   [f6_Brannoc] event goto_start: target=(2890,800) from=(2858,816)
+[13:12:36.719] INFO  [f6_Brannoc] [bot] running from (2858,816,-1) to (2890,800)
+[13:12:36.719] INFO  [f6_Brannoc] [bot] planning path to (2890,800) in background
+[13:12:36.781] INFO  [f6_Brannoc] [bot] replan to (2890,800): 62 steps in 10809.7us
+[13:12:40.239] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:45.295] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:50.347] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:54.174] INFO  [f6_Brannoc] [bot] arrived at (2890,800,3)
+[13:12:54.175] INFO  [f6_Brannoc] [action] goto finished at (2890,800,3); target (2890,800); ARRIVED (off by 0 tile(s))
+[13:12:54.175] LOG   [f6_Brannoc] event goto_done: at=(2890,800) target=(2890,800) arrived=1 off=0
+[13:12:54.175] INFO  [f6_Brannoc] [action] goto (2899,790) from (2890,800,3)
+[13:12:54.175] LOG   [f6_Brannoc] event goto_start: target=(2899,790) from=(2890,800)
+[13:12:54.175] INFO  [f6_Brannoc] [bot] running from (2890,800,3) to (2899,790,z0)
+[13:12:54.175] INFO  [f6_Brannoc] [bot] planning path to (2899,790) in background
+[13:12:54.236] INFO  [f6_Brannoc] [bot] replan to (2899,790): 27 steps in 2331.1us
+[13:12:55.378] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:12:57.942] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh01.brannoc/state.json
+[13:12:59.125] INFO  [f6_Brannoc] [bot] door ahead at (2903,796,z0); OpenDoor before step
+[13:12:59.126] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[13:13:00.391] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:00.653] INFO  [f6_Brannoc] [travel] Vesper tinker ARRIVED at (2902,795,0)
+[13:13:00.653] LOG   [f6_Brannoc] event travel_done: label='Vesper tinker' ok=1 at=(2902,795) legs=2 plans=2 why=''
+[13:13:00.716] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[13:13:00.716] INFO  [f6_Brannoc] [travel] Minoc tinker -> (2461,457) r=5 from (2902,795)
+[13:13:00.716] LOG   [f6_Brannoc] event travel_start: label='Minoc tinker' target=(2461,457) radius=5 from=(2902,795)
+[13:13:00.716] INFO  [f6_Brannoc] [travel] mode moongate         usable   <- chosen
+[13:13:00.716] INFO  [f6_Brannoc] [travel] mode walk             usable
+[13:13:00.716] INFO  [f6_Brannoc] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:13:00.716] INFO  [f6_Brannoc] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:13:00.716] LOG   [f6_Brannoc] event travel_mode: moongate
+[13:13:00.716] INFO  [f6_Brannoc] [travel] plan Minoc tinker: ok legs=19 ~864 tiles transit=0 nodes=668
+[13:13:03.311] INFO  [f6_Brannoc] [bot] arrived at (2899,790,0)
+[13:13:03.311] INFO  [f6_Brannoc] [action] goto finished at (2899,790,0); target (2899,790); ARRIVED (off by 0 tile(s))
+[13:13:03.311] LOG   [f6_Brannoc] event goto_done: at=(2899,790) target=(2899,790) arrived=1 off=0
+[13:13:03.311] INFO  [f6_Brannoc] [action] goto (2864,816) from (2899,790,0)
+[13:13:03.311] LOG   [f6_Brannoc] event goto_start: target=(2864,816) from=(2899,790)
+[13:13:03.311] INFO  [f6_Brannoc] [bot] running from (2899,790,0) to (2864,816)
+[13:13:03.311] INFO  [f6_Brannoc] [bot] planning path to (2864,816) in background
+[13:13:03.372] INFO  [f6_Brannoc] [bot] replan to (2864,816): 93 steps in 32264.5us
+[13:13:05.426] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:06.765] INFO  [f6_Brannoc] [bot] door ahead at (2904,797,z0); OpenDoor before step
+[13:13:06.779] INFO  [f6_Brannoc] [chat ascii] System: Opening door...
+[13:13:10.475] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:15.483] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:20.485] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:22.417] INFO  [f6_Brannoc] [chat ascii] System: World save in 10 seconds
+[13:13:25.526] INFO  [f6_Brannoc] [survival] hp 56/56 (100%) -> fight
+[13:13:29.308] INFO  [f6_Brannoc] [bot] reject at (2858,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[13:13:29.308] INFO  [f6_Brannoc] [bot] planning path to (2864,816) in background

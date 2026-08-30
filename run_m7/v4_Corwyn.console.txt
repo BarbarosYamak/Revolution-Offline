@@ -1,0 +1,397 @@
+[18:03:35.640] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='v4_Corwyn'
+[18:03:35.641] LOG   [v4_Corwyn] event session_start: text log opened
+[18:03:35.641] LOG   [v4_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[18:03:35.641] INFO  [v4_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[18:03:35.642] LOG   [v4_Corwyn] event net_connected: connect 127.0.0.1:2593
+[18:03:35.642] INFO  [v4_Corwyn] [net] connected.
+[18:03:35.642] INFO  [v4_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[18:03:35.642] LOG   [v4_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[18:03:35.643] INFO  [life] loaded persistent state for Corwyn (15 places, 6 suppliers, 38 events, 25 prior sessions)
+[18:03:35.643] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[18:03:35.643] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[18:03:35.643] INFO  [v4_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[18:03:35.683] INFO  [v4_Corwyn] [0xA8] 1 server(s):
+[18:03:35.683] INFO  [v4_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:03:35.698] INFO  [v4_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[18:03:35.698] LOG   [v4_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[18:03:35.698] INFO  [v4_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:03:35.698] LOG   [v4_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:03:35.699] INFO  [v4_Corwyn] [0xB9] server features = 0x0005
+[18:03:35.699] INFO  [v4_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[18:03:35.699] INFO  [v4_Corwyn]   [0] Corwyn
+[18:03:35.699] INFO  [v4_Corwyn]   [1] <empty>
+[18:03:35.699] INFO  [v4_Corwyn]   [2] <empty>
+[18:03:35.699] INFO  [v4_Corwyn]   [3] <empty>
+[18:03:35.699] INFO  [v4_Corwyn]   [4] <empty>
+[18:03:35.699] INFO  [v4_Corwyn] [ui] playing slot 0 ('Corwyn')
+[18:03:35.714] INFO  [v4_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2502,554,0)
+[18:03:35.714] LOG   [v4_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2502,554,0)
+[18:03:35.714] INFO  [v4_Corwyn] [0x20] player @(2502,554,0) facing=7
+[18:03:35.714] INFO  [v4_Corwyn] [0x55] login complete — entering world
+[18:03:35.714] LOG   [v4_Corwyn] event in_world: 0x55 received
+[18:03:35.714] INFO  [v4_Corwyn] [backpack] opening 0x40014DDB
+[18:03:35.714] INFO  [v4_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:03:35.714] INFO  [v4_Corwyn] [chat ascii] System: There is 1 other player here.
+[18:03:35.714] INFO  [v4_Corwyn] [chat ascii] System: Last logged: 2026/08/30 17:59:35
+[18:03:35.714] INFO  [v4_Corwyn] [chat ascii] System: You are under the protection of the town guards
+[18:03:35.718] INFO  [v4_Corwyn] [action] requesting the skill list
+[18:03:35.718] INFO  [life] in world; asked the server for the skill list
+[18:03:35.718] INFO  [v4_Corwyn] [0x24] open container 0x40014DDB gump=60
+[18:03:35.718] INFO  [v4_Corwyn] [0x3C] container contents: 11 item(s)
+[18:03:35.718] LOG   [v4_Corwyn] event backpack_contents: serial=0x40014DDB items=11
+[18:03:38.307] INFO  [v4_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[18:03:38.307] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[18:03:38.307] INFO  [life]   gold         persisted=8829       server=8829       -> server value accepted
+[18:03:38.307] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[18:03:38.307] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[18:03:38.307] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[18:03:38.307] INFO  [life]   skill_7      persisted=50.6       server=50.6       -> server value accepted
+[18:03:38.307] INFO  [life]   skill_45     persisted=51.5       server=51.6       -> server value accepted
+[18:03:38.307] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[18:03:38.307] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[18:03:38.307] INFO  [life]   position     persisted=2502,554   server=2502,554   -> server value accepted
+[18:03:38.307] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:03:38.307] INFO  [life]   restored objective KEPT: MINE (progress 6)
+[18:03:38.307] INFO  [v4_Corwyn] [survival] on
+[18:03:38.307] LOG   [v4_Corwyn] event survival_mode: on
+[18:03:38.309] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[18:03:38.309] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:03:38.361] INFO  [life] mine: the ore is 36 tiles off -- walking into the mining area first (trip 1)
+[18:03:38.361] INFO  [v4_Corwyn] [travel] Minoc Mine 1 -> (2558,499) r=20 from (2502,554)
+[18:03:38.361] LOG   [v4_Corwyn] event travel_start: label='Minoc Mine 1' target=(2558,499) radius=20 from=(2502,554)
+[18:03:38.361] INFO  [v4_Corwyn] [travel] mode moongate         usable   <- chosen
+[18:03:38.361] INFO  [v4_Corwyn] [travel] mode walk             usable
+[18:03:38.361] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:03:38.361] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:03:38.361] LOG   [v4_Corwyn] event travel_mode: moongate
+[18:03:38.361] INFO  [v4_Corwyn] [travel] plan Minoc Mine 1: ok legs=2 ~80 tiles transit=0 nodes=13
+[18:03:38.423] INFO  [v4_Corwyn] [action] goto (2530,520) from (2502,554,0)
+[18:03:38.423] LOG   [v4_Corwyn] event goto_start: target=(2530,520) from=(2502,554)
+[18:03:38.423] INFO  [v4_Corwyn] [bot] running from (2502,554,0) to (2530,520)
+[18:03:38.423] INFO  [v4_Corwyn] [bot] planning path to (2530,520) in background
+[18:03:38.484] INFO  [v4_Corwyn] [bot] replan to (2530,520): 59 steps in 23005.5us
+[18:03:40.589] INFO  [v4_Corwyn] [bot] door ahead at (2505,560,z0); OpenDoor before step
+[18:03:40.589] INFO  [v4_Corwyn] [chat ascii] System: Opening door...
+[18:03:40.822] INFO  [v4_Corwyn] [chat ascii] System: World save has been initiated.
+[18:03:43.353] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:03:48.369] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:03:53.384] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:03:56.183] INFO  [v4_Corwyn] [bot] arrived at (2530,520,0)
+[18:03:56.184] INFO  [v4_Corwyn] [action] goto finished at (2530,520,0); target (2530,520); ARRIVED (off by 0 tile(s))
+[18:03:56.184] LOG   [v4_Corwyn] event goto_done: at=(2530,520) target=(2530,520) arrived=1 off=0
+[18:03:56.184] INFO  [v4_Corwyn] [action] goto (2558,499) from (2530,520,0)
+[18:03:56.184] LOG   [v4_Corwyn] event goto_start: target=(2558,499) from=(2530,520)
+[18:03:56.184] INFO  [v4_Corwyn] [bot] running from (2530,520,0) to (2558,499)
+[18:03:56.184] INFO  [v4_Corwyn] [bot] planning path to (2558,499) in background
+[18:03:56.244] INFO  [v4_Corwyn] [bot] replan to (2558,499): 47 steps in 4892.1us
+[18:03:58.304] INFO  [life] goal_changed=SMELT from=MINE reason="SMELT 105.0 superseded MINE 78.9"
+[18:03:58.305] INFO  [life] needs considered: NeedSmelt(ingots 0.75) NeedOre(ore 0.61) NeedSupplies(buy craft inputs 0.44) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[18:03:58.305] INFO  [life]   score=105.0
+[18:03:58.305] INFO  [life]   reason: NeedSmelt urgency 0.75 x 140 = 105.0
+[18:03:58.305] INFO  [life]   reason: carrying 27 ore
+[18:03:58.428] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:03.478] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:03.987] INFO  [v4_Corwyn] [travel] Minoc Mine 1 ARRIVED at (2538,502,31)
+[18:04:03.987] LOG   [v4_Corwyn] event travel_done: label='Minoc Mine 1' ok=1 at=(2538,502) legs=2 plans=1 why=''
+[18:04:04.049] INFO  [life] smelt: carrying 27 ore with no forge in reach -- walking to a smithy (0 already tried)
+[18:04:04.049] INFO  [v4_Corwyn] [travel] Minoc blacksmith -> (2471,564) r=5 from (2538,502)
+[18:04:04.049] LOG   [v4_Corwyn] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2538,502)
+[18:04:04.049] INFO  [v4_Corwyn] [travel] mode moongate         usable   <- chosen
+[18:04:04.049] INFO  [v4_Corwyn] [travel] mode walk             usable
+[18:04:04.049] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:04:04.049] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:04:04.049] LOG   [v4_Corwyn] event travel_mode: moongate
+[18:04:04.049] INFO  [v4_Corwyn] [travel] plan Minoc blacksmith: ok legs=2 ~104 tiles transit=0 nodes=24
+[18:04:08.401] INFO  [v4_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; OpenDoor + retry
+[18:04:08.493] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:09.148] INFO  [v4_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; avoiding edge + rerouting
+[18:04:09.148] INFO  [v4_Corwyn] [bot] planning path to (2558,499) in background
+[18:04:09.148] INFO  [v4_Corwyn] [bot] replan to (2558,499): 4 steps in 41.4us
+[18:04:09.640] INFO  [v4_Corwyn] [chat ascii] System: You have left the protection of the guards
+[18:04:11.234] INFO  [v4_Corwyn] [bot] arrived at (2558,499,0)
+[18:04:11.234] INFO  [v4_Corwyn] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[18:04:11.234] LOG   [v4_Corwyn] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[18:04:11.234] INFO  [v4_Corwyn] [action] goto (2504,536) from (2558,499,0)
+[18:04:11.234] LOG   [v4_Corwyn] event goto_start: target=(2504,536) from=(2558,499)
+[18:04:11.234] INFO  [v4_Corwyn] [bot] running from (2558,499,0) to (2504,536)
+[18:04:11.234] INFO  [v4_Corwyn] [bot] planning path to (2504,536) in background
+[18:04:11.295] INFO  [v4_Corwyn] [bot] replan to (2504,536): 71 steps in 14172.4us
+[18:04:11.937] INFO  [v4_Corwyn] [bot] step (2557,500,0)->(2556,501,0) rejected; OpenDoor + retry
+[18:04:12.689] INFO  [v4_Corwyn] [bot] step (2557,500,0)->(2556,501,0) rejected; avoiding edge + rerouting
+[18:04:12.689] INFO  [v4_Corwyn] [bot] planning path to (2504,536) in background
+[18:04:12.749] INFO  [v4_Corwyn] [bot] replan to (2504,536): 71 steps in 8856.8us
+[18:04:13.241] INFO  [v4_Corwyn] [bot] step (2557,500,0)->(2556,500,0) rejected; OpenDoor + retry
+[18:04:13.546] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:13.990] INFO  [v4_Corwyn] [bot] step (2557,500,0)->(2556,500,0) rejected; avoiding edge + rerouting
+[18:04:13.990] INFO  [v4_Corwyn] [bot] planning path to (2504,536) in background
+[18:04:14.051] INFO  [v4_Corwyn] [bot] replan to (2504,536): 72 steps in 11909.0us
+[18:04:15.564] INFO  [v4_Corwyn] [chat ascii] System: You are now under the protection of the guards
+[18:04:18.556] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:23.613] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:28.623] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:33.638] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:34.544] INFO  [v4_Corwyn] [bot] arrived at (2504,536,0)
+[18:04:34.544] INFO  [v4_Corwyn] [action] goto finished at (2504,536,0); target (2504,536); ARRIVED (off by 0 tile(s))
+[18:04:34.544] LOG   [v4_Corwyn] event goto_done: at=(2504,536) target=(2504,536) arrived=1 off=0
+[18:04:34.544] INFO  [v4_Corwyn] [action] goto (2471,564) from (2504,536,0)
+[18:04:34.544] LOG   [v4_Corwyn] event goto_start: target=(2471,564) from=(2504,536)
+[18:04:34.544] INFO  [v4_Corwyn] [bot] running from (2504,536,0) to (2471,564,z5)
+[18:04:34.544] INFO  [v4_Corwyn] [bot] planning path to (2471,564) in background
+[18:04:34.604] INFO  [v4_Corwyn] [bot] replan to (2471,564): 73 steps in 37626.1us
+[18:04:38.348] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[18:04:38.666] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:43.709] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:48.742] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:53.764] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:56.511] INFO  [v4_Corwyn] [travel] Minoc blacksmith ARRIVED at (2476,569,5)
+[18:04:56.511] LOG   [v4_Corwyn] event travel_done: label='Minoc blacksmith' ok=1 at=(2476,569) legs=2 plans=1 why=''
+[18:04:56.571] INFO  [life] smelt: forge at 2469,557 is 12 tiles off -- standing at 2468,556
+[18:04:56.572] INFO  [v4_Corwyn] [travel] forge -> (2468,556) r=0 from (2476,569)
+[18:04:56.572] LOG   [v4_Corwyn] event travel_start: label='forge' target=(2468,556) radius=0 from=(2476,569)
+[18:04:56.572] INFO  [v4_Corwyn] [travel] mode walk             usable   <- chosen
+[18:04:56.572] INFO  [v4_Corwyn] [travel] mode moongate         usable
+[18:04:56.572] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:04:56.572] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:04:56.572] LOG   [v4_Corwyn] event travel_mode: walk
+[18:04:56.572] INFO  [v4_Corwyn] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[18:04:58.771] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:04:58.911] INFO  [v4_Corwyn] [bot] arrived at (2471,564,5)
+[18:04:58.911] INFO  [v4_Corwyn] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[18:04:58.911] LOG   [v4_Corwyn] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[18:04:58.911] INFO  [v4_Corwyn] [action] goto (2468,556) from (2471,564,5)
+[18:04:58.911] LOG   [v4_Corwyn] event goto_start: target=(2468,556) from=(2471,564)
+[18:04:58.911] INFO  [v4_Corwyn] [bot] running from (2471,564,5) to (2468,556)
+[18:04:58.911] INFO  [v4_Corwyn] [bot] planning path to (2468,556) in background
+[18:04:58.973] INFO  [v4_Corwyn] [bot] replan to (2468,556): 13 steps in 363.3us
+[18:05:03.795] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:03.855] INFO  [v4_Corwyn] [travel] forge ARRIVED at (2469,556,5)
+[18:05:03.855] LOG   [v4_Corwyn] event travel_done: label='forge' ok=1 at=(2469,556) legs=1 plans=1 why=''
+[18:05:03.915] INFO  [life] smelt: opening the forge at 2469,557
+[18:05:03.915] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:05:03.916] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000742D
+[18:05:03.932] INFO  [v4_Corwyn] [0x20] player @(2469,556,5) facing=4
+[18:05:03.932] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=1
+[18:05:03.932] LOG   [v4_Corwyn] event target_requested: id=0x000002C3 type=0 subtype=0 gen=1
+[18:05:03.932] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:05:03.932] LOG   [v4_Corwyn] event action_result: use_object success took=16ms server armed a target cursor
+[18:05:05.421] INFO  [life] smelt: giving the forge's cursor the ore (27 ore, 0 ingots so far)
+[18:05:05.421] INFO  [v4_Corwyn] [TARGET] reply serial=0x40010B81 gen=1
+[18:05:05.421] INFO  [v4_Corwyn] [target] object 0x40010B81 (0,0,0) model 0x0000
+[18:05:05.438] INFO  [v4_Corwyn] [0x20] player @(2469,556,5) facing=0
+[18:05:05.438] INFO  [v4_Corwyn] [chat ascii] Corwyn: *You smelt Iron Ore*
+[18:05:05.438] INFO  [v4_Corwyn] [chat ascii] System: You smelt the Iron Ore but are left with nothing useful.
+[18:05:07.936] INFO  [life] smelt: opening the forge at 2469,557
+[18:05:07.936] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:05:07.936] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000742D
+[18:05:07.952] INFO  [v4_Corwyn] [0x20] player @(2469,556,5) facing=4
+[18:05:07.952] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=2
+[18:05:07.952] LOG   [v4_Corwyn] event target_requested: id=0x000002C3 type=0 subtype=0 gen=2
+[18:05:07.952] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (17ms) server armed a target cursor
+[18:05:07.952] LOG   [v4_Corwyn] event action_result: use_object success took=17ms server armed a target cursor
+[18:05:08.829] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:09.446] INFO  [life] smelt: giving the forge's cursor the ore (15 ore, 0 ingots so far)
+[18:05:09.446] INFO  [v4_Corwyn] [TARGET] reply serial=0x40010B81 gen=2
+[18:05:09.446] INFO  [v4_Corwyn] [target] object 0x40010B81 (0,0,0) model 0x0000
+[18:05:09.462] INFO  [v4_Corwyn] [0x20] player @(2469,556,5) facing=0
+[18:05:09.462] INFO  [v4_Corwyn] [chat ascii] Corwyn: *You smelt Iron Ore*
+[18:05:09.462] INFO  [v4_Corwyn] [chat ascii] System: You put the iron ingots in your pack.
+[18:05:09.462] INFO  [life] goal_changed=MINE from=SMELT reason="MINE 80.4 superseded SMELT 0.0"
+[18:05:09.462] INFO  [life] needs considered: NeedOre(ore 0.62) NeedCraft(make goods to sell 0.50) NeedTrade(sell to a player 0.45) NeedGold(sell surplus BLOCKED 0.45) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[18:05:09.462] INFO  [life]   score=80.4
+[18:05:09.462] INFO  [life]   reason: NeedOre urgency 0.62 x 130 = 80.4
+[18:05:09.462] INFO  [life]   reason: 35 ore+ingots of the 550 wanted before smith training (smithing 50.6) at_work_site=1
+[18:05:09.462] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (15 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[18:05:11.995] INFO  [v4_Corwyn] [action] goto finished at (2469,556,5); target (2468,556); stopped short (off by 1 tile(s))
+[18:05:11.996] LOG   [v4_Corwyn] event goto_done: at=(2469,556) target=(2468,556) arrived=0 off=1
+[18:05:11.996] INFO  [life] mine: the ore is 43 tiles off -- walking into the mining area first (trip 2)
+[18:05:11.996] INFO  [v4_Corwyn] [travel] Minoc Miner's Guild -> (2456,493) r=20 from (2469,556)
+[18:05:11.996] LOG   [v4_Corwyn] event travel_start: label='Minoc Miner's Guild' target=(2456,493) radius=20 from=(2469,556)
+[18:05:11.996] INFO  [v4_Corwyn] [travel] mode moongate         usable   <- chosen
+[18:05:11.996] INFO  [v4_Corwyn] [travel] mode walk             usable
+[18:05:11.996] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:05:11.996] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:05:11.996] LOG   [v4_Corwyn] event travel_mode: moongate
+[18:05:11.996] INFO  [v4_Corwyn] [travel] plan Minoc Miner's Guild: ok legs=2 ~72 tiles transit=0 nodes=18
+[18:05:12.057] INFO  [v4_Corwyn] [action] goto (2456,520) from (2469,556,5)
+[18:05:12.057] LOG   [v4_Corwyn] event goto_start: target=(2456,520) from=(2469,556)
+[18:05:12.057] INFO  [v4_Corwyn] [bot] running from (2469,556,5) to (2456,520)
+[18:05:12.058] INFO  [v4_Corwyn] [bot] planning path to (2456,520) in background
+[18:05:12.118] INFO  [v4_Corwyn] [bot] replan to (2456,520): 82 steps in 11273.2us
+[18:05:13.606] INFO  [v4_Corwyn] [chat ascii] Curtis: Hmm?
+[18:05:13.853] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:16.585] INFO  [v4_Corwyn] [chat ascii] Olin: What's thee wantin'?
+[18:05:18.907] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:23.940] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:28.994] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:34.047] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:36.057] INFO  [v4_Corwyn] [bot] arrived at (2456,520,15)
+[18:05:36.057] INFO  [v4_Corwyn] [action] goto finished at (2456,520,15); target (2456,520); ARRIVED (off by 0 tile(s))
+[18:05:36.057] LOG   [v4_Corwyn] event goto_done: at=(2456,520) target=(2456,520) arrived=1 off=0
+[18:05:36.057] INFO  [v4_Corwyn] [action] goto (2456,493) from (2456,520,15)
+[18:05:36.057] LOG   [v4_Corwyn] event goto_start: target=(2456,493) from=(2456,520)
+[18:05:36.057] INFO  [v4_Corwyn] [bot] running from (2456,520,15) to (2456,493)
+[18:05:36.057] INFO  [v4_Corwyn] [bot] planning path to (2456,493) in background
+[18:05:36.118] INFO  [v4_Corwyn] [bot] replan to (2456,493): 28 steps in 1237.5us
+[18:05:38.261] INFO  [v4_Corwyn] [travel] Minoc Miner's Guild ARRIVED at (2456,511,15)
+[18:05:38.261] LOG   [v4_Corwyn] event travel_done: label='Minoc Miner's Guild' ok=1 at=(2456,511) legs=2 plans=1 why=''
+[18:05:38.388] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[18:05:39.075] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:43.544] INFO  [v4_Corwyn] [bot] door ahead at (2458,495,z15); OpenDoor before step
+[18:05:43.544] INFO  [v4_Corwyn] [chat ascii] System: Opening door...
+[18:05:44.096] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:45.168] INFO  [v4_Corwyn] [bot] arrived at (2456,493,15)
+[18:05:45.168] INFO  [v4_Corwyn] [action] goto finished at (2456,493,15); target (2456,493); ARRIVED (off by 0 tile(s))
+[18:05:45.168] LOG   [v4_Corwyn] event goto_done: at=(2456,493) target=(2456,493) arrived=1 off=0
+[18:05:45.175] INFO  [life] mine: the rock is at 2446,515, 22 tiles off -- standing at 2445,514 to reach it
+[18:05:45.175] INFO  [v4_Corwyn] [action] goto (2445,514) from (2456,493,15)
+[18:05:45.175] LOG   [v4_Corwyn] event goto_start: target=(2445,514) from=(2456,493)
+[18:05:45.175] INFO  [v4_Corwyn] [bot] running from (2456,493,15) to (2445,514)
+[18:05:45.175] INFO  [v4_Corwyn] [bot] planning path to (2445,514) in background
+[18:05:45.229] INFO  [v4_Corwyn] [bot] replan to (2445,514): 26 steps in 3716.9us
+[18:05:46.636] INFO  [v4_Corwyn] [bot] door ahead at (2459,496,z15); OpenDoor before step
+[18:05:46.636] INFO  [v4_Corwyn] [chat ascii] System: Opening door...
+[18:05:49.110] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:54.149] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:55.483] INFO  [v4_Corwyn] [bot] arrived at (2445,514,0)
+[18:05:55.483] INFO  [v4_Corwyn] [action] goto finished at (2445,514,0); target (2445,514); ARRIVED (off by 0 tile(s))
+[18:05:55.483] LOG   [v4_Corwyn] event goto_done: at=(2445,514) target=(2445,514) arrived=1 off=0
+[18:05:55.483] INFO  [life] mine: striking the rock at 2446,515,10 (rock face, 1 tiles)
+[18:05:55.483] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:05:55.483] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000D3D7
+[18:05:55.483] INFO  [v4_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[18:05:55.483] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=3
+[18:05:55.483] LOG   [v4_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=3
+[18:05:55.483] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[18:05:55.483] LOG   [v4_Corwyn] event action_result: use_object success took=1ms server armed a target cursor
+[18:05:58.042] INFO  [v4_Corwyn] [TARGET] reply ground=(2446,515,10) gen=3
+[18:05:58.042] INFO  [v4_Corwyn] [target] ground (2446,515,10)
+[18:05:58.057] INFO  [v4_Corwyn] [0x20] player @(2445,514,5) facing=3
+[18:05:58.057] INFO  [v4_Corwyn] [chat ascii] System: Try mining elsewhere.
+[18:05:59.162] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:05:59.593] INFO  [life] mine: 2446,515 refused ("try mining elsewhere") -- marking it dead
+[18:05:59.594] INFO  [life] mine: striking the rock at 2447,515,10 (rock face, 2 tiles)
+[18:05:59.594] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:05:59.594] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000D3D7
+[18:05:59.609] INFO  [v4_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[18:05:59.609] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=4
+[18:05:59.609] LOG   [v4_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=4
+[18:05:59.609] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[18:05:59.609] LOG   [v4_Corwyn] event action_result: use_object success took=15ms server armed a target cursor
+[18:06:02.148] INFO  [v4_Corwyn] [TARGET] reply ground=(2447,515,10) gen=4
+[18:06:02.148] INFO  [v4_Corwyn] [target] ground (2447,515,10)
+[18:06:02.148] INFO  [v4_Corwyn] [chat ascii] System: Try mining elsewhere.
+[18:06:03.648] INFO  [life] mine: 2447,515 refused ("try mining elsewhere") -- marking it dead
+[18:06:03.648] INFO  [life] mine: striking the rock at 2446,516,15 (rock face, 2 tiles)
+[18:06:03.648] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:06:03.648] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000D3D7
+[18:06:03.648] INFO  [v4_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[18:06:03.648] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=5
+[18:06:03.648] LOG   [v4_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=5
+[18:06:03.648] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:06:03.648] LOG   [v4_Corwyn] event action_result: use_object success took=0ms server armed a target cursor
+[18:06:04.200] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:06.165] INFO  [v4_Corwyn] [TARGET] reply ground=(2446,516,15) gen=5
+[18:06:06.166] INFO  [v4_Corwyn] [target] ground (2446,516,15)
+[18:06:06.166] INFO  [v4_Corwyn] [chat ascii] System: Try mining elsewhere.
+[18:06:07.683] INFO  [life] mine: 2446,516 refused ("try mining elsewhere") -- marking it dead
+[18:06:07.683] INFO  [life] mine: striking the rock at 2447,516,14 (rock face, 2 tiles)
+[18:06:07.683] INFO  [v4_Corwyn] [ACTION] use_object start
+[18:06:07.683] INFO  [v4_Corwyn] [ACTION] use_object serial=0x4000D3D7
+[18:06:07.698] INFO  [v4_Corwyn] [chat ascii] System: Where do you want to use the pickaxe?
+[18:06:07.698] INFO  [v4_Corwyn] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=6
+[18:06:07.698] LOG   [v4_Corwyn] event target_requested: id=0x000002CE type=1 subtype=1 gen=6
+[18:06:07.698] INFO  [v4_Corwyn] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[18:06:07.698] LOG   [v4_Corwyn] event action_result: use_object success took=15ms server armed a target cursor
+[18:06:09.204] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:10.203] INFO  [v4_Corwyn] [TARGET] reply ground=(2447,516,14) gen=6
+[18:06:10.203] INFO  [v4_Corwyn] [target] ground (2447,516,14)
+[18:06:10.218] INFO  [v4_Corwyn] [chat ascii] System: Try mining elsewhere.
+[18:06:11.750] INFO  [life] mine: 2447,516 refused ("try mining elsewhere") -- marking it dead
+[18:06:11.756] INFO  [life] mine: the rock is at 2446,538, 24 tiles off -- standing at 2445,537 to reach it
+[18:06:11.756] INFO  [v4_Corwyn] [action] goto (2445,537) from (2445,514,5)
+[18:06:11.756] LOG   [v4_Corwyn] event goto_start: target=(2445,537) from=(2445,514)
+[18:06:11.756] INFO  [v4_Corwyn] [bot] running from (2445,514,5) to (2445,537)
+[18:06:11.756] INFO  [v4_Corwyn] [bot] planning path to (2445,537) in background
+[18:06:11.812] INFO  [v4_Corwyn] [bot] replan to (2445,537): 27 steps in 835.4us
+[18:06:14.251] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:19.269] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:19.899] INFO  [v4_Corwyn] [bot] arrived at (2445,537,0)
+[18:06:19.899] INFO  [v4_Corwyn] [action] goto finished at (2445,537,0); target (2445,537); ARRIVED (off by 0 tile(s))
+[18:06:19.899] LOG   [v4_Corwyn] event goto_done: at=(2445,537) target=(2445,537) arrived=1 off=0
+[18:06:19.899] INFO  [life] mine: the ore is 24 tiles off -- walking into the mining area first (trip 1)
+[18:06:19.899] INFO  [v4_Corwyn] [travel] Minoc Miner's Guild -> (2456,493) r=20 from (2445,537)
+[18:06:19.899] LOG   [v4_Corwyn] event travel_start: label='Minoc Miner's Guild' target=(2456,493) radius=20 from=(2445,537)
+[18:06:19.899] INFO  [v4_Corwyn] [travel] mode walk             usable   <- chosen
+[18:06:19.899] INFO  [v4_Corwyn] [travel] mode moongate         usable
+[18:06:19.899] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:06:19.899] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:06:19.899] LOG   [v4_Corwyn] event travel_mode: walk
+[18:06:19.899] INFO  [v4_Corwyn] [travel] plan Minoc Miner's Guild: ok legs=2 ~56 tiles transit=0 nodes=10
+[18:06:19.961] INFO  [v4_Corwyn] [action] goto (2456,502) from (2445,537,0)
+[18:06:19.961] LOG   [v4_Corwyn] event goto_start: target=(2456,502) from=(2445,537)
+[18:06:19.961] INFO  [v4_Corwyn] [bot] running from (2445,537,0) to (2456,502)
+[18:06:19.962] INFO  [v4_Corwyn] [bot] planning path to (2456,502) in background
+[18:06:20.024] INFO  [v4_Corwyn] [bot] replan to (2456,502): 36 steps in 3617.9us
+[18:06:24.298] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:28.367] INFO  [v4_Corwyn] [travel] Minoc Miner's Guild ARRIVED at (2454,513,15)
+[18:06:28.367] LOG   [v4_Corwyn] event travel_done: label='Minoc Miner's Guild' ok=1 at=(2454,513) legs=2 plans=1 why=''
+[18:06:29.318] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:32.357] INFO  [v4_Corwyn] [bot] arrived at (2456,502,15)
+[18:06:32.357] INFO  [v4_Corwyn] [action] goto finished at (2456,502,15); target (2456,502); ARRIVED (off by 0 tile(s))
+[18:06:32.357] LOG   [v4_Corwyn] event goto_done: at=(2456,502) target=(2456,502) arrived=1 off=0
+[18:06:32.386] INFO  [life] mine: no rock within 24 tiles of 2456,502, but 'Minoc Mine 1' at 2558,499 has given ore 41 time(s) -- walking the 102 tiles back (trip 1)
+[18:06:32.386] INFO  [v4_Corwyn] [travel] ore -> (2558,499) r=2 from (2456,502)
+[18:06:32.386] LOG   [v4_Corwyn] event travel_start: label='ore' target=(2558,499) radius=2 from=(2456,502)
+[18:06:32.386] INFO  [v4_Corwyn] [travel] mode moongate         usable   <- chosen
+[18:06:32.386] INFO  [v4_Corwyn] [travel] mode walk             usable
+[18:06:32.386] INFO  [v4_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:06:32.386] INFO  [v4_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:06:32.386] LOG   [v4_Corwyn] event travel_mode: moongate
+[18:06:32.386] INFO  [v4_Corwyn] [travel] plan ore: ok legs=3 ~96 tiles transit=0 nodes=7
+[18:06:32.448] INFO  [v4_Corwyn] [action] goto (2488,504) from (2456,502,15)
+[18:06:32.448] LOG   [v4_Corwyn] event goto_start: target=(2488,504) from=(2456,502)
+[18:06:32.448] INFO  [v4_Corwyn] [bot] running from (2456,502,15) to (2488,504)
+[18:06:32.448] INFO  [v4_Corwyn] [bot] planning path to (2488,504) in background
+[18:06:32.513] INFO  [v4_Corwyn] [bot] replan to (2488,504): 32 steps in 5232.1us
+[18:06:34.369] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:35.743] INFO  [life] session_end_requested reason="session time limit reached"
+[18:06:39.394] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:44.397] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:44.596] INFO  [v4_Corwyn] [bot] arrived at (2488,504,15)
+[18:06:44.597] INFO  [v4_Corwyn] [action] goto finished at (2488,504,15); target (2488,504); ARRIVED (off by 0 tile(s))
+[18:06:44.597] LOG   [v4_Corwyn] event goto_done: at=(2488,504) target=(2488,504) arrived=1 off=0
+[18:06:44.597] INFO  [v4_Corwyn] [action] goto (2520,502) from (2488,504,15)
+[18:06:44.597] LOG   [v4_Corwyn] event goto_start: target=(2520,502) from=(2488,504)
+[18:06:44.597] INFO  [v4_Corwyn] [bot] running from (2488,504,15) to (2520,502)
+[18:06:44.597] INFO  [v4_Corwyn] [bot] planning path to (2520,502) in background
+[18:06:44.657] INFO  [v4_Corwyn] [bot] replan to (2520,502): 32 steps in 18077.4us
+[18:06:49.407] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:54.434] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:06:54.956] INFO  [v4_Corwyn] [bot] arrived at (2520,502,15)
+[18:06:54.956] INFO  [v4_Corwyn] [action] goto finished at (2520,502,15); target (2520,502); ARRIVED (off by 0 tile(s))
+[18:06:54.956] LOG   [v4_Corwyn] event goto_done: at=(2520,502) target=(2520,502) arrived=1 off=0
+[18:06:54.956] INFO  [v4_Corwyn] [action] goto (2558,499) from (2520,502,15)
+[18:06:54.956] LOG   [v4_Corwyn] event goto_start: target=(2558,499) from=(2520,502)
+[18:06:54.957] INFO  [v4_Corwyn] [bot] running from (2520,502,15) to (2558,499)
+[18:06:54.957] INFO  [v4_Corwyn] [bot] planning path to (2558,499) in background
+[18:06:55.017] INFO  [v4_Corwyn] [bot] replan to (2558,499): 38 steps in 4738.1us
+[18:06:59.485] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:07:04.502] INFO  [v4_Corwyn] [survival] hp 56/56 (100%) -> fight
+[18:07:04.778] INFO  [v4_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; OpenDoor + retry
+[18:07:05.528] INFO  [v4_Corwyn] [bot] step (2555,501,1)->(2556,500,0) rejected; avoiding edge + rerouting
+[18:07:05.528] INFO  [v4_Corwyn] [bot] planning path to (2558,499) in background
+[18:07:05.589] INFO  [v4_Corwyn] [bot] replan to (2558,499): 4 steps in 33.3us
+[18:07:06.138] INFO  [v4_Corwyn] [chat ascii] System: You have left the protection of the guards
+[18:07:06.261] INFO  [v4_Corwyn] [travel] ore ARRIVED at (2556,501,0)
+[18:07:06.261] LOG   [v4_Corwyn] event travel_done: label='ore' ok=1 at=(2556,501) legs=3 plans=1 why=''
+[18:07:06.324] INFO  [life] wind-down: arrived somewhere safe at 2556,501
+[18:07:06.386] INFO  [life] session_summary duration=210s goals=0/2 gold=8829->8829 skills=141.4->141.4 logs=+0 kills=0 deaths=0 places=16 suppliers=6
+[18:07:06.386] INFO  [life] session_goals families=1 picks=2 top=100% varied=0 | work=2(100%) | MINE=1(50%) SMELT=1(50%)
+[18:07:06.389] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[18:07:06.389] INFO  [life] logging out
+[18:07:06.389] INFO  [v4_Corwyn] [action] logout requested
+[18:07:06.389] LOG   [v4_Corwyn] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[18:07:06.401] INFO  [v4_Corwyn] [0xD1] logout acknowledged (accepted=1)
+[18:07:06.401] LOG   [v4_Corwyn] event logout_ack: accepted
+[18:07:06.401] INFO  [v4_Corwyn] [net] closing connection (logout acknowledged)
+[18:07:06.401] LOG   [v4_Corwyn] event logout_complete: acked

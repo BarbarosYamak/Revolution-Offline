@@ -1,0 +1,893 @@
+[13:05:55.106] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh03' char=Tarath tag='f6_Tarath'
+[13:05:55.107] LOG   [f6_Tarath] event session_start: text log opened
+[13:05:55.107] LOG   [f6_Tarath] event net_connect_begin: connect 127.0.0.1:2593
+[13:05:55.107] INFO  [f6_Tarath] [net] connecting to 127.0.0.1:2593 ...
+[13:05:55.108] LOG   [f6_Tarath] event net_connected: connect 127.0.0.1:2593
+[13:05:55.108] INFO  [f6_Tarath] [net] connected.
+[13:05:55.108] INFO  [f6_Tarath] [seed] sent 0x7F000001 (plaintext)
+[13:05:55.108] LOG   [f6_Tarath] event seed_out: 0x7F000001 hex=7f000001
+[13:05:55.109] INFO  [life] loaded persistent state for Tarath (2 places, 0 suppliers, 13 events, 3 prior sessions)
+[13:05:55.109] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[13:05:55.109] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[13:05:55.109] INFO  [f6_Tarath] [life] autonomous player active for 'Tarath' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[13:05:55.109] INFO  [f6_Tarath] [0xA8] 1 server(s):
+[13:05:55.109] INFO  [f6_Tarath]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[13:05:55.117] INFO  [f6_Tarath] [0x8C] game server = 127.0.0.1:2593  seed=0xD531A385
+[13:05:55.117] LOG   [f6_Tarath] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD531A385
+[13:05:55.117] INFO  [f6_Tarath] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[13:05:55.117] LOG   [f6_Tarath] event relay_same_socket: no seed re-sent; 0x91 follows
+[13:05:55.117] INFO  [f6_Tarath] [0xB9] server features = 0x0005
+[13:05:55.117] INFO  [f6_Tarath] [0xA9] 5 slot(s) (populated 1):
+[13:05:55.117] INFO  [f6_Tarath]   [0] Tarath
+[13:05:55.117] INFO  [f6_Tarath]   [1] <empty>
+[13:05:55.117] INFO  [f6_Tarath]   [2] <empty>
+[13:05:55.117] INFO  [f6_Tarath]   [3] <empty>
+[13:05:55.117] INFO  [f6_Tarath]   [4] <empty>
+[13:05:55.117] INFO  [f6_Tarath] [ui] playing slot 0 ('Tarath')
+[13:05:55.132] INFO  [f6_Tarath] [0x1B] serial=0x000143D5 body=0x0190 pos=(1453,1615,20)
+[13:05:55.132] LOG   [f6_Tarath] event login_confirm: serial=0x000143D5 body=0x0190 pos=(1453,1615,20)
+[13:05:55.133] INFO  [f6_Tarath] [0x20] player @(1453,1615,20) facing=2
+[13:05:55.133] INFO  [f6_Tarath] [0x55] login complete — entering world
+[13:05:55.133] LOG   [f6_Tarath] event in_world: 0x55 received
+[13:05:55.133] INFO  [f6_Tarath] [backpack] opening 0x400143D3
+[13:05:55.133] INFO  [f6_Tarath] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[13:05:55.133] INFO  [f6_Tarath] [chat ascii] System: There is 1 other player here.
+[13:05:55.133] INFO  [f6_Tarath] [chat ascii] System: Last logged: 2026/08/29 12:38:15
+[13:05:55.133] INFO  [f6_Tarath] [chat ascii] System: You are under the protection of the city guards
+[13:05:55.136] INFO  [f6_Tarath] [action] requesting the skill list
+[13:05:55.136] INFO  [life] in world; asked the server for the skill list
+[13:05:55.136] INFO  [f6_Tarath] [0x24] open container 0x400143D3 gump=60
+[13:05:55.136] INFO  [f6_Tarath] [0x3C] container contents: 6 item(s)
+[13:05:55.136] LOG   [f6_Tarath] event backpack_contents: serial=0x400143D3 items=6
+[13:05:55.158] INFO  [f6_Tarath] [chat ascii] System: Voris has arrived in Britain.
+[13:05:55.178] INFO  [f6_Tarath] [chat ascii] System: Kaelen has arrived in Britain.
+[13:05:55.225] INFO  [f6_Tarath] [chat ascii] System: Ysolde has arrived in Britain.
+[13:05:55.225] INFO  [f6_Tarath] [chat ascii] System: Bruin has arrived in Magincia.
+[13:05:57.761] INFO  [f6_Tarath] [bot] world data loaded (0 blacklisted spot(s)).
+[13:05:57.762] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[13:05:57.762] INFO  [life]   gold         persisted=905        server=905        -> server value accepted
+[13:05:57.762] INFO  [life]   str          persisted=40         server=40         -> server value accepted
+[13:05:57.762] INFO  [life]   dex          persisted=32         server=32         -> server value accepted
+[13:05:57.762] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[13:05:57.762] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[13:05:57.762] INFO  [life]   skill_40     persisted=50.1       server=50.1       -> server value accepted
+[13:05:57.762] INFO  [life]   skill_27     persisted=17.2       server=17.2       -> server value accepted
+[13:05:57.762] INFO  [life]   skill_1      persisted=3.8        server=3.8        -> server value accepted
+[13:05:57.762] INFO  [life]   skill_17     persisted=16.2       server=16.2       -> server value accepted
+[13:05:57.762] INFO  [life]   skill_11     persisted=22.0       server=22.0       -> server value accepted
+[13:05:57.762] INFO  [life]   position     persisted=1453,1615  server=1453,1615  -> server value accepted
+[13:05:57.762] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[13:05:57.762] INFO  [life]   restored objective KEPT: GET_FOOD (progress 0)
+[13:05:57.762] INFO  [f6_Tarath] [survival] on
+[13:05:57.762] LOG   [f6_Tarath] event survival_mode: on
+[13:05:57.764] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:05:57.764] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:05:57.816] INFO  [life] food: looking for a baker (trip 1)
+[13:05:57.816] INFO  [f6_Tarath] [travel] Britain baker -> (1450,1617) r=5 from (1453,1615)
+[13:05:57.816] LOG   [f6_Tarath] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1453,1615)
+[13:05:57.816] INFO  [f6_Tarath] [travel] Britain baker ARRIVED at (1453,1615,20)
+[13:05:57.816] LOG   [f6_Tarath] event travel_done: label='Britain baker' ok=1 at=(1453,1615) legs=0 plans=0 why=''
+[13:05:59.820] INFO  [f6_Tarath] [action] scanning nearby mobiles for names
+[13:05:59.820] INFO  [f6_Tarath] [action] requested 1 paperdoll(s) for trade titles
+[13:05:59.821] INFO  [f6_Tarath] [mobiles] nearby (2):
+[13:05:59.821] INFO  [f6_Tarath]   Lionel 0x000010B3
+[13:05:59.821] INFO  [f6_Tarath]   Natasha 0x00001194
+[13:05:59.821] INFO  [f6_Tarath] [0x20] player @(1453,1615,20) facing=5
+[13:05:59.821] INFO  [f6_Tarath] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[13:05:59.821] INFO  [f6_Tarath] [world] Lionel, the baker is a baker at (1452,1616)
+[13:06:02.355] INFO  [life] food: nothing to eat -- asking the baker
+[13:06:02.355] INFO  [f6_Tarath] [ACTION] vendor_buy start
+[13:06:02.355] INFO  [f6_Tarath] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[13:06:02.356] INFO  [f6_Tarath] [chat uni  ] : Lionel buy
+[13:06:02.356] INFO  [f6_Tarath] [chat ascii] Lionel: I would gladly sell to thee of my many wares.
+[13:06:02.356] INFO  [f6_Tarath] [0x3C] container contents: 10 item(s)
+[13:06:02.356] INFO  [f6_Tarath] [0x74] vendor shop data: cont=0x400010A9 10 item(s), layer=0x1A
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   bread loaves                 gfx=0x103B qty=139  price=8
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   baked pie                    gfx=0x1041 qty=8    price=17
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   cake                         gfx=0x09E9 qty=36   price=38
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   muffins                      gfx=0x09EA qty=47   price=8
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   sack of flour                gfx=0x1039 qty=102  price=6
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   french bread                 gfx=0x098C qty=87   price=9
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   pan of cookies               gfx=0x160B qty=70   price=7
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   pizzas                       gfx=0x1040 qty=36   price=15
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   jars of honey                gfx=0x09EC qty=57   price=10
+[13:06:02.356] INFO  [f6_Tarath] [0x74]   dough                        gfx=0x103D qty=100  price=12
+[13:06:02.356] INFO  [f6_Tarath] [0x3C] container contents: 0 item(s)
+[13:06:02.356] INFO  [f6_Tarath] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR] offer from 0x000010B3: 10 item(s)
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146CE bread loaves           x139 8 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146CD baked pie              x8   17 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146CC cake                   x36  38 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146C5 muffins                x47  8 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146C4 sack of flour          x102 6 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146C3 french bread           x87  9 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146C2 pan of cookies         x70  7 gp
+[13:06:02.356] INFO  [f6_Tarath] [VENDOR]   0x400146C1 pizzas                 x36  15 gp
+[13:06:02.356] LOG   [f6_Tarath] event vendor_offer: vendor=0x000010B3 items=10
+[13:06:02.356] INFO  [f6_Tarath] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[13:06:02.356] LOG   [f6_Tarath] event action_result: vendor_buy success took=1ms vendor offer received
+[13:06:02.356] INFO  [f6_Tarath] [0x24] vendor buy gump for 0x000010B3
+[13:06:02.785] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:07.815] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:11.376] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[13:06:11.376] INFO  [f6_Tarath] [ACTION] vendor_buy start
+[13:06:11.376] INFO  [f6_Tarath] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[13:06:11.376] INFO  [f6_Tarath] [VENDOR] buy item=0x400146CE qty=2 from vendor=0x000010B3 gold=905
+[13:06:11.377] INFO  [f6_Tarath] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[13:06:11.377] LOG   [f6_Tarath] event action_result: vendor_buy success took=1ms purchased item delivered
+[13:06:11.377] INFO  [f6_Tarath] [chat ascii] Lionel: Here you are, Tarath That will be 16 gold coins.  I thank thee for thy business.
+[13:06:11.377] INFO  [f6_Tarath] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[13:06:12.828] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:17.760] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 90.0 superseded GET_FOOD 0.0"
+[13:06:17.760] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy 0.39) NeedTraining(Tactics 0.36) NeedTraining(Swordsmanship 0.27) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[13:06:17.760] INFO  [life]   score=90.0
+[13:06:17.760] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:06:17.760] INFO  [life]   reason: Carpentry 22.0 -> 100.0, gold 889 (fee is quoted on arrival, roughly 300)
+[13:06:17.760] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:06:17.760] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:06:17.884] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:20.407] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[13:06:20.407] INFO  [f6_Tarath] [travel] Britain carpenter -> (1430,1597) r=5 from (1453,1615)
+[13:06:20.407] LOG   [f6_Tarath] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(1453,1615)
+[13:06:20.407] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:20.407] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:20.407] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:20.407] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:20.407] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:20.407] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~23 tiles transit=0 nodes=0
+[13:06:20.469] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:20.469] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:20.469] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:20.469] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:20.592] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:20.592] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:21.799] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:21.799] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:21.799] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:21.799] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:21.922] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:21.922] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:22.893] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:23.141] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:23.141] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:23.141] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:23.141] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:23.263] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:23.263] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:24.479] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:24.479] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:24.479] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:24.479] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:24.479] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:24.479] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~23 tiles transit=0 nodes=0
+[13:06:26.016] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:26.016] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:26.016] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:26.016] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:26.079] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:26.079] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:27.296] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:27.296] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:27.296] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:27.296] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:27.373] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:27.373] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:27.921] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:28.597] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:28.597] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:28.597] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:28.597] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:28.722] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:28.722] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:29.951] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:29.951] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:29.951] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:29.951] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:29.951] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:29.951] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~23 tiles transit=0 nodes=0
+[13:06:32.962] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:32.962] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:32.962] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:32.962] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:32.962] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:33.023] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:33.023] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:34.224] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:34.224] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:34.224] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:34.224] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:34.348] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:34.348] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:35.594] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:35.594] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:35.594] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:35.594] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:35.718] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:35.718] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:36.935] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:36.935] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:36.935] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:36.935] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:36.935] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:36.935] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~23 tiles transit=0 nodes=0
+[13:06:38.008] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:41.480] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:41.480] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:41.480] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:41.480] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:41.603] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:41.603] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:42.820] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:42.820] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:42.820] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:42.820] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:42.929] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:42.929] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:43.051] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:44.188] INFO  [f6_Tarath] [action] goto (1430,1597) from (1453,1615,20)
+[13:06:44.188] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1453,1615)
+[13:06:44.189] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1430,1597,z20)
+[13:06:44.189] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:44.312] INFO  [f6_Tarath] [action] goto finished at (1453,1615,20); target (1430,1597); stopped short (off by 41 tile(s))
+[13:06:44.312] LOG   [f6_Tarath] event goto_done: at=(1453,1615) target=(1430,1597) arrived=0 off=41
+[13:06:44.312] LOG   [f6_Tarath] event travel_escape: from=(1453,1615,20) to=(1448,1624) attempt=1
+[13:06:44.312] INFO  [f6_Tarath] [action] goto (1448,1624) from (1453,1615,20)
+[13:06:44.312] LOG   [f6_Tarath] event goto_start: target=(1448,1624) from=(1453,1615)
+[13:06:44.312] INFO  [f6_Tarath] [bot] running from (1453,1615,20) to (1448,1624,z20)
+[13:06:44.312] INFO  [f6_Tarath] [bot] planning path to (1448,1624) in background
+[13:06:44.373] INFO  [f6_Tarath] [bot] replan to (1448,1624): 28 steps in 1014.1us
+[13:06:46.016] INFO  [f6_Tarath] [chat ascii] Lionel: What's thee wantin'?
+[13:06:46.016] INFO  [f6_Tarath] [chat ascii] Lionel: Aye?
+[13:06:47.402] INFO  [f6_Tarath] [bot] door ahead at (1460,1613,z20); OpenDoor before step
+[13:06:47.403] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:06:48.076] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:51.504] INFO  [f6_Tarath] [chat uni  ] : Lionel buy
+[13:06:51.504] INFO  [f6_Tarath] [chat ascii] Lionel: I got lots to sell!
+[13:06:52.335] INFO  [f6_Tarath] [chat uni  ] : Lionel buy
+[13:06:52.336] INFO  [f6_Tarath] [chat ascii] Lionel: Excuse me Ysolde, but Voris wants to speak to me
+[13:06:52.336] INFO  [f6_Tarath] [chat ascii] Lionel: Thou surely wants all the things that I can sell thee.
+[13:06:53.087] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:53.273] INFO  [f6_Tarath] [bot] arrived at (1448,1624,20)
+[13:06:53.273] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1448,1624); ARRIVED (off by 0 tile(s))
+[13:06:53.273] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1448,1624) arrived=1 off=0
+[13:06:53.273] INFO  [f6_Tarath] [travel] recovery walk reached its anchor at (1448,1624,20) (off 0); attempt 1/3
+[13:06:53.273] LOG   [f6_Tarath] event travel_recovery_done: reached=1 at=(1448,1624,20) off=0 attempt=1
+[13:06:53.333] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:53.333] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:53.333] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:53.333] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:53.333] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:53.333] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[13:06:53.395] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:06:53.395] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:06:53.395] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:06:53.395] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:53.519] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:06:53.519] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:06:54.740] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:06:54.740] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:06:54.740] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:06:54.740] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:54.802] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:06:54.802] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:06:56.035] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:06:56.035] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:06:56.035] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:06:56.035] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:56.158] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:06:56.158] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:06:57.372] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:06:57.372] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:06:57.372] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:06:57.372] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:06:57.372] LOG   [f6_Tarath] event travel_mode: walk
+[13:06:57.372] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[13:06:57.805] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:06:58.110] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:06:58.909] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:06:58.909] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:06:58.909] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:06:58.909] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:06:59.033] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:06:59.033] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:00.265] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:00.265] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:00.265] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:00.265] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:00.357] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:00.357] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:01.357] INFO  [f6_Tarath] [chat ascii] Lionel: Here you are, Voris That will be 16 gold coins.  I thank thee for thy business.
+[13:07:01.603] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:01.603] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:01.603] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:01.603] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:01.728] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:01.728] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:02.957] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:02.957] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:02.957] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:02.957] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:02.957] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:02.957] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[13:07:03.141] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:06.009] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:06.009] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:06.009] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:06.009] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:06.132] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:06.132] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:07.367] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:07.367] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:07.367] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:07.367] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:07.489] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:07.489] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:08.173] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:08.725] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:08.725] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:08.725] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:08.725] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:08.847] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:08.847] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:10.107] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:10.107] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:10.107] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:10.107] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:10.107] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:10.107] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~27 tiles transit=0 nodes=0
+[13:07:13.175] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:14.644] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:14.644] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:14.644] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:14.644] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:14.770] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:14.770] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:16.014] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:16.014] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:16.014] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:16.014] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:16.075] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:16.075] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:17.310] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1624,20)
+[13:07:17.310] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1624)
+[13:07:17.310] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1430,1597,z20)
+[13:07:17.310] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:17.435] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1430,1597); stopped short (off by 45 tile(s))
+[13:07:17.435] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1430,1597) arrived=0 off=45
+[13:07:17.435] LOG   [f6_Tarath] event travel_escape: from=(1448,1624,20) to=(1448,1640) attempt=2
+[13:07:17.435] INFO  [f6_Tarath] [action] goto (1448,1640) from (1448,1624,20)
+[13:07:17.435] LOG   [f6_Tarath] event goto_start: target=(1448,1640) from=(1448,1624)
+[13:07:17.435] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1448,1640,z20)
+[13:07:17.435] INFO  [f6_Tarath] [bot] planning path to (1448,1640) in background
+[13:07:18.062] INFO  [f6_Tarath] [chat ascii] Lionel: Here you are, Ysolde That will be 16 gold coins.  I thank thee for thy business.
+[13:07:18.232] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:18.540] INFO  [f6_Tarath] [action] goto finished at (1448,1624,20); target (1448,1640); stopped short (off by 16 tile(s))
+[13:07:18.540] LOG   [f6_Tarath] event goto_done: at=(1448,1624) target=(1448,1640) arrived=0 off=16
+[13:07:18.540] INFO  [f6_Tarath] [travel] recovery walk fell short at (1448,1624,20) (off 16); attempt 2/3
+[13:07:18.540] LOG   [f6_Tarath] event travel_recovery_done: reached=0 at=(1448,1624,20) off=16 attempt=2
+[13:07:18.540] LOG   [f6_Tarath] event travel_escape: from=(1448,1624,20) to=(1448,1608) attempt=3
+[13:07:18.540] INFO  [f6_Tarath] [action] goto (1448,1608) from (1448,1624,20)
+[13:07:18.540] LOG   [f6_Tarath] event goto_start: target=(1448,1608) from=(1448,1624)
+[13:07:18.540] INFO  [f6_Tarath] [bot] running from (1448,1624,20) to (1448,1608,z20)
+[13:07:18.540] INFO  [f6_Tarath] [bot] planning path to (1448,1608) in background
+[13:07:18.601] INFO  [f6_Tarath] [bot] replan to (1448,1608): 37 steps in 7632.6us
+[13:07:23.233] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:24.224] INFO  [f6_Tarath] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[13:07:24.224] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:07:25.193] INFO  [f6_Tarath] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 117.2us
+[13:07:28.277] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:31.066] INFO  [f6_Tarath] [bot] arrived at (1448,1608,20)
+[13:07:31.067] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1448,1608); ARRIVED (off by 0 tile(s))
+[13:07:31.067] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1448,1608) arrived=1 off=0
+[13:07:31.067] INFO  [f6_Tarath] [travel] recovery walk reached its anchor at (1448,1608,20) (off 0); attempt 2/3
+[13:07:31.067] LOG   [f6_Tarath] event travel_recovery_done: reached=1 at=(1448,1608,20) off=0 attempt=2
+[13:07:31.128] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:31.128] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:31.128] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:31.128] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:31.128] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:31.128] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[13:07:31.190] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:31.190] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:31.190] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:31.190] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:31.311] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:31.311] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:32.541] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:32.541] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:32.541] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:32.541] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:32.632] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:32.632] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:33.293] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:33.858] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:33.858] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:33.858] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:33.858] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:33.979] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:33.979] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:35.181] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:35.181] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:35.181] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:35.181] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:35.181] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:35.181] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[13:07:36.720] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:36.720] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:36.720] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:36.720] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:36.843] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:36.843] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:38.072] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:38.072] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:38.072] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:38.072] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:38.194] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:38.194] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:38.318] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:39.427] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:39.427] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:39.427] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:39.427] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:39.534] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:39.534] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:40.774] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:40.774] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:40.774] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:40.774] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:40.774] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:40.774] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[13:07:43.354] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:43.781] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:43.781] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:43.781] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:43.781] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:43.904] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:43.904] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:45.116] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:45.116] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:45.116] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:45.117] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:45.179] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:45.179] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:46.425] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:46.425] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:46.425] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:46.425] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:46.548] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:46.548] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:47.806] INFO  [f6_Tarath] [travel] mode walk             usable   <- chosen
+[13:07:47.806] INFO  [f6_Tarath] [travel] mode moongate         usable
+[13:07:47.806] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:47.806] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:47.806] LOG   [f6_Tarath] event travel_mode: walk
+[13:07:47.806] INFO  [f6_Tarath] [travel] plan Britain carpenter: ok legs=1 ~18 tiles transit=0 nodes=0
+[13:07:48.360] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:52.312] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:52.312] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:52.312] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:52.312] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:52.374] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:52.374] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:53.420] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:07:53.605] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:53.605] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:53.605] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:53.605] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:53.682] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:53.682] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:54.935] INFO  [f6_Tarath] [action] goto (1430,1597) from (1448,1608,20)
+[13:07:54.935] LOG   [f6_Tarath] event goto_start: target=(1430,1597) from=(1448,1608)
+[13:07:54.935] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1430,1597,z20)
+[13:07:54.935] INFO  [f6_Tarath] [bot] planning path to (1430,1597) in background
+[13:07:55.060] INFO  [f6_Tarath] [action] goto finished at (1448,1608,20); target (1430,1597); stopped short (off by 29 tile(s))
+[13:07:55.060] LOG   [f6_Tarath] event goto_done: at=(1448,1608) target=(1430,1597) arrived=0 off=29
+[13:07:55.060] INFO  [f6_Tarath] [travel] Britain carpenter FAILED at (1448,1608,20) -- tile route stopped short
+[13:07:55.060] LOG   [f6_Tarath] event travel_failed: label='Britain carpenter' ok=0 at=(1448,1608) legs=1 plans=4 why='tile route stopped short'
+[13:07:55.122] INFO  [life] training: arrived at 1448,1608 -- asking who is here
+[13:07:55.122] INFO  [f6_Tarath] [action] scanning nearby mobiles for names
+[13:07:55.122] INFO  [f6_Tarath] [action] requested 1 paperdoll(s) for trade titles
+[13:07:55.137] INFO  [f6_Tarath] [mobiles] nearby (4):
+[13:07:55.137] INFO  [f6_Tarath]   Lionel 0x000010B3
+[13:07:55.137] INFO  [f6_Tarath]   Ysolde 0x00013C94
+[13:07:55.137] INFO  [f6_Tarath]   Coleen 0x00001099
+[13:07:55.137] INFO  [f6_Tarath]   Hadi 0x0000110A
+[13:07:55.137] INFO  [f6_Tarath] [0x20] player @(1448,1608,20) facing=3
+[13:07:55.137] INFO  [f6_Tarath] [0x88] paperdoll 0x00013C94: "Ysolde, Apprentice Mage"
+[13:07:57.676] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 2)
+[13:07:57.676] INFO  [f6_Tarath] [travel] Skara Brae carpenter -> (627,2163) r=5 from (1448,1608)
+[13:07:57.676] LOG   [f6_Tarath] event travel_start: label='Skara Brae carpenter' target=(627,2163) radius=5 from=(1448,1608)
+[13:07:57.676] INFO  [f6_Tarath] [travel] mode moongate         usable   <- chosen
+[13:07:57.676] INFO  [f6_Tarath] [travel] mode walk             usable
+[13:07:57.676] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:07:57.676] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:07:57.676] LOG   [f6_Tarath] event travel_mode: moongate
+[13:07:57.677] INFO  [f6_Tarath] [travel] plan Skara Brae carpenter: ok legs=17 ~688 tiles transit=1 nodes=1404
+[13:07:57.738] INFO  [f6_Tarath] [action] goto (1416,1640) from (1448,1608,20)
+[13:07:57.738] LOG   [f6_Tarath] event goto_start: target=(1416,1640) from=(1448,1608)
+[13:07:57.738] INFO  [f6_Tarath] [bot] running from (1448,1608,20) to (1416,1640)
+[13:07:57.738] INFO  [f6_Tarath] [bot] planning path to (1416,1640) in background
+[13:07:57.798] INFO  [f6_Tarath] [bot] replan to (1416,1640): 75 steps in 6152.8us
+[13:07:57.816] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:07:58.471] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:03.512] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:04.295] INFO  [f6_Tarath] [bot] door ahead at (1460,1613,z20); OpenDoor before step
+[13:08:04.309] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:08:08.523] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:13.558] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:18.595] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:21.408] INFO  [f6_Tarath] [bot] arrived at (1416,1640,20)
+[13:08:21.409] INFO  [f6_Tarath] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[13:08:21.409] LOG   [f6_Tarath] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[13:08:21.409] INFO  [f6_Tarath] [action] goto (1416,1672) from (1416,1640,20)
+[13:08:21.409] LOG   [f6_Tarath] event goto_start: target=(1416,1672) from=(1416,1640)
+[13:08:21.409] INFO  [f6_Tarath] [bot] running from (1416,1640,20) to (1416,1672)
+[13:08:21.409] INFO  [f6_Tarath] [bot] planning path to (1416,1672) in background
+[13:08:21.469] INFO  [f6_Tarath] [bot] replan to (1416,1672): 32 steps in 509.6us
+[13:08:22.083] INFO  [f6_Tarath] [chat ascii] System: World save in 10 seconds
+[13:08:23.651] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:28.694] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:29.569] INFO  [f6_Tarath] [bot] arrived at (1416,1672,10)
+[13:08:29.570] INFO  [f6_Tarath] [action] goto finished at (1416,1672,10); target (1416,1672); ARRIVED (off by 0 tile(s))
+[13:08:29.570] LOG   [f6_Tarath] event goto_done: at=(1416,1672) target=(1416,1672) arrived=1 off=0
+[13:08:29.570] INFO  [f6_Tarath] [action] goto (1402,1706) from (1416,1672,10)
+[13:08:29.570] LOG   [f6_Tarath] event goto_start: target=(1402,1706) from=(1416,1672)
+[13:08:29.570] INFO  [f6_Tarath] [bot] running from (1416,1672,10) to (1402,1706)
+[13:08:29.570] INFO  [f6_Tarath] [bot] planning path to (1402,1706) in background
+[13:08:29.631] INFO  [f6_Tarath] [bot] replan to (1402,1706): 46 steps in 2663.8us
+[13:08:32.120] INFO  [f6_Tarath] [chat ascii] System: World save has been initiated.
+[13:08:33.732] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:38.774] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:42.484] INFO  [f6_Tarath] [bot] arrived at (1402,1706,20)
+[13:08:42.484] INFO  [f6_Tarath] [action] goto finished at (1402,1706,20); target (1402,1706); ARRIVED (off by 0 tile(s))
+[13:08:42.484] LOG   [f6_Tarath] event goto_done: at=(1402,1706) target=(1402,1706) arrived=1 off=0
+[13:08:42.484] INFO  [f6_Tarath] [action] goto (1386,1728) from (1402,1706,20)
+[13:08:42.484] LOG   [f6_Tarath] event goto_start: target=(1386,1728) from=(1402,1706)
+[13:08:42.484] INFO  [f6_Tarath] [bot] running from (1402,1706,20) to (1386,1728)
+[13:08:42.484] INFO  [f6_Tarath] [bot] planning path to (1386,1728) in background
+[13:08:42.544] INFO  [f6_Tarath] [bot] replan to (1386,1728): 30 steps in 6549.8us
+[13:08:43.780] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:48.822] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:53.186] INFO  [f6_Tarath] [chat ascii] System: You have left the protection of the city guards
+[13:08:53.857] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:08:54.070] INFO  [f6_Tarath] [bot] arrived at (1386,1728,0)
+[13:08:54.071] INFO  [f6_Tarath] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[13:08:54.071] LOG   [f6_Tarath] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[13:08:54.071] INFO  [f6_Tarath] [action] goto (1352,1766) from (1386,1728,0)
+[13:08:54.071] LOG   [f6_Tarath] event goto_start: target=(1352,1766) from=(1386,1728)
+[13:08:54.071] INFO  [f6_Tarath] [bot] running from (1386,1728,0) to (1352,1766)
+[13:08:54.071] INFO  [f6_Tarath] [bot] planning path to (1352,1766) in background
+[13:08:54.132] INFO  [f6_Tarath] [bot] replan to (1352,1766): 69 steps in 24242.1us
+[13:08:54.809] INFO  [f6_Tarath] [chat ascii] System: You are now under the protection of the city guards
+[13:08:57.849] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:08:58.890] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:03.931] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:04.191] INFO  [f6_Tarath] [chat ascii] System: You have left the protection of the city guards
+[13:09:08.936] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:13.970] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:16.194] INFO  [f6_Tarath] [bot] arrived at (1352,1766,15)
+[13:09:16.195] INFO  [f6_Tarath] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[13:09:16.195] LOG   [f6_Tarath] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[13:09:16.195] INFO  [f6_Tarath] [action] goto (1336,1800) from (1352,1766,15)
+[13:09:16.195] LOG   [f6_Tarath] event goto_start: target=(1336,1800) from=(1352,1766)
+[13:09:16.195] INFO  [f6_Tarath] [bot] running from (1352,1766,15) to (1336,1800)
+[13:09:16.195] INFO  [f6_Tarath] [bot] planning path to (1336,1800) in background
+[13:09:16.255] INFO  [f6_Tarath] [bot] replan to (1336,1800): 49 steps in 26528.8us
+[13:09:19.009] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:24.038] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:29.048] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:31.565] INFO  [f6_Tarath] [bot] arrived at (1336,1800,0)
+[13:09:31.566] INFO  [f6_Tarath] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[13:09:31.566] LOG   [f6_Tarath] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[13:09:31.566] INFO  [f6_Tarath] [action] goto (1336,1832) from (1336,1800,0)
+[13:09:31.566] LOG   [f6_Tarath] event goto_start: target=(1336,1832) from=(1336,1800)
+[13:09:31.566] INFO  [f6_Tarath] [bot] running from (1336,1800,0) to (1336,1832)
+[13:09:31.566] INFO  [f6_Tarath] [bot] planning path to (1336,1832) in background
+[13:09:31.627] INFO  [f6_Tarath] [bot] replan to (1336,1832): 32 steps in 7291.9us
+[13:09:34.083] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:39.109] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:41.566] INFO  [f6_Tarath] [bot] arrived at (1336,1832,0)
+[13:09:41.567] INFO  [f6_Tarath] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[13:09:41.567] LOG   [f6_Tarath] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[13:09:41.567] INFO  [f6_Tarath] [action] goto (1336,1864) from (1336,1832,0)
+[13:09:41.567] LOG   [f6_Tarath] event goto_start: target=(1336,1864) from=(1336,1832)
+[13:09:41.567] INFO  [f6_Tarath] [bot] running from (1336,1832,0) to (1336,1864)
+[13:09:41.567] INFO  [f6_Tarath] [bot] planning path to (1336,1864) in background
+[13:09:41.627] INFO  [f6_Tarath] [bot] replan to (1336,1864): 33 steps in 10227.8us
+[13:09:44.166] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:49.226] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:53.971] INFO  [f6_Tarath] [bot] arrived at (1336,1864,0)
+[13:09:53.972] INFO  [f6_Tarath] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[13:09:53.972] LOG   [f6_Tarath] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[13:09:53.972] INFO  [f6_Tarath] [action] goto (1336,1896) from (1336,1864,0)
+[13:09:53.972] LOG   [f6_Tarath] event goto_start: target=(1336,1896) from=(1336,1864)
+[13:09:53.972] INFO  [f6_Tarath] [bot] running from (1336,1864,0) to (1336,1896)
+[13:09:53.972] INFO  [f6_Tarath] [bot] planning path to (1336,1896) in background
+[13:09:54.033] INFO  [f6_Tarath] [bot] replan to (1336,1896): 37 steps in 9960.1us
+[13:09:54.279] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:09:57.891] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:09:59.332] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:04.361] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:07.229] INFO  [f6_Tarath] [bot] arrived at (1336,1896,0)
+[13:10:07.230] INFO  [f6_Tarath] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[13:10:07.230] LOG   [f6_Tarath] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[13:10:07.230] INFO  [f6_Tarath] [action] goto (1336,1928) from (1336,1896,0)
+[13:10:07.230] LOG   [f6_Tarath] event goto_start: target=(1336,1928) from=(1336,1896)
+[13:10:07.230] INFO  [f6_Tarath] [bot] running from (1336,1896,0) to (1336,1928)
+[13:10:07.230] INFO  [f6_Tarath] [bot] planning path to (1336,1928) in background
+[13:10:07.291] INFO  [f6_Tarath] [bot] replan to (1336,1928): 32 steps in 9162.3us
+[13:10:09.380] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:14.395] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:19.103] INFO  [f6_Tarath] [bot] arrived at (1336,1928,0)
+[13:10:19.103] INFO  [f6_Tarath] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[13:10:19.103] LOG   [f6_Tarath] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[13:10:19.103] INFO  [f6_Tarath] [action] goto (1336,1960) from (1336,1928,0)
+[13:10:19.103] LOG   [f6_Tarath] event goto_start: target=(1336,1960) from=(1336,1928)
+[13:10:19.103] INFO  [f6_Tarath] [bot] running from (1336,1928,0) to (1336,1960)
+[13:10:19.104] INFO  [f6_Tarath] [bot] planning path to (1336,1960) in background
+[13:10:19.165] INFO  [f6_Tarath] [bot] replan to (1336,1960): 33 steps in 11745.7us
+[13:10:19.410] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:24.441] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:29.453] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:29.791] INFO  [f6_Tarath] [bot] arrived at (1336,1960,0)
+[13:10:29.792] INFO  [f6_Tarath] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[13:10:29.792] LOG   [f6_Tarath] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[13:10:29.792] INFO  [f6_Tarath] [action] goto (1336,1992) from (1336,1960,0)
+[13:10:29.792] LOG   [f6_Tarath] event goto_start: target=(1336,1992) from=(1336,1960)
+[13:10:29.792] INFO  [f6_Tarath] [bot] running from (1336,1960,0) to (1336,1992)
+[13:10:29.792] INFO  [f6_Tarath] [bot] planning path to (1336,1992) in background
+[13:10:29.852] INFO  [f6_Tarath] [bot] replan to (1336,1992): 33 steps in 12375.1us
+[13:10:34.458] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:39.459] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:41.445] INFO  [f6_Tarath] [bot] arrived at (1336,1992,0)
+[13:10:41.446] INFO  [f6_Tarath] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[13:10:41.446] LOG   [f6_Tarath] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[13:10:41.446] INFO  [f6_Tarath] [action] goto (1336,1997) from (1336,1992,0)
+[13:10:41.446] LOG   [f6_Tarath] event goto_start: target=(1336,1997) from=(1336,1992)
+[13:10:41.446] INFO  [f6_Tarath] [bot] running from (1336,1992,0) to (1336,1997)
+[13:10:41.446] INFO  [f6_Tarath] [bot] planning path to (1336,1997) in background
+[13:10:41.505] INFO  [f6_Tarath] [bot] replan to (1336,1997): 5 steps in 210.1us
+[13:10:43.073] INFO  [f6_Tarath] [gump] 0x400028A0 context=0x80A00437: 13 option(s), 15 text(s)
+[13:10:43.073] INFO  [f6_Tarath] [gump]   button 1000 = 'OKAY'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   button 0 = 'CANCEL'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   button 1 = 'Felucca'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 1 = 'Moonglow'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 2 = 'Britain'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 3 = 'Jhelom'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 4 = 'Yew'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 5 = 'New Magincia'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 6 = 'Minoc'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 7 = 'Trinsic'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 8 = 'Skara Brae'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 9 = 'Buccaneer's Den'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 0 = 'Pick your destination:'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 1 = 'OKAY'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 2 = 'CANCEL'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 3 = 'Felucca'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 4 = 'Felucca'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 5 = 'Moonglow'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 6 = 'Britain'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 7 = 'Jhelom'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 8 = 'Yew'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 9 = 'New Magincia'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 10 = 'Minoc'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 11 = 'Trinsic'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 12 = 'Skara Brae'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 13 = 'Buccaneer's Den'
+[13:10:43.073] INFO  [f6_Tarath] [gump]   text 14 = 'Ocllo (Newplayers)'
+[13:10:43.073] LOG   [f6_Tarath] event gump_open: serial=0x400028A0 context=0x80A00437 options=13
+[13:10:43.073] INFO  [f6_Tarath] [travel] gate gump: choosing 'Skara Brae' (choice 8, button 1000)
+[13:10:43.073] LOG   [f6_Tarath] event moongate_use: destination='Skara Brae' choice=8 button=1000
+[13:10:43.073] INFO  [f6_Tarath] [bot] arrived at (1336,1997,5)
+[13:10:43.074] INFO  [f6_Tarath] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[13:10:43.074] LOG   [f6_Tarath] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[13:10:43.074] INFO  [f6_Tarath] [travel] using moongate 0x400028A0 for 'Skara Brae' (gump active=0 serial=0x00000000)
+[13:10:43.074] INFO  [f6_Tarath] [0x20] player @(643,2067,5) facing=4
+[13:10:43.074] INFO  [f6_Tarath] [0x20] player @(643,2067,5) facing=4
+[13:10:43.086] INFO  [f6_Tarath] [chat ascii] System: You can't see the target
+[13:10:43.517] INFO  [f6_Tarath] [action] goto (648,2104) from (643,2067,5)
+[13:10:43.517] LOG   [f6_Tarath] event goto_start: target=(648,2104) from=(643,2067)
+[13:10:43.517] INFO  [f6_Tarath] [bot] running from (643,2067,5) to (648,2104)
+[13:10:43.517] INFO  [f6_Tarath] [bot] planning path to (648,2104) in background
+[13:10:43.578] INFO  [f6_Tarath] [bot] replan to (648,2104): 39 steps in 16084.9us
+[13:10:43.593] INFO  [f6_Tarath] [chat ascii] System: You have been revealed
+[13:10:44.498] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:49.523] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:54.547] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:10:57.905] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:10:58.272] INFO  [f6_Tarath] [bot] arrived at (648,2104,0)
+[13:10:58.273] INFO  [f6_Tarath] [action] goto finished at (648,2104,0); target (648,2104); ARRIVED (off by 0 tile(s))
+[13:10:58.273] LOG   [f6_Tarath] event goto_done: at=(648,2104) target=(648,2104) arrived=1 off=0
+[13:10:58.273] INFO  [f6_Tarath] [action] goto (648,2136) from (648,2104,0)
+[13:10:58.273] LOG   [f6_Tarath] event goto_start: target=(648,2136) from=(648,2104)
+[13:10:58.273] INFO  [f6_Tarath] [bot] running from (648,2104,0) to (648,2136)
+[13:10:58.273] INFO  [f6_Tarath] [bot] planning path to (648,2136) in background
+[13:10:58.333] INFO  [f6_Tarath] [bot] replan to (648,2136): 37 steps in 9478.6us
+[13:10:59.562] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:00.995] INFO  [f6_Tarath] [chat ascii] System: You are now under the protection of the town guards
+[13:11:04.615] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:09.665] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:11.650] INFO  [f6_Tarath] [bot] arrived at (648,2136,0)
+[13:11:11.650] INFO  [f6_Tarath] [action] goto finished at (648,2136,0); target (648,2136); ARRIVED (off by 0 tile(s))
+[13:11:11.650] LOG   [f6_Tarath] event goto_done: at=(648,2136) target=(648,2136) arrived=1 off=0
+[13:11:11.650] INFO  [f6_Tarath] [action] goto (627,2163) from (648,2136,0)
+[13:11:11.650] LOG   [f6_Tarath] event goto_start: target=(627,2163) from=(648,2136)
+[13:11:11.650] INFO  [f6_Tarath] [bot] running from (648,2136,0) to (627,2163,z0)
+[13:11:11.651] INFO  [f6_Tarath] [bot] planning path to (627,2163) in background
+[13:11:11.712] INFO  [f6_Tarath] [bot] replan to (627,2163): 47 steps in 13101.3us
+[13:11:14.712] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:17.817] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[13:11:17.817] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy 0.39) NeedTraining(Tactics 0.36) NeedTraining(Swordsmanship 0.27) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[13:11:17.817] INFO  [life]   score=90.0
+[13:11:17.817] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[13:11:17.817] INFO  [life]   reason: Carpentry 22.0 -> 100.0, gold 889 (fee is quoted on arrival, roughly 300)
+[13:11:17.817] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[13:11:17.817] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[13:11:19.019] INFO  [f6_Tarath] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 156.6us
+[13:11:19.722] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:22.733] INFO  [f6_Tarath] [bot] door ahead at (635,2167,z0); OpenDoor before step
+[13:11:22.734] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:11:24.734] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:25.043] INFO  [f6_Tarath] [travel] Skara Brae carpenter ARRIVED at (631,2166,0)
+[13:11:25.043] LOG   [f6_Tarath] event travel_done: label='Skara Brae carpenter' ok=1 at=(631,2166) legs=17 plans=1 why=''
+[13:11:25.106] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 3)
+[13:11:25.106] INFO  [f6_Tarath] [travel] Yew carpenter -> (564,1011) r=5 from (631,2166)
+[13:11:25.106] LOG   [f6_Tarath] event travel_start: label='Yew carpenter' target=(564,1011) radius=5 from=(631,2166)
+[13:11:25.106] INFO  [f6_Tarath] [travel] mode moongate         usable   <- chosen
+[13:11:25.106] INFO  [f6_Tarath] [travel] mode walk             usable
+[13:11:25.106] INFO  [f6_Tarath] [travel] mode loose_rune_recall no: no rune marked at that destination
+[13:11:25.106] INFO  [f6_Tarath] [travel] mode runebook_recall  no: no runebook page for that destination
+[13:11:25.106] LOG   [f6_Tarath] event travel_mode: moongate
+[13:11:25.106] INFO  [f6_Tarath] [travel] plan Yew carpenter: ok legs=13 ~608 tiles transit=1 nodes=220
+[13:11:25.430] INFO  [f6_Tarath] [chat ascii] Enrique: What's thee wantin'?
+[13:11:26.308] INFO  [f6_Tarath] [bot] arrived at (627,2163,0)
+[13:11:26.308] INFO  [f6_Tarath] [action] goto finished at (627,2163,0); target (627,2163); ARRIVED (off by 0 tile(s))
+[13:11:26.308] LOG   [f6_Tarath] event goto_done: at=(627,2163) target=(627,2163) arrived=1 off=0
+[13:11:26.308] INFO  [f6_Tarath] [action] goto (616,2136) from (627,2163,0)
+[13:11:26.308] LOG   [f6_Tarath] event goto_start: target=(616,2136) from=(627,2163)
+[13:11:26.308] INFO  [f6_Tarath] [bot] running from (627,2163,0) to (616,2136)
+[13:11:26.308] INFO  [f6_Tarath] [bot] planning path to (616,2136) in background
+[13:11:26.369] INFO  [f6_Tarath] [bot] replan to (616,2136): 62 steps in 8318.4us
+[13:11:29.770] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:34.775] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:39.820] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:42.524] INFO  [f6_Tarath] [bot] door ahead at (620,2143,z0); OpenDoor before step
+[13:11:42.538] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:11:44.875] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:45.320] INFO  [f6_Tarath] [bot] arrived at (616,2136,0)
+[13:11:45.320] INFO  [f6_Tarath] [action] goto finished at (616,2136,0); target (616,2136); ARRIVED (off by 0 tile(s))
+[13:11:45.320] LOG   [f6_Tarath] event goto_done: at=(616,2136) target=(616,2136) arrived=1 off=0
+[13:11:45.320] INFO  [f6_Tarath] [action] goto (616,2104) from (616,2136,0)
+[13:11:45.320] LOG   [f6_Tarath] event goto_start: target=(616,2104) from=(616,2136)
+[13:11:45.320] INFO  [f6_Tarath] [bot] running from (616,2136,0) to (616,2104)
+[13:11:45.320] INFO  [f6_Tarath] [bot] planning path to (616,2104) in background
+[13:11:45.380] INFO  [f6_Tarath] [bot] replan to (616,2104): 37 steps in 18069.2us
+[13:11:49.924] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:51.637] INFO  [f6_Tarath] [bot] door ahead at (623,2114,z0); OpenDoor before step
+[13:11:51.651] INFO  [f6_Tarath] [chat ascii] System: Opening door...
+[13:11:54.935] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:11:56.060] INFO  [f6_Tarath] [chat ascii] System: You have left the protection of the town guards
+[13:11:57.930] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:11:58.173] INFO  [f6_Tarath] [bot] arrived at (616,2104,0)
+[13:11:58.174] INFO  [f6_Tarath] [action] goto finished at (616,2104,0); target (616,2104); ARRIVED (off by 0 tile(s))
+[13:11:58.174] LOG   [f6_Tarath] event goto_done: at=(616,2104) target=(616,2104) arrived=1 off=0
+[13:11:58.174] INFO  [f6_Tarath] [action] goto (648,2072) from (616,2104,0)
+[13:11:58.174] LOG   [f6_Tarath] event goto_start: target=(648,2072) from=(616,2104)
+[13:11:58.174] INFO  [f6_Tarath] [bot] running from (616,2104,0) to (648,2072)
+[13:11:58.174] INFO  [f6_Tarath] [bot] planning path to (648,2072) in background
+[13:11:58.234] INFO  [f6_Tarath] [bot] replan to (648,2072): 41 steps in 34015.8us
+[13:11:59.940] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:04.993] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:10.005] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:11.763] INFO  [f6_Tarath] [bot] arrived at (648,2072,0)
+[13:12:11.764] INFO  [f6_Tarath] [action] goto finished at (648,2072,0); target (648,2072); ARRIVED (off by 0 tile(s))
+[13:12:11.764] LOG   [f6_Tarath] event goto_done: at=(648,2072) target=(648,2072) arrived=1 off=0
+[13:12:11.764] INFO  [f6_Tarath] [action] goto (643,2067) from (648,2072,0)
+[13:12:11.764] LOG   [f6_Tarath] event goto_start: target=(643,2067) from=(648,2072)
+[13:12:11.764] INFO  [f6_Tarath] [bot] running from (648,2072,0) to (643,2067)
+[13:12:11.764] INFO  [f6_Tarath] [bot] planning path to (643,2067) in background
+[13:12:11.824] INFO  [f6_Tarath] [bot] replan to (643,2067): 7 steps in 159.6us
+[13:12:14.622] INFO  [f6_Tarath] [gump] 0x4000289B context=0x80A00437: 13 option(s), 15 text(s)
+[13:12:14.622] INFO  [f6_Tarath] [gump]   button 1000 = 'OKAY'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   button 0 = 'CANCEL'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   button 1 = 'Felucca'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 1 = 'Moonglow'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 2 = 'Britain'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 3 = 'Jhelom'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 4 = 'Yew'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 5 = 'New Magincia'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 6 = 'Minoc'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 7 = 'Trinsic'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 8 = 'Skara Brae'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 9 = 'Buccaneer's Den'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 0 = 'Pick your destination:'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 1 = 'OKAY'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 2 = 'CANCEL'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 3 = 'Felucca'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 4 = 'Felucca'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 5 = 'Moonglow'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 6 = 'Britain'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 7 = 'Jhelom'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 8 = 'Yew'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 9 = 'New Magincia'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 10 = 'Minoc'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 11 = 'Trinsic'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 12 = 'Skara Brae'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 13 = 'Buccaneer's Den'
+[13:12:14.622] INFO  [f6_Tarath] [gump]   text 14 = 'Ocllo (Newplayers)'
+[13:12:14.622] LOG   [f6_Tarath] event gump_open: serial=0x4000289B context=0x80A00437 options=13
+[13:12:14.622] INFO  [f6_Tarath] [travel] gate gump: choosing 'Yew' (choice 4, button 1000)
+[13:12:14.622] LOG   [f6_Tarath] event moongate_use: destination='Yew' choice=4 button=1000
+[13:12:14.622] INFO  [f6_Tarath] [bot] arrived at (643,2067,5)
+[13:12:14.623] INFO  [f6_Tarath] [action] goto finished at (643,2067,5); target (643,2067); ARRIVED (off by 0 tile(s))
+[13:12:14.623] LOG   [f6_Tarath] event goto_done: at=(643,2067) target=(643,2067) arrived=1 off=0
+[13:12:14.623] INFO  [f6_Tarath] [travel] using moongate 0x4000289B for 'Yew' (gump active=0 serial=0x00000000)
+[13:12:14.636] INFO  [f6_Tarath] [0x20] player @(771,752,5) facing=7
+[13:12:14.636] INFO  [f6_Tarath] [0x20] player @(771,752,5) facing=7
+[13:12:14.636] INFO  [f6_Tarath] [chat ascii] System: You can't see the target
+[13:12:14.884] INFO  [f6_Tarath] [action] goto (776,792) from (771,752,5)
+[13:12:14.884] LOG   [f6_Tarath] event goto_start: target=(776,792) from=(771,752)
+[13:12:14.884] INFO  [f6_Tarath] [bot] running from (771,752,5) to (776,792)
+[13:12:14.884] INFO  [f6_Tarath] [bot] planning path to (776,792) in background
+[13:12:14.944] INFO  [f6_Tarath] [bot] replan to (776,792): 40 steps in 31590.0us
+[13:12:15.021] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:15.219] INFO  [f6_Tarath] [chat ascii] System: You have been revealed
+[13:12:20.076] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:25.103] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:26.988] INFO  [f6_Tarath] [bot] arrived at (776,792,0)
+[13:12:26.989] INFO  [f6_Tarath] [action] goto finished at (776,792,0); target (776,792); ARRIVED (off by 0 tile(s))
+[13:12:26.989] LOG   [f6_Tarath] event goto_done: at=(776,792) target=(776,792) arrived=1 off=0
+[13:12:26.989] INFO  [f6_Tarath] [action] goto (744,824) from (776,792,0)
+[13:12:26.989] LOG   [f6_Tarath] event goto_start: target=(744,824) from=(776,792)
+[13:12:26.989] INFO  [f6_Tarath] [bot] running from (776,792,0) to (744,824)
+[13:12:26.989] INFO  [f6_Tarath] [bot] planning path to (744,824) in background
+[13:12:27.051] INFO  [f6_Tarath] [bot] replan to (744,824): 41 steps in 33725.5us
+[13:12:30.124] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:35.159] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:40.161] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:42.573] INFO  [f6_Tarath] [bot] arrived at (744,824,0)
+[13:12:42.574] INFO  [f6_Tarath] [action] goto finished at (744,824,0); target (744,824); ARRIVED (off by 0 tile(s))
+[13:12:42.574] LOG   [f6_Tarath] event goto_done: at=(744,824) target=(744,824) arrived=1 off=0
+[13:12:42.574] INFO  [f6_Tarath] [action] goto (712,856) from (744,824,0)
+[13:12:42.574] LOG   [f6_Tarath] event goto_start: target=(712,856) from=(744,824)
+[13:12:42.574] INFO  [f6_Tarath] [bot] running from (744,824,0) to (712,856)
+[13:12:42.574] INFO  [f6_Tarath] [bot] planning path to (712,856) in background
+[13:12:42.635] INFO  [f6_Tarath] [bot] replan to (712,856): 40 steps in 22667.4us
+[13:12:45.185] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:50.194] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:55.209] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:12:56.730] INFO  [f6_Tarath] [bot] arrived at (712,856,0)
+[13:12:56.730] INFO  [f6_Tarath] [action] goto finished at (712,856,0); target (712,856); ARRIVED (off by 0 tile(s))
+[13:12:56.730] LOG   [f6_Tarath] event goto_done: at=(712,856) target=(712,856) arrived=1 off=0
+[13:12:56.730] INFO  [f6_Tarath] [action] goto (680,888) from (712,856,0)
+[13:12:56.730] LOG   [f6_Tarath] event goto_start: target=(680,888) from=(712,856)
+[13:12:56.730] INFO  [f6_Tarath] [bot] running from (712,856,0) to (680,888)
+[13:12:56.730] INFO  [f6_Tarath] [bot] planning path to (680,888) in background
+[13:12:56.790] INFO  [f6_Tarath] [bot] replan to (680,888): 41 steps in 28155.8us
+[13:12:57.956] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh03.tarath/state.json
+[13:13:00.251] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:01.970] INFO  [f6_Tarath] [chat ascii] System: You are now under the protection of the town guards
+[13:13:05.255] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:10.273] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:10.926] INFO  [f6_Tarath] [bot] arrived at (680,888,0)
+[13:13:10.927] INFO  [f6_Tarath] [action] goto finished at (680,888,0); target (680,888); ARRIVED (off by 0 tile(s))
+[13:13:10.927] LOG   [f6_Tarath] event goto_done: at=(680,888) target=(680,888) arrived=1 off=0
+[13:13:10.927] INFO  [f6_Tarath] [action] goto (648,918) from (680,888,0)
+[13:13:10.927] LOG   [f6_Tarath] event goto_start: target=(648,918) from=(680,888)
+[13:13:10.927] INFO  [f6_Tarath] [bot] running from (680,888,0) to (648,918)
+[13:13:10.927] INFO  [f6_Tarath] [bot] planning path to (648,918) in background
+[13:13:10.988] INFO  [f6_Tarath] [bot] replan to (648,918): 42 steps in 29598.7us
+[13:13:15.299] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:20.348] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:22.417] INFO  [f6_Tarath] [chat ascii] System: World save in 10 seconds
+[13:13:25.370] INFO  [f6_Tarath] [survival] hp 40/40 (100%) -> fight
+[13:13:25.953] INFO  [f6_Tarath] [bot] arrived at (648,918,0)
+[13:13:25.954] INFO  [f6_Tarath] [action] goto finished at (648,918,0); target (648,918); ARRIVED (off by 0 tile(s))
+[13:13:25.954] LOG   [f6_Tarath] event goto_done: at=(648,918) target=(648,918) arrived=1 off=0
+[13:13:25.954] INFO  [f6_Tarath] [action] goto (632,952) from (648,918,0)
+[13:13:25.954] LOG   [f6_Tarath] event goto_start: target=(632,952) from=(648,918)
+[13:13:25.954] INFO  [f6_Tarath] [bot] running from (648,918,0) to (632,952)
+[13:13:25.954] INFO  [f6_Tarath] [bot] planning path to (632,952) in background
+[13:13:26.014] INFO  [f6_Tarath] [bot] replan to (632,952): 45 steps in 11675.6us

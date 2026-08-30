@@ -1,0 +1,27 @@
+# TEN NEW CHARACTERS, created 2026-08-29 after the day's kit and build fixes.
+#
+# WHY NEW ACCOUNTS rather than re-running the fresh twenty. ITEMNEWBIE items
+# and creation skills are decided ONCE, at character creation, so every fix
+# made today is invisible to a character made this morning:
+#
+#   scissors in every default kit      -> Kaelen's MAKE_BANDAGES failed
+#                                         "no scissors", three times
+#   i_tinker_tools in [NEWBIE TINKERING] -> was //empty
+#   full_crafter starts Mining+Blacksmithing, so its kit hands over the tongs
+#                                         its own tool list asks for
+#
+# These ten are the control: same professions, same code, kits as they are now.
+# Compare them against the twenty to see what the kit fixes were worth.
+Corran	RevolutionNew01	miner_smith
+Edrik	RevolutionNew02	full_crafter
+Maribel	RevolutionNew03	fencer
+Halric	RevolutionNew04	macer
+Sianna	RevolutionNew05	archer
+Ovid	RevolutionNew06	alchemist
+Thessaly	RevolutionNew07	scribe
+Wystan	RevolutionNew08	mage
+Delwyn	RevolutionNew09	tailor
+Rowan	RevolutionNew10	lumberjack_swordsman
+Nessa	RevolutionNew11	fisher
+Cassia	RevolutionNew12	tamer
+Marla	RevA02	fisher

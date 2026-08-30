@@ -1,0 +1,99 @@
+start: Corran is a miner_smith and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[16:38:16.309] WARN  [n10_Corran] [0x21] move REJECTED seq=42; server says (1946,2840,22) facing=3
+[16:38:17.060] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (1946,2840,22) facing=3
+[16:38:23.412] WARN  [n10_Corran] [bot] goal (1990,2872) is not walkable; skipping A* and stopping
+[16:38:24.673] WARN  [n10_Corran] [bot] goal (1990,2872) is not walkable; skipping A* and stopping
+[16:38:26.057] WARN  [n10_Corran] [bot] goal (1990,2872) is not walkable; skipping A* and stopping
+[16:38:52.886] WARN  [n10_Corran] [0x21] move REJECTED seq=51; server says (2007,2887,5) facing=3
+[16:38:53.620] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2007,2887,5) facing=3
+[16:38:55.278] WARN  [n10_Corran] [bot] no path to (2008,2888) avoiding 1 block(s); stopping (search 1632151.8us)
+[16:38:55.278] WARN  [n10_Corran] [bot] start (2007,2887,5) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 376 item(s), 1 mobile(s))
+[16:41:54.635] WARN  [n10_Corran] [0x21] move REJECTED seq=40; server says (2800,952,0) facing=3
+[16:41:55.400] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2800,952,0) facing=3
+[16:42:09.468] WARN  [n10_Corran] [0x21] move REJECTED seq=60; server says (2827,927,0) facing=1
+[16:42:10.219] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (2827,927,0) facing=1
+[16:42:51.935] WARN  [n10_Corran] [0x21] move REJECTED seq=55; server says (2856,816,0) facing=2
+[16:42:53.990] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2010839.8us)
+[16:42:53.990] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 671 item(s), 12 mobile(s))
+[16:42:56.974] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1645414.5us)
+[16:42:56.974] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 671 item(s), 12 mobile(s))
+[16:43:53.978] WARN  [n10_Corran] [0x21] move REJECTED seq=108; server says (2855,816,0) facing=2
+[16:43:56.096] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 2075528.5us)
+[16:43:56.096] WARN  [n10_Corran] [bot] start (2855,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 775 item(s), 12 mobile(s))
+[16:43:58.956] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 1530350.3us)
+[16:43:58.956] WARN  [n10_Corran] [bot] start (2855,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 775 item(s), 12 mobile(s))
+[16:53:13.392] WARN  [n10_Corran] [0x21] move REJECTED seq=46; server says (1397,1755,0) facing=5
+[16:53:14.148] WARN  [n10_Corran] [0x21] move REJECTED seq=0; server says (1397,1755,0) facing=5
+[16:58:34.116] WARN  [n10_Corran] [bot] no path to (2888,712) avoiding 0 block(s); stopping (search 5846.9us)
+[16:58:34.116] WARN  [n10_Corran] [bot] start (2881,684,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1753 item(s), 5 mobile(s))
+[16:58:37.063] WARN  [n10_Corran] [0x21] move REJECTED seq=7; server says (2882,681,0) facing=1
+[16:58:37.064] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[16:58:42.986] WARN  [n10_Corran] [0x21] move REJECTED seq=17; server says (2888,673,0) facing=3
+[16:58:43.001] WARN  [n10_Corran] [bot] 0x20 resync; aborting path
+[16:59:44.999] WARN  [n10_Corran] [0x21] move REJECTED seq=82; server says (2856,816,0) facing=2
+[16:59:45.000] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 97.6us)
+[16:59:45.000] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 13 mobile(s))
+[16:59:46.354] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 51.5us)
+[16:59:46.354] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 13 mobile(s))
+[16:59:47.694] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 81.7us)
+[16:59:47.694] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 13 mobile(s))
+[16:59:52.044] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 73.5us)
+[16:59:52.044] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 13 mobile(s))
+[16:59:53.390] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 53.1us)
+[16:59:53.390] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 13 mobile(s))
+[16:59:54.667] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 90.5us)
+[16:59:54.667] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:00.534] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 89.8us)
+[17:00:00.534] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 15 mobile(s))
+[17:00:01.900] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 50.4us)
+[17:00:01.900] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 15 mobile(s))
+[17:00:03.278] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 98.2us)
+[17:00:03.278] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 15 mobile(s))
+[17:00:03.340] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2856,808,0) to get somewhere routable (escape 1/3)
+[17:00:03.371] WARN  [n10_Corran] [bot] no path to (2856,808) avoiding 0 block(s); stopping (search 17.3us)
+[17:00:03.371] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 15 mobile(s))
+[17:00:03.432] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2864,816,0) to get somewhere routable (escape 2/3)
+[17:00:03.493] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 108.0us)
+[17:00:03.493] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:03.509] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2868,806,0) to get somewhere routable (escape 3/3)
+[17:00:03.569] WARN  [n10_Corran] [bot] no path to (2868,806) avoiding 0 block(s); stopping (search 80.5us)
+[17:00:03.569] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:06.226] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2856,808,0) to get somewhere routable (escape 1/3)
+[17:00:06.287] WARN  [n10_Corran] [bot] no path to (2856,808) avoiding 0 block(s); stopping (search 12.0us)
+[17:00:06.287] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:06.349] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2864,816,0) to get somewhere routable (escape 2/3)
+[17:00:06.410] WARN  [n10_Corran] [bot] no path to (2864,816) avoiding 0 block(s); stopping (search 88.6us)
+[17:00:06.410] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:06.473] WARN  [n10_Corran] [travel] route exhausted at (2856,816,0); trying to reach (2868,806,0) to get somewhere routable (escape 3/3)
+[17:00:06.533] WARN  [n10_Corran] [bot] no path to (2868,806) avoiding 0 block(s); stopping (search 55.4us)
+[17:00:06.533] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:10.908] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 52.1us)
+[17:00:10.908] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:12.257] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 78.9us)
+[17:00:12.257] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:13.583] WARN  [n10_Corran] [bot] no path to (2856,856) avoiding 0 block(s); stopping (search 52.7us)
+[17:00:13.583] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:16.483] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 60.6us)
+[17:00:16.483] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:17.836] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 76.2us)
+[17:00:17.836] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:19.169] WARN  [n10_Corran] [bot] no path to (2840,856) avoiding 0 block(s); stopping (search 77.3us)
+[17:00:19.169] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:23.551] WARN  [n10_Corran] [bot] no path to (2872,856) avoiding 0 block(s); stopping (search 86.5us)
+[17:00:23.551] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:24.903] WARN  [n10_Corran] [bot] no path to (2872,856) avoiding 0 block(s); stopping (search 66.0us)
+[17:00:24.903] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:26.269] WARN  [n10_Corran] [bot] no path to (2872,856) avoiding 0 block(s); stopping (search 54.2us)
+[17:00:26.269] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:32.166] WARN  [n10_Corran] [bot] no path to (2882,848) avoiding 0 block(s); stopping (search 87.7us)
+[17:00:32.166] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=1 terrain=6 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:33.546] WARN  [n10_Corran] [bot] no path to (2882,848) avoiding 0 block(s); stopping (search 80.8us)
+[17:00:33.546] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=0 terrain=6 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:33.546] WARN  [n10_Corran] [bot] enclosed with 2 mobile(s) in the wall; replanning with mobiles treated as soft
+[17:00:34.053] WARN  [n10_Corran] [0x21] move REJECTED seq=1; server says (2856,816,0) facing=6
+[17:00:34.054] WARN  [n10_Corran] [bot] no path to (2882,848) avoiding 0 block(s); stopping (search 61.7us)
+[17:00:34.054] WARN  [n10_Corran] [bot] start (2856,816,0) exits: open=0 terrain=6 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 1779 item(s), 14 mobile(s))
+[17:00:34.054] WARN  [n10_Corran] [bot] enclosed with 2 mobile(s) in the wall; replanning with mobiles treated as soft
+[17:03:56.647] WARN  [n10_Corran] [bot] THREAT (HP 56 -> 49): halting travel (TODO engage/flee/recall)

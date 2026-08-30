@@ -1,0 +1,14 @@
+start: Corwyn is a miner_smith and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[18:25:45.374] WARN  [v_Corwyn] [0x21] move REJECTED seq=39; server says (2826,952,0) facing=5
+[18:25:46.106] WARN  [v_Corwyn] [0x21] move REJECTED seq=0; server says (2826,952,0) facing=5
+[18:26:20.302] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path
+[18:27:02.593] WARN  [v_Corwyn] [0x21] move REJECTED seq=6; server says (2458,453,15) facing=3
+[18:27:02.594] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path
+[18:27:43.377] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path
+[18:28:39.664] WARN  [v_Corwyn] [bot] 0x20 resync; aborting path
+[18:28:50.272] WARN  [v_Corwyn] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[18:30:13.468] WARN  [v_Corwyn] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[18:30:28.196] WARN  [v_Corwyn] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[18:31:15.913] WARN  [v_Corwyn] [travel] route exhausted at (2458,454,15); trying to reach (2456,440,15) to get somewhere routable (escape 1/3)

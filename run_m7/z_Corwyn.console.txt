@@ -1,0 +1,1423 @@
+[03:31:11.804] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='z_Corwyn'
+[03:31:11.805] LOG   [z_Corwyn] event session_start: text log opened
+[03:31:11.805] LOG   [z_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[03:31:11.805] INFO  [z_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[03:31:11.806] LOG   [z_Corwyn] event net_connected: connect 127.0.0.1:2593
+[03:31:11.806] INFO  [z_Corwyn] [net] connected.
+[03:31:11.806] INFO  [z_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[03:31:11.806] LOG   [z_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[03:31:11.807] INFO  [life] loaded persistent state for Corwyn (7 places, 3 suppliers, 25 events, 4 prior sessions)
+[03:31:11.807] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[03:31:11.807] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[03:31:11.807] INFO  [z_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[03:31:11.807] INFO  [z_Corwyn] [0xA8] 1 server(s):
+[03:31:11.807] INFO  [z_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[03:31:11.810] INFO  [z_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[03:31:11.810] LOG   [z_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[03:31:11.810] INFO  [z_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[03:31:11.810] LOG   [z_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[03:31:11.811] INFO  [z_Corwyn] [0xB9] server features = 0x0005
+[03:31:11.811] INFO  [z_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[03:31:11.811] INFO  [z_Corwyn]   [0] Corwyn
+[03:31:11.811] INFO  [z_Corwyn]   [1] <empty>
+[03:31:11.811] INFO  [z_Corwyn]   [2] <empty>
+[03:31:11.811] INFO  [z_Corwyn]   [3] <empty>
+[03:31:11.811] INFO  [z_Corwyn]   [4] <empty>
+[03:31:11.811] INFO  [z_Corwyn] [ui] playing slot 0 ('Corwyn')
+[03:31:11.826] INFO  [z_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2580,604,0)
+[03:31:11.826] LOG   [z_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2580,604,0)
+[03:31:11.826] INFO  [z_Corwyn] [0x20] player @(2580,604,0) facing=2
+[03:31:11.826] INFO  [z_Corwyn] [0x55] login complete — entering world
+[03:31:11.826] LOG   [z_Corwyn] event in_world: 0x55 received
+[03:31:11.826] INFO  [z_Corwyn] [backpack] opening 0x40014DDB
+[03:31:11.826] INFO  [z_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[03:31:11.826] INFO  [z_Corwyn] [chat ascii] System: There are 0 other players here.
+[03:31:11.826] INFO  [z_Corwyn] [chat ascii] System: Last logged: 2026/08/30 03:29:04
+[03:31:11.826] INFO  [z_Corwyn] [chat ascii] System: You are under the protection of the town guards
+[03:31:11.830] INFO  [z_Corwyn] [action] requesting the skill list
+[03:31:11.830] INFO  [life] in world; asked the server for the skill list
+[03:31:11.830] INFO  [z_Corwyn] [0x24] open container 0x40014DDB gump=60
+[03:31:11.830] INFO  [z_Corwyn] [0x3C] container contents: 16 item(s)
+[03:31:11.830] LOG   [z_Corwyn] event backpack_contents: serial=0x40014DDB items=16
+[03:31:14.424] INFO  [z_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[03:31:14.424] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[03:31:14.424] INFO  [life]   gold         persisted=9326       server=9326       -> server value accepted
+[03:31:14.424] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[03:31:14.424] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[03:31:14.424] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[03:31:14.424] INFO  [life]   skill_7      persisted=50.5       server=50.5       -> server value accepted
+[03:31:14.424] INFO  [life]   skill_45     persisted=51.1       server=51.1       -> server value accepted
+[03:31:14.424] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[03:31:14.424] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[03:31:14.424] INFO  [life]   position     persisted=2573,603   server=2580,604   -> server value accepted
+[03:31:14.424] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[03:31:14.424] INFO  [life]   restored objective KEPT: REPLACE_EQUIPMENT (progress 0)
+[03:31:14.424] INFO  [z_Corwyn] [survival] on
+[03:31:14.424] LOG   [z_Corwyn] event survival_mode: on
+[03:31:14.426] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:31:14.426] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:14.478] INFO  [z_Corwyn] [travel] Minoc healer -> (2577,599) r=5 from (2580,604)
+[03:31:14.478] LOG   [z_Corwyn] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2580,604)
+[03:31:14.478] INFO  [z_Corwyn] [travel] Minoc healer ARRIVED at (2580,604,0)
+[03:31:14.478] LOG   [z_Corwyn] event travel_done: label='Minoc healer' ok=1 at=(2580,604) legs=0 plans=0 why=''
+[03:31:14.540] INFO  [z_Corwyn] [action] scanning nearby mobiles for names
+[03:31:14.540] INFO  [z_Corwyn] [action] requested 2 paperdoll(s) for trade titles
+[03:31:14.540] INFO  [life] bandages: at the healer's, asking who is here (scan 1 of 3)
+[03:31:14.540] INFO  [z_Corwyn] [mobiles] nearby (3):
+[03:31:14.540] INFO  [z_Corwyn]   Erskine 0x00009619
+[03:31:14.540] INFO  [z_Corwyn]   Finch 0x0000960D
+[03:31:14.540] INFO  [z_Corwyn]   Riley 0x0000960A
+[03:31:14.540] INFO  [z_Corwyn] [0x20] player @(2580,604,0) facing=0
+[03:31:14.540] INFO  [z_Corwyn] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[03:31:14.540] INFO  [z_Corwyn] [world] Erskine, the healer is a healer at (2580,603)
+[03:31:14.540] INFO  [z_Corwyn] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[03:31:14.540] INFO  [z_Corwyn] [world] Riley, the healer guildmaster is a healer at (2579,597)
+[03:31:17.546] INFO  [z_Corwyn] [travel] healer (seen) -> (2580,603) r=2 from (2580,604)
+[03:31:17.547] LOG   [z_Corwyn] event travel_start: label='healer (seen)' target=(2580,603) radius=2 from=(2580,604)
+[03:31:17.547] INFO  [z_Corwyn] [travel] healer (seen) ARRIVED at (2580,604,0)
+[03:31:17.547] LOG   [z_Corwyn] event travel_done: label='healer (seen)' ok=1 at=(2580,604) legs=0 plans=0 why=''
+[03:31:17.608] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:17.608] INFO  [z_Corwyn] [VENDOR] open vendor=0x00009619 say='Erskine buy'
+[03:31:17.609] INFO  [z_Corwyn] [chat uni  ] : Erskine buy
+[03:31:17.609] INFO  [z_Corwyn] [chat ascii] Erskine: I would gladly sell to thee of my many wares.
+[03:31:17.609] INFO  [z_Corwyn] [0x3C] container contents: 5 item(s)
+[03:31:17.609] INFO  [z_Corwyn] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[03:31:17.609] INFO  [z_Corwyn] [0x74] vendor shop data: cont=0x40009613 5 item(s), layer=0x1A
+[03:31:17.609] INFO  [z_Corwyn] [0x74]   clean bandages               gfx=0x0E21 qty=10   price=1
+[03:31:17.609] INFO  [z_Corwyn] [0x74]   Heal                         gfx=0x0F0C qty=12   price=30
+[03:31:17.609] INFO  [z_Corwyn] [0x74]   Ginseng                      gfx=0x0F85 qty=19   price=3
+[03:31:17.609] INFO  [z_Corwyn] [0x74]   Garlic                       gfx=0x0F84 qty=7    price=3
+[03:31:17.609] INFO  [z_Corwyn] [0x74]   Refresh                      gfx=0x0F0B qty=9    price=16
+[03:31:17.609] INFO  [z_Corwyn] [0x3C] container contents: 0 item(s)
+[03:31:17.609] INFO  [z_Corwyn] [0x74] vendor shop data: cont=0x40009215 0 item(s), layer=0x1B
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR] offer from 0x00009619: 5 item(s)
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR]   0x40015988 clean bandages         x10  1 gp
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR]   0x40015987 Heal                   x12  30 gp
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR]   0x40015954 Ginseng                x19  3 gp
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR]   0x40015932 Garlic                 x7   3 gp
+[03:31:17.609] INFO  [z_Corwyn] [VENDOR]   0x4001592D Refresh                x9   16 gp
+[03:31:17.609] LOG   [z_Corwyn] event vendor_offer: vendor=0x00009619 items=5
+[03:31:17.609] INFO  [z_Corwyn] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[03:31:17.609] LOG   [z_Corwyn] event action_result: vendor_buy success took=1ms vendor offer received
+[03:31:17.609] INFO  [z_Corwyn] [0x24] vendor buy gump for 0x00009619
+[03:31:19.439] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:24.496] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:26.640] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:26.640] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:26.640] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:26.640] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:26.657] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:26.657] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:29.142] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:29.142] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2502ms superseded
+[03:31:29.142] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:29.142] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:29.142] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:29.142] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:29.142] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:29.509] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:31.683] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:31.683] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2540ms superseded
+[03:31:31.683] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:31.683] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:31.683] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:31.683] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:31.683] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:34.216] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:34.216] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2533ms superseded
+[03:31:34.216] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:34.216] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:34.216] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:34.231] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:34.231] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:34.520] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:36.728] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:36.728] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2512ms superseded
+[03:31:36.728] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:36.728] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:36.728] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:36.744] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:36.744] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:39.266] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:39.266] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2538ms superseded
+[03:31:39.266] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:39.266] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:39.266] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:39.266] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:39.267] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:39.573] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:41.801] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:41.801] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2535ms superseded
+[03:31:41.801] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:41.801] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:41.801] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:41.816] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:41.816] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:44.352] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:44.353] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2551ms superseded
+[03:31:44.353] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:44.353] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:44.353] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:44.353] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:44.353] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:44.598] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:46.884] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:46.884] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2532ms superseded
+[03:31:46.884] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:46.884] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:46.884] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:46.900] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:46.900] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:49.399] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:49.399] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2514ms superseded
+[03:31:49.399] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:49.399] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:49.399] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:49.415] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:49.415] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:49.659] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:51.912] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:51.912] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2513ms superseded
+[03:31:51.912] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:51.912] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:51.912] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:51.927] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:51.927] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:54.440] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:54.441] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2529ms superseded
+[03:31:54.441] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:54.441] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:54.441] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:54.441] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:54.441] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:54.688] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:31:56.964] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:56.964] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2524ms superseded
+[03:31:56.964] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:56.964] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:56.964] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:56.964] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:56.964] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:59.475] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:31:59.475] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2511ms superseded
+[03:31:59.475] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:31:59.475] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:31:59.475] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:31:59.476] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:31:59.476] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:31:59.719] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:01.985] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:01.986] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2510ms superseded
+[03:32:01.986] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:01.986] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:01.986] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:01.986] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:01.986] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:04.544] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:04.544] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2559ms superseded
+[03:32:04.544] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:04.544] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:04.544] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:04.545] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:04.545] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:04.728] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:07.062] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:07.062] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2518ms superseded
+[03:32:07.062] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:07.062] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:07.062] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:07.062] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:07.062] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:09.594] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:09.594] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2532ms superseded
+[03:32:09.594] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:09.594] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:09.594] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:09.595] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:09.595] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:09.776] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:12.102] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:12.102] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2508ms superseded
+[03:32:12.102] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:12.102] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:12.102] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:12.117] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:12.117] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:14.478] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:32:14.659] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:14.659] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2557ms superseded
+[03:32:14.659] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:14.659] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:14.659] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:14.675] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:14.675] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:14.800] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:17.182] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:17.182] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2523ms superseded
+[03:32:17.182] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:17.182] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:17.182] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:17.198] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:17.198] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:19.725] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:19.725] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2542ms superseded
+[03:32:19.725] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:19.725] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:19.725] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:19.725] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:19.725] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:19.848] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:22.261] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:22.262] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2536ms superseded
+[03:32:22.262] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:22.262] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:22.262] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:22.262] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:22.262] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:24.778] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:24.778] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2517ms superseded
+[03:32:24.778] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:24.778] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:24.778] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:24.778] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:24.778] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:24.900] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:27.308] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:27.308] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2530ms superseded
+[03:32:27.308] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:27.308] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:27.308] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:27.323] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:27.324] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:29.851] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:29.851] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2543ms superseded
+[03:32:29.851] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:29.852] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:29.852] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:29.852] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:29.852] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:29.912] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:32.363] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:32.364] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2512ms superseded
+[03:32:32.364] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:32.364] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:32.364] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:32.379] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:32.379] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:33.529] INFO  [z_Corwyn] [chat ascii] Erskine: Nice speaking to you Corwyn
+[03:32:34.864] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:34.864] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2500ms superseded
+[03:32:34.864] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:34.864] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:34.864] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:34.864] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:34.864] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:34.925] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:37.419] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:37.420] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2556ms superseded
+[03:32:37.420] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:37.420] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:37.420] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:37.420] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:37.420] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:32:39.955] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:39.955] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2536ms superseded
+[03:32:39.955] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:39.955] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:39.955] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:39.955] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:39.971] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:39.971] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:32:42.475] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:42.475] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:42.475] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:42.475] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:42.491] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:42.491] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=17ms You can't reach the Vendor
+[03:32:44.983] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:44.983] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:44.983] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:44.983] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:44.983] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:44.983] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:44.983] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:32:47.514] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:47.514] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:47.514] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:47.514] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:47.529] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:47.529] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:32:50.015] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:50.015] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:50.015] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:50.015] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:50.015] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:50.016] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:50.016] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:32:52.541] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:52.542] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:52.542] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:52.542] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:52.557] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:52.557] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:32:55.056] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:55.056] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:55.056] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:55.056] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:55.056] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:32:55.071] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:32:55.071] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:32:57.577] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:32:57.577] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:32:57.577] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:32:57.577] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:32:57.592] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:32:57.592] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:00.084] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:00.084] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2508ms superseded
+[03:33:00.084] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:00.084] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:00.084] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:00.084] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:00.084] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:00.084] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:02.631] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:02.632] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2547ms superseded
+[03:33:02.632] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:02.632] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:02.632] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:02.632] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:02.632] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:03.232] INFO  [z_Corwyn] [chat ascii] Erskine: What is it thou wishest?
+[03:33:05.110] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:05.172] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:05.172] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2541ms superseded
+[03:33:05.172] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:05.172] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:05.172] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:05.173] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:05.173] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:07.326] INFO  [z_Corwyn] [chat ascii] System: World save in 10 seconds
+[03:33:07.694] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:07.694] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2522ms superseded
+[03:33:07.694] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:07.694] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:07.694] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:07.694] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:07.694] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:10.127] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:10.249] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:10.249] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2555ms superseded
+[03:33:10.249] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:10.249] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:10.249] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:10.249] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:10.249] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:12.800] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:12.800] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2551ms superseded
+[03:33:12.800] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:12.800] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:12.800] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:12.800] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:12.800] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:14.518] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:33:15.128] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:15.311] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:15.311] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2511ms superseded
+[03:33:15.311] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:15.311] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:15.311] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:15.311] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:15.311] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:17.349] INFO  [z_Corwyn] [chat ascii] System: World save has been initiated.
+[03:33:17.842] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:17.842] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2530ms superseded
+[03:33:17.842] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:17.842] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:17.842] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:17.842] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:17.842] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:20.185] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:20.401] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:20.401] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2559ms superseded
+[03:33:20.401] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:20.401] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:20.401] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:20.401] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:20.401] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:22.926] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:22.926] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2526ms superseded
+[03:33:22.926] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:22.926] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:22.926] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:22.942] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:22.942] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:25.213] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:25.458] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:25.458] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2532ms superseded
+[03:33:25.458] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:25.458] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:25.458] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:25.458] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:25.458] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:27.993] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:27.993] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2535ms superseded
+[03:33:27.993] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:27.993] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:27.993] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:27.994] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:27.994] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:30.264] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:30.510] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:30.510] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2517ms superseded
+[03:33:30.510] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:30.510] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:30.510] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:30.510] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:30.510] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:33.010] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:33.010] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2500ms superseded
+[03:33:33.010] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:33.010] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:33.010] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:33.010] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:33.010] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:35.273] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:35.517] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:35.517] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2507ms superseded
+[03:33:35.517] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:35.517] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:35.517] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:35.532] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:35.532] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:38.048] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:38.049] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2531ms superseded
+[03:33:38.049] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:38.049] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:38.049] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:38.049] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:38.049] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:40.277] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:40.585] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:40.585] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2537ms superseded
+[03:33:40.585] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:40.585] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:40.585] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:40.586] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:40.586] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:43.089] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:43.089] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2504ms superseded
+[03:33:43.089] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:43.089] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:43.089] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:43.089] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:43.090] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:45.329] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:45.638] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:45.638] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2549ms superseded
+[03:33:45.638] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:45.638] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:45.638] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:45.653] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:45.654] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:48.194] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:48.194] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2556ms superseded
+[03:33:48.194] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:48.194] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:48.194] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:48.209] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:48.209] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:50.359] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:50.727] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:50.727] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2533ms superseded
+[03:33:50.727] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:50.727] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:50.727] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:50.743] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:50.743] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:53.259] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:53.259] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2532ms superseded
+[03:33:53.259] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:53.259] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:53.259] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:53.260] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:53.260] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:55.373] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:33:55.803] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:55.803] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2544ms superseded
+[03:33:55.803] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:55.803] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:55.803] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:55.803] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:55.803] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:33:58.303] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:33:58.303] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2500ms superseded
+[03:33:58.303] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:33:58.303] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:33:58.303] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:33:58.319] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:33:58.319] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:00.431] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:00.857] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:00.857] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2554ms superseded
+[03:34:00.857] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:00.857] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:00.857] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:00.873] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:00.873] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:03.368] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:03.368] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2511ms superseded
+[03:34:03.368] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:03.368] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:03.368] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:03.384] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:03.384] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:05.484] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:05.917] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:05.917] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2549ms superseded
+[03:34:05.917] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:05.917] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:05.917] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:05.917] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:05.917] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:08.443] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:08.443] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2525ms superseded
+[03:34:08.443] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:08.443] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:08.443] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:08.443] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:08.443] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:10.496] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:10.984] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:10.984] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2541ms superseded
+[03:34:10.984] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:10.984] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:10.984] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:10.984] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:10.984] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:13.528] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:13.528] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2545ms superseded
+[03:34:13.528] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:13.528] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:13.528] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:13.543] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:13.543] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:14.530] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:34:15.540] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:16.032] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:16.032] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2504ms superseded
+[03:34:16.032] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:16.032] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:16.032] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:16.033] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:16.033] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:18.545] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:18.545] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2513ms superseded
+[03:34:18.545] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:18.545] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:18.545] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:18.545] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:18.545] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:20.550] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:21.071] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:21.071] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2526ms superseded
+[03:34:21.071] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:21.071] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:21.071] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:21.086] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:21.086] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:23.574] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:23.574] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2502ms superseded
+[03:34:23.574] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:23.574] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:23.574] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:23.574] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:23.574] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:34:25.586] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:26.106] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:26.106] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:26.106] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:26.106] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:26.121] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:26.121] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:34:28.629] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:28.629] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:28.629] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:28.629] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:28.644] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:28.644] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:34:30.598] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:31.151] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:31.151] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:31.151] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:31.151] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:31.167] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:31.167] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:34:33.709] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:33.709] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:33.709] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:33.709] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:33.709] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:33.710] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:34:35.627] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:36.240] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:36.240] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:36.240] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:36.240] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:36.240] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:36.240] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:34:38.773] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:38.773] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:38.773] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:38.773] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:38.789] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:38.789] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:34:40.676] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:41.319] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:41.320] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:41.320] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:41.320] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:41.320] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:41.320] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:34:43.836] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:43.836] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:43.836] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:43.836] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:43.836] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:43.836] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:34:45.704] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:46.345] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:46.345] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:46.345] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:46.345] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:46.345] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:46.345] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:34:48.869] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:48.869] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:48.869] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:48.869] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:48.870] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:34:48.870] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:34:50.739] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:51.410] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:51.410] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:51.410] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:51.410] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:51.411] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:51.411] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:53.924] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:53.924] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2514ms superseded
+[03:34:53.924] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:53.924] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:53.924] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:53.924] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:53.925] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:55.762] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:34:56.437] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:56.437] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2513ms superseded
+[03:34:56.437] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:56.437] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:56.437] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:56.438] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:56.438] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:34:58.968] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:34:58.968] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2530ms superseded
+[03:34:58.968] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:34:58.968] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:34:58.968] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:34:58.983] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:34:58.983] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:00.821] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:01.493] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:01.493] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2526ms superseded
+[03:35:01.493] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:01.493] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:01.493] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:01.493] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:01.493] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:04.021] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:04.021] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2528ms superseded
+[03:35:04.021] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:04.021] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:04.021] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:04.021] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:04.021] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:05.838] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:06.544] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:06.545] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2523ms superseded
+[03:35:06.545] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:06.545] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:06.545] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:06.560] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:06.560] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:09.097] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:09.098] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2553ms superseded
+[03:35:09.098] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:09.098] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:09.098] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:09.098] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:09.098] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:10.845] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:11.656] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:11.656] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2559ms superseded
+[03:35:11.656] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:11.656] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:11.656] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:11.657] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:11.657] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:14.182] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:14.182] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2526ms superseded
+[03:35:14.182] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:14.182] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:14.182] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:14.182] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:35:14.182] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:35:14.551] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:35:15.884] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:16.739] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:16.739] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:16.739] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:16.739] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:16.739] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:35:16.739] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:35:19.299] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:19.299] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:19.299] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:19.299] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:19.299] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:19.299] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:20.890] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:21.841] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:21.841] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2543ms superseded
+[03:35:21.841] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:21.841] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:21.841] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:21.841] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:21.841] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:24.391] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:24.391] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2550ms superseded
+[03:35:24.391] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:24.391] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:24.391] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:24.391] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:24.391] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:25.927] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:26.937] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:26.937] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2546ms superseded
+[03:35:26.937] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:26.937] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:26.937] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:26.953] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:26.953] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:29.468] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:29.468] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2531ms superseded
+[03:35:29.468] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:29.468] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:29.468] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:29.468] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:29.468] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:30.947] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:32.019] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:32.019] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2551ms superseded
+[03:35:32.019] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:32.019] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:32.019] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:32.035] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:32.035] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:34.561] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:34.561] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2541ms superseded
+[03:35:34.561] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:34.561] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:34.561] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:34.577] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:34.577] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:35.990] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:37.094] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:37.094] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2533ms superseded
+[03:35:37.094] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:37.094] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:37.094] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:37.094] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:37.094] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:39.621] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:39.621] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2527ms superseded
+[03:35:39.621] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:39.621] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:39.621] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:39.621] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:39.621] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:40.998] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:42.130] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:42.130] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2509ms superseded
+[03:35:42.130] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:42.130] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:42.130] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:42.130] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:42.130] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:44.675] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:44.675] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2545ms superseded
+[03:35:44.675] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:44.675] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:44.675] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:44.676] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:44.676] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:46.027] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:47.194] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:47.194] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2519ms superseded
+[03:35:47.194] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:47.194] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:47.194] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:47.195] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:47.195] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:49.749] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:49.749] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2555ms superseded
+[03:35:49.749] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:49.749] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:49.749] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:49.765] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:35:49.765] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:35:51.071] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:52.268] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:52.268] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:52.268] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:52.268] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:52.284] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:35:52.284] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:35:54.819] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:54.819] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:54.819] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:54.819] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:54.819] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:35:54.819] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:35:56.074] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:35:57.367] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:57.367] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:57.367] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:57.367] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:57.368] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:57.368] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:35:59.926] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:35:59.926] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2559ms superseded
+[03:35:59.926] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:35:59.926] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:35:59.926] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:35:59.926] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:35:59.926] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:01.119] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:02.471] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:02.471] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2545ms superseded
+[03:36:02.471] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:02.471] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:02.471] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:02.486] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:02.486] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:36:05.015] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:05.015] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:05.015] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:05.015] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:05.015] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:05.015] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:06.180] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:07.561] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:07.561] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:07.561] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:07.561] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:07.562] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:07.562] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:10.075] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:10.075] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:10.075] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:10.075] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:10.076] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:10.076] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:11.207] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:12.623] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:12.623] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:12.623] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:12.623] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:12.624] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:12.624] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:14.472] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[03:36:14.472] INFO  [life] needs considered: NeedEquipment(bandages 0.50) NeedSupplies(buy craft inputs 0.44) NeedOre(ore 0.42) NeedFood(food 0.25) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=nothing (target 0.0)
+[03:36:14.472] INFO  [life]   score=130.0
+[03:36:14.472] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[03:36:14.472] INFO  [life]   reason: bandages=0 low=8, supplier 'clean bandages'
+[03:36:14.599] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:36:15.134] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:15.134] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:15.134] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:15.134] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:15.150] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:15.150] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:36:16.253] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:17.649] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:17.649] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:17.649] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:17.649] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:17.664] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:17.664] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:36:20.182] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:20.182] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:20.182] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:20.182] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:20.182] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:36:20.182] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:21.287] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:22.732] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:22.732] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2550ms superseded
+[03:36:22.732] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:22.732] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:22.732] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:22.747] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:22.747] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:36:25.261] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:25.261] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:25.261] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:25.261] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:25.261] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:25.261] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:26.319] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:27.778] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:27.778] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:27.778] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:27.778] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:27.778] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:36:27.778] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:30.293] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:30.293] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2516ms superseded
+[03:36:30.293] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:30.293] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:30.293] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:30.293] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:36:30.293] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:31.332] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:32.811] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:32.811] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2518ms superseded
+[03:36:32.811] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:32.811] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:32.811] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:32.811] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:36:32.811] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:35.339] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:35.339] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2528ms superseded
+[03:36:35.339] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:35.339] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:35.339] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:35.355] INFO  [z_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[03:36:35.355] INFO  [z_Corwyn] [chat ascii] System: You cannot buy that.
+[03:36:36.386] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:37.891] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:37.891] LOG   [z_Corwyn] event action_result: vendor_buy invalid_state took=2552ms superseded
+[03:36:37.891] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:37.891] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:37.891] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:37.892] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:37.892] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:36:40.418] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:40.418] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:40.418] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:40.418] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:40.434] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:40.434] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:36:41.443] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:42.961] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:42.961] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:42.961] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:42.961] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:42.961] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:42.961] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:45.508] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:45.508] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:45.508] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:45.508] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:45.508] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:45.509] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:46.487] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:48.021] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:48.021] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:48.021] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:48.021] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:48.037] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:48.037] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:36:50.522] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:50.522] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:50.522] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:50.522] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:50.523] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:50.523] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:51.506] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:53.056] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:53.056] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:53.056] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:53.056] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:53.056] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:53.057] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:36:55.559] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:55.559] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:55.559] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:55.559] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:55.574] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:55.574] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:36:56.555] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:36:58.089] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:36:58.089] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:36:58.089] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:36:58.089] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:36:58.089] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:36:58.089] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:00.601] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:00.601] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:00.601] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:00.601] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:00.602] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:00.602] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:01.587] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:03.151] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:03.151] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:03.151] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:03.151] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:03.152] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:03.152] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:05.683] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:05.683] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:05.683] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:05.683] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:05.699] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:05.699] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:37:06.610] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:08.203] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:08.204] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:08.204] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:08.204] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:08.219] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:08.219] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:37:10.752] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:10.752] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:10.752] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:10.752] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:10.753] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:10.753] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:11.672] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:13.286] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:13.286] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:13.286] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:13.286] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:13.286] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:13.286] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:37:14.644] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:37:15.838] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:15.838] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:15.838] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:15.838] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:15.854] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:15.854] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:16.680] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:18.369] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:18.369] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:18.369] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:18.369] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:18.369] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:18.369] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:20.913] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:20.913] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:20.913] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:20.913] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:20.928] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:20.928] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:21.724] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:23.442] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:23.442] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:23.442] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:23.442] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:23.443] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:23.443] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:26.000] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:26.000] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:26.000] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:26.000] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:26.000] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:26.000] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:26.735] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:28.502] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:28.502] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:28.502] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:28.502] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:28.518] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:28.518] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:31.051] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:31.051] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:31.051] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:31.051] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:31.051] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:31.051] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:31.786] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:33.564] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:33.564] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:33.564] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:33.564] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:33.580] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:33.580] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:37:36.086] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:36.086] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:36.086] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:36.086] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:36.102] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:36.102] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:37:36.824] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:38.590] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:38.590] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:38.591] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:38.591] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:38.591] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:38.591] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:37:41.122] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:41.122] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:41.122] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:41.122] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:41.122] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:41.123] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:41.857] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:43.644] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:43.644] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:43.644] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:43.644] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:43.644] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:43.644] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:46.158] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:46.158] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:46.158] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:46.158] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:46.158] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:46.159] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:46.894] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:48.690] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:48.690] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:48.690] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:48.690] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:48.705] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:48.705] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:51.244] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:51.244] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:51.244] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:51.244] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:51.244] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:51.245] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:37:51.922] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:53.779] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:53.779] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:53.779] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:53.779] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:53.794] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:53.794] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:56.297] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:56.297] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:56.297] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:56.297] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:56.312] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:56.312] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:37:56.944] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:37:58.813] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:37:58.813] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:37:58.813] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:37:58.813] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:37:58.828] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:37:58.828] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:38:01.354] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:01.355] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:01.355] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:01.355] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:01.355] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:01.355] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:01.994] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:03.880] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:03.880] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:03.880] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:03.880] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:03.895] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:03.896] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:38:06.428] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:06.428] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:06.428] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:06.428] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:06.428] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:06.428] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:07.010] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:07.698] INFO  [z_Corwyn] [chat ascii] System: World save in 10 seconds
+[03:38:08.975] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:08.975] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:08.975] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:08.975] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:08.975] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:08.975] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:11.518] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:11.518] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:11.518] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:11.518] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:11.534] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:11.534] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:38:12.025] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:14.060] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:14.060] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:14.060] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:14.060] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:14.075] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:14.075] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:38:14.690] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:38:16.575] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:16.575] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:16.575] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:16.575] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:16.590] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:16.590] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:38:17.083] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:17.719] INFO  [z_Corwyn] [chat ascii] System: World save has been initiated.
+[03:38:19.115] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:19.115] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:19.115] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:19.115] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:19.131] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:19.131] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:38:21.650] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:21.650] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:21.650] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:21.650] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:21.650] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:21.650] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:22.142] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:24.174] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:24.174] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:24.174] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:24.174] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:24.174] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:24.174] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:26.723] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:26.723] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:26.723] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:26.723] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:26.723] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:26.723] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:27.152] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:29.277] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:29.277] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:29.277] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:29.277] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:29.277] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:29.277] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:31.781] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:31.781] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:31.781] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:31.781] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:31.781] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:31.781] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:32.211] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:34.284] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:34.284] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:34.284] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:34.284] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:34.284] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:34.284] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:36.833] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:36.833] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:36.833] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:36.833] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:36.834] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:36.834] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:37.264] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:39.341] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:39.341] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:39.341] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:39.341] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:39.356] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:39.356] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:38:41.881] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:41.881] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:41.881] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:41.881] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:41.881] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:41.881] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:42.281] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:44.414] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:44.414] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:44.414] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:44.414] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:44.430] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:44.430] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:38:46.974] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:46.974] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:46.974] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:46.974] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:46.990] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:46.990] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:38:47.296] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:49.523] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:49.523] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:49.523] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:49.523] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:49.524] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:49.524] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:52.030] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:52.030] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:52.030] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:52.030] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:52.031] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:52.031] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:38:52.307] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:54.548] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:54.548] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:54.548] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:54.548] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:54.548] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:54.548] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:57.101] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:57.101] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:57.101] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:57.101] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:57.101] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:57.101] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:38:57.346] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:38:59.621] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:38:59.621] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:38:59.621] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:38:59.621] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:38:59.621] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:38:59.621] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:39:02.146] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:02.146] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:02.146] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:02.146] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:02.146] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:02.146] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=0ms You can't reach the Vendor
+[03:39:02.391] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:39:04.663] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:04.663] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:04.663] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:04.663] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:04.663] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:04.663] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=1ms You can't reach the Vendor
+[03:39:07.205] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:07.205] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:07.205] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:07.205] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:07.221] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:07.221] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:39:07.405] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:39:09.764] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:09.764] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:09.764] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:09.764] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:09.780] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:09.780] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[03:39:12.276] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:12.276] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:12.276] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:12.276] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:12.291] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:12.291] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=15ms You can't reach the Vendor
+[03:39:12.413] INFO  [z_Corwyn] [survival] hp 56/56 (100%) -> fight
+[03:39:14.722] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[03:39:14.782] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[03:39:14.782] INFO  [z_Corwyn] [ACTION] vendor_buy start
+[03:39:14.782] INFO  [z_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[03:39:14.782] INFO  [z_Corwyn] [VENDOR] buy item=0x40015988 qty=20 from vendor=0x00009619 gold=9326
+[03:39:14.797] INFO  [z_Corwyn] [chat ascii] System: You can't reach the Vendor
+[03:39:14.798] LOG   [z_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor

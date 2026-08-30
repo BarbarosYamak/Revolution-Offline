@@ -13,6 +13,7 @@ i_ore_iron	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT core/regiontypes.scp r_default
 i_ingot_iron	WORLD_PROCESSED	PLAYER_MARKET_GOOD	0	ENGINE CCharSkill.cpp:1154 iResourceQty=1; TDATA1=20.0 TDATA2=50.0; failure loses up to half
 i_dagger	PLAYER_CRAFTED	PLAYER_CRAFTED	0	ENGINE CClientUse.cpp:1273 LayerFind(LAYER_HAND1), :1282 IsItemTypeNear(IT_FORGE,3); SCRIPT i_dagger SKILLMAKE=Blacksmithing 0.0
 i_spear_short	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
+i_cutlass	PLAYER_CRAFTED	UNKNOWN	0	SCRIPT def_blacksmithing.scp:173 blacksmithing_category_6_4 "i_cutlass"; sm_legacy_blacksmithing.scp:157-158 MAKEITEM=i_cutlass; i_weapons.scp:1232 RESOURCES=8 i_ingot_iron, :1233 SKILLMAKE=Blacksmithing 24.3
 i_log	WORLD_GATHERED	WORLD_GATHERED	0	SCRIPT r_default_tree 40.0 mr_tree; mr_tree REAPAMOUNT=1,3 SKILL=1.0,80.0
 i_board	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
 i_parchment	PLAYER_CRAFTED	PLAYER_CRAFTED	0	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7

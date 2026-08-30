@@ -1,0 +1,450 @@
+[11:08:51.920] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh05' char=Voris tag='mk_Voris'
+[11:08:51.922] LOG   [mk_Voris] event session_start: text log opened
+[11:08:51.922] LOG   [mk_Voris] event net_connect_begin: connect 127.0.0.1:2593
+[11:08:51.922] INFO  [mk_Voris] [net] connecting to 127.0.0.1:2593 ...
+[11:08:51.923] LOG   [mk_Voris] event net_connected: connect 127.0.0.1:2593
+[11:08:51.923] INFO  [mk_Voris] [net] connected.
+[11:08:51.923] INFO  [mk_Voris] [seed] sent 0x7F000001 (plaintext)
+[11:08:51.923] LOG   [mk_Voris] event seed_out: 0x7F000001 hex=7f000001
+[11:08:51.923] INFO  [life] no prior state for revolutionfresh05.voris: a new Alchemist
+[11:08:51.923] INFO  [life] creation request: Alchemy 50.0 + Magery 50.0, stats 32/16/32 = 80
+[11:08:51.923] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[11:08:51.923] INFO  [life] home: Voris lives in Britain
+[11:08:51.923] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[11:08:51.923] INFO  [mk_Voris] [life] autonomous player active for 'Voris' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[11:08:51.927] INFO  [mk_Voris] [0xA8] 1 server(s):
+[11:08:51.927] INFO  [mk_Voris]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[11:08:51.942] INFO  [mk_Voris] [0x8C] game server = 127.0.0.1:2593  seed=0x3C5206B0
+[11:08:51.942] LOG   [mk_Voris] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3C5206B0
+[11:08:51.943] INFO  [mk_Voris] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:08:51.943] LOG   [mk_Voris] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:08:51.943] INFO  [mk_Voris] [0xB9] server features = 0x0005
+[11:08:51.943] INFO  [mk_Voris] [0xA9] 5 slot(s) (populated 0):
+[11:08:51.943] INFO  [mk_Voris]   [0] <empty>
+[11:08:51.943] INFO  [mk_Voris]   [1] <empty>
+[11:08:51.943] INFO  [mk_Voris]   [2] <empty>
+[11:08:51.943] INFO  [mk_Voris]   [3] <empty>
+[11:08:51.943] INFO  [mk_Voris]   [4] <empty>
+[11:08:51.943] INFO  [mk_Voris] [0x00] requested skills 0:50 25:50 46:0
+[11:08:51.943] INFO  [mk_Voris] [0x00] requested stats STR 32 DEX 16 INT 32
+[11:08:51.943] INFO  [mk_Voris] [0x00] creating character 'Voris' in slot 0
+[11:08:51.943] LOG   [mk_Voris] event char_create_sent: Voris
+[11:08:51.949] INFO  [mk_Voris] [0x1B] serial=0x00014094 body=0x0190 pos=(633,858,0)
+[11:08:51.949] LOG   [mk_Voris] event login_confirm: serial=0x00014094 body=0x0190 pos=(633,858,0)
+[11:08:51.949] INFO  [mk_Voris] [0x20] player @(633,858,0) facing=3
+[11:08:51.949] INFO  [mk_Voris] [0x55] login complete — entering world
+[11:08:51.949] LOG   [mk_Voris] event in_world: 0x55 received
+[11:08:51.949] INFO  [mk_Voris] [backpack] opening 0x40014088
+[11:08:51.949] INFO  [mk_Voris] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:08:51.950] INFO  [mk_Voris] [chat ascii] System: There are 5 other players here.
+[11:08:51.950] INFO  [mk_Voris] [chat ascii] System: You are under the protection of the town guards
+[11:08:51.954] INFO  [mk_Voris] [action] requesting the skill list
+[11:08:51.954] INFO  [life] in world; asked the server for the skill list
+[11:08:51.958] INFO  [mk_Voris] [0x24] open container 0x40014088 gump=60
+[11:08:51.958] INFO  [mk_Voris] [0x3C] container contents: 9 item(s)
+[11:08:51.958] LOG   [mk_Voris] event backpack_contents: serial=0x40014088 items=9
+[11:08:51.973] INFO  [mk_Voris] [chat ascii] System: Xanthe has arrived in Yew.
+[11:08:51.997] INFO  [mk_Voris] [chat ascii] System: Kaelen has arrived in Yew.
+[11:08:52.021] INFO  [mk_Voris] [chat ascii] System: Torvald has arrived in Yew.
+[11:08:52.069] INFO  [mk_Voris] [chat ascii] System: Aldwin has arrived in Yew.
+[11:08:52.069] INFO  [mk_Voris] [chat ascii] System: Rhalvar has arrived in Yew.
+[11:08:52.096] INFO  [mk_Voris] [chat ascii] System: Ysolde has arrived in Yew.
+[11:08:52.124] INFO  [mk_Voris] [chat ascii] System: Sabelle has arrived in Yew.
+[11:08:52.148] INFO  [mk_Voris] [chat ascii] System: Ilyandra has arrived in Yew.
+[11:08:52.173] INFO  [mk_Voris] [chat ascii] System: Elvrin has arrived in Yew.
+[11:08:52.200] INFO  [mk_Voris] [chat ascii] System: Marta has arrived in Yew.
+[11:08:52.226] INFO  [mk_Voris] [chat ascii] System: Bruin has arrived in Yew.
+[11:08:52.251] INFO  [mk_Voris] [chat ascii] System: Corwin has arrived in Yew.
+[11:08:52.280] INFO  [mk_Voris] [chat ascii] System: Beleth has arrived in Yew.
+[11:08:52.307] INFO  [mk_Voris] [chat ascii] System: Nerys has arrived in Yew.
+[11:08:52.327] INFO  [mk_Voris] [chat ascii] System: Kestrel has arrived in Yew.
+[11:08:54.504] INFO  [mk_Voris] [bot] world data loaded (0 blacklisted spot(s)).
+[11:08:54.504] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[11:08:54.504] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[11:08:54.504] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[11:08:54.504] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[11:08:54.504] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[11:08:54.504] INFO  [life]   skill_0      persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.504] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.504] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[11:08:54.504] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[11:08:54.504] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:08:54.504] INFO  [mk_Voris] [survival] on
+[11:08:54.504] LOG   [mk_Voris] event survival_mode: on
+[11:08:54.507] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[11:08:54.507] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:08:54.572] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[11:08:54.572] INFO  [life] needs considered: NeedSkillTraining(Meditation 0.55) NeedPractice(Meditation 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[11:08:54.572] INFO  [life]   score=110.0
+[11:08:54.572] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[11:08:54.572] INFO  [life]   reason: Meditation 0.0 -> 50.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[11:08:54.572] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[11:08:54.572] INFO  [life] training: looking for a 'mage' to teach Meditation (trip 1)
+[11:08:54.572] INFO  [mk_Voris] [travel] Britain mage -> (1485,1550) r=5 from (633,858)
+[11:08:54.572] LOG   [mk_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(633,858)
+[11:08:54.572] INFO  [mk_Voris] [travel] mode moongate         usable   <- chosen
+[11:08:54.572] INFO  [mk_Voris] [travel] mode walk             usable
+[11:08:54.572] INFO  [mk_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:08:54.572] INFO  [mk_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:08:54.572] LOG   [mk_Voris] event travel_mode: moongate
+[11:08:54.572] INFO  [mk_Voris] [travel] plan Britain mage: ok legs=21 ~832 tiles transit=1 nodes=785
+[11:08:54.572] INFO  [mk_Voris] [action] goto (664,856) from (633,858,0)
+[11:08:54.572] LOG   [mk_Voris] event goto_start: target=(664,856) from=(633,858)
+[11:08:54.572] INFO  [mk_Voris] [bot] running from (633,858,0) to (664,856)
+[11:08:54.572] INFO  [mk_Voris] [bot] planning path to (664,856) in background
+[11:08:54.636] INFO  [mk_Voris] [bot] replan to (664,856): 31 steps in 7166.4us
+[11:08:54.652] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=32 in 85.8us
+[11:08:54.958] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=35 in 159.8us
+[11:08:55.445] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=33 in 11.3us
+[11:08:55.872] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=33 in 119.7us
+[11:08:56.537] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=10 path=37 in 303.1us
+[11:08:56.615] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=40 in 214.8us
+[11:08:56.954] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=40 in 64.4us
+[11:08:57.260] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=40 in 50.2us
+[11:08:57.383] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=37 in 26.2us
+[11:08:57.383] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=37 in 25.7us
+[11:08:57.600] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=38 in 120.8us
+[11:08:58.238] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=36 in 45.0us
+[11:08:58.252] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=8 new segment=4 path=32 in 34.1us
+[11:08:59.308] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=26 in 41.5us
+[11:08:59.522] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:08:59.967] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=23 in 44.6us
+[11:09:00.382] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=23 in 59.7us
+[11:09:01.375] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 90.1us
+[11:09:01.592] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=6 new segment=6 path=21 in 84.2us
+[11:09:01.850] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 101.2us
+[11:09:02.049] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=18 in 53.8us
+[11:09:02.725] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=17 in 34.6us
+[11:09:03.145] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=15 in 38.0us
+[11:09:03.160] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=16 in 48.6us
+[11:09:03.345] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 55.0us
+[11:09:03.761] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=13 in 41.9us
+[11:09:04.530] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:04.608] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=12 in 51.6us
+[11:09:04.852] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=13 in 75.7us
+[11:09:05.339] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=7 new segment=6 path=11 in 68.6us
+[11:09:05.779] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=9 in 47.0us
+[11:09:05.855] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 149.7us
+[11:09:06.192] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=9 in 153.2us
+[11:09:06.481] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=8 in 19.2us
+[11:09:06.541] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 68.2us
+[11:09:06.679] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=7 in 35.4us
+[11:09:06.940] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=7 in 54.9us
+[11:09:08.550] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=2 new segment=5 path=5 in 114.3us
+[11:09:09.494] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=3 new segment=3 path=3 in 17.5us
+[11:09:09.554] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:09.894] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=2 new segment=2 path=2 in 15.2us
+[11:09:10.998] INFO  [mk_Voris] [chat ascii] System: You shove Aldwin out of the way.
+[11:09:10.998] INFO  [mk_Voris] [bot] arrived at (664,856,0)
+[11:09:10.998] INFO  [mk_Voris] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[11:09:10.998] LOG   [mk_Voris] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[11:09:10.998] INFO  [mk_Voris] [action] goto (696,840) from (664,856,0)
+[11:09:10.998] LOG   [mk_Voris] event goto_start: target=(696,840) from=(664,856)
+[11:09:10.998] INFO  [mk_Voris] [bot] running from (664,856,0) to (696,840)
+[11:09:10.998] INFO  [mk_Voris] [bot] planning path to (696,840) in background
+[11:09:11.013] INFO  [mk_Voris] [bot] replan to (696,840): 38 steps in 13040.7us
+[11:09:14.613] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:15.548] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=26 in 71.1us
+[11:09:16.006] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=23 in 45.2us
+[11:09:18.073] INFO  [mk_Voris] [chat ascii] System: You have left the protection of the town guards
+[11:09:19.189] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=13 in 33.6us
+[11:09:19.619] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:20.447] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 60.8us
+[11:09:20.875] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=7 in 49.8us
+[11:09:22.992] INFO  [mk_Voris] [bot] arrived at (696,840,0)
+[11:09:22.992] INFO  [mk_Voris] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[11:09:22.992] LOG   [mk_Voris] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[11:09:22.992] INFO  [mk_Voris] [action] goto (728,808) from (696,840,0)
+[11:09:22.992] LOG   [mk_Voris] event goto_start: target=(728,808) from=(696,840)
+[11:09:22.992] INFO  [mk_Voris] [bot] running from (696,840,0) to (728,808)
+[11:09:22.992] INFO  [mk_Voris] [bot] planning path to (728,808) in background
+[11:09:23.007] INFO  [mk_Voris] [bot] replan to (728,808): 38 steps in 11981.3us
+[11:09:24.619] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:29.635] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:31.993] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 92.1us
+[11:09:33.842] INFO  [mk_Voris] [bot] arrived at (728,808,0)
+[11:09:33.843] INFO  [mk_Voris] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[11:09:33.843] LOG   [mk_Voris] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[11:09:33.843] INFO  [mk_Voris] [action] goto (760,776) from (728,808,0)
+[11:09:33.843] LOG   [mk_Voris] event goto_start: target=(760,776) from=(728,808)
+[11:09:33.843] INFO  [mk_Voris] [bot] running from (728,808,0) to (760,776)
+[11:09:33.843] INFO  [mk_Voris] [bot] planning path to (760,776) in background
+[11:09:33.903] INFO  [mk_Voris] [bot] replan to (760,776): 39 steps in 15542.0us
+[11:09:34.670] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:39.730] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:43.631] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=10 in 120.9us
+[11:09:44.257] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=9 in 64.5us
+[11:09:44.761] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:45.145] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=7 in 86.4us
+[11:09:45.590] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=6 in 55.3us
+[11:09:45.974] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=4 in 43.3us
+[11:09:47.648] INFO  [mk_Voris] [bot] reject at (760,776): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[11:09:47.648] INFO  [mk_Voris] [bot] planning path to (760,776) in background
+[11:09:49.266] INFO  [mk_Voris] [action] goto finished at (759,777,0); target (760,776); stopped short (off by 2 tile(s))
+[11:09:49.266] LOG   [mk_Voris] event goto_done: at=(759,777) target=(760,776) arrived=0 off=2
+[11:09:49.266] INFO  [mk_Voris] [action] goto (776,760) from (759,777,0)
+[11:09:49.266] LOG   [mk_Voris] event goto_start: target=(776,760) from=(759,777)
+[11:09:49.266] INFO  [mk_Voris] [bot] running from (759,777,0) to (776,760)
+[11:09:49.266] INFO  [mk_Voris] [bot] planning path to (776,760) in background
+[11:09:49.808] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:51.006] INFO  [mk_Voris] [action] goto finished at (759,777,0); target (776,760); stopped short (off by 34 tile(s))
+[11:09:51.006] LOG   [mk_Voris] event goto_done: at=(759,777) target=(776,760) arrived=0 off=34
+[11:09:52.220] INFO  [mk_Voris] [action] goto (776,760) from (759,777,0)
+[11:09:52.220] LOG   [mk_Voris] event goto_start: target=(776,760) from=(759,777)
+[11:09:52.220] INFO  [mk_Voris] [bot] running from (759,777,0) to (776,760)
+[11:09:52.220] INFO  [mk_Voris] [bot] planning path to (776,760) in background
+[11:09:52.281] INFO  [mk_Voris] [bot] replan to (776,760): 21 steps in 5007.3us
+[11:09:53.112] INFO  [mk_Voris] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=20 in 132.8us
+[11:09:53.745] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=18 in 77.9us
+[11:09:53.961] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=18 in 65.7us
+[11:09:54.163] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=17 in 59.4us
+[11:09:54.363] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=15 in 70.7us
+[11:09:54.551] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[11:09:54.780] INFO  [mk_Voris] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=15 in 95.1us
+[11:09:54.840] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:09:55.411] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=13 in 51.0us
+[11:09:55.612] INFO  [mk_Voris] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=11 in 57.0us
+[11:09:56.084] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=11 in 105.5us
+[11:09:56.888] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=8 in 47.4us
+[11:09:57.520] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=6 in 91.2us
+[11:09:58.137] INFO  [mk_Voris] [bot] lookahead patched around block at step 3: anchor=4 new segment=4 path=4 in 127.0us
+[11:09:59.564] INFO  [mk_Voris] [chat ascii] System: World save in 10 seconds
+[11:09:59.854] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:00.358] INFO  [mk_Voris] [bot] arrived at (776,760,0)
+[11:10:00.358] INFO  [mk_Voris] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[11:10:00.358] LOG   [mk_Voris] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[11:10:00.358] INFO  [mk_Voris] [action] goto (771,752) from (776,760,0)
+[11:10:00.358] LOG   [mk_Voris] event goto_start: target=(771,752) from=(776,760)
+[11:10:00.358] INFO  [mk_Voris] [bot] running from (776,760,0) to (771,752)
+[11:10:00.358] INFO  [mk_Voris] [bot] planning path to (771,752) in background
+[11:10:00.359] INFO  [mk_Voris] [bot] replan to (771,752): 8 steps in 136.2us
+[11:10:03.225] INFO  [mk_Voris] [gump] 0x400028B7 context=0x80A003FB: 13 option(s), 15 text(s)
+[11:10:03.225] INFO  [mk_Voris] [gump]   button 1000 = 'OKAY'
+[11:10:03.225] INFO  [mk_Voris] [gump]   button 0 = 'CANCEL'
+[11:10:03.225] INFO  [mk_Voris] [gump]   button 1 = 'Felucca'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 1 = 'Moonglow'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 2 = 'Britain'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 3 = 'Jhelom'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 4 = 'Yew'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 5 = 'New Magincia'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 6 = 'Minoc'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 7 = 'Trinsic'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 8 = 'Skara Brae'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 9 = 'Buccaneer's Den'
+[11:10:03.225] INFO  [mk_Voris] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 0 = 'Pick your destination:'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 1 = 'OKAY'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 2 = 'CANCEL'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 3 = 'Felucca'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 4 = 'Felucca'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 5 = 'Moonglow'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 6 = 'Britain'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 7 = 'Jhelom'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 8 = 'Yew'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 9 = 'New Magincia'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 10 = 'Minoc'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 11 = 'Trinsic'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 12 = 'Skara Brae'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 13 = 'Buccaneer's Den'
+[11:10:03.225] INFO  [mk_Voris] [gump]   text 14 = 'Ocllo (Newplayers)'
+[11:10:03.225] LOG   [mk_Voris] event gump_open: serial=0x400028B7 context=0x80A003FB options=13
+[11:10:03.225] INFO  [mk_Voris] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[11:10:03.225] LOG   [mk_Voris] event moongate_use: destination='Britain' choice=2 button=1000
+[11:10:03.225] INFO  [mk_Voris] [bot] arrived at (771,752,5)
+[11:10:03.225] INFO  [mk_Voris] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[11:10:03.225] LOG   [mk_Voris] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[11:10:03.225] INFO  [mk_Voris] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[11:10:03.226] INFO  [mk_Voris] [0x20] player @(1336,1997,5) facing=0
+[11:10:03.226] INFO  [mk_Voris] [0x20] player @(1336,1997,5) facing=0
+[11:10:03.240] INFO  [mk_Voris] [chat ascii] System: You can't see the target
+[11:10:03.362] INFO  [mk_Voris] [action] goto (1336,1960) from (1336,1997,5)
+[11:10:03.362] LOG   [mk_Voris] event goto_start: target=(1336,1960) from=(1336,1997)
+[11:10:03.362] INFO  [mk_Voris] [bot] running from (1336,1997,5) to (1336,1960)
+[11:10:03.362] INFO  [mk_Voris] [bot] planning path to (1336,1960) in background
+[11:10:03.424] INFO  [mk_Voris] [bot] replan to (1336,1960): 37 steps in 21930.8us
+[11:10:03.424] INFO  [mk_Voris] [chat ascii] System: You have been revealed
+[11:10:04.899] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:09.564] INFO  [mk_Voris] [chat ascii] System: World save has been initiated.
+[11:10:09.937] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:14.966] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:18.569] INFO  [mk_Voris] [bot] arrived at (1336,1960,0)
+[11:10:18.569] INFO  [mk_Voris] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[11:10:18.569] LOG   [mk_Voris] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[11:10:18.569] INFO  [mk_Voris] [action] goto (1336,1928) from (1336,1960,0)
+[11:10:18.569] LOG   [mk_Voris] event goto_start: target=(1336,1928) from=(1336,1960)
+[11:10:18.569] INFO  [mk_Voris] [bot] running from (1336,1960,0) to (1336,1928)
+[11:10:18.569] INFO  [mk_Voris] [bot] planning path to (1336,1928) in background
+[11:10:18.585] INFO  [mk_Voris] [bot] replan to (1336,1928): 33 steps in 7324.3us
+[11:10:20.026] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:25.066] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:28.658] INFO  [mk_Voris] [bot] arrived at (1336,1928,0)
+[11:10:28.658] INFO  [mk_Voris] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[11:10:28.658] LOG   [mk_Voris] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[11:10:28.658] INFO  [mk_Voris] [action] goto (1336,1896) from (1336,1928,0)
+[11:10:28.658] LOG   [mk_Voris] event goto_start: target=(1336,1896) from=(1336,1928)
+[11:10:28.658] INFO  [mk_Voris] [bot] running from (1336,1928,0) to (1336,1896)
+[11:10:28.658] INFO  [mk_Voris] [bot] planning path to (1336,1896) in background
+[11:10:28.719] INFO  [mk_Voris] [bot] replan to (1336,1896): 32 steps in 10016.2us
+[11:10:30.070] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:35.087] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:39.511] INFO  [mk_Voris] [bot] arrived at (1336,1896,0)
+[11:10:39.511] INFO  [mk_Voris] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[11:10:39.511] LOG   [mk_Voris] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[11:10:39.511] INFO  [mk_Voris] [action] goto (1336,1864) from (1336,1896,0)
+[11:10:39.511] LOG   [mk_Voris] event goto_start: target=(1336,1864) from=(1336,1896)
+[11:10:39.511] INFO  [mk_Voris] [bot] running from (1336,1896,0) to (1336,1864)
+[11:10:39.511] INFO  [mk_Voris] [bot] planning path to (1336,1864) in background
+[11:10:39.572] INFO  [mk_Voris] [bot] replan to (1336,1864): 37 steps in 6984.2us
+[11:10:40.121] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:45.124] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:50.134] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:10:52.794] INFO  [mk_Voris] [bot] arrived at (1336,1864,0)
+[11:10:52.794] INFO  [mk_Voris] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[11:10:52.794] LOG   [mk_Voris] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[11:10:52.794] INFO  [mk_Voris] [action] goto (1336,1832) from (1336,1864,0)
+[11:10:52.794] LOG   [mk_Voris] event goto_start: target=(1336,1832) from=(1336,1864)
+[11:10:52.794] INFO  [mk_Voris] [bot] running from (1336,1864,0) to (1336,1832)
+[11:10:52.794] INFO  [mk_Voris] [bot] planning path to (1336,1832) in background
+[11:10:52.809] INFO  [mk_Voris] [bot] replan to (1336,1832): 33 steps in 9325.9us
+[11:10:54.554] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[11:10:55.157] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:00.212] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:04.070] INFO  [mk_Voris] [bot] arrived at (1336,1832,0)
+[11:11:04.070] INFO  [mk_Voris] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[11:11:04.070] LOG   [mk_Voris] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[11:11:04.070] INFO  [mk_Voris] [action] goto (1336,1800) from (1336,1832,0)
+[11:11:04.070] LOG   [mk_Voris] event goto_start: target=(1336,1800) from=(1336,1832)
+[11:11:04.070] INFO  [mk_Voris] [bot] running from (1336,1832,0) to (1336,1800)
+[11:11:04.070] INFO  [mk_Voris] [bot] planning path to (1336,1800) in background
+[11:11:04.086] INFO  [mk_Voris] [bot] replan to (1336,1800): 32 steps in 6196.3us
+[11:11:05.254] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:10.255] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:12.991] INFO  [mk_Voris] [bot] arrived at (1336,1800,0)
+[11:11:12.992] INFO  [mk_Voris] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[11:11:12.992] LOG   [mk_Voris] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[11:11:12.992] INFO  [mk_Voris] [action] goto (1352,1766) from (1336,1800,0)
+[11:11:12.992] LOG   [mk_Voris] event goto_start: target=(1352,1766) from=(1336,1800)
+[11:11:12.992] INFO  [mk_Voris] [bot] running from (1336,1800,0) to (1352,1766)
+[11:11:12.992] INFO  [mk_Voris] [bot] planning path to (1352,1766) in background
+[11:11:13.052] INFO  [mk_Voris] [bot] replan to (1352,1766): 49 steps in 19921.6us
+[11:11:15.275] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:20.295] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:25.341] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:27.136] INFO  [mk_Voris] [bot] arrived at (1352,1766,15)
+[11:11:27.137] INFO  [mk_Voris] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[11:11:27.137] LOG   [mk_Voris] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[11:11:27.137] INFO  [mk_Voris] [action] goto (1386,1728) from (1352,1766,15)
+[11:11:27.137] LOG   [mk_Voris] event goto_start: target=(1386,1728) from=(1352,1766)
+[11:11:27.137] INFO  [mk_Voris] [bot] running from (1352,1766,15) to (1386,1728)
+[11:11:27.137] INFO  [mk_Voris] [bot] planning path to (1386,1728) in background
+[11:11:27.211] INFO  [mk_Voris] [bot] replan to (1386,1728): 64 steps in 35810.0us
+[11:11:30.396] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:35.420] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:37.838] INFO  [mk_Voris] [chat ascii] System: You are now under the protection of the city guards
+[11:11:39.424] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 839.4us
+[11:11:40.421] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:44.961] INFO  [mk_Voris] [chat ascii] System: You have left the protection of the city guards
+[11:11:45.365] INFO  [mk_Voris] [bot] arrived at (1386,1728,0)
+[11:11:45.365] INFO  [mk_Voris] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[11:11:45.365] LOG   [mk_Voris] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[11:11:45.365] INFO  [mk_Voris] [action] goto (1416,1688) from (1386,1728,0)
+[11:11:45.365] LOG   [mk_Voris] event goto_start: target=(1416,1688) from=(1386,1728)
+[11:11:45.365] INFO  [mk_Voris] [bot] running from (1386,1728,0) to (1416,1688)
+[11:11:45.365] INFO  [mk_Voris] [bot] planning path to (1416,1688) in background
+[11:11:45.380] INFO  [mk_Voris] [bot] replan to (1416,1688): 50 steps in 10267.7us
+[11:11:45.441] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:46.224] INFO  [mk_Voris] [chat ascii] System: You are now under the protection of the city guards
+[11:11:50.450] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:11:51.995] INFO  [life] session_end_requested reason="session time limit reached"
+[11:11:52.136] INFO  [mk_Voris] [chat ascii] System: Xanthe has departed from Moonglow.
+[11:11:53.534] INFO  [mk_Voris] [chat ascii] System: Elvrin has departed from Moonglow.
+[11:11:55.483] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:00.406] INFO  [mk_Voris] [bot] arrived at (1416,1688,0)
+[11:12:00.406] INFO  [mk_Voris] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[11:12:00.406] LOG   [mk_Voris] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[11:12:00.406] INFO  [mk_Voris] [action] goto (1448,1656) from (1416,1688,0)
+[11:12:00.406] LOG   [mk_Voris] event goto_start: target=(1448,1656) from=(1416,1688)
+[11:12:00.406] INFO  [mk_Voris] [bot] running from (1416,1688,0) to (1448,1656)
+[11:12:00.406] INFO  [mk_Voris] [bot] planning path to (1448,1656) in background
+[11:12:00.468] INFO  [mk_Voris] [bot] replan to (1448,1656): 46 steps in 4874.7us
+[11:12:00.529] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:04.936] INFO  [mk_Voris] [chat ascii] System: Bruin has departed from Yew.
+[11:12:05.570] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:06.587] INFO  [mk_Voris] [chat ascii] System: Corwin has departed from Yew.
+[11:12:08.938] INFO  [mk_Voris] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[11:12:09.169] INFO  [mk_Voris] [chat ascii] System: Durnholde has departed from Minoc.
+[11:12:09.675] INFO  [mk_Voris] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[11:12:09.676] INFO  [mk_Voris] [bot] planning path to (1448,1656) in background
+[11:12:10.615] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:11.094] INFO  [mk_Voris] [action] goto finished at (1432,1666,10); target (1448,1656); stopped short (off by 26 tile(s))
+[11:12:11.094] LOG   [mk_Voris] event goto_done: at=(1432,1666) target=(1448,1656) arrived=0 off=26
+[11:12:12.323] INFO  [mk_Voris] [action] goto (1448,1656) from (1432,1666,10)
+[11:12:12.323] LOG   [mk_Voris] event goto_start: target=(1448,1656) from=(1432,1666)
+[11:12:12.323] INFO  [mk_Voris] [bot] running from (1432,1666,10) to (1448,1656)
+[11:12:12.323] INFO  [mk_Voris] [bot] planning path to (1448,1656) in background
+[11:12:12.383] INFO  [mk_Voris] [bot] replan to (1448,1656): 19 steps in 1600.7us
+[11:12:15.416] INFO  [mk_Voris] [chat ascii] System: Rhalvar has departed from Skara Brae.
+[11:12:15.662] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:17.996] INFO  [mk_Voris] [bot] arrived at (1448,1656,10)
+[11:12:17.996] INFO  [mk_Voris] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[11:12:17.996] LOG   [mk_Voris] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[11:12:17.996] INFO  [mk_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:12:17.996] INFO  [mk_Voris] [action] goto (1464,1624) from (1448,1656,10)
+[11:12:17.996] LOG   [mk_Voris] event goto_start: target=(1464,1624) from=(1448,1656)
+[11:12:17.996] INFO  [mk_Voris] [bot] running from (1448,1656,10) to (1464,1624)
+[11:12:17.996] INFO  [mk_Voris] [bot] planning path to (1464,1624) in background
+[11:12:18.057] INFO  [mk_Voris] [bot] replan to (1464,1624): 43 steps in 6708.9us
+[11:12:20.692] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:25.701] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:30.712] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:31.327] INFO  [mk_Voris] [bot] arrived at (1464,1624,20)
+[11:12:31.327] INFO  [mk_Voris] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[11:12:31.327] LOG   [mk_Voris] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[11:12:31.327] INFO  [mk_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[11:12:31.327] INFO  [mk_Voris] [action] goto (1464,1592) from (1464,1624,20)
+[11:12:31.327] LOG   [mk_Voris] event goto_start: target=(1464,1592) from=(1464,1624)
+[11:12:31.327] INFO  [mk_Voris] [bot] running from (1464,1624,20) to (1464,1592)
+[11:12:31.327] INFO  [mk_Voris] [bot] planning path to (1464,1592) in background
+[11:12:31.389] INFO  [mk_Voris] [bot] replan to (1464,1592): 32 steps in 1059.0us
+[11:12:32.287] INFO  [mk_Voris] [chat ascii] System: Kaelen has departed from Britain.
+[11:12:35.736] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:39.149] INFO  [mk_Voris] [bot] arrived at (1464,1592,20)
+[11:12:39.149] INFO  [mk_Voris] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[11:12:39.149] LOG   [mk_Voris] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[11:12:39.149] INFO  [mk_Voris] [action] goto (1480,1558) from (1464,1592,20)
+[11:12:39.149] LOG   [mk_Voris] event goto_start: target=(1480,1558) from=(1464,1592)
+[11:12:39.149] INFO  [mk_Voris] [bot] running from (1464,1592,20) to (1480,1558)
+[11:12:39.149] INFO  [mk_Voris] [bot] planning path to (1480,1558) in background
+[11:12:39.208] INFO  [mk_Voris] [bot] replan to (1480,1558): 41 steps in 12043.0us
+[11:12:40.741] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:45.313] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 425.4us
+[11:12:45.784] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:46.690] INFO  [mk_Voris] [chat ascii] System: Beleth has departed from Yew.
+[11:12:47.254] INFO  [mk_Voris] [chat ascii] System: Torvald has departed from Britain.
+[11:12:50.798] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:12:52.252] INFO  [mk_Voris] [chat ascii] System: Aldwin has departed from Lord British's Castle.
+[11:12:52.374] INFO  [mk_Voris] [bot] arrived at (1480,1558,30)
+[11:12:52.374] INFO  [mk_Voris] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[11:12:52.374] LOG   [mk_Voris] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[11:12:52.374] INFO  [mk_Voris] [action] goto (1485,1550) from (1480,1558,30)
+[11:12:52.374] LOG   [mk_Voris] event goto_start: target=(1485,1550) from=(1480,1558)
+[11:12:52.374] INFO  [mk_Voris] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[11:12:52.374] INFO  [mk_Voris] [bot] planning path to (1485,1550) in background
+[11:12:52.389] INFO  [mk_Voris] [bot] replan to (1485,1550): 48 steps in 13299.9us
+[11:12:52.497] INFO  [mk_Voris] [chat ascii] System: Brannoc has departed from Vesper.
+[11:12:55.833] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:13:00.839] INFO  [mk_Voris] [survival] hp 32/32 (100%) -> fight
+[11:13:04.116] INFO  [mk_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 522.4us
+[11:13:04.882] INFO  [mk_Voris] [travel] Britain mage ARRIVED at (1490,1554,30)
+[11:13:04.882] LOG   [mk_Voris] event travel_done: label='Britain mage' ok=1 at=(1490,1554) legs=21 plans=1 why=''
+[11:13:04.883] INFO  [life] wind-down: arrived somewhere safe at 1490,1553
+[11:13:04.944] INFO  [life] session_summary duration=252s goals=0/1 gold=1000->1000 skills=100.0->100.0 logs=+0 deaths=0 places=1 suppliers=0
+[11:13:04.944] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 | training=1(100%) | TRAIN_AT_NPC=1(100%)
+[11:13:04.946] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[11:13:04.946] INFO  [life] logging out
+[11:13:04.946] INFO  [mk_Voris] [action] logout requested
+[11:13:04.946] LOG   [mk_Voris] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[11:13:04.960] INFO  [mk_Voris] [0xD1] logout acknowledged (accepted=1)
+[11:13:04.960] LOG   [mk_Voris] event logout_ack: accepted
+[11:13:04.960] INFO  [mk_Voris] [net] closing connection (logout acknowledged)
+[11:13:04.960] LOG   [mk_Voris] event logout_complete: acked

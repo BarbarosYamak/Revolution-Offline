@@ -1,0 +1,190 @@
+start: Ilyandra is a mage and lives in Nujel'm -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:47:42.944] WARN  [v_Ilyandra] [bot] 0x20 resync; aborting path
+[00:48:37.884] WARN  [v_Ilyandra] [ACTION_RESULT] cast_spell server_failure (14ms) The spell is not in your spellbook.
+[00:49:09.992] WARN  [v_Ilyandra] [bot] 0x20 resync; aborting path
+[00:50:23.705] WARN  [v_Ilyandra] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1478388.8us)
+[00:50:23.705] WARN  [v_Ilyandra] [bot] start (1485,1550,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 265 item(s), 6 mobile(s))
+[00:50:23.767] WARN  [v_Ilyandra] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[00:50:33.949] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[00:50:43.946] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:50:43.946] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:50:43.947] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:51:18.118] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:18.118] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:18.119] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:51:27.122] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:27.123] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:27.123] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:51:36.142] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:36.142] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:36.143] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:51:45.164] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:45.164] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:45.164] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:51:54.177] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:51:54.177] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:51:54.177] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:52:03.227] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:52:03.228] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:52:03.228] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:52:12.231] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:52:12.231] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:52:12.231] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:52:46.449] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:52:46.449] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:52:46.450] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:52:55.459] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:52:55.459] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:52:55.459] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:53:04.467] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:04.467] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:04.467] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:53:13.477] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:13.477] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:13.478] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:53:22.527] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:22.527] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:22.527] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:53:31.574] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:31.575] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:31.575] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:53:40.587] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:53:40.587] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:53:40.588] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:14.779] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:14.779] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:14.779] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:54:23.833] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:23.833] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:23.833] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:32.874] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:32.874] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:32.874] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:41.897] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:41.897] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:41.897] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:54:50.906] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:50.906] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:50.907] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:54:59.909] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:54:59.909] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:54:59.909] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:55:08.943] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:55:08.943] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:55:08.943] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:55:43.119] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:55:43.119] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:55:43.120] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:55:52.178] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:55:52.179] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:55:52.179] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:56:01.183] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:56:01.183] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:56:01.183] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:56:10.208] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:56:10.208] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:56:10.208] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:56:19.233] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:56:19.233] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:56:19.233] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:56:29.970] WARN  [v_Ilyandra] [bot] no path to (1489,1549) avoiding 0 block(s); stopping (search 1560641.7us)
+[00:56:29.971] WARN  [v_Ilyandra] [bot] start (1485,1547,70) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:56:32.630] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:56:32.630] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:56:32.630] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:57:06.838] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:57:06.838] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:57:06.838] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[00:57:17.763] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1793584.6us)
+[00:57:17.764] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:20.546] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1499098.5us)
+[00:57:20.547] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:24.807] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1387057.6us)
+[00:57:24.808] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:27.575] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1480276.3us)
+[00:57:27.576] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:30.427] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1512931.3us)
+[00:57:30.428] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:36.094] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1335100.9us)
+[00:57:36.095] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:39.038] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1593559.4us)
+[00:57:39.038] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:46.318] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1408510.1us)
+[00:57:46.319] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:49.304] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1672697.3us)
+[00:57:49.304] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:52.065] WARN  [v_Ilyandra] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1414557.8us)
+[00:57:52.066] WARN  [v_Ilyandra] [bot] start (1489,1549,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 279 item(s), 6 mobile(s))
+[00:57:52.128] WARN  [v_Ilyandra] [travel] route exhausted at (1489,1549,70); trying to reach (1480,1558,30) to get somewhere routable (escape 1/3)
+[00:57:55.733] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[00:57:55.734] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[00:57:55.734] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[00:58:31.603] WARN  [v_Ilyandra] [bot] no path to (1487,1548) avoiding 0 block(s); stopping (search 1558454.7us)
+[00:58:31.603] WARN  [v_Ilyandra] [bot] start (1480,1558,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[00:58:31.663] WARN  [v_Ilyandra] [travel] reached (1480,1558,30) but the target is on another floor; not arrived
+[00:58:43.899] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1760717.8us)
+[00:58:43.900] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[00:58:43.961] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:58:46.693] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1482189.1us)
+[00:58:46.693] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[00:58:46.754] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:58:49.664] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1628591.5us)
+[00:58:49.665] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 5 mobile(s))
+[00:58:49.725] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:58:54.048] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1530463.9us)
+[00:58:54.049] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[00:58:54.110] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:58:56.869] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1496384.2us)
+[00:58:56.869] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 5 mobile(s))
+[00:58:56.933] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:58:59.757] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1593679.9us)
+[00:58:59.757] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 4 mobile(s))
+[00:58:59.819] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:59:05.728] WARN  [v_Ilyandra] [bot] no path to (1484,1548) avoiding 0 block(s); stopping (search 1663234.9us)
+[00:59:05.728] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[00:59:05.792] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:59:10.283] WARN  [v_Ilyandra] [bot] no path to (1487,1549) avoiding 0 block(s); stopping (search 1668629.1us)
+[00:59:10.284] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[00:59:10.285] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:59:13.202] WARN  [v_Ilyandra] [bot] no path to (1487,1549) avoiding 0 block(s); stopping (search 1679324.1us)
+[00:59:13.202] WARN  [v_Ilyandra] [bot] start (1490,1566,30) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 7 mobile(s))
+[00:59:13.264] WARN  [v_Ilyandra] [travel] reached (1490,1566,30) but the target is on another floor; not arrived
+[00:59:26.616] WARN  [v_Ilyandra] [bot] no path to (1490,1547) avoiding 0 block(s); stopping (search 1897086.3us)
+[00:59:26.617] WARN  [v_Ilyandra] [bot] start (1491,1545,70) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[00:59:51.607] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1346810.5us)
+[00:59:51.608] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[00:59:54.384] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1475930.8us)
+[00:59:54.385] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[00:59:57.126] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1417000.2us)
+[00:59:57.126] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:01.750] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1766264.5us)
+[01:00:01.750] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:04.749] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1655958.2us)
+[01:00:04.749] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:10.704] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1613657.9us)
+[01:00:10.704] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:13.455] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1410697.4us)
+[01:00:13.455] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:20.668] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1371379.1us)
+[01:00:20.668] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:23.438] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1467274.6us)
+[01:00:23.438] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:26.231] WARN  [v_Ilyandra] [bot] no path to (1485,1549) avoiding 0 block(s); stopping (search 1444085.6us)
+[01:00:26.231] WARN  [v_Ilyandra] [bot] start (1490,1547,70) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 291 item(s), 6 mobile(s))
+[01:00:26.294] WARN  [v_Ilyandra] [travel] route exhausted at (1490,1547,70); trying to reach (1480,1544,30) to get somewhere routable (escape 1/3)
+[01:00:30.089] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[01:00:30.089] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[01:00:30.089] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[01:01:11.914] WARN  [v_Ilyandra] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1537649.9us)
+[01:01:11.915] WARN  [v_Ilyandra] [bot] start (1485,1550,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 294 item(s), 6 mobile(s))
+[01:01:11.976] WARN  [v_Ilyandra] [travel] reached (1485,1550,30) but the target is on another floor; not arrived
+[01:01:18.157] WARN  [v_Ilyandra] [bot] no path to (1486,1549) avoiding 0 block(s); stopping (search 1482643.6us)
+[01:01:18.157] WARN  [v_Ilyandra] [bot] start (1491,1545,70) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 294 item(s), 6 mobile(s))
+[01:01:21.338] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[01:01:21.338] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[01:01:21.338] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[01:01:30.385] WARN  [v_Ilyandra] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[01:01:30.385] WARN  [v_Ilyandra] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[01:01:30.386] WARN  [v_Ilyandra] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase

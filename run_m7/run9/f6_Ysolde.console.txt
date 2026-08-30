@@ -1,0 +1,1640 @@
+[14:47:45.001] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh11' char=Ysolde tag='f6_Ysolde'
+[14:47:45.002] LOG   [f6_Ysolde] event session_start: text log opened
+[14:47:45.002] LOG   [f6_Ysolde] event net_connect_begin: connect 127.0.0.1:2593
+[14:47:45.002] INFO  [f6_Ysolde] [net] connecting to 127.0.0.1:2593 ...
+[14:47:45.003] LOG   [f6_Ysolde] event net_connected: connect 127.0.0.1:2593
+[14:47:45.004] INFO  [f6_Ysolde] [net] connected.
+[14:47:45.004] INFO  [f6_Ysolde] [seed] sent 0x7F000001 (plaintext)
+[14:47:45.004] LOG   [f6_Ysolde] event seed_out: 0x7F000001 hex=7f000001
+[14:47:45.006] INFO  [life] loaded persistent state for Ysolde (3 places, 1 suppliers, 256 events, 6 prior sessions)
+[14:47:45.006] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[14:47:45.006] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[14:47:45.006] INFO  [f6_Ysolde] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[14:47:45.006] INFO  [f6_Ysolde] [0xA8] 1 server(s):
+[14:47:45.006] INFO  [f6_Ysolde]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[14:47:45.011] INFO  [f6_Ysolde] [0x8C] game server = 127.0.0.1:2593  seed=0x2224F3E8
+[14:47:45.011] LOG   [f6_Ysolde] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2224F3E8
+[14:47:45.011] INFO  [f6_Ysolde] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:47:45.011] LOG   [f6_Ysolde] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:47:45.011] INFO  [f6_Ysolde] [0xB9] server features = 0x0005
+[14:47:45.011] INFO  [f6_Ysolde] [0xA9] 5 slot(s) (populated 1):
+[14:47:45.011] INFO  [f6_Ysolde]   [0] Ysolde
+[14:47:45.011] INFO  [f6_Ysolde]   [1] <empty>
+[14:47:45.011] INFO  [f6_Ysolde]   [2] <empty>
+[14:47:45.011] INFO  [f6_Ysolde]   [3] <empty>
+[14:47:45.011] INFO  [f6_Ysolde]   [4] <empty>
+[14:47:45.011] INFO  [f6_Ysolde] [ui] playing slot 0 ('Ysolde')
+[14:47:45.026] INFO  [f6_Ysolde] [0x1B] serial=0x00013C94 body=0x0190 pos=(1488,1555,70)
+[14:47:45.026] LOG   [f6_Ysolde] event login_confirm: serial=0x00013C94 body=0x0190 pos=(1488,1555,70)
+[14:47:45.026] INFO  [f6_Ysolde] [0x20] player @(1488,1555,70) facing=4
+[14:47:45.026] INFO  [f6_Ysolde] [0x55] login complete — entering world
+[14:47:45.026] LOG   [f6_Ysolde] event in_world: 0x55 received
+[14:47:45.026] INFO  [f6_Ysolde] [backpack] opening 0x40013C90
+[14:47:45.026] INFO  [f6_Ysolde] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:47:45.026] INFO  [f6_Ysolde] [chat ascii] System: There are 4 other players here.
+[14:47:45.026] INFO  [f6_Ysolde] [chat ascii] System: Last logged: 2026/08/29 14:16:14
+[14:47:45.026] INFO  [f6_Ysolde] [chat ascii] System: You are under the protection of the city guards
+[14:47:45.030] INFO  [f6_Ysolde] [action] requesting the skill list
+[14:47:45.030] INFO  [life] in world; asked the server for the skill list
+[14:47:45.030] INFO  [f6_Ysolde] [0x24] open container 0x40013C90 gump=60
+[14:47:45.030] INFO  [f6_Ysolde] [0x3C] container contents: 19 item(s)
+[14:47:45.030] LOG   [f6_Ysolde] event backpack_contents: serial=0x40013C90 items=19
+[14:47:45.071] INFO  [f6_Ysolde] [chat ascii] System: Bruin has arrived in Yew.
+[14:47:47.603] INFO  [f6_Ysolde] [bot] world data loaded (0 blacklisted spot(s)).
+[14:47:47.604] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[14:47:47.604] INFO  [life]   gold         persisted=101        server=101        -> server value accepted
+[14:47:47.604] INFO  [life]   str          persisted=16         server=16         -> server value accepted
+[14:47:47.604] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[14:47:47.604] INFO  [life]   int          persisted=48         server=48         -> server value accepted
+[14:47:47.604] INFO  [life]   skill_23     persisted=50.1       server=50.1       -> server value accepted
+[14:47:47.604] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[14:47:47.604] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[14:47:47.604] INFO  [life]   position     persisted=1488,1555  server=1488,1555  -> server value accepted
+[14:47:47.604] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:47:47.604] INFO  [life]   restored objective KEPT: BUY_SUPPLIES (progress 0)
+[14:47:47.604] INFO  [f6_Ysolde] [survival] on
+[14:47:47.604] LOG   [f6_Ysolde] event survival_mode: on
+[14:47:47.607] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:47:47.607] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:47:47.658] INFO  [life] supplies: looking for a 'mage' to sell 5 i_scroll_blank (trip 1)
+[14:47:47.658] INFO  [f6_Ysolde] [travel] Britain mage -> (1485,1550) r=5 from (1488,1555)
+[14:47:47.658] LOG   [f6_Ysolde] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1488,1555)
+[14:47:47.658] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:47:47.658] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:47:47.658] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:47.658] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:47.658] LOG   [f6_Ysolde] event travel_mode: walk
+[14:47:47.658] INFO  [f6_Ysolde] [travel] plan Britain mage: ok legs=1 ~5 tiles transit=0 nodes=0
+[14:47:47.719] INFO  [f6_Ysolde] [action] goto (1485,1550) from (1488,1555,70)
+[14:47:47.719] LOG   [f6_Ysolde] event goto_start: target=(1485,1550) from=(1488,1555)
+[14:47:47.719] INFO  [f6_Ysolde] [bot] running from (1488,1555,70) to (1485,1550,z30)
+[14:47:47.720] INFO  [f6_Ysolde] [bot] planning path to (1485,1550) in background
+[14:47:47.780] INFO  [f6_Ysolde] [bot] replan to (1485,1550): 25 steps in 1151.1us
+[14:47:49.263] INFO  [f6_Ysolde] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[14:47:49.278] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[14:47:52.657] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:47:53.744] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 148.1us
+[14:47:55.440] INFO  [f6_Ysolde] [chat ascii] Shunnar: Hmm?
+[14:47:55.563] INFO  [f6_Ysolde] [travel] Britain mage ARRIVED at (1485,1548,40)
+[14:47:55.563] LOG   [f6_Ysolde] event travel_done: label='Britain mage' ok=1 at=(1485,1548) legs=1 plans=1 why=''
+[14:47:55.564] INFO  [life] supplies: arrived at 1486,1548 -- asking who is here
+[14:47:55.564] INFO  [f6_Ysolde] [action] scanning nearby mobiles for names
+[14:47:55.564] INFO  [f6_Ysolde] [action] requested 4 paperdoll(s) for trade titles
+[14:47:55.579] INFO  [f6_Ysolde] [mobiles] nearby (5):
+[14:47:55.579] INFO  [f6_Ysolde]   Caedmon 0x000012EE
+[14:47:55.579] INFO  [f6_Ysolde]   Xanthe 0x00001211
+[14:47:55.579] INFO  [f6_Ysolde]   Alenne 0x00001145
+[14:47:55.579] INFO  [f6_Ysolde]   Shunnar 0x0000E14F
+[14:47:55.579] INFO  [f6_Ysolde]   dark brown horse 0x000006AD
+[14:47:55.579] INFO  [f6_Ysolde] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[14:47:55.579] INFO  [f6_Ysolde] [world] Caedmon, the mage guildmaster is a mage at (1488,1548)
+[14:47:55.579] INFO  [f6_Ysolde] [0x20] player @(1486,1548,32) facing=3
+[14:47:55.579] INFO  [f6_Ysolde] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[14:47:55.579] INFO  [f6_Ysolde] [world] Xanthe, the alchemist is a alchemist at (1489,1551)
+[14:47:55.579] INFO  [f6_Ysolde] [0x20] player @(1486,1548,32) facing=5
+[14:47:55.579] INFO  [f6_Ysolde] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[14:47:55.579] INFO  [f6_Ysolde] [world] Alenne, the mage is a mage at (1484,1551)
+[14:47:55.579] INFO  [f6_Ysolde] [0x20] player @(1486,1548,32) facing=3
+[14:47:55.579] INFO  [f6_Ysolde] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[14:47:55.579] INFO  [f6_Ysolde] [world] Shunnar, the scribe is a scribe at (1488,1552)
+[14:47:57.176] INFO  [f6_Ysolde] [chat ascii] Xanthe: Hmm?
+[14:47:57.684] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:47:58.113] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1484,1551) r=1 from (1486,1548)
+[14:47:58.113] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1484,1551) radius=1 from=(1486,1548)
+[14:47:58.113] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:47:58.113] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:47:58.113] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:47:58.113] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:47:58.113] LOG   [f6_Ysolde] event travel_mode: walk
+[14:47:58.113] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:47:58.175] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1485,1550); stopped short (off by 3 tile(s))
+[14:47:58.175] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1485,1550) arrived=0 off=3
+[14:47:58.175] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:47:58.175] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:47:58.175] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:47:58.175] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:47:59.301] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1484,1551); stopped short (off by 5 tile(s))
+[14:47:59.301] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1484,1551) arrived=0 off=5
+[14:48:00.554] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:48:00.554] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:48:00.554] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:48:00.554] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:48:01.714] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1484,1551); stopped short (off by 5 tile(s))
+[14:48:01.714] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1484,1551) arrived=0 off=5
+[14:48:02.703] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:02.949] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:48:02.949] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:48:02.949] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:48:02.949] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:48:04.079] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1484,1551); stopped short (off by 5 tile(s))
+[14:48:04.079] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1484,1551) arrived=0 off=5
+[14:48:05.309] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:05.309] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:05.309] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:05.309] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:05.309] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:05.309] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:48:06.812] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:48:06.812] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:48:06.812] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:48:06.812] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:48:07.744] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:07.990] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1484,1551); stopped short (off by 5 tile(s))
+[14:48:07.990] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1484,1551) arrived=0 off=5
+[14:48:09.232] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:48:09.232] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:48:09.232] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:48:09.232] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:48:10.412] INFO  [f6_Ysolde] [action] goto finished at (1486,1548,32); target (1484,1551); stopped short (off by 5 tile(s))
+[14:48:10.412] LOG   [f6_Ysolde] event goto_done: at=(1486,1548) target=(1484,1551) arrived=0 off=5
+[14:48:11.621] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1548,32)
+[14:48:11.621] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1548)
+[14:48:11.621] INFO  [f6_Ysolde] [bot] running from (1486,1548,32) to (1484,1551,z70)
+[14:48:11.621] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:48:11.681] INFO  [f6_Ysolde] [bot] replan to (1484,1551): 25 steps in 2555.3us
+[14:48:12.752] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:14.465] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:14.465] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:14.465] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:14.465] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:14.465] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:14.465] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~10 tiles transit=0 nodes=0
+[14:48:14.526] INFO  [f6_Ysolde] [action] goto finished at (1484,1544,50); target (1484,1551); stopped short (off by 7 tile(s))
+[14:48:14.526] LOG   [f6_Ysolde] event goto_done: at=(1484,1544) target=(1484,1551) arrived=0 off=7
+[14:48:14.526] INFO  [f6_Ysolde] [action] goto (1485,1554) from (1484,1544,50)
+[14:48:14.526] LOG   [f6_Ysolde] event goto_start: target=(1485,1554) from=(1484,1544)
+[14:48:14.526] INFO  [f6_Ysolde] [bot] running from (1484,1544,50) to (1485,1554,z70)
+[14:48:14.526] INFO  [f6_Ysolde] [bot] planning path to (1485,1554) in background
+[14:48:15.814] INFO  [f6_Ysolde] [action] goto finished at (1484,1544,50); target (1485,1554); stopped short (off by 11 tile(s))
+[14:48:15.814] LOG   [f6_Ysolde] event goto_done: at=(1484,1544) target=(1485,1554) arrived=0 off=11
+[14:48:17.039] INFO  [f6_Ysolde] [action] goto (1485,1554) from (1484,1544,50)
+[14:48:17.039] LOG   [f6_Ysolde] event goto_start: target=(1485,1554) from=(1484,1544)
+[14:48:17.039] INFO  [f6_Ysolde] [bot] running from (1484,1544,50) to (1485,1554,z70)
+[14:48:17.039] INFO  [f6_Ysolde] [bot] planning path to (1485,1554) in background
+[14:48:17.100] INFO  [f6_Ysolde] [bot] replan to (1485,1554): 19 steps in 795.3us
+[14:48:17.755] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:21.228] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=7 in 277.5us
+[14:48:22.143] INFO  [f6_Ysolde] [bot] door ahead at (1485,1551,z70); OpenDoor before step
+[14:48:22.158] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[14:48:22.771] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:24.049] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1484,1553,70)
+[14:48:24.049] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1484,1553) legs=1 plans=1 why=''
+[14:48:24.111] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1486,1552) r=1 from (1484,1553)
+[14:48:24.111] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1486,1552) radius=1 from=(1484,1553)
+[14:48:24.111] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:24.111] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:24.111] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:24.111] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:24.111] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:24.111] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:24.745] INFO  [f6_Ysolde] [bot] arrived at (1485,1554,70)
+[14:48:24.745] INFO  [f6_Ysolde] [action] goto finished at (1485,1554,70); target (1485,1554); ARRIVED (off by 0 tile(s))
+[14:48:24.745] LOG   [f6_Ysolde] event goto_done: at=(1485,1554) target=(1485,1554) arrived=1 off=0
+[14:48:24.745] INFO  [f6_Ysolde] [action] goto (1486,1552) from (1485,1554,70)
+[14:48:24.745] LOG   [f6_Ysolde] event goto_start: target=(1486,1552) from=(1485,1554)
+[14:48:24.745] INFO  [f6_Ysolde] [bot] running from (1485,1554,70) to (1486,1552,z70)
+[14:48:24.745] INFO  [f6_Ysolde] [bot] planning path to (1486,1552) in background
+[14:48:24.867] INFO  [f6_Ysolde] [action] goto finished at (1485,1554,70); target (1486,1552); stopped short (off by 3 tile(s))
+[14:48:24.867] LOG   [f6_Ysolde] event goto_done: at=(1485,1554) target=(1486,1552) arrived=0 off=3
+[14:48:26.110] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:26.110] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:26.110] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:26.110] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:26.110] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:26.110] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:27.609] INFO  [f6_Ysolde] [action] goto (1486,1552) from (1485,1554,70)
+[14:48:27.609] LOG   [f6_Ysolde] event goto_start: target=(1486,1552) from=(1485,1554)
+[14:48:27.609] INFO  [f6_Ysolde] [bot] running from (1485,1554,70) to (1486,1552,z70)
+[14:48:27.609] INFO  [f6_Ysolde] [bot] planning path to (1486,1552) in background
+[14:48:27.670] INFO  [f6_Ysolde] [bot] replan to (1486,1552): 3 steps in 197.7us
+[14:48:27.793] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:28.255] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1485,1552,70)
+[14:48:28.255] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1485,1552) legs=1 plans=2 why=''
+[14:48:28.318] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1484,1550) r=1 from (1485,1552)
+[14:48:28.318] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1484,1550) radius=1 from=(1485,1552)
+[14:48:28.318] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:28.318] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:28.318] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:28.318] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:28.318] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:28.318] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:28.638] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[14:48:29.067] INFO  [f6_Ysolde] [bot] arrived at (1486,1552,70)
+[14:48:29.067] INFO  [f6_Ysolde] [action] goto finished at (1486,1552,70); target (1486,1552); ARRIVED (off by 0 tile(s))
+[14:48:29.067] LOG   [f6_Ysolde] event goto_done: at=(1486,1552) target=(1486,1552) arrived=1 off=0
+[14:48:29.067] INFO  [f6_Ysolde] [action] goto (1484,1550) from (1486,1552,70)
+[14:48:29.067] LOG   [f6_Ysolde] event goto_start: target=(1484,1550) from=(1486,1552)
+[14:48:29.067] INFO  [f6_Ysolde] [bot] running from (1486,1552,70) to (1484,1550,z30)
+[14:48:29.067] INFO  [f6_Ysolde] [bot] planning path to (1484,1550) in background
+[14:48:29.158] INFO  [f6_Ysolde] [action] goto finished at (1486,1552,70); target (1484,1550); stopped short (off by 4 tile(s))
+[14:48:29.158] LOG   [f6_Ysolde] event goto_done: at=(1486,1552) target=(1484,1550) arrived=0 off=4
+[14:48:30.368] INFO  [f6_Ysolde] [action] goto (1484,1550) from (1486,1552,70)
+[14:48:30.368] LOG   [f6_Ysolde] event goto_start: target=(1484,1550) from=(1486,1552)
+[14:48:30.368] INFO  [f6_Ysolde] [bot] running from (1486,1552,70) to (1484,1550,z32)
+[14:48:30.368] INFO  [f6_Ysolde] [bot] planning path to (1484,1550) in background
+[14:48:30.429] INFO  [f6_Ysolde] [bot] replan to (1484,1550): 23 steps in 2228.2us
+[14:48:30.676] INFO  [f6_Ysolde] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[14:48:30.690] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[14:48:32.527] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:32.527] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:32.527] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:32.527] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:32.527] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:32.527] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~1 tiles transit=0 nodes=0
+[14:48:32.589] INFO  [f6_Ysolde] [action] goto finished at (1488,1549,70); target (1484,1550); stopped short (off by 5 tile(s))
+[14:48:32.589] LOG   [f6_Ysolde] event goto_done: at=(1488,1549) target=(1484,1550) arrived=0 off=5
+[14:48:32.589] INFO  [f6_Ysolde] [action] goto (1487,1550) from (1488,1549,70)
+[14:48:32.589] LOG   [f6_Ysolde] event goto_start: target=(1487,1550) from=(1488,1549)
+[14:48:32.589] INFO  [f6_Ysolde] [bot] running from (1488,1549,70) to (1487,1550,z30)
+[14:48:32.589] INFO  [f6_Ysolde] [bot] planning path to (1487,1550) in background
+[14:48:32.836] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:33.740] INFO  [f6_Ysolde] [action] goto finished at (1488,1549,70); target (1487,1550); stopped short (off by 2 tile(s))
+[14:48:33.740] LOG   [f6_Ysolde] event goto_done: at=(1488,1549) target=(1487,1550) arrived=0 off=2
+[14:48:34.951] INFO  [f6_Ysolde] [action] goto (1487,1550) from (1488,1549,70)
+[14:48:34.951] LOG   [f6_Ysolde] event goto_start: target=(1487,1550) from=(1488,1549)
+[14:48:34.951] INFO  [f6_Ysolde] [bot] running from (1488,1549,70) to (1487,1550,z30)
+[14:48:34.951] INFO  [f6_Ysolde] [bot] planning path to (1487,1550) in background
+[14:48:35.011] INFO  [f6_Ysolde] [bot] replan to (1487,1550): 18 steps in 2331.0us
+[14:48:36.850] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:36.850] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:36.850] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:36.850] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:36.850] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:36.850] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:36.911] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1487,1550); stopped short (off by 9 tile(s))
+[14:48:36.911] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1487,1550) arrived=0 off=9
+[14:48:36.911] INFO  [f6_Ysolde] [action] goto (1489,1547) from (1491,1545,70)
+[14:48:36.911] LOG   [f6_Ysolde] event goto_start: target=(1489,1547) from=(1491,1545)
+[14:48:36.912] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1489,1547,z35)
+[14:48:36.912] INFO  [f6_Ysolde] [bot] planning path to (1489,1547) in background
+[14:48:37.893] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:38.536] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1489,1547); stopped short (off by 4 tile(s))
+[14:48:38.536] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1489,1547) arrived=0 off=4
+[14:48:38.666] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[14:48:39.772] INFO  [f6_Ysolde] [action] goto (1489,1547) from (1491,1545,70)
+[14:48:39.772] LOG   [f6_Ysolde] event goto_start: target=(1489,1547) from=(1491,1545)
+[14:48:39.772] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1489,1547,z35)
+[14:48:39.772] INFO  [f6_Ysolde] [bot] planning path to (1489,1547) in background
+[14:48:40.871] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1489,1547); stopped short (off by 4 tile(s))
+[14:48:40.871] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1489,1547) arrived=0 off=4
+[14:48:42.114] INFO  [f6_Ysolde] [action] goto (1489,1547) from (1491,1545,70)
+[14:48:42.114] LOG   [f6_Ysolde] event goto_start: target=(1489,1547) from=(1491,1545)
+[14:48:42.114] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1489,1547,z35)
+[14:48:42.114] INFO  [f6_Ysolde] [bot] planning path to (1489,1547) in background
+[14:48:42.893] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:43.230] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1489,1547); stopped short (off by 4 tile(s))
+[14:48:43.230] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1489,1547) arrived=0 off=4
+[14:48:44.379] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:44.379] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:44.379] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:44.379] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:44.379] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:44.379] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~5 tiles transit=0 nodes=0
+[14:48:44.440] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1491,1545,70)
+[14:48:44.440] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1491,1545)
+[14:48:44.440] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1486,1549,z32)
+[14:48:44.440] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:48:45.589] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1486,1549); stopped short (off by 9 tile(s))
+[14:48:45.589] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1486,1549) arrived=0 off=9
+[14:48:46.815] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1491,1545,70)
+[14:48:46.815] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1491,1545)
+[14:48:46.815] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1486,1549,z30)
+[14:48:46.815] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:48:46.938] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1486,1549); stopped short (off by 9 tile(s))
+[14:48:46.938] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1486,1549) arrived=0 off=9
+[14:48:47.636] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:48:47.940] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:48.141] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1491,1545,70)
+[14:48:48.141] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1491,1545)
+[14:48:48.141] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1486,1549,z30)
+[14:48:48.141] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:48:48.203] INFO  [f6_Ysolde] [action] goto finished at (1491,1545,70); target (1486,1549); stopped short (off by 9 tile(s))
+[14:48:48.203] LOG   [f6_Ysolde] event goto_done: at=(1491,1545) target=(1486,1549) arrived=0 off=9
+[14:48:49.428] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:49.428] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:49.428] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:49.428] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:49.428] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:49.428] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~5 tiles transit=0 nodes=0
+[14:48:50.977] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1491,1545,70)
+[14:48:50.978] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1491,1545)
+[14:48:50.978] INFO  [f6_Ysolde] [bot] running from (1491,1545,70) to (1486,1549,z32)
+[14:48:50.978] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:48:51.039] INFO  [f6_Ysolde] [bot] replan to (1486,1549): 11 steps in 823.2us
+[14:48:51.791] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=9 in 321.0us
+[14:48:52.999] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:54.500] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1486,1549,35)
+[14:48:54.500] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1486,1549) legs=1 plans=2 why=''
+[14:48:54.500] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[14:48:54.500] INFO  [f6_Ysolde] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[14:48:54.516] INFO  [f6_Ysolde] [chat uni  ] : Caedmon buy
+[14:48:55.603] INFO  [f6_Ysolde] [bot] arrived at (1486,1549,35)
+[14:48:57.032] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1484,1548) r=1 from (1486,1549)
+[14:48:57.032] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1484,1548) radius=1 from=(1486,1549)
+[14:48:57.032] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:57.032] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:57.032] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:57.032] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:57.032] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:57.032] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:57.092] INFO  [f6_Ysolde] [action] goto finished at (1486,1549,35); target (1486,1549); ARRIVED (off by 0 tile(s))
+[14:48:57.092] LOG   [f6_Ysolde] event goto_done: at=(1486,1549) target=(1486,1549) arrived=1 off=0
+[14:48:57.092] INFO  [f6_Ysolde] [action] goto (1484,1548) from (1486,1549,35)
+[14:48:57.092] LOG   [f6_Ysolde] event goto_start: target=(1484,1548) from=(1486,1549)
+[14:48:57.092] INFO  [f6_Ysolde] [bot] running from (1486,1549,35) to (1484,1548,z37)
+[14:48:57.092] INFO  [f6_Ysolde] [bot] planning path to (1484,1548) in background
+[14:48:58.060] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:48:58.242] INFO  [f6_Ysolde] [action] goto finished at (1486,1549,35); target (1484,1548); stopped short (off by 3 tile(s))
+[14:48:58.242] LOG   [f6_Ysolde] event goto_done: at=(1486,1549) target=(1484,1548) arrived=0 off=3
+[14:48:59.477] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:59.477] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:59.477] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:59.477] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:59.477] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:59.477] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:48:59.720] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:48:59.720] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:48:59.720] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:48:59.720] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:48:59.720] LOG   [f6_Ysolde] event travel_mode: walk
+[14:48:59.720] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:48:59.781] INFO  [f6_Ysolde] [action] goto (1485,1545) from (1486,1549,35)
+[14:48:59.781] LOG   [f6_Ysolde] event goto_start: target=(1485,1545) from=(1486,1549)
+[14:48:59.781] INFO  [f6_Ysolde] [bot] running from (1486,1549,35) to (1485,1545,z50)
+[14:48:59.781] INFO  [f6_Ysolde] [bot] planning path to (1485,1545) in background
+[14:49:00.916] INFO  [f6_Ysolde] [action] goto finished at (1486,1549,35); target (1485,1545); stopped short (off by 5 tile(s))
+[14:49:00.916] LOG   [f6_Ysolde] event goto_done: at=(1486,1549) target=(1485,1545) arrived=0 off=5
+[14:49:02.152] INFO  [f6_Ysolde] [action] goto (1485,1545) from (1486,1549,35)
+[14:49:02.152] LOG   [f6_Ysolde] event goto_start: target=(1485,1545) from=(1486,1549)
+[14:49:02.152] INFO  [f6_Ysolde] [bot] running from (1486,1549,35) to (1485,1545,z47)
+[14:49:02.152] INFO  [f6_Ysolde] [bot] planning path to (1485,1545) in background
+[14:49:02.214] INFO  [f6_Ysolde] [bot] replan to (1485,1545): 5 steps in 453.9us
+[14:49:02.524] LOG   [f6_Ysolde] event action_result: vendor_buy timeout
+[14:49:03.090] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:03.457] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1484,1545,50)
+[14:49:03.457] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1484,1545) legs=1 plans=1 why=''
+[14:49:03.518] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[14:49:03.518] INFO  [f6_Ysolde] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[14:49:03.534] INFO  [f6_Ysolde] [chat uni  ] : Caedmon buy
+[14:49:04.256] INFO  [f6_Ysolde] [bot] arrived at (1485,1545,50)
+[14:49:06.027] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1484,1548) r=1 from (1485,1545)
+[14:49:06.028] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1484,1548) radius=1 from=(1485,1545)
+[14:49:06.028] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:06.028] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:06.028] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:06.028] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:06.028] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:06.028] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:06.089] INFO  [f6_Ysolde] [action] goto finished at (1485,1545,50); target (1485,1545); ARRIVED (off by 0 tile(s))
+[14:49:06.089] LOG   [f6_Ysolde] event goto_done: at=(1485,1545) target=(1485,1545) arrived=1 off=0
+[14:49:06.089] INFO  [f6_Ysolde] [action] goto (1484,1548) from (1485,1545,50)
+[14:49:06.089] LOG   [f6_Ysolde] event goto_start: target=(1484,1548) from=(1485,1545)
+[14:49:06.089] INFO  [f6_Ysolde] [bot] running from (1485,1545,50) to (1484,1548,z37)
+[14:49:06.089] INFO  [f6_Ysolde] [bot] planning path to (1484,1548) in background
+[14:49:07.289] INFO  [f6_Ysolde] [action] goto finished at (1485,1545,50); target (1484,1548); stopped short (off by 4 tile(s))
+[14:49:07.289] LOG   [f6_Ysolde] event goto_done: at=(1485,1545) target=(1484,1548) arrived=0 off=4
+[14:49:08.103] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:08.535] INFO  [f6_Ysolde] [action] goto (1484,1548) from (1485,1545,50)
+[14:49:08.535] LOG   [f6_Ysolde] event goto_start: target=(1484,1548) from=(1485,1545)
+[14:49:08.535] INFO  [f6_Ysolde] [bot] running from (1485,1545,50) to (1484,1548,z30)
+[14:49:08.535] INFO  [f6_Ysolde] [bot] planning path to (1484,1548) in background
+[14:49:08.656] INFO  [f6_Ysolde] [action] goto finished at (1485,1545,50); target (1484,1548); stopped short (off by 4 tile(s))
+[14:49:08.656] LOG   [f6_Ysolde] event goto_done: at=(1485,1545) target=(1484,1548) arrived=0 off=4
+[14:49:09.870] INFO  [f6_Ysolde] [action] goto (1484,1548) from (1485,1545,50)
+[14:49:09.870] LOG   [f6_Ysolde] event goto_start: target=(1484,1548) from=(1485,1545)
+[14:49:09.870] INFO  [f6_Ysolde] [bot] running from (1485,1545,50) to (1484,1548,z30)
+[14:49:09.870] INFO  [f6_Ysolde] [bot] planning path to (1484,1548) in background
+[14:49:09.887] INFO  [f6_Ysolde] [action] goto finished at (1485,1545,50); target (1484,1548); stopped short (off by 4 tile(s))
+[14:49:09.887] LOG   [f6_Ysolde] event goto_done: at=(1485,1545) target=(1484,1548) arrived=0 off=4
+[14:49:10.316] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:10.317] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:10.317] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:10.317] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:10.317] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:10.317] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[14:49:10.378] INFO  [f6_Ysolde] [action] goto (1485,1551) from (1485,1545,50)
+[14:49:10.378] LOG   [f6_Ysolde] event goto_start: target=(1485,1551) from=(1485,1545)
+[14:49:10.378] INFO  [f6_Ysolde] [bot] running from (1485,1545,50) to (1485,1551,z30)
+[14:49:10.378] INFO  [f6_Ysolde] [bot] planning path to (1485,1551) in background
+[14:49:11.495] INFO  [f6_Ysolde] [action] goto finished at (1485,1545,50); target (1485,1551); stopped short (off by 6 tile(s))
+[14:49:11.495] LOG   [f6_Ysolde] event goto_done: at=(1485,1545) target=(1485,1551) arrived=0 off=6
+[14:49:11.556] LOG   [f6_Ysolde] event action_result: vendor_buy timeout
+[14:49:12.704] INFO  [f6_Ysolde] [action] goto (1485,1551) from (1485,1545,50)
+[14:49:12.704] LOG   [f6_Ysolde] event goto_start: target=(1485,1551) from=(1485,1545)
+[14:49:12.704] INFO  [f6_Ysolde] [bot] running from (1485,1545,50) to (1485,1551,z30)
+[14:49:12.704] INFO  [f6_Ysolde] [bot] planning path to (1485,1551) in background
+[14:49:12.765] INFO  [f6_Ysolde] [bot] replan to (1485,1551): 6 steps in 109.2us
+[14:49:13.133] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:14.028] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1485,1550,30)
+[14:49:14.028] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1485,1550) legs=1 plans=1 why=''
+[14:49:14.088] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1487,1550) r=1 from (1485,1550)
+[14:49:14.088] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1487,1550) radius=1 from=(1485,1550)
+[14:49:14.088] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:14.088] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:14.088] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:14.088] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:14.088] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:14.088] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:14.395] INFO  [f6_Ysolde] [bot] arrived at (1485,1551,30)
+[14:49:14.395] INFO  [f6_Ysolde] [action] goto finished at (1485,1551,30); target (1485,1551); ARRIVED (off by 0 tile(s))
+[14:49:14.395] LOG   [f6_Ysolde] event goto_done: at=(1485,1551) target=(1485,1551) arrived=1 off=0
+[14:49:14.395] INFO  [f6_Ysolde] [action] goto (1487,1550) from (1485,1551,30)
+[14:49:14.395] LOG   [f6_Ysolde] event goto_start: target=(1487,1550) from=(1485,1551)
+[14:49:14.395] INFO  [f6_Ysolde] [bot] running from (1485,1551,30) to (1487,1550,z30)
+[14:49:14.395] INFO  [f6_Ysolde] [bot] planning path to (1487,1550) in background
+[14:49:15.437] INFO  [f6_Ysolde] [action] goto finished at (1485,1551,30); target (1487,1550); stopped short (off by 3 tile(s))
+[14:49:15.437] LOG   [f6_Ysolde] event goto_done: at=(1485,1551) target=(1487,1550) arrived=0 off=3
+[14:49:16.693] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:16.693] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:16.693] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:16.693] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:16.693] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:16.693] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:17.688] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:17.688] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:17.688] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:17.688] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:17.688] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:17.688] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~5 tiles transit=0 nodes=0
+[14:49:17.749] INFO  [f6_Ysolde] [action] goto (1490,1548) from (1485,1551,30)
+[14:49:17.749] LOG   [f6_Ysolde] event goto_start: target=(1490,1548) from=(1485,1551)
+[14:49:17.749] INFO  [f6_Ysolde] [bot] running from (1485,1551,30) to (1490,1548,z32)
+[14:49:17.750] INFO  [f6_Ysolde] [bot] planning path to (1490,1548) in background
+[14:49:18.134] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:18.793] INFO  [f6_Ysolde] [action] goto finished at (1485,1551,30); target (1490,1548); stopped short (off by 8 tile(s))
+[14:49:18.793] LOG   [f6_Ysolde] event goto_done: at=(1485,1551) target=(1490,1548) arrived=0 off=8
+[14:49:20.026] INFO  [f6_Ysolde] [action] goto (1490,1548) from (1485,1551,30)
+[14:49:20.027] LOG   [f6_Ysolde] event goto_start: target=(1490,1548) from=(1485,1551)
+[14:49:20.027] INFO  [f6_Ysolde] [bot] running from (1485,1551,30) to (1490,1548,z32)
+[14:49:20.027] INFO  [f6_Ysolde] [bot] planning path to (1490,1548) in background
+[14:49:20.042] INFO  [f6_Ysolde] [bot] replan to (1490,1548): 7 steps in 237.8us
+[14:49:21.047] INFO  [f6_Ysolde] [chat ascii] System: You shove Caedmon out of the way.
+[14:49:21.322] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1488,1550,30)
+[14:49:21.322] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1488,1550) legs=0 plans=0 why=''
+[14:49:21.354] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[14:49:21.354] INFO  [f6_Ysolde] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[14:49:21.354] INFO  [f6_Ysolde] [chat uni  ] : Caedmon buy
+[14:49:23.192] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:23.860] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1486,1551) r=1 from (1488,1550)
+[14:49:23.860] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1486,1551) radius=1 from=(1488,1550)
+[14:49:23.860] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:23.860] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:23.860] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:23.860] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:23.860] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:23.860] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:23.890] INFO  [f6_Ysolde] [action] goto finished at (1488,1550,30); target (1490,1548); stopped short (off by 4 tile(s))
+[14:49:23.890] LOG   [f6_Ysolde] event goto_done: at=(1488,1550) target=(1490,1548) arrived=0 off=4
+[14:49:23.890] INFO  [f6_Ysolde] [action] goto (1486,1551) from (1488,1550,30)
+[14:49:23.890] LOG   [f6_Ysolde] event goto_start: target=(1486,1551) from=(1488,1550)
+[14:49:23.890] INFO  [f6_Ysolde] [bot] running from (1488,1550,30) to (1486,1551,z30)
+[14:49:23.890] INFO  [f6_Ysolde] [bot] planning path to (1486,1551) in background
+[14:49:25.057] INFO  [f6_Ysolde] [action] goto finished at (1488,1550,30); target (1486,1551); stopped short (off by 3 tile(s))
+[14:49:25.057] LOG   [f6_Ysolde] event goto_done: at=(1488,1550) target=(1486,1551) arrived=0 off=3
+[14:49:26.292] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:26.292] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:26.292] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:26.292] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:26.292] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:26.292] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:27.846] INFO  [f6_Ysolde] [action] goto (1486,1551) from (1488,1550,30)
+[14:49:27.846] LOG   [f6_Ysolde] event goto_start: target=(1486,1551) from=(1488,1550)
+[14:49:27.846] INFO  [f6_Ysolde] [bot] running from (1488,1550,30) to (1486,1551,z30)
+[14:49:27.846] INFO  [f6_Ysolde] [bot] planning path to (1486,1551) in background
+[14:49:27.908] INFO  [f6_Ysolde] [bot] replan to (1486,1551): 2 steps in 156.8us
+[14:49:28.232] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:28.646] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1487,1551,30)
+[14:49:28.646] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1487,1551) legs=1 plans=2 why=''
+[14:49:28.708] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1484,1551) r=1 from (1487,1551)
+[14:49:28.708] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1484,1551) radius=1 from=(1487,1551)
+[14:49:28.708] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:28.708] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:28.708] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:28.708] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:28.708] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:28.708] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:28.829] INFO  [f6_Ysolde] [chat ascii] Xanthe: I'm listenin'.
+[14:49:28.954] INFO  [f6_Ysolde] [bot] arrived at (1486,1551,30)
+[14:49:28.954] INFO  [f6_Ysolde] [action] goto finished at (1486,1551,30); target (1486,1551); ARRIVED (off by 0 tile(s))
+[14:49:28.954] LOG   [f6_Ysolde] event goto_done: at=(1486,1551) target=(1486,1551) arrived=1 off=0
+[14:49:28.954] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1551,30)
+[14:49:28.954] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1551)
+[14:49:28.954] INFO  [f6_Ysolde] [bot] running from (1486,1551,30) to (1484,1551,z30)
+[14:49:28.954] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:49:29.381] LOG   [f6_Ysolde] event action_result: vendor_buy timeout
+[14:49:30.054] INFO  [f6_Ysolde] [action] goto finished at (1486,1551,30); target (1484,1551); stopped short (off by 2 tile(s))
+[14:49:30.055] LOG   [f6_Ysolde] event goto_done: at=(1486,1551) target=(1484,1551) arrived=0 off=2
+[14:49:30.086] INFO  [f6_Ysolde] [chat ascii] Shunnar: Aye?
+[14:49:31.272] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:31.272] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:31.272] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:31.272] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:31.272] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:31.272] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:32.812] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1551,30)
+[14:49:32.812] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1551)
+[14:49:32.812] INFO  [f6_Ysolde] [bot] running from (1486,1551,30) to (1484,1551,z30)
+[14:49:32.812] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:49:33.289] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:33.963] INFO  [f6_Ysolde] [action] goto finished at (1486,1551,30); target (1484,1551); stopped short (off by 2 tile(s))
+[14:49:33.963] LOG   [f6_Ysolde] event goto_done: at=(1486,1551) target=(1484,1551) arrived=0 off=2
+[14:49:35.194] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:35.194] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:35.194] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:35.194] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:35.194] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:35.194] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:38.216] INFO  [f6_Ysolde] [action] goto (1484,1551) from (1486,1551,30)
+[14:49:38.216] LOG   [f6_Ysolde] event goto_start: target=(1484,1551) from=(1486,1551)
+[14:49:38.216] INFO  [f6_Ysolde] [bot] running from (1486,1551,30) to (1484,1551,z32)
+[14:49:38.216] INFO  [f6_Ysolde] [bot] planning path to (1484,1551) in background
+[14:49:38.277] INFO  [f6_Ysolde] [bot] replan to (1484,1551): 2 steps in 39.9us
+[14:49:38.337] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:38.459] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:38.459] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:38.459] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:38.459] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:38.459] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:38.459] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:38.519] INFO  [f6_Ysolde] [action] goto finished at (1485,1551,30); target (1484,1551); stopped short (off by 1 tile(s))
+[14:49:38.519] LOG   [f6_Ysolde] event goto_done: at=(1485,1551) target=(1484,1551) arrived=0 off=1
+[14:49:38.519] INFO  [f6_Ysolde] [action] goto (1486,1548) from (1485,1551,30)
+[14:49:38.519] LOG   [f6_Ysolde] event goto_start: target=(1486,1548) from=(1485,1551)
+[14:49:38.519] INFO  [f6_Ysolde] [bot] running from (1485,1551,30) to (1486,1548,z32)
+[14:49:38.519] INFO  [f6_Ysolde] [bot] planning path to (1486,1548) in background
+[14:49:39.578] INFO  [f6_Ysolde] [action] goto finished at (1485,1551,30); target (1486,1548); stopped short (off by 4 tile(s))
+[14:49:39.578] LOG   [f6_Ysolde] event goto_done: at=(1485,1551) target=(1486,1548) arrived=0 off=4
+[14:49:40.811] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:40.811] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:40.811] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:40.811] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:40.811] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:40.811] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:42.370] INFO  [f6_Ysolde] [action] goto (1486,1548) from (1485,1551,30)
+[14:49:42.371] LOG   [f6_Ysolde] event goto_start: target=(1486,1548) from=(1485,1551)
+[14:49:42.371] INFO  [f6_Ysolde] [bot] running from (1485,1551,30) to (1486,1548,z35)
+[14:49:42.371] INFO  [f6_Ysolde] [bot] planning path to (1486,1548) in background
+[14:49:42.433] INFO  [f6_Ysolde] [bot] replan to (1486,1548): 7 steps in 243.0us
+[14:49:42.861] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 4: anchor=5 new segment=8 path=9 in 625.9us
+[14:49:43.352] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:45.402] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:45.402] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:45.402] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:45.402] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:45.402] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:45.402] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:45.463] INFO  [f6_Ysolde] [action] goto finished at (1487,1547,35); target (1486,1548); stopped short (off by 2 tile(s))
+[14:49:45.463] LOG   [f6_Ysolde] event goto_done: at=(1487,1547) target=(1486,1548) arrived=0 off=2
+[14:49:45.463] INFO  [f6_Ysolde] [action] goto (1489,1550) from (1487,1547,35)
+[14:49:45.463] LOG   [f6_Ysolde] event goto_start: target=(1489,1550) from=(1487,1547)
+[14:49:45.463] INFO  [f6_Ysolde] [bot] running from (1487,1547,35) to (1489,1550,z30)
+[14:49:45.463] INFO  [f6_Ysolde] [bot] planning path to (1489,1550) in background
+[14:49:46.615] INFO  [f6_Ysolde] [action] goto finished at (1487,1547,35); target (1489,1550); stopped short (off by 5 tile(s))
+[14:49:46.615] LOG   [f6_Ysolde] event goto_done: at=(1487,1547) target=(1489,1550) arrived=0 off=5
+[14:49:47.672] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:49:47.837] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:47.837] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:47.837] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:47.837] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:47.837] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:47.837] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~3 tiles transit=0 nodes=0
+[14:49:48.377] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:48.562] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:48.562] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:48.562] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:48.562] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:48.562] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:48.562] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~6 tiles transit=0 nodes=0
+[14:49:48.623] INFO  [f6_Ysolde] [action] goto (1488,1553) from (1487,1547,35)
+[14:49:48.623] LOG   [f6_Ysolde] event goto_start: target=(1488,1553) from=(1487,1547)
+[14:49:48.623] INFO  [f6_Ysolde] [bot] running from (1487,1547,35) to (1488,1553,z30)
+[14:49:48.623] INFO  [f6_Ysolde] [bot] planning path to (1488,1553) in background
+[14:49:49.733] INFO  [f6_Ysolde] [action] goto finished at (1487,1547,35); target (1488,1553); stopped short (off by 7 tile(s))
+[14:49:49.734] LOG   [f6_Ysolde] event goto_done: at=(1487,1547) target=(1488,1553) arrived=0 off=7
+[14:49:50.944] INFO  [f6_Ysolde] [action] goto (1488,1553) from (1487,1547,35)
+[14:49:50.944] LOG   [f6_Ysolde] event goto_start: target=(1488,1553) from=(1487,1547)
+[14:49:50.944] INFO  [f6_Ysolde] [bot] running from (1487,1547,35) to (1488,1553,z30)
+[14:49:50.944] INFO  [f6_Ysolde] [bot] planning path to (1488,1553) in background
+[14:49:51.007] INFO  [f6_Ysolde] [bot] replan to (1488,1553): 6 steps in 188.3us
+[14:49:52.774] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1488,1552,30)
+[14:49:52.774] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1488,1552) legs=1 plans=1 why=''
+[14:49:52.834] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1488,1552)
+[14:49:52.834] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1488,1552)
+[14:49:52.834] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1488,1552,30) -- arrived above or below the destination's floor
+[14:49:52.834] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1488,1552) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:49:52.895] INFO  [f6_Ysolde] [bot] arrived at (1488,1553,30)
+[14:49:53.401] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:54.852] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[14:49:54.853] INFO  [f6_Ysolde] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[14:49:54.869] INFO  [f6_Ysolde] [chat uni  ] : Caedmon buy
+[14:49:57.403] INFO  [f6_Ysolde] [travel] mobile 0x000012EE -> (1490,1553) r=1 from (1488,1553)
+[14:49:57.403] LOG   [f6_Ysolde] event travel_start: label='mobile 0x000012EE' target=(1490,1553) radius=1 from=(1488,1553)
+[14:49:57.403] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:57.403] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:57.403] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:57.403] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:57.403] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:57.403] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:49:57.463] INFO  [f6_Ysolde] [action] goto finished at (1488,1553,30); target (1488,1553); ARRIVED (off by 0 tile(s))
+[14:49:57.463] LOG   [f6_Ysolde] event goto_done: at=(1488,1553) target=(1488,1553) arrived=1 off=0
+[14:49:57.463] INFO  [f6_Ysolde] [action] goto (1490,1553) from (1488,1553,30)
+[14:49:57.463] LOG   [f6_Ysolde] event goto_start: target=(1490,1553) from=(1488,1553)
+[14:49:57.463] INFO  [f6_Ysolde] [bot] running from (1488,1553,30) to (1490,1553,z30)
+[14:49:57.464] INFO  [f6_Ysolde] [bot] planning path to (1490,1553) in background
+[14:49:58.425] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:49:58.609] INFO  [f6_Ysolde] [action] goto finished at (1488,1553,30); target (1490,1553); stopped short (off by 2 tile(s))
+[14:49:58.609] LOG   [f6_Ysolde] event goto_done: at=(1488,1553) target=(1490,1553) arrived=0 off=2
+[14:49:59.809] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:49:59.809] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:49:59.809] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:49:59.809] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:49:59.809] LOG   [f6_Ysolde] event travel_mode: walk
+[14:49:59.809] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:50:00.558] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:50:00.558] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:50:00.558] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:50:00.558] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:50:00.558] LOG   [f6_Ysolde] event travel_mode: walk
+[14:50:00.558] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:50:00.620] INFO  [f6_Ysolde] [action] goto (1487,1551) from (1488,1553,30)
+[14:50:00.620] LOG   [f6_Ysolde] event goto_start: target=(1487,1551) from=(1488,1553)
+[14:50:00.620] INFO  [f6_Ysolde] [bot] running from (1488,1553,30) to (1487,1551,z30)
+[14:50:00.620] INFO  [f6_Ysolde] [bot] planning path to (1487,1551) in background
+[14:50:01.812] INFO  [f6_Ysolde] [action] goto finished at (1488,1553,30); target (1487,1551); stopped short (off by 3 tile(s))
+[14:50:01.812] LOG   [f6_Ysolde] event goto_done: at=(1488,1553) target=(1487,1551) arrived=0 off=3
+[14:50:02.855] LOG   [f6_Ysolde] event action_result: vendor_buy timeout
+[14:50:03.037] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:50:03.038] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:50:03.038] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:50:03.038] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:50:03.038] LOG   [f6_Ysolde] event travel_mode: walk
+[14:50:03.038] INFO  [f6_Ysolde] [travel] plan mobile 0x000012EE: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:50:03.467] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:04.582] INFO  [f6_Ysolde] [action] goto (1487,1551) from (1488,1553,30)
+[14:50:04.582] LOG   [f6_Ysolde] event goto_start: target=(1487,1551) from=(1488,1553)
+[14:50:04.582] INFO  [f6_Ysolde] [bot] running from (1488,1553,30) to (1487,1551,z30)
+[14:50:04.583] INFO  [f6_Ysolde] [bot] planning path to (1487,1551) in background
+[14:50:04.643] INFO  [f6_Ysolde] [bot] replan to (1487,1551): 3 steps in 144.2us
+[14:50:05.435] INFO  [f6_Ysolde] [travel] mobile 0x000012EE ARRIVED at (1488,1551,30)
+[14:50:05.435] LOG   [f6_Ysolde] event travel_done: label='mobile 0x000012EE' ok=1 at=(1488,1551) legs=1 plans=2 why=''
+[14:50:05.498] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1488,1551)
+[14:50:05.498] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1488,1551)
+[14:50:05.498] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1488,1551,30) -- arrived above or below the destination's floor
+[14:50:05.498] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1488,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:06.006] INFO  [f6_Ysolde] [bot] arrived at (1487,1551,30)
+[14:50:07.543] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:07.543] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:07.543] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:07.543] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:08.477] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:09.550] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:09.550] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:09.550] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:09.550] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:11.566] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:11.566] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:11.566] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:11.566] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:13.490] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:13.613] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:13.613] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:13.613] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:13.613] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:15.631] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:15.631] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:15.631] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:15.631] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:17.652] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1488,1551) r=1 from (1487,1551)
+[14:50:17.652] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1488,1551) radius=1 from=(1487,1551)
+[14:50:17.652] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:17.652] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:18.538] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:19.654] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1487,1552) r=1 from (1487,1551)
+[14:50:19.654] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1487,1552) radius=1 from=(1487,1551)
+[14:50:19.654] INFO  [f6_Ysolde] [travel] mobile 0x00001145 FAILED at (1487,1551,30) -- arrived above or below the destination's floor
+[14:50:19.654] LOG   [f6_Ysolde] event travel_failed: label='mobile 0x00001145' ok=0 at=(1487,1551) legs=0 plans=0 why='arrived above or below the destination's floor'
+[14:50:21.678] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1487,1553) r=1 from (1487,1551)
+[14:50:21.678] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1487,1553) radius=1 from=(1487,1551)
+[14:50:21.678] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:50:21.678] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:50:21.678] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:50:21.678] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:50:21.678] LOG   [f6_Ysolde] event travel_mode: walk
+[14:50:21.678] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[14:50:21.739] INFO  [f6_Ysolde] [action] goto finished at (1487,1551,30); target (1487,1551); ARRIVED (off by 0 tile(s))
+[14:50:21.739] LOG   [f6_Ysolde] event goto_done: at=(1487,1551) target=(1487,1551) arrived=1 off=0
+[14:50:21.739] INFO  [f6_Ysolde] [action] goto (1487,1553) from (1487,1551,30)
+[14:50:21.739] LOG   [f6_Ysolde] event goto_start: target=(1487,1553) from=(1487,1551)
+[14:50:21.739] INFO  [f6_Ysolde] [bot] running from (1487,1551,30) to (1487,1553,z70)
+[14:50:21.739] INFO  [f6_Ysolde] [bot] planning path to (1487,1553) in background
+[14:50:22.967] INFO  [f6_Ysolde] [action] goto finished at (1487,1551,30); target (1487,1553); stopped short (off by 2 tile(s))
+[14:50:22.967] LOG   [f6_Ysolde] event goto_done: at=(1487,1551) target=(1487,1553) arrived=0 off=2
+[14:50:23.549] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:24.222] INFO  [f6_Ysolde] [action] goto (1487,1553) from (1487,1551,30)
+[14:50:24.222] LOG   [f6_Ysolde] event goto_start: target=(1487,1553) from=(1487,1551)
+[14:50:24.222] INFO  [f6_Ysolde] [bot] running from (1487,1551,30) to (1487,1553,z70)
+[14:50:24.222] INFO  [f6_Ysolde] [bot] planning path to (1487,1553) in background
+[14:50:24.283] INFO  [f6_Ysolde] [bot] replan to (1487,1553): 24 steps in 3269.1us
+[14:50:27.339] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=18 in 195.3us
+[14:50:28.600] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:32.481] INFO  [f6_Ysolde] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[14:50:32.481] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[14:50:33.632] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:34.365] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1487,1552,70)
+[14:50:34.365] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1487,1552) legs=1 plans=1 why=''
+[14:50:34.365] INFO  [f6_Ysolde] [ACTION] vendor_buy start
+[14:50:34.365] INFO  [f6_Ysolde] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[14:50:34.381] INFO  [f6_Ysolde] [chat uni  ] : Alenne buy
+[14:50:34.381] INFO  [f6_Ysolde] [chat ascii] Alenne: Yes?
+[14:50:34.381] INFO  [f6_Ysolde] [chat ascii] Alenne: I got lots to sell!
+[14:50:34.381] INFO  [f6_Ysolde] [0x3C] container contents: 17 item(s)
+[14:50:34.381] INFO  [f6_Ysolde] [0x74] pairing: straight (straight 10, mirrored 1 of 17 rows)
+[14:50:34.381] INFO  [f6_Ysolde] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Clumsy Scroll                gfx=0x1F2E qty=11   price=20
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Magic Trap Scroll            gfx=0x1F39 qty=7    price=24
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Fireball Scroll              gfx=0x1F3E qty=6    price=23
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Greater Heal Scroll          gfx=0x1F49 qty=4    price=52
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Bones                        gfx=0x0F7E qty=46   price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   recall rune                  gfx=0x1F14 qty=8    price=21
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[14:50:34.381] INFO  [f6_Ysolde] [0x74]   Spellbook                    gfx=0x0EFA qty=5    price=18
+[14:50:34.381] INFO  [f6_Ysolde] [0x3C] container contents: 0 item(s)
+[14:50:34.381] INFO  [f6_Ysolde] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[14:50:34.381] INFO  [f6_Ysolde] [VENDOR] offer from 0x00001145: 17 item(s)
+[14:50:34.381] INFO  [f6_Ysolde] [VENDOR]   0x4001130B Clumsy Scroll          x11  20 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x4001130A Magic Trap Scroll      x7   24 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x40011309 Fireball Scroll        x6   23 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x40011308 Greater Heal Scroll    x4   52 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x40011307 Bones                  x46  3 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x400112EB pen and ink            x10  13 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x400112E6 recall rune            x8   21 gp
+[14:50:34.382] INFO  [f6_Ysolde] [VENDOR]   0x400112D3 blank scrolls          x250 6 gp
+[14:50:34.382] LOG   [f6_Ysolde] event vendor_offer: vendor=0x00001145 items=17
+[14:50:34.382] INFO  [f6_Ysolde] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[14:50:34.382] LOG   [f6_Ysolde] event action_result: vendor_buy success took=16ms vendor offer received
+[14:50:34.382] INFO  [f6_Ysolde] [0x24] vendor buy gump for 0x00001145
+[14:50:34.809] INFO  [f6_Ysolde] [bot] arrived at (1487,1553,70)
+[14:50:36.885] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:50:38.633] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:43.640] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:47.681] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:50:48.658] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:51.919] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:50:53.700] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:50:58.750] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:03.784] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:06.961] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:51:08.804] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:13.834] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:18.854] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:22.006] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:51:23.893] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:28.902] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:33.923] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:37.064] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:51:37.124] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:51:37.125] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:51:37.125] INFO  [life]   score=61.6
+[14:51:37.125] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:51:37.125] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:51:38.938] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:43.970] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:47.488] INFO  [f6_Ysolde] [chat ascii] Alenne: Well it was nice speaking to you Ysolde but I must go about my business
+[14:51:47.692] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:51:49.007] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:52.102] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:51:54.065] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:51:59.110] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:04.136] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:07.156] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:52:09.193] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:14.233] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:19.273] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:22.183] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:52:24.312] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:29.369] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:34.380] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:37.233] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:52:39.386] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:44.394] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:47.737] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:52:49.397] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:52.257] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:52:52.318] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:52:52.318] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:52:52.318] INFO  [life]   score=61.6
+[14:52:52.318] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:52:52.318] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:52:54.440] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:52:59.489] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:04.499] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:07.315] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:53:09.538] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:14.567] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:19.621] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:22.372] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:53:24.654] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:29.014] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[14:53:29.657] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:34.718] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:37.410] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:53:38.994] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[14:53:39.751] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:44.753] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:47.745] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:53:49.794] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:52.446] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:53:54.852] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:53:59.874] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:04.875] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:07.473] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:54:07.534] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:54:07.535] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:54:07.535] INFO  [life]   score=61.6
+[14:54:07.535] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:54:07.535] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:54:09.910] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:14.920] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:19.922] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:22.481] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:54:24.967] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:30.012] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:31.476] INFO  [f6_Ysolde] [chat ascii] Shunnar: What's thee wantin'?
+[14:54:32.822] INFO  [f6_Ysolde] [chat ascii] Xanthe: What's thee wantin'?
+[14:54:35.017] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:37.501] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:54:40.055] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:45.061] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:47.787] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:54:50.098] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:54:52.533] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:54:55.106] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:00.128] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:05.179] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:07.571] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:55:10.239] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:15.299] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:20.352] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:22.581] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:55:22.643] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:55:22.643] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:55:22.643] INFO  [life]   score=61.6
+[14:55:22.643] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:55:22.643] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:55:25.353] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:30.384] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:35.405] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:35.619] INFO  [f6_Ysolde] [chat ascii] Alenne: Hmm?
+[14:55:37.619] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:55:40.415] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:45.419] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:47.821] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:55:50.431] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:52.659] INFO  [life] supplies: the 'mage' has moved to 1486,1549 (4 tiles) -- walking back before buying (chase 1 of 4)
+[14:55:52.659] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1486,1549) r=1 from (1487,1553)
+[14:55:52.659] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1486,1549) radius=1 from=(1487,1553)
+[14:55:52.659] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[14:55:52.659] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[14:55:52.659] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:55:52.659] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:55:52.659] LOG   [f6_Ysolde] event travel_mode: walk
+[14:55:52.659] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[14:55:52.720] INFO  [f6_Ysolde] [action] goto finished at (1487,1553,70); target (1487,1553); ARRIVED (off by 0 tile(s))
+[14:55:52.720] LOG   [f6_Ysolde] event goto_done: at=(1487,1553) target=(1487,1553) arrived=1 off=0
+[14:55:52.720] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1487,1553,70)
+[14:55:52.720] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1487,1553)
+[14:55:52.720] INFO  [f6_Ysolde] [bot] running from (1487,1553,70) to (1486,1549,z70)
+[14:55:52.720] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:55:52.843] INFO  [f6_Ysolde] [action] goto finished at (1487,1553,70); target (1486,1549); stopped short (off by 5 tile(s))
+[14:55:52.843] LOG   [f6_Ysolde] event goto_done: at=(1487,1553) target=(1486,1549) arrived=0 off=5
+[14:55:54.072] INFO  [f6_Ysolde] [action] goto (1486,1549) from (1487,1553,70)
+[14:55:54.072] LOG   [f6_Ysolde] event goto_start: target=(1486,1549) from=(1487,1553)
+[14:55:54.072] INFO  [f6_Ysolde] [bot] running from (1487,1553,70) to (1486,1549,z70)
+[14:55:54.072] INFO  [f6_Ysolde] [bot] planning path to (1486,1549) in background
+[14:55:54.133] INFO  [f6_Ysolde] [bot] replan to (1486,1549): 4 steps in 56.5us
+[14:55:55.397] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1486,1550,70)
+[14:55:55.397] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1486,1550) legs=1 plans=1 why=''
+[14:55:55.412] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:55:55.472] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:55:55.702] INFO  [f6_Ysolde] [bot] arrived at (1486,1549,70)
+[14:56:00.523] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:05.567] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:10.452] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:56:10.575] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:15.576] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:20.623] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:25.467] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:56:25.530] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:56:25.530] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:56:25.530] INFO  [life]   score=61.6
+[14:56:25.530] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:56:25.530] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:56:25.654] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:30.670] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:35.672] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:40.476] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:56:40.723] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:45.747] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:47.829] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:56:50.758] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:56:55.486] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:56:55.778] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:00.794] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:05.822] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:10.490] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:57:10.859] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:15.865] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:20.904] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:25.507] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:57:25.920] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:30.963] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:35.983] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:40.557] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:57:40.618] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:57:40.618] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:57:40.618] INFO  [life]   score=61.6
+[14:57:40.618] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:57:40.618] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:57:40.987] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:46.013] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:47.879] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:57:51.074] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:57:55.564] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:57:56.120] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:01.162] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:06.188] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:10.571] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:58:11.245] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:16.294] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:21.297] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:25.593] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:58:26.307] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:29.326] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[14:58:31.336] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:36.354] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:39.377] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[14:58:40.605] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:58:41.406] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:46.451] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:47.932] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:58:51.511] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:58:55.606] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:58:55.668] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[14:58:55.668] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[14:58:55.668] INFO  [life]   score=61.6
+[14:58:55.668] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[14:58:55.668] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[14:58:56.544] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:01.581] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:06.583] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:10.665] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:59:11.634] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:16.680] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:21.699] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:25.705] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:59:26.704] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:31.721] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:32.554] INFO  [f6_Ysolde] [chat ascii] Shunnar: What's thee wantin'?
+[14:59:36.755] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:39.184] INFO  [f6_Ysolde] [chat ascii] Xanthe: Hmm?
+[14:59:40.752] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:59:41.781] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:46.817] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:47.961] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[14:59:51.823] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[14:59:55.755] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[14:59:56.867] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:01.891] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:06.912] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:10.793] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:00:10.854] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:00:10.854] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:00:10.854] INFO  [life]   score=61.6
+[15:00:10.854] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:00:10.854] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:00:11.951] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:16.960] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:22.009] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:25.850] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:00:27.021] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:32.079] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:37.126] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:40.857] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:00:42.165] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:47.224] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:48.022] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:00:48.372] INFO  [f6_Ysolde] [chat ascii] Alenne: I'm listenin'.
+[15:00:52.249] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:00:55.912] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:00:57.260] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:02.308] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:07.350] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:10.939] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:01:12.397] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:17.406] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:22.438] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:25.957] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:01:26.018] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:01:26.018] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:01:26.019] INFO  [life]   score=61.6
+[15:01:26.019] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:01:26.019] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:01:27.469] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:32.494] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:37.509] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:41.007] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:01:42.560] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:47.607] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:48.039] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:01:52.627] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:01:56.030] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:01:57.677] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:02.713] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:07.716] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:11.090] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:02:12.738] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:17.750] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:22.789] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:26.133] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:02:27.809] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:32.824] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:37.874] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:41.185] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:02:41.249] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:02:41.249] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:02:41.249] INFO  [life]   score=61.6
+[15:02:41.249] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:02:41.249] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:02:42.927] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:47.932] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:48.063] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:02:52.967] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:02:56.229] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:02:57.979] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:03.017] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:08.067] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:11.248] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:03:13.110] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:18.124] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:23.127] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:26.297] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:03:28.144] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:29.684] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:03:33.155] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:38.170] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:39.726] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:03:40.951] INFO  [f6_Ysolde] [chat ascii] Shunnar: *You see Shunnar looks starving*
+[15:03:40.951] INFO  [f6_Ysolde] [chat ascii] dark brown horse: *You see dark brown horse looks starving*
+[15:03:41.317] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:03:43.212] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:48.119] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:03:48.239] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:53.300] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:03:56.365] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:03:56.426] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:03:56.426] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:03:56.426] INFO  [life]   score=61.6
+[15:03:56.426] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:03:56.426] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:03:58.324] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:03.334] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:08.354] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:11.405] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:04:13.387] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:18.423] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:23.438] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:26.454] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:04:28.476] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:33.532] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:34.965] INFO  [f6_Ysolde] [chat ascii] Shunnar: Hmm?
+[15:04:38.546] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:41.453] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:04:43.603] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:48.168] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:04:48.412] INFO  [f6_Ysolde] [chat ascii] Xanthe: What's thee wantin'?
+[15:04:48.610] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:53.660] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:04:56.511] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:04:58.712] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:03.747] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:08.794] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:11.550] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:05:11.611] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:05:11.612] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:05:11.612] INFO  [life]   score=61.6
+[15:05:11.612] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:05:11.612] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:05:13.807] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:17.863] INFO  [f6_Ysolde] [chat ascii] System: You are fairly content
+[15:05:17.863] INFO  [f6_Ysolde] [chat ascii] Ysolde: *You looks fairly content*
+[15:05:17.863] INFO  [f6_Ysolde] [chat ascii] Voris: *You see Voris looks fairly content*
+[15:05:18.842] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:23.856] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:26.560] INFO  [life] supplies: the 'mage' has moved to 1490,1547 (4 tiles) -- walking back before buying (chase 1 of 4)
+[15:05:26.561] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1490,1547) r=1 from (1486,1549)
+[15:05:26.561] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1490,1547) radius=1 from=(1486,1549)
+[15:05:26.561] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:05:26.561] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:05:26.561] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:05:26.561] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:05:26.561] LOG   [f6_Ysolde] event travel_mode: walk
+[15:05:26.561] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:05:26.561] INFO  [f6_Ysolde] [action] goto finished at (1486,1549,70); target (1486,1549); ARRIVED (off by 0 tile(s))
+[15:05:26.561] LOG   [f6_Ysolde] event goto_done: at=(1486,1549) target=(1486,1549) arrived=1 off=0
+[15:05:26.561] INFO  [f6_Ysolde] [action] goto (1490,1547) from (1486,1549,70)
+[15:05:26.561] LOG   [f6_Ysolde] event goto_start: target=(1490,1547) from=(1486,1549)
+[15:05:26.561] INFO  [f6_Ysolde] [bot] running from (1486,1549,70) to (1490,1547,z70)
+[15:05:26.561] INFO  [f6_Ysolde] [bot] planning path to (1490,1547) in background
+[15:05:27.698] INFO  [f6_Ysolde] [action] goto finished at (1486,1549,70); target (1490,1547); stopped short (off by 6 tile(s))
+[15:05:27.698] LOG   [f6_Ysolde] event goto_done: at=(1486,1549) target=(1490,1547) arrived=0 off=6
+[15:05:28.895] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:28.956] INFO  [f6_Ysolde] [action] goto (1490,1547) from (1486,1549,70)
+[15:05:28.956] LOG   [f6_Ysolde] event goto_start: target=(1490,1547) from=(1486,1549)
+[15:05:28.956] INFO  [f6_Ysolde] [bot] running from (1486,1549,70) to (1490,1547,z70)
+[15:05:28.956] INFO  [f6_Ysolde] [bot] planning path to (1490,1547) in background
+[15:05:29.017] INFO  [f6_Ysolde] [bot] replan to (1490,1547): 4 steps in 179.7us
+[15:05:30.216] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1489,1547,70)
+[15:05:30.216] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1489,1547) legs=1 plans=1 why=''
+[15:05:30.277] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:05:30.415] INFO  [f6_Ysolde] [bot] arrived at (1490,1547,70)
+[15:05:33.904] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:38.910] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:43.960] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:45.321] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:05:48.219] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:05:48.981] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:54.029] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:05:59.088] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:00.352] INFO  [life] supplies: the 'mage' has moved to 1485,1548 (5 tiles) -- walking back before buying (chase 2 of 4)
+[15:06:00.352] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1485,1548) r=1 from (1490,1547)
+[15:06:00.352] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1485,1548) radius=1 from=(1490,1547)
+[15:06:00.352] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:06:00.352] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:06:00.352] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:06:00.352] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:06:00.352] LOG   [f6_Ysolde] event travel_mode: walk
+[15:06:00.352] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[15:06:00.352] INFO  [f6_Ysolde] [action] goto finished at (1490,1547,70); target (1490,1547); ARRIVED (off by 0 tile(s))
+[15:06:00.352] LOG   [f6_Ysolde] event goto_done: at=(1490,1547) target=(1490,1547) arrived=1 off=0
+[15:06:00.352] INFO  [f6_Ysolde] [action] goto (1485,1548) from (1490,1547,70)
+[15:06:00.352] LOG   [f6_Ysolde] event goto_start: target=(1485,1548) from=(1490,1547)
+[15:06:00.352] INFO  [f6_Ysolde] [bot] running from (1490,1547,70) to (1485,1548,z70)
+[15:06:00.352] INFO  [f6_Ysolde] [bot] planning path to (1485,1548) in background
+[15:06:00.414] INFO  [f6_Ysolde] [bot] replan to (1485,1548): 6 steps in 182.2us
+[15:06:01.414] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1486,1547,70)
+[15:06:01.414] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1486,1547) legs=1 plans=1 why=''
+[15:06:02.383] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:06:02.383] INFO  [f6_Ysolde] [bot] arrived at (1485,1548,70)
+[15:06:02.384] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:06:02.384] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:06:02.384] INFO  [life]   score=61.6
+[15:06:02.384] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:06:02.384] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:06:04.093] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:09.098] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:12.983] INFO  [f6_Ysolde] [chat ascii] Alenne: I'm listenin'.
+[15:06:14.104] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:17.435] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:06:19.125] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:24.160] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:29.194] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:32.466] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:06:34.235] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:39.238] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:44.253] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:47.494] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:06:48.234] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:06:49.291] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:54.325] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:06:59.346] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:02.513] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:07:04.348] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:09.357] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:14.364] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:17.544] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:07:17.590] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:07:17.590] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:07:17.590] INFO  [life]   score=61.6
+[15:07:17.590] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:07:17.590] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:07:19.421] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:24.424] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:29.460] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:32.572] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:07:34.489] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:39.549] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:44.595] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:47.583] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:07:48.261] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:07:49.636] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:54.640] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:07:59.661] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:02.613] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:08:04.678] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:09.720] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:14.766] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:17.638] INFO  [life] supplies: the 'mage' has moved to 1489,1548 (4 tiles) -- walking back before buying (chase 1 of 4)
+[15:08:17.638] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1489,1548) r=1 from (1485,1548)
+[15:08:17.638] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1489,1548) radius=1 from=(1485,1548)
+[15:08:17.638] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:08:17.638] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:08:17.638] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:08:17.638] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:08:17.638] LOG   [f6_Ysolde] event travel_mode: walk
+[15:08:17.639] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:08:17.700] INFO  [f6_Ysolde] [action] goto finished at (1485,1548,70); target (1485,1548); ARRIVED (off by 0 tile(s))
+[15:08:17.700] LOG   [f6_Ysolde] event goto_done: at=(1485,1548) target=(1485,1548) arrived=1 off=0
+[15:08:17.700] INFO  [f6_Ysolde] [action] goto (1489,1548) from (1485,1548,70)
+[15:08:17.700] LOG   [f6_Ysolde] event goto_start: target=(1489,1548) from=(1485,1548)
+[15:08:17.700] INFO  [f6_Ysolde] [bot] running from (1485,1548,70) to (1489,1548,z70)
+[15:08:17.700] INFO  [f6_Ysolde] [bot] planning path to (1489,1548) in background
+[15:08:18.837] INFO  [f6_Ysolde] [action] goto finished at (1485,1548,70); target (1489,1548); stopped short (off by 4 tile(s))
+[15:08:18.837] LOG   [f6_Ysolde] event goto_done: at=(1485,1548) target=(1489,1548) arrived=0 off=4
+[15:08:19.778] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:20.086] INFO  [f6_Ysolde] [action] goto (1489,1548) from (1485,1548,70)
+[15:08:20.086] LOG   [f6_Ysolde] event goto_start: target=(1489,1548) from=(1485,1548)
+[15:08:20.086] INFO  [f6_Ysolde] [bot] running from (1485,1548,70) to (1489,1548,z70)
+[15:08:20.086] INFO  [f6_Ysolde] [bot] planning path to (1489,1548) in background
+[15:08:21.195] INFO  [f6_Ysolde] [action] goto finished at (1485,1548,70); target (1489,1548); stopped short (off by 4 tile(s))
+[15:08:21.195] LOG   [f6_Ysolde] event goto_done: at=(1485,1548) target=(1489,1548) arrived=0 off=4
+[15:08:22.417] INFO  [f6_Ysolde] [action] goto (1489,1548) from (1485,1548,70)
+[15:08:22.417] LOG   [f6_Ysolde] event goto_start: target=(1489,1548) from=(1485,1548)
+[15:08:22.417] INFO  [f6_Ysolde] [bot] running from (1485,1548,70) to (1489,1548,z70)
+[15:08:22.417] INFO  [f6_Ysolde] [bot] planning path to (1489,1548) in background
+[15:08:23.554] INFO  [f6_Ysolde] [action] goto finished at (1485,1548,70); target (1489,1548); stopped short (off by 4 tile(s))
+[15:08:23.554] LOG   [f6_Ysolde] event goto_done: at=(1485,1548) target=(1489,1548) arrived=0 off=4
+[15:08:24.769] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:08:24.769] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:08:24.769] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:08:24.769] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:08:24.769] LOG   [f6_Ysolde] event travel_mode: walk
+[15:08:24.769] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:08:24.830] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:26.310] INFO  [f6_Ysolde] [action] goto (1489,1548) from (1485,1548,70)
+[15:08:26.310] LOG   [f6_Ysolde] event goto_start: target=(1489,1548) from=(1485,1548)
+[15:08:26.310] INFO  [f6_Ysolde] [bot] running from (1485,1548,70) to (1489,1548,z70)
+[15:08:26.310] INFO  [f6_Ysolde] [bot] planning path to (1489,1548) in background
+[15:08:26.371] INFO  [f6_Ysolde] [bot] replan to (1489,1548): 4 steps in 123.7us
+[15:08:27.274] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1488,1548,70)
+[15:08:27.274] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1548) legs=1 plans=2 why=''
+[15:08:27.334] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:08:27.395] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:08:27.395] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:08:27.395] INFO  [life]   score=61.6
+[15:08:27.395] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:08:27.395] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:08:27.456] INFO  [f6_Ysolde] [bot] arrived at (1489,1548,70)
+[15:08:29.877] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:30.062] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:08:34.892] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:39.913] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:40.051] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:08:42.351] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:08:44.967] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:48.290] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:08:49.969] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:55.025] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:08:57.394] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:09:00.040] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:05.068] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:10.102] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:12.438] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:09:15.140] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:20.185] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:25.217] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:27.450] INFO  [life] supplies: the 'mage' has moved to 1485,1547 (4 tiles) -- walking back before buying (chase 1 of 4)
+[15:09:27.450] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1485,1547) r=1 from (1489,1548)
+[15:09:27.450] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1485,1547) radius=1 from=(1489,1548)
+[15:09:27.450] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:09:27.450] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:09:27.450] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:09:27.450] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:09:27.450] LOG   [f6_Ysolde] event travel_mode: walk
+[15:09:27.450] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:09:27.512] INFO  [f6_Ysolde] [action] goto finished at (1489,1548,70); target (1489,1548); ARRIVED (off by 0 tile(s))
+[15:09:27.512] LOG   [f6_Ysolde] event goto_done: at=(1489,1548) target=(1489,1548) arrived=1 off=0
+[15:09:27.512] INFO  [f6_Ysolde] [action] goto (1485,1547) from (1489,1548,70)
+[15:09:27.512] LOG   [f6_Ysolde] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:09:27.512] INFO  [f6_Ysolde] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:09:27.512] INFO  [f6_Ysolde] [bot] planning path to (1485,1547) in background
+[15:09:28.716] INFO  [f6_Ysolde] [action] goto finished at (1489,1548,70); target (1485,1547); stopped short (off by 5 tile(s))
+[15:09:28.716] LOG   [f6_Ysolde] event goto_done: at=(1489,1548) target=(1485,1547) arrived=0 off=5
+[15:09:29.932] INFO  [f6_Ysolde] [action] goto (1485,1547) from (1489,1548,70)
+[15:09:29.932] LOG   [f6_Ysolde] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:09:29.932] INFO  [f6_Ysolde] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:09:29.932] INFO  [f6_Ysolde] [bot] planning path to (1485,1547) in background
+[15:09:30.240] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:31.182] INFO  [f6_Ysolde] [action] goto finished at (1489,1548,70); target (1485,1547); stopped short (off by 5 tile(s))
+[15:09:31.182] LOG   [f6_Ysolde] event goto_done: at=(1489,1548) target=(1485,1547) arrived=0 off=5
+[15:09:32.392] INFO  [f6_Ysolde] [action] goto (1485,1547) from (1489,1548,70)
+[15:09:32.392] LOG   [f6_Ysolde] event goto_start: target=(1485,1547) from=(1489,1548)
+[15:09:32.392] INFO  [f6_Ysolde] [bot] running from (1489,1548,70) to (1485,1547,z70)
+[15:09:32.392] INFO  [f6_Ysolde] [bot] planning path to (1485,1547) in background
+[15:09:32.454] INFO  [f6_Ysolde] [bot] replan to (1485,1547): 4 steps in 143.1us
+[15:09:33.865] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1486,1547,70)
+[15:09:33.865] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1486,1547) legs=1 plans=1 why=''
+[15:09:33.926] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:09:33.973] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:09:33.973] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:09:33.973] INFO  [life]   score=61.6
+[15:09:33.973] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:09:33.973] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:09:34.109] INFO  [f6_Ysolde] [bot] arrived at (1485,1547,70)
+[15:09:35.261] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:40.288] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:42.424] INFO  [f6_Ysolde] [chat ascii] Shunnar: What's thee wantin'?
+[15:09:45.307] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:48.304] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:09:48.976] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:09:50.356] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:09:54.289] INFO  [f6_Ysolde] [chat ascii] Xanthe: Hmm?
+[15:09:55.402] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:00.406] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:04.003] INFO  [life] supplies: the 'mage' has moved to 1489,1549 (4 tiles) -- walking back before buying (chase 1 of 4)
+[15:10:04.003] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1489,1549) r=1 from (1485,1547)
+[15:10:04.003] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1489,1549) radius=1 from=(1485,1547)
+[15:10:04.003] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:10:04.003] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:10:04.003] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:04.003] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:04.003] LOG   [f6_Ysolde] event travel_mode: walk
+[15:10:04.003] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:10:04.066] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1485,1547); ARRIVED (off by 0 tile(s))
+[15:10:04.066] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1485,1547) arrived=1 off=0
+[15:10:04.066] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:04.066] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:04.066] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:04.066] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:05.310] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:05.310] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:05.464] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:06.510] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:06.510] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:06.510] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:06.510] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:07.568] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:07.568] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:08.781] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:08.781] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:08.781] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:08.781] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:09.936] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:09.936] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:10.487] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:11.158] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:10:11.158] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:10:11.158] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:11.158] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:11.158] LOG   [f6_Ysolde] event travel_mode: walk
+[15:10:11.158] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:10:12.686] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:12.686] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:12.686] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:12.687] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:13.850] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:13.850] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:15.060] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:15.060] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:15.060] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:15.060] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:15.505] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:16.277] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:16.277] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:17.489] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:17.489] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:17.489] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:17.489] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:18.630] INFO  [f6_Ysolde] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[15:10:18.630] LOG   [f6_Ysolde] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[15:10:19.849] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:10:19.849] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:10:19.849] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:19.849] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:19.849] LOG   [f6_Ysolde] event travel_mode: walk
+[15:10:19.849] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:10:20.522] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:22.877] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1547,70)
+[15:10:22.877] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1547)
+[15:10:22.877] INFO  [f6_Ysolde] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[15:10:22.877] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:10:22.938] INFO  [f6_Ysolde] [bot] replan to (1489,1549): 4 steps in 82.3us
+[15:10:24.432] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1488,1548,70)
+[15:10:24.432] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1548) legs=1 plans=3 why=''
+[15:10:24.494] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:10:25.080] INFO  [f6_Ysolde] [bot] arrived at (1489,1549,70)
+[15:10:25.538] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:30.565] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:35.614] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:39.509] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:10:40.645] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:45.664] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:48.352] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:10:50.709] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:54.531] INFO  [life] supplies: the 'mage' has moved to 1485,1549 (4 tiles) -- walking back before buying (chase 2 of 4)
+[15:10:54.531] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1485,1549) r=1 from (1489,1549)
+[15:10:54.531] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1485,1549) radius=1 from=(1489,1549)
+[15:10:54.531] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:10:54.531] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:10:54.531] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:10:54.531] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:10:54.531] LOG   [f6_Ysolde] event travel_mode: walk
+[15:10:54.531] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:10:54.531] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:10:54.531] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:10:54.531] INFO  [life]   score=61.6
+[15:10:54.531] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:10:54.531] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:10:54.531] INFO  [f6_Ysolde] [action] goto finished at (1489,1549,70); target (1489,1549); ARRIVED (off by 0 tile(s))
+[15:10:54.531] LOG   [f6_Ysolde] event goto_done: at=(1489,1549) target=(1489,1549) arrived=1 off=0
+[15:10:54.531] INFO  [f6_Ysolde] [action] goto (1485,1549) from (1489,1549,70)
+[15:10:54.531] LOG   [f6_Ysolde] event goto_start: target=(1485,1549) from=(1489,1549)
+[15:10:54.531] INFO  [f6_Ysolde] [bot] running from (1489,1549,70) to (1485,1549,z70)
+[15:10:54.531] INFO  [f6_Ysolde] [bot] planning path to (1485,1549) in background
+[15:10:55.749] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:10:56.178] INFO  [f6_Ysolde] [action] goto finished at (1489,1549,70); target (1485,1549); stopped short (off by 4 tile(s))
+[15:10:56.178] LOG   [f6_Ysolde] event goto_done: at=(1489,1549) target=(1485,1549) arrived=0 off=4
+[15:10:57.425] INFO  [f6_Ysolde] [action] goto (1485,1549) from (1489,1549,70)
+[15:10:57.425] LOG   [f6_Ysolde] event goto_start: target=(1485,1549) from=(1489,1549)
+[15:10:57.425] INFO  [f6_Ysolde] [bot] running from (1489,1549,70) to (1485,1549,z70)
+[15:10:57.425] INFO  [f6_Ysolde] [bot] planning path to (1485,1549) in background
+[15:10:57.485] INFO  [f6_Ysolde] [bot] replan to (1485,1549): 4 steps in 79.8us
+[15:10:58.281] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1486,1549,70)
+[15:10:58.281] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1486,1549) legs=1 plans=1 why=''
+[15:10:58.343] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:10:58.667] INFO  [f6_Ysolde] [bot] arrived at (1485,1549,70)
+[15:11:00.807] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:05.863] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:10.891] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:13.355] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:11:15.931] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:20.932] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:25.936] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:28.373] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:11:30.967] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:33.480] INFO  [f6_Ysolde] [chat ascii] Alenne: I'm listenin'.
+[15:11:36.028] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:41.041] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:43.382] INFO  [life] supplies: the 'mage' has moved to 1489,1549 (4 tiles) -- walking back before buying (chase 1 of 4)
+[15:11:43.382] INFO  [f6_Ysolde] [travel] mobile 0x00001145 -> (1489,1549) r=1 from (1485,1549)
+[15:11:43.382] LOG   [f6_Ysolde] event travel_start: label='mobile 0x00001145' target=(1489,1549) radius=1 from=(1485,1549)
+[15:11:43.382] INFO  [f6_Ysolde] [travel] mode walk             usable   <- chosen
+[15:11:43.382] INFO  [f6_Ysolde] [travel] mode moongate         usable
+[15:11:43.382] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:11:43.382] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:11:43.382] LOG   [f6_Ysolde] event travel_mode: walk
+[15:11:43.382] INFO  [f6_Ysolde] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[15:11:43.442] INFO  [f6_Ysolde] [action] goto finished at (1485,1549,70); target (1485,1549); ARRIVED (off by 0 tile(s))
+[15:11:43.442] LOG   [f6_Ysolde] event goto_done: at=(1485,1549) target=(1485,1549) arrived=1 off=0
+[15:11:43.442] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1549,70)
+[15:11:43.442] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1549)
+[15:11:43.442] INFO  [f6_Ysolde] [bot] running from (1485,1549,70) to (1489,1549,z70)
+[15:11:43.442] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:11:44.644] INFO  [f6_Ysolde] [action] goto finished at (1485,1549,70); target (1489,1549); stopped short (off by 4 tile(s))
+[15:11:44.644] LOG   [f6_Ysolde] event goto_done: at=(1485,1549) target=(1489,1549) arrived=0 off=4
+[15:11:45.883] INFO  [f6_Ysolde] [action] goto (1489,1549) from (1485,1549,70)
+[15:11:45.883] LOG   [f6_Ysolde] event goto_start: target=(1489,1549) from=(1485,1549)
+[15:11:45.883] INFO  [f6_Ysolde] [bot] running from (1485,1549,70) to (1489,1549,z70)
+[15:11:45.883] INFO  [f6_Ysolde] [bot] planning path to (1489,1549) in background
+[15:11:45.944] INFO  [f6_Ysolde] [bot] replan to (1489,1549): 4 steps in 72.5us
+[15:11:46.080] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:47.063] INFO  [f6_Ysolde] [bot] arrived at (1489,1549,70)
+[15:11:47.063] INFO  [f6_Ysolde] [action] goto finished at (1489,1549,70); target (1489,1549); ARRIVED (off by 0 tile(s))
+[15:11:47.063] LOG   [f6_Ysolde] event goto_done: at=(1489,1549) target=(1489,1549) arrived=1 off=0
+[15:11:47.063] INFO  [f6_Ysolde] [travel] mobile 0x00001145 ARRIVED at (1489,1549,70)
+[15:11:47.063] LOG   [f6_Ysolde] event travel_done: label='mobile 0x00001145' ok=1 at=(1489,1549) legs=1 plans=1 why=''
+[15:11:47.123] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:11:47.185] INFO  [life] goal_changed=BUY_SUPPLIES from=BUY_SUPPLIES reason="previous goal abandoned: attempts 5 >= 5"
+[15:11:47.185] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.37) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[15:11:47.185] INFO  [life]   score=61.6
+[15:11:47.185] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[15:11:47.185] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[15:11:48.389] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:11:51.135] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:11:56.146] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:01.168] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:02.132] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:12:06.225] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:11.266] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:16.275] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:17.163] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:12:21.282] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:26.329] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:27.172] INFO  [f6_Ysolde] [chat ascii] Alenne: Yes, Observer?
+[15:12:31.358] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:32.218] INFO  [life] goal_blocked=BUY_SUPPLIES reason="REFUSE_ECONOMIC_ROUTE_BLOCKED" i_scroll_blank costs 6 each, purse 101, spendable 1
+[15:12:36.382] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:41.439] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:44.304] INFO  [f6_Ysolde] [gump] 0x00000000 context=0x1400013C: 0 option(s), 1 text(s)
+[15:12:44.304] INFO  [f6_Ysolde] [gump]   text 0 = ''
+[15:12:44.304] LOG   [f6_Ysolde] event gump_open: serial=0x00000000 context=0x1400013C options=0
+[15:12:45.084] INFO  [life] session_end_requested reason="session time limit reached"
+[15:12:45.114] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[15:12:45.114] INFO  [f6_Ysolde] [travel] Britain banker -> (1425,1690) r=5 from (1489,1549)
+[15:12:45.114] LOG   [f6_Ysolde] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1489,1549)
+[15:12:45.114] INFO  [f6_Ysolde] [travel] mode moongate         usable   <- chosen
+[15:12:45.114] INFO  [f6_Ysolde] [travel] mode walk             usable
+[15:12:45.114] INFO  [f6_Ysolde] [travel] mode loose_rune_recall no: no rune marked at that destination
+[15:12:45.114] INFO  [f6_Ysolde] [travel] mode runebook_recall  no: no runebook page for that destination
+[15:12:45.114] LOG   [f6_Ysolde] event travel_mode: moongate
+[15:12:45.114] INFO  [f6_Ysolde] [travel] plan Britain banker: ok legs=5 ~176 tiles transit=0 nodes=26
+[15:12:45.175] INFO  [f6_Ysolde] [action] goto (1480,1574) from (1489,1549,70)
+[15:12:45.175] LOG   [f6_Ysolde] event goto_start: target=(1480,1574) from=(1489,1549)
+[15:12:45.175] INFO  [f6_Ysolde] [bot] running from (1489,1549,70) to (1480,1574)
+[15:12:45.175] INFO  [f6_Ysolde] [bot] planning path to (1480,1574) in background
+[15:12:45.223] INFO  [f6_Ysolde] [bot] replan to (1480,1574): 49 steps in 3526.6us
+[15:12:45.360] INFO  [f6_Ysolde] [chat ascii] System: Bruin has departed from Yew.
+[15:12:46.480] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:51.540] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:53.949] INFO  [f6_Ysolde] [chat ascii] Xanthe: Observer! Nice to see thee.
+[15:12:56.569] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:12:58.935] INFO  [f6_Ysolde] [bot] arrived at (1480,1574,30)
+[15:12:58.935] INFO  [f6_Ysolde] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[15:12:58.935] LOG   [f6_Ysolde] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[15:12:58.935] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:12:58.935] INFO  [f6_Ysolde] [action] goto (1464,1608) from (1480,1574,30)
+[15:12:58.935] LOG   [f6_Ysolde] event goto_start: target=(1464,1608) from=(1480,1574)
+[15:12:58.935] INFO  [f6_Ysolde] [bot] running from (1480,1574,30) to (1464,1608)
+[15:12:58.935] INFO  [f6_Ysolde] [bot] planning path to (1464,1608) in background
+[15:12:58.996] INFO  [f6_Ysolde] [bot] replan to (1464,1608): 48 steps in 990.7us
+[15:13:01.629] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:04.493] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=27 in 229.9us
+[15:13:06.653] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:06.806] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=20 in 39.4us
+[15:13:07.210] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=19 in 82.7us
+[15:13:07.423] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=19 in 73.1us
+[15:13:07.543] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=18 in 61.0us
+[15:13:11.684] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:12.771] INFO  [f6_Ysolde] [bot] arrived at (1464,1608,20)
+[15:13:12.771] INFO  [f6_Ysolde] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[15:13:12.771] LOG   [f6_Ysolde] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[15:13:12.771] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:12.771] INFO  [f6_Ysolde] [action] goto (1464,1640) from (1464,1608,20)
+[15:13:12.771] LOG   [f6_Ysolde] event goto_start: target=(1464,1640) from=(1464,1608)
+[15:13:12.771] INFO  [f6_Ysolde] [bot] running from (1464,1608,20) to (1464,1640)
+[15:13:12.771] INFO  [f6_Ysolde] [bot] planning path to (1464,1640) in background
+[15:13:12.832] INFO  [f6_Ysolde] [bot] replan to (1464,1640): 32 steps in 1690.8us
+[15:13:16.703] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:21.643] INFO  [f6_Ysolde] [bot] arrived at (1464,1640,20)
+[15:13:21.643] INFO  [f6_Ysolde] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[15:13:21.643] LOG   [f6_Ysolde] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[15:13:21.643] INFO  [f6_Ysolde] [travel] avoiding 2 teleporter pad(s) on this leg
+[15:13:21.643] INFO  [f6_Ysolde] [action] goto (1448,1672) from (1464,1640,20)
+[15:13:21.643] LOG   [f6_Ysolde] event goto_start: target=(1448,1672) from=(1464,1640)
+[15:13:21.643] INFO  [f6_Ysolde] [bot] running from (1464,1640,20) to (1448,1672)
+[15:13:21.643] INFO  [f6_Ysolde] [bot] planning path to (1448,1672) in background
+[15:13:21.705] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:21.705] INFO  [f6_Ysolde] [bot] replan to (1448,1672): 37 steps in 3719.1us
+[15:13:26.714] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:30.367] INFO  [f6_Ysolde] [chat ascii] System: World save in 10 seconds
+[15:13:31.732] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:32.699] INFO  [f6_Ysolde] [bot] arrived at (1448,1672,10)
+[15:13:32.699] INFO  [f6_Ysolde] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[15:13:32.699] LOG   [f6_Ysolde] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[15:13:32.699] INFO  [f6_Ysolde] [action] goto (1425,1690) from (1448,1672,10)
+[15:13:32.699] LOG   [f6_Ysolde] event goto_start: target=(1425,1690) from=(1448,1672)
+[15:13:32.699] INFO  [f6_Ysolde] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[15:13:32.699] INFO  [f6_Ysolde] [bot] planning path to (1425,1690) in background
+[15:13:32.761] INFO  [f6_Ysolde] [bot] replan to (1425,1690): 41 steps in 4953.9us
+[15:13:36.761] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:37.512] INFO  [f6_Ysolde] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 242.8us
+[15:13:37.709] INFO  [f6_Ysolde] [chat ascii] System: Voris has departed from Britain.
+[15:13:39.575] INFO  [f6_Ysolde] [bot] door ahead at (1440,1693,z0); OpenDoor before step
+[15:13:39.590] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:13:40.377] INFO  [f6_Ysolde] [chat ascii] System: World save has been initiated.
+[15:13:41.464] INFO  [f6_Ysolde] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[15:13:41.480] INFO  [f6_Ysolde] [chat ascii] System: Opening door...
+[15:13:41.480] INFO  [f6_Ysolde] [0x20] player @(1439,1693,0) facing=0
+[15:13:41.480] INFO  [f6_Ysolde] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[15:13:41.480] LOG   [f6_Ysolde] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[15:13:41.785] INFO  [f6_Ysolde] [survival] hp 16/16 (100%) -> fight
+[15:13:42.724] INFO  [f6_Ysolde] [action] goto (1425,1690) from (1439,1693,0)
+[15:13:42.724] LOG   [f6_Ysolde] event goto_start: target=(1425,1690) from=(1439,1693)
+[15:13:42.724] INFO  [f6_Ysolde] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[15:13:42.724] INFO  [f6_Ysolde] [bot] planning path to (1425,1690) in background
+[15:13:42.785] INFO  [f6_Ysolde] [bot] replan to (1425,1690): 15 steps in 431.7us
+[15:13:42.878] INFO  [f6_Ysolde] [chat ascii] Lyndon: Can I help thee?
+[15:13:42.878] INFO  [f6_Ysolde] [chat ascii] Lyndon: What's thee wantin'?
+[15:13:44.501] INFO  [f6_Ysolde] [chat ascii] System: Kaelen has departed from Britain.
+[15:13:45.915] INFO  [f6_Ysolde] [chat ascii] Lyndon: Hmm?
+[15:13:46.160] INFO  [f6_Ysolde] [travel] Britain banker ARRIVED at (1430,1690,0)
+[15:13:46.160] LOG   [f6_Ysolde] event travel_done: label='Britain banker' ok=1 at=(1430,1690) legs=5 plans=1 why=''
+[15:13:46.161] INFO  [life] wind-down: arrived somewhere safe at 1429,1690
+[15:13:46.176] INFO  [life] session_summary duration=1561s goals=0/18 gold=101->101 skills=130.1->130.1 logs=+0 deaths=0 places=3 suppliers=1
+[15:13:46.176] INFO  [life] session_goals families=1 picks=18 top=100% varied=0 | work=18(100%) | BUY_SUPPLIES=18(100%)
+[15:13:46.180] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh11.ysolde/state.json
+[15:13:46.180] INFO  [life] logging out
+[15:13:46.180] INFO  [f6_Ysolde] [action] logout requested
+[15:13:46.180] LOG   [f6_Ysolde] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[15:13:46.180] INFO  [f6_Ysolde] [0xD1] logout acknowledged (accepted=1)
+[15:13:46.180] LOG   [f6_Ysolde] event logout_ack: accepted
+[15:13:46.180] INFO  [f6_Ysolde] [net] closing connection (logout acknowledged)
+[15:13:46.180] LOG   [f6_Ysolde] event logout_complete: acked

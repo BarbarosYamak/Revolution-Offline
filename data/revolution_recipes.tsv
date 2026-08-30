@@ -16,6 +16,7 @@ i_ingot_iron	1	i_ore_iron	1	45	20.0	none		forge	none	0	WORLD_PROCESSED	ENGINE CC
 i_dagger	1	i_ingot_iron	4	7	0.0	none		forge	smith hammer	1	PLAYER_CRAFTED	ENGINE CClientUse.cpp:1273 LayerFind(LAYER_HAND1), :1282 IsItemTypeNear(IT_FORGE,3); SCRIPT i_dagger SKILLMAKE=Blacksmithing 0.0
 i_spear_short	1	i_ingot_iron	6	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
 i_spear_short	1	i_log	1	7	45.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT i_spear_short SKILLMAKE=Blacksmithing 45.3; REVOLUTION forum 59111 band 70.1-100
+i_cutlass	1	i_ingot_iron	8	7	24.3	none		forge	smith hammer	1	PLAYER_CRAFTED	SCRIPT def_blacksmithing.scp:173 blacksmithing_category_6_4 "i_cutlass"; sm_legacy_blacksmithing.scp:157-158 MAKEITEM=i_cutlass; i_weapons.scp:1232 RESOURCES=8 i_ingot_iron, :1233 SKILLMAKE=Blacksmithing 24.3
 i_log	1		0	44	1.0	none		none	blade	0	WORLD_GATHERED	SCRIPT r_default_tree 40.0 mr_tree; mr_tree REAPAMOUNT=1,3 SKILL=1.0,80.0
 i_board	1	i_log	1	11	0.0	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_carpentry; i_board SKILLMAKE=Carpentry 0.0
 i_parchment	1	i_log	1	11	25.7	none		none	carpentry tool	0	PLAYER_CRAFTED	SCRIPT sm_wood_misc; i_parchment SKILLMAKE=Carpentry 25.7

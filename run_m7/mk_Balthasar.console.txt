@@ -1,0 +1,473 @@
+[11:08:51.831] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh04' char=Balthasar tag='mk_Balthasar'
+[11:08:51.832] LOG   [mk_Balthasar] event session_start: text log opened
+[11:08:51.832] LOG   [mk_Balthasar] event net_connect_begin: connect 127.0.0.1:2593
+[11:08:51.832] INFO  [mk_Balthasar] [net] connecting to 127.0.0.1:2593 ...
+[11:08:51.833] LOG   [mk_Balthasar] event net_connected: connect 127.0.0.1:2593
+[11:08:51.833] INFO  [mk_Balthasar] [net] connected.
+[11:08:51.833] INFO  [mk_Balthasar] [seed] sent 0x7F000001 (plaintext)
+[11:08:51.833] LOG   [mk_Balthasar] event seed_out: 0x7F000001 hex=7f000001
+[11:08:51.833] INFO  [life] no prior state for revolutionfresh04.balthasar: a new Lumberjack / Carpenter
+[11:08:51.833] INFO  [life] creation request: Lumberjacking 50.0 + Swordsmanship 50.0, stats 40/32/8 = 80
+[11:08:51.833] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[11:08:51.833] INFO  [life] home: Balthasar lives in Britain
+[11:08:51.834] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[11:08:51.834] INFO  [mk_Balthasar] [life] autonomous player active for 'Balthasar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[11:08:51.851] INFO  [mk_Balthasar] [0xA8] 1 server(s):
+[11:08:51.851] INFO  [mk_Balthasar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[11:08:51.866] INFO  [mk_Balthasar] [0x8C] game server = 127.0.0.1:2593  seed=0x4B553626
+[11:08:51.866] LOG   [mk_Balthasar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x4B553626
+[11:08:51.866] INFO  [mk_Balthasar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:08:51.866] LOG   [mk_Balthasar] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:08:51.866] INFO  [mk_Balthasar] [0xB9] server features = 0x0005
+[11:08:51.866] INFO  [mk_Balthasar] [0xA9] 5 slot(s) (populated 0):
+[11:08:51.866] INFO  [mk_Balthasar]   [0] <empty>
+[11:08:51.866] INFO  [mk_Balthasar]   [1] <empty>
+[11:08:51.866] INFO  [mk_Balthasar]   [2] <empty>
+[11:08:51.866] INFO  [mk_Balthasar]   [3] <empty>
+[11:08:51.866] INFO  [mk_Balthasar]   [4] <empty>
+[11:08:51.866] INFO  [mk_Balthasar] [0x00] requested skills 44:50 40:50 48:0
+[11:08:51.866] INFO  [mk_Balthasar] [0x00] requested stats STR 40 DEX 32 INT 8
+[11:08:51.866] INFO  [mk_Balthasar] [0x00] creating character 'Balthasar' in slot 0
+[11:08:51.866] LOG   [mk_Balthasar] event char_create_sent: Balthasar
+[11:08:51.885] INFO  [mk_Balthasar] [0x1B] serial=0x00014153 body=0x0190 pos=(633,858,0)
+[11:08:51.885] LOG   [mk_Balthasar] event login_confirm: serial=0x00014153 body=0x0190 pos=(633,858,0)
+[11:08:51.885] INFO  [mk_Balthasar] [0x20] player @(633,858,0) facing=3
+[11:08:51.885] INFO  [mk_Balthasar] [0x55] login complete — entering world
+[11:08:51.885] LOG   [mk_Balthasar] event in_world: 0x55 received
+[11:08:51.885] INFO  [mk_Balthasar] [backpack] opening 0x4001414F
+[11:08:51.885] INFO  [mk_Balthasar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:08:51.885] INFO  [mk_Balthasar] [chat ascii] System: There are 3 other players here.
+[11:08:51.885] INFO  [mk_Balthasar] [chat ascii] System: You are under the protection of the town guards
+[11:08:51.889] INFO  [mk_Balthasar] [action] requesting the skill list
+[11:08:51.889] INFO  [life] in world; asked the server for the skill list
+[11:08:51.889] INFO  [mk_Balthasar] [0x24] open container 0x4001414F gump=60
+[11:08:51.889] INFO  [mk_Balthasar] [0x3C] container contents: 5 item(s)
+[11:08:51.889] LOG   [mk_Balthasar] event backpack_contents: serial=0x4001414F items=5
+[11:08:51.949] INFO  [mk_Balthasar] [chat ascii] System: Voris has arrived in Yew.
+[11:08:51.973] INFO  [mk_Balthasar] [chat ascii] System: Xanthe has arrived in Yew.
+[11:08:51.997] INFO  [mk_Balthasar] [chat ascii] System: Kaelen has arrived in Yew.
+[11:08:52.021] INFO  [mk_Balthasar] [chat ascii] System: Torvald has arrived in Yew.
+[11:08:52.069] INFO  [mk_Balthasar] [chat ascii] System: Aldwin has arrived in Yew.
+[11:08:52.069] INFO  [mk_Balthasar] [chat ascii] System: Rhalvar has arrived in Yew.
+[11:08:52.096] INFO  [mk_Balthasar] [chat ascii] System: Ysolde has arrived in Yew.
+[11:08:52.124] INFO  [mk_Balthasar] [chat ascii] System: Sabelle has arrived in Yew.
+[11:08:52.148] INFO  [mk_Balthasar] [chat ascii] System: Ilyandra has arrived in Yew.
+[11:08:52.173] INFO  [mk_Balthasar] [chat ascii] System: Elvrin has arrived in Yew.
+[11:08:52.200] INFO  [mk_Balthasar] [chat ascii] System: Marta has arrived in Yew.
+[11:08:52.226] INFO  [mk_Balthasar] [chat ascii] System: Bruin has arrived in Yew.
+[11:08:52.251] INFO  [mk_Balthasar] [chat ascii] System: Corwin has arrived in Yew.
+[11:08:52.280] INFO  [mk_Balthasar] [chat ascii] System: Beleth has arrived in Yew.
+[11:08:52.307] INFO  [mk_Balthasar] [chat ascii] System: Nerys has arrived in Yew.
+[11:08:52.327] INFO  [mk_Balthasar] [chat ascii] System: Kestrel has arrived in Yew.
+[11:08:54.443] INFO  [mk_Balthasar] [bot] world data loaded (0 blacklisted spot(s)).
+[11:08:54.443] INFO  [life] reconciliation: first ever login, 11 field(s) differed
+[11:08:54.443] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[11:08:54.443] INFO  [life]   str          persisted=0          server=40         -> server value accepted
+[11:08:54.443] INFO  [life]   dex          persisted=0          server=32         -> server value accepted
+[11:08:54.443] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[11:08:54.443] INFO  [life]   skill_44     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.443] INFO  [life]   skill_40     persisted=0.0        server=50.0       -> server value accepted
+[11:08:54.443] INFO  [life]   skill_27     persisted=0.0        server=18.2       -> server value accepted
+[11:08:54.443] INFO  [life]   skill_1      persisted=0.0        server=5.5        -> server value accepted
+[11:08:54.443] INFO  [life]   skill_17     persisted=0.0        server=6.3        -> server value accepted
+[11:08:54.443] INFO  [life]   skill_11     persisted=0.0        server=6.0        -> server value accepted
+[11:08:54.443] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[11:08:54.443] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:08:54.443] INFO  [mk_Balthasar] [survival] on
+[11:08:54.443] LOG   [mk_Balthasar] event survival_mode: on
+[11:08:54.445] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh04.balthasar/state.json
+[11:08:54.445] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:08:54.446] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[11:08:54.446] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy 0.39) NeedTraining(Tactics 0.35) NeedTraining(Swordsmanship 0.28) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[11:08:54.446] INFO  [life]   score=90.0
+[11:08:54.446] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[11:08:54.446] INFO  [life]   reason: Carpentry 6.0 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[11:08:54.446] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[11:08:54.446] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[11:08:54.446] INFO  [life] training: looking for a 'carpenter' to teach Carpentry (trip 1)
+[11:08:54.446] INFO  [mk_Balthasar] [travel] Britain carpenter -> (1430,1597) r=5 from (633,858)
+[11:08:54.446] LOG   [mk_Balthasar] event travel_start: label='Britain carpenter' target=(1430,1597) radius=5 from=(633,858)
+[11:08:54.446] INFO  [mk_Balthasar] [travel] mode moongate         usable   <- chosen
+[11:08:54.446] INFO  [mk_Balthasar] [travel] mode walk             usable
+[11:08:54.446] INFO  [mk_Balthasar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:08:54.446] INFO  [mk_Balthasar] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:08:54.446] LOG   [mk_Balthasar] event travel_mode: moongate
+[11:08:54.446] INFO  [mk_Balthasar] [travel] plan Britain carpenter: ok legs=19 ~760 tiles transit=1 nodes=942
+[11:08:54.497] INFO  [mk_Balthasar] [action] goto (664,856) from (633,858,0)
+[11:08:54.497] LOG   [mk_Balthasar] event goto_start: target=(664,856) from=(633,858)
+[11:08:54.497] INFO  [mk_Balthasar] [bot] running from (633,858,0) to (664,856)
+[11:08:54.497] INFO  [mk_Balthasar] [bot] planning path to (664,856) in background
+[11:08:54.556] INFO  [mk_Balthasar] [bot] replan to (664,856): 31 steps in 6990.8us
+[11:08:54.653] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=32 in 68.7us
+[11:08:54.958] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=35 in 68.6us
+[11:08:55.445] INFO  [mk_Balthasar] [chat ascii] System: You shove Aldwin out of the way.
+[11:08:55.888] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=13 path=41 in 224.7us
+[11:08:56.104] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=41 in 32.4us
+[11:08:56.398] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=42 in 61.4us
+[11:08:56.615] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=42 in 18.3us
+[11:08:57.260] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=42 in 31.4us
+[11:08:57.613] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=40 in 33.3us
+[11:08:57.615] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=39 in 33.0us
+[11:08:57.828] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=39 in 61.2us
+[11:08:58.329] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=38 in 18.8us
+[11:08:58.544] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=40 in 93.4us
+[11:08:58.757] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=6 new segment=4 path=37 in 17.0us
+[11:08:59.183] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=36 in 52.1us
+[11:08:59.462] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:08:59.537] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=35 in 60.5us
+[11:08:59.616] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=34 in 25.2us
+[11:08:59.967] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=32 in 30.8us
+[11:09:00.917] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=29 in 33.2us
+[11:09:01.850] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=29 in 225.4us
+[11:09:02.310] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=26 in 91.2us
+[11:09:02.311] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 191.6us
+[11:09:02.725] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=25 in 43.4us
+[11:09:03.020] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=23 in 32.2us
+[11:09:04.468] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:04.609] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=17 in 48.1us
+[11:09:04.866] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=16 in 70.9us
+[11:09:05.096] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=17 in 93.0us
+[11:09:05.780] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=6 new segment=7 path=17 in 67.4us
+[11:09:06.206] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=15 in 43.3us
+[11:09:06.680] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=13 in 33.3us
+[11:09:07.138] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=6 new segment=7 path=13 in 51.9us
+[11:09:07.924] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=12 in 118.9us
+[11:09:09.479] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:09.895] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=11 path=12 in 581.2us
+[11:09:09.896] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=14 in 149.4us
+[11:09:10.539] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=13 in 83.0us
+[11:09:10.923] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=2 path=9 in 15.3us
+[11:09:10.983] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=3 path=6 in 17.2us
+[11:09:13.139] INFO  [mk_Balthasar] [bot] arrived at (664,856,0)
+[11:09:13.140] INFO  [mk_Balthasar] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[11:09:13.140] LOG   [mk_Balthasar] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[11:09:13.140] INFO  [mk_Balthasar] [action] goto (696,840) from (664,856,0)
+[11:09:13.140] LOG   [mk_Balthasar] event goto_start: target=(696,840) from=(664,856)
+[11:09:13.140] INFO  [mk_Balthasar] [bot] running from (664,856,0) to (696,840)
+[11:09:13.140] INFO  [mk_Balthasar] [bot] planning path to (696,840) in background
+[11:09:13.200] INFO  [mk_Balthasar] [bot] replan to (696,840): 42 steps in 11409.5us
+[11:09:14.016] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=40 in 111.5us
+[11:09:14.493] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:15.045] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=38 in 49.2us
+[11:09:15.320] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=38 in 83.9us
+[11:09:16.723] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=34 in 73.3us
+[11:09:17.659] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 183.1us
+[11:09:18.073] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=32 in 145.1us
+[11:09:18.074] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=31 in 41.8us
+[11:09:18.760] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=28 in 101.5us
+[11:09:19.189] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=26 in 76.7us
+[11:09:19.405] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=26 in 114.2us
+[11:09:19.528] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:19.821] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=24 in 62.4us
+[11:09:20.049] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=23 in 52.4us
+[11:09:20.247] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=21 in 71.2us
+[11:09:20.662] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=20 in 35.6us
+[11:09:21.094] INFO  [mk_Balthasar] [chat ascii] System: You have left the protection of the town guards
+[11:09:21.297] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=18 in 54.4us
+[11:09:21.541] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=18 in 44.5us
+[11:09:21.802] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=18 in 74.3us
+[11:09:22.319] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 49.6us
+[11:09:22.578] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=15 in 56.3us
+[11:09:23.236] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=12 in 85.6us
+[11:09:23.663] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=12 in 105.5us
+[11:09:24.096] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=11 in 131.0us
+[11:09:24.543] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:25.600] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=8 in 175.9us
+[11:09:25.815] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=7 in 76.2us
+[11:09:28.729] INFO  [mk_Balthasar] [bot] reject at (696,840): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[11:09:28.729] INFO  [mk_Balthasar] [bot] planning path to (696,840) in background
+[11:09:29.559] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:29.974] INFO  [mk_Balthasar] [action] goto finished at (697,840,0); target (696,840); stopped short (off by 1 tile(s))
+[11:09:29.974] LOG   [mk_Balthasar] event goto_done: at=(697,840) target=(696,840) arrived=0 off=1
+[11:09:29.974] INFO  [mk_Balthasar] [action] goto (728,808) from (697,840,0)
+[11:09:29.974] LOG   [mk_Balthasar] event goto_start: target=(728,808) from=(697,840)
+[11:09:29.974] INFO  [mk_Balthasar] [bot] running from (697,840,0) to (728,808)
+[11:09:29.974] INFO  [mk_Balthasar] [bot] planning path to (728,808) in background
+[11:09:30.036] INFO  [mk_Balthasar] [bot] replan to (728,808): 41 steps in 11394.6us
+[11:09:30.052] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=43 in 97.5us
+[11:09:30.551] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=41 in 43.2us
+[11:09:30.552] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=42 in 59.8us
+[11:09:34.580] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:39.640] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:39.791] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=14 in 37.3us
+[11:09:40.022] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=12 in 49.2us
+[11:09:40.446] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=12 in 54.2us
+[11:09:43.202] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=4 new segment=5 path=5 in 59.6us
+[11:09:44.685] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:45.144] INFO  [mk_Balthasar] [bot] arrived at (728,808,0)
+[11:09:45.145] INFO  [mk_Balthasar] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[11:09:45.145] LOG   [mk_Balthasar] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[11:09:45.145] INFO  [mk_Balthasar] [action] goto (760,776) from (728,808,0)
+[11:09:45.145] LOG   [mk_Balthasar] event goto_start: target=(760,776) from=(728,808)
+[11:09:45.145] INFO  [mk_Balthasar] [bot] running from (728,808,0) to (760,776)
+[11:09:45.145] INFO  [mk_Balthasar] [bot] planning path to (760,776) in background
+[11:09:45.207] INFO  [mk_Balthasar] [bot] replan to (760,776): 42 steps in 20068.9us
+[11:09:49.714] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:54.163] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=16 in 160.7us
+[11:09:54.489] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh04.balthasar/state.json
+[11:09:54.565] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 69.5us
+[11:09:54.764] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:09:54.781] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=12 in 63.2us
+[11:09:55.871] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=9 in 77.8us
+[11:09:56.084] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 111.0us
+[11:09:57.321] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=6 in 68.8us
+[11:09:58.505] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 1: anchor=2 new segment=4 path=4 in 54.7us
+[11:09:59.564] INFO  [mk_Balthasar] [chat ascii] System: World save in 10 seconds
+[11:09:59.779] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:00.358] INFO  [mk_Balthasar] [bot] arrived at (760,776,0)
+[11:10:00.359] INFO  [mk_Balthasar] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[11:10:00.359] LOG   [mk_Balthasar] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[11:10:00.359] INFO  [mk_Balthasar] [action] goto (776,760) from (760,776,0)
+[11:10:00.359] LOG   [mk_Balthasar] event goto_start: target=(776,760) from=(760,776)
+[11:10:00.359] INFO  [mk_Balthasar] [bot] running from (760,776,0) to (776,760)
+[11:10:00.359] INFO  [mk_Balthasar] [bot] planning path to (776,760) in background
+[11:10:01.532] INFO  [mk_Balthasar] [action] goto finished at (760,776,0); target (776,760); stopped short (off by 32 tile(s))
+[11:10:01.532] LOG   [mk_Balthasar] event goto_done: at=(760,776) target=(776,760) arrived=0 off=32
+[11:10:02.749] INFO  [mk_Balthasar] [action] goto (776,760) from (760,776,0)
+[11:10:02.749] LOG   [mk_Balthasar] event goto_start: target=(776,760) from=(760,776)
+[11:10:02.749] INFO  [mk_Balthasar] [bot] running from (760,776,0) to (776,760)
+[11:10:02.749] INFO  [mk_Balthasar] [bot] planning path to (776,760) in background
+[11:10:03.919] INFO  [mk_Balthasar] [action] goto finished at (760,776,0); target (776,760); stopped short (off by 32 tile(s))
+[11:10:03.919] LOG   [mk_Balthasar] event goto_done: at=(760,776) target=(776,760) arrived=0 off=32
+[11:10:04.792] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:05.130] INFO  [mk_Balthasar] [travel] mode moongate         usable   <- chosen
+[11:10:05.130] INFO  [mk_Balthasar] [travel] mode walk             usable
+[11:10:05.130] INFO  [mk_Balthasar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:10:05.130] INFO  [mk_Balthasar] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:10:05.130] LOG   [mk_Balthasar] event travel_mode: moongate
+[11:10:05.131] INFO  [mk_Balthasar] [travel] plan Britain carpenter: ok legs=46 ~1760 tiles transit=0 nodes=3986
+[11:10:06.661] INFO  [mk_Balthasar] [action] goto (792,808) from (760,776,0)
+[11:10:06.661] LOG   [mk_Balthasar] event goto_start: target=(792,808) from=(760,776)
+[11:10:06.661] INFO  [mk_Balthasar] [bot] running from (760,776,0) to (792,808)
+[11:10:06.662] INFO  [mk_Balthasar] [bot] planning path to (792,808) in background
+[11:10:06.723] INFO  [mk_Balthasar] [bot] replan to (792,808): 37 steps in 16815.9us
+[11:10:09.564] INFO  [mk_Balthasar] [chat ascii] System: World save has been initiated.
+[11:10:09.812] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:14.842] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:19.843] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:21.914] INFO  [mk_Balthasar] [bot] arrived at (792,808,0)
+[11:10:21.915] INFO  [mk_Balthasar] [action] goto finished at (792,808,0); target (792,808); ARRIVED (off by 0 tile(s))
+[11:10:21.915] LOG   [mk_Balthasar] event goto_done: at=(792,808) target=(792,808) arrived=1 off=0
+[11:10:21.915] INFO  [mk_Balthasar] [action] goto (824,840) from (792,808,0)
+[11:10:21.915] LOG   [mk_Balthasar] event goto_start: target=(824,840) from=(792,808)
+[11:10:21.915] INFO  [mk_Balthasar] [bot] running from (792,808,0) to (824,840)
+[11:10:21.915] INFO  [mk_Balthasar] [bot] planning path to (824,840) in background
+[11:10:21.976] INFO  [mk_Balthasar] [bot] replan to (824,840): 41 steps in 5682.1us
+[11:10:24.869] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:29.872] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:34.904] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:37.018] INFO  [mk_Balthasar] [bot] arrived at (824,840,0)
+[11:10:37.019] INFO  [mk_Balthasar] [action] goto finished at (824,840,0); target (824,840); ARRIVED (off by 0 tile(s))
+[11:10:37.019] LOG   [mk_Balthasar] event goto_done: at=(824,840) target=(824,840) arrived=1 off=0
+[11:10:37.019] INFO  [mk_Balthasar] [action] goto (856,872) from (824,840,0)
+[11:10:37.019] LOG   [mk_Balthasar] event goto_start: target=(856,872) from=(824,840)
+[11:10:37.019] INFO  [mk_Balthasar] [bot] running from (824,840,0) to (856,872)
+[11:10:37.019] INFO  [mk_Balthasar] [bot] planning path to (856,872) in background
+[11:10:37.081] INFO  [mk_Balthasar] [bot] replan to (856,872): 46 steps in 19997.3us
+[11:10:39.940] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:45.001] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:50.059] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:54.524] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh04.balthasar/state.json
+[11:10:54.832] INFO  [mk_Balthasar] [bot] arrived at (856,872,0)
+[11:10:54.833] INFO  [mk_Balthasar] [action] goto finished at (856,872,0); target (856,872); ARRIVED (off by 0 tile(s))
+[11:10:54.833] LOG   [mk_Balthasar] event goto_done: at=(856,872) target=(856,872) arrived=1 off=0
+[11:10:54.833] INFO  [mk_Balthasar] [action] goto (888,904) from (856,872,0)
+[11:10:54.833] LOG   [mk_Balthasar] event goto_start: target=(888,904) from=(856,872)
+[11:10:54.833] INFO  [mk_Balthasar] [bot] running from (856,872,0) to (888,904)
+[11:10:54.833] INFO  [mk_Balthasar] [bot] planning path to (888,904) in background
+[11:10:54.894] INFO  [mk_Balthasar] [bot] replan to (888,904): 38 steps in 20802.3us
+[11:10:55.080] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:10:57.341] INFO  [mk_Balthasar] [chat ascii] Gargoyle: *Gargoyle is attacking you!*
+[11:11:00.088] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:05.147] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:07.796] INFO  [mk_Balthasar] [bot] arrived at (888,904,0)
+[11:11:07.797] INFO  [mk_Balthasar] [action] goto finished at (888,904,0); target (888,904); ARRIVED (off by 0 tile(s))
+[11:11:07.797] LOG   [mk_Balthasar] event goto_done: at=(888,904) target=(888,904) arrived=1 off=0
+[11:11:07.797] INFO  [mk_Balthasar] [action] goto (920,936) from (888,904,0)
+[11:11:07.797] LOG   [mk_Balthasar] event goto_start: target=(920,936) from=(888,904)
+[11:11:07.797] INFO  [mk_Balthasar] [bot] running from (888,904,0) to (920,936)
+[11:11:07.797] INFO  [mk_Balthasar] [bot] planning path to (920,936) in background
+[11:11:07.856] INFO  [mk_Balthasar] [bot] replan to (920,936): 40 steps in 15116.5us
+[11:11:10.178] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:10.592] INFO  [mk_Balthasar] [chat ascii] grey wolf: *grey wolf is attacking you!*
+[11:11:15.182] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:20.187] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:20.249] INFO  [mk_Balthasar] [bot] arrived at (920,936,0)
+[11:11:20.250] INFO  [mk_Balthasar] [action] goto finished at (920,936,0); target (920,936); ARRIVED (off by 0 tile(s))
+[11:11:20.250] LOG   [mk_Balthasar] event goto_done: at=(920,936) target=(920,936) arrived=1 off=0
+[11:11:20.250] INFO  [mk_Balthasar] [action] goto (952,952) from (920,936,0)
+[11:11:20.250] LOG   [mk_Balthasar] event goto_start: target=(952,952) from=(920,936)
+[11:11:20.250] INFO  [mk_Balthasar] [bot] running from (920,936,0) to (952,952)
+[11:11:20.250] INFO  [mk_Balthasar] [bot] planning path to (952,952) in background
+[11:11:20.313] INFO  [mk_Balthasar] [bot] replan to (952,952): 34 steps in 6601.9us
+[11:11:25.188] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:30.244] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:32.532] INFO  [mk_Balthasar] [bot] arrived at (952,952,0)
+[11:11:32.532] INFO  [mk_Balthasar] [action] goto finished at (952,952,0); target (952,952); ARRIVED (off by 0 tile(s))
+[11:11:32.532] LOG   [mk_Balthasar] event goto_done: at=(952,952) target=(952,952) arrived=1 off=0
+[11:11:32.532] INFO  [mk_Balthasar] [action] goto (984,952) from (952,952,0)
+[11:11:32.532] LOG   [mk_Balthasar] event goto_start: target=(984,952) from=(952,952)
+[11:11:32.532] INFO  [mk_Balthasar] [bot] running from (952,952,0) to (984,952)
+[11:11:32.532] INFO  [mk_Balthasar] [bot] planning path to (984,952) in background
+[11:11:32.596] INFO  [mk_Balthasar] [bot] replan to (984,952): 33 steps in 3975.2us
+[11:11:35.253] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:40.284] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:42.417] INFO  [mk_Balthasar] [bot] arrived at (984,952,0)
+[11:11:42.417] INFO  [mk_Balthasar] [action] goto finished at (984,952,0); target (984,952); ARRIVED (off by 0 tile(s))
+[11:11:42.417] LOG   [mk_Balthasar] event goto_done: at=(984,952) target=(984,952) arrived=1 off=0
+[11:11:42.417] INFO  [mk_Balthasar] [action] goto (1016,952) from (984,952,0)
+[11:11:42.417] LOG   [mk_Balthasar] event goto_start: target=(1016,952) from=(984,952)
+[11:11:42.417] INFO  [mk_Balthasar] [bot] running from (984,952,0) to (1016,952)
+[11:11:42.417] INFO  [mk_Balthasar] [bot] planning path to (1016,952) in background
+[11:11:42.478] INFO  [mk_Balthasar] [bot] replan to (1016,952): 33 steps in 9043.1us
+[11:11:45.304] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:50.313] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:11:51.919] INFO  [life] session_end_requested reason="session time limit reached"
+[11:11:52.136] INFO  [mk_Balthasar] [chat ascii] System: Xanthe has departed from Moonglow.
+[11:11:53.534] INFO  [mk_Balthasar] [chat ascii] System: Elvrin has departed from Moonglow.
+[11:11:54.222] INFO  [mk_Balthasar] [bot] arrived at (1016,952,0)
+[11:11:54.222] INFO  [mk_Balthasar] [action] goto finished at (1016,952,0); target (1016,952); ARRIVED (off by 0 tile(s))
+[11:11:54.222] LOG   [mk_Balthasar] event goto_done: at=(1016,952) target=(1016,952) arrived=1 off=0
+[11:11:54.222] INFO  [mk_Balthasar] [action] goto (1048,952) from (1016,952,0)
+[11:11:54.222] LOG   [mk_Balthasar] event goto_start: target=(1048,952) from=(1016,952)
+[11:11:54.222] INFO  [mk_Balthasar] [bot] running from (1016,952,0) to (1048,952)
+[11:11:54.222] INFO  [mk_Balthasar] [bot] planning path to (1048,952) in background
+[11:11:54.283] INFO  [mk_Balthasar] [bot] replan to (1048,952): 32 steps in 7928.0us
+[11:11:55.362] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:00.420] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:04.936] INFO  [mk_Balthasar] [chat ascii] System: Bruin has departed from Yew.
+[11:12:05.443] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:06.433] INFO  [mk_Balthasar] [bot] arrived at (1048,952,3)
+[11:12:06.433] INFO  [mk_Balthasar] [action] goto finished at (1048,952,3); target (1048,952); ARRIVED (off by 0 tile(s))
+[11:12:06.433] LOG   [mk_Balthasar] event goto_done: at=(1048,952) target=(1048,952) arrived=1 off=0
+[11:12:06.433] INFO  [mk_Balthasar] [action] goto (1080,952) from (1048,952,3)
+[11:12:06.433] LOG   [mk_Balthasar] event goto_start: target=(1080,952) from=(1048,952)
+[11:12:06.433] INFO  [mk_Balthasar] [bot] running from (1048,952,3) to (1080,952)
+[11:12:06.433] INFO  [mk_Balthasar] [bot] planning path to (1080,952) in background
+[11:12:06.494] INFO  [mk_Balthasar] [bot] replan to (1080,952): 32 steps in 14010.5us
+[11:12:06.587] INFO  [mk_Balthasar] [chat ascii] System: Corwin has departed from Yew.
+[11:12:09.169] INFO  [mk_Balthasar] [chat ascii] System: Durnholde has departed from Minoc.
+[11:12:10.475] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:14.144] INFO  [mk_Balthasar] [chat ascii] Skeletal Mage: *Skeletal Mage is attacking you!*
+[11:12:15.416] INFO  [mk_Balthasar] [chat ascii] System: Rhalvar has departed from Skara Brae.
+[11:12:15.476] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:17.041] INFO  [mk_Balthasar] [bot] arrived at (1080,952,5)
+[11:12:17.041] INFO  [mk_Balthasar] [action] goto finished at (1080,952,5); target (1080,952); ARRIVED (off by 0 tile(s))
+[11:12:17.041] LOG   [mk_Balthasar] event goto_done: at=(1080,952) target=(1080,952) arrived=1 off=0
+[11:12:17.041] INFO  [mk_Balthasar] [action] goto (1112,952) from (1080,952,5)
+[11:12:17.041] LOG   [mk_Balthasar] event goto_start: target=(1112,952) from=(1080,952)
+[11:12:17.041] INFO  [mk_Balthasar] [bot] running from (1080,952,5) to (1112,952)
+[11:12:17.041] INFO  [mk_Balthasar] [bot] planning path to (1112,952) in background
+[11:12:17.103] INFO  [mk_Balthasar] [bot] replan to (1112,952): 32 steps in 10906.0us
+[11:12:20.521] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:25.563] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:28.101] INFO  [mk_Balthasar] [bot] arrived at (1112,952,0)
+[11:12:28.101] INFO  [mk_Balthasar] [action] goto finished at (1112,952,0); target (1112,952); ARRIVED (off by 0 tile(s))
+[11:12:28.101] LOG   [mk_Balthasar] event goto_done: at=(1112,952) target=(1112,952) arrived=1 off=0
+[11:12:28.101] INFO  [mk_Balthasar] [action] goto (1146,952) from (1112,952,0)
+[11:12:28.101] LOG   [mk_Balthasar] event goto_start: target=(1146,952) from=(1112,952)
+[11:12:28.101] INFO  [mk_Balthasar] [bot] running from (1112,952,0) to (1146,952)
+[11:12:28.101] INFO  [mk_Balthasar] [bot] planning path to (1146,952) in background
+[11:12:28.161] INFO  [mk_Balthasar] [bot] replan to (1146,952): 37 steps in 22092.3us
+[11:12:30.588] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:32.287] INFO  [mk_Balthasar] [chat ascii] System: Kaelen has departed from Britain.
+[11:12:32.471] INFO  [mk_Balthasar] [chat ascii] Giant Spider: *Giant Spider is attacking you!*
+[11:12:35.644] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:40.695] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:40.772] INFO  [mk_Balthasar] [bot] arrived at (1146,952,-4)
+[11:12:40.772] INFO  [mk_Balthasar] [action] goto finished at (1146,952,-4); target (1146,952); ARRIVED (off by 0 tile(s))
+[11:12:40.772] LOG   [mk_Balthasar] event goto_done: at=(1146,952) target=(1146,952) arrived=1 off=0
+[11:12:40.772] INFO  [mk_Balthasar] [action] goto (1176,952) from (1146,952,-4)
+[11:12:40.772] LOG   [mk_Balthasar] event goto_start: target=(1176,952) from=(1146,952)
+[11:12:40.772] INFO  [mk_Balthasar] [bot] running from (1146,952,-4) to (1176,952)
+[11:12:40.772] INFO  [mk_Balthasar] [bot] planning path to (1176,952) in background
+[11:12:40.818] INFO  [mk_Balthasar] [bot] replan to (1176,952): 30 steps in 5324.3us
+[11:12:42.426] INFO  [mk_Balthasar] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=25 in 51.9us
+[11:12:45.709] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:45.938] INFO  [mk_Balthasar] [chat ascii] Ghoul: *Ghoul is attacking you!*
+[11:12:46.690] INFO  [mk_Balthasar] [chat ascii] System: Beleth has departed from Yew.
+[11:12:47.254] INFO  [mk_Balthasar] [chat ascii] System: Torvald has departed from Britain.
+[11:12:50.766] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:51.107] INFO  [mk_Balthasar] [bot] arrived at (1176,952,5)
+[11:12:51.107] INFO  [mk_Balthasar] [action] goto finished at (1176,952,5); target (1176,952); ARRIVED (off by 0 tile(s))
+[11:12:51.107] LOG   [mk_Balthasar] event goto_done: at=(1176,952) target=(1176,952) arrived=1 off=0
+[11:12:51.107] INFO  [mk_Balthasar] [action] goto (1208,952) from (1176,952,5)
+[11:12:51.107] LOG   [mk_Balthasar] event goto_start: target=(1208,952) from=(1176,952)
+[11:12:51.107] INFO  [mk_Balthasar] [bot] running from (1176,952,5) to (1208,952)
+[11:12:51.107] INFO  [mk_Balthasar] [bot] planning path to (1208,952) in background
+[11:12:51.167] INFO  [mk_Balthasar] [bot] replan to (1208,952): 32 steps in 562.8us
+[11:12:52.252] INFO  [mk_Balthasar] [chat ascii] System: Aldwin has departed from Lord British's Castle.
+[11:12:52.497] INFO  [mk_Balthasar] [chat ascii] System: Brannoc has departed from Vesper.
+[11:12:55.771] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:12:59.906] INFO  [mk_Balthasar] [bot] arrived at (1208,952,3)
+[11:12:59.906] INFO  [mk_Balthasar] [action] goto finished at (1208,952,3); target (1208,952); ARRIVED (off by 0 tile(s))
+[11:12:59.906] LOG   [mk_Balthasar] event goto_done: at=(1208,952) target=(1208,952) arrived=1 off=0
+[11:12:59.906] INFO  [mk_Balthasar] [action] goto (1240,936) from (1208,952,3)
+[11:12:59.906] LOG   [mk_Balthasar] event goto_start: target=(1240,936) from=(1208,952)
+[11:12:59.906] INFO  [mk_Balthasar] [bot] running from (1208,952,3) to (1240,936)
+[11:12:59.906] INFO  [mk_Balthasar] [bot] planning path to (1240,936) in background
+[11:12:59.937] INFO  [mk_Balthasar] [bot] replan to (1240,936): 32 steps in 5658.6us
+[11:13:00.808] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:04.991] INFO  [mk_Balthasar] [chat ascii] System: Voris has departed from Britain.
+[11:13:05.828] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:08.655] INFO  [mk_Balthasar] [bot] arrived at (1240,936,0)
+[11:13:08.655] INFO  [mk_Balthasar] [action] goto finished at (1240,936,0); target (1240,936); ARRIVED (off by 0 tile(s))
+[11:13:08.655] LOG   [mk_Balthasar] event goto_done: at=(1240,936) target=(1240,936) arrived=1 off=0
+[11:13:08.655] INFO  [mk_Balthasar] [action] goto (1270,896) from (1240,936,0)
+[11:13:08.655] LOG   [mk_Balthasar] event goto_start: target=(1270,896) from=(1240,936)
+[11:13:08.655] INFO  [mk_Balthasar] [bot] running from (1240,936,0) to (1270,896)
+[11:13:08.655] INFO  [mk_Balthasar] [bot] planning path to (1270,896) in background
+[11:13:08.716] INFO  [mk_Balthasar] [bot] replan to (1270,896): 50 steps in 4610.5us
+[11:13:10.842] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:15.902] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:20.951] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:24.223] INFO  [mk_Balthasar] [bot] arrived at (1270,896,0)
+[11:13:24.223] INFO  [mk_Balthasar] [action] goto finished at (1270,896,0); target (1270,896); ARRIVED (off by 0 tile(s))
+[11:13:24.223] LOG   [mk_Balthasar] event goto_done: at=(1270,896) target=(1270,896) arrived=1 off=0
+[11:13:24.223] INFO  [mk_Balthasar] [action] goto (1304,886) from (1270,896,0)
+[11:13:24.223] LOG   [mk_Balthasar] event goto_start: target=(1304,886) from=(1270,896)
+[11:13:24.223] INFO  [mk_Balthasar] [bot] running from (1270,896,0) to (1304,886)
+[11:13:24.223] INFO  [mk_Balthasar] [bot] planning path to (1304,886) in background
+[11:13:24.284] INFO  [mk_Balthasar] [bot] replan to (1304,886): 40 steps in 8921.8us
+[11:13:24.765] INFO  [mk_Balthasar] [chat ascii] System: Nerys has departed from Britain.
+[11:13:25.995] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:27.227] INFO  [mk_Balthasar] [chat ascii] System: Ysolde has departed from Britain.
+[11:13:30.949] INFO  [mk_Balthasar] [chat ascii] System: Ilyandra has departed from Britain.
+[11:13:31.011] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:36.052] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:37.782] INFO  [mk_Balthasar] [bot] arrived at (1304,886,0)
+[11:13:37.782] INFO  [mk_Balthasar] [action] goto finished at (1304,886,0); target (1304,886); ARRIVED (off by 0 tile(s))
+[11:13:37.782] LOG   [mk_Balthasar] event goto_done: at=(1304,886) target=(1304,886) arrived=1 off=0
+[11:13:37.782] INFO  [mk_Balthasar] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:13:37.782] INFO  [mk_Balthasar] [action] goto (1336,888) from (1304,886,0)
+[11:13:37.782] LOG   [mk_Balthasar] event goto_start: target=(1336,888) from=(1304,886)
+[11:13:37.782] INFO  [mk_Balthasar] [bot] running from (1304,886,0) to (1336,888)
+[11:13:37.782] INFO  [mk_Balthasar] [bot] planning path to (1336,888) in background
+[11:13:37.843] INFO  [mk_Balthasar] [bot] replan to (1336,888): 32 steps in 11003.5us
+[11:13:41.080] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:46.099] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:48.503] INFO  [mk_Balthasar] [bot] arrived at (1336,888,0)
+[11:13:48.503] INFO  [mk_Balthasar] [action] goto finished at (1336,888,0); target (1336,888); ARRIVED (off by 0 tile(s))
+[11:13:48.503] LOG   [mk_Balthasar] event goto_done: at=(1336,888) target=(1336,888) arrived=1 off=0
+[11:13:48.503] INFO  [mk_Balthasar] [travel] avoiding 1 teleporter pad(s) on this leg
+[11:13:48.503] INFO  [mk_Balthasar] [action] goto (1360,854) from (1336,888,0)
+[11:13:48.503] LOG   [mk_Balthasar] event goto_start: target=(1360,854) from=(1336,888)
+[11:13:48.503] INFO  [mk_Balthasar] [bot] running from (1336,888,0) to (1360,854)
+[11:13:48.503] INFO  [mk_Balthasar] [bot] planning path to (1360,854) in background
+[11:13:48.563] INFO  [mk_Balthasar] [bot] replan to (1360,854): 48 steps in 13115.1us
+[11:13:51.127] INFO  [mk_Balthasar] [survival] hp 40/40 (100%) -> fight
+[11:13:51.837] INFO  [mk_Balthasar] [chat ascii] System: Tarath has departed from Britain.
+[11:13:51.960] INFO  [life] wind-down: the trip has run past its deadline; abandoning it and logging out where I stand
+[11:13:51.961] INFO  [mk_Balthasar] [travel] Britain carpenter FAILED at (1333,879,0) -- wind-down deadline
+[11:13:51.961] LOG   [mk_Balthasar] event travel_failed: label='Britain carpenter' ok=0 at=(1333,879) legs=46 plans=2 why='wind-down deadline'
+[11:13:52.023] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 1333,879 and recording it
+[11:13:52.023] INFO  [life] session_summary duration=300s goals=0/1 gold=1000->1000 skills=136.0->136.0 logs=+0 deaths=0 places=0 suppliers=0
+[11:13:52.023] INFO  [life] session_goals families=1 picks=1 top=100% varied=0 | training=1(100%) | TRAIN_AT_NPC=1(100%)
+[11:13:52.025] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh04.balthasar/state.json
+[11:13:52.025] INFO  [life] logging out
+[11:13:52.025] INFO  [mk_Balthasar] [action] logout requested
+[11:13:52.025] LOG   [mk_Balthasar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[11:13:52.038] INFO  [mk_Balthasar] [0xD1] logout acknowledged (accepted=1)
+[11:13:52.038] LOG   [mk_Balthasar] event logout_ack: accepted
+[11:13:52.038] INFO  [mk_Balthasar] [net] closing connection (logout acknowledged)
+[11:13:52.038] LOG   [mk_Balthasar] event logout_complete: acked

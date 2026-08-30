@@ -1,0 +1,252 @@
+[11:16:38.201] INFO  session 0: 127.0.0.1:2593 user='reva01' char=Corwyn tag='r1a_Corwyn'
+[11:16:38.202] LOG   [r1a_Corwyn] event session_start: text log opened
+[11:16:38.202] LOG   [r1a_Corwyn] event net_connect_begin: connect 127.0.0.1:2593
+[11:16:38.202] INFO  [r1a_Corwyn] [net] connecting to 127.0.0.1:2593 ...
+[11:16:38.203] LOG   [r1a_Corwyn] event net_connected: connect 127.0.0.1:2593
+[11:16:38.203] INFO  [r1a_Corwyn] [net] connected.
+[11:16:38.203] INFO  [r1a_Corwyn] [seed] sent 0x7F000001 (plaintext)
+[11:16:38.203] LOG   [r1a_Corwyn] event seed_out: 0x7F000001 hex=7f000001
+[11:16:38.204] INFO  [life] loaded persistent state for Corwyn (7 places, 4 suppliers, 25 events, 4 prior sessions)
+[11:16:38.204] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[11:16:38.204] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[11:16:38.204] INFO  [r1a_Corwyn] [life] autonomous player active for 'Corwyn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 12 min)
+[11:16:38.220] INFO  [r1a_Corwyn] [0xA8] 1 server(s):
+[11:16:38.220] INFO  [r1a_Corwyn]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[11:16:38.236] INFO  [r1a_Corwyn] [0x8C] game server = 127.0.0.1:2593  seed=0x14CEE7D0
+[11:16:38.236] LOG   [r1a_Corwyn] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x14CEE7D0
+[11:16:38.236] INFO  [r1a_Corwyn] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[11:16:38.236] LOG   [r1a_Corwyn] event relay_same_socket: no seed re-sent; 0x91 follows
+[11:16:38.236] INFO  [r1a_Corwyn] [0xB9] server features = 0x0005
+[11:16:38.236] INFO  [r1a_Corwyn] [0xA9] 5 slot(s) (populated 1):
+[11:16:38.236] INFO  [r1a_Corwyn]   [0] Corwyn
+[11:16:38.236] INFO  [r1a_Corwyn]   [1] <empty>
+[11:16:38.236] INFO  [r1a_Corwyn]   [2] <empty>
+[11:16:38.236] INFO  [r1a_Corwyn]   [3] <empty>
+[11:16:38.236] INFO  [r1a_Corwyn]   [4] <empty>
+[11:16:38.236] INFO  [r1a_Corwyn] [ui] playing slot 0 ('Corwyn')
+[11:16:38.252] INFO  [r1a_Corwyn] [0x1B] serial=0x00014DDF body=0x0190 pos=(2580,604,0)
+[11:16:38.252] LOG   [r1a_Corwyn] event login_confirm: serial=0x00014DDF body=0x0190 pos=(2580,604,0)
+[11:16:38.252] INFO  [r1a_Corwyn] [0x20] player @(2580,604,0) facing=0
+[11:16:38.252] INFO  [r1a_Corwyn] [0x55] login complete — entering world
+[11:16:38.252] LOG   [r1a_Corwyn] event in_world: 0x55 received
+[11:16:38.252] INFO  [r1a_Corwyn] [backpack] opening 0x40014DDB
+[11:16:38.252] INFO  [r1a_Corwyn] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[11:16:38.252] INFO  [r1a_Corwyn] [chat ascii] System: There are 0 other players here.
+[11:16:38.252] INFO  [r1a_Corwyn] [chat ascii] System: Last logged: 2026/08/30 03:31:11
+[11:16:38.252] INFO  [r1a_Corwyn] [chat ascii] System: You are under the protection of the town guards
+[11:16:38.272] INFO  [r1a_Corwyn] [action] requesting the skill list
+[11:16:38.272] INFO  [life] in world; asked the server for the skill list
+[11:16:38.272] INFO  [r1a_Corwyn] [0x24] open container 0x40014DDB gump=60
+[11:16:38.272] INFO  [r1a_Corwyn] [0x3C] container contents: 16 item(s)
+[11:16:38.272] LOG   [r1a_Corwyn] event backpack_contents: serial=0x40014DDB items=16
+[11:16:39.081] INFO  [r1a_Corwyn] [chat ascii] Erskine: I am listening to thee.
+[11:16:40.909] INFO  [r1a_Corwyn] [bot] world data loaded (0 blacklisted spot(s)).
+[11:16:40.909] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[11:16:40.909] INFO  [life]   gold         persisted=9326       server=9326       -> server value accepted
+[11:16:40.909] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[11:16:40.909] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[11:16:40.909] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[11:16:40.909] INFO  [life]   skill_7      persisted=50.5       server=50.5       -> server value accepted
+[11:16:40.909] INFO  [life]   skill_45     persisted=51.1       server=51.1       -> server value accepted
+[11:16:40.909] INFO  [life]   skill_37     persisted=19.9       server=19.9       -> server value accepted
+[11:16:40.909] INFO  [life]   skill_4      persisted=19.3       server=19.3       -> server value accepted
+[11:16:40.909] INFO  [life]   position     persisted=2580,604   server=2580,604   -> server value accepted
+[11:16:40.909] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[11:16:40.909] INFO  [life]   restored objective KEPT: REPLACE_EQUIPMENT (progress 71)
+[11:16:40.909] INFO  [r1a_Corwyn] [survival] on
+[11:16:40.909] LOG   [r1a_Corwyn] event survival_mode: on
+[11:16:40.911] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[11:16:40.911] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:16:40.965] INFO  [r1a_Corwyn] [travel] Minoc healer -> (2577,599) r=5 from (2580,604)
+[11:16:40.965] LOG   [r1a_Corwyn] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2580,604)
+[11:16:40.965] INFO  [r1a_Corwyn] [travel] Minoc healer ARRIVED at (2580,604,0)
+[11:16:40.965] LOG   [r1a_Corwyn] event travel_done: label='Minoc healer' ok=1 at=(2580,604) legs=0 plans=0 why=''
+[11:16:41.026] INFO  [r1a_Corwyn] [action] scanning nearby mobiles for names
+[11:16:41.026] INFO  [r1a_Corwyn] [action] requested 2 paperdoll(s) for trade titles
+[11:16:41.026] INFO  [life] bandages: at the healer's, asking who is here (scan 1 of 3)
+[11:16:41.042] INFO  [r1a_Corwyn] [mobiles] nearby (4):
+[11:16:41.042] INFO  [r1a_Corwyn]   Erskine 0x00009619
+[11:16:41.042] INFO  [r1a_Corwyn]   Skylark 0x0000A262
+[11:16:41.042] INFO  [r1a_Corwyn]   Riley 0x0000960A
+[11:16:41.042] INFO  [r1a_Corwyn]   Cat 0x000095FF
+[11:16:41.042] INFO  [r1a_Corwyn] [0x20] player @(2580,604,0) facing=7
+[11:16:41.042] INFO  [r1a_Corwyn] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[11:16:41.042] INFO  [r1a_Corwyn] [world] Erskine, the healer is a healer at (2576,601)
+[11:16:41.042] INFO  [r1a_Corwyn] [0x20] player @(2580,604,0) facing=0
+[11:16:41.042] INFO  [r1a_Corwyn] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[11:16:41.042] INFO  [r1a_Corwyn] [world] Riley, the healer guildmaster is a healer at (2579,596)
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] healer (seen) -> (2576,601) r=2 from (2580,604)
+[11:16:44.085] LOG   [r1a_Corwyn] event travel_start: label='healer (seen)' target=(2576,601) radius=2 from=(2580,604)
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] mode walk             usable   <- chosen
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] mode moongate         usable
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:16:44.085] LOG   [r1a_Corwyn] event travel_mode: walk
+[11:16:44.085] INFO  [r1a_Corwyn] [travel] plan healer (seen): ok legs=1 ~4 tiles transit=0 nodes=0
+[11:16:44.145] INFO  [r1a_Corwyn] [action] goto (2576,601) from (2580,604,0)
+[11:16:44.146] LOG   [r1a_Corwyn] event goto_start: target=(2576,601) from=(2580,604)
+[11:16:44.146] INFO  [r1a_Corwyn] [bot] running from (2580,604,0) to (2576,601,z0)
+[11:16:44.146] INFO  [r1a_Corwyn] [bot] planning path to (2576,601) in background
+[11:16:44.206] INFO  [r1a_Corwyn] [bot] replan to (2576,601): 8 steps in 118.3us
+[11:16:45.127] INFO  [r1a_Corwyn] [travel] healer (seen) ARRIVED at (2578,603,0)
+[11:16:45.127] LOG   [r1a_Corwyn] event travel_done: label='healer (seen)' ok=1 at=(2578,603) legs=1 plans=1 why=''
+[11:16:45.127] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:16:45.127] INFO  [r1a_Corwyn] [VENDOR] open vendor=0x00009619 say='Erskine buy'
+[11:16:45.143] INFO  [r1a_Corwyn] [chat uni  ] : Erskine buy
+[11:16:45.143] INFO  [r1a_Corwyn] [chat ascii] Erskine: Thou mayst purchase supplies from me.
+[11:16:45.143] INFO  [r1a_Corwyn] [0x3C] container contents: 5 item(s)
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74] vendor shop data: cont=0x40009613 5 item(s), layer=0x1A
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74]   clean bandages               gfx=0x0E21 qty=19   price=1
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74]   Heal                         gfx=0x0F0C qty=7    price=30
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74]   Ginseng                      gfx=0x0F85 qty=15   price=3
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74]   Garlic                       gfx=0x0F84 qty=12   price=3
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74]   Refresh                      gfx=0x0F0B qty=31   price=16
+[11:16:45.143] INFO  [r1a_Corwyn] [0x3C] container contents: 0 item(s)
+[11:16:45.143] INFO  [r1a_Corwyn] [0x74] vendor shop data: cont=0x40009215 0 item(s), layer=0x1B
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR] offer from 0x00009619: 5 item(s)
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR]   0x400116CE clean bandages         x19  1 gp
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR]   0x400116CD Heal                   x7   30 gp
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR]   0x40011670 Ginseng                x15  3 gp
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR]   0x4001166E Garlic                 x12  3 gp
+[11:16:45.143] INFO  [r1a_Corwyn] [VENDOR]   0x40011610 Refresh                x31  16 gp
+[11:16:45.143] LOG   [r1a_Corwyn] event vendor_offer: vendor=0x00009619 items=5
+[11:16:45.143] INFO  [r1a_Corwyn] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[11:16:45.143] LOG   [r1a_Corwyn] event action_result: vendor_buy success took=17ms vendor offer received
+[11:16:45.143] INFO  [r1a_Corwyn] [0x24] vendor buy gump for 0x00009619
+[11:16:45.956] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:16:47.458] INFO  [r1a_Corwyn] [bot] arrived at (2576,601,0)
+[11:16:50.965] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:16:54.147] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:16:54.147] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:16:54.147] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:16:54.147] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:16:54.162] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:16:54.162] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:16:55.994] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:01.053] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:02.157] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:03.156] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:03.156] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:03.156] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:03.156] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:03.172] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:03.172] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:06.087] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:11.104] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:11.167] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:12.173] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:12.174] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:12.174] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:12.174] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:12.189] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:12.189] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:16.135] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:20.212] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:21.195] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:21.195] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:21.195] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:21.195] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:21.195] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:21.210] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:21.210] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:26.233] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:29.233] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:30.215] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:30.215] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:30.215] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:30.215] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:30.231] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:30.231] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:31.259] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:36.288] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:38.252] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:39.262] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:39.262] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:39.262] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:39.262] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:39.262] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:39.262] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:40.913] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/reva01.corwyn/state.json
+[11:17:41.338] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:46.345] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:47.321] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:48.302] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:48.302] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:48.302] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:48.302] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:48.303] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:48.303] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:51.395] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:56.342] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:17:56.403] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:17:57.323] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:17:57.323] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:17:57.323] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:17:57.323] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:17:57.324] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:17:57.324] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:17:58.473] INFO  [r1a_Corwyn] [chat ascii] Erskine: Well it was nice speaking to you Corwyn but I must go about my business
+[11:18:01.430] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:05.348] LOG   [r1a_Corwyn] event action_result: vendor_buy timeout
+[11:18:06.332] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:18:06.332] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:18:06.332] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:18:06.332] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:18:06.348] INFO  [r1a_Corwyn] [chat ascii] System: You can't reach the Vendor
+[11:18:06.348] LOG   [r1a_Corwyn] event action_result: vendor_buy rejected took=16ms You can't reach the Vendor
+[11:18:06.470] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:11.477] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:15.335] INFO  [life] bandages: the healer is 5 tiles off (dz 0) -- walking into reach before buying (chase 1 of 4)
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] mobile 0x00009619 -> (2581,603) r=1 from (2576,601)
+[11:18:15.335] LOG   [r1a_Corwyn] event travel_start: label='mobile 0x00009619' target=(2581,603) radius=1 from=(2576,601)
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] mode walk             usable   <- chosen
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] mode moongate         usable
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:15.335] LOG   [r1a_Corwyn] event travel_mode: walk
+[11:18:15.335] INFO  [r1a_Corwyn] [travel] plan mobile 0x00009619: ok legs=1 ~5 tiles transit=0 nodes=0
+[11:18:15.381] INFO  [r1a_Corwyn] [action] goto finished at (2576,601,0); target (2576,601); ARRIVED (off by 0 tile(s))
+[11:18:15.381] LOG   [r1a_Corwyn] event goto_done: at=(2576,601) target=(2576,601) arrived=1 off=0
+[11:18:15.381] INFO  [r1a_Corwyn] [action] goto (2581,603) from (2576,601,0)
+[11:18:15.381] LOG   [r1a_Corwyn] event goto_start: target=(2581,603) from=(2576,601)
+[11:18:15.381] INFO  [r1a_Corwyn] [bot] running from (2576,601,0) to (2581,603,z0)
+[11:18:15.381] INFO  [r1a_Corwyn] [bot] planning path to (2581,603) in background
+[11:18:16.484] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:16.671] INFO  [r1a_Corwyn] [action] goto finished at (2576,601,0); target (2581,603); stopped short (off by 7 tile(s))
+[11:18:16.671] LOG   [r1a_Corwyn] event goto_done: at=(2576,601) target=(2581,603) arrived=0 off=7
+[11:18:17.899] INFO  [r1a_Corwyn] [action] goto (2581,603) from (2576,601,0)
+[11:18:17.899] LOG   [r1a_Corwyn] event goto_start: target=(2581,603) from=(2576,601)
+[11:18:17.899] INFO  [r1a_Corwyn] [bot] running from (2576,601,0) to (2581,603,z0)
+[11:18:17.899] INFO  [r1a_Corwyn] [bot] planning path to (2581,603) in background
+[11:18:19.281] INFO  [r1a_Corwyn] [action] goto finished at (2576,601,0); target (2581,603); stopped short (off by 7 tile(s))
+[11:18:19.281] LOG   [r1a_Corwyn] event goto_done: at=(2576,601) target=(2581,603) arrived=0 off=7
+[11:18:20.481] INFO  [r1a_Corwyn] [action] goto (2581,603) from (2576,601,0)
+[11:18:20.481] LOG   [r1a_Corwyn] event goto_start: target=(2581,603) from=(2576,601)
+[11:18:20.481] INFO  [r1a_Corwyn] [bot] running from (2576,601,0) to (2581,603,z0)
+[11:18:20.481] INFO  [r1a_Corwyn] [bot] planning path to (2581,603) in background
+[11:18:21.507] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:21.691] INFO  [r1a_Corwyn] [action] goto finished at (2576,601,0); target (2581,603); stopped short (off by 7 tile(s))
+[11:18:21.691] LOG   [r1a_Corwyn] event goto_done: at=(2576,601) target=(2581,603) arrived=0 off=7
+[11:18:22.946] INFO  [r1a_Corwyn] [travel] mode walk             usable   <- chosen
+[11:18:22.946] INFO  [r1a_Corwyn] [travel] mode moongate         usable
+[11:18:22.946] INFO  [r1a_Corwyn] [travel] mode loose_rune_recall no: no rune marked at that destination
+[11:18:22.946] INFO  [r1a_Corwyn] [travel] mode runebook_recall  no: no runebook page for that destination
+[11:18:22.946] LOG   [r1a_Corwyn] event travel_mode: walk
+[11:18:22.946] INFO  [r1a_Corwyn] [travel] plan mobile 0x00009619: ok legs=1 ~5 tiles transit=0 nodes=0
+[11:18:24.482] INFO  [r1a_Corwyn] [action] goto (2581,603) from (2576,601,0)
+[11:18:24.482] LOG   [r1a_Corwyn] event goto_start: target=(2581,603) from=(2576,601)
+[11:18:24.482] INFO  [r1a_Corwyn] [bot] running from (2576,601,0) to (2581,603,z0)
+[11:18:24.482] INFO  [r1a_Corwyn] [bot] planning path to (2581,603) in background
+[11:18:24.544] INFO  [r1a_Corwyn] [bot] replan to (2581,603): 7 steps in 545.2us
+[11:18:24.620] INFO  [r1a_Corwyn] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=8 in 43.3us
+[11:18:26.567] INFO  [r1a_Corwyn] [survival] hp 56/56 (100%) -> fight
+[11:18:26.628] INFO  [r1a_Corwyn] [travel] mobile 0x00009619 ARRIVED at (2580,603,0)
+[11:18:26.628] LOG   [r1a_Corwyn] event travel_done: label='mobile 0x00009619' ok=1 at=(2580,603) legs=1 plans=2 why=''
+[11:18:26.688] INFO  [life] memory_learned=SUPPLIER need=bandage name="clean bandages"
+[11:18:26.688] INFO  [r1a_Corwyn] [ACTION] vendor_buy start
+[11:18:26.688] INFO  [r1a_Corwyn] [policy] allowed NPC purchase of i_bandage (0x0E21): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[11:18:26.688] INFO  [r1a_Corwyn] [VENDOR] buy item=0x400116CE qty=20 from vendor=0x00009619 gold=9326
+[11:18:26.705] INFO  [r1a_Corwyn] [chat ascii] Erskine: Your order cannot be fulfilled, please try again.
+[11:18:26.705] INFO  [r1a_Corwyn] [chat ascii] System: You cannot buy that.
+[11:18:28.242] INFO  [r1a_Corwyn] [bot] arrived at (2581,603,0)

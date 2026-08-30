@@ -1,0 +1,1596 @@
+[00:47:38.200] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh13' char=Ilyandra tag='v_Ilyandra'
+[00:47:38.202] LOG   [v_Ilyandra] event session_start: text log opened
+[00:47:38.204] LOG   [v_Ilyandra] event net_connect_begin: connect 127.0.0.1:2593
+[00:47:38.205] INFO  [v_Ilyandra] [net] connecting to 127.0.0.1:2593 ...
+[00:47:38.207] LOG   [v_Ilyandra] event net_connected: connect 127.0.0.1:2593
+[00:47:38.208] INFO  [v_Ilyandra] [net] connected.
+[00:47:38.209] INFO  [v_Ilyandra] [seed] sent 0x7F000001 (plaintext)
+[00:47:38.210] LOG   [v_Ilyandra] event seed_out: 0x7F000001 hex=7f000001
+[00:47:38.211] INFO  [life] loaded persistent state for Ilyandra (1 places, 0 suppliers, 0 events, 1 prior sessions)
+[00:47:38.211] INFO  [life] needs: reading 'mage' from the profession catalogue
+[00:47:38.211] INFO  [life] build plan 'mage': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 25/25/100 = 150
+[00:47:38.211] INFO  [v_Ilyandra] [life] autonomous player active for 'Ilyandra' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 14 min)
+[00:47:38.227] INFO  [v_Ilyandra] [0xA8] 1 server(s):
+[00:47:38.228] INFO  [v_Ilyandra]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[00:47:38.243] INFO  [v_Ilyandra] [0x8C] game server = 127.0.0.1:2593  seed=0xCC2A92C4
+[00:47:38.243] LOG   [v_Ilyandra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xCC2A92C4
+[00:47:38.244] INFO  [v_Ilyandra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:47:38.244] LOG   [v_Ilyandra] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:47:38.244] INFO  [v_Ilyandra] [0xB9] server features = 0x0005
+[00:47:38.244] INFO  [v_Ilyandra] [0xA9] 5 slot(s) (populated 1):
+[00:47:38.244] INFO  [v_Ilyandra]   [0] Ilyandra
+[00:47:38.245] INFO  [v_Ilyandra]   [1] <empty>
+[00:47:38.245] INFO  [v_Ilyandra]   [2] <empty>
+[00:47:38.245] INFO  [v_Ilyandra]   [3] <empty>
+[00:47:38.245] INFO  [v_Ilyandra]   [4] <empty>
+[00:47:38.245] INFO  [v_Ilyandra] [ui] playing slot 0 ('Ilyandra')
+[00:47:38.259] INFO  [v_Ilyandra] [0x1B] serial=0x00013A77 body=0x0190 pos=(1491,1554,30)
+[00:47:38.259] LOG   [v_Ilyandra] event login_confirm: serial=0x00013A77 body=0x0190 pos=(1491,1554,30)
+[00:47:38.259] INFO  [v_Ilyandra] [0x20] player @(1491,1554,30) facing=1
+[00:47:38.259] INFO  [v_Ilyandra] [0x55] login complete — entering world
+[00:47:38.259] LOG   [v_Ilyandra] event in_world: 0x55 received
+[00:47:38.260] INFO  [v_Ilyandra] [backpack] opening 0x40013A74
+[00:47:38.260] INFO  [v_Ilyandra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:47:38.260] INFO  [v_Ilyandra] [chat ascii] System: There are 2 other players here.
+[00:47:38.260] INFO  [v_Ilyandra] [chat ascii] System: Last logged: 1970/01/01 01:00:00
+[00:47:38.260] INFO  [v_Ilyandra] [chat ascii] System: You are under the protection of the city guards
+[00:47:38.265] INFO  [v_Ilyandra] [action] requesting the skill list
+[00:47:38.265] INFO  [life] in world; asked the server for the skill list
+[00:47:38.266] INFO  [v_Ilyandra] [0x24] open container 0x40013A74 gump=60
+[00:47:38.266] INFO  [v_Ilyandra] [0x3C] container contents: 7 item(s)
+[00:47:38.266] LOG   [v_Ilyandra] event backpack_contents: serial=0x40013A74 items=7
+[00:47:40.849] INFO  [v_Ilyandra] [bot] world data loaded (0 blacklisted spot(s)).
+[00:47:40.849] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[00:47:40.849] INFO  [life]   gold         persisted=1000       server=1000       -> server value accepted
+[00:47:40.849] INFO  [life]   str          persisted=20         server=20         -> server value accepted
+[00:47:40.849] INFO  [life]   dex          persisted=12         server=12         -> server value accepted
+[00:47:40.849] INFO  [life]   int          persisted=48         server=48         -> server value accepted
+[00:47:40.850] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[00:47:40.850] INFO  [life]   skill_46     persisted=50.0       server=50.0       -> server value accepted
+[00:47:40.850] INFO  [life]   skill_16     persisted=0.0        server=0.0        -> server value accepted
+[00:47:40.850] INFO  [life]   position     persisted=1491,1554  server=1491,1554  -> server value accepted
+[00:47:40.850] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:47:40.850] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[00:47:40.850] INFO  [v_Ilyandra] [survival] on
+[00:47:40.850] LOG   [v_Ilyandra] event survival_mode: on
+[00:47:40.852] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:47:40.853] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:47:40.917] INFO  [life] training: looking for a 'mage' to teach Evaluating Intelligence (trip 1)
+[00:47:40.920] INFO  [v_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1491,1554)
+[00:47:40.920] LOG   [v_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1491,1554)
+[00:47:40.920] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:47:40.920] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:47:40.921] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:47:40.921] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:47:40.921] LOG   [v_Ilyandra] event travel_mode: walk
+[00:47:40.921] INFO  [v_Ilyandra] [travel] plan Britain mage: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:47:40.979] INFO  [v_Ilyandra] [action] goto (1485,1550) from (1491,1554,30)
+[00:47:40.982] LOG   [v_Ilyandra] event goto_start: target=(1485,1550) from=(1491,1554)
+[00:47:40.982] INFO  [v_Ilyandra] [bot] running from (1491,1554,30) to (1485,1550,z30)
+[00:47:40.982] INFO  [v_Ilyandra] [bot] planning path to (1485,1550) in background
+[00:47:40.994] INFO  [v_Ilyandra] [bot] replan to (1485,1550): 7 steps in 205.6us
+[00:47:41.426] INFO  [v_Ilyandra] [travel] Britain mage ARRIVED at (1490,1553,30)
+[00:47:41.426] LOG   [v_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1490,1553) legs=1 plans=1 why=''
+[00:47:42.928] INFO  [life] training: arrived at 1487,1551 -- asking who is here
+[00:47:42.928] INFO  [v_Ilyandra] [action] scanning nearby mobiles for names
+[00:47:42.929] INFO  [v_Ilyandra] [action] requested 5 paperdoll(s) for trade titles
+[00:47:42.943] INFO  [v_Ilyandra] [mobiles] nearby (5):
+[00:47:42.944] INFO  [v_Ilyandra]   Caedmon 0x000012EE
+[00:47:42.944] INFO  [v_Ilyandra]   Xanthe 0x00001211
+[00:47:42.944] INFO  [v_Ilyandra]   Alenne 0x00001145
+[00:47:42.944] INFO  [v_Ilyandra]   Shunnar 0x0000E14F
+[00:47:42.944] INFO  [v_Ilyandra]   Ysolde 0x00013C94
+[00:47:42.945] INFO  [v_Ilyandra] [0x20] player @(1487,1551,30) facing=2
+[00:47:42.946] INFO  [v_Ilyandra] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[00:47:42.946] INFO  [v_Ilyandra] [world] Caedmon, the mage guildmaster is a mage at (1489,1551)
+[00:47:42.946] INFO  [v_Ilyandra] [0x20] player @(1487,1551,30) facing=7
+[00:47:42.946] INFO  [v_Ilyandra] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[00:47:42.946] INFO  [v_Ilyandra] [world] Xanthe, the alchemist is a alchemist at (1484,1548)
+[00:47:42.946] INFO  [v_Ilyandra] [0x20] player @(1487,1551,30) facing=1
+[00:47:42.946] INFO  [v_Ilyandra] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[00:47:42.947] INFO  [v_Ilyandra] [world] Alenne, the mage is a mage at (1489,1548)
+[00:47:42.947] INFO  [v_Ilyandra] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[00:47:42.947] INFO  [v_Ilyandra] [world] Shunnar, the scribe is a scribe at (1491,1547)
+[00:47:42.947] INFO  [v_Ilyandra] [0x88] paperdoll 0x00013C94: "Ysolde, Apprentice Scribe"
+[00:47:43.036] INFO  [v_Ilyandra] [chat ascii] Xanthe: Aye?
+[00:47:45.461] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[00:47:45.468] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[00:47:45.468] INFO  [v_Ilyandra] [ACTION] npc_train start
+[00:47:45.468] INFO  [v_Ilyandra] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[00:47:45.468] LOG   [v_Ilyandra] event npc_train_ask: Caedmon train EvaluatingIntel
+[00:47:45.469] INFO  [v_Ilyandra] [chat uni  ] : Caedmon train EvaluatingIntel
+[00:47:45.469] INFO  [v_Ilyandra] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:47:45.469] INFO  [v_Ilyandra] [ACTION_RESULT] npc_train success (1ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:47:45.469] LOG   [v_Ilyandra] event action_result: npc_train success took=1ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:47:45.891] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:47:47.990] INFO  [v_Ilyandra] [action] open backpack
+[00:47:47.990] INFO  [v_Ilyandra] [backpack] opening 0x40013A74
+[00:47:47.990] INFO  [v_Ilyandra] [0x24] open container 0x40013A74 gump=60
+[00:47:47.991] INFO  [v_Ilyandra] [0x3C] container contents: 7 item(s)
+[00:47:49.232] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 1000)
+[00:47:49.232] INFO  [v_Ilyandra] [GIVE] 0x40013A72 x300 -> 0x000012EE (gold 1000)
+[00:47:49.232] INFO  [v_Ilyandra] [ITEM] drag serial=0x40013A72 amount=300
+[00:47:49.232] INFO  [v_Ilyandra] [ITEM] drop container=0x000012EE
+[00:47:49.232] LOG   [v_Ilyandra] event npc_give: item=0x40013A72 amount=300 to=0x000012EE
+[00:47:50.915] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:47:53.236] INFO  [v_Ilyandra] [action] requesting the skill list
+[00:47:55.931] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:00.989] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:05.484] INFO  [life] training: paid 300 for Evaluating Intelligence but the server still reports 0.0 after 15s
+[00:48:06.037] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:07.033] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[00:48:07.033] INFO  [v_Ilyandra] [ACTION] npc_train start
+[00:48:07.033] INFO  [v_Ilyandra] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[00:48:07.034] LOG   [v_Ilyandra] event npc_train_ask: Caedmon train EvaluatingIntel
+[00:48:07.034] INFO  [v_Ilyandra] [chat uni  ] : Caedmon train EvaluatingIntel
+[00:48:07.034] INFO  [v_Ilyandra] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:07.034] INFO  [v_Ilyandra] [ACTION_RESULT] npc_train success (1ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:07.035] LOG   [v_Ilyandra] event action_result: npc_train success took=1ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:09.548] INFO  [v_Ilyandra] [action] open backpack
+[00:48:09.549] INFO  [v_Ilyandra] [backpack] opening 0x40013A74
+[00:48:09.564] INFO  [v_Ilyandra] [0x24] open container 0x40013A74 gump=60
+[00:48:09.565] INFO  [v_Ilyandra] [0x3C] container contents: 8 item(s)
+[00:48:10.794] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 1000)
+[00:48:10.795] INFO  [v_Ilyandra] [GIVE] 0x4000E2C7 x300 -> 0x000012EE (gold 1000)
+[00:48:10.795] INFO  [v_Ilyandra] [ITEM] drag serial=0x4000E2C7 amount=300
+[00:48:10.795] INFO  [v_Ilyandra] [ITEM] drop container=0x000012EE
+[00:48:10.795] LOG   [v_Ilyandra] event npc_give: item=0x4000E2C7 amount=300 to=0x000012EE
+[00:48:11.042] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:14.850] INFO  [v_Ilyandra] [action] requesting the skill list
+[00:48:15.459] INFO  [v_Ilyandra] [chat ascii] Alenne: Nice speaking to you Ysolde
+[00:48:16.053] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:19.501] INFO  [v_Ilyandra] [chat uni  ] : Shunnar buy
+[00:48:19.501] INFO  [v_Ilyandra] [chat ascii] Shunnar: Thou surely wants all the things that I can sell thee.
+[00:48:21.082] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:26.129] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:27.095] INFO  [life] training: paid 300 for Evaluating Intelligence but the server still reports 0.0 after 15s
+[00:48:27.740] INFO  [v_Ilyandra] [chat ascii] System: Voris has arrived in Britain.
+[00:48:28.618] INFO  [life] training: asking the trainer about Evaluating Intelligence
+[00:48:28.618] INFO  [v_Ilyandra] [ACTION] npc_train start
+[00:48:28.618] INFO  [v_Ilyandra] [TRAIN] ask 0x000012EE say='Caedmon train EvaluatingIntel'
+[00:48:28.618] LOG   [v_Ilyandra] event npc_train_ask: Caedmon train EvaluatingIntel
+[00:48:28.634] INFO  [v_Ilyandra] [chat uni  ] : Caedmon train EvaluatingIntel
+[00:48:28.634] INFO  [v_Ilyandra] [chat ascii] Caedmon: For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:28.634] INFO  [v_Ilyandra] [ACTION_RESULT] npc_train success (16ms) For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:28.634] LOG   [v_Ilyandra] event action_result: npc_train success took=16ms For 300 gold I will train you in all I know of EvaluatingIntel. For less gold I will teach you less
+[00:48:31.147] INFO  [v_Ilyandra] [action] open backpack
+[00:48:31.148] INFO  [v_Ilyandra] [backpack] opening 0x40013A74
+[00:48:31.148] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:31.148] INFO  [v_Ilyandra] [0x24] open container 0x40013A74 gump=60
+[00:48:31.148] INFO  [v_Ilyandra] [0x3C] container contents: 9 item(s)
+[00:48:32.350] INFO  [life] training: paying the quoted 300 gold for Evaluating Intelligence (purse 1000)
+[00:48:32.351] INFO  [v_Ilyandra] [GIVE] 0x40013A72 x300 -> 0x000012EE (gold 1000)
+[00:48:32.351] INFO  [v_Ilyandra] [ITEM] drag serial=0x40013A72 amount=300
+[00:48:32.351] INFO  [v_Ilyandra] [ITEM] drop container=0x000012EE
+[00:48:32.351] LOG   [v_Ilyandra] event npc_give: item=0x40013A72 amount=300 to=0x000012EE
+[00:48:32.351] INFO  [v_Ilyandra] [chat ascii] Caedmon: Let me show you something of how this is done
+[00:48:32.352] INFO  [v_Ilyandra] [chat ascii] Caedmon: That is all I can teach.
+[00:48:36.176] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:36.361] INFO  [v_Ilyandra] [action] requesting the skill list
+[00:48:36.362] INFO  [life] goal_changed=GET_FOOD from=TRAIN_AT_NPC reason="GET_FOOD 62.5 superseded TRAIN_AT_NPC 0.0"
+[00:48:36.362] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:48:36.362] INFO  [life]   score=62.5
+[00:48:36.362] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:48:36.362] INFO  [life]   reason: food=0
+[00:48:37.869] INFO  [life] food: casting Create Food rather than shopping (magery 50.0, mana 48)
+[00:48:37.870] INFO  [v_Ilyandra] [ACTION] cast_spell start
+[00:48:37.870] INFO  [v_Ilyandra] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[00:48:37.884] INFO  [v_Ilyandra] [chat ascii] System: The spell is not in your spellbook.
+[00:48:37.886] LOG   [v_Ilyandra] event action_result: cast_spell server_failure took=14ms The spell is not in your spellbook.
+[00:48:40.875] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:48:41.179] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:42.834] INFO  [v_Ilyandra] [chat ascii] System: Kaelen has arrived in Britain.
+[00:48:43.919] INFO  [life] food: Create Food is not in this character's spellbook (magery 50.0) -- buying food instead for the rest of the session
+[00:48:43.920] INFO  [life] food: looking for a baker (trip 1)
+[00:48:43.920] INFO  [v_Ilyandra] [travel] Britain baker -> (1450,1617) r=5 from (1487,1551)
+[00:48:43.920] LOG   [v_Ilyandra] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1487,1551)
+[00:48:43.920] INFO  [v_Ilyandra] [travel] mode moongate         usable   <- chosen
+[00:48:43.921] INFO  [v_Ilyandra] [travel] mode walk             usable
+[00:48:43.921] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:48:43.921] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:48:43.921] LOG   [v_Ilyandra] event travel_mode: moongate
+[00:48:43.921] INFO  [v_Ilyandra] [travel] plan Britain baker: ok legs=3 ~96 tiles transit=0 nodes=16
+[00:48:43.979] INFO  [v_Ilyandra] [action] goto finished at (1487,1551,30); target (1485,1550); stopped short (off by 3 tile(s))
+[00:48:43.980] LOG   [v_Ilyandra] event goto_done: at=(1487,1551) target=(1485,1550) arrived=0 off=3
+[00:48:43.980] INFO  [v_Ilyandra] [action] goto (1480,1574) from (1487,1551,30)
+[00:48:43.980] LOG   [v_Ilyandra] event goto_start: target=(1480,1574) from=(1487,1551)
+[00:48:43.980] INFO  [v_Ilyandra] [bot] running from (1487,1551,30) to (1480,1574)
+[00:48:43.981] INFO  [v_Ilyandra] [bot] planning path to (1480,1574) in background
+[00:48:44.041] INFO  [v_Ilyandra] [bot] replan to (1480,1574): 32 steps in 2161.9us
+[00:48:46.237] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:51.240] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:48:53.550] INFO  [v_Ilyandra] [bot] arrived at (1480,1574,30)
+[00:48:53.551] INFO  [v_Ilyandra] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[00:48:53.552] LOG   [v_Ilyandra] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[00:48:53.552] INFO  [v_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:48:53.552] INFO  [v_Ilyandra] [action] goto (1464,1608) from (1480,1574,30)
+[00:48:53.552] LOG   [v_Ilyandra] event goto_start: target=(1464,1608) from=(1480,1574)
+[00:48:53.552] INFO  [v_Ilyandra] [bot] running from (1480,1574,30) to (1464,1608)
+[00:48:53.553] INFO  [v_Ilyandra] [bot] planning path to (1464,1608) in background
+[00:48:53.610] INFO  [v_Ilyandra] [bot] replan to (1464,1608): 48 steps in 1767.3us
+[00:48:56.288] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:01.341] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:04.465] INFO  [v_Ilyandra] [chat ascii] System: World save in 10 seconds
+[00:49:06.383] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:06.384] INFO  [v_Ilyandra] [bot] arrived at (1464,1608,20)
+[00:49:06.384] INFO  [v_Ilyandra] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[00:49:06.385] LOG   [v_Ilyandra] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[00:49:06.385] INFO  [v_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:49:06.385] INFO  [v_Ilyandra] [action] goto (1450,1617) from (1464,1608,20)
+[00:49:06.385] LOG   [v_Ilyandra] event goto_start: target=(1450,1617) from=(1464,1608)
+[00:49:06.385] INFO  [v_Ilyandra] [bot] running from (1464,1608,20) to (1450,1617,z20)
+[00:49:06.385] INFO  [v_Ilyandra] [bot] planning path to (1450,1617) in background
+[00:49:06.446] INFO  [v_Ilyandra] [bot] replan to (1450,1617): 14 steps in 471.0us
+[00:49:07.538] INFO  [v_Ilyandra] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[00:49:07.538] INFO  [v_Ilyandra] [chat ascii] System: Opening door...
+[00:49:09.976] INFO  [v_Ilyandra] [travel] Britain baker ARRIVED at (1455,1614,20)
+[00:49:09.977] LOG   [v_Ilyandra] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=3 plans=1 why=''
+[00:49:09.977] INFO  [v_Ilyandra] [action] scanning nearby mobiles for names
+[00:49:09.978] INFO  [v_Ilyandra] [action] requested 1 paperdoll(s) for trade titles
+[00:49:09.992] INFO  [v_Ilyandra] [mobiles] nearby (3):
+[00:49:09.992] INFO  [v_Ilyandra]   Lionel 0x000010B3
+[00:49:09.992] INFO  [v_Ilyandra]   Voris 0x00014094
+[00:49:09.992] INFO  [v_Ilyandra]   Natasha 0x00001194
+[00:49:09.994] INFO  [v_Ilyandra] [0x20] player @(1454,1614,20) facing=7
+[00:49:09.994] INFO  [v_Ilyandra] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:49:09.994] INFO  [v_Ilyandra] [world] Lionel, the baker is a baker at (1453,1612)
+[00:49:11.435] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:12.491] INFO  [life] food: nothing to eat -- asking the baker
+[00:49:12.491] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:49:12.492] INFO  [v_Ilyandra] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:49:12.493] INFO  [v_Ilyandra] [chat uni  ] : Lionel buy
+[00:49:12.493] INFO  [v_Ilyandra] [chat ascii] Lionel: What dost thou need?
+[00:49:12.493] INFO  [v_Ilyandra] [chat ascii] Lionel: My shop sells many things.
+[00:49:12.493] INFO  [v_Ilyandra] [0x3C] container contents: 11 item(s)
+[00:49:12.494] INFO  [v_Ilyandra] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:49:12.494] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:49:12.494] INFO  [v_Ilyandra] [0x74]   bread loaves                 gfx=0x103B qty=56   price=8
+[00:49:12.494] INFO  [v_Ilyandra] [0x74]   baked pie                    gfx=0x1041 qty=5    price=17
+[00:49:12.494] INFO  [v_Ilyandra] [0x74]   cake                         gfx=0x09E9 qty=13   price=38
+[00:49:12.494] INFO  [v_Ilyandra] [0x74]   muffins                      gfx=0x09EA qty=18   price=8
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   sack of flour                gfx=0x1039 qty=66   price=6
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   french bread                 gfx=0x098C qty=82   price=9
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   pan of cookies               gfx=0x160B qty=31   price=7
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   pizzas                       gfx=0x1040 qty=74   price=15
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   jars of honey                gfx=0x09EC qty=73   price=10
+[00:49:12.495] INFO  [v_Ilyandra] [0x74]   dough                        gfx=0x103D qty=44   price=12
+[00:49:12.496] INFO  [v_Ilyandra] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:49:12.497] INFO  [v_Ilyandra] [0x3C] container contents: 0 item(s)
+[00:49:12.498] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:49:12.498] INFO  [v_Ilyandra] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:49:12.498] INFO  [v_Ilyandra] [VENDOR]   0x4000C136 bread loaves           x56  8 gp
+[00:49:12.498] INFO  [v_Ilyandra] [VENDOR]   0x4000C134 baked pie              x5   17 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C132 cake                   x13  38 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C12E muffins                x18  8 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C12D sack of flour          x66  6 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C12C french bread           x82  9 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C126 pan of cookies         x31  7 gp
+[00:49:12.499] INFO  [v_Ilyandra] [VENDOR]   0x4000C125 pizzas                 x74  15 gp
+[00:49:12.500] LOG   [v_Ilyandra] event vendor_offer: vendor=0x000010B3 items=11
+[00:49:12.500] INFO  [v_Ilyandra] [ACTION_RESULT] vendor_buy success (9ms) vendor offer received
+[00:49:12.500] LOG   [v_Ilyandra] event action_result: vendor_buy success took=9ms vendor offer received
+[00:49:12.500] INFO  [v_Ilyandra] [0x24] vendor buy gump for 0x000010B3
+[00:49:14.490] INFO  [v_Ilyandra] [chat ascii] System: World save has been initiated.
+[00:49:16.498] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:21.522] INFO  [life] food: buying bread loaves from the baker at 8 gold
+[00:49:21.523] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:49:21.523] INFO  [v_Ilyandra] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:49:21.523] INFO  [v_Ilyandra] [VENDOR] buy item=0x4000C136 qty=2 from vendor=0x000010B3 gold=700
+[00:49:21.523] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:21.539] INFO  [v_Ilyandra] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:49:21.539] LOG   [v_Ilyandra] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:49:21.539] INFO  [v_Ilyandra] [chat ascii] Lionel: Here you are, Ilyandra That will be 16 gold coins.  I thank thee for thy business.
+[00:49:21.539] INFO  [v_Ilyandra] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[00:49:21.540] INFO  [life] goal_changed=PRACTICE_SKILL from=GET_FOOD reason="PRACTICE_SKILL 45.0 superseded GET_FOOD 0.0"
+[00:49:21.540] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:21.540] INFO  [life]   score=45.0
+[00:49:21.540] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:49:21.540] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:49:26.529] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:30.560] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:49:30.621] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:49:30.621] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:30.621] INFO  [life]   score=45.0
+[00:49:30.622] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:49:30.622] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:49:31.583] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:35.615] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:49:35.675] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:49:35.676] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:35.676] INFO  [life]   score=45.0
+[00:49:35.676] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:49:35.676] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:49:36.594] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:40.649] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:49:40.710] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:49:40.711] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:40.711] INFO  [life]   score=45.0
+[00:49:40.711] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:49:40.711] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:49:40.898] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:49:41.616] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:45.687] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:49:45.748] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:49:45.748] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:45.748] INFO  [life]   score=45.0
+[00:49:45.748] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:49:45.748] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:49:46.662] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:50.736] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:49:50.797] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:49:50.797] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:49:50.797] INFO  [life]   score=38.5
+[00:49:50.798] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:49:50.798] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:49:50.798] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:49:51.669] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:55.738] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a spellbook (trip 1)
+[00:49:55.738] INFO  [v_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1454,1614)
+[00:49:55.738] LOG   [v_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1454,1614)
+[00:49:55.738] INFO  [v_Ilyandra] [travel] mode moongate         usable   <- chosen
+[00:49:55.739] INFO  [v_Ilyandra] [travel] mode walk             usable
+[00:49:55.739] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:49:55.739] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:49:55.739] LOG   [v_Ilyandra] event travel_mode: moongate
+[00:49:55.739] INFO  [v_Ilyandra] [travel] plan Britain mage: ok legs=2 ~88 tiles transit=0 nodes=18
+[00:49:55.768] INFO  [v_Ilyandra] [action] goto finished at (1454,1614,20); target (1450,1617); stopped short (off by 7 tile(s))
+[00:49:55.768] LOG   [v_Ilyandra] event goto_done: at=(1454,1614) target=(1450,1617) arrived=0 off=7
+[00:49:55.768] INFO  [v_Ilyandra] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:49:55.769] INFO  [v_Ilyandra] [action] goto (1480,1574) from (1454,1614,20)
+[00:49:55.769] LOG   [v_Ilyandra] event goto_start: target=(1480,1574) from=(1454,1614)
+[00:49:55.769] INFO  [v_Ilyandra] [bot] running from (1454,1614,20) to (1480,1574)
+[00:49:55.769] INFO  [v_Ilyandra] [bot] planning path to (1480,1574) in background
+[00:49:55.830] INFO  [v_Ilyandra] [bot] replan to (1480,1574): 57 steps in 13619.7us
+[00:49:56.673] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:49:57.759] INFO  [v_Ilyandra] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[00:49:57.760] INFO  [v_Ilyandra] [chat ascii] System: Opening door...
+[00:50:01.712] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:06.743] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:11.782] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:12.243] INFO  [v_Ilyandra] [bot] arrived at (1480,1574,30)
+[00:50:12.243] INFO  [v_Ilyandra] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[00:50:12.243] LOG   [v_Ilyandra] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[00:50:12.243] INFO  [v_Ilyandra] [action] goto (1485,1550) from (1480,1574,30)
+[00:50:12.244] LOG   [v_Ilyandra] event goto_start: target=(1485,1550) from=(1480,1574)
+[00:50:12.244] INFO  [v_Ilyandra] [bot] running from (1480,1574,30) to (1485,1550,z30)
+[00:50:12.244] INFO  [v_Ilyandra] [bot] planning path to (1485,1550) in background
+[00:50:12.303] INFO  [v_Ilyandra] [bot] replan to (1485,1550): 34 steps in 3099.6us
+[00:50:16.816] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:19.550] INFO  [v_Ilyandra] [travel] Britain mage ARRIVED at (1490,1555,30)
+[00:50:19.551] LOG   [v_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=2 plans=1 why=''
+[00:50:19.611] INFO  [life] FILL_SPELLBOOK: the mage is 8 tiles away -- walking up
+[00:50:19.612] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1485,1547) r=1 from (1490,1555)
+[00:50:19.612] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1485,1547) radius=1 from=(1490,1555)
+[00:50:19.612] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:50:19.612] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:50:19.612] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:50:19.613] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:50:19.613] LOG   [v_Ilyandra] event travel_mode: walk
+[00:50:19.613] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:50:21.870] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:22.177] INFO  [v_Ilyandra] [bot] arrived at (1485,1550,30)
+[00:50:22.178] INFO  [v_Ilyandra] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[00:50:22.178] LOG   [v_Ilyandra] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[00:50:22.178] INFO  [v_Ilyandra] [action] goto (1485,1547) from (1485,1550,30)
+[00:50:22.178] LOG   [v_Ilyandra] event goto_start: target=(1485,1547) from=(1485,1550)
+[00:50:22.178] INFO  [v_Ilyandra] [bot] running from (1485,1550,30) to (1485,1547,z70)
+[00:50:22.178] INFO  [v_Ilyandra] [bot] planning path to (1485,1547) in background
+[00:50:23.645] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:50:23.766] INFO  [v_Ilyandra] [action] goto finished at (1485,1550,30); target (1485,1547); stopped short (off by 3 tile(s))
+[00:50:23.767] LOG   [v_Ilyandra] event goto_done: at=(1485,1550) target=(1485,1547) arrived=0 off=3
+[00:50:24.993] INFO  [v_Ilyandra] [action] goto (1485,1547) from (1485,1550,30)
+[00:50:24.993] LOG   [v_Ilyandra] event goto_start: target=(1485,1547) from=(1485,1550)
+[00:50:24.994] INFO  [v_Ilyandra] [bot] running from (1485,1550,30) to (1485,1547,z70)
+[00:50:24.994] INFO  [v_Ilyandra] [bot] planning path to (1485,1547) in background
+[00:50:25.055] INFO  [v_Ilyandra] [bot] replan to (1485,1547): 21 steps in 1900.9us
+[00:50:25.881] INFO  [v_Ilyandra] [travel] mobile 0x00001145 FAILED at (1485,1547,45) -- arrived above or below the destination's floor
+[00:50:25.882] LOG   [v_Ilyandra] event travel_failed: label='mobile 0x00001145' ok=0 at=(1485,1547) legs=1 plans=1 why='arrived above or below the destination's floor'
+[00:50:25.942] INFO  [life] FILL_SPELLBOOK: asking the mage to show a spellbook
+[00:50:25.943] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:50:25.943] INFO  [v_Ilyandra] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[00:50:25.944] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:50:25.944] INFO  [v_Ilyandra] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[00:50:25.944] INFO  [v_Ilyandra] [0x3C] container contents: 17 item(s)
+[00:50:25.945] INFO  [v_Ilyandra] [0x74] pairing: straight (straight 10, mirrored 1 of 17 rows)
+[00:50:25.945] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[00:50:25.945] INFO  [v_Ilyandra] [0x74]   Refresh                      gfx=0x0F0B qty=12   price=16
+[00:50:25.945] INFO  [v_Ilyandra] [0x74]   Agility                      gfx=0x0F08 qty=6    price=23
+[00:50:25.945] INFO  [v_Ilyandra] [0x74]   Nightsight                   gfx=0x0F06 qty=14   price=16
+[00:50:25.945] INFO  [v_Ilyandra] [0x74]   Heal                         gfx=0x0F0C qty=18   price=30
+[00:50:25.945] INFO  [v_Ilyandra] [0x74]   Strength                     gfx=0x0F09 qty=5    price=31
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Poison                       gfx=0x0F0A qty=10   price=26
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Cure                         gfx=0x0F07 qty=12   price=35
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   mortar and pestle            gfx=0x0E9B qty=15   price=16
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[00:50:25.946] INFO  [v_Ilyandra] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[00:50:25.947] INFO  [v_Ilyandra] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[00:50:25.947] INFO  [v_Ilyandra] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[00:50:25.947] INFO  [v_Ilyandra] [0x74]   empty bottles                gfx=0x0F0E qty=250  price=12
+[00:50:25.947] INFO  [v_Ilyandra] [0x3C] container contents: 0 item(s)
+[00:50:25.947] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[00:50:25.947] INFO  [v_Ilyandra] [VENDOR] offer from 0x00001211: 17 item(s)
+[00:50:25.947] INFO  [v_Ilyandra] [VENDOR]   0x40014517 Refresh                x12  16 gp
+[00:50:25.947] INFO  [v_Ilyandra] [VENDOR]   0x4001450F Agility                x6   23 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x4001450C Nightsight             x14  16 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x4001450A Heal                   x18  30 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x40014503 Strength               x5   31 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x40014500 Poison                 x10  26 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x400144ED Cure                   x12  35 gp
+[00:50:25.948] INFO  [v_Ilyandra] [VENDOR]   0x400144E9 mortar and pestle      x15  16 gp
+[00:50:25.948] LOG   [v_Ilyandra] event vendor_offer: vendor=0x00001211 items=17
+[00:50:25.949] INFO  [v_Ilyandra] [VENDOR] offer from 0x00001211 is not the vendor we asked (0x00001145); still waiting
+[00:50:25.949] INFO  [v_Ilyandra] [0x24] vendor buy gump for 0x00001211
+[00:50:26.910] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:29.974] INFO  [v_Ilyandra] [chat ascii] Shunnar: Hmm?
+[00:50:29.974] INFO  [v_Ilyandra] [chat ascii] Shunnar: Aye?
+[00:50:31.673] INFO  [v_Ilyandra] [bot] arrived at (1485,1547,70)
+[00:50:31.919] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:32.692] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:50:33.460] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:50:33.460] INFO  [v_Ilyandra] [chat ascii] Alenne: Greetings. What can I help thee with?
+[00:50:33.460] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:50:33.949] LOG   [v_Ilyandra] event action_result: vendor_buy timeout
+[00:50:34.945] INFO  [life] FILL_SPELLBOOK: asking the mage to show a spellbook
+[00:50:34.946] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:50:34.946] INFO  [v_Ilyandra] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[00:50:34.947] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:50:34.947] INFO  [v_Ilyandra] [chat ascii] Alenne: Excuse me Voris, but Ilyandra wants to speak to me
+[00:50:34.947] INFO  [v_Ilyandra] [chat ascii] Alenne: Greetings. What can I help thee with?
+[00:50:34.947] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:50:34.947] INFO  [v_Ilyandra] [0x3C] container contents: 17 item(s)
+[00:50:34.947] INFO  [v_Ilyandra] [0x74] pairing: straight (straight 11, mirrored 1 of 17 rows)
+[00:50:34.948] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   Heal Scroll                  gfx=0x1F31 qty=19   price=23
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   Protection Scroll            gfx=0x1F3B qty=7    price=24
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   Telekinisis Scroll           gfx=0x1F41 qty=6    price=23
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   Recall Scroll                gfx=0x1F4C qty=20   price=46
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   Bones                        gfx=0x0F7E qty=46   price=3
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[00:50:34.948] INFO  [v_Ilyandra] [0x74]   recall rune                  gfx=0x1F14 qty=2    price=22
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[00:50:34.949] INFO  [v_Ilyandra] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[00:50:34.950] INFO  [v_Ilyandra] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[00:50:34.950] INFO  [v_Ilyandra] [0x74]   Spellbook                    gfx=0x0EFA qty=4    price=18
+[00:50:34.950] INFO  [v_Ilyandra] [0x3C] container contents: 0 item(s)
+[00:50:34.950] INFO  [v_Ilyandra] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[00:50:34.950] INFO  [v_Ilyandra] [VENDOR] offer from 0x00001145: 17 item(s)
+[00:50:34.950] INFO  [v_Ilyandra] [VENDOR]   0x40018475 Heal Scroll            x19  23 gp
+[00:50:34.950] INFO  [v_Ilyandra] [VENDOR]   0x4001843F Protection Scroll      x7   24 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x4001843E Telekinisis Scroll     x6   23 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x4001843D Recall Scroll          x20  46 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x40018393 Bones                  x46  3 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x40018391 pen and ink            x10  13 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x40018390 recall rune            x2   22 gp
+[00:50:34.951] INFO  [v_Ilyandra] [VENDOR]   0x4001838F blank scrolls          x250 6 gp
+[00:50:34.951] LOG   [v_Ilyandra] event vendor_offer: vendor=0x00001145 items=17
+[00:50:34.952] INFO  [v_Ilyandra] [ACTION_RESULT] vendor_buy success (6ms) vendor offer received
+[00:50:34.952] LOG   [v_Ilyandra] event action_result: vendor_buy success took=6ms vendor offer received
+[00:50:34.952] INFO  [v_Ilyandra] [0x24] vendor buy gump for 0x00001145
+[00:50:36.001] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:50:36.979] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:40.930] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:50:41.713] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:50:42.013] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:43.945] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:50:43.946] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:50:43.947] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:50:45.046] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:50:45.046] INFO  [v_Ilyandra] [chat ascii] Alenne: Excuse me Ilyandra, but Voris wants to speak to me
+[00:50:45.046] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:50:47.041] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:47.564] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:50:50.747] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:50:50.748] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:50:50.748] INFO  [life]   score=45.0
+[00:50:50.748] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:50:50.748] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:50:50.763] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:50:52.052] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:52.970] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:50:53.032] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:50:53.033] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:50:53.033] INFO  [life]   score=45.0
+[00:50:53.033] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:50:53.033] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:50:56.616] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:50:56.616] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:50:57.107] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:50:57.986] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:50:58.049] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:50:58.049] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:50:58.049] INFO  [life]   score=45.0
+[00:50:58.050] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:50:58.050] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:50:59.172] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:50:59.799] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:51:02.110] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:03.044] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:51:03.106] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:51:03.106] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:51:03.106] INFO  [life]   score=45.0
+[00:51:03.107] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:51:03.107] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:51:07.141] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:08.062] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:51:08.123] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:51:08.123] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:51:08.123] INFO  [life]   score=45.0
+[00:51:08.123] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:51:08.124] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:51:08.199] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:51:08.200] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:51:08.831] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:51:10.748] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:51:12.177] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:13.064] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:51:13.125] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:51:13.125] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:51:13.125] INFO  [life]   score=38.5
+[00:51:13.125] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:51:13.126] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:51:13.126] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:51:17.200] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:17.874] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:51:18.118] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:51:18.118] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:51:18.119] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:51:19.786] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:51:19.786] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:51:22.221] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:22.300] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:51:27.121] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:51:27.122] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:51:27.123] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:51:27.246] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:31.301] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:51:31.301] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:51:32.280] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:33.812] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:51:36.141] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:51:36.142] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:51:36.143] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:51:37.311] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:40.322] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:51:40.936] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:51:42.346] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:42.837] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:51:42.837] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:51:45.163] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:51:45.164] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:51:45.165] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:51:45.363] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:51:47.356] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:49.336] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:51:52.397] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:54.176] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:51:54.177] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:51:54.177] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:51:54.237] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[00:51:54.237] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:51:54.237] INFO  [life]   score=38.5
+[00:51:54.237] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:51:54.238] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:51:54.238] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 18s after achieving nothing
+[00:51:54.363] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:51:54.364] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:51:56.928] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:51:57.419] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:51:58.386] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:02.429] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:03.227] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:52:03.227] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:52:03.228] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:52:05.989] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:52:05.989] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:52:07.428] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:07.488] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:08.494] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:52:12.230] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:52:12.231] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:52:12.231] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:52:12.537] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:14.253] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:52:14.253] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:14.254] INFO  [life]   score=45.0
+[00:52:14.254] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:52:14.254] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:52:16.457] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:17.514] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:52:17.514] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:52:17.572] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:17.773] INFO  [v_Ilyandra] [chat ascii] Shunnar: What's thee wantin'?
+[00:52:20.076] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:52:21.286] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:52:21.347] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:52:21.347] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:21.348] INFO  [life]   score=45.0
+[00:52:21.348] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:52:21.348] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:52:22.593] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:25.481] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:26.334] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:52:26.395] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:52:26.395] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:26.395] INFO  [life]   score=45.0
+[00:52:26.396] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:52:26.396] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:52:27.634] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:29.111] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:52:29.111] INFO  [v_Ilyandra] [chat ascii] Alenne: I'm here to sell thee supplies.
+[00:52:31.375] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:52:31.438] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:52:31.438] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:31.438] INFO  [life]   score=45.0
+[00:52:31.438] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:52:31.439] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:52:31.623] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:52:32.671] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:34.489] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:36.399] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:52:36.461] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:52:36.461] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:36.462] INFO  [life]   score=45.0
+[00:52:36.462] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:52:36.462] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:52:37.721] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:40.673] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:52:40.673] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:52:40.981] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:52:41.406] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:52:41.468] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:52:41.468] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:52:41.468] INFO  [life]   score=38.5
+[00:52:41.469] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:52:41.469] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:52:41.469] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:52:42.723] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:43.231] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:52:43.539] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:46.449] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:52:46.449] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:52:46.450] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:52:47.783] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:52.274] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:52:52.275] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:52:52.563] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:52:52.806] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:52:54.785] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:52:55.458] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:52:55.458] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:52:55.459] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:52:57.844] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:01.618] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:53:02.870] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:03.822] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:53:03.822] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:53:04.466] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:53:04.467] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:53:04.467] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:53:06.348] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:53:07.897] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:10.635] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:53:12.925] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:13.477] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:53:13.477] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:53:13.478] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:53:15.374] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:53:15.375] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:53:17.897] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:53:17.957] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:22.527] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:53:22.527] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:53:22.528] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:53:22.589] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[00:53:22.589] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:53:22.590] INFO  [life]   score=38.5
+[00:53:22.590] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:53:22.590] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:53:22.590] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 18s after achieving nothing
+[00:53:23.018] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:26.944] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:53:26.944] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:53:28.029] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:29.474] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:53:31.574] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:53:31.574] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:53:31.575] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:53:33.082] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:38.122] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:38.507] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:53:38.508] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:53:40.587] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:53:40.587] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:53:40.588] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:53:40.986] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:53:41.060] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:53:42.600] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:53:42.601] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:53:42.601] INFO  [life]   score=45.0
+[00:53:42.601] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:53:42.602] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:53:43.149] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:48.158] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:49.599] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:53:49.660] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:53:49.660] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:53:49.660] INFO  [life]   score=45.0
+[00:53:49.661] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:53:49.661] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:53:50.087] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:53:50.087] INFO  [v_Ilyandra] [chat ascii] Alenne: Thou surely wants all the things that I can sell thee.
+[00:53:52.595] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 30 gold coins.  I thank thee for thy business.
+[00:53:53.204] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:54.626] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:53:54.686] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:53:54.686] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:53:54.686] INFO  [life]   score=45.0
+[00:53:54.686] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:53:54.687] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:53:56.925] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:53:58.211] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:53:59.679] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:53:59.740] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:53:59.741] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:53:59.741] INFO  [life]   score=45.0
+[00:53:59.741] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:53:59.741] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:54:01.657] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:54:01.657] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:54:03.250] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:04.156] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Voris That will be 12 gold coins.  I thank thee for thy business.
+[00:54:04.679] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:54:04.741] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:54:04.742] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:54:04.742] INFO  [life]   score=45.0
+[00:54:04.742] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:54:04.743] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:54:04.943] INFO  [v_Ilyandra] [chat ascii] System: World save in 10 seconds
+[00:54:05.943] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:08.271] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:09.737] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:54:09.798] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:54:09.798] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:54:09.798] INFO  [life]   score=38.5
+[00:54:09.798] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:54:09.798] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:54:09.799] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:54:13.277] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:14.778] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:14.778] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:14.779] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:54:14.959] INFO  [v_Ilyandra] [chat ascii] System: World save has been initiated.
+[00:54:15.360] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:18.288] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:23.344] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:23.832] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:23.833] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:23.834] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:54:24.032] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:28.373] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:32.873] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:32.874] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:32.875] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:54:33.102] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:33.426] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:38.476] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:41.026] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:54:41.896] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:41.897] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:41.897] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:54:42.111] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:43.488] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:48.543] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:50.906] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:50.906] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:50.907] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:54:50.967] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[00:54:50.968] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:54:50.968] INFO  [life]   score=38.5
+[00:54:50.968] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:54:50.968] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:54:50.968] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 18s after achieving nothing
+[00:54:51.108] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:54:53.559] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:58.563] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:54:59.908] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:54:59.909] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:54:59.909] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:55:00.093] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:55:03.587] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:04.888] INFO  [v_Ilyandra] [chat ascii] Alenne: Nice speaking to you Voris
+[00:55:06.885] INFO  [v_Ilyandra] [chat ascii] Alenne: Aye?
+[00:55:08.620] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:08.942] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:55:08.942] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:55:08.943] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:55:09.139] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:55:11.026] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:55:11.026] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:11.026] INFO  [life]   score=45.0
+[00:55:11.027] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:55:11.027] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:55:13.621] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:17.958] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:55:18.020] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:55:18.021] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:18.021] INFO  [life]   score=45.0
+[00:55:18.021] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:55:18.021] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:55:18.175] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:55:18.645] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:22.975] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:55:23.038] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:55:23.038] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:23.039] INFO  [life]   score=45.0
+[00:55:23.039] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:55:23.039] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:55:23.653] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:27.188] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:55:28.026] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:55:28.087] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:55:28.088] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:28.088] INFO  [life]   score=45.0
+[00:55:28.088] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:55:28.088] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:55:28.703] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:33.027] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:55:33.087] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:55:33.087] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:33.088] INFO  [life]   score=45.0
+[00:55:33.088] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:55:33.088] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:55:33.738] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:35.077] INFO  [v_Ilyandra] [chat ascii] Alenne: Hmm?
+[00:55:35.444] INFO  [v_Ilyandra] [chat ascii] Shunnar: Aye?
+[00:55:35.445] INFO  [v_Ilyandra] [chat ascii] Shunnar: I'm listenin'.
+[00:55:36.245] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:55:38.069] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:55:38.131] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:55:38.131] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:55:38.131] INFO  [life]   score=38.5
+[00:55:38.132] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:55:38.132] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:55:38.132] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:55:38.789] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:39.584] INFO  [v_Ilyandra] [chat ascii] Alenne: What's thee wantin'?
+[00:55:41.048] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:55:43.119] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:55:43.119] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:55:43.120] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:55:43.823] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:48.834] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:52.178] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:55:52.178] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:55:52.179] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:55:53.879] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:55:58.904] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:01.182] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:56:01.183] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:56:01.183] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:56:03.956] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:08.995] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:10.207] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:56:10.208] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:56:10.209] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:56:14.055] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:19.092] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:19.232] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:56:19.233] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:56:19.233] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:56:19.294] INFO  [life] goal_changed=FILL_SPELLBOOK from=FILL_SPELLBOOK reason="previous goal abandoned: attempts 5 >= 5"
+[00:56:19.294] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:19.294] INFO  [life]   score=38.5
+[00:56:19.295] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:56:19.295] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:56:19.295] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 18s after achieving nothing
+[00:56:24.121] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:28.290] INFO  [life] FILL_SPELLBOOK: the mage is 4 tiles away -- walking up
+[00:56:28.290] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1489,1549) r=1 from (1485,1547)
+[00:56:28.290] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1489,1549) radius=1 from=(1485,1547)
+[00:56:28.290] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:56:28.291] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:56:28.291] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:56:28.291] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:56:28.291] LOG   [v_Ilyandra] event travel_mode: walk
+[00:56:28.291] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:56:28.352] INFO  [v_Ilyandra] [action] goto finished at (1485,1547,70); target (1485,1547); ARRIVED (off by 0 tile(s))
+[00:56:28.352] LOG   [v_Ilyandra] event goto_done: at=(1485,1547) target=(1485,1547) arrived=1 off=0
+[00:56:28.352] INFO  [v_Ilyandra] [action] goto (1489,1549) from (1485,1547,70)
+[00:56:28.352] LOG   [v_Ilyandra] event goto_start: target=(1489,1549) from=(1485,1547)
+[00:56:28.352] INFO  [v_Ilyandra] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[00:56:28.353] INFO  [v_Ilyandra] [bot] planning path to (1489,1549) in background
+[00:56:29.172] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:30.032] INFO  [v_Ilyandra] [action] goto finished at (1485,1547,70); target (1489,1549); stopped short (off by 6 tile(s))
+[00:56:30.033] LOG   [v_Ilyandra] event goto_done: at=(1485,1547) target=(1489,1549) arrived=0 off=6
+[00:56:31.234] INFO  [v_Ilyandra] [action] goto (1489,1549) from (1485,1547,70)
+[00:56:31.234] LOG   [v_Ilyandra] event goto_start: target=(1489,1549) from=(1485,1547)
+[00:56:31.235] INFO  [v_Ilyandra] [bot] running from (1485,1547,70) to (1489,1549,z70)
+[00:56:31.235] INFO  [v_Ilyandra] [bot] planning path to (1489,1549) in background
+[00:56:31.235] INFO  [v_Ilyandra] [bot] replan to (1489,1549): 4 steps in 96.4us
+[00:56:31.816] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:56:32.568] INFO  [v_Ilyandra] [travel] mobile 0x00001145 ARRIVED at (1488,1548,70)
+[00:56:32.569] LOG   [v_Ilyandra] event travel_done: label='mobile 0x00001145' ok=1 at=(1488,1548) legs=1 plans=1 why=''
+[00:56:32.629] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:56:32.629] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:56:32.630] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:56:32.631] INFO  [v_Ilyandra] [bot] arrived at (1489,1549,70)
+[00:56:34.176] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:39.199] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:39.320] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:56:39.321] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:39.321] INFO  [life]   score=45.0
+[00:56:39.321] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:56:39.321] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:56:40.823] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:56:41.053] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:56:41.668] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:56:41.728] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:56:41.729] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:41.729] INFO  [life]   score=45.0
+[00:56:41.729] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:56:41.729] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:56:44.235] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:46.718] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:56:46.781] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:56:46.782] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:46.782] INFO  [life]   score=45.0
+[00:56:46.782] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:56:46.783] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:56:49.288] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:51.755] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:56:51.816] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:56:51.816] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:51.816] INFO  [life]   score=45.0
+[00:56:51.816] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:56:51.816] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:56:54.343] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:56:56.757] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:56:56.817] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:56:56.818] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:56:56.818] INFO  [life]   score=45.0
+[00:56:56.818] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:56:56.818] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:56:59.362] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:01.785] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:57:01.847] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:57:01.847] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:57:01.848] INFO  [life]   score=38.5
+[00:57:01.848] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:57:01.848] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:57:01.848] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:57:04.410] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:06.837] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:57:06.837] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:57:06.838] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[00:57:09.454] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:14.515] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:15.856] INFO  [life] FILL_SPELLBOOK: the mage is 5 tiles away -- walking up
+[00:57:15.857] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1484,1547) r=1 from (1489,1549)
+[00:57:15.857] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1484,1547) radius=1 from=(1489,1549)
+[00:57:15.857] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:57:15.857] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:57:15.857] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:57:15.857] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:57:15.858] LOG   [v_Ilyandra] event travel_mode: walk
+[00:57:15.858] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:57:15.919] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1489,1549); ARRIVED (off by 0 tile(s))
+[00:57:15.919] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1489,1549) arrived=1 off=0
+[00:57:15.919] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:15.919] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:15.920] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:15.920] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:17.778] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:17.778] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:19.025] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:19.026] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:19.026] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:19.026] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:19.564] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:20.609] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:20.609] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:21.746] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:57:21.837] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:57:21.837] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:57:21.838] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:57:21.838] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:57:21.838] LOG   [v_Ilyandra] event travel_mode: walk
+[00:57:21.838] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:57:22.270] INFO  [v_Ilyandra] [chat ascii] Shunnar: I'd ask thee to stand away some.
+[00:57:23.364] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:23.364] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:23.364] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:23.364] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:23.473] INFO  [v_Ilyandra] [chat ascii] Shunnar: I'm listenin'.
+[00:57:24.623] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:24.869] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:24.870] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:26.084] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:26.085] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:26.085] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:26.085] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:27.637] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:27.637] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:28.876] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:28.877] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:28.877] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:28.877] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:29.677] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:30.489] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:30.490] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:30.801] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:57:31.722] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:57:31.723] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:57:31.723] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:57:31.723] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:57:31.724] LOG   [v_Ilyandra] event travel_mode: walk
+[00:57:31.724] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:57:34.733] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:34.733] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:34.733] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:34.733] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:34.734] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:36.155] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:36.155] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:37.384] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:37.385] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:37.385] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:37.385] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:39.100] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:39.100] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:39.789] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:40.343] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:57:40.344] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:57:40.344] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:57:40.344] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:57:40.344] LOG   [v_Ilyandra] event travel_mode: walk
+[00:57:40.344] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:57:41.114] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:57:44.828] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:44.890] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:44.891] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:44.891] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:44.891] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:46.381] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:46.381] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:47.599] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:47.600] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:47.600] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:47.600] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:49.366] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:49.366] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:49.856] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:50.592] INFO  [v_Ilyandra] [action] goto (1484,1547) from (1489,1549,70)
+[00:57:50.592] LOG   [v_Ilyandra] event goto_start: target=(1484,1547) from=(1489,1549)
+[00:57:50.592] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1484,1547,z70)
+[00:57:50.592] INFO  [v_Ilyandra] [bot] planning path to (1484,1547) in background
+[00:57:52.127] INFO  [v_Ilyandra] [action] goto finished at (1489,1549,70); target (1484,1547); stopped short (off by 7 tile(s))
+[00:57:52.128] LOG   [v_Ilyandra] event goto_done: at=(1489,1549) target=(1484,1547) arrived=0 off=7
+[00:57:52.128] LOG   [v_Ilyandra] event travel_escape: from=(1489,1549,70) to=(1480,1558) attempt=1
+[00:57:52.128] INFO  [v_Ilyandra] [action] goto (1480,1558) from (1489,1549,70)
+[00:57:52.128] LOG   [v_Ilyandra] event goto_start: target=(1480,1558) from=(1489,1549)
+[00:57:52.129] INFO  [v_Ilyandra] [bot] running from (1489,1549,70) to (1480,1558,z30)
+[00:57:52.129] INFO  [v_Ilyandra] [bot] planning path to (1480,1558) in background
+[00:57:52.189] INFO  [v_Ilyandra] [bot] replan to (1480,1558): 60 steps in 12508.1us
+[00:57:54.862] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:57:55.732] INFO  [v_Ilyandra] [travel] mobile 0x00001145 FAILED at (1485,1546,50) -- arrived above or below the destination's floor
+[00:57:55.732] LOG   [v_Ilyandra] event travel_failed: label='mobile 0x00001145' ok=0 at=(1485,1546) legs=1 plans=4 why='arrived above or below the destination's floor'
+[00:57:55.733] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[00:57:55.733] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[00:57:55.734] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[00:57:56.115] INFO  [v_Ilyandra] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=49 in 295.1us
+[00:57:57.296] INFO  [v_Ilyandra] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=48 in 146.9us
+[00:57:59.919] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:01.162] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:58:01.823] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:58:01.824] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:01.824] INFO  [life]   score=45.0
+[00:58:01.824] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:58:01.824] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:58:04.788] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:58:04.848] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:58:04.849] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:04.849] INFO  [life]   score=45.0
+[00:58:04.849] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:58:04.849] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:58:04.971] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:09.848] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:58:09.909] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:58:09.910] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:09.910] INFO  [life]   score=45.0
+[00:58:09.910] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:58:09.910] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:58:09.985] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:12.477] INFO  [v_Ilyandra] [bot] arrived at (1480,1558,30)
+[00:58:14.860] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:58:14.920] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:58:14.921] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:14.921] INFO  [life]   score=45.0
+[00:58:14.921] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:58:14.921] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:58:15.042] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:19.909] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:58:19.970] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:58:19.971] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:19.971] INFO  [life]   score=45.0
+[00:58:19.971] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:58:19.971] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:58:20.092] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:24.956] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:58:25.019] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:58:25.019] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:58:25.019] INFO  [life]   score=38.5
+[00:58:25.020] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:58:25.020] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:58:25.020] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[00:58:25.139] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:29.958] INFO  [life] FILL_SPELLBOOK: the mage is 10 tiles away -- walking up
+[00:58:29.959] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1487,1548) r=1 from (1480,1558)
+[00:58:29.959] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1487,1548) radius=1 from=(1480,1558)
+[00:58:29.959] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:58:29.959] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:58:29.959] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:58:29.959] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:58:29.959] LOG   [v_Ilyandra] event travel_mode: walk
+[00:58:29.959] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~10 tiles transit=0 nodes=0
+[00:58:30.019] INFO  [v_Ilyandra] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[00:58:30.020] LOG   [v_Ilyandra] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[00:58:30.020] INFO  [v_Ilyandra] [action] goto (1487,1548) from (1480,1558,30)
+[00:58:30.020] LOG   [v_Ilyandra] event goto_start: target=(1487,1548) from=(1480,1558)
+[00:58:30.020] INFO  [v_Ilyandra] [bot] running from (1480,1558,30) to (1487,1548,z70)
+[00:58:30.020] INFO  [v_Ilyandra] [bot] planning path to (1487,1548) in background
+[00:58:30.142] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:31.663] INFO  [v_Ilyandra] [action] goto finished at (1480,1558,30); target (1487,1548); stopped short (off by 17 tile(s))
+[00:58:31.663] LOG   [v_Ilyandra] event goto_done: at=(1480,1558) target=(1487,1548) arrived=0 off=17
+[00:58:31.925] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:58:32.906] INFO  [v_Ilyandra] [action] goto (1487,1548) from (1480,1558,30)
+[00:58:32.906] LOG   [v_Ilyandra] event goto_start: target=(1487,1548) from=(1480,1558)
+[00:58:32.906] INFO  [v_Ilyandra] [bot] running from (1480,1558,30) to (1487,1548,z70)
+[00:58:32.906] INFO  [v_Ilyandra] [bot] planning path to (1487,1548) in background
+[00:58:32.966] INFO  [v_Ilyandra] [bot] replan to (1487,1548): 64 steps in 29477.0us
+[00:58:35.181] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:40.187] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:41.139] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:58:42.071] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:58:42.072] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:58:42.072] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:58:42.072] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:58:42.072] LOG   [v_Ilyandra] event travel_mode: walk
+[00:58:42.073] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:58:42.133] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1487,1548); stopped short (off by 21 tile(s))
+[00:58:42.133] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1487,1548) arrived=0 off=21
+[00:58:42.133] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:42.134] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:42.134] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:42.134] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:43.961] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:43.961] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:58:45.174] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:45.174] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:45.175] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:45.175] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:45.237] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:46.754] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:46.754] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:58:48.010] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:48.010] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:48.010] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:48.011] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:49.725] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:49.725] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:58:50.245] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:50.976] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:58:50.977] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:58:50.977] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:58:50.977] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:58:50.977] LOG   [v_Ilyandra] event travel_mode: walk
+[00:58:50.978] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:58:52.483] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:52.484] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:52.484] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:52.485] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:54.110] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:54.110] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:58:55.305] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:58:55.367] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:55.368] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:55.368] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:55.368] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:56.932] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:56.933] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:58:58.133] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:58:58.133] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:58:58.133] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:58:58.133] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:58:58.976] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:58:59.818] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:58:59.819] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:59:00.309] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:01.042] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:01.043] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:01.043] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:01.043] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:01.043] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:01.043] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~18 tiles transit=0 nodes=0
+[00:59:04.060] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:59:04.061] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:59:04.061] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:59:04.061] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:59:05.314] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:05.376] INFO  [v_Ilyandra] [chat ascii] System: World save in 10 seconds
+[00:59:05.791] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:59:05.792] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:59:07.014] INFO  [v_Ilyandra] [action] goto (1484,1548) from (1490,1566,30)
+[00:59:07.014] LOG   [v_Ilyandra] event goto_start: target=(1484,1548) from=(1490,1566)
+[00:59:07.014] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1484,1548,z70)
+[00:59:07.015] INFO  [v_Ilyandra] [bot] planning path to (1484,1548) in background
+[00:59:07.657] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:07.657] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:07.658] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:07.658] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:07.658] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:07.658] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~17 tiles transit=0 nodes=0
+[00:59:07.718] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1484,1548); stopped short (off by 24 tile(s))
+[00:59:07.718] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1484,1548) arrived=0 off=24
+[00:59:07.718] INFO  [v_Ilyandra] [action] goto (1487,1549) from (1490,1566,30)
+[00:59:07.719] LOG   [v_Ilyandra] event goto_start: target=(1487,1549) from=(1490,1566)
+[00:59:07.719] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1487,1549,z70)
+[00:59:07.719] INFO  [v_Ilyandra] [bot] planning path to (1487,1549) in background
+[00:59:08.008] INFO  [v_Ilyandra] [chat ascii] Shunnar: Begging thy pardon, but thou canst not afford that.
+[00:59:10.284] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1487,1549); stopped short (off by 20 tile(s))
+[00:59:10.284] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1487,1549) arrived=0 off=20
+[00:59:10.345] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:11.496] INFO  [v_Ilyandra] [action] goto (1487,1549) from (1490,1566,30)
+[00:59:11.497] LOG   [v_Ilyandra] event goto_start: target=(1487,1549) from=(1490,1566)
+[00:59:11.497] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1487,1549,z70)
+[00:59:11.497] INFO  [v_Ilyandra] [bot] planning path to (1487,1549) in background
+[00:59:13.264] INFO  [v_Ilyandra] [action] goto finished at (1490,1566,30); target (1487,1549); stopped short (off by 20 tile(s))
+[00:59:13.264] LOG   [v_Ilyandra] event goto_done: at=(1490,1566) target=(1487,1549) arrived=0 off=20
+[00:59:14.508] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:14.508] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:14.508] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:14.508] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:14.509] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:14.509] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~17 tiles transit=0 nodes=0
+[00:59:15.351] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:15.426] INFO  [v_Ilyandra] [chat ascii] System: World save has been initiated.
+[00:59:16.045] INFO  [v_Ilyandra] [action] goto (1487,1549) from (1490,1566,30)
+[00:59:16.046] LOG   [v_Ilyandra] event goto_start: target=(1487,1549) from=(1490,1566)
+[00:59:16.046] INFO  [v_Ilyandra] [bot] running from (1490,1566,30) to (1487,1549,z70)
+[00:59:16.046] INFO  [v_Ilyandra] [bot] planning path to (1487,1549) in background
+[00:59:16.106] INFO  [v_Ilyandra] [bot] replan to (1487,1549): 34 steps in 5764.8us
+[00:59:18.290] INFO  [v_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=26 in 436.1us
+[00:59:18.334] INFO  [v_Ilyandra] [chat ascii] Xanthe: I'm listenin'.
+[00:59:20.406] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:24.033] INFO  [v_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 391.2us
+[00:59:24.635] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:24.635] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:24.635] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:24.636] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:24.636] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:24.636] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:59:24.697] INFO  [v_Ilyandra] [action] goto finished at (1491,1545,70); target (1487,1549); stopped short (off by 8 tile(s))
+[00:59:24.697] LOG   [v_Ilyandra] event goto_done: at=(1491,1545) target=(1487,1549) arrived=0 off=8
+[00:59:24.697] INFO  [v_Ilyandra] [action] goto (1490,1547) from (1491,1545,70)
+[00:59:24.697] LOG   [v_Ilyandra] event goto_start: target=(1490,1547) from=(1491,1545)
+[00:59:24.698] INFO  [v_Ilyandra] [bot] running from (1491,1545,70) to (1490,1547,z70)
+[00:59:24.698] INFO  [v_Ilyandra] [bot] planning path to (1490,1547) in background
+[00:59:24.990] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[00:59:24.990] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:24.990] INFO  [life]   score=45.0
+[00:59:24.991] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:59:24.991] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:59:24.991] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:59:25.006] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:59:25.006] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:25.007] INFO  [life]   score=45.0
+[00:59:25.007] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:59:25.007] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:59:25.435] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:26.064] INFO  [v_Ilyandra] [chat ascii] Shunnar: Here you are, Ysolde That will be 230 gold coins.  I thank thee for thy business.
+[00:59:26.679] INFO  [v_Ilyandra] [action] goto finished at (1491,1545,70); target (1490,1547); stopped short (off by 3 tile(s))
+[00:59:26.679] LOG   [v_Ilyandra] event goto_done: at=(1491,1545) target=(1490,1547) arrived=0 off=3
+[00:59:27.905] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:27.905] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:27.906] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:27.906] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:27.906] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:27.906] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:59:29.422] INFO  [v_Ilyandra] [action] goto (1490,1547) from (1491,1545,70)
+[00:59:29.429] LOG   [v_Ilyandra] event goto_start: target=(1490,1547) from=(1491,1545)
+[00:59:29.430] INFO  [v_Ilyandra] [bot] running from (1491,1545,70) to (1490,1547,z70)
+[00:59:29.430] INFO  [v_Ilyandra] [bot] planning path to (1490,1547) in background
+[00:59:29.430] INFO  [v_Ilyandra] [bot] replan to (1490,1547): 3 steps in 97.4us
+[00:59:29.483] INFO  [v_Ilyandra] [travel] mobile 0x00001145 ARRIVED at (1491,1546,70)
+[00:59:29.484] LOG   [v_Ilyandra] event travel_done: label='mobile 0x00001145' ok=1 at=(1491,1546) legs=1 plans=2 why=''
+[00:59:30.030] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:59:30.090] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:59:30.091] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:30.091] INFO  [life]   score=45.0
+[00:59:30.091] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:59:30.091] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:59:30.457] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:30.550] INFO  [v_Ilyandra] [bot] arrived at (1490,1547,70)
+[00:59:35.084] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:59:35.146] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:59:35.146] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:35.146] INFO  [life]   score=45.0
+[00:59:35.146] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:59:35.147] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:59:35.515] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:40.094] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:59:40.156] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[00:59:40.157] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:40.157] INFO  [life]   score=45.0
+[00:59:40.157] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[00:59:40.157] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[00:59:40.524] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:41.143] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[00:59:45.149] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[00:59:45.150] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[00:59:45.150] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[00:59:45.150] INFO  [life]   score=38.5
+[00:59:45.150] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[00:59:45.150] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[00:59:45.150] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 60s after achieving nothing
+[00:59:45.578] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:48.021] INFO  [v_Ilyandra] [chat uni  ] : Alenne buy
+[00:59:48.021] INFO  [v_Ilyandra] [chat ascii] Alenne: I got lots to sell!
+[00:59:50.161] INFO  [life] FILL_SPELLBOOK: the mage is 5 tiles away -- walking up
+[00:59:50.161] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1485,1549) r=1 from (1490,1547)
+[00:59:50.162] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1485,1549) radius=1 from=(1490,1547)
+[00:59:50.162] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:50.162] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:50.162] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:50.162] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:50.162] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:50.162] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:59:50.223] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1490,1547); ARRIVED (off by 0 tile(s))
+[00:59:50.223] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1490,1547) arrived=1 off=0
+[00:59:50.223] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[00:59:50.223] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[00:59:50.224] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[00:59:50.224] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[00:59:50.561] INFO  [v_Ilyandra] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:59:50.621] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:51.667] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[00:59:51.668] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[00:59:52.899] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[00:59:52.899] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[00:59:52.899] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[00:59:52.900] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[00:59:54.446] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[00:59:54.446] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[00:59:55.656] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[00:59:55.656] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[00:59:55.656] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[00:59:55.657] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[00:59:55.657] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[00:59:57.186] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[00:59:57.186] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[00:59:58.397] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[00:59:58.398] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[00:59:58.398] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:59:58.398] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:59:58.398] LOG   [v_Ilyandra] event travel_mode: walk
+[00:59:58.398] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:59:59.937] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[00:59:59.937] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[00:59:59.937] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[00:59:59.938] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:00.704] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:01.813] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:01.813] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:03.054] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:03.055] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:03.055] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:03.056] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:04.809] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:04.810] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:05.730] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:06.038] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[01:00:06.039] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[01:00:06.039] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:00:06.039] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:00:06.039] LOG   [v_Ilyandra] event travel_mode: walk
+[01:00:06.039] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[01:00:09.067] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:09.068] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:09.068] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:09.069] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:10.765] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:10.765] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:10.765] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:11.996] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:11.996] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:11.996] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:11.996] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:13.515] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:13.516] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:14.743] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[01:00:14.743] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[01:00:14.743] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:00:14.743] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:00:14.744] LOG   [v_Ilyandra] event travel_mode: walk
+[01:00:14.744] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[01:00:15.820] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:18.811] INFO  [v_Ilyandra] [chat ascii] System: Ysolde has departed from Britain.
+[01:00:19.255] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:19.256] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:19.256] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:19.256] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:20.730] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:20.731] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:20.853] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:21.944] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:21.945] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:21.945] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:21.945] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:23.498] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:23.498] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:24.742] INFO  [v_Ilyandra] [action] goto (1485,1549) from (1490,1547,70)
+[01:00:24.742] LOG   [v_Ilyandra] event goto_start: target=(1485,1549) from=(1490,1547)
+[01:00:24.742] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1485,1549,z70)
+[01:00:24.742] INFO  [v_Ilyandra] [bot] planning path to (1485,1549) in background
+[01:00:25.863] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:26.293] INFO  [v_Ilyandra] [action] goto finished at (1490,1547,70); target (1485,1549); stopped short (off by 7 tile(s))
+[01:00:26.293] LOG   [v_Ilyandra] event goto_done: at=(1490,1547) target=(1485,1549) arrived=0 off=7
+[01:00:26.294] LOG   [v_Ilyandra] event travel_escape: from=(1490,1547,70) to=(1480,1544) attempt=1
+[01:00:26.294] INFO  [v_Ilyandra] [action] goto (1480,1544) from (1490,1547,70)
+[01:00:26.294] LOG   [v_Ilyandra] event goto_start: target=(1480,1544) from=(1490,1547)
+[01:00:26.294] INFO  [v_Ilyandra] [bot] running from (1490,1547,70) to (1480,1544,z30)
+[01:00:26.294] INFO  [v_Ilyandra] [bot] planning path to (1480,1544) in background
+[01:00:26.353] INFO  [v_Ilyandra] [bot] replan to (1480,1544): 72 steps in 11906.6us
+[01:00:30.027] INFO  [v_Ilyandra] [travel] mobile 0x00001145 FAILED at (1485,1548,40) -- arrived above or below the destination's floor
+[01:00:30.027] LOG   [v_Ilyandra] event travel_failed: label='mobile 0x00001145' ok=0 at=(1485,1548) legs=1 plans=4 why='arrived above or below the destination's floor'
+[01:00:30.088] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[01:00:30.089] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[01:00:30.089] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[01:00:30.612] INFO  [v_Ilyandra] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=59 in 254.8us
+[01:00:30.890] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:35.907] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:39.108] INFO  [life] FILL_SPELLBOOK: looking for a 'mage' to sell a spellbook (trip 2)
+[01:00:39.108] INFO  [v_Ilyandra] [travel] Britain mage -> (1485,1550) r=5 from (1484,1572)
+[01:00:39.108] LOG   [v_Ilyandra] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1484,1572)
+[01:00:39.109] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[01:00:39.109] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[01:00:39.109] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:00:39.109] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:00:39.109] LOG   [v_Ilyandra] event travel_mode: walk
+[01:00:39.109] INFO  [v_Ilyandra] [travel] plan Britain mage: ok legs=1 ~22 tiles transit=0 nodes=0
+[01:00:40.946] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:41.147] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[01:00:45.169] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 45.0 superseded FILL_SPELLBOOK 38.5"
+[01:00:45.170] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:00:45.170] INFO  [life]   score=45.0
+[01:00:45.170] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[01:00:45.170] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[01:00:45.170] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[01:00:45.230] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[01:00:45.231] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:00:45.231] INFO  [life]   score=45.0
+[01:00:45.231] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[01:00:45.231] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[01:00:45.965] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:49.104] INFO  [v_Ilyandra] [bot] arrived at (1480,1544,30)
+[01:00:49.105] INFO  [v_Ilyandra] [action] goto finished at (1480,1544,30); target (1480,1544); ARRIVED (off by 0 tile(s))
+[01:00:49.105] LOG   [v_Ilyandra] event goto_done: at=(1480,1544) target=(1480,1544) arrived=1 off=0
+[01:00:49.106] INFO  [v_Ilyandra] [action] goto (1485,1550) from (1480,1544,30)
+[01:00:49.106] LOG   [v_Ilyandra] event goto_start: target=(1485,1550) from=(1480,1544)
+[01:00:49.106] INFO  [v_Ilyandra] [bot] running from (1480,1544,30) to (1485,1550,z30)
+[01:00:49.107] INFO  [v_Ilyandra] [bot] planning path to (1485,1550) in background
+[01:00:49.166] INFO  [v_Ilyandra] [bot] replan to (1485,1550): 60 steps in 40245.4us
+[01:00:49.843] INFO  [v_Ilyandra] [travel] Britain mage ARRIVED at (1480,1545,30)
+[01:00:49.843] LOG   [v_Ilyandra] event travel_done: label='Britain mage' ok=1 at=(1480,1545) legs=1 plans=1 why=''
+[01:00:50.211] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[01:00:50.212] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[01:00:50.212] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:00:50.212] INFO  [life]   score=45.0
+[01:00:50.212] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[01:00:50.212] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[01:00:51.013] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:00:52.698] INFO  [v_Ilyandra] [chat ascii] Shunnar: What's thee wantin'?
+[01:00:55.232] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[01:00:55.293] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[01:00:55.293] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:00:55.293] INFO  [life]   score=45.0
+[01:00:55.293] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[01:00:55.294] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[01:00:56.034] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:00.252] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[01:01:00.254] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no create food spell"
+[01:01:00.254] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:01:00.254] INFO  [life]   score=45.0
+[01:01:00.254] INFO  [life]   reason: NeedPractice urgency 0.38 x 120 = 45.0
+[01:01:00.254] INFO  [life]   reason: Evaluating Intelligence 30.0 -> 100.0 mana=48 no_gain_region=0
+[01:01:01.046] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:05.266] INFO  [life] practice: Create Food is not in this character's spellbook -- Magery cannot be practised this way
+[01:01:05.328] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: no create food spell"
+[01:01:05.328] INFO  [life] needs considered: NeedPractice(Evaluating Intelligence 0.38) NeedSpells(spells 0.35) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGear(gear 0.22)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[01:01:05.328] INFO  [life]   score=38.5
+[01:01:05.329] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[01:01:05.329] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 800 spare -116 wealth 0.00
+[01:01:05.329] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[01:01:06.052] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:07.033] INFO  [v_Ilyandra] [bot] arrived at (1485,1550,30)
+[01:01:07.581] INFO  [v_Ilyandra] [chat ascii] Alenne: Aye?
+[01:01:07.582] INFO  [v_Ilyandra] [chat ascii] Alenne: Hmm?
+[01:01:10.308] INFO  [life] FILL_SPELLBOOK: the mage is 4 tiles away -- walking up
+[01:01:10.308] INFO  [v_Ilyandra] [travel] mobile 0x00001145 -> (1489,1548) r=1 from (1485,1550)
+[01:01:10.308] LOG   [v_Ilyandra] event travel_start: label='mobile 0x00001145' target=(1489,1548) radius=1 from=(1485,1550)
+[01:01:10.309] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[01:01:10.309] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[01:01:10.309] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:01:10.309] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:01:10.309] LOG   [v_Ilyandra] event travel_mode: walk
+[01:01:10.309] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~4 tiles transit=0 nodes=0
+[01:01:10.369] INFO  [v_Ilyandra] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[01:01:10.370] LOG   [v_Ilyandra] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[01:01:10.370] INFO  [v_Ilyandra] [action] goto (1489,1548) from (1485,1550,30)
+[01:01:10.370] LOG   [v_Ilyandra] event goto_start: target=(1489,1548) from=(1485,1550)
+[01:01:10.370] INFO  [v_Ilyandra] [bot] running from (1485,1550,30) to (1489,1548,z70)
+[01:01:10.370] INFO  [v_Ilyandra] [bot] planning path to (1489,1548) in background
+[01:01:11.074] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:11.975] INFO  [v_Ilyandra] [action] goto finished at (1485,1550,30); target (1489,1548); stopped short (off by 6 tile(s))
+[01:01:11.976] LOG   [v_Ilyandra] event goto_done: at=(1485,1550) target=(1489,1548) arrived=0 off=6
+[01:01:13.194] INFO  [v_Ilyandra] [action] goto (1489,1548) from (1485,1550,30)
+[01:01:13.194] LOG   [v_Ilyandra] event goto_start: target=(1489,1548) from=(1485,1550)
+[01:01:13.195] INFO  [v_Ilyandra] [bot] running from (1485,1550,30) to (1489,1548,z70)
+[01:01:13.195] INFO  [v_Ilyandra] [bot] planning path to (1489,1548) in background
+[01:01:13.254] INFO  [v_Ilyandra] [bot] replan to (1489,1548): 15 steps in 2095.9us
+[01:01:16.078] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:16.583] INFO  [v_Ilyandra] [travel] mode walk             usable   <- chosen
+[01:01:16.584] INFO  [v_Ilyandra] [travel] mode moongate         usable
+[01:01:16.584] INFO  [v_Ilyandra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[01:01:16.584] INFO  [v_Ilyandra] [travel] mode runebook_recall  no: no runebook page for that destination
+[01:01:16.584] LOG   [v_Ilyandra] event travel_mode: walk
+[01:01:16.584] INFO  [v_Ilyandra] [travel] plan mobile 0x00001145: ok legs=1 ~5 tiles transit=0 nodes=0
+[01:01:16.645] INFO  [v_Ilyandra] [action] goto finished at (1491,1545,70); target (1489,1548); stopped short (off by 5 tile(s))
+[01:01:16.646] LOG   [v_Ilyandra] event goto_done: at=(1491,1545) target=(1489,1548) arrived=0 off=5
+[01:01:16.646] INFO  [v_Ilyandra] [action] goto (1486,1549) from (1491,1545,70)
+[01:01:16.646] LOG   [v_Ilyandra] event goto_start: target=(1486,1549) from=(1491,1545)
+[01:01:16.646] INFO  [v_Ilyandra] [bot] running from (1491,1545,70) to (1486,1549,z70)
+[01:01:16.646] INFO  [v_Ilyandra] [bot] planning path to (1486,1549) in background
+[01:01:18.218] INFO  [v_Ilyandra] [action] goto finished at (1491,1545,70); target (1486,1549); stopped short (off by 9 tile(s))
+[01:01:18.218] LOG   [v_Ilyandra] event goto_done: at=(1491,1545) target=(1486,1549) arrived=0 off=9
+[01:01:19.436] INFO  [v_Ilyandra] [action] goto (1486,1549) from (1491,1545,70)
+[01:01:19.437] LOG   [v_Ilyandra] event goto_start: target=(1486,1549) from=(1491,1545)
+[01:01:19.437] INFO  [v_Ilyandra] [bot] running from (1491,1545,70) to (1486,1549,z70)
+[01:01:19.437] INFO  [v_Ilyandra] [bot] planning path to (1486,1549) in background
+[01:01:19.438] INFO  [v_Ilyandra] [bot] replan to (1486,1549): 8 steps in 320.1us
+[01:01:20.386] INFO  [v_Ilyandra] [chat ascii] Shunnar: I'm listenin'.
+[01:01:21.138] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:21.276] INFO  [v_Ilyandra] [travel] mobile 0x00001145 ARRIVED at (1487,1548,70)
+[01:01:21.277] LOG   [v_Ilyandra] event travel_done: label='mobile 0x00001145' ok=1 at=(1487,1548) legs=1 plans=1 why=''
+[01:01:21.337] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[01:01:21.337] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[01:01:21.338] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=1ms Revolution vendor policy refuses this NPC purchase
+[01:01:22.268] INFO  [v_Ilyandra] [bot] arrived at (1486,1549,70)
+[01:01:26.166] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:28.164] INFO  [v_Ilyandra] [chat ascii] Alenne: Aye?
+[01:01:30.385] INFO  [life] spellbook: buying a spellbook ('Spellbook', 0x0EFA, spell -4147) at 18 gold -- 0 of this shop's scrolls were already in the book
+[01:01:30.385] INFO  [v_Ilyandra] [ACTION] vendor_buy start
+[01:01:30.386] LOG   [v_Ilyandra] event action_result: vendor_buy rejected took=0ms Revolution vendor policy refuses this NPC purchase
+[01:01:31.178] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:36.185] INFO  [v_Ilyandra] [survival] hp 20/20 (100%) -> fight
+[01:01:38.271] INFO  [life] session_end_requested reason="session time limit reached"
+[01:01:38.331] INFO  [life] wind-down: arrived somewhere safe at 1486,1549
+[01:01:38.392] INFO  [life] session_summary duration=840s goals=0/59 gold=1000->684 skills=100.0->130.0 logs=+0 kills=0 deaths=0 places=1 suppliers=0
+[01:01:38.393] INFO  [life] session_goals families=2 picks=59 top=76% varied=0 | upkeep=14(24%) training=45(76%) | GET_FOOD=1(2%) PRACTICE_SKILL=45(76%) FILL_SPELLBOOK=13(22%)
+[01:01:38.395] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh13.ilyandra/state.json
+[01:01:38.395] INFO  [life] logging out
+[01:01:38.396] INFO  [v_Ilyandra] [action] logout requested
+[01:01:38.396] LOG   [v_Ilyandra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[01:01:38.409] INFO  [v_Ilyandra] [0xD1] logout acknowledged (accepted=1)
+[01:01:38.409] LOG   [v_Ilyandra] event logout_ack: accepted
+[01:01:38.409] INFO  [v_Ilyandra] [net] closing connection (logout acknowledged)
+[01:01:38.409] LOG   [v_Ilyandra] event logout_complete: acked
