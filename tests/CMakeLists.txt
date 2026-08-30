@@ -427,3 +427,18 @@ target_include_directories(activity_rest PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_rest COMMAND activity_rest)
+
+# --- Activities: eating -----------------------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 3, 11 and 54. Sphere reports EIGHT hunger
+# levels and the life layer collapsed them to two booleans, so "content at
+# 12/15" and "about to take damage" looked alike. v1_Corwyn was CONTENT and
+# still made three cross-town trips after a baker: below `hungry`, food is an
+# errand of convenience, not a journey.
+add_executable(activity_eat activity_eat.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/EatPlan.cpp)
+target_include_directories(activity_eat PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_eat COMMAND activity_eat)

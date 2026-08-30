@@ -6647,14 +6647,27 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                    ? std::vector<u16>(opener_tool->gfx,
                                       opener_tool->gfx + opener_tool->n)
                    : econ::GraphicsForItem(r->inputs[0].item));
+    // WORN COUNTS. THE TOOL IS USUALLY IN A HAND BY THE TIME WE LOOK.
+    //
+    // This goal equips the smith tool into HAND1 a few lines above, because
+    // the blacksmith menu reads LAYER_HAND1 -- and then looked for it in the
+    // BACKPACK, where it no longer is. Corwyn walked to a forge, armed his
+    // hammer, and was told "nothing in the pack to open the i_dagger menu
+    // with" while holding it (v1_Corwyn.console.txt, 14:42:39). That blocks
+    // the whole miner_smith economy: no dagger, so no sale, so no income.
+    //
+    // The same trap the fishing pole set -- a newbie kit hands out tools the
+    // shard then EQUIPS, so "the pole in my pack" finds nothing while the
+    // character is holding it. FindItemByGraphic(includeEquipped) exists for
+    // exactly this and the scenario engine already uses it.
     u32 opener = 0;
     for (u16 g : openGfx) {
-        opener = client.FindBackpackItemByGraphic(g);
+        opener = client.FindItemByGraphic(g, /*includeEquipped=*/true);
         if (opener) break;
     }
     if (!opener) {
-        LogLine("goal_blocked=CRAFT reason=\"%s\" nothing in the pack to open "
-                "the %s menu with (%s)",
+        LogLine("goal_blocked=CRAFT reason=\"%s\" nothing carried or worn to "
+                "open the %s menu with (%s)",
                 faucet::RefusalName(faucet::Refusal::MissingTool),
                 craftItem_.c_str(), r->inputs[0].item);
         planner_.Finish(false, "no material to start from", obs.nowMs);
