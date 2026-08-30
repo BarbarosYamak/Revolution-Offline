@@ -2972,12 +2972,10 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     // anything in it. You do not need to know what is in a container to put
     // something into it.
     if (box) {
-        // The box is open, so whoever we asked did answer. Forgive every
-        // banker we had written off: the next visit starts clean.
-        bankerAsked_ = 0;
-        bankerCounted_ = 0;
-        bankOpenTries_ = 0;
-        bankerSilent_.clear();
+        // The box is open, so whoever we asked did answer. Forgiving the
+        // bankers we had written off is BankErrand's own business now
+        // (NpcRotation::NoteAnswered), which is why nothing is cleared here.
+        bankErrand_.Cancel();
         if (client.ActionBusy()) return false;
 
         // TAKE OUT BEFORE PUTTING IN. A purchase waiting on coin is the reason
@@ -3323,118 +3321,37 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     // flight is not a reason to start another one.
     if (client.ActionBusy()) return false;
 
-    // AN ASK THAT PRODUCED NO BOX IS A FAILED ASK, and it has to be counted
-    // here: the action layer can report "superseded" or "timeout", but only
-    // this goal knows that the box it wanted still is not open.
-    if (bankerAsked_) {
-        // COUNT PER BANKER, NOT PER GOAL. Britain's bankers wander, so the
-        // nearest one changes between asks: p0gate1 asked Hyman, Hyman, then
-        // Lyndon, and wrote LYNDON off "3 times" when he had been asked once.
-        // A tally that blames whoever stood closest at the third failure is
-        // not evidence about anybody.
-        if (bankerCounted_ != bankerAsked_) {
-            bankerCounted_ = bankerAsked_;
-            bankOpenTries_ = 0;
-        }
-        if (++bankOpenTries_ >= kMaxBankOpenTries) {
-            LogLine("bank: asked 0x%08X for the box %d times and got nothing "
-                    "back -- finding a different banker",
-                    bankerAsked_, bankOpenTries_);
-            bankerSilent_.push_back(bankerAsked_);
-            bankOpenTries_ = 0;
-            bankerCounted_ = 0;
-        }
-        bankerAsked_ = 0;
-    }
+    // --- THE ERRAND OWNS GETTING THE BOX OPEN ----------------------------
+    //
+    // Six Runner members existed to open one container: bankerAsked_,
+    // bankerCounted_, bankOpenTries_, bankerSilent_, bankShouts_ and
+    // bankTitlesAskedMs_. All six are the same counters-on-the-runner pattern
+    // that let a gear trip spend the spellbook's trip allowance, and all six
+    // are now inside BankErrand where they belong to this errand alone.
+    //
+    // The two bank-specific truths survive intact, because both were learned
+    // live and neither is obvious:
+    //   * success is the box SERIAL, not its contents -- an empty box sends
+    //     no 0x3C, so waiting for contents re-opened the bank forever;
+    //   * the keyword works without a named banker, so a character standing
+    //     in a bank may say "bank" aloud and be served.
+    if (!bankErrand_.Running()) bankErrand_.Begin();
+    const life::BankErrandResult br = bankErrand_.Tick(client, obs);
+    if (!br.why.empty()) LogLine("bank: %s", br.why.c_str());
+    if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
+        nextActionMs_ = obs.nowMs + br.delayMs;
 
-    u32 banker = client.NearestMobileWithTrade("banker", bankerSilent_);
-    if (!banker) {
-        // STAND IN THE BANK AND SAY "BANK". "you dont need find banker vendor
-        // directly, go near bank and say bank" (project owner, 2026-08-29) --
-        // which is exactly what a player does.
-        //
-        // Addressing a banker BY NAME was itself a fix, for a real problem:
-        // a bare keyword is UNNAMED and Source-X answers those by picking the
-        // closest NPC, and Britain's bankers wander. But requiring the name
-        // means requiring the PAPERDOLL TITLE, and if that has not arrived the
-        // character stands inside a bank unable to see a banker at all --
-        // three trips and "no banker in reach", which is how Corwyn ended a
-        // session carrying 9,842 gold.
-        //
-        // So: name one when we can see one, and otherwise just say the word.
-        // Standing in the bank is what makes "closest NPC" the right NPC.
-        // ...but only while actually STANDING IN ONE.
-        //
-        // The first version accepted "a bank is remembered somewhere", which
-        // is not the same thing at all: Corwyn said "bank" aloud four times
-        // beside a GUILDMASTER, who is not a banker and never answers.
-        // Shouting the word is only sensible where the closest NPC is likely
-        // to be a banker, and that is inside the bank.
-        // ASK WHO IS HERE FIRST. The trade match needs a paperdoll title and
-        // titles only arrive after ActionScanMobiles clicks for them, so
-        // "no banker recognised" is often just "nobody has been asked yet".
-        if (!bankTitlesAskedMs_ || obs.nowMs - bankTitlesAskedMs_ > 20000) {
-            client.ActionScanMobiles();
-            bankTitlesAskedMs_ = obs.nowMs;
-            nextActionMs_ = obs.nowMs + 2500;
-            return false;
-        }
-
-        const KnownPlace* bankHere = state_.memory.NearestPlace("bank", obs.x, obs.y);
-        const bool standingInABank =
-            obs.atBank || client.BankContainer() != 0 ||
-            (bankHere && TileDist(obs.x, obs.y, bankHere->x, bankHere->y) <= 6);
-        if (standingInABank && ++bankShouts_ <= kMaxBankShouts) {
-            LogLine("bank: no banker recognised here -- saying 'bank' aloud "
-                    "(%d of %d), which is what a player does",
-                    bankShouts_, kMaxBankShouts);
-            client.ActionOpenBank(0, "bank");
-            nextActionMs_ = obs.nowMs + kBankAskGapMs;
-            return false;
-        }
-        if (bankShouts_ > kMaxBankShouts) {
-            LogLine("goal_failed=BANK reason=\"said 'bank' %d times where the "
-                    "box should be and nobody answered\"", kMaxBankShouts);
-            planner_.Cooldown(GoalKind::Bank, obs.nowMs + kNoBankCooldownMs);
-            planner_.Finish(false, "nobody answered", obs.nowMs);
-            bankShouts_ = 0;
-            return false;
-        }
-    }
-    if (banker) {
-        // CLOSE ENOUGH TO BE HEARD. "he cant open the bank he needs to be
-        // closer to banker" (project owner, 2026-08-29). The remembered bank
-        // place is a spot in the room, not the teller: Corwyn stood at
-        // 2502,552 while Jarvinia was at 2499,549 and the other banker at
-        // 2502,547 -- three and five tiles -- and every "bank" he said drew no
-        // reply at all, from a banker who greets other bots cheerfully.
-        i32 kx = 0, ky = 0; i8 kz = 0;
-        if (client.MobilePosition(banker, &kx, &ky, &kz)) {
-            const i32 d = TileDist(obs.x, obs.y, kx, ky);
-            if (d > 2) {
-                if (client.TravelBusy()) return false;
-                LogLine("bank: the banker is %d tiles off -- stepping up to be "
-                        "heard", d);
-                travelInFlight_ = client.TravelToPoint(kx, ky, 2, "banker");
-                nextActionMs_ = obs.nowMs + 2000;
-                return false;
-            }
-        }
-        client.ActionOpenBank(banker);
-        // REMEMBER WHERE THE BANKER STANDS, not where we happened to be when
-        // the last item went into the box. Recording the player's position at
-        // deposit time put Bryn's "bank" on the Britain dock, seventy tiles
-        // from Hyman, and every later trip walked confidently to a spot with
-        // no banker in it -- three round trips in one minute before the trip
-        // counter gave up. A remembered place is only useful if it is the
-        // thing, not a place the thing was once near.
+    if (br.status == life::ActivityStatus::Success) {
+        // Remember where the counter is, now that one has actually served us.
         i32 bx = 0, by = 0; i8 bz = 0;
-        if (client.MobilePosition(banker, &bx, &by, &bz)) {
+        if (br.banker && client.MobilePosition(br.banker, &bx, &by, &bz))
             state_.memory.NotePlace("bank", "bank", bx, by, bz, obs.nowMs);
-        }
-        bankerAsked_ = banker;
-        bankOpenedMs_ = obs.nowMs;
-        nextActionMs_ = obs.nowMs + kBankAskGapMs;
+        // The box is open; the next tick takes the deposit branch above.
+        planner_.NoteProgress();
+        return false;
+    }
+
+    if (!life::IsTerminal(br.status)) {
         // ASKING IS NOT PROGRESS. NoteProgress() here reset the attempt
         // counter on every retry, so Exhausted() never fired and the planner
         // believed a goal that had done nothing for twenty minutes was
@@ -3442,87 +3359,16 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         planner_.NoteAttempt(obs.nowMs);
         return false;
     }
-    if (!bankerSilent_.empty()) {
-        // Every banker within sight has now been asked and none opened a box.
-        // Walking to another bank is the honest next move, but not on this
-        // goal and not this second.
-        LogLine("bank: %d banker(s) in reach and not one opened a box -- "
-                "standing down for %llds",
-                static_cast<int>(bankerSilent_.size()),
-                static_cast<long long>(kBankCooldownMs / 1000));
-        state_.memory.NoteEvent("bank_no_answer", "no banker opened a box", "",
-                                obs.x, obs.y, obs.nowMs);
-        bankerSilent_.clear();
-        bankOpenTries_ = 0;
-        bankTrips_ = 0;
-        planner_.Cooldown(GoalKind::Bank, obs.nowMs + kBankCooldownMs);
-        planner_.Finish(false, "no banker answered", obs.nowMs);
-        nextActionMs_ = obs.nowMs + 5000;
-        return false;
-    }
-    if (!travelInFlight_) {
-        // BOUNDED. A trip that "arrives" without putting a banker in reach
-        // completes instantly, and without a counter this alternates
-        // start/clear forever -- the same no-op travel loop that pinned
-        // GATHER_LOGS, logged eight times a second.
-        if (++bankTrips_ > kMaxBankTrips) {
-            LogLine("goal_failed=BANK reason=\"%d trips and still no banker in "
-                    "reach; the pack stays full\"", bankTrips_ - 1);
-            state_.memory.NoteEvent("bank_unreachable",
-                                    "could not reach a banker", "", obs.x, obs.y,
-                                    obs.nowMs);
-            planner_.Finish(false, "no banker reachable", obs.nowMs);
-            bankTrips_ = 0;
-            nextActionMs_ = obs.nowMs + 30000;
-            return false;
-        }
-        const KnownPlace* known = state_.memory.NearestPlace("bank", obs.x, obs.y);
-        // A REMEMBERED PLACE THAT KEEPS BEING WRONG IS NOT A MEMORY.
-        //
-        // Bryn walked to a "bank" on the Britain dock, found nobody, walked
-        // back, and did it again -- three round trips a minute, and the trip
-        // counter reset every time the goal was re-picked, so it never ran
-        // out. Two failed arrivals at the same spot is enough: unlearn it and
-        // ask the world model instead. The place that replaces it is recorded
-        // from the BANKER's own position when a box actually opens.
-        if (known && bankTrips_ > 2) {
-            LogLine("bank: two trips to %d,%d found no banker -- forgetting "
-                    "that place", known->x, known->y);
-            state_.memory.ForgetPlace("bank", known->x, known->y);
-            known = state_.memory.NearestPlace("bank", obs.x, obs.y);
-        }
-        if (known) {
-            LogLine("bank: returning to a remembered bank at %d,%d (trip %d)",
-                    known->x, known->y, bankTrips_);
-            travelInFlight_ = client.TravelToPoint(known->x, known->y, 2, "bank");
-        } else {
-            LogLine("bank: no bank learned yet; asking the world model for one "
-                    "(trip %d)", bankTrips_);
-            travelInFlight_ = client.TravelToService(wm::Service::Banker, nullptr);
-        }
-        if (!travelInFlight_) {
-            LogLine("goal_blocked=BANK reason=\"%s\"", client.TravelFailureText());
-            planner_.NoteAttempt(obs.nowMs);
-            nextActionMs_ = obs.nowMs + 10000;
-        }
-        nextActionMs_ = obs.nowMs + 2000;
-        return false;
-    }
-    travelInFlight_ = false;
-    if (!client.TravelSucceeded()) {
-        LogLine("bank: the trip did not arrive (%s)", client.TravelFailureText());
-        planner_.NoteAttempt(obs.nowMs);
-        nextActionMs_ = obs.nowMs + 1500;
-        return false;
-    }
-    // Arrived. ASK WHO IS HERE before concluding there is no banker:
-    // NearestMobileWithTrade matches on the paperdoll title, and a title only
-    // arrives after a 0x98 name request. Without this the character stands
-    // next to a banker and reports none in reach.
-    LogLine("bank: arrived at %d,%d -- asking who is here", client.PlayerX(),
-            client.PlayerY());
-    client.ActionScanMobiles();
-    nextActionMs_ = obs.nowMs + 2500;
+
+    // Nobody here will open a box. Walking to another bank is the honest next
+    // move, but not on this goal and not this second.
+    LogLine("goal_failed=BANK status=%s reason=\"%s\"",
+            life::ActivityStatusName(br.status), br.why.c_str());
+    state_.memory.NoteEvent("bank_no_answer", br.why.c_str(), "",
+                            obs.x, obs.y, obs.nowMs);
+    planner_.Cooldown(GoalKind::Bank, obs.nowMs + kBankCooldownMs);
+    planner_.Finish(false, "no banker answered", obs.nowMs);
+    nextActionMs_ = obs.nowMs + 5000;
     return false;
 }
 
@@ -4180,7 +4026,14 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
                     state_.memory.NotePlace("bank", "bank", bx, by, bz,
                                             obs.nowMs);
                 }
-                bankOpenedMs_ = obs.nowMs;
+                // TODO(bank): this is a SECOND hand-written bank-open, and
+                // it should be a BankErrand like DoBank's. It asks whoever is
+                // nearest with no rotation, no deadline discipline and no
+                // check that a box ever opened -- all three of which
+                // BankErrand now owns. Left as-is in this commit because
+                // porting it is a change to DoEarnGold's flow, not a rename.
+                // (bankOpenedMs_ was assigned here and read nowhere, so it
+                // has simply gone.)
                 nextActionMs_ = obs.nowMs + 2500;
                 return false;
             }

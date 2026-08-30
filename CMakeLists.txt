@@ -103,6 +103,8 @@ set(UO_CLIENT_SOURCES
     # testable set -- tests/interaction_progress.cpp links it directly.
     src/life/interaction/Progress.cpp
     src/life/interaction/Handshake.cpp
+    src/life/interaction/NpcRotation.cpp
+    src/life/interaction/BankErrand.cpp
     # Activities (section 15). BuyPlan.cpp is split from Buy.cpp so the
     # arithmetic links into ctest without dragging Client along.
     src/life/activities/BuyPlan.cpp

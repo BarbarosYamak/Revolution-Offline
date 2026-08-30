@@ -303,3 +303,17 @@ target_include_directories(activity_acquire PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_acquire COMMAND activity_acquire)
+
+# --- The interaction layer: the silent-NPC rotation -------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 16 and 47. "One silent NPC is not the
+# whole trade" -- broken in BOTH directions here: Ysolde lost Meditation
+# entirely because one trainer refused her, and the bank ask went to the same
+# banker every tick forever because nothing recorded that it had ignored us.
+add_executable(interaction_rotation interaction_rotation.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/interaction/NpcRotation.cpp)
+target_include_directories(interaction_rotation PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME interaction_rotation COMMAND interaction_rotation)

@@ -18,6 +18,7 @@
 #include "uo/life.h"
 #include "uo/world_model.h"
 #include "uo/activities/buy.h"
+#include "uo/interaction/bank_errand.h"
 #include "uo/vendor_errand.h"
 #include "uo/types.h"
 
@@ -276,6 +277,7 @@ private:
     // members shared between goals, and a gear trip spent the spellbook's
     // allowance.
     life::BuyActivity bandageBuy_;
+    life::BankErrand   bankErrand_;
     life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
@@ -288,7 +290,6 @@ private:
     i32  smeltIngotsBefore_ = 0;
     i32  smeltTrips_ = 0;
     i64  toolTitlesAskedMs_ = 0;
-    i64  bankTitlesAskedMs_ = 0;
     i32  coinLiftFails_ = 0;
     // Who was standing there when an offer went unanswered, so the same room
     // is not shouted at twice.
@@ -329,7 +330,6 @@ private:
     // only mine at the entrance" (project owner, 2026-08-29).
     bool mineRoam_ = false;
     i32  tameTrips_ = 0;
-    i32  bankShouts_ = 0;
     i32  mineTrips_ = 0;
     std::string exploreTarget_;
     bool spellbookOpened_ = false;
@@ -389,10 +389,6 @@ private:
     // earlier from three tiles -- stood four tiles off and was never asked
     // (run_m5/pair3). Not persisted: silence is about this visit, not about
     // the NPC, and the same rule already governs silent trainers.
-    std::vector<u32> bankerSilent_;
-    u32  bankerAsked_ = 0;        // who the outstanding ask went to
-    u32  bankerCounted_ = 0;      // who bankOpenTries_ is a tally ABOUT
-    i32  bankOpenTries_ = 0;      // asks to THIS banker with no box back
     static constexpr i32 kMaxBankOpenTries = 3;
     // Longer than kBankTimeoutMs (6 s, Client.cpp). An ask re-issued inside
     // its own deadline supersedes itself and can never resolve either way.
@@ -512,7 +508,6 @@ private:
     bool fishAtDock_ = false;
 
     i32  toolGoldBefore_ = 0;
-    i64  bankOpenedMs_ = 0;   // when the box was last asked for
     i64  lastChopMs_ = 0;
     i32  travelAttempts_ = 0;
     bool travelInFlight_ = false;
