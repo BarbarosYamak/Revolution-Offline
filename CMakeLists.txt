@@ -114,6 +114,8 @@ set(UO_CLIENT_SOURCES
     src/life/activities/CraftPlan.cpp
     src/life/activities/TrainPlan.cpp
     src/life/activities/GatherPlan.cpp
+    # Strategies (section 21): the one place archetypes differ by algorithm.
+    src/life/strategies/CombatStrategy.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.

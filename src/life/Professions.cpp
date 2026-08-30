@@ -200,6 +200,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "lumberjack_swordsman";
+            // Fights as: melee -- a swordsman closes and stays there.
+            p.combatStrategy = life::CombatStrategyId::Melee;
             // Wears: Metal. a swordsman in the open takes the heaviest armour its STR allows, and a shield hand is free
             p.wears = Profession::Wear::Metal;
             p.maysShield = true;
@@ -286,6 +288,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "miner_smith";
+            // Fights as: avoidcombat -- no weapon skill in the build at all.
+            p.combatStrategy = life::CombatStrategyId::AvoidCombat;
             // Wears: Metal. it makes the plate; it is not going to refuse to wear it
             p.wears = Profession::Wear::Metal;
             p.maysShield = true;
@@ -349,6 +353,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "mage";
+            // Fights as: mage -- keeps the distance, watches its mana.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Cloth. metal ends casting on this shard and a shield hand is a spell hand
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -423,6 +429,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "alchemist";
+            // Fights as: mage -- casts what little it has rather than trading blows.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Cloth. a brewer that also casts; robes only
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -532,6 +540,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "fisher";
+            // Fights as: avoidcombat -- a crafter's answer to a fight is to leave.
+            p.combatStrategy = life::CombatStrategyId::AvoidCombat;
             // Wears: Cloth. "for crafter upgrade gear just wear normal clothing for now" (owner)
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -602,6 +612,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "tamer";
+            // Fights as: tamer -- the pet fights; the tamer commands and heals it.
+            p.combatStrategy = life::CombatStrategyId::Tamer;
             // Wears: Leather. UNKNOWN what Revolution's tamers wore; leather is the light-armour reading and it keeps casting available
             p.wears = Profession::Wear::Leather;
             p.maysShield = false;
@@ -641,6 +653,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "fencer";
+            // Fights as: melee -- one-handed and in your face.
+            p.combatStrategy = life::CombatStrategyId::Melee;
             // Wears: Metal. a dexxer, and fencing is one-handed
             p.wears = Profession::Wear::Metal;
             p.maysShield = true;
@@ -692,6 +706,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "macer";
+            // Fights as: melee -- the same, with a shield.
+            p.combatStrategy = life::CombatStrategyId::Melee;
             // Wears: Metal. a dexxer, and the shield is part of the school
             p.wears = Profession::Wear::Metal;
             p.maysShield = true;
@@ -742,6 +758,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "archer";
+            // Fights as: ranged -- the bow needs both hands, so distance IS the tactic.
+            p.combatStrategy = life::CombatStrategyId::Ranged;
             // Wears: Leather. the bow needs BOTH hands, so never a shield. Leather rather than plate is the classic archer reading and is UNKNOWN for Revolution specifically
             p.wears = Profession::Wear::Leather;
             p.maysShield = false;
@@ -800,6 +818,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "warlock";
+            // Fights as: mage -- Magery is the primary; the sword is the fallback.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Cloth. casts; same rule as the mage
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -858,6 +878,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "pk";
+            // Fights as: melee -- closes, and means it.
+            p.combatStrategy = life::CombatStrategyId::Melee;
             // Wears: Metal. kills players for a living and wears everything it can
             p.wears = Profession::Wear::Metal;
             p.maysShield = true;
@@ -911,6 +933,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "treasure_hunter";
+            // Fights as: mage -- travels and survives by casting.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Leather. travels by Recall and casts to survive, so nothing metal
             p.wears = Profession::Wear::Leather;
             p.maysShield = false;
@@ -973,6 +997,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "mage_blacksmith";
+            // Fights as: mage -- the smithing half does not change how it fights.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Cloth. the smithing half does not change the fact that it casts
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -1028,6 +1054,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "full_crafter";
+            // Fights as: avoidcombat -- tools, not weapons.
+            p.combatStrategy = life::CombatStrategyId::AvoidCombat;
             // Wears: Cloth. "for crafter upgrade gear just wear normal clothing for now" (owner)
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -1190,6 +1218,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "tailor";
+            // Fights as: avoidcombat -- tools, not weapons.
+            p.combatStrategy = life::CombatStrategyId::AvoidCombat;
             // Wears: Cloth. a crafter in ordinary clothes
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -1261,6 +1291,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "merchant_tinker";
+            // Fights as: avoidcombat -- tools, not weapons.
+            p.combatStrategy = life::CombatStrategyId::AvoidCombat;
             // Wears: Cloth. a crafter in ordinary clothes
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;
@@ -1338,6 +1370,8 @@ const std::vector<Profession>& All() {
         {
             Profession p;
             p.id = "scribe";
+            // Fights as: mage -- casts what it scribes.
+            p.combatStrategy = life::CombatStrategyId::Mage;
             // Wears: Cloth. casts, and sells what it scribes
             p.wears = Profession::Wear::Cloth;
             p.maysShield = false;

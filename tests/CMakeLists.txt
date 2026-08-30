@@ -175,6 +175,10 @@ add_test(NAME m4_economy_invariant COMMAND m4_economy_invariant
 # functions over the catalogue, so they belong in the same no-server test.
 add_executable(m5_professions m5_professions.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    # The catalogue now names a combat strategy per profession, so the
+    # strategy's own names come along -- the test checks that how a life
+    # fights agrees with what the rest of its record says it is.
+    ${CMAKE_SOURCE_DIR}/src/life/strategies/CombatStrategy.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Identity.cpp
     ${CMAKE_SOURCE_DIR}/src/life/Memory.cpp
     ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
@@ -360,3 +364,20 @@ target_include_directories(activity_gather PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_gather COMMAND activity_gather)
+
+# --- Strategies: combat -----------------------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md sections 21 and 54. The ONE deliberate exception to
+# "professions are data": a mage and a warrior in a fight are different
+# algorithms, not the same behaviour with different numbers. Five strategies
+# serve seventeen professions, and none of them knows what a miner is.
+#
+# Legality is not tested here -- combat/Targeting.cpp owns "may I hit this"
+# and has 47 checks of its own. This is "the fight is on and lawful; what now".
+add_executable(strategy_combat strategy_combat.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/strategies/CombatStrategy.cpp)
+target_include_directories(strategy_combat PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME strategy_combat COMMAND strategy_combat)

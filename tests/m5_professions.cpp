@@ -673,6 +673,48 @@ void TestWhatEachLifeWears() {
     }
 }
 
+// M5/section 21 -- the combat strategy is DATA, and it has to agree with the
+// rest of the record. A life listed as wearing cloth and refusing a shield
+// has no business being told to close to melee range.
+void TestCombatStrategyAgreesWithTheBuild() {
+    std::printf("[strategy: how a life fights matches what it is]\n");
+    using W = prof::Profession::Wear;
+    for (const prof::Profession& p : prof::All()) {
+        const bool fights = uo::life::WantsToHunt(p);
+
+        // A life with no weapon skill must not be given a fighting strategy:
+        // that is how a miner ends up swinging a pickaxe at a lich.
+        if (!fights && p.combatStrategy != uo::life::CombatStrategyId::AvoidCombat &&
+            p.combatStrategy != uo::life::CombatStrategyId::Mage &&
+            p.combatStrategy != uo::life::CombatStrategyId::Tamer) {
+            std::printf("  FAIL: %s has no weapon skill but fights as %s\n",
+                        p.id.c_str(),
+                        uo::life::CombatStrategyName(p.combatStrategy));
+            ++g_failures;
+        }
+        ++g_checks;
+
+        // A melee strategy needs armour: closing to one tile in a robe is a
+        // way to die, and M5's wearable class already says who may.
+        if (p.combatStrategy == uo::life::CombatStrategyId::Melee &&
+            p.wears == W::Cloth) {
+            std::printf("  FAIL: %s closes to melee in cloth\n", p.id.c_str());
+            ++g_failures;
+        }
+        ++g_checks;
+
+        // An archer may never be given a shield -- the bow needs both hands
+        // -- and the strategy is the second place that has to know it.
+        if (p.combatStrategy == uo::life::CombatStrategyId::Ranged &&
+            p.maysShield) {
+            std::printf("  FAIL: %s shoots a bow and carries a shield\n",
+                        p.id.c_str());
+            ++g_failures;
+        }
+        ++g_checks;
+    }
+}
+
 int main() {
     std::printf("m5_professions\n");
     TestEveryEntryIsLegal();
@@ -690,6 +732,7 @@ int main() {
     TestTierIsObservedNotAssigned();
     TestEveryRecipeInputIsDeclared();
     TestWhatEachLifeWears();
+    TestCombatStrategyAgreesWithTheBuild();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;
 }

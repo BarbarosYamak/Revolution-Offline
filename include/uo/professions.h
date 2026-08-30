@@ -24,6 +24,7 @@
 // ---------------------------------------------------------------------------
 
 #include "uo/rules.h"
+#include "uo/strategies/combat_strategy.h"
 #include "uo/types.h"
 
 #include <string>
@@ -220,6 +221,18 @@ struct Profession {
     // archer may wear full plate and still never carry one, because a bow
     // needs both hands. Same for anyone who casts.
     bool maysShield = false;
+
+    // HOW THIS LIFE FIGHTS, when it fights at all.
+    //
+    // A NAME, not an implementation: the strategy objects live in
+    // life/strategies/ and know nothing about miners or scribes. This is the
+    // seam that lets a mage and a warrior use genuinely different algorithms
+    // without a MageBot.cpp -- five strategies serving seventeen professions,
+    // and a hundred if it comes to that.
+    //
+    // AvoidCombat is a real answer, not a default: a tailor that trades blows
+    // is a tailor that loses its tools.
+    life::CombatStrategyId combatStrategy = life::CombatStrategyId::AvoidCombat;
 
     // Gold this life keeps back rather than spending -- the reserve that pays
     // for a replacement tool after a death.
