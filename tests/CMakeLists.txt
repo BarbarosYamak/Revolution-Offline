@@ -345,3 +345,18 @@ target_include_directories(activity_train PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME activity_train COMMAND activity_train)
+
+# --- Activities: gathering --------------------------------------------------
+#
+# docs/BOT_ARCHITECTURE.md section 22. One framework for chopping, mining and
+# fishing. The first case is the worst bug this project has had: "every tree
+# within 24 tiles is worked out" returned goal-COMPLETE, so the planner
+# re-picked the same goal for the same character in the same clearing --
+# forty completions with progress=0 in under two minutes.
+add_executable(activity_gather activity_gather.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/GatherPlan.cpp)
+target_include_directories(activity_gather PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME activity_gather COMMAND activity_gather)

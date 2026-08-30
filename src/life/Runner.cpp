@@ -4,6 +4,7 @@
 #include "uo/log.h"
 #include "uo/builders.h"
 #include "uo/faucets.h"
+#include "uo/activities/gather.h"
 #include "uo/interaction/progress.h"
 #include "uo/market.h"
 #include "uo/trade.h"
@@ -3384,14 +3385,42 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
 // --- the work --------------------------------------------------------------
 
 bool Runner::DoGatherLogs(Client& client, const Observation& obs) {
-    if (!obs.axeInPack && !obs.axeEquipped) {
-        LogLine("goal_failed=GATHER_LOGS reason=\"no axe\"");
-        planner_.Finish(false, "no axe", obs.nowMs);
-        return false;
-    }
-    if (obs.WeightFraction() >= 0.95) {
-        LogLine("gather: pack full at %.0f%%", obs.WeightFraction() * 100.0);
-        return true;
+    // THE SHARED DECISION FIRST (section 22). Chopping, mining and fishing
+    // all answer the same question -- swing, arm, move, or take the load in
+    // -- and the branches below used to answer it three different ways. What
+    // stays here is what is genuinely a lumberjack's: which tree, and how to
+    // swing at it.
+    {
+        life::GatherRequest req;
+        req.resource = "logs";
+        req.loadWorthTaking = needCfg_.logsWorthBanking;
+        req.packFullFraction = 0.95;   // this goal's own long-standing bar
+        req.toolMustBeWielded = true;  // skill44_lumberjacking reads SRC.WEAPON
+
+        life::GatherSight sight;
+        sight.held = obs.logs;
+        sight.weightFraction = obs.WeightFraction();
+        sight.toolInPack = obs.axeInPack;
+        sight.toolWielded = obs.axeEquipped;
+        // The census and the exhaustion flag disagree on purpose: TreeCount
+        // still sees trunks here while NearestTree has none left to offer.
+        sight.targetInReach = obs.atWorkSite && !areaExhausted_;
+        sight.areaWorkedOut = areaExhausted_;
+
+        const life::GatherPlan plan = life::DecideGather(req, sight);
+        if (plan.step == life::GatherStep::NeedTool) {
+            LogLine("goal_failed=GATHER_LOGS reason=\"%s\"", plan.reason);
+            planner_.Finish(false, "no axe", obs.nowMs);
+            return false;
+        }
+        if (plan.step == life::GatherStep::TakeItIn) {
+            LogLine("gather: %s (%.0f%% of capacity, %d logs)", plan.reason,
+                    obs.WeightFraction() * 100.0, obs.logs);
+            return true;
+        }
+        // LeaveArea, ArmTool and Swing all fall through: the branches below
+        // already do those three things, and doing them well is this
+        // handler's actual job.
     }
 
     // Arm the axe. `skill44_lumberjacking.scp` requires SRC.WEAPON, so the axe
