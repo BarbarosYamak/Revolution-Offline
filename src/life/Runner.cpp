@@ -8890,9 +8890,50 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                                   &deadTargets_) &&
         !client.NearestMiningSpot(obs.x, obs.y, obs.z, kMineScanRadius, &spot,
                                   &deadTargets_)) {
+        // NO ROCK HERE IS A REASON TO WALK, NOT A REASON TO GIVE UP.
+        //
+        // The gate above measures DistanceToResource, which is the distance
+        // to a resource AREA -- a district, not a tile. Standing in Minoc
+        // town it reported "the ore is 11 tiles off", the goal walked its
+        // short leg, arrived somewhere with no rock in it at all, and failed:
+        //
+        //   mine: no mineable rock within 24 tiles of 2460,429 -- moving on
+        //   goal_failed=MINE reason="no rock in reach"
+        //
+        // -- a hundred tiles from a mine whose exact position this life had
+        // recorded twenty-six successes at. The pickaxe had just broken and
+        // been replaced in town (v4_Corwyn, 2026-08-30 17:42), which is
+        // precisely when a miner is furthest from the rock and most needs to
+        // go back to it.
+        //
+        // A remembered spot that has actually produced ore beats any area
+        // centroid, so walk to that before admitting defeat. Bounded by the
+        // same trip counter, so an unreachable memory still fails honestly.
+        if (const KnownResourceSource* known =
+                state_.memory.BestResource("ore", obs.x, obs.y, obs.nowMs)) {
+            const i32 back = TileDist(known->x, known->y, obs.x, obs.y);
+            if (known->successes > 0 && back > kMineReach &&
+                ++mineTrips_ <= kMaxMineTrips) {
+                LogLine("mine: no rock within %d tiles of %d,%d, but '%s' at "
+                        "%d,%d has given ore %d time(s) -- walking the %d "
+                        "tiles back (trip %d)",
+                        kMineScanRadius, obs.x, obs.y,
+                        known->label.empty() ? "a known vein"
+                                             : known->label.c_str(),
+                        known->x, known->y, known->successes, back,
+                        mineTrips_);
+                deadTargets_.clear();
+                travelInFlight_ =
+                    client.TravelToPoint(known->x, known->y, 2, "ore");
+                nextActionMs_ = obs.nowMs + 2500;
+                return false;
+            }
+        }
+
         LogLine("mine: no mineable rock within %d tiles of %d,%d -- moving on",
                 kMineScanRadius, obs.x, obs.y);
         deadTargets_.clear();
+        mineTrips_ = 0;
         planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
         planner_.Finish(false, "no rock in reach", obs.nowMs);
         return false;
@@ -9063,6 +9104,29 @@ bool Runner::DoExplore(Client& client, const Observation& obs) {
         // unvisited and send the character back to it on the next tick.
         state_.memory.NotePlace("explored", exploreTarget_.c_str(), obs.x,
                                 obs.y, obs.z, obs.nowMs);
+        // AND REMEMBER THE NAME SEPARATELY, because the place record cannot.
+        //
+        // NotePlace matches on kind AND position (Memory.cpp:34-40), so two
+        // atlas entries that resolve to the SAME tile collapse into one
+        // record -- and the later one OVERWRITES the name. Minoc's cobbler
+        // and provisioner both sit on 2453,430, so the single record's name
+        // flipped between them, `seen` never contained both at once, and the
+        // pair was re-nominated forever:
+        //
+        //   going to 'minoc_cobbler' -- somewhere new (15 place(s) known)
+        //   arrived at 2453,430 -- reading who is here
+        //   going to 'minoc_provisioner' -- somewhere new (15 place(s) known)
+        //   arrived at 2453,430 -- reading who is here
+        //
+        // Eleven picks in a three-minute session, half of everything the
+        // character did, and the place count never moved off 15. Keeping the
+        // visited IDs here means an id is spent once whatever tile it shares.
+        if (!exploreTarget_.empty()) {
+            bool already = false;
+            for (const std::string& id : exploredIds_)
+                if (id == exploreTarget_) { already = true; break; }
+            if (!already) exploredIds_.push_back(exploreTarget_);
+        }
         exploreTarget_.clear();
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 3000;
@@ -9076,6 +9140,13 @@ bool Runner::DoExplore(Client& client, const Observation& obs) {
     std::vector<std::string> seen;
     for (const KnownPlace& p : state_.memory.Places()) {
         if (!p.name.empty()) seen.push_back(p.name);
+    }
+    // Plus every id already walked to this session -- see the arrival branch
+    // above for why the place records alone cannot answer this.
+    for (const std::string& id : exploredIds_) {
+        bool dup = false;
+        for (const std::string& s : seen) if (s == id) { dup = true; break; }
+        if (!dup) seen.push_back(id);
     }
     if (!client.TravelToUnexploredPlace(seen, &exploreTarget_)) {
         LogLine("explore: nowhere new to go (%s) -- standing down",

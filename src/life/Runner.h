@@ -291,6 +291,10 @@ private:
     // CutResurrectionRobe.
     bool wasDead_ = false;
     i64  resurrectedAtMs_ = 0;
+    // Atlas ids already walked to this session. A place record cannot hold
+    // this: NotePlace collapses two places that share a tile into one, and
+    // the survivor's name flips between them. See DoExplore.
+    std::vector<std::string> exploredIds_;
     bool CutResurrectionRobe(Client& client, const Observation& obs);
     // Shirt, trousers, shoes. Not armour and not decoration -- a character
     // that has just been resurrected owns nothing else.
