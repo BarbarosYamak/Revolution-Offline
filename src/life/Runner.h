@@ -245,7 +245,6 @@ private:
     bool deathBlamed_ = false;
     i32  ghostTrips_ = 0;
     static constexpr i32 kMaxGhostTrips = 4;
-    i32  foodTrips_ = 0;
     // A SPELL YOU DO NOT HAVE STAYS UNCAST, however much Magery you own.
     // Voris had Magery 50.0 and no Create Food in his book, and asked for it
     // every six seconds for a whole session: "The spell is not in your
@@ -272,6 +271,7 @@ private:
     // be Runner members shared between goals, and a gear trip spent the
     // spellbook's allowance.
     life::VendorErrand bandageErrand_;
+    life::VendorErrand foodErrand_;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
     // surface, and 0 for rock land or the rock static's id (a cave floor is a

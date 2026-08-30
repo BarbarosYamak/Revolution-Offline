@@ -74,12 +74,31 @@ const char* ErrandStateName(ErrandState s);
 // What to buy, and from whom. Filled once by the activity; the errand does
 // not modify it.
 struct VendorErrandSpec {
-    // The paperdoll job to look for ("healer", "provisioner"). Matched by the
-    // client's own trade lookup, which knows about gendered titles -- and
-    // which must never resolve to a guildmaster, who keeps no shop.
-    const char* trade = nullptr;
-    // Where to travel when no such NPC is in sight.
-    wm::Service service = wm::Service::None;
+    // WHO MIGHT SELL IT, in preference order.
+    //
+    // More than one, because the evidence says so twice over: the food goal
+    // asks a baker and falls back to a provisioner, and the spellbook goal
+    // prefers a scribe (who lets you choose the scroll) and falls back to a
+    // mage shop (who does not). A town without the first seller is common and
+    // is not a reason to fail an errand.
+    //
+    // `trade` is the paperdoll job, matched by the client's own lookup --
+    // which knows about gendered titles, and which must never resolve to a
+    // guildmaster, who keeps no shop. `service` is where to travel when none
+    // is in sight.
+    struct Seller {
+        const char* trade = nullptr;
+        wm::Service service = wm::Service::None;
+    };
+    Seller sellers[3] = {};
+    i32    sellerCount = 0;
+
+    void Sell(const char* trade, wm::Service service) {
+        if (sellerCount >= 3) return;
+        sellers[sellerCount].trade = trade;
+        sellers[sellerCount].service = service;
+        ++sellerCount;
+    }
     // The item, by graphic. Zero means "the caller will choose from the
     // offer itself" and Tick stops at OfferOpen.
     u16 graphic = 0;
@@ -127,6 +146,7 @@ private:
 
     VendorErrandSpec spec_;
     Step step_ = Step::Find;
+    i32  seller_ = 0;      // index into spec_.sellers
     bool running_ = false;
     u32  keeper_ = 0;
     i32  trips_ = 0;

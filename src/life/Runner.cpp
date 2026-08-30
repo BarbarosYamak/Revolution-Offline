@@ -2890,8 +2890,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
         // and what to remember afterwards.
         if (!bandageErrand_.Running()) {
             life::VendorErrandSpec spec;
-            spec.trade = "healer";
-            spec.service = wm::Service::Healer;
+            spec.Sell("healer", wm::Service::Healer);
             spec.graphic = kBandage;
             spec.qty = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
             spec.what = "clean bandages";
@@ -7444,109 +7443,62 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     // four lines would have been the smaller diff and the wrong one -- it edits
     // the shard's economy to suit the bot instead of teaching the bot where
     // food is sold.
-    u32 keeper = client.NearestShopkeeperWithTrade("baker", wm::Service::Baker);
-    const char* keeperTrade = "baker";
-    if (!keeper) {
-        keeper = client.NearestShopkeeperWithTrade("provisioner",
-                                                   wm::Service::Provisioner);
-        keeperTrade = "provisioner";
+    // --- THE ERRAND OWNS THE HANDSHAKE FROM HERE -------------------------
+    //
+    // Baker first, provisioner as the fallback -- the seller list, not two
+    // hand-written branches and a trip-parity trick. Everything else this
+    // block used to do (walk up before speaking, scan when the keeper is not
+    // in the cache, wait past the vendor deadline) is the same sequence the
+    // bandage errand needed, and is now written once.
+    //
+    // graphic = 0 means "the caller chooses from the offer", because food is
+    // not one item: kFood lists bread, lamb, chicken and cooked bird, and any
+    // of them ends the hunger. The errand opens the shop and hands back the
+    // window; picking the row stays here, where the eating rules live.
+    if (!foodErrand_.Running()) {
+        life::VendorErrandSpec spec;
+        spec.Sell("baker", wm::Service::Baker);
+        spec.Sell("provisioner", wm::Service::Provisioner);
+        spec.graphic = 0;
+        spec.what = "something to eat";
+        spec.maxTrips = kMaxFoodTrips;
+        foodErrand_.Begin(spec);
     }
-    if (keeper) {
-        // WALK TO THEM FIRST. Every other vendor path learned this today and
-        // this one, written later the same day, did not: it shouted the
-        // keeper's name from wherever it happened to be standing.
-        //
-        // Seen directly rather than deduced -- the owner sent a screenshot of
-        // Kaelen saying "Taite buy" twice from INSIDE A DIFFERENT ROOM of the
-        // Britain provisioner's shop, a wall between him and Taite, who
-        // answered with the generic "I'm here to sell thee supplies" because
-        // she had heard her name and nothing she could act on. No log line
-        // says any of that: to the bot it looked like an ask that got no shop
-        // window. Headless runs prove mechanics; they cannot prove where the
-        // character is standing.
-        i32 vx = 0, vy = 0; i8 vz = 0;
-        // AND IF WE CANNOT SEE WHERE THEY ARE, DO NOT SPEAK.
-        //
-        // The old code fell through to the ask when MobilePosition failed,
-        // which is exactly how the shout-through-a-wall came back after being
-        // fixed: the walk-up logged three times at an unchanging 4 tiles, the
-        // mobile went stale, the position lookup failed, and the bot spoke
-        // from wherever it stood. Not knowing where the keeper is, is a reason
-        // to look again -- never a reason to assume we have arrived.
-        if (!client.MobilePosition(keeper, &vx, &vy, &vz)) {
-            LogLine("food: lost sight of the %s -- looking again before speaking",
-                    keeperTrade);
-            client.ActionScanMobiles();
-            nextActionMs_ = obs.nowMs + 2000;
-            return false;
-        }
-        const i32 d = TileDist(obs.x, obs.y, vx, vy);
-        const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
-        if (d > kVendorReach || dz > 3) {
-            LogLine("food: the %s is %d tiles and %d z away -- "
-                    "walking up before speaking", keeperTrade, d, dz);
-            travelInFlight_ = client.TravelToEntity(keeper, 1);
-            nextActionMs_ = obs.nowMs + 2000;
-            return false;
-        }
-        // AND THEN BUY SOMETHING. This step did not exist.
-        //
-        // The goal opened the shop and waited, the tick came round, it found
-        // no food in the pack, and it opened the shop again -- 113 times in
-        // one session, in front of a baker's full window. Every previous
-        // "GET_FOOD failed" was this: the errand had no purchase in it at all,
-        // so it could never once have succeeded, whichever vendor it asked.
-        if (OfferBelongsTo(client, keeper)) {
-            for (const Client::VendorItem& v : client.VendorOffer()) {
-                if (!GraphicIsAny(v.graphic, kFood,
-                                  sizeof(kFood) / sizeof(kFood[0])))
-                    continue;
-                const i32 unit = static_cast<i32>(v.price);
-                if (unit > 0 && unit > obs.gold) continue;
-                LogLine("food: buying %s from the %s at %d gold",
-                        v.name.c_str(), keeperTrade, unit);
-                client.ActionVendorBuy(keeper, v.serial, 2);
-                planner_.NoteAttempt(obs.nowMs);
-                // Longer than kVendorTimeoutMs, or the ask supersedes itself.
-                nextActionMs_ = obs.nowMs + 9000;
-                return false;
-            }
-            LogLine("goal_failed=GET_FOOD reason=\"the %s has nothing edible "
-                    "this life can afford (%d gold)\"", keeperTrade, obs.gold);
-            planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
-            planner_.Finish(false, "vendor has no affordable food", obs.nowMs);
-            return false;
-        }
-        LogLine("food: nothing to eat -- asking the %s", keeperTrade);
-        client.ActionVendorOpen(keeper);
+    const life::VendorErrandResult r = foodErrand_.Tick(client, obs);
+    if (!r.why.empty()) LogLine("food: %s", r.why.c_str());
+    if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
+        nextActionMs_ = obs.nowMs + r.delayMs;
+
+    if (r.state == life::ErrandState::Failed) {
+        LogLine("goal_failed=GET_FOOD reason=\"%s\"", r.why.c_str());
+        planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+        planner_.Finish(false, "no food seller reachable", obs.nowMs);
+        return false;
+    }
+    if (!r.offerOpen) {
+        planner_.NoteAttempt(obs.nowMs);
+        return false;
+    }
+
+    // The shop is open and it is OURS. Buy the first edible row we can
+    // afford -- two of them, because walking back for the second loaf is the
+    // errand nobody wants to run twice.
+    for (const Client::VendorItem& v : client.VendorOffer()) {
+        if (!GraphicIsAny(v.graphic, kFood, sizeof(kFood) / sizeof(kFood[0])))
+            continue;
+        if (static_cast<i32>(v.price) * 2 > obs.gold) continue;
+        LogLine("food: buying %s at %d gold", v.name.c_str(),
+                static_cast<i32>(v.price));
+        client.ActionVendorBuy(r.keeper, v.serial, 2);
+        planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 9000;
         return false;
     }
-    if (!travelInFlight_) {
-        if (++foodTrips_ > kMaxFoodTrips) {
-            LogLine("goal_failed=GET_FOOD reason=\"%d trips and no baker or "
-                    "provisioner in reach\"", foodTrips_ - 1);
-            planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
-            planner_.Finish(false, "no food seller reachable", obs.nowMs);
-            foodTrips_ = 0;
-            nextActionMs_ = obs.nowMs + 5000;
-            return false;
-        }
-        // Head for the baker, since that is who sells the goods. Alternate to
-        // the provisioner on later trips so a town with no baker in the atlas
-        // still gets tried rather than walking the same empty errand thrice.
-        const bool tryBaker = (foodTrips_ % 2) == 1;
-        LogLine("food: looking for a %s (trip %d)",
-                tryBaker ? "baker" : "provisioner", foodTrips_);
-        travelInFlight_ = client.TravelToService(
-            tryBaker ? wm::Service::Baker : wm::Service::Provisioner,
-            HomeOrNearest(state_.homeCity));
-        nextActionMs_ = obs.nowMs + 2000;
-        return false;
-    }
-    travelInFlight_ = false;
-    client.ActionScanMobiles();
-    nextActionMs_ = obs.nowMs + 2500;
+    LogLine("goal_failed=GET_FOOD reason=\"this shop has nothing edible this "
+            "character can afford\"");
+    planner_.Cooldown(GoalKind::GetFood, obs.nowMs + kNoFoodCooldownMs);
+    planner_.Finish(false, "nothing edible for sale", obs.nowMs);
+    foodErrand_.Cancel();
     return false;
 }
 
