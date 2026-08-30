@@ -37,3 +37,7 @@ bot_data/
 run_m4/*.console.txt
 run_m4/*.err.txt
 run_m4/*.log
+build-*/
+build_out*.log
+cfg*.log
+ctest*.log

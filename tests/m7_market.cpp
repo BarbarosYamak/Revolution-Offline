@@ -206,6 +206,51 @@ void TestShortfallSkipsWhatThePackCannotCount() {
 }
 
 // --------------------------------------------------------------------------
+// A CONSUMABLE WAS COUNTED BY ITS CATALOGUE LABEL, NOT ITS DEFNAME.
+//
+// ConsumableNeed::name ("bandage", "heal potion", "food") is prose, chosen
+// for FormatSellOffer-style output; there is no itemdef called "heal
+// potion". obs.pack is keyed by DEFNAME, resolved through
+// econ::ItemNameForGraphic off the wire graphic, the same way the errand
+// counts a pack. `QtyOf(pack, c.name)` compared the pack against a string
+// that can never appear in it, so `have` stayed 0 forever and every
+// consumable was a permanent want no matter how much of it a character was
+// actually carrying (flagged 2026-08-30).
+void TestConsumablesCountedByGraphicNotLabel() {
+    Section("shortfall: a consumable is counted by defname, not by its "
+            "catalogue label");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    Check(lj != nullptr, "the lumberjack exists");
+    if (!lj) return;
+
+    bool declaresBandages = false;
+    for (const prof::ConsumableNeed& c : lj->consumables)
+        if (c.name == "bandage") declaresBandages = true;
+    Check(declaresBandages, "the lumberjack still declares bandages as a "
+          "consumable");
+
+    TradePolicy pol;
+
+    // 30 i_bandage -- the DEFNAME the wire and obs.pack actually use
+    // (VendorPolicy.cpp kGraphics: 0x0E21 -> i_bandage) -- clears the want,
+    // even though the pack has nothing keyed "bandage" (the label).
+    const std::vector<Stock> stocked = {{"i_bandage", 30}};
+    bool wantsBandagesStocked = false;
+    for (const Want& w : Shortfall(*lj, stocked, pol))
+        if (w.item == "bandage") wantsBandagesStocked = true;
+    Check(!wantsBandagesStocked,
+          "30 i_bandage in the pack clears the bandage want entirely");
+
+    // With none at all the want is real -- the fix must not make bandages
+    // unwantable, only countable.
+    bool wantsBandagesEmpty = false;
+    for (const Want& w : Shortfall(*lj, {}, pol))
+        if (w.item == "bandage") wantsBandagesEmpty = true;
+    Check(wantsBandagesEmpty, "and an empty pack is still short of bandages");
+}
+
+// --------------------------------------------------------------------------
 void TestWhoProducesIsCatalogueNotMarket() {
     Section("knowledge: knowing a TRADE exists is not knowing the market");
 
@@ -227,20 +272,28 @@ void TestWhoProducesIsCatalogueNotMarket() {
 void TestPricesMustHaveBeenSeen() {
     Section("prices: a character only knows what it has observed");
 
+    // i_ingot_copper, deliberately NOT i_ingot_iron: this test is about a
+    // character with literally nothing to go on, and i_ingot_iron now carries
+    // a kForumPriceSeeds row (Market.cpp) -- BelievedSalePrice falls back to
+    // that seed once every real observation is exhausted, which is correct
+    // behaviour but would make "-1 with nothing observed" false for THAT
+    // item. i_ingot_copper has no forum seed, so it still isolates the "zero
+    // observations, zero basis" case this test exists to prove. The seed's
+    // own behaviour is covered separately in TestForumPriceSeedsGroundFirstOffers.
     PriceBook book;
-    Check(book.BelievedSalePrice("i_ingot_iron") == -1,
+    Check(book.BelievedSalePrice("i_ingot_copper") == -1,
           "with no observation the answer is -1, NOT a plausible number");
-    Check(book.Latest("i_ingot_iron", PriceSource::PlayerTraded) == nullptr,
+    Check(book.Latest("i_ingot_copper", PriceSource::PlayerTraded) == nullptr,
           "and there is no observation to return");
 
     PriceObservation npc;
-    npc.item = "i_ingot_iron";
+    npc.item = "i_ingot_copper";
     npc.pricePerUnit = 3;
     npc.source = PriceSource::NpcVendorBuys;
     npc.who = "Bertram the blacksmith";
     npc.whenMs = 1000;
     book.Note(npc);
-    Check(book.BelievedSalePrice("i_ingot_iron") == 3,
+    Check(book.BelievedSalePrice("i_ingot_copper") == 3,
           "an NPC's buy price is a belief when it is all the character has");
 
     // A player's quote outranks the NPC floor.
@@ -250,7 +303,7 @@ void TestPricesMustHaveBeenSeen() {
     quote.who = "Doran";
     quote.whenMs = 2000;
     book.Note(quote);
-    Check(book.BelievedSalePrice("i_ingot_iron") == 8,
+    Check(book.BelievedSalePrice("i_ingot_copper") == 8,
           "a player's quote outranks an NPC's buy price");
 
     // And a trade that actually happened outranks the quote.
@@ -259,7 +312,7 @@ void TestPricesMustHaveBeenSeen() {
     traded.source = PriceSource::PlayerTraded;
     traded.whenMs = 3000;
     book.Note(traded);
-    Check(book.BelievedSalePrice("i_ingot_iron") == 6,
+    Check(book.BelievedSalePrice("i_ingot_copper") == 6,
           "a completed trade outranks a quote, even for LESS money -- what "
           "was paid outranks what was claimed");
 
@@ -269,13 +322,14 @@ void TestPricesMustHaveBeenSeen() {
     again.whenMs = 4000;
     book.Note(again);
     Check(book.Size() == 3, "one row per (item, source, who)");
-    Check(book.BelievedSalePrice("i_ingot_iron") == 7, "and it updates");
+    Check(book.BelievedSalePrice("i_ingot_copper") == 7, "and it updates");
 
     // Stale prices are not knowledge.
     book.Expire(100000, 50000);
     Check(book.Size() == 0, "everything older than the window is dropped");
-    Check(book.BelievedSalePrice("i_ingot_iron") == -1,
-          "and the character is back to not knowing");
+    Check(book.BelievedSalePrice("i_ingot_copper") == -1,
+          "and the character is back to not knowing -- no seed for THIS item "
+          "either, so there is truly nothing left to fall back on");
 }
 
 // --------------------------------------------------------------------------
@@ -751,6 +805,84 @@ void TestWhetherToAnswer() {
 }
 
 // --------------------------------------------------------------------------
+// FORUM PRICE SEEDS -- the reported bug in one test: Tarath sold i_log at
+// TradePolicy::openingAsk (2gp) all night while
+// docs/FORUM_SWEEP_2026_08_30.md's own players priced it at 17. A seed lets
+// BelievedSalePrice answer with real Revolution evidence instead of -1 when
+// a character has made no observation of its own, and it changes
+// ConsiderOffer's ceiling from a flat "never seen this, so barely anything"
+// number into an honest ±50% band around what is actually known.
+void TestForumPriceSeedsGroundFirstOffers() {
+    Section("prices: a forum-seeded good is not sold or bought blind");
+
+    const prof::Profession* lj = prof::Find("lumberjack_swordsman");
+    const prof::Profession* ms = prof::Find("miner_smith");
+    const prof::Profession* mg = prof::Find("scribe");
+    Check(lj && ms && mg, "the lumberjack, the smith and the scribe exist");
+    if (!lj || !ms || !mg) return;
+
+    TradePolicy pol;
+    PriceBook empty;
+
+    // SELLER, no observation of its own.
+    const std::vector<Stock> logs60 = {{"i_log", 60}};
+    TradeIntent out;
+    Check(ChooseSellOffer(*lj, logs60, empty, pol, &out),
+          "with no observation it still announces");
+    Check(out.pricePerUnit == 17,
+          "at the forum-seeded price (17gp), not the blind opening ask of 2");
+    Check(empty.BelievedSalePrice("i_log") == 17,
+          "and BelievedSalePrice reports that same seed");
+
+    // BUYER, with the seed present: the smith is no longer blind, so it will
+    // pay up to 50% over the seed even though 17 is above the flat
+    // blindPriceCeiling of 12.
+    TradeIntent atSeed;
+    atSeed.item = "i_log"; atSeed.qty = 20; atSeed.pricePerUnit = 17;
+    Check(ConsiderOffer(*ms, {}, 1000, pol, atSeed).accept,
+          "the buyer accepts 17gp for logs even though that is above the "
+          "flat blindPriceCeiling of 12 -- a seed makes it an informed "
+          "price, not a blind one");
+
+    // But a seller asking multiples of the seeded price is still refused: 40
+    // is more than 17 * 1.5 (25).
+    TradeIntent overSeed = atSeed;
+    overSeed.pricePerUnit = 40;
+    Check(!ConsiderOffer(*ms, {}, 1000, pol, overSeed).accept,
+          "40gp is refused -- more than 50% over the seeded price");
+
+    // UNSEEDED goods are untouched on BOTH sides.
+    //
+    // Sell side: i_board has no forum row, so the opening ask is still the
+    // blind default.
+    const std::vector<Stock> boards40 = {{"i_board", 40}};
+    TradeIntent boardOut;
+    Check(ChooseSellOffer(*lj, boards40, empty, pol, &boardOut),
+          "an unseeded good still gets an opening offer");
+    Check(boardOut.pricePerUnit == pol.openingAsk,
+          "at the blind opening ask -- there is no seed for a board");
+
+    // Buy side: i_reag_black_pearl has no forum row either, so the flat
+    // blindPriceCeiling (12) still governs exactly as before -- 12 is fine,
+    // 13 is refused, even though 13 would pass a 50%-over-seed test if this
+    // item DID have a seed. Well clear of the scribe's own 5000gp reserve
+    // (Professions.cpp) -- otherwise a refusal here would be the reserve
+    // guard firing, not the ceiling this assertion is actually about.
+    const i32 scribeRich = mg->goldReserve + 1000;
+    TradeIntent reagentOk;
+    reagentOk.item = "i_reag_black_pearl"; reagentOk.qty = 5;
+    reagentOk.pricePerUnit = 12;
+    Check(ConsiderOffer(*mg, {}, scribeRich, pol, reagentOk).accept,
+          "an unseeded good at exactly the flat ceiling is still accepted");
+
+    TradeIntent reagentTooMuch = reagentOk;
+    reagentTooMuch.pricePerUnit = 13;
+    Check(!ConsiderOffer(*mg, {}, scribeRich, pol, reagentTooMuch).accept,
+          "and one gold piece over the flat ceiling is still refused -- "
+          "unseeded behaviour is unchanged");
+}
+
+// --------------------------------------------------------------------------
 void TestTheChainCanActuallyClose() {
     Section("trade: the lumberjack -> smith chain has both ends");
 
@@ -887,6 +1019,7 @@ int main() {
     TestSurplusIsOwnOutputOnly();
     TestShortfallSeparatesWorldFromPlayers();
     TestShortfallSkipsWhatThePackCannotCount();
+    TestConsumablesCountedByGraphicNotLabel();
     TestWhoProducesIsCatalogueNotMarket();
     TestPricesMustHaveBeenSeen();
     TestGoldLedger();
@@ -898,6 +1031,7 @@ int main() {
     TestSpokenOffers();
     TestWhatToAnnounce();
     TestWhetherToAnswer();
+    TestForumPriceSeedsGroundFirstOffers();
     TestTheChainCanActuallyClose();
     TestTheDisposalOrder();
     std::printf("%d checks, %d failures\n", g_checks, g_failures);

@@ -69,6 +69,14 @@ BankErrandResult Working(Wake w, i64 delayMs, std::string why) {
     return r;
 }
 
+// The same Working(), for a tick that ISSUED a request rather than waited on
+// one. Only these count as attempts to the caller -- see
+// ActivityTickResult::acted.
+BankErrandResult Acted(BankErrandResult r) {
+    r.acted = true;
+    return r;
+}
+
 }  // namespace
 
 void BankErrand::Begin() {
@@ -136,8 +144,8 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
             if (!scannedAtMs_ || obs.nowMs - scannedAtMs_ > kScanFreshMs) {
                 client.ActionScanMobiles();
                 scannedAtMs_ = obs.nowMs;
-                return Working(Wake::AfterDelay, 2000,
-                               "asking who is standing in the bank");
+                return Acted(Working(Wake::AfterDelay, 2000,
+                                     "asking who is standing in the bank"));
             }
 
             // THE KEYWORD WORKS WITHOUT A NAMED BANKER. Sphere opens the box
@@ -145,10 +153,11 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
             // cannot identify may still say the word and be served.
             if (obs.atBank && ++shouts_ <= kMaxShouts) {
                 client.ActionOpenBank(0, "bank");
-                return Working(Wake::AfterDelay, kBankActionDeadlineMs + 1000,
-                               Fmt("no banker recognised here -- saying "
-                                   "'bank' aloud (%d of %d)", shouts_,
-                                   kMaxShouts));
+                return Acted(Working(Wake::AfterDelay,
+                                     kBankActionDeadlineMs + 1000,
+                                     Fmt("no banker recognised here -- saying "
+                                         "'bank' aloud (%d of %d)", shouts_,
+                                         kMaxShouts)));
             }
 
             running_ = false;
@@ -207,9 +216,9 @@ BankErrandResult BankErrand::Tick(Client& client, const Observation& obs) {
 
             client.ActionOpenBank(banker_, "bank");
             ask_.NoteIssued(obs.nowMs);
-            return Working(Wake::ActionResolves, 0,
-                           Fmt("asking the banker for the box (attempt %d)",
-                               ask_.Attempts()));
+            return Acted(Working(Wake::ActionResolves, 0,
+                                 Fmt("asking the banker for the box (attempt %d)",
+                                     ask_.Attempts())));
         }
 
         case Step::Done:

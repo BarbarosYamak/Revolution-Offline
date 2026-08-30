@@ -46,6 +46,9 @@ struct BankErrandResult {
     ActivityStatus status = ActivityStatus::Waiting;
     Wake           wake = Wake::Now;
     i64            delayMs = 0;
+    // True only on a tick that ISSUED a request to the server. Same rule and
+    // same reason as ActivityTickResult::acted.
+    bool           acted = false;
     std::string    why;
     // The open box, once there is one. This is the errand's whole output.
     u32            box = 0;

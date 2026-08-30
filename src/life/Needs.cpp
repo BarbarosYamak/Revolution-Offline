@@ -1087,7 +1087,20 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     // predicament -- it must never outrank eating or bandages. The goal
     // itself decides what is legal for the class and what the character is
     // strong enough for; the need only says "look".
-    if (cfg.profession) {
+    //
+    // ONLY FOR LIVES THAT FIGHT -- the need and the goal must agree.
+    //
+    // DoUpgradeGear already refuses to shop for a non-hunter ("for crafter
+    // upgrade gear just wear normal clothing for now", project owner,
+    // 2026-08-29): it logs one line and Finish(true)es with progress 0. So
+    // asking a scribe to check her armour produced a goal that could only
+    // ever complete having done nothing -- Ilyandra picked UPGRADE_GEAR over
+    // and over on that branch (run_r4/w_Ilyandra.console.txt:742-758) until
+    // the noop-spin backstop cooled it, then picked it again.
+    //
+    // A need whose goal cannot act on it is not a need. Same test the bandage
+    // need above uses, for the same reason.
+    if (cfg.profession && WantsToHunt(*cfg.profession)) {
         add(NeedKind::NeedGear, 0.22, "gear",
             "loot and shops both hold better armour than this character is "
             "wearing, and nothing checks unless this asks",

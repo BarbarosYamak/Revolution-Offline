@@ -56,6 +56,14 @@ VendorErrandResult Working(Wake w, i64 delayMs, std::string why) {
     return r;
 }
 
+// The same Working(), for a tick that ISSUED a request rather than waited on
+// one. Only these count as attempts to the caller -- see
+// ActivityTickResult::acted and the Bruin evidence quoted there.
+VendorErrandResult Acted(VendorErrandResult r) {
+    r.acted = true;
+    return r;
+}
+
 VendorErrandResult Failed(std::string why) {
     VendorErrandResult r;
     r.status = ActivityStatus::Failed;
@@ -136,9 +144,9 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
             // populated is not evidence.
             if (travelInFlight_ && ++scans_ <= kMaxScans) {
                 client.ActionScanMobiles();
-                return Working(Wake::AfterDelay, kScanMs,
-                               Fmt("at the shop, asking who is here "
-                                   "(scan %d of %d)", scans_, kMaxScans));
+                return Acted(Working(Wake::AfterDelay, kScanMs,
+                                     Fmt("at the shop, asking who is here "
+                                         "(scan %d of %d)", scans_, kMaxScans)));
             }
 
             if (++trips_ > spec_.maxTrips) {
@@ -258,10 +266,10 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
 
             client.ActionVendorOpen(keeper_);
             open_.NoteIssued(obs.nowMs);
-            return Working(Wake::ActionResolves, 0,
-                           Fmt("asking the '%s' to show %s (attempt %d)",
-                               spec_.sellers[seller_].trade, spec_.what,
-                               open_.Attempts()));
+            return Acted(Working(Wake::ActionResolves, 0,
+                                 Fmt("asking the '%s' to show %s (attempt %d)",
+                                     spec_.sellers[seller_].trade, spec_.what,
+                                     open_.Attempts())));
         }
 
         // ---------------------------------------------------------------
@@ -342,6 +350,7 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
                 r.delayMs = kAfterAskMs;
                 r.keeper = keeper_;
                 r.offerOpen = true;
+                r.acted = true;
                 r.why = Fmt("buying %d %s at %d each from the '%s' "
                             "(shelf holds %u) -- waiting for the pack",
                             want, spec_.what, unit,

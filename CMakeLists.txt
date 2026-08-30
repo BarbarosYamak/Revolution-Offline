@@ -87,6 +87,9 @@ set(UO_CLIENT_SOURCES
     # m4_life exercises under ctest.
     src/life/Json.cpp
     src/life/Identity.cpp
+    # Creation-time appearance roll (docs/APPEARANCE_DESIGN.md layer 1).
+    # Pure function over an identity string; see tests/appearance.cpp.
+    src/life/Appearance.cpp
     src/life/Memory.cpp
     src/life/Needs.cpp
     src/life/Goals.cpp

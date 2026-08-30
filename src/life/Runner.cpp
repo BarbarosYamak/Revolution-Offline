@@ -174,6 +174,10 @@ constexpr int kSpellbookComfortableRuntime = 24;
 constexpr i32 kSpellbookMoney = 120;
 constexpr i32 kScrollMoney    = 120;
 constexpr i64 kNoSpellbookCooldownMs = 240000;   // four minutes
+// A book with no self-castable spell in it is FILL_SPELLBOOK's problem, and
+// that errand needs a walk to a scribe and back before the answer changes.
+// Long enough that PRACTICE_SKILL cannot keep taking the turn away from it.
+constexpr i64 kNoSelfSafeSpellCooldownMs = 240000;   // four minutes
 constexpr i32 kMaxSpellbookTrips = 3;
 // Long enough that a character which cannot sell anything goes and does
 // something else for a while -- hunts, gathers, crafts -- rather than asking
@@ -672,8 +676,42 @@ constexpr u16 kCuttableClothing[] = {
 };
 
 constexpr u16 kSpellbookGraphic = 0x0EFA;
-constexpr u16 kFirstScrollGraphic = 0x1F2E;   // spell 1
-constexpr u16 kLastScrollGraphic  = 0x1F6D;   // spell 64
+
+// --- SCROLL GRAPHICS AND SPELL NUMBERS ARE NOT THE SAME LADDER --------------
+//
+// The 64 magery scroll ITEMDEFs run in the CLIENT's spellbook-page order,
+// which puts Reactive Armor first in circle 1; the server's SPELL_TYPE table
+// puts it seventh. Every other entry agrees, so the whole mapping is
+// "graphic - 0x1F2D, plus one from Weaken onward", with Reactive Armor as the
+// single exception.
+//
+// Evidence, server/Scripts-X/items/i_magic_magery.scp read against
+// server/Scripts-X/spells/spells_magery.scp:
+//   01f2d i_scroll_reactive_armor    s_reactive_armor    [SPELL 7]
+//   01f2e i_scroll_clumsy            s_clumsy            [SPELL 1]
+//   01f2f i_scroll_create_food       s_create_food       [SPELL 2]
+//   01f30 i_scroll_feeblemind        s_feeblemind        [SPELL 3]
+//   01f31 i_scroll_heal              s_heal              [SPELL 4]
+//   01f32 i_scroll_magic_arrow       s_magic_arrow       [SPELL 5]
+//   01f33 i_scroll_night_sight       s_night_sight       [SPELL 6]
+//   01f34 i_scroll_weaken            s_weaken            [SPELL 8]
+//   ...   (contiguous from here)
+//   01f6c i_scroll_summon_elem_water s_summon_elem_water [SPELL 64]
+//
+// The old range started at 0x1F2E, so a looted Reactive Armor scroll was
+// invisible to the "a scroll in the pack belongs in the book" pass, and ended
+// at 0x1F6D, which is not a scroll at all.
+constexpr u16 kFirstScrollGraphic = 0x1F2D;   // i_scroll_reactive_armor
+constexpr u16 kLastScrollGraphic  = 0x1F6C;   // i_scroll_summon_elem_water
+
+// Which spell does this scroll teach? 0 when the graphic is not a scroll.
+int SpellForScrollGraphic(u16 graphic) {
+    if (graphic < kFirstScrollGraphic || graphic > kLastScrollGraphic) return 0;
+    const int idx = static_cast<int>(graphic) - static_cast<int>(kFirstScrollGraphic);
+    if (idx == 0) return 7;      // Reactive Armor, first in the art
+    if (idx <= 6) return idx;    // Clumsy .. Night Sight
+    return idx + 1;              // Weaken (8) onward
+}
 // [SPELL 2] s_create_food -- targetless, 4 mana, MAGERY 10.0 to try.
 // The practice spell: nothing to target wrongly, nobody to anger.
 constexpr int kSpellCreateFood = 2;
@@ -2030,6 +2068,10 @@ void Runner::Tick(Client& client, i64 nowMs) {
                 vendorChases_ = 0;
                 logsAtGoalStart_ = obs.logs;
             }
+            // Select itself can end a goal -- an attempts-exhausted one goes
+            // through Finish, so it can trip the noop-spin backstop without
+            // ever reaching the completion path below.
+            LogSpinIfDetected();
 
             // --- act -------------------------------------------------------
             // Point the trainer machinery at whatever the plan wants next.
@@ -2341,8 +2383,39 @@ std::string Fmt2(const char* fmt, ...) {
 // change (a `lastPlan*_` member compared against the new step), not once per
 // tick -- per-tick emission is what produced the 311-line forge spam this
 // slice exists to end.
+void Runner::LogSpinIfDetected() {
+    const GoalKind spun = planner_.TakeSpinDetected();
+    if (spun == GoalKind::Count) return;
+    LogLine("goal_spinning=%s reason=\"completed %d times in a row with "
+            "progress 0 -- cooled off for a minute; this is a bug in that "
+            "goal, not pacing\"",
+            GoalKindName(spun), 5);
+}
+
 void Runner::LogPlan(const char* kind, const char* reason) const {
     LogLine("plan=%s reason=\"%s\"", kind, reason);
+}
+
+// AN ERRAND'S REASON, ON CHANGE OR ONCE A MINUTE -- never once per tick.
+//
+// The errands answer with a reason every tick on purpose: an unexplained
+// stand-down is the defect that whole layer exists to end. But printing every
+// one of them prints the TICK RATE, not the errand. Measured: 214 "potions:"
+// lines in run_r4/w_Bruin.console.txt, 209 of them the identical "an action
+// is already in flight" while a single 8-second vendor ask was outstanding.
+//
+// Same sentinel rule LogPlan already uses for plan steps, over text instead of
+// an enum, and per tag so one errand's chatter cannot hide another's.
+void Runner::LogErrandReason(const char* tag, const char* reason,
+                             i64 nowMs) const {
+    if (!tag || !reason || !reason[0]) return;
+    ErrandLogSentinel& seen = errandLogSeen_[tag];
+    if (seen.atMs != 0 && seen.reason == reason &&
+        nowMs - seen.atMs < kErrandReasonRepeatMs)
+        return;
+    seen.reason = reason;
+    seen.atMs = nowMs;
+    LogLine("%s: %s", tag, reason);
 }
 
 // The ONLY legal way a plan hands the turn to another goal (S2_WIRING_PLAN.md
@@ -2492,13 +2565,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         // repeatedly succeeding at nothing is a BUG REPORT, not routine
         // pacing, and it must not be silent -- the three that got through so
         // far were each found by noticing a goal count in the thousands.
-        const GoalKind spun = planner_.TakeSpinDetected();
-        if (spun != GoalKind::Count) {
-            LogLine("goal_spinning=%s reason=\"completed %d times in a row "
-                    "with progress 0 -- cooled off for a minute; this is a "
-                    "bug in that goal, not pacing\"",
-                    GoalKindName(spun), 5);
-        }
+        LogSpinIfDetected();
         Checkpoint(client, obs.nowMs, "goal completed");
     }
 }
@@ -3955,12 +4022,21 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             bandageBuy_.Begin(req);
         }
         const life::ActivityTickResult r = bandageBuy_.Tick(client, obs);
-        if (r.reason && r.reason[0]) LogLine("bandages: %s", r.reason);
+        LogErrandReason("bandages", r.reason, obs.nowMs);
         if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
             nextActionMs_ = obs.nowMs + r.delayMs;
 
         if (!life::IsTerminal(r.status)) {
-            planner_.NoteAttempt(obs.nowMs);
+        // AN ASK IS AN ATTEMPT; A WAIT IS NOT.
+        //
+        // This counted every non-terminal poll, so the ~60ms tick rate --
+        // not the errand -- decided when the goal ran out of tries. Bruin's
+        // potion errand issued ONE vendor ask, which needs its full 8s
+        // deadline, and the five "an action is already in flight" polls
+        // behind it spent the whole budget in 300ms
+        // (run_r4/w_Bruin.console.txt:317-323). REPLACE_EQUIPMENT was
+        // re-picked 39 times while that single ask was still outstanding.
+            if (r.acted) planner_.NoteAttempt(obs.nowMs);
             return false;
         }
 
@@ -4022,11 +4098,12 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             clothingBuy_.Begin(req);
         }
         const life::ActivityTickResult cr = clothingBuy_.Tick(client, obs);
-        if (cr.reason && cr.reason[0]) LogLine("clothes: %s", cr.reason);
+        LogErrandReason("clothes", cr.reason, obs.nowMs);
         if (cr.wake == life::Wake::AfterDelay && cr.delayMs > 0)
             nextActionMs_ = obs.nowMs + cr.delayMs;
         if (!life::IsTerminal(cr.status)) {
-            planner_.NoteAttempt(obs.nowMs);
+            // An ask is an attempt; a wait is not. See the note above.
+            if (cr.acted) planner_.NoteAttempt(obs.nowMs);
             return false;
         }
         if (cr.status == life::ActivityStatus::Success) {
@@ -4056,12 +4133,13 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             potionBuy_.Begin(req);
         }
         const life::ActivityTickResult pr = potionBuy_.Tick(client, obs);
-        if (pr.reason && pr.reason[0]) LogLine("potions: %s", pr.reason);
+        LogErrandReason("potions", pr.reason, obs.nowMs);
         if (pr.wake == life::Wake::AfterDelay && pr.delayMs > 0)
             nextActionMs_ = obs.nowMs + pr.delayMs;
 
         if (!life::IsTerminal(pr.status)) {
-            planner_.NoteAttempt(obs.nowMs);
+            // An ask is an attempt; a wait is not. See the note above.
+            if (pr.acted) planner_.NoteAttempt(obs.nowMs);
             return false;
         }
         if (pr.status == life::ActivityStatus::Success) {
@@ -4522,7 +4600,7 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
     //     in a bank may say "bank" aloud and be served.
     if (!bankErrand_.Running()) bankErrand_.Begin();
     const life::BankErrandResult br = bankErrand_.Tick(client, obs);
-    if (!br.why.empty()) LogLine("bank: %s", br.why.c_str());
+    LogErrandReason("bank", br.why.c_str(), obs.nowMs);
     if (br.wake == life::Wake::AfterDelay && br.delayMs > 0)
         nextActionMs_ = obs.nowMs + br.delayMs;
 
@@ -4541,7 +4619,12 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // counter on every retry, so Exhausted() never fired and the planner
         // believed a goal that had done nothing for twenty minutes was
         // working. An ask is an attempt; the box opening is the progress.
-        planner_.NoteAttempt(obs.nowMs);
+        //
+        // ...and a WAIT is not an ask either. Counting the "an ask is in
+        // flight" polls made the tick rate, not the banker, decide when the
+        // goal ran out of tries -- the same defect the potion errand paid for
+        // in run_r4/w_Bruin.console.txt:317-323.
+        if (br.acted) planner_.NoteAttempt(obs.nowMs);
         return false;
     }
 
@@ -6985,10 +7068,19 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 1000;
         return false;
     }
-    // NOTE: `marketListenFromMs_` used to be cleared here, on the grounds that
-    // only a buyer waits. A SELLER WAITS TOO -- see the empty-room branch
-    // below -- and the two share this one window, so clearing it here would
-    // restart a seller's wait on every tick.
+    // NOTE: `marketListenFromMs_` is a BUYER-only clock now. It used to be
+    // shared with a seller's empty-room wait (see the removed
+    // PlayersNearby(kTradeEarshot)==0 gate below, dropped 2026-08-30): a
+    // seller used to hold off announcing until a headcount saw somebody, but
+    // that headcount only counts a mobile whose paperdoll TITLE is already
+    // known, and nothing here proactively asked for one -- two bots stood
+    // five tiles apart for three minutes each, both silent, because neither
+    // had ever been double-clicked. A per-tick scan would fix that but does
+    // not scale (300 bots at one bank double-clicking the whole room is an
+    // O(N^2) paperdoll storm), so the seller no longer waits for a headcount
+    // at all: it announces on schedule like a human at the bank, and
+    // whoever answers is identified from the SPEECH packet's own speaker
+    // serial, not from this cache.
 
     // ANNOUNCE ONLY WHAT IS IN THE HAND.
     //
@@ -7011,58 +7103,33 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     }
     tradeOffer_ = announce;
 
-    // NOBODY TO SELL TO IS NOT A REASON TO SHOUT. "dont try to sell with WTS
-    // if no one around" (project owner, 2026-08-29).
+    // ANNOUNCE ON SCHEDULE, NOT ON A HEADCOUNT (design change, 2026-08-30).
     //
-    // The offer is a SPOKEN one -- it only works if a player hears it -- so
-    // announcing to an empty bank is noise, and it is noise the character
-    // repeats on a timer while a real errand waits. A player checks who is
-    // there first.
+    // This used to hold off announcing until PlayersNearby(kTradeEarshot) > 0
+    // and otherwise wait up to kListenMs for somebody to walk into range --
+    // "dont try to sell with WTS if no one around" (project owner,
+    // 2026-08-29). But PlayersNearby only counts a mobile whose paperdoll
+    // TITLE is already known (Client.cpp PaperdollTitle), and a title only
+    // arrives after a double-click (0x88); nothing in this wait loop ever
+    // issued one, so two bots standing five tiles apart at the same bank
+    // waited out the full three minutes each, silently, having never asked
+    // who was there (run_r4/pair2). A per-tick scan would answer that but
+    // does not scale: 300 bots at one bank each double-clicking the room is
+    // an O(N^2) paperdoll storm.
     //
-    // Other BOTS count: they are the market. NPCs do not, which is why this
-    // asks for players rather than for mobiles.
-    if (client.PlayersNearby(kTradeEarshot) == 0) {
-        // A SELLER WHO WALKED 250 SECONDS DOES NOT LEAVE AGAIN IN ONE TICK.
-        //
-        // Not shouting into an empty room is right; treating an empty room as
-        // the END of the errand is not. Durnholde stood down at 20:34:09.148
-        // (run_r4/pair_Durnholde.console.txt:3787) one second before his own
-        // `travel_done` at 20:34:10.194 -- the room was empty because he had
-        // only just got there. Tarath was on his way to the same bank and
-        // arrived at 20:39:43. Two lives each walking an independent 250 s leg
-        // to one rendezvous will essentially never land on the same tick, so
-        // the seller has to HOLD, exactly as the buyer above already does, and
-        // announce the moment somebody is in earshot. Same window, same
-        // constant: kListenMs.
-        if (marketListenFromMs_ == 0) {
-            marketListenFromMs_ = obs.nowMs;
-            LogLine("trade: at the market with %d %s to sell and nobody within "
-                    "%d tiles -- waiting %llds for somebody to arrive",
-                    announce.qty, announce.item.c_str(), kTradeEarshot,
-                    static_cast<long long>(kListenMs / 1000));
-        }
-        if (obs.nowMs - marketListenFromMs_ < kListenMs) {
-            // Re-checked every second; PlayersNearby is re-read at the top of
-            // this branch on each tick, so the announce fires on the very tick
-            // somebody walks in.
-            nextActionMs_ = obs.nowMs + 1000;
-            return false;
-        }
-        marketListenFromMs_ = 0;
-        LogLine("trade: nobody came within %d tiles in %llds -- not shouting "
-                "into an empty room", kTradeEarshot,
-                static_cast<long long>(kListenMs / 1000));
-        // SHORTER REST THAN A DECLINED OFFER. Nobody was even here to say no
-        // -- unlike "audience already declined" below, which cools the full
-        // kMarketQuietMs because an offer WAS heard and refused. A seller and
-        // a buyer approach this same market on two independent 250s one-way
-        // legs (docs/S5_MARKET_TRIP_PLAN.md section 3); cooling the full ten
-        // minutes on an empty room routinely put the seller back to sleep
-        // before the buyer's own listen window ever arrived. kNoAudienceMs.
-        planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kNoAudienceMs);
-        planner_.Finish(false, "no audience", obs.nowMs);
-        return false;
-    }
+    // So this now behaves like a human at the counter: say the offer on the
+    // normal kAnnounceIntervalMs/kMaxAnnounces schedule and let whoever is
+    // listening answer it. A respondent is identified from the SPEECH
+    // packet's own speaker serial (the `heard` loop above, via
+    // JournalHeardSince), not from a nearby-mobile headcount, so no scan is
+    // needed to close a sale -- only PlayersNearby/AudienceFingerprint, used
+    // below purely to avoid repeating an offer to the same known audience,
+    // still depend on titles, and those arrive incidentally (BankErrand's
+    // own scan during a withdrawal, radius now matched to kTradeEarshot --
+    // see Client.cpp:4234) rather than from anything this errand asks for.
+    //
+    // Other BOTS count: they are the market. NPCs do not, which is why the
+    // fingerprint below still asks for players rather than for mobiles.
 
     // AND NOT AT THE SAME PEOPLE WHO ALREADY IGNORED IT. The earshot test is
     // working correctly -- the "players" standing in the Minoc bank are the
@@ -7074,10 +7141,16 @@ bool Runner::DoTradeWithPlayer(Client& client, const Observation& obs) {
     // A player asks once and waits. Announcing again is only sensible when
     // somebody NEW is in the room.
     const u32 audience = client.AudienceFingerprint(kTradeEarshot);
-    if (audience == tradeAudienceIgnored_) {
+    // ZERO MEANS "NOBODY'S TITLE IS KNOWN", NOT "THE SAME EMPTY ROOM". With
+    // no proactive scan, an unscanned room fingerprints as 0 far more often
+    // than not, and tradeAudienceIgnored_ starts at 0 too (never declined).
+    // Matching those would stand this errand down before its first-ever
+    // announcement, and again every cycle whose room happened not to get
+    // scanned by something else. Only suppress when the SAME KNOWN audience
+    // declined -- an unknown audience is not evidence of anything.
+    if (audience != 0 && audience == tradeAudienceIgnored_) {
         LogLine("trade: the same people who ignored the last offer are still "
                 "here -- not repeating it");
-        marketListenFromMs_ = 0;   // the wait is over; do not inherit it
         planner_.Cooldown(GoalKind::TradeWithPlayer, obs.nowMs + kMarketQuietMs);
         planner_.Finish(false, "audience already declined", obs.nowMs);
         return false;
@@ -9512,7 +9585,7 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         foodErrand_.Begin(spec);
     }
     const life::VendorErrandResult r = foodErrand_.Tick(client, obs);
-    if (!r.why.empty()) LogLine("food: %s", r.why.c_str());
+    LogErrandReason("food", r.why.c_str(), obs.nowMs);
     if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
         nextActionMs_ = obs.nowMs + r.delayMs;
 
@@ -9527,7 +9600,8 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
         return false;
     }
     if (!r.offerOpen) {
-        planner_.NoteAttempt(obs.nowMs);
+        // An ask is an attempt; a wait is not. See DoReplaceEquipment.
+        if (r.acted) planner_.NoteAttempt(obs.nowMs);
         return false;
     }
 
@@ -9553,17 +9627,53 @@ bool Runner::DoGetFood(Client& client, const Observation& obs) {
     return false;
 }
 
-// Is this spell already in the book? The book is a container of items whose
-// graphic is 0x1F2D + the spell number, so a scroll's own graphic answers it.
-bool Runner::BookHasGraphic(Client& client, u32 book, u16 graphic) const {
-    if (!book) return false;
+// --- WHAT IS IN A SPELLBOOK, READ THE WAY SPHERE ACTUALLY SENDS IT ----------
+//
+// A SPELLBOOK'S 0x3C IS NOT A LIST OF SCROLL ITEMS. Sphere synthesises one
+// 19-byte record per spell in which the graphic is a CONSTANT and the SPELL
+// NUMBER travels in the AMOUNT field
+// (server/Source-X/src/network/send.cpp:1341-1358,
+// PacketItemContents(const CClient*, const CItem* spellbook)):
+//
+//     for (int i = SPELL_Clumsy; i <= SPELL_MAGERY_QTY; ++i) {
+//         if (!spellbook->IsSpellInBook((SPELL_TYPE)i)) continue;
+//         writeInt32(UID_F_ITEM + UID_O_INDEX_FREE + i);  // synthetic serial
+//         writeInt16(0x1F2E);                             // ALWAYS 0x1F2E
+//         writeByte(0);
+//         writeInt16((word)i);                            // <- the spell, 1..64
+//         writeInt16(0); writeInt16(0);                   // x, y
+//         writeInt32(spellbook->GetUID());
+//         writeInt16(HUE_DEFAULT);
+//     }
+//
+// (SPELL_Clumsy = 1, uofiles_enums.h:670. The 2.0.7 stream carries no grid
+// byte, so the record is the 19-byte form Client::OnContainerContents already
+// parses -- pol_packets.md's 0x3C, older-client loop. The 0x3C parse was and
+// is correct; what was wrong was believing a book row's GRAPHIC meant
+// anything.)
+//
+// Reading the graphic therefore reports "spell 1" for every row of every book:
+// exactly the [1,1,1,1,1,1,1,1,1,1,1,1,1] Ilyandra's THIRTEEN-spell book
+// produced (run_r4/w_Ilyandra.console.txt:501). The book was fine. The read
+// was wrong -- and it made BookHasGraphic answer "already known" for a Clumsy
+// scroll and "not known" for every other scroll on the shelf, which is the
+// opposite of useful when the whole point is to buy a spell the book lacks.
+bool Runner::BookHasSpell(Client& client, u32 book, int spell) const {
+    if (!book || spell <= 0) return false;
     const usize n = client.ContainerItemCount(book);
     for (usize i = 0; i < n; ++i) {
         u32 serial = 0; u16 g = 0, amount = 0;
         if (!client.ContainerItemAt(book, i, &serial, &g, &amount)) continue;
-        if (g == graphic) return true;
+        if (static_cast<int>(amount) == spell) return true;
     }
     return false;
+}
+
+// Is the spell this SCROLL teaches already in the book? Takes a scroll's own
+// graphic -- what a vendor row or a pack item carries -- and asks the question
+// in the book's own currency.
+bool Runner::BookHasGraphic(Client& client, u32 book, u16 graphic) const {
+    return BookHasSpell(client, book, SpellForScrollGraphic(graphic));
 }
 
 // Walk to a scroll seller, open it, and buy one thing.
@@ -9672,7 +9782,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         LogLine("spellbook: buying %s ('%s', 0x%04X, spell %d) at %d gold "
                 "-- %d of this shop's scrolls were already in the book",
                 what, v.name.c_str(), v.graphic,
-                static_cast<int>(v.graphic) - 0x1F2D,
+                SpellForScrollGraphic(v.graphic),
                 static_cast<i32>(v.price), skipped);
         client.ActionVendorBuy(keeper, v.serial, qty);
         // An ask, not progress -- same reason as BUY_SUPPLIES: counting a
@@ -9753,17 +9863,13 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
          2,   // Create Food
     };
 
-    const usize n = client.ContainerItemCount(obs.spellbookSerial);
+    // ASK THE BOOK IN ITS OWN CURRENCY. A spellbook row's graphic is the
+    // constant 0x1F2E for every spell; the SPELL NUMBER is in the amount.
+    // See Runner::BookHasSpell for the packet and the evidence.
     for (int want : kSelfSafe) {
-        const u16 wantGfx = static_cast<u16>(0x1F2D + want);
-        for (usize i = 0; i < n; ++i) {
-            u32 serial = 0; u16 gfx = 0, amount = 0;
-            if (!client.ContainerItemAt(obs.spellbookSerial, i, &serial, &gfx,
-                                        &amount))
-                continue;
-            if (gfx == wantGfx) return want;
-        }
+        if (BookHasSpell(client, obs.spellbookSerial, want)) return want;
     }
+    const usize n = client.ContainerItemCount(obs.spellbookSerial);
     // SAY WHAT IS ACTUALLY IN THERE. "Nothing safe to cast" is a claim about
     // the book, and a claim about the book should be checkable from the log
     // rather than taken on trust -- especially since this is also the only
@@ -9776,7 +9882,7 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
             continue;
         char buf[32];
         std::snprintf(buf, sizeof(buf), "%s%d", had.empty() ? "" : ",",
-                      static_cast<int>(gfx) - 0x1F2D);
+                      static_cast<int>(amount));
         had += buf;
     }
     LogLine("practice: the book holds %d item(s), spells [%s] -- none of them "
@@ -11016,6 +11122,10 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
             noCreateFoodSpell_ = true;
             LogLine("practice: Create Food is not in this character's spellbook "
                     "-- Magery cannot be practised this way");
+            // A latched refusal that does not cool is a spin: the answer
+            // cannot change until FILL_SPELLBOOK has been somewhere.
+            planner_.Cooldown(GoalKind::PracticeSkill,
+                              obs.nowMs + kNoSelfSafeSpellCooldownMs);
             planner_.Finish(false, "no create food spell", obs.nowMs);
             nextActionMs_ = obs.nowMs + 5000;
             return false;
@@ -11031,6 +11141,8 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         if (obs.spellbookSerial == 0) {
             LogLine("practice: no spellbook carried -- Magery cannot be "
                     "practised until FILL_SPELLBOOK has bought one");
+            planner_.Cooldown(GoalKind::PracticeSkill,
+                              obs.nowMs + kNoSelfSafeSpellCooldownMs);
             planner_.Finish(false, "no spellbook", obs.nowMs);
             nextActionMs_ = obs.nowMs + 5000;
             return false;
@@ -11044,8 +11156,20 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         }
         const int spell = PickPracticeSpell(client, obs);
         if (spell < 0) {
+            // AND STAND DOWN LONG ENOUGH FOR THE FIX TO HAPPEN.
+            //
+            // This is not a pacing failure, it is a PREREQUISITE failure: the
+            // book has to gain a spell before practising can work, and the
+            // goal that buys one is FILL_SPELLBOOK. Finishing without a
+            // cooldown handed PRACTICE_SKILL straight back every five seconds
+            // and FILL_SPELLBOOK only got a turn once the noop backstop had
+            // counted to five -- Ilyandra ran that cycle for the whole session
+            // with Magery frozen at 50.0
+            // (run_r4/w_Ilyandra.console.txt:496-711).
             LogLine("practice: nothing safe to cast at myself is in this book "
-                    "-- Magery cannot be practised until it holds one");
+                    "-- standing down so FILL_SPELLBOOK can buy one");
+            planner_.Cooldown(GoalKind::PracticeSkill,
+                              obs.nowMs + kNoSelfSafeSpellCooldownMs);
             planner_.Finish(false, "no self-safe spell in book", obs.nowMs);
             nextActionMs_ = obs.nowMs + 5000;
             return false;

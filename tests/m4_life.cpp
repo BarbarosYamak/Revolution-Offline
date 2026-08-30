@@ -614,6 +614,52 @@ void TestPlanner() {
               "real progress clears the failure ladder");
     }
 
+    // --- exhausting the attempts is a NO-OP COMPLETION, and it cools ------
+    //
+    // Bruin abandoned REPLACE_EQUIPMENT on "attempts 5 >= 5" thirty-nine times
+    // and was handed it straight back, with a fresh budget, every time
+    // (run_r4/w_Bruin.console.txt:307-386). Select cleared goal_.active by
+    // hand, so Finish never ran -- and with it neither did the noop-spin
+    // backstop that exists precisely to cool a goal which terminates having
+    // changed nothing. A goal that spends its entire allowance on nothing is
+    // spinning, whichever door it leaves by.
+    {
+        life::Planner p6(cfg);
+        life::Observation work = HealthyLumberjackAtWork();
+        p6.Select(life::AssessNeeds(plan, mem, work, needCfg), work, mem,
+                  work.nowMs, &why);
+        const life::GoalKind first = p6.Current().kind;
+
+        life::GoalKind spun = life::GoalKind::Count;
+        int rounds = 0;
+        // Five consecutive zero-progress terminations is kNoopSpinLimit.
+        for (int round = 0; round < 5 && spun == life::GoalKind::Count; ++round) {
+            for (int i = 0; i < cfg.maxAttempts; ++i) p6.NoteAttempt(work.nowMs);
+            p6.Select(life::AssessNeeds(plan, mem, work, needCfg), work, mem,
+                      work.nowMs, &why);
+            ++rounds;
+            if (round == 0) {
+                // The log line and every grep over it keep working.
+                Check(why.find("previous goal abandoned: attempts") !=
+                          std::string::npos,
+                      "the abandonment still reads 'previous goal abandoned: "
+                      "attempts N >= N'");
+            }
+            spun = p6.TakeSpinDetected();
+        }
+
+        Check(spun == first,
+              "five attempts-exhausted terminations with no progress trip the "
+              "anti-spin backstop, exactly as five no-op completions do");
+        Check(rounds == 5, "and it takes the full five, not fewer");
+        Check(p6.Cooling(first, work.nowMs),
+              "so the goal is COOLING afterwards rather than being handed "
+              "straight back with a fresh attempt budget");
+        Check(p6.Current().kind != first,
+              "and something else gets the turn -- the cooldown is applied "
+              "BEFORE the re-score, or the cooled goal simply wins again");
+    }
+
     // --- bounded failure: time --------------------------------------------
     {
         life::Planner p4(cfg);
@@ -2263,14 +2309,31 @@ void TestGearIsCheckedAndClassBound() {
               "outrank eating or bandages");
     }
 
-    // The need is standing, so it is there for a caster too -- what differs is
-    // WHAT the goal will let them wear, which the runtime enforces.
+    // ...AND NOT FOR A LIFE THAT DOES NOT PICK FIGHTS.
+    //
+    // This used to assert the opposite ("a mage checks its gear as well"), on
+    // the theory that the GOAL would sort out what a caster may wear. It does
+    // not: DoUpgradeGear's first question is WantsToHunt, and for anything
+    // that answers no it logs one line and Finish(true)es having done nothing
+    // ("for crafter upgrade gear just wear normal clothing for now", project
+    // owner, 2026-08-29). A need whose goal can only ever no-op is a spin
+    // generator, and Ilyandra -- a mage -- ran exactly that loop until the
+    // anti-spin backstop cooled UPGRADE_GEAR, then ran it again
+    // (run_r4/w_Ilyandra.console.txt:742-758).
+    //
+    // So the need now asks the same question the goal asks. WantsToHunt reads
+    // the BUILD, not the archetype name: it is true for a life that wants more
+    // than creation's 50.0 in a weapon school, which a pure mage does not.
     life::NeedConfig mcfg; mcfg.profession = mage;
     life::BuildPlan mplan = life::PlanFromProfession(*mage);
     life::Observation mobs = obs;
     mobs.skills.push_back({rules::kMagery, 500});
     const std::vector<life::Need> nsM = life::AssessNeeds(mplan, mem, mobs, mcfg);
-    Check(gearNeed(nsM) != nullptr, "a mage checks its gear as well");
+    Check(!life::WantsToHunt(*mage),
+          "a pure mage is not a life that goes looking for fights");
+    Check(gearNeed(nsM) == nullptr,
+          "so it raises no gear need -- the need and DoUpgradeGear must agree, "
+          "or the goal is picked only to no-op");
 }
 
 void TestNerveIsPerProfession() {

@@ -87,6 +87,21 @@ struct ActivityTickResult {
     Wake           wake = Wake::Now;
     i64            delayMs = 0;   // meaningful when wake == AfterDelay
 
+    // DID THIS TICK ACTUALLY ASK THE SERVER FOR ANYTHING?
+    //
+    // A caller that counts every non-terminal tick as an attempt is counting
+    // its own polling rate, not the activity's. Measured: Bruin's potion
+    // errand issued ONE vendor ask -- which needs its full 8s deadline to
+    // resolve -- and then returned Waiting("an action is already in flight")
+    // every 60ms while it waited (run_r4/w_Bruin.console.txt:317-322). Five
+    // of those polls exhausted the planner's whole attempt budget in 300ms,
+    // and REPLACE_EQUIPMENT was re-picked 39 times while the single real ask
+    // was still outstanding.
+    //
+    // So: true only on a tick that ISSUED something -- a speech, a vendor
+    // request, a purchase. A tick spent waiting for an answer is not a try.
+    bool           acted = false;
+
     // ALWAYS POPULATED, success or failure. A refusal nobody can read is the
     // defect this whole layer exists to stop repeating, and every unexplained
     // stand-down in this project's logs cost a live session to diagnose.

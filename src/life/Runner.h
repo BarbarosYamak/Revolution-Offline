@@ -122,6 +122,25 @@ private:
     // The one place a plan's step is logged -- once per plan change, not per
     // tick. Callers pass e.g. HealStepName(p.step); see S2_WIRING_PLAN.md S2.0.
     void        LogPlan(const char* kind, const char* reason) const;
+    // Drain Planner::TakeSpinDetected and say so out loud. Called from BOTH
+    // places a goal can end -- the completion path in RunGoal and the
+    // attempts-exhausted path inside Planner::Select -- because a spin
+    // reported only on completion is invisible to the goal that never
+    // completes.
+    void        LogSpinIfDetected();
+    // An ERRAND's per-tick reason, logged only when it CHANGES or once a
+    // minute -- the same rule as LogPlan's step sentinels, applied to text
+    // rather than to an enum.
+    //
+    // The errands report a reason every tick by design (a refusal nobody can
+    // read is the defect that layer exists to end), but a caller that prints
+    // every one of them prints the tick rate: 214 "potions:" lines in
+    // run_r4/w_Bruin.console.txt, of which 209 said "an action is already in
+    // flight". `tag` is the caller's own label ("potions", "bank"), and each
+    // tag keeps its own sentinel so one errand's chatter cannot silence
+    // another's.
+    void        LogErrandReason(const char* tag, const char* reason,
+                                i64 nowMs) const;
     // The ONLY legal way a plan hands the turn to another goal: cools `from`,
     // finishes it as a no-op, logs the handoff, and delays the next action.
     // `to` is advisory only -- Planner::Select picks the actual receiver.
@@ -196,6 +215,9 @@ private:
     bool DoUpgradeGear(Client& client, const Observation& obs);
     bool MayWear(const ArmorPiece& a, const Observation& obs) const;
     bool BookHasGraphic(Client& client, u32 book, u16 graphic) const;
+    // The same question in the book's own currency -- see the note on
+    // BookHasSpell for why a spellbook row's GRAPHIC answers nothing.
+    bool BookHasSpell(Client& client, u32 book, int spell) const;
     bool BuyScrollFrom(Client& client, const Observation& obs, const char* trade,
                        wm::Service svc, u16 graphic, bool skipKnown, u16 qty,
                        const char* what, GoalKind owner);
@@ -470,6 +492,12 @@ private:
     // WindDown has time to walk to a bank before the hard deadline, not the
     // instant it is reached. A threshold, not a mechanic.
     static constexpr i64 kRestSettleLeadMs = 3 * 60 * 1000;
+    // Per-tag sentinels for LogErrandReason: the last reason printed and when.
+    // Mutable because the logging path is const, like LogLine and LogPlan.
+    struct ErrandLogSentinel { std::string reason; i64 atMs = 0; };
+    mutable std::map<std::string, ErrandLogSentinel> errandLogSeen_;
+    static constexpr i64 kErrandReasonRepeatMs = 60 * 1000;
+
     bool spellbookOpened_ = false;
     // The scroll graphic last dropped on the book, and the spell count before
     // it, so the next tick can tell a real add from a refusal.

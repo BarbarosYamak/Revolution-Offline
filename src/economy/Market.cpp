@@ -99,6 +99,43 @@ bool IsOwnInput(const prof::Profession& p, const std::string& item) {
     return false;
 }
 
+// A CONSUMABLE IS COUNTED BY WHAT IT LOOKS LIKE ON THE WIRE, NOT BY ITS
+// CATALOGUE LABEL. obs.pack (the `Stock` list every caller passes in) is
+// keyed by itemdef DEFNAME, resolved from the wire graphic through
+// econ::ItemNameForGraphic[AndHue] -- the same path VendorErrand's
+// BackpackItemCount reads. ConsumableNeed::name is a human label ("bandage",
+// "heal potion", "food": professions.h), chosen for prose and for
+// FormatSellOffer-style output, and it is NOT a defname -- there is no
+// itemdef called "heal potion". `QtyOf(pack, c.name)` therefore compared the
+// pack against a string that can never appear in it, `have` was permanently
+// 0, and every consumable was a permanent want regardless of what the
+// character carried (flagged 2026-08-30).
+//
+// The fix walks c.graphics -- the same field the errand already carries a
+// character's kit off of -- through econ::ItemNameForGraphic to reach the
+// defname(s) the pack can actually match, and sums QtyOf over the distinct
+// results (Food()'s two graphics resolve to two different defnames,
+// i_bread_loaf and i_food_bread_fr, so both must count; Bandages()' one
+// graphic resolves to one). A graphic with no row in kGraphics contributes
+// nothing rather than crashing or guessing -- the same fail-safe every other
+// caller of ItemNameForGraphic already relies on.
+i32 QtyOfConsumable(const std::vector<Stock>& pack, const prof::ConsumableNeed& c) {
+    i32 total = 0;
+    std::vector<const char*> counted;   // defnames already summed, once each
+    for (u16 g : c.graphics) {
+        const char* def = uo::econ::ItemNameForGraphic(g);
+        if (!def) continue;
+        bool already = false;
+        for (const char* d : counted) {
+            if (std::strcmp(d, def) == 0) { already = true; break; }
+        }
+        if (already) continue;
+        counted.push_back(def);
+        total += QtyOf(pack, def);
+    }
+    return total;
+}
+
 }  // namespace
 
 // ---------------------------------------------------------------------------
@@ -188,7 +225,7 @@ std::vector<Want> Shortfall(const prof::Profession& p,
 
     // Consumables the catalogue names with their own floors.
     for (const prof::ConsumableNeed& c : p.consumables) {
-        const i32 have = QtyOf(pack, c.name);
+        const i32 have = QtyOfConsumable(pack, c);
         if (have >= c.low) continue;
         Want w;
         w.item = c.name;
@@ -689,6 +726,104 @@ NpcSellClass ClassifyForNpcSale(const char* item) {
     return NpcSellClass::Unknown;
 }
 
+namespace {
+
+// ---------------------------------------------------------------------------
+// Forum price seeds (flagged 2026-08-30: a fleet with zero observations
+// opened every sale at TradePolicy::openingAsk == 2gp -- Tarath sold logs at
+// 2 while the forum's own players priced them at 17. openingAsk exists so a
+// FIRST sale can happen at all when nobody has ever seen a price; it was
+// never meant to be the number a character keeps asking once real evidence
+// exists. It just never had anywhere else to look.)
+//
+// docs/FORUM_SWEEP_2026_08_30.md is that evidence: verbatim player prices,
+// dated and sourced to a forum thread. A seed is what BelievedSalePrice()
+// falls back to when a character has made zero observations of its own --
+// still ranked BELOW every real observation (NPC buy price, player quote,
+// completed trade), because a seed is what a Revolution player would have
+// walked in already knowing, not something this character personally
+// witnessed. See PriceBook::BelievedSalePrice below for the ranking.
+//
+// ONLY rows that (a) name an actual number -- several forum rows are a bare
+// "WTB, pm for price" and are worthless as a seed -- and (b) map onto a
+// defname this codebase already tracks somewhere (VendorPolicy.cpp's
+// kGraphics, Market.cpp's own tables, or a profession's produces/consumes)
+// without guessing which item the poster meant.
+//
+// EXCLUDED, deliberately:
+//   * Katana +12/+9, Katana "+15", Cutlass +15/+12 -- every weapon price in
+//     the sweep is for an ENHANCED (+N) or magic copy. The number prices the
+//     enchantment, not the base i_katana/i_cutlass this client tracks, and
+//     seeding the plain item at an enhanced item's price would be a made-up
+//     mapping, which is exactly what this table exists to refuse to do.
+//   * Every mount (Horse, Llama, the Ostard family, Steed, Mare, Unicorn,
+//     Kirin, Fresian, Shire...) -- no mount has a defname anywhere in this
+//     client (grepped: no i_horse/i_llama/i_ostard/i_steed/i_mare/i_unicorn
+//     token exists in src/ or include/), so there is nothing to seed.
+//   * Shell -- same: no defname for it exists in this codebase.
+//   * Bow prices (Ulrika/Quakin/Ekroan) and the armour sets (Blackrock/
+//     Bloodrock/Mytheril/Valorite) -- named by a shop tier/quality, not a
+//     plain itemdef; no clean single-item defname to seed.
+struct ForumPriceSeed { const char* item; i32 price; };
+const ForumPriceSeed kForumPriceSeeds[] = {
+    // Log, 17 gp/unit ("vergili" -- incl. shard sales tax), stock "49,000
+    // satışta, 97,000 depoda" (49k listed, 97k in storage). Poster dated
+    // 05 Şub 2016, updated 03 Mar 2016.
+    // FORUM_SWEEP_2026_08_30.md #2 row "Log", topic,93370.0.html
+    {"i_log", 17},
+    // Iron ingot, 35 gp/unit ("vergili genel vendor fiyatlarıdır" -- incl.
+    // tax, general-vendor-equivalent price), stock 14,000. Same poster, same
+    // thread, 05 Şub 2016 (updated 03 Mar 2016).
+    // FORUM_SWEEP_2026_08_30.md #2 row "Iron ingot", topic,93370.0.html
+    {"i_ingot_iron", 35},
+    // Cloth/bolt ("kumaş", "rulo halinde" -- sold by the bolt/roll), 17
+    // gp/unit, bulk discount for large buys. 29 Şub 2016. i_cloth_bolt (not
+    // i_cloth) is the bolt-form defname (VendorPolicy.cpp kGraphics
+    // 0x0F95-0x0F97).
+    // FORUM_SWEEP_2026_08_30.md #2 row "Cloth/bolt (kumaş)", topic,94084.0.html
+    {"i_cloth_bolt", 17},
+    // Resurrection scroll, 160 gp each, bulk discount available. 12 Tem 2011.
+    // FORUM_SWEEP_2026_08_30.md #2 row "Resurrection scroll (res scroll)",
+    // topic,86762.0.html
+    {"i_scroll_resurrection", 160},
+    // Runebook, 5,000 gp. 29 Mar 2011. i_spellbook_runebook is this client's
+    // runebook defname (VendorPolicy.cpp:61, PlayerMarketGood).
+    // FORUM_SWEEP_2026_08_30.md #2 row "Runebook", topic,86712.0.html
+    {"i_spellbook_runebook", 5000},
+    // Full spellbook ("Full Speel Book"), 40,000 gp. Same post, 29 Mar 2011.
+    // FORUM_SWEEP_2026_08_30.md #2 row "Full spellbook (Full Speel Book)",
+    // topic,86712.0.html
+    {"i_spellbook", 40000},
+    // Potions, Greater Heal/Cure/Agility/Strength/Total Refresh -- one price
+    // for the whole named list -- 15,000 gp per 100 = 150 gp each. Greater
+    // Heal is in that list and i_potion_heal is the only heal-potion defname
+    // this client tracks (VendorPolicy.cpp:442, graphic 0x0F0C -- every heal
+    // tier shares that graphic, so there is only one defname to seed).
+    // 06 Şub 2016.
+    // FORUM_SWEEP_2026_08_30.md #2 row "Potions, Greater
+    // Heal/Cure/Agility/Strength/Total Refresh", topic,93388.0.html
+    {"i_potion_heal", 150},
+    // Deadly Poison potion, 20,000 gp per 100 = 200 gp each. Same post,
+    // 06 Şub 2016. i_potion_poisondeadly is the defname the fencer/PK
+    // catalogue already consumes (professions.h); it has no graphic row
+    // (VendorPolicy.cpp -- the four poison tiers share ID=i_bottle_green and
+    // the wire cannot tell them apart), but that only blocks COUNTING it in
+    // a pack, not naming a believed price for it.
+    // FORUM_SWEEP_2026_08_30.md #2 row "Deadly Poison potion",
+    // topic,93388.0.html
+    {"i_potion_poisondeadly", 200},
+};
+
+i32 ForumSeedSalePrice(const char* item) {
+    if (!item) return -1;
+    for (const ForumPriceSeed& s : kForumPriceSeeds) {
+        if (std::strcmp(s.item, item) == 0) return s.price;
+    }
+    return -1;
+}
+
+}  // namespace
+
 // ---------------------------------------------------------------------------
 // PriceBook
 // ---------------------------------------------------------------------------
@@ -726,7 +861,16 @@ i32 PriceBook::BelievedSalePrice(const char* item) const {
     for (PriceSource s : kOrder) {
         if (const PriceObservation* o = Latest(item, s)) return o->pricePerUnit;
     }
-    return -1;   // never seen one. Not zero, and not a guess.
+    // No observation of our own. A forum seed (kForumPriceSeeds above) ranks
+    // BELOW every real observation -- it is what a Revolution player would
+    // already have known walking in, not proof this character has personally
+    // seen -- but it still beats inventing nothing at all, which is what sent
+    // every unobserved sale out at TradePolicy::openingAsk == 2gp regardless
+    // of what the thing was actually worth (flagged 2026-08-30, i_log sold at
+    // 2 against a forum price of 17).
+    const i32 seed = ForumSeedSalePrice(item);
+    if (seed >= 0) return seed;
+    return -1;   // never seen one and no seed either. Not zero, not a guess.
 }
 
 void PriceBook::Expire(i64 nowMs, i64 maxAgeMs) {
@@ -1057,7 +1201,24 @@ BuyDecision ConsiderOffer(const prof::Profession& p,
 
     // A price ceiling, because a bot with a full purse will otherwise accept
     // any number a seller says and one greedy seller drains the fleet.
-    if (offer.pricePerUnit > policy.blindPriceCeiling) {
+    //
+    // blindPriceCeiling is protection for a character with NO basis for the
+    // price at all -- the number exists so a character does not hand over a
+    // fortune for something it has never seen sold. A forum seed
+    // (kForumPriceSeeds) changes that: the buyer is no longer blind, it walked
+    // in already knowing roughly what Revolution's own players charged, so
+    // holding it to the flat 12gp ceiling would reject a genuine 17gp log
+    // offer as if it were still guessing. So WITH a seed the test is honesty
+    // to that number instead -- up to 50% over what the forum said, which
+    // still catches a seller trying to charge multiples of the going rate --
+    // and WITHOUT one, the original blind ceiling stands unchanged.
+    const i32 seed = ForumSeedSalePrice(offer.item.c_str());
+    if (seed >= 0) {
+        if (offer.pricePerUnit > seed + seed / 2) {
+            d.reason = "more than this life will pay, even against a known price";
+            return d;
+        }
+    } else if (offer.pricePerUnit > policy.blindPriceCeiling) {
         d.reason = "more than this life will pay sight unseen";
         return d;
     }

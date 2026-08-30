@@ -114,6 +114,10 @@ struct VendorErrandResult {
     ActivityStatus status = ActivityStatus::Waiting;
     Wake        wake = Wake::Now;
     i64         delayMs = 0;         // meaningful when wake == AfterDelay
+    // True only on a tick that ISSUED a request to the server (a scan, the
+    // shop ask, the purchase). See ActivityTickResult::acted for the run this
+    // was paid for: waiting is not attempting.
+    bool        acted = false;
     // Always populated, success or failure. This is what the activity logs;
     // a refusal nobody can read is the defect this whole layer exists to
     // stop repeating.

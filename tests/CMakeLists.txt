@@ -602,3 +602,17 @@ if(WIN32)
 endif()
 
 add_test(NAME trade_verify COMMAND trade_verify)
+
+# --- Creation-time appearance roll (docs/APPEARANCE_DESIGN.md layer 1) -----
+# Pure function over an identity string: determinism (same id -> identical
+# appearance), diversity (20 different ids differ in at least one field),
+# and that every hue/style rolled stays inside the exact range Source-X's
+# CChar::InitPlayer accepts for the 0x00 create-character packet, cited in
+# src/life/Appearance.cpp. No server, no MULs, no world data.
+add_executable(appearance appearance.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Appearance.cpp)
+target_include_directories(appearance PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME appearance COMMAND appearance)

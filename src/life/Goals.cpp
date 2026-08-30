@@ -503,6 +503,30 @@ bool Planner::Exhausted(i64 nowMs, std::string* whyOut) const {
 
 bool Planner::Select(const std::vector<Need>& needs, const Observation& obs,
                      const Memory& mem, i64 nowMs, std::string* whyOut) {
+    // --- bounded failure: give up BEFORE scoring -------------------------
+    //
+    // TWO THINGS ARE LOAD-BEARING HERE AND BOTH WERE PAID FOR LIVE.
+    //
+    // 1. IT GOES THROUGH Finish(). This used to set goal_.active = false by
+    //    hand, which is Finish's job minus everything Finish does -- so the
+    //    noop-spin backstop (kNoopSpinLimit) never counted an
+    //    attempts-exhausted goal and never cooled one. Bruin abandoned
+    //    REPLACE_EQUIPMENT on "attempts 5 >= 5" thirty-nine times and was
+    //    handed it straight back, with a fresh budget, every time
+    //    (run_r4/w_Bruin.console.txt:307-386). A goal that spends its whole
+    //    allowance achieving nothing is spinning, whichever door it leaves by.
+    //
+    // 2. IT RUNS BEFORE Score(). Finish may put the goal on a cooldown, and
+    //    Cooling() is read inside Score -- so scoring first would pick the
+    //    just-cooled goal off a list computed before the cooldown existed,
+    //    which is the very re-pick this is meant to stop.
+    std::string exhaustedWhy;
+    if (goal_.active && Exhausted(nowMs, &exhaustedWhy)) {
+        // The text is the one the logs and the greps already know:
+        // "previous goal abandoned: attempts 5 >= 5".
+        Finish(false, exhaustedWhy.c_str(), nowMs);
+    }
+
     const std::vector<ScoredGoal> scored = Score(needs, obs, mem);
 
     const ScoredGoal* best = nullptr;
@@ -512,13 +536,6 @@ bool Planner::Select(const std::vector<Need>& needs, const Observation& obs,
     if (!best) {
         if (whyOut) *whyOut = "no feasible goal";
         return false;
-    }
-
-    // --- bounded failure: give up before re-deciding ----------------------
-    std::string exhaustedWhy;
-    if (goal_.active && Exhausted(nowMs, &exhaustedWhy)) {
-        goal_.failureReason = exhaustedWhy;
-        goal_.active = false;
     }
 
     if (!goal_.active) {

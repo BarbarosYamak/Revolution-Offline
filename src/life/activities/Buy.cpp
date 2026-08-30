@@ -63,6 +63,7 @@ ActivityTickResult BuyActivity::Tick(Client& client, const Observation& obs) {
     out.status = r.status;
     out.wake = r.wake;
     out.delayMs = r.delayMs;
+    out.acted = r.acted;
     // The errand's reason is a std::string built per tick; hold it here so
     // the caller's const char* stays valid for the length of this tick.
     lastWhy_ = r.why;
