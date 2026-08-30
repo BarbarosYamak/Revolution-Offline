@@ -2876,145 +2876,65 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             return false;
         }
         if (client.TravelBusy()) return false;
-        const u32 vendor = client.VendorOfferFrom();
-        if (vendor == 0) {
-            if (!travelInFlight_) {
-                travelInFlight_ = client.TravelToService(wm::Service::Healer, HomeOrNearest(state_.homeCity));
-                if (!travelInFlight_) {
-                    LogLine("BLOCKED_NEED bandages: %s", client.TravelFailureText());
-                    planner_.NoteAttempt(obs.nowMs);
-                    nextActionMs_ = obs.nowMs + 15000;
-                }
-                return false;
-            }
-            travelInFlight_ = false;
-            const u32 keeper = client.NearestMobileWithTrade("healer");
-            if (!keeper) {
-                // ASK BEFORE CONCLUDING NOBODY IS THERE.
-                //
-                // NearestMobileWithTrade matches on the PAPERDOLL TITLE, and a
-                // title only exists once it has been requested. This branch
-                // never asked, so it read "no healer here" off an empty name
-                // table -- and then travelled to the same tile again. Corwyn
-                // spent an entire 12-minute session that way on 2026-08-30:
-                // 24 REPLACE_EQUIPMENT picks, 0 completed, 100% of the day in
-                // one goal family, standing at Minoc's healer shop the whole
-                // time. c_healer is at (2577,601) in the world save; the bot
-                // was at (2582,603) and could not see him because it had not
-                // asked his name.
-                //
-                // "arrived somewhere and found nobody" is also a DEFINITIVE
-                // answer once the question has actually been put. After a few
-                // scans it stands the goal down with a cooldown rather than
-                // re-walking to a tile it is already standing on -- and a
-                // cooldown, not a write-off, because one silent shop is not
-                // evidence about the trade (the lesson the trainer path
-                // already learned).
-                if (++healerScans_ <= 3) {
-                    client.ActionScanMobiles();
-                    LogLine("bandages: at the healer's, asking who is here "
-                            "(scan %d of 3)", healerScans_);
-                    planner_.NoteAttempt(obs.nowMs);
-                    nextActionMs_ = obs.nowMs + 3000;
-                    return false;
-                }
-                LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"stood at the "
-                        "healer's and nobody with that trade answered in %d "
-                        "scans\"", healerScans_ - 1);
-                healerScans_ = 0;
-                planner_.Cooldown(GoalKind::ReplaceEquipment,
-                                  obs.nowMs + kGearCooldownMs);
-                planner_.Finish(false, "no healer answered", obs.nowMs);
-                return false;
-            }
-            healerScans_ = 0;
-            // A RETRY SHORTER THAN THE ACTION'S OWN DEADLINE ONLY SUPERSEDES
-            // ITSELF. Asking again 2.5 seconds later produced
-            // "vendor_buy invalid_state ... superseded" on every single tick
-            // -- Riley the healer was standing right there, being asked to
-            // open his shop eleven times in thirty seconds and never given
-            // long enough to answer. Nine seconds is what the spellbook path
-            // uses against the same kVendorTimeoutMs, and it is clear of it.
-            if (client.ActionBusy()) return false;
-            client.ActionVendorOpen(keeper);
-            nextActionMs_ = obs.nowMs + 9000;
-            return false;
-        }
-        // THE SHOP LIST CARRIES FURTHER THAN THE HAND.
+
+        // --- THE ERRAND OWNS THE HANDSHAKE FROM HERE ---------------------
         //
-        // Speech opens a vendor from across the room; a purchase needs touch.
-        // Corwyn had the healer's list open and every buy came back "You can't
-        // reach the Vendor" while gold never moved -- 03:38 on 2026-08-30,
-        // run_m7/z_Corwyn.console.txt:1356 onward -- because nothing re-checked
-        // the distance once the window was up. That refusal is INFORMATION
-        // (loose end 5): walk back into reach and buy, rather than re-issuing
-        // from where the answer is already known to be no.
-        //
-        // Same shape as DoBuySupplies' chase-back, including the give-up: after
-        // kMaxVendorChases laps, ask anyway and let Sphere answer, because a
-        // refusal ends the goal honestly where another lap ends nothing.
-        {
-            i32 vx = 0, vy = 0; i8 vz = 0;
-            if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
-                const i32 d = TileDist(obs.x, obs.y, vx, vy);
-                const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
-                if ((d > kVendorReach || dz > 3) &&
-                    ++vendorChases_ <= kMaxVendorChases) {
-                    LogLine("bandages: the healer is %d tiles off (dz %d) -- "
-                            "walking into reach before buying (chase %d of %d)",
-                            d, dz, vendorChases_, kMaxVendorChases);
-                    travelInFlight_ = client.TravelToEntity(vendor, 1);
-                    planner_.NoteAttempt(obs.nowMs);
-                    nextActionMs_ = obs.nowMs + 2000;
-                    return false;
-                }
-            }
+        // Everything between "I want bandages" and "the server took the gold"
+        // used to live inline, and every step of it was learned the hard way
+        // in this one function: ask who is here, do not address the
+        // guildmaster, walk into reach, wait past the action's own deadline,
+        // never ask for more than the shelf holds. life::VendorErrand holds
+        // that sequence once, so the next buyer inherits it instead of
+        // rediscovering it. What stays HERE is what is genuinely this goal's
+        // business: the vendor POLICY above, how many bandages are wanted,
+        // and what to remember afterwards.
+        if (!bandageErrand_.Running()) {
+            life::VendorErrandSpec spec;
+            spec.trade = "healer";
+            spec.service = wm::Service::Healer;
+            spec.graphic = kBandage;
+            spec.qty = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
+            spec.what = "clean bandages";
+            spec.goldFloor = 0;   // bandages ARE the emergency reserve
+            bandageErrand_.Begin(spec);
         }
-        if (client.ActionBusy()) return false;
-        for (const Client::VendorItem& v : client.VendorOffer()) {
-            if (v.graphic != kBandage) continue;
-            // NEVER ASK FOR MORE THAN THE SHELF HOLDS. Sphere refuses the
-            // WHOLE order if the quantity exceeds stock -- "Your order cannot
-            // be fulfilled, please try again" / "You cannot buy that" -- so
-            // asking for 20 clean bandages from a healer holding 19 bought
-            // nothing at all, eight times running (11:16-11:18 on 2026-08-30,
-            // run_m7/r1a_Corwyn.console.txt). The restock timer is not saved
-            // across a shard restart either, so a thin shelf is normal rather
-            // than exceptional.
-            i32 want = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
-            if (v.amount > 0 && want > static_cast<i32>(v.amount))
-                want = static_cast<i32>(v.amount);
-            if (want <= 0) return true;
-            if (obs.gold < static_cast<i32>(v.price) * want) {
-                LogLine("BLOCKED_NEED bandages: %d cost %u each, carrying %d gold",
-                        want, v.price, obs.gold);
-                planner_.NoteAttempt(obs.nowMs);
-                nextActionMs_ = obs.nowMs + 10000;
-                return false;
+        const life::VendorErrandResult r = bandageErrand_.Tick(client, obs);
+        if (!r.why.empty()) LogLine("bandages: %s", r.why.c_str());
+        if (r.wake == life::Wake::AfterDelay && r.delayMs > 0)
+            nextActionMs_ = obs.nowMs + r.delayMs;
+
+        if (r.state == life::ErrandState::Bought) {
+            // Learn the shop. The errand deliberately knows nothing about
+            // memory -- it buys; remembering where from is a life's business.
+            for (const Client::VendorItem& v : client.VendorOffer()) {
+                if (v.graphic != kBandage) continue;
+                KnownSupplier s;
+                s.need = "bandage";
+                s.name = v.name;
+                s.sourceType = "npc_vendor";
+                s.serial = r.keeper;
+                s.x = obs.x; s.y = obs.y; s.z = obs.z;
+                s.observedQuantity = v.amount;
+                s.observedPricePerUnit = static_cast<i32>(v.price);
+                s.lastVerifiedMs = obs.nowMs;
+                s.policyAllows = true;
+                state_.memory.NoteSupplier(s);
+                LogLine("memory_learned=SUPPLIER need=bandage name=\"%s\"",
+                        v.name.c_str());
+                break;
             }
-            KnownSupplier s;
-            s.need = "bandage";
-            s.name = v.name;
-            s.sourceType = "npc_vendor";
-            s.serial = vendor;
-            s.x = obs.x; s.y = obs.y; s.z = obs.z;
-            s.observedQuantity = v.amount;
-            s.observedPricePerUnit = static_cast<i32>(v.price);
-            s.lastVerifiedMs = obs.nowMs;
-            s.policyAllows = true;
-            state_.memory.NoteSupplier(s);
-            LogLine("memory_learned=SUPPLIER need=bandage name=\"%s\"", v.name.c_str());
-            client.ActionVendorBuy(vendor, v.serial, static_cast<u16>(want));
             planner_.NoteProgress();
-            // Clear of kVendorTimeoutMs (8 s), for the third time in this one
-            // errand: at 2.5 s the purchase superseded itself before the
-            // server could answer it.
-            nextActionMs_ = obs.nowMs + 9000;
             return false;
         }
-        LogLine("BLOCKED_NEED bandages: this vendor's list has none");
+        if (r.state == life::ErrandState::Failed) {
+            LogLine("goal_failed=REPLACE_EQUIPMENT reason=\"%s\"",
+                    r.why.c_str());
+            planner_.Cooldown(GoalKind::ReplaceEquipment,
+                              obs.nowMs + kGearCooldownMs);
+            planner_.Finish(false, "no bandages bought", obs.nowMs);
+            return false;
+        }
         planner_.NoteAttempt(obs.nowMs);
-        nextActionMs_ = obs.nowMs + 8000;
         return false;
     }
     return true;

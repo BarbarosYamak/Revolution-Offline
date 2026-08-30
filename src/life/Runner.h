@@ -17,6 +17,7 @@
 
 #include "uo/life.h"
 #include "uo/world_model.h"
+#include "uo/vendor_errand.h"
 #include "uo/types.h"
 
 #include <string>
@@ -266,6 +267,11 @@ private:
     // Consecutive "you can't reach that" refusals from the forge. A
     // refusal means walk, not click again; see DoSmelt.
     i32  smeltReachFails_ = 0;
+    // The bandage purchase, as a shared errand rather than inline steps.
+    // One per buying goal, deliberately: the trip and chase counters used to
+    // be Runner members shared between goals, and a gear trip spent the
+    // spellbook's allowance.
+    life::VendorErrand bandageErrand_;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
     // surface, and 0 for rock land or the rock static's id (a cave floor is a
