@@ -299,6 +299,40 @@ const GraphicRow kGraphics[] = {
     // 32 times in one run. A grading is only reachable if the graphic that
     // names it is here too -- the two tables have to agree.
     {0x0EFA, "i_spellbook"},
+    // POTIONS. None of these were here at all, so GraphicsForItem returned
+    // nothing for them and market::QtyOf could never count one: Voris brewed
+    // Poison after Poison ("System: You put the Poison in your pack.") while
+    // the bot's own pack view stayed at zero, so the craft never registered as
+    // done, the batch command never fired, and a sale could never match.
+    //
+    // NOTE ALL FOUR POISONS SHARE ONE GRAPHIC. i_potion_Poison, PoisonLess,
+    // PoisonGreat and PoisonDeadly all carry ID=i_bottle_green (0f0a) in
+    // i_provisions_potions.scp -- the tiers are indistinguishable on the wire
+    // and only the server knows which is which. i_potion_poison is listed
+    // first so the graphic->name lookup answers with the common one.
+    // ONE NAME PER GRAPHIC, and it must be the tier that has a BUYER.
+    //
+    // Mapping every tier to its shared graphic looked harmless and was not.
+    // GraphicsForItem is used to COUNT the pack, so all four poisons reported
+    // the same green bottles -- and because `produces` is ordered
+    // strongest-first for the skill ladder, i_potion_poisondeadly claimed
+    // them:
+    //   BLOCKED_NEED EARN_GOLD: 4 x i_potion_poisondeadly spare, and no
+    //   buyer known -- on this shard it is a player-market good
+    // The character was holding plain Poison, which DOES have a buyer. Two
+    // changes that were each right on their own combined into a life that
+    // could not sell what it had just brewed.
+    //
+    // The tiers are indistinguishable on the wire -- one ID, no hue -- so
+    // naming them all by the common, sellable defname is the honest reading.
+    // The ladder is unaffected because ChooseCraft gates on SKILL, not on the
+    // pack: at Alchemy 50 the 90.1 and 55.1 rungs are skipped and plain
+    // Poison is chosen.
+    {0x0F0A, "i_potion_poison"},
+    {0x0F0C, "i_potion_heal"},
+    {0x0F07, "i_potion_cure"},
+    {0x0F0B, "i_potion_refresh"},
+    {0x0F08, "i_potion_agilitygreat"},
     {0x1541, "i_sash"},
     {0x1F03, "i_robe"},          {0x1F04, "i_robe"},
     {0x1F14, "i_rune_marker"},

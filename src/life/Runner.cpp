@@ -53,6 +53,31 @@ constexpr u16 kSmithToolGfx[] = {0x0FBB, 0x0FBC, 0x13E3, 0x13E4};
 // i_hammer_smith has DAM=13,15 SKILL=Macefighting and equips normally.
 // "equip smith hammer maybe?" (project owner, 2026-08-29).
 constexpr u16 kSmithHammerGfx[] = {0x13E3, 0x13E4};
+// WHAT OPENS A CRAFT MENU, per tool.
+//
+// Most trades open their menu by double-clicking the TOOL, not the material:
+// a mortar for alchemy, tinker tools, a sewing kit, a saw. Inscription is the
+// exception the enum itself names -- Tool::BlankScroll, "Inscription's menu
+// opens by double-clicking one" -- which is why DoCraft's default was written
+// around the material and why alchemy then answered "You can't think of a way
+// to use that item" as it double-clicked a reagent.
+//
+// Graphics come from Professions.cpp, which reads them off the shard's own
+// itemdefs: mortar 0E9B, sewing kit 0F9D, saw 1034, tinker tools 1EBC.
+struct ToolOpener { prod::Tool tool; u16 gfx[4]; usize n; };
+const ToolOpener kToolOpeners[] = {
+    {prod::Tool::MortarPestle,  {0x0E9B, 0, 0, 0},        1},
+    {prod::Tool::SewingKit,     {0x0F9D, 0, 0, 0},        1},
+    {prod::Tool::CarpentryTool, {0x1034, 0, 0, 0},        1},
+    {prod::Tool::TinkerTools,   {0x1EBC, 0, 0, 0},        1},
+    {prod::Tool::Scissors,      {0x0F9E, 0x0F9F, 0, 0},   2},
+    {prod::Tool::SmithHammer,   {0x13E3, 0x13E4, 0, 0},   2},
+};
+const ToolOpener* OpenerFor(prod::Tool t) {
+    for (const ToolOpener& o : kToolOpeners) if (o.tool == t) return &o;
+    return nullptr;
+}
+
 // WEAPONS A FIGHTER MIGHT BE CARRYING. Every one of these is handed out by the
 // shard's own newbie kits (sp_tm_newbie.scp: [NEWBIE FENCING] ITEMNEWBIE=
 // i_kryss, [NEWBIE MACEFIGHTING] i_club, [NEWBIE SWORDSMANSHIP] and friends),
@@ -452,6 +477,13 @@ constexpr i32 kForgeReach = 1;
 constexpr u16 kFishRawSteak = 0x097A;
 // Mirrors kGoldWorthCarrying in Needs.cpp: the need and the goal must agree on
 // how much coin a life keeps, or one will ask for a trip the other undoes.
+// The runtime half of Needs.cpp's kMaxGoldCarried: what is DEPOSITED must
+// agree with what the need thought was surplus, or the trip achieves nothing.
+// How many turns of a never-failing self-use skill (Meditation) before the
+// planner is given another chance to choose. Small: the point is that other
+// needs get looked at, not that practice is discouraged.
+constexpr i32 kSelfPracticeBeforeRethink = 6;
+constexpr i32 kMaxGoldCarriedRt = 800;
 constexpr i32 kGoldWorthCarryingRt = 500;
 // Close enough to a mining place to call it a day at work.
 // Distance to the EDGE of a mining area that still counts as being at work.
@@ -2992,7 +3024,9 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         {
             const u32 coin = client.FindBackpackItemByGraphic(kGoldCoin);
             const i32 keep =
-                (needCfg_.profession ? needCfg_.profession->goldReserve : 0) +
+                std::min(needCfg_.profession ? needCfg_.profession->goldReserve
+                                             : 0,
+                         kMaxGoldCarriedRt) +
                 kGoldWorthCarryingRt;
             // WHAT IS CARRIED, NOT WHAT IS OWNED. obs.gold is the status-bar
             // figure and counts the bank box, so this asked to deposit 8,785
@@ -4025,7 +4059,8 @@ bool Runner::DoEarnGold(Client& client, const Observation& obs) {
     }
 
     // --- what is there to sell? -------------------------------------------
-    const market::TradePolicy tp;
+    // The threshold bends when the purse is empty: see PolicyForPurse.
+    const market::TradePolicy tp = market::PolicyForPurse(obs.goldOnHand);
     const std::vector<market::Offer> offers =
         market::Surplus(*me, obs.pack, tp);
     if (offers.empty()) {
@@ -6252,6 +6287,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     }
 
     if (craftItem_ != intent.item) {
+        makeLastIssued_ = false;   // a different item needs its own first make
         craftItem_ = intent.item;
         craftHadBefore_ = market::QtyOf(obs.pack, craftItem_);
         craftMade_ = 0;
@@ -6311,7 +6347,59 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
             }
         }
         if (moreToUse && obs.WeightFraction() < 0.90) {
-            LogLine("craft: %d %s made and the iron is not finished -- "
+            // REPEAT WITH .makelast RATHER THAN RE-WALKING THE MENU.
+            //
+            // revolution_makelast.scp (a PLEVEL 1 command, so it is invoked by
+            // speech with sphere.ini's CommandPrefix ".") repeats the last
+            // COMPLETED craft: crafting_events.scp's @skillmakeitem stores the
+            // baseid in CTAG.revo.makelast.item, for the legacy menus as well
+            // as the modern gump. So the first item still goes through the
+            // menu -- that is what sets the tag -- and the rest of the batch
+            // is one command instead of four dialog round-trips each.
+            //
+            // The server re-checks CANMAKE every repetition, so skill,
+            // materials, tool and station are all still enforced; it stops by
+            // itself with "Make Last stopped: you can no longer craft ..." the
+            // moment the stock runs out. It also cancels on war mode, attack,
+            // spellcast, death and logout -- all of which are things this
+            // character would want to stop crafting for anyway.
+            //
+            // Gathering is untouched: mining and fishing are TARGETED skills,
+            // not menu crafts, and have no last-item to repeat. "most of
+            // professions can use makelast ... except mining or fishing since
+            // they require target and not craft" (project owner, 2026-08-30).
+            if (!makeLastIssued_) {
+                i32 canMake = 0;
+                if (const prod::Recipe* rr =
+                        prod::FindRecipe(craftItem_.c_str())) {
+                    canMake = 500;
+                    for (const prod::Ingredient& in : rr->inputs) {
+                        if (!in.item || in.qty <= 0) continue;
+                        if (rr->station == prod::Station::Fire &&
+                            std::strcmp(in.item, "i_kindling") == 0 &&
+                            client.FindWorldItemByGraphic(kCampfireGraphic, 3))
+                            continue;   // the fire is already lit
+                        const i32 have = market::QtyOf(obs.pack, in.item);
+                        const i32 fits = have / in.qty;
+                        if (fits < canMake) canMake = fits;
+                    }
+                }
+                if (canMake > 500) canMake = 500;
+                if (canMake > 1) {
+                    char cmd[64];
+                    std::snprintf(cmd, sizeof(cmd), ".makelast %d",
+                                  static_cast<int>(canMake));
+                    LogLine("craft: %d %s made -- repeating the other %d with "
+                            "'%s' instead of walking the menu again",
+                            craftMade_, craftItem_.c_str(),
+                            static_cast<int>(canMake), cmd);
+                    client.ActionSay(cmd);
+                    makeLastIssued_ = true;
+                    nextActionMs_ = obs.nowMs + 3000;
+                    return false;
+                }
+            }
+            LogLine("craft: %d %s made and the material is not finished -- "
                     "carrying on", craftMade_, craftItem_.c_str());
         } else if (craftMade_ >= needCfg_.craftBatch || !moreToUse) {
             LogLine("craft: %d %s made -- %s", craftMade_, craftItem_.c_str(),
@@ -6408,12 +6496,19 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
     // the opener is the t_cooking tool: using the raw steak itself would be
     // answered by Use_Eat (CCharUse.cpp:1862) -- the character would swallow
     // its own stock one click at a time and no menu would ever come.
+    // THE TOOL OPENS THE MENU wherever the trade has one -- a mortar for
+    // alchemy, tinker tools, a sewing kit, a saw -- and only Inscription
+    // (Tool::BlankScroll) and the toolless recipes open from the material.
+    // Special-casing the smith hammer alone left alchemy double-clicking a
+    // reagent and being told "You can't think of a way to use that item".
+    const ToolOpener* opener_tool = OpenerFor(r->tool);
     const std::vector<u16> openGfx =
-        r->tool == prod::Tool::SmithHammer
-            ? std::vector<u16>(kSmithToolGfx, kSmithToolGfx + 4)
-            : r->station == prod::Station::Fire
-                  ? std::vector<u16>(kCookingToolGfx, kCookingToolGfx + 3)
-                  : econ::GraphicsForItem(r->inputs[0].item);
+        r->station == prod::Station::Fire
+            ? std::vector<u16>(kCookingToolGfx, kCookingToolGfx + 3)
+            : (opener_tool
+                   ? std::vector<u16>(opener_tool->gfx,
+                                      opener_tool->gfx + opener_tool->n)
+                   : econ::GraphicsForItem(r->inputs[0].item));
     u32 opener = 0;
     for (u16 g : openGfx) {
         opener = client.FindBackpackItemByGraphic(g);
@@ -6480,10 +6575,11 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
         return false;
     }
 
-    LogLine("craft: making %s -- using a %s to open the menu",
+    LogLine("craft: making %s -- using %s to open the menu",
             craftItem_.c_str(),
-            r->station == prod::Station::Fire ? "cooking tool"
-                                              : r->inputs[0].item);
+            r->station == prod::Station::Fire
+                ? "a cooking tool"
+                : (opener_tool ? "its own tool" : r->inputs[0].item));
     client.ActionUseObject(opener);
     craftStartedMs_ = obs.nowMs;
     craftMenuStep_ = 0;
@@ -8541,6 +8637,32 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
         planner_.NoteProgress();
         nextActionMs_ = obs.nowMs + 6000;
         return false;
+    }
+
+    // A SELF-USE SKILL NEVER FAILS, SO IT MUST BE BOUNDED.
+    //
+    // Meditation always answers "You are at peace", so this goal claimed
+    // progress on every single tick, never completed, and was then restored
+    // next session as a KEPT objective -- "restored objective KEPT:
+    // PRACTICE_SKILL (progress 18)". The planner never got another look in.
+    // Voris spent a whole life meditating while holding 2 poison potions, 170
+    // nightshade and a mortar, and the reason no goal change ever appeared in
+    // the log is that no goal change ever happened.
+    //
+    // Stand down after a stretch of it and let the planner re-decide. If
+    // meditating really is the best thing available it wins again immediately;
+    // if there is stock to sell or a batch to brew, that now gets its turn.
+    // For an alchemist in particular the training IS the crafting -- Alchemy
+    // is PracticeBy::Working -- so an unbounded meditation was crowding out
+    // the very activity that raises the skill it lives by.
+    if (++selfPracticeRuns_ >= kSelfPracticeBeforeRethink) {
+        LogLine("practice: %d turns of %s -- standing down so the planner can "
+                "look at the rest of this life",
+                selfPracticeRuns_, rules::SkillName(skillId));
+        selfPracticeRuns_ = 0;
+        planner_.Cooldown(GoalKind::PracticeSkill, obs.nowMs + 60000);
+        planner_.Finish(true, nullptr, obs.nowMs);
+        return true;
     }
 
     LogLine("practice: using %s to raise it (%.1f)", rules::SkillName(skillId),

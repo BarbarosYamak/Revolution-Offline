@@ -78,10 +78,27 @@ struct TradePolicy {
     // make your money, and asking under the odds is the fast way to find the
     // real number.
     i32 openingAsk = 2;
-    // Below this, gathering more of something to sell is pointless -- it will
-    // all be eaten by the character's own work.
+    // A LOT WORTH WALKING WITH -- normally. Five keeps a character from
+    // trekking across town to sell two of something.
+    //
+    // But it must not become a reason to stand still while broke. Voris held
+    // 2 poison potions, 2 empty bottles and exactly 100 gold: he could not buy
+    // bottles (BUY_SUPPLIES keeps a hard floor of 100), could brew at most two
+    // more, and would still have been under this threshold -- so he meditated
+    // instead of selling the only thing he owned. Use PolicyForPurse() below
+    // rather than the bare default wherever a life might be broke.
     i32 minimumSurplusToOffer = 5;
 };
+
+// THE THRESHOLD BENDS WHEN THE PURSE IS EMPTY. A small lot is not worth a trip
+// when there is money to work with; when there is not, the small lot IS the
+// way back to work. "sell those poisons buy more bottle" (project owner,
+// 2026-08-30).
+inline TradePolicy PolicyForPurse(i32 goldOnHand) {
+    TradePolicy p;
+    if (goldOnHand < 200) p.minimumSurplusToOffer = 1;
+    return p;
+}
 
 // What this life can spare. Reads `produces` from the catalogue: a life only
 // ever offers what its own profession makes.

@@ -62,6 +62,21 @@ constexpr i32 kSpellShoppingSpare = 1000;
 constexpr i32 kBandagesBuyable = 200;
 // Working change kept on top of the profession's own reserve. Enough for an
 // unplanned purchase without making the character worth robbing.
+// HOW MUCH A LIFE WALKS AROUND WITH, whatever its savings target.
+//
+// `goldReserve` is what a profession wants to HAVE -- a scribe 5000, a
+// lumberjack-swordsman 10000 -- and it was being added straight to the amount
+// carried, so those two never deposited anything and wandered a full-loot
+// shard with five and ten thousand coins in their pockets. That is precisely
+// what the owner's rule forbids: "nobody carry gold on them unless they need
+// to buy something -- always put additional items to bank, so they can get it
+// when they need it".
+//
+// Carrying is now capped for everyone alike, and the cap is safe because the
+// other half of the rule finally works: FetchCoinForPurchase withdraws what an
+// errand costs, when the errand happens. "money bank deposit like blacksmith
+// as well we can generalize" (project owner, 2026-08-30).
+constexpr i32 kMaxGoldCarried = 800;
 constexpr i32 kGoldWorthCarrying = 500;
 
 
@@ -379,7 +394,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
     bool loadIsSellable = false;
     if (cfg.profession) {
         const std::vector<market::Offer> onHand =
-            market::Surplus(*cfg.profession, obs.pack, market::TradePolicy{});
+            market::Surplus(*cfg.profession, obs.pack,
+                            market::PolicyForPurse(obs.goldOnHand));
         for (const market::Offer& o : onHand) {
             if (market::HasNpcBuyer(o.item.c_str()) ||
                 mem.BestSupplier((std::string("buyer:") + o.item).c_str())) {
@@ -434,7 +450,9 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // announce "spare=8785" and walk to the bank to deposit coins that
         // were already in it -- which is also why the character appeared to
         // spam the banker.
-        const i32 carry = cfg.profession->goldReserve + kGoldWorthCarrying;
+        const i32 carry =
+            std::min(cfg.profession->goldReserve, kMaxGoldCarried) +
+            kGoldWorthCarrying;
         if (obs.goldOnHand > carry) {
             // URGENCY SCALES WITH WHAT IS AT RISK. A flat 0.38 lost to
             // training every time -- 0.38 x 240 = 91 against a trainer need at
@@ -482,7 +500,8 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             if (!merged) holdings.push_back(b);
         }
         const std::vector<market::Offer> spare =
-            market::Surplus(*cfg.profession, holdings, market::TradePolicy{});
+            market::Surplus(*cfg.profession, holdings,
+                            market::PolicyForPurse(obs.goldOnHand));
         if (!spare.empty()) {
             // Urgency GROWS with the load, because "worth walking to town for"
             // is a question about quantity. Flat, it lost to gathering forever:

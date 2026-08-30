@@ -277,6 +277,11 @@ private:
     i32  coinWanted_ = 0;
     // Blacksmithing: the hammer arms a cursor that wants an ingot before the
     // menu will open.
+    // Whether ".makelast" has already been issued for the item being made, so
+    // the batch command goes out once per sitting rather than once per item.
+    // Consecutive turns spent on a self-use skill that cannot fail.
+    i32  selfPracticeRuns_ = 0;
+    bool makeLastIssued_ = false;
     bool craftCursorPending_ = false;
     i64  craftClickedMs_ = 0;
     // Forges that refused from every tile that could be reached, so the next

@@ -196,6 +196,13 @@ struct Profession {
 
     // Gold this life keeps back rather than spending -- the reserve that pays
     // for a replacement tool after a death.
+    // SAVINGS, not pocket money. This is what a life wants to have TO ITS
+    // NAME before it counts itself comfortable -- a scribe wants 5000, a
+    // lumberjack-swordsman 10000. It is NOT how much to walk around with:
+    // death here is full loot, and the owner's rule is "nobody carry gold on
+    // them unless they need to buy something". What is carried is capped at
+    // kMaxGoldCarried below, and the rest belongs in the box; a purchase
+    // withdraws what it needs when it needs it.
     i32 goldReserve = 0;
 
     // WHERE THIS LIFE LIVES, best first, as the atlas names the region.

@@ -286,8 +286,24 @@ SellRuling MaySellToNpc(const prof::Profession& p, const char* item,
     //
     // So the heuristic applies only where history is silent. Where the
     // registry says Confirmed, the shard has already answered.
+    //
+    // AND AN OWNER DECISION IS NOT SILENCE. That grade exists precisely to
+    // record the owner answering a question the forum record does not cover,
+    // and treating it as unanswered turned an explicit permission into a
+    // refusal: Voris brewed four poison potions from bought nightshade and
+    // then would not sell one of them --
+    //   "will NOT sell 4 i_potion_poison -- its inputs were bought from an
+    //    NPC and nothing on record says this shard allowed that route"
+    // -- while the registry entry immediately above it reads
+    // poison_potion_to_alchemist, Policy::Allow, on "Voris it can make poison
+    // bottle and it can sell to npc". The heuristic was overruling the
+    // authority it exists to defer to. The same applies to the dagger, which
+    // is allowed on the same grade and would hit this the moment a smith
+    // bought an ingot rather than digging it.
     const bool historyConfirms =
-        allowedRoute && allowedRoute->history == faucet::HistoryEvidence::Confirmed;
+        allowedRoute &&
+        (allowedRoute->history == faucet::HistoryEvidence::Confirmed ||
+         allowedRoute->history == faucet::HistoryEvidence::OwnerDecision);
 
     if (!historyConfirms) {
         for (const std::string& needed : inputs) {
@@ -369,6 +385,16 @@ const NpcBuyer kNpcBuyers[] = {
     {"i_spear_short",        "weaponsmith"},   // tm_vend.scp:1716 WEAPONS_BLUNT
     {"i_club",               "weaponsmith"},   // tm_vend.scp:1710 {10 15}
     {"i_robe",               "tailor"},        // tm_vend.scp:865  TAILOR
+    // POISON. The faucet registry has allowed poison_potion_to_alchemist
+    // since the owner called it -- "Voris it can make poison bottle and it can
+    // sell to npc" -- and VENDOR_B_ALCHEMIST carries BUY=i_potion_poison,
+    // {3 18} outright. But this table had no row, so NpcBuyersFor returned
+    // nothing and EARN_GOLD reported "4 x i_potion_poison spare, and no buyer
+    // known" with four potions in the pack and an empty purse. Permission
+    // without a buyer is a goal addressed to nobody -- the same gap the dagger
+    // had, and the third time this pair has been out of step.
+    {"i_potion_poison",      "alchemist"},     // tm_vend.scp VENDOR_B_ALCHEMIST
+    {"i_potion_heal",        "alchemist"},     // BUY=i_potion_heal,{3 18}
     {"i_potion_cure",        "alchemist"},     // tm_vend.scp:510  ALCHEMIST
     {"i_potion_refresh",     "alchemist"},
     {"i_crossbow",           "bowyer"},        // tm_vend.scp:1444 BOWYER
