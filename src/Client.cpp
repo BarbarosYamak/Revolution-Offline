@@ -3552,15 +3552,42 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
 
     u8 layer = 0x1A;
     u16 graphic = 0;
+    u16 stock = 0;
     bool found = false;
     for (const VendorItem& v : vendorOffer_) {
         if (v.serial == itemSerial) {
-            layer = v.layer; graphic = v.graphic; found = true; break;
+            layer = v.layer; graphic = v.graphic; stock = v.amount; found = true;
+            break;
         }
     }
     if (!found) {
         FinishAction(act::Result::InvalidState, "item not in the vendor offer");
         return;
+    }
+
+    // NEVER ASK FOR MORE THAN THE SHELF HOLDS.
+    //
+    // Sphere refuses the WHOLE order when the quantity exceeds stock -- the
+    // vendor answers "Your order cannot be fulfilled, please try again" and
+    // the system line is "You cannot buy that" -- so ONE over-ask buys
+    // nothing at all rather than buying what is there. A healer holding 19
+    // clean bandages, asked for 20, sold none, eight times running
+    // (run_m7/r1a_Corwyn.console.txt, 11:16-11:18 on 2026-08-30).
+    //
+    // THIS BELONGS HERE, not in the caller. It is a fact about the protocol
+    // and the server, not a decision any particular errand gets to make, and
+    // the 0x74 list this function already reads is the authority on it. Both
+    // life-layer buy paths had to learn it separately; anything that ever
+    // buys from a vendor -- an errand, a scenario, a future VendorErrand --
+    // now inherits it.
+    if (stock > 0 && qty > stock) {
+        LogInfo("[VENDOR] asked for %u %s but the shelf holds %u -- buying "
+                "what is there\n", qty,
+                econ::ItemNameForGraphic(graphic)
+                    ? econ::ItemNameForGraphic(graphic) : "item",
+                stock);
+        qty = stock;
+        action_.amount = qty;
     }
 
     // --- M3.7 Revolution vendor authenticity policy -------------------------

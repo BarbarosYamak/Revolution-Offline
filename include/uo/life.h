@@ -900,6 +900,20 @@ public:
     // The same measure for the goal's whole FAMILY -- the one that actually
     // breaks a monotonous day. See GoalFamily.
     double FamilySatiation(GoalKind kind, i64 nowMs) const;
+    // HOW MUCH OF THE DAY THIS FAMILY HAS ALREADY HAD.
+    //
+    // FamilySatiation only counts CONSECUTIVE runs, so it never sees the
+    // pattern that actually produced every varied=0 session on record:
+    // alternation. Work, Upkeep, Work, Upkeep resets famRepeatRuns_ on every
+    // pick and damps nothing, and the histogram comes out as two families
+    // splitting the whole day between them (Corwyn 46/39/15, Ysolde 68/29/3).
+    //
+    // This is the session-wide half of the same idea: a family that has taken
+    // more than its share of the picks so far yields, in proportion to how far
+    // past the share it is. It is not a rotation and not a quota -- an urgent
+    // need still wins, because the damping is a multiplier on score and
+    // emergencies are exempt entirely.
+    double FamilyShareDamp(GoalKind kind) const;
 
     const PlannerConfig& Config() const { return cfg_; }
 
@@ -930,6 +944,10 @@ private:
     i64 famLastRanMs_[static_cast<int>(GoalFamily::Count)] = {};
     int famRepeatRuns_[static_cast<int>(GoalFamily::Count)] = {};
     GoalFamily lastRanFamily_ = GoalFamily::Count;
+    // Session totals, for FamilyShareDamp. Never reset mid-session: the
+    // question is what the DAY looked like, not the last few minutes.
+    int famPicks_[static_cast<int>(GoalFamily::Count)] = {};
+    int pickTotal_ = 0;
     // Higher than the per-goal cap: a family has to yield hard enough that a
     // genuinely lower-weighted kind of thing can win. BANK at 240 x 0.72 is
     // 173; TRAIN_COMBAT at 110 x 0.4 is 44, so nothing under a ~60% haircut
@@ -957,6 +975,19 @@ private:
     // owns the whole session.
     static constexpr double kSatiationPerRepeat = 0.12;
     static constexpr double kSatiationMax = 0.45;
+    // The share of the session's picks a single family may hold before it
+    // starts yielding, and how hard it yields once past it. R1's bar is
+    // "none above 50%", so the pressure has to start well below that to
+    // leave room for an errand that genuinely takes several turns; 0.30 is
+    // a little under a fair quarter-share of four families. The ceiling is
+    // deliberately below FamilySatiation's 0.85: this is a nudge across a
+    // whole session, not a hard stop, and it must never starve a family
+    // that is the only useful thing left to do.
+    static constexpr double kFamilyFairShare = 0.30;
+    static constexpr double kFamilyShareDampMax = 0.60;
+    // Below this many picks the shares are noise -- one pick out of two is
+    // 50% and means nothing.
+    static constexpr int kMinPicksForShare = 8;
 };
 
 // ===========================================================================

@@ -1,0 +1,92 @@
+# REGRESSION -- the healer errand, end to end.
+#
+# WHY THIS FILE EXISTS. On 2026-08-30 the bandage errand took 100% of two
+# consecutive autonomous sessions (Corwyn 24/24 picks, Tarath 27/27, zero
+# completed) and it took FIVE live runs to walk it, because each fault hid the
+# next:
+#
+#   1. the errand never asked who was present, so it read "no healer here" off
+#      an empty paperdoll-title table and re-walked to the tile it stood on;
+#   2. it then re-asked the vendor to open every 2.5s against an 8s action
+#      deadline, so the request only ever superseded itself;
+#   3. it asked the wrong man -- "Riley, the healer guildmaster" truncates to
+#      "healer" and won on distance, and a guildmaster keeps no shop;
+#   4. the shop list opened but every buy was refused "You can't reach the
+#      Vendor", because speech carries further than touch;
+#   5. and it asked for 20 from a shelf holding 19, which Sphere refuses
+#      WHOLESALE -- so it bought nothing at all, eight times running.
+#
+# Every one of those is a single assertion here, and this file answers in
+# seconds where the autonomous session took twelve minutes and could only
+# reveal one fault per run.
+#
+# WHERE. Minoc's healer shop. c_healer stands at 2577,601 in the world save
+# and c_guild_healer at 2574,594 -- four tiles apart, which is exactly what
+# made fault 3 possible and is why this scenario is sited here rather than at
+# a town with only one of the two.
+#
+# RUN AS a character with a few hundred gold and fewer than 8 bandages.
+
+wait_world
+sleep 2000
+ensure_peace
+
+remember pack backpack
+open @pack
+wait_action
+sleep 1000
+
+say walking to the healer
+
+# Walk to the shop, not onto the NPC: he wanders, and fault 4 was precisely
+# about assuming that arriving at a place means being within arm's reach of
+# whoever is standing in it.
+goto 2578 602
+wait_goto
+sleep 2000
+
+# --- fault 1: ASK who is here. Without this the title table is empty and
+# every trade lookup below answers "nobody".
+scan_mobiles
+sleep 2000
+
+# --- fault 3: the trade lookup must find the SHOPKEEPER.
+#
+# If it resolves to "the healer guildmaster" instead, the buy at the bottom
+# brings back nothing and this scenario fails there -- which is the honest
+# assertion, because a guildmaster who cannot sell is indistinguishable from
+# no healer at all as far as a bandage is concerned.
+remember h mobile_trade healer
+require h
+
+# --- fault 4: close the distance BEFORE speaking, and stay closed.
+goto_mobile @h
+wait_goto
+sleep 1000
+
+# --- fault 2: one ask, and wait for the server's own answer rather than
+# re-issuing inside the action's deadline. wait_action is what makes that
+# explicit -- it blocks until the action resolves or times out.
+vendor_open @h buy
+wait_action
+expect success
+sleep 1000
+
+# --- fault 5: ask for MORE than a healer's shelf is ever likely to hold.
+#
+# 40 is deliberate. The stock that broke this was 19 and the ask was 20, so a
+# scenario asking for a modest number would pass by luck on a restocked shard
+# and prove nothing. The client must clamp the order to what the 0x74 list
+# actually offers; if it forwards 40 verbatim, Sphere refuses the WHOLE order
+# and the gain assertion below is zero.
+mark_item 0x0E21
+vendor_buy vendor vendor_graphic:0x0E21 40
+wait_action
+sleep 2500
+
+# The proof is the pack, not the packet: bandages actually arrived.
+expect_item_gain 0x0E21
+
+say bandage errand complete
+sleep 1000
+logout

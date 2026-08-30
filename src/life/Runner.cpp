@@ -234,6 +234,11 @@ constexpr i64 kNoToolCooldownMs = 180000;
 // sensible rather than reckless.
 constexpr i32 kArmorMoney = 400;
 constexpr i64 kGearCooldownMs = 240000;
+// How many times to answer "you can't reach that" by moving before
+// concluding the forge itself is the problem. Three, matching the
+// vendor chase: enough to get round a wall, not enough to spend a
+// session on one anvil.
+constexpr i32 kMaxSmeltReachFails = 3;
 // A goal that used its whole time limit and finished nothing rests for two
 // minutes. Long enough that something else certainly gets a turn, short enough
 // that a genuinely long errand -- a walk across the map to a trainer -- can be
@@ -2935,9 +2940,50 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             nextActionMs_ = obs.nowMs + 9000;
             return false;
         }
+        // THE SHOP LIST CARRIES FURTHER THAN THE HAND.
+        //
+        // Speech opens a vendor from across the room; a purchase needs touch.
+        // Corwyn had the healer's list open and every buy came back "You can't
+        // reach the Vendor" while gold never moved -- 03:38 on 2026-08-30,
+        // run_m7/z_Corwyn.console.txt:1356 onward -- because nothing re-checked
+        // the distance once the window was up. That refusal is INFORMATION
+        // (loose end 5): walk back into reach and buy, rather than re-issuing
+        // from where the answer is already known to be no.
+        //
+        // Same shape as DoBuySupplies' chase-back, including the give-up: after
+        // kMaxVendorChases laps, ask anyway and let Sphere answer, because a
+        // refusal ends the goal honestly where another lap ends nothing.
+        {
+            i32 vx = 0, vy = 0; i8 vz = 0;
+            if (client.MobilePosition(vendor, &vx, &vy, &vz)) {
+                const i32 d = TileDist(obs.x, obs.y, vx, vy);
+                const i32 dz = (obs.z > vz) ? (obs.z - vz) : (vz - obs.z);
+                if ((d > kVendorReach || dz > 3) &&
+                    ++vendorChases_ <= kMaxVendorChases) {
+                    LogLine("bandages: the healer is %d tiles off (dz %d) -- "
+                            "walking into reach before buying (chase %d of %d)",
+                            d, dz, vendorChases_, kMaxVendorChases);
+                    travelInFlight_ = client.TravelToEntity(vendor, 1);
+                    planner_.NoteAttempt(obs.nowMs);
+                    nextActionMs_ = obs.nowMs + 2000;
+                    return false;
+                }
+            }
+        }
+        if (client.ActionBusy()) return false;
         for (const Client::VendorItem& v : client.VendorOffer()) {
             if (v.graphic != kBandage) continue;
-            const i32 want = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
+            // NEVER ASK FOR MORE THAN THE SHELF HOLDS. Sphere refuses the
+            // WHOLE order if the quantity exceeds stock -- "Your order cannot
+            // be fulfilled, please try again" / "You cannot buy that" -- so
+            // asking for 20 clean bandages from a healer holding 19 bought
+            // nothing at all, eight times running (11:16-11:18 on 2026-08-30,
+            // run_m7/r1a_Corwyn.console.txt). The restock timer is not saved
+            // across a shard restart either, so a thin shelf is normal rather
+            // than exceptional.
+            i32 want = std::min<i32>(needCfg_.bandageFull - obs.bandages, 20);
+            if (v.amount > 0 && want > static_cast<i32>(v.amount))
+                want = static_cast<i32>(v.amount);
             if (want <= 0) return true;
             if (obs.gold < static_cast<i32>(v.price) * want) {
                 LogLine("BLOCKED_NEED bandages: %d cost %u each, carrying %d gold",
@@ -2960,7 +3006,10 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
             LogLine("memory_learned=SUPPLIER need=bandage name=\"%s\"", v.name.c_str());
             client.ActionVendorBuy(vendor, v.serial, static_cast<u16>(want));
             planner_.NoteProgress();
-            nextActionMs_ = obs.nowMs + 2500;
+            // Clear of kVendorTimeoutMs (8 s), for the third time in this one
+            // errand: at 2.5 s the purchase superseded itself before the
+            // server could answer it.
+            nextActionMs_ = obs.nowMs + 9000;
             return false;
         }
         LogLine("BLOCKED_NEED bandages: this vendor's list has none");
@@ -5717,6 +5766,13 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
 
         const i32 unit = static_cast<i32>(v.price);
         i32 take = want.qty;
+        // AND NEVER MORE THAN THE SHELF HOLDS. Sphere refuses the WHOLE order
+        // when the quantity exceeds stock, so one over-ask buys nothing at
+        // all rather than buying what is there -- the defect that stalled the
+        // bandage errand (a healer with 19, asked for 20). Same guard here,
+        // where it had not bitten yet only because the batch sizes are small.
+        if (v.amount > 0 && take > static_cast<i32>(v.amount))
+            take = static_cast<i32>(v.amount);
         // WORKING CAPITAL IS NOT THE DEATH RESERVE.
         //
         // goldReserve is what a life keeps back to replace a tool after it
@@ -6158,6 +6214,7 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
                     metal);
             client.ActionTargetObject(ore);
             smeltCursorPending_ = false;
+            smeltReachFails_ = 0;   // the forge answered; the spot is good
             smeltStartedMs_ = obs.nowMs;
             planner_.NoteAttempt(obs.nowMs);
             nextActionMs_ = obs.nowMs + 2500;
@@ -6165,6 +6222,44 @@ bool Runner::DoSmelt(Client& client, const Observation& obs) {
         }
         // The cursor never came up. Do not sit waiting on it forever.
         if (obs.nowMs - smeltClickedMs_ > 6000) smeltCursorPending_ = false;
+        return false;
+    }
+
+    // THE SERVER SAID NO, AND IT MEANT IT.
+    //
+    // "You can't reach that." is a definitive refusal, and this goal used to
+    // discard it and click again: 311 identical "opening the forge at
+    // 2561,501" lines in one session (run_m7/r1b_Corwyn.console.txt), the bot
+    // standing at 2560,500 -- ONE DIAGONAL TILE away -- and every click
+    // refused in under 20 ms. It is the third path this week to re-issue an
+    // action the server had already answered, after the vendor open and the
+    // vendor buy, which is what the shared interaction layer exists to end.
+    //
+    // A diagonal is not always reachable on this shard: a forge is a multi-
+    // tile static and the tile the atlas names is not necessarily the one that
+    // can be touched. So a refusal means MOVE, not repeat -- walk onto the
+    // forge's own entity and try from there. After a few of those the forge
+    // itself is the problem, not the standing spot, and the errand stands
+    // down so a different forge (or a different goal) gets the turn.
+    if (client.ActionKind() == act::Kind::UseObject &&
+        client.ActionResult() == act::Result::Rejected &&
+        client.CurrentAction().subject == client.LastForgeSerial()) {
+        if (++smeltReachFails_ > kMaxSmeltReachFails) {
+            LogLine("goal_failed=SMELT reason=\"the forge at %d,%d refused "
+                    "every approach after %d tries\"",
+                    forgeTile.x, forgeTile.y, smeltReachFails_ - 1);
+            deadTargets_.emplace_back(forgeTile.x, forgeTile.y);
+            if (deadTargets_.size() > 32) deadTargets_.erase(deadTargets_.begin());
+            smeltReachFails_ = 0;
+            planner_.Cooldown(GoalKind::Smelt, obs.nowMs + kGearCooldownMs);
+            planner_.Finish(false, "the forge cannot be reached", obs.nowMs);
+            return false;
+        }
+        LogLine("smelt: \"you can't reach that\" from %d,%d -- walking onto "
+                "the forge itself (try %d of %d)", obs.x, obs.y,
+                smeltReachFails_, kMaxSmeltReachFails);
+        travelInFlight_ = client.TravelToEntity(client.LastForgeSerial(), 0);
+        nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
 
@@ -7960,10 +8055,37 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
         if (client.EquippedGraphicAt(layer)) continue;   // slot already filled
+        // ALREADY BOUGHT ONE, AND IT IS STILL IN THE PACK.
+        //
+        // The wear pass at the top of this goal runs FIRST and wears anything
+        // carried that fits. So a piece still sitting in the pack when we get
+        // here is one this character could not put on -- and buying a second
+        // copy cannot change that. Nothing checked, so the empty slot was
+        // read as "buy one" on every single visit:
+        //
+        //   11,645 "no piece for an empty slot ... buying" lines across the
+        //   recorded runs -- 5,140 on Cassia alone, 2,914 Nessa, 2,475
+        //   Maribel -- and Corwyn's backpack holding SIX i_shield_heater
+        //   (reqStr 90) bought by a character with STR 56, none ever worn.
+        //
+        // The M7 disposal order is what such a piece is for now: it will be
+        // offered to players and otherwise banked, rather than restocked.
+        if (client.FindBackpackItemByGraphic(a.graphic)) {
+            LogLine("gear: already carrying 0x%04X and it is still not worn "
+                    "-- not buying another", a.graphic);
+            continue;
+        }
         if (!want || a.armor > want->armor) want = &a;
     }
     if (!want) {
+        // AND REST, rather than reporting success and being re-picked. There
+        // is nothing to buy and nothing has changed, so an immediate second
+        // look asks the same question of the same pack -- the "goal that
+        // achieved nothing" family again. UPGRADE_GEAR completed with
+        // progress=0 and was re-picked 60 ms later in run_m7/v_Corwyn; the
+        // cooldown is what makes the answer stick until something moves.
         LogLine("gear: every slot this class may fill is filled");
+        planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
         planner_.Finish(true, nullptr, obs.nowMs);
         return true;
     }

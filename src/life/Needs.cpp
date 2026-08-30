@@ -822,7 +822,23 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
             nothingHere && cfg.profession && WantsToHunt(*cfg.profession) &&
             obs.hp * 100 >= obs.hpMax * huntHpPct && obs.WeightFraction() < 0.7;
         const bool blocked = nothingHere && !couldGoHunting;
-        add(NeedKind::NeedTraining, 0.15 + 0.25 * gap, SkillName(t.skillId),
+        // A FIGHTER'S URGENCY, ON THE SAME SCALE AS EVERY OTHER TRADE'S.
+        //
+        // 0.15 + 0.25 x gap tops out at 0.40, which is what a life feels about
+        // a skill it would quite like to raise. It is not what a swordsman
+        // feels about the only work he has. The mining need already says the
+        // right sentence -- "ore is this life's income and its Mining
+        // training", 0.45 away from the rock and 0.65 standing at it -- and a
+        // graveyard is a fighter's rock. Same two numbers, same meaning.
+        //
+        // Only for a life that CAN go: a blocked one keeps the old figure,
+        // because wanting something impossible harder helps nobody.
+        double urgency = 0.15 + 0.25 * gap;
+        if (couldGoHunting) {
+            const double base = (obs.hostilesNear > 0) ? 0.65 : 0.45;
+            if (base > urgency) urgency = base;
+        }
+        add(NeedKind::NeedTraining, urgency, SkillName(t.skillId),
             couldGoHunting
                 ? (outOfOptions
                        ? "below target -- and with no bandages, no money and an "

@@ -263,6 +263,9 @@ private:
     // healer's shop. Reset on success; three unanswered scans stand the
     // goal down instead of re-walking to the same tile.
     i32  healerScans_ = 0;
+    // Consecutive "you can't reach that" refusals from the forge. A
+    // refusal means walk, not click again; see DoSmelt.
+    i32  smeltReachFails_ = 0;
     i32  toolTrips_ = 0;
     // The rock currently being struck: position, the z of its visible
     // surface, and 0 for rock land or the rock static's id (a cave floor is a

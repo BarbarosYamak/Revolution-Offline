@@ -92,6 +92,12 @@ set(UO_CLIENT_SOURCES
     src/life/State.cpp
     src/life/Professions.cpp
     src/life/Runner.cpp
+    # M13/R1 -- the interaction layer. UNLIKE the files above this one
+    # talks to Client, so it is NOT in the protocol-free set the ctest
+    # targets link; see include/uo/vendor_errand.h for what it owns and
+    # why it exists. Making it testable means putting a VendorIo seam
+    # under it, which is the next step, not this one.
+    src/life/VendorErrand.cpp
     # M6 -- combat legality and threat. Same construction rule as the life
     # layer: pure functions over what a player can see, so ctest runs the very
     # objects the live bot runs.

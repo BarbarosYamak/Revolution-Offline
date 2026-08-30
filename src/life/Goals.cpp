@@ -143,7 +143,16 @@ const GoalSpec kGoals[] = {
     {GoalKind::GetFood,               NeedKind::NeedFood,       250.0},
     {GoalKind::EarnGold,              NeedKind::NeedGold,       150.0},
     {GoalKind::GatherLogs,            NeedKind::NeedLogs,       130.0},
-    {GoalKind::TrainCombat,           NeedKind::NeedTraining,   110.0},
+    // FIGHTING IS A FIGHTER'S WORK, so it is weighted as work.
+    //
+    // 110 put it below every gathering goal, and with NeedTraining's urgency
+    // capped at 0.40 the best a swordsman could ever score for going hunting
+    // was 44 -- against Bank at 240, TrainAtNpc at 200 and TradeWithPlayer at
+    // 145. It lost on every observed tick of every session, which is the
+    // measured reason M6 has never been exercised live (roadmap R2). 130 is
+    // the same number GatherLogs, Fish and Mine carry, and for the same
+    // stated reason: this IS the productive work this life does.
+    {GoalKind::TrainCombat,           NeedKind::NeedTraining,   130.0},
     {GoalKind::TravelToRequiredPlace, NeedKind::NeedTravel,      90.0},
     // Above ordinary gathering: buying a skill is a step change in what the
     // character can do, and the gold is already saved by the time the need
@@ -330,16 +339,24 @@ std::vector<ScoredGoal> Planner::Score(const std::vector<Need>& needs,
         // and over, or doing the same KIND of thing over and over.
         const double goalSat = Satiation(spec.kind, obs.nowMs);
         const double famSat = FamilySatiation(spec.kind, obs.nowMs);
-        const double sat = goalSat > famSat ? goalSat : famSat;
+        // ...and a third claim, over the whole session rather than the last
+        // few minutes: this family has already had more of the day than its
+        // share. See Planner::FamilyShareDamp.
+        const double shareSat = FamilyShareDamp(spec.kind);
+        double sat = goalSat > famSat ? goalSat : famSat;
+        const char* why = (famSat > goalSat)
+                              ? GoalFamilyName(FamilyOf(spec.kind))
+                              : "same errand";
+        if (shareSat > sat) {
+            sat = shareSat;
+            why = "most of the day already";
+        }
         if (sat > 0.0) {
             const double before = g.score;
             g.score *= (1.0 - sat);
             g.reasons.push_back(Fmt("%s just now, easing off %.0f%% "
                                     "(%.1f -> %.1f)",
-                                    famSat > goalSat
-                                        ? GoalFamilyName(FamilyOf(spec.kind))
-                                        : "same errand",
-                                    sat * 100.0, before, g.score));
+                                    why, sat * 100.0, before, g.score));
         }
 
         out.push_back(std::move(g));
@@ -610,6 +627,8 @@ void Planner::NoteRan(GoalKind kind, i64 nowMs) {
         lastRanFamily_ = fam;
     }
     famLastRanMs_[fi] = nowMs;
+    ++famPicks_[fi];
+    ++pickTotal_;
 }
 
 double Planner::Satiation(GoalKind kind, i64 nowMs) const {
@@ -642,6 +661,22 @@ double Planner::FamilySatiation(GoalKind kind, i64 nowMs) const {
     const double raw = kFamilySatiationPerRepeat * (famRepeatRuns_[fi] - 2);
     const double capped = raw < kFamilySatiationMax ? raw : kFamilySatiationMax;
     return capped * fresh;
+}
+
+
+double Planner::FamilyShareDamp(GoalKind kind) const {
+    if (IsEmergencyGoal(kind)) return 0.0;
+    const GoalFamily fam = FamilyOf(kind);
+    if (fam == GoalFamily::Emergency) return 0.0;
+    const int fi = static_cast<int>(fam);
+    if (fi < 0 || fi >= static_cast<int>(GoalFamily::Count)) return 0.0;
+    if (pickTotal_ < kMinPicksForShare) return 0.0;
+    const double share =
+        static_cast<double>(famPicks_[fi]) / static_cast<double>(pickTotal_);
+    if (share <= kFamilyFairShare) return 0.0;
+    // Linear from the fair share up to owning the whole session.
+    const double over = (share - kFamilyFairShare) / (1.0 - kFamilyFairShare);
+    return over < 1.0 ? over * kFamilyShareDampMax : kFamilyShareDampMax;
 }
 
 void Planner::Cooldown(GoalKind kind, i64 untilMs) {
