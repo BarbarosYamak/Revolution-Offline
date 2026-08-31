@@ -507,6 +507,8 @@ void Client::Tick(int waitMs) {
 // ---------------------------------------------------------------------------
 void Client::Dispatch(const u8* data, usize size) {
     if (cfg_.logPackets) LogPacket(Direction::In, data, size);
+    // Proof the server is still servicing this session (move-ack watchdog).
+    lastInboundMs_ = NowMs();
 
     const u8 cmd = data[0];
     switch (cmd) {
@@ -2025,7 +2027,7 @@ void Client::OnResurrectionMenu(const u8* data, usize size) {
     // sends 0xAF only to bystanders (src/game/chars/CCharAct.cpp:4446) and the
     // switch to the ghost body emits no packet at all (:4493-4494), so 0x2C is
     // the first and only thing that tells us we died.
-    if (life_ != act::LifeState::Dead) {
+    if (!IsDead()) {
         life_ = act::LifeState::Dead;
         LogInfo("[STATE] dead (0x2C resurrect menu)\n");
         LogEvent("state_dead", "0x2C received");
@@ -3516,18 +3518,18 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
         action_.amount = qty;
     }
 
-    // --- M3.7 Revolution vendor authenticity policy -------------------------
+    // --- observed-stock purchase policy -------------------------------------
     //
     // The M3.7 audit found that stock Sphere vendors sell nearly the whole raw
     // and intermediate production chain -- ore, logs, boards, wool, yarn,
     // thread, cloth, bolts, hides, blank scrolls, bottles and every reagent.
     // 284 of the 608 items on a working human vendor are goods a PLAYER makes.
     //
-    // The shard is deliberately left untouched, so the vendor really will sell
-    // these. The refusal therefore lives HERE, at the last moment before the
-    // 0x3B goes out, and that ordering is the whole point of the proof: the
-    // item is in the offer, the gold is in the pack, and the bot still declines.
-    const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(graphic);
+    // The shard is deliberately left untouched, so this offer is the runtime
+    // proof of stock. The owner ruling separates buying from selling: the bot
+    // may buy what an NPC offers, while the NPC buy-back/faucet policy remains
+    // strict elsewhere.
+    const econ::VendorRuling ruling = econ::CanBuyFromNPCGraphic(graphic);
     const char* itemName = econ::ItemNameForGraphic(graphic);
     if (!ruling.allowed) {
         LogWarn("[policy] REFUSED NPC purchase of %s (0x%04X): %s [%s]\n",
@@ -3535,9 +3537,8 @@ void Client::ActionVendorBuy(u32 vendorSerial, u32 itemSerial, u16 qty) {
                 ruling.reason ? ruling.reason : "no reason",
                 econ::VendorClassName(ruling.klass));
         if (ruling.authenticityGap) {
-            // An UNKNOWN refusal is a RESEARCH GAP, not a decision. Logging it
-            // apart from the ordinary refusals is what turns the accumulated
-            // list into a backlog rather than a mystery.
+            // This branch is retained for a future hard refusal. An UNKNOWN
+            // stock item is currently allowed, but its class is still logged.
             LogWarn("[policy] AUTHENTICITY GAP: no Revolution evidence either "
                     "way for whether an NPC sold %s\n",
                     itemName ? itemName : "this item");

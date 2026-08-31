@@ -364,7 +364,13 @@ public:
 
     // Life state (server-driven only)
     act::LifeState Life() const { return life_; }
-    bool IsDead() const { return life_ == act::LifeState::Dead; }
+    // Sphere normally sends a resurrect menu/body change, but an interrupted
+    // session can reconnect after the death notification.  A confirmed zero
+    // hit-point status bar is also a server-driven dead state in that case.
+    bool IsDead() const {
+        return life_ == act::LifeState::Dead ||
+               (player_.hpMax > 0 && player_.hpCur <= 0);
+    }
     void ActionResurrectAccept();               // answer a 0x2C resurrect menu
 
     // Introspection used by scenarios and tests
@@ -605,6 +611,13 @@ public:
     // there: a miner standing in Minoc is at work, and one standing in Vesper
     // is not, and nothing could previously tell the two apart.
     i32  DistanceToResource(wm::ResourceKind r) const;
+
+    // The centre of the largest cave RECT backing the mining resource nearest
+    // to `near{X,Y}`.  This is a first work-site, not a destination guessed
+    // from a cave mouth: Minoc's public resource marker is at its south
+    // entrance, while its productive floor is in the interior.
+    bool MiningInteriorTarget(i32 nearX, i32 nearY, i32* outX,
+                              i32* outY) const;
 
     // Can a character stand on this tile? (Pathfinder walkability; used by the
     // life layer to vet stand tiles.)
@@ -1255,6 +1268,9 @@ private:
     // --- M3 bot -----------------------------------------------------------
     bool EnsureWorldLoaded();
 public:
+    // Human female body, including its ghost form.  A life may use this only
+    // for cosmetic equipment decisions; gameplay rules must not infer gender.
+    bool PlayerIsFemale() const { return playerBody_ == 0x191 || playerBody_ == 0x193; }
     // Show a chopped/depleted tree at (x,y,z) as a stump in the world view for
     // `ttlMs` (<=0 uses the default). In-memory only (uo::map::StumpOverlay);
     // it reverts on its own once the TTL lapses. `treeGraphic` is the live tree
@@ -1675,6 +1691,10 @@ private:
     std::unordered_map<u32, i64> overheadNameProbeMs_;
     i64 lastStatusProbeMs_;     // 0x34 status request while HUD has no stats
     i64 lastActivityMs_;        // any TCP send/recv — for 0x73 keepalive
+    // Receive-only clock: stamped by Dispatch for every framed inbound packet.
+    // Distinct from lastActivityMs_ (which our own sends also bump), because
+    // the move-ack watchdog needs to know whether the *server* has gone quiet.
+    i64 lastInboundMs_ = 0;
 
     // Console chatter gate. The JSON packet log always records everything;
     // the window shows only meaningful events unless this is toggled on

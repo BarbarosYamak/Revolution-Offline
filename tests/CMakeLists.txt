@@ -554,13 +554,6 @@ target_include_directories(m9_service_selection PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(m9_service_selection PRIVATE uo_world)
 
-# TEMP diagnostic probe -- not a ctest, remove before done.
-add_executable(_probe_ocllo _probe_ocllo.cpp)
-target_include_directories(_probe_ocllo PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(_probe_ocllo PRIVATE uo_world)
-
 add_test(NAME m9_service_selection COMMAND m9_service_selection ${CMAKE_SOURCE_DIR}/data)
 
 # --- mine_advance: first-visit deeper-into-the-mine target (M-fix9) --------
@@ -666,3 +659,15 @@ target_include_directories(appearance PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME appearance COMMAND appearance)
+
+# --- 0x22 move-ack policy (watchdog + late-ack classification) --------------
+# Regression cover for the wave10 fleet run: a Source-X world-save stall froze
+# every client for ~5.3s and a flat 5s ack deadline aborted 18 of 33 healthy
+# paths, then logged the correct-but-late ack as "unsolicited". Header-only
+# pure functions; no server, no MULs.
+add_executable(move_ack move_ack.cpp)
+target_include_directories(move_ack PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME move_ack COMMAND move_ack)

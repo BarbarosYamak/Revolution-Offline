@@ -54,6 +54,12 @@ struct MovementState {
 
     // Consecutive rejects seen while draining the current step queue.
     u32 rejectStreak = 0;
+
+    // Acks still owed for moves that were on the wire when a reset cleared the
+    // pending queue. They arrive after the reset and must not be mistaken for
+    // the ack of a freshly sent move (sphere::ClassifyMoveAck).
+    u32 abandonedAcks = 0;
+    i64 abandonedUntilMs = 0;   // after this, give up expecting them
 };
 
 struct BotState {
@@ -68,6 +74,10 @@ struct BotState {
     u64 planRequestId = 0;
     u64 nextPlanRequestId = 1;
     u32 replanCount = 0;
+    // Runtime lookahead repairs are local detours, not full replans.  Bound
+    // them separately so a doorway/mobile obstruction cannot rewrite the same
+    // short path forever without ever consuming the normal replan budget.
+    u32 lookaheadPatches = 0;
     // Latched for one replan when a failed plan found the character enclosed
     // with mobiles among the walls. Cleared by any plan that produces a path,
     // so a genuinely unreachable goal still fails in finite time.

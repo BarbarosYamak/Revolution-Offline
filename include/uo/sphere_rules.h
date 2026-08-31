@@ -102,6 +102,65 @@ inline u8 NextMoveSequence(u8 current) {
     return (current == 0xFF) ? u8(1) : u8(current + 1);
 }
 
+// --- 0x22 move-ack disposition ---------------------------------------------
+// Acks arrive in send order, so the ack for the oldest in-flight move is the
+// front of the pending queue. The interesting case is the one that is *not* in
+// the queue any more: when a path is abandoned (watchdog, threat, replan) the
+// pending list is cleared and the sequence resets to 0, but the moves already
+// on the wire still get acked. Those late acks must be recognised and dropped.
+//
+// Consuming one blindly is a real desync: with the queue non-empty it would pop
+// the entry for a *newer* move that has not been acked yet, freeing a flight
+// slot the server never granted and leaving the queue permanently one ack ahead
+// of the wire.
+enum class MoveAckKind : u8 {
+    Expected,      // matches the oldest in-flight move; consume it
+    Mismatched,    // in-flight, wrong sequence; consume but flag the resync
+    Abandoned,     // ack for a move a reset discarded; drop it quietly
+    Unsolicited,   // nothing in flight and nothing outstanding; drop and warn
+};
+
+// `abandonedAcks` is how many acks are still owed for moves cleared by a reset.
+inline MoveAckKind ClassifyMoveAck(bool hasPending, u8 pendingSeq, u8 ackSeq,
+                                   u32 abandonedAcks) {
+    if (hasPending && pendingSeq == ackSeq) return MoveAckKind::Expected;
+    // A reset discarded moves that were already on the wire; this is one of
+    // their acks coming home, not an ack for anything we are waiting on.
+    if (abandonedAcks > 0) return MoveAckKind::Abandoned;
+    if (!hasPending) return MoveAckKind::Unsolicited;
+    return MoveAckKind::Mismatched;
+}
+
+// --- 0x22 move-ack watchdog -------------------------------------------------
+// An unacked move normally means the server dropped our step. It does *not*
+// mean that when the server has stopped talking to every client at once:
+// Source-X saves the world on the main thread, and for the length of the save
+// nothing is serviced, so every client's 0x22 queues behind it.
+//
+// Measured on RevolutionUO, 2026-08-31, 33-client fleet (run_gates/wave10):
+// "World save has been initiated." at 17:34:04.598, held-back acks delivered at
+// 17:34:09.90. That is 5.3s -- just past a flat 5s deadline -- so 18 of the 33
+// bots aborted a healthy path and then logged the correct, merely late, ack as
+// "unsolicited". The acks were neither lost nor out of order.
+//
+// So the soft deadline only fires when the server has proven it is still
+// servicing us (something inbound arrived recently) and yet our step went
+// unanswered. Total silence is attributed to the server, not to the step. A
+// hard ceiling still fires so a genuinely dead session cannot pin a path.
+inline constexpr u32 kMoveAckDeadlineMs = 5000;
+// Inbound gap above which the server is considered stalled rather than chatty.
+inline constexpr u32 kMoveAckStallGraceMs = 1500;
+// Upper bound on waiting, however quiet the socket is.
+inline constexpr u32 kMoveAckHardDeadlineMs = 20000;
+
+// `inboundGapMs` is the time since the last packet of any kind was received.
+inline bool MoveAckWatchdogExpired(i64 unackedMs, i64 inboundGapMs) {
+    if (unackedMs >= static_cast<i64>(kMoveAckHardDeadlineMs)) return true;
+    if (unackedMs < static_cast<i64>(kMoveAckDeadlineMs)) return false;
+    // Server is still servicing us but never answered this step -> lost move.
+    return inboundGapMs < static_cast<i64>(kMoveAckStallGraceMs);
+}
+
 // --- movement gait ---------------------------------------------------------
 // Real players run. Walking is the exception, not the baseline: a bot that
 // walks a road at 400ms/tile reads as an NPC to anyone watching it.

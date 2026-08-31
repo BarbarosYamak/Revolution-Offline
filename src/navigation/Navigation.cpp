@@ -35,7 +35,10 @@ constexpr usize kMaxInFlight = 4;
 // is how the original client avoids fastwalk/speedhack checks.
 constexpr u32 kWalkThrottleMs = 400;
 constexpr u32 kRunThrottleMs = 200;
-constexpr u32 kAckWatchdogMs = 5000;
+// How long an ack for a move orphaned by a reset stays credible. Generous
+// enough to cover a Source-X world-save stall (5.3s measured, wave10) plus the
+// round trip, short enough that it cannot mask a later genuine desync.
+constexpr i64 kAbandonedAckWindowMs = 30000;
 // Per-trip A* replan budget -- bounds obstacle-avoidance loops on an
 // unreachable goal.
 constexpr u32 kMaxReplans = 128;
@@ -61,6 +64,7 @@ constexpr i64   kFollowProbeMs     = 1200;
 constexpr usize kPathLookaheadScanSteps = 5;
 constexpr usize kPathLookaheadAnchorExtra = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr u32   kMaxLookaheadPatches = 12;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
 constexpr i32   kRejectedEdgeZTolerance = 2;
@@ -185,6 +189,13 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // value Sphere validates (PacketMovementReq::onReceive,
     // src/network/receive.cpp:270-273).
     BotResetMovement();
+    // Moves dropped by a *reject* come back as rejects (the server holds
+    // MovePrevented until we resend seq 0), not as acks — they land in the
+    // "stale reject" arm above. So none of them is owed an ack, and leaving
+    // the orphan credit standing would make a later genuine mismatch look
+    // like a late ack. Only a silent abandonment (watchdog, threat, replan)
+    // leaves acks in flight.
+    nav_.movement.abandonedAcks = 0;
 
     if (!nav_.bot.active) {
         // No A* path owns the movement: this was a scripted or manual step.
@@ -314,14 +325,36 @@ void Client::OnMoveReject(const u8* data, usize size) {
 void Client::OnMoveAck(const u8* data, usize size) {
     if (size < 3) return;
     const u8 seq = data[1];
-    if (nav_.movement.pending.empty()) {
+
+    // Late acks are only credible for a short while after the reset that
+    // orphaned them; past that, an unmatched ack is a genuine anomaly again.
+    if (nav_.movement.abandonedAcks > 0 &&
+        NowMs() > nav_.movement.abandonedUntilMs) {
+        nav_.movement.abandonedAcks = 0;
+    }
+
+    const bool hasPending = !nav_.movement.pending.empty();
+    const u8 frontSeq = hasPending ? nav_.movement.pending.front().seq : 0;
+    const sphere::MoveAckKind kind =
+        sphere::ClassifyMoveAck(hasPending, frontSeq, seq,
+                                nav_.movement.abandonedAcks);
+
+    if (kind == sphere::MoveAckKind::Abandoned) {
+        // A move that was on the wire when a reset cleared the queue. Popping
+        // here would free a flight slot the server never granted.
+        --nav_.movement.abandonedAcks;
+        LogInfo("[0x22] late ack seq=%u for an abandoned move; ignoring\n", seq);
+        return;
+    }
+    if (kind == sphere::MoveAckKind::Unsolicited) {
         LogWarn( "[0x22] unsolicited ack seq=%u\n", seq);
         return;
     }
+
     const navigation::PendingMove pm = nav_.movement.pending.front();
     nav_.movement.pending.pop_front();
     nav_.movement.rejectStreak = 0;   // the server accepted a move
-    if (pm.seq != seq) {
+    if (kind == sphere::MoveAckKind::Mismatched) {
         // Acks should arrive in send order; a mismatch means we lost sync.
         LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
                      seq, pm.seq);
@@ -657,6 +690,13 @@ bool Client::BotLookaheadPatchPath() {
         for (usize i = anchor + 1; i < nav_.bot.path.size(); ++i)
             next.push_back(nav_.bot.path[i]);
         nav_.bot.path.swap(next);
+        if (++nav_.bot.lookaheadPatches > kMaxLookaheadPatches) {
+            LogWarn("[bot] %u lookahead repairs without movement; abandoning "
+                    "this trip instead of remaining trapped\n",
+                    nav_.bot.lookaheadPatches);
+            BotAbortPath("repeated runtime obstruction");
+            return false;
+        }
         LogInfo("[bot] lookahead patched around block at step %zu: "
                     "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
                     firstBlocked + 1, anchor + 1, patch.size(), nav_.bot.path.size(),
@@ -893,6 +933,14 @@ void Client::OnStepRejected(u8 dir) {
 }
 
 void Client::BotResetMovement() {
+    // Moves already on the wire will still be acked. Remember how many, so the
+    // acks that land after this reset are recognised as orphans instead of
+    // being consumed as the ack for whatever we send next (see OnMoveAck).
+    if (!nav_.movement.pending.empty()) {
+        nav_.movement.abandonedAcks +=
+            static_cast<u32>(nav_.movement.pending.size());
+        nav_.movement.abandonedUntilMs = NowMs() + kAbandonedAckWindowMs;
+    }
     nav_.movement.pending.clear();
     nav_.movement.moveSeq = 0;
 }
@@ -1009,6 +1057,7 @@ void Client::BotFollowTick() {
     nav_.bot.active = true;
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
+    nav_.bot.lookaheadPatches = 0;
     nav_.follow.lastReplanMs = now;
     BotReplanToGoal();
     BotPumpMoves();
@@ -1034,6 +1083,7 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
     nav_.bot.active = true;
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
+    nav_.bot.lookaheadPatches = 0;
     nav_.bot.resumeAtMs = 0;
     nav_.bot.stuckWaits = 0;
     nav_.bot.blacklist.ClearTransient();
@@ -1147,15 +1197,21 @@ void Client::BotTick() {
     if (!nav_.bot.active) return;
     if (nav_.bot.planning) return;
     if (!nav_.movement.pending.empty()) {
-        // Watchdog: the oldest in-flight move should ack quickly. If it
-        // never does, the move was silently dropped — abort the path.
+        // Watchdog: the oldest in-flight move should ack quickly. If it never
+        // does *while the server is otherwise servicing us*, the move was
+        // silently dropped — abort the path. If the socket has gone quiet
+        // altogether the server is stalled (world save), so the step is merely
+        // queued behind it and aborting would throw away a healthy path.
         const i64 now_ms = NowMs();
-        if (now_ms - nav_.movement.pending.front().sentMs >
-                static_cast<i64>(kAckWatchdogMs)) {
+        const i64 unacked = now_ms - nav_.movement.pending.front().sentMs;
+        const i64 inboundGap =
+            (lastInboundMs_ == 0) ? 0 : (now_ms - lastInboundMs_);
+        if (sphere::MoveAckWatchdogExpired(unacked, inboundGap)) {
             LogWarn(
-                "[bot] watchdog: oldest move unacked %llds; aborting path\n",
-                static_cast<long long>(
-                    (now_ms - nav_.movement.pending.front().sentMs) / 1000));
+                "[bot] watchdog: oldest move unacked %llds (server quiet for "
+                "%lldms); aborting path\n",
+                static_cast<long long>(unacked / 1000),
+                static_cast<long long>(inboundGap));
             BotResetMovement();
             BotAbortPath("move ack watchdog");
             return;
