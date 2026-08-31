@@ -211,6 +211,11 @@ void TestNeedTrade() {
 
     {
         life::Observation obs = Standing(1000);
+        // A completed first metal batch means this miner has proved its
+        // gather/smelt loop and may now buy the player-made log input.  A
+        // fresh miner below this batch is intentionally kept out of market
+        // waiting by AssessNeeds' ore-first gate.
+        obs.pack.push_back({"i_ingot_iron", 20});
         // Nothing spare, so the SELLER branch cannot be what fires.
         const std::vector<life::Need> needs =
             life::AssessNeeds(plan, mem, obs, cfg);
@@ -234,6 +239,7 @@ void TestNeedTrade() {
     // marketQuiet gates BOTH sides with the one switch.
     {
         life::Observation obs = Standing(1000);
+        obs.pack.push_back({"i_ingot_iron", 20});
         obs.marketQuiet = true;
         const std::vector<life::Need> needs =
             life::AssessNeeds(plan, mem, obs, cfg);

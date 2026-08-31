@@ -58,15 +58,16 @@ struct ClothingPiece {
     // "you have shhort pants on your bag" (project owner, 2026-08-30) while
     // it walked to a cobbler for long ones. A player wears the trousers they
     // own. Zero-terminated.
-    u16 alsoWorn[5];
+    u16 alsoWorn[8];
 };
 constexpr ClothingPiece kBasicClothing[] = {
     {0x1517, "i_shirt_plain", "shirt",    "tailor",
-     {0x1517, 0x1EFD, 0, 0, 0}},                       // plain, fancy
+     {0x1517, 0x1EFD, 0x25EA, 0, 0, 0, 0, 0}},         // plain, fancy, checkered
     {0x1539, "i_pants_long",  "trousers", "tailor",
-     {0x1539, 0x152E, 0x1537, 0, 0}},                  // long, short, kilt
+     {0x1539, 0x152E, 0x279B, 0x1537, 0, 0, 0, 0}},    // long, short, tattsuke, kilt
     {0x170F, "i_shoes_plain", "shoes",    "cobbler",
-     {0x170F, 0x170B, 0x1711, 0x170D, 0}},             // shoes, calf, thigh, sandals
+     {0x170F, 0x170B, 0x1711, 0x170D, 0x2307, 0x2796, 0x2797, 0}},
+                                                               // shoes, boots, sandals, fur, tabi
 };
 
 // Is this slot already dealt with -- worn, or in the pack ready to wear?
@@ -1318,6 +1319,21 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         if (ClothingOnHand(client, p, &worn) || worn) continue;
         ++obs.clothingMissing;
     }
+    // A skirt is optional wardrobe, but if a female character already owns one
+    // in her backpack it must participate in the "dress from the pack" need.
+    // Otherwise an otherwise clothed character never enters DoReplaceEquipment
+    // and WearBasicClothing never gets a chance to equip the skirt layer.
+    if (client.PlayerIsFemale()) {
+        constexpr u16 kSkirts[] = {0x1516, 0x1531, 0x1537}; // long, short, kilt
+        for (u16 graphic : kSkirts) {
+            const u8 layer = client.ItemEquipLayer(graphic);
+            if (layer && !client.EquippedGraphicAt(layer) &&
+                client.FindBackpackItemByGraphic(graphic)) {
+                ++obs.clothingMissing;
+                break;
+            }
+        }
+    }
     obs.logs     = static_cast<i32>(client.BackpackItemCount(kLog));
     obs.food     = CountAny(client, kFood, sizeof(kFood) / sizeof(kFood[0]));
     // HUNGER AS THE SERVER SAYS IT. "You are <level>" over the eight levels
@@ -1753,7 +1769,12 @@ void Runner::MaintainBuildLocks(Client& client, const Observation& obs) {
 // so re-seeding under a new name picks it up on its next load rather than
 // silently skipping it forever.
 void Runner::SeedNewbieKnowledge(Client& client, i64 nowMs) {
-    if (state_.memory.HasEvent("newbie_knowledge_seeded")) return;
+    // Older lives carry the first, resource-only seed marker.  That marker
+    // predates common_knowledge_bank, so treating it as complete leaves a
+    // miner with a BANK goal but no counter it can route to.  The seed is
+    // idempotent; only skip when this life has the complete current version.
+    if (state_.memory.HasEvent("newbie_knowledge_seeded") &&
+        state_.memory.BestPlace("common_knowledge_bank")) return;
     if (!client.WorldKnowledgeReady()) return;
 
     const world_atlas::Atlas* atlas = client.WorldAtlas();
@@ -3564,7 +3585,7 @@ bool Runner::DoGetTool(Client& client, const Observation& obs) {
     // here rather than assuming it, because the policy is the thing that
     // keeps the shard's player economy alive.
     const econ::VendorRuling ruling =
-        econ::CanUseNPCVendorForGraphic(toolGfx.empty() ? 0 : toolGfx[0]);
+        econ::CanBuyFromNPCGraphic(toolGfx.empty() ? 0 : toolGfx[0]);
     if (!ruling.allowed) {
         LogLine("goal_failed=GET_TOOL reason=\"%s\" tool=%s class=%s",
                 faucet::RefusalName(faucet::Refusal::RevolutionAuthenticityUnknown),
@@ -3862,6 +3883,24 @@ bool Runner::WearBasicClothing(Client& client, const Observation& obs) {
         nextActionMs_ = obs.nowMs + 1200;
         return true;
     }
+    // Skirts use their own paperdoll layer, not the trousers layer above.
+    // Consequently a long skirt sitting in a woman's pack was never seen by
+    // the basic-clothing loop and remained invisible even though it could be
+    // worn over the starting trousers.  Wear an owned skirt; do not force a
+    // shopping trip merely to satisfy a cosmetic choice.
+    if (client.PlayerIsFemale()) {
+        constexpr u16 kSkirts[] = {0x1516, 0x1531, 0x1537}; // long, short, kilt
+        for (u16 graphic : kSkirts) {
+            const u8 layer = client.ItemEquipLayer(graphic);
+            if (!layer || client.EquippedGraphicAt(layer)) continue;
+            const u32 have = client.FindBackpackItemByGraphic(graphic);
+            if (!have) continue;
+            LogLine("clothes: putting on the skirt that was already in the pack");
+            client.ActionEquip(have, kLayerServerChooses);
+            nextActionMs_ = obs.nowMs + 1200;
+            return true;
+        }
+    }
     return false;
 }
 
@@ -3948,7 +3987,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
                 // the same way the bandage errand already asks it, rather
                 // than silently skipped.
                 const econ::VendorRuling ruling =
-                    econ::CanUseNPCVendorForGraphic(school->graphics[0]);
+                    econ::CanBuyFromNPCGraphic(school->graphics[0]);
                 if (!ruling.allowed) {
                     LogLine("goal_blocked=REPLACE_EQUIPMENT reason=\"the "
                             "vendor policy grades a %s %s, and no player "
@@ -4156,7 +4195,7 @@ bool Runner::DoReplaceEquipment(Client& client, const Observation& obs) {
     // branch instead of being stopped by a request it never made.
     if (wantsBandages &&
         (bandagePlan.step == life::AcquireStep::Buy || bandageBuy_.Running())) {
-        const econ::VendorRuling ruling = econ::CanUseNPCVendorForGraphic(kBandage);
+        const econ::VendorRuling ruling = econ::CanBuyFromNPCGraphic(kBandage);
         if (!ruling.allowed) {
             // FINISH the goal rather than retrying every 30 seconds forever.
             // The policy verdict will not change within a session, so a retry
@@ -4351,6 +4390,25 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         // (NpcRotation::NoteAnswered), which is why nothing is cleared here.
         bankErrand_.Cancel();
         if (client.ActionBusy()) return false;
+
+        // Keep one working smithing batch but bank the rest.  The generic
+        // keep-list below protects all declared crafting inputs; for miner
+        // smiths that previously meant *every* ingot stayed in the pack even
+        // after NeedBank had correctly identified it as surplus.
+        if (needCfg_.profession && needCfg_.profession->gathers == "ore") {
+            constexpr i32 kCarryMetalBatch = 20;
+            i32 ingots = 0;
+            const u32 ingot = FindBackpackItemByName(client, "i_ingot_iron", &ingots);
+            if (ingot && ingots > kCarryMetalBatch) {
+                const u16 moving = static_cast<u16>(ingots - kCarryMetalBatch);
+                LogLine("banking %u iron ingots, keeping %d as the smithing batch",
+                        moving, kCarryMetalBatch);
+                client.ActionMoveItem(ingot, moving, box);
+                planner_.NoteProgress();
+                nextActionMs_ = obs.nowMs + 1500;
+                return false;
+            }
+        }
 
         // SETTLE THE GOLD DEPOSIT ASKED FOR LAST TICK, from what actually
         // left the pack -- never from having merely issued the drag. The
@@ -4804,19 +4862,30 @@ bool Runner::DoBank(Client& client, const Observation& obs) {
         if (!travelInFlight_) {
             const KnownPlace* proven =
                 state_.memory.NearestPlace("bank", obs.x, obs.y);
-            const KnownPlace* seeded =
-                proven ? nullptr
-                       : state_.memory.NearestPlace("common_knowledge_bank",
-                                                    obs.x, obs.y);
-            if (proven) {
+            // A bank learned during an old cross-city errand must not outrank
+            // the home/current-city bank that the atlas already knows.  The
+            // previous `proven ? ... : seeded` rule sent Minoc miners back to
+            // Britain simply because Britain was the first bank they had
+            // opened. Choose the genuinely nearer known counter, regardless
+            // of whether it was learned by memory or seeded as city knowledge.
+            const KnownPlace* seeded = state_.memory.NearestPlace(
+                "common_knowledge_bank", obs.x, obs.y);
+            const i32 provenDist = proven
+                                       ? TileDist(proven->x, proven->y, obs.x, obs.y)
+                                       : 0x7FFFFFFF;
+            const i32 seededDist = seeded
+                                       ? TileDist(seeded->x, seeded->y, obs.x, obs.y)
+                                       : 0x7FFFFFFF;
+            if (proven && provenDist <= seededDist) {
                 LogLine("bank: walking back to a bank we have used before, "
-                        "%d,%d", proven->x, proven->y);
+                        "%d,%d (%d tiles; seeded alternative %d)",
+                        proven->x, proven->y, provenDist, seededDist);
                 travelInFlight_ =
                     client.TravelToPoint(proven->x, proven->y, 3, "known_bank");
             } else if (seeded) {
                 LogLine("bank: nothing proven yet -- trying what common "
-                        "knowledge says is here, %s at %d,%d",
-                        seeded->name.c_str(), seeded->x, seeded->y);
+                        "knowledge says is nearest, %s at %d,%d (%d tiles)",
+                        seeded->name.c_str(), seeded->x, seeded->y, seededDist);
                 travelInFlight_ = client.TravelToPoint(seeded->x, seeded->y, 5,
                                                        "seeded_bank");
             } else {
@@ -7838,7 +7907,7 @@ bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     // is not thereby a legitimate source for it -- that is the whole point of
     // the vendor matrix, and buying a player-market good from a vendor would
     // cut a real player out of the economy this project exists to simulate.
-    const econ::VendorRuling ruling = econ::CanUseNPCVendorFor(supplyItem_.c_str());
+    const econ::VendorRuling ruling = econ::CanBuyFromNPC(supplyItem_.c_str());
     if (!ruling.allowed) {
         LogLine("goal_failed=BUY_SUPPLIES reason=\"%s\" item=%s class=%s (%s)",
                 faucet::RefusalName(faucet::Refusal::RevolutionAuthenticityUnknown),
@@ -8890,7 +8959,7 @@ bool Runner::DoCraft(Client& client, const Observation& obs) {
                     }
                 }
             }
-            if (econ::CanUseNPCVendorFor(missing).allowed) {
+            if (econ::CanBuyFromNPC(missing).allowed) {
                 return HandOff(GoalKind::Craft, GoalKind::BuySupplies,
                                kCraftStuckCooldownMs, plan.reason, obs.nowMs);
             }
@@ -10089,6 +10158,7 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
     if (buyTripsOwner_ != owner) {
         buyTripsOwner_ = owner;
         spellbookTrips_ = 0;
+        spellbookSkipPlaces_.clear();
     }
     const u32 keeper = client.NearestShopkeeperWithTrade(trade, svc);
     if (!keeper) {
@@ -10116,7 +10186,11 @@ bool Runner::BuyScrollFrom(Client& client, const Observation& obs,
         }
         LogLine("%s: looking for a '%s' to sell %s (trip %d)",
                 GoalKindName(owner), trade, what, spellbookTrips_);
-        travelInFlight_ = client.TravelToService(svc, HomeOrNearest(state_.homeCity));
+        // A mage can leave the current city to fill a spellbook.  Remember each
+        // attempted shop so retries progress through the atlas rather than
+        // returning to the same seller that was just unreachable or empty.
+        travelInFlight_ = client.TravelToServiceSkipping(
+            svc, HomeOrNearest(state_.homeCity), {}, &spellbookSkipPlaces_, true);
         nextActionMs_ = obs.nowMs + 2000;
         return false;
     }
@@ -10280,7 +10354,9 @@ int Runner::PickPracticeSpell(Client& client, const Observation& obs) const {
 //
 // Two halves. WEAR what is already carried if it beats what is worn -- loot
 // arrives in the pack and sat there forever, because nothing ever looked. And
-// BUY a piece for an empty slot when the purse is clear of the reserve.
+// BUY an armorer upgrade when the purse is clear of the reserve.  A filled
+// slot is not automatically done: fighters begin in weak leather and must be
+// able to replace it with a stronger legal piece sold by an armorer.
 //
 // The class rule is not a preference. On this shard a metal set stops a
 // caster casting entirely, so ArmorFor refuses metal to anyone with Magery
@@ -10429,7 +10505,7 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         dispositionLogged_ = true;
     }
 
-    // --- BUY A PIECE FOR AN EMPTY SLOT -----------------------------------
+    // --- BUY THE BEST ARMORER UPGRADE ------------------------------------
     //
     // Only above the reserve: armour is worth having and is never worth being
     // unable to eat for. The best affordable legal piece is chosen, which for
@@ -10451,9 +10527,18 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
 
     const i32 reserve =
         needCfg_.profession ? needCfg_.profession->goldReserve : 0;
-    if (obs.gold <= reserve + kArmorMoney) {
+    // The first armour set is part of a fighter's starting kit, not a luxury
+    // upgrade.  A 10k fighter reserve is meant to finance bandages and the
+    // return from a graveyard; treating it as an untouchable floor when the
+    // character starts with exactly 10k leaves the fighter naked forever.
+    const bool bootstrapArmor = needCfg_.profession &&
+                               WantsToHunt(*needCfg_.profession) &&
+                               !HasBasicArmor(client, obs);
+    const i32 spendFloor = bootstrapArmor ? kArmorMoney : reserve + kArmorMoney;
+    if (obs.gold <= spendFloor) {
         LogLine("gear: nothing carried is an upgrade, and %d gold is not clear "
-                "of the %d reserve -- earning first", obs.gold, reserve);
+                "of the %d%s -- earning first", obs.gold, spendFloor,
+                bootstrapArmor ? " starter-gear floor" : " reserve");
         planner_.Cooldown(GoalKind::UpgradeGear, obs.nowMs + kGearCooldownMs);
         planner_.Finish(false, "no upgrade and no spare money", obs.nowMs);
         return false;
@@ -10482,7 +10567,14 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
         if (!MayWear(a, obs)) continue;
         const u8 layer = client.ItemEquipLayer(a.graphic);
         if (!layer) continue;
-        if (client.EquippedGraphicAt(layer)) continue;   // slot already filled
+        const u16 wornGfx = client.EquippedGraphicAt(layer);
+        const ArmorPiece* worn = wornGfx ? ArmorFor(wornGfx) : nullptr;
+        const int wornArmor = worn ? worn->armor : 0;
+        // A worn item only closes this slot when it is at least as protective
+        // as the candidate.  The prior `if (worn) continue` made every
+        // warrior who owned starter leather permanently ineligible for an
+        // armorer upgrade.
+        if (wornArmor >= a.armor) continue;
         // ALREADY BOUGHT ONE, AND IT IS STILL IN THE PACK.
         //
         // The wear pass at the top of this goal runs FIRST and wears anything
@@ -10521,9 +10613,13 @@ bool Runner::DoUpgradeGear(Client& client, const Observation& obs) {
     // The armorer's own list is leather (VENDOR_S_ARMORER_LEATHER) and the
     // tailor carries some too, which is the fallback for a town without one.
     const bool haveArmorer = client.NearestShopkeeperWithTrade("armorer") != 0;
-    LogLine("gear: no piece for an empty slot in the pack -- buying 0x%04X "
-            "(armor %d, needs str %d) from a %s",
+    const u8 wantLayer = client.ItemEquipLayer(want->graphic);
+    const u16 currentGfx = wantLayer ? client.EquippedGraphicAt(wantLayer) : 0;
+    const ArmorPiece* current = currentGfx ? ArmorFor(currentGfx) : nullptr;
+    LogLine("gear: armorer upgrade 0x%04X (armor %d, needs str %d) replaces "
+            "0x%04X (armor %d); buying from a %s",
             want->graphic, want->armor, want->reqStr,
+            currentGfx, current ? current->armor : 0,
             haveArmorer ? "armorer" : "tailor");
     if (haveArmorer) {
         BuyScrollFrom(client, obs, "armorer", wm::Service::Blacksmith,
@@ -10705,6 +10801,16 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // goal to do but wait.
     if (client.TravelBusy() || client.GotoBusy()) return false;
 
+    // Observation is sampled before movement is pumped. A just-completed
+    // journey therefore has a valid current client pose while `obs` can still
+    // describe the old leg's starting tile for this one life tick. Mining
+    // makes follow-up movement decisions here, so it must use the current
+    // pose: using the stale observation sent Draver from the cave floor back
+    // to Minoc Mine's entrance immediately after every confirmed arrival.
+    const i32 hereX = client.PlayerX();
+    const i32 hereY = client.PlayerY();
+    const i8  hereZ = client.PlayerZ();
+
     // GO TO THE ROCK FIRST. "first he needs to go to mining area" (project
     // owner, 2026-08-29).
     //
@@ -10713,7 +10819,69 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // for "is this a mining town" and far too loose for "can I swing here":
     // Corwyn stood in Minoc hitting ordinary ground and was told "Try mining
     // elsewhere" every time. Walk into the area, then swing.
+    bool atHomeMineInterior = false;
     {
+        // A fresh miner knows the mine in their home city.  The generic atlas
+        // picker is intentionally nearest-to-current-position, which sent
+        // Draver from his Jhelom spawn to a Britain resource centroid even
+        // though his seeded home knowledge says Minoc.  Use that known lead
+        // first; it is an ordinary journey, never a teleport or global fact.
+        const KnownResourceSource* homeMine = nullptr;
+        if (!state_.homeCity.empty()) {
+            for (const KnownResourceSource& source : state_.memory.Resources()) {
+                if (source.resource != "ore" || !source.hinted ||
+                    source.label.find(state_.homeCity) == std::string::npos)
+                    continue;
+                if (!homeMine ||
+                    (source.label.find(" Mine ") != std::string::npos &&
+                     homeMine->label.find(" Mine ") == std::string::npos))
+                    homeMine = &source;
+            }
+        }
+        // A cave resource marker may be at its entrance while the productive
+        // mining floor is much deeper in the same cave.  Measure arrival
+        // against the actual destination we selected, otherwise a miner who
+        // successfully reaches the interior will keep trying to return to the
+        // entrance and exhaust the trip budget without ever swinging.
+        i32 homeMineX = 0, homeMineY = 0;
+        bool homeMineInterior = false;
+        if (homeMine) {
+            homeMineX = homeMine->x;
+            homeMineY = homeMine->y;
+            homeMineInterior = client.MiningInteriorTarget(
+                homeMine->x, homeMine->y, &homeMineX, &homeMineY);
+            atHomeMineInterior =
+                homeMineInterior &&
+                TileDist(homeMineX, homeMineY, hereX, hereY) <= kMineReach;
+        }
+        if (homeMine &&
+            TileDist(homeMineX, homeMineY, hereX, hereY) > kMineReach) {
+            if (++mineTrips_ > kMaxMineTrips) {
+                LogLine("goal_failed=MINE reason=\"could not reach home mine "
+                        "in %d trips\"", kMaxMineTrips);
+                planner_.Cooldown(GoalKind::Mine, obs.nowMs + kNoOreCooldownMs);
+                planner_.Finish(false, "home mine unreachable", obs.nowMs);
+                mineTrips_ = 0;
+                return false;
+            }
+            i32 mineX = homeMineX, mineY = homeMineY;
+            std::string destination = homeMine->label;
+            if (homeMineInterior) {
+                destination += " interior";
+                LogLine("mine: %s resident going directly to the interior of "
+                        "%s at %d,%d (trip %d)", state_.homeCity.c_str(),
+                        homeMine->label.c_str(), mineX, mineY, mineTrips_);
+            } else {
+                LogLine("mine: %s resident going to known %s at %d,%d "
+                        "(interior unavailable; trip %d)",
+                        state_.homeCity.c_str(), homeMine->label.c_str(),
+                        mineX, mineY, mineTrips_);
+            }
+            travelInFlight_ = client.TravelToPoint(mineX, mineY, 3,
+                                                   destination.c_str());
+            nextActionMs_ = obs.nowMs + 2500;
+            return false;
+        }
         const i32 d = client.DistanceToResource(wm::ResourceKind::Mining);
         if (d > kMineReach) {
             if (++mineTrips_ > kMaxMineTrips) {
@@ -10752,7 +10920,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // already stops him returning to worked-out ground); the walk to the new
     // stand tile is the wander itself. A jitter that lands where no rock is
     // found falls back to scanning from where he stands.
-    i32 scanX = obs.x, scanY = obs.y;
+    i32 scanX = hereX, scanY = hereY;
 
     // START FROM GROUND THAT HAS ACTUALLY GIVEN ORE.
     //
@@ -10774,13 +10942,15 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // around inside once he is there, and the dead list still retires worked
     // ground.
     bool haveNearbyMemory = false;
-    if (const KnownResourceSource* known =
-            state_.memory.BestResource("ore", obs.x, obs.y, obs.nowMs)) {
+    if (!atHomeMineInterior) {
+        if (const KnownResourceSource* known =
+                state_.memory.BestResource("ore", hereX, hereY, obs.nowMs)) {
         if (known->successes > 0 &&
-            TileDist(known->x, known->y, obs.x, obs.y) <= kMineKnownSpotWithin) {
+            TileDist(known->x, known->y, hereX, hereY) <= kMineKnownSpotWithin) {
             scanX = known->x;
             scanY = known->y;
             haveNearbyMemory = true;
+        }
         }
     }
 
@@ -10799,7 +10969,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         mineConsecRefusals_ >= kMineRefusalsBeforeAdvance &&
         mineAdvances_ < kMaxMineAdvances) {
         i32 deepX = 0, deepY = 0;
-        if (client.DeeperMiningTarget(obs.x, obs.y, &deepX, &deepY)) {
+        if (client.DeeperMiningTarget(hereX, hereY, &deepX, &deepY)) {
             LogLine("mine: the mouth is picked clean -- heading deeper in");
             ++mineAdvances_;
             mineConsecRefusals_ = 0;
@@ -10818,9 +10988,9 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     }
     Client::MiningSpot spot;
     bool allGuarded1 = false, allGuarded2 = false;
-    if (!client.NearestMiningSpot(scanX, scanY, obs.z, kMineScanRadius, &spot,
+    if (!client.NearestMiningSpot(scanX, scanY, hereZ, kMineScanRadius, &spot,
                                   &deadTargets_, &allGuarded1) &&
-        !client.NearestMiningSpot(obs.x, obs.y, obs.z, kMineScanRadius, &spot,
+        !client.NearestMiningSpot(hereX, hereY, hereZ, kMineScanRadius, &spot,
                                   &deadTargets_, &allGuarded2)) {
         // OWNER RULE: no gathering inside guarded zones. Both scans saw rock
         // and rejected every candidate for standing inside the guard line --
@@ -10852,15 +11022,16 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
         // A remembered spot that has actually produced ore beats any area
         // centroid, so walk to that before admitting defeat. Bounded by the
         // same trip counter, so an unreachable memory still fails honestly.
-        if (const KnownResourceSource* known =
-                state_.memory.BestResource("ore", obs.x, obs.y, obs.nowMs)) {
-            const i32 back = TileDist(known->x, known->y, obs.x, obs.y);
+        if (!atHomeMineInterior) {
+            if (const KnownResourceSource* known =
+                    state_.memory.BestResource("ore", hereX, hereY, obs.nowMs)) {
+            const i32 back = TileDist(known->x, known->y, hereX, hereY);
             if (known->successes > 0 && back > kMineReach &&
                 ++mineTrips_ <= kMaxMineTrips) {
                 LogLine("mine: no rock within %d tiles of %d,%d, but '%s' at "
                         "%d,%d has given ore %d time(s) -- walking the %d "
                         "tiles back (trip %d)",
-                        kMineScanRadius, obs.x, obs.y,
+                        kMineScanRadius, hereX, hereY,
                         known->label.empty() ? "a known vein"
                                              : known->label.c_str(),
                         known->x, known->y, known->successes, back,
@@ -10871,11 +11042,12 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
                 nextActionMs_ = obs.nowMs + 2500;
                 return false;
             }
+            }
         }
 
         if (!allGuarded) {
             LogLine("mine: no mineable rock within %d tiles of %d,%d -- moving on",
-                    kMineScanRadius, obs.x, obs.y);
+                    kMineScanRadius, hereX, hereY);
         }
         deadTargets_.clear();
         mineTrips_ = 0;
@@ -10892,7 +11064,7 @@ bool Runner::DoMine(Client& client, const Observation& obs) {
     // least 1 and at most RANGE=2 tiles off (CCharSkill.cpp:1432-1441,
     // skill45_mining.scp RANGE=2); further out, walk to the vetted stand tile
     // and let the NEXT tick re-measure from wherever the walk actually ended.
-    const i32 toRock = TileDist(obs.x, obs.y, spot.rockX, spot.rockY);
+    const i32 toRock = TileDist(hereX, hereY, spot.rockX, spot.rockY);
     if (toRock < 1 || toRock > 2) {
         LogLine("mine: the rock is at %d,%d, %d tiles off -- standing at "
                 "%d,%d to reach it", spot.rockX, spot.rockY, toRock,
@@ -11556,31 +11728,12 @@ bool Runner::DoPracticeSkill(Client& client, const Observation& obs) {
     // Deliberately not a combat spell. Practising Magery must not be a way to
     // start fights the life did not choose.
     if (skillId == rules::kMagery) {
-        // And the same capability check the food goal needed. Practising by
-        // casting a spell the character does not own burns the session at one
-        // refusal every six seconds, with mana never moving.
-        if (noCreateFoodSpell_ ||
-            (createFoodMark_ != 0 &&
-             client.JournalSaidSince("not in your spellbook", createFoodMark_))) {
-            noCreateFoodSpell_ = true;
-            LogLine("practice: Create Food is not in this character's spellbook "
-                    "-- Magery cannot be practised this way");
-            // A latched refusal that does not cool is a spin: the answer
-            // cannot change until FILL_SPELLBOOK has been somewhere.
-            planner_.Cooldown(GoalKind::PracticeSkill,
-                              obs.nowMs + kNoSelfSafeSpellCooldownMs);
-            planner_.Finish(false, "no create food spell", obs.nowMs);
-            nextActionMs_ = obs.nowMs + 5000;
-            return false;
-        }
-        if (obs.mana < kCreateFoodMana) {
-            LogLine("practice: %d mana is not enough to cast (need %d) -- "
-                    "resting instead", obs.mana, kCreateFoodMana);
-            nextActionMs_ = obs.nowMs + 15000;
-            return true;   // meditation or time will bring it back
-        }
-        // CAST SOMETHING THIS CHARACTER ACTUALLY HAS. The book must be opened
-        // once before it can be read; an unopened book is not an empty one.
+        // Create Food belongs to the FOOD goal. It is absent from this shard's
+        // starter book, but that must not veto Magery practice when the book
+        // holds another safe spell. Read this character's book and choose from
+        // it below instead of carrying the food-goal refusal into practice.
+        // The book must be opened once before it can be read; an unopened book
+        // is not an empty one.
         if (obs.spellbookSerial == 0) {
             LogLine("practice: no spellbook carried -- Magery cannot be "
                     "practised until FILL_SPELLBOOK has bought one");

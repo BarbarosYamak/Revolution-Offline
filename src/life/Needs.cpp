@@ -395,7 +395,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // The first live catalogue lumberjack proved why: it had 1000 gold,
         // so this need looked satisfiable, won the scoring at 130, and then
         // sat on a 30-second retry forever. It never chopped a log.
-        const econ::VendorRuling ruling = econ::CanUseNPCVendorFor("i_bandage");
+        const econ::VendorRuling ruling = econ::CanBuyFromNPC("i_bandage");
         const bool noRoute = supplier == nullptr &&
                              (!ruling.allowed || obs.gold < 50);
         add(NeedKind::NeedEquipment, 0.5, "bandages",
@@ -677,7 +677,22 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         for (const Need& n : needs) {
             if (n.kind == NeedKind::NeedTrade) { alreadyTrading = true; break; }
         }
-        if (!alreadyTrading) {
+        // A miner-smith's first meaningful errand is to mine, not to stand at
+        // the player market waiting for a secondary crafting input.  Without
+        // this gate, a fresh miner with no ore could score a 0.55 player-buy
+        // need against a 0.45 mine need while still in town and never take the
+        // trip to the vein.  One twenty-metal batch proves the gather/smelt
+        // loop before normal producer-to-producer buying resumes.
+        const bool freshOreGatherer = [&] {
+            if (!cfg.profession || cfg.profession->gathers != "ore") return false;
+            constexpr int kFirstSmithBatch = 20;
+            const int metal = QtyIn(obs.pack, "i_ore_iron") +
+                              QtyIn(obs.pack, "i_ingot_iron") +
+                              QtyIn(obs.bank, "i_ore_iron") +
+                              QtyIn(obs.bank, "i_ingot_iron");
+            return metal < kFirstSmithBatch;
+        }();
+        if (!alreadyTrading && !freshOreGatherer) {
             const market::TradePolicy buyPolicy =
                 market::PolicyForPurse(obs.goldOnHand);
             // No refusal string is asked for here: AssessNeeds is pure and
@@ -755,7 +770,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
                 // on entry that there was never anywhere to go.
                 const prod::Ingredient& first = craft.missing.front();
                 const econ::VendorRuling ruling =
-                    econ::CanUseNPCVendorFor(first.item);
+                    econ::CanBuyFromNPC(first.item);
                 // BELOW NeedCraft (0.50) and below selling. Shopping is what
                 // a crafter does when it cannot work, never instead of
                 // working: this used to be 0.52, which put the shop ahead of
