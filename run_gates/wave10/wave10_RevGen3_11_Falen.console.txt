@@ -1,0 +1,661 @@
+[17:29:35.047] LOG   [wave10_RevGen3_11_Falen] event session_start: text log opened
+[17:29:35.050] LOG   [wave10_RevGen3_11_Falen] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.051] INFO  [wave10_RevGen3_11_Falen] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.053] LOG   [wave10_RevGen3_11_Falen] event net_connected: connect 127.0.0.1:2593
+[17:29:35.055] INFO  [wave10_RevGen3_11_Falen] [net] connected.
+[17:29:35.056] INFO  [wave10_RevGen3_11_Falen] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.056] LOG   [wave10_RevGen3_11_Falen] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.059] INFO  [wave10_RevGen3_11_Falen] [life] autonomous player active for 'Falen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.077] INFO  [wave10_RevGen3_11_Falen] [0xA8] 1 server(s):
+[17:29:35.077] INFO  [wave10_RevGen3_11_Falen]   [0] MyShard                   1.0.0.127  full=4%  tz=0
+[17:29:35.084] INFO  [wave10_RevGen3_11_Falen] [0x8C] game server = 127.0.0.1:2593  seed=0x73334333
+[17:29:35.085] LOG   [wave10_RevGen3_11_Falen] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x73334333
+[17:29:35.086] INFO  [wave10_RevGen3_11_Falen] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.086] LOG   [wave10_RevGen3_11_Falen] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.088] INFO  [wave10_RevGen3_11_Falen] [0xB9] server features = 0x0005
+[17:29:35.088] INFO  [wave10_RevGen3_11_Falen] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.089] INFO  [wave10_RevGen3_11_Falen]   [0] Falen
+[17:29:35.089] INFO  [wave10_RevGen3_11_Falen]   [1] <empty>
+[17:29:35.089] INFO  [wave10_RevGen3_11_Falen]   [2] <empty>
+[17:29:35.089] INFO  [wave10_RevGen3_11_Falen]   [3] <empty>
+[17:29:35.089] INFO  [wave10_RevGen3_11_Falen]   [4] <empty>
+[17:29:35.090] INFO  [wave10_RevGen3_11_Falen] [ui] playing slot 0 ('Falen')
+[17:29:35.093] INFO  [wave10_RevGen3_11_Falen] [0x1B] serial=0x0001478E body=0x0191 pos=(1432,1704,14)
+[17:29:35.093] LOG   [wave10_RevGen3_11_Falen] event login_confirm: serial=0x0001478E body=0x0191 pos=(1432,1704,14)
+[17:29:35.093] INFO  [wave10_RevGen3_11_Falen] [0x20] player @(1432,1704,14) facing=1
+[17:29:35.093] INFO  [wave10_RevGen3_11_Falen] [0x55] login complete — entering world
+[17:29:35.093] LOG   [wave10_RevGen3_11_Falen] event in_world: 0x55 received
+[17:29:35.094] INFO  [wave10_RevGen3_11_Falen] [backpack] opening 0x40014785
+[17:29:35.094] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.094] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: There are 12 other players here.
+[17:29:35.094] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.094] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.099] INFO  [wave10_RevGen3_11_Falen] [action] requesting the skill list
+[17:29:35.107] INFO  [wave10_RevGen3_11_Falen] [0x24] open container 0x40014785 gump=60
+[17:29:35.108] INFO  [wave10_RevGen3_11_Falen] [0x3C] container contents: 15 item(s)
+[17:29:35.109] LOG   [wave10_RevGen3_11_Falen] event backpack_contents: serial=0x40014785 items=15
+[17:29:35.115] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.165] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_11_Falen] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: What?
+[17:29:37.681] INFO  [wave10_RevGen3_11_Falen] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.683] INFO  [wave10_RevGen3_11_Falen] [survival] on
+[17:29:37.683] LOG   [wave10_RevGen3_11_Falen] event survival_mode: on
+[17:29:37.686] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:29:37.750] INFO  [wave10_RevGen3_11_Falen] [travel] Britain banker -> (1425,1690) r=5 from (1432,1704)
+[17:29:37.750] LOG   [wave10_RevGen3_11_Falen] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1432,1704)
+[17:29:37.750] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable   <- chosen
+[17:29:37.750] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable
+[17:29:37.750] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.751] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.751] LOG   [wave10_RevGen3_11_Falen] event travel_mode: walk
+[17:29:37.751] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:37.811] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:37.812] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:37.812] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:37.812] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:37.933] INFO  [wave10_RevGen3_11_Falen] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: Huh?
+[17:29:39.761] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1914530.5us)
+[17:29:39.763] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 17 mobile(s))
+[17:29:39.823] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:39.824] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:41.051] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:41.051] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:41.051] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:41.051] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:42.677] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1623122.4us)
+[17:29:42.678] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 17 mobile(s))
+[17:29:42.738] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:42.738] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:42.738] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:29:43.963] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:43.963] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:43.964] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:43.964] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:45.736] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1745871.0us)
+[17:29:45.736] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 17 mobile(s))
+[17:29:45.799] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:45.800] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:47.049] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable   <- chosen
+[17:29:47.049] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable
+[17:29:47.049] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:47.049] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:47.050] LOG   [wave10_RevGen3_11_Falen] event travel_mode: walk
+[17:29:47.050] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:47.783] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:29:48.553] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:48.554] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:48.554] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:48.554] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:50.256] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1685284.3us)
+[17:29:50.257] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 17 mobile(s))
+[17:29:50.320] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:50.320] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:51.571] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:51.571] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:51.571] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:51.572] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:52.818] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:29:53.063] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1471453.7us)
+[17:29:53.063] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 18 mobile(s))
+[17:29:53.125] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:53.125] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:54.342] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:29:54.342] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:29:54.342] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:29:54.343] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:29:55.850] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1490648.7us)
+[17:29:55.851] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 18 mobile(s))
+[17:29:55.911] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:29:55.911] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:29:57.138] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable   <- chosen
+[17:29:57.138] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable
+[17:29:57.139] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:57.139] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:57.139] LOG   [wave10_RevGen3_11_Falen] event travel_mode: walk
+[17:29:57.139] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:57.723] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:29:57.723] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:29:57.723] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:29:57.738] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:29:57.738] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:29:57.739] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:29:57.830] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:29:58.937] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:29:58.937] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:29:58.937] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:29:58.954] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:29:58.954] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[17:29:58.954] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=17ms worn on the requested layer
+[17:30:00.159] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:30:00.159] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:30:00.159] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:30:00.159] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:30:00.160] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:30:00.160] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:30:00.160] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:30:00.174] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:30:00.174] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:30:00.174] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:30:01.387] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:30:01.387] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:30:01.387] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:30:01.388] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:30:01.389] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[17:30:01.389] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=1ms worn on the requested layer
+[17:30:01.891] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1707930.4us)
+[17:30:01.892] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 18 mobile(s))
+[17:30:01.953] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:30:01.954] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:30:02.632] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:30:02.632] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:30:02.632] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:30:02.633] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:30:02.634] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:30:02.634] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=2ms worn on the requested layer
+[17:30:02.890] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:03.213] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:30:03.213] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:30:03.213] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:30:03.214] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:30:03.841] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:30:03.841] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:30:03.841] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:30:03.856] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:30:03.857] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:30:03.857] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=16ms worn on the requested layer
+[17:30:04.515] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1242145.2us)
+[17:30:04.516] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 18 mobile(s))
+[17:30:04.577] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:30:04.577] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:30:05.795] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:30:05.795] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:30:05.795] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:30:05.795] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:30:06.923] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1068735.8us)
+[17:30:06.924] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 18 mobile(s))
+[17:30:06.985] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:30:06.985] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:30:07.899] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:08.208] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable   <- chosen
+[17:30:08.209] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable
+[17:30:08.209] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:08.209] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:08.209] LOG   [wave10_RevGen3_11_Falen] event travel_mode: walk
+[17:30:08.209] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:30:09.819] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: Hmm?
+[17:30:12.731] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:30:12.731] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:30:12.731] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:30:12.731] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:30:12.915] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:13.873] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1117870.2us)
+[17:30:13.873] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 19 mobile(s))
+[17:30:13.936] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:30:13.936] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:30:15.168] INFO  [wave10_RevGen3_11_Falen] [action] goto (1425,1690) from (1432,1704,14)
+[17:30:15.168] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1425,1690) from=(1432,1704)
+[17:30:15.169] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1425,1690,z0)
+[17:30:15.169] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1425,1690) in background
+[17:30:16.314] WARN  [wave10_RevGen3_11_Falen] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1105426.0us)
+[17:30:16.314] WARN  [wave10_RevGen3_11_Falen] [bot] start (1432,1704,14) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 47 item(s), 20 mobile(s))
+[17:30:16.315] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1432,1704,14); target (1425,1690); stopped short (off by 21 tile(s))
+[17:30:16.315] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1432,1704) target=(1425,1690) arrived=0 off=21
+[17:30:16.315] WARN  [wave10_RevGen3_11_Falen] [travel] route exhausted at (1432,1704,14); trying to reach (1416,1688,0) to get somewhere routable (escape 1/3)
+[17:30:16.315] LOG   [wave10_RevGen3_11_Falen] event travel_escape: from=(1432,1704,14) to=(1416,1688) attempt=1
+[17:30:16.315] INFO  [wave10_RevGen3_11_Falen] [action] goto (1416,1688) from (1432,1704,14)
+[17:30:16.315] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1416,1688) from=(1432,1704)
+[17:30:16.315] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1432,1704,14) to (1416,1688,z0)
+[17:30:16.316] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1416,1688) in background
+[17:30:16.375] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1416,1688): 16 steps in 203.1us
+[17:30:17.939] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:17.971] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You shove Ghalor out of the way.
+[17:30:18.924] INFO  [wave10_RevGen3_11_Falen] [travel] Britain banker ARRIVED at (1421,1693,0)
+[17:30:18.924] LOG   [wave10_RevGen3_11_Falen] event travel_done: label='Britain banker' ok=1 at=(1421,1693) legs=1 plans=4 why=''
+[17:30:22.990] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:28.022] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:33.030] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:38.041] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:43.084] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:48.110] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:53.157] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:30:58.192] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:03.253] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:08.302] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:13.321] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:18.377] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:20.791] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.384] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:28.438] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:33.440] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:38.493] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:43.536] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:48.545] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:53.578] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:31:58.613] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:03.619] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:08.636] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:13.646] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:15.833] INFO  [wave10_RevGen3_11_Falen] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.686] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:23.705] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:28.744] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:33.792] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:38.810] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:43.842] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:48.859] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:52.207] INFO  [wave10_RevGen3_11_Falen] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:53.885] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:32:58.909] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:03.916] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:08.962] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:12.849] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_11_Falen] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.985] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:22.197] INFO  [wave10_RevGen3_11_Falen] [travel] Britain Territory blacksmithguildmaster -> (1349,1778) r=5 from (1421,1693)
+[17:33:22.197] LOG   [wave10_RevGen3_11_Falen] event travel_start: label='Britain Territory blacksmithguildmaster' target=(1349,1778) radius=5 from=(1421,1693)
+[17:33:22.198] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable   <- chosen
+[17:33:22.198] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable
+[17:33:22.198] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:22.198] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:22.198] LOG   [wave10_RevGen3_11_Falen] event travel_mode: moongate
+[17:33:22.199] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain Territory blacksmithguildmaster: ok legs=3 ~128 tiles transit=0 nodes=126
+[17:33:22.199] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:22.199] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1421,1693,0); target (1416,1688); stopped short (off by 10 tile(s))
+[17:33:22.199] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1421,1693) target=(1416,1688) arrived=0 off=10
+[17:33:22.199] INFO  [wave10_RevGen3_11_Falen] [action] goto (1416,1720) from (1421,1693,0)
+[17:33:22.199] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1416,1720) from=(1421,1693)
+[17:33:22.200] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1421,1693,0) to (1416,1720)
+[17:33:22.200] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1416,1720) in background
+[17:33:22.247] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1416,1720): 27 steps in 873.1us
+[17:33:27.260] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:29.367] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1416,1720,20)
+[17:33:29.368] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:33:29.368] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:33:29.368] INFO  [wave10_RevGen3_11_Falen] [action] goto (1378,1752) from (1416,1720,20)
+[17:33:29.368] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1378,1752) from=(1416,1720)
+[17:33:29.368] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1416,1720,20) to (1378,1752)
+[17:33:29.368] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1378,1752) in background
+[17:33:29.428] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1378,1752): 43 steps in 3701.8us
+[17:33:32.319] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:32.766] INFO  [wave10_RevGen3_11_Falen] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=30 in 285.9us
+[17:33:37.365] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:39.141] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You have left the protection of the city guards
+[17:33:41.457] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1378,1752,1)
+[17:33:41.457] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1378,1752,1); target (1378,1752); ARRIVED (off by 0 tile(s))
+[17:33:41.458] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1378,1752) target=(1378,1752) arrived=1 off=0
+[17:33:41.458] INFO  [wave10_RevGen3_11_Falen] [action] goto (1349,1778) from (1378,1752,1)
+[17:33:41.458] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1349,1778) from=(1378,1752)
+[17:33:41.458] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1378,1752,1) to (1349,1778,z15)
+[17:33:41.458] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1349,1778) in background
+[17:33:41.517] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1349,1778): 47 steps in 5159.3us
+[17:33:42.366] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:47.423] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:50.883] WARN  [wave10_RevGen3_11_Falen] [0x21] move REJECTED seq=40; server says (1361,1772,15) facing=5
+[17:33:50.883] INFO  [wave10_RevGen3_11_Falen] [bot] step (1361,1772,15)->(1360,1773,15) rejected; OpenDoor + retry
+[17:33:51.618] WARN  [wave10_RevGen3_11_Falen] [0x21] move REJECTED seq=0; server says (1361,1772,15) facing=5
+[17:33:51.618] INFO  [wave10_RevGen3_11_Falen] [bot] step (1361,1772,15)->(1360,1773,15) rejected; avoiding edge + rerouting
+[17:33:51.619] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1349,1778) in background
+[17:33:51.680] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1349,1778): 17 steps in 428.0us
+[17:33:52.465] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: World save in 10 seconds
+[17:33:54.629] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip start
+[17:33:54.629] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip serial=0x40013EA4 -> backpack 0x40014785
+[17:33:54.629] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:33:54.629] INFO  [wave10_RevGen3_11_Falen] [ITEM] drop container=0x40014785
+[17:33:54.644] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] unequip success (16ms) item is in the destination
+[17:33:54.645] LOG   [wave10_RevGen3_11_Falen] event action_result: unequip success took=16ms item is in the destination
+[17:33:55.512] INFO  [wave10_RevGen3_11_Falen] [travel] Britain Territory blacksmithguildmaster ARRIVED at (1353,1778,15)
+[17:33:55.513] LOG   [wave10_RevGen3_11_Falen] event travel_done: label='Britain Territory blacksmithguildmaster' ok=1 at=(1353,1778) legs=3 plans=1 why=''
+[17:33:57.478] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:33:57.662] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:33:57.662] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=0
+[17:33:57.662] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:33:57.680] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[17:33:57.680] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=17ms worn on the requested layer
+[17:33:59.330] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip start
+[17:33:59.331] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip serial=0x40013E5D -> backpack 0x40014785
+[17:33:59.331] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:33:59.331] INFO  [wave10_RevGen3_11_Falen] [ITEM] drop container=0x40014785
+[17:33:59.344] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] unequip success (14ms) item is in the destination
+[17:33:59.344] LOG   [wave10_RevGen3_11_Falen] event action_result: unequip success took=14ms item is in the destination
+[17:34:02.366] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:02.366] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E64 layer=1
+[17:34:02.366] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E64 amount=1
+[17:34:02.381] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:02.381] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:34:02.534] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: World save has been initiated.
+[17:34:06.406] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object start
+[17:34:06.406] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object serial=0x40013E64
+[17:34:07.588] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:09.906] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: What do you want to use this on?
+[17:34:09.920] INFO  [wave10_RevGen3_11_Falen] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[17:34:09.921] LOG   [wave10_RevGen3_11_Falen] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[17:34:09.921] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] use_object success (3515ms) server armed a target cursor
+[17:34:09.922] LOG   [wave10_RevGen3_11_Falen] event action_result: use_object success took=3515ms server armed a target cursor
+[17:34:09.922] INFO  [wave10_RevGen3_11_Falen] [TARGET] reply serial=0x40013E56 gen=1
+[17:34:09.922] INFO  [wave10_RevGen3_11_Falen] [target] object 0x40013E56 (0,0,0) model 0x0000
+[17:34:09.931] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Blacksmithing" (3 options)
+[17:34:09.931] INFO  [wave10_RevGen3_11_Falen]         1) Repair
+[17:34:09.932] INFO  [wave10_RevGen3_11_Falen]         2) Shields
+[17:34:09.932] INFO  [wave10_RevGen3_11_Falen]         3) Weapons
+[17:34:09.932] LOG   [wave10_RevGen3_11_Falen] event dialog: Blacksmithing
+[17:34:12.459] INFO  [wave10_RevGen3_11_Falen] [0x7D] answering dialog id=0x0001478E menu=690 index=3
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Swords & Blades" (7 options)
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen]         1) broadsword (12 iron ingots)
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen]         2) cutlass (8 iron ingots)
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen]         3) dagger (4 iron ingots)
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen]         4) katana (8 iron ingots)
+[17:34:12.460] INFO  [wave10_RevGen3_11_Falen]         5) kryss (8 iron ingots)
+[17:34:12.461] INFO  [wave10_RevGen3_11_Falen]         6) scimitar (10 iron ingots)
+[17:34:12.461] INFO  [wave10_RevGen3_11_Falen]         7) viking sword (14 iron ingots)
+[17:34:12.461] LOG   [wave10_RevGen3_11_Falen] event dialog: Swords & Blades
+[17:34:12.645] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:17.701] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:19.433] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:19.433] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:34:19.433] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:19.448] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:19.448] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Previous targeting cancelled.
+[17:34:19.449] WARN  [wave10_RevGen3_11_Falen] [ITEM] drag cancelled by server: unspecified (code 5)
+[17:34:19.449] LOG   [wave10_RevGen3_11_Falen] event drag_cancel: reason=5 unspecified
+[17:34:19.449] WARN  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip rejected (16ms) unspecified
+[17:34:19.449] LOG   [wave10_RevGen3_11_Falen] event action_result: equip rejected took=16ms unspecified
+[17:34:20.665] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:20.665] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:34:20.665] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:20.666] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the smith's hammer in your pack.
+[17:34:20.666] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:34:20.666] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=2ms worn on the requested layer
+[17:34:21.899] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:21.899] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:34:21.899] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:34:21.900] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:21.900] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:34:21.901] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=2ms worn on the requested layer
+[17:34:22.733] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:23.150] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:23.150] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:34:23.150] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:23.165] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:34:23.166] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:23.166] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:34:24.386] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:24.387] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:34:24.387] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:34:24.402] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:24.402] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:24.402] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=16ms worn on the requested layer
+[17:34:25.608] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:25.608] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:34:25.608] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:25.623] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:34:25.623] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:25.624] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:34:26.809] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:26.809] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E5D layer=2
+[17:34:26.809] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E5D amount=1
+[17:34:26.824] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:26.825] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:26.825] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=16ms worn on the requested layer
+[17:34:27.787] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:28.035] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:28.036] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013EA4 layer=1
+[17:34:28.036] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:28.037] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You put the hatchet in your pack.
+[17:34:28.037] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:34:28.037] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=2ms worn on the requested layer
+[17:34:31.306] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip start
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip serial=0x40013EA4 -> backpack 0x40014785
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ITEM] drop container=0x40014785
+[17:34:31.322] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] unequip success (16ms) item is in the destination
+[17:34:31.322] LOG   [wave10_RevGen3_11_Falen] event action_result: unequip success took=16ms item is in the destination
+[17:34:32.810] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E64 layer=1
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E64 amount=1
+[17:34:34.376] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:34.377] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:34:37.869] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:38.406] INFO  [wave10_RevGen3_11_Falen] [0x7D] answering dialog id=0x0001478E menu=690 index=3
+[17:34:38.407] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Unexpected menu info.
+[17:34:42.906] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object start
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object serial=0x40013E64
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: What do you want to use this on?
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[17:34:46.736] LOG   [wave10_RevGen3_11_Falen] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[17:34:46.737] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:34:46.737] LOG   [wave10_RevGen3_11_Falen] event action_result: use_object success took=1ms server armed a target cursor
+[17:34:47.952] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:48.260] INFO  [wave10_RevGen3_11_Falen] [TARGET] reply serial=0x40013E56 gen=2
+[17:34:48.261] INFO  [wave10_RevGen3_11_Falen] [target] object 0x40013E56 (0,0,0) model 0x0000
+[17:34:48.279] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Blacksmithing" (3 options)
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         1) Repair
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         2) Shields
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         3) Weapons
+[17:34:48.280] LOG   [wave10_RevGen3_11_Falen] event dialog: Blacksmithing
+[17:34:50.788] INFO  [wave10_RevGen3_11_Falen] [0x7D] answering dialog id=0x0001478E menu=690 index=3
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Swords & Blades" (7 options)
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen]         1) broadsword (12 iron ingots)
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen]         2) cutlass (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         3) dagger (4 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         4) katana (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         5) kryss (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         6) scimitar (10 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         7) viking sword (14 iron ingots)
+[17:34:50.790] LOG   [wave10_RevGen3_11_Falen] event dialog: Swords & Blades
+[17:34:52.991] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:58.001] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:02.125] INFO  [wave10_RevGen3_11_Falen] [travel] place: skipping Wind baker -- 1380 tiles and 1 gate for a service Britain baker offers
+[17:35:02.125] INFO  [wave10_RevGen3_11_Falen] [travel] Britain baker -> (1450,1617) r=5 from (1353,1778)
+[17:35:02.126] LOG   [wave10_RevGen3_11_Falen] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1353,1778)
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable   <- chosen
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:02.126] LOG   [wave10_RevGen3_11_Falen] event travel_mode: moongate
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain baker: ok legs=5 ~216 tiles transit=0 nodes=375
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1353,1778,15); target (1349,1778); stopped short (off by 4 tile(s))
+[17:35:02.127] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1353,1778) target=(1349,1778) arrived=0 off=4
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [action] goto (1368,1752) from (1353,1778,15)
+[17:35:02.127] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1368,1752) from=(1353,1778)
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1353,1778,15) to (1368,1752)
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1368,1752) in background
+[17:35:02.175] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1368,1752): 33 steps in 2837.2us
+[17:35:03.022] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:03.395] INFO  [wave10_RevGen3_11_Falen] [bot] door ahead at (1359,1778,z15); OpenDoor before step
+[17:35:03.409] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Opening door...
+[17:35:03.410] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Targeting cancelled.
+[17:35:08.057] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:12.934] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1368,1752,5)
+[17:35:12.937] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:35:12.938] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [action] goto (1384,1720) from (1368,1752,5)
+[17:35:12.938] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1368,1752,5) to (1384,1720)
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1384,1720) in background
+[17:35:12.996] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1384,1720): 58 steps in 20180.8us
+[17:35:13.073] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:17.733] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You are now under the protection of the city guards
+[17:35:18.073] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:23.080] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:27.659] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You have left the protection of the city guards
+[17:35:28.102] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1384,1720,10)
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:35:29.645] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [action] goto (1416,1688) from (1384,1720,10)
+[17:35:29.645] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:35:29.646] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1384,1720,10) to (1416,1688)
+[17:35:29.646] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1416,1688) in background
+[17:35:29.705] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1416,1688): 51 steps in 7361.5us
+[17:35:31.379] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You are now under the protection of the city guards
+[17:35:33.137] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:38.139] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Rhea has departed from Yew.
+34:29.351] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 529s after achieving nothing
+[17:34:31.306] INFO  [life] craft: putting away what is in hand to free HAND1 for the smith tool
+[17:34:31.306] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip start
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ACTION] unequip serial=0x40013EA4 -> backpack 0x40014785
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013EA4 amount=1
+[17:34:31.307] INFO  [wave10_RevGen3_11_Falen] [ITEM] drop container=0x40014785
+[17:34:31.322] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] unequip success (16ms) item is in the destination
+[17:34:31.322] LOG   [wave10_RevGen3_11_Falen] event action_result: unequip success took=16ms item is in the destination
+[17:34:32.810] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:34.360] INFO  [life] craft: taking the smith tool into HAND1 -- the menu reads LAYER_HAND1
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip start
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ACTION] equip serial=0x40013E64 layer=1
+[17:34:34.361] INFO  [wave10_RevGen3_11_Falen] [ITEM] drag serial=0x40013E64 amount=1
+[17:34:34.376] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:34.377] LOG   [wave10_RevGen3_11_Falen] event action_result: equip success took=15ms worn on the requested layer
+[17:34:37.869] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:38.406] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 1 of 3)
+[17:34:38.406] INFO  [wave10_RevGen3_11_Falen] [0x7D] answering dialog id=0x0001478E menu=690 index=3
+[17:34:38.407] INFO  [life] craft: chose 'dagger'
+[17:34:38.407] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Unexpected menu info.
+[17:34:42.906] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:46.735] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 2 of 3)
+[17:34:46.735] INFO  [life] craft: making i_dagger -- double-clicking the smith hammer
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object start
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [ACTION] use_object serial=0x40013E64
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: What do you want to use this on?
+[17:34:46.736] INFO  [wave10_RevGen3_11_Falen] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[17:34:46.736] LOG   [wave10_RevGen3_11_Falen] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[17:34:46.737] INFO  [wave10_RevGen3_11_Falen] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:34:46.737] LOG   [wave10_RevGen3_11_Falen] event action_result: use_object success took=1ms server armed a target cursor
+[17:34:47.952] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:48.260] INFO  [life] craft: giving the smith cursor an i_ingot_iron to open the menu
+[17:34:48.260] INFO  [wave10_RevGen3_11_Falen] [TARGET] reply serial=0x40013E56 gen=2
+[17:34:48.261] INFO  [wave10_RevGen3_11_Falen] [target] object 0x40013E56 (0,0,0) model 0x0000
+[17:34:48.279] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Blacksmithing" (3 options)
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         1) Repair
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         2) Shields
+[17:34:48.280] INFO  [wave10_RevGen3_11_Falen]         3) Weapons
+[17:34:48.280] LOG   [wave10_RevGen3_11_Falen] event dialog: Blacksmithing
+[17:34:50.788] INFO  [wave10_RevGen3_11_Falen] [0x7D] answering dialog id=0x0001478E menu=690 index=3
+[17:34:50.788] INFO  [life] craft: chose 'Weapons'
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen] [0x7C] dialog id=0x0001478E menu=690: "Swords & Blades" (7 options)
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen]         1) broadsword (12 iron ingots)
+[17:34:50.789] INFO  [wave10_RevGen3_11_Falen]         2) cutlass (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         3) dagger (4 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         4) katana (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         5) kryss (8 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         6) scimitar (10 iron ingots)
+[17:34:50.790] INFO  [wave10_RevGen3_11_Falen]         7) viking sword (14 iron ingots)
+[17:34:50.790] LOG   [wave10_RevGen3_11_Falen] event dialog: Swords & Blades
+[17:34:52.991] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:58.001] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:34:59.155] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 3 of 3)
+[17:34:59.216] INFO  [life] goal_failed=CRAFT status=no_progress reason="the attempts are spent and the pack never moved" (i_dagger, attempt 3 of 3)
+[17:34:59.217] INFO  [life] handoff=CRAFT->IDLE_BRIEFLY reason="the attempts are spent and the pack never moved"
+[17:34:59.278] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: the attempts are spent and the pack never moved"
+[17:34:59.279] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.43) NeedFood(food 0.25) NeedGold(sell surplus 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[17:34:59.279] INFO  [life]   score=62.5
+[17:34:59.279] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:34:59.279] INFO  [life]   reason: food=0
+[17:34:59.279] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 210s after achieving nothing
+[17:34:59.279] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 499s after achieving nothing
+[17:34:59.279] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 119s after achieving nothing
+[17:34:59.281] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_11.falen/state.json
+[17:35:02.125] INFO  [wave10_RevGen3_11_Falen] [travel] place: skipping Wind baker -- 1380 tiles and 1 gate for a service Britain baker offers
+[17:35:02.125] INFO  [wave10_RevGen3_11_Falen] [travel] Britain baker -> (1450,1617) r=5 from (1353,1778)
+[17:35:02.126] LOG   [wave10_RevGen3_11_Falen] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1353,1778)
+[17:35:02.126] INFO  [life] food: walking to a 'baker' (trip 1)
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode moongate         usable   <- chosen
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode walk             usable
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:02.126] LOG   [wave10_RevGen3_11_Falen] event travel_mode: moongate
+[17:35:02.126] INFO  [wave10_RevGen3_11_Falen] [travel] plan Britain baker: ok legs=5 ~216 tiles transit=0 nodes=375
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1353,1778,15); target (1349,1778); stopped short (off by 4 tile(s))
+[17:35:02.127] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1353,1778) target=(1349,1778) arrived=0 off=4
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [action] goto (1368,1752) from (1353,1778,15)
+[17:35:02.127] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1368,1752) from=(1353,1778)
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1353,1778,15) to (1368,1752)
+[17:35:02.127] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1368,1752) in background
+[17:35:02.175] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1368,1752): 33 steps in 2837.2us
+[17:35:03.022] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:03.395] INFO  [wave10_RevGen3_11_Falen] [bot] door ahead at (1359,1778,z15); OpenDoor before step
+[17:35:03.409] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Opening door...
+[17:35:03.410] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Targeting cancelled.
+[17:35:08.057] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:12.934] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1368,1752,5)
+[17:35:12.937] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:35:12.938] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [action] goto (1384,1720) from (1368,1752,5)
+[17:35:12.938] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1368,1752,5) to (1384,1720)
+[17:35:12.938] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1384,1720) in background
+[17:35:12.996] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1384,1720): 58 steps in 20180.8us
+[17:35:13.073] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:17.733] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You are now under the protection of the city guards
+[17:35:18.073] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:23.080] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:27.659] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You have left the protection of the city guards
+[17:35:28.102] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [bot] arrived at (1384,1720,10)
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:35:29.645] LOG   [wave10_RevGen3_11_Falen] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:35:29.645] INFO  [wave10_RevGen3_11_Falen] [action] goto (1416,1688) from (1384,1720,10)
+[17:35:29.645] LOG   [wave10_RevGen3_11_Falen] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:35:29.646] INFO  [wave10_RevGen3_11_Falen] [bot] running from (1384,1720,10) to (1416,1688)
+[17:35:29.646] INFO  [wave10_RevGen3_11_Falen] [bot] planning path to (1416,1688) in background
+[17:35:29.705] INFO  [wave10_RevGen3_11_Falen] [bot] replan to (1416,1688): 51 steps in 7361.5us
+[17:35:31.379] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: You are now under the protection of the city guards
+[17:35:33.137] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:38.139] INFO  [wave10_RevGen3_11_Falen] [survival] hp 50/50 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_11_Falen] [chat ascii] System: Rhea has departed from Yew.

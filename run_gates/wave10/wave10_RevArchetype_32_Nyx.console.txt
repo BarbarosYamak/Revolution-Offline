@@ -1,0 +1,1210 @@
+[17:29:35.374] LOG   [wave10_RevArchetype_32_] event session_start: text log opened
+[17:29:35.381] LOG   [wave10_RevArchetype_32_] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.382] INFO  [wave10_RevArchetype_32_] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.384] LOG   [wave10_RevArchetype_32_] event net_connected: connect 127.0.0.1:2593
+[17:29:35.385] INFO  [wave10_RevArchetype_32_] [net] connected.
+[17:29:35.387] INFO  [wave10_RevArchetype_32_] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.387] LOG   [wave10_RevArchetype_32_] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.388] INFO  [wave10_RevArchetype_32_] [life] autonomous player active for 'Nyx' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.403] INFO  [wave10_RevArchetype_32_] [0xA8] 1 server(s):
+[17:29:35.404] INFO  [wave10_RevArchetype_32_]   [0] MyShard                   1.0.0.127  full=13%  tz=0
+[17:29:35.417] INFO  [wave10_RevArchetype_32_] [0x8C] game server = 127.0.0.1:2593  seed=0xA977B47E
+[17:29:35.417] LOG   [wave10_RevArchetype_32_] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xA977B47E
+[17:29:35.417] INFO  [wave10_RevArchetype_32_] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.417] LOG   [wave10_RevArchetype_32_] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.434] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.436] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.437] INFO  [wave10_RevArchetype_32_] [0xB9] server features = 0x0005
+[17:29:35.438] INFO  [wave10_RevArchetype_32_] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.438] INFO  [wave10_RevArchetype_32_]   [0] Nyx
+[17:29:35.438] INFO  [wave10_RevArchetype_32_]   [1] <empty>
+[17:29:35.438] INFO  [wave10_RevArchetype_32_]   [2] <empty>
+[17:29:35.439] INFO  [wave10_RevArchetype_32_]   [3] <empty>
+[17:29:35.439] INFO  [wave10_RevArchetype_32_]   [4] <empty>
+[17:29:35.439] INFO  [wave10_RevArchetype_32_] [ui] playing slot 0 ('Nyx')
+[17:29:35.450] INFO  [wave10_RevArchetype_32_] [0x1B] serial=0x000197E4 body=0x0190 pos=(1896,2824,9)
+[17:29:35.450] LOG   [wave10_RevArchetype_32_] event login_confirm: serial=0x000197E4 body=0x0190 pos=(1896,2824,9)
+[17:29:35.450] INFO  [wave10_RevArchetype_32_] [0x20] player @(1896,2824,9) facing=6
+[17:29:35.450] INFO  [wave10_RevArchetype_32_] [0x55] login complete — entering world
+[17:29:35.450] LOG   [wave10_RevArchetype_32_] event in_world: 0x55 received
+[17:29:35.450] INFO  [wave10_RevArchetype_32_] [backpack] opening 0x400197DD
+[17:29:35.451] INFO  [wave10_RevArchetype_32_] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.451] INFO  [wave10_RevArchetype_32_] [chat ascii] System: There are 33 other players here.
+[17:29:35.451] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.451] INFO  [wave10_RevArchetype_32_] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.455] INFO  [wave10_RevArchetype_32_] [action] requesting the skill list
+[17:29:35.455] INFO  [wave10_RevArchetype_32_] [0x24] open container 0x400197DD gump=60
+[17:29:35.455] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 8 item(s)
+[17:29:35.455] LOG   [wave10_RevArchetype_32_] event backpack_contents: serial=0x400197DD items=8
+[17:29:38.083] INFO  [wave10_RevArchetype_32_] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:38.088] INFO  [wave10_RevArchetype_32_] [survival] on
+[17:29:38.089] LOG   [wave10_RevArchetype_32_] event survival_mode: on
+[17:29:38.093] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:29:38.197] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Cove healer -- 1272 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:29:38.197] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Delucia healer -- 1692 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:29:38.198] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Wind healer -- 1828 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:29:38.198] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1896,2824)
+[17:29:38.198] LOG   [wave10_RevArchetype_32_] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1896,2824)
+[17:29:38.198] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:29:38.198] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:29:38.198] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.199] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.199] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:29:38.199] INFO  [wave10_RevArchetype_32_] [travel] plan Trinsic Healer healer: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:29:38.257] INFO  [wave10_RevArchetype_32_] [action] goto (1911,2805) from (1896,2824,9)
+[17:29:38.258] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1911,2805) from=(1896,2824)
+[17:29:38.258] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,9) to (1911,2805,z0)
+[17:29:38.258] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1911,2805) in background
+[17:29:38.317] INFO  [wave10_RevArchetype_32_] [bot] replan to (1911,2805): 27 steps in 5091.0us
+[17:29:43.122] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:29:43.597] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[17:29:43.598] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:29:45.008] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Healer healer ARRIVED at (1915,2809,0)
+[17:29:45.008] LOG   [wave10_RevArchetype_32_] event travel_done: label='Trinsic Healer healer' ok=1 at=(1915,2809) legs=1 plans=1 why=''
+[17:29:45.068] INFO  [wave10_RevArchetype_32_] [action] scanning nearby mobiles for names
+[17:29:45.069] INFO  [wave10_RevArchetype_32_] [action] requested 3 paperdoll(s) for trade titles
+[17:29:45.084] INFO  [wave10_RevArchetype_32_] [mobiles] nearby (5):
+[17:29:45.084] INFO  [wave10_RevArchetype_32_]   Devin 0x0000F7B0
+[17:29:45.084] INFO  [wave10_RevArchetype_32_]   Ryanne 0x0000F775
+[17:29:45.084] INFO  [wave10_RevArchetype_32_]   Ambrose 0x0000F73D
+[17:29:45.085] INFO  [wave10_RevArchetype_32_]   Quenby 0x0000F7FA
+[17:29:45.085] INFO  [wave10_RevArchetype_32_]   Ghislaine 0x0000F74B
+[17:29:45.085] INFO  [wave10_RevArchetype_32_] [0x88] paperdoll 0x0000F7B0: "Devin, the healer"
+[17:29:45.085] INFO  [wave10_RevArchetype_32_] [world] Devin, the healer is a healer at (1915,2807)
+[17:29:45.085] INFO  [wave10_RevArchetype_32_] [0x88] paperdoll 0x0000F775: "Ryanne, the healer guildmistress"
+[17:29:45.085] INFO  [wave10_RevArchetype_32_] [world] Ryanne, the healer guildmistress is a healer at (1912,2802)
+[17:29:45.086] INFO  [wave10_RevArchetype_32_] [0x20] player @(1915,2809,0) facing=1
+[17:29:45.086] INFO  [wave10_RevArchetype_32_] [0x88] paperdoll 0x0000F73D: "Ambrose, the cook"
+[17:29:45.086] INFO  [wave10_RevArchetype_32_] [world] Ambrose, the cook is a cook at (1931,2798)
+[17:29:48.152] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:29:48.214] INFO  [wave10_RevArchetype_32_] [ACTION] vendor_buy start
+[17:29:48.214] INFO  [wave10_RevArchetype_32_] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[17:29:48.215] INFO  [wave10_RevArchetype_32_] [chat uni  ] Nyx: Devin buy
+[17:29:48.215] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: Greetings.  What might I do for thee?
+[17:29:48.215] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: My shop sells many things.
+[17:29:48.216] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 5 item(s)
+[17:29:48.216] INFO  [wave10_RevArchetype_32_] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[17:29:48.216] INFO  [wave10_RevArchetype_32_] [0x74] vendor shop data: cont=0x4000F7AA 5 item(s), layer=0x1A
+[17:29:48.216] INFO  [wave10_RevArchetype_32_] [0x74]   clean bandages               gfx=0x0E21 qty=10   price=1
+[17:29:48.216] INFO  [wave10_RevArchetype_32_] [0x74]   Heal                         gfx=0x0F0C qty=9    price=30
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [0x74]   Ginseng                      gfx=0x0F85 qty=18   price=3
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [0x74]   Garlic                       gfx=0x0F84 qty=17   price=3
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 0 item(s)
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[17:29:48.217] INFO  [wave10_RevArchetype_32_] [VENDOR] offer from 0x0000F7B0: 5 item(s)
+[17:29:48.218] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x4001223C clean bandages         x10  1 gp
+[17:29:48.218] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x4001223B Heal                   x9   30 gp
+[17:29:48.218] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x4001223A Ginseng                x18  3 gp
+[17:29:48.218] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x40012239 Garlic                 x17  3 gp
+[17:29:48.218] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x40012238 Refresh                x19  16 gp
+[17:29:48.218] LOG   [wave10_RevArchetype_32_] event vendor_offer: vendor=0x0000F7B0 items=5
+[17:29:48.219] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] vendor_buy success (4ms) vendor offer received
+[17:29:48.219] LOG   [wave10_RevArchetype_32_] event action_result: vendor_buy success took=4ms vendor offer received
+[17:29:48.219] INFO  [wave10_RevArchetype_32_] [0x24] vendor buy gump for 0x0000F7B0
+[17:29:48.274] INFO  [wave10_RevArchetype_32_] [ACTION] vendor_buy start
+[17:29:48.275] INFO  [wave10_RevArchetype_32_] [policy] allowed NPC purchase of i_bandage (0x0E21): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[17:29:48.275] INFO  [wave10_RevArchetype_32_] [VENDOR] buy item=0x4001223C qty=10 from vendor=0x0000F7B0 gold=9996
+[17:29:48.290] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[17:29:48.291] LOG   [wave10_RevArchetype_32_] event action_result: vendor_buy success took=16ms purchased item delivered
+[17:29:48.291] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: Here you are, Nyx That will be 10 gold coins.  I thank thee for thy business.
+[17:29:48.291] INFO  [wave10_RevArchetype_32_] [0x3B] vendor transaction closed: vendor=0x0000F7B0 flag=0
+[17:29:48.447] INFO  [wave10_RevArchetype_32_] [ACTION] vendor_buy start
+[17:29:48.447] INFO  [wave10_RevArchetype_32_] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[17:29:48.448] INFO  [wave10_RevArchetype_32_] [chat uni  ] Nyx: Devin buy
+[17:29:48.448] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[17:29:48.448] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 4 item(s)
+[17:29:48.448] INFO  [wave10_RevArchetype_32_] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[17:29:48.448] INFO  [wave10_RevArchetype_32_] [0x74] vendor shop data: cont=0x4000F7AA 4 item(s), layer=0x1A
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x74]   Heal                         gfx=0x0F0C qty=9    price=30
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x74]   Ginseng                      gfx=0x0F85 qty=18   price=3
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x74]   Garlic                       gfx=0x0F84 qty=17   price=3
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 0 item(s)
+[17:29:48.449] INFO  [wave10_RevArchetype_32_] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [VENDOR] offer from 0x0000F7B0: 4 item(s)
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x4001223B Heal                   x9   30 gp
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x4001223A Ginseng                x18  3 gp
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x40012239 Garlic                 x17  3 gp
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [VENDOR]   0x40012238 Refresh                x19  16 gp
+[17:29:48.450] LOG   [wave10_RevArchetype_32_] event vendor_offer: vendor=0x0000F7B0 items=4
+[17:29:48.450] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] vendor_buy success (4ms) vendor offer received
+[17:29:48.451] LOG   [wave10_RevArchetype_32_] event action_result: vendor_buy success took=4ms vendor offer received
+[17:29:48.451] INFO  [wave10_RevArchetype_32_] [0x24] vendor buy gump for 0x0000F7B0
+[17:29:50.567] INFO  [wave10_RevArchetype_32_] [ACTION] use_object start
+[17:29:50.567] INFO  [wave10_RevArchetype_32_] [ACTION] use_object serial=0x40019776
+[17:29:50.582] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 14 item(s)
+[17:29:50.582] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] use_object success (15ms) contents received
+[17:29:50.583] LOG   [wave10_RevArchetype_32_] event action_result: use_object success took=15ms contents received
+[17:29:53.110] INFO  [wave10_RevArchetype_32_] [ACTION] move_item start
+[17:29:53.110] INFO  [wave10_RevArchetype_32_] [ACTION] move_item serial=0x40019773 amount=1 dest=0x40019776
+[17:29:53.110] INFO  [wave10_RevArchetype_32_] [ITEM] drag serial=0x40019773 amount=1
+[17:29:53.110] INFO  [wave10_RevArchetype_32_] [ITEM] drop container=0x40019776
+[17:29:53.125] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Can't add this to the spellbook
+[17:29:53.126] WARN  [wave10_RevArchetype_32_] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019773 landed in 0x400197DD, not the destination 0x40019776
+[17:29:53.127] LOG   [wave10_RevArchetype_32_] event action_result: move_item server_failure took=16ms item 0x40019773 landed in 0x400197DD, not the destination 0x40019776
+[17:29:53.187] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:29:55.651] INFO  [wave10_RevArchetype_32_] [ACTION] use_object start
+[17:29:55.651] INFO  [wave10_RevArchetype_32_] [ACTION] use_object serial=0x40019776
+[17:29:55.667] INFO  [wave10_RevArchetype_32_] [0x3C] container contents: 14 item(s)
+[17:29:55.667] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] use_object success (16ms) contents received
+[17:29:55.668] LOG   [wave10_RevArchetype_32_] event action_result: use_object success took=16ms contents received
+[17:29:58.212] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Paladin's Guild scribe -> (2002,2721) r=5 from (1915,2809)
+[17:29:58.213] LOG   [wave10_RevArchetype_32_] event travel_start: label='Trinsic Paladin's Guild scribe' target=(2002,2721) radius=5 from=(1915,2809)
+[17:29:58.213] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable   <- chosen
+[17:29:58.213] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable
+[17:29:58.213] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:58.214] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:58.214] LOG   [wave10_RevArchetype_32_] event travel_mode: moongate
+[17:29:58.214] INFO  [wave10_RevArchetype_32_] [travel] plan Trinsic Paladin's Guild scribe: ok legs=4 ~144 tiles transit=0 nodes=127
+[17:29:58.214] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:29:58.277] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1915,2809,0); target (1911,2805); stopped short (off by 8 tile(s))
+[17:29:58.277] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1915,2809) target=(1911,2805) arrived=0 off=8
+[17:29:58.277] INFO  [wave10_RevArchetype_32_] [action] goto (1944,2808) from (1915,2809,0)
+[17:29:58.278] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1944,2808) from=(1915,2809)
+[17:29:58.278] INFO  [wave10_RevArchetype_32_] [bot] running from (1915,2809,0) to (1944,2808)
+[17:29:58.278] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1944,2808) in background
+[17:29:58.338] INFO  [wave10_RevArchetype_32_] [bot] replan to (1944,2808): 34 steps in 4106.4us
+[17:29:59.722] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1917,2813,z0); OpenDoor before step
+[17:29:59.737] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:30:03.274] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:08.332] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:08.878] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1944,2808,0)
+[17:30:08.878] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1944,2808,0); target (1944,2808); ARRIVED (off by 0 tile(s))
+[17:30:08.878] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1944,2808) target=(1944,2808) arrived=1 off=0
+[17:30:08.878] INFO  [wave10_RevArchetype_32_] [action] goto (1976,2776) from (1944,2808,0)
+[17:30:08.878] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1976,2776) from=(1944,2808)
+[17:30:08.878] INFO  [wave10_RevArchetype_32_] [bot] running from (1944,2808,0) to (1976,2776)
+[17:30:08.879] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1976,2776) in background
+[17:30:08.940] INFO  [wave10_RevArchetype_32_] [bot] replan to (1976,2776): 43 steps in 4237.5us
+[17:30:13.394] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:18.417] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:19.749] INFO  [wave10_RevArchetype_32_] [war] entering war mode
+[17:30:19.749] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:19.749] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:19.761] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:19.762] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (12ms) server accepted the target
+[17:30:19.762] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=12ms server accepted the target
+[17:30:20.990] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:20.991] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:21.006] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:21.006] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:30:21.006] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=16ms server accepted the target
+[17:30:21.869] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=56; server says (1973,2777,17) facing=1
+[17:30:21.869] INFO  [wave10_RevArchetype_32_] [bot] step (1973,2777,17)->(1974,2776,10) rejected; OpenDoor + retry
+[17:30:22.235] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:22.235] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:22.235] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:22.236] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:22.236] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=1ms server accepted the target
+[17:30:22.606] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=0; server says (1973,2777,17) facing=1
+[17:30:22.606] INFO  [wave10_RevArchetype_32_] [bot] step (1973,2777,17)->(1974,2776,10) rejected; avoiding edge + rerouting
+[17:30:22.606] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1976,2776) in background
+[17:30:22.606] INFO  [wave10_RevArchetype_32_] [bot] replan to (1976,2776): 3 steps in 32.8us
+[17:30:23.425] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:23.487] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:23.487] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:23.487] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:23.488] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (0ms) server accepted the target
+[17:30:23.488] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=0ms server accepted the target
+[17:30:24.318] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1976,2776,10)
+[17:30:24.318] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1976,2776,10); target (1976,2776); ARRIVED (off by 0 tile(s))
+[17:30:24.318] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1976,2776) target=(1976,2776) arrived=1 off=0
+[17:30:24.319] INFO  [wave10_RevArchetype_32_] [action] goto (1992,2744) from (1976,2776,10)
+[17:30:24.319] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1992,2744) from=(1976,2776)
+[17:30:24.319] INFO  [wave10_RevArchetype_32_] [bot] running from (1976,2776,10) to (1992,2744)
+[17:30:24.319] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1992,2744) in background
+[17:30:24.380] INFO  [wave10_RevArchetype_32_] [bot] replan to (1992,2744): 55 steps in 4251.7us
+[17:30:24.689] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:24.689] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:24.689] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:24.689] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:30:24.689] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=1ms server accepted the target
+[17:30:25.916] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:25.917] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:25.933] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:25.934] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (18ms) server accepted the target
+[17:30:25.934] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=18ms server accepted the target
+[17:30:27.173] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:30:27.173] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:30:27.189] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:30:27.189] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:30:27.189] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=16ms server accepted the target
+[17:30:28.404] INFO  [wave10_RevArchetype_32_] [war] leaving war mode
+[17:30:28.420] INFO  [wave10_RevArchetype_32_] [ACTION] cast_spell start
+[17:30:28.420] INFO  [wave10_RevArchetype_32_] [ACTION] cast_spell id=2 target=0x00000000 mana=24
+[17:30:28.420] INFO  [wave10_RevArchetype_32_] [chat ascii] System: The spell is not in your spellbook.
+[17:30:28.420] WARN  [wave10_RevArchetype_32_] [ACTION_RESULT] cast_spell server_failure (1ms) The spell is not in your spellbook.
+[17:30:28.420] LOG   [wave10_RevArchetype_32_] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[17:30:28.479] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:30.267] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=25; server says (1999,2776,20) facing=1
+[17:30:30.268] INFO  [wave10_RevArchetype_32_] [bot] step (1999,2776,20)->(2000,2775,19) rejected; OpenDoor + retry
+[17:30:31.010] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=0; server says (1999,2776,20) facing=1
+[17:30:31.010] INFO  [wave10_RevArchetype_32_] [bot] step (1999,2776,20)->(2000,2775,19) rejected; avoiding edge + rerouting
+[17:30:31.010] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1992,2744) in background
+[17:30:31.070] INFO  [wave10_RevArchetype_32_] [bot] replan to (1992,2744): 34 steps in 595.2us
+[17:30:33.493] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:37.857] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=29; server says (2000,2752,30) facing=7
+[17:30:37.857] INFO  [wave10_RevArchetype_32_] [bot] step (2000,2752,30)->(1999,2751,30) rejected; OpenDoor + retry
+[17:30:38.533] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:38.609] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=0; server says (2000,2752,30) facing=7
+[17:30:38.609] INFO  [wave10_RevArchetype_32_] [bot] step (2000,2752,30)->(1999,2751,30) rejected; avoiding edge + rerouting
+[17:30:38.610] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1992,2744) in background
+[17:30:38.610] INFO  [wave10_RevArchetype_32_] [bot] replan to (1992,2744): 10 steps in 149.5us
+[17:30:41.886] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1992,2744,30)
+[17:30:41.886] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1992,2744,30); target (1992,2744); ARRIVED (off by 0 tile(s))
+[17:30:41.886] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1992,2744) target=(1992,2744) arrived=1 off=0
+[17:30:41.886] INFO  [wave10_RevArchetype_32_] [action] goto (2002,2721) from (1992,2744,30)
+[17:30:41.887] LOG   [wave10_RevArchetype_32_] event goto_start: target=(2002,2721) from=(1992,2744)
+[17:30:41.887] INFO  [wave10_RevArchetype_32_] [bot] running from (1992,2744,30) to (2002,2721,z30)
+[17:30:41.887] INFO  [wave10_RevArchetype_32_] [bot] planning path to (2002,2721) in background
+[17:30:41.946] INFO  [wave10_RevArchetype_32_] [bot] replan to (2002,2721): 31 steps in 610.1us
+[17:30:43.590] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:48.649] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:49.212] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (2003,2727,z30); OpenDoor before step
+[17:30:49.227] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:30:49.982] INFO  [wave10_RevArchetype_32_] [chat ascii] Ansel: What is it thou wishest?
+[17:30:50.630] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Paladin's Guild scribe ARRIVED at (2003,2724,30)
+[17:30:50.630] LOG   [wave10_RevArchetype_32_] event travel_done: label='Trinsic Paladin's Guild scribe' ok=1 at=(2003,2724) legs=4 plans=1 why=''
+[17:30:51.465] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Wind baker -- 2020 tiles and 2 gates for a service Baked Delights baker offers
+[17:30:51.466] INFO  [wave10_RevArchetype_32_] [travel] Baked Delights baker -> (1880,2802) r=5 from (2003,2724)
+[17:30:51.466] LOG   [wave10_RevArchetype_32_] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(2003,2724)
+[17:30:51.466] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable   <- chosen
+[17:30:51.466] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable
+[17:30:51.466] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:51.467] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:51.467] LOG   [wave10_RevArchetype_32_] event travel_mode: moongate
+[17:30:51.467] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=5 ~176 tiles transit=0 nodes=91
+[17:30:51.529] INFO  [wave10_RevArchetype_32_] [action] goto finished at (2003,2724,30); target (2002,2721); stopped short (off by 4 tile(s))
+[17:30:51.529] LOG   [wave10_RevArchetype_32_] event goto_done: at=(2003,2724) target=(2002,2721) arrived=0 off=4
+[17:30:51.529] INFO  [wave10_RevArchetype_32_] [action] goto (1992,2760) from (2003,2724,30)
+[17:30:51.529] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1992,2760) from=(2003,2724)
+[17:30:51.530] INFO  [wave10_RevArchetype_32_] [bot] running from (2003,2724,30) to (1992,2760)
+[17:30:51.530] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1992,2760) in background
+[17:30:51.589] INFO  [wave10_RevArchetype_32_] [bot] replan to (1992,2760): 52 steps in 16217.4us
+[17:30:53.697] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:30:58.718] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:03.734] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:08.546] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1992,2760,0)
+[17:31:08.547] INFO  [wave10_RevArchetype_32_] [war] entering war mode
+[17:31:08.547] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:31:08.548] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:31:08.548] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1992,2760,0); target (1992,2760); ARRIVED (off by 0 tile(s))
+[17:31:08.548] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1992,2760) target=(1992,2760) arrived=1 off=0
+[17:31:08.548] INFO  [wave10_RevArchetype_32_] [action] goto_mobile 0x00016B66 at (1980,2769)
+[17:31:08.548] INFO  [wave10_RevArchetype_32_] [action] goto (1981,2769) from (1992,2760,0)
+[17:31:08.548] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1981,2769) from=(1992,2760)
+[17:31:08.549] INFO  [wave10_RevArchetype_32_] [bot] running from (1992,2760,0) to (1981,2769)
+[17:31:08.549] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:08.562] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:31:08.562] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (15ms) server accepted the target
+[17:31:08.562] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=15ms server accepted the target
+[17:31:08.562] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 32 steps in 6312.0us
+[17:31:08.746] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:09.747] INFO  [wave10_RevArchetype_32_] [war] leaving war mode
+[17:31:13.755] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:18.808] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:20.682] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=47; server says (1982,2770,6) facing=7
+[17:31:20.684] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; OpenDoor + retry
+[17:31:21.428] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=0; server says (1982,2770,6) facing=7
+[17:31:21.430] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:21.431] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:21.431] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 56.2us
+[17:31:23.369] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=5; server says (1982,2770,6) facing=7
+[17:31:23.370] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:23.370] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:23.370] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 61.0us
+[17:31:23.818] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:25.140] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=5; server says (1982,2770,6) facing=7
+[17:31:25.140] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:25.141] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:25.141] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 61.3us
+[17:31:27.089] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=5; server says (1982,2770,6) facing=7
+[17:31:27.090] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:27.090] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:27.090] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 58.9us
+[17:31:28.870] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:29.008] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=5; server says (1982,2770,6) facing=7
+[17:31:29.008] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:29.009] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:29.009] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 63.6us
+[17:31:29.813] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:31:29.813] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:31:29.828] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:31:29.828] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:31:29.828] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=16ms server accepted the target
+[17:31:30.821] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=5; server says (1982,2770,6) facing=7
+[17:31:30.821] INFO  [wave10_RevArchetype_32_] [bot] step (1982,2770,6)->(1981,2769,6) rejected; avoiding edge + rerouting
+[17:31:30.821] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1981,2769) in background
+[17:31:30.822] INFO  [wave10_RevArchetype_32_] [bot] replan to (1981,2769): 3 steps in 69.2us
+[17:31:31.485] WARN  [wave10_RevArchetype_32_] [bot] 0x20 resync; aborting path
+[17:31:31.485] INFO  [wave10_RevArchetype_32_] [0x20] player @(1981,2770,8) facing=7
+[17:31:31.486] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1981,2770,8); target (1981,2769); stopped short (off by 1 tile(s))
+[17:31:31.486] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1981,2770) target=(1981,2769) arrived=0 off=1
+[17:31:32.346] INFO  [wave10_RevArchetype_32_] [war] leaving war mode
+[17:31:32.363] INFO  [wave10_RevArchetype_32_] [ACTION] attack start
+[17:31:32.363] INFO  [wave10_RevArchetype_32_] [ACTION] attack serial=0x00016B66
+[17:31:32.377] INFO  [wave10_RevArchetype_32_] [0xAA] attacking 0x00016B66
+[17:31:32.377] INFO  [wave10_RevArchetype_32_] [ACTION_RESULT] attack success (14ms) server accepted the target
+[17:31:32.377] LOG   [wave10_RevArchetype_32_] event action_result: attack success took=14ms server accepted the target
+[17:31:32.747] INFO  [wave10_RevArchetype_32_] [action] goto (1992,2760) from (1981,2770,8)
+[17:31:32.748] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1992,2760) from=(1981,2770)
+[17:31:32.748] INFO  [wave10_RevArchetype_32_] [bot] running from (1981,2770,8) to (1992,2760)
+[17:31:32.748] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1992,2760) in background
+[17:31:32.809] INFO  [wave10_RevArchetype_32_] [bot] replan to (1992,2760): 31 steps in 6817.3us
+[17:31:33.872] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:34.891] INFO  [wave10_RevArchetype_32_] [war] leaving war mode
+[17:31:38.880] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:40.781] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable   <- chosen
+[17:31:40.782] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable
+[17:31:40.782] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:40.782] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:40.782] LOG   [wave10_RevArchetype_32_] event travel_mode: moongate
+[17:31:40.783] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=4 ~136 tiles transit=0 nodes=93
+[17:31:43.874] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1992,2760,0)
+[17:31:43.874] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1992,2760,0); target (1992,2760); ARRIVED (off by 0 tile(s))
+[17:31:43.874] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1992,2760) target=(1992,2760) arrived=1 off=0
+[17:31:43.875] INFO  [wave10_RevArchetype_32_] [action] goto (1928,2808) from (1992,2760,0)
+[17:31:43.875] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1928,2808) from=(1992,2760)
+[17:31:43.875] INFO  [wave10_RevArchetype_32_] [bot] running from (1992,2760,0) to (1928,2808)
+[17:31:43.875] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1928,2808) in background
+[17:31:43.935] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:43.998] INFO  [wave10_RevArchetype_32_] [bot] replan to (1928,2808): 92 steps in 68552.4us
+[17:31:48.945] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:53.963] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:31:59.009] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:01.476] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=73; server says (1961,2782,12) facing=5
+[17:32:01.476] INFO  [wave10_RevArchetype_32_] [bot] step (1961,2782,12)->(1960,2783,10) rejected; OpenDoor + retry
+[17:32:02.218] WARN  [wave10_RevArchetype_32_] [0x21] move REJECTED seq=0; server says (1961,2782,12) facing=5
+[17:32:02.219] INFO  [wave10_RevArchetype_32_] [bot] step (1961,2782,12)->(1960,2783,10) rejected; avoiding edge + rerouting
+[17:32:02.219] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1928,2808) in background
+[17:32:02.280] INFO  [wave10_RevArchetype_32_] [bot] replan to (1928,2808): 38 steps in 19434.7us
+[17:32:04.060] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:09.085] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:13.722] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1928,2808,0)
+[17:32:13.722] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1928,2808,0); target (1928,2808); ARRIVED (off by 0 tile(s))
+[17:32:13.723] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1928,2808) target=(1928,2808) arrived=1 off=0
+[17:32:13.723] INFO  [wave10_RevArchetype_32_] [action] goto (1896,2808) from (1928,2808,0)
+[17:32:13.723] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1896,2808) from=(1928,2808)
+[17:32:13.723] INFO  [wave10_RevArchetype_32_] [bot] running from (1928,2808,0) to (1896,2808)
+[17:32:13.723] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1896,2808) in background
+[17:32:13.783] INFO  [wave10_RevArchetype_32_] [bot] replan to (1896,2808): 35 steps in 2603.6us
+[17:32:14.090] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:19.149] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:21.838] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1898,2810,z0); OpenDoor before step
+[17:32:21.853] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:32:24.184] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:24.370] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1896,2808,0)
+[17:32:24.370] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1896,2808); ARRIVED (off by 0 tile(s))
+[17:32:24.371] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1896,2808) arrived=1 off=0
+[17:32:24.371] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:24.371] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:24.372] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:24.372] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:24.372] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:24.432] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:24.432] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:25.691] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:25.691] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:25.692] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:25.692] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:25.692] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:25.753] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:25.754] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:27.003] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:27.003] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:27.004] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:27.004] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:27.004] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:27.065] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:27.066] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:28.303] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:32:28.304] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:32:28.304] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:28.304] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:28.304] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:32:28.304] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:32:29.205] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:31.332] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:31.332] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:31.333] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:31.333] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:31.333] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:31.393] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:31.394] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:32.628] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:32.628] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:32.629] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:32.629] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:32.629] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:32.689] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:32.689] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:33.915] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:33.916] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:33.916] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:33.916] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:33.916] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:33.977] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:33.978] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:34.223] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:35.213] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:32:35.213] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:32:35.213] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:35.214] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:35.214] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:32:35.214] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:32:39.247] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:39.744] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:39.744] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:39.745] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:39.745] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:39.745] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:39.805] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:39.806] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:41.035] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:41.035] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:41.035] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:41.035] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:41.036] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:41.067] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:41.067] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:42.323] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2808,0)
+[17:32:42.324] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2808)
+[17:32:42.324] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1880,2802,z0)
+[17:32:42.324] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:42.324] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:42.385] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2808,0); target (1880,2802); stopped short (off by 22 tile(s))
+[17:32:42.385] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2808) target=(1880,2802) arrived=0 off=22
+[17:32:42.385] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1896,2808,0); trying to reach (1896,2824,6) to get somewhere routable (escape 1/3)
+[17:32:42.385] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1896,2808,0) to=(1896,2824) attempt=1
+[17:32:42.385] INFO  [wave10_RevArchetype_32_] [action] goto (1896,2824) from (1896,2808,0)
+[17:32:42.386] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1896,2824) from=(1896,2808)
+[17:32:42.386] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2808,0) to (1896,2824,z6)
+[17:32:42.386] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1896,2824) in background
+[17:32:42.446] INFO  [wave10_RevArchetype_32_] [bot] replan to (1896,2824): 42 steps in 18355.5us
+[17:32:44.288] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:49.306] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:54.360] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:32:56.164] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1896,2824,6)
+[17:32:56.165] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1896,2824); ARRIVED (off by 0 tile(s))
+[17:32:56.165] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1896,2824) arrived=1 off=0
+[17:32:56.165] INFO  [wave10_RevArchetype_32_] [travel] recovery walk reached its anchor at (1896,2824,6) (off 0); attempt 1/3
+[17:32:56.165] LOG   [wave10_RevArchetype_32_] event travel_recovery_done: reached=1 at=(1896,2824,6) off=0 attempt=1
+[17:32:56.226] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:32:56.226] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:32:56.227] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:56.227] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:56.227] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:32:56.227] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:32:56.286] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:32:56.287] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:32:56.287] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:32:56.287] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:56.287] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:56.347] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:32:56.348] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:32:57.586] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:32:57.586] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:32:57.586] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:32:57.586] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:57.587] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:57.646] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:32:57.646] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:32:58.847] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:32:58.847] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:32:58.847] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:32:58.847] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:32:58.847] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:32:58.909] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:32:58.909] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:32:59.400] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:00.142] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:00.143] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:00.143] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:00.143] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:00.143] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:00.144] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:33:01.666] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:01.666] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:01.666] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:01.667] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:01.667] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:01.727] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:01.727] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:02.931] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:02.932] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:02.938] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:02.939] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:02.939] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:02.994] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:02.994] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:04.225] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:04.226] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:04.226] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:04.226] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:04.226] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:04.287] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:04.287] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:04.457] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:05.539] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:05.540] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:05.540] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.540] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.540] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:05.540] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:33:08.561] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:08.561] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:08.561] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:08.562] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:08.562] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:08.623] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:08.623] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:09.485] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:09.824] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:09.825] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:09.825] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:09.825] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:09.825] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:09.886] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:09.886] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:11.089] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:11.089] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:11.090] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:11.090] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:11.090] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:11.136] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:11.136] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:12.385] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:12.385] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:12.386] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:12.386] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:12.386] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:12.386] INFO  [wave10_RevArchetype_32_] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:33:14.495] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:16.889] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:16.889] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:16.889] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:16.889] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:16.889] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:16.949] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:16.949] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:18.187] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:18.188] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:18.188] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:18.188] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:18.188] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:18.250] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:18.250] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:19.486] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1896,2824,6)
+[17:33:19.486] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:33:19.486] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:33:19.486] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:19.487] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:19.547] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:33:19.547] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:33:19.548] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 2/3)
+[17:33:19.548] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1896,2824,6) to=(1880,2808) attempt=2
+[17:33:19.548] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2808) from (1896,2824,6)
+[17:33:19.548] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2808) from=(1896,2824)
+[17:33:19.548] INFO  [wave10_RevArchetype_32_] [bot] running from (1896,2824,6) to (1880,2808,z10)
+[17:33:19.549] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2808) in background
+[17:33:19.549] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:19.608] INFO  [wave10_RevArchetype_32_] [bot] replan to (1880,2808): 22 steps in 2711.3us
+[17:33:23.723] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1885,2813,z10); OpenDoor before step
+[17:33:23.738] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:33:24.596] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:26.478] INFO  [wave10_RevArchetype_32_] [travel] Baked Delights baker ARRIVED at (1883,2807,10)
+[17:33:26.478] LOG   [wave10_RevArchetype_32_] event travel_done: label='Baked Delights baker' ok=1 at=(1883,2807) legs=1 plans=4 why=''
+[17:33:26.540] INFO  [wave10_RevArchetype_32_] [action] scanning nearby mobiles for names
+[17:33:26.540] INFO  [wave10_RevArchetype_32_] [action] requested 2 paperdoll(s) for trade titles
+[17:33:26.541] INFO  [wave10_RevArchetype_32_] [mobiles] nearby (2):
+[17:33:26.541] INFO  [wave10_RevArchetype_32_]   Drina 0x0000F784
+[17:33:26.541] INFO  [wave10_RevArchetype_32_]   Raven 0x0000F76A
+[17:33:26.541] INFO  [wave10_RevArchetype_32_] [0x20] player @(1883,2807,10) facing=2
+[17:33:26.541] INFO  [wave10_RevArchetype_32_] [0x88] paperdoll 0x0000F76A: "Raven, the jeweler"
+[17:33:26.541] INFO  [wave10_RevArchetype_32_] [world] Raven, the jeweler is a jeweler at (1896,2809)
+[17:33:26.542] INFO  [wave10_RevArchetype_32_] [0x20] player @(1883,2807,10) facing=7
+[17:33:26.542] INFO  [wave10_RevArchetype_32_] [0x88] paperdoll 0x0000F784: "Drina, the baker"
+[17:33:26.542] INFO  [wave10_RevArchetype_32_] [world] Drina, the baker is a baker at (1880,2802)
+[17:33:29.615] INFO  [wave10_RevArchetype_32_] [travel] mobile 0x0000F784 -> (1880,2802) r=1 from (1883,2807)
+[17:33:29.615] LOG   [wave10_RevArchetype_32_] event travel_start: label='mobile 0x0000F784' target=(1880,2802) radius=1 from=(1883,2807)
+[17:33:29.616] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:29.616] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:29.616] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:29.616] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:29.616] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:29.616] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:33:29.617] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:29.677] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2808); stopped short (off by 4 tile(s))
+[17:33:29.677] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2808) arrived=0 off=4
+[17:33:29.678] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:29.678] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:29.678] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:29.678] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:29.678] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:29.740] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:29.740] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:30.977] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:30.977] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:30.978] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:30.978] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:30.978] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:31.040] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:31.040] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:32.273] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:32.273] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:32.273] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:32.273] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:32.274] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:32.334] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:32.335] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:33.568] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:33.569] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:33.569] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:33.569] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:33.569] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:33.569] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:33:34.617] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:35.114] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:35.115] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:35.115] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:35.115] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:35.115] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:35.177] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:35.177] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:36.430] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:36.430] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:36.430] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:36.431] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:36.431] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:36.491] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:36.492] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:37.720] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:37.720] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:37.721] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:37.721] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:37.721] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:37.782] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:37.783] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:39.015] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:39.016] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:39.016] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:39.016] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:39.016] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:39.017] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:33:39.628] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:42.024] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:42.025] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:42.025] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:42.025] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:42.025] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:42.087] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:42.087] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:43.328] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:43.328] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:43.328] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:43.329] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:43.329] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:43.390] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:43.391] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:44.613] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:44.613] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:44.613] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:44.613] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:44.613] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:44.673] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:44.673] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:44.673] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:45.900] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:33:45.901] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:33:45.901] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.901] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.901] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:33:45.901] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:33:49.726] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:50.418] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:50.418] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:50.418] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:50.418] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:50.419] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:50.479] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:50.479] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:51.711] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:51.711] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:51.712] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:51.712] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:51.712] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:51.773] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:51.773] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:53.005] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1883,2807,10)
+[17:33:53.005] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1883,2807)
+[17:33:53.005] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1880,2802,z0)
+[17:33:53.006] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:33:53.006] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:33:53.066] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1883,2807,10); target (1880,2802); stopped short (off by 8 tile(s))
+[17:33:53.067] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1883,2807) target=(1880,2802) arrived=0 off=8
+[17:33:53.067] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1883,2807,10); trying to reach (1896,2808,0) to get somewhere routable (escape 1/3)
+[17:33:53.067] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1883,2807,10) to=(1896,2808) attempt=1
+[17:33:53.067] INFO  [wave10_RevArchetype_32_] [action] goto (1896,2808) from (1883,2807,10)
+[17:33:53.067] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1896,2808) from=(1883,2807)
+[17:33:53.067] INFO  [wave10_RevArchetype_32_] [bot] running from (1883,2807,10) to (1896,2808,z0)
+[17:33:53.068] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1896,2808) in background
+[17:33:53.128] INFO  [wave10_RevArchetype_32_] [bot] replan to (1896,2808): 26 steps in 10871.2us
+[17:33:54.141] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 4: anchor=6 new segment=7 path=24 in 471.2us
+[17:33:54.568] INFO  [wave10_RevArchetype_32_] [chat ascii] System: World save in 10 seconds
+[17:33:54.645] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 4: anchor=6 new segment=5 path=22 in 268.5us
+[17:33:54.767] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:55.138] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 253.4us
+[17:33:55.653] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 238.1us
+[17:33:56.113] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 351.3us
+[17:33:56.559] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 184.3us
+[17:33:57.078] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 272.9us
+[17:33:57.523] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 247.8us
+[17:33:57.992] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 356.9us
+[17:33:58.388] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 164.5us
+[17:33:58.896] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 424.2us
+[17:33:59.330] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=22 in 308.6us
+[17:33:59.815] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:33:59.816] WARN  [wave10_RevArchetype_32_] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:33:59.816] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1885,2812,10)
+[17:33:59.817] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1885,2812,10); target (1896,2808); stopped short (off by 15 tile(s))
+[17:33:59.817] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1885,2812) target=(1896,2808) arrived=0 off=15
+[17:33:59.817] INFO  [wave10_RevArchetype_32_] [travel] recovery walk fell short at (1885,2812,10) (off 11); attempt 1/3
+[17:33:59.817] LOG   [wave10_RevArchetype_32_] event travel_recovery_done: reached=0 at=(1885,2812,10) off=11 attempt=1
+[17:33:59.817] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1885,2812,10); trying to reach (1880,2824,5) to get somewhere routable (escape 2/3)
+[17:33:59.817] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1885,2812,10) to=(1880,2824) attempt=2
+[17:33:59.818] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2824) from (1885,2812,10)
+[17:33:59.818] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2824) from=(1885,2812)
+[17:33:59.818] INFO  [wave10_RevArchetype_32_] [bot] running from (1885,2812,10) to (1880,2824,z5)
+[17:33:59.818] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2824) in background
+[17:34:00.029] INFO  [wave10_RevArchetype_32_] [bot] replan to (1880,2824): 115 steps in 191987.4us
+[17:34:00.280] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=113 in 345.6us
+[17:34:00.786] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1886,2814,z5); OpenDoor before step
+[17:34:00.786] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:34:04.599] INFO  [wave10_RevArchetype_32_] [chat ascii] System: World save has been initiated.
+[17:34:04.844] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevArchetype_32_] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1895,2817,0); target (1880,2824); stopped short (off by 22 tile(s))
+[17:34:09.824] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1895,2817) target=(1880,2824) arrived=0 off=22
+[17:34:09.824] INFO  [wave10_RevArchetype_32_] [travel] recovery walk fell short at (1895,2817,0) (off 15); attempt 1/3
+[17:34:09.825] LOG   [wave10_RevArchetype_32_] event travel_recovery_done: reached=0 at=(1895,2817,0) off=15 attempt=1
+[17:34:09.825] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1895,2817,0); trying to reach (1880,2808,10) to get somewhere routable (escape 3/3)
+[17:34:09.825] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1895,2817,0) to=(1880,2808) attempt=3
+[17:34:09.825] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2808) from (1895,2817,0)
+[17:34:09.825] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2808) from=(1895,2817)
+[17:34:09.826] INFO  [wave10_RevArchetype_32_] [bot] running from (1895,2817,0) to (1880,2808,z10)
+[17:34:09.826] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2808) in background
+[17:34:09.886] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:09.886] INFO  [wave10_RevArchetype_32_] [bot] replan to (1880,2808): 20 steps in 2527.9us
+[17:34:09.907] WARN  [wave10_RevArchetype_32_] [0x22] ack seq=18, expected 0 — resyncing
+[17:34:09.920] WARN  [wave10_RevArchetype_32_] [0x22] unsolicited ack seq=0
+[17:34:12.785] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1885,2813,z10); OpenDoor before step
+[17:34:12.799] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:34:14.893] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:16.899] INFO  [wave10_RevArchetype_32_] [bot] arrived at (1880,2808,10)
+[17:34:16.900] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2808); ARRIVED (off by 0 tile(s))
+[17:34:16.900] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2808) arrived=1 off=0
+[17:34:16.900] INFO  [wave10_RevArchetype_32_] [travel] recovery walk reached its anchor at (1880,2808,10) (off 0); attempt 1/3
+[17:34:16.900] LOG   [wave10_RevArchetype_32_] event travel_recovery_done: reached=1 at=(1880,2808,10) off=0 attempt=1
+[17:34:16.959] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:16.959] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:16.959] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:16.960] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:16.960] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:16.960] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:17.019] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:17.020] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:17.020] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:17.020] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:17.020] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:17.082] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:17.083] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:18.318] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:18.319] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:18.319] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:18.319] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:18.319] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:18.379] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:18.380] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:19.617] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:19.617] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:19.618] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:19.619] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:19.619] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:19.677] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:19.678] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:19.923] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:20.909] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:20.910] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:20.910] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:20.910] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:20.910] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:20.911] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:22.423] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:22.424] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:22.424] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:22.424] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:22.424] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:22.425] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:22.425] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:23.676] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:23.676] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:23.676] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:23.677] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:23.677] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:23.737] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:23.737] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:24.943] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:24.944] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:24.944] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:24.944] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:24.944] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:24.944] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:25.006] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:25.007] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:26.254] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:26.254] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:26.255] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:26.255] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:26.255] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:26.255] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:29.304] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:29.304] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:29.304] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:29.305] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:29.305] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:29.366] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:29.366] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:29.981] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:30.582] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:30.582] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:30.583] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:30.583] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:30.583] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:30.643] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:30.644] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:31.875] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:31.876] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:31.876] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:31.876] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:31.876] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:31.936] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:31.936] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:33.178] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:33.178] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:33.178] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:33.178] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:33.178] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:33.179] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F784: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:34.981] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:37.684] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:37.685] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:37.685] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:37.685] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:37.685] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:37.745] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:37.745] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:38.974] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:38.975] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:38.975] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:38.975] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:38.975] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:39.036] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:39.036] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:40.005] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:40.281] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1880,2808,10)
+[17:34:40.281] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1880,2808)
+[17:34:40.282] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1880,2802,z0)
+[17:34:40.282] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:34:40.282] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:40.342] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1880,2808,10); target (1880,2802); stopped short (off by 6 tile(s))
+[17:34:40.343] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1880,2808) target=(1880,2802) arrived=0 off=6
+[17:34:40.343] INFO  [wave10_RevArchetype_32_] [travel] mobile 0x0000F784 FAILED at (1880,2808,10) -- tile route stopped short
+[17:34:40.344] LOG   [wave10_RevArchetype_32_] event travel_failed: label='mobile 0x0000F784' ok=0 at=(1880,2808) legs=1 plans=4 why='tile route stopped short'
+[17:34:40.453] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Cove healer -- 1296 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:34:40.453] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Delucia healer -- 1692 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:34:40.454] INFO  [wave10_RevArchetype_32_] [travel] place: skipping Wind healer -- 1852 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:34:40.454] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1880,2808)
+[17:34:40.454] LOG   [wave10_RevArchetype_32_] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1880,2808)
+[17:34:40.454] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:40.454] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:40.454] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:40.455] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:40.455] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:40.455] INFO  [wave10_RevArchetype_32_] [travel] plan Trinsic Healer healer: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:34:40.512] INFO  [wave10_RevArchetype_32_] [action] goto (1911,2805) from (1880,2808,10)
+[17:34:40.512] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1911,2805) from=(1880,2808)
+[17:34:40.512] INFO  [wave10_RevArchetype_32_] [bot] running from (1880,2808,10) to (1911,2805,z0)
+[17:34:40.512] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1911,2805) in background
+[17:34:40.575] INFO  [wave10_RevArchetype_32_] [bot] replan to (1911,2805): 48 steps in 11656.6us
+[17:34:43.850] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1886,2814,z10); OpenDoor before step
+[17:34:43.865] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:34:45.065] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:50.098] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:52.914] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1915,2812,z0); OpenDoor before step
+[17:34:52.929] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:34:54.266] INFO  [wave10_RevArchetype_32_] [travel] Trinsic Healer healer ARRIVED at (1915,2810,0)
+[17:34:54.267] LOG   [wave10_RevArchetype_32_] event travel_done: label='Trinsic Healer healer' ok=1 at=(1915,2810) legs=1 plans=1 why=''
+[17:34:54.390] INFO  [wave10_RevArchetype_32_] [travel] mobile 0x0000F7B0 -> (1909,2804) r=1 from (1915,2810)
+[17:34:54.390] LOG   [wave10_RevArchetype_32_] event travel_start: label='mobile 0x0000F7B0' target=(1909,2804) radius=1 from=(1915,2810)
+[17:34:54.390] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:34:54.390] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:34:54.391] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.391] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.391] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:34:54.391] INFO  [wave10_RevArchetype_32_] [travel] plan mobile 0x0000F7B0: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:54.422] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1915,2810,0); target (1911,2805); stopped short (off by 9 tile(s))
+[17:34:54.422] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1915,2810) target=(1911,2805) arrived=0 off=9
+[17:34:54.423] INFO  [wave10_RevArchetype_32_] [action] goto (1909,2804) from (1915,2810,0)
+[17:34:54.423] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1909,2804) from=(1915,2810)
+[17:34:54.423] INFO  [wave10_RevArchetype_32_] [bot] running from (1915,2810,0) to (1909,2804,z0)
+[17:34:54.423] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1909,2804) in background
+[17:34:54.423] INFO  [wave10_RevArchetype_32_] [bot] replan to (1909,2804): 6 steps in 84.4us
+[17:34:55.133] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:34:56.015] INFO  [wave10_RevArchetype_32_] [travel] mobile 0x0000F7B0 ARRIVED at (1910,2805,0)
+[17:34:56.016] LOG   [wave10_RevArchetype_32_] event travel_done: label='mobile 0x0000F7B0' ok=1 at=(1910,2805) legs=1 plans=1 why=''
+[17:34:58.292] INFO  [wave10_RevArchetype_32_] [action] scanning nearby mobiles for names
+[17:34:58.307] INFO  [wave10_RevArchetype_32_] [mobiles] nearby (3):
+[17:34:58.308] INFO  [wave10_RevArchetype_32_]   Devin 0x0000F7B0
+[17:34:58.308] INFO  [wave10_RevArchetype_32_]   Ryanne 0x0000F775
+[17:34:58.308] INFO  [wave10_RevArchetype_32_]   Raven 0x0000F76A
+[17:35:00.153] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:01.321] INFO  [wave10_RevArchetype_32_] [action] scanning nearby mobiles for names
+[17:35:01.337] INFO  [wave10_RevArchetype_32_] [mobiles] nearby (3):
+[17:35:01.337] INFO  [wave10_RevArchetype_32_]   Devin 0x0000F7B0
+[17:35:01.337] INFO  [wave10_RevArchetype_32_]   Ryanne 0x0000F775
+[17:35:01.337] INFO  [wave10_RevArchetype_32_]   Raven 0x0000F76A
+[17:35:02.282] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: Thou wishest to speak with me?
+[17:35:04.379] INFO  [wave10_RevArchetype_32_] [action] scanning nearby mobiles for names
+[17:35:04.395] INFO  [wave10_RevArchetype_32_] [mobiles] nearby (3):
+[17:35:04.396] INFO  [wave10_RevArchetype_32_]   Devin 0x0000F7B0
+[17:35:04.396] INFO  [wave10_RevArchetype_32_]   Ryanne 0x0000F775
+[17:35:04.396] INFO  [wave10_RevArchetype_32_]   Raven 0x0000F76A
+[17:35:05.193] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:07.409] INFO  [wave10_RevArchetype_32_] [travel] baker (seen) -> (1880,2802) r=2 from (1910,2805)
+[17:35:07.410] LOG   [wave10_RevArchetype_32_] event travel_start: label='baker (seen)' target=(1880,2802) radius=2 from=(1910,2805)
+[17:35:07.410] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:35:07.410] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:35:07.411] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.411] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.411] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:35:07.411] INFO  [wave10_RevArchetype_32_] [travel] plan baker (seen): ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:07.471] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1909,2804); stopped short (off by 2 tile(s))
+[17:35:07.475] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1909,2804) arrived=0 off=2
+[17:35:07.476] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:07.476] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:07.476] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:07.476] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:07.476] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:07.534] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:07.535] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:08.792] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:08.792] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:08.792] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:08.793] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:08.793] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:08.854] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:08.854] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:10.104] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:10.104] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:10.104] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:10.104] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:10.105] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:10.167] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:10.167] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:10.228] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:11.393] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:35:11.393] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:35:11.393] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:11.393] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:11.393] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:35:11.394] INFO  [wave10_RevArchetype_32_] [travel] plan baker (seen): ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:12.934] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:12.937] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:12.938] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:12.938] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:12.938] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:12.996] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:12.997] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:14.229] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:14.229] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:14.230] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:14.230] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:14.230] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:14.230] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:14.230] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:15.249] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:15.432] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:15.440] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:15.440] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:15.440] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:15.440] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:15.494] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:15.495] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:16.694] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:35:16.695] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:35:16.695] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:16.695] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:16.695] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:35:16.695] INFO  [wave10_RevArchetype_32_] [travel] plan baker (seen): ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:19.702] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:19.702] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:19.703] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:19.703] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:19.703] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:19.763] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:19.763] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:20.251] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:20.986] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:20.986] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:20.987] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:20.987] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:20.987] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:20.987] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:20.988] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:22.247] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:22.247] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:22.248] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:22.248] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:22.248] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:22.311] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:22.311] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.515] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:35:23.515] INFO  [wave10_RevArchetype_32_] [travel] plan baker (seen): ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:25.303] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:28.042] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:28.052] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:28.052] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:28.053] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:28.053] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:28.117] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:28.118] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:29.367] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:29.368] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:29.368] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:29.368] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:29.368] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:29.429] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:29.430] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:30.350] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:30.673] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:30.673] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:30.674] WARN  [wave10_RevArchetype_32_] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:30.674] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:30.675] WARN  [wave10_RevArchetype_32_] [travel] route exhausted at (1910,2805,0); trying to reach (1896,2808,0) to get somewhere routable (escape 1/3)
+[17:35:30.675] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1910,2805,0) to=(1896,2808) attempt=1
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [action] goto (1896,2808) from (1910,2805,0)
+[17:35:30.675] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1896,2808) from=(1910,2805)
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1896,2808,z0)
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1896,2808) in background
+[17:35:30.720] INFO  [wave10_RevArchetype_32_] [bot] replan to (1896,2808): 32 steps in 3016.5us
+[17:35:33.538] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 100.6us
+[17:35:33.891] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: What is it thou wishest?
+[17:35:33.969] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1914,2813,z0); OpenDoor before step
+[17:35:33.984] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:35:35.370] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:35.896] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: What is it thou wishest?
+[17:35:39.330] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.392] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.408] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Amara has departed from Yew Territory.
+,2805,0) to (1880,2802,z0)
+[17:35:20.987] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:20.987] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:20.988] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:22.247] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:22.247] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:22.248] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:22.248] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:22.311] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:22.311] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode walk             usable   <- chosen
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode moongate         usable
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.514] INFO  [wave10_RevArchetype_32_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.515] LOG   [wave10_RevArchetype_32_] event travel_mode: walk
+[17:35:23.515] INFO  [wave10_RevArchetype_32_] [travel] plan baker (seen): ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:25.303] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:28.042] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:28.052] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:28.052] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:28.053] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:28.117] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:28.118] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:29.367] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:29.368] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:29.368] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:29.368] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:29.429] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:29.430] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:30.350] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:30.673] INFO  [wave10_RevArchetype_32_] [action] goto (1880,2802) from (1910,2805,0)
+[17:35:30.673] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1880,2802) from=(1910,2805)
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1880,2802,z0)
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1880,2802) in background
+[17:35:30.674] INFO  [wave10_RevArchetype_32_] [action] goto finished at (1910,2805,0); target (1880,2802); stopped short (off by 33 tile(s))
+[17:35:30.674] LOG   [wave10_RevArchetype_32_] event goto_done: at=(1910,2805) target=(1880,2802) arrived=0 off=33
+[17:35:30.675] LOG   [wave10_RevArchetype_32_] event travel_escape: from=(1910,2805,0) to=(1896,2808) attempt=1
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [action] goto (1896,2808) from (1910,2805,0)
+[17:35:30.675] LOG   [wave10_RevArchetype_32_] event goto_start: target=(1896,2808) from=(1910,2805)
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [bot] running from (1910,2805,0) to (1896,2808,z0)
+[17:35:30.675] INFO  [wave10_RevArchetype_32_] [bot] planning path to (1896,2808) in background
+[17:35:30.720] INFO  [wave10_RevArchetype_32_] [bot] replan to (1896,2808): 32 steps in 3016.5us
+[17:35:33.538] INFO  [wave10_RevArchetype_32_] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 100.6us
+[17:35:33.891] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: What is it thou wishest?
+[17:35:33.969] INFO  [wave10_RevArchetype_32_] [bot] door ahead at (1914,2813,z0); OpenDoor before step
+[17:35:33.984] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Opening door...
+[17:35:34.988] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_32.nyx/state.json
+[17:35:35.370] INFO  [wave10_RevArchetype_32_] [survival] hp 32/32 (100%) -> fight
+[17:35:35.896] INFO  [wave10_RevArchetype_32_] [chat ascii] Devin: What is it thou wishest?
+[17:35:39.330] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.392] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.408] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevArchetype_32_] [chat ascii] System: Amara has departed from Yew Territory.

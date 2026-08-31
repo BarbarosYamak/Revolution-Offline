@@ -1,0 +1,1184 @@
+[17:29:35.106] LOG   [wave10_RevGen3_13_Amara] event session_start: text log opened
+[17:29:35.107] LOG   [wave10_RevGen3_13_Amara] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.108] INFO  [wave10_RevGen3_13_Amara] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.111] LOG   [wave10_RevGen3_13_Amara] event net_connected: connect 127.0.0.1:2593
+[17:29:35.112] INFO  [wave10_RevGen3_13_Amara] [net] connected.
+[17:29:35.114] INFO  [wave10_RevGen3_13_Amara] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.114] LOG   [wave10_RevGen3_13_Amara] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.117] INFO  [wave10_RevGen3_13_Amara] [life] autonomous player active for 'Amara' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.118] INFO  [wave10_RevGen3_13_Amara] [0xA8] 1 server(s):
+[17:29:35.118] INFO  [wave10_RevGen3_13_Amara]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[17:29:35.123] INFO  [wave10_RevGen3_13_Amara] [0x8C] game server = 127.0.0.1:2593  seed=0x9D3D221F
+[17:29:35.123] LOG   [wave10_RevGen3_13_Amara] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x9D3D221F
+[17:29:35.124] INFO  [wave10_RevGen3_13_Amara] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.124] LOG   [wave10_RevGen3_13_Amara] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.125] INFO  [wave10_RevGen3_13_Amara] [0xB9] server features = 0x0005
+[17:29:35.125] INFO  [wave10_RevGen3_13_Amara] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.125] INFO  [wave10_RevGen3_13_Amara]   [0] Amara
+[17:29:35.126] INFO  [wave10_RevGen3_13_Amara]   [1] <empty>
+[17:29:35.126] INFO  [wave10_RevGen3_13_Amara]   [2] <empty>
+[17:29:35.127] INFO  [wave10_RevGen3_13_Amara]   [3] <empty>
+[17:29:35.127] INFO  [wave10_RevGen3_13_Amara]   [4] <empty>
+[17:29:35.129] INFO  [wave10_RevGen3_13_Amara] [ui] playing slot 0 ('Amara')
+[17:29:35.131] INFO  [wave10_RevGen3_13_Amara] [0x1B] serial=0x00012E70 body=0x0190 pos=(1454,3752,0)
+[17:29:35.132] LOG   [wave10_RevGen3_13_Amara] event login_confirm: serial=0x00012E70 body=0x0190 pos=(1454,3752,0)
+[17:29:35.132] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1454,3752,0) facing=2
+[17:29:35.132] INFO  [wave10_RevGen3_13_Amara] [0x55] login complete — entering world
+[17:29:35.132] LOG   [wave10_RevGen3_13_Amara] event in_world: 0x55 received
+[17:29:35.132] INFO  [wave10_RevGen3_13_Amara] [backpack] opening 0x40011989
+[17:29:35.133] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.133] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: There are 14 other players here.
+[17:29:35.133] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.133] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: You are under the protection of the guards
+[17:29:35.138] INFO  [wave10_RevGen3_13_Amara] [action] requesting the skill list
+[17:29:35.138] INFO  [wave10_RevGen3_13_Amara] [0x24] open container 0x40011989 gump=60
+[17:29:35.139] INFO  [wave10_RevGen3_13_Amara] [0x3C] container contents: 11 item(s)
+[17:29:35.139] LOG   [wave10_RevGen3_13_Amara] event backpack_contents: serial=0x40011989 items=11
+[17:29:35.165] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.236] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.730] INFO  [wave10_RevGen3_13_Amara] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.733] INFO  [wave10_RevGen3_13_Amara] [survival] on
+[17:29:37.733] LOG   [wave10_RevGen3_13_Amara] event survival_mode: on
+[17:29:37.738] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:29:42.785] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:29:44.887] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom carpenter -> (1435,3820) r=5 from (1454,3752)
+[17:29:44.888] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom carpenter' target=(1435,3820) radius=5 from=(1454,3752)
+[17:29:44.888] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:29:44.888] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:29:44.888] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:44.888] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:44.888] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:29:44.889] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: ok legs=2 ~80 tiles transit=0 nodes=60
+[17:29:44.948] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:44.949] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3784) from (1454,3752,0)
+[17:29:44.949] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3784) from=(1454,3752)
+[17:29:44.949] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1454,3752,0) to (1448,3784)
+[17:29:44.949] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3784) in background
+[17:29:45.009] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3784): 52 steps in 13320.8us
+[17:29:47.830] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:29:52.881] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:29:57.909] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:29:57.985] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3784,0)
+[17:29:57.987] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1448,3784); ARRIVED (off by 0 tile(s))
+[17:29:57.987] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1448,3784) arrived=1 off=0
+[17:29:57.987] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:29:57.988] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:29:57.988] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:29:57.988] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:29:57.988] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:29:57.988] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:29:57.991] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:29:57.991] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:29:59.200] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:29:59.201] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:29:59.201] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:29:59.201] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:29:59.202] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:29:59.202] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:29:59.262] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:29:59.262] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:00.512] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:00.512] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:00.512] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:00.512] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:00.512] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:00.513] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:00.514] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:00.514] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:01.755] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:30:01.756] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:30:01.756] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:01.756] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:01.756] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:30:01.756] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: ok legs=1 ~36 tiles transit=0 nodes=0
+[17:30:02.952] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:03.259] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:03.259] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:03.259] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:03.260] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:03.260] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:03.260] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:03.321] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:03.321] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:04.547] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:04.547] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:04.547] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:04.548] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:04.548] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:04.548] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:04.549] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:04.549] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:05.765] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:05.765] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:05.765] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:05.765] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:05.765] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:05.766] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:05.826] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:05.826] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:07.032] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:30:07.032] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:30:07.032] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:07.033] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:07.033] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:30:07.033] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: ok legs=1 ~36 tiles transit=0 nodes=0
+[17:30:07.979] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:10.034] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:10.035] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:10.035] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:10.035] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:10.035] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:10.035] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:10.097] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:10.097] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:11.320] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:11.320] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:11.320] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:11.320] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:11.320] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:11.321] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:11.383] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:11.383] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:12.591] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:12.592] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:12.592] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:12.592] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:12.592] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:12.592] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:12.652] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:12.653] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:13.024] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:13.874] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:30:13.875] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:30:13.875] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:13.875] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:13.875] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:30:13.875] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: ok legs=1 ~36 tiles transit=0 nodes=0
+[17:30:18.064] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:18.433] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:18.434] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:18.434] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:18.434] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:18.434] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:18.434] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:18.495] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:18.495] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:19.701] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:19.701] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:19.701] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:19.702] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:19.702] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:19.702] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:19.733] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:19.733] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:20.991] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:20.992] INFO  [wave10_RevGen3_13_Amara] [action] goto (1435,3820) from (1448,3784,0)
+[17:30:20.992] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1435,3820) from=(1448,3784)
+[17:30:20.992] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1435,3820,z0)
+[17:30:20.992] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1435,3820) in background
+[17:30:20.992] WARN  [wave10_RevGen3_13_Amara] [bot] goal (1435,3820) is not walkable; skipping A* and stopping
+[17:30:21.052] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1435,3820); stopped short (off by 49 tile(s))
+[17:30:21.053] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1435,3820) arrived=0 off=49
+[17:30:21.053] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1448,3784,0); trying to reach (1432,3768,0) to get somewhere routable (escape 1/3)
+[17:30:21.053] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1448,3784,0) to=(1432,3768) attempt=1
+[17:30:21.053] INFO  [wave10_RevGen3_13_Amara] [action] goto (1432,3768) from (1448,3784,0)
+[17:30:21.053] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1432,3768) from=(1448,3784)
+[17:30:21.053] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1432,3768,z0)
+[17:30:21.053] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1432,3768) in background
+[17:30:21.930] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1432,3768) avoiding 0 block(s); stopping (search 850424.6us)
+[17:30:21.930] WARN  [wave10_RevGen3_13_Amara] [bot] start (1448,3784,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 275 item(s), 6 mobile(s))
+[17:30:21.991] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1432,3768); stopped short (off by 32 tile(s))
+[17:30:21.992] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1432,3768) arrived=0 off=32
+[17:30:21.992] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1448,3784,0) (off 16); attempt 1/3
+[17:30:21.992] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1448,3784,0) off=16 attempt=1
+[17:30:21.992] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1448,3784,0); trying to reach (1464,3768,0) to get somewhere routable (escape 2/3)
+[17:30:21.992] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1448,3784,0) to=(1464,3768) attempt=2
+[17:30:21.992] INFO  [wave10_RevGen3_13_Amara] [action] goto (1464,3768) from (1448,3784,0)
+[17:30:21.992] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1464,3768) from=(1448,3784)
+[17:30:21.993] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1464,3768,z0)
+[17:30:21.993] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1464,3768) in background
+[17:30:22.037] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1464,3768): 32 steps in 4799.8us
+[17:30:23.100] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:26.804] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: You have left the protection of the guards
+[17:30:28.143] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:29.593] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: You are now under the protection of the guards
+[17:30:31.010] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1464,3768,0)
+[17:30:31.011] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1464,3768,0); target (1464,3768); ARRIVED (off by 0 tile(s))
+[17:30:31.011] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1464,3768) target=(1464,3768) arrived=1 off=0
+[17:30:31.011] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk reached its anchor at (1464,3768,0) (off 0); attempt 1/3
+[17:30:31.011] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=1 at=(1464,3768,0) off=0 attempt=1
+[17:30:31.072] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:30:31.072] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:30:31.072] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:31.072] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:31.072] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:30:31.072] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: no world route to the destination legs=0 ~0 tiles transit=0 nodes=382
+[17:30:31.072] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1464,3768,0); trying to reach (1448,3752,0) to get somewhere routable (escape 3/3)
+[17:30:31.073] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1464,3768,0) to=(1448,3752) attempt=3
+[17:30:31.073] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3752) from (1464,3768,0)
+[17:30:31.073] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3752) from=(1464,3768)
+[17:30:31.073] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1464,3768,0) to (1448,3752,z0)
+[17:30:31.073] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3752) in background
+[17:30:31.133] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3752): 20 steps in 548.1us
+[17:30:33.184] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:37.318] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3752,0)
+[17:30:37.319] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3752,0); target (1448,3752); ARRIVED (off by 0 tile(s))
+[17:30:37.319] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3752) target=(1448,3752) arrived=1 off=0
+[17:30:37.320] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk reached its anchor at (1448,3752,0) (off 0); attempt 2/3
+[17:30:37.320] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=1 at=(1448,3752,0) off=0 attempt=2
+[17:30:37.380] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:30:37.380] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:30:37.380] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:37.380] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:37.380] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:30:37.715] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom carpenter: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:30:37.715] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom carpenter FAILED at (1448,3752,0) -- no world route to the destination
+[17:30:37.715] LOG   [wave10_RevGen3_13_Amara] event travel_failed: label='Jhelom carpenter' ok=0 at=(1448,3752) legs=0 plans=1 why='no world route to the destination'
+[17:30:37.716] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:30:37.716] INFO  [wave10_RevGen3_13_Amara] [action] requested 5 paperdoll(s) for trade titles
+[17:30:37.721] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (8):
+[17:30:37.721] INFO  [wave10_RevGen3_13_Amara]   Earl 0x00010E91
+[17:30:37.721] INFO  [wave10_RevGen3_13_Amara]   Darrell 0x00010ECF
+[17:30:37.721] INFO  [wave10_RevGen3_13_Amara]   Cat 0x0000AB23
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000C7B7
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara]   Paxton 0x00010E7F
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara]   Elias 0x00010EE1
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara]   Dana 0x00010E73
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara]   Dog 0x00014228
+[17:30:37.722] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1448,3752,0) facing=4
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010EE1: "Elias, the tavernkeeper"
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [world] Elias, the tavernkeeper is a innkeeper at (1454,3768)
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010E73: "Dana, the tavernkeeper"
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [world] Dana, the tavernkeeper is a innkeeper at (1449,3768)
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1448,3752,0) facing=0
+[17:30:37.723] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010E91: "Earl, the shipwright"
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [world] Earl, the shipwright is a shipwright at (1448,3750)
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010ECF: "Darrell, the mapmaker"
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [world] Darrell, the mapmaker is a mapmaker at (1449,3747)
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1448,3752,0) facing=7
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010E7F: "Paxton, the fisher guildmaster"
+[17:30:37.724] INFO  [wave10_RevGen3_13_Amara] [world] Paxton, the fisher guildmaster is a fisherman at (1436,3745)
+[17:30:38.211] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:40.731] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom shipwright -> (1452,3747) r=5 from (1448,3752)
+[17:30:40.731] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom shipwright' target=(1452,3747) radius=5 from=(1448,3752)
+[17:30:40.732] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom shipwright ARRIVED at (1448,3752,0)
+[17:30:40.732] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='Jhelom shipwright' ok=1 at=(1448,3752) legs=0 plans=0 why=''
+[17:30:43.269] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:30:43.272] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:43.284] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (8):
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Earl 0x00010E91
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Darrell 0x00010ECF
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Cat 0x0000AB23
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000C7B7
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Paxton 0x00010E7F
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Elias 0x00010EE1
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Dana 0x00010E73
+[17:30:43.285] INFO  [wave10_RevGen3_13_Amara]   Dog 0x00014228
+[17:30:46.311] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom armorer -> (1456,3850) r=5 from (1448,3752)
+[17:30:46.311] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom armorer' target=(1456,3850) radius=5 from=(1448,3752)
+[17:30:46.312] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:30:46.312] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:30:46.312] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:46.312] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:46.312] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:30:46.312] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom armorer: ok legs=3 ~104 tiles transit=0 nodes=91
+[17:30:46.327] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:46.327] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3784) from (1448,3752,0)
+[17:30:46.327] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3784) from=(1448,3752)
+[17:30:46.328] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3752,0) to (1448,3784)
+[17:30:46.328] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3784) in background
+[17:30:46.389] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3784): 46 steps in 8416.5us
+[17:30:48.325] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:53.373] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:30:58.117] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3784,0)
+[17:30:58.118] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3784,0); target (1448,3784); ARRIVED (off by 0 tile(s))
+[17:30:58.118] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3784) target=(1448,3784) arrived=1 off=0
+[17:30:58.118] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:58.118] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3816) from (1448,3784,0)
+[17:30:58.119] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3816) from=(1448,3784)
+[17:30:58.119] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3784,0) to (1448,3816)
+[17:30:58.119] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3816) in background
+[17:30:58.178] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3816): 32 steps in 400.4us
+[17:30:58.380] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:03.410] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:05.946] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3816,0)
+[17:31:05.947] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3816,0); target (1448,3816); ARRIVED (off by 0 tile(s))
+[17:31:05.948] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3816) target=(1448,3816) arrived=1 off=0
+[17:31:05.948] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:05.948] INFO  [wave10_RevGen3_13_Amara] [action] goto (1456,3850) from (1448,3816,0)
+[17:31:05.948] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1456,3850) from=(1448,3816)
+[17:31:05.948] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3816,0) to (1456,3850,z0)
+[17:31:05.948] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1456,3850) in background
+[17:31:06.007] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1456,3850): 43 steps in 16910.3us
+[17:31:08.456] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:13.461] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:15.678] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1463,3851,z0); OpenDoor before step
+[17:31:15.679] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:31:15.878] INFO  [wave10_RevGen3_13_Amara] [chat ascii] Eden: What is it thou wishest?
+[17:31:16.233] INFO  [wave10_RevGen3_13_Amara] [chat ascii] Talman: I am listening to thee.
+[17:31:17.021] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom armorer ARRIVED at (1461,3851,0)
+[17:31:17.021] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='Jhelom armorer' ok=1 at=(1461,3851) legs=3 plans=1 why=''
+[17:31:17.084] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:31:17.084] INFO  [wave10_RevGen3_13_Amara] [action] requested 2 paperdoll(s) for trade titles
+[17:31:17.097] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (4):
+[17:31:17.124] INFO  [wave10_RevGen3_13_Amara]   Eden 0x00010C89
+[17:31:17.146] INFO  [wave10_RevGen3_13_Amara]   Talman 0x00010CA3
+[17:31:17.168] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0001155A
+[17:31:17.190] INFO  [wave10_RevGen3_13_Amara]   Elissa 0x00010CD8
+[17:31:17.212] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1461,3851,0) facing=4
+[17:31:17.276] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010C89: "Eden, the armorer"
+[17:31:17.318] INFO  [wave10_RevGen3_13_Amara] [world] Eden, the armorer is a blacksmith at (1461,3853)
+[17:31:17.350] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010CA3: "Talman, the weaponsmith"
+[17:31:17.392] INFO  [wave10_RevGen3_13_Amara] [world] Talman, the weaponsmith is a blacksmith at (1460,3854)
+[17:31:18.518] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:20.133] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom armorer -> (1475,3865) r=5 from (1461,3851)
+[17:31:20.133] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom armorer' target=(1475,3865) radius=5 from=(1461,3851)
+[17:31:20.134] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:31:20.134] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:31:20.134] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:20.134] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:20.134] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:31:20.134] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom armorer: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:31:20.194] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1461,3851,0); target (1456,3850); stopped short (off by 6 tile(s))
+[17:31:20.195] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1461,3851) target=(1456,3850) arrived=0 off=6
+[17:31:20.195] INFO  [wave10_RevGen3_13_Amara] [action] goto (1475,3865) from (1461,3851,0)
+[17:31:20.195] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1475,3865) from=(1461,3851)
+[17:31:20.195] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1461,3851,0) to (1475,3865,z0)
+[17:31:20.196] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1475,3865) in background
+[17:31:20.255] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1475,3865): 36 steps in 9869.8us
+[17:31:21.211] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1464,3852,z0); OpenDoor before step
+[17:31:21.225] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:31:23.525] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:24.833] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom armorer ARRIVED at (1470,3860,0)
+[17:31:24.833] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='Jhelom armorer' ok=1 at=(1470,3860) legs=1 plans=1 why=''
+[17:31:24.896] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:31:24.896] INFO  [wave10_RevGen3_13_Amara] [action] requested 2 paperdoll(s) for trade titles
+[17:31:24.900] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (4):
+[17:31:24.900] INFO  [wave10_RevGen3_13_Amara]   Elissa 0x00010CD8
+[17:31:24.900] INFO  [wave10_RevGen3_13_Amara]   Peg 0x00010CB5
+[17:31:24.900] INFO  [wave10_RevGen3_13_Amara]   Talman 0x00010CA3
+[17:31:24.900] INFO  [wave10_RevGen3_13_Amara]   Eden 0x00010C89
+[17:31:24.901] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1470,3860,0) facing=3
+[17:31:24.901] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010CD8: "Elissa, the armorer"
+[17:31:24.901] INFO  [wave10_RevGen3_13_Amara] [world] Elissa, the armorer is a blacksmith at (1474,3866)
+[17:31:24.901] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010CB5: "Peg, the weaponsmith"
+[17:31:24.901] INFO  [wave10_RevGen3_13_Amara] [world] Peg, the weaponsmith is a blacksmith at (1475,3868)
+[17:31:27.920] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom blacksmith -> (1419,3859) r=5 from (1470,3860)
+[17:31:27.920] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom blacksmith' target=(1419,3859) radius=5 from=(1470,3860)
+[17:31:27.920] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:31:27.920] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:31:27.921] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:27.921] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:27.921] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:31:27.921] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom blacksmith: ok legs=2 ~64 tiles transit=0 nodes=27
+[17:31:27.981] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1470,3860,0); target (1475,3865); stopped short (off by 10 tile(s))
+[17:31:27.981] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1470,3860) target=(1475,3865) arrived=0 off=10
+[17:31:27.981] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:27.982] INFO  [wave10_RevGen3_13_Amara] [action] goto (1432,3848) from (1470,3860,0)
+[17:31:27.982] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1432,3848) from=(1470,3860)
+[17:31:27.982] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1470,3860,0) to (1432,3848)
+[17:31:27.982] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1432,3848) in background
+[17:31:28.042] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1432,3848): 40 steps in 5802.0us
+[17:31:28.563] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:33.580] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:38.248] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1432,3848,0)
+[17:31:38.250] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1432,3848,0); target (1432,3848); ARRIVED (off by 0 tile(s))
+[17:31:38.250] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1432,3848) target=(1432,3848) arrived=1 off=0
+[17:31:38.250] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:38.250] INFO  [wave10_RevGen3_13_Amara] [action] goto (1419,3859) from (1432,3848,0)
+[17:31:38.250] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1419,3859) from=(1432,3848)
+[17:31:38.251] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1432,3848,0) to (1419,3859,z0)
+[17:31:38.251] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1419,3859) in background
+[17:31:38.310] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1419,3859): 26 steps in 4624.3us
+[17:31:38.633] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:41.815] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1427,3855,z0); OpenDoor before step
+[17:31:41.816] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:31:43.646] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:43.707] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom blacksmith ARRIVED at (1424,3854,0)
+[17:31:43.707] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='Jhelom blacksmith' ok=1 at=(1424,3854) legs=2 plans=1 why=''
+[17:31:43.769] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:31:43.769] INFO  [wave10_RevGen3_13_Amara] [action] requested 2 paperdoll(s) for trade titles
+[17:31:43.782] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (3):
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara]   Curtis 0x00010CE8
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara]   Urian 0x00010CC8
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000E8F4
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1424,3854,0) facing=5
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010CE8: "Curtis, the blacksmith"
+[17:31:43.783] INFO  [wave10_RevGen3_13_Amara] [world] Curtis, the blacksmith is a blacksmith at (1416,3859)
+[17:31:43.784] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010CC8: "Urian, the blacksmith"
+[17:31:43.784] INFO  [wave10_RevGen3_13_Amara] [world] Urian, the blacksmith is a blacksmith at (1416,3862)
+[17:31:46.787] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom fisherman -> (1372,3908) r=5 from (1424,3854)
+[17:31:46.787] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom fisherman' target=(1372,3908) radius=5 from=(1424,3854)
+[17:31:46.787] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:31:46.787] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:31:46.788] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:46.788] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:46.788] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:31:46.788] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom fisherman: ok legs=3 ~104 tiles transit=0 nodes=152
+[17:31:46.849] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1424,3854,0); target (1419,3859); stopped short (off by 10 tile(s))
+[17:31:46.850] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1424,3854) target=(1419,3859) arrived=0 off=10
+[17:31:46.850] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:46.850] INFO  [wave10_RevGen3_13_Amara] [action] goto (1384,3864) from (1424,3854,0)
+[17:31:46.850] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1384,3864) from=(1424,3854)
+[17:31:46.850] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1424,3854,0) to (1384,3864)
+[17:31:46.850] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1384,3864) in background
+[17:31:46.911] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1384,3864): 53 steps in 4244.3us
+[17:31:48.684] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:48.822] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=8; server says (1427,3856,0) facing=5
+[17:31:48.823] INFO  [wave10_RevGen3_13_Amara] [bot] step (1427,3856,0)->(1426,3857,0) rejected; OpenDoor + retry
+[17:31:48.838] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:31:48.838] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:31:48.838] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1427,3856,0) facing=6
+[17:31:48.839] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1427,3856,0); target (1384,3864); stopped short (off by 51 tile(s))
+[17:31:48.839] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1427,3856) target=(1384,3864) arrived=0 off=51
+[17:31:50.083] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:50.083] INFO  [wave10_RevGen3_13_Amara] [action] goto (1384,3864) from (1427,3856,0)
+[17:31:50.083] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1384,3864) from=(1427,3856)
+[17:31:50.084] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1427,3856,0) to (1384,3864)
+[17:31:50.084] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1384,3864) in background
+[17:31:50.145] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1384,3864): 48 steps in 4501.1us
+[17:31:53.702] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:31:57.477] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 433.0us
+[17:31:58.417] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 271.0us
+[17:31:58.722] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:03.742] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:03.926] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1384,3864,0)
+[17:32:03.927] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1384,3864,0); target (1384,3864); ARRIVED (off by 0 tile(s))
+[17:32:03.927] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1384,3864) target=(1384,3864) arrived=1 off=0
+[17:32:03.927] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:03.927] INFO  [wave10_RevGen3_13_Amara] [action] goto (1352,3890) from (1384,3864,0)
+[17:32:03.927] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1352,3890) from=(1384,3864)
+[17:32:03.928] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1384,3864,0) to (1352,3890)
+[17:32:03.928] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1352,3890) in background
+[17:32:03.986] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1352,3890): 36 steps in 3848.7us
+[17:32:06.291] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1375,3867,z0); OpenDoor before step
+[17:32:06.292] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:32:07.926] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1371,3871,z0); OpenDoor before step
+[17:32:07.942] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:32:08.746] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:09.672] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=19; server says (1371,3872,0) facing=5
+[17:32:09.672] INFO  [wave10_RevGen3_13_Amara] [bot] step (1371,3872,0)->(1370,3873,0) rejected; OpenDoor + retry
+[17:32:09.673] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:32:09.674] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:32:09.674] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1371,3872,0) facing=6
+[17:32:09.675] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1371,3872,0); target (1352,3890); stopped short (off by 37 tile(s))
+[17:32:09.675] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1371,3872) target=(1352,3890) arrived=0 off=37
+[17:32:10.905] INFO  [wave10_RevGen3_13_Amara] [action] goto (1352,3890) from (1371,3872,0)
+[17:32:10.905] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1352,3890) from=(1371,3872)
+[17:32:10.905] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1371,3872,0) to (1352,3890)
+[17:32:10.905] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1352,3890) in background
+[17:32:10.967] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1352,3890): 22 steps in 4566.6us
+[17:32:13.752] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:18.780] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:18.905] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1352,3890,0)
+[17:32:18.906] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1352,3890,0); target (1352,3890); ARRIVED (off by 0 tile(s))
+[17:32:18.906] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1352,3890) target=(1352,3890) arrived=1 off=0
+[17:32:18.907] INFO  [wave10_RevGen3_13_Amara] [action] goto (1372,3908) from (1352,3890,0)
+[17:32:18.907] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1372,3908) from=(1352,3890)
+[17:32:18.907] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1352,3890,0) to (1372,3908,z-2)
+[17:32:18.907] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1372,3908) in background
+[17:32:18.966] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1372,3908): 38 steps in 5496.7us
+[17:32:23.829] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:28.838] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:29.897] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom fisherman ARRIVED at (1372,3904,-2)
+[17:32:29.897] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='Jhelom fisherman' ok=1 at=(1372,3904) legs=3 plans=1 why=''
+[17:32:29.958] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:32:29.958] INFO  [wave10_RevGen3_13_Amara] [action] requested 2 paperdoll(s) for trade titles
+[17:32:29.960] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (2):
+[17:32:29.961] INFO  [wave10_RevGen3_13_Amara]   Luther 0x00010339
+[17:32:29.961] INFO  [wave10_RevGen3_13_Amara]   Norah 0x0000F185
+[17:32:29.972] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1372,3904,-2) facing=1
+[17:32:29.972] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x00010339: "Luther, the mage"
+[17:32:29.972] INFO  [wave10_RevGen3_13_Amara] [world] Luther, the mage is a mage at (1375,3902)
+[17:32:29.973] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1372,3904,-2) facing=4
+[17:32:29.973] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F185: "Norah, the fisherwoman"
+[17:32:29.973] INFO  [wave10_RevGen3_13_Amara] [world] Norah, the fisherwoman is a fisherman at (1372,3908)
+[17:32:32.964] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom mage -> (1425,3981) r=5 from (1372,3904)
+[17:32:32.964] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom mage' target=(1425,3981) radius=5 from=(1372,3904)
+[17:32:32.965] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:32:32.965] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:32:32.965] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.965] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.965] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:32:32.965] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom mage: ok legs=6 ~148 tiles transit=1 nodes=98
+[17:32:32.994] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1372,3904,-2); target (1372,3908); stopped short (off by 4 tile(s))
+[17:32:32.994] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1372,3904) target=(1372,3908) arrived=0 off=4
+[17:32:32.994] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:32.994] INFO  [wave10_RevGen3_13_Amara] [action] goto (1384,3864) from (1372,3904,-2)
+[17:32:32.995] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1384,3864) from=(1372,3904)
+[17:32:32.995] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1372,3904,-2) to (1384,3864)
+[17:32:32.995] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1384,3864) in background
+[17:32:33.024] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1384,3864): 45 steps in 8073.6us
+[17:32:33.839] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:38.858] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:43.859] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:46.536] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1384,3864,0)
+[17:32:46.538] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1384,3864,0); target (1384,3864); ARRIVED (off by 0 tile(s))
+[17:32:46.538] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1384,3864) target=(1384,3864) arrived=1 off=0
+[17:32:46.538] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:46.538] INFO  [wave10_RevGen3_13_Amara] [action] goto (1416,3832) from (1384,3864,0)
+[17:32:46.538] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1416,3832) from=(1384,3864)
+[17:32:46.539] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1384,3864,0) to (1416,3832)
+[17:32:46.539] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1416,3832) in background
+[17:32:46.598] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1416,3832): 32 steps in 1024.8us
+[17:32:48.907] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:53.917] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:32:54.314] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1416,3832,0)
+[17:32:54.316] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1416,3832,0); target (1416,3832); ARRIVED (off by 0 tile(s))
+[17:32:54.316] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1416,3832) target=(1416,3832) arrived=1 off=0
+[17:32:54.316] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:32:54.316] INFO  [wave10_RevGen3_13_Amara] [action] goto (1419,3832) from (1416,3832,0)
+[17:32:54.316] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1419,3832) from=(1416,3832)
+[17:32:54.317] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1416,3832,0) to (1419,3832)
+[17:32:54.317] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1419,3832) in background
+[17:32:54.317] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1419,3832): 3 steps in 155.9us
+[17:32:55.377] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:32:55.377] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1466,4015,5) facing=2
+[17:32:55.379] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1466,4015,5); target (1419,3832); stopped short (off by 230 tile(s))
+[17:32:55.379] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1466,4015) target=(1419,3832) arrived=0 off=230
+[17:32:55.500] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:32:55.500] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:32:55.501] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:55.501] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:55.501] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:32:55.501] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom mage: ok legs=2 ~48 tiles transit=0 nodes=22
+[17:32:57.059] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:32:57.059] INFO  [wave10_RevGen3_13_Amara] [action] goto (1432,3976) from (1466,4015,5)
+[17:32:57.059] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1432,3976) from=(1466,4015)
+[17:32:57.059] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1466,4015,5) to (1432,3976)
+[17:32:57.060] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1432,3976) in background
+[17:32:57.122] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1432,3976): 59 steps in 23039.2us
+[17:32:58.956] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:03.980] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:08.994] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:09.995] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=13 in 451.4us
+[17:33:10.844] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=12 in 415.1us
+[17:33:14.003] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:14.541] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1432,3976,0)
+[17:33:14.542] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1432,3976,0); target (1432,3976); ARRIVED (off by 0 tile(s))
+[17:33:14.543] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1432,3976) target=(1432,3976) arrived=1 off=0
+[17:33:14.543] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:33:14.543] INFO  [wave10_RevGen3_13_Amara] [action] goto (1425,3981) from (1432,3976,0)
+[17:33:14.543] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1425,3981) from=(1432,3976)
+[17:33:14.543] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1432,3976,0) to (1425,3981,z0)
+[17:33:14.543] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1425,3981) in background
+[17:33:14.604] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1425,3981): 31 steps in 11504.4us
+[17:33:15.760] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=28 in 552.2us
+[17:33:16.890] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 2: anchor=5 new segment=4 path=23 in 200.0us
+[17:33:19.039] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:20.507] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1428,3991,z0); OpenDoor before step
+[17:33:20.508] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:33:21.802] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 426.1us
+[17:33:22.446] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom mage ARRIVED at (1428,3986,0)
+[17:33:22.447] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom mage' ok=1 at=(1428,3986) legs=2 plans=2 why=''
+[17:33:22.508] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom mage -> (1425,3981) r=5 from (1428,3986)
+[17:33:22.509] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom mage' target=(1425,3981) radius=5 from=(1428,3986)
+[17:33:22.509] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom mage ARRIVED at (1428,3986,0)
+[17:33:22.509] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom mage' ok=1 at=(1428,3986) legs=0 plans=0 why=''
+[17:33:24.046] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:25.028] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:33:25.028] INFO  [wave10_RevGen3_13_Amara] [action] requested 5 paperdoll(s) for trade titles
+[17:33:25.043] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (11):
+[17:33:25.043] INFO  [wave10_RevGen3_13_Amara]   Bonamy 0x0000F10F
+[17:33:25.043] INFO  [wave10_RevGen3_13_Amara]   Ira 0x0000E0CF
+[17:33:25.043] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x00017DC4
+[17:33:25.043] INFO  [wave10_RevGen3_13_Amara]   Ilona 0x0000F133
+[17:33:25.044] INFO  [wave10_RevGen3_13_Amara]   Lamont 0x0000F0F3
+[17:33:25.044] INFO  [wave10_RevGen3_13_Amara]   Cat 0x000178BD
+[17:33:25.044] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000CB4C
+[17:33:25.044] INFO  [wave10_RevGen3_13_Amara]   Carmel 0x0000F153
+[17:33:25.044] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x0001799A
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x000106EA
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara]   Cat 0x00011389
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1428,3986,0) facing=2
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F153: "Carmel, the jeweler"
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara] [world] Carmel, the jeweler is a jeweler at (1444,3985)
+[17:33:25.045] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1428,3986,0) facing=7
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F0F3: "Lamont, the mage guildmaster"
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [world] Lamont, the mage guildmaster is a mage at (1423,3978)
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1428,3986,0) facing=1
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F10F: "Bonamy, the alchemist"
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [world] Bonamy, the alchemist is a alchemist at (1429,3985)
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1428,3986,0) facing=7
+[17:33:25.046] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000E0CF: "Ira, the scribe"
+[17:33:25.047] INFO  [wave10_RevGen3_13_Amara] [world] Ira, the scribe is a scribe at (1423,3982)
+[17:33:25.047] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F133: "Ilona, the mage"
+[17:33:25.047] INFO  [wave10_RevGen3_13_Amara] [world] Ilona, the mage is a mage at (1421,3980)
+[17:33:28.035] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom jeweler -> (1447,3981) r=5 from (1428,3986)
+[17:33:28.035] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom jeweler' target=(1447,3981) radius=5 from=(1428,3986)
+[17:33:28.035] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:33:28.035] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:33:28.035] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:28.036] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:28.036] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:33:28.036] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom jeweler: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:33:28.065] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1428,3986,0); target (1425,3981); stopped short (off by 8 tile(s))
+[17:33:28.065] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1428,3986) target=(1425,3981) arrived=0 off=8
+[17:33:28.065] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:33:28.066] INFO  [wave10_RevGen3_13_Amara] [action] goto (1447,3981) from (1428,3986,0)
+[17:33:28.066] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1447,3981) from=(1428,3986)
+[17:33:28.066] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1428,3986,0) to (1447,3981,z0)
+[17:33:28.066] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1447,3981) in background
+[17:33:28.126] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1447,3981): 33 steps in 4259.7us
+[17:33:29.093] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:33.799] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1444,3991,z0); OpenDoor before step
+[17:33:33.814] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:33:34.126] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:35.238] INFO  [wave10_RevGen3_13_Amara] [chat ascii] Carmel: I'm listenin'.
+[17:33:36.493] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom jeweler ARRIVED at (1446,3985,0)
+[17:33:36.493] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom jeweler' ok=1 at=(1446,3985) legs=1 plans=1 why=''
+[17:33:36.554] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:33:36.554] INFO  [wave10_RevGen3_13_Amara] [action] requested 2 paperdoll(s) for trade titles
+[17:33:36.557] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (12):
+[17:33:36.557] INFO  [wave10_RevGen3_13_Amara]   Carmel 0x0000F153
+[17:33:36.557] INFO  [wave10_RevGen3_13_Amara]   Rat 0x00015091
+[17:33:36.557] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x00017DC4
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Rat 0x0000F0E7
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000F120
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Bruno 0x0000F0E5
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x0001799A
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000CB4C
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Jada 0x0000F11D
+[17:33:36.558] INFO  [wave10_RevGen3_13_Amara]   Cat 0x00011389
+[17:33:36.559] INFO  [wave10_RevGen3_13_Amara]   Lamont 0x0000F0F3
+[17:33:36.559] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x000106EA
+[17:33:36.559] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1446,3985,0) facing=4
+[17:33:36.559] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F11D: "Jada, the tailor guildmistress"
+[17:33:36.559] INFO  [wave10_RevGen3_13_Amara] [world] Jada, the tailor guildmistress is a tailor at (1454,4002)
+[17:33:36.567] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1446,3985,0) facing=3
+[17:33:36.568] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F0E5: "Bruno, the weaver"
+[17:33:36.568] INFO  [wave10_RevGen3_13_Amara] [world] Bruno, the weaver is a tailor at (1456,4000)
+[17:33:39.141] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:39.584] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom tailor -> (1454,4003) r=5 from (1446,3985)
+[17:33:39.584] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom tailor' target=(1454,4003) radius=5 from=(1446,3985)
+[17:33:39.585] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:33:39.585] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:33:39.585] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:39.585] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:39.585] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:33:39.585] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom tailor: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:33:39.645] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1446,3985,0); target (1447,3981); stopped short (off by 5 tile(s))
+[17:33:39.646] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1446,3985) target=(1447,3981) arrived=0 off=5
+[17:33:39.646] INFO  [wave10_RevGen3_13_Amara] [action] goto (1454,4003) from (1446,3985,0)
+[17:33:39.646] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1454,4003) from=(1446,3985)
+[17:33:39.646] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1446,3985,0) to (1454,4003,z0)
+[17:33:39.646] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1454,4003) in background
+[17:33:39.707] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1454,4003): 49 steps in 19665.5us
+[17:33:44.183] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:47.579] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=21 in 497.1us
+[17:33:49.188] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:51.928] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1460,4007,z0); OpenDoor before step
+[17:33:51.942] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:33:53.436] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom tailor ARRIVED at (1459,4006,0)
+[17:33:53.436] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom tailor' ok=1 at=(1459,4006) legs=1 plans=1 why=''
+[17:33:53.497] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:33:53.497] INFO  [wave10_RevGen3_13_Amara] [action] requested 1 paperdoll(s) for trade titles
+[17:33:53.511] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (11):
+[17:33:53.511] INFO  [wave10_RevGen3_13_Amara]   Cat 0x0000E438
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Jada 0x0000F11D
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Bruno 0x0000F0E5
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Dog 0x00017A3E
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Quintina 0x0000F101
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000CB4C
+[17:33:53.512] INFO  [wave10_RevGen3_13_Amara]   Dog 0x0000C840
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara]   Rat 0x0000F0E7
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara]   Dog 0x000159CA
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara]   Balint 0x0000F0D1
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara]   Rat 0x00015091
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F101: "Quintina, the tailor"
+[17:33:53.513] INFO  [wave10_RevGen3_13_Amara] [world] Quintina, the tailor is a tailor at (1451,4006)
+[17:33:54.246] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: World save in 10 seconds
+[17:33:59.268] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:01.546] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom butcher -> (1450,4026) r=5 from (1459,4006)
+[17:34:01.546] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom butcher' target=(1450,4026) radius=5 from=(1459,4006)
+[17:34:01.546] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable   <- chosen
+[17:34:01.546] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable
+[17:34:01.546] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:01.546] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:01.547] LOG   [wave10_RevGen3_13_Amara] event travel_mode: walk
+[17:34:01.547] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom butcher: ok legs=1 ~20 tiles transit=0 nodes=0
+[17:34:01.608] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1459,4006,0); target (1454,4003); stopped short (off by 8 tile(s))
+[17:34:01.608] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1459,4006) target=(1454,4003) arrived=0 off=8
+[17:34:01.608] INFO  [wave10_RevGen3_13_Amara] [action] goto (1450,4026) from (1459,4006,0)
+[17:34:01.608] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1450,4026) from=(1459,4006)
+[17:34:01.609] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1459,4006,0) to (1450,4026,z0)
+[17:34:01.609] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1450,4026) in background
+[17:34:01.685] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1450,4026): 38 steps in 19808.3us
+[17:34:04.317] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: World save has been initiated.
+[17:34:09.329] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:09.701] WARN  [wave10_RevGen3_13_Amara] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.764] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1460,4017,0); target (1450,4026); stopped short (off by 19 tile(s))
+[17:34:09.764] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1460,4017) target=(1450,4026) arrived=0 off=19
+[17:34:09.906] WARN  [wave10_RevGen3_13_Amara] [0x22] unsolicited ack seq=13
+[17:34:10.997] INFO  [wave10_RevGen3_13_Amara] [action] goto (1450,4026) from (1460,4017,0)
+[17:34:10.997] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1450,4026) from=(1460,4017)
+[17:34:10.997] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1460,4017,0) to (1450,4026,z0)
+[17:34:10.997] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1450,4026) in background
+[17:34:11.059] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1450,4026): 28 steps in 14281.5us
+[17:34:13.526] INFO  [wave10_RevGen3_13_Amara] [bot] door ahead at (1463,4026,z0); OpenDoor before step
+[17:34:13.539] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Opening door...
+[17:34:14.353] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:16.394] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom butcher ARRIVED at (1455,4026,0)
+[17:34:16.395] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom butcher' ok=1 at=(1455,4026) legs=1 plans=1 why=''
+[17:34:16.456] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:34:16.456] INFO  [wave10_RevGen3_13_Amara] [action] requested 1 paperdoll(s) for trade titles
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (5):
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara]   Balint 0x0000F0D1
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x0001250E
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara]   Cat 0x00016C0A
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara]   Dog 0x00017A3E
+[17:34:16.471] INFO  [wave10_RevGen3_13_Amara]   jungle bird 0x0000F0E6
+[17:34:16.472] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1455,4026,0) facing=5
+[17:34:16.472] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F0D1: "Balint, the butcher"
+[17:34:16.472] INFO  [wave10_RevGen3_13_Amara] [world] Balint, the butcher is a butcher at (1454,4028)
+[17:34:19.372] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:19.495] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom fisherman -> (1512,3989) r=5 from (1455,4026)
+[17:34:19.496] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='South Jhelom fisherman' target=(1512,3989) radius=5 from=(1455,4026)
+[17:34:19.496] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:34:19.496] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:34:19.496] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:19.496] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:19.496] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:34:19.497] INFO  [wave10_RevGen3_13_Amara] [travel] plan South Jhelom fisherman: ok legs=2 ~80 tiles transit=0 nodes=22
+[17:34:19.557] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1455,4026,0); target (1450,4026); stopped short (off by 5 tile(s))
+[17:34:19.557] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1455,4026) target=(1450,4026) arrived=0 off=5
+[17:34:19.557] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3992) from (1455,4026,0)
+[17:34:19.557] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3992) from=(1455,4026)
+[17:34:19.558] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1455,4026,0) to (1480,3992)
+[17:34:19.558] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3992) in background
+[17:34:19.618] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1480,3992): 43 steps in 6106.5us
+[17:34:24.403] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:28.779] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 784.4us
+[17:34:29.459] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:29.552] INFO  [wave10_RevGen3_13_Amara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=5 in 517.8us
+[17:34:32.106] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1480,3992,0)
+[17:34:32.108] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1480,3992,0); target (1480,3992); ARRIVED (off by 0 tile(s))
+[17:34:32.108] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1480,3992) target=(1480,3992) arrived=1 off=0
+[17:34:32.108] INFO  [wave10_RevGen3_13_Amara] [action] goto (1512,3989) from (1480,3992,0)
+[17:34:32.108] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1512,3989) from=(1480,3992)
+[17:34:32.108] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1480,3992,0) to (1512,3989,z-3)
+[17:34:32.108] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1512,3989) in background
+[17:34:32.168] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1512,3989): 32 steps in 5955.6us
+[17:34:34.502] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:38.853] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=27; server says (1504,3991,-3) facing=1
+[17:34:38.853] INFO  [wave10_RevGen3_13_Amara] [bot] step (1504,3991,-3)->(1505,3990,-2) rejected; OpenDoor + retry
+[17:34:39.529] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:39.590] WARN  [wave10_RevGen3_13_Amara] [0x21] move REJECTED seq=0; server says (1504,3991,-3) facing=1
+[17:34:39.590] INFO  [wave10_RevGen3_13_Amara] [bot] step (1504,3991,-3)->(1505,3990,-2) rejected; avoiding edge + rerouting
+[17:34:39.590] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1512,3989) in background
+[17:34:39.592] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1512,3989): 10 steps in 313.5us
+[17:34:41.559] INFO  [wave10_RevGen3_13_Amara] [chat ascii] Tem: What is it thou wishest?
+[17:34:41.621] INFO  [wave10_RevGen3_13_Amara] [travel] South Jhelom fisherman ARRIVED at (1508,3989,-2)
+[17:34:41.622] LOG   [wave10_RevGen3_13_Amara] event travel_done: label='South Jhelom fisherman' ok=1 at=(1508,3989) legs=2 plans=1 why=''
+[17:34:41.685] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:34:41.685] INFO  [wave10_RevGen3_13_Amara] [action] requested 1 paperdoll(s) for trade titles
+[17:34:41.699] INFO  [wave10_RevGen3_13_Amara] [mobiles] nearby (1):
+[17:34:41.699] INFO  [wave10_RevGen3_13_Amara]   Tem 0x0000F143
+[17:34:41.699] INFO  [wave10_RevGen3_13_Amara] [0x88] paperdoll 0x0000F143: "Tem, the fisherman"
+[17:34:41.699] INFO  [wave10_RevGen3_13_Amara] [world] Tem, the fisherman is a fisherman at (1509,3989)
+[17:34:44.544] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:44.727] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom Territory fisherman -> (1125,3687) r=5 from (1508,3989)
+[17:34:44.728] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Jhelom Territory fisherman' target=(1125,3687) radius=5 from=(1508,3989)
+[17:34:44.728] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:34:44.728] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:34:44.729] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:44.729] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:44.729] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:34:44.729] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: ok legs=10 ~192 tiles transit=2 nodes=154
+[17:34:44.788] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1508,3989,-2); target (1512,3989); stopped short (off by 4 tile(s))
+[17:34:44.788] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1508,3989) target=(1512,3989) arrived=0 off=4
+[17:34:44.788] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3976) from (1508,3989,-2)
+[17:34:44.788] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3976) from=(1508,3989)
+[17:34:44.788] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1508,3989,-2) to (1480,3976)
+[17:34:44.789] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3976) in background
+[17:34:45.035] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 239038.5us)
+[17:34:45.035] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:34:45.082] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1508,3989,-2); target (1480,3976); stopped short (off by 41 tile(s))
+[17:34:45.083] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1508,3989) target=(1480,3976) arrived=0 off=41
+[17:34:46.318] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3976) from (1508,3989,-2)
+[17:34:46.318] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3976) from=(1508,3989)
+[17:34:46.318] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1508,3989,-2) to (1480,3976)
+[17:34:46.318] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3976) in background
+[17:34:46.629] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 273099.4us)
+[17:34:46.630] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:34:46.691] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1508,3989,-2); target (1480,3976); stopped short (off by 41 tile(s))
+[17:34:46.691] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1508,3989) target=(1480,3976) arrived=0 off=41
+[17:34:47.923] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3976) from (1508,3989,-2)
+[17:34:47.923] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3976) from=(1508,3989)
+[17:34:47.924] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1508,3989,-2) to (1480,3976)
+[17:34:47.924] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3976) in background
+[17:34:48.230] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1480,3976) avoiding 0 block(s); stopping (search 274940.4us)
+[17:34:48.231] WARN  [wave10_RevGen3_13_Amara] [bot] start (1508,3989,-2) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 1104 item(s), 1 mobile(s))
+[17:34:48.292] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1508,3989,-2); target (1480,3976); stopped short (off by 41 tile(s))
+[17:34:48.293] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1508,3989) target=(1480,3976) arrived=0 off=41
+[17:34:49.529] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:34:49.529] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:34:49.530] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:49.530] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:49.530] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:34:49.530] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: ok legs=10 ~192 tiles transit=2 nodes=149
+[17:34:49.591] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:51.053] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3992) from (1508,3989,-2)
+[17:34:51.053] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3992) from=(1508,3989)
+[17:34:51.053] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1508,3989,-2) to (1480,3992)
+[17:34:51.054] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3992) in background
+[17:34:51.115] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1480,3992): 29 steps in 5934.9us
+[17:34:54.593] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:59.647] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:01.138] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1480,3992,0)
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1480,3992,0); target (1480,3992); ARRIVED (off by 0 tile(s))
+[17:35:01.139] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1480,3992) target=(1480,3992) arrived=1 off=0
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3992) from (1480,3992,0)
+[17:35:01.139] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3992) from=(1480,3992)
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1480,3992,0) to (1448,3992)
+[17:35:01.140] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3992) in background
+[17:35:01.201] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3992): 32 steps in 667.9us
+[17:35:04.656] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:08.732] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3992,0)
+[17:35:08.733] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3992,0); target (1448,3992); ARRIVED (off by 0 tile(s))
+[17:35:08.734] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3992) target=(1448,3992) arrived=1 off=0
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [action] goto (1416,3992) from (1448,3992,0)
+[17:35:08.734] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1416,3992) from=(1448,3992)
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3992,0) to (1416,3992)
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1416,3992) in background
+[17:35:08.793] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1416,3992): 32 steps in 1341.6us
+[17:35:09.675] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:14.694] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:17.297] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1416,3992,0)
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1416,3992,0); target (1416,3992); ARRIVED (off by 0 tile(s))
+[17:35:17.298] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1416,3992) target=(1416,3992) arrived=1 off=0
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [action] goto (1400,3992) from (1416,3992,0)
+[17:35:17.299] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1400,3992) from=(1416,3992)
+[17:35:17.299] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1416,3992,0) to (1400,3992)
+[17:35:17.299] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1400,3992) in background
+[17:35:17.345] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1400,3992): 16 steps in 5915.9us
+[17:35:19.703] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:22.357] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1400,3992,0)
+[17:35:22.358] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1400,3992,0); target (1400,3992); ARRIVED (off by 0 tile(s))
+[17:35:22.358] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1400,3992) target=(1400,3992) arrived=1 off=0
+[17:35:22.358] INFO  [wave10_RevGen3_13_Amara] [action] goto (1406,3996) from (1400,3992,0)
+[17:35:22.359] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1406,3996) from=(1400,3992)
+[17:35:22.359] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1400,3992,0) to (1406,3996)
+[17:35:22.359] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1406,3996) in background
+[17:35:22.419] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1406,3996): 6 steps in 477.7us
+[17:35:24.716] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:24.917] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:35:24.917] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1414,3828,5) facing=3
+[17:35:24.918] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1414,3828,5); target (1406,3996); stopped short (off by 176 tile(s))
+[17:35:24.918] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1414,3828) target=(1406,3996) arrived=0 off=176
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:25.289] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:25.289] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:25.289] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: ok legs=4 ~84 tiles transit=1 nodes=144
+[17:35:28.306] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:28.306] INFO  [wave10_RevGen3_13_Amara] [action] goto (1409,3824) from (1414,3828,5)
+[17:35:28.307] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1409,3824) from=(1414,3828)
+[17:35:28.307] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1414,3828,5) to (1409,3824)
+[17:35:28.307] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1409,3824) in background
+[17:35:28.367] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1409,3824): 5 steps in 467.8us
+[17:35:29.768] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:30.026] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: You have left the protection of the guards
+[17:35:30.026] WARN  [wave10_RevGen3_13_Amara] [bot] 0x20 resync; aborting path
+[17:35:30.026] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1124,362,5) facing=7
+[17:35:30.027] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1409,3824); stopped short (off by 3747 tile(s))
+[17:35:30.027] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1409,3824) arrived=0 off=3747
+[17:35:30.149] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:30.150] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25296
+[17:35:31.028] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1074,370,-5) to get somewhere routable (escape 1/3)
+[17:35:31.028] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1074,370) attempt=1
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [action] goto (1074,370) from (1124,362,5)
+[17:35:31.028] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1074,370) from=(1124,362)
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1074,370,z-5)
+[17:35:31.029] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1074,370) in background
+[17:35:31.029] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1074,370) avoiding 0 block(s); stopping (search 18.3us)
+[17:35:31.029] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:31.089] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1074,370); stopped short (off by 58 tile(s))
+[17:35:31.089] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1074,370) arrived=0 off=58
+[17:35:31.089] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 50); attempt 1/3
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=50 attempt=1
+[17:35:31.090] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1176,312,1) to get somewhere routable (escape 2/3)
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1176,312) attempt=2
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,312) from (1124,362,5)
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,312) from=(1124,362)
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,312,z1)
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,312) in background
+[17:35:31.091] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,312) avoiding 0 block(s); stopping (search 3.9us)
+[17:35:31.091] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:31.150] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,312); stopped short (off by 102 tile(s))
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,312) arrived=0 off=102
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 52); attempt 1/3
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=52 attempt=1
+[17:35:31.153] WARN  [wave10_RevGen3_13_Amara] [travel] route exhausted at (1124,362,5); trying to reach (1176,322,1) to get somewhere routable (escape 3/3)
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1176,322) attempt=3
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322,z1)
+[17:35:31.154] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:31.154] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 5.8us)
+[17:35:31.154] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:31.212] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:31.215] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:31.216] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 52); attempt 1/3
+[17:35:31.216] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=52 attempt=1
+[17:35:31.216] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom Territory fisherman FAILED at (1124,362,5) -- sealed in; recovery exhausted
+[17:35:31.216] LOG   [wave10_RevGen3_13_Amara] event travel_failed: label='Jhelom Territory fisherman' ok=0 at=(1124,362) legs=4 plans=4 why='sealed in; recovery exhausted'
+[17:35:31.273] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:35:31.273] INFO  [wave10_RevGen3_13_Amara] [mobiles] no mobiles cached yet
+[17:35:34.293] INFO  [wave10_RevGen3_13_Amara] [travel] Yew banker -> (652,820) r=5 from (1124,362)
+[17:35:34.293] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(1124,362)
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:34.294] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:34.295] INFO  [wave10_RevGen3_13_Amara] [travel] plan Yew banker: ok legs=28 ~1064 tiles transit=0 nodes=2864
+[17:35:34.355] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:34.355] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:34.355] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:34.356] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:34.356] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 7.0us)
+[17:35:34.356] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:34.418] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:34.419] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:34.788] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:35.650] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:35.650] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 4.5us)
+[17:35:35.650] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:35.665] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:35.665] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:36.895] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:36.916] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:36.916] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:36.916] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:36.916] WARN  [wave10_RevGen3_13_Amara] [bot] no path to (1176,322) avoiding 0 block(s); stopping (search 5.6us)
+[17:35:36.916] WARN  [wave10_RevGen3_13_Amara] [bot] start (1124,362,5) exits: open=0 terrain=8 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1134 item(s), 0 mobile(s))
+[17:35:36.971] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:36.971] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:38.201] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:38.202] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:38.203] INFO  [wave10_RevGen3_13_Amara] [travel] plan Yew banker: ok legs=28 ~1072 tiles transit=0 nodes=2851
+[17:35:39.328] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Ghalor has departed from Britain.
+n3_13_Amara] event travel_mode: moongate
+[17:34:49.530] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: ok legs=10 ~192 tiles transit=2 nodes=149
+[17:34:49.591] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:51.053] INFO  [wave10_RevGen3_13_Amara] [action] goto (1480,3992) from (1508,3989,-2)
+[17:34:51.053] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1480,3992) from=(1508,3989)
+[17:34:51.053] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1508,3989,-2) to (1480,3992)
+[17:34:51.054] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1480,3992) in background
+[17:34:51.115] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1480,3992): 29 steps in 5934.9us
+[17:34:54.593] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:34:59.647] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:01.138] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1480,3992,0)
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1480,3992,0); target (1480,3992); ARRIVED (off by 0 tile(s))
+[17:35:01.139] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1480,3992) target=(1480,3992) arrived=1 off=0
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [action] goto (1448,3992) from (1480,3992,0)
+[17:35:01.139] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1448,3992) from=(1480,3992)
+[17:35:01.139] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1480,3992,0) to (1448,3992)
+[17:35:01.140] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1448,3992) in background
+[17:35:01.201] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1448,3992): 32 steps in 667.9us
+[17:35:04.656] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:08.732] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1448,3992,0)
+[17:35:08.733] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1448,3992,0); target (1448,3992); ARRIVED (off by 0 tile(s))
+[17:35:08.734] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1448,3992) target=(1448,3992) arrived=1 off=0
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [action] goto (1416,3992) from (1448,3992,0)
+[17:35:08.734] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1416,3992) from=(1448,3992)
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1448,3992,0) to (1416,3992)
+[17:35:08.734] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1416,3992) in background
+[17:35:08.793] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1416,3992): 32 steps in 1341.6us
+[17:35:09.675] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:14.694] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:17.297] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1416,3992,0)
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1416,3992,0); target (1416,3992); ARRIVED (off by 0 tile(s))
+[17:35:17.298] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1416,3992) target=(1416,3992) arrived=1 off=0
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:17.298] INFO  [wave10_RevGen3_13_Amara] [action] goto (1400,3992) from (1416,3992,0)
+[17:35:17.299] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1400,3992) from=(1416,3992)
+[17:35:17.299] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1416,3992,0) to (1400,3992)
+[17:35:17.299] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1400,3992) in background
+[17:35:17.345] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1400,3992): 16 steps in 5915.9us
+[17:35:19.703] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:22.357] INFO  [wave10_RevGen3_13_Amara] [bot] arrived at (1400,3992,0)
+[17:35:22.358] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1400,3992,0); target (1400,3992); ARRIVED (off by 0 tile(s))
+[17:35:22.358] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1400,3992) target=(1400,3992) arrived=1 off=0
+[17:35:22.358] INFO  [wave10_RevGen3_13_Amara] [action] goto (1406,3996) from (1400,3992,0)
+[17:35:22.359] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1406,3996) from=(1400,3992)
+[17:35:22.359] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1400,3992,0) to (1406,3996)
+[17:35:22.359] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1406,3996) in background
+[17:35:22.419] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1406,3996): 6 steps in 477.7us
+[17:35:24.716] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:24.917] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1414,3828,5) facing=3
+[17:35:24.918] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1414,3828,5); target (1406,3996); stopped short (off by 176 tile(s))
+[17:35:24.918] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1414,3828) target=(1406,3996) arrived=0 off=176
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:25.288] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:25.289] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:25.289] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:25.289] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: ok legs=4 ~84 tiles transit=1 nodes=144
+[17:35:28.306] INFO  [wave10_RevGen3_13_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:35:28.306] INFO  [wave10_RevGen3_13_Amara] [action] goto (1409,3824) from (1414,3828,5)
+[17:35:28.307] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1409,3824) from=(1414,3828)
+[17:35:28.307] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1414,3828,5) to (1409,3824)
+[17:35:28.307] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1409,3824) in background
+[17:35:28.367] INFO  [wave10_RevGen3_13_Amara] [bot] replan to (1409,3824): 5 steps in 467.8us
+[17:35:29.768] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:30.026] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: You have left the protection of the guards
+[17:35:30.026] INFO  [wave10_RevGen3_13_Amara] [0x20] player @(1124,362,5) facing=7
+[17:35:30.027] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1409,3824); stopped short (off by 3747 tile(s))
+[17:35:30.027] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1409,3824) arrived=0 off=3747
+[17:35:30.149] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:30.150] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:30.150] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [travel] plan Jhelom Territory fisherman: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25296
+[17:35:31.028] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1074,370) attempt=1
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [action] goto (1074,370) from (1124,362,5)
+[17:35:31.028] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1074,370) from=(1124,362)
+[17:35:31.028] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1074,370,z-5)
+[17:35:31.029] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1074,370) in background
+[17:35:31.089] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1074,370); stopped short (off by 58 tile(s))
+[17:35:31.089] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1074,370) arrived=0 off=58
+[17:35:31.089] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 50); attempt 1/3
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=50 attempt=1
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1176,312) attempt=2
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,312) from (1124,362,5)
+[17:35:31.090] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,312) from=(1124,362)
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,312,z1)
+[17:35:31.090] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,312) in background
+[17:35:31.150] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,312); stopped short (off by 102 tile(s))
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,312) arrived=0 off=102
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 52); attempt 1/3
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=52 attempt=1
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event travel_escape: from=(1124,362,5) to=(1176,322) attempt=3
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:31.153] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:31.153] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322,z1)
+[17:35:31.154] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:31.212] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:31.215] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:31.216] INFO  [wave10_RevGen3_13_Amara] [travel] recovery walk fell short at (1124,362,5) (off 52); attempt 1/3
+[17:35:31.216] LOG   [wave10_RevGen3_13_Amara] event travel_recovery_done: reached=0 at=(1124,362,5) off=52 attempt=1
+[17:35:31.216] INFO  [wave10_RevGen3_13_Amara] [travel] Jhelom Territory fisherman FAILED at (1124,362,5) -- sealed in; recovery exhausted
+[17:35:31.216] LOG   [wave10_RevGen3_13_Amara] event travel_failed: label='Jhelom Territory fisherman' ok=0 at=(1124,362) legs=4 plans=4 why='sealed in; recovery exhausted'
+[17:35:31.273] INFO  [life] explore: arrived at 1124,362 -- reading who is here
+[17:35:31.273] INFO  [wave10_RevGen3_13_Amara] [action] scanning nearby mobiles for names
+[17:35:31.273] INFO  [wave10_RevGen3_13_Amara] [mobiles] no mobiles cached yet
+[17:35:31.273] INFO  [life] goal_completed=EXPLORE progress=1
+[17:35:31.276] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_13.amara/state.json
+[17:35:31.333] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:35:31.333] INFO  [life] needs considered: NeedPractice(Magery 0.45) NeedSkillTraining(Tinkering 0.45) NeedTravel(a place where work is possible 0.20) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:31.334] INFO  [life]   score=15.0
+[17:35:31.334] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:35:31.334] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 18s after achieving nothing
+[17:35:31.334] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:31.334] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 145s after achieving nothing
+[17:35:34.293] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:35:34.293] INFO  [wave10_RevGen3_13_Amara] [travel] Yew banker -> (652,820) r=5 from (1124,362)
+[17:35:34.293] LOG   [wave10_RevGen3_13_Amara] event travel_start: label='Yew banker' target=(652,820) radius=5 from=(1124,362)
+[17:35:34.293] INFO  [life] explore: nothing else to do, so going to 'yew_bank' -- somewhere new (33 place(s) known so far)
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:34.294] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:34.294] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:34.295] INFO  [wave10_RevGen3_13_Amara] [travel] plan Yew banker: ok legs=28 ~1064 tiles transit=0 nodes=2864
+[17:35:34.355] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:34.355] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:34.355] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:34.356] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:34.418] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:34.419] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:34.788] INFO  [wave10_RevGen3_13_Amara] [survival] hp 24/24 (100%) -> fight
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:35.650] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:35.650] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:35.665] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:35.665] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:36.895] INFO  [wave10_RevGen3_13_Amara] [action] goto (1176,322) from (1124,362,5)
+[17:35:36.916] LOG   [wave10_RevGen3_13_Amara] event goto_start: target=(1176,322) from=(1124,362)
+[17:35:36.916] INFO  [wave10_RevGen3_13_Amara] [bot] running from (1124,362,5) to (1176,322)
+[17:35:36.916] INFO  [wave10_RevGen3_13_Amara] [bot] planning path to (1176,322) in background
+[17:35:36.971] INFO  [wave10_RevGen3_13_Amara] [action] goto finished at (1124,362,5); target (1176,322); stopped short (off by 92 tile(s))
+[17:35:36.971] LOG   [wave10_RevGen3_13_Amara] event goto_done: at=(1124,362) target=(1176,322) arrived=0 off=92
+[17:35:38.201] INFO  [wave10_RevGen3_13_Amara] [travel] mode moongate         usable   <- chosen
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode walk             usable
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:38.202] INFO  [wave10_RevGen3_13_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:38.202] LOG   [wave10_RevGen3_13_Amara] event travel_mode: moongate
+[17:35:38.203] INFO  [wave10_RevGen3_13_Amara] [travel] plan Yew banker: ok legs=28 ~1072 tiles transit=0 nodes=2851
+[17:35:39.328] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_13_Amara] [chat ascii] System: Ghalor has departed from Britain.

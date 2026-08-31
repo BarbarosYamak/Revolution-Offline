@@ -1,0 +1,595 @@
+[17:29:35.300] LOG   [wave10_RevGen3_24_Illyr] event session_start: text log opened
+[17:29:35.301] LOG   [wave10_RevGen3_24_Illyr] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.302] INFO  [wave10_RevGen3_24_Illyr] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.304] LOG   [wave10_RevGen3_24_Illyr] event net_connected: connect 127.0.0.1:2593
+[17:29:35.306] INFO  [wave10_RevGen3_24_Illyr] [net] connected.
+[17:29:35.307] INFO  [wave10_RevGen3_24_Illyr] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.307] LOG   [wave10_RevGen3_24_Illyr] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.308] INFO  [wave10_RevGen3_24_Illyr] [life] autonomous player active for 'Illyria' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.309] INFO  [wave10_RevGen3_24_Illyr] [0xA8] 1 server(s):
+[17:29:35.309] INFO  [wave10_RevGen3_24_Illyr]   [0] MyShard                   1.0.0.127  full=9%  tz=0
+[17:29:35.318] INFO  [wave10_RevGen3_24_Illyr] [0x8C] game server = 127.0.0.1:2593  seed=0x2874E47F
+[17:29:35.319] LOG   [wave10_RevGen3_24_Illyr] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2874E47F
+[17:29:35.319] INFO  [wave10_RevGen3_24_Illyr] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.320] LOG   [wave10_RevGen3_24_Illyr] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr] [0xB9] server features = 0x0005
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr]   [0] Illyria
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr]   [1] <empty>
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr]   [2] <empty>
+[17:29:35.321] INFO  [wave10_RevGen3_24_Illyr]   [3] <empty>
+[17:29:35.322] INFO  [wave10_RevGen3_24_Illyr]   [4] <empty>
+[17:29:35.322] INFO  [wave10_RevGen3_24_Illyr] [ui] playing slot 0 ('Illyria')
+[17:29:35.326] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_24_Illyr] [0x1B] serial=0x0001916B body=0x0190 pos=(1471,1609,20)
+[17:29:35.328] LOG   [wave10_RevGen3_24_Illyr] event login_confirm: serial=0x0001916B body=0x0190 pos=(1471,1609,20)
+[17:29:35.329] INFO  [wave10_RevGen3_24_Illyr] [0x20] player @(1471,1609,20) facing=7
+[17:29:35.329] INFO  [wave10_RevGen3_24_Illyr] [0x55] login complete — entering world
+[17:29:35.330] LOG   [wave10_RevGen3_24_Illyr] event in_world: 0x55 received
+[17:29:35.330] INFO  [wave10_RevGen3_24_Illyr] [backpack] opening 0x40019164
+[17:29:35.331] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.331] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: There are 25 other players here.
+[17:29:35.331] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.331] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.335] INFO  [wave10_RevGen3_24_Illyr] [action] requesting the skill list
+[17:29:35.336] INFO  [wave10_RevGen3_24_Illyr] [0x24] open container 0x40019164 gump=60
+[17:29:35.337] INFO  [wave10_RevGen3_24_Illyr] [0x3C] container contents: 5 item(s)
+[17:29:35.338] LOG   [wave10_RevGen3_24_Illyr] event backpack_contents: serial=0x40019164 items=5
+[17:29:35.341] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.361] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.960] INFO  [wave10_RevGen3_24_Illyr] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.962] INFO  [wave10_RevGen3_24_Illyr] [survival] on
+[17:29:37.962] LOG   [wave10_RevGen3_24_Illyr] event survival_mode: on
+[17:29:37.966] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:29:38.105] INFO  [wave10_RevGen3_24_Illyr] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[17:29:38.106] INFO  [wave10_RevGen3_24_Illyr] [travel] place: skipping Delucia healer -- 1844 tiles and 3 gates for a service Britain healer offers
+[17:29:38.106] INFO  [wave10_RevGen3_24_Illyr] [travel] Britain healer -> (1471,1611) r=5 from (1471,1609)
+[17:29:38.106] LOG   [wave10_RevGen3_24_Illyr] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1471,1609)
+[17:29:38.106] INFO  [wave10_RevGen3_24_Illyr] [travel] Britain healer ARRIVED at (1471,1609,20)
+[17:29:38.107] LOG   [wave10_RevGen3_24_Illyr] event travel_done: label='Britain healer' ok=1 at=(1471,1609) legs=0 plans=0 why=''
+[17:29:38.164] INFO  [wave10_RevGen3_24_Illyr] [action] scanning nearby mobiles for names
+[17:29:38.164] INFO  [wave10_RevGen3_24_Illyr] [action] requested 3 paperdoll(s) for trade titles
+[17:29:38.165] INFO  [wave10_RevGen3_24_Illyr] [mobiles] nearby (4):
+[17:29:38.165] INFO  [wave10_RevGen3_24_Illyr]   Dale 0x000010C1
+[17:29:38.165] INFO  [wave10_RevGen3_24_Illyr]   Natasha 0x00001194
+[17:29:38.165] INFO  [wave10_RevGen3_24_Illyr]   Caimile 0x00001239
+[17:29:38.166] INFO  [wave10_RevGen3_24_Illyr]   Lionel 0x000010B3
+[17:29:38.195] INFO  [wave10_RevGen3_24_Illyr] [0x20] player @(1471,1609,20) facing=6
+[17:29:38.196] INFO  [wave10_RevGen3_24_Illyr] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[17:29:38.196] INFO  [wave10_RevGen3_24_Illyr] [world] Dale, the healer is a healer at (1468,1609)
+[17:29:38.196] INFO  [wave10_RevGen3_24_Illyr] [0x20] player @(1471,1609,20) facing=0
+[17:29:38.197] INFO  [wave10_RevGen3_24_Illyr] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[17:29:38.197] INFO  [wave10_RevGen3_24_Illyr] [0x20] player @(1471,1609,20) facing=4
+[17:29:38.197] INFO  [wave10_RevGen3_24_Illyr] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[17:29:38.197] INFO  [wave10_RevGen3_24_Illyr] [world] Natasha, the healer guildmistress is a healer at (1470,1612)
+[17:29:41.328] INFO  [wave10_RevGen3_24_Illyr] [ACTION] vendor_buy start
+[17:29:41.329] INFO  [wave10_RevGen3_24_Illyr] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[17:29:41.330] INFO  [wave10_RevGen3_24_Illyr] [chat uni  ] Illyria: Dale buy
+[17:29:41.330] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: What's thou need?
+[17:29:41.330] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: I'm here to sell thee supplies.
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x3C] container contents: 5 item(s)
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x74]   clean bandages               gfx=0x0E21 qty=11   price=1
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[17:29:41.331] INFO  [wave10_RevGen3_24_Illyr] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [0x74]   Garlic                       gfx=0x0F84 qty=31   price=3
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [0x74]   Refresh                      gfx=0x0F0B qty=6    price=16
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [0x3C] container contents: 0 item(s)
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [VENDOR] offer from 0x000010C1: 5 item(s)
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [VENDOR]   0x4000CB76 clean bandages         x11  1 gp
+[17:29:41.332] INFO  [wave10_RevGen3_24_Illyr] [VENDOR]   0x4000CB75 Heal                   x11  30 gp
+[17:29:41.333] INFO  [wave10_RevGen3_24_Illyr] [VENDOR]   0x4000CB74 Ginseng                x22  3 gp
+[17:29:41.333] INFO  [wave10_RevGen3_24_Illyr] [VENDOR]   0x4000CB72 Garlic                 x31  3 gp
+[17:29:41.333] INFO  [wave10_RevGen3_24_Illyr] [VENDOR]   0x4000CB71 Refresh                x6   16 gp
+[17:29:41.333] LOG   [wave10_RevGen3_24_Illyr] event vendor_offer: vendor=0x000010C1 items=5
+[17:29:41.333] INFO  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] vendor_buy success (5ms) vendor offer received
+[17:29:41.333] LOG   [wave10_RevGen3_24_Illyr] event action_result: vendor_buy success took=5ms vendor offer received
+[17:29:41.333] INFO  [wave10_RevGen3_24_Illyr] [0x24] vendor buy gump for 0x000010C1
+[17:29:42.415] INFO  [wave10_RevGen3_24_Illyr] [ACTION] use_object start
+[17:29:42.415] INFO  [wave10_RevGen3_24_Illyr] [ACTION] use_object serial=0x40018F4E
+[17:29:42.429] INFO  [wave10_RevGen3_24_Illyr] [0x3C] container contents: 12 item(s)
+[17:29:42.430] INFO  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] use_object success (14ms) contents received
+[17:29:42.430] LOG   [wave10_RevGen3_24_Illyr] event action_result: use_object success took=14ms contents received
+[17:29:42.983] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:29:44.931] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:29:44.932] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:29:44.947] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:29:48.043] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:29:53.078] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:29:56.969] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:29:56.970] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:29:56.986] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:29:56.986] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:29:57.000] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:29:58.139] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:03.182] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:08.208] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:09.033] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:30:09.034] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:30:09.096] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:30:09.096] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:30:09.097] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:30:13.270] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:18.293] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:21.113] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:30:21.115] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:30:21.175] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:30:21.175] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:30:21.176] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:30:23.345] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:28.388] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:33.214] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:30:33.215] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:30:33.277] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:30:33.278] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:30:33.292] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:30:33.416] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:38.441] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:43.483] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:45.328] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:30:45.329] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:30:45.639] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:30:45.639] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:30:45.639] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:30:48.524] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:52.419] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: Well it was nice speaking to you Illyria but I must go about my business
+[17:30:53.526] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:30:57.668] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:30:57.668] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:30:57.730] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:30:57.730] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:30:57.730] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:30:58.534] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:03.562] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:08.593] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:09.747] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:31:09.748] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:31:09.810] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:31:09.810] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:31:09.810] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:31:13.645] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:18.699] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:21.856] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:31:21.857] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:31:21.919] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:31:21.919] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:31:21.920] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:31:23.756] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:28.807] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:33.855] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:33.980] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:31:33.980] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:31:34.042] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:31:34.043] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:31:34.043] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:31:35.954] INFO  [wave10_RevGen3_24_Illyr] [chat uni  ] : Dale buy
+[17:31:35.954] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: Good morrow!  How might I help thee?
+[17:31:35.954] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: I would gladly sell to thee of my many wares.
+[17:31:38.895] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:43.951] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:46.066] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:31:46.066] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:31:46.128] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:31:46.128] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:31:46.128] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:31:48.991] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:54.024] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:31:58.167] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:31:58.167] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:31:58.415] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:31:58.415] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:31:58.416] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:31:59.085] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:00.366] INFO  [wave10_RevGen3_24_Illyr] [chat uni  ] : Dale buy
+[17:32:00.367] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[17:32:04.107] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:09.147] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:10.473] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:32:10.473] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:32:10.534] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:32:10.534] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:32:10.535] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:32:14.153] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:19.197] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:22.595] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:32:22.596] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:32:22.627] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:32:22.628] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:32:22.628] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:32:24.231] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:29.251] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:34.284] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:34.655] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:32:34.655] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:32:34.717] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:32:34.718] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:32:34.734] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:32:39.325] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:44.349] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:46.764] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:32:46.764] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:32:46.811] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:32:46.811] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:32:46.826] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:32:49.352] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:51.230] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: What is it thou wishest?
+[17:32:51.230] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: Thou art dead, but 'tis within my power to resurrect thee. Live!
+[17:32:54.375] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:32:58.815] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:32:58.816] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:32:58.877] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:32:58.878] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:32:58.894] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:32:59.384] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:04.442] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:09.500] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:10.889] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:33:10.889] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:33:11.012] INFO  [wave10_RevGen3_24_Illyr] [travel] mobile 0x000010C1 -> (1475,1611) r=1 from (1471,1609)
+[17:33:11.013] LOG   [wave10_RevGen3_24_Illyr] event travel_start: label='mobile 0x000010C1' target=(1475,1611) radius=1 from=(1471,1609)
+[17:33:11.013] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:11.013] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:11.014] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:11.074] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:11.074] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:11.074] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:11.075] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:12.786] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1680094.3us)
+[17:33:12.786] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 5 mobile(s))
+[17:33:12.849] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:12.849] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:14.063] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:14.557] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:15.512] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1448149.8us)
+[17:33:15.513] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 5 mobile(s))
+[17:33:15.573] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:15.574] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:16.810] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:18.250] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1377890.3us)
+[17:33:18.250] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 5 mobile(s))
+[17:33:18.312] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:18.312] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:19.563] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:19.564] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:19.564] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:21.091] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:21.092] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:21.092] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:21.092] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:22.692] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1578637.3us)
+[17:33:22.692] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 6 mobile(s))
+[17:33:22.754] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:22.755] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:23.983] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:24.611] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:25.894] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1901678.9us)
+[17:33:25.895] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 5 mobile(s))
+[17:33:25.956] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:25.956] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:27.169] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.170] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:29.631] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:30.188] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:30.188] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:30.189] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:30.189] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:31.953] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1749740.3us)
+[17:33:31.953] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 6 mobile(s))
+[17:33:32.013] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:32.013] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:33.213] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:33.213] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:33.214] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:33.214] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:34.663] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:34.989] WARN  [wave10_RevGen3_24_Illyr] [bot] no path to (1475,1611) avoiding 0 block(s); stopping (search 1739929.6us)
+[17:33:34.990] WARN  [wave10_RevGen3_24_Illyr] [bot] start (1471,1609,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 49 item(s), 6 mobile(s))
+[17:33:35.052] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:35.052] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:36.291] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:36.292] INFO  [wave10_RevGen3_24_Illyr] [bot] replan to (1475,1611): 5 steps in 91.9us
+[17:33:37.922] INFO  [wave10_RevGen3_24_Illyr] [travel] mobile 0x000010C1 ARRIVED at (1474,1611,20)
+[17:33:37.922] LOG   [wave10_RevGen3_24_Illyr] event travel_done: label='mobile 0x000010C1' ok=1 at=(1474,1611) legs=1 plans=3 why=''
+[17:33:38.069] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:33:38.069] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:33:38.075] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:33:39.706] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:44.765] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:49.802] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:50.110] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:33:50.111] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:33:50.173] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:33:50.173] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:33:50.188] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:33:54.568] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: World save in 10 seconds
+[17:33:54.812] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:59.815] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:02.225] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:34:02.226] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:02.289] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:02.289] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:02.290] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:04.598] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: World save has been initiated.
+[17:34:04.844] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:09.886] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:14.305] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:34:14.306] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:14.925] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:19.970] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:25.006] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:26.408] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:34:26.408] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:26.470] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:26.470] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:26.485] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:30.027] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:35.054] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:38.498] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:34:38.499] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:38.559] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:38.559] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:38.574] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:40.113] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:45.126] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:50.144] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:50.604] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:34:50.604] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:55.196] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:59.263] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: I'm listenin'.
+[17:35:00.230] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:02.665] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:35:02.665] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:02.727] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:02.727] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:02.742] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:05.239] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:10.274] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:14.786] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:35:14.786] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:15.309] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:20.313] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:25.318] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:26.873] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:35:26.877] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:30.381] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:35.433] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:38.941] WARN  [wave10_RevGen3_24_Illyr] [ACTION_RESULT] cast_spell timeout (no server confirmation)
+[17:35:38.942] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:39.004] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:39.004] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:39.005] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:39.329] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.347] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Lyra has departed from Moonglow.
+=Evaluating Intelligence (target 100.0)
+[17:33:07.805] INFO  [life]   score=62.1
+[17:33:07.805] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:33:07.805] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:33:07.805] INFO  [life]   reason: upkeep just now, easing off 52% (130.0 -> 62.1)
+[17:33:07.805] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Evaluating Intelligence 0.0 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:09.500] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:10.889] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:33:10.951] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:33:10.951] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[17:33:10.951] INFO  [life] potions: found a 'healer'
+[17:33:11.012] INFO  [wave10_RevGen3_24_Illyr] [travel] mobile 0x000010C1 -> (1475,1611) r=1 from (1471,1609)
+[17:33:11.013] LOG   [wave10_RevGen3_24_Illyr] event travel_start: label='mobile 0x000010C1' target=(1475,1611) radius=1 from=(1471,1609)
+[17:33:11.013] INFO  [life] potions: the 'healer' is 4 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[17:33:11.013] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:11.013] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:11.014] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:11.014] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:11.074] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:11.074] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:11.074] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:11.075] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:12.849] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:12.849] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:14.063] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:14.063] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:14.557] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:15.573] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:15.574] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:16.810] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:16.810] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:18.312] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:18.312] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:19.563] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:19.563] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:19.564] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:19.564] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:21.091] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:21.092] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:21.092] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:21.092] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:22.754] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:22.755] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:23.983] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:23.983] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:24.611] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:25.956] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:25.956] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:27.169] INFO  [wave10_RevGen3_24_Illyr] [travel] mode walk             usable   <- chosen
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode moongate         usable
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.170] LOG   [wave10_RevGen3_24_Illyr] event travel_mode: walk
+[17:33:27.170] INFO  [wave10_RevGen3_24_Illyr] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:29.631] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:30.188] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:30.188] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:30.189] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:30.189] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:32.013] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:32.013] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:33.213] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:33.213] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:33.214] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:33.214] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:34.663] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:35.052] INFO  [wave10_RevGen3_24_Illyr] [action] goto finished at (1471,1609,20); target (1475,1611); stopped short (off by 6 tile(s))
+[17:33:35.052] LOG   [wave10_RevGen3_24_Illyr] event goto_done: at=(1471,1609) target=(1475,1611) arrived=0 off=6
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [action] goto (1475,1611) from (1471,1609,20)
+[17:33:36.291] LOG   [wave10_RevGen3_24_Illyr] event goto_start: target=(1475,1611) from=(1471,1609)
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [bot] running from (1471,1609,20) to (1475,1611,z20)
+[17:33:36.291] INFO  [wave10_RevGen3_24_Illyr] [bot] planning path to (1475,1611) in background
+[17:33:36.292] INFO  [wave10_RevGen3_24_Illyr] [bot] replan to (1475,1611): 5 steps in 91.9us
+[17:33:37.922] INFO  [wave10_RevGen3_24_Illyr] [travel] mobile 0x000010C1 ARRIVED at (1474,1611,20)
+[17:33:37.922] LOG   [wave10_RevGen3_24_Illyr] event travel_done: label='mobile 0x000010C1' ok=1 at=(1474,1611) legs=1 plans=3 why=''
+[17:33:37.938] INFO  [life] potions: within reach
+[17:33:37.998] INFO  [life] potions: the shop is open
+[17:33:38.059] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:33:38.059] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:33:38.060] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=65
+[17:33:38.067] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[17:33:38.068] INFO  [life] goal=PRACTICE_SKILL reason="no goal was running"
+[17:33:38.068] INFO  [life] needs considered: NeedSkillTraining(Evaluating Intelligence BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Evaluating Intelligence 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.33) NeedGold(gold 0.30) NeedFood(food 0.25) NeedSpells(spells 0.23)  | tools defined=1 held=[spellbook,] want_train=Evaluating Intelligence (target 100.0)
+[17:33:38.068] INFO  [life]   score=54.0
+[17:33:38.068] INFO  [life]   reason: NeedPractice urgency 0.45 x 120 = 54.0
+[17:33:38.068] INFO  [life]   reason: Evaluating Intelligence 0.0 -> 100.0 mana=48 no_gain_region=0
+[17:33:38.069] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Evaluating Intelligence 0.0 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:38.069] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:33:38.069] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:33:38.069] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:33:38.075] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:33:39.706] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:44.765] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:49.802] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:50.111] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:33:50.172] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:33:50.173] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:33:50.173] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:33:50.188] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:33:54.568] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: World save in 10 seconds
+[17:33:54.812] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:33:59.815] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:02.226] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:02.289] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:34:02.289] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:02.289] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:02.290] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:04.598] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: World save has been initiated.
+[17:34:04.844] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:09.886] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:14.306] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:14.367] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:14.368] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:14.925] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:19.970] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:25.006] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:26.408] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:26.469] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:34:26.470] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:26.470] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:26.485] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:30.027] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:35.054] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:38.075] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[17:34:38.499] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:38.559] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:34:38.559] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:38.559] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:38.574] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:40.113] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:45.126] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:50.144] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:50.604] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:34:50.605] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:34:50.605] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:34:55.196] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:34:59.263] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] Dale: I'm listenin'.
+[17:35:00.230] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:02.665] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:02.727] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:35:02.727] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:02.727] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:02.742] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:05.239] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:10.274] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:14.786] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:14.848] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:14.849] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:15.309] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:20.313] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:25.318] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:26.877] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:26.935] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:26.937] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:30.381] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:35.433] INFO  [wave10_RevGen3_24_Illyr] [survival] hp 20/20 (100%) -> fight
+[17:35:38.081] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_24.illyria/state.json
+[17:35:38.942] LOG   [wave10_RevGen3_24_Illyr] event action_result: cast_spell timeout
+[17:35:39.004] INFO  [life] practice: casting spell 6 at myself to raise Magery (50.0, mana 48)
+[17:35:39.004] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell start
+[17:35:39.004] INFO  [wave10_RevGen3_24_Illyr] [ACTION] cast_spell id=6 target=0x0001916B mana=48
+[17:35:39.005] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: You lack Sulfurous Ash for this spell
+[17:35:39.329] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.347] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_24_Illyr] [chat ascii] System: Lyra has departed from Moonglow.

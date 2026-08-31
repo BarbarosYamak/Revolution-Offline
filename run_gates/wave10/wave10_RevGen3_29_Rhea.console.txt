@@ -1,0 +1,705 @@
+[17:29:35.351] LOG   [wave10_RevGen3_29_Rhea] event session_start: text log opened
+[17:29:35.353] LOG   [wave10_RevGen3_29_Rhea] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.356] INFO  [wave10_RevGen3_29_Rhea] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.358] LOG   [wave10_RevGen3_29_Rhea] event net_connected: connect 127.0.0.1:2593
+[17:29:35.359] INFO  [wave10_RevGen3_29_Rhea] [net] connected.
+[17:29:35.361] INFO  [wave10_RevGen3_29_Rhea] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.363] LOG   [wave10_RevGen3_29_Rhea] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.367] INFO  [wave10_RevGen3_29_Rhea] [life] autonomous player active for 'Rhea' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.369] INFO  [wave10_RevGen3_29_Rhea] [0xA8] 1 server(s):
+[17:29:35.371] INFO  [wave10_RevGen3_29_Rhea]   [0] MyShard                   1.0.0.127  full=12%  tz=0
+[17:29:35.371] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.376] INFO  [wave10_RevGen3_29_Rhea] [0x8C] game server = 127.0.0.1:2593  seed=0x56C598C2
+[17:29:35.376] LOG   [wave10_RevGen3_29_Rhea] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x56C598C2
+[17:29:35.377] INFO  [wave10_RevGen3_29_Rhea] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.381] LOG   [wave10_RevGen3_29_Rhea] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.383] INFO  [wave10_RevGen3_29_Rhea] [0xB9] server features = 0x0005
+[17:29:35.384] INFO  [wave10_RevGen3_29_Rhea] [0xA9] 5 slot(s) (populated 2):
+[17:29:35.385] INFO  [wave10_RevGen3_29_Rhea]   [0] Rhea
+[17:29:35.386] INFO  [wave10_RevGen3_29_Rhea]   [1] Morrigan
+[17:29:35.387] INFO  [wave10_RevGen3_29_Rhea]   [2] <empty>
+[17:29:35.387] INFO  [wave10_RevGen3_29_Rhea]   [3] <empty>
+[17:29:35.387] INFO  [wave10_RevGen3_29_Rhea]   [4] <empty>
+[17:29:35.387] INFO  [wave10_RevGen3_29_Rhea] [ui] playing slot 0 ('Rhea')
+[17:29:35.388] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_29_Rhea] [0x1B] serial=0x00017DD9 body=0x0191 pos=(644,1163,0)
+[17:29:35.403] LOG   [wave10_RevGen3_29_Rhea] event login_confirm: serial=0x00017DD9 body=0x0191 pos=(644,1163,0)
+[17:29:35.404] INFO  [wave10_RevGen3_29_Rhea] [0x20] player @(644,1163,0) facing=7
+[17:29:35.404] INFO  [wave10_RevGen3_29_Rhea] [0x55] login complete — entering world
+[17:29:35.404] LOG   [wave10_RevGen3_29_Rhea] event in_world: 0x55 received
+[17:29:35.404] INFO  [wave10_RevGen3_29_Rhea] [backpack] opening 0x40017D64
+[17:29:35.404] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.405] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: There are 33 other players here.
+[17:29:35.405] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.405] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.405] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.409] INFO  [wave10_RevGen3_29_Rhea] [action] requesting the skill list
+[17:29:35.417] INFO  [wave10_RevGen3_29_Rhea] [0x24] open container 0x40017D64 gump=60
+[17:29:35.417] INFO  [wave10_RevGen3_29_Rhea] [0x3C] container contents: 8 item(s)
+[17:29:35.417] LOG   [wave10_RevGen3_29_Rhea] event backpack_contents: serial=0x40017D64 items=8
+[17:29:35.434] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.437] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:38.038] INFO  [wave10_RevGen3_29_Rhea] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:38.042] INFO  [wave10_RevGen3_29_Rhea] [survival] on
+[17:29:38.042] LOG   [wave10_RevGen3_29_Rhea] event survival_mode: on
+[17:29:38.047] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:29:38.103] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture -> (572,1098) r=8 from (644,1163)
+[17:29:38.103] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='pasture' target=(572,1098) radius=8 from=(644,1163)
+[17:29:38.103] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable   <- chosen
+[17:29:38.104] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable
+[17:29:38.104] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.104] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.104] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: moongate
+[17:29:38.105] INFO  [wave10_RevGen3_29_Rhea] [travel] plan pasture: ok legs=3 ~120 tiles transit=0 nodes=141
+[17:29:38.164] INFO  [wave10_RevGen3_29_Rhea] [action] goto (616,1160) from (644,1163,0)
+[17:29:38.164] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(616,1160) from=(644,1163)
+[17:29:38.165] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (644,1163,0) to (616,1160)
+[17:29:38.165] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (616,1160) in background
+[17:29:38.226] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (616,1160): 29 steps in 6581.4us
+[17:29:43.060] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:29:48.060] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (616,1160,0)
+[17:29:48.060] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (616,1160,0); target (616,1160); ARRIVED (off by 0 tile(s))
+[17:29:48.060] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(616,1160) target=(616,1160) arrived=1 off=0
+[17:29:48.060] INFO  [wave10_RevGen3_29_Rhea] [action] goto (584,1128) from (616,1160,0)
+[17:29:48.061] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(584,1128) from=(616,1160)
+[17:29:48.061] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (616,1160,0) to (584,1128)
+[17:29:48.061] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (584,1128) in background
+[17:29:48.061] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:29:48.120] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (584,1128): 36 steps in 16041.6us
+[17:29:53.063] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:29:58.079] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:29:59.447] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (584,1128,0)
+[17:29:59.447] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (584,1128,0); target (584,1128); ARRIVED (off by 0 tile(s))
+[17:29:59.447] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(584,1128) target=(584,1128) arrived=1 off=0
+[17:29:59.447] INFO  [wave10_RevGen3_29_Rhea] [action] goto (572,1098) from (584,1128,0)
+[17:29:59.448] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(572,1098) from=(584,1128)
+[17:29:59.448] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (584,1128,0) to (572,1098)
+[17:29:59.448] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (572,1098) in background
+[17:29:59.507] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (572,1098): 48 steps in 26457.7us
+[17:30:03.090] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:08.101] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:08.846] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (563,1111,z0); OpenDoor before step
+[17:30:08.846] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:30:10.126] INFO  [wave10_RevGen3_29_Rhea] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=13 in 141.6us
+[17:30:11.615] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture ARRIVED at (564,1106,0)
+[17:30:11.615] LOG   [wave10_RevGen3_29_Rhea] event travel_done: label='pasture' ok=1 at=(564,1106) legs=3 plans=1 why=''
+[17:30:11.720] INFO  [wave10_RevGen3_29_Rhea] [travel] place: skipping Cove healer -- 1352 tiles and 1 gate for a service Deep Forest Healing healer offers
+[17:30:11.720] INFO  [wave10_RevGen3_29_Rhea] [travel] place: skipping Delucia healer -- 1964 tiles and 4 gates for a service Deep Forest Healing healer offers
+[17:30:11.720] INFO  [wave10_RevGen3_29_Rhea] [travel] place: skipping Wind healer -- 1524 tiles and 1 gate for a service Deep Forest Healing healer offers
+[17:30:11.720] INFO  [wave10_RevGen3_29_Rhea] [travel] Deep Forest Healing healer -> (643,1083) r=5 from (564,1106)
+[17:30:11.721] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='Deep Forest Healing healer' target=(643,1083) radius=5 from=(564,1106)
+[17:30:11.721] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable   <- chosen
+[17:30:11.721] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable
+[17:30:11.721] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:11.721] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:11.721] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: moongate
+[17:30:11.722] INFO  [wave10_RevGen3_29_Rhea] [travel] plan Deep Forest Healing healer: ok legs=3 ~96 tiles transit=0 nodes=104
+[17:30:11.771] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (564,1106,0); target (572,1098); stopped short (off by 16 tile(s))
+[17:30:11.772] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(564,1106) target=(572,1098) arrived=0 off=16
+[17:30:11.772] INFO  [wave10_RevGen3_29_Rhea] [action] goto (600,1112) from (564,1106,0)
+[17:30:11.772] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(600,1112) from=(564,1106)
+[17:30:11.772] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (564,1106,0) to (600,1112)
+[17:30:11.772] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (600,1112) in background
+[17:30:11.834] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (600,1112): 43 steps in 15173.9us
+[17:30:13.145] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:13.858] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (564,1112,z0); OpenDoor before step
+[17:30:13.873] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:30:18.156] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:23.176] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:25.505] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (600,1112,0)
+[17:30:25.505] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (600,1112,0); target (600,1112); ARRIVED (off by 0 tile(s))
+[17:30:25.505] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(600,1112) target=(600,1112) arrived=1 off=0
+[17:30:25.505] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1096) from (600,1112,0)
+[17:30:25.505] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1096) from=(600,1112)
+[17:30:25.506] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (600,1112,0) to (632,1096)
+[17:30:25.506] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1096) in background
+[17:30:25.565] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1096): 32 steps in 11147.5us
+[17:30:28.219] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:33.261] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:36.302] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (632,1096,0)
+[17:30:36.303] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (632,1096,0); target (632,1096); ARRIVED (off by 0 tile(s))
+[17:30:36.303] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(632,1096) target=(632,1096) arrived=1 off=0
+[17:30:36.303] INFO  [wave10_RevGen3_29_Rhea] [action] goto (643,1083) from (632,1096,0)
+[17:30:36.303] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(643,1083) from=(632,1096)
+[17:30:36.303] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (632,1096,0) to (643,1083,z0)
+[17:30:36.303] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (643,1083) in background
+[17:30:36.364] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (643,1083): 31 steps in 4899.2us
+[17:30:38.302] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:40.624] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: You have left the protection of the town guards
+[17:30:42.961] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[17:30:42.976] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:30:43.314] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:45.039] INFO  [wave10_RevGen3_29_Rhea] [travel] Deep Forest Healing healer ARRIVED at (646,1088,0)
+[17:30:45.040] LOG   [wave10_RevGen3_29_Rhea] event travel_done: label='Deep Forest Healing healer' ok=1 at=(646,1088) legs=3 plans=1 why=''
+[17:30:45.099] INFO  [wave10_RevGen3_29_Rhea] [action] scanning nearby mobiles for names
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea] [action] requested 2 paperdoll(s) for trade titles
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea] [mobiles] nearby (2):
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea]   Carver 0x0000092D
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea]   Dunstan 0x0000093C
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea] [0x20] player @(646,1088,0) facing=7
+[17:30:45.100] INFO  [wave10_RevGen3_29_Rhea] [0x88] paperdoll 0x0000093C: "Dunstan, the healer"
+[17:30:45.101] INFO  [wave10_RevGen3_29_Rhea] [world] Dunstan, the healer is a healer at (640,1081)
+[17:30:45.101] INFO  [wave10_RevGen3_29_Rhea] [0x88] paperdoll 0x0000092D: "Carver, the healer guildmaster"
+[17:30:45.101] INFO  [wave10_RevGen3_29_Rhea] [world] Carver, the healer guildmaster is a healer at (642,1083)
+[17:30:48.218] INFO  [wave10_RevGen3_29_Rhea] [travel] mobile 0x0000093C -> (640,1081) r=1 from (646,1088)
+[17:30:48.218] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='mobile 0x0000093C' target=(640,1081) radius=1 from=(646,1088)
+[17:30:48.218] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:30:48.218] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:30:48.219] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:48.219] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:48.219] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:30:48.219] INFO  [wave10_RevGen3_29_Rhea] [travel] plan mobile 0x0000093C: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:30:48.279] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (643,1083); stopped short (off by 8 tile(s))
+[17:30:48.280] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(643,1083) arrived=0 off=8
+[17:30:48.280] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:30:48.280] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:30:48.281] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:30:48.281] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:30:48.340] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:49.335] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 993679.9us)
+[17:30:49.336] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:30:49.397] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:30:49.398] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:30:50.614] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:30:50.615] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:30:50.615] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:30:50.615] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:30:51.837] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1162269.1us)
+[17:30:51.837] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:30:51.898] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:30:51.898] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:30:53.157] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:30:53.157] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:30:53.157] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:30:53.158] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:30:53.372] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:54.389] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1205880.7us)
+[17:30:54.390] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:30:54.452] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:30:54.452] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:30:55.671] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:30:55.671] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:30:55.671] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.671] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.671] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:30:55.672] INFO  [wave10_RevGen3_29_Rhea] [travel] plan mobile 0x0000093C: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:30:57.222] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:30:57.222] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:30:57.222] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:30:57.223] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:30:58.424] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:30:58.487] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1249647.7us)
+[17:30:58.487] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:30:58.549] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:30:58.549] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:30:59.806] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:30:59.806] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:30:59.807] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:30:59.807] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:00.832] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 977369.1us)
+[17:31:00.833] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:00.894] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:00.895] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:02.097] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:31:02.097] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:31:02.098] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:31:02.098] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:03.471] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:03.718] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1599604.9us)
+[17:31:03.718] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:03.780] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:03.780] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:05.008] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:31:05.008] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:31:05.008] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:05.009] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:05.009] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:31:05.009] INFO  [wave10_RevGen3_29_Rhea] [travel] plan mobile 0x0000093C: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:31:08.041] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:31:08.041] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:31:08.042] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:31:08.042] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:08.530] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:09.702] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1604867.7us)
+[17:31:09.702] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:09.762] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:09.763] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:10.990] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:31:10.991] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:31:10.991] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:31:10.991] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:12.869] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1819683.7us)
+[17:31:12.870] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:12.931] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:12.931] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:13.553] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:14.187] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:31:14.187] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:31:14.187] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:14.187] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:14.188] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:31:14.188] INFO  [wave10_RevGen3_29_Rhea] [travel] plan mobile 0x0000093C: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:31:18.562] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:18.976] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:31:19.111] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:31:19.326] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:31:19.504] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:21.256] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1693604.7us)
+[17:31:21.256] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:21.319] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:21.319] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:22.524] INFO  [wave10_RevGen3_29_Rhea] [action] goto (640,1081) from (646,1088,0)
+[17:31:22.524] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(640,1081) from=(646,1088)
+[17:31:22.525] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (640,1081,z0)
+[17:31:22.525] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (640,1081) in background
+[17:31:23.601] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:24.372] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (640,1081) avoiding 0 block(s); stopping (search 1819349.6us)
+[17:31:24.372] WARN  [wave10_RevGen3_29_Rhea] [bot] start (646,1088,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 95 item(s), 2 mobile(s))
+[17:31:24.432] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (640,1081); stopped short (off by 13 tile(s))
+[17:31:24.432] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(640,1081) arrived=0 off=13
+[17:31:24.433] WARN  [wave10_RevGen3_29_Rhea] [travel] route exhausted at (646,1088,0); trying to reach (648,1080,0) to get somewhere routable (escape 1/3)
+[17:31:24.433] LOG   [wave10_RevGen3_29_Rhea] event travel_escape: from=(646,1088,0) to=(648,1080) attempt=1
+[17:31:24.433] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1080) from (646,1088,0)
+[17:31:24.433] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1080) from=(646,1088)
+[17:31:24.433] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (648,1080,z0)
+[17:31:24.433] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1080) in background
+[17:31:26.295] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (648,1080) avoiding 0 block(s); stopping (search 1846700.0us)
+[17:31:26.296] WARN  [wave10_Re[17:31:26.356] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (646,1088,0); target (648,1080); stopped short (off by 10 tile(s))
+[17:31:26.356] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(646,1088) target=(648,1080) arrived=0 off=10
+[17:31:26.357] INFO  [wave10_RevGen3_29_Rhea] [travel] recovery walk fell short at (646,1088,0) (off 8); attempt 1/3
+[17:31:26.357] LOG   [wave10_RevGen3_29_Rhea] event travel_recovery_done: reached=0 at=(646,1088,0) off=8 attempt=1
+[17:31:26.357] LOG   [wave10_RevGen3_29_Rhea] event travel_escape: from=(646,1088,0) to=(632,1080) attempt=2
+[17:31:26.357] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1080) from (646,1088,0)
+[17:31:26.357] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1080) from=(646,1088)
+[17:31:26.357] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (646,1088,0) to (632,1080,z0)
+[17:31:26.357] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1080) in background
+[17:31:26.417] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1080): 38 steps in 7078.5us
+[17:31:27.733] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:31:27.733] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:31:27.733] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:27.734] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:27.734] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:31:27.734] INFO  [wave10_RevGen3_29_Rhea] [travel] plan mobile 0x0000093C: ok legs=1 ~8 tiles transit=0 nodes=0
+[17:31:27.794] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (647,1091,0); target (632,1080); stopped short (off by 26 tile(s))
+[17:31:27.794] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(647,1091) target=(632,1080) arrived=0 off=26
+[17:31:27.794] INFO  [wave10_RevGen3_29_Rhea] [action] goto (643,1083) from (647,1091,0)
+[17:31:27.795] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(643,1083) from=(647,1091)
+[17:31:27.795] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (647,1091,0) to (643,1083,z0)
+[17:31:27.795] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (643,1083) in background
+[17:31:28.623] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:29.379] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (647,1091,0); target (643,1083); stopped short (off by 12 tile(s))
+[17:31:29.379] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(647,1091) target=(643,1083) arrived=0 off=12
+[17:31:30.633] INFO  [wave10_RevGen3_29_Rhea] [action] goto (643,1083) from (647,1091,0)
+[17:31:30.633] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(643,1083) from=(647,1091)
+[17:31:30.634] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (647,1091,0) to (643,1083,z0)
+[17:31:30.634] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (643,1083) in background
+[17:31:32.485] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (647,1091,0); target (643,1083); stopped short (off by 12 tile(s))
+[17:31:32.485] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(647,1091) target=(643,1083) arrived=0 off=12
+[17:31:33.625] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:33.686] INFO  [wave10_RevGen3_29_Rhea] [action] goto (643,1083) from (647,1091,0)
+[17:31:33.686] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(643,1083) from=(647,1091)
+[17:31:33.686] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (647,1091,0) to (643,1083,z0)
+[17:31:33.686] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (643,1083) in background
+[17:31:33.748] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (643,1083): 9 steps in 228.6us
+[17:31:35.276] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] Dunstan: Thou hast mine attention.
+[17:31:37.273] INFO  [wave10_RevGen3_29_Rhea] [travel] mobile 0x0000093C ARRIVED at (643,1084,0)
+[17:31:37.273] LOG   [wave10_RevGen3_29_Rhea] event travel_done: label='mobile 0x0000093C' ok=1 at=(643,1084) legs=1 plans=1 why=''
+[17:31:37.323] INFO  [life] bandages: within reach
+[17:31:37.386] INFO  [wave10_RevGen3_29_Rhea] [ACTION] vendor_buy start
+[17:31:37.386] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] open vendor=0x0000093C say='Dunstan buy'
+[17:31:37.386] INFO  [life] bandages: asking the 'healer' to show clean bandages (attempt 1)
+[17:31:37.387] INFO  [wave10_RevGen3_29_Rhea] [chat uni  ] Rhea: Dunstan buy
+[17:31:37.387] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] Dunstan: Thou mayst purchase supplies from me.
+[17:31:37.387] INFO  [wave10_RevGen3_29_Rhea] [0x3C] container contents: 5 item(s)
+[17:31:37.387] INFO  [wave10_RevGen3_29_Rhea] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74] vendor shop data: cont=0x40000935 5 item(s), layer=0x1A
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74]   clean bandages               gfx=0x0E21 qty=10   price=1
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Ginseng                      gfx=0x0F85 qty=6    price=3
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Garlic                       gfx=0x0F84 qty=18   price=3
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Refresh                      gfx=0x0F0B qty=17   price=16
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x3C] container contents: 0 item(s)
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [0x74] vendor shop data: cont=0x4000091C 0 item(s), layer=0x1B
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] offer from 0x0000093C: 5 item(s)
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B6 clean bandages         x10  1 gp
+[17:31:37.388] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B5 Heal                   x11  30 gp
+[17:31:37.389] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B4 Ginseng                x6   3 gp
+[17:31:37.389] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B3 Garlic                 x18  3 gp
+[17:31:37.389] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B2 Refresh                x17  16 gp
+[17:31:37.389] LOG   [wave10_RevGen3_29_Rhea] event vendor_offer: vendor=0x0000093C items=5
+[17:31:37.389] INFO  [wave10_RevGen3_29_Rhea] [ACTION_RESULT] vendor_buy success (3ms) vendor offer received
+[17:31:37.389] LOG   [wave10_RevGen3_29_Rhea] event action_result: vendor_buy success took=3ms vendor offer received
+[17:31:37.389] INFO  [wave10_RevGen3_29_Rhea] [0x24] vendor buy gump for 0x0000093C
+[17:31:37.389] INFO  [life] bandages: the shop is open
+[17:31:37.448] INFO  [wave10_RevGen3_29_Rhea] [ACTION] vendor_buy start
+[17:31:37.448] INFO  [wave10_RevGen3_29_Rhea] [policy] allowed NPC purchase of i_bandage (0x0E21): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[17:31:37.448] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] buy item=0x400195B6 qty=6 from vendor=0x0000093C gold=9899
+[17:31:37.448] INFO  [life] bandages: buying 6 clean bandages at 1 each from the 'healer' (shelf holds 10) -- waiting for the pack
+[17:31:37.463] INFO  [wave10_RevGen3_29_Rhea] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[17:31:37.463] LOG   [wave10_RevGen3_29_Rhea] event action_result: vendor_buy success took=15ms purchased item delivered
+[17:31:37.464] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] Dunstan: Here you are, Rhea That will be 6 gold coins.  I thank thee for thy business.
+[17:31:37.464] INFO  [wave10_RevGen3_29_Rhea] [0x3B] vendor transaction closed: vendor=0x0000093C flag=0
+[17:31:37.464] INFO  [life] plan=done reason="this life already holds as many as it wanted"
+[17:31:37.464] INFO  [life] bandages: this life already holds as many as it wanted
+[17:31:37.509] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 8
+[17:31:37.509] INFO  [life] potions: found a 'healer'
+[17:31:37.569] INFO  [life] potions: within reach
+[17:31:37.631] INFO  [wave10_RevGen3_29_Rhea] [ACTION] vendor_buy start
+[17:31:37.631] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] open vendor=0x0000093C say='Dunstan buy'
+[17:31:37.631] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[17:31:37.648] IN[17:31:37.648] INFO  [wave10_RevGen3_29_Rhea] [chat uni  ] Rh[17:31:37.648] I[17:31:37.648] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] Dunstan: Thou mayst purchase sup[17:31:37.648] [17:31:37.648] INFO  [wave10_RevGen3_29_Rhea] [0x3C] container conten[17:31:37.648][17:31:37.648] INFO  [wave10_RevGen3_29_Rhea] [0x74] pairing: straight (straight 5, mirrored [17:31:37.648[17:31:37.648] INFO  [wave10_RevGen3_29_Rhea] [0x74] vendor shop data: cont=0x40000935 5 item(s),[17:31:37.64[17:31:37.649] INFO  [wave10_RevGen3_29_Rhea] [0x74]   clean bandages               gfx=0x0E21 qty=4 [17:31:37.6[17:31:37.649] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Heal                         gfx=0x0F0C qty=11  [17:31:37.[17:31:37.649] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Ginseng                      gfx=0x0F85 qty=6   [17:31:37[17:31:37.649] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Garlic                       gfx=0x0F84 qty=18   [17:31:3[17:31:37.649] INFO  [wave10_RevGen3_29_Rhea] [0x74]   Refresh                      gfx=0x0F0B qty=17   pr[17:31:[17:31:37.650] INFO  [wave10_RevGen3_29_Rhea] [0x3C] container contents: 0 it[17:31[17:31:37.650] INFO  [wave10_RevGen3_29_Rhea] [0x74] vendor shop data: cont=0x4000091C 0 item(s), layer=[17:3[17:31:37.650] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] offer from 0x0000093C: 5 item[17:[17:31:37.650] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B6 clean bandages         x4   1 [17[17:31:37.650] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B5 Heal                   x11  30 g[1[17:31:37.651] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B4 Ginseng                x6   3 gp[[17:31:37.651] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B3 Garlic                 x18  3 gp
+[17:31:37.651] INFO  [wave10_RevGen3_29_Rhea] [VENDOR]   0x400195B2 Refresh                x17  16 gp
+[17:31:37.651] LOG   [wave10_RevGen3_29_Rhea] event vendor_offer: vendor=0x0000093C items=5
+[17:31:37.651] INFO  [wave10_RevGen3_29_Rhea] [ACTION_RESULT] vendor_buy success (20ms) vendor offer received
+[17:31:37.651] LOG   [wave10_RevGen3_29_Rhea] event action_result: vendor_buy success took=20ms vendor offer received
+[17:31:37.651] INFO  [wave10_RevGen3_29_Rhea] [0x24] vendor buy gump for 0x0000093C
+[17:31:37.708] INFO  [wave10_RevGen3_29_Rhea] [ACTION] vendor_buy start
+[17:31:37.709] INFO  [wave10_RevGen3_29_Rhea] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[17:31:37.709] INFO  [wave10_RevGen3_29_Rhea] [VENDOR] buy item=0x400195B5 qty=8 from vendor=0x0000093C gold=9893
+[17:31:37.709] INFO  [wave10_RevGen3_29_Rhea] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[17:31:37.710] LOG   [wave10_RevGen3_29_Rhea] event action_result: vendor_buy success took=1ms purchased item delivered
+[17:31:37.710] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] Dunstan: Here you are, Rhea That will be 240 gold coins.  I thank thee for thy business.
+[17:31:37.710] INFO  [wave10_RevGen3_29_Rhea] [0x3B] vendor transaction closed: vendor=0x0000093C flag=0
+[17:31:38.648] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:39.731] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture -> (669,943) r=8 from (643,1084)
+[17:31:39.732] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='pasture' target=(669,943) radius=8 from=(643,1084)
+[17:31:39.732] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable   <- chosen
+[17:31:39.732] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable
+[17:31:39.732] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:39.732] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:39.732] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: moongate
+[17:31:39.733] INFO  [wave10_RevGen3_29_Rhea] [travel] plan pasture: ok legs=5 ~176 tiles transit=0 nodes=307
+[17:31:39.792] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (643,1084,0); target (643,1083); stopped short (off by 1 tile(s))
+[17:31:39.793] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(643,1084) target=(643,1083) arrived=0 off=1
+[17:31:39.793] INFO  [wave10_RevGen3_29_Rhea] [action] goto (664,1048) from (643,1084,0)
+[17:31:39.793] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(664,1048) from=(643,1084)
+[17:31:39.793] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (643,1084,0) to (664,1048)
+[17:31:39.793] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (664,1048) in background
+[17:31:39.853] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (664,1048): 57 steps in 15583.9us
+[17:31:42.322] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=10; server says (646,1090,0) facing=2
+[17:31:42.323] INFO  [wave10_RevGen3_29_Rhea] [bot] step (646,1090,0)->(647,1090,0) rejected; OpenDoor + retry
+[17:31:43.042] INFO  [wave10_RevGen3_29_Rhea] [bot] lookahead patched around block at step 1: anchor=10 new segment=12 path=52 in 367.2us
+[17:31:43.536] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (647,1091,z0); OpenDoor before step
+[17:31:43.537] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:31:43.659] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:45.124] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: You are now under the protection of the town guards
+[17:31:46.035] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: You have left the protection of the town guards
+[17:31:48.683] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:48.808] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: You are now under the protection of the town guards
+[17:31:52.824] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=40; server says (664,1072,0) facing=7
+[17:31:52.824] INFO  [wave10_RevGen3_29_Rhea] [bot] step (664,1072,0)->(663,1071,0) rejected; OpenDoor + retry
+[17:31:53.579] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=0; server says (664,1072,0) facing=7
+[17:31:53.579] INFO  [wave10_RevGen3_29_Rhea] [bot] step (664,1072,0)->(663,1071,0) rejected; avoiding edge + rerouting
+[17:31:53.579] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (664,1048) in background
+[17:31:53.639] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (664,1048): 25 steps in 5427.4us
+[17:31:53.700] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:31:58.705] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:03.710] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:03.710] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (664,1048,0)
+[17:32:03.711] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (664,1048,0); target (664,1048); ARRIVED (off by 0 tile(s))
+[17:32:03.711] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(664,1048) target=(664,1048) arrived=1 off=0
+[17:32:03.711] INFO  [wave10_RevGen3_29_Rhea] [action] goto (664,1016) from (664,1048,0)
+[17:32:03.711] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(664,1016) from=(664,1048)
+[17:32:03.711] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (664,1048,0) to (664,1016)
+[17:32:03.712] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (664,1016) in background
+[17:32:03.771] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (664,1016): 32 steps in 5019.7us
+[17:32:08.714] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:13.751] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:15.430] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (664,1016,0)
+[17:32:15.430] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (664,1016,0); target (664,1016); ARRIVED (off by 0 tile(s))
+[17:32:15.430] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(664,1016) target=(664,1016) arrived=1 off=0
+[17:32:15.430] INFO  [wave10_RevGen3_29_Rhea] [action] goto (680,984) from (664,1016,0)
+[17:32:15.430] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(680,984) from=(664,1016)
+[17:32:15.431] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (664,1016,0) to (680,984)
+[17:32:15.431] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (680,984) in background
+[17:32:15.490] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (680,984): 53 steps in 23720.2us
+[17:32:18.779] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:23.782] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:28.836] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:31.825] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (680,984,0)
+[17:32:31.825] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (680,984,0); target (680,984); ARRIVED (off by 0 tile(s))
+[17:32:31.825] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(680,984) target=(680,984) arrived=1 off=0
+[17:32:31.825] INFO  [wave10_RevGen3_29_Rhea] [action] goto (680,952) from (680,984,0)
+[17:32:31.826] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(680,952) from=(680,984)
+[17:32:31.826] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (680,984,0) to (680,952)
+[17:32:31.826] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (680,952) in background
+[17:32:31.886] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (680,952): 34 steps in 15157.5us
+[17:32:33.853] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:38.889] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:43.933] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:44.872] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (680,952,0)
+[17:32:44.873] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (680,952,0); target (680,952); ARRIVED (off by 0 tile(s))
+[17:32:44.873] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(680,952) target=(680,952) arrived=1 off=0
+[17:32:44.873] INFO  [wave10_RevGen3_29_Rhea] [action] goto (669,943) from (680,952,0)
+[17:32:44.873] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(669,943) from=(680,952)
+[17:32:44.873] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (680,952,0) to (669,943)
+[17:32:44.874] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,943) in background
+[17:32:44.933] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,943): 22 steps in 3369.4us
+[17:32:48.981] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:49.937] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (667,951,z0); OpenDoor before step
+[17:32:49.938] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:32:50.690] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture ARRIVED at (667,951,0)
+[17:32:50.690] LOG   [wave10_RevGen3_29_Rhea] event travel_done: label='pasture' ok=1 at=(667,951) legs=5 plans=1 why=''
+[17:32:50.751] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture -> (669,1175) r=8 from (667,951)
+[17:32:50.752] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='pasture' target=(669,1175) radius=8 from=(667,951)
+[17:32:50.752] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable   <- chosen
+[17:32:50.752] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable
+[17:32:50.752] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:50.752] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:50.753] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: moongate
+[17:32:50.753] INFO  [wave10_RevGen3_29_Rhea] [travel] plan pasture: ok legs=8 ~288 tiles transit=0 nodes=809
+[17:32:50.768] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (667,951,0); target (669,943); stopped short (off by 10 tile(s))
+[17:32:50.768] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(667,951) target=(669,943) arrived=0 off=10
+[17:32:50.768] INFO  [wave10_RevGen3_29_Rhea] [action] goto (664,984) from (667,951,0)
+[17:32:50.768] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(664,984) from=(667,951)
+[17:32:50.769] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (667,951,0) to (664,984)
+[17:32:50.769] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (664,984) in background
+[17:32:50.827] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (664,984): 33 steps in 6803.5us
+[17:32:53.992] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:32:59.001] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:00.635] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (664,984,0)
+[17:33:00.635] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (664,984,0); target (664,984); ARRIVED (off by 0 tile(s))
+[17:33:00.635] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(664,984) target=(664,984) arrived=1 off=0
+[17:33:00.635] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1016) from (664,984,0)
+[17:33:00.636] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1016) from=(664,984)
+[17:33:00.636] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (664,984,0) to (648,1016)
+[17:33:00.636] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1016) in background
+[17:33:00.696] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (648,1016): 34 steps in 6198.3us
+[17:33:04.041] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:09.054] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:11.401] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (648,1016,0)
+[17:33:11.401] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (648,1016,0); target (648,1016); ARRIVED (off by 0 tile(s))
+[17:33:11.401] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(648,1016) target=(648,1016) arrived=1 off=0
+[17:33:11.402] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1048) from (648,1016,0)
+[17:33:11.402] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1048) from=(648,1016)
+[17:33:11.402] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (648,1016,0) to (648,1048)
+[17:33:11.402] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1048) in background
+[17:33:11.462] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (648,1048): 32 steps in 8257.7us
+[17:33:14.078] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:19.083] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:23.065] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (648,1048,0)
+[17:33:23.066] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (648,1048,0); target (648,1048); ARRIVED (off by 0 tile(s))
+[17:33:23.066] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(648,1048) target=(648,1048) arrived=1 off=0
+[17:33:23.066] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1080) from (648,1048,0)
+[17:33:23.066] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1080) from=(648,1048)
+[17:33:23.066] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (648,1048,0) to (632,1080)
+[17:33:23.067] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1080) in background
+[17:33:23.126] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1080): 34 steps in 23438.7us
+[17:33:24.121] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:29.153] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:34.155] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:35.736] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (632,1080,0)
+[17:33:35.736] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (632,1080,0); target (632,1080); ARRIVED (off by 0 tile(s))
+[17:33:35.736] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(632,1080) target=(632,1080) arrived=1 off=0
+[17:33:35.737] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1112) from (632,1080,0)
+[17:33:35.737] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1112) from=(632,1080)
+[17:33:35.737] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (632,1080,0) to (632,1112)
+[17:33:35.737] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1112) in background
+[17:33:35.794] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1112): 32 steps in 6967.7us
+[17:33:39.216] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:44.258] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:47.562] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (632,1112,0)
+[17:33:47.562] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (632,1112,0); target (632,1112); ARRIVED (off by 0 tile(s))
+[17:33:47.563] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(632,1112) target=(632,1112) arrived=1 off=0
+[17:33:47.563] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1144) from (632,1112,0)
+[17:33:47.563] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1144) from=(632,1112)
+[17:33:47.563] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (632,1112,0) to (632,1144)
+[17:33:47.563] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1144) in background
+[17:33:47.608] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1144): 33 steps in 15791.6us
+[17:33:49.309] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:54.353] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: World save in 10 seconds
+[17:33:59.374] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:00.740] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (632,1144,0)
+[17:34:00.740] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (632,1144,0); target (632,1144); ARRIVED (off by 0 tile(s))
+[17:34:00.741] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(632,1144) target=(632,1144) arrived=1 off=0
+[17:34:00.741] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1174) from (632,1144,0)
+[17:34:00.741] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1174) from=(632,1144)
+[17:34:00.741] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (632,1144,0) to (632,1174)
+[17:34:00.741] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1174) in background
+[17:34:00.801] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1174): 31 steps in 8910.4us
+[17:34:04.424] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:04.599] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: World save has been initiated.
+[17:34:09.450] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_29_Rhea] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (630,1156,0); target (632,1174); stopped short (off by 20 tile(s))
+[17:34:09.824] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(630,1156) target=(632,1174) arrived=0 off=20
+[17:34:09.907] WARN  [wave10_RevGen3_29_Rhea] [0x22] unsolicited ack seq=16
+[17:34:11.043] INFO  [wave10_RevGen3_29_Rhea] [action] goto (632,1174) from (630,1156,0)
+[17:34:11.043] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(632,1174) from=(630,1156)
+[17:34:11.043] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (630,1156,0) to (632,1174)
+[17:34:11.044] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (632,1174) in background
+[17:34:11.104] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (632,1174): 19 steps in 2247.9us
+[17:34:14.475] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:16.944] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (632,1174,0)
+[17:34:16.944] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (632,1174,0); target (632,1174); ARRIVED (off by 0 tile(s))
+[17:34:16.945] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(632,1174) target=(632,1174) arrived=1 off=0
+[17:34:16.945] INFO  [wave10_RevGen3_29_Rhea] [action] goto (669,1175) from (632,1174,0)
+[17:34:16.945] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(669,1175) from=(632,1174)
+[17:34:16.945] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (632,1174,0) to (669,1175)
+[17:34:16.945] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:17.067] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,1175): 53 steps in 120877.7us
+[17:34:19.524] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:24.555] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:29.581] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:29.581] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (666,1191,z0); OpenDoor before step
+[17:34:29.596] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:30.753] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=56; server says (666,1191,0) facing=1
+[17:34:30.753] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1191,0)->(667,1190,0) rejected; OpenDoor + retry
+[17:34:30.767] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:30.767] WARN  [wave10_RevGen3_29_Rhea] [bot] 0x20 resync; aborting path
+[17:34:30.767] INFO  [wave10_RevGen3_29_Rhea] [0x20] player @(666,1191,0) facing=5
+[17:34:30.768] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (666,1191,0); target (669,1175); stopped short (off by 19 tile(s))
+[17:34:30.768] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(666,1191) target=(669,1175) arrived=0 off=19
+[17:34:32.029] INFO  [wave10_RevGen3_29_Rhea] [action] goto (669,1175) from (666,1191,0)
+[17:34:32.029] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(669,1175) from=(666,1191)
+[17:34:32.029] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (666,1191,0) to (669,1175)
+[17:34:32.029] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:32.091] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,1175): 17 steps in 3404.2us
+[17:34:32.106] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (667,1191,z0); OpenDoor before step
+[17:34:32.121] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:32.841] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=1; server says (666,1191,0) facing=2
+[17:34:32.842] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1191,0)->(667,1191,0) rejected; avoiding edge + rerouting
+[17:34:32.842] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:34.625] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:35.101] WARN  [wave10_RevGen3_29_Rhea] [bot] no path to (669,1175) avoiding 1 block(s); stopping (search 2212036.4us)
+[17:34:35.101] WARN  [wave10_RevGen3_29_Rhea] [bot] start (666,1191,0) exits: open=4 terrain=1 mobile=1 dynamic=0 door=1 blacklist=1 (overlay saw 252 item(s), 9 mobile(s))
+[17:34:35.162] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (666,1191,0); target (669,1175); stopped short (off by 19 tile(s))
+[17:34:35.162] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(666,1191) target=(669,1175) arrived=0 off=19
+[17:34:36.379] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable   <- chosen
+[17:34:36.380] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable
+[17:34:36.380] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:36.380] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:36.380] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: walk
+[17:34:36.380] INFO  [wave10_RevGen3_29_Rhea] [travel] plan pasture: ok legs=1 ~16 tiles transit=0 nodes=0
+[17:34:37.899] INFO  [wave10_RevGen3_29_Rhea] [action] goto (669,1175) from (666,1191,0)
+[17:34:37.899] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(669,1175) from=(666,1191)
+[17:34:37.899] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (666,1191,0) to (669,1175)
+[17:34:37.900] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:37.961] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,1175): 16 steps in 4970.9us
+[17:34:38.207] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=1; server says (666,1191,0) facing=1
+[17:34:38.208] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1191,0)->(667,1190,0) rejected; OpenDoor + retry
+[17:34:38.222] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:38.222] WARN  [wave10_RevGen3_29_Rhea] [bot] 0x20 resync; aborting path
+[17:34:38.223] INFO  [wave10_RevGen3_29_Rhea] [0x20] player @(666,1191,0) facing=5
+[17:34:38.223] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (666,1191,0); target (669,1175); stopped short (off by 19 tile(s))
+[17:34:38.223] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(666,1191) target=(669,1175) arrived=0 off=19
+[17:34:39.451] INFO  [wave10_RevGen3_29_Rhea] [action] goto (669,1175) from (666,1191,0)
+[17:34:39.452] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(669,1175) from=(666,1191)
+[17:34:39.452] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (666,1191,0) to (669,1175)
+[17:34:39.452] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:39.468] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,1175): 16 steps in 4602.9us
+[17:34:39.650] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:39.712] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=1; server says (666,1191,0) facing=1
+[17:34:39.712] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1191,0)->(667,1190,0) rejected; OpenDoor + retry
+[17:34:39.712] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:40.435] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=0; server says (666,1191,0) facing=1
+[17:34:40.436] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1191,0)->(667,1190,0) rejected; avoiding edge + rerouting
+[17:34:40.436] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (669,1175) in background
+[17:34:40.482] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (669,1175): 17 steps in 5637.8us
+[17:34:44.140] INFO  [wave10_RevGen3_29_Rhea] [travel] pasture ARRIVED at (669,1181,0)
+[17:34:44.141] LOG   [wave10_RevGen3_29_Rhea] event travel_done: label='pasture' ok=1 at=(669,1181) legs=1 plans=2 why=''
+[17:34:44.680] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:46.255] INFO  [wave10_RevGen3_29_Rhea] [travel] Yew tanner -> (517,986) r=5 from (669,1181)
+[17:34:46.255] LOG   [wave10_RevGen3_29_Rhea] event travel_start: label='Yew tanner' target=(517,986) radius=5 from=(669,1181)
+[17:34:46.256] INFO  [wave10_RevGen3_29_Rhea] [travel] mode moongate         usable   <- chosen
+[17:34:46.256] INFO  [wave10_RevGen3_29_Rhea] [travel] mode walk             usable
+[17:34:46.256] INFO  [wave10_RevGen3_29_Rhea] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:46.256] INFO  [wave10_RevGen3_29_Rhea] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:46.256] LOG   [wave10_RevGen3_29_Rhea] event travel_mode: moongate
+[17:34:46.257] INFO  [wave10_RevGen3_29_Rhea] [travel] plan Yew tanner: ok legs=6 ~296 tiles transit=0 nodes=729
+[17:34:46.317] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (669,1181,0); target (669,1175); stopped short (off by 6 tile(s))
+[17:34:46.317] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(669,1181) target=(669,1175) arrived=0 off=6
+[17:34:46.317] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1144) from (669,1181,0)
+[17:34:46.317] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1144) from=(669,1181)
+[17:34:46.318] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (669,1181,0) to (648,1144)
+[17:34:46.318] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1144) in background
+[17:34:46.379] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (648,1144): 67 steps in 50117.6us
+[17:34:48.280] INFO  [wave10_RevGen3_29_Rhea] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=61 in 173.1us
+[17:34:49.359] INFO  [wave10_RevGen3_29_Rhea] [bot] lookahead patched around block at step 3: anchor=5 new segment=3 path=57 in 26.2us
+[17:34:49.421] INFO  [wave10_RevGen3_29_Rhea] [bot] door ahead at (667,1191,z0); OpenDoor before step
+[17:34:49.436] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:49.728] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:50.881] WARN  [wave10_RevGen3_29_Rhea] [0x21] move REJECTED seq=17; server says (666,1192,0) facing=5
+[17:34:50.882] INFO  [wave10_RevGen3_29_Rhea] [bot] step (666,1192,0)->(665,1193,0) rejected; OpenDoor + retry
+[17:34:50.897] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Opening door...
+[17:34:50.898] WARN  [wave10_RevGen3_29_Rhea] [bot] 0x20 resync; aborting path
+[17:34:50.898] INFO  [wave10_RevGen3_29_Rhea] [0x20] player @(666,1192,0) facing=6
+[17:34:50.898] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (666,1192,0); target (648,1144); stopped short (off by 66 tile(s))
+[17:34:50.898] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(666,1192) target=(648,1144) arrived=0 off=66
+[17:34:52.155] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1144) from (666,1192,0)
+[17:34:52.156] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1144) from=(666,1192)
+[17:34:52.156] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (666,1192,0) to (648,1144)
+[17:34:52.156] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1144) in background
+[17:34:52.216] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (648,1144): 54 steps in 50795.3us
+[17:34:54.748] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:34:59.784] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:04.839] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:09.843] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:10.274] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (648,1144,0)
+[17:35:10.275] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (648,1144,0); target (648,1144); ARRIVED (off by 0 tile(s))
+[17:35:10.275] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(648,1144) target=(648,1144) arrived=1 off=0
+[17:35:10.275] INFO  [wave10_RevGen3_29_Rhea] [action] goto (648,1112) from (648,1144,0)
+[17:35:10.275] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(648,1112) from=(648,1144)
+[17:35:10.275] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (648,1144,0) to (648,1112)
+[17:35:10.275] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (648,1112) in background
+[17:35:10.334] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (648,1112): 33 steps in 729.2us
+[17:35:14.864] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:19.869] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:21.156] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (648,1112,0)
+[17:35:21.156] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (648,1112,0); target (648,1112); ARRIVED (off by 0 tile(s))
+[17:35:21.156] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(648,1112) target=(648,1112) arrived=1 off=0
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [action] goto (616,1078) from (648,1112,0)
+[17:35:21.157] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(616,1078) from=(648,1112)
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (648,1112,0) to (616,1078)
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (616,1078) in background
+[17:35:21.218] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (616,1078): 55 steps in 16550.8us
+[17:35:24.916] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:29.918] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:34.970] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:39.330] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.391] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (616,1078,0)
+[17:35:39.392] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (616,1078,0); target (616,1078); ARRIVED (off by 0 tile(s))
+[17:35:39.393] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(616,1078) target=(616,1078) arrived=1 off=0
+[17:35:39.394] INFO  [wave10_RevGen3_29_Rhea] [action] goto (584,1048) from (616,1078,0)
+[17:35:39.395] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(584,1048) from=(616,1078)
+[17:35:39.395] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (616,1078,0) to (584,1048)
+[17:35:39.395] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (584,1048) in background
+
+[17:35:14.864] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:19.869] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:21.156] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (648,1112,0)
+[17:35:21.156] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (648,1112,0); target (648,1112); ARRIVED (off by 0 tile(s))
+[17:35:21.156] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(648,1112) target=(648,1112) arrived=1 off=0
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [action] goto (616,1078) from (648,1112,0)
+[17:35:21.157] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(616,1078) from=(648,1112)
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (648,1112,0) to (616,1078)
+[17:35:21.157] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (616,1078) in background
+[17:35:21.218] INFO  [wave10_RevGen3_29_Rhea] [bot] replan to (616,1078): 55 steps in 16550.8us
+[17:35:24.916] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:29.918] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:34.970] INFO  [wave10_RevGen3_29_Rhea] [survival] hp 32/32 (100%) -> fight
+[17:35:38.157] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_29.rhea/state.json
+[17:35:39.330] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_29_Rhea] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.391] INFO  [wave10_RevGen3_29_Rhea] [bot] arrived at (616,1078,0)
+[17:35:39.392] INFO  [wave10_RevGen3_29_Rhea] [action] goto finished at (616,1078,0); target (616,1078); ARRIVED (off by 0 tile(s))
+[17:35:39.393] LOG   [wave10_RevGen3_29_Rhea] event goto_done: at=(616,1078) target=(616,1078) arrived=1 off=0
+[17:35:39.394] INFO  [wave10_RevGen3_29_Rhea] [action] goto (584,1048) from (616,1078,0)
+[17:35:39.395] LOG   [wave10_RevGen3_29_Rhea] event goto_start: target=(584,1048) from=(616,1078)
+[17:35:39.395] INFO  [wave10_RevGen3_29_Rhea] [bot] running from (616,1078,0) to (584,1048)
+[17:35:39.395] INFO  [wave10_RevGen3_29_Rhea] [bot] planning path to (584,1048) in background

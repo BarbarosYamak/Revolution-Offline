@@ -1,0 +1,1270 @@
+[17:29:34.963] LOG   [wave10_RevGen3_08_Cyras] event session_start: text log opened
+[17:29:34.964] LOG   [wave10_RevGen3_08_Cyras] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.965] INFO  [wave10_RevGen3_08_Cyras] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.968] LOG   [wave10_RevGen3_08_Cyras] event net_connected: connect 127.0.0.1:2593
+[17:29:34.969] INFO  [wave10_RevGen3_08_Cyras] [net] connected.
+[17:29:34.970] INFO  [wave10_RevGen3_08_Cyras] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.971] LOG   [wave10_RevGen3_08_Cyras] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.972] INFO  [wave10_RevGen3_08_Cyras] [life] autonomous player active for 'Cyras' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.983] INFO  [wave10_RevGen3_08_Cyras] [0xA8] 1 server(s):
+[17:29:34.984] INFO  [wave10_RevGen3_08_Cyras]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[17:29:34.999] INFO  [wave10_RevGen3_08_Cyras] [0x8C] game server = 127.0.0.1:2593  seed=0x13F4CAD6
+[17:29:35.000] LOG   [wave10_RevGen3_08_Cyras] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x13F4CAD6
+[17:29:35.000] INFO  [wave10_RevGen3_08_Cyras] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.000] LOG   [wave10_RevGen3_08_Cyras] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.001] INFO  [wave10_RevGen3_08_Cyras] [0xB9] server features = 0x0005
+[17:29:35.001] INFO  [wave10_RevGen3_08_Cyras] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.001] INFO  [wave10_RevGen3_08_Cyras]   [0] Cyras
+[17:29:35.002] INFO  [wave10_RevGen3_08_Cyras]   [1] <empty>
+[17:29:35.003] INFO  [wave10_RevGen3_08_Cyras]   [2] <empty>
+[17:29:35.003] INFO  [wave10_RevGen3_08_Cyras]   [3] <empty>
+[17:29:35.004] INFO  [wave10_RevGen3_08_Cyras]   [4] <empty>
+[17:29:35.004] INFO  [wave10_RevGen3_08_Cyras] [ui] playing slot 0 ('Cyras')
+[17:29:35.006] INFO  [wave10_RevGen3_08_Cyras] [0x1B] serial=0x00015725 body=0x0191 pos=(632,2164,0)
+[17:29:35.006] LOG   [wave10_RevGen3_08_Cyras] event login_confirm: serial=0x00015725 body=0x0191 pos=(632,2164,0)
+[17:29:35.006] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(632,2164,0) facing=0
+[17:29:35.007] INFO  [wave10_RevGen3_08_Cyras] [0x55] login complete — entering world
+[17:29:35.007] LOG   [wave10_RevGen3_08_Cyras] event in_world: 0x55 received
+[17:29:35.007] INFO  [wave10_RevGen3_08_Cyras] [backpack] opening 0x40015723
+[17:29:35.007] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.007] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: There are 9 other players here.
+[17:29:35.007] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.008] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.013] INFO  [wave10_RevGen3_08_Cyras] [action] requesting the skill list
+[17:29:35.015] INFO  [wave10_RevGen3_08_Cyras] [0x24] open container 0x40015723 gump=60
+[17:29:35.015] INFO  [wave10_RevGen3_08_Cyras] [0x3C] container contents: 8 item(s)
+[17:29:35.016] LOG   [wave10_RevGen3_08_Cyras] event backpack_contents: serial=0x40015723 items=8
+[17:29:35.027] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.077] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.605] INFO  [wave10_RevGen3_08_Cyras] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.607] INFO  [wave10_RevGen3_08_Cyras] [survival] on
+[17:29:37.607] LOG   [wave10_RevGen3_08_Cyras] event survival_mode: on
+[17:29:37.610] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:29:37.725] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Delucia healer -- 1636 tiles and 4 gates for a service Skara Brae healer offers
+[17:29:37.725] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Wind healer -- 1580 tiles and 2 gates for a service Skara Brae healer offers
+[17:29:37.725] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer -> (620,2218) r=5 from (632,2164)
+[17:29:37.726] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(632,2164)
+[17:29:37.726] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:29:37.726] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:29:37.726] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.726] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.726] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:29:37.726] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=2 ~64 tiles transit=0 nodes=35
+[17:29:37.728] INFO  [wave10_RevGen3_08_Cyras] [action] goto (632,2200) from (632,2164,0)
+[17:29:37.728] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(632,2200) from=(632,2164)
+[17:29:37.728] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2164,0) to (632,2200)
+[17:29:37.728] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (632,2200) in background
+[17:29:37.781] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (632,2200): 45 steps in 5241.9us
+[17:29:38.901] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (635,2167,z0); OpenDoor before step
+[17:29:38.915] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:29:42.632] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:29:44.992] WARN  [wave10_RevGen3_08_Cyras] [0x21] move REJECTED seq=30; server says (639,2189,0) facing=3
+[17:29:44.993] INFO  [wave10_RevGen3_08_Cyras] [bot] step (639,2189,0)->(640,2190,0) rejected; OpenDoor + retry
+[17:29:45.736] WARN  [wave10_RevGen3_08_Cyras] [0x21] move REJECTED seq=0; server says (639,2189,0) facing=3
+[17:29:45.737] INFO  [wave10_RevGen3_08_Cyras] [bot] step (639,2189,0)->(640,2190,0) rejected; avoiding edge + rerouting
+[17:29:45.737] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (632,2200) in background
+[17:29:45.739] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (632,2200): 21 steps in 999.8us
+[17:29:47.646] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:29:51.894] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (632,2200,0)
+[17:29:51.896] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (632,2200); ARRIVED (off by 0 tile(s))
+[17:29:51.896] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(632,2200) arrived=1 off=0
+[17:29:51.896] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:51.896] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:51.896] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:51.896] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:51.897] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:51.957] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:51.957] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:29:52.696] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:29:53.173] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:53.173] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:53.173] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:53.173] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:53.173] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:53.234] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:53.234] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:29:54.435] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:54.435] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:54.436] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:54.436] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:54.436] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:54.495] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:54.495] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:29:55.744] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:29:55.744] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:29:55.744] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:55.744] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:55.745] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:29:55.745] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:29:57.245] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:57.246] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:57.246] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:57.246] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:57.246] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:57.308] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:57.308] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:29:57.708] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:29:58.509] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:58.509] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:58.510] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:58.510] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:58.510] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:58.524] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:58.524] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:29:59.754] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:29:59.754] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:29:59.754] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:29:59.755] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:29:59.755] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:59.817] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:29:59.817] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:01.064] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:01.065] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:01.065] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:01.065] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:01.065] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:01.066] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:30:02.754] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:04.119] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:04.119] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:04.119] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:04.119] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:04.120] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:04.180] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:04.180] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:05.395] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:05.395] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:05.396] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:05.396] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:05.396] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:05.457] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:05.457] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:06.678] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:06.678] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:06.678] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:06.679] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:06.679] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:06.740] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:06.740] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:07.792] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:07.979] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:07.979] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:07.979] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:07.980] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:07.980] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:07.980] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:30:12.529] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:12.529] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:12.530] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:12.530] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:12.530] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:12.544] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:12.544] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:12.793] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:13.798] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:13.798] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:13.798] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:13.798] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:13.798] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:13.858] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:13.858] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:15.063] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (632,2200,0)
+[17:30:15.063] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(632,2200)
+[17:30:15.063] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (620,2218,z0)
+[17:30:15.063] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:15.064] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:15.065] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2200,0); target (620,2218); stopped short (off by 30 tile(s))
+[17:30:15.065] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2200) target=(620,2218) arrived=0 off=30
+[17:30:15.065] WARN  [wave10_RevGen3_08_Cyras] [travel] route exhausted at (632,2200,0); trying to reach (616,2184,0) to get somewhere routable (escape 1/3)
+[17:30:15.065] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(632,2200,0) to=(616,2184) attempt=1
+[17:30:15.065] INFO  [wave10_RevGen3_08_Cyras] [action] goto (616,2184) from (632,2200,0)
+[17:30:15.065] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(616,2184) from=(632,2200)
+[17:30:15.065] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2200,0) to (616,2184,z0)
+[17:30:15.066] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (616,2184) in background
+[17:30:15.123] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (616,2184): 34 steps in 1237.2us
+[17:30:17.833] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:22.838] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:23.795] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (616,2184,0)
+[17:30:23.796] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[17:30:23.797] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[17:30:23.797] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (616,2184,0) (off 0); attempt 1/3
+[17:30:23.797] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(616,2184,0) off=0 attempt=1
+[17:30:23.857] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:23.857] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:23.857] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:23.857] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:23.858] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:23.858] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:23.918] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:23.919] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:23.919] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:23.919] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:23.919] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:23.934] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:23.934] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:25.166] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:25.167] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:25.167] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:25.167] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:25.167] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:25.229] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:25.229] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:26.431] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:26.432] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:26.432] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:26.432] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:26.432] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:26.463] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:26.464] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:27.711] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:27.712] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:27.712] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:27.712] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:27.712] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:27.712] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:27.899] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:29.272] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:29.272] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:29.272] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:29.272] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:29.272] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:29.287] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:29.288] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:30.515] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:30.516] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:30.516] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:30.516] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:30.516] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:30.575] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:30.576] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:31.812] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:31.812] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:31.812] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:31.812] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:31.812] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:31.873] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:31.873] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:32.922] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:33.092] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:33.092] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:33.092] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:33.093] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:33.093] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:33.093] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:36.117] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:36.117] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:36.117] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:36.117] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:36.118] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:36.179] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:36.179] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:37.425] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:37.425] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:37.425] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:37.426] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:37.426] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:37.486] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:37.486] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:37.981] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:38.718] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:38.718] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:38.718] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:38.718] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:38.718] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:38.764] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:38.765] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:39.981] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:39.981] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:39.981] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:39.981] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:39.982] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:39.982] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:43.038] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:44.502] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:44.502] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:44.502] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:44.503] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:44.503] WARN  [wave10_RevGen3_08_Cyras] [bot] goal (620,2218) i[17:30:44.563] INFO  [wave10_RevGen3_08_C[17:30:44.563] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2[17:30:44.564] LOG   [wave10_RevGen3_08_[17:30:44.564] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,21[17:30:45.776] INFO  [wave10_RevGen3_08[17:30:45.776] INFO  [wave10_RevGen3_08_Cyras] [acti[17:30:45.776] LOG   [wave10_RevGen3_0[17:30:45.776] LOG   [wave10_RevGen3_08_Cyras] event goto_star[17:30:45.776] INFO  [wave10_RevGen3_[17:30:45.776] INFO  [wave10_RevGen3_08_Cyras] [bot] running[17:30:45.776] INFO  [wave10_RevGen3[17:30:45.776] INFO  [wave10_RevGen3_08_Cyras] [bot] plannin[17:30:45.837] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:45.837] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:47.082] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:30:47.082] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:30:47.082] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:30:47.082] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:30:47.144] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:30:47.144] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:30:47.144] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(616,2184,0) to=(600,2168) attempt=2
+[17:30:47.144] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2168) from (616,2184,0)
+[17:30:47.144] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2168) from=(616,2184)
+[17:30:47.144] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (600,2168,z0)
+[17:30:47.144] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2168) in background
+[17:30:47.206] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (600,2168): 27 steps in 1784.1us
+[17:30:48.065] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:53.112] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:30:55.395] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (600,2168,0)
+[17:30:55.396] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[17:30:55.396] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[17:30:55.396] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (600,2168,0) (off 0); attempt 2/3
+[17:30:55.396] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(600,2168,0) off=0 attempt=2
+[17:30:55.457] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:30:55.457] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:30:55.457] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.457] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.457] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:30:55.457] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=130
+[17:30:55.458] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(600,2168,0) to=(584,2152) attempt=3
+[17:30:55.458] INFO  [wave10_RevGen3_08_Cyras] [action] goto (584,2152) from (600,2168,0)
+[17:30:55.458] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(584,2152) from=(600,2168)
+[17:30:55.458] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2168,0) to (584,2152,z0)
+[17:30:55.458] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (584,2152) in background
+[17:30:55.518] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (584,2152): 27 steps in 1150.2us
+[17:30:58.116] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:01.945] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=7 in 79.5us
+[17:31:03.131] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:04.381] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (584,2152,0)
+[17:31:04.382] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (584,2152,0); target (584,2152); ARRIVED (off by 0 tile(s))
+[17:31:04.382] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(584,2152) target=(584,2152) arrived=1 off=0
+[17:31:04.382] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (584,2152,0) (off 0); attempt 3/3
+[17:31:04.382] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(584,2152,0) off=0 attempt=3
+[17:31:04.443] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable   <- chosen
+[17:31:04.443] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable
+[17:31:04.443] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:04.443] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:04.443] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: moongate
+[17:31:04.853] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:31:04.853] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer FAILED at (584,2152,0) -- no world route to the destination
+[17:31:04.853] LOG   [wave10_RevGen3_08_Cyras] event travel_failed: label='Skara Brae healer' ok=0 at=(584,2152) legs=0 plans=1 why='no world route to the destination'
+[17:31:04.855] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:31:04.855] INFO  [wave10_RevGen3_08_Cyras] [action] requested 3 paperdoll(s) for trade titles
+[17:31:04.855] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:31:04.870] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (7):
+[17:31:04.870] INFO  [wave10_RevGen3_08_Cyras]   Rat 0x0001ACFD
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x0000EB54
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   Nita 0x00004A5B
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   jungle bird 0x00011AA9
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   Faye 0x00004A02
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   Jendayi 0x00004954
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras]   Fay 0x00004AE0
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(584,2152,0) facing=4
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004954: "Jendayi, the weaponsmith"
+[17:31:04.871] INFO  [wave10_RevGen3_08_Cyras] [world] Jendayi, the weaponsmith is a blacksmith at (584,2167)
+[17:31:04.872] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(584,2152,0) facing=0
+[17:31:04.872] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004A5B: "Nita, the banker"
+[17:31:04.872] INFO  [wave10_RevGen3_08_Cyras] [world] Nita, the banker is a banker at (587,2145)
+[17:31:04.872] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004A02: "Faye, the minter"
+[17:31:04.872] INFO  [wave10_RevGen3_08_Cyras] [world] Faye, the minter is a banker at (587,2144)
+[17:31:07.856] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:31:07.857] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:31:07.870] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (6):
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   Rat 0x0001ACFD
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x0000EB54
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   Nita 0x00004A5B
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   jungle bird 0x00011AA9
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   Faye 0x00004A02
+[17:31:07.871] INFO  [wave10_RevGen3_08_Cyras]   Jendayi 0x00004954
+[17:31:08.183] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:10.870] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:31:10.870] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:31:10.883] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (7):
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x0000EB54
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Rat 0x0001ACFD
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Nita 0x00004A5B
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   jungle bird 0x00011AA9
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Faye 0x00004A02
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Jendayi 0x00004954
+[17:31:10.884] INFO  [wave10_RevGen3_08_Cyras]   Rat 0x0001637A
+[17:31:13.197] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Delucia healer -- 1620 tiles and 4 gates for a service Skara Brae healer offers
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Wind healer -- 1564 tiles and 2 gates for a service Skara Brae healer offers
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer -> (620,2218) r=5 from (584,2152)
+[17:31:13.960] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(584,2152)
+[17:31:13.960] INFO  [life] bandages: walking to a 'healer' (trip 2)
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable   <- chosen
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:13.960] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:13.960] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: moongate
+[17:31:13.961] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=2 ~104 tiles transit=0 nodes=90
+[17:31:14.018] INFO  [wave10_RevGen3_08_Cyras] [action] goto (616,2184) from (584,2152,0)
+[17:31:14.018] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(616,2184) from=(584,2152)
+[17:31:14.018] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (584,2152,0) to (616,2184)
+[17:31:14.018] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (616,2184) in background
+[17:31:14.078] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (616,2184): 47 steps in 6439.4us
+[17:31:18.209] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:23.248] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:27.643] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (616,2184,0)
+[17:31:27.644] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[17:31:27.644] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[17:31:27.644] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:27.645] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:27.645] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:27.645] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:27.705] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:27.705] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:28.286] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:28.934] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:28.934] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:28.934] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:28.934] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:28.994] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:28.995] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:30.232] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:30.232] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:30.232] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:30.232] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:30.264] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:30.264] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:31.502] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:31:31.502] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:31:31.502] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:31.502] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:31.503] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:31:31.503] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:33.056] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:33.057] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:33.057] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:33.057] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:33.118] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:33.119] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:33.303] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:34.337] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:34.337] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:34.337] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:34.337] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:34.339] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:34.339] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:35.539] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:35.539] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:35.539] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:35.539] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:35.541] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:35.541] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:36.741] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:31:36.741] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:31:36.742] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:36.742] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:36.742] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:31:36.742] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:37.651] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[17:31:38.340] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:39.763] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:39.763] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:39.763] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:39.763] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:39.824] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:39.824] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:41.060] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:41.060] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:41.060] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:41.060] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:41.091] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:41.091] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:42.338] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:42.339] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:42.339] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:42.339] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:42.399] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:42.399] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:43.384] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:43.630] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:31:43.630] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:31:43.630] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:43.631] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:43.631] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:31:43.631] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:48.171] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:48.171] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:48.171] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:48.171] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:48.235] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:48.235] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:48.421] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:49.438] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:49.439] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:49.439] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:49.439] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:49.500] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:49.500] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:50.732] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2184,0)
+[17:31:50.732] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2184)
+[17:31:50.732] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:31:50.732] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:31:50.791] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:31:50.791] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:31:50.792] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(616,2184,0) to=(600,2168) attempt=1
+[17:31:50.792] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2168) from (616,2184,0)
+[17:31:50.792] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2168) from=(616,2184)
+[17:31:50.792] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2184,0) to (600,2168,z0)
+[17:31:50.792] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2168) in background
+[17:31:50.852] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (600,2168): 27 steps in 3170.0us
+[17:31:53.471] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:58.476] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:31:58.706] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (600,2168,0)
+[17:31:58.707] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[17:31:58.707] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[17:31:58.707] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (600,2168,0) (off 0); attempt 1/3
+[17:31:58.708] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(600,2168,0) off=0 attempt=1
+[17:31:58.767] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:31:58.767] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:31:58.767] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:58.767] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:58.767] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:31:58.767] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=130
+[17:31:58.767] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(600,2168,0) to=(584,2152) attempt=2
+[17:31:58.768] INFO  [wave10_RevGen3_08_Cyras] [action] goto (584,2152) from (600,2168,0)
+[17:31:58.768] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(584,2152) from=(600,2168)
+[17:31:58.768] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2168,0) to (584,2152,z0)
+[17:31:58.768] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (584,2152) in background
+[17:31:58.827] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (584,2152): 27 steps in 1922.4us
+[17:32:03.512] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:07.757] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (584,2152,0)
+[17:32:07.758] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (584,2152,0); target (584,2152); ARRIVED (off by 0 tile(s))
+[17:32:07.758] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(584,2152) target=(584,2152) arrived=1 off=0
+[17:32:07.758] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (584,2152,0) (off 0); attempt 2/3
+[17:32:07.759] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(584,2152,0) off=0 attempt=2
+[17:32:07.820] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable   <- chosen
+[17:32:07.820] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable
+[17:32:07.820] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:07.820] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:07.820] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: moongate
+[17:32:08.209] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:32:08.210] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(584,2152,0) to=(568,2136) attempt=3
+[17:32:08.210] INFO  [wave10_RevGen3_08_Cyras] [action] goto (568,2136) from (584,2152,0)
+[17:32:08.210] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(568,2136) from=(584,2152)
+[17:32:08.210] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (584,2152,0) to (568,2136,z0)
+[17:32:08.210] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (568,2136) in background
+[17:32:08.269] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (568,2136): 21 steps in 3153.4us
+[17:32:08.516] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:13.540] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:15.304] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (568,2136,0)
+[17:32:15.306] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (568,2136,0); target (568,2136); ARRIVED (off by 0 tile(s))
+[17:32:15.306] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(568,2136) target=(568,2136) arrived=1 off=0
+[17:32:15.306] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (568,2136,0) (off 0); attempt 3/3
+[17:32:15.306] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(568,2136,0) off=0 attempt=3
+[17:32:15.367] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable   <- chosen
+[17:32:15.367] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable
+[17:32:15.367] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:15.368] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:15.368] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: moongate
+[17:32:15.784] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:32:15.784] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer FAILED at (568,2136,0) -- no world route to the destination
+[17:32:15.784] LOG   [wave10_RevGen3_08_Cyras] event travel_failed: label='Skara Brae healer' ok=0 at=(568,2136) legs=0 plans=1 why='no world route to the destination'
+[17:32:15.848] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:32:15.848] INFO  [wave10_RevGen3_08_Cyras] [action] requested 2 paperdoll(s) for trade titles
+[17:32:15.848] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:32:15.862] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (4):
+[17:32:15.862] INFO  [wave10_RevGen3_08_Cyras]   Fay 0x00004AE0
+[17:32:15.862] INFO  [wave10_RevGen3_08_Cyras]   Black Bear 0x00004BDC
+[17:32:15.862] INFO  [wave10_RevGen3_08_Cyras]   Rutherford 0x0000490E
+[17:32:15.863] INFO  [wave10_RevGen3_08_Cyras]   Faye 0x00004A02
+[17:32:15.863] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004AE0: "Fay, the ranger guildmistress"
+[17:32:15.863] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(568,2136,0) facing=0
+[17:32:15.863] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x0000490E: "Rutherford, the animal trainer"
+[17:32:15.863] INFO  [wave10_RevGen3_08_Cyras] [world] Rutherford, the animal trainer is a stablemaster at (573,2120)
+[17:32:18.577] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:18.888] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:32:18.888] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:32:18.890] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[17:32:18.890] INFO  [life] needs considered: NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:32:18.890] INFO  [life]   score=130.0
+[17:32:18.890] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:32:18.890] INFO  [life]   reason: potions=0 low=2 gold=9955
+[17:32:18.890] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:32:18.903] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (4):
+[17:32:18.903] INFO  [wave10_RevGen3_08_Cyras]   Fay 0x00004AE0
+[17:32:18.903] INFO  [wave10_RevGen3_08_Cyras]   Black Bear 0x00004BDC
+[17:32:18.903] INFO  [wave10_RevGen3_08_Cyras]   Rutherford 0x0000490E
+[17:32:18.904] INFO  [wave10_RevGen3_08_Cyras]   Faye 0x00004A02
+[17:32:21.915] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:32:21.915] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:32:21.917] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (3):
+[17:32:21.917] INFO  [wave10_RevGen3_08_Cyras]   Fay 0x00004AE0
+[17:32:21.917] INFO  [wave10_RevGen3_08_Cyras]   Black Bear 0x00004BDC
+[17:32:21.917] INFO  [wave10_RevGen3_08_Cyras]   Rutherford 0x0000490E
+[17:32:23.628] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:24.985] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Delucia healer -- 1620 tiles and 4 gates for a service Skara Brae healer offers
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] place: skipping Wind healer -- 1564 tiles and 2 gates for a service Skara Brae healer offers
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer -> (620,2218) r=5 from (568,2136)
+[17:32:24.986] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(568,2136)
+[17:32:24.986] INFO  [life] bandages: walking to a 'healer' (trip 3)
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable   <- chosen
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:24.986] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: moongate
+[17:32:24.986] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=3 ~128 tiles transit=0 nodes=106
+[17:32:25.047] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2168) from (568,2136,0)
+[17:32:25.047] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2168) from=(568,2136)
+[17:32:25.047] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (568,2136,0) to (600,2168)
+[17:32:25.047] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2168) in background
+[17:32:25.109] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (600,2168): 48 steps in 9244.0us
+[17:32:28.669] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:33.701] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:37.707] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[17:32:38.748] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:39.513] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (600,2168,0)
+[17:32:39.514] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[17:32:39.514] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[17:32:39.514] INFO  [wave10_RevGen3_08_Cyras] [action] goto (616,2200) from (600,2168,0)
+[17:32:39.514] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(616,2200) from=(600,2168)
+[17:32:39.514] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2168,0) to (616,2200)
+[17:32:39.514] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (616,2200) in background
+[17:32:39.575] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (616,2200): 42 steps in 4165.6us
+[17:32:43.782] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:48.815] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:51.014] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (616,2200,0)
+[17:32:51.016] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (616,2200); ARRIVED (off by 0 tile(s))
+[17:32:51.016] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(616,2200) arrived=1 off=0
+[17:32:51.016] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:51.016] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:51.016] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:51.016] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:51.076] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:51.076] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:32:52.299] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:52.299] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:52.299] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:52.299] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:52.360] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:52.360] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:32:53.578] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:53.578] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:53.578] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:53.578] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:53.640] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:53.640] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:32:53.824] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:54.886] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:32:54.887] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:32:54.887] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:54.887] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:54.887] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:32:54.887] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:32:56.426] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:56.427] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:56.427] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:56.427] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:56.487] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:56.487] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:32:57.738] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:57.738] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:57.738] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:57.738] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:57.800] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:57.800] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:32:58.864] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:32:59.048] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:32:59.048] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:32:59.048] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:32:59.048] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:32:59.110] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:32:59.110] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:00.345] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:00.345] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:00.346] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:00.346] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:00.346] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:00.346] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:33:03.367] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:03.367] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:03.367] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:03.368] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:03.429] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:03.429] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:03.917] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:04.658] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:04.658] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:04.658] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:04.659] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:04.721] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:04.721] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:05.958] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:05.958] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:05.958] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:05.958] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:06.020] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:06.021] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:07.223] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:07.224] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:07.224] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:07.224] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:07.224] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:07.224] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:33:08.963] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:11.770] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:11.771] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:11.771] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:11.771] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:11.830] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:11.831] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:13.066] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:13.067] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:13.067] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:13.067] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:13.127] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:13.127] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:14.003] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:14.327] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (616,2200,0)
+[17:33:14.327] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(616,2200)
+[17:33:14.328] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (620,2218,z0)
+[17:33:14.328] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:14.388] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2200,0); target (620,2218); stopped short (off by 22 tile(s))
+[17:33:14.388] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2200) target=(620,2218) arrived=0 off=22
+[17:33:14.388] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(616,2200,0) to=(600,2184) attempt=1
+[17:33:14.388] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2184) from (616,2200,0)
+[17:33:14.388] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2184) from=(616,2200)
+[17:33:14.388] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2200,0) to (600,2184,z0)
+[17:33:14.388] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2184) in background
+[17:33:14.450] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (600,2184): 39 steps in 12194.2us
+[17:33:19.053] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:19.115] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (611,2183,z0); OpenDoor before step
+[17:33:19.128] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:33:20.028] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=20 in 230.6us
+[17:33:20.922] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=17 in 136.1us
+[17:33:21.431] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=19 in 236.8us
+[17:33:23.862] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=11 in 81.2us
+[17:33:24.014] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Steve: Aye?
+[17:33:24.076] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:25.181] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Brigit: I'm listenin'.
+[17:33:26.464] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (602,2183,z0); OpenDoor before step
+[17:33:26.478] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:33:27.647] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (601,2184,z0); OpenDoor before step
+[17:33:27.648] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:33:28.815] INFO  [wave10_RevGen3_08_Cyras] [bot] arrived at (600,2184,0)
+[17:33:28.816] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (600,2184); ARRIVED (off by 0 tile(s))
+[17:33:28.816] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(600,2184) arrived=1 off=0
+[17:33:28.816] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk reached its anchor at (600,2184,0) (off 0); attempt 1/3
+[17:33:28.816] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=1 at=(600,2184,0) off=0 attempt=1
+[17:33:28.877] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:28.877] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:28.877] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:28.877] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:28.877] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:28.877] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:28.939] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:28.939] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:28.939] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:28.939] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:29.000] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:29.001] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:29.124] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:30.205] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:30.205] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:30.205] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:30.205] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:30.266] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:30.267] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:31.493] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:31.494] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:31.494] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:31.494] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:31.556] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:31.556] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:32.814] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:32.815] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:32.815] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:32.815] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:32.815] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:32.815] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:34.126] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:34.371] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:34.371] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:34.372] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:34.372] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:34.433] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:34.433] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:35.659] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:35.659] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:35.659] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:35.659] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:35.721] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:35.721] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:36.967] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:36.968] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:36.968] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:36.968] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:37.028] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:37.029] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:37.708] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[17:33:38.246] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:38.246] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:38.246] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:38.246] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:38.246] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:38.246] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:39.171] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:41.304] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:41.305] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:41.305] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:41.305] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:41.365] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:41.365] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:42.615] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:42.615] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:42.615] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:42.615] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:42.677] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:42.677] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:43.905] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:43.905] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:43.905] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:43.905] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:43.966] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:43.966] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:44.213] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:45.181] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:33:45.182] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:33:45.182] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.182] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.182] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:33:45.182] INFO  [wave10_RevGen3_08_Cyras] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:49.265] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:49.697] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:49.697] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:49.697] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:49.697] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:49.758] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:49.758] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:50.991] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:50.991] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:50.992] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:50.992] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:51.051] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:51.051] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:52.251] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2218) from (600,2184,0)
+[17:33:52.251] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2218) from=(600,2184)
+[17:33:52.251] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (620,2218,z0)
+[17:33:52.251] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2218) in background
+[17:33:52.253] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (620,2218); stopped short (off by 54 tile(s))
+[17:33:52.253] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(620,2218) arrived=0 off=54
+[17:33:52.253] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(600,2184,0) to=(600,2200) attempt=2
+[17:33:52.253] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2200) from (600,2184,0)
+[17:33:52.253] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2200) from=(600,2184)
+[17:33:52.253] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (600,2200,z0)
+[17:33:52.253] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2200) in background
+[17:33:53.174] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (600,2184,0); target (600,2200); stopped short (off by 16 tile(s))
+[17:33:53.175] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(600,2184) target=(600,2200) arrived=0 off=16
+[17:33:53.175] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk fell short at (600,2184,0) (off 16); attempt 2/3
+[17:33:53.175] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=0 at=(600,2184,0) off=16 attempt=2
+[17:33:53.175] LOG   [wave10_RevGen3_08_Cyras] event travel_escape: from=(600,2184,0) to=(600,2168) attempt=3
+[17:33:53.175] INFO  [wave10_RevGen3_08_Cyras] [action] goto (600,2168) from (600,2184,0)
+[17:33:53.175] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(600,2168) from=(600,2184)
+[17:33:53.175] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (600,2184,0) to (600,2168,z0)
+[17:33:53.175] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (600,2168) in background
+[17:33:53.237] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (600,2168): 53 steps in 2596.8us
+[17:33:53.954] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (602,2183,z0); OpenDoor before step
+[17:33:53.956] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:33:54.323] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: World save in 10 seconds
+[17:33:54.707] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=50 in 203.9us
+[17:33:59.375] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:04.379] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: World save has been initiated.
+[17:34:09.391] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:09.826] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (600,2168); stopped short (off by 23 tile(s))
+[17:34:09.826] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(600,2168) arrived=0 off=23
+[17:34:09.826] INFO  [wave10_RevGen3_08_Cyras] [travel] recovery walk fell short at (616,2175,0) (off 16); attempt 2/3
+[17:34:09.826] LOG   [wave10_RevGen3_08_Cyras] event travel_recovery_done: reached=0 at=(616,2175,0) off=16 attempt=2
+[17:34:09.826] INFO  [wave10_RevGen3_08_Cyras] [travel] Skara Brae healer FAILED at (616,2175,0) -- sealed in; recovery exhausted
+[17:34:09.826] LOG   [wave10_RevGen3_08_Cyras] event travel_failed: label='Skara Brae healer' ok=0 at=(616,2175) legs=1 plans=4 why='sealed in; recovery exhausted'
+[17:34:09.888] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:34:09.889] INFO  [wave10_RevGen3_08_Cyras] [action] requested 7 paperdoll(s) for trade titles
+[17:34:09.889] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:34:09.920] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (10):
+[17:34:09.920] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x00017C23
+[17:34:09.921] INFO  [wave10_RevGen3_08_Cyras]   Brigit 0x00004545
+[17:34:09.921] INFO  [wave10_RevGen3_08_Cyras]   Aine 0x00004A4D
+[17:34:09.921] INFO  [wave10_RevGen3_08_Cyras]   Enrique 0x00004972
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Steve 0x0000E012
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Jared 0x00004589
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Bret 0x000027D1
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Delras 0x00015A59
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Amadis 0x00004A93
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x000027BE
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(616,2175,0) facing=6
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x0000E012: "Steve, the scribe"
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras] [world] Steve, the scribe is a scribe at (603,2176)
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x000027D1: "Bret, the alchemist"
+[17:34:09.922] INFO  [wave10_RevGen3_08_Cyras] [world] Bret, the alchemist is a alchemist at (600,2176)
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004589: "Jared, the mage guildmaster"
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [world] Jared, the mage guildmaster is a mage at (601,2182)
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004545: "Brigit, the mage"
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [world] Brigit, the mage is a mage at (606,2176)
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(616,2175,0) facing=1
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004A4D: "Aine, the carpenter"
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [world] Aine, the carpenter is a carpenter at (626,2164)
+[17:34:09.923] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004972: "Enrique, the architect"
+[17:34:12.923] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:34:12.924] INFO  [wave10_RevGen3_08_Cyras] [action] requested 1 paperdoll(s) for trade titles
+[17:34:12.924] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (10):
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x00017C23
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras]   Brigit 0x00004545
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras]   Aine 0x00004A4D
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras]   Enrique 0x00004972
+[17:34:12.938] INFO  [wave10_RevGen3_08_Cyras]   Steve 0x0000E012
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras]   Jared 0x00004589
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras]   Bret 0x000027D1
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras]   Delras 0x00015A59
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras]   Amadis 0x00004A93
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x000027BE
+[17:34:12.939] INFO  [wave10_RevGen3_08_Cyras] [0x88] paperdoll 0x00004A93: "Amadis, the architect"
+[17:34:14.431] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:15.945] INFO  [wave10_RevGen3_08_Cyras] [action] scanning nearby mobiles for names
+[17:34:15.945] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:34:15.960] INFO  [wave10_RevGen3_08_Cyras] [mobiles] nearby (9):
+[17:34:15.960] INFO  [wave10_RevGen3_08_Cyras]   Aine 0x00004A4D
+[17:34:15.960] INFO  [wave10_RevGen3_08_Cyras]   Steve 0x0000E012
+[17:34:15.960] INFO  [wave10_RevGen3_08_Cyras]   Cat 0x00017C23
+[17:34:15.960] INFO  [wave10_RevGen3_08_Cyras]   Brigit 0x00004545
+[17:34:15.961] INFO  [wave10_RevGen3_08_Cyras]   Enrique 0x00004972
+[17:34:15.961] INFO  [wave10_RevGen3_08_Cyras]   Delras 0x00015A59
+[17:34:15.961] INFO  [wave10_RevGen3_08_Cyras]   Jared 0x00004589
+[17:34:15.961] INFO  [wave10_RevGen3_08_Cyras]   Amadis 0x00004A93
+[17:34:15.961] INFO  [wave10_RevGen3_08_Cyras]   Bret 0x000027D1
+[17:34:16.207] INFO  [wave10_RevGen3_08_Cyras] [chat uni  ] Delras: Aine train Carpentry
+[17:34:16.207] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: Yes?
+[17:34:16.207] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: You already know as much as I can teach of Carpentry
+[17:34:18.983] INFO  [life] bandages: no 'healer' answered after 3 trip(s)
+[17:34:18.983] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="no 'healer' answered after 3 trip(s)"
+[17:34:18.983] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[17:34:19.044] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: no bandages bought"
+[17:34:19.044] INFO  [life] needs considered: NeedSkillTraining(Carpentry 0.55) NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:34:19.044] INFO  [life]   score=60.5
+[17:34:19.044] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[17:34:19.044] INFO  [life]   reason: Carpentry 0.0 -> 100.0, gold 9955 (fee is quoted on arrival, roughly 300)
+[17:34:19.044] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[17:34:19.045] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:34:19.480] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:21.020] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[17:34:21.020] INFO  [life] training: 'carpenter' is 9 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] mobile 0x00004A4D -> (625,2166) r=1 from (616,2175)
+[17:34:21.021] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='mobile 0x00004A4D' target=(625,2166) radius=1 from=(616,2175)
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.021] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:34:21.021] INFO  [wave10_RevGen3_08_Cyras] [travel] plan mobile 0x00004A4D: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:21.082] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:21.082] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:21.082] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:21.082] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:22.239] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:22.239] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:23.444] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:23.444] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:23.444] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:23.444] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:24.265] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:24.265] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:24.510] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:25.468] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:25.469] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:25.469] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:25.469] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:26.362] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:26.362] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:27.572] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:34:27.572] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:34:27.572] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:27.572] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:27.572] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:34:27.572] INFO  [wave10_RevGen3_08_Cyras] [travel] plan mobile 0x00004A4D: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:29.074] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:29.074] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:29.074] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:29.074] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:29.520] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:29.966] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:29.966] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:31.186] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:31.186] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:31.186] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:31.186] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:31.832] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:31.832] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:33.087] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:33.087] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:33.087] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:33.087] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:34.147] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:34.147] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:34.549] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:35.349] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:34:35.349] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:34:35.349] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:35.349] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:35.349] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:34:35.349] INFO  [wave10_RevGen3_08_Cyras] [travel] plan mobile 0x00004A4D: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:37.718] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[17:34:38.392] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:38.392] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:38.392] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:38.392] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:39.221] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:39.221] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:39.575] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:40.468] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:40.468] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:40.468] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:40.468] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:41.483] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (616,2175,0); target (625,2166); stopped short (off by 18 tile(s))
+[17:34:41.483] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(616,2175) target=(625,2166) arrived=0 off=18
+[17:34:42.736] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2166) from (616,2175,0)
+[17:34:42.751] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2166) from=(616,2175)
+[17:34:42.751] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (616,2175,0) to (625,2166,z0)
+[17:34:42.751] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2166) in background
+[17:34:42.814] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (625,2166): 38 steps in 10801.2us
+[17:34:44.577] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:47.506] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:34:47.506] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:34:47.506] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:47.506] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:47.506] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:34:47.506] INFO  [wave10_RevGen3_08_Cyras] [travel] plan mobile 0x00004A4D: ok legs=1 ~11 tiles transit=0 nodes=0
+[17:34:47.507] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2174,0); target (625,2166); stopped short (off by 15 tile(s))
+[17:34:47.507] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2174) target=(625,2166) arrived=0 off=15
+[17:34:47.507] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2163) from (632,2174,0)
+[17:34:47.507] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2163) from=(632,2174)
+[17:34:47.508] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2174,0) to (625,2163,z0)
+[17:34:47.508] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2163) in background
+[17:34:48.403] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2174,0); target (625,2163); stopped short (off by 18 tile(s))
+[17:34:48.403] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2174) target=(625,2163) arrived=0 off=18
+[17:34:49.606] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2163) from (632,2174,0)
+[17:34:49.606] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2163) from=(632,2174)
+[17:34:49.606] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2174,0) to (625,2163,z0)
+[17:34:49.607] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2163) in background
+[17:34:49.607] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:50.436] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (632,2174,0); target (625,2163); stopped short (off by 18 tile(s))
+[17:34:50.437] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(632,2174) target=(625,2163) arrived=0 off=18
+[17:34:51.696] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2163) from (632,2174,0)
+[17:34:51.696] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2163) from=(632,2174)
+[17:34:51.696] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (632,2174,0) to (625,2163,z0)
+[17:34:51.697] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2163) in background
+[17:34:51.757] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (625,2163): 18 steps in 1247.1us
+[17:34:53.099] INFO  [wave10_RevGen3_08_Cyras] [bot] step (634,2169,0)->(635,2168,0) rejected; OpenDoor + retry
+[17:34:53.114] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:34:53.114] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(634,2169,0) facing=0
+[17:34:53.115] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (634,2169,0); target (625,2163); stopped short (off by 15 tile(s))
+[17:34:53.116] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(634,2169) target=(625,2163) arrived=0 off=15
+[17:34:54.360] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:34:54.360] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:34:54.360] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.360] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.360] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:34:54.360] INFO  [wave10_RevGen3_08_Cyras] [travel] plan mobile 0x00004A4D: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:54.655] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:34:55.892] INFO  [wave10_RevGen3_08_Cyras] [action] goto (625,2163) from (634,2169,0)
+[17:34:55.892] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(625,2163) from=(634,2169)
+[17:34:55.892] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (634,2169,0) to (625,2163,z0)
+[17:34:55.892] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (625,2163) in background
+[17:34:55.954] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (625,2163): 13 steps in 602.2us
+[17:34:56.370] INFO  [wave10_RevGen3_08_Cyras] [bot] door ahead at (635,2167,z0); OpenDoor before step
+[17:34:56.372] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:34:57.357] INFO  [wave10_RevGen3_08_Cyras] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=11 in 170.9us
+[17:34:59.339] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Enrique: What's thee wantin'?
+[17:34:59.693] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:01.416] INFO  [wave10_RevGen3_08_Cyras] [travel] mobile 0x00004A4D ARRIVED at (626,2164,0)
+[17:35:01.416] LOG   [wave10_RevGen3_08_Cyras] event travel_done: label='mobile 0x00004A4D' ok=1 at=(626,2164) legs=1 plans=2 why=''
+[17:35:01.478] INFO  [life] training: asking the trainer about Carpentry
+[17:35:01.478] INFO  [wave10_RevGen3_08_Cyras] [ACTION] npc_train start
+[17:35:01.478] INFO  [wave10_RevGen3_08_Cyras] [TRAIN] ask 0x00004A4D say='Aine train Carpentry'
+[17:35:01.478] LOG   [wave10_RevGen3_08_Cyras] event npc_train_ask: Aine train Carpentry
+[17:35:01.492] INFO  [wave10_RevGen3_08_Cyras] [chat uni  ] Cyras: Aine train Carpentry
+[17:35:01.493] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: Yes?
+[17:35:01.493] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: For 194 gold I will train you in all I know of Carpentry. For less gold I will teach you less
+[17:35:01.493] INFO  [wave10_RevGen3_08_Cyras] [ACTION_RESULT] npc_train success (15ms) For 194 gold I will train you in all I know of Carpentry. For less gold I will teach you less
+[17:35:01.493] LOG   [wave10_RevGen3_08_Cyras] event action_result: npc_train success took=15ms For 194 gold I will train you in all I know of Carpentry. For less gold I will teach you less
+[17:35:03.996] INFO  [wave10_RevGen3_08_Cyras] [action] open backpack
+[17:35:03.997] INFO  [wave10_RevGen3_08_Cyras] [backpack] opening 0x40015723
+[17:35:03.997] INFO  [wave10_RevGen3_08_Cyras] [0x24] open container 0x40015723 gump=60
+[17:35:03.997] INFO  [wave10_RevGen3_08_Cyras] [0x3C] container contents: 8 item(s)
+[17:35:04.748] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:05.197] INFO  [life] training: paying the quoted 194 gold for Carpentry (purse 9955)
+[17:35:05.197] INFO  [wave10_RevGen3_08_Cyras] [GIVE] 0x4000D074 x194 -> 0x00004A4D (gold 9955)
+[17:35:05.197] INFO  [wave10_RevGen3_08_Cyras] [ITEM] drag serial=0x4000D074 amount=194
+[17:35:05.198] INFO  [wave10_RevGen3_08_Cyras] [ITEM] drop container=0x00004A4D
+[17:35:05.198] LOG   [wave10_RevGen3_08_Cyras] event npc_give: item=0x4000D074 amount=194 to=0x00004A4D
+[17:35:05.209] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: Let me show you something of how this is done
+[17:35:05.211] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] Aine: That is all I can teach.
+[17:35:09.228] INFO  [wave10_RevGen3_08_Cyras] [action] requesting the skill list
+[17:35:09.229] INFO  [life] goal_changed=TRAIN_COMBAT from=TRAIN_AT_NPC reason="TRAIN_COMBAT 58.5 superseded TRAIN_AT_NPC 49.5"
+[17:35:09.229] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:35:09.229] INFO  [life]   score=58.5
+[17:35:09.229] INFO  [life]   reason: NeedTraining urgency 0.45 x 130 = 58.5
+[17:35:09.229] INFO  [life]   reason: Swordsmanship 50.0 -> 100.0
+[17:35:09.229] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 189s after achieving nothing
+[17:35:09.229] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:09.752] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:10.781] INFO  [life] handoff=TRAIN_COMBAT->UPGRADE_GEAR reason="no gear yet -- shopping before the graveyard"
+[17:35:10.843] INFO  [life] goal=GATHER_LOGS reason="previous goal abandoned: no gear yet -- shopping before the graveyard"
+[17:35:10.843] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:35:10.843] INFO  [life]   score=52.0
+[17:35:10.844] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:35:10.844] INFO  [life]   reason: no stand and no lead
+[17:35:10.844] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 188s after achieving nothing
+[17:35:10.844] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 239s after achieving nothing
+[17:35:10.844] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:12.814] INFO  [life] arming the axe: taking off 0x0F51 from layer 1 first
+[17:35:12.814] INFO  [wave10_RevGen3_08_Cyras] [ACTION] unequip start
+[17:35:12.814] INFO  [wave10_RevGen3_08_Cyras] [ACTION] unequip serial=0x40015714 -> backpack 0x40015723
+[17:35:12.814] INFO  [wave10_RevGen3_08_Cyras] [ITEM] drag serial=0x40015714 amount=1
+[17:35:12.814] INFO  [wave10_RevGen3_08_Cyras] [ITEM] drop container=0x40015723
+[17:35:12.828] INFO  [wave10_RevGen3_08_Cyras] [ACTION_RESULT] unequip success (14ms) item is in the destination
+[17:35:12.828] LOG   [wave10_RevGen3_08_Cyras] event action_result: unequip success took=14ms item is in the destination
+[17:35:14.245] INFO  [life] arming the axe
+[17:35:14.246] INFO  [wave10_RevGen3_08_Cyras] [ACTION] equip start
+[17:35:14.246] INFO  [wave10_RevGen3_08_Cyras] [ACTION] equip serial=0x4001570D layer=0
+[17:35:14.246] INFO  [wave10_RevGen3_08_Cyras] [ITEM] drag serial=0x4001570D amount=1
+[17:35:14.261] INFO  [wave10_RevGen3_08_Cyras] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:35:14.261] LOG   [wave10_RevGen3_08_Cyras] event action_result: equip success took=16ms worn on the requested layer
+[17:35:14.756] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:15.863] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:15.863] INFO  [wave10_RevGen3_08_Cyras] [travel] past_guard_line -> (620,2164) r=4 from (626,2164)
+[17:35:15.863] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='past_guard_line' target=(620,2164) radius=4 from=(626,2164)
+[17:35:15.863] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:35:15.864] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:35:15.864] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:15.864] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:15.864] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:35:15.864] INFO  [wave10_RevGen3_08_Cyras] [travel] plan past_guard_line: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:35:15.880] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (626,2164,0); target (625,2163); stopped short (off by 2 tile(s))
+[17:35:15.880] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(626,2164) target=(625,2163) arrived=0 off=2
+[17:35:15.880] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2164) from (626,2164,0)
+[17:35:15.881] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2164) from=(626,2164)
+[17:35:15.881] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (626,2164,0) to (620,2164)
+[17:35:15.881] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2164) in background
+[17:35:15.941] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (620,2164): 41 steps in 4502.8us
+[17:35:19.732] INFO  [wave10_RevGen3_08_Cyras] [bot] step (635,2168,0)->(634,2169,0) rejected; OpenDoor + retry
+[17:35:19.747] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Opening door...
+[17:35:19.748] INFO  [wave10_RevGen3_08_Cyras] [0x20] player @(635,2168,0) facing=6
+[17:35:19.749] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (635,2168,0); target (620,2164); stopped short (off by 19 tile(s))
+[17:35:19.749] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(635,2168) target=(620,2164) arrived=0 off=19
+[17:35:19.764] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:20.971] INFO  [wave10_RevGen3_08_Cyras] [action] goto (620,2164) from (635,2168,0)
+[17:35:20.971] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(620,2164) from=(635,2168)
+[17:35:20.971] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (635,2168,0) to (620,2164)
+[17:35:20.971] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (620,2164) in background
+[17:35:20.987] INFO  [wave10_RevGen3_08_Cyras] [bot] replan to (620,2164): 30 steps in 5115.1us
+[17:35:22.807] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:23.018] INFO  [wave10_RevGen3_08_Cyras] [chat uni  ] : Moon buy
+[17:35:24.823] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:28.597] INFO  [wave10_RevGen3_08_Cyras] [travel] past_guard_line ARRIVED at (621,2167,0)
+[17:35:28.597] LOG   [wave10_RevGen3_08_Cyras] event travel_done: label='past_guard_line' ok=1 at=(621,2167) legs=1 plans=1 why=''
+[17:35:28.659] INFO  [life] gather: trip reported success but there are no trees within 24 tiles
+[17:35:29.859] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:31.717] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:31.717] INFO  [wave10_RevGen3_08_Cyras] [travel] past_guard_line -> (647,2167) r=4 from (621,2167)
+[17:35:31.718] LOG   [wave10_RevGen3_08_Cyras] event travel_start: label='past_guard_line' target=(647,2167) radius=4 from=(621,2167)
+[17:35:31.718] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:35:31.718] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:35:31.718] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.718] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.718] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:35:31.718] INFO  [wave10_RevGen3_08_Cyras] [travel] plan past_guard_line: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:35:31.779] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (620,2164); stopped short (off by 4 tile(s))
+[17:35:31.779] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(620,2164) arrived=0 off=4
+[17:35:31.779] INFO  [wave10_RevGen3_08_Cyras] [action] goto (647,2167) from (621,2167,0)
+[17:35:31.779] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(647,2167) from=(621,2167)
+[17:35:31.780] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (621,2167,0) to (647,2167)
+[17:35:31.780] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (647,2167) in background
+[17:35:31.811] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:31.811] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:33.016] INFO  [wave10_RevGen3_08_Cyras] [action] goto (647,2167) from (621,2167,0)
+[17:35:33.021] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(647,2167) from=(621,2167)
+[17:35:33.021] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (621,2167,0) to (647,2167)
+[17:35:33.021] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (647,2167) in background
+[17:35:33.076] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:33.103] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:34.293] INFO  [wave10_RevGen3_08_Cyras] [action] goto (647,2167) from (621,2167,0)
+[17:35:34.293] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(647,2167) from=(621,2167)
+[17:35:34.294] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (621,2167,0) to (647,2167)
+[17:35:34.294] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (647,2167) in background
+[17:35:34.325] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:34.325] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:34.896] INFO  [wave10_RevGen3_08_Cyras] [survival] hp 40/40 (100%) -> fight
+[17:35:35.527] INFO  [wave10_RevGen3_08_Cyras] [travel] mode walk             usable   <- chosen
+[17:35:35.527] INFO  [wave10_RevGen3_08_Cyras] [travel] mode moongate         usable
+[17:35:35.527] INFO  [wave10_RevGen3_08_Cyras] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:35.527] INFO  [wave10_RevGen3_08_Cyras] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:35.527] LOG   [wave10_RevGen3_08_Cyras] event travel_mode: walk
+[17:35:35.527] INFO  [wave10_RevGen3_08_Cyras] [travel] plan past_guard_line: ok legs=1 ~26 tiles transit=0 nodes=0
+[17:35:37.064] INFO  [wave10_RevGen3_08_Cyras] [action] goto (647,2167) from (621,2167,0)
+[17:35:37.066] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(647,2167) from=(621,2167)
+[17:35:37.066] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (621,2167,0) to (647,2167)
+[17:35:37.066] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (647,2167) in background
+[17:35:37.126] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:37.126] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:37.759] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_08.cyras/state.json
+[17:35:38.389] INFO  [wave10_RevGen3_08_Cyras] [action] goto (647,2167) from (621,2167,0)
+[17:35:38.389] LOG   [wave10_RevGen3_08_Cyras] event goto_start: target=(647,2167) from=(621,2167)
+[17:35:38.389] INFO  [wave10_RevGen3_08_Cyras] [bot] running from (621,2167,0) to (647,2167)
+[17:35:38.389] INFO  [wave10_RevGen3_08_Cyras] [bot] planning path to (647,2167) in background
+[17:35:38.451] INFO  [wave10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:38.451] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:39.328] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ghalor has departed from Britain.
+e10_RevGen3_08_Cyras] [action] goto finished at (621,2167,0); target (647,2167); stopped short (off by 26 tile(s))
+[17:35:38.451] LOG   [wave10_RevGen3_08_Cyras] event goto_done: at=(621,2167) target=(647,2167) arrived=0 off=26
+[17:35:39.328] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_08_Cyras] [chat ascii] System: Ghalor has departed from Britain.

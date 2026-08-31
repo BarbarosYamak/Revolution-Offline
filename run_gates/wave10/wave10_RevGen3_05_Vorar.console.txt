@@ -1,0 +1,1633 @@
+[17:29:34.682] LOG   [wave10_RevGen3_05_Vorar] event session_start: text log opened
+[17:29:34.684] LOG   [wave10_RevGen3_05_Vorar] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.685] INFO  [wave10_RevGen3_05_Vorar] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.687] LOG   [wave10_RevGen3_05_Vorar] event net_connected: connect 127.0.0.1:2593
+[17:29:34.688] INFO  [wave10_RevGen3_05_Vorar] [net] connected.
+[17:29:34.689] INFO  [wave10_RevGen3_05_Vorar] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.690] LOG   [wave10_RevGen3_05_Vorar] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.692] INFO  [wave10_RevGen3_05_Vorar] [life] autonomous player active for 'Vorar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.710] INFO  [wave10_RevGen3_05_Vorar] [0xA8] 1 server(s):
+[17:29:34.710] INFO  [wave10_RevGen3_05_Vorar]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[17:29:34.721] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Elvar has arrived in Britain.
+[17:29:34.722] INFO  [wave10_RevGen3_05_Vorar] [0x8C] game server = 127.0.0.1:2593  seed=0x6D45B66B
+[17:29:34.722] LOG   [wave10_RevGen3_05_Vorar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6D45B66B
+[17:29:34.722] INFO  [wave10_RevGen3_05_Vorar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.722] LOG   [wave10_RevGen3_05_Vorar] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.737] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Zarthal has arrived in Britain.
+[17:29:34.737] INFO  [wave10_RevGen3_05_Vorar] [0xB9] server features = 0x0005
+[17:29:34.737] INFO  [wave10_RevGen3_05_Vorar] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar]   [0] Vorar
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar]   [1] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar]   [2] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar]   [3] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar]   [4] <empty>
+[17:29:34.738] INFO  [wave10_RevGen3_05_Vorar] [ui] playing slot 0 ('Vorar')
+[17:29:34.753] INFO  [wave10_RevGen3_05_Vorar] [0x1B] serial=0x00016305 body=0x0191 pos=(1592,1750,30)
+[17:29:34.753] LOG   [wave10_RevGen3_05_Vorar] event login_confirm: serial=0x00016305 body=0x0191 pos=(1592,1750,30)
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [0x20] player @(1592,1750,30) facing=4
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [0x55] login complete — entering world
+[17:29:34.754] LOG   [wave10_RevGen3_05_Vorar] event in_world: 0x55 received
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [backpack] opening 0x400162FA
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: There are 6 other players here.
+[17:29:34.754] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.755] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: You are under the protection of the city guards
+[17:29:34.755] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Halain has arrived in Britain Territory.
+[17:29:34.758] INFO  [wave10_RevGen3_05_Vorar] [action] requesting the skill list
+[17:29:34.759] INFO  [wave10_RevGen3_05_Vorar] [0x24] open container 0x400162FA gump=60
+[17:29:34.759] INFO  [wave10_RevGen3_05_Vorar] [0x3C] container contents: 10 item(s)
+[17:29:34.759] LOG   [wave10_RevGen3_05_Vorar] event backpack_contents: serial=0x400162FA items=10
+[17:29:34.768] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: You are fairly content
+[17:29:34.769] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] Vorar: *You looks fairly content*
+[17:29:34.876] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.005] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.359] INFO  [wave10_RevGen3_05_Vorar] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.362] INFO  [wave10_RevGen3_05_Vorar] [survival] on
+[17:29:37.362] LOG   [wave10_RevGen3_05_Vorar] event survival_mode: on
+[17:29:37.365] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:29:37.964] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:29:37.964] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:29:37.964] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:29:37.964] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:29:37.964] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.965] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.965] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:29:37.965] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:29:38.026] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:38.027] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:38.027] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:38.027] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:38.087] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:38.150] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:38.150] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:39.380] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:39.380] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:39.380] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:39.380] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:39.380] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:39.442] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:39.442] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:40.701] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:40.701] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:40.701] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:40.701] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:40.702] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:40.762] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:40.762] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:42.001] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:29:42.001] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:29:42.001] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:42.001] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:42.001] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:29:42.001] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:29:42.370] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:29:43.522] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:43.522] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:43.523] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:43.523] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:43.523] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:43.583] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:43.583] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:44.811] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:44.811] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:44.812] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:44.812] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:44.812] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:44.872] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:44.873] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:46.123] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:46.124] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:46.124] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:46.124] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:46.124] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:46.184] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:46.185] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:47.415] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:29:47.415] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:29:47.415] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:47.415] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:47.416] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:29:47.416] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:29:47.416] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:29:50.430] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:50.430] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:50.430] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:50.430] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:50.431] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:50.491] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:50.492] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:51.741] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:51.741] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:51.741] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:51.742] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:51.742] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:51.803] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:51.804] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:52.419] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:29:53.033] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:53.033] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:53.034] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:53.034] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:53.034] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:53.095] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:53.095] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:29:54.327] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:29:54.327] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:29:54.327] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:54.327] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:54.327] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:29:54.327] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:29:57.463] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:29:58.876] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:29:58.876] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:29:58.877] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:29:58.877] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:29:58.877] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:29:58.938] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:29:58.938] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:00.174] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:00.174] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:00.175] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:00.175] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:00.175] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:00.236] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:00.236] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:01.448] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:01.449] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:01.449] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:01.449] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:01.449] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:01.509] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:01.509] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:01.509] WARN  [wave10_RevGen3_05_Vorar] [travel] route exhausted at (1592,1750,30); trying to reach (1592,1736,17) to get somewhere routable (escape 1/3)
+[17:30:01.509] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:30:01.510] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:30:01.510] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:30:01.510] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:30:01.510] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:30:01.571] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 1377.4us
+[17:30:02.524] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:06.847] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:30:06.848] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:30:06.848] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:30:06.848] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:30:06.848] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:30:06.910] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:06.910] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:06.910] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:06.910] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:06.910] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:06.917] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:30:06.918] WARN  [wave10_RevGen3_05_Vorar] [travel] route exhausted at (1592,1736,17); trying to reach (1592,1750,30) to get somewhere routable (escape 2/3)
+[17:30:06.918] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:30:06.918] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:30:06.918] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:30:06.918] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:30:06.918] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:30:06.971] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 2867.3us
+[17:30:07.575] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:12.576] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:15.697] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:30:15.698] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:30:15.698] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:30:15.698] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:30:15.698] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:30:15.758] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:15.759] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:15.759] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:15.759] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:15.759] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:15.759] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:15.821] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:15.821] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:15.822] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:15.822] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:15.822] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:15.883] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:15.883] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:17.119] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:17.119] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:17.119] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:17.119] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:17.119] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:17.179] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:17.180] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:17.583] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:18.387] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:18.387] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:18.388] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:18.388] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:18.388] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:18.449] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:18.455] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:19.671] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:19.671] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:19.671] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:19.672] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:19.672] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:19.672] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:21.206] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:21.207] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:21.207] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:21.207] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:21.207] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:21.268] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:21.268] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:22.496] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:22.496] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:22.497] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:22.497] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:22.497] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:22.559] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:22.559] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:22.621] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:23.765] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:23.765] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:23.765] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:23.765] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:23.766] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:23.826] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:23.826] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:25.060] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:25.060] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:25.060] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:25.060] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:25.060] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:25.060] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:27.665] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:28.084] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:28.084] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:28.084] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:28.085] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:28.085] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:28.143] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:28.144] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:29.379] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:29.380] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:29.380] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:29.380] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:29.380] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:30:29.442] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:29.442] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:30.668] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:30.668] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:30.668] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:30.668] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:30.668] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and s[17:30:3[17:30:30.729] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 ti[17:30:[17:30:30.730] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 o[17:30[17:30:31.965] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- ch[17:3[17:30:31.966] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usa[17:[17:30:31.966] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destinati[17[17:30:31.966] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destinatio[1[17:30:31.966] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk[[17:30:31.966] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:32.723] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:36.488] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:36.489] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:36.489] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:36.489] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:3[17:30:36.552] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780)[17:30:36.552] INFO  [wave10_RevGen3_[17:30:36.552] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=[17:30:36.[17:30:37.413] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data[17:30:37.779] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:37.780] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:37.780] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:37.780] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:37.780] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:37.780] WARN  [wave10_RevGen[17:30:37.842] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (159[17:30:37.842] INFO  [wave10_RevGen3_05_Vorar] [action] goto finish[17:30:37.842] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,175[17:30:37.842] LOG   [wave10_RevGen3_05_[17:30:39.069] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) fr[17:30:39.069] INFO[17:30:39.070] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1[17:30:39.070] LOG   [wave10[17:30:39.070] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1[17:30:39.070] INFO  [wa[17:30:39.070] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1[17:30:39.070] INFO  [wav[17:30:39.130] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:39.130] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:39.131] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1576,1736) attempt=3
+[17:30:39.131] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1576,1736) from (1592,1750,30)
+[17:30:39.131] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1576,1736) from=(1592,1750)
+[17:30:39.131] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1576,1736,z15)
+[17:30:39.131] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1576,1736) in background
+[17:30:40.455] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1576,1736); stopped short (off by 30 tile(s))
+[17:30:40.455] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1576,1736) arrived=0 off=30
+[17:30:40.456] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk fell short at (1592,1750,30) (off 16); attempt 3/3
+[17:30:40.456] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=0 at=(1592,1750,30) off=16 attempt=3
+[17:30:40.579] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:30:41.130] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:30:41.131] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:41.131] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:41.131] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:41.193] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:41.193] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:41.193] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:41.193] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:41.254] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:41.254] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:42.500] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:42.500] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:42.500] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:42.500] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:42.562] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:42.562] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:42.806] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:43.794] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:43.794] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:43.794] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:43.794] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:43.855] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:43.855] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:45.085] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:45.085] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:45.085] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:45.085] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:45.085] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:45.085] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:46.620] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:46.621] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:46.621] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:46.621] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:46.682] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:46.682] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:47.820] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:47.942] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:47.943] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:47.943] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:47.943] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:48.002] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:48.003] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:49.259] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:49.259] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:49.259] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:49.260] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:49.320] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:49.320] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:50.538] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:50.538] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:50.539] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:50.539] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:50.539] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:50.539] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:52.882] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:30:53.573] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:53.573] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:53.573] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:53.573] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:53.635] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:53.635] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:54.869] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:54.869] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:54.869] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:54.869] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:54.885] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:54.885] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:56.117] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:30:56.117] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:30:56.117] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:30:56.117] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:30:56.178] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:30:56.178] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:30:57.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:30:57.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:30:57.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:57.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:57.408] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:30:57.408] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:30:57.901] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:01.913] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:01.913] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:01.914] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:01.914] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:01.975] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:01.975] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:02.962] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:03.208] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:03.208] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:03.208] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:03.208] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:03.269] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:03.269] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:04.472] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:04.473] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:04.473] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:04.473] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:04.533] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:04.533] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:04.534] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:31:04.534] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:31:04.534] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:31:04.534] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:31:04.534] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:31:04.595] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 1577.3us
+[17:31:07.965] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:09.811] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:31:09.812] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:31:09.812] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:31:09.812] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:31:09.812] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:31:09.871] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:09.871] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:09.871] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:09.872] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:09.872] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:09.881] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:31:09.882] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:31:09.882] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:31:09.882] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:31:09.882] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:31:09.882] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:31:09.948] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 5455.0us
+[17:31:12.979] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:17.992] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:19.023] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:31:19.081] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:31:19.164] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:31:19.237] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:31:19.315] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:31:19.440] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:19.493] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:19.566] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:19.636] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:19.689] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:19.690] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:19.692] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:19.692] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:19.692] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:19.692] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:19.747] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:19.747] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:20.978] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:20.978] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:20.978] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:20.978] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:21.039] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:21.039] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:22.245] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:22.245] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:22.245] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:22.246] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:22.306] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:22.306] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:23.047] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:23.540] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:23.540] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:23.540] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:23.540] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:23.540] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:23.540] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:25.049] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:25.049] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:25.050] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:25.050] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:25.110] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:25.110] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:26.358] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:26.358] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:26.358] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:26.358] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:26.418] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:26.418] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:27.643] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:27.644] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:27.644] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:27.644] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:27.704] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:27.705] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:28.072] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:28.934] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:28.934] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:28.934] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:28.934] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:28.934] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:28.934] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:31.934] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:31.934] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:31.934] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:31.934] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:31.995] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:31.996] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:33.103] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:33.225] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:33.226] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:33.226] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:33.226] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:33.288] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:33.289] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:34.522] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:34.522] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:34.522] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:34.522] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:34.583] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:34.584] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:35.817] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:35.817] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:35.817] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:35.818] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:35.818] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:35.818] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:37.420] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[17:31:38.155] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:40.318] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:40.318] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:40.318] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:40.318] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:40.381] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:40.381] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:41.615] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:41.615] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:41.616] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:41.616] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:41.677] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:41.677] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:42.906] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:42.906] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:42.906] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:42.906] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:42.966] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:42.967] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:42.967] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1576,1736) attempt=3
+[17:31:42.967] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1576,1736) from (1592,1750,30)
+[17:31:42.967] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1576,1736) from=(1592,1750)
+[17:31:42.967] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1576,1736,z15)
+[17:31:42.967] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1576,1736) in background
+[17:31:43.212] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:44.447] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1576,1736); stopped short (off by 30 tile(s))
+[17:31:44.447] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1576,1736) arrived=0 off=30
+[17:31:44.447] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk fell short at (1592,1750,30) (off 16); attempt 3/3
+[17:31:44.448] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=0 at=(1592,1750,30) off=16 attempt=3
+[17:31:44.571] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:31:45.125] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:31:45.125] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:31:45.125] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:31:45.125] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:45.125] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:45.125] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:45.126] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:45.126] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:45.126] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:45.187] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:45.187] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:45.187] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:45.187] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:45.248] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:45.249] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:46.478] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:46.478] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:46.478] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:46.478] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:46.539] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:46.539] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:47.772] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:47.772] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:47.772] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:47.772] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:47.833] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:47.833] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:48.265] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:49.069] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:49.070] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:49.070] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:49.070] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:49.070] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:49.070] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:50.606] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:50.606] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:50.606] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:50.607] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:50.668] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:50.668] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:51.900] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:51.900] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:51.901] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:51.901] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:51.962] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:51.962] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:53.194] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:53.194] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:53.194] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:53.195] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:53.255] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:53.255] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:53.317] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:54.471] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:31:54.471] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:31:54.471] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:54.471] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:54.471] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:31:54.471] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:31:57.492] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:57.493] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:57.493] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:57.493] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:57.553] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:57.554] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:31:58.353] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:31:58.782] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:31:58.782] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:31:58.782] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:31:58.782] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:31:58.842] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:31:58.843] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:00.074] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:00.075] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:00.075] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:00.075] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:00.136] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:00.137] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:01.369] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:01.369] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:01.369] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:01.369] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:01.370] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:01.370] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:03.404] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:05.919] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:05.920] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:05.920] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:05.920] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:05.984] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:05.984] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:07.214] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:07.214] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:07.214] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:07.214] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:07.276] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:07.276] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:08.452] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:08.515] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:08.516] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:08.516] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:08.516] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:08.576] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:08.577] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:08.577] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:32:08.577] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:32:08.577] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:32:08.577] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:32:08.577] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:32:08.637] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 1409.4us
+[17:32:13.477] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:13.983] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:32:13.984] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:32:13.984] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:32:13.984] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:32:13.984] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:32:14.045] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:14.045] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:14.045] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:14.045] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:14.045] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:14.053] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:32:14.054] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:32:14.054] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:32:14.054] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:32:14.054] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:32:14.054] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:32:14.106] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 2623.0us
+[17:32:18.501] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:23.135] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:32:23.136] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:32:23.136] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:32:23.136] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:32:23.137] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:32:23.197] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:23.197] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:23.197] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:23.197] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:23.198] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:23.198] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:23.259] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:23.259] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:23.259] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:23.259] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:23.320] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:23.320] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:23.505] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:24.555] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:24.555] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:24.555] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:24.555] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:24.617] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:24.617] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:25.845] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:25.845] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:25.846] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:25.846] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:25.907] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:25.907] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:27.143] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:27.143] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:27.144] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:27.144] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:27.144] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:27.144] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:28.547] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:28.669] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:28.669] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:28.669] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:28.669] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:28.730] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:28.731] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:29.957] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:29.957] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:29.958] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:29.958] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:30.020] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:30.020] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:31.256] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:31.256] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:31.256] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:31.256] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:31.317] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:31.317] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:32.551] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:32.551] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:32.551] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.551] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.551] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:32.551] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:33.592] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:35.602] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:35.602] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:35.602] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:35.602] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:35.664] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:35.665] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:36.897] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:36.898] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:36.898] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:36.898] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:36.961] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:36.961] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:37.459] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[17:32:38.197] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:38.197] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:38.197] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:38.197] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:38.258] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:38.258] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:38.627] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:39.498] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:39.498] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:39.498] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:39.498] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:39.498] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:39.498] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:43.674] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:44.042] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:44.042] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:44.042] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:44.043] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:44.104] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:44.104] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:45.331] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:45.331] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:45.331] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:45.332] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:45.394] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:45.395] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:46.628] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:46.629] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:46.629] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:46.629] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:46.688] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:46.688] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:46.689] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1576,1736) attempt=3
+[17:32:46.689] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1576,1736) from (1592,1750,30)
+[17:32:46.689] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1576,1736) from=(1592,1750)
+[17:32:46.689] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1576,1736,z15)
+[17:32:46.689] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1576,1736) in background
+[17:32:48.413] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1576,1736); stopped short (off by 30 tile(s))
+[17:32:48.413] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1576,1736) arrived=0 off=30
+[17:32:48.413] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk fell short at (1592,1750,30) (off 16); attempt 3/3
+[17:32:48.413] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=0 at=(1592,1750,30) off=16 attempt=3
+[17:32:48.539] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:32:48.722] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:49.091] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:32:49.091] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:32:49.091] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:32:49.091] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:49.091] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:49.091] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:49.092] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:49.092] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:49.092] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:49.154] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:49.154] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:49.154] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:49.154] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:49.215] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:49.215] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:50.445] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:50.445] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:50.445] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:50.445] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:50.506] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:50.506] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:51.744] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:51.744] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:51.744] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:51.744] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:51.807] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:51.807] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:53.040] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:53.040] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:53.040] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:53.040] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:53.040] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:53.040] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:53.778] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:32:54.576] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:54.576] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:54.576] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:54.576] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:54.638] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:54.639] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:55.886] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:55.886] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:55.887] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:55.887] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:55.948] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:55.948] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:57.183] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:32:57.184] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:32:57.184] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:32:57.184] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:32:57.246] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:32:57.246] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:32:58.476] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:32:58.477] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:32:58.477] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:58.477] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:58.477] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:32:58.477] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:32:58.785] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:01.498] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:01.499] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:01.499] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:01.499] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:01.559] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:01.559] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:02.792] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:02.793] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:02.793] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:02.793] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:02.854] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:02.855] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:03.842] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:04.088] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:04.088] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:04.088] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:04.089] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:04.150] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:04.150] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:05.386] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:05.386] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:05.386] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.386] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.386] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:05.386] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:08.901] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:09.887] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:09.887] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:09.887] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:09.887] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:09.949] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:09.949] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:11.183] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:11.183] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:11.183] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:11.183] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:11.246] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:11.246] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:12.479] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:12.479] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:12.479] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:12.479] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:12.540] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:12.540] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:12.540] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:33:12.540] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:33:12.540] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:33:12.540] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:33:12.540] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:33:12.601] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 1476.8us
+[17:33:13.941] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:17.788] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:33:17.789] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:33:17.789] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:33:17.789] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:33:17.790] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:33:17.849] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:17.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:17.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:17.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:17.850] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:17.858] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:33:17.859] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:33:17.859] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:33:17.859] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:33:17.859] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:33:17.859] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:33:17.911] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 3526.5us
+[17:33:18.960] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:23.999] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:27.124] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:33:27.126] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:33:27.126] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:33:27.126] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:33:27.126] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:33:27.185] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:27.185] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:27.185] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.186] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.186] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:27.186] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:27.246] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:27.246] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:27.246] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:27.246] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:27.308] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:27.308] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:28.539] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:28.540] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:28.540] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:28.540] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:28.601] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:28.602] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:29.032] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:29.834] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:29.834] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:29.834] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:29.834] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:29.896] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:29.897] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:31.136] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:31.136] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:31.136] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:31.136] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:31.136] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:31.136] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:32.675] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:32.675] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:32.675] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:32.675] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:32.736] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:32.736] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:33.970] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:33.970] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:33.970] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:33.970] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:34.033] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:34.033] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:34.033] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:35.285] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:35.286] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:35.286] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:35.286] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:35.348] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:35.348] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:36.584] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:36.584] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:36.584] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:36.584] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:36.584] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:36.584] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:37.507] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[17:33:39.047] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:39.599] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:39.599] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:39.599] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:39.599] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:39.661] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:39.661] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:40.891] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:40.891] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:40.891] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:40.891] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:40.954] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:40.954] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:42.182] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:42.182] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:42.182] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:42.182] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:42.243] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:42.243] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:43.484] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:43.484] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:43.485] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:43.485] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:43.485] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:43.485] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:44.105] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:48.038] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:48.038] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:48.039] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:48.039] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:48.101] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:48.101] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:49.156] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:49.342] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:49.342] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:49.342] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:49.342] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:49.404] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:49.404] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:50.636] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:50.636] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:50.636] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:50.637] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:50.697] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:50.698] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:50.698] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1576,1736) attempt=3
+[17:33:50.698] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1576,1736) from (1592,1750,30)
+[17:33:50.698] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1576,1736) from=(1592,1750)
+[17:33:50.698] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1576,1736,z15)
+[17:33:50.698] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1576,1736) in background
+[17:33:52.235] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1576,1736); stopped short (off by 30 tile(s))
+[17:33:52.235] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1576,1736) arrived=0 off=30
+[17:33:52.235] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk fell short at (1592,1750,30) (off 16); attempt 3/3
+[17:33:52.235] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=0 at=(1592,1750,30) off=16 attempt=3
+[17:33:52.360] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:52.421] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[17:33:52.421] INFO  [life] needs considered: NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:33:52.421] INFO  [life]   score=72.0
+[17:33:52.422] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:33:52.422] INFO  [life]   reason: no stand and no lead
+[17:33:52.422] INFO  [life]   reason: axe already in hand +20
+[17:33:52.422] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:52.914] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:33:52.914] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:33:52.915] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:33:52.915] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:52.915] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:52.915] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:52.915] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:52.915] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:52.915] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:52.975] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:52.976] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:52.976] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:52.976] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:53.037] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:53.037] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:54.202] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:54.262] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:54.269] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:54.269] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:54.269] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:54.323] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:54.323] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:54.568] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: World save in 10 seconds
+[17:33:55.559] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:55.559] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:55.559] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:55.559] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:55.622] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:55.622] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:56.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:33:56.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:33:56.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:56.850] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:56.850] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:33:56.850] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:58.388] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:58.388] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:58.389] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:58.389] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:58.451] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:58.451] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:33:59.253] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:33:59.680] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:33:59.680] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:33:59.680] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:33:59.680] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:33:59.740] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:33:59.740] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:00.973] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:00.973] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:00.973] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:00.973] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:01.034] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:01.034] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:02.274] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:02.274] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:02.274] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:02.274] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:02.274] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:02.274] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:04.301] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: World save has been initiated.
+[17:34:05.284] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:05.284] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:05.284] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:05.284] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:05.346] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:05.346] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:06.595] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:06.595] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:06.595] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:06.595] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:06.657] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:06.658] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:07.900] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:07.900] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:07.900] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:07.900] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:07.961] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:07.962] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:09.206] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:09.206] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:09.206] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:09.206] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:09.206] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:09.206] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:09.329] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:13.757] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:13.757] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:13.757] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:13.757] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:13.818] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:13.818] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:14.369] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:15.050] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:15.050] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:15.051] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:15.051] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:15.114] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:15.114] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:16.347] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:16.347] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:16.347] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:16.347] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:16.409] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:16.410] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:16.410] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:34:16.410] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:34:16.410] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:34:16.410] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:34:16.410] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:34:16.471] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 1290.0us
+[17:34:19.372] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:21.789] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:34:21.791] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:34:21.791] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:34:21.791] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:34:21.791] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:34:21.853] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:21.853] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:21.853] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.853] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.853] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:21.864] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:34:21.864] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:34:21.864] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:34:21.865] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:34:21.865] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:34:21.865] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:34:21.930] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 6004.3us
+[17:34:24.402] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:29.458] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:31.138] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:34:31.140] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:34:31.140] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:34:31.140] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:34:31.141] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:34:31.200] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:31.200] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:31.200] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:31.200] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:31.200] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:31.200] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:31.261] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:31.261] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:31.261] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:31.261] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:31.323] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:31.323] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:32.552] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:32.552] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:32.552] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:32.552] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:32.612] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:32.612] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:33.839] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:33.840] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:33.840] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:33.840] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:33.901] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:33.901] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:34.517] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:35.133] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:35.133] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:35.133] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:35.133] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:35.133] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:35.133] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:36.687] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:36.687] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:36.687] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:36.687] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:36.747] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:36.747] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:37.548] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[17:34:37.977] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:37.977] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:37.977] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:37.977] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:38.038] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:38.038] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:39.266] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:39.266] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:39.266] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:39.266] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:39.329] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:39.329] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:39.574] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:40.560] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:40.560] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:40.560] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:40.560] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:40.560] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:40.560] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:43.588] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:43.589] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:43.589] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:43.589] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:43.650] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:43.650] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:44.575] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:44.881] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:44.881] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:44.881] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:44.881] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:44.943] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:44.943] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:46.179] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:46.179] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:46.179] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:46.179] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:46.240] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:46.240] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:47.474] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:47.474] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:47.475] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:47.475] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:47.475] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:47.475] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:49.637] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:52.035] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:52.036] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:52.036] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:52.036] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:52.096] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:52.096] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:53.328] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:53.328] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:53.328] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:53.328] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:53.390] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:53.390] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:54.624] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:54.624] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:54.624] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:54.624] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:54.687] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:54.687] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:54.687] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1576,1736) attempt=3
+[17:34:54.687] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1576,1736) from (1592,1750,30)
+[17:34:54.687] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1576,1736) from=(1592,1750)
+[17:34:54.687] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1576,1736,z15)
+[17:34:54.688] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1576,1736) in background
+[17:34:54.688] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:56.555] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1576,1736); stopped short (off by 30 tile(s))
+[17:34:56.555] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1576,1736) arrived=0 off=30
+[17:34:56.555] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk fell short at (1592,1750,30) (off 16); attempt 3/3
+[17:34:56.555] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=0 at=(1592,1750,30) off=16 attempt=3
+[17:34:56.679] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:34:57.231] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] past_guard_line -> (1592,1780) r=4 from (1592,1750)
+[17:34:57.232] LOG   [wave10_RevGen3_05_Vorar] event travel_start: label='past_guard_line' target=(1592,1780) radius=4 from=(1592,1750)
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.232] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:34:57.232] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:34:57.293] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:57.294] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:57.294] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:57.294] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:57.356] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:57.356] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:58.586] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:58.586] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:58.586] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:58.586] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:58.647] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:58.648] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:34:59.692] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:34:59.878] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:34:59.878] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:34:59.879] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:34:59.879] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:34:59.940] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:34:59.940] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:01.169] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:01.169] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:01.169] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.169] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.170] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:01.170] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:02.713] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:02.713] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:02.713] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:02.713] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:02.774] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:02.774] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:04.011] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:04.012] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:04.012] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:04.012] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:04.074] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:04.074] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:04.749] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:05.303] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:05.303] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:05.303] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:05.304] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:05.364] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:05.365] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:06.595] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:06.596] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:06.596] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:06.596] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:06.596] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:06.596] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:09.627] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:09.627] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:09.627] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:09.628] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:09.689] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:09.690] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:09.752] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:10.905] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:10.905] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:10.906] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:10.906] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:10.966] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:10.967] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:12.196] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:12.196] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:12.196] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:12.196] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:12.258] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:12.258] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:13.490] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:13.491] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:13.491] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:13.491] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:13.491] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:13.491] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:14.787] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:17.996] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:18.058] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:18.058] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:19.289] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:19.351] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:19.351] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:19.839] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:20.574] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:20.577] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:20.578] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:20.578] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:20.634] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:35:20.694] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 910.7us
+[17:35:24.870] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:26.044] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:35:26.044] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:35:26.045] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:35:26.045] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:35:26.045] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:35:26.105] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:26.105] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:26.106] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:26.106] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:26.106] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:26.113] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:35:26.113] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:35:26.113] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:35:26.113] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:35:26.114] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:35:26.114] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:35:26.167] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 3130.6us
+[17:35:29.889] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:34.925] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:35.419] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:35:35.419] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:35:35.420] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:35:35.420] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:35:35.420] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:35.480] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:35.541] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:35.541] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:35.541] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:35.542] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:35.603] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:35.604] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:36.832] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:36.895] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:36.916] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:37.590] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:38.141] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:38.202] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:38.202] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:39.328] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:39.409] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:39.409] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:39.410] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:39.410] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:39.410] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:39.421] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.515] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Varek has departed from Britain.
+[17:35:39.545] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Draver has departed from Minoc Mine 1.
+[17:35:39.545] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Nyx has departed from The Pearl of Trinsic.
+  no: no runebook page for that destination
+[17:35:13.491] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:13.491] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:14.787] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:17.996] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:17.996] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:17.996] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:18.058] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:18.058] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:19.289] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:19.289] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:19.289] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:19.351] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:19.351] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:19.839] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:20.574] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:20.577] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:20.578] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:20.578] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:20.578] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:20.634] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:20.637] WARN  [wave10_RevGen3_05_Vorar] [travel] route exhausted at (1592,1750,30); trying to reach (1592,1736,17) to get somewhere routable (escape 1/3)
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1750,30) to=(1592,1736) attempt=1
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1736) from (1592,1750,30)
+[17:35:20.637] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1736) from=(1592,1750)
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1736,z17)
+[17:35:20.637] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1736) in background
+[17:35:20.694] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1736): 14 steps in 910.7us
+[17:35:24.870] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:26.044] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1736,17)
+[17:35:26.044] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1736,17); target (1592,1736); ARRIVED (off by 0 tile(s))
+[17:35:26.045] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1736) target=(1592,1736) arrived=1 off=0
+[17:35:26.045] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1736,17) (off 0); attempt 1/3
+[17:35:26.045] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1736,17) off=0 attempt=1
+[17:35:26.105] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:26.105] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:26.106] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:26.106] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:26.106] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:26.113] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23752
+[17:35:26.113] WARN  [wave10_RevGen3_05_Vorar] [travel] route exhausted at (1592,1736,17); trying to reach (1592,1750,30) to get somewhere routable (escape 2/3)
+[17:35:26.113] LOG   [wave10_RevGen3_05_Vorar] event travel_escape: from=(1592,1736,17) to=(1592,1750) attempt=2
+[17:35:26.113] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1750) from (1592,1736,17)
+[17:35:26.113] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1750) from=(1592,1736)
+[17:35:26.114] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1736,17) to (1592,1750,z30)
+[17:35:26.114] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1750) in background
+[17:35:26.167] INFO  [wave10_RevGen3_05_Vorar] [bot] replan to (1592,1750): 24 steps in 3130.6us
+[17:35:29.889] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:34.925] INFO  [wave10_RevGen3_05_Vorar] [survival] hp 40/40 (100%) -> fight
+[17:35:35.419] INFO  [wave10_RevGen3_05_Vorar] [bot] arrived at (1592,1750,30)
+[17:35:35.419] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1750); ARRIVED (off by 0 tile(s))
+[17:35:35.420] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1750) arrived=1 off=0
+[17:35:35.420] INFO  [wave10_RevGen3_05_Vorar] [travel] recovery walk reached its anchor at (1592,1750,30) (off 0); attempt 2/3
+[17:35:35.420] LOG   [wave10_RevGen3_05_Vorar] event travel_recovery_done: reached=1 at=(1592,1750,30) off=0 attempt=2
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:35.480] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:35.480] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:35.541] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:35.541] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:35.541] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:35.542] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:35.542] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:35.603] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:35.604] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:36.832] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:36.832] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:36.832] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:36.895] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:36.916] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [action] goto (1592,1780) from (1592,1750,30)
+[17:35:38.141] LOG   [wave10_RevGen3_05_Vorar] event goto_start: target=(1592,1780) from=(1592,1750)
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [bot] running from (1592,1750,30) to (1592,1780)
+[17:35:38.141] INFO  [wave10_RevGen3_05_Vorar] [bot] planning path to (1592,1780) in background
+[17:35:38.141] WARN  [wave10_RevGen3_05_Vorar] [bot] goal (1592,1780) is not walkable; skipping A* and stopping
+[17:35:38.202] INFO  [wave10_RevGen3_05_Vorar] [action] goto finished at (1592,1750,30); target (1592,1780); stopped short (off by 30 tile(s))
+[17:35:38.202] LOG   [wave10_RevGen3_05_Vorar] event goto_done: at=(1592,1750) target=(1592,1780) arrived=0 off=30
+[17:35:39.328] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.408] INFO  [wave10_RevGen3_05_Vorar] [travel] mode walk             usable   <- chosen
+[17:35:39.409] INFO  [wave10_RevGen3_05_Vorar] [travel] mode moongate         usable
+[17:35:39.409] INFO  [wave10_RevGen3_05_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:39.410] INFO  [wave10_RevGen3_05_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:39.410] LOG   [wave10_RevGen3_05_Vorar] event travel_mode: walk
+[17:35:39.410] INFO  [wave10_RevGen3_05_Vorar] [travel] plan past_guard_line: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:35:39.421] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.515] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Varek has departed from Britain.
+[17:35:39.545] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Draver has departed from Minoc Mine 1.
+[17:35:39.545] INFO  [wave10_RevGen3_05_Vorar] [chat ascii] System: Nyx has departed from The Pearl of Trinsic.

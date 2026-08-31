@@ -1,0 +1,8 @@
+start: Aurelius is a mage and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:32:40.868] WARN  [wave10_RevGen3_22_Aurel] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:34:00.572] WARN  [wave10_RevGen3_22_Aurel] [0x21] move REJECTED seq=92; server says (1417,1607,30) facing=5
+[17:34:09.635] WARN  [wave10_RevGen3_22_Aurel] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.907] WARN  [wave10_RevGen3_22_Aurel] [0x22] unsolicited ack seq=17
+[17:34:18.396] WARN  [wave10_RevGen3_22_Aurel] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped

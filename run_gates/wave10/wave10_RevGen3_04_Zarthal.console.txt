@@ -1,0 +1,1357 @@
+[17:29:34.673] LOG   [wave10_RevGen3_04_Zarth] event session_start: text log opened
+[17:29:34.674] LOG   [wave10_RevGen3_04_Zarth] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.675] INFO  [wave10_RevGen3_04_Zarth] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.677] LOG   [wave10_RevGen3_04_Zarth] event net_connected: connect 127.0.0.1:2593
+[17:29:34.678] INFO  [wave10_RevGen3_04_Zarth] [net] connected.
+[17:29:34.679] INFO  [wave10_RevGen3_04_Zarth] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.679] LOG   [wave10_RevGen3_04_Zarth] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.683] INFO  [wave10_RevGen3_04_Zarth] [life] autonomous player active for 'Zarthal' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.708] INFO  [wave10_RevGen3_04_Zarth] [0xA8] 1 server(s):
+[17:29:34.709] INFO  [wave10_RevGen3_04_Zarth]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[17:29:34.710] INFO  [wave10_RevGen3_04_Zarth] [0x8C] game server = 127.0.0.1:2593  seed=0x1A4286FD
+[17:29:34.710] LOG   [wave10_RevGen3_04_Zarth] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x1A4286FD
+[17:29:34.710] INFO  [wave10_RevGen3_04_Zarth] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.710] LOG   [wave10_RevGen3_04_Zarth] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.721] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Elvar has arrived in Britain.
+[17:29:34.722] INFO  [wave10_RevGen3_04_Zarth] [0xB9] server features = 0x0005
+[17:29:34.722] INFO  [wave10_RevGen3_04_Zarth] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.722] INFO  [wave10_RevGen3_04_Zarth]   [0] Zarthal
+[17:29:34.722] INFO  [wave10_RevGen3_04_Zarth]   [1] <empty>
+[17:29:34.722] INFO  [wave10_RevGen3_04_Zarth]   [2] <empty>
+[17:29:34.723] INFO  [wave10_RevGen3_04_Zarth]   [3] <empty>
+[17:29:34.723] INFO  [wave10_RevGen3_04_Zarth]   [4] <empty>
+[17:29:34.723] INFO  [wave10_RevGen3_04_Zarth] [ui] playing slot 0 ('Zarthal')
+[17:29:34.737] INFO  [wave10_RevGen3_04_Zarth] [0x1B] serial=0x000163A2 body=0x0190 pos=(1429,1687,0)
+[17:29:34.737] LOG   [wave10_RevGen3_04_Zarth] event login_confirm: serial=0x000163A2 body=0x0190 pos=(1429,1687,0)
+[17:29:34.737] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=4
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [0x55] login complete — entering world
+[17:29:34.738] LOG   [wave10_RevGen3_04_Zarth] event in_world: 0x55 received
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [backpack] opening 0x4001639E
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: There are 6 other players here.
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.738] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: You are under the protection of the city guards
+[17:29:34.742] INFO  [wave10_RevGen3_04_Zarth] [action] requesting the skill list
+[17:29:34.742] INFO  [wave10_RevGen3_04_Zarth] [0x24] open container 0x4001639E gump=60
+[17:29:34.742] INFO  [wave10_RevGen3_04_Zarth] [0x3C] container contents: 10 item(s)
+[17:29:34.743] LOG   [wave10_RevGen3_04_Zarth] event backpack_contents: serial=0x4001639E items=10
+[17:29:34.753] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Vorar has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Halain has arrived in Britain Territory.
+[17:29:34.876] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.005] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_04_Zarth] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: What?
+[17:29:37.328] INFO  [wave10_RevGen3_04_Zarth] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.330] INFO  [wave10_RevGen3_04_Zarth] [survival] on
+[17:29:37.330] LOG   [wave10_RevGen3_04_Zarth] event survival_mode: on
+[17:29:37.334] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:29:37.337] INFO  [wave10_RevGen3_04_Zarth] [action] scanning nearby mobiles for names
+[17:29:37.338] INFO  [wave10_RevGen3_04_Zarth] [action] requested 8 paperdoll(s) for trade titles
+[17:29:37.351] INFO  [wave10_RevGen3_04_Zarth] [mobiles] nearby (11):
+[17:29:37.351] INFO  [wave10_RevGen3_04_Zarth]   Kharain 0x00016AE8
+[17:29:37.351] INFO  [wave10_RevGen3_04_Zarth]   Aurelius 0x00019331
+[17:29:37.351] INFO  [wave10_RevGen3_04_Zarth]   Thane 0x0001976D
+[17:29:37.351] INFO  [wave10_RevGen3_04_Zarth]   Elvar 0x00016948
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Selene 0x00010BC9
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Odessa 0x000194DE
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Lyndon 0x0000124E
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Hyman 0x00001033
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Rhaler 0x0001569C
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Falen 0x0001478E
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth]   Leander 0x0001921F
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=5
+[17:29:37.352] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [world] Lyndon, the minter is a banker at (1424,1691)
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=6
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [world] Hyman, the banker is a banker at (1424,1687)
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=3
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=6
+[17:29:37.353] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x00016948: "Elvar, Apprentice Miner"
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=4
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x0001569C: "Rhaler, Apprentice Blacksmith"
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x20] player @(1429,1687,0) facing=3
+[17:29:37.354] INFO  [wave10_RevGen3_04_Zarth] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:29:37.933] INFO  [wave10_RevGen3_04_Zarth] [chat uni  ] Odessa: WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Huh?
+[17:29:39.409] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:29:39.410] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:29:39.410] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:29:39.410] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:29:39.410] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:39.411] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:39.411] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:29:39.411] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:39.471] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:39.472] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:39.472] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:39.472] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:41.066] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1571564.3us)
+[17:29:41.067] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 11 mobile(s))
+[17:29:41.127] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:41.128] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:42.368] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:42.369] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:42.369] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:42.369] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:42.369] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:29:44.085] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1664301.0us)
+[17:29:44.086] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 11 mobile(s))
+[17:29:44.146] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:44.147] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:45.381] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:45.381] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:45.381] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:45.382] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:46.988] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1546641.5us)
+[17:29:46.988] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 11 mobile(s))
+[17:29:47.049] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:47.049] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:47.414] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:29:48.274] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:29:48.275] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:29:48.275] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:48.275] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:48.275] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:29:48.275] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:49.823] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:49.823] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:49.823] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:49.823] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:51.556] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1693431.0us)
+[17:29:51.556] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 11 mobile(s))
+[17:29:51.617] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:51.617] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:52.417] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:29:52.849] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:52.850] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:52.850] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:52.850] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:54.265] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1386450.8us)
+[17:29:54.265] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 11 mobile(s))
+[17:29:54.326] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:54.326] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:55.528] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:29:55.529] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:29:55.529] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:29:55.529] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:29:57.260] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1684446.9us)
+[17:29:57.260] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 12 mobile(s))
+[17:29:57.323] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:29:57.323] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:29:57.461] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:29:58.567] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:29:58.567] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:29:58.567] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:58.567] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:58.568] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:29:58.568] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:01.615] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:01.615] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:01.616] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:01.616] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:02.508] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:03.182] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1522012.8us)
+[17:30:03.183] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 12 mobile(s))
+[17:30:03.243] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:03.244] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:04.470] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:04.471] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:04.471] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:04.471] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:05.703] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1199096.0us)
+[17:30:05.703] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 12 mobile(s))
+[17:30:05.764] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:05.764] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:07.000] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:07.000] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:07.000] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:07.001] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:07.543] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:08.224] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); [17:30:08.286] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:08.286] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:09.525] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:09.525] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:09.525] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:09.525] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:09.525] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:09.525] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:09.818] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.818] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Hmm?
+[17:30:12.590] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:14.028] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:14.028] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:14.028] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:14.029] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:15.294] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:15.294] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:16.514] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:16.514] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:16.514] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:16.514] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:17.629] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:17.939] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:17.939] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:17.940] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:30:17.940] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:17.971] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:30:17.971] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:30:17.972] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:17.972] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:17.972] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:17.972] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:17.972] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:17.972] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:18.032] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:18.032] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:18.032] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:18.032] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:19.281] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:19.282] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:20.517] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:20.517] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:20.517] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:20.517] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:21.746] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:21.746] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:22.667] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:22.975] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:22.975] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:22.976] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:22.976] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:24.147] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:24.148] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:25.397] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:25.398] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:25.398] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:25.398] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:25.398] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:25.398] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:26.942] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:26.943] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:26.943] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:26.943] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:27.694] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:28.342] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:28.343] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:29.562] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:29.563] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:29.563] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:29.563] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:30.683] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:30.683] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:31.919] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:31.919] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:31.920] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:31.920] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:32.721] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:33.030] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:33.030] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:34.281] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:34.281] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:34.281] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:34.281] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:34.281] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:34.281] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:37.337] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:30:37.337] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:37.337] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:37.337] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:37.337] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:37.763] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:38.503] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:38.503] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:39.732] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:39.733] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:39.733] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:39.733] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:41.022] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:41.022] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:42.253] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:42.254] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:42.254] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:42.254] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:42.805] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:43.423] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:43.423] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:44.653] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:44.654] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:44.654] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:44.654] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:44.654] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:44.654] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:47.850] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:49.196] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:49.197] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:49.197] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:49.197] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:50.368] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:50.368] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:51.605] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:51.605] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:51.605] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:51.605] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:52.896] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:52.958] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:52.958] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:54.192] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:54.193] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:54.193] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:54.193] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:55.424] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:55.425] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:55.425] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:30:55.425] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:55.547] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:30:55.548] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:30:55.548] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:30:55.548] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:30:55.548] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.548] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.548] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:30:55.548] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:55.609] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:55.610] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:55.610] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:55.610] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:56.838] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:56.838] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:30:57.947] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:30:58.069] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:30:58.069] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:30:58.069] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:30:58.069] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:30:59.376] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:30:59.377] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:00.599] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:00.600] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:00.600] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:00.600] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:01.958] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:01.959] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:02.991] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:03.177] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:03.177] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:03.177] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:03.177] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:03.177] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:03.177] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:04.686] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:04.686] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:04.686] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:04.686] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:06.097] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:06.098] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:07.315] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:07.315] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:07.315] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:07.316] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:08.010] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:08.932] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:08.932] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:10.132] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:10.133] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:10.133] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:10.133] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:10.133] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:10.133] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:13.024] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:13.149] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:13.149] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:13.149] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:13.150] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:14.878] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:14.879] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:16.093] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:16.093] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:16.093] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:16.093] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:17.960] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:17.991] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:18.067] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:19.162] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:19.216] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:19.304] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:19.379] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:20.791] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.791] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: What's thee wantin'?
+[17:31:21.101] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:21.102] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:22.337] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:22.337] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:22.337] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:22.337] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:22.337] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:22.337] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:23.123] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:26.875] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:26.875] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:26.875] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:26.875] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:28.131] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:28.454] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:28.455] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:29.686] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:29.686] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:29.686] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:29.686] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:31.330] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:31.330] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:32.577] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:32.577] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:32.577] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:32.577] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:33.132] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:33.809] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:31:33.809] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:33.933] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:31:33.934] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:31:33.934] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:33.934] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:33.934] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:33.934] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:33.934] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:33.934] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:33.996] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:33.996] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:33.996] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:33.996] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:33.996] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:33.996] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:35.677] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:35.678] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:36.909] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:36.909] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:36.909] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:36.909] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:37.343] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:31:38.139] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:38.384] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:38.385] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:39.624] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:39.624] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:39.624] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:39.624] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:40.966] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:40.966] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:42.199] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:42.199] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:42.199] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:42.200] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:42.200] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:42.200] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:43.180] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:43.721] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:43.721] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:43.721] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:43.721] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:45.388] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:45.389] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:46.615] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:46.615] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:46.616] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:46.616] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:47.847] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:47.848] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:48.217] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:49.100] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:31:49.100] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:31:49.100] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:49.100] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:49.100] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:31:49.101] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:52.161] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:52.161] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:52.161] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:52.161] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:53.269] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:53.639] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:53.639] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:54.885] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:54.886] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:54.886] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:54.886] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:56.563] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:56.564] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:31:57.785] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:31:57.785] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:31:57.785] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:31:57.785] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:31:58.307] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:31:59.469] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:31:59.469] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:00.718] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:00.719] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:00.719] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:00.719] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:00.719] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:00.719] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:03.341] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:05.256] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:05.256] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:05.256] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:05.257] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:06.461] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:06.461] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:07.677] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:07.678] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:07.678] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:07.678] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:08.359] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:09.194] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:09.194] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:10.427] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:10.427] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:10.427] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:10.427] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:11.908] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:11.908] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:11.908] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:32:11.908] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:32:12.002] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:12.002] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:12.002] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:12.061] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:12.061] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:12.061] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:12.061] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:13.400] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:13.523] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:13.523] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:14.757] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:14.757] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:14.757] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:14.758] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:15.833] INFO  [wave10_RevGen3_04_Zarth] [chat uni  ] : bank
+[17:32:15.833] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: What's thou need?
+[17:32:15.833] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:16.207] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:16.208] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:17.437] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:17.438] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:17.438] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:17.438] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:18.438] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:19.119] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:19.119] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:20.378] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:20.378] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:20.378] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:20.378] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:20.379] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:20.379] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:21.914] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:21.914] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:21.914] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:21.914] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:23.335] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:23.335] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:23.457] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:24.570] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:24.570] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:24.570] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:24.570] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:26.106] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:26.106] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:27.342] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:27.342] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:27.342] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:27.343] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:28.500] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:28.622] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:28.623] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:29.849] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:29.850] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:29.850] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:29.850] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:29.850] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:29.850] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:32.872] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:32.873] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:32.873] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:32.873] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:33.545] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:33.977] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:33.978] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:35.213] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:35.213] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:35.213] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:35.213] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:36.264] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:36.265] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:37.381] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:32:37.502] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:37.502] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:37.502] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:37.502] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:38.564] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:38.687] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:38.687] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:39.913] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:39.914] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:39.914] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:39.914] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:39.914] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:39.914] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:43.582] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:44.456] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:44.456] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:44.457] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:44.457] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:44.581] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:44.581] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:45.840] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:45.841] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:45.841] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:45.841] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:47.452] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:47.453] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:47.453] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:32:47.453] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:47.530] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:32:47.530] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:32:47.530] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:47.531] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:47.531] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:47.531] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:47.531] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:47.531] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:47.591] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:47.591] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:47.591] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:47.591] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:48.598] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:49.121] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:49.121] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:50.323] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:50.324] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:50.324] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:50.324] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:52.190] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:52.190] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:52.207] INFO  [wave10_RevGen3_04_Zarth] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:53.390] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:53.390] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:53.390] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:53.390] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:53.625] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:55.267] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:55.267] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:32:56.486] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:32:56.486] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:32:56.486] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:56.487] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:56.487] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:32:56.487] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:58.013] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:32:58.013] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:32:58.013] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:32:58.013] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:32:58.659] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:32:59.679] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:32:59.679] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:00.909] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:00.909] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:00.909] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:00.910] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:02.254] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:02.255] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:03.489] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:03.489] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:03.489] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:03.489] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:03.673] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:05.123] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:05.123] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:06.343] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:06.343] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:06.343] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:06.344] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:06.344] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:06.344] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:08.716] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:09.377] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:09.378] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:09.378] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:09.378] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:11.060] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:11.060] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:12.307] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:12.307] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:12.308] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:12.308] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:12.849] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.849] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Aye?
+[17:33:12.849] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.738] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:13.939] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:13.940] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:15.142] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:15.142] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:15.142] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:15.142] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:15.142] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:15.142] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:18.743] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:19.702] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:19.702] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:19.702] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:19.703] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:21.247] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:21.247] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:22.507] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:22.507] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:22.507] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:22.507] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:23.799] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:24.304] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:24.304] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:24.304] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:33:24.304] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:24.411] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:33:24.412] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:33:24.412] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:24.412] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:24.412] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:24.412] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:24.412] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:24.412] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:24.472] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:24.472] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:24.472] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:24.472] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:26.524] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:26.524] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:27.769] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:27.770] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:27.770] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:27.770] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:28.845] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:29.061] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:29.061] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:30.265] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:30.265] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:30.265] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:30.265] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:32.089] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:32.090] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:33.292] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:33.292] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:33.292] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:33.292] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:33.292] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:33.292] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:33.860] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:34.400] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Hmm?
+[17:33:34.802] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:34.803] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:34.803] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:34.803] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:36.491] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:36.492] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:37.415] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:33:37.736] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:37.736] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:37.736] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:37.736] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:38.876] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:39.141] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:39.141] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:40.381] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:40.382] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:40.382] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:40.382] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:41.669] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:41.670] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:42.925] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:42.925] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:42.925] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:42.925] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:42.925] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:42.925] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:43.888] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:45.930] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:45.930] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:45.931] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:45.931] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:47.037] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:47.037] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:48.287] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:48.287] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:48.287] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:48.287] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:48.907] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:49.911] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:49.911] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:51.156] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:51.157] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:51.157] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:51.157] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:52.866] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:33:52.866] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:33:53.939] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:33:54.123] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:33:54.123] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:33:54.123] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:54.123] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:54.123] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:33:54.124] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:54.567] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: World save in 10 seconds
+[17:33:58.665] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:33:58.665] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:33:58.666] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:33:58.666] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:33:58.973] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:00.139] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:00.139] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:01.373] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:01.373] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:01.373] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:01.373] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:03.159] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:03.159] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:04.012] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:04.378] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:04.378] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:04.378] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:04.378] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:04.598] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: World save has been initiated.
+[17:34:05.970] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:05.970] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:05.970] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:05.970] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:06.093] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:34:06.094] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:34:06.094] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:06.094] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:06.094] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:06.094] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:06.094] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:06.094] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:06.157] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:06.157] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:06.157] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:06.157] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:07.960] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:07.960] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:09.020] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:09.204] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:09.204] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:09.205] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:09.205] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:10.857] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:10.857] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:12.059] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:12.059] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:12.060] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:12.060] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:13.525] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:13.525] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:14.077] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:14.737] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:14.737] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:14.737] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:14.737] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:14.737] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:14.738] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:16.238] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:16.238] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:16.238] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:16.238] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:17.824] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:17.824] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:19.075] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:19.076] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:19.076] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:19.076] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:19.137] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:20.664] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:20.665] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:21.602] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Hmm?
+[17:34:21.602] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.603] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Hyman: Aye?
+[17:34:21.867] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:21.867] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:21.867] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.867] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.868] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:21.868] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:24.140] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:24.881] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:24.881] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:24.881] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:24.882] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:26.562] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:26.563] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:27.771] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:27.772] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:27.772] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:27.772] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:29.196] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:29.397] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:29.397] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:30.597] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:30.597] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:30.598] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:34.220] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:35.147] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:36.503] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:36.503] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:37.428] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:37.730] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:39.265] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:39.265] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:39.265] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:40.466] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:40.466] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:40.467] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:40.467] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:42.194] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:42.194] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:34:42.317] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:42.318] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:42.379] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:42.379] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:44.080] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:44.080] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:44.327] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:45.296] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:45.297] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:45.297] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:45.297] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:47.011] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:47.011] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:47.351] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Aye?
+[17:34:48.260] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:48.261] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:49.343] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:49.790] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:51.372] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:51.372] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:52.605] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:54.207] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:54.207] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:54.389] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:55.441] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:57.169] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:57.169] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:58.400] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:59.445] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:01.415] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:02.650] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:02.650] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:03.887] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:03.890] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:03.890] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:03.890] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:04.502] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:08.011] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:08.011] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.243] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.243] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:09.243] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:09.549] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:13.798] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:13.801] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:13.801] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:13.801] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:14.600] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:14.926] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:14.926] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:16.155] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:17.297] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:17.297] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:18.530] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:19.642] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:19.763] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:19.763] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:19.764] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:35:19.764] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:19.824] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:35:19.827] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:35:19.827] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:19.827] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:19.828] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:19.885] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:19.885] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:19.885] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:19.886] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:21.172] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:21.172] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:22.402] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:22.403] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:22.403] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:22.403] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:23.578] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:23.578] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:24.685] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:24.807] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:24.807] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:24.808] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:24.808] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:25.998] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:25.999] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:27.259] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:27.259] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:27.259] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:28.796] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:28.797] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:28.797] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:28.797] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Aye?
+[17:35:29.690] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:30.210] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:30.210] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:31.454] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:31.455] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:31.455] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:31.455] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:32.725] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:32.725] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:33.937] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:34.727] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:35.308] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:35.308] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:36.523] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:36.524] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:37.452] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[17:35:39.328] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Hector has departed from Trinsic Healer.
+9,1687) target=(1430,1691) arrived=0 off=5
+[17:34:27.771] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:27.772] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:27.772] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:27.772] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:29.196] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:29.334] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1543760.9us)
+[17:34:29.335] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 6 mobile(s))
+[17:34:29.397] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:29.397] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:30.597] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:30.597] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:30.598] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:30.598] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:34.220] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:35.147] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:35.147] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:36.442] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1243448.9us)
+[17:34:36.442] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:34:36.503] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:36.503] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:37.730] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:37.730] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:39.204] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1446850.9us)
+[17:34:39.205] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:34:39.265] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:39.265] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:39.265] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:40.466] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:40.466] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:40.467] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:40.467] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:42.194] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:42.194] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:34:42.317] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:42.317] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:42.318] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:42.318] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:42.379] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:42.379] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:42.379] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:44.018] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1586413.2us)
+[17:34:44.019] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:34:44.080] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:44.080] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:44.327] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:45.296] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:45.297] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:45.297] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:45.297] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:46.950] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1625984.0us)
+[17:34:46.950] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 6 mobile(s))
+[17:34:47.011] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:47.011] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:47.351] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Aye?
+[17:34:48.260] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:48.261] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:48.261] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:49.343] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:49.790] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:49.790] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:51.311] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1469796.2us)
+[17:34:51.311] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 7 mobile(s))
+[17:34:51.372] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:51.372] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:52.605] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:52.605] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:54.160] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1517772.9us)
+[17:34:54.161] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 6 mobile(s))
+[17:34:54.207] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:54.207] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:54.389] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:34:55.441] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:34:55.441] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:34:57.108] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1629693.7us)
+[17:34:57.108] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:34:57.169] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:34:57.169] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:58.400] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:34:58.400] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:59.445] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:01.415] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:01.415] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:02.589] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1167752.7us)
+[17:35:02.589] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:02.650] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:02.650] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:03.887] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:03.890] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:03.890] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:03.890] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:04.502] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:07.950] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 4015760.1us)
+[17:35:07.951] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:08.011] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:08.011] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:09.242] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.243] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.243] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:09.243] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:09.549] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:13.798] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:13.801] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:13.801] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:13.801] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:14.600] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:14.864] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1062636.7us)
+[17:35:14.864] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:14.926] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:14.926] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:16.155] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:16.155] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:17.235] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1019658.8us)
+[17:35:17.245] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:17.297] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:17.297] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:18.530] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:18.530] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:19.642] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:19.762] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1184626.9us)
+[17:35:19.763] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:19.763] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:19.763] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:19.764] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE ARRIVED at (1429,1687,0) -- arrived nearby; the destination tile was not free
+[17:35:19.764] LOG   [wave10_RevGen3_04_Zarth] event travel_done: label='mobile 0x000194DE' ok=1 at=(1429,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:19.824] INFO  [wave10_RevGen3_04_Zarth] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1429,1687)
+[17:35:19.827] LOG   [wave10_RevGen3_04_Zarth] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1429,1687)
+[17:35:19.827] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:19.827] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:19.828] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:19.828] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:19.885] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:19.885] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:19.885] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:19.886] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:21.109] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1187831.7us)
+[17:35:21.113] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 7 mobile(s))
+[17:35:21.172] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:21.172] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:22.402] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:22.403] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:22.403] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:22.403] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:23.529] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1114298.7us)
+[17:35:23.530] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 7 mobile(s))
+[17:35:23.578] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:23.578] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:24.685] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:24.807] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:24.807] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:24.808] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:24.808] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:25.952] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1128971.0us)
+[17:35:25.953] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 7 mobile(s))
+[17:35:25.998] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:25.999] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:27.258] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:27.259] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:27.259] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:27.259] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:28.796] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:28.797] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:28.797] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:28.797] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] Lyndon: Aye?
+[17:35:29.690] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:30.148] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1327193.8us)
+[17:35:30.149] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 6 mobile(s))
+[17:35:30.210] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:30.210] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:31.454] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:31.455] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:31.455] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:31.455] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:32.662] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1159190.2us)
+[17:35:32.663] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 5 mobile(s))
+[17:35:32.725] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:32.725] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [action] goto (1430,1691) from (1429,1687,0)
+[17:35:33.937] LOG   [wave10_RevGen3_04_Zarth] event goto_start: target=(1430,1691) from=(1429,1687)
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [bot] running from (1429,1687,0) to (1430,1691,z0)
+[17:35:33.937] INFO  [wave10_RevGen3_04_Zarth] [bot] planning path to (1430,1691) in background
+[17:35:34.727] INFO  [wave10_RevGen3_04_Zarth] [survival] hp 56/56 (100%) -> fight
+[17:35:35.247] WARN  [wave10_RevGen3_04_Zarth] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1304356.2us)
+[17:35:35.247] WARN  [wave10_RevGen3_04_Zarth] [bot] start (1429,1687,0) exits: open=5 terrain=2 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 38 item(s), 6 mobile(s))
+[17:35:35.308] INFO  [wave10_RevGen3_04_Zarth] [action] goto finished at (1429,1687,0); target (1430,1691); stopped short (off by 5 tile(s))
+[17:35:35.308] LOG   [wave10_RevGen3_04_Zarth] event goto_done: at=(1429,1687) target=(1430,1691) arrived=0 off=5
+[17:35:36.523] INFO  [wave10_RevGen3_04_Zarth] [travel] mode walk             usable   <- chosen
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode moongate         usable
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:36.524] LOG   [wave10_RevGen3_04_Zarth] event travel_mode: walk
+[17:35:36.524] INFO  [wave10_RevGen3_04_Zarth] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:39.328] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_04_Zarth] [chat ascii] System: Hector has departed from Trinsic Healer.

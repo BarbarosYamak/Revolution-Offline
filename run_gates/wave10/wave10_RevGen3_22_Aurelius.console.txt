@@ -1,0 +1,381 @@
+[17:29:35.260] LOG   [wave10_RevGen3_22_Aurel] event session_start: text log opened
+[17:29:35.261] LOG   [wave10_RevGen3_22_Aurel] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.263] INFO  [wave10_RevGen3_22_Aurel] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.265] LOG   [wave10_RevGen3_22_Aurel] event net_connected: connect 127.0.0.1:2593
+[17:29:35.266] INFO  [wave10_RevGen3_22_Aurel] [net] connected.
+[17:29:35.267] INFO  [wave10_RevGen3_22_Aurel] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.269] LOG   [wave10_RevGen3_22_Aurel] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.270] INFO  [wave10_RevGen3_22_Aurel] [life] autonomous player active for 'Aurelius' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.270] INFO  [wave10_RevGen3_22_Aurel] [0xA8] 1 server(s):
+[17:29:35.270] INFO  [wave10_RevGen3_22_Aurel]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[17:29:35.279] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.279] INFO  [wave10_RevGen3_22_Aurel] [0x8C] game server = 127.0.0.1:2593  seed=0xC117414A
+[17:29:35.279] LOG   [wave10_RevGen3_22_Aurel] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xC117414A
+[17:29:35.279] INFO  [wave10_RevGen3_22_Aurel] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.280] LOG   [wave10_RevGen3_22_Aurel] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.290] INFO  [wave10_RevGen3_22_Aurel] [0xB9] server features = 0x0005
+[17:29:35.291] INFO  [wave10_RevGen3_22_Aurel] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.292] INFO  [wave10_RevGen3_22_Aurel]   [0] Aurelius
+[17:29:35.292] INFO  [wave10_RevGen3_22_Aurel]   [1] <empty>
+[17:29:35.292] INFO  [wave10_RevGen3_22_Aurel]   [2] <empty>
+[17:29:35.293] INFO  [wave10_RevGen3_22_Aurel]   [3] <empty>
+[17:29:35.293] INFO  [wave10_RevGen3_22_Aurel]   [4] <empty>
+[17:29:35.293] INFO  [wave10_RevGen3_22_Aurel] [ui] playing slot 0 ('Aurelius')
+[17:29:35.306] INFO  [wave10_RevGen3_22_Aurel] [0x1B] serial=0x00019331 body=0x0191 pos=(1430,1689,0)
+[17:29:35.307] LOG   [wave10_RevGen3_22_Aurel] event login_confirm: serial=0x00019331 body=0x0191 pos=(1430,1689,0)
+[17:29:35.307] INFO  [wave10_RevGen3_22_Aurel] [0x20] player @(1430,1689,0) facing=6
+[17:29:35.308] INFO  [wave10_RevGen3_22_Aurel] [0x55] login complete — entering world
+[17:29:35.308] LOG   [wave10_RevGen3_22_Aurel] event in_world: 0x55 received
+[17:29:35.308] INFO  [wave10_RevGen3_22_Aurel] [backpack] opening 0x40019272
+[17:29:35.308] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.308] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: There are 24 other players here.
+[17:29:35.309] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.309] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.313] INFO  [wave10_RevGen3_22_Aurel] [action] requesting the skill list
+[17:29:35.314] INFO  [wave10_RevGen3_22_Aurel] [0x24] open container 0x40019272 gump=60
+[17:29:35.314] INFO  [wave10_RevGen3_22_Aurel] [0x3C] container contents: 9 item(s)
+[17:29:35.316] LOG   [wave10_RevGen3_22_Aurel] event backpack_contents: serial=0x40019272 items=9
+[17:29:35.326] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.361] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_22_Aurel] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: What?
+[17:29:37.909] INFO  [wave10_RevGen3_22_Aurel] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.911] INFO  [wave10_RevGen3_22_Aurel] [survival] on
+[17:29:37.911] LOG   [wave10_RevGen3_22_Aurel] event survival_mode: on
+[17:29:37.914] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:29:37.933] INFO  [wave10_RevGen3_22_Aurel] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.934] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: Huh?
+[17:29:42.922] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:29:47.967] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:29:52.970] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:29:58.001] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:03.059] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:08.101] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:09.819] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: Hmm?
+[17:30:13.161] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:18.171] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:23.191] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:28.219] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:33.230] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:38.255] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:43.299] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:48.340] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:53.388] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:30:58.393] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:03.440] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:08.500] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:13.506] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:18.562] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.585] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:28.639] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:33.686] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:38.694] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:43.721] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:48.729] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:53.761] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:31:58.796] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:03.818] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:08.838] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:13.844] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:15.834] INFO  [wave10_RevGen3_22_Aurel] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.872] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:23.889] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:28.928] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:33.977] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:38.320] INFO  [wave10_RevGen3_22_Aurel] [ACTION] use_object start
+[17:32:38.320] INFO  [wave10_RevGen3_22_Aurel] [ACTION] use_object serial=0x4001925A
+[17:32:38.333] INFO  [wave10_RevGen3_22_Aurel] [0x3C] container contents: 17 item(s)
+[17:32:38.334] INFO  [wave10_RevGen3_22_Aurel] [ACTION_RESULT] use_object success (14ms) contents received
+[17:32:38.334] LOG   [wave10_RevGen3_22_Aurel] event action_result: use_object success took=14ms contents received
+[17:32:39.015] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:40.852] INFO  [wave10_RevGen3_22_Aurel] [ACTION] move_item start
+[17:32:40.852] INFO  [wave10_RevGen3_22_Aurel] [ACTION] move_item serial=0x40019258 amount=1 dest=0x4001925A
+[17:32:40.852] INFO  [wave10_RevGen3_22_Aurel] [ITEM] drag serial=0x40019258 amount=1
+[17:32:40.852] INFO  [wave10_RevGen3_22_Aurel] [ITEM] drop container=0x4001925A
+[17:32:40.868] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: Can't add this to the spellbook
+[17:32:40.868] WARN  [wave10_RevGen3_22_Aurel] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+[17:32:40.869] LOG   [wave10_RevGen3_22_Aurel] event action_result: move_item server_failure took=16ms item 0x40019258 landed in 0x40019272, not the destination 0x4001925A
+[17:32:43.384] INFO  [wave10_RevGen3_22_Aurel] [ACTION] use_object start
+[17:32:43.384] INFO  [wave10_RevGen3_22_Aurel] [ACTION] use_object serial=0x4001925A
+[17:32:43.399] INFO  [wave10_RevGen3_22_Aurel] [0x3C] container contents: 17 item(s)
+[17:32:43.399] INFO  [wave10_RevGen3_22_Aurel] [ACTION_RESULT] use_object success (15ms) contents received
+[17:32:43.400] LOG   [wave10_RevGen3_22_Aurel] event action_result: use_object success took=15ms contents received
+[17:32:44.056] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:45.922] INFO  [wave10_RevGen3_22_Aurel] [travel] Britain scribe -> (1494,1715) r=5 from (1430,1689)
+[17:32:45.922] LOG   [wave10_RevGen3_22_Aurel] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1430,1689)
+[17:32:45.923] INFO  [wave10_RevGen3_22_Aurel] [travel] mode moongate         usable   <- chosen
+[17:32:45.923] INFO  [wave10_RevGen3_22_Aurel] [travel] mode walk             usable
+[17:32:45.923] INFO  [wave10_RevGen3_22_Aurel] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:45.923] INFO  [wave10_RevGen3_22_Aurel] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:45.923] LOG   [wave10_RevGen3_22_Aurel] event travel_mode: moongate
+[17:32:45.923] INFO  [wave10_RevGen3_22_Aurel] [travel] plan Britain scribe: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:32:45.924] INFO  [wave10_RevGen3_22_Aurel] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:45.924] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1464,1688) from (1430,1689,0)
+[17:32:45.924] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1464,1688) from=(1430,1689)
+[17:32:45.924] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1430,1689,0) to (1464,1688)
+[17:32:45.924] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1464,1688) in background
+[17:32:45.982] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1464,1688): 37 steps in 1916.8us
+[17:32:49.060] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:52.978] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 232.6us
+[17:32:54.068] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:32:56.503] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1464,1688,0)
+[17:32:56.504] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:32:56.504] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:32:56.504] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1494,1715) from (1464,1688,0)
+[17:32:56.504] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1494,1715) from=(1464,1688)
+[17:32:56.504] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1464,1688,0) to (1494,1715,z6)
+[17:32:56.504] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1494,1715) in background
+[17:32:56.564] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1494,1715): 55 steps in 23230.5us
+[17:32:59.093] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:04.118] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:06.003] INFO  [wave10_RevGen3_22_Aurel] [travel] Britain scribe ARRIVED at (1489,1719,0)
+[17:33:06.003] LOG   [wave10_RevGen3_22_Aurel] event travel_done: label='Britain scribe' ok=1 at=(1489,1719) legs=2 plans=1 why=''
+[17:33:06.083] INFO  [wave10_RevGen3_22_Aurel] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1489,1719)
+[17:33:06.084] LOG   [wave10_RevGen3_22_Aurel] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1489,1719)
+[17:33:06.084] INFO  [wave10_RevGen3_22_Aurel] [travel] mode moongate         usable   <- chosen
+[17:33:06.084] INFO  [wave10_RevGen3_22_Aurel] [travel] mode walk             usable
+[17:33:06.084] INFO  [wave10_RevGen3_22_Aurel] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:06.084] INFO  [wave10_RevGen3_22_Aurel] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:06.084] LOG   [wave10_RevGen3_22_Aurel] event travel_mode: moongate
+[17:33:06.085] INFO  [wave10_RevGen3_22_Aurel] [travel] plan Lord British's Castle scribe: ok legs=5 ~176 tiles transit=0 nodes=197
+[17:33:06.140] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1489,1719,0); target (1494,1715); stopped short (off by 9 tile(s))
+[17:33:06.141] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1489,1719) target=(1494,1715) arrived=0 off=9
+[17:33:06.141] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1464,1688) from (1489,1719,0)
+[17:33:06.141] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1464,1688) from=(1489,1719)
+[17:33:06.141] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1489,1719,0) to (1464,1688)
+[17:33:06.142] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1464,1688) in background
+[17:33:06.201] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1464,1688): 33 steps in 3445.2us
+[17:33:08.453] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=25 in 333.5us
+[17:33:08.454] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=26 in 123.2us
+[17:33:09.161] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:14.219] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:16.533] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1464,1688,0)
+[17:33:16.534] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:16.534] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:16.534] INFO  [wave10_RevGen3_22_Aurel] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:16.534] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1432,1672) from (1464,1688,0)
+[17:33:16.534] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1432,1672) from=(1464,1688)
+[17:33:16.535] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1464,1688,0) to (1432,1672)
+[17:33:16.535] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1432,1672) in background
+[17:33:16.594] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1432,1672): 38 steps in 1224.0us
+[17:33:18.158] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=32 in 91.2us
+[17:33:18.375] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=32 in 62.5us
+[17:33:19.221] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:24.227] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:27.847] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1432,1672,10)
+[17:33:27.848] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1432,1672,10); target (1432,1672); ARRIVED (off by 0 tile(s))
+[17:33:27.848] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1432,1672) target=(1432,1672) arrived=1 off=0
+[17:33:27.848] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1640) from (1432,1672,10)
+[17:33:27.848] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1640) from=(1432,1672)
+[17:33:27.848] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1432,1672,10) to (1416,1640)
+[17:33:27.849] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1640) in background
+[17:33:27.908] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1640): 38 steps in 2753.8us
+[17:33:29.246] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:34.292] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:39.078] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1640,20)
+[17:33:39.078] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[17:33:39.078] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[17:33:39.078] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1608) from (1416,1640,20)
+[17:33:39.078] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1608) from=(1416,1640)
+[17:33:39.078] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1640,20) to (1416,1608)
+[17:33:39.079] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1608) in background
+[17:33:39.140] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1608): 59 steps in 18506.9us
+[17:33:39.322] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:44.380] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:44.951] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 421.9us
+[17:33:49.388] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:49.511] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 316.3us
+[17:33:52.886] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=17 path=23 in 3002.4us
+[17:33:54.430] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: World save in 10 seconds
+[17:33:59.465] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:00.572] WARN  [wave10_RevGen3_22_Aurel] [0x21] move REJECTED seq=92; server says (1417,1607,30) facing=5
+[17:34:00.572] INFO  [wave10_RevGen3_22_Aurel] [bot] dynamic item blocks (1416,1608,30); rerouting
+[17:34:00.572] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1608) in background
+[17:34:00.632] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1608): 47 steps in 9710.2us
+[17:34:04.470] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: World save has been initiated.
+[17:34:09.512] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:09.635] WARN  [wave10_RevGen3_22_Aurel] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.700] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1410,1601,30); target (1416,1608); stopped short (off by 13 tile(s))
+[17:34:09.700] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1410,1601) target=(1416,1608) arrived=0 off=13
+[17:34:09.907] WARN  [wave10_RevGen3_22_Aurel] [0x22] unsolicited ack seq=17
+[17:34:10.918] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1608) from (1410,1601,30)
+[17:34:10.918] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1608) from=(1410,1601)
+[17:34:10.919] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1410,1601,30) to (1416,1608)
+[17:34:10.919] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1608) in background
+[17:34:10.980] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1608): 33 steps in 10988.5us
+[17:34:12.337] INFO  [wave10_RevGen3_22_Aurel] [travel] Lord British's Castle scribe ARRIVED at (1410,1595,30)
+[17:34:12.337] LOG   [wave10_RevGen3_22_Aurel] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1410,1595) legs=5 plans=1 why=''
+[17:34:12.412] INFO  [wave10_RevGen3_22_Aurel] [travel] Jhelom scribe -> (1387,3771) r=5 from (1410,1595)
+[17:34:12.413] LOG   [wave10_RevGen3_22_Aurel] event travel_start: label='Jhelom scribe' target=(1387,3771) radius=5 from=(1410,1595)
+[17:34:12.413] INFO  [wave10_RevGen3_22_Aurel] [travel] mode moongate         usable   <- chosen
+[17:34:12.413] INFO  [wave10_RevGen3_22_Aurel] [travel] mode walk             usable
+[17:34:12.413] INFO  [wave10_RevGen3_22_Aurel] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:12.414] INFO  [wave10_RevGen3_22_Aurel] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:12.414] LOG   [wave10_RevGen3_22_Aurel] event travel_mode: moongate
+[17:34:12.416] INFO  [wave10_RevGen3_22_Aurel] [travel] plan Jhelom scribe: ok legs=18 ~688 tiles transit=1 nodes=3721
+[17:34:12.475] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1410,1595,30); target (1416,1608); stopped short (off by 19 tile(s))
+[17:34:12.475] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1410,1595) target=(1416,1608) arrived=0 off=19
+[17:34:12.475] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1624) from (1410,1595,30)
+[17:34:12.475] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1624) from=(1410,1595)
+[17:34:12.476] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1410,1595,30) to (1416,1624)
+[17:34:12.476] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1624) in background
+[17:34:12.523] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1624): 42 steps in 7718.7us
+[17:34:13.078] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Raisa: What's thee wantin'?
+[17:34:13.387] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=40 in 651.3us
+[17:34:13.571] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=39 in 128.2us
+[17:34:13.833] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=40 in 306.3us
+[17:34:14.322] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=38 in 143.0us
+[17:34:14.536] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:14.753] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=7 path=39 in 285.0us
+[17:34:15.145] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=37 in 116.6us
+[17:34:15.607] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=39 in 242.8us
+[17:34:16.069] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=37 in 111.0us
+[17:34:16.532] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=39 in 378.8us
+[17:34:17.052] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=37 in 149.3us
+[17:34:17.441] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=39 in 254.4us
+[17:34:17.932] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=37 in 102.3us
+[17:34:18.396] WARN  [wave10_RevGen3_22_Aurel] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:34:18.396] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1415,1594,30)
+[17:34:18.397] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1415,1594,30); target (1416,1624); stopped short (off by 31 tile(s))
+[17:34:18.397] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1415,1594) target=(1416,1624) arrived=0 off=31
+[17:34:19.541] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:19.602] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1624) from (1415,1594,30)
+[17:34:19.602] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1624) from=(1415,1594)
+[17:34:19.603] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1415,1594,30) to (1416,1624)
+[17:34:19.603] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1624) in background
+[17:34:19.617] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1624): 36 steps in 6517.4us
+[17:34:24.386] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Raisa: I'm listenin'.
+[17:34:24.585] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:29.596] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:29.780] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1624,22)
+[17:34:29.780] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:34:29.780] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:34:29.781] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1656) from (1416,1624,22)
+[17:34:29.781] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1656) from=(1416,1624)
+[17:34:29.781] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1624,22) to (1416,1656)
+[17:34:29.781] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1656) in background
+[17:34:29.842] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1656): 32 steps in 1520.9us
+[17:34:34.625] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:37.038] INFO  [wave10_RevGen3_22_Aurel] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=7 in 82.9us
+[17:34:39.635] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:39.697] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1656,10)
+[17:34:39.698] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:34:39.698] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:34:39.698] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1688) from (1416,1656,10)
+[17:34:39.698] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1688) from=(1416,1656)
+[17:34:39.698] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1656,10) to (1416,1688)
+[17:34:39.699] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1688) in background
+[17:34:39.758] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1688): 32 steps in 734.3us
+[17:34:44.649] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:47.320] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1688,0)
+[17:34:47.321] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:34:47.321] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:34:47.321] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1416,1720) from (1416,1688,0)
+[17:34:47.321] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1416,1720) from=(1416,1688)
+[17:34:47.322] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1688,0) to (1416,1720)
+[17:34:47.322] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1416,1720) in background
+[17:34:47.351] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] Lyndon: Aye?
+[17:34:47.351] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1416,1720): 32 steps in 493.4us
+[17:34:49.668] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:54.670] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:54.809] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1720,20)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:34:54.810] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1402,1760) from (1416,1720,20)
+[17:34:54.810] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1402,1760) from=(1416,1720)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1720,20) to (1402,1760)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1402,1760) in background
+[17:34:54.870] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1402,1760): 40 steps in 24970.5us
+[17:34:59.691] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:04.701] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:05.794] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1402,1760,0)
+[17:35:05.797] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:35:05.797] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:35:05.797] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1800) from (1402,1760,0)
+[17:35:05.797] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1800) from=(1402,1760)
+[17:35:05.798] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1402,1760,0) to (1368,1800)
+[17:35:05.798] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1800) in background
+[17:35:05.932] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1800): 79 steps in 106598.3us
+[17:35:09.704] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:10.244] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: You have left the protection of the city guards
+[17:35:14.755] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:19.762] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:24.807] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:28.534] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1368,1800,3)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:35:28.535] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1832) from (1368,1800,3)
+[17:35:28.535] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1832) from=(1368,1800)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1368,1800,3) to (1368,1832)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1832) in background
+[17:35:28.596] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1832): 32 steps in 4627.8us
+[17:35:29.827] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:34.849] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:38.388] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1368,1832,0)
+[17:35:38.389] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[17:35:38.390] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1864) from (1368,1832,0)
+[17:35:38.390] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1864) from=(1368,1832)
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1368,1832,0) to (1368,1864)
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1864) in background
+[17:35:38.449] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1864): 38 steps in 6997.7us
+670] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:34:54.809] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1416,1720,20)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:34:54.810] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1402,1760) from (1416,1720,20)
+[17:34:54.810] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1402,1760) from=(1416,1720)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1416,1720,20) to (1402,1760)
+[17:34:54.810] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1402,1760) in background
+[17:34:54.870] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1402,1760): 40 steps in 24970.5us
+[17:34:59.691] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:04.701] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:05.794] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1402,1760,0)
+[17:35:05.797] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:35:05.797] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:35:05.797] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1800) from (1402,1760,0)
+[17:35:05.797] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1800) from=(1402,1760)
+[17:35:05.798] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1402,1760,0) to (1368,1800)
+[17:35:05.798] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1800) in background
+[17:35:05.932] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1800): 79 steps in 106598.3us
+[17:35:09.704] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:10.244] INFO  [wave10_RevGen3_22_Aurel] [chat ascii] System: You have left the protection of the city guards
+[17:35:14.755] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:19.762] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:24.807] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:28.534] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1368,1800,3)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:35:28.535] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1832) from (1368,1800,3)
+[17:35:28.535] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1832) from=(1368,1800)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1368,1800,3) to (1368,1832)
+[17:35:28.535] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1832) in background
+[17:35:28.596] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1832): 32 steps in 4627.8us
+[17:35:29.827] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:34.849] INFO  [wave10_RevGen3_22_Aurel] [survival] hp 20/20 (100%) -> fight
+[17:35:38.097] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_22.aurelius/state.json
+[17:35:38.388] INFO  [wave10_RevGen3_22_Aurel] [bot] arrived at (1368,1832,0)
+[17:35:38.389] INFO  [wave10_RevGen3_22_Aurel] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[17:35:38.390] LOG   [wave10_RevGen3_22_Aurel] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [action] goto (1368,1864) from (1368,1832,0)
+[17:35:38.390] LOG   [wave10_RevGen3_22_Aurel] event goto_start: target=(1368,1864) from=(1368,1832)
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [bot] running from (1368,1832,0) to (1368,1864)
+[17:35:38.390] INFO  [wave10_RevGen3_22_Aurel] [bot] planning path to (1368,1864) in background
+[17:35:38.449] INFO  [wave10_RevGen3_22_Aurel] [bot] replan to (1368,1864): 38 steps in 6997.7us

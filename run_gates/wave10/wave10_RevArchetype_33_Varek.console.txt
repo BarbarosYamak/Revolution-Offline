@@ -1,0 +1,692 @@
+[17:29:35.375] LOG   [wave10_RevArchetype_33_] event session_start: text log opened
+[17:29:35.377] LOG   [wave10_RevArchetype_33_] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.381] INFO  [wave10_RevArchetype_33_] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.383] LOG   [wave10_RevArchetype_33_] event net_connected: connect 127.0.0.1:2593
+[17:29:35.384] INFO  [wave10_RevArchetype_33_] [net] connected.
+[17:29:35.385] INFO  [wave10_RevArchetype_33_] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.387] LOG   [wave10_RevArchetype_33_] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.388] INFO  [wave10_RevArchetype_33_] [life] autonomous player active for 'Varek' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.403] INFO  [wave10_RevArchetype_33_] [0xA8] 1 server(s):
+[17:29:35.404] INFO  [wave10_RevArchetype_33_]   [0] MyShard                   1.0.0.127  full=13%  tz=0
+[17:29:35.417] INFO  [wave10_RevArchetype_33_] [0x8C] game server = 127.0.0.1:2593  seed=0xDE7084E8
+[17:29:35.417] LOG   [wave10_RevArchetype_33_] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xDE7084E8
+[17:29:35.417] INFO  [wave10_RevArchetype_33_] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.417] LOG   [wave10_RevArchetype_33_] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.418] INFO  [wave10_RevArchetype_33_] [0xB9] server features = 0x0005
+[17:29:35.418] INFO  [wave10_RevArchetype_33_] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.418] INFO  [wave10_RevArchetype_33_]   [0] Varek
+[17:29:35.418] INFO  [wave10_RevArchetype_33_]   [1] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_33_]   [2] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_33_]   [3] <empty>
+[17:29:35.419] INFO  [wave10_RevArchetype_33_]   [4] <empty>
+[17:29:35.419] INFO  [wave10_RevArchetype_33_] [ui] playing slot 0 ('Varek')
+[17:29:35.434] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.436] INFO  [wave10_RevArchetype_33_] [0x1B] serial=0x00019751 body=0x0190 pos=(1368,1960,0)
+[17:29:35.437] LOG   [wave10_RevArchetype_33_] event login_confirm: serial=0x00019751 body=0x0190 pos=(1368,1960,0)
+[17:29:35.438] INFO  [wave10_RevArchetype_33_] [0x20] player @(1368,1960,0) facing=6
+[17:29:35.438] INFO  [wave10_RevArchetype_33_] [0x55] login complete — entering world
+[17:29:35.438] LOG   [wave10_RevArchetype_33_] event in_world: 0x55 received
+[17:29:35.438] INFO  [wave10_RevArchetype_33_] [backpack] opening 0x4001974F
+[17:29:35.439] INFO  [wave10_RevArchetype_33_] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.439] INFO  [wave10_RevArchetype_33_] [chat ascii] System: There are 33 other players here.
+[17:29:35.439] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.443] INFO  [wave10_RevArchetype_33_] [action] requesting the skill list
+[17:29:35.449] INFO  [wave10_RevArchetype_33_] [0x24] open container 0x4001974F gump=60
+[17:29:35.450] INFO  [wave10_RevArchetype_33_] [0x3C] container contents: 2 item(s)
+[17:29:35.450] LOG   [wave10_RevArchetype_33_] event backpack_contents: serial=0x4001974F items=2
+[17:29:35.450] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:38.069] INFO  [wave10_RevArchetype_33_] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:38.072] INFO  [wave10_RevArchetype_33_] [survival] on
+[17:29:38.072] LOG   [wave10_RevArchetype_33_] event survival_mode: on
+[17:29:38.076] INFO  [wave10_RevArchetype_33_] [survival] hp 18/32 (56%) -> fight
+[17:29:38.171] INFO  [wave10_RevArchetype_33_] [travel] place: skipping Delucia healer -- 1556 tiles and 4 gates for a service Britain healer offers
+[17:29:38.171] INFO  [wave10_RevArchetype_33_] [travel] place: skipping Wind healer -- 1420 tiles and 1 gate for a service Britain healer offers
+[17:29:38.172] INFO  [wave10_RevArchetype_33_] [travel] Britain healer -> (1471,1611) r=5 from (1368,1960)
+[17:29:38.172] LOG   [wave10_RevArchetype_33_] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1368,1960)
+[17:29:38.172] INFO  [wave10_RevArchetype_33_] [travel] mode moongate         usable   <- chosen
+[17:29:38.172] INFO  [wave10_RevArchetype_33_] [travel] mode walk             usable
+[17:29:38.172] INFO  [wave10_RevArchetype_33_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.172] INFO  [wave10_RevArchetype_33_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.172] LOG   [wave10_RevArchetype_33_] event travel_mode: moongate
+[17:29:38.175] INFO  [wave10_RevArchetype_33_] [travel] plan Britain healer: ok legs=11 ~400 tiles transit=0 nodes=3758
+[17:29:38.175] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1928) from (1368,1960,0)
+[17:29:38.175] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1928) from=(1368,1960)
+[17:29:38.176] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1960,0) to (1368,1928)
+[17:29:38.176] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1928) in background
+[17:29:38.226] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1928): 39 steps in 12068.2us
+[17:29:41.844] INFO  [wave10_RevArchetype_33_] [chat ascii] Vitchak: *Vitchak is attacking you!*
+[17:29:43.122] INFO  [wave10_RevArchetype_33_] [survival] hp 18/32 (56%) -> fight
+[17:29:48.182] INFO  [wave10_RevArchetype_33_] [survival] hp 18/32 (56%) -> fight
+[17:29:51.168] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1928,0)
+[17:29:51.168] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1928,0); target (1368,1928); ARRIVED (off by 0 tile(s))
+[17:29:51.168] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1928) target=(1368,1928) arrived=1 off=0
+[17:29:51.169] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1894) from (1368,1928,0)
+[17:29:51.169] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1894) from=(1368,1928)
+[17:29:51.169] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1928,0) to (1368,1894)
+[17:29:51.169] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1894) in background
+[17:29:51.229] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1894): 34 steps in 20747.0us
+[17:29:52.295] WARN  [wave10_RevArchetype_33_] [bot] THREAT (HP 18 -> 14): halting travel (TODO engage/flee/recall)
+[17:29:52.296] LOG   [wave10_RevArchetype_33_] event threat: HP 18 -> 14
+[17:29:52.296] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1367,1925,0); target (1368,1894); stopped short (off by 32 tile(s))
+[17:29:52.296] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1367,1925) target=(1368,1894) arrived=0 off=32
+[17:29:53.233] INFO  [wave10_RevArchetype_33_] [survival] hp 14/32 (43%) -> fight
+[17:29:53.371] INFO  [wave10_RevArchetype_33_] [0x20] player @(1367,1925,0) facing=4
+[17:29:53.554] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1894) from (1367,1925,0)
+[17:29:53.555] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1894) from=(1367,1925)
+[17:29:53.555] INFO  [wave10_RevArchetype_33_] [bot] running from (1367,1925,0) to (1368,1894)
+[17:29:53.555] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1894) in background
+[17:29:53.616] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1894): 31 steps in 19514.4us
+[17:29:58.277] INFO  [wave10_RevArchetype_33_] [survival] hp 14/32 (43%) -> fight
+[17:29:59.924] WARN  [wave10_RevArchetype_33_] [bot] 0x20 resync; aborting path
+[17:29:59.925] INFO  [wave10_RevArchetype_33_] [0x20] player @(1367,1906,0) facing=4
+[17:29:59.925] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1367,1906,0); target (1368,1894); stopped short (off by 13 tile(s))
+[17:29:59.925] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1367,1906) target=(1368,1894) arrived=0 off=13
+[17:30:01.172] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1894) from (1367,1906,0)
+[17:30:01.172] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1894) from=(1367,1906)
+[17:30:01.173] INFO  [wave10_RevArchetype_33_] [bot] running from (1367,1906,0) to (1368,1894)
+[17:30:01.174] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1894) in background
+[17:30:01.203] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1894): 12 steps in 1062.5us
+[17:30:01.218] WARN  [wave10_RevArchetype_33_] [bot] THREAT (HP 14 -> 10): halting travel (TODO engage/flee/recall)
+[17:30:01.219] LOG   [wave10_RevArchetype_33_] event threat: HP 14 -> 10
+[17:30:01.219] WARN  [wave10_RevArchetype_33_] [0x22] unsolicited ack seq=0
+[17:30:01.219] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1367,1906,0); target (1368,1894); stopped short (off by 13 tile(s))
+[17:30:01.220] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1367,1906) target=(1368,1894) arrived=0 off=13
+[17:30:01.220] INFO  [wave10_RevArchetype_33_] [survival] hp 10/32 (31%) -> disengage
+[17:30:01.220] LOG   [wave10_RevArchetype_33_] event survival_disengage: disengage
+[17:30:01.220] INFO  [wave10_RevArchetype_33_] [war] leaving war mode
+[17:30:02.461] INFO  [wave10_RevArchetype_33_] [travel] mode moongate         usable   <- chosen
+[17:30:02.461] INFO  [wave10_RevArchetype_33_] [travel] mode walk             usable
+[17:30:02.462] INFO  [wave10_RevArchetype_33_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:02.462] INFO  [wave10_RevArchetype_33_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:02.462] LOG   [wave10_RevArchetype_33_] event travel_mode: moongate
+[17:30:02.463] INFO  [wave10_RevArchetype_33_] [travel] plan Britain healer: ok legs=10 ~368 tiles transit=0 nodes=2230
+[17:30:02.767] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> flee
+[17:30:02.768] LOG   [wave10_RevArchetype_33_] event survival_disengage: flee
+[17:30:02.768] INFO  [wave10_RevArchetype_33_] [war] leaving war mode
+[17:30:03.274] INFO  [wave10_RevArchetype_33_] [0x3C] container contents: 2 item(s)
+[17:30:03.274] INFO  [wave10_RevArchetype_33_] [0x2C] resurrection menu action=0
+[17:30:03.274] LOG   [wave10_RevArchetype_33_] event resurrect_menu: prompt
+[17:30:03.274] INFO  [wave10_RevArchetype_33_] [STATE] dead (0x2C resurrect menu)
+[17:30:03.275] LOG   [wave10_RevArchetype_33_] event state_dead: 0x2C received
+[17:30:03.275] LOG   [wave10_RevArchetype_33_] event death_location: at=(1367,1906,0) region=a_britain_territory_1 via=0x2C resurrect menu
+[17:30:03.275] INFO  [wave10_RevArchetype_33_] [travel] Britain healer FAILED at (1367,1906,0) -- died
+[17:30:03.275] LOG   [wave10_RevArchetype_33_] event travel_failed: label='Britain healer' ok=0 at=(1367,1906) legs=10 plans=2 why='died'
+[17:30:03.275] INFO  [wave10_RevArchetype_33_] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[17:30:03.275] LOG   [wave10_RevArchetype_33_] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[17:30:03.276] INFO  [wave10_RevArchetype_33_] [ACTION] resurrect start
+[17:30:03.276] INFO  [wave10_RevArchetype_33_] [ACTION] resurrect: waiting for the server to raise us
+[17:30:03.314] INFO  [wave10_RevArchetype_33_] [travel] place: skipping Delucia healer -- 1604 tiles and 4 gates for a service Britain healer offers
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] place: skipping Wind healer -- 1372 tiles and 1 gate for a service Britain healer offers
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] Britain healer -> (1471,1611) r=5 from (1367,1906)
+[17:30:03.315] LOG   [wave10_RevArchetype_33_] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1367,1906)
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] mode walk             usable   <- chosen
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] mode moongate         no: dead characters cannot use gates
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:03.315] INFO  [wave10_RevArchetype_33_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:03.316] LOG   [wave10_RevArchetype_33_] event travel_mode: walk
+[17:30:03.316] INFO  [wave10_RevArchetype_33_] [travel] plan Britain healer: ok legs=10 ~352 tiles transit=0 nodes=859
+[17:30:03.316] INFO  [wave10_RevArchetype_33_] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[17:30:03.316] LOG   [wave10_RevArchetype_33_] event war_timeout: no combat target and the bot is doing something peaceful
+[17:30:03.316] INFO  [wave10_RevArchetype_33_] [war] leaving war mode
+[17:30:03.317] INFO  [wave10_RevArchetype_33_] [chat ascii] System: You are a ghost
+[17:30:03.317] INFO  [wave10_RevArchetype_33_] [0x1B] serial=0x00019751 body=0x0192 pos=(1367,1906,0)
+[17:30:03.317] LOG   [wave10_RevArchetype_33_] event login_confirm: serial=0x00019751 body=0x0192 pos=(1367,1906,0)
+[17:30:03.317] INFO  [wave10_RevArchetype_33_] [0x20] player @(1367,1906,0) facing=0
+[17:30:03.317] LOG   [wave10_RevArchetype_33_] event corpse_located: corpse=0x4000E2E9 at=(1367,1906,0)
+[17:30:03.317] INFO  [wave10_RevArchetype_33_] [0x3C] container contents: 2 item(s)
+[17:30:03.317] INFO  [wave10_RevArchetype_33_] [0x55] login complete — entering world
+[17:30:03.317] LOG   [wave10_RevArchetype_33_] event in_world: 0x55 received
+[17:30:03.318] INFO  [wave10_RevArchetype_33_] [backpack] opening 0x4001974F
+[17:30:03.318] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1880) from (1367,1906,0)
+[17:30:03.318] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1880) from=(1367,1906)
+[17:30:03.318] INFO  [wave10_RevArchetype_33_] [bot] running from (1367,1906,0) to (1368,1880)
+[17:30:03.318] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1880) in background
+[17:30:03.318] INFO  [wave10_RevArchetype_33_] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[17:30:03.318] LOG   [wave10_RevArchetype_33_] event war_timeout: no combat target and the bot is doing something peaceful
+[17:30:03.319] INFO  [wave10_RevArchetype_33_] [war] leaving war mode
+[17:30:03.319] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Your ghostly hand passes through the object.
+[17:30:03.382] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1880): 27 steps in 5946.8us
+[17:30:12.869] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1880,0)
+[17:30:12.869] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1880,0); target (1368,1880); ARRIVED (off by 0 tile(s))
+[17:30:12.869] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1880) target=(1368,1880) arrived=1 off=0
+[17:30:12.869] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1846) from (1368,1880,0)
+[17:30:12.869] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1846) from=(1368,1880)
+[17:30:12.869] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1880,0) to (1368,1846)
+[17:30:12.870] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1846) in background
+[17:30:12.930] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1846): 35 steps in 5724.0us
+[17:30:24.195] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1846,0)
+[17:30:24.195] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1846,0); target (1368,1846); ARRIVED (off by 0 tile(s))
+[17:30:24.196] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1846) target=(1368,1846) arrived=1 off=0
+[17:30:24.196] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1816) from (1368,1846,0)
+[17:30:24.196] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1816) from=(1368,1846)
+[17:30:24.196] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1846,0) to (1368,1816)
+[17:30:24.196] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1816) in background
+[17:30:24.256] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1816): 31 steps in 1205.8us
+[17:30:32.026] INFO  [wave10_RevArchetype_33_] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=6 in 16.9us
+[17:30:33.724] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1816,0)
+[17:30:33.725] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1816,0); target (1368,1816); ARRIVED (off by 0 tile(s))
+[17:30:33.725] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1816) target=(1368,1816) arrived=1 off=0
+[17:30:33.725] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1784) from (1368,1816,0)
+[17:30:33.725] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1784) from=(1368,1816)
+[17:30:33.725] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1816,0) to (1368,1784)
+[17:30:33.726] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1784) in background
+[17:30:33.786] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1784): 32 steps in 1198.2us
+[17:30:38.148] INFO  [wave10_RevArchetype_33_] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=18 in 115.6us
+[17:30:43.854] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1784,15)
+[17:30:43.855] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1784,15); target (1368,1784); ARRIVED (off by 0 tile(s))
+[17:30:43.855] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1784) target=(1368,1784) arrived=1 off=0
+[17:30:43.855] INFO  [wave10_RevArchetype_33_] [action] goto (1368,1752) from (1368,1784,15)
+[17:30:43.855] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1368,1752) from=(1368,1784)
+[17:30:43.855] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1784,15) to (1368,1752)
+[17:30:43.855] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1368,1752) in background
+[17:30:43.915] INFO  [wave10_RevArchetype_33_] [bot] replan to (1368,1752): 32 steps in 412.7us
+[17:30:52.558] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1368,1752,5)
+[17:30:52.558] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:30:52.558] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:30:52.559] INFO  [wave10_RevArchetype_33_] [action] goto (1384,1720) from (1368,1752,5)
+[17:30:52.559] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:30:52.559] INFO  [wave10_RevArchetype_33_] [bot] running from (1368,1752,5) to (1384,1720)
+[17:30:52.559] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1384,1720) in background
+[17:30:52.618] INFO  [wave10_RevArchetype_33_] [bot] replan to (1384,1720): 58 steps in 24728.0us
+[17:30:59.192] INFO  [wave10_RevArchetype_33_] [bot] lookahead patched around block at step 5: anchor=9 new segment=10 path=32 in 148.3us
+[17:31:10.485] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1384,1720,10)
+[17:31:10.486] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:31:10.486] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:31:10.486] INFO  [wave10_RevArchetype_33_] [action] goto (1416,1688) from (1384,1720,10)
+[17:31:10.486] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:31:10.486] INFO  [wave10_RevArchetype_33_] [bot] running from (1384,1720,10) to (1416,1688)
+[17:31:10.486] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1416,1688) in background
+[17:31:10.505] INFO  [wave10_RevArchetype_33_] [bot] replan to (1416,1688): 51 steps in 10584.5us
+[17:31:26.692] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1416,1688,0)
+[17:31:26.692] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:31:26.692] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:31:26.692] INFO  [wave10_RevArchetype_33_] [action] goto (1448,1656) from (1416,1688,0)
+[17:31:26.692] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1448,1656) from=(1416,1688)
+[17:31:26.693] INFO  [wave10_RevArchetype_33_] [bot] running from (1416,1688,0) to (1448,1656)
+[17:31:26.693] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1448,1656) in background
+[17:31:26.751] INFO  [wave10_RevArchetype_33_] [bot] replan to (1448,1656): 46 steps in 2269.4us
+[17:31:35.199] WARN  [wave10_RevArchetype_33_] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[17:31:35.199] INFO  [wave10_RevArchetype_33_] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[17:31:35.937] WARN  [wave10_RevArchetype_33_] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[17:31:35.938] INFO  [wave10_RevArchetype_33_] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[17:31:35.938] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1448,1656) in background
+[17:31:36.000] INFO  [wave10_RevArchetype_33_] [bot] replan to (1448,1656): 20 steps in 1151.3us
+[17:31:42.675] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1448,1656,10)
+[17:31:42.675] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:31:42.675] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:31:42.676] INFO  [wave10_RevArchetype_33_] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:42.676] INFO  [wave10_RevArchetype_33_] [action] goto (1464,1624) from (1448,1656,10)
+[17:31:42.676] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1464,1624) from=(1448,1656)
+[17:31:42.676] INFO  [wave10_RevArchetype_33_] [bot] running from (1448,1656,10) to (1464,1624)
+[17:31:42.676] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1464,1624) in background
+[17:31:42.736] INFO  [wave10_RevArchetype_33_] [bot] replan to (1464,1624): 43 steps in 3627.1us
+[17:31:55.625] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1464,1624,20)
+[17:31:55.625] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[17:31:55.625] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[17:31:55.626] INFO  [wave10_RevArchetype_33_] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:55.626] INFO  [wave10_RevArchetype_33_] [action] goto (1471,1611) from (1464,1624,20)
+[17:31:55.626] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1471,1611) from=(1464,1624)
+[17:31:55.626] INFO  [wave10_RevArchetype_33_] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[17:31:55.626] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1471,1611) in background
+[17:31:55.685] INFO  [wave10_RevArchetype_33_] [bot] replan to (1471,1611): 31 steps in 11723.1us
+[17:32:00.367] INFO  [wave10_RevArchetype_33_] [chat uni  ] : Dale buy
+[17:32:00.367] INFO  [wave10_RevArchetype_33_] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[17:32:02.696] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:32:02.697] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:32:02.697] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Your ghostly hand passes through the object.
+[17:32:04.291] INFO  [wave10_RevArchetype_33_] [travel] Britain healer ARRIVED at (1476,1612,20)
+[17:32:04.291] LOG   [wave10_RevArchetype_33_] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=10 plans=1 why=''
+[17:32:51.230] INFO  [wave10_RevArchetype_33_] [chat ascii] Dale: What is it thou wishest?
+[17:32:51.230] INFO  [wave10_RevArchetype_33_] [chat ascii] Dale: Thou art dead, but 'tis within my power to resurrect thee. Live!
+[17:32:51.230] INFO  [wave10_RevArchetype_33_] [STATE] alive (body 0x0190)
+[17:32:51.231] LOG   [wave10_RevArchetype_33_] event state_resurrected: server body change
+[17:32:51.231] INFO  [wave10_RevArchetype_33_] [ACTION_RESULT] resurrect success (167955ms) character is alive again
+[17:32:51.231] LOG   [wave10_RevArchetype_33_] event action_result: resurrect success took=167955ms character is alive again
+[17:32:51.231] INFO  [wave10_RevArchetype_33_] [0x20] player @(1476,1612,20) facing=6
+[17:32:51.231] INFO  [wave10_RevArchetype_33_] [ACTION] resurrect start
+[17:32:51.231] WARN  [wave10_RevArchetype_33_] [ACTION_RESULT] resurrect invalid_state (0ms) not dead
+[17:32:51.232] LOG   [wave10_RevArchetype_33_] event action_result: resurrect invalid_state took=0ms not dead
+[17:32:51.294] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:32:56.256] INFO  [wave10_RevArchetype_33_] [ACTION] unequip start
+[17:32:56.256] INFO  [wave10_RevArchetype_33_] [ACTION] unequip serial=0x40004730 -> backpack 0x4001974F
+[17:32:56.256] INFO  [wave10_RevArchetype_33_] [ITEM] drag serial=0x40004730 amount=1
+[17:32:56.257] INFO  [wave10_RevArchetype_33_] [ITEM] drop container=0x4001974F
+[17:32:56.257] INFO  [wave10_RevArchetype_33_] [ACTION_RESULT] unequip success (1ms) item is in the destination
+[17:32:56.257] LOG   [wave10_RevArchetype_33_] event action_result: unequip success took=1ms item is in the destination
+[17:32:57.306] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:01.054] INFO  [wave10_RevArchetype_33_] [travel] Britain blacksmith -> (1418,1547) r=5 from (1476,1612)
+[17:33:01.055] LOG   [wave10_RevArchetype_33_] event travel_start: label='Britain blacksmith' target=(1418,1547) radius=5 from=(1476,1612)
+[17:33:01.055] INFO  [wave10_RevArchetype_33_] [travel] mode moongate         usable   <- chosen
+[17:33:01.055] INFO  [wave10_RevArchetype_33_] [travel] mode walk             usable
+[17:33:01.055] INFO  [wave10_RevArchetype_33_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:01.055] INFO  [wave10_RevArchetype_33_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:01.056] LOG   [wave10_RevArchetype_33_] event travel_mode: moongate
+[17:33:01.056] INFO  [wave10_RevArchetype_33_] [travel] plan Britain blacksmith: ok legs=3 ~104 tiles transit=0 nodes=79
+[17:33:01.056] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1476,1612,20); target (1471,1611); stopped short (off by 6 tile(s))
+[17:33:01.056] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1476,1612) target=(1471,1611) arrived=0 off=6
+[17:33:01.056] INFO  [wave10_RevArchetype_33_] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:01.057] INFO  [wave10_RevArchetype_33_] [action] goto (1448,1592) from (1476,1612,20)
+[17:33:01.057] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1448,1592) from=(1476,1612)
+[17:33:01.057] INFO  [wave10_RevArchetype_33_] [bot] running from (1476,1612,20) to (1448,1592)
+[17:33:01.057] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1448,1592) in background
+[17:33:01.111] INFO  [wave10_RevArchetype_33_] [bot] replan to (1448,1592): 42 steps in 4135.8us
+[17:33:01.606] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:33:01.606] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:03.011] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[17:33:03.026] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:04.072] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:10.101] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:11.401] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1456,1599,z20); OpenDoor before step
+[17:33:11.401] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:15.158] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1448,1592,20)
+[17:33:15.159] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[17:33:15.159] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[17:33:15.159] INFO  [wave10_RevArchetype_33_] [action] goto (1432,1560) from (1448,1592,20)
+[17:33:15.159] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1432,1560) from=(1448,1592)
+[17:33:15.159] INFO  [wave10_RevArchetype_33_] [bot] running from (1448,1592,20) to (1432,1560)
+[17:33:15.159] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1432,1560) in background
+[17:33:15.218] INFO  [wave10_RevArchetype_33_] [bot] replan to (1432,1560): 46 steps in 8010.5us
+[17:33:16.161] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:19.935] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[17:33:19.949] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:21.399] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[17:33:21.415] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:22.216] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:28.292] INFO  [wave10_RevArchetype_33_] [survival] hp 4/32 (12%) -> rest
+[17:33:30.838] INFO  [wave10_RevArchetype_33_] [bot] arrived at (1432,1560,30)
+[17:33:30.838] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[17:33:30.838] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[17:33:30.839] INFO  [wave10_RevArchetype_33_] [action] goto (1418,1547) from (1432,1560,30)
+[17:33:30.839] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1418,1547) from=(1432,1560)
+[17:33:30.839] INFO  [wave10_RevArchetype_33_] [bot] running from (1432,1560,30) to (1418,1547,z30)
+[17:33:30.839] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1418,1547) in background
+[17:33:33.306] WARN  [wave10_RevArchetype_33_] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 2417866.2us)
+[17:33:33.306] WARN  [wave10_RevArchetype_33_] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 689 item(s), 3 mobile(s))
+[17:33:33.367] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1432,1560,30); target (1418,1547); stopped short (off by 27 tile(s))
+[17:33:33.368] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1432,1560) target=(1418,1547) arrived=0 off=27
+[17:33:34.355] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:33:34.602] INFO  [wave10_RevArchetype_33_] [action] goto (1418,1547) from (1432,1560,30)
+[17:33:34.602] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1418,1547) from=(1432,1560)
+[17:33:34.603] INFO  [wave10_RevArchetype_33_] [bot] running from (1432,1560,30) to (1418,1547,z30)
+[17:33:34.603] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1418,1547) in background
+[17:33:34.663] INFO  [wave10_RevArchetype_33_] [bot] replan to (1418,1547): 20 steps in 5367.7us
+[17:33:37.411] INFO  [wave10_RevArchetype_33_] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[17:33:37.411] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Opening door...
+[17:33:39.445] INFO  [wave10_RevArchetype_33_] [travel] Britain blacksmith ARRIVED at (1417,1552,30)
+[17:33:39.446] LOG   [wave10_RevArchetype_33_] event travel_done: label='Britain blacksmith' ok=1 at=(1417,1552) legs=3 plans=1 why=''
+[17:33:39.507] INFO  [wave10_RevArchetype_33_] [action] scanning nearby mobiles for names
+[17:33:39.507] INFO  [wave10_RevArchetype_33_] [action] requested 2 paperdoll(s) for trade titles
+[17:33:39.523] INFO  [wave10_RevArchetype_33_] [mobiles] nearby (2):
+[17:33:39.523] INFO  [wave10_RevArchetype_33_]   Thora 0x00001189
+[17:33:39.523] INFO  [wave10_RevArchetype_33_]   Rhett 0x00001026
+[17:33:39.523] INFO  [wave10_RevArchetype_33_] [0x20] player @(1417,1552,30) facing=0
+[17:33:39.523] INFO  [wave10_RevArchetype_33_] [0x88] paperdoll 0x00001189: "Thora, the blacksmith"
+[17:33:39.523] INFO  [wave10_RevArchetype_33_] [world] Thora, the blacksmith is a blacksmith at (1418,1547)
+[17:33:39.523] INFO  [wave10_RevArchetype_33_] [0x88] paperdoll 0x00001026: "Rhett, the blacksmith"
+[17:33:39.524] INFO  [wave10_RevArchetype_33_] [world] Rhett, the blacksmith is a blacksmith at (1417,1544)
+[17:33:40.413] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:33:42.629] INFO  [wave10_RevArchetype_33_] [travel] mobile 0x00001189 -> (1420,1547) r=1 from (1417,1552)
+[17:33:42.629] LOG   [wave10_RevArchetype_33_] event travel_start: label='mobile 0x00001189' target=(1420,1547) radius=1 from=(1417,1552)
+[17:33:42.630] INFO  [wave10_RevArchetype_33_] [travel] mode walk             usable   <- chosen
+[17:33:42.630] INFO  [wave10_RevArchetype_33_] [travel] mode moongate         usable
+[17:33:42.630] INFO  [wave10_RevArchetype_33_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:42.630] INFO  [wave10_RevArchetype_33_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:42.630] LOG   [wave10_RevArchetype_33_] event travel_mode: walk
+[17:33:42.630] INFO  [wave10_RevArchetype_33_] [travel] plan mobile 0x00001189: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:33:42.691] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1417,1552,30); target (1418,1547); stopped short (off by 6 tile(s))
+[17:33:42.691] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1417,1552) target=(1418,1547) arrived=0 off=6
+[17:33:42.691] INFO  [wave10_RevArchetype_33_] [action] goto (1420,1547) from (1417,1552,30)
+[17:33:42.691] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1420,1547) from=(1417,1552)
+[17:33:42.691] INFO  [wave10_RevArchetype_33_] [bot] running from (1417,1552,30) to (1420,1547,z30)
+[17:33:42.692] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1420,1547) in background
+[17:33:44.426] WARN  [wave10_RevArchetype_33_] [bot] no path to (1420,1547) avoiding 0 block(s); stopping (search 1685042.7us)
+[17:33:44.426] WARN  [wave10_RevArchetype_33_] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 720 item(s), 2 mobile(s))
+[17:33:44.488] INFO  [wave10_RevArchetype_33_] [action] goto finished at (1417,1552,30); target (1420,1547); stopped short (off by 8 tile(s))
+[17:33:44.488] LOG   [wave10_RevArchetype_33_] event goto_done: at=(1417,1552) target=(1420,1547) arrived=0 off=8
+[17:33:45.748] INFO  [wave10_RevArchetype_33_] [action] goto (1420,1547) from (1417,1552,30)
+[17:33:45.748] LOG   [wave10_RevArchetype_33_] event goto_start: target=(1420,1547) from=(1417,1552)
+[17:33:45.748] INFO  [wave10_RevArchetype_33_] [bot] running from (1417,1552,30) to (1420,1547,z30)
+[17:33:45.749] INFO  [wave10_RevArchetype_33_] [bot] planning path to (1420,1547) in background
+[17:33:45.808] INFO  [wave10_RevArchetype_33_] [bot] replan to (1420,1547): 7 steps in 247.4us
+[17:33:46.455] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:33:47.947] INFO  [wave10_RevArchetype_33_] [travel] mobile 0x00001189 ARRIVED at (1419,1547,30)
+[17:33:47.948] LOG   [wave10_RevArchetype_33_] event travel_done: label='mobile 0x00001189' ok=1 at=(1419,1547) legs=1 plans=1 why=''
+[17:33:48.069] INFO  [wave10_RevArchetype_33_] [ACTION] vendor_buy start
+[17:33:48.069] INFO  [wave10_RevArchetype_33_] [VENDOR] open vendor=0x00001189 say='Thora buy'
+[17:33:48.070] INFO  [wave10_RevArchetype_33_] [chat uni  ] Varek: Thora buy
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: Hello! ?
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: Thou surely wants all the things that I can sell thee.
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x3C] container contents: 65 item(s)
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x74] pairing: straight (straight 10, mirrored 0 of 65 rows)
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x74] vendor shop data: cont=0x40001181 65 item(s), layer=0x1A
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x74]   ringmail tunic               gfx=0x13EC qty=11   price=83
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x74]   ringmail leggings            gfx=0x13F0 qty=15   price=74
+[17:33:48.071] INFO  [wave10_RevArchetype_33_] [0x74]   ringmail sleeves             gfx=0x13EE qty=15   price=64
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   ringmail gloves              gfx=0x13EB qty=10   price=46
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   chainmail coif               gfx=0x13BB qty=10   price=46
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   chainmail tunic              gfx=0x13BF qty=12   price=92
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   chainmail leggings           gfx=0x13BE qty=15   price=83
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   platemail gorget             gfx=0x1413 qty=12   price=46
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   platemail                    gfx=0x1415 qty=11   price=115
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   platemail legs               gfx=0x1411 qty=10   price=92
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   platemail arms               gfx=0x1410 qty=11   price=83
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   platemail gloves             gfx=0x1414 qty=15   price=55
+[17:33:48.072] INFO  [wave10_RevArchetype_33_] [0x74]   plate helm                   gfx=0x1412 qty=11   price=69
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   close helmet                 gfx=0x1408 qty=14   price=69
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   helmet                       gfx=0x140A qty=11   price=69
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   norse helm                   gfx=0x140E qty=13   price=69
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   bascinet                     gfx=0x140C qty=10   price=69
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   buckler                      gfx=0x1B73 qty=12   price=46
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   wooden shield                gfx=0x1B7A qty=13   price=32
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   tear kite shield             gfx=0x1B78 qty=11   price=41
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   kite shield                  gfx=0x1B74 qty=15   price=74
+[17:33:48.073] INFO  [wave10_RevArchetype_33_] [0x74]   round shield                 gfx=0x1B72 qty=13   price=55
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   metal shield                 gfx=0x1B7B qty=15   price=64
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   heater shield                gfx=0x1B76 qty=12   price=83
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   hatchet                      gfx=0x0F43 qty=10   price=38
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   executioner's axe            gfx=0x0F45 qty=13   price=85
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   bardiche                     gfx=0x0F4D qty=11   price=128
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   battle axe                   gfx=0x0F47 qty=10   price=68
+[17:33:48.074] INFO  [wave10_RevArchetype_33_] [0x74]   large battle axe             gfx=0x13FA qty=10   price=135
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   bow                          gfx=0x13B1 qty=10   price=23
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   butcher knife                gfx=0x13F6 qty=13   price=13
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   crossbow                     gfx=0x0F4F qty=250  price=38
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   heavy crossbow               gfx=0x13FC qty=13   price=40
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   cutlass                      gfx=0x1440 qty=10   price=104
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   dagger                       gfx=0x0F51 qty=14   price=24
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   halberd                      gfx=0x143E qty=15   price=154
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   hammer pick                  gfx=0x143C qty=12   price=58
+[17:33:48.075] INFO  [wave10_RevArchetype_33_] [0x74]   katana                       gfx=0x13FE qty=10   price=64
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   kryss                        gfx=0x1400 qty=11   price=59
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   broadsword                   gfx=0x0F5E qty=11   price=77
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   longsword                    gfx=0x0F60 qty=14   price=110
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   long sword                   gfx=0x13B7 qty=15   price=97
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   viking sword                 gfx=0x13B9 qty=15   price=132
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   cleaver                      gfx=0x0EC2 qty=15   price=18
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   axe                          gfx=0x0F49 qty=12   price=71
+[17:33:48.076] INFO  [wave10_RevArchetype_33_] [0x74]   double axe                   gfx=0x0F4B qty=11   price=118
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   pickaxe                      gfx=0x0E85 qty=13   price=28
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   pitchfork                    gfx=0x0E87 qty=12   price=32
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   scimitar                     gfx=0x13B5 qty=13   price=52
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   skinning knife               gfx=0x0EC4 qty=13   price=12
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   two handed axe               gfx=0x1442 qty=15   price=114
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   war axe                      gfx=0x13AF qty=12   price=78
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   black staff                  gfx=0x0DF0 qty=12   price=16
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   club                         gfx=0x13B3 qty=12   price=14
+[17:33:48.077] INFO  [wave10_RevArchetype_33_] [0x74]   gnarled staff                gfx=0x13F8 qty=10   price=9
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   mace                         gfx=0x0F5C qty=14   price=40
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   maul                         gfx=0x143A qty=13   price=68
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   quarter staff                gfx=0x0E89 qty=14   price=12
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   crook                        gfx=0x13F4 qty=12   price=15
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   smith's hammer               gfx=0x13E3 qty=15   price=58
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   short spear                  gfx=0x1402 qty=15   price=49
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   long spear                   gfx=0x0F62 qty=13   price=98
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   war hammer                   gfx=0x1438 qty=15   price=118
+[17:33:48.078] INFO  [wave10_RevArchetype_33_] [0x74]   war mace                     gfx=0x1406 qty=13   price=97
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [0x74]   tongs                        gfx=0x0FBB qty=18   price=15
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [0x3C] container contents: 0 item(s)
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [0x74] vendor shop data: cont=0x40000772 0 item(s), layer=0x1B
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [VENDOR] offer from 0x00001189: 65 item(s)
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D84 ringmail tunic         x11  83 gp
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D83 ringmail leggings      x15  74 gp
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D80 ringmail sleeves       x15  64 gp
+[17:33:48.079] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D7C ringmail gloves        x10  46 gp
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D7B chainmail coif         x10  46 gp
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D79 chainmail tunic        x12  92 gp
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D74 chainmail leggings     x15  83 gp
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [VENDOR]   0x40015D73 platemail gorget       x12  46 gp
+[17:33:48.080] LOG   [wave10_RevArchetype_33_] event vendor_offer: vendor=0x00001189 items=65
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [ACTION_RESULT] vendor_buy success (11ms) vendor offer received
+[17:33:48.080] LOG   [wave10_RevArchetype_33_] event action_result: vendor_buy success took=11ms vendor offer received
+[17:33:48.080] INFO  [wave10_RevArchetype_33_] [0x24] vendor buy gump for 0x00001189
+[17:33:52.512] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:33:54.568] INFO  [wave10_RevArchetype_33_] [chat ascii] System: World save in 10 seconds
+[17:33:58.574] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:04.599] INFO  [wave10_RevArchetype_33_] [chat ascii] System: World save has been initiated.
+[17:34:04.599] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:10.671] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:16.716] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:22.780] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:28.838] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:34.870] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:35.904] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: I'm listenin'.
+[17:34:40.959] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:47.042] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:53.082] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:59.124] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:05.193] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:09.041] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: Nice speaking to you Varek
+[17:35:11.225] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:15.587] INFO  [wave10_RevArchetype_33_] [chat uni  ] : Rhett train Tactics
+[17:35:15.587] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: Hello!
+[17:35:15.588] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:17.281] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:19.335] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: Let me show you something of how this is done
+[17:35:19.335] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: That is all I can teach.
+[17:35:23.282] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:29.352] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:33.321] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: I'm listenin'.
+[17:35:35.417] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:39.331] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Xerxes has departed from Ocllo.
+onsidered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:33:48.194] INFO  [life]   score=101.5
+[17:33:48.194] INFO  [life]   reason: NeedMakeBandages urgency 0.70 x 145 = 101.5
+[17:33:48.195] INFO  [life]   reason: bandages 0/8 gold 0 (buyable at 200)
+[17:33:48.195] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[17:33:48.195] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[17:33:48.196] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:33:48.196] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.172] INFO  [life] goal_failed=MAKE_BANDAGES reason="no scissors and only 0 gold to buy a pair with"
+[17:33:50.173] INFO  [life] handoff=MAKE_BANDAGES->EARN_GOLD reason="no scissors and no money"
+[17:33:50.234] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: no scissors and no money"
+[17:33:50.234] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:33:50.234] INFO  [life]   score=62.5
+[17:33:50.234] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:33:50.235] INFO  [life]   reason: food=0
+[17:33:50.235] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[17:33:50.235] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 237s after achieving nothing
+[17:33:50.235] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:33:50.235] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.235] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 179s after achieving nothing
+[17:33:52.202] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[17:33:52.265] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[17:33:52.265] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:33:52.266] INFO  [life]   score=45.0
+[17:33:52.266] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:52.266] INFO  [life]   reason: gold=0 floor=100
+[17:33:52.266] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[17:33:52.266] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 235s after achieving nothing
+[17:33:52.267] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[17:33:52.267] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:33:52.267] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:52.267] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 177s after achieving nothing
+[17:33:52.512] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:33:54.568] INFO  [wave10_RevArchetype_33_] [chat ascii] System: World save in 10 seconds
+[17:33:57.216] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[17:33:57.277] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: nothing to sell"
+[17:33:57.278] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:33:57.278] INFO  [life]   score=22.0
+[17:33:57.278] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[17:33:57.278] INFO  [life]   reason: str 32 gold 0 reserve 500
+[17:33:57.278] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[17:33:57.279] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 230s after achieving nothing
+[17:33:57.279] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[17:33:57.279] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[17:33:57.279] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:33:57.279] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:57.279] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 172s after achieving nothing
+[17:33:58.574] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:02.273] INFO  [life] gear: nothing carried is an upgrade, and 0 gold is not clear of the 400 starter-gear floor -- earning first
+[17:34:02.335] INFO  [life] goal=EXPLORE reason="previous goal abandoned: no upgrade and no spare money"
+[17:34:02.335] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:34:02.336] INFO  [life]   score=15.0
+[17:34:02.336] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:02.336] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[17:34:02.336] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 225s after achieving nothing
+[17:34:02.336] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 169s after achieving nothing
+[17:34:02.336] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 174s after achieving nothing
+[17:34:02.337] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:34:02.337] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:02.337] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 167s after achieving nothing
+[17:34:02.337] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 239s after achieving nothing
+[17:34:02.337] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:34:04.599] INFO  [wave10_RevArchetype_33_] [chat ascii] System: World save has been initiated.
+[17:34:04.599] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:10.671] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:16.716] INFO  [wave10_RevArchetype_33_] [survival] hp 5/32 (15%) -> rest
+[17:34:17.408] INFO  [life] goal_completed=EXPLORE progress=0
+[17:34:17.411] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:34:17.470] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:17.470] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:34:17.470] INFO  [life]   score=15.0
+[17:34:17.471] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:17.471] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[17:34:17.471] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 210s after achieving nothing
+[17:34:17.471] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 154s after achieving nothing
+[17:34:17.471] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 159s after achieving nothing
+[17:34:17.471] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:34:17.471] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:17.472] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 152s after achieving nothing
+[17:34:17.472] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 224s after achieving nothing
+[17:34:22.470] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:34:22.780] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:28.838] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:32.536] INFO  [life] goal_completed=EXPLORE progress=0
+[17:34:32.539] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:34:32.596] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:32.596] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:34:32.596] INFO  [life]   score=15.0
+[17:34:32.597] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:32.597] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[17:34:32.597] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 195s after achieving nothing
+[17:34:32.597] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 139s after achieving nothing
+[17:34:32.597] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 144s after achieving nothing
+[17:34:32.597] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:34:32.597] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:32.598] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 137s after achieving nothing
+[17:34:32.598] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 209s after achieving nothing
+[17:34:34.870] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:35.904] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: I'm listenin'.
+[17:34:37.545] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:34:40.959] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:47.042] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:52.652] INFO  [life] goal_completed=EXPLORE progress=0
+[17:34:52.655] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:34:52.714] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:52.714] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:34:52.715] INFO  [life]   score=15.0
+[17:34:52.715] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:52.715] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[17:34:52.715] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 175s after achieving nothing
+[17:34:52.715] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 119s after achieving nothing
+[17:34:52.715] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 124s after achieving nothing
+[17:34:52.716] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:34:52.716] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:52.716] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 117s after achieving nothing
+[17:34:52.716] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 189s after achieving nothing
+[17:34:53.082] INFO  [wave10_RevArchetype_33_] [survival] hp 6/32 (18%) -> rest
+[17:34:57.660] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:34:59.124] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:05.193] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:07.717] INFO  [life] goal_completed=EXPLORE progress=0
+[17:35:07.722] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:35:07.780] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:35:07.782] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:35:07.782] INFO  [life]   score=15.0
+[17:35:07.782] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:35:07.782] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[17:35:07.783] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 160s after achieving nothing
+[17:35:07.783] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 104s after achieving nothing
+[17:35:07.783] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 109s after achieving nothing
+[17:35:07.783] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:35:07.783] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:07.783] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 102s after achieving nothing
+[17:35:07.784] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 174s after achieving nothing
+[17:35:09.041] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: Nice speaking to you Varek
+[17:35:11.225] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:12.766] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:35:15.587] INFO  [wave10_RevArchetype_33_] [chat uni  ] : Rhett train Tactics
+[17:35:15.587] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: Hello!
+[17:35:15.588] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:17.281] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:19.335] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: Let me show you something of how this is done
+[17:35:19.335] INFO  [wave10_RevArchetype_33_] [chat ascii] Rhett: That is all I can teach.
+[17:35:22.849] INFO  [life] goal_completed=EXPLORE progress=0
+[17:35:22.850] INFO  [life] goal_spinning=EXPLORE reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[17:35:22.852] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:35:22.910] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[17:35:22.911] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:35:22.911] INFO  [life]   score=10.0
+[17:35:22.911] INFO  [life]   reason: fallback: nothing else scored
+[17:35:22.911] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[17:35:22.911] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 145s after achieving nothing
+[17:35:22.912] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 89s after achieving nothing
+[17:35:22.912] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 94s after achieving nothing
+[17:35:22.912] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:35:22.912] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:22.912] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 87s after achieving nothing
+[17:35:22.912] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 159s after achieving nothing
+[17:35:22.912] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 59s after achieving nothing
+[17:35:23.282] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:27.889] INFO  [life] plan=rest reason="hurt, and standing still is actually mending it"
+[17:35:29.352] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:33.321] INFO  [wave10_RevArchetype_33_] [chat ascii] Thora: I'm listenin'.
+[17:35:35.417] INFO  [wave10_RevArchetype_33_] [survival] hp 7/32 (21%) -> rest
+[17:35:37.972] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[17:35:37.974] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_33.varek/state.json
+[17:35:38.033] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[17:35:38.034] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedMakeBandages(bandages 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 43 BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.40) NeedGold(gold 0.30) NeedSkillTraining(Tactics BLOCKED 0.30) NeedEquipment(clothes 0.28) NeedTraining(Swordsmanship BLOCKED 0.28) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:35:38.034] INFO  [life]   score=10.0
+[17:35:38.034] INFO  [life]   reason: fallback: nothing else scored
+[17:35:38.034] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[17:35:38.034] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 130s after achieving nothing
+[17:35:38.034] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[17:35:38.034] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[17:35:38.035] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 43 0.0 -> 30.0)
+[17:35:38.035] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Tactics 0.3 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:38.035] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: on cooldown for another 72s after achieving nothing
+[17:35:38.035] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 144s after achieving nothing
+[17:35:38.035] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 44s after achieving nothing
+[17:35:39.331] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevArchetype_33_] [chat ascii] System: Xerxes has departed from Ocllo.

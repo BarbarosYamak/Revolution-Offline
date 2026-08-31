@@ -9,6 +9,24 @@ down in LIFE_GATES.md.  Exit 0 only when every rule PASSes.
 import argparse, json, re, sys
 
 # --- family facts, from src/life/Professions.cpp (see LIFE_GATES.md section 7)
+#
+# gathers: which FARM-2 faucet clause applies.  Vocabulary, and the ONE log
+# line each clause matches (all format strings verified in src/life/Runner.cpp,
+# never invented here):
+#
+#   "ore"   Runner.cpp:10778  "mine: ORE at %d,%d"
+#   "logs"  Runner.cpp:5334   "first logs gathered at %d,%d ..."
+#   "fish"  Runner.cpp:9395   "fish: caught one at %d,%d (%s)"
+#   "wool"  Runner.cpp:11459,11480,11499,11520 -- the shear/spin/weave/cut
+#           chain.  NOTE it is logged under the "bandages:" prefix because the
+#           cloth chain is shared with bandage manufacture; that is the real
+#           prefix, not a typo.
+#   "tame"  Runner.cpp:11189  "tame: trying '%s' (needs Taming %.1f, ...)"
+#   "hunt"  Runner.cpp:2913   "hunt: killed '%s' -- finished at ..."
+#   ""      no dedicated farm loop -- income is the faucet instead.
+#
+# The 17 ids below are exactly the 17 Profession p.id values in
+# Professions.cpp and the 17 rows of docs/BOT_ARCHETYPE_COVERAGE.md.
 FAMILIES = {
     #                     gathers  farm goal      produces looked for in the bank
     "miner_smith":        ("ore",  "MINE",        ["i_ingot_iron", "i_dagger", "i_spear_short", "i_cutlass"]),
@@ -19,6 +37,36 @@ FAMILIES = {
     "fencer":             ("",     "CRAFT",       []),
     "scribe":             ("",     "CRAFT",       ["i_scroll_poison", "i_scroll_recall", "i_scroll_gate_travel", "i_scroll_resurrection"]),
     "alchemist":          ("",     "CRAFT",       ["i_potion_heal", "i_potion_healgreat", "i_potion_cure", "i_potion_refresh", "i_potion_poison", "i_potion_poisonless", "i_potion_poisongreat", "i_potion_poisondeadly"]),
+    # --- the nine added for the full 17-row fleet -------------------------
+    # Professions.cpp:1047 -- p.gathers="ore", p.income={Craft}.  Same MINE
+    # loop and the same TRAIN-4 stock rule as the other two smiths.
+    "mage_blacksmith":    ("ore",  "MINE",        ["i_ingot_iron", "i_dagger", "i_spear_short"]),
+    # Professions.cpp:1296 -- p.gathers="wool", p.income={Craft}.
+    "tailor":             ("wool", "MAKE_BANDAGES", ["i_cloth_bolt", "i_sash", "i_robe", "i_leather_tunic"]),
+    # Professions.cpp:1369 -- p.gathers="" , p.income={Craft}: buys its inputs,
+    # so income is its faucet exactly like the scribe and alchemist.
+    "merchant_tinker":    ("",     "CRAFT",       ["i_gears", "i_lockpick", "i_tinker_tools", "i_pickaxe", "i_scissors", "i_sewing_kit", "i_pen_and_ink", "i_barrel_tap", "i_barrel_hoops", "i_keg_potion"]),
+    # Professions.cpp:833 -- p.gathers="" deliberately (logs are BOUGHT from a
+    # lumberjack, comment at Professions.cpp:830), p.income={Craft,Hunt}.
+    "archer":             ("",     "CRAFT",       ["i_arrow_shaft", "i_arrow", "i_bow"]),
+    # Professions.cpp:679 -- p.income={Hunt}; the TAME_ANIMAL loop is its own
+    # faucet (Runner.cpp:11120 DoTameAnimal).
+    "tamer":              ("tame", "TAME_ANIMAL", []),
+    # Pure Income::Hunt lives.  Their farm loop is the hunt trip, which the
+    # planner picks as TRAIN_COMBAT ("hunt: heading to %s to train",
+    # Runner.cpp).  Nothing they make is banked, so `produces` stays empty and
+    # STOCK-1 falls back to bank growth alone.
+    "macer":              ("hunt", "TRAIN_COMBAT", []),   # Professions.cpp:776
+    "warlock":            ("hunt", "TRAIN_COMBAT", []),   # Professions.cpp:896
+    "pk":                 ("hunt", "TRAIN_COMBAT", []),   # Professions.cpp:947
+    # TODO(treasure_hunter): GENERIC/LIVENESS ONLY.  There is no treasure loop
+    # in the client -- Goals.cpp has no map/dig/chest goal, and no LogLine in
+    # src/ mentions cartography, a shovel, digging or a treasure chest.  Its
+    # declared income is {Hunt} (Professions.cpp:1014), so it is graded on the
+    # hunt faucet plus the generic TRAIN/STOCK/LIVE rules.  When the
+    # Cartography/dig loop lands, give it its own gathers token and evidence
+    # line here rather than widening the hunt clause.
+    "treasure_hunter":    ("hunt", "TRAIN_COMBAT", []),
 }
 SMITH_FAMILIES = ("miner_smith", "full_crafter", "mage_blacksmith")
 TRAIN_GOALS = ("TRAIN_AT_NPC", "TRAIN_COMBAT", "PRACTICE_SKILL")
@@ -99,6 +147,31 @@ def main():
     elif gathers == "fish":
         hits = find(lines, r"fish: caught one at")
         r.add("FARM-2", bool(hits), "fish: caught one x%d" % len(hits), hits)
+    elif gathers == "wool":
+        # The cloth chain, Runner.cpp:11459/11480/11499/11520.  A tailor that
+        # bought its cloth instead of shearing for it is still working its
+        # faucet, so a finished CRAFT counts too -- p.income is {Craft}.
+        chain = find(lines, r"bandages: (shearing a sheep for wool"
+                            r"|spinning wool into yarn at a wheel"
+                            r"|weaving yarn into cloth at a loom"
+                            r"|cutting a bolt of cloth into cloth)")
+        made = find(lines, r"goal_completed=CRAFT progress=[1-9]")
+        r.add("FARM-2", bool(chain or made),
+              "wool chain x%d, CRAFT completions x%d" % (len(chain), len(made)),
+              chain or made)
+    elif gathers == "tame":
+        # Runner.cpp:11189 is the attempt; the completion is the success.
+        # "tame: nothing tamable here" (11159) is a refusal and does NOT count.
+        hits = (find(lines, r"tame: trying '")
+                + find(lines, r"goal_completed=TAME_ANIMAL progress=[1-9]"))
+        r.add("FARM-2", bool(hits), "taming attempts/completions %d" % len(hits), hits)
+    elif gathers == "hunt":
+        # Runner.cpp:2913.  A monster corpse is the only faucet an
+        # Income::Hunt life has, so a kill or a risen purse is the evidence.
+        hits = find(lines, r"hunt: killed '")
+        ok = gold_b > gold_a or bool(hits)
+        r.add("FARM-2", ok, "gold %d->%d, kills %d" % (gold_a, gold_b, len(hits)),
+              hits or summ)
     else:   # no gathers -- the income clause
         hits = find(lines, r"goal_completed=(CRAFT|EARN_GOLD|SMELT) progress=1")
         ok = gold_b > gold_a or bool(hits)
@@ -175,6 +248,11 @@ def main():
         detail = "bank %d->%d" % (b0, b1)
     r.add("STOCK-1", grew, detail, ())
 
+    # KNOWN INTERACTION (not yet observed live, so not changed here): the
+    # tailor/bandage cloth chain also logs under the "[life] bandages:" prefix
+    # (Runner.cpp:11459-11520), so a tailor that actually shears, spins and
+    # weaves has its manufacturing lines counted as consumable churn.  No wave
+    # has ever emitted those lines, so the cap has never been reached by them.
     churn = find(lines, r"\[life\] (potions|bandages):")
     cap = int(5 * (dur / 60.0)) if dur else 0
     r.add("STOCK-2", len(churn) <= cap, "consumable lines %d (cap 5/min = %d)" % (len(churn), cap),

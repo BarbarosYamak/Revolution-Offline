@@ -1,0 +1,1359 @@
+[17:29:34.516] LOG   [wave10_RevGen3_02_Khara] event session_start: text log opened
+[17:29:34.517] LOG   [wave10_RevGen3_02_Khara] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.518] INFO  [wave10_RevGen3_02_Khara] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.520] LOG   [wave10_RevGen3_02_Khara] event net_connected: connect 127.0.0.1:2593
+[17:29:34.521] INFO  [wave10_RevGen3_02_Khara] [net] connected.
+[17:29:34.522] INFO  [wave10_RevGen3_02_Khara] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.523] LOG   [wave10_RevGen3_02_Khara] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.525] INFO  [wave10_RevGen3_02_Khara] [life] autonomous player active for 'Kharain' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.526] INFO  [wave10_RevGen3_02_Khara] [0xA8] 1 server(s):
+[17:29:34.526] INFO  [wave10_RevGen3_02_Khara]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[17:29:34.537] INFO  [wave10_RevGen3_02_Khara] [0x8C] game server = 127.0.0.1:2593  seed=0xF32123C8
+[17:29:34.537] LOG   [wave10_RevGen3_02_Khara] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF32123C8
+[17:29:34.537] INFO  [wave10_RevGen3_02_Khara] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.537] LOG   [wave10_RevGen3_02_Khara] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara] [0xB9] server features = 0x0005
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara]   [0] Kharain
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara]   [1] <empty>
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara]   [2] <empty>
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara]   [3] <empty>
+[17:29:34.538] INFO  [wave10_RevGen3_02_Khara]   [4] <empty>
+[17:29:34.539] INFO  [wave10_RevGen3_02_Khara] [ui] playing slot 0 ('Kharain')
+[17:29:34.552] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Draver has arrived in Minoc Mine 1.
+[17:29:34.552] INFO  [wave10_RevGen3_02_Khara] [0x1B] serial=0x00016AE8 body=0x0190 pos=(1430,1688,0)
+[17:29:34.553] LOG   [wave10_RevGen3_02_Khara] event login_confirm: serial=0x00016AE8 body=0x0190 pos=(1430,1688,0)
+[17:29:34.553] INFO  [wave10_RevGen3_02_Khara] [0x20] player @(1430,1688,0) facing=6
+[17:29:34.553] INFO  [wave10_RevGen3_02_Khara] [0x55] login complete — entering world
+[17:29:34.553] LOG   [wave10_RevGen3_02_Khara] event in_world: 0x55 received
+[17:29:34.553] INFO  [wave10_RevGen3_02_Khara] [backpack] opening 0x40016AE5
+[17:29:34.553] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.554] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: There are 2 other players here.
+[17:29:34.554] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.554] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: You are under the protection of the city guards
+[17:29:34.557] INFO  [wave10_RevGen3_02_Khara] [action] requesting the skill list
+[17:29:34.566] INFO  [wave10_RevGen3_02_Khara] [0x24] open container 0x40016AE5 gump=60
+[17:29:34.567] INFO  [wave10_RevGen3_02_Khara] [0x3C] container contents: 10 item(s)
+[17:29:34.567] LOG   [wave10_RevGen3_02_Khara] event backpack_contents: serial=0x40016AE5 items=10
+[17:29:34.721] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Elvar has arrived in Britain.
+[17:29:34.737] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Zarthal has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Vorar has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Halain has arrived in Britain Territory.
+[17:29:34.876] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.005] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.200] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.305] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.177] INFO  [wave10_RevGen3_02_Khara] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.179] INFO  [wave10_RevGen3_02_Khara] [survival] on
+[17:29:37.179] LOG   [wave10_RevGen3_02_Khara] event survival_mode: on
+[17:29:37.185] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:29:37.244] INFO  [wave10_RevGen3_02_Khara] [action] say: WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_02_Khara] [chat uni  ] Kharain: WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: What?
+[17:29:37.933] INFO  [wave10_RevGen3_02_Khara] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Huh?
+[17:29:39.348] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:29:39.348] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:29:39.348] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:29:39.348] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:29:39.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:39.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:39.349] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:29:39.349] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:39.409] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:29:39.410] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:29:39.410] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:29:39.410] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:29:41.066] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1584624.0us)
+[17:29:41.068] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 11 mobile(s))
+[17:29:41.128] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:29:41.128] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:29:42.245] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:29:42.368] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:29:42.369] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:29:42.369] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:42.369] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:42.369] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:29:42.369] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:43.903] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:29:43.903] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:29:43.903] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:29:43.903] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:29:45.627] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1722597.6us)
+[17:29:45.627] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 11 mobile(s))
+[17:29:45.690] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:29:45.690] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:29:46.925] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:29:46.926] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:29:46.926] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:46.926] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:46.927] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:29:46.927] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:47.291] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:29:49.947] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:29:49.948] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:29:49.948] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:29:49.948] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:29:51.617] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1657445.6us)
+[17:29:51.617] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 11 mobile(s))
+[17:29:51.678] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:29:51.678] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:29:52.294] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:29:52.909] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:29:52.910] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:29:52.910] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:52.910] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:52.910] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:29:52.910] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:57.322] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:29:57.461] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:29:57.461] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:29:57.462] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:29:57.462] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:29:59.077] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1581667.1us)
+[17:29:59.077] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 12 mobile(s))
+[17:29:59.137] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:29:59.138] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:29:59.138] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:29:59.138] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:29:59.214] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:29:59.214] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:29:59.214] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:29:59.214] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:29:59.215] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:59.215] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:59.215] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:29:59.215] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:29:59.277] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:29:59.277] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:29:59.277] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:29:59.277] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:00.817] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1507878.0us)
+[17:30:00.818] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 12 mobile(s))
+[17:30:00.878] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:00.879] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:02.106] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:02.106] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:02.106] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:02.106] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:02.106] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:02.107] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:02.384] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:03.611] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:03.611] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:03.611] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:03.612] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:04.916] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1289560.3us)
+[17:30:04.916] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 13 mobile(s))
+[17:30:04.978] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:04.979] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:06.198] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:06.198] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:06.199] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:06.199] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:06.199] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:06.199] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:07.420] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:09.218] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:09.218] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:09.219] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:09.219] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:09.818] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Hmm?
+[17:30:10.400] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1122352.0us)
+[17:30:10.401] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 13 mobile(s))
+[17:30:10.462] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:10.462] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:11.677] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:11.678] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:11.678] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:11.678] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:11.678] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:11.678] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:12.450] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:16.191] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:16.191] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:16.191] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:16.191] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:17.491] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:17.552] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1300976.1us)
+[17:30:17.552] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=5 terrain=0 mobile=3 dynamic=0 [17:30:17.568] INFO  [wave10_RevGen3_02_Khara] [action] go[17:30:17.568] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,[17:30:17.568] LOG   [wave10_RevGen3_02_Khara] event goto[17:30:17.568] LOG   [wave10_RevGen3_02_Khara] event goto_[17:30:17.568] INFO  [wave10_RevGen3_02_Khara] [travel] [17:30:17.568] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0[17:30:17.568] LOG   [wave10_RevGen3_02_Khara] event tr[17:30:17.568] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 wh[17:30:17.691] INFO  [wave10_RevGen3_02_Khara] [travel[17:30:17.691] INFO  [wave10_RevGen3_02_Khara] [travel] m[17:30:17.692] LOG   [wave10_RevGen3_02_Khara] event [17:30:17.692] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000[17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [trav[17:30:17.692] INFO  [wave10_RevGen3_02_Khara][17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [tra[17:30:17.692] INFO  [wave10_RevGen[17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [tr[17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_ru[17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [t[17:30:17.692] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_re[17:30:17.693] LOG   [wave10_RevGen3_02_Khara] e[17:30:17.693] LOG   [wa[17:30:17.693] INFO  [wave10_RevGen3_02_Khara] [17:30:17.693] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x0[17:30:17.693] INFO  [wave10_RevGen3_02_Khara][17:30:17.693] INFO  [wave10_RevGen3_02_Khara] [17:30:17.693] LOG   [wave10_RevGen3_02_Khara[17:30:17.693] LOG   [wave10_RevGen3_02_Khara] event goto[17:30:17.693] INFO  [wave10_RevGen3_02_Khar[17:30:17.693] INFO  [wave10_RevGen3_02_Khara] [bot] ru[17:30:17.694] INFO  [wave10_RevGen3_02_Kha[17:30:17.694] INFO  [wave10_RevGen3_02_Khara] [bot] p[17:30:18.804] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:18.805] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:20.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:20.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:20.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:20.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:20.038] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:20.038] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:21.559] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:21.559] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:21.559] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:21.560] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:22.543] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:22.853] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:22.853] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:24.085] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:24.086] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:24.086] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:24.086] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:24.086] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:24.086] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:27.128] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:27.128] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:27.128] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:27.128] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:27.557] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:28.464] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:28.465] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:29.684] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:29.684] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:29.685] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:29.685] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:29.685] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:29.685] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:32.597] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:34.219] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:34.219] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:34.219] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:34.219] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:35.422] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:35.422] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:35.422] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:30:35.422] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:35.544] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:30:35.544] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:30:35.545] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:35.545] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:35.545] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:35.545] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:35.545] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:35.545] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:35.606] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:35.606] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:35.606] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:35.606] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:36.783] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:36.783] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:37.216] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:30:37.639] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:38.011] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:38.011] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:38.011] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:38.011] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:38.011] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:38.011] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:39.547] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:39.547] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:39.547] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:39.547] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:40.899] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:40.900] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:42.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:42.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:42.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:42.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:42.132] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:42.132] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:42.684] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:45.146] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:45.146] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:45.146] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:45.146] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:46.249] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:46.249] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:47.483] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:47.483] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:47.483] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:47.484] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:47.484] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:47.484] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:47.727] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:52.036] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:52.037] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:52.037] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:52.037] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:52.772] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:53.449] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:53.449] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:53.449] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:30:53.449] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:53.572] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:30:53.572] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:30:53.572] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:53.572] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:53.572] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:53.573] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:53.573] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:53.573] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:53.634] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:53.634] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:53.634] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:53.634] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:54.868] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:54.868] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:30:56.100] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:30:56.101] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:30:56.101] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:56.101] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:56.101] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:30:56.101] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:30:57.637] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:30:57.637] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:30:57.637] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:30:57.638] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:30:57.823] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:30:59.008] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:30:59.008] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:00.232] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:00.233] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:00.233] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:00.233] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:00.233] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:00.233] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:02.870] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:03.253] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:03.253] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:03.253] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:03.253] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:04.809] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:04.809] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:06.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:06.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:06.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:06.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:06.038] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:06.038] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:07.886] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:10.578] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:10.579] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:10.579] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:10.579] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:12.407] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:12.408] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:12.408] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:31:12.408] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:12.531] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:31:12.532] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:31:12.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:12.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:12.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:12.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:12.532] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:12.532] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:12.592] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:12.592] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:12.592] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:12.592] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:12.900] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:14.078] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:14.078] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:15.338] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:15.338] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:15.339] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:15.339] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:15.339] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:15.339] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:16.898] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:16.898] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:16.898] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:16.899] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:17.945] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:19.111] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:19.195] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:20.346] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:20.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:20.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:20.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:20.349] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:20.349] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:20.791] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.791] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.000] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:23.384] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:23.385] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:23.385] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:23.385] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:25.432] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:25.432] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:26.691] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:26.691] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:26.691] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:26.692] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:26.692] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:26.692] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:28.010] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:31.206] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:31.206] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:31.206] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:31.206] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:32.931] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:32.931] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:32.932] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:31:32.932] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:33.055] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:31:33.056] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:33.056] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:33.056] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:33.117] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:33.117] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:33.117] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:33.118] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:34.675] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:34.675] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:35.907] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:35.907] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:35.907] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:35.908] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:35.908] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:35.908] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:37.266] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:31:37.447] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:37.448] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:37.448] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:37.448] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:38.060] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:39.112] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:39.112] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:40.348] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:40.348] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:40.348] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:40.349] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:40.349] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:40.349] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:43.118] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:43.350] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:43.351] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:43.351] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:43.351] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:44.955] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:44.956] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:46.188] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:46.189] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:46.189] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:46.189] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:46.189] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:46.189] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:48.154] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:50.728] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:50.729] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:50.729] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:50.729] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:52.346] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:52.347] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:52.347] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:31:52.347] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:52.469] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:31:52.469] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:31:52.470] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:52.470] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:52.470] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:52.470] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:52.470] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:52.470] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:52.531] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:52.531] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:52.531] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:52.531] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:53.207] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:54.008] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:54.009] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:55.255] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:55.255] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:55.255] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:55.256] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:55.256] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:55.256] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:31:56.797] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:31:56.798] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:31:56.798] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:31:56.798] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:31:58.214] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:31:58.307] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:31:58.307] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:31:59.530] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:31:59.530] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:31:59.530] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:59.531] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:59.531] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:31:59.531] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:02.541] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:02.541] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:02.541] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:02.542] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:03.218] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:03.697] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:03.697] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:04.935] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:04.935] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:04.936] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:04.936] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:04.936] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:04.936] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:08.221] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:09.439] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:09.439] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:09.439] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:09.439] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:11.029] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:11.029] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:11.029] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:32:11.029] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:11.106] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:32:11.106] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:32:11.106] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:11.107] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:11.107] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:11.107] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:11.107] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:11.107] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:11.168] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:11.168] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:11.168] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:11.168] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:12.630] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:12.630] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:13.275] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:13.844] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:13.844] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:13.844] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:13.844] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:13.844] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:13.844] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:15.366] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:15.366] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:15.366] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:15.367] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:15.833] INFO  [wave10_RevGen3_02_Khara] [chat uni  ] : bank
+[17:32:15.833] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: What's thou need?
+[17:32:15.833] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:16.883] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:16.883] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:18.130] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:18.130] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:18.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:18.131] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:18.131] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:18.131] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:18.315] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:21.178] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:21.178] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:21.178] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:21.178] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:22.780] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:22.780] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:23.335] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:24.013] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:24.014] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:24.014] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:24.014] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:24.014] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:24.014] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:28.378] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:28.562] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:28.562] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:28.562] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:28.562] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:29.788] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:29.788] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:29.788] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:32:29.788] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:32:29.911] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:29.911] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:29.911] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:29.972] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:29.972] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:29.972] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:29.972] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:31.209] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:31.209] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:32.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:32.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:32.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.443] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:32.443] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:33.422] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:33.977] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:33.978] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:33.978] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:33.978] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:35.043] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:35.044] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:36.280] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:36.280] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:36.280] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:36.280] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:36.280] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:36.280] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:37.274] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:32:38.441] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:39.341] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:39.341] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:39.341] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:39.341] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:40.545] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:40.546] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:41.801] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:41.801] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:41.801] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:41.801] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:41.801] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:41.802] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:43.459] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:46.333] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:46.334] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:46.334] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:46.334] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:48.085] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:48.085] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:48.086] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:32:48.086] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:48.132] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:32:48.133] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:32:48.133] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:48.133] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:48.133] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:48.133] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:48.133] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:48.133] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:48.194] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:48.195] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:48.195] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:48.195] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:48.318] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:48.318] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:48.521] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:49.567] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:49.567] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:49.567] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:49.567] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:49.568] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:49.568] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:51.106] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:51.106] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:51.106] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:51.107] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:52.207] INFO  [wave10_RevGen3_02_Khara] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:52.884] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:52.885] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:53.576] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:54.115] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:54.115] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:54.115] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:54.115] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:54.115] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:54.115] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:32:57.152] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:32:57.152] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:32:57.152] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:32:57.152] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:32:58.597] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:32:58.677] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:32:58.677] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:32:59.927] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:32:59.927] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:32:59.927] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:59.927] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:59.927] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:32:59.927] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:03.612] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:04.442] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:04.442] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:04.442] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:04.442] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:06.034] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:06.034] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:06.034] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:33:06.034] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:06.155] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:33:06.156] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:33:06.156] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:06.156] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:06.156] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:06.156] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:06.156] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:06.156] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:06.217] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:06.217] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:06.217] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:06.217] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:07.453] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:07.453] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:08.654] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:08.654] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:08.654] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:08.655] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:08.655] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:08.655] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:08.655] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:10.180] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:10.180] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:10.180] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:10.180] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:11.922] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:11.922] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:12.849] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.849] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Aye?
+[17:33:12.849] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.171] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:13.171] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:13.172] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:13.172] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:13.172] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:13.172] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:13.677] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:16.222] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:16.222] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:16.222] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:16.222] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:17.600] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:17.600] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:18.681] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:18.835] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:18.836] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:18.836] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:18.836] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:18.836] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:18.836] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:23.372] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:23.373] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:23.373] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:23.373] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:23.737] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:25.134] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:25.134] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:25.134] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:33:25.134] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:25.196] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:33:25.197] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:33:25.197] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:25.197] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:25.197] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:25.197] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:25.197] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:25.197] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:25.211] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:25.211] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:25.212] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:25.212] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:27.093] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:27.093] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:28.322] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:28.322] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:28.322] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:28.323] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:28.323] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:28.323] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:28.738] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:29.849] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:29.849] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:29.849] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:29.849] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:31.631] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:31.631] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:32.875] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:32.875] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:32.875] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:32.875] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:32.875] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:32.875] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:33.798] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:34.400] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Hmm?
+[17:33:35.934] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:35.934] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:35.934] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:35.934] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:37.293] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:33:37.472] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:37.473] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:38.705] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:38.706] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:38.706] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:38.706] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:38.706] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:38.706] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:38.815] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:43.251] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:43.251] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:43.251] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:43.251] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:43.826] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:44.581] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:44.581] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:44.581] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:33:44.581] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:44.645] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:33:44.645] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:33:44.645] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:44.645] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:44.645] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:44.645] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:44.645] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:44.646] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:44.704] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:44.704] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:44.704] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:44.704] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:45.793] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:45.793] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:47.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:47.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:47.037] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:47.038] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:47.038] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:47.038] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:48.598] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:48.598] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:48.598] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:48.598] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:48.845] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:50.418] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:50.418] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:51.665] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:51.665] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:51.665] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:51.665] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:51.666] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:51.666] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:53.863] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: World save in 10 seconds
+[17:33:54.705] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:33:54.706] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:33:54.706] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:33:54.706] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:33:56.051] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:33:56.051] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:33:57.277] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:33:57.278] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:33:57.278] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:57.278] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:57.278] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:33:57.278] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:33:58.895] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:01.792] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:01.792] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:01.792] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:01.793] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:03.641] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:03.642] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:03.642] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:34:03.642] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:03.751] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:34:03.751] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:34:03.751] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:03.751] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:03.751] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:03.751] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:03.751] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:03.752] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:03.812] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:03.812] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:03.812] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:03.812] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:03.935] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: World save has been initiated.
+[17:34:05.283] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:05.283] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:06.531] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:06.531] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:06.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:06.532] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:06.532] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:06.532] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:08.086] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:08.086] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:08.086] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:08.086] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:08.958] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:09.762] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:09.763] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:10.979] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:10.980] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:10.980] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:10.980] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:10.980] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:10.980] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:14.014] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:14.015] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:14.015] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:14.015] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:14.015] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:15.499] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:15.499] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:16.731] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:16.731] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:16.731] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:16.732] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:16.732] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:16.732] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:19.075] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:21.233] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:21.233] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:21.234] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:21.234] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:21.602] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Hmm?
+[17:34:21.602] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.602] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Hyman: Aye?
+[17:34:23.134] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:23.135] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:23.135] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:34:23.135] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:23.194] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:34:23.194] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:34:23.195] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:23.195] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:23.195] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:23.195] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:23.195] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:23.195] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:23.254] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:23.255] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:23.255] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:23.255] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:24.078] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:24.801] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:24.802] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:26.023] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:26.023] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:26.023] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:26.023] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:26.023] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:26.023] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:27.526] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:27.526] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:27.526] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:27.526] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:29.009] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:29.009] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:29.133] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:30.241] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:30.242] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:30.242] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:30.242] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:30.242] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:30.242] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:33.255] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:33.255] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:33.255] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:33.255] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:34.175] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:35.238] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:35.238] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:36.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:36.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:36.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:36.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:36.472] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:36.473] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:37.334] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:34:39.235] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:41.020] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:41.020] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:41.020] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:41.020] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:42.874] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:42.875] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:42.875] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:34:42.875] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:43.000] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:34:43.000] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:34:43.000] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:43.000] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:43.001] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:43.001] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:43.001] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:43.001] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:43.062] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:43.062] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:43.062] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:43.062] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:44.264] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:44.772] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:44.772] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:46.007] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:46.007] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:46.007] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:46.007] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:46.007] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:46.008] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:47.350] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Aye?
+[17:34:47.550] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:47.550] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:47.550] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:47.550] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:49.157] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:49.157] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:49.282] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:50.374] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:50.374] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:50.374] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:50.375] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:50.375] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:50.375] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:53.389] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:34:53.389] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:34:53.389] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:34:53.389] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:34:54.328] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:34:54.870] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:34:54.871] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:34:56.122] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:56.123] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:59.384] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:00.677] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:01.786] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:01.786] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:01.786] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:01.786] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:01.910] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:01.911] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.911] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:01.973] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:03.208] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:03.208] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:04.440] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:04.443] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:04.443] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:04.443] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:05.977] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:05.978] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:05.978] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:05.978] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:08.624] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:08.624] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:09.487] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.859] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:09.859] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:12.873] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:13.983] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:13.984] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:14.538] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:15.234] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:15.234] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:15.235] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:19.565] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:19.762] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:19.763] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:19.763] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:19.763] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:21.016] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:21.016] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:21.016] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:21.016] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:21.048] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:21.048] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:21.049] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:21.049] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:21.049] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:22.233] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:22.233] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:23.469] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:23.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:23.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.473] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.473] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:23.473] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:24.607] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:24.994] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:24.995] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:24.995] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:24.995] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:26.197] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:26.197] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:27.443] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:27.448] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Aye?
+[17:35:29.628] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:30.458] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:30.459] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:30.459] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:30.459] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:31.824] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:31.825] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:33.030] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:33.030] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:33.031] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:34.665] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:37.390] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_02.kharain/state.json
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:37.571] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:38.880] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:38.880] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:38.880] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:38.881] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:38.973] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:38.974] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:38.974] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:39.035] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:39.328] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.360] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhea has departed from Yew.
+4:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:56.123] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:34:56.123] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:34:59.384] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:00.677] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:00.677] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:01.724] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1037790.6us)
+[17:35:01.724] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 5 mobile(s))
+[17:35:01.786] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:01.786] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:01.786] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:01.786] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:01.910] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:01.911] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:01.911] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:01.911] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:01.973] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:01.973] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:03.146] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1155294.9us)
+[17:35:03.146] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 5 mobile(s))
+[17:35:03.208] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:03.208] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:04.440] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:04.442] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:04.443] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:04.443] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:04.443] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:05.977] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:05.978] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:05.978] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:05.978] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:08.563] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 2557088.1us)
+[17:35:08.563] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 5 mobile(s))
+[17:35:08.624] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:08.624] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:09.487] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.858] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.859] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:09.859] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:12.873] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:12.873] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:13.922] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 987054.2us)
+[17:35:13.924] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 5 mobile(s))
+[17:35:13.983] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:13.984] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:14.538] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:15.234] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:15.234] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:15.235] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:15.235] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:19.565] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:19.762] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:19.763] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:19.763] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:19.763] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:20.955] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1187129.2us)
+[17:35:20.955] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 7 mobile(s))
+[17:35:21.016] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:21.016] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:21.016] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:21.016] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:21.048] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:21.048] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:21.048] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:21.049] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:21.049] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:21.049] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:22.201] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1109586.6us)
+[17:35:22.201] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 7 mobile(s))
+[17:35:22.233] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:22.233] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:23.469] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:23.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:23.472] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.473] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.473] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:23.473] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:24.607] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:24.994] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:24.995] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:24.995] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:24.995] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:26.136] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1135659.3us)
+[17:35:26.136] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 7 mobile(s))
+[17:35:26.197] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:26.197] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:27.443] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:27.448] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:27.448] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_02_Khara] [chat ascii] Lyndon: Aye?
+[17:35:29.628] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:30.458] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:30.459] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:30.459] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:30.459] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:31.763] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1267050.1us)
+[17:35:31.763] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 5 mobile(s))
+[17:35:31.824] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:31.825] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:33.030] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:33.030] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:33.031] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:33.031] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:34.665] INFO  [wave10_RevGen3_02_Khara] [survival] hp 56/56 (100%) -> fight
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:37.571] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:37.571] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:38.817] WARN  [wave10_RevGen3_02_Khara] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1237987.6us)
+[17:35:38.821] WARN  [wave10_RevGen3_02_Khara] [bot] start (1430,1688,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 37 item(s), 6 mobile(s))
+[17:35:38.880] INFO  [wave10_RevGen3_02_Khara] [action] goto finished at (1430,1688,0); target (1430,1691); stopped short (off by 3 tile(s))
+[17:35:38.880] LOG   [wave10_RevGen3_02_Khara] event goto_done: at=(1430,1688) target=(1430,1691) arrived=0 off=3
+[17:35:38.880] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE ARRIVED at (1430,1688,0) -- arrived nearby; the destination tile was not free
+[17:35:38.881] LOG   [wave10_RevGen3_02_Khara] event travel_done: label='mobile 0x000194DE' ok=1 at=(1430,1688) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1430,1688)
+[17:35:38.973] LOG   [wave10_RevGen3_02_Khara] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1430,1688)
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode walk             usable   <- chosen
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode moongate         usable
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:38.973] INFO  [wave10_RevGen3_02_Khara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:38.974] LOG   [wave10_RevGen3_02_Khara] event travel_mode: walk
+[17:35:38.974] INFO  [wave10_RevGen3_02_Khara] [travel] plan mobile 0x000194DE: ok legs=1 ~3 tiles transit=0 nodes=0
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [action] goto (1430,1691) from (1430,1688,0)
+[17:35:39.035] LOG   [wave10_RevGen3_02_Khara] event goto_start: target=(1430,1691) from=(1430,1688)
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [bot] running from (1430,1688,0) to (1430,1691,z0)
+[17:35:39.035] INFO  [wave10_RevGen3_02_Khara] [bot] planning path to (1430,1691) in background
+[17:35:39.328] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.360] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_02_Khara] [chat ascii] System: Rhea has departed from Yew.

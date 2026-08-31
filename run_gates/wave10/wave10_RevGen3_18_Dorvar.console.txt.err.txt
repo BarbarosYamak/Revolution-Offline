@@ -1,0 +1,23 @@
+start: Dorvar is a fisher and lives in Skara Brae -> starting city index 7
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:29:57.462] WARN  [wave10_RevGen3_18_Dorva] [bot] no path to (3675,2289) avoiding 0 block(s); stopping (search 860547.2us)
+[17:29:57.463] WARN  [wave10_RevGen3_18_Dorva] [bot] start (3673,2284,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 8 item(s), 2 mobile(s))
+[17:30:51.315] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:30:51.315] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2057ms) superseded
+[17:31:03.979] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:31:03.980] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2051ms) superseded
+[17:31:37.755] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[17:32:20.238] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:32:20.239] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2030ms) superseded
+[17:32:41.020] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:32:41.020] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2052ms) superseded
+[17:33:03.242] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by vendor_sell
+[17:33:03.243] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (3517ms) superseded
+[17:33:11.276] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[17:34:09.762] WARN  [wave10_RevGen3_18_Dorva] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.906] WARN  [wave10_RevGen3_18_Dorva] [0x22] unsolicited ack seq=43
+[17:34:11.643] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=2; server says (3593,2161,48) facing=7
+[17:34:12.352] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=7
+[17:34:12.984] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=1; server says (3593,2161,48) facing=0
+[17:34:13.756] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=0

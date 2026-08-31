@@ -1,0 +1,659 @@
+[17:29:35.242] LOG   [wave10_RevGen3_21_Seren] event session_start: text log opened
+[17:29:35.243] LOG   [wave10_RevGen3_21_Seren] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.244] INFO  [wave10_RevGen3_21_Seren] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.246] LOG   [wave10_RevGen3_21_Seren] event net_connected: connect 127.0.0.1:2593
+[17:29:35.248] INFO  [wave10_RevGen3_21_Seren] [net] connected.
+[17:29:35.249] INFO  [wave10_RevGen3_21_Seren] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.250] LOG   [wave10_RevGen3_21_Seren] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.253] INFO  [wave10_RevGen3_21_Seren] [life] autonomous player active for 'Serena' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.253] INFO  [wave10_RevGen3_21_Seren] [0xA8] 1 server(s):
+[17:29:35.254] INFO  [wave10_RevGen3_21_Seren]   [0] MyShard                   1.0.0.127  full=8%  tz=0
+[17:29:35.262] INFO  [wave10_RevGen3_21_Seren] [0x8C] game server = 127.0.0.1:2593  seed=0x581E10F0
+[17:29:35.263] LOG   [wave10_RevGen3_21_Seren] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x581E10F0
+[17:29:35.264] INFO  [wave10_RevGen3_21_Seren] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.264] LOG   [wave10_RevGen3_21_Seren] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.265] INFO  [wave10_RevGen3_21_Seren] [0xB9] server features = 0x0005
+[17:29:35.266] INFO  [wave10_RevGen3_21_Seren] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.267] INFO  [wave10_RevGen3_21_Seren]   [0] Serena
+[17:29:35.268] INFO  [wave10_RevGen3_21_Seren]   [1] <empty>
+[17:29:35.269] INFO  [wave10_RevGen3_21_Seren]   [2] <empty>
+[17:29:35.269] INFO  [wave10_RevGen3_21_Seren]   [3] <empty>
+[17:29:35.269] INFO  [wave10_RevGen3_21_Seren]   [4] <empty>
+[17:29:35.269] INFO  [wave10_RevGen3_21_Seren] [ui] playing slot 0 ('Serena')
+[17:29:35.279] INFO  [wave10_RevGen3_21_Seren] [0x1B] serial=0x000193F7 body=0x0190 pos=(1434,1755,4)
+[17:29:35.279] LOG   [wave10_RevGen3_21_Seren] event login_confirm: serial=0x000193F7 body=0x0190 pos=(1434,1755,4)
+[17:29:35.279] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1434,1755,4) facing=6
+[17:29:35.279] INFO  [wave10_RevGen3_21_Seren] [0x55] login complete — entering world
+[17:29:35.280] LOG   [wave10_RevGen3_21_Seren] event in_world: 0x55 received
+[17:29:35.280] INFO  [wave10_RevGen3_21_Seren] [backpack] opening 0x400193EF
+[17:29:35.280] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.280] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: There are 22 other players here.
+[17:29:35.280] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.280] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.284] INFO  [wave10_RevGen3_21_Seren] [action] requesting the skill list
+[17:29:35.284] INFO  [wave10_RevGen3_21_Seren] [0x24] open container 0x400193EF gump=60
+[17:29:35.285] INFO  [wave10_RevGen3_21_Seren] [0x3C] container contents: 9 item(s)
+[17:29:35.286] LOG   [wave10_RevGen3_21_Seren] event backpack_contents: serial=0x400193EF items=9
+[17:29:35.306] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.882] INFO  [wave10_RevGen3_21_Seren] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.884] INFO  [wave10_RevGen3_21_Seren] [survival] on
+[17:29:37.884] LOG   [wave10_RevGen3_21_Seren] event survival_mode: on
+[17:29:37.891] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:29:37.948] INFO  [wave10_RevGen3_21_Seren] [travel] Britain banker -> (1425,1690) r=5 from (1434,1755)
+[17:29:37.948] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1434,1755)
+[17:29:37.949] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable   <- chosen
+[17:29:37.949] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable
+[17:29:37.949] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.949] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.949] LOG   [wave10_RevGen3_21_Seren] event travel_mode: moongate
+[17:29:37.950] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain banker: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:29:38.008] INFO  [wave10_RevGen3_21_Seren] [action] goto (1416,1720) from (1434,1755,4)
+[17:29:38.009] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1416,1720) from=(1434,1755)
+[17:29:38.009] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1434,1755,4) to (1416,1720)
+[17:29:38.009] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1416,1720) in background
+[17:29:38.070] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1416,1720): 36 steps in 2052.2us
+[17:29:42.937] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:29:47.951] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:29:50.135] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1416,1720,20)
+[17:29:50.135] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:29:50.135] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:29:50.136] INFO  [wave10_RevGen3_21_Seren] [action] goto (1425,1690) from (1416,1720,20)
+[17:29:50.136] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1425,1690) from=(1416,1720)
+[17:29:50.136] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1416,1720,20) to (1425,1690,z0)
+[17:29:50.136] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1425,1690) in background
+[17:29:50.196] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1425,1690): 45 steps in 18502.2us
+[17:29:53.001] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:29:58.001] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:29:58.185] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[17:29:58.200] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:30:02.205] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: You shove Odessa out of the way.
+[17:30:02.276] INFO  [wave10_RevGen3_21_Seren] [travel] Britain banker ARRIVED at (1430,1691,0)
+[17:30:02.276] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=2 plans=1 why=''
+[17:30:03.059] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:08.101] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:09.819] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Hyman: Hmm?
+[17:30:13.161] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:18.171] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:23.191] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:28.219] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:33.230] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:38.256] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:43.299] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:48.340] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:53.388] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:30:58.393] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:03.440] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:08.500] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:13.506] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:18.562] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.585] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:28.639] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:33.686] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:38.725] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:43.782] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:48.791] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:53.823] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:31:58.857] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:03.864] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:08.916] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:13.967] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:15.834] INFO  [wave10_RevGen3_21_Seren] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.995] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:24.013] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:29.051] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:34.101] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:39.140] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:44.196] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:49.199] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:52.207] INFO  [wave10_RevGen3_21_Seren] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:54.236] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:32:56.365] INFO  [wave10_RevGen3_21_Seren] [travel] Britain jeweler -> (1451,1679) r=5 from (1430,1691)
+[17:32:56.365] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain jeweler' target=(1451,1679) radius=5 from=(1430,1691)
+[17:32:56.365] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:32:56.365] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:32:56.366] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:56.366] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:56.366] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:32:56.366] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain jeweler: ok legs=1 ~21 tiles transit=0 nodes=0
+[17:32:56.425] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1430,1691,0); target (1425,1690); stopped short (off by 6 tile(s))
+[17:32:56.425] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1430,1691) target=(1425,1690) arrived=0 off=6
+[17:32:56.426] INFO  [wave10_RevGen3_21_Seren] [action] goto (1451,1679) from (1430,1691,0)
+[17:32:56.426] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1451,1679) from=(1430,1691)
+[17:32:56.426] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1430,1691,0) to (1451,1679,z0)
+[17:32:56.426] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1451,1679) in background
+[17:32:56.486] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1451,1679): 56 steps in 19550.0us
+[17:32:59.109] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=12; server says (1438,1692,0) facing=3
+[17:32:59.110] INFO  [wave10_RevGen3_21_Seren] [bot] step (1438,1692,0)->(1439,1693,0) rejected; OpenDoor + retry
+[17:32:59.124] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:32:59.125] WARN  [wave10_RevGen3_21_Seren] [bot] 0x20 resync; aborting path
+[17:32:59.126] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1438,1692,0) facing=2
+[17:32:59.126] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1438,1692,0); target (1451,1679); stopped short (off by 26 tile(s))
+[17:32:59.126] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1438,1692) target=(1451,1679) arrived=0 off=26
+[17:32:59.246] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:00.359] INFO  [wave10_RevGen3_21_Seren] [action] goto (1451,1679) from (1438,1692,0)
+[17:33:00.360] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1451,1679) from=(1438,1692)
+[17:33:00.360] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1438,1692,0) to (1451,1679,z0)
+[17:33:00.360] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1451,1679) in background
+[17:33:00.420] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1451,1679): 55 steps in 34150.4us
+[17:33:00.909] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=2; server says (1439,1693,0) facing=3
+[17:33:00.910] INFO  [wave10_RevGen3_21_Seren] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[17:33:00.925] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:33:00.925] WARN  [wave10_RevGen3_21_Seren] [bot] 0x20 resync; aborting path
+[17:33:00.925] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1439,1693,0) facing=2
+[17:33:00.926] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1439,1693,0); target (1451,1679); stopped short (off by 26 tile(s))
+[17:33:00.926] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1439,1693) target=(1451,1679) arrived=0 off=26
+[17:33:02.174] INFO  [wave10_RevGen3_21_Seren] [action] goto (1451,1679) from (1439,1693,0)
+[17:33:02.174] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1451,1679) from=(1439,1693)
+[17:33:02.174] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1439,1693,0) to (1451,1679,z0)
+[17:33:02.174] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1451,1679) in background
+[17:33:02.236] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1451,1679): 54 steps in 26922.9us
+[17:33:04.303] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:07.560] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=24; server says (1458,1693,0) facing=1
+[17:33:07.560] INFO  [wave10_RevGen3_21_Seren] [bot] step (1458,1693,0)->(1459,1692,0) rejected; OpenDoor + retry
+[17:33:08.297] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=0; server says (1458,1693,0) facing=1
+[17:33:08.298] INFO  [wave10_RevGen3_21_Seren] [bot] step (1458,1693,0)->(1459,1692,0) rejected; avoiding edge + rerouting
+[17:33:08.298] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1451,1679) in background
+[17:33:08.358] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1451,1679): 34 steps in 11718.1us
+[17:33:09.316] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:11.891] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1458,1682,z0); OpenDoor before step
+[17:33:11.905] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:33:13.112] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1457,1681,z0); OpenDoor before step
+[17:33:13.126] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:33:14.204] INFO  [wave10_RevGen3_21_Seren] [travel] Britain jeweler ARRIVED at (1456,1681,0)
+[17:33:14.204] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain jeweler' ok=1 at=(1456,1681) legs=1 plans=1 why=''
+[17:33:14.235] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:33:14.235] INFO  [wave10_RevGen3_21_Seren] [action] requested 8 paperdoll(s) for trade titles
+[17:33:14.249] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (8):
+[17:33:14.250] INFO  [wave10_RevGen3_21_Seren]   Joelliane 0x00001136
+[17:33:14.250] INFO  [wave10_RevGen3_21_Seren]   Felicite 0x000012B8
+[17:33:14.250] INFO  [wave10_RevGen3_21_Seren]   Kyler 0x00001017
+[17:33:14.250] INFO  [wave10_RevGen3_21_Seren]   Kaysa 0x000012C5
+[17:33:14.250] INFO  [wave10_RevGen3_21_Seren]   Titus 0x000180D0
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren]   Aurelius 0x00019331
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren]   Taite 0x0000105A
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren]   Jebidiah 0x000011F4
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=5
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00001136: "Joelliane, the jeweler"
+[17:33:14.251] INFO  [wave10_RevGen3_21_Seren] [world] Joelliane, the jeweler is a jeweler at (1454,1683)
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=3
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000012B8: "Felicite, the weaver"
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [world] Felicite, the weaver is a tailor at (1467,1691)
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=2
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00001017: "Kyler, the tailor guildmaster"
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [world] Kyler, the tailor guildmaster is a tailor at (1468,1684)
+[17:33:14.252] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000012C5: "Kaysa, the tailor"
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [world] Kaysa, the tailor is a tailor at (1470,1685)
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=1
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000105A: "Taite, the provisioner"
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [world] Taite, the provisioner is a provisioner at (1465,1665)
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000011F4: "Jebidiah, the cobbler"
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [world] Jebidiah, the cobbler is a tailor at (1470,1665)
+[17:33:14.253] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=3
+[17:33:14.254] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:33:14.254] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1456,1681,0) facing=5
+[17:33:14.254] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000180D0: "Titus, Apprentice Archer"
+[17:33:14.371] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:17.259] INFO  [wave10_RevGen3_21_Seren] [travel] Britain provisioner -> (1469,1668) r=5 from (1456,1681)
+[17:33:17.259] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain provisioner' target=(1469,1668) radius=5 from=(1456,1681)
+[17:33:17.260] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:33:17.260] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:33:17.260] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:17.260] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:17.260] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:33:17.261] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain provisioner: ok legs=1 ~13 tiles transit=0 nodes=0
+[17:33:17.274] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1456,1681,0); target (1451,1679); stopped short (off by 7 tile(s))
+[17:33:17.274] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1456,1681) target=(1451,1679) arrived=0 off=7
+[17:33:17.274] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:17.274] INFO  [wave10_RevGen3_21_Seren] [action] goto (1469,1668) from (1456,1681,0)
+[17:33:17.274] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1469,1668) from=(1456,1681)
+[17:33:17.274] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1456,1681,0) to (1469,1668,z0)
+[17:33:17.275] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1469,1668) in background
+[17:33:17.335] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1469,1668): 31 steps in 6212.0us
+[17:33:19.423] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:23.065] INFO  [wave10_RevGen3_21_Seren] [travel] Britain provisioner ARRIVED at (1473,1672,0)
+[17:33:23.066] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain provisioner' ok=1 at=(1473,1672) legs=1 plans=1 why=''
+[17:33:23.127] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:33:23.127] INFO  [wave10_RevGen3_21_Seren] [action] requested 1 paperdoll(s) for trade titles
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (7):
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Taite 0x0000105A
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Jebidiah 0x000011F4
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Kyler 0x00001017
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Kaysa 0x000012C5
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Thane 0x0001976D
+[17:33:23.133] INFO  [wave10_RevGen3_21_Seren]   Felicite 0x000012B8
+[17:33:23.134] INFO  [wave10_RevGen3_21_Seren]   Llama 0x00000D86
+[17:33:23.134] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1473,1672,0) facing=5
+[17:33:23.134] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0001976D: "Thane, Apprentice Mage"
+[17:33:24.471] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:26.172] INFO  [wave10_RevGen3_21_Seren] [travel] Britain herbalist -> (1498,1659) r=5 from (1473,1672)
+[17:33:26.172] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain herbalist' target=(1498,1659) radius=5 from=(1473,1672)
+[17:33:26.172] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:33:26.173] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:33:26.173] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:26.173] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:26.173] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:33:26.173] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain herbalist: ok legs=1 ~25 tiles transit=0 nodes=0
+[17:33:26.233] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1473,1672,0); target (1469,1668); stopped short (off by 8 tile(s))
+[17:33:26.233] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1473,1672) target=(1469,1668) arrived=0 off=8
+[17:33:26.233] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:26.234] INFO  [wave10_RevGen3_21_Seren] [action] goto (1498,1659) from (1473,1672,0)
+[17:33:26.234] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1498,1659) from=(1473,1672)
+[17:33:26.234] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1473,1672,0) to (1498,1659,z27)
+[17:33:26.234] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1498,1659) in background
+[17:33:26.295] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1498,1659): 52 steps in 23393.7us
+[17:33:29.476] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:31.056] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=21; server says (1488,1677,8) facing=1
+[17:33:31.056] INFO  [wave10_RevGen3_21_Seren] [bot] step (1488,1677,8)->(1489,1676,8) rejected; OpenDoor + retry
+[17:33:31.798] WARN  [wave10_RevGen3_21_Seren] [0x21] move REJECTED seq=0; server says (1488,1677,8) facing=1
+[17:33:31.798] INFO  [wave10_RevGen3_21_Seren] [bot] step (1488,1677,8)->(1489,1676,8) rejected; avoiding edge + rerouting
+[17:33:31.798] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1498,1659) in background
+[17:33:31.828] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1498,1659): 39 steps in 13765.7us
+[17:33:34.508] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:39.522] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:40.398] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1507,1658,z27); OpenDoor before step
+[17:33:40.413] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:33:42.537] INFO  [wave10_RevGen3_21_Seren] [travel] Britain herbalist ARRIVED at (1502,1658,27)
+[17:33:42.537] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain herbalist' ok=1 at=(1502,1658) legs=1 plans=1 why=''
+[17:33:42.599] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:33:42.599] INFO  [wave10_RevGen3_21_Seren] [action] requested 3 paperdoll(s) for trade titles
+[17:33:42.614] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (3):
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren]   Gresham 0x000012D4
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren]   Morven 0x0000125C
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren]   Edgar 0x0000117B
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1502,1658,27) facing=5
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000117B: "Edgar, the hairstylist"
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000125C: "Morven, the herbalist"
+[17:33:42.615] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1502,1658,27) facing=0
+[17:33:42.616] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000012D4: "Gresham, the alchemist"
+[17:33:42.616] INFO  [wave10_RevGen3_21_Seren] [world] Gresham, the alchemist is a alchemist at (1502,1657)
+[17:33:43.375] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Gresham: Thou hast mine attention.
+[17:33:44.581] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:45.626] INFO  [wave10_RevGen3_21_Seren] [travel] Britain - Sweet Dreams Inn -> (1496,1628) r=4 from (1502,1658)
+[17:33:45.627] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain - Sweet Dreams Inn' target=(1496,1628) radius=4 from=(1502,1658)
+[17:33:45.627] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:33:45.627] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:33:45.627] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.627] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.628] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:33:45.628] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain - Sweet Dreams Inn: ok legs=1 ~30 tiles transit=0 nodes=0
+[17:33:45.687] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1502,1658,27); target (1498,1659); stopped short (off by 5 tile(s))
+[17:33:45.688] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1502,1658) target=(1498,1659) arrived=0 off=5
+[17:33:45.688] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:45.688] INFO  [wave10_RevGen3_21_Seren] [action] goto (1496,1628) from (1502,1658,27)
+[17:33:45.688] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1496,1628) from=(1502,1658)
+[17:33:45.688] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1502,1658,27) to (1496,1628,z10)
+[17:33:45.688] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1496,1628) in background
+[17:33:45.748] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1496,1628): 46 steps in 7009.2us
+[17:33:49.618] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: World save in 10 seconds
+[17:33:54.628] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:33:58.988] INFO  [wave10_RevGen3_21_Seren] [travel] Britain - Sweet Dreams Inn ARRIVED at (1499,1631,10)
+[17:33:58.988] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain - Sweet Dreams Inn' ok=1 at=(1499,1631) legs=1 plans=1 why=''
+[17:33:59.051] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:33:59.051] INFO  [wave10_RevGen3_21_Seren] [action] requested 2 paperdoll(s) for trade titles
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (2):
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren]   Aelia 0x00013DA6
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren]   Audny 0x00001076
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1499,1631,10) facing=5
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[17:33:59.056] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1499,1631,10) facing=7
+[17:33:59.057] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[17:33:59.057] INFO  [wave10_RevGen3_21_Seren] [world] Audny, the innkeeper is a innkeeper at (1492,1619)
+[17:33:59.633] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:02.088] INFO  [wave10_RevGen3_21_Seren] [travel] Britain innkeeper -> (1493,1616) r=5 from (1499,1631)
+[17:34:02.088] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain innkeeper' target=(1493,1616) radius=5 from=(1499,1631)
+[17:34:02.088] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:34:02.088] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:34:02.089] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:02.089] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:02.089] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:34:02.089] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain innkeeper: ok legs=1 ~15 tiles transit=0 nodes=0
+[17:34:02.149] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1499,1631,10); target (1496,1628); stopped short (off by 6 tile(s))
+[17:34:02.149] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1499,1631) target=(1496,1628) arrived=0 off=6
+[17:34:02.149] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:02.150] INFO  [wave10_RevGen3_21_Seren] [action] goto (1493,1616) from (1499,1631,10)
+[17:34:02.150] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1493,1616) from=(1499,1631)
+[17:34:02.150] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1499,1631,10) to (1493,1616,z20)
+[17:34:02.150] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1493,1616) in background
+[17:34:02.211] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1493,1616): 15 steps in 1178.5us
+[17:34:04.598] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: World save has been initiated.
+[17:34:04.657] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:09.636] WARN  [wave10_RevGen3_21_Seren] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.700] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1496,1624,20); target (1493,1616); stopped short (off by 11 tile(s))
+[17:34:09.700] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1496,1624) target=(1493,1616) arrived=0 off=11
+[17:34:09.700] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:09.907] WARN  [wave10_RevGen3_21_Seren] [0x22] unsolicited ack seq=10
+[17:34:10.903] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:10.903] INFO  [wave10_RevGen3_21_Seren] [action] goto (1493,1616) from (1496,1624,20)
+[17:34:10.903] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1493,1616) from=(1496,1624)
+[17:34:10.903] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1496,1624,20) to (1493,1616,z20)
+[17:34:10.904] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1493,1616) in background
+[17:34:10.964] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1493,1616): 8 steps in 502.1us
+[17:34:12.276] INFO  [wave10_RevGen3_21_Seren] [travel] Britain innkeeper ARRIVED at (1495,1621,20)
+[17:34:12.277] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain innkeeper' ok=1 at=(1495,1621) legs=1 plans=1 why=''
+[17:34:12.337] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:34:12.342] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (1):
+[17:34:12.342] INFO  [wave10_RevGen3_21_Seren]   Audny 0x00001076
+[17:34:14.737] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:15.359] INFO  [wave10_RevGen3_21_Seren] [travel] Britain armorer -> (1447,1647) r=5 from (1495,1621)
+[17:34:15.360] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain armorer' target=(1447,1647) radius=5 from=(1495,1621)
+[17:34:15.360] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:34:15.360] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:34:15.360] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:15.360] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:15.361] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:34:15.370] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain armorer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23753
+[17:34:15.370] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1495,1621,20); target (1493,1616); stopped short (off by 7 tile(s))
+[17:34:15.371] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1495,1621) target=(1493,1616) arrived=0 off=7
+[17:34:15.371] WARN  [wave10_RevGen3_21_Seren] [travel] route exhausted at (1495,1621,20); trying to reach (1498,1608,20) to get somewhere routable (escape 1/3)
+[17:34:15.371] LOG   [wave10_RevGen3_21_Seren] event travel_escape: from=(1495,1621,20) to=(1498,1608) attempt=1
+[17:34:15.371] INFO  [wave10_RevGen3_21_Seren] [action] goto (1498,1608) from (1495,1621,20)
+[17:34:15.371] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1498,1608) from=(1495,1621)
+[17:34:15.371] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1495,1621,20) to (1498,1608,z20)
+[17:34:15.371] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1498,1608) in background
+[17:34:15.422] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1498,1608): 13 steps in 878.6us
+[17:34:19.739] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:19.802] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1498,1608,20)
+[17:34:19.802] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1498,1608,20); target (1498,1608); ARRIVED (off by 0 tile(s))
+[17:34:19.802] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1498,1608) target=(1498,1608) arrived=1 off=0
+[17:34:19.802] INFO  [wave10_RevGen3_21_Seren] [travel] recovery walk reached its anchor at (1498,1608,20) (off 0); attempt 1/3
+[17:34:19.803] LOG   [wave10_RevGen3_21_Seren] event travel_recovery_done: reached=1 at=(1498,1608,20) off=0 attempt=1
+[17:34:19.861] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:34:19.862] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:34:19.862] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:19.862] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:19.862] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:34:19.873] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain armorer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23753
+[17:34:19.873] WARN  [wave10_RevGen3_21_Seren] [travel] route exhausted at (1498,1608,20); trying to reach (1512,1608,10) to get somewhere routable (escape 2/3)
+[17:34:19.873] LOG   [wave10_RevGen3_21_Seren] event travel_escape: from=(1498,1608,20) to=(1512,1608) attempt=2
+[17:34:19.873] INFO  [wave10_RevGen3_21_Seren] [action] goto (1512,1608) from (1498,1608,20)
+[17:34:19.873] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1512,1608) from=(1498,1608)
+[17:34:19.873] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1498,1608,20) to (1512,1608,z10)
+[17:34:19.874] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1512,1608) in background
+[17:34:22.531] WARN  [wave10_RevGen3_21_Seren] [bot] no path to (1512,1608) avoiding 0 block(s); stopping (search 2601402.4us)
+[17:34:22.532] WARN  [wave10_RevGen3_21_Seren] [bot] start (1498,1608,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 527 item(s), 1 mobile(s))
+[17:34:22.593] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1498,1608,20); target (1512,1608); stopped short (off by 14 tile(s))
+[17:34:22.593] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1498,1608) target=(1512,1608) arrived=0 off=14
+[17:34:22.593] INFO  [wave10_RevGen3_21_Seren] [travel] recovery walk fell short at (1498,1608,20) (off 14); attempt 2/3
+[17:34:22.593] LOG   [wave10_RevGen3_21_Seren] event travel_recovery_done: reached=0 at=(1498,1608,20) off=14 attempt=2
+[17:34:22.594] WARN  [wave10_RevGen3_21_Seren] [travel] route exhausted at (1498,1608,20); trying to reach (1496,1624,20) to get somewhere routable (escape 3/3)
+[17:34:22.594] LOG   [wave10_RevGen3_21_Seren] event travel_escape: from=(1498,1608,20) to=(1496,1624) attempt=3
+[17:34:22.594] INFO  [wave10_RevGen3_21_Seren] [action] goto (1496,1624) from (1498,1608,20)
+[17:34:22.594] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1496,1624) from=(1498,1608)
+[17:34:22.594] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1498,1608,20) to (1496,1624,z20)
+[17:34:22.595] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1496,1624) in background
+[17:34:22.655] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1496,1624): 16 steps in 1643.3us
+[17:34:24.740] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:26.178] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1496,1620,z20); OpenDoor before step
+[17:34:26.193] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:34:28.127] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1496,1624,20)
+[17:34:28.128] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1496,1624,20); target (1496,1624); ARRIVED (off by 0 tile(s))
+[17:34:28.128] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1496,1624) target=(1496,1624) arrived=1 off=0
+[17:34:28.128] INFO  [wave10_RevGen3_21_Seren] [travel] recovery walk reached its anchor at (1496,1624,20) (off 0); attempt 2/3
+[17:34:28.129] LOG   [wave10_RevGen3_21_Seren] event travel_recovery_done: reached=1 at=(1496,1624,20) off=0 attempt=2
+[17:34:28.188] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:34:28.189] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:34:28.189] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:28.189] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:28.189] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:34:28.198] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain armorer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23753
+[17:34:28.198] INFO  [wave10_RevGen3_21_Seren] [travel] Britain armorer FAILED at (1496,1624,20) -- no world route to the destination
+[17:34:28.199] LOG   [wave10_RevGen3_21_Seren] event travel_failed: label='Britain armorer' ok=0 at=(1496,1624) legs=0 plans=1 why='no world route to the destination'
+[17:34:28.252] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:34:28.257] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (1):
+[17:34:28.257] INFO  [wave10_RevGen3_21_Seren]   Audny 0x00001076
+[17:34:29.795] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:31.275] INFO  [wave10_RevGen3_21_Seren] [travel] Britain tailor -> (1547,1659) r=5 from (1496,1624)
+[17:34:31.276] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain tailor' target=(1547,1659) radius=5 from=(1496,1624)
+[17:34:31.276] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:34:31.276] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:34:31.276] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:31.276] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:31.276] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:34:31.277] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain tailor: ok legs=2 ~88 tiles transit=0 nodes=65
+[17:34:31.338] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:31.338] INFO  [wave10_RevGen3_21_Seren] [action] goto (1512,1656) from (1496,1624,20)
+[17:34:31.338] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1512,1656) from=(1496,1624)
+[17:34:31.338] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1496,1624,20) to (1512,1656)
+[17:34:31.338] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1512,1656) in background
+[17:34:31.399] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1512,1656): 40 steps in 7910.3us
+[17:34:34.855] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:39.882] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:42.162] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1512,1656,20)
+[17:34:42.162] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1512,1656,20); target (1512,1656); ARRIVED (off by 0 tile(s))
+[17:34:42.162] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1512,1656) target=(1512,1656) arrived=1 off=0
+[17:34:42.163] INFO  [wave10_RevGen3_21_Seren] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:42.163] INFO  [wave10_RevGen3_21_Seren] [action] goto (1547,1659) from (1512,1656,20)
+[17:34:42.163] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1547,1659) from=(1512,1656)
+[17:34:42.163] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1512,1656,20) to (1547,1659,z26)
+[17:34:42.163] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1547,1659) in background
+[17:34:42.224] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1547,1659): 64 steps in 39197.2us
+[17:34:44.910] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:49.943] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:54.995] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:34:57.464] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1555,1663,z26); OpenDoor before step
+[17:34:57.464] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:34:59.691] INFO  [wave10_RevGen3_21_Seren] [travel] Britain tailor ARRIVED at (1551,1662,26)
+[17:34:59.692] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain tailor' ok=1 at=(1551,1662) legs=2 plans=1 why=''
+[17:34:59.755] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:34:59.755] INFO  [wave10_RevGen3_21_Seren] [action] requested 3 paperdoll(s) for trade titles
+[17:34:59.769] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (3):
+[17:34:59.769] INFO  [wave10_RevGen3_21_Seren]   Paul 0x0000129E
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren]   Sagara 0x00001292
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren]   Marvin 0x000011CC
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000129E: "Paul, the weaver"
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [world] Paul, the weaver is a tailor at (1544,1662)
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1551,1662,26) facing=7
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00001292: "Sagara, the tailor"
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [world] Sagara, the tailor is a tailor at (1544,1656)
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1551,1662,26) facing=6
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000011CC: "Marvin, the tailor guildmaster"
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [world] Marvin, the tailor guildmaster is a tailor at (1544,1661)
+[17:35:00.015] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:02.789] INFO  [wave10_RevGen3_21_Seren] [travel] Britain mage -> (1590,1654) r=5 from (1551,1662)
+[17:35:02.789] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain mage' target=(1590,1654) radius=5 from=(1551,1662)
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:02.790] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain mage: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:02.851] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1551,1662,26); target (1547,1659); stopped short (off by 7 tile(s))
+[17:35:02.852] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1551,1662) target=(1547,1659) arrived=0 off=7
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [action] goto (1590,1654) from (1551,1662,26)
+[17:35:02.852] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1590,1654) from=(1551,1662)
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1551,1662,26) to (1590,1654,z10)
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1590,1654) in background
+[17:35:02.914] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1590,1654): 52 steps in 12832.7us
+[17:35:05.038] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:05.055] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1557,1664,z20); OpenDoor before step
+[17:35:05.070] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:35:10.058] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:15.066] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:16.759] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1591,1663,z10); OpenDoor before step
+[17:35:16.774] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:35:17.981] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 528.2us
+[17:35:18.423] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=5 in 178.6us
+[17:35:18.546] INFO  [wave10_RevGen3_21_Seren] [travel] Britain mage ARRIVED at (1591,1659,10)
+[17:35:18.546] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain mage' ok=1 at=(1591,1659) legs=1 plans=1 why=''
+[17:35:18.608] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:35:18.609] INFO  [wave10_RevGen3_21_Seren] [action] requested 4 paperdoll(s) for trade titles
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (5):
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Olesia 0x0000126A
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Kenton 0x000010D1
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Rosalinde 0x000010A4
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Tong 0x0000E13B
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Dog 0x00002609
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000010D1: "Kenton, the mage"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Kenton, the mage is a mage at (1591,1656)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1591,1659,10) facing=6
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000126A: "Olesia, the alchemist"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Olesia, the alchemist is a alchemist at (1590,1659)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1591,1659,10) facing=0
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000010A4: "Rosalinde, the mage guildmistress"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Rosalinde, the mage guildmistress is a mage at (1591,1655)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000E13B: "Tong, the scribe"
+[17:35:18.615] INFO  [wave10_RevGen3_21_Seren] [world] Tong, the scribe is a scribe at (1589,1649)
+[17:35:20.069] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:20.894] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Kenton: Thou hast mine attention.
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] Britain provisioner -> (1602,1712) r=5 from (1591,1659)
+[17:35:21.633] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain provisioner' target=(1602,1712) radius=5 from=(1591,1659)
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:21.634] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:21.634] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:35:21.634] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain provisioner: ok legs=2 ~72 tiles transit=0 nodes=49
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1591,1659,10); target (1590,1654); stopped short (off by 6 tile(s))
+[17:35:21.693] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1591,1659) target=(1590,1654) arrived=0 off=6
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [action] goto (1592,1688) from (1591,1659,10)
+[17:35:21.693] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1592,1688) from=(1591,1659)
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1591,1659,10) to (1592,1688)
+[17:35:21.694] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1592,1688) in background
+[17:35:21.754] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1592,1688): 29 steps in 1413.6us
+[17:35:25.071] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1592,1688,10)
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1592,1688,10); target (1592,1688); ARRIVED (off by 0 tile(s))
+[17:35:29.012] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1592,1688) target=(1592,1688) arrived=1 off=0
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [action] goto (1602,1712) from (1592,1688,10)
+[17:35:29.013] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1602,1712) from=(1592,1688)
+[17:35:29.013] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1592,1688,10) to (1602,1712,z20)
+[17:35:29.013] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1602,1712) in background
+[17:35:29.073] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1602,1712): 45 steps in 9635.1us
+[17:35:30.133] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:35.138] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:36.493] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=19 in 539.0us
+l] hp 50/50 (100%) -> fight
+[17:34:57.464] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1555,1663,z26); OpenDoor before step
+[17:34:57.464] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:34:59.691] INFO  [wave10_RevGen3_21_Seren] [travel] Britain tailor ARRIVED at (1551,1662,26)
+[17:34:59.692] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain tailor' ok=1 at=(1551,1662) legs=2 plans=1 why=''
+[17:34:59.754] INFO  [life] explore: arrived at 1551,1662 -- reading who is here
+[17:34:59.755] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:34:59.755] INFO  [wave10_RevGen3_21_Seren] [action] requested 3 paperdoll(s) for trade titles
+[17:34:59.755] INFO  [life] goal_completed=EXPLORE progress=1
+[17:34:59.758] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[17:34:59.769] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (3):
+[17:34:59.769] INFO  [wave10_RevGen3_21_Seren]   Paul 0x0000129E
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren]   Sagara 0x00001292
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren]   Marvin 0x000011CC
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000129E: "Paul, the weaver"
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [world] Paul, the weaver is a tailor at (1544,1662)
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1551,1662,26) facing=7
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x00001292: "Sagara, the tailor"
+[17:34:59.770] INFO  [wave10_RevGen3_21_Seren] [world] Sagara, the tailor is a tailor at (1544,1656)
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1551,1662,26) facing=6
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000011CC: "Marvin, the tailor guildmaster"
+[17:34:59.771] INFO  [wave10_RevGen3_21_Seren] [world] Marvin, the tailor guildmaster is a tailor at (1544,1661)
+[17:34:59.771] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:59.771] INFO  [life] needs considered: NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[17:34:59.771] INFO  [life]   score=15.0
+[17:34:59.771] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:59.772] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 476s after achieving nothing
+[17:34:59.772] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:00.015] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:02.789] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:35:02.789] INFO  [wave10_RevGen3_21_Seren] [travel] Britain mage -> (1590,1654) r=5 from (1551,1662)
+[17:35:02.789] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain mage' target=(1590,1654) radius=5 from=(1551,1662)
+[17:35:02.789] INFO  [life] explore: nothing else to do, so going to 'britain_mage_2' -- somewhere new (31 place(s) known so far)
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:02.790] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:35:02.790] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain mage: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:02.851] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1551,1662,26); target (1547,1659); stopped short (off by 7 tile(s))
+[17:35:02.852] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1551,1662) target=(1547,1659) arrived=0 off=7
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [action] goto (1590,1654) from (1551,1662,26)
+[17:35:02.852] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1590,1654) from=(1551,1662)
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1551,1662,26) to (1590,1654,z10)
+[17:35:02.852] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1590,1654) in background
+[17:35:02.914] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1590,1654): 52 steps in 12832.7us
+[17:35:05.038] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:05.055] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1557,1664,z20); OpenDoor before step
+[17:35:05.070] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:35:10.058] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:15.066] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:16.759] INFO  [wave10_RevGen3_21_Seren] [bot] door ahead at (1591,1663,z10); OpenDoor before step
+[17:35:16.774] INFO  [wave10_RevGen3_21_Seren] [chat ascii] System: Opening door...
+[17:35:17.981] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 528.2us
+[17:35:18.423] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=5 in 178.6us
+[17:35:18.546] INFO  [wave10_RevGen3_21_Seren] [travel] Britain mage ARRIVED at (1591,1659,10)
+[17:35:18.546] LOG   [wave10_RevGen3_21_Seren] event travel_done: label='Britain mage' ok=1 at=(1591,1659) legs=1 plans=1 why=''
+[17:35:18.608] INFO  [life] explore: arrived at 1591,1659 -- reading who is here
+[17:35:18.608] INFO  [wave10_RevGen3_21_Seren] [action] scanning nearby mobiles for names
+[17:35:18.609] INFO  [wave10_RevGen3_21_Seren] [action] requested 4 paperdoll(s) for trade titles
+[17:35:18.609] INFO  [life] goal_completed=EXPLORE progress=1
+[17:35:18.612] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_21.serena/state.json
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren] [mobiles] nearby (5):
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Olesia 0x0000126A
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Kenton 0x000010D1
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Rosalinde 0x000010A4
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Tong 0x0000E13B
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren]   Dog 0x00002609
+[17:35:18.613] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000010D1: "Kenton, the mage"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Kenton, the mage is a mage at (1591,1656)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1591,1659,10) facing=6
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000126A: "Olesia, the alchemist"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Olesia, the alchemist is a alchemist at (1590,1659)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x20] player @(1591,1659,10) facing=0
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x000010A4: "Rosalinde, the mage guildmistress"
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [world] Rosalinde, the mage guildmistress is a mage at (1591,1655)
+[17:35:18.614] INFO  [wave10_RevGen3_21_Seren] [0x88] paperdoll 0x0000E13B: "Tong, the scribe"
+[17:35:18.615] INFO  [wave10_RevGen3_21_Seren] [world] Tong, the scribe is a scribe at (1589,1649)
+[17:35:18.615] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:35:18.615] INFO  [life] needs considered: NeedTrade(buy from a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[17:35:18.615] INFO  [life]   score=15.0
+[17:35:18.615] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:35:18.615] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 457s after achieving nothing
+[17:35:18.615] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:20.069] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:20.894] INFO  [wave10_RevGen3_21_Seren] [chat ascii] Kenton: Thou hast mine attention.
+[17:35:21.630] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] Britain provisioner -> (1602,1712) r=5 from (1591,1659)
+[17:35:21.633] LOG   [wave10_RevGen3_21_Seren] event travel_start: label='Britain provisioner' target=(1602,1712) radius=5 from=(1591,1659)
+[17:35:21.633] INFO  [life] explore: nothing else to do, so going to 'britain_provisioner' -- somewhere new (32 place(s) known so far)
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode walk             usable   <- chosen
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode moongate         usable
+[17:35:21.633] INFO  [wave10_RevGen3_21_Seren] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:21.634] INFO  [wave10_RevGen3_21_Seren] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:21.634] LOG   [wave10_RevGen3_21_Seren] event travel_mode: walk
+[17:35:21.634] INFO  [wave10_RevGen3_21_Seren] [travel] plan Britain provisioner: ok legs=2 ~72 tiles transit=0 nodes=49
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1591,1659,10); target (1590,1654); stopped short (off by 6 tile(s))
+[17:35:21.693] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1591,1659) target=(1590,1654) arrived=0 off=6
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [action] goto (1592,1688) from (1591,1659,10)
+[17:35:21.693] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1592,1688) from=(1591,1659)
+[17:35:21.693] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1591,1659,10) to (1592,1688)
+[17:35:21.694] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1592,1688) in background
+[17:35:21.754] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1592,1688): 29 steps in 1413.6us
+[17:35:25.071] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [bot] arrived at (1592,1688,10)
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [action] goto finished at (1592,1688,10); target (1592,1688); ARRIVED (off by 0 tile(s))
+[17:35:29.012] LOG   [wave10_RevGen3_21_Seren] event goto_done: at=(1592,1688) target=(1592,1688) arrived=1 off=0
+[17:35:29.012] INFO  [wave10_RevGen3_21_Seren] [action] goto (1602,1712) from (1592,1688,10)
+[17:35:29.013] LOG   [wave10_RevGen3_21_Seren] event goto_start: target=(1602,1712) from=(1592,1688)
+[17:35:29.013] INFO  [wave10_RevGen3_21_Seren] [bot] running from (1592,1688,10) to (1602,1712,z20)
+[17:35:29.013] INFO  [wave10_RevGen3_21_Seren] [bot] planning path to (1602,1712) in background
+[17:35:29.073] INFO  [wave10_RevGen3_21_Seren] [bot] replan to (1602,1712): 45 steps in 9635.1us
+[17:35:30.133] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:35.138] INFO  [wave10_RevGen3_21_Seren] [survival] hp 50/50 (100%) -> fight
+[17:35:36.493] INFO  [wave10_RevGen3_21_Seren] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=19 in 539.0us

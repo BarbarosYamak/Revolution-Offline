@@ -1,0 +1,1229 @@
+[17:29:35.359] LOG   [wave10_RevGen3_30_Xerxe] event session_start: text log opened
+[17:29:35.364] LOG   [wave10_RevGen3_30_Xerxe] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.365] INFO  [wave10_RevGen3_30_Xerxe] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.367] LOG   [wave10_RevGen3_30_Xerxe] event net_connected: connect 127.0.0.1:2593
+[17:29:35.369] INFO  [wave10_RevGen3_30_Xerxe] [net] connected.
+[17:29:35.370] INFO  [wave10_RevGen3_30_Xerxe] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.373] LOG   [wave10_RevGen3_30_Xerxe] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.376] INFO  [wave10_RevGen3_30_Xerxe] [life] autonomous player active for 'Xerxes' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.377] INFO  [wave10_RevGen3_30_Xerxe] [0xA8] 1 server(s):
+[17:29:35.381] INFO  [wave10_RevGen3_30_Xerxe]   [0] MyShard                   1.0.0.127  full=12%  tz=0
+[17:29:35.383] INFO  [wave10_RevGen3_30_Xerxe] [0x8C] game server = 127.0.0.1:2593  seed=0x36021127
+[17:29:35.384] LOG   [wave10_RevGen3_30_Xerxe] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x36021127
+[17:29:35.385] INFO  [wave10_RevGen3_30_Xerxe] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.387] LOG   [wave10_RevGen3_30_Xerxe] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.387] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.387] INFO  [wave10_RevGen3_30_Xerxe] [0xB9] server features = 0x0005
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe] [0xA9] 5 slot(s) (populated 2):
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe]   [0] Xerxes
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe]   [1] Kael
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe]   [2] <empty>
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe]   [3] <empty>
+[17:29:35.388] INFO  [wave10_RevGen3_30_Xerxe]   [4] <empty>
+[17:29:35.389] INFO  [wave10_RevGen3_30_Xerxe] [ui] playing slot 0 ('Xerxes')
+[17:29:35.403] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_30_Xerxe] [0x1B] serial=0x00017B74 body=0x0190 pos=(3544,2552,20)
+[17:29:35.404] LOG   [wave10_RevGen3_30_Xerxe] event login_confirm: serial=0x00017B74 body=0x0190 pos=(3544,2552,20)
+[17:29:35.404] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3544,2552,20) facing=1
+[17:29:35.404] INFO  [wave10_RevGen3_30_Xerxe] [0x55] login complete — entering world
+[17:29:35.404] LOG   [wave10_RevGen3_30_Xerxe] event in_world: 0x55 received
+[17:29:35.405] INFO  [wave10_RevGen3_30_Xerxe] [backpack] opening 0x40017B44
+[17:29:35.405] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.405] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: There are 33 other players here.
+[17:29:35.405] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.409] INFO  [wave10_RevGen3_30_Xerxe] [action] requesting the skill list
+[17:29:35.417] INFO  [wave10_RevGen3_30_Xerxe] [0x24] open container 0x40017B44 gump=60
+[17:29:35.417] INFO  [wave10_RevGen3_30_Xerxe] [0x3C] container contents: 16 item(s)
+[17:29:35.417] LOG   [wave10_RevGen3_30_Xerxe] event backpack_contents: serial=0x40017B44 items=16
+[17:29:35.434] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:38.025] INFO  [wave10_RevGen3_30_Xerxe] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:38.035] INFO  [wave10_RevGen3_30_Xerxe] [survival] on
+[17:29:38.035] LOG   [wave10_RevGen3_30_Xerxe] event survival_mode: on
+[17:29:38.040] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:29:38.104] INFO  [wave10_RevGen3_30_Xerxe] [ACTION] use_object start
+[17:29:38.104] INFO  [wave10_RevGen3_30_Xerxe] [ACTION] use_object serial=0x4000E0E5
+[17:29:42.106] WARN  [wave10_RevGen3_30_Xerxe] [ACTION_RESULT] use_object timeout (no server confirmation)
+[17:29:42.108] LOG   [wave10_RevGen3_30_Xerxe] event action_result: use_object timeout
+[17:29:43.091] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:29:48.151] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:29:49.174] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo tailor -> (3667,2586) r=5 from (3544,2552)
+[17:29:49.174] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo tailor' target=(3667,2586) radius=5 from=(3544,2552)
+[17:29:49.174] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable   <- chosen
+[17:29:49.175] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable
+[17:29:49.175] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:49.175] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:49.175] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: moongate
+[17:29:49.175] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo tailor: ok legs=4 ~144 tiles transit=0 nodes=182
+[17:29:49.237] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3576,2552) from (3544,2552,20)
+[17:29:49.237] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3576,2552) from=(3544,2552)
+[17:29:49.237] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3544,2552,20) to (3576,2552)
+[17:29:49.237] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3576,2552) in background
+[17:29:49.298] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3576,2552): 32 steps in 11919.8us
+[17:29:53.202] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:29:58.262] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:29:59.893] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3576,2552,8)
+[17:29:59.893] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3576,2552,8); target (3576,2552); ARRIVED (off by 0 tile(s))
+[17:29:59.893] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3576,2552) target=(3576,2552) arrived=1 off=0
+[17:29:59.894] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3608,2552) from (3576,2552,8)
+[17:29:59.894] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3608,2552) from=(3576,2552)
+[17:29:59.894] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3576,2552,8) to (3608,2552)
+[17:29:59.894] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3608,2552) in background
+[17:29:59.955] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3608,2552): 32 steps in 10260.9us
+[17:30:03.320] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:08.332] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:09.604] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3608,2552,0)
+[17:30:09.605] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3608,2552,0); target (3608,2552); ARRIVED (off by 0 tile(s))
+[17:30:09.605] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3608,2552) target=(3608,2552) arrived=1 off=0
+[17:30:09.605] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3640,2568) from (3608,2552,0)
+[17:30:09.605] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3640,2568) from=(3608,2552)
+[17:30:09.605] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3608,2552,0) to (3640,2568)
+[17:30:09.605] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3640,2568) in background
+[17:30:09.664] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3640,2568): 43 steps in 12699.9us
+[17:30:13.348] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:18.386] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:23.440] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:24.472] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3640,2568,0)
+[17:30:24.473] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2568,0); target (3640,2568); ARRIVED (off by 0 tile(s))
+[17:30:24.473] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2568) target=(3640,2568) arrived=1 off=0
+[17:30:24.473] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3667,2586) from (3640,2568,0)
+[17:30:24.473] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3667,2586) from=(3640,2568)
+[17:30:24.473] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2568,0) to (3667,2586,z0)
+[17:30:24.473] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3667,2586) in background
+[17:30:24.533] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3667,2586): 40 steps in 6830.7us
+[17:30:28.464] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:32.473] INFO  [wave10_RevGen3_30_Xerxe] [bot] door ahead at (3659,2591,z0); OpenDoor before step
+[17:30:32.489] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:30:32.489] WARN  [wave10_RevGen3_30_Xerxe] [bot] 0x20 resync; aborting path
+[17:30:32.490] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3658,2592,0) facing=0
+[17:30:32.490] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3658,2592,0); target (3667,2586); stopped short (off by 15 tile(s))
+[17:30:32.490] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3658,2592) target=(3667,2586) arrived=0 off=15
+[17:30:33.478] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:33.724] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3667,2586) from (3658,2592,0)
+[17:30:33.724] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3667,2586) from=(3658,2592)
+[17:30:33.724] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3658,2592,0) to (3667,2586,z0)
+[17:30:33.725] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3667,2586) in background
+[17:30:33.786] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3667,2586): 13 steps in 694.4us
+[17:30:35.621] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo tailor ARRIVED at (3662,2590,0)
+[17:30:35.621] LOG   [wave10_RevGen3_30_Xerxe] event travel_done: label='Ocllo tailor' ok=1 at=(3662,2590) legs=4 plans=1 why=''
+[17:30:35.683] INFO  [wave10_RevGen3_30_Xerxe] [action] scanning nearby mobiles for names
+[17:30:35.683] INFO  [wave10_RevGen3_30_Xerxe] [action] requested 3 paperdoll(s) for trade titles
+[17:30:35.698] INFO  [wave10_RevGen3_30_Xerxe] [mobiles] nearby (5):
+[17:30:35.698] INFO  [wave10_RevGen3_30_Xerxe]   Bjorn 0x0000150E
+[17:30:35.698] INFO  [wave10_RevGen3_30_Xerxe]   Bryant 0x0000151B
+[17:30:35.698] INFO  [wave10_RevGen3_30_Xerxe]   Erianthe 0x000014FC
+[17:30:35.698] INFO  [wave10_RevGen3_30_Xerxe]   Rat 0x0000E8F3
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe]   raven 0x00013AF3
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x0000150E: "Bjorn, the tailor"
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [world] Bjorn, the tailor is a tailor at (3665,2589)
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x000014FC: "Erianthe, the tailor guildmistress"
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [world] Erianthe, the tailor guildmistress is a tailor at (3670,2591)
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x0000151B: "Bryant, the weaver"
+[17:30:35.699] INFO  [wave10_RevGen3_30_Xerxe] [world] Bryant, the weaver is a tailor at (3669,2591)
+[17:30:35.806] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] Bjorn: What's thee wantin'?
+[17:30:38.487] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:38.733] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo innkeeper -> (3673,2614) r=5 from (3662,2590)
+[17:30:38.733] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo innkeeper' target=(3673,2614) radius=5 from=(3662,2590)
+[17:30:38.734] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:30:38.734] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:30:38.734] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:38.734] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:38.735] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:30:38.735] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:30:38.794] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3667,2586); stopped short (off by 9 tile(s))
+[17:30:38.794] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3667,2586) arrived=0 off=9
+[17:30:38.794] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:38.795] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:38.795] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:38.795] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:38.795] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:38.856] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:38.856] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:40.072] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:40.072] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:40.073] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:40.073] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:40.073] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:40.133] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:40.134] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:41.391] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:41.392] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:41.392] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:41.392] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:41.392] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:41.454] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:41.454] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:42.684] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:30:42.684] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:30:42.685] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:42.685] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:42.685] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:30:42.685] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:30:43.513] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:44.208] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:44.208] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:44.208] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:44.208] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:44.209] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:44.269] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:44.270] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:45.530] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:45.530] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:45.530] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:45.531] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:45.531] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:45.592] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:45.592] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:46.820] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:46.820] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:46.820] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:46.821] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:46.821] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:46.821] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:46.821] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:48.064] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:30:48.064] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:30:48.064] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:48.064] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:48.065] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:30:48.065] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:30:48.525] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:51.112] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:51.113] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:51.113] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:51.113] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:51.113] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:51.174] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:51.175] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:52.403] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:52.403] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:52.404] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:52.404] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:52.404] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:52.464] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:52.465] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:53.587] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:53.712] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:53.712] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:53.712] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:53.712] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:53.713] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:53.775] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:53.775] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:30:55.024] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:30:55.024] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:30:55.024] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.025] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.025] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:30:55.025] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~24 tiles transit=0 nodes=0
+[17:30:58.611] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:30:59.530] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:30:59.530] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:30:59.530] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:30:59.531] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:30:59.531] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:30:59.591] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:30:59.591] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:31:00.848] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:31:00.848] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:31:00.848] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:31:00.849] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:00.849] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:00.849] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:31:00.849] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:31:02.097] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3662,2590,0)
+[17:31:02.098] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3662,2590)
+[17:31:02.098] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3673,2614,z0)
+[17:31:02.098] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:02.098] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:02.158] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3662,2590,0); target (3673,2614); stopped short (off by 35 tile(s))
+[17:31:02.158] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3662,2590) target=(3673,2614) arrived=0 off=35
+[17:31:02.159] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3662,2590,0); trying to reach (3656,2600,0) to get somewhere routable (escape 1/3)
+[17:31:02.159] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3662,2590,0) to=(3656,2600) attempt=1
+[17:31:02.159] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3656,2600) from (3662,2590,0)
+[17:31:02.159] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3656,2600) from=(3662,2590)
+[17:31:02.159] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3662,2590,0) to (3656,2600,z0)
+[17:31:02.159] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3656,2600) in background
+[17:31:02.220] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3656,2600): 13 steps in 297.1us
+[17:31:03.655] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:06.515] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3656,2600,0)
+[17:31:06.515] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3656,2600); ARRIVED (off by 0 tile(s))
+[17:31:06.515] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3656,2600) arrived=1 off=0
+[17:31:06.515] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk reached its anchor at (3656,2600,0) (off 0); attempt 1/3
+[17:31:06.516] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=1 at=(3656,2600,0) off=0 attempt=1
+[17:31:06.576] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:06.577] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:06.577] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:06.577] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:06.578] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:06.578] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~17 tiles transit=0 nodes=0
+[17:31:06.637] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:06.637] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:06.638] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:06.638] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:06.638] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:06.699] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:06.699] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:07.932] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:07.933] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:07.933] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:07.933] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:07.933] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:07.994] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:07.994] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:08.684] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:09.241] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:09.241] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:09.242] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:09.242] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:09.242] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:09.302] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:09.302] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:10.531] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:10.531] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:10.532] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:10.532] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:10.532] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:10.532] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~17 tiles transit=0 nodes=0
+[17:31:12.069] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:12.069] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:12.069] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:12.070] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:12.070] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:12.129] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:12.129] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:13.336] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:13.336] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:13.336] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:13.337] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:13.337] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:13.398] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:13.398] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:13.693] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:14.618] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:14.618] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:14.618] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:14.618] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:14.619] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:14.678] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:14.679] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:15.923] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:15.923] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:15.924] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:15.924] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:15.924] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:15.924] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~17 tiles transit=0 nodes=0
+[17:31:18.699] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:19.038] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:19.174] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:19.399] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:19.575] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:19.689] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:19.745] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:19.747] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:20.976] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:20.977] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:20.977] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:20.977] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:20.977] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:21.038] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:21.038] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:22.244] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:22.244] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:22.245] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:22.245] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:22.245] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:22.305] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:22.305] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:23.507] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:23.508] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:23.508] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:23.508] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:23.508] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:23.509] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~17 tiles transit=0 nodes=0
+[17:31:23.725] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:28.025] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:28.025] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:28.026] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:28.026] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:28.026] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:28.085] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:28.086] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:28.746] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:29.302] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:29.302] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:29.302] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:29.303] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:29.303] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:29.364] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:29.364] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:30.386] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] Bryant: Can I help thee?
+[17:31:30.618] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3656,2600,0)
+[17:31:30.618] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3656,2600)
+[17:31:30.619] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3673,2614,z0)
+[17:31:30.619] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:30.619] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:30.680] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2600,0); target (3673,2614); stopped short (off by 31 tile(s))
+[17:31:30.680] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2600) target=(3673,2614) arrived=0 off=31
+[17:31:30.680] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3656,2600,0); trying to reach (3640,2584,0) to get somewhere routable (escape 2/3)
+[17:31:30.680] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3656,2600,0) to=(3640,2584) attempt=2
+[17:31:30.680] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3640,2584) from (3656,2600,0)
+[17:31:30.681] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3640,2584) from=(3656,2600)
+[17:31:30.681] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2600,0) to (3640,2584,z0)
+[17:31:30.681] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3640,2584) in background
+[17:31:30.742] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3640,2584): 18 steps in 798.5us
+[17:31:33.778] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:35.756] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3640,2584,0)
+[17:31:35.756] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3640,2584); ARRIVED (off by 0 tile(s))
+[17:31:35.757] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3640,2584) arrived=1 off=0
+[17:31:35.757] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk reached its anchor at (3640,2584,0) (off 0); attempt 2/3
+[17:31:35.757] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=1 at=(3640,2584,0) off=0 attempt=2
+[17:31:35.772] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:35.772] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:35.772] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:35.772] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:35.773] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:35.773] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:31:35.831] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:35.831] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:35.831] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:35.831] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:35.831] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:35.891] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:35.891] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:37.124] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:37.124] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:37.124] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:37.125] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:37.125] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:37.185] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:37.185] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:38.415] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:38.416] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:38.416] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:38.416] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:38.416] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:38.477] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:38.478] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:38.787] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:39.716] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:39.716] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:39.716] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:39.717] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:39.717] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:39.717] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:31:41.261] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:41.261] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:41.261] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:41.261] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:41.262] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:41.322] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:41.322] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:42.552] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:42.552] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:42.552] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:42.553] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:42.553] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:42.614] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:42.614] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:43.843] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:43.844] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:43.844] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:43.844] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:43.844] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:43.844] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:43.904] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:43.904] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:45.139] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:45.139] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:45.140] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:45.140] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:45.140] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:45.140] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:31:48.201] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:48.202] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:48.202] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:48.202] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:48.202] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:48.264] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:48.264] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:48.900] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:49.514] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:49.514] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:49.514] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:49.515] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:49.515] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:49.576] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:49.576] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:50.805] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:50.805] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:50.805] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:50.805] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:50.805] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:50.865] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:50.866] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:52.098] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:31:52.099] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:31:52.099] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:52.099] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:52.099] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:31:52.100] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:31:53.947] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:56.656] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:56.656] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:56.656] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:56.657] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:56.657] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:56.718] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:56.718] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:57.952] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:57.953] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:57.953] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:57.953] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:57.953] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:58.013] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:58.014] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:58.993] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:31:59.240] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2584,0)
+[17:31:59.240] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2584)
+[17:31:59.240] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3673,2614,z0)
+[17:31:59.241] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:31:59.241] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:31:59.300] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2584,0); target (3673,2614); stopped short (off by 63 tile(s))
+[17:31:59.300] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2584) target=(3673,2614) arrived=0 off=63
+[17:31:59.300] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3640,2584,0); trying to reach (3640,2600,0) to get somewhere routable (escape 3/3)
+[17:31:59.301] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3640,2584,0) to=(3640,2600) attempt=3
+[17:31:59.301] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3640,2600) from (3640,2584,0)
+[17:31:59.301] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3640,2600) from=(3640,2584)
+[17:31:59.301] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2584,0) to (3640,2600,z0)
+[17:31:59.301] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3640,2600) in background
+[17:31:59.362] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3640,2600): 26 steps in 4537.5us
+[17:32:04.014] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:06.275] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3640,2600,0)
+[17:32:06.275] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3640,2600); ARRIVED (off by 0 tile(s))
+[17:32:06.275] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3640,2600) arrived=1 off=0
+[17:32:06.275] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk reached its anchor at (3640,2600,0) (off 0); attempt 3/3
+[17:32:06.276] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=1 at=(3640,2600,0) off=0 attempt=3
+[17:32:06.337] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:32:06.337] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:32:06.337] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:06.337] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:06.338] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:32:06.338] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:32:06.398] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:06.399] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:06.399] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:06.399] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:06.399] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:06.461] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:06.461] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:07.678] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:07.678] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:07.678] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:07.678] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:07.678] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:07.741] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:07.741] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:08.977] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:08.978] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:08.978] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:08.978] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:08.978] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:09.008] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:09.009] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:09.070] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:10.241] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:32:10.241] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:32:10.241] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:10.241] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:10.242] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:32:10.242] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:32:11.767] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:11.767] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:11.767] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:11.767] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:11.768] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:11.768] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:11.768] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:13.012] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:13.013] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:13.013] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:13.013] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:13.013] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:13.074] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:13.075] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:14.090] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:14.306] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:14.307] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:14.307] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:14.307] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:14.307] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:14.368] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:14.368] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:15.616] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:32:15.616] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:32:15.616] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:15.616] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:15.617] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:32:15.617] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:32:18.671] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:18.672] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:18.672] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:18.672] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:18.672] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:18.701] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:18.702] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:19.103] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:19.945] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:19.946] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:19.946] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:19.946] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:19.946] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:19.993] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:19.993] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:21.239] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:21.239] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:21.239] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:21.239] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:21.239] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:21.300] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:21.300] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:22.503] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:32:22.503] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:32:22.504] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:22.504] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:22.504] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:32:22.504] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo innkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:32:24.107] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:27.012] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:27.012] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:27.012] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:27.012] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:27.013] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:27.065] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:27.066] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:28.288] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:28.288] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:28.289] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:28.289] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:28.289] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:28.348] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:28.348] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:29.143] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:29.574] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3673,2614) from (3640,2600,0)
+[17:32:29.574] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3673,2614) from=(3640,2600)
+[17:32:29.575] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3673,2614,z0)
+[17:32:29.575] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3673,2614) in background
+[17:32:29.575] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3673,2614) is not walkable; skipping A* and stopping
+[17:32:29.636] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3640,2600,0); target (3673,2614); stopped short (off by 47 tile(s))
+[17:32:29.636] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3640,2600) target=(3673,2614) arrived=0 off=47
+[17:32:29.636] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo innkeeper FAILED at (3640,2600,0) -- tile route stopped short
+[17:32:29.636] LOG   [wave10_RevGen3_30_Xerxe] event travel_failed: label='Ocllo innkeeper' ok=0 at=(3640,2600) legs=1 plans=4 why='tile route stopped short'
+[17:32:29.698] INFO  [wave10_RevGen3_30_Xerxe] [action] scanning nearby mobiles for names
+[17:32:29.698] INFO  [wave10_RevGen3_30_Xerxe] [action] requested 5 paperdoll(s) for trade titles
+[17:32:29.713] INFO  [wave10_RevGen3_30_Xerxe] [mobiles] nearby (9):
+[17:32:29.713] INFO  [wave10_RevGen3_30_Xerxe]   Rat 0x00017B01
+[17:32:29.713] INFO  [wave10_RevGen3_30_Xerxe]   Kalika 0x000000C3
+[17:32:29.713] INFO  [wave10_RevGen3_30_Xerxe]   Theron 0x000001CF
+[17:32:29.713] INFO  [wave10_RevGen3_30_Xerxe]   Observer 0x0000063C
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe]   Rat 0x0000E8F3
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe]   Mariama 0x0000014E
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe]   Dog 0x000160B9
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe]   Clarissa 0x000000B0
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe]   Rat 0x00014585
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3640,2600,0) facing=0
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[17:32:29.714] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3640,2600,0) facing=7
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x000001CF: "Theron, the weaponsmith"
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [world] Theron, the weaponsmith is a blacksmith at (3636,2593)
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x000000C3: "Kalika, the armorer"
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [world] Kalika, the armorer is a blacksmith at (3636,2598)
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3640,2600,0) facing=6
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x0000014E: "Mariama, the healer guildmistress"
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [world] Mariama, the healer guildmistress is a healer at (3629,2604)
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x000000B0: "Clarissa, the healer"
+[17:32:29.715] INFO  [wave10_RevGen3_30_Xerxe] [world] Clarissa, the healer is a healer at (3626,2606)
+[17:32:32.751] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo armorer -> (3632,2595) r=5 from (3640,2600)
+[17:32:32.751] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo armorer' target=(3632,2595) radius=5 from=(3640,2600)
+[17:32:32.751] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:32:32.751] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:32:32.751] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.752] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.752] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:32:32.752] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo armorer: ok legs=1 ~8 tiles transit=0 nodes=0
+[17:32:32.812] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3632,2595) from (3640,2600,0)
+[17:32:32.812] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3632,2595) from=(3640,2600)
+[17:32:32.812] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3640,2600,0) to (3632,2595,z0)
+[17:32:32.813] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3632,2595) in background
+[17:32:32.872] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3632,2595): 30 steps in 1358.6us
+[17:32:34.148] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:36.126] INFO  [wave10_RevGen3_30_Xerxe] [bot] door ahead at (3647,2596,z0); OpenDoor before step
+[17:32:36.126] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:32:39.201] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:39.990] INFO  [wave10_RevGen3_30_Xerxe] [bot] door ahead at (3637,2595,z0); OpenDoor before step
+[17:32:40.005] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:32:41.250] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo armorer ARRIVED at (3636,2595,0)
+[17:32:41.250] LOG   [wave10_RevGen3_30_Xerxe] event travel_done: label='Ocllo armorer' ok=1 at=(3636,2595) legs=1 plans=1 why=''
+[17:32:41.312] INFO  [wave10_RevGen3_30_Xerxe] [action] scanning nearby mobiles for names
+[17:32:41.314] INFO  [wave10_RevGen3_30_Xerxe] [mobiles] nearby (7):
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Theron 0x000001CF
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Kalika 0x000000C3
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Rat 0x00017B01
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Observer 0x0000063C
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Clarissa 0x000000B0
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Dog 0x000160B9
+[17:32:41.315] INFO  [wave10_RevGen3_30_Xerxe]   Mariama 0x0000014E
+[17:32:44.211] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:44.334] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo butcher -> (3708,2649) r=5 from (3636,2595)
+[17:32:44.334] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo butcher' target=(3708,2649) radius=5 from=(3636,2595)
+[17:32:44.334] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable   <- chosen
+[17:32:44.334] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable
+[17:32:44.335] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:44.335] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:44.335] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: moongate
+[17:32:44.335] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo butcher: ok legs=3 ~112 tiles transit=0 nodes=97
+[17:32:44.396] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3636,2595,0); target (3632,2595); stopped short (off by 4 tile(s))
+[17:32:44.396] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3636,2595) target=(3632,2595) arrived=0 off=4
+[17:32:44.396] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3656,2632) from (3636,2595,0)
+[17:32:44.396] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3656,2632) from=(3636,2595)
+[17:32:44.396] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3636,2595,0) to (3656,2632)
+[17:32:44.397] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3656,2632) in background
+[17:32:44.456] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3656,2632): 48 steps in 2267.4us
+[17:32:45.441] WARN  [wave10_RevGen3_30_Xerxe] [0x21] move REJECTED seq=4; server says (3638,2595,0) facing=3
+[17:32:45.441] INFO  [wave10_RevGen3_30_Xerxe] [bot] step (3638,2595,0)->(3639,2596,0) rejected; OpenDoor + retry
+[17:32:45.441] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:32:45.442] WARN  [wave10_RevGen3_30_Xerxe] [bot] 0x20 resync; aborting path
+[17:32:45.442] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3638,2595,0) facing=4
+[17:32:45.442] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3638,2595,0); target (3656,2632); stopped short (off by 55 tile(s))
+[17:32:45.442] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3638,2595) target=(3656,2632) arrived=0 off=55
+[17:32:46.642] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3656,2632) from (3638,2595,0)
+[17:32:46.643] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3656,2632) from=(3638,2595)
+[17:32:46.643] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3638,2595,0) to (3656,2632)
+[17:32:46.643] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3656,2632) in background
+[17:32:46.703] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3656,2632): 46 steps in 2272.1us
+[17:32:49.229] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:50.045] INFO  [wave10_RevGen3_30_Xerxe] [bot] door ahead at (3648,2597,z0); OpenDoor before step
+[17:32:50.046] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:32:54.236] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:32:59.277] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:00.955] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3656,2632,0)
+[17:33:00.956] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3656,2632,0); target (3656,2632); ARRIVED (off by 0 tile(s))
+[17:33:00.956] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3656,2632) target=(3656,2632) arrived=1 off=0
+[17:33:00.956] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3688,2664) from (3656,2632,0)
+[17:33:00.956] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3688,2664) from=(3656,2632)
+[17:33:00.957] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3656,2632,0) to (3688,2664)
+[17:33:00.957] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3688,2664) in background
+[17:33:01.032] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3688,2664): 48 steps in 45856.5us
+[17:33:04.319] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:09.362] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:14.387] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:15.606] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3688,2664,8)
+[17:33:15.606] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2664,8); target (3688,2664); ARRIVED (off by 0 tile(s))
+[17:33:15.606] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2664) target=(3688,2664) arrived=1 off=0
+[17:33:15.607] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3708,2649) from (3688,2664,8)
+[17:33:15.607] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3708,2649) from=(3688,2664)
+[17:33:15.607] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2664,8) to (3708,2649,z20)
+[17:33:15.607] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3708,2649) in background
+[17:33:15.667] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3708,2649): 52 steps in 25521.5us
+[17:33:19.423] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:24.425] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:24.426] INFO  [wave10_RevGen3_30_Xerxe] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 248.5us
+[17:33:27.832] INFO  [wave10_RevGen3_30_Xerxe] [bot] door ahead at (3719,2651,z20); OpenDoor before step
+[17:33:27.847] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Opening door...
+[17:33:29.428] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:30.164] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo butcher ARRIVED at (3712,2651,20)
+[17:33:30.164] LOG   [wave10_RevGen3_30_Xerxe] event travel_done: label='Ocllo butcher' ok=1 at=(3712,2651) legs=3 plans=1 why=''
+[17:33:30.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo butcher -> (3708,2649) r=5 from (3712,2651)
+[17:33:30.219] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo butcher' target=(3708,2649) radius=5 from=(3712,2651)
+[17:33:30.219] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo butcher ARRIVED at (3712,2651,20)
+[17:33:30.219] LOG   [wave10_RevGen3_30_Xerxe] event travel_done: label='Ocllo butcher' ok=1 at=(3712,2651) legs=0 plans=0 why=''
+[17:33:32.751] INFO  [wave10_RevGen3_30_Xerxe] [action] scanning nearby mobiles for names
+[17:33:32.751] INFO  [wave10_RevGen3_30_Xerxe] [action] requested 1 paperdoll(s) for trade titles
+[17:33:32.766] INFO  [wave10_RevGen3_30_Xerxe] [mobiles] nearby (17):
+[17:33:32.766] INFO  [wave10_RevGen3_30_Xerxe]   Kellie 0x0000FBEC
+[17:33:32.766] INFO  [wave10_RevGen3_30_Xerxe]   Observer 0x0000063C
+[17:33:32.766] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x0000FBCF
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00016E66
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x000155DA
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00016B4C
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00015536
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00017AEA
+[17:33:32.767] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00009236
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00016381
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00015D61
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Chicken 0x00014652
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Dog 0x000164FD
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Cat 0x00011AAC
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Cat 0x0000FBED
+[17:33:32.768] INFO  [wave10_RevGen3_30_Xerxe]   Cat 0x00004840
+[17:33:32.769] INFO  [wave10_RevGen3_30_Xerxe]   raven 0x00016C6F
+[17:33:32.769] INFO  [wave10_RevGen3_30_Xerxe] [0x20] player @(3712,2651,20) facing=7
+[17:33:32.769] INFO  [wave10_RevGen3_30_Xerxe] [0x88] paperdoll 0x0000FBEC: "Kellie, the butcher"
+[17:33:32.769] INFO  [wave10_RevGen3_30_Xerxe] [world] Kellie, the butcher is a butcher at (3709,2648)
+[17:33:34.431] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:35.795] INFO  [wave10_RevGen3_30_Xerxe] [travel] Ocllo banker -> (3695,2511) r=5 from (3712,2651)
+[17:33:35.795] LOG   [wave10_RevGen3_30_Xerxe] event travel_start: label='Ocllo banker' target=(3695,2511) radius=5 from=(3712,2651)
+[17:33:35.795] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable   <- chosen
+[17:33:35.796] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable
+[17:33:35.796] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:35.796] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:35.796] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: moongate
+[17:33:35.796] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=5 ~160 tiles transit=0 nodes=184
+[17:33:35.810] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3712,2651,20); target (3708,2649); stopped short (off by 6 tile(s))
+[17:33:35.810] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3712,2651) target=(3708,2649) arrived=0 off=6
+[17:33:35.810] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3720,2616) from (3712,2651,20)
+[17:33:35.811] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3720,2616) from=(3712,2651)
+[17:33:35.811] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3712,2651,20) to (3720,2616)
+[17:33:35.811] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3720,2616) in background
+[17:33:35.873] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3720,2616): 43 steps in 1479.8us
+[17:33:39.476] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:44.503] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:46.378] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3720,2616,20)
+[17:33:46.378] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3720,2616,20); target (3720,2616); ARRIVED (off by 0 tile(s))
+[17:33:46.379] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3720,2616) target=(3720,2616) arrived=1 off=0
+[17:33:46.379] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3720,2584) from (3720,2616,20)
+[17:33:46.379] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3720,2584) from=(3720,2616)
+[17:33:46.379] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3720,2616,20) to (3720,2584)
+[17:33:46.379] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3720,2584) in background
+[17:33:46.440] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3720,2584): 32 steps in 2904.6us
+[17:33:49.556] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: World save in 10 seconds
+[17:33:54.569] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:33:56.467] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3720,2584,31)
+[17:33:56.467] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3720,2584,31); target (3720,2584); ARRIVED (off by 0 tile(s))
+[17:33:56.467] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3720,2584) target=(3720,2584) arrived=1 off=0
+[17:33:56.468] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3720,2552) from (3720,2584,31)
+[17:33:56.468] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3720,2552) from=(3720,2584)
+[17:33:56.468] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3720,2584,31) to (3720,2552)
+[17:33:56.468] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3720,2552) in background
+[17:33:56.526] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3720,2552): 32 steps in 15808.7us
+[17:33:59.588] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:04.595] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:04.599] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: World save has been initiated.
+[17:34:09.573] WARN  [wave10_RevGen3_30_Xerxe] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.636] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3718,2556,16); target (3720,2552); stopped short (off by 6 tile(s))
+[17:34:09.636] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3718,2556) target=(3720,2552) arrived=0 off=6
+[17:34:09.636] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:09.907] WARN  [wave10_RevGen3_30_Xerxe] [0x22] unsolicited ack seq=34
+[17:34:10.841] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3720,2552) from (3718,2556,16)
+[17:34:10.842] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3720,2552) from=(3718,2556)
+[17:34:10.842] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3718,2556,16) to (3720,2552)
+[17:34:10.842] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3720,2552) in background
+[17:34:10.903] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3720,2552): 4 steps in 430.1us
+[17:34:12.044] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3720,2552,12)
+[17:34:12.044] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3720,2552,12); target (3720,2552); ARRIVED (off by 0 tile(s))
+[17:34:12.044] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3720,2552) target=(3720,2552) arrived=1 off=0
+[17:34:12.045] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3704,2520) from (3720,2552,12)
+[17:34:12.045] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3704,2520) from=(3720,2552)
+[17:34:12.045] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3720,2552,12) to (3704,2520)
+[17:34:12.045] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3704,2520) in background
+[17:34:12.105] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3704,2520): 37 steps in 14737.1us
+[17:34:14.676] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:19.693] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:24.739] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:25.173] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3704,2520,0)
+[17:34:25.173] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3704,2520); ARRIVED (off by 0 tile(s))
+[17:34:25.173] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3704,2520) arrived=1 off=0
+[17:34:25.173] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:25.174] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:25.174] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:25.174] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:25.174] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:25.234] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:25.234] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:26.454] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:26.454] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:26.454] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:26.455] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:26.455] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:26.515] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:26.516] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:27.756] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:27.756] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:27.756] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:27.757] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:27.757] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:27.818] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:27.818] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:29.056] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:34:29.056] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:34:29.056] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:29.056] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:29.057] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:34:29.057] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:29.779] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:30.613] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:30.614] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:30.614] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:30.614] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:30.614] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:30.675] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:30.675] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:31.906] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:31.906] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:31.906] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:31.906] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:31.906] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:31.967] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:31.968] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:33.209] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:33.209] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:33.210] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:33.210] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:33.210] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:33.270] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:33.271] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:34.516] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:34:34.516] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:34:34.517] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.517] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.517] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:34:34.517] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:34.824] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:37.530] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:37.530] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:37.530] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:37.531] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:37.531] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:37.590] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:37.591] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:38.806] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:38.806] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:38.806] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:38.807] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:38.807] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:38.867] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:38.868] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:39.881] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:40.067] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:40.067] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:40.067] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:40.068] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:40.068] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:40.128] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:40.128] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:41.343] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:34:41.344] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:34:41.344] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:41.344] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:41.344] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:34:41.344] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:44.941] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:45.867] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:45.867] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:45.867] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:45.867] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:45.867] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:45.930] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:45.930] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:47.134] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:47.134] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:47.134] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:47.135] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:47.135] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:47.195] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:47.196] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:48.430] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2520,0)
+[17:34:48.431] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2520)
+[17:34:48.431] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3695,2511,z0)
+[17:34:48.431] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:48.431] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:48.494] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3695,2511); stopped short (off by 18 tile(s))
+[17:34:48.494] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3695,2511) arrived=0 off=18
+[17:34:48.494] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3704,2520,0); trying to reach (3688,2504,0) to get somewhere routable (escape 1/3)
+[17:34:48.495] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3704,2520,0) to=(3688,2504) attempt=1
+[17:34:48.496] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3688,2504) from (3704,2520,0)
+[17:34:48.496] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3688,2504) from=(3704,2520)
+[17:34:48.496] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3688,2504,z0)
+[17:34:48.496] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3688,2504) in background
+[17:34:49.943] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:50.252] WARN  [wave10_RevGen3_30_Xerxe] [bot] no path to (3688,2504) avoiding 0 block(s); stopping (search 1713167.5us)
+[17:34:50.252] WARN  [wave10_RevGen3_30_Xerxe] [bot] start (3704,2520,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 490 item(s), 3 mobile(s))
+[17:34:50.313] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2520,0); target (3688,2504); stopped short (off by 32 tile(s))
+[17:34:50.314] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2520) target=(3688,2504) arrived=0 off=32
+[17:34:50.314] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk fell short at (3704,2520,0) (off 16); attempt 1/3
+[17:34:50.314] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=0 at=(3704,2520,0) off=16 attempt=1
+[17:34:50.314] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3704,2520,0); trying to reach (3704,2504,0) to get somewhere routable (escape 2/3)
+[17:34:50.315] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3704,2520,0) to=(3704,2504) attempt=2
+[17:34:50.315] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3704,2504) from (3704,2520,0)
+[17:34:50.315] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3704,2504) from=(3704,2520)
+[17:34:50.315] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2520,0) to (3704,2504,z0)
+[17:34:50.315] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3704,2504) in background
+[17:34:50.374] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3704,2504): 16 steps in 1440.6us
+[17:34:54.996] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:34:56.077] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3704,2504,0)
+[17:34:56.077] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3704,2504); ARRIVED (off by 0 tile(s))
+[17:34:56.077] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3704,2504) arrived=1 off=0
+[17:34:56.077] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk reached its anchor at (3704,2504,0) (off 0); attempt 1/3
+[17:34:56.077] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=1 at=(3704,2504,0) off=0 attempt=1
+[17:34:56.138] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:34:56.138] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:34:56.138] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:56.139] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:56.139] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:34:56.139] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:56.199] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:34:56.199] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:34:56.199] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:34:56.200] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:56.200] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:56.261] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:34:56.261] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:34:57.478] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:34:57.479] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:34:57.479] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:34:57.479] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:57.479] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:57.539] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:34:57.539] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:34:58.783] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:34:58.784] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:34:58.784] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:34:58.784] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:34:58.784] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:34:58.799] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:34:58.799] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:34:59.999] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:00.000] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:00.000] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:00.000] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:00.000] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:00.000] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:35:00.001] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:01.523] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:01.523] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:01.523] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:01.524] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:01.524] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:01.584] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:01.585] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:02.789] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:02.789] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:02.789] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:02.790] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:02.790] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:02.851] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:02.852] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:04.071] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:04.073] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:04.073] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:04.074] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:04.074] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:04.134] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:04.135] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:05.023] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:05.363] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:05.364] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:05.364] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:05.364] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:05.365] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:05.365] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:35:08.380] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:08.380] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:08.380] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:08.380] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:08.380] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:08.441] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:08.441] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:09.674] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:09.674] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:09.674] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:09.675] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:09.675] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:09.735] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:09.735] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:10.043] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:10.981] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:10.981] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:10.981] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:10.981] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:10.981] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:11.041] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:11.041] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:12.273] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:12.273] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:12.273] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:12.273] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:12.273] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:12.274] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:35:15.080] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:16.804] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:16.805] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:16.805] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:16.805] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:16.805] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:16.866] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:16.866] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:18.102] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:18.102] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:18.103] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:18.103] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:18.103] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:18.162] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:18.163] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:19.413] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3704,2504,0)
+[17:35:19.419] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3704,2504)
+[17:35:19.419] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3695,2511,z0)
+[17:35:19.419] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:19.419] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:19.473] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3704,2504,0); target (3695,2511); stopped short (off by 16 tile(s))
+[17:35:19.474] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3704,2504) target=(3695,2511) arrived=0 off=16
+[17:35:19.474] WARN  [wave10_RevGen3_30_Xerxe] [travel] route exhausted at (3704,2504,0); trying to reach (3688,2488,0) to get somewhere routable (escape 3/3)
+[17:35:19.474] LOG   [wave10_RevGen3_30_Xerxe] event travel_escape: from=(3704,2504,0) to=(3688,2488) attempt=3
+[17:35:19.474] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3688,2488) from (3704,2504,0)
+[17:35:19.474] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3688,2488) from=(3704,2504)
+[17:35:19.474] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3704,2504,0) to (3688,2488,z0)
+[17:35:19.475] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3688,2488) in background
+[17:35:19.535] INFO  [wave10_RevGen3_30_Xerxe] [bot] replan to (3688,2488): 27 steps in 1096.0us
+[17:35:20.130] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:25.148] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:27.783] INFO  [wave10_RevGen3_30_Xerxe] [bot] arrived at (3688,2488,0)
+[17:35:27.786] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3688,2488); ARRIVED (off by 0 tile(s))
+[17:35:27.786] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3688,2488) arrived=1 off=0
+[17:35:27.786] INFO  [wave10_RevGen3_30_Xerxe] [travel] recovery walk reached its anchor at (3688,2488,0) (off 0); attempt 2/3
+[17:35:27.786] LOG   [wave10_RevGen3_30_Xerxe] event travel_recovery_done: reached=1 at=(3688,2488,0) off=0 attempt=2
+[17:35:27.844] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:27.845] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:27.845] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:27.845] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:27.845] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:27.845] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:35:27.904] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:27.905] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:27.905] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:27.905] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:27.905] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:27.966] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:27.966] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:29.196] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:29.196] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:29.197] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:29.197] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:29.197] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:29.244] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:29.244] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:30.179] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:30.504] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:30.504] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:30.505] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:30.505] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:30.505] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:30.566] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:30.568] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:31.824] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.825] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:33.368] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:33.368] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:33.430] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:33.430] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:34.635] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:34.636] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:34.696] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:34.697] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:35.216] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:35.910] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:35.910] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:35.911] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:35.911] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:35.911] WARN  [wave10_RevGen3_30_Xerxe] [bot] goal (3695,2511) is not walkable; skipping A* and stopping
+[17:35:35.972] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:35.974] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:37.217] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.218] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:35:39.330] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.408] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Selene has departed from Britain Fields.
+17:35:27.966] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:29.196] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:29.196] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:29.197] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:29.197] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:29.244] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:29.244] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:30.179] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:30.504] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:30.504] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:30.505] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:30.505] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:30.566] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:30.568] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:31.824] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:31.825] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:31.825] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:35:32.819] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_30.xerxes/state.json
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:33.368] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:33.368] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:33.430] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:33.430] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:34.635] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:34.635] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:34.696] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:34.697] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:35.216] INFO  [wave10_RevGen3_30_Xerxe] [survival] hp 24/24 (100%) -> fight
+[17:35:35.910] INFO  [wave10_RevGen3_30_Xerxe] [action] goto (3695,2511) from (3688,2488,0)
+[17:35:35.910] LOG   [wave10_RevGen3_30_Xerxe] event goto_start: target=(3695,2511) from=(3688,2488)
+[17:35:35.911] INFO  [wave10_RevGen3_30_Xerxe] [bot] running from (3688,2488,0) to (3695,2511,z0)
+[17:35:35.911] INFO  [wave10_RevGen3_30_Xerxe] [bot] planning path to (3695,2511) in background
+[17:35:35.972] INFO  [wave10_RevGen3_30_Xerxe] [action] goto finished at (3688,2488,0); target (3695,2511); stopped short (off by 30 tile(s))
+[17:35:35.974] LOG   [wave10_RevGen3_30_Xerxe] event goto_done: at=(3688,2488) target=(3695,2511) arrived=0 off=30
+[17:35:37.217] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode walk             usable   <- chosen
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode moongate         usable
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.218] LOG   [wave10_RevGen3_30_Xerxe] event travel_mode: walk
+[17:35:37.218] INFO  [wave10_RevGen3_30_Xerxe] [travel] plan Ocllo banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:35:39.330] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.408] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.438] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_30_Xerxe] [chat ascii] System: Selene has departed from Britain Fields.

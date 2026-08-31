@@ -1,0 +1,23 @@
+LIFE-GATE  family=pk  console=wave10_RevArchetype_33_Varek.console.txt
+------------------------------------------------------------------------------------------------
+FARM-1   PASS  guard-line refusals 0 (cap 3)                               lines: -
+FARM-2   FAIL  gold 0->0, kills 0                                          lines: -
+FARM-3   PASS  no GET_TOOL pick -- nothing to return from                  lines: -
+FARM-4   PASS  pack never reached the carry limit                          lines: -
+FARM-5   PASS  coords with x>=5120: 0                                      lines: -
+TRAIN-1  FAIL  skills 0.0->0.0                                             lines: -
+TRAIN-2  FAIL  verified training events 0                                  lines: -
+TRAIN-3  PASS  training-family goal_spinning 0                             lines: -
+TRAIN-4  PASS  N/A -- no Blacksmithing in this build                       lines: -
+STOCK-1  PASS  bank 0->0                                                   lines: -
+STOCK-2  PASS  consumable lines 0 (cap 5/min = 0)                          lines: -
+STOCK-3  FAIL  gold 0->0, upkeep 0%, no-coin 0                             lines: -
+STOCK-4  PASS  durable re-buys: none                                       lines: -
+LIVE-1   FAIL  varied=0 families=0 top=100%                                lines: -
+LIVE-2   FAIL  self_superseded=999 (cap 3)                                 lines: -
+LIVE-3   FAIL  goal_spinning lines 1                                       lines: 636
+LIVE-4   FAIL  logout_complete=0 safe_end=0                                lines: -
+LIVE-5   FAIL  wander picks 0                                              lines: -
+------------------------------------------------------------------------------------------------
+9/18 PASS
+FAILING RULES: FARM-2 TRAIN-1 TRAIN-2 STOCK-3 LIVE-1 LIVE-2 LIVE-3 LIVE-4 LIVE-5

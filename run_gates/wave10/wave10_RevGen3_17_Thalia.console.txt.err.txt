@@ -1,0 +1,11 @@
+start: Thalia is a scribe and lives in Moonglow -> starting city index 3
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:29:40.454] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019D6A landed in 0x4000AB4F, not the destination 0x40019D6B
+[17:29:45.490] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] move_item server_failure (1ms) item 0x40019D69 landed in 0x4000AB4F, not the destination 0x40019D6B
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:30:29.318] WARN  [wave10_RevGen3_17_Thali] [0x21] move REJECTED seq=13; server says (1400,3772,0) facing=3
+[17:30:29.333] WARN  [wave10_RevGen3_17_Thali] [bot] 0x20 resync; aborting path
+[17:34:09.762] WARN  [wave10_RevGen3_17_Thali] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.906] WARN  [wave10_RevGen3_17_Thali] [0x22] ack seq=97, expected 0 — resyncing
+[17:34:09.920] WARN  [wave10_RevGen3_17_Thali] [0x22] unsolicited ack seq=0
+[17:34:37.886] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] cast_spell server_failure (1ms) The spell is not in your spellbook.

@@ -1,0 +1,14 @@
+start: Varek is a pk and lives in Buccaneer's Den -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:29:52.295] WARN  [wave10_RevArchetype_33_] [bot] THREAT (HP 18 -> 14): halting travel (TODO engage/flee/recall)
+[17:29:59.924] WARN  [wave10_RevArchetype_33_] [bot] 0x20 resync; aborting path
+[17:30:01.218] WARN  [wave10_RevArchetype_33_] [bot] THREAT (HP 14 -> 10): halting travel (TODO engage/flee/recall)
+[17:30:01.219] WARN  [wave10_RevArchetype_33_] [0x22] unsolicited ack seq=0
+[17:31:35.199] WARN  [wave10_RevArchetype_33_] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[17:31:35.937] WARN  [wave10_RevArchetype_33_] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[17:32:51.231] WARN  [wave10_RevArchetype_33_] [ACTION_RESULT] resurrect invalid_state (0ms) not dead
+[17:33:33.306] WARN  [wave10_RevArchetype_33_] [bot] no path to (1418,1547) avoiding 0 block(s); stopping (search 2417866.2us)
+[17:33:33.306] WARN  [wave10_RevArchetype_33_] [bot] start (1432,1560,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 689 item(s), 3 mobile(s))
+[17:33:44.426] WARN  [wave10_RevArchetype_33_] [bot] no path to (1420,1547) avoiding 0 block(s); stopping (search 1685042.7us)
+[17:33:44.426] WARN  [wave10_RevArchetype_33_] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 720 item(s), 2 mobile(s))

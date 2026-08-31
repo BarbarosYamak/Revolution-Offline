@@ -1,0 +1,875 @@
+[17:29:35.196] LOG   [wave10_RevGen3_18_Dorva] event session_start: text log opened
+[17:29:35.198] LOG   [wave10_RevGen3_18_Dorva] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.199] INFO  [wave10_RevGen3_18_Dorva] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.201] LOG   [wave10_RevGen3_18_Dorva] event net_connected: connect 127.0.0.1:2593
+[17:29:35.203] INFO  [wave10_RevGen3_18_Dorva] [net] connected.
+[17:29:35.204] INFO  [wave10_RevGen3_18_Dorva] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.205] LOG   [wave10_RevGen3_18_Dorva] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.209] INFO  [wave10_RevGen3_18_Dorva] [life] autonomous player active for 'Dorvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.210] INFO  [wave10_RevGen3_18_Dorva] [0xA8] 1 server(s):
+[17:29:35.211] INFO  [wave10_RevGen3_18_Dorva]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[17:29:35.217] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.217] INFO  [wave10_RevGen3_18_Dorva] [0x8C] game server = 127.0.0.1:2593  seed=0x0AEFFB97
+[17:29:35.217] LOG   [wave10_RevGen3_18_Dorva] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0AEFFB97
+[17:29:35.217] INFO  [wave10_RevGen3_18_Dorva] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.217] LOG   [wave10_RevGen3_18_Dorva] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.227] INFO  [wave10_RevGen3_18_Dorva] [0xB9] server features = 0x0005
+[17:29:35.228] INFO  [wave10_RevGen3_18_Dorva] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.228] INFO  [wave10_RevGen3_18_Dorva]   [0] Dorvar
+[17:29:35.229] INFO  [wave10_RevGen3_18_Dorva]   [1] <empty>
+[17:29:35.229] INFO  [wave10_RevGen3_18_Dorva]   [2] <empty>
+[17:29:35.229] INFO  [wave10_RevGen3_18_Dorva]   [3] <empty>
+[17:29:35.230] INFO  [wave10_RevGen3_18_Dorva]   [4] <empty>
+[17:29:35.234] INFO  [wave10_RevGen3_18_Dorva] [ui] playing slot 0 ('Dorvar')
+[17:29:35.236] INFO  [wave10_RevGen3_18_Dorva] [0x1B] serial=0x00019D4B body=0x0190 pos=(3655,2247,20)
+[17:29:35.237] LOG   [wave10_RevGen3_18_Dorva] event login_confirm: serial=0x00019D4B body=0x0190 pos=(3655,2247,20)
+[17:29:35.237] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(3655,2247,20) facing=1
+[17:29:35.237] INFO  [wave10_RevGen3_18_Dorva] [0x55] login complete — entering world
+[17:29:35.238] LOG   [wave10_RevGen3_18_Dorva] event in_world: 0x55 received
+[17:29:35.239] INFO  [wave10_RevGen3_18_Dorva] [backpack] opening 0x40019D35
+[17:29:35.239] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.239] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: There are 20 other players here.
+[17:29:35.239] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.240] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You are under the protection of the town guards
+[17:29:35.245] INFO  [wave10_RevGen3_18_Dorva] [action] requesting the skill list
+[17:29:35.247] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You are fairly content
+[17:29:35.248] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Dorvar: *You looks fairly content*
+[17:29:35.249] INFO  [wave10_RevGen3_18_Dorva] [0x24] open container 0x40019D35 gump=60
+[17:29:35.249] INFO  [wave10_RevGen3_18_Dorva] [0x3C] container contents: 17 item(s)
+[17:29:35.250] LOG   [wave10_RevGen3_18_Dorva] event backpack_contents: serial=0x40019D35 items=17
+[17:29:35.250] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.279] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.790] INFO  [wave10_RevGen3_18_Dorva] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.791] INFO  [wave10_RevGen3_18_Dorva] [survival] on
+[17:29:37.791] LOG   [wave10_RevGen3_18_Dorva] event survival_mode: on
+[17:29:37.794] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:29:38.003] INFO  [wave10_RevGen3_18_Dorva] [travel] Magincia fisherman -> (3674,2289) r=5 from (3655,2247)
+[17:29:38.004] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='Magincia fisherman' target=(3674,2289) radius=5 from=(3655,2247)
+[17:29:38.004] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable   <- chosen
+[17:29:38.004] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable
+[17:29:38.004] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.004] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.005] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: walk
+[17:29:38.005] INFO  [wave10_RevGen3_18_Dorva] [travel] plan Magincia fisherman: ok legs=2 ~56 tiles transit=0 nodes=19
+[17:29:38.070] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3672,2280) from (3655,2247,20)
+[17:29:38.071] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3672,2280) from=(3655,2247)
+[17:29:38.071] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3655,2247,20) to (3672,2280)
+[17:29:38.071] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3672,2280) in background
+[17:29:38.133] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3672,2280): 53 steps in 9164.9us
+[17:29:42.631] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Jun: Aye?
+[17:29:42.814] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:29:46.413] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Jun: What's thee wantin'?
+[17:29:47.845] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:29:52.464] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3672,2280,-2)
+[17:29:52.465] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3672,2280,-2); target (3672,2280); ARRIVED (off by 0 tile(s))
+[17:29:52.465] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3672,2280) target=(3672,2280) arrived=1 off=0
+[17:29:52.465] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3674,2289) from (3672,2280,-2)
+[17:29:52.466] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3674,2289) from=(3672,2280)
+[17:29:52.466] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3672,2280,-2) to (3674,2289,z-2)
+[17:29:52.466] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3674,2289) in background
+[17:29:52.526] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3674,2289): 9 steps in 303.6us
+[17:29:52.895] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:29:53.970] INFO  [wave10_RevGen3_18_Dorva] [travel] Magincia fisherman ARRIVED at (3673,2284,-2)
+[17:29:53.970] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='Magincia fisherman' ok=1 at=(3673,2284) legs=2 plans=1 why=''
+[17:29:54.032] INFO  [wave10_RevGen3_18_Dorva] [action] scanning nearby mobiles for names
+[17:29:54.032] INFO  [wave10_RevGen3_18_Dorva] [action] requested 1 paperdoll(s) for trade titles
+[17:29:54.047] INFO  [wave10_RevGen3_18_Dorva] [mobiles] nearby (2):
+[17:29:54.047] INFO  [wave10_RevGen3_18_Dorva]   Paulette 0x000046FD
+[17:29:54.047] INFO  [wave10_RevGen3_18_Dorva]   Terese 0x0000C49A
+[17:29:54.047] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(3673,2284,-2) facing=3
+[17:29:54.048] INFO  [wave10_RevGen3_18_Dorva] [0x88] paperdoll 0x000046FD: "Paulette, the fisherwoman"
+[17:29:54.048] INFO  [wave10_RevGen3_18_Dorva] [world] Paulette, the fisherwoman is a fisherman at (3676,2288)
+[17:29:56.539] INFO  [wave10_RevGen3_18_Dorva] [travel] mobile 0x000046FD -> (3675,2289) r=1 from (3673,2284)
+[17:29:56.539] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='mobile 0x000046FD' target=(3675,2289) radius=1 from=(3673,2284)
+[17:29:56.539] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable   <- chosen
+[17:29:56.539] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable
+[17:29:56.539] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:56.540] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:56.540] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: walk
+[17:29:56.540] INFO  [wave10_RevGen3_18_Dorva] [travel] plan mobile 0x000046FD: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:29:56.600] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3673,2284,-2); target (3674,2289); stopped short (off by 6 tile(s))
+[17:29:56.600] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3673,2284) target=(3674,2289) arrived=0 off=6
+[17:29:56.601] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3675,2289) from (3673,2284,-2)
+[17:29:56.601] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3675,2289) from=(3673,2284)
+[17:29:56.601] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3673,2284,-2) to (3675,2289,z-2)
+[17:29:56.601] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3675,2289) in background
+[17:29:57.462] WARN  [wave10_RevGen3_18_Dorva] [bot] no path to (3675,2289) avoiding 0 block(s); stopping (search 860547.2us)
+[17:29:57.463] WARN  [wave10_RevGen3_18_Dorva] [bot] start (3673,2284,-2) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 8 item(s), 2 mobile(s))
+[17:29:57.523] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3673,2284,-2); target (3675,2289); stopped short (off by 7 tile(s))
+[17:29:57.524] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3673,2284) target=(3675,2289) arrived=0 off=7
+[17:29:57.954] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:29:58.767] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3675,2289) from (3673,2284,-2)
+[17:29:58.767] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3675,2289) from=(3673,2284)
+[17:29:58.767] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3673,2284,-2) to (3675,2289,z-2)
+[17:29:58.767] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3675,2289) in background
+[17:29:58.768] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3675,2289): 5 steps in 66.2us
+[17:29:59.753] INFO  [wave10_RevGen3_18_Dorva] [travel] mobile 0x000046FD ARRIVED at (3675,2288,-2)
+[17:29:59.753] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='mobile 0x000046FD' ok=1 at=(3675,2288) legs=1 plans=1 why=''
+[17:29:59.817] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:29:59.817] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
+[17:29:59.831] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: Paulette sell
+[17:29:59.832] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: Thee got summat to sell? Give it here.
+[17:29:59.832] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell list from 0x000046FD: 6 item(s)
+[17:29:59.832] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400025E3 fish steak             x1   5 gp
+[17:29:59.832] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400170CE raw fish steaks        x4   2 gp
+[17:29:59.833] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x40016F9A raw fish steaks        x8   2 gp
+[17:29:59.833] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400144AA raw fish steaks        x8   2 gp
+[17:29:59.833] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4001442B raw fish steaks        x8   2 gp
+[17:29:59.833] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000DDEB raw fish steaks        x4   2 gp
+[17:29:59.833] LOG   [wave10_RevGen3_18_Dorva] event vendor_sell_list: vendor=0x000046FD items=6
+[17:29:59.833] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (16ms) vendor sell list received
+[17:29:59.833] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=16ms vendor sell list received
+[17:30:02.352] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:30:02.353] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell 2 item(s) totalling 12 to vendor=0x000046FD gold=10264
+[17:30:02.368] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: Here you are, 24 gold coins. I thank thee for thy business.
+[17:30:02.369] INFO  [wave10_RevGen3_18_Dorva] [0x3B] vendor transaction closed: vendor=0x000046FD flag=0
+[17:30:02.492] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (140ms) gold 10264 -> 10288
+[17:30:02.492] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=140ms gold 10264 -> 10288
+[17:30:02.982] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:05.380] INFO  [wave10_RevGen3_18_Dorva] [travel] fishing spot -> (3656,2248) r=4 from (3675,2288)
+[17:30:05.380] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='fishing spot' target=(3656,2248) radius=4 from=(3675,2288)
+[17:30:05.380] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable   <- chosen
+[17:30:05.380] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable
+[17:30:05.380] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:05.380] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:05.381] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: walk
+[17:30:05.381] INFO  [wave10_RevGen3_18_Dorva] [travel] plan fishing spot: ok legs=1 ~40 tiles transit=0 nodes=0
+[17:30:05.440] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3675,2288,-2); target (3675,2289); stopped short (off by 1 tile(s))
+[17:30:05.440] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3675,2288) target=(3675,2289) arrived=0 off=1
+[17:30:05.441] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3656,2248) from (3675,2288,-2)
+[17:30:05.441] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3656,2248) from=(3675,2288)
+[17:30:05.441] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3675,2288,-2) to (3656,2248)
+[17:30:05.441] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3656,2248) in background
+[17:30:05.503] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3656,2248): 60 steps in 16635.6us
+[17:30:08.039] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:13.054] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:18.108] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:20.868] INFO  [wave10_RevGen3_18_Dorva] [travel] fishing spot ARRIVED at (3659,2249,20)
+[17:30:20.868] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='fishing spot' ok=1 at=(3659,2249) legs=1 plans=1 why=''
+[17:30:20.991] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3659,2249,20); target (3656,2248); stopped short (off by 4 tile(s))
+[17:30:20.991] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3659,2249) target=(3656,2248) arrived=0 off=4
+[17:30:20.994] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3657,2251) from (3659,2249,20)
+[17:30:20.994] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3657,2251) from=(3659,2249)
+[17:30:20.994] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3659,2249,20) to (3657,2251)
+[17:30:20.994] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3657,2251) in background
+[17:30:20.995] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3657,2251): 2 steps in 13.3us
+[17:30:21.606] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3657,2251,20)
+[17:30:21.607] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3657,2251,20); target (3657,2251); ARRIVED (off by 0 tile(s))
+[17:30:21.607] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3657,2251) target=(3657,2251) arrived=1 off=0
+[17:30:21.915] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:30:21.915] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:30:21.930] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:30:21.930] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[17:30:21.930] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[17:30:21.930] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:30:21.930] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=15ms server armed a target cursor
+[17:30:22.777] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply static=(3653,2255,-5) gfx=0x179F gen=1
+[17:30:22.777] INFO  [wave10_RevGen3_18_Dorva] [target] static 0x179F (3653,2255,-5)
+[17:30:22.777] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: There are no fish here.
+[17:30:23.161] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:23.222] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:30:23.223] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:30:23.223] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:30:23.223] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[17:30:23.223] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[17:30:23.223] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:30:23.223] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=1ms server armed a target cursor
+[17:30:24.024] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply static=(3654,2255,-5) gfx=0x17A5 gen=2
+[17:30:24.025] INFO  [wave10_RevGen3_18_Dorva] [target] static 0x17A5 (3654,2255,-5)
+[17:30:28.220] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:32.042] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You fish a while, but fail to catch anything.
+[17:30:32.228] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:30:32.229] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:30:32.243] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:30:32.243] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[17:30:32.243] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[17:30:32.243] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:30:32.243] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=15ms server armed a target cursor
+[17:30:33.030] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply static=(3654,2255,-5) gfx=0x17A5 gen=3
+[17:30:33.031] INFO  [wave10_RevGen3_18_Dorva] [target] static 0x17A5 (3654,2255,-5)
+[17:30:33.231] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:38.272] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:43.314] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:48.325] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:49.076] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:30:49.259] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:30:49.259] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x4000D4B9
+[17:30:49.259] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:30:49.260] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:30:49.260] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=4
+[17:30:49.260] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=4
+[17:30:49.260] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x4000D4B9
+[17:30:49.260] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x4000D4B9 gen=4
+[17:30:49.260] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x4000D4B9 (0,0,0) model 0x0000
+[17:30:51.315] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:30:51.315] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2057ms) superseded
+[17:30:51.315] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on invalid_state took=2057ms superseded
+[17:30:51.315] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip start
+[17:30:51.315] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip serial=0x40019D1A layer=0
+[17:30:51.316] INFO  [wave10_RevGen3_18_Dorva] [ITEM] drag serial=0x40019D1A amount=1
+[17:30:51.317] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the dagger in your pack.
+[17:30:51.317] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:30:51.317] LOG   [wave10_RevGen3_18_Dorva] event action_result: equip success took=2ms worn on the requested layer
+[17:30:52.914] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:30:52.914] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:30:52.927] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:30:52.927] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[17:30:52.927] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[17:30:52.928] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (14ms) server armed a target cursor
+[17:30:52.928] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=14ms server armed a target cursor
+[17:30:53.356] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:30:53.728] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply static=(3654,2255,-5) gfx=0x17A5 gen=5
+[17:30:53.728] INFO  [wave10_RevGen3_18_Dorva] [target] static 0x17A5 (3654,2255,-5)
+[17:30:58.394] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:01.788] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:31:01.928] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:31:01.928] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x4000D3A9
+[17:31:01.944] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:31:01.944] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:31:01.944] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=6
+[17:31:01.944] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=6
+[17:31:01.944] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x4000D3A9
+[17:31:01.944] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x4000D3A9 gen=6
+[17:31:01.945] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x4000D3A9 (0,0,0) model 0x0000
+[17:31:03.409] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:03.979] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:31:03.980] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2051ms) superseded
+[17:31:03.980] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on invalid_state took=2051ms superseded
+[17:31:03.980] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip start
+[17:31:03.980] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip serial=0x40019D1A layer=0
+[17:31:03.980] INFO  [wave10_RevGen3_18_Dorva] [ITEM] drag serial=0x40019D1A amount=1
+[17:31:03.995] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the dagger in your pack.
+[17:31:03.995] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:31:03.995] LOG   [wave10_RevGen3_18_Dorva] event action_result: equip success took=15ms worn on the requested layer
+[17:31:05.501] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:31:05.502] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:31:05.502] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:31:05.502] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=7
+[17:31:05.502] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=7
+[17:31:05.502] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (1ms) server armed a target cursor
+[17:31:05.503] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=1ms server armed a target cursor
+[17:31:06.314] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply static=(3654,2255,-5) gfx=0x17A5 gen=7
+[17:31:06.314] INFO  [wave10_RevGen3_18_Dorva] [target] static 0x17A5 (3654,2255,-5)
+[17:31:08.424] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:13.446] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:18.502] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:22.368] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:31:22.710] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:31:22.710] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x4000D2A7
+[17:31:22.710] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:31:22.711] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:31:22.711] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=8
+[17:31:22.711] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=8
+[17:31:22.711] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x4000D2A7
+[17:31:22.711] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x4000D2A7 gen=8
+[17:31:22.711] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x4000D2A7 (0,0,0) model 0x0000
+[17:31:23.554] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:26.281] INFO  [wave10_RevGen3_18_Dorva] [travel] fisherman (seen) -> (3676,2288) r=2 from (3657,2251)
+[17:31:26.281] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='fisherman (seen)' target=(3676,2288) radius=2 from=(3657,2251)
+[17:31:26.281] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable   <- chosen
+[17:31:26.281] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable
+[17:31:26.281] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:26.281] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:26.282] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: walk
+[17:31:26.282] INFO  [wave10_RevGen3_18_Dorva] [travel] plan fisherman (seen): ok legs=1 ~37 tiles transit=0 nodes=0
+[17:31:26.342] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3676,2288) from (3657,2251,20)
+[17:31:26.342] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3676,2288) from=(3657,2251)
+[17:31:26.342] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3657,2251,20) to (3676,2288,z-2)
+[17:31:26.342] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3676,2288) in background
+[17:31:26.402] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3676,2288): 59 steps in 3433.6us
+[17:31:28.562] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:33.610] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:37.755] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[17:31:37.755] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on timeout
+[17:31:38.617] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:43.196] INFO  [wave10_RevGen3_18_Dorva] [travel] fisherman (seen) ARRIVED at (3676,2287,-2)
+[17:31:43.197] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='fisherman (seen)' ok=1 at=(3676,2287) legs=1 plans=1 why=''
+[17:31:43.258] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:31:43.258] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
+[17:31:43.259] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: Paulette sell
+[17:31:43.259] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: What's thou got to sell? Give it here. Or buy somethin'. Or go 'way.
+[17:31:43.259] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell list from 0x000046FD: 7 item(s)
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400025E3 fish steak             x1   5 gp
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400144AA raw fish steaks        x8   2 gp
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4001442B raw fish steaks        x8   2 gp
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000DDEB raw fish steaks        x4   2 gp
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D4B9 raw fish steaks        x4   2 gp
+[17:31:43.260] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D3A9 raw fish steaks        x8   2 gp
+[17:31:43.261] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D2A7 raw fish steaks        x8   2 gp
+[17:31:43.261] LOG   [wave10_RevGen3_18_Dorva] event vendor_sell_list: vendor=0x000046FD items=7
+[17:31:43.261] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (3ms) vendor sell list received
+[17:31:43.261] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=3ms vendor sell list received
+[17:31:43.629] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:45.758] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:31:45.758] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell item=0x400144AA qty=6 to vendor=0x000046FD gold=10288
+[17:31:45.759] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: Here you are, 12 gold coins. I thank thee for thy business.
+[17:31:45.759] INFO  [wave10_RevGen3_18_Dorva] [0x3B] vendor transaction closed: vendor=0x000046FD flag=0
+[17:31:45.894] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (136ms) gold 10288 -> 10300
+[17:31:45.895] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=136ms gold 10288 -> 10300
+[17:31:48.668] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:50.053] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:31:50.053] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
+[17:31:50.054] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: Paulette sell
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: Thee got summat to sell? Give it here.
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell list from 0x000046FD: 7 item(s)
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400025E3 fish steak             x1   5 gp
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x400144AA raw fish steaks        x2   2 gp
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4001442B raw fish steaks        x8   2 gp
+[17:31:50.055] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000DDEB raw fish steaks        x4   2 gp
+[17:31:50.056] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D4B9 raw fish steaks        x4   2 gp
+[17:31:50.056] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D3A9 raw fish steaks        x8   2 gp
+[17:31:50.056] INFO  [wave10_RevGen3_18_Dorva] [VENDOR]   0x4000D2A7 raw fish steaks        x8   2 gp
+[17:31:50.056] LOG   [wave10_RevGen3_18_Dorva] event vendor_sell_list: vendor=0x000046FD items=7
+[17:31:50.056] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (3ms) vendor sell list received
+[17:31:50.056] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=3ms vendor sell list received
+[17:31:52.563] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:31:52.564] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] sell 3 item(s) totalling 14 to vendor=0x000046FD gold=10300
+[17:31:52.564] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Paulette: Here you are, 28 gold coins. I thank thee for thy business.
+[17:31:52.564] INFO  [wave10_RevGen3_18_Dorva] [0x3B] vendor transaction closed: vendor=0x000046FD flag=0
+[17:31:52.578] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell success (15ms) gold 10300 -> 10328
+[17:31:52.578] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell success took=15ms gold 10300 -> 10328
+[17:31:53.685] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:31:55.672] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip start
+[17:31:55.672] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip serial=0x40019D1A layer=0
+[17:31:55.672] INFO  [wave10_RevGen3_18_Dorva] [ITEM] drag serial=0x40019D1A amount=1
+[17:31:55.686] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the dagger in your pack.
+[17:31:55.686] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] equip success (14ms) worn on the requested layer
+[17:31:55.686] LOG   [wave10_RevGen3_18_Dorva] event action_result: equip success took=14ms worn on the requested layer
+[17:31:57.185] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3676,2287,-2); target (3676,2288); stopped short (off by 1 tile(s))
+[17:31:57.185] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3676,2287) target=(3676,2288) arrived=0 off=1
+[17:31:57.228] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3670,2278) from (3676,2287,-2)
+[17:31:57.228] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3670,2278) from=(3676,2287)
+[17:31:57.228] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3676,2287,-2) to (3670,2278)
+[17:31:57.228] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3670,2278) in background
+[17:31:57.292] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3670,2278): 9 steps in 208.7us
+[17:31:58.690] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:00.765] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3670,2278,-2)
+[17:32:00.765] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3670,2278,-2); target (3670,2278); ARRIVED (off by 0 tile(s))
+[17:32:00.765] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3670,2278) target=(3670,2278) arrived=1 off=0
+[17:32:01.075] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:32:01.076] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:32:01.091] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:32:01.092] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=9
+[17:32:01.092] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=9
+[17:32:01.092] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (17ms) server armed a target cursor
+[17:32:01.092] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=17ms server armed a target cursor
+[17:32:01.894] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply ground=(3666,2274,-5) gen=9
+[17:32:01.894] INFO  [wave10_RevGen3_18_Dorva] [target] ground (3666,2274,-5)
+[17:32:01.909] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(3670,2278,-2) facing=7
+[17:32:03.741] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:08.791] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:13.798] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:17.962] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:32:18.208] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:32:18.208] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x40009827
+[17:32:18.209] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:32:18.209] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:32:18.209] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=10
+[17:32:18.209] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=10
+[17:32:18.209] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x40009827
+[17:32:18.210] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x40009827 gen=10
+[17:32:18.210] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x40009827 (0,0,0) model 0x0000
+[17:32:18.826] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:20.238] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:32:20.239] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2030ms) superseded
+[17:32:20.239] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on invalid_state took=2030ms superseded
+[17:32:20.239] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip start
+[17:32:20.239] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip serial=0x40019D1A layer=0
+[17:32:20.239] INFO  [wave10_RevGen3_18_Dorva] [ITEM] drag serial=0x40019D1A amount=1
+[17:32:20.255] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the dagger in your pack.
+[17:32:20.255] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:32:20.255] LOG   [wave10_RevGen3_18_Dorva] event action_result: equip success took=16ms worn on the requested layer
+[17:32:21.792] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:32:21.793] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:32:21.808] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:32:21.808] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=11
+[17:32:21.808] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=11
+[17:32:21.808] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:32:21.808] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=16ms server armed a target cursor
+[17:32:22.611] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply ground=(3666,2274,-5) gen=11
+[17:32:22.611] INFO  [wave10_RevGen3_18_Dorva] [target] ground (3666,2274,-5)
+[17:32:23.827] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:28.837] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:33.885] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:38.641] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:32:38.904] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:38.968] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:32:38.968] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x40009039
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=12
+[17:32:38.969] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=12
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x40009039
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x40009039 gen=12
+[17:32:38.969] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x40009039 (0,0,0) model 0x0000
+[17:32:41.020] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by equip
+[17:32:41.020] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (2052ms) superseded
+[17:32:41.021] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on invalid_state took=2052ms superseded
+[17:32:41.021] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip start
+[17:32:41.021] INFO  [wave10_RevGen3_18_Dorva] [ACTION] equip serial=0x40019D1A layer=0
+[17:32:41.021] INFO  [wave10_RevGen3_18_Dorva] [ITEM] drag serial=0x40019D1A amount=1
+[17:32:41.035] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the dagger in your pack.
+[17:32:41.035] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] equip success (14ms) worn on the requested layer
+[17:32:41.036] LOG   [wave10_RevGen3_18_Dorva] event action_result: equip success took=14ms worn on the requested layer
+[17:32:42.538] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object start
+[17:32:42.538] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_object serial=0x40019D1A
+[17:32:42.552] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Where would you like to fish?
+[17:32:42.553] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=13
+[17:32:42.553] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=1 subtype=0 gen=13
+[17:32:42.553] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[17:32:42.553] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_object success took=15ms server armed a target cursor
+[17:32:43.352] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply ground=(3666,2274,-5) gen=13
+[17:32:43.353] INFO  [wave10_RevGen3_18_Dorva] [target] ground (3666,2274,-5)
+[17:32:43.933] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:48.936] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:53.947] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:58.970] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:32:59.416] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You pull out a fish!
+[17:32:59.725] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on start
+[17:32:59.726] INFO  [wave10_RevGen3_18_Dorva] [ACTION] use_item_on item=0x40019D20 target=0x40004666
+[17:32:59.741] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You put the fishing pole in your pack.
+[17:32:59.741] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: What do you want to use this on?
+[17:32:59.741] INFO  [wave10_RevGen3_18_Dorva] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=14
+[17:32:59.742] LOG   [wave10_RevGen3_18_Dorva] event target_requested: id=0x000002CE type=0 subtype=1 gen=14
+[17:32:59.742] INFO  [wave10_RevGen3_18_Dorva] [TARGET] auto-reply for use_item_on -> 0x40004666
+[17:32:59.742] INFO  [wave10_RevGen3_18_Dorva] [TARGET] reply serial=0x40004666 gen=14
+[17:32:59.742] INFO  [wave10_RevGen3_18_Dorva] [target] object 0x40004666 (0,0,0) model 0x0000
+[17:33:03.242] WARN  [wave10_RevGen3_18_Dorva] [action] use_item_on superseded by vendor_sell
+[17:33:03.243] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] use_item_on invalid_state (3517ms) superseded
+[17:33:03.243] LOG   [wave10_RevGen3_18_Dorva] event action_result: use_item_on invalid_state took=3517ms superseded
+[17:33:03.243] INFO  [wave10_RevGen3_18_Dorva] [ACTION] vendor_sell start
+[17:33:03.243] INFO  [wave10_RevGen3_18_Dorva] [VENDOR] open sell vendor=0x000046FD say='Paulette sell'
+[17:33:03.258] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: Paulette sell
+[17:33:03.994] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:09.026] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:11.276] WARN  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] vendor_sell timeout (no server confirmation)
+[17:33:11.277] LOG   [wave10_RevGen3_18_Dorva] event action_result: vendor_sell timeout
+[17:33:11.464] INFO  [wave10_RevGen3_18_Dorva] [travel] seeded_bank -> (587,2146) r=5 from (3670,2278)
+[17:33:11.464] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='seeded_bank' target=(587,2146) radius=5 from=(3670,2278)
+[17:33:11.464] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable   <- chosen
+[17:33:11.464] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable
+[17:33:11.464] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:11.464] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:11.465] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: moongate
+[17:33:11.465] INFO  [wave10_RevGen3_18_Dorva] [travel] plan seeded_bank: ok legs=10 ~432 tiles transit=1 nodes=1080
+[17:33:11.523] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3672,2248) from (3670,2278,-2)
+[17:33:11.524] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3672,2248) from=(3670,2278)
+[17:33:11.524] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3670,2278,-2) to (3672,2248)
+[17:33:11.524] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3672,2248) in background
+[17:33:11.585] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3672,2248): 34 steps in 2701.2us
+[17:33:14.063] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:19.098] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:21.200] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3672,2248,20)
+[17:33:21.201] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3672,2248,20); target (3672,2248); ARRIVED (off by 0 tile(s))
+[17:33:21.201] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3672,2248) target=(3672,2248) arrived=1 off=0
+[17:33:21.201] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3640,2216) from (3672,2248,20)
+[17:33:21.202] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3640,2216) from=(3672,2248)
+[17:33:21.202] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3672,2248,20) to (3640,2216)
+[17:33:21.202] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3640,2216) in background
+[17:33:21.262] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3640,2216): 55 steps in 29607.9us
+[17:33:24.152] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:29.154] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:33.277] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You have left the protection of the town guards
+[17:33:34.201] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:38.383] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3640,2216,20)
+[17:33:38.383] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3640,2216,20); target (3640,2216); ARRIVED (off by 0 tile(s))
+[17:33:38.383] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3640,2216) target=(3640,2216) arrived=1 off=0
+[17:33:38.383] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3610,2180) from (3640,2216,20)
+[17:33:38.384] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3610,2180) from=(3640,2216)
+[17:33:38.384] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3640,2216,20) to (3610,2180)
+[17:33:38.384] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3610,2180) in background
+[17:33:38.443] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3610,2180): 46 steps in 20542.1us
+[17:33:39.216] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:44.258] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:49.309] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:54.369] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:33:54.431] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3610,2180,25)
+[17:33:54.431] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3610,2180,25); target (3610,2180); ARRIVED (off by 0 tile(s))
+[17:33:54.431] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3610,2180) target=(3610,2180) arrived=1 off=0
+[17:33:54.431] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3576,2152) from (3610,2180,25)
+[17:33:54.431] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3576,2152) from=(3610,2180)
+[17:33:54.432] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3610,2180,25) to (3576,2152)
+[17:33:54.432] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3576,2152) in background
+[17:33:54.490] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3576,2152): 45 steps in 6323.4us
+[17:33:54.568] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: World save in 10 seconds
+[17:33:59.405] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:04.455] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: World save has been initiated.
+[17:34:09.513] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_18_Dorva] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.825] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3593,2162,46); target (3576,2152); stopped short (off by 27 tile(s))
+[17:34:09.825] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3593,2162) target=(3576,2152) arrived=0 off=27
+[17:34:09.906] WARN  [wave10_RevGen3_18_Dorva] [0x22] unsolicited ack seq=43
+[17:34:11.058] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3576,2152) from (3593,2162,46)
+[17:34:11.058] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3576,2152) from=(3593,2162)
+[17:34:11.058] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3593,2162,46) to (3576,2152)
+[17:34:11.059] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3576,2152) in background
+[17:34:11.119] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3576,2152): 18 steps in 1217.1us
+[17:34:11.643] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=2; server says (3593,2161,48) facing=7
+[17:34:11.644] INFO  [wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3592,2160,51) rejected; OpenDoor + retry
+[17:34:12.352] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=7
+[17:34:12.353] INFO  [wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3592,2160,51) rejected; avoiding edge + rerouting
+[17:34:12.353] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3576,2152) in background
+[17:34:12.413] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3576,2152): 19 steps in 1107.4us
+[17:34:12.984] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=1; server says (3593,2161,48) facing=0
+[17:34:12.984] INFO  [wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3593,2160,52) rejected; OpenDoor + retry
+[17:34:13.756] WARN  [wave10_RevGen3_18_Dorva] [0x21] move REJECTED seq=0; server says (3593,2161,48) facing=0
+[17:34:13.756] INFO  [wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3593,2160,52) rejected; avoiding edge + rerouting
+[17:34:13.756] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3576,2152) in background
+[17:34:13.817] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3576,2152): 19 steps in 1410.9us
+[17:34:14.521] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable   <- chosen
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:15.346] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: moongate
+[17:34:15.346] INFO  [wave10_RevGen3_18_Dorva] [travel] plan seeded_bank: ok legs=6 ~272 tiles transit=1 nodes=1127
+[17:34:19.572] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:20.370] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3576,2152,46)
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3576,2152,46); target (3576,2152); ARRIVED (off by 0 tile(s))
+[17:34:20.372] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3576,2152) target=(3576,2152) arrived=1 off=0
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [travel] pre-armed moongate destination 'Skara Brae' while approaching
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3564,2140) from (3576,2152,46)
+[17:34:20.372] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3564,2140) from=(3576,2152)
+[17:34:20.373] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3576,2152,46) to (3564,2140)
+[17:34:20.373] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3564,2140) in background
+[17:34:20.433] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3564,2140): 15 steps in 377.6us
+[17:34:24.601] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump] 0x4000289E context=0x80A00402: 13 option(s), 15 text(s)
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 1000 = 'OKAY'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 0 = 'CANCEL'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 1 = 'Felucca'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 1 = 'Moonglow'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 2 = 'Britain'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 3 = 'Jhelom'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 4 = 'Yew'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 5 = 'New Magincia'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 6 = 'Minoc'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 7 = 'Trinsic'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 8 = 'Skara Brae'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 9 = 'Buccaneer's Den'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 0 = 'Pick your destination:'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 1 = 'OKAY'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 2 = 'CANCEL'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 3 = 'Felucca'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 4 = 'Felucca'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 5 = 'Moonglow'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 6 = 'Britain'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 7 = 'Jhelom'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 8 = 'Yew'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 9 = 'New Magincia'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 10 = 'Minoc'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 11 = 'Trinsic'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 12 = 'Skara Brae'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 13 = 'Buccaneer's Den'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:34:26.366] LOG   [wave10_RevGen3_18_Dorva] event gump_open: serial=0x4000289E context=0x80A00402 options=13
+[17:34:26.367] INFO  [wave10_RevGen3_18_Dorva] [travel] gate gump: choosing 'Skara Brae' (choice 8, button 1000)
+[17:34:26.367] LOG   [wave10_RevGen3_18_Dorva] event moongate_use: destination='Skara Brae' choice=8 button=1000
+[17:34:26.367] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3564,2140,34)
+[17:34:26.368] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
+[17:34:26.368] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
+[17:34:26.368] INFO  [wave10_RevGen3_18_Dorva] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
+[17:34:26.377] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(643,2067,5) facing=7
+[17:34:26.378] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(643,2067,5) facing=7
+[17:34:26.378] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You can't see the target
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [action] goto (616,2104) from (643,2067,5)
+[17:34:26.439] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(616,2104) from=(643,2067)
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (643,2067,5) to (616,2104)
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (616,2104) in background
+[17:34:26.501] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (616,2104): 41 steps in 23430.5us
+[17:34:26.824] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You have been revealed
+[17:34:29.642] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:34.687] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:39.697] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:40.296] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (616,2104,0)
+[17:34:40.297] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (616,2104,0); target (616,2104); ARRIVED (off by 0 tile(s))
+[17:34:40.297] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(616,2104) target=(616,2104) arrived=1 off=0
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [action] goto (600,2136) from (616,2104,0)
+[17:34:40.298] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(600,2136) from=(616,2104)
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (616,2104,0) to (600,2136)
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (600,2136) in background
+[17:34:40.358] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (600,2136): 33 steps in 2726.4us
+[17:34:41.699] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You are now under the protection of the town guards
+[17:34:44.711] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:49.714] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:50.206] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (600,2136,0)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (600,2136,0); target (600,2136); ARRIVED (off by 0 tile(s))
+[17:34:50.207] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(600,2136) target=(600,2136) arrived=1 off=0
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [action] goto (587,2146) from (600,2136,0)
+[17:34:50.207] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(587,2146) from=(600,2136)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (600,2136,0) to (587,2146)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (587,2146) in background
+[17:34:50.268] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (587,2146): 33 steps in 4411.5us
+[17:34:54.749] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:55.333] INFO  [wave10_RevGen3_18_Dorva] [bot] door ahead at (597,2151,z0); OpenDoor before step
+[17:34:55.335] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Opening door...
+[17:34:57.908] INFO  [wave10_RevGen3_18_Dorva] [travel] seeded_bank ARRIVED at (592,2150,0)
+[17:34:57.908] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='seeded_bank' ok=1 at=(592,2150) legs=6 plans=2 why=''
+[17:34:57.970] INFO  [wave10_RevGen3_18_Dorva] [ACTION] open_bank start
+[17:34:57.970] INFO  [wave10_RevGen3_18_Dorva] [ACTION] open_bank banker=0x00000000 say='bank'
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: bank
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Nita: Greetings. What can I help thee with?
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Nita: Yes, banking is my unfortunate lot in life.
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You have 0 stones in your Bank Box
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [0x24] open container 0x40019D48 gump=74
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [STATE] bank container=0x40019D48 gump=0x004A
+[17:34:57.987] LOG   [wave10_RevGen3_18_Dorva] event bank_opened: container recognised
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] open_bank success (17ms) bank container opened
+[17:34:57.987] LOG   [wave10_RevGen3_18_Dorva] event action_result: open_bank success took=17ms bank container opened
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [0x3C] container contents: 1 item(s)
+[17:34:59.755] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:04.810] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:07.011] INFO  [wave10_RevGen3_18_Dorva] [travel] Skara Brae fisherman -> (656,2235) r=5 from (592,2150)
+[17:35:07.019] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='Skara Brae fisherman' target=(656,2235) radius=5 from=(592,2150)
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable   <- chosen
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.020] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: moongate
+[17:35:07.021] INFO  [wave10_RevGen3_18_Dorva] [travel] plan Skara Brae fisherman: ok legs=3 ~88 tiles transit=0 nodes=77
+[17:35:07.087] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (592,2150,0); target (587,2146); stopped short (off by 9 tile(s))
+[17:35:07.088] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(592,2150) target=(587,2146) arrived=0 off=9
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [action] goto (616,2184) from (592,2150,0)
+[17:35:07.089] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(616,2184) from=(592,2150)
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (592,2150,0) to (616,2184)
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (616,2184) in background
+[17:35:07.155] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (616,2184): 43 steps in 2780.7us
+[17:35:09.813] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:14.817] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:17.158] INFO  [wave10_RevGen3_18_Dorva] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 172.8us
+[17:35:19.763] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (616,2184,0)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[17:35:19.764] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [action] goto (646,2216) from (616,2184,0)
+[17:35:19.764] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(646,2216) from=(616,2184)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (616,2184,0) to (646,2216)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (646,2216) in background
+[17:35:19.839] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:19.839] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (646,2216): 48 steps in 16389.7us
+[17:35:24.869] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:29.873] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:33.891] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (646,2216,0)
+[17:35:33.891] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (646,2216,0); target (646,2216); ARRIVED (off by 0 tile(s))
+[17:35:33.891] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(646,2216) target=(646,2216) arrived=1 off=0
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [action] goto (656,2235) from (646,2216,0)
+[17:35:33.892] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(656,2235) from=(646,2216)
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (646,2216,0) to (656,2235,z-3)
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (656,2235) in background
+[17:35:33.953] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (656,2235): 27 steps in 1337.7us
+[17:35:34.909] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Xerxes has departed from Ocllo.
+wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3593,2160,52) rejected; OpenDoor + retry
+[17:34:13.756] INFO  [wave10_RevGen3_18_Dorva] [bot] step (3593,2161,48)->(3593,2160,52) rejected; avoiding edge + rerouting
+[17:34:13.756] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3576,2152) in background
+[17:34:13.817] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3576,2152): 19 steps in 1410.9us
+[17:34:14.521] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable   <- chosen
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:15.345] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:15.346] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: moongate
+[17:34:15.346] INFO  [wave10_RevGen3_18_Dorva] [travel] plan seeded_bank: ok legs=6 ~272 tiles transit=1 nodes=1127
+[17:34:19.572] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:20.370] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3576,2152,46)
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3576,2152,46); target (3576,2152); ARRIVED (off by 0 tile(s))
+[17:34:20.372] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3576,2152) target=(3576,2152) arrived=1 off=0
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [travel] pre-armed moongate destination 'Skara Brae' while approaching
+[17:34:20.372] INFO  [wave10_RevGen3_18_Dorva] [action] goto (3564,2140) from (3576,2152,46)
+[17:34:20.372] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(3564,2140) from=(3576,2152)
+[17:34:20.373] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (3576,2152,46) to (3564,2140)
+[17:34:20.373] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (3564,2140) in background
+[17:34:20.433] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (3564,2140): 15 steps in 377.6us
+[17:34:24.601] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump] 0x4000289E context=0x80A00402: 13 option(s), 15 text(s)
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 1000 = 'OKAY'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 0 = 'CANCEL'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   button 1 = 'Felucca'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 1 = 'Moonglow'
+[17:34:26.363] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 2 = 'Britain'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 3 = 'Jhelom'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 4 = 'Yew'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 5 = 'New Magincia'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 6 = 'Minoc'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 7 = 'Trinsic'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 8 = 'Skara Brae'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 9 = 'Buccaneer's Den'
+[17:34:26.364] INFO  [wave10_RevGen3_18_Dorva] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 0 = 'Pick your destination:'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 1 = 'OKAY'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 2 = 'CANCEL'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 3 = 'Felucca'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 4 = 'Felucca'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 5 = 'Moonglow'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 6 = 'Britain'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 7 = 'Jhelom'
+[17:34:26.365] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 8 = 'Yew'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 9 = 'New Magincia'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 10 = 'Minoc'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 11 = 'Trinsic'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 12 = 'Skara Brae'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 13 = 'Buccaneer's Den'
+[17:34:26.366] INFO  [wave10_RevGen3_18_Dorva] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:34:26.366] LOG   [wave10_RevGen3_18_Dorva] event gump_open: serial=0x4000289E context=0x80A00402 options=13
+[17:34:26.367] INFO  [wave10_RevGen3_18_Dorva] [travel] gate gump: choosing 'Skara Brae' (choice 8, button 1000)
+[17:34:26.367] LOG   [wave10_RevGen3_18_Dorva] event moongate_use: destination='Skara Brae' choice=8 button=1000
+[17:34:26.367] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (3564,2140,34)
+[17:34:26.368] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (3564,2140,34); target (3564,2140); ARRIVED (off by 0 tile(s))
+[17:34:26.368] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(3564,2140) target=(3564,2140) arrived=1 off=0
+[17:34:26.368] INFO  [wave10_RevGen3_18_Dorva] [travel] using moongate 0x4000289E for 'Skara Brae' (gump active=0 serial=0x00000000)
+[17:34:26.377] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(643,2067,5) facing=7
+[17:34:26.378] INFO  [wave10_RevGen3_18_Dorva] [0x20] player @(643,2067,5) facing=7
+[17:34:26.378] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You can't see the target
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [action] goto (616,2104) from (643,2067,5)
+[17:34:26.439] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(616,2104) from=(643,2067)
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (643,2067,5) to (616,2104)
+[17:34:26.439] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (616,2104) in background
+[17:34:26.501] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (616,2104): 41 steps in 23430.5us
+[17:34:26.824] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You have been revealed
+[17:34:29.642] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:34.687] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:39.697] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:40.296] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (616,2104,0)
+[17:34:40.297] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (616,2104,0); target (616,2104); ARRIVED (off by 0 tile(s))
+[17:34:40.297] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(616,2104) target=(616,2104) arrived=1 off=0
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [action] goto (600,2136) from (616,2104,0)
+[17:34:40.298] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(600,2136) from=(616,2104)
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (616,2104,0) to (600,2136)
+[17:34:40.298] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (600,2136) in background
+[17:34:40.358] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (600,2136): 33 steps in 2726.4us
+[17:34:41.699] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You are now under the protection of the town guards
+[17:34:44.711] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:49.714] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:50.206] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (600,2136,0)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (600,2136,0); target (600,2136); ARRIVED (off by 0 tile(s))
+[17:34:50.207] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(600,2136) target=(600,2136) arrived=1 off=0
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [action] goto (587,2146) from (600,2136,0)
+[17:34:50.207] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(587,2146) from=(600,2136)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (600,2136,0) to (587,2146)
+[17:34:50.207] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (587,2146) in background
+[17:34:50.268] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (587,2146): 33 steps in 4411.5us
+[17:34:54.749] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:34:55.333] INFO  [wave10_RevGen3_18_Dorva] [bot] door ahead at (597,2151,z0); OpenDoor before step
+[17:34:55.335] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Opening door...
+[17:34:57.908] INFO  [wave10_RevGen3_18_Dorva] [travel] seeded_bank ARRIVED at (592,2150,0)
+[17:34:57.908] LOG   [wave10_RevGen3_18_Dorva] event travel_done: label='seeded_bank' ok=1 at=(592,2150) legs=6 plans=2 why=''
+[17:34:57.970] INFO  [wave10_RevGen3_18_Dorva] [ACTION] open_bank start
+[17:34:57.970] INFO  [wave10_RevGen3_18_Dorva] [ACTION] open_bank banker=0x00000000 say='bank'
+[17:34:57.970] INFO  [life] bank: at the known bank -- saying 'bank' aloud (1 of 3)
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat uni  ] Dorvar: bank
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Nita: Greetings. What can I help thee with?
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] Nita: Yes, banking is my unfortunate lot in life.
+[17:34:57.986] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: You have 0 stones in your Bank Box
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [0x24] open container 0x40019D48 gump=74
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [STATE] bank container=0x40019D48 gump=0x004A
+[17:34:57.987] LOG   [wave10_RevGen3_18_Dorva] event bank_opened: container recognised
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [ACTION_RESULT] open_bank success (17ms) bank container opened
+[17:34:57.987] LOG   [wave10_RevGen3_18_Dorva] event action_result: open_bank success took=17ms bank container opened
+[17:34:57.987] INFO  [wave10_RevGen3_18_Dorva] [0x3C] container contents: 1 item(s)
+[17:34:57.988] INFO  [life] goal_changed=EARN_GOLD from=BANK reason="EARN_GOLD 63.6 superseded BANK 0.0"
+[17:34:57.988] INFO  [life] needs considered: NeedGold(sell surplus 0.47) NeedCatch(fish 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=2 held=[fishing pole,rolling pin,] want_train=nothing (target 0.0)
+[17:34:57.988] INFO  [life]   score=63.6
+[17:34:57.988] INFO  [life]   reason: NeedGold urgency 0.47 x 150 = 70.5
+[17:34:57.988] INFO  [life]   reason: 16 x i_fish_cut_raw spare, a load is 20, buyer: an NPC
+[17:34:57.988] INFO  [life]   reason: same errand just now, easing off 10% (70.5 -> 63.6)
+[17:34:57.988] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 73s after achieving nothing
+[17:34:59.755] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:04.810] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:06.977] INFO  [life] earn_gold: the 'fisher' we know is 3084 tiles away -- looking for a nearer one instead
+[17:35:06.977] INFO  [life] earn_gold: looking for a 'fisher' to buy 16 i_fish_cut_raw (trip 1)
+[17:35:07.011] INFO  [wave10_RevGen3_18_Dorva] [travel] Skara Brae fisherman -> (656,2235) r=5 from (592,2150)
+[17:35:07.019] LOG   [wave10_RevGen3_18_Dorva] event travel_start: label='Skara Brae fisherman' target=(656,2235) radius=5 from=(592,2150)
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode moongate         usable   <- chosen
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode walk             usable
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.020] INFO  [wave10_RevGen3_18_Dorva] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.020] LOG   [wave10_RevGen3_18_Dorva] event travel_mode: moongate
+[17:35:07.021] INFO  [wave10_RevGen3_18_Dorva] [travel] plan Skara Brae fisherman: ok legs=3 ~88 tiles transit=0 nodes=77
+[17:35:07.087] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (592,2150,0); target (587,2146); stopped short (off by 9 tile(s))
+[17:35:07.088] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(592,2150) target=(587,2146) arrived=0 off=9
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [action] goto (616,2184) from (592,2150,0)
+[17:35:07.089] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(616,2184) from=(592,2150)
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (592,2150,0) to (616,2184)
+[17:35:07.089] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (616,2184) in background
+[17:35:07.155] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (616,2184): 43 steps in 2780.7us
+[17:35:09.813] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:11.474] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_18.dorvar/state.json
+[17:35:14.817] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:17.158] INFO  [wave10_RevGen3_18_Dorva] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=7 in 172.8us
+[17:35:19.763] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (616,2184,0)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[17:35:19.764] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [action] goto (646,2216) from (616,2184,0)
+[17:35:19.764] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(646,2216) from=(616,2184)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (616,2184,0) to (646,2216)
+[17:35:19.764] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (646,2216) in background
+[17:35:19.839] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:19.839] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (646,2216): 48 steps in 16389.7us
+[17:35:24.869] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:29.873] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:33.891] INFO  [wave10_RevGen3_18_Dorva] [bot] arrived at (646,2216,0)
+[17:35:33.891] INFO  [wave10_RevGen3_18_Dorva] [action] goto finished at (646,2216,0); target (646,2216); ARRIVED (off by 0 tile(s))
+[17:35:33.891] LOG   [wave10_RevGen3_18_Dorva] event goto_done: at=(646,2216) target=(646,2216) arrived=1 off=0
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [action] goto (656,2235) from (646,2216,0)
+[17:35:33.892] LOG   [wave10_RevGen3_18_Dorva] event goto_start: target=(656,2235) from=(646,2216)
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [bot] running from (646,2216,0) to (656,2235,z-3)
+[17:35:33.892] INFO  [wave10_RevGen3_18_Dorva] [bot] planning path to (656,2235) in background
+[17:35:33.953] INFO  [wave10_RevGen3_18_Dorva] [bot] replan to (656,2235): 27 steps in 1337.7us
+[17:35:34.909] INFO  [wave10_RevGen3_18_Dorva] [survival] hp 40/40 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.378] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_18_Dorva] [chat ascii] System: Xerxes has departed from Ocllo.

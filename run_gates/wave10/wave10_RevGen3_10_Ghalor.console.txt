@@ -1,0 +1,627 @@
+[17:29:35.016] LOG   [wave10_RevGen3_10_Ghalo] event session_start: text log opened
+[17:29:35.022] LOG   [wave10_RevGen3_10_Ghalo] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.023] INFO  [wave10_RevGen3_10_Ghalo] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.026] LOG   [wave10_RevGen3_10_Ghalo] event net_connected: connect 127.0.0.1:2593
+[17:29:35.027] INFO  [wave10_RevGen3_10_Ghalo] [net] connected.
+[17:29:35.031] INFO  [wave10_RevGen3_10_Ghalo] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.032] LOG   [wave10_RevGen3_10_Ghalo] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.034] INFO  [wave10_RevGen3_10_Ghalo] [life] autonomous player active for 'Ghalor' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.045] INFO  [wave10_RevGen3_10_Ghalo] [0xA8] 1 server(s):
+[17:29:35.045] INFO  [wave10_RevGen3_10_Ghalo]   [0] MyShard                   1.0.0.127  full=4%  tz=0
+[17:29:35.054] INFO  [wave10_RevGen3_10_Ghalo] [0x8C] game server = 127.0.0.1:2593  seed=0x043473A5
+[17:29:35.055] LOG   [wave10_RevGen3_10_Ghalo] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x043473A5
+[17:29:35.056] INFO  [wave10_RevGen3_10_Ghalo] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.056] LOG   [wave10_RevGen3_10_Ghalo] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.056] INFO  [wave10_RevGen3_10_Ghalo] [0xB9] server features = 0x0005
+[17:29:35.056] INFO  [wave10_RevGen3_10_Ghalo] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.057] INFO  [wave10_RevGen3_10_Ghalo]   [0] Ghalor
+[17:29:35.057] INFO  [wave10_RevGen3_10_Ghalo]   [1] <empty>
+[17:29:35.057] INFO  [wave10_RevGen3_10_Ghalo]   [2] <empty>
+[17:29:35.057] INFO  [wave10_RevGen3_10_Ghalo]   [3] <empty>
+[17:29:35.057] INFO  [wave10_RevGen3_10_Ghalo]   [4] <empty>
+[17:29:35.058] INFO  [wave10_RevGen3_10_Ghalo] [ui] playing slot 0 ('Ghalor')
+[17:29:35.077] INFO  [wave10_RevGen3_10_Ghalo] [0x1B] serial=0x00014D61 body=0x0191 pos=(1336,1778,15)
+[17:29:35.077] LOG   [wave10_RevGen3_10_Ghalo] event login_confirm: serial=0x00014D61 body=0x0191 pos=(1336,1778,15)
+[17:29:35.078] INFO  [wave10_RevGen3_10_Ghalo] [0x20] player @(1336,1778,15) facing=1
+[17:29:35.078] INFO  [wave10_RevGen3_10_Ghalo] [0x55] login complete — entering world
+[17:29:35.079] LOG   [wave10_RevGen3_10_Ghalo] event in_world: 0x55 received
+[17:29:35.079] INFO  [wave10_RevGen3_10_Ghalo] [backpack] opening 0x40014D5F
+[17:29:35.080] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.080] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: There are 11 other players here.
+[17:29:35.081] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.088] INFO  [wave10_RevGen3_10_Ghalo] [action] requesting the skill list
+[17:29:35.089] INFO  [wave10_RevGen3_10_Ghalo] [0x24] open container 0x40014D5F gump=60
+[17:29:35.089] INFO  [wave10_RevGen3_10_Ghalo] [0x3C] container contents: 18 item(s)
+[17:29:35.089] LOG   [wave10_RevGen3_10_Ghalo] event backpack_contents: serial=0x40014D5F items=18
+[17:29:35.092] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.165] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.718] INFO  [wave10_RevGen3_10_Ghalo] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.721] INFO  [wave10_RevGen3_10_Ghalo] [survival] on
+[17:29:37.721] LOG   [wave10_RevGen3_10_Ghalo] event survival_mode: on
+[17:29:37.725] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:29:37.781] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain banker -> (1425,1690) r=5 from (1336,1778)
+[17:29:37.781] LOG   [wave10_RevGen3_10_Ghalo] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1336,1778)
+[17:29:37.781] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode moongate         usable   <- chosen
+[17:29:37.781] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode walk             usable
+[17:29:37.782] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.782] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.782] LOG   [wave10_RevGen3_10_Ghalo] event travel_mode: moongate
+[17:29:37.782] INFO  [wave10_RevGen3_10_Ghalo] [travel] plan Britain banker: ok legs=3 ~144 tiles transit=0 nodes=190
+[17:29:37.841] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1368,1752) from (1336,1778,15)
+[17:29:37.842] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1368,1752) from=(1336,1778)
+[17:29:37.842] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1336,1778,15) to (1368,1752)
+[17:29:37.842] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1368,1752) in background
+[17:29:37.901] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1368,1752): 47 steps in 2677.4us
+[17:29:42.737] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:29:47.752] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:29:51.803] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1368,1752,5)
+[17:29:51.803] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:29:51.803] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:29:51.803] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1400,1720) from (1368,1752,5)
+[17:29:51.804] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1400,1720) from=(1368,1752)
+[17:29:51.804] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1368,1752,5) to (1400,1720)
+[17:29:51.804] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1400,1720) in background
+[17:29:51.863] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1400,1720): 53 steps in 14658.3us
+[17:29:52.803] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:29:56.954] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You are now under the protection of the city guards
+[17:29:57.723] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:29:57.723] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:29:57.723] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:29:57.738] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:29:57.738] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:29:57.739] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=15ms worn on the requested layer
+[17:29:57.830] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:29:58.598] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=9 new segment=10 path=27 in 207.7us
+[17:29:58.937] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:29:58.937] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:29:58.937] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:29:58.954] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:29:58.954] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[17:29:58.954] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=17ms worn on the requested layer
+[17:30:00.142] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:30:00.142] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:30:00.142] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:30:00.158] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:30:00.158] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:30:00.159] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:30:01.356] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:30:01.356] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:30:01.357] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:30:01.372] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:30:01.372] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:30:01.372] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:30:02.585] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:30:02.586] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:30:02.586] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:30:02.601] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:30:02.601] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:30:02.601] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:30:02.890] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:03.841] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:30:03.841] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:30:03.841] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:30:03.856] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:30:03.857] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:30:03.857] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:30:07.899] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:08.086] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1400,1720,20)
+[17:30:08.087] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1400,1720,20); target (1400,1720); ARRIVED (off by 0 tile(s))
+[17:30:08.087] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1400,1720) target=(1400,1720) arrived=1 off=0
+[17:30:08.087] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1425,1690) from (1400,1720,20)
+[17:30:08.087] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1425,1690) from=(1400,1720)
+[17:30:08.087] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1400,1720,20) to (1425,1690,z0)
+[17:30:08.087] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1425,1690) in background
+[17:30:08.147] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1425,1690): 58 steps in 18471.9us
+[17:30:12.900] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:14.434] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=40 in 138.9us
+[17:30:17.365] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=32 in 217.1us
+[17:30:17.939] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:19.422] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain banker ARRIVED at (1428,1695,0)
+[17:30:19.422] LOG   [wave10_RevGen3_10_Ghalo] event travel_done: label='Britain banker' ok=1 at=(1428,1695) legs=3 plans=1 why=''
+[17:30:22.990] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:28.022] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:33.030] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:38.087] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:43.129] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:48.172] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:53.187] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:30:58.192] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:03.253] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:08.302] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:13.320] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:18.377] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:20.791] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.384] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:28.438] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:33.440] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:38.493] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:43.536] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:48.545] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:53.562] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:31:58.613] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:03.619] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:08.636] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:13.646] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:15.833] INFO  [wave10_RevGen3_10_Ghalo] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.686] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:23.705] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:28.760] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:33.761] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:38.810] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:43.842] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:48.859] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:52.207] INFO  [wave10_RevGen3_10_Ghalo] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:53.885] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:32:58.909] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:03.916] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:08.962] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:12.849] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] Lyndon: I'm listenin'.
+[17:33:14.001] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:22.187] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain Territory blacksmithguildmaster -> (1349,1778) r=5 from (1428,1695)
+[17:33:22.187] LOG   [wave10_RevGen3_10_Ghalo] event travel_start: label='Britain Territory blacksmithguildmaster' target=(1349,1778) radius=5 from=(1428,1695)
+[17:33:22.187] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode moongate         usable   <- chosen
+[17:33:22.187] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode walk             usable
+[17:33:22.187] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:22.188] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:22.188] LOG   [wave10_RevGen3_10_Ghalo] event travel_mode: moongate
+[17:33:22.188] INFO  [wave10_RevGen3_10_Ghalo] [travel] plan Britain Territory blacksmithguildmaster: ok legs=3 ~136 tiles transit=0 nodes=136
+[17:33:22.188] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:22.189] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1428,1695,0); target (1425,1690); stopped short (off by 8 tile(s))
+[17:33:22.189] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1428,1695) target=(1425,1690) arrived=0 off=8
+[17:33:22.189] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1416,1720) from (1428,1695,0)
+[17:33:22.189] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1416,1720) from=(1428,1695)
+[17:33:22.189] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1428,1695,0) to (1416,1720)
+[17:33:22.189] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1416,1720) in background
+[17:33:22.246] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1416,1720): 25 steps in 970.1us
+[17:33:26.342] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=13 in 60.4us
+[17:33:26.850] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=10 in 59.9us
+[17:33:27.199] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:28.448] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=5 in 128.7us
+[17:33:28.694] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 2: anchor=4 new segment=4 path=4 in 39.3us
+[17:33:28.939] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 2: anchor=3 new segment=3 path=3 in 35.3us
+[17:33:30.129] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1416,1720,20)
+[17:33:30.129] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:33:30.130] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:33:30.130] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1378,1752) from (1416,1720,20)
+[17:33:30.130] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1378,1752) from=(1416,1720)
+[17:33:30.130] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1416,1720,20) to (1378,1752)
+[17:33:30.130] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1378,1752) in background
+[17:33:30.188] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1378,1752): 43 steps in 3919.0us
+[17:33:32.257] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:33.722] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=33 in 372.6us
+[17:33:34.141] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=30 in 98.8us
+[17:33:34.603] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=28 in 125.5us
+[17:33:35.037] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=27 in 161.3us
+[17:33:35.222] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=27 in 230.9us
+[17:33:36.369] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=24 in 138.6us
+[17:33:36.845] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=23 in 129.9us
+[17:33:37.105] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=22 in 190.0us
+[17:33:37.288] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:37.305] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 191.6us
+[17:33:37.489] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=19 in 206.3us
+[17:33:38.955] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 218.7us
+[17:33:39.386] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 236.7us
+[17:33:39.829] WARN  [wave10_RevGen3_10_Ghalo] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:33:39.830] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1389,1750,1)
+[17:33:39.830] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1389,1750,1); target (1378,1752); stopped short (off by 13 tile(s))
+[17:33:39.830] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1389,1750) target=(1378,1752) arrived=0 off=13
+[17:33:41.060] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1378,1752) from (1389,1750,1)
+[17:33:41.060] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1378,1752) from=(1389,1750)
+[17:33:41.060] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1389,1750,1) to (1378,1752)
+[17:33:41.060] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1378,1752) in background
+[17:33:41.120] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1378,1752): 12 steps in 324.4us
+[17:33:41.654] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You have left the protection of the city guards
+[17:33:42.304] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:45.011] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1378,1752,1)
+[17:33:45.011] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1378,1752,1); target (1378,1752); ARRIVED (off by 0 tile(s))
+[17:33:45.011] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1378,1752) target=(1378,1752) arrived=1 off=0
+[17:33:45.011] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1349,1778) from (1378,1752,1)
+[17:33:45.011] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1349,1778) from=(1378,1752)
+[17:33:45.012] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1378,1752,1) to (1349,1778,z15)
+[17:33:45.012] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1349,1778) in background
+[17:33:45.072] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1349,1778): 48 steps in 5337.7us
+[17:33:47.362] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:52.374] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: World save in 10 seconds
+[17:33:57.399] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:33:57.478] INFO  [wave10_RevGen3_10_Ghalo] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=10 in 205.8us
+[17:33:57.680] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip start
+[17:33:57.680] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip serial=0x400148EF -> backpack 0x40014D5F
+[17:33:57.680] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:33:57.681] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drop container=0x40014D5F
+[17:33:57.693] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] unequip success (13ms) item is in the destination
+[17:33:57.694] LOG   [wave10_RevGen3_10_Ghalo] event action_result: unequip success took=13ms item is in the destination
+[17:33:58.772] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain Territory blacksmithguildmaster ARRIVED at (1354,1777,15)
+[17:33:58.772] LOG   [wave10_RevGen3_10_Ghalo] event travel_done: label='Britain Territory blacksmithguildmaster' ok=1 at=(1354,1777) legs=3 plans=1 why=''
+[17:34:00.693] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:00.693] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=0
+[17:34:00.693] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:00.709] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:00.709] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:02.367] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip start
+[17:34:02.367] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip serial=0x40018CD8 -> backpack 0x40014D5F
+[17:34:02.367] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:02.368] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drop container=0x40014D5F
+[17:34:02.381] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] unequip success (14ms) item is in the destination
+[17:34:02.381] LOG   [wave10_RevGen3_10_Ghalo] event action_result: unequip success took=14ms item is in the destination
+[17:34:02.412] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: World save has been initiated.
+[17:34:05.407] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:05.407] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400147D8 layer=1
+[17:34:05.408] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400147D8 amount=1
+[17:34:07.464] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:09.450] WARN  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:09.451] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip timeout
+[17:34:09.451] WARN  [wave10_RevGen3_10_Ghalo] [ITEM] drag of 0x400147D8 abandoned after timeout
+[17:34:09.513] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:09.513] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400147D8 layer=1
+[17:34:09.513] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400147D8 amount=1
+[17:34:09.906] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (394ms) worn on the requested layer
+[17:34:09.920] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=394ms worn on the requested layer
+[17:34:09.921] WARN  [wave10_RevGen3_10_Ghalo] [ITEM] drag cancelled by server: cannot lift that (code 0)
+[17:34:09.921] LOG   [wave10_RevGen3_10_Ghalo] event drag_cancel: reason=0 cannot lift that
+[17:34:09.922] WARN  [wave10_RevGen3_10_Ghalo] [ITEM] drag cancelled by server: unspecified (code 5)
+[17:34:09.922] LOG   [wave10_RevGen3_10_Ghalo] event drag_cancel: reason=5 unspecified
+[17:34:12.522] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:13.570] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object start
+[17:34:13.570] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object serial=0x400147D8
+[17:34:13.601] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: What do you want to use this on?
+[17:34:13.601] INFO  [wave10_RevGen3_10_Ghalo] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[17:34:13.601] LOG   [wave10_RevGen3_10_Ghalo] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[17:34:13.602] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] use_object success (31ms) server armed a target cursor
+[17:34:13.602] LOG   [wave10_RevGen3_10_Ghalo] event action_result: use_object success took=31ms server armed a target cursor
+[17:34:15.081] INFO  [wave10_RevGen3_10_Ghalo] [TARGET] reply serial=0x400147D6 gen=1
+[17:34:15.081] INFO  [wave10_RevGen3_10_Ghalo] [target] object 0x400147D6 (0,0,0) model 0x0000
+[17:34:15.084] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Blacksmithing" (3 options)
+[17:34:15.084] INFO  [wave10_RevGen3_10_Ghalo]         1) Repair
+[17:34:15.084] INFO  [wave10_RevGen3_10_Ghalo]         2) Shields
+[17:34:15.085] INFO  [wave10_RevGen3_10_Ghalo]         3) Weapons
+[17:34:15.085] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Blacksmithing
+[17:34:17.561] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:17.623] INFO  [wave10_RevGen3_10_Ghalo] [0x7D] answering dialog id=0x00014D61 menu=690 index=3
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Swords & Blades" (7 options)
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo]         1) broadsword (12 iron ingots)
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo]         2) cutlass (8 iron ingots)
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo]         3) dagger (4 iron ingots)
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo]         4) katana (8 iron ingots)
+[17:34:17.640] INFO  [wave10_RevGen3_10_Ghalo]         5) kryss (8 iron ingots)
+[17:34:17.641] INFO  [wave10_RevGen3_10_Ghalo]         6) scimitar (10 iron ingots)
+[17:34:17.641] INFO  [wave10_RevGen3_10_Ghalo]         7) viking sword (14 iron ingots)
+[17:34:17.641] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Swords & Blades
+[17:34:22.577] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:23.074] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:23.074] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:23.074] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:23.088] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:23.088] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Previous targeting cancelled.
+[17:34:23.089] WARN  [wave10_RevGen3_10_Ghalo] [ITEM] drag cancelled by server: unspecified (code 5)
+[17:34:23.089] LOG   [wave10_RevGen3_10_Ghalo] event drag_cancel: reason=5 unspecified
+[17:34:23.089] WARN  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip rejected (16ms) unspecified
+[17:34:23.089] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip rejected took=16ms unspecified
+[17:34:24.309] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:24.309] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:24.310] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:24.325] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the smith's hammer in your pack.
+[17:34:24.325] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:24.325] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:25.532] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:25.532] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:34:25.532] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:25.547] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:25.547] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:25.547] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=15ms worn on the requested layer
+[17:34:26.733] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:26.733] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:26.733] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:26.749] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:34:26.749] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:26.749] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:27.603] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:27.974] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:27.975] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:34:27.975] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:27.976] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:27.976] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[17:34:27.976] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=2ms worn on the requested layer
+[17:34:29.211] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:29.212] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:29.212] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:29.227] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:34:29.227] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:29.228] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:30.457] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:30.457] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:30.457] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:31.691] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:31.691] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:31.692] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:31.707] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:34:31.707] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:31.707] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:32.611] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip start
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip serial=0x400148EF -> backpack 0x40014D5F
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drop container=0x40014D5F
+[17:34:34.947] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] unequip success (14ms) item is in the destination
+[17:34:34.947] LOG   [wave10_RevGen3_10_Ghalo] event action_result: unequip success took=14ms item is in the destination
+[17:34:37.622] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:37.961] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:37.962] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400147D8 layer=1
+[17:34:37.962] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400147D8 amount=1
+[17:34:37.976] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:37.977] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=15ms worn on the requested layer
+[17:34:41.977] INFO  [wave10_RevGen3_10_Ghalo] [0x7D] answering dialog id=0x00014D61 menu=690 index=3
+[17:34:41.977] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Unexpected menu info.
+[17:34:42.657] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:47.705] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:50.360] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object start
+[17:34:50.360] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object serial=0x400147D8
+[17:34:50.374] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: What do you want to use this on?
+[17:34:50.374] INFO  [wave10_RevGen3_10_Ghalo] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[17:34:50.375] LOG   [wave10_RevGen3_10_Ghalo] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[17:34:50.375] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:34:50.375] LOG   [wave10_RevGen3_10_Ghalo] event action_result: use_object success took=16ms server armed a target cursor
+[17:34:51.862] INFO  [wave10_RevGen3_10_Ghalo] [TARGET] reply serial=0x400147D6 gen=2
+[17:34:51.862] INFO  [wave10_RevGen3_10_Ghalo] [target] object 0x400147D6 (0,0,0) model 0x0000
+[17:34:51.865] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Blacksmithing" (3 options)
+[17:34:51.865] INFO  [wave10_RevGen3_10_Ghalo]         1) Repair
+[17:34:51.866] INFO  [wave10_RevGen3_10_Ghalo]         2) Shields
+[17:34:51.866] INFO  [wave10_RevGen3_10_Ghalo]         3) Weapons
+[17:34:51.866] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Blacksmithing
+[17:34:52.730] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:54.375] INFO  [wave10_RevGen3_10_Ghalo] [0x7D] answering dialog id=0x00014D61 menu=690 index=3
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Swords & Blades" (7 options)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         1) broadsword (12 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         2) cutlass (8 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         3) dagger (4 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         4) katana (8 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         5) kryss (8 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         6) scimitar (10 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         7) viking sword (14 iron ingots)
+[17:34:54.377] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Swords & Blades
+[17:34:57.753] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:02.773] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:07.274] INFO  [wave10_RevGen3_10_Ghalo] [travel] place: skipping Wind baker -- 1380 tiles and 1 gate for a service Britain baker offers
+[17:35:07.279] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain baker -> (1450,1617) r=5 from (1354,1777)
+[17:35:07.279] LOG   [wave10_RevGen3_10_Ghalo] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1354,1777)
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode moongate         usable   <- chosen
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode walk             usable
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.282] LOG   [wave10_RevGen3_10_Ghalo] event travel_mode: moongate
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [travel] plan Britain baker: ok legs=5 ~216 tiles transit=0 nodes=375
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1354,1777,15); target (1349,1778); stopped short (off by 6 tile(s))
+[17:35:07.283] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1354,1777) target=(1349,1778) arrived=0 off=6
+[17:35:07.283] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1368,1752) from (1354,1777,15)
+[17:35:07.283] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1368,1752) from=(1354,1777)
+[17:35:07.283] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1354,1777,15) to (1368,1752)
+[17:35:07.284] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1368,1752) in background
+[17:35:07.303] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1368,1752): 32 steps in 3759.4us
+[17:35:07.811] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:12.813] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1368,1752,5)
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:35:16.759] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1384,1720) from (1368,1752,5)
+[17:35:16.759] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:35:16.760] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1368,1752,5) to (1384,1720)
+[17:35:16.760] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1384,1720) in background
+[17:35:16.820] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1384,1720): 58 steps in 24779.4us
+[17:35:17.856] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:22.296] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You are now under the protection of the city guards
+[17:35:22.880] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:27.920] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:32.321] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You have left the protection of the city guards
+[17:35:32.954] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:34.402] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1384,1720,10)
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:35:34.403] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1416,1688) from (1384,1720,10)
+[17:35:34.403] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1384,1720,10) to (1416,1688)
+[17:35:34.404] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1416,1688) in background
+[17:35:34.434] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1416,1688): 51 steps in 8046.6us
+[17:35:35.973] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You are now under the protection of the city guards
+[17:35:38.003] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Falen has departed from Britain.
+ii] System: You put the hatchet in your pack.
+[17:34:29.227] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:29.228] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:30.440] INFO  [life] plan=done reason="already worn"
+[17:34:30.440] INFO  [life] tool: the pickaxe is in hand now
+[17:34:30.441] INFO  [life] tool: putting the hatchet in hand (attempt 3 of 3)
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x40018CD8 layer=2
+[17:34:30.441] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x40018CD8 amount=1
+[17:34:30.457] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:30.457] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:30.457] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:31.691] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[17:34:31.691] INFO  [life] tool: putting the pickaxe in hand (attempt 1 of 3)
+[17:34:31.691] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:31.691] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400148EF layer=1
+[17:34:31.692] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:31.707] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You put the hatchet in your pack.
+[17:34:31.707] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[17:34:31.707] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=16ms worn on the requested layer
+[17:34:32.611] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:32.917] INFO  [life] plan=done reason="already worn"
+[17:34:32.918] INFO  [life] tool: the pickaxe is in hand now
+[17:34:32.918] INFO  [life] goal_blocked=GET_TOOL reason="the hatchet is in the pack but 3 equip attempts left the hand empty"
+[17:34:32.918] INFO  [life] handoff=GET_TOOL->BANK reason="the shard refuses to wield it"
+[17:34:32.979] INFO  [life] goal=CRAFT reason="previous goal abandoned: the shard refuses to wield it"
+[17:34:32.979] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.44) NeedGold(sell surplus 0.31) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[17:34:32.979] INFO  [life]   score=65.0
+[17:34:32.979] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[17:34:32.980] INFO  [life]   reason: i_dagger: every input is in the pack
+[17:34:32.980] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 239s after achieving nothing
+[17:34:32.980] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 525s after achieving nothing
+[17:34:34.932] INFO  [life] craft: putting away what is in hand to free HAND1 for the smith tool
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip start
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] unequip serial=0x400148EF -> backpack 0x40014D5F
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400148EF amount=1
+[17:34:34.933] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drop container=0x40014D5F
+[17:34:34.947] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] unequip success (14ms) item is in the destination
+[17:34:34.947] LOG   [wave10_RevGen3_10_Ghalo] event action_result: unequip success took=14ms item is in the destination
+[17:34:37.622] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:37.961] INFO  [life] craft: taking the smith tool into HAND1 -- the menu reads LAYER_HAND1
+[17:34:37.961] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip start
+[17:34:37.962] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] equip serial=0x400147D8 layer=1
+[17:34:37.962] INFO  [wave10_RevGen3_10_Ghalo] [ITEM] drag serial=0x400147D8 amount=1
+[17:34:37.976] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] equip success (15ms) worn on the requested layer
+[17:34:37.977] LOG   [wave10_RevGen3_10_Ghalo] event action_result: equip success took=15ms worn on the requested layer
+[17:34:41.976] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 1 of 3)
+[17:34:41.977] INFO  [wave10_RevGen3_10_Ghalo] [0x7D] answering dialog id=0x00014D61 menu=690 index=3
+[17:34:41.977] INFO  [life] craft: chose 'dagger'
+[17:34:41.977] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Unexpected menu info.
+[17:34:42.657] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:47.705] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:50.359] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 2 of 3)
+[17:34:50.359] INFO  [life] craft: making i_dagger -- double-clicking the smith hammer
+[17:34:50.360] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object start
+[17:34:50.360] INFO  [wave10_RevGen3_10_Ghalo] [ACTION] use_object serial=0x400147D8
+[17:34:50.374] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: What do you want to use this on?
+[17:34:50.374] INFO  [wave10_RevGen3_10_Ghalo] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=2
+[17:34:50.375] LOG   [wave10_RevGen3_10_Ghalo] event target_requested: id=0x000002CE type=0 subtype=1 gen=2
+[17:34:50.375] INFO  [wave10_RevGen3_10_Ghalo] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:34:50.375] LOG   [wave10_RevGen3_10_Ghalo] event action_result: use_object success took=16ms server armed a target cursor
+[17:34:51.862] INFO  [life] craft: giving the smith cursor an i_ingot_iron to open the menu
+[17:34:51.862] INFO  [wave10_RevGen3_10_Ghalo] [TARGET] reply serial=0x400147D6 gen=2
+[17:34:51.862] INFO  [wave10_RevGen3_10_Ghalo] [target] object 0x400147D6 (0,0,0) model 0x0000
+[17:34:51.865] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Blacksmithing" (3 options)
+[17:34:51.865] INFO  [wave10_RevGen3_10_Ghalo]         1) Repair
+[17:34:51.866] INFO  [wave10_RevGen3_10_Ghalo]         2) Shields
+[17:34:51.866] INFO  [wave10_RevGen3_10_Ghalo]         3) Weapons
+[17:34:51.866] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Blacksmithing
+[17:34:52.730] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:34:54.375] INFO  [wave10_RevGen3_10_Ghalo] [0x7D] answering dialog id=0x00014D61 menu=690 index=3
+[17:34:54.375] INFO  [life] craft: chose 'Weapons'
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo] [0x7C] dialog id=0x00014D61 menu=690: "Swords & Blades" (7 options)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         1) broadsword (12 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         2) cutlass (8 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         3) dagger (4 iron ingots)
+[17:34:54.376] INFO  [wave10_RevGen3_10_Ghalo]         4) katana (8 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         5) kryss (8 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         6) scimitar (10 iron ingots)
+[17:34:54.377] INFO  [wave10_RevGen3_10_Ghalo]         7) viking sword (14 iron ingots)
+[17:34:54.377] LOG   [wave10_RevGen3_10_Ghalo] event dialog: Swords & Blades
+[17:34:57.753] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:02.346] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_10.ghalor/state.json
+[17:35:02.773] INFO  [life] craft: no result from the last i_dagger in 8s (attempt 3 of 3)
+[17:35:02.773] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:02.836] INFO  [life] goal_failed=CRAFT status=no_progress reason="the attempts are spent and the pack never moved" (i_dagger, attempt 3 of 3)
+[17:35:02.836] INFO  [life] handoff=CRAFT->IDLE_BRIEFLY reason="the attempts are spent and the pack never moved"
+[17:35:02.898] INFO  [life] goal=GET_FOOD reason="previous goal abandoned: the attempts are spent and the pack never moved"
+[17:35:02.899] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.44) NeedGold(sell surplus 0.31) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[17:35:02.899] INFO  [life]   score=62.5
+[17:35:02.899] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[17:35:02.899] INFO  [life]   reason: food=0
+[17:35:02.899] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 210s after achieving nothing
+[17:35:02.899] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 495s after achieving nothing
+[17:35:02.900] INFO  [life]   BLOCKED_NEED CRAFT: on cooldown for another 119s after achieving nothing
+[17:35:07.274] INFO  [wave10_RevGen3_10_Ghalo] [travel] place: skipping Wind baker -- 1380 tiles and 1 gate for a service Britain baker offers
+[17:35:07.279] INFO  [wave10_RevGen3_10_Ghalo] [travel] Britain baker -> (1450,1617) r=5 from (1354,1777)
+[17:35:07.279] LOG   [wave10_RevGen3_10_Ghalo] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1354,1777)
+[17:35:07.280] INFO  [life] food: walking to a 'baker' (trip 1)
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode moongate         usable   <- chosen
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode walk             usable
+[17:35:07.281] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.282] LOG   [wave10_RevGen3_10_Ghalo] event travel_mode: moongate
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [travel] plan Britain baker: ok legs=5 ~216 tiles transit=0 nodes=375
+[17:35:07.282] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1354,1777,15); target (1349,1778); stopped short (off by 6 tile(s))
+[17:35:07.283] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1354,1777) target=(1349,1778) arrived=0 off=6
+[17:35:07.283] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1368,1752) from (1354,1777,15)
+[17:35:07.283] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1368,1752) from=(1354,1777)
+[17:35:07.283] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1354,1777,15) to (1368,1752)
+[17:35:07.284] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1368,1752) in background
+[17:35:07.303] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1368,1752): 32 steps in 3759.4us
+[17:35:07.811] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:12.813] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1368,1752,5)
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:35:16.759] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:35:16.759] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1384,1720) from (1368,1752,5)
+[17:35:16.759] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:35:16.760] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1368,1752,5) to (1384,1720)
+[17:35:16.760] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1384,1720) in background
+[17:35:16.820] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1384,1720): 58 steps in 24779.4us
+[17:35:17.856] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:22.296] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You are now under the protection of the city guards
+[17:35:22.880] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:27.920] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:32.321] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You have left the protection of the city guards
+[17:35:32.954] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:34.402] INFO  [wave10_RevGen3_10_Ghalo] [bot] arrived at (1384,1720,10)
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:35:34.403] LOG   [wave10_RevGen3_10_Ghalo] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [action] goto (1416,1688) from (1384,1720,10)
+[17:35:34.403] LOG   [wave10_RevGen3_10_Ghalo] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:35:34.403] INFO  [wave10_RevGen3_10_Ghalo] [bot] running from (1384,1720,10) to (1416,1688)
+[17:35:34.404] INFO  [wave10_RevGen3_10_Ghalo] [bot] planning path to (1416,1688) in background
+[17:35:34.434] INFO  [wave10_RevGen3_10_Ghalo] [bot] replan to (1416,1688): 51 steps in 8046.6us
+[17:35:35.973] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: You are now under the protection of the city guards
+[17:35:38.003] INFO  [wave10_RevGen3_10_Ghalo] [survival] hp 50/50 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.345] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_10_Ghalo] [chat ascii] System: Falen has departed from Britain.

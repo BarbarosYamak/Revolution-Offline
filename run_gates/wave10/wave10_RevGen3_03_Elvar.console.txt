@@ -1,0 +1,1781 @@
+[17:29:34.662] LOG   [wave10_RevGen3_03_Elvar] event session_start: text log opened
+[17:29:34.664] LOG   [wave10_RevGen3_03_Elvar] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.665] INFO  [wave10_RevGen3_03_Elvar] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.667] LOG   [wave10_RevGen3_03_Elvar] event net_connected: connect 127.0.0.1:2593
+[17:29:34.668] INFO  [wave10_RevGen3_03_Elvar] [net] connected.
+[17:29:34.669] INFO  [wave10_RevGen3_03_Elvar] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.669] LOG   [wave10_RevGen3_03_Elvar] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.671] INFO  [wave10_RevGen3_03_Elvar] [life] autonomous player active for 'Elvar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.705] INFO  [wave10_RevGen3_03_Elvar] [0xA8] 1 server(s):
+[17:29:34.705] INFO  [wave10_RevGen3_03_Elvar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[17:29:34.708] INFO  [wave10_RevGen3_03_Elvar] [0x8C] game server = 127.0.0.1:2593  seed=0x8426135E
+[17:29:34.709] LOG   [wave10_RevGen3_03_Elvar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x8426135E
+[17:29:34.709] INFO  [wave10_RevGen3_03_Elvar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.709] LOG   [wave10_RevGen3_03_Elvar] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar] [0xB9] server features = 0x0005
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar]   [0] Elvar
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar]   [1] <empty>
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar]   [2] <empty>
+[17:29:34.710] INFO  [wave10_RevGen3_03_Elvar]   [3] <empty>
+[17:29:34.711] INFO  [wave10_RevGen3_03_Elvar]   [4] <empty>
+[17:29:34.711] INFO  [wave10_RevGen3_03_Elvar] [ui] playing slot 0 ('Elvar')
+[17:29:34.721] INFO  [wave10_RevGen3_03_Elvar] [0x1B] serial=0x00016948 body=0x0191 pos=(1426,1687,0)
+[17:29:34.722] LOG   [wave10_RevGen3_03_Elvar] event login_confirm: serial=0x00016948 body=0x0191 pos=(1426,1687,0)
+[17:29:34.722] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=6
+[17:29:34.722] INFO  [wave10_RevGen3_03_Elvar] [0x55] login complete — entering world
+[17:29:34.722] LOG   [wave10_RevGen3_03_Elvar] event in_world: 0x55 received
+[17:29:34.722] INFO  [wave10_RevGen3_03_Elvar] [backpack] opening 0x4001693F
+[17:29:34.723] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.723] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: There are 6 other players here.
+[17:29:34.723] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.723] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: You are under the protection of the city guards
+[17:29:34.727] INFO  [wave10_RevGen3_03_Elvar] [action] requesting the skill list
+[17:29:34.727] INFO  [wave10_RevGen3_03_Elvar] [0x24] open container 0x4001693F gump=60
+[17:29:34.727] INFO  [wave10_RevGen3_03_Elvar] [0x3C] container contents: 10 item(s)
+[17:29:34.728] LOG   [wave10_RevGen3_03_Elvar] event backpack_contents: serial=0x4001693F items=10
+[17:29:34.737] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Zarthal has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Vorar has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Halain has arrived in Britain Territory.
+[17:29:34.876] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.005] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.305] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_03_Elvar] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.260] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: What?
+[17:29:37.269] INFO  [wave10_RevGen3_03_Elvar] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.271] INFO  [wave10_RevGen3_03_Elvar] [survival] on
+[17:29:37.271] LOG   [wave10_RevGen3_03_Elvar] event survival_mode: on
+[17:29:37.274] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:29:37.336] INFO  [wave10_RevGen3_03_Elvar] [action] scanning nearby mobiles for names
+[17:29:37.336] INFO  [wave10_RevGen3_03_Elvar] [action] requested 8 paperdoll(s) for trade titles
+[17:29:37.337] INFO  [wave10_RevGen3_03_Elvar] [mobiles] nearby (11):
+[17:29:37.337] INFO  [wave10_RevGen3_03_Elvar]   Hyman 0x00001033
+[17:29:37.337] INFO  [wave10_RevGen3_03_Elvar]   Zarthal 0x000163A2
+[17:29:37.337] INFO  [wave10_RevGen3_03_Elvar]   Selene 0x00010BC9
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Lyndon 0x0000124E
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Kharain 0x00016AE8
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Odessa 0x000194DE
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Aurelius 0x00019331
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Thane 0x0001976D
+[17:29:37.338] INFO  [wave10_RevGen3_03_Elvar]   Rhaler 0x0001569C
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar]   Falen 0x0001478E
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar]   Leander 0x0001921F
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=5
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x0000124E: "Lyndon, the minter"
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar] [world] Lyndon, the minter is a banker at (1424,1691)
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=6
+[17:29:37.339] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [world] Hyman, the banker is a banker at (1424,1687)
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=2
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x000163A2: "Zarthal, Apprentice Miner"
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=4
+[17:29:37.340] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x0001569C: "Rhaler, Apprentice Blacksmith"
+[17:29:37.351] INFO  [wave10_RevGen3_03_Elvar] [0x20] player @(1426,1687,0) facing=3
+[17:29:37.351] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[17:29:37.351] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[17:29:37.351] INFO  [wave10_RevGen3_03_Elvar] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:29:37.933] INFO  [wave10_RevGen3_03_Elvar] [chat uni  ] Odessa: WTB i_ingot_iron
+[17:29:37.933] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Huh?
+[17:29:39.409] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:29:39.410] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:29:39.410] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:29:39.410] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:29:39.410] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:39.411] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:39.411] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:29:39.411] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:39.471] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:39.472] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:39.472] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:39.472] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:39.533] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 191.3us)
+[17:29:39.534] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:39.594] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:39.594] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:40.822] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:40.822] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:40.823] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:40.823] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:40.823] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 109.6us)
+[17:29:40.823] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:40.883] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:40.884] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:42.122] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:42.122] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:42.123] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:42.123] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:42.184] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 171.1us)
+[17:29:42.185] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:42.245] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:42.245] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:42.307] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:29:43.475] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:29:43.476] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:29:43.476] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:43.476] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:43.476] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:29:43.476] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:45.008] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:45.008] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:45.008] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:45.008] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:45.068] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 213.5us)
+[17:29:45.069] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:45.131] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:45.132] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:46.368] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:46.368] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:46.368] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:46.369] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:46.369] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 152.7us)
+[17:29:46.369] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:46.428] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:46.429] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:47.352] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:29:47.661] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:47.661] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:47.661] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:47.661] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:47.662] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 162.0us)
+[17:29:47.662] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:47.722] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:47.722] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:48.958] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:29:48.958] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:29:48.958] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:48.958] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:48.959] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:29:48.959] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:51.986] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:51.987] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:51.987] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:51.987] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:51.987] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 159.9us)
+[17:29:51.988] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:52.048] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:52.049] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:52.355] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:29:53.279] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:53.279] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:53.279] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:53.279] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:53.280] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 162.0us)
+[17:29:53.280] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 11 mobile(s))
+[17:29:53.339] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:53.340] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:54.586] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:29:54.586] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:29:54.587] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:29:54.587] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:29:54.602] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1[17:29:54.664] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:29:54.664] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:29:55.910] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:29:55.911] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:29:55.911] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:55.911] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:55.911] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:29:55.911] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:29:57.401] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:00.417] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:00.417] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:00.417] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:00.418] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:00.511] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:00.511] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:01.738] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:01.738] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:01.739] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:01.739] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:01.830] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:01.830] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:02.446] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:03.059] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:03.059] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:03.059] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:03.059] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:03.182] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:03.183] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:03.183] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:30:03.183] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:03.305] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:30:03.305] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:30:03.305] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:03.305] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:03.305] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:03.305] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:03.306] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:03.306] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:03.367] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:03.367] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:03.367] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:03.367] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:03.488] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:03.488] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:04.715] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:04.715] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:04.715] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:04.715] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:04.838] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:04.838] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:06.073] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:06.073] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:06.074] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:06.074] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:06.136] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:06.136] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:07.358] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:07.358] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:07.359] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:07.359] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:07.359] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:07.359] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:07.481] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:08.877] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:08.877] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:08.877] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:08.878] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:09.002] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:09.002] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:09.818] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.818] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Hmm?
+[17:30:10.216] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:10.217] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:10.217] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:10.217] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:10.339] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:10.339] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:11.569] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:11.569] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:11.569] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:11.569] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:11.693] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:11.693] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:12.528] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:12.915] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:12.915] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:12.915] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:12.915] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:12.916] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:12.916] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:15.973] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:15.974] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:15.974] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:15.974] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:16.052] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:16.052] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:17.285] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:17.286] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:17.286] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:17.286] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:17.365] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:17.365] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:17.551] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:18.586] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:18.586] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:18.586] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:18.586] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:18.618] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:18.618] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:19.838] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:19.838] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:19.838] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:19.838] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:19.838] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:19.838] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:22.574] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:24.348] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:24.348] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:24.349] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:24.349] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:24.411] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:24.411] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:25.656] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:25.656] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:25.656] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:25.656] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:25.716] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:25.716] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:26.942] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:26.943] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:26.943] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:26.943] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:27.066] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:27.066] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:27.066] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:30:27.067] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:27.128] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:30:27.128] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:30:27.129] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:27.129] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:27.129] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:27.129] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:27.129] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:27.129] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:27.189] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:27.189] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:27.189] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:27.189] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:27.311] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:27.312] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:27.618] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:28.526] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:28.526] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:28.526] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:28.526] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:28.604] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:28.604] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:29.806] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:29.807] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:29.807] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:29.807] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:29.929] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:29.929] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:31.178] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:31.179] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:31.179] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:31.179] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:31.179] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:31.179] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:32.659] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:32.722] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:32.722] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:32.722] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:32.722] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:32.845] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:32.845] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:34.096] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:34.096] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:34.096] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:34.096] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:34.172] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:34.172] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:35.421] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:35.422] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:35.422] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:35.422] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:35.544] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:35.544] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:36.783] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:36.783] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:36.783] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:36.783] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:36.783] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:36.783] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:37.275] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:30:37.701] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:39.794] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:39.795] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:39.795] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:39.795] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:39.918] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:39.918] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:41.145] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:41.145] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:41.146] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:41.146] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:41.268] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:41.269] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:42.499] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:42.500] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:42.500] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:42.500] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:42.621] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:42.622] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:42.746] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:43.854] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:43.854] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:43.854] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:43.854] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:43.854] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:43.854] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:47.788] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:48.402] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:48.402] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:48.402] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:48.402] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:48.524] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:48.524] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:49.751] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:49.751] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:49.751] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:49.751] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:49.811] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:49.811] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:51.050] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:51.050] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:51.050] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:51.050] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:51.174] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:51.175] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:51.175] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:30:51.175] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:30:51.299] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:30:51.299] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:30:51.299] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:51.299] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:51.299] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:51.299] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:51.300] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:51.300] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:51.361] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:51.361] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:51.361] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:51.361] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:51.422] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:51.422] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:52.649] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:52.649] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:52.649] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:52.649] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:52.772] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:52.773] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:52.835] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:54.005] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:54.006] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:54.006] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:54.006] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:54.131] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:54.131] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:55.378] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:30:55.378] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:30:55.379] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.379] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.379] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:30:55.379] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:56.916] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:56.916] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:56.916] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:56.916] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:57.038] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:57.039] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:57.838] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:30:58.270] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:58.270] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:58.270] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:58.270] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:58.394] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:58.394] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:30:59.623] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:30:59.623] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:30:59.623] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:30:59.623] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:30:59.684] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:30:59.684] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:00.909] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:00.910] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:00.910] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:00.910] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:00.910] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:00.910] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:02.870] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:03.932] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:03.933] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:03.933] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:03.933] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:04.056] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:04.056] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:05.302] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:05.302] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:05.302] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:05.302] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:05.424] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:05.425] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:06.637] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:06.637] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:06.637] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:06.637] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:06.761] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:06.761] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:07.886] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:08.010] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:08.010] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:08.010] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:08.010] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:08.010] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:08.010] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:12.531] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:12.532] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:12.532] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:12.532] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:12.592] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:12.592] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:12.900] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:13.817] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:13.817] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:13.817] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:13.817] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:13.879] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:13.879] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:15.138] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:15.138] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:15.138] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:15.138] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:15.214] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:15.215] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:15.215] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:31:15.215] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:15.338] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:31:15.338] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:15.339] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:15.339] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:15.339] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:15.340] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:15.340] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:15.463] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:15.463] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:16.711] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:16.712] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:16.712] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:16.712] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:16.775] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:16.775] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:17.945] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:18.007] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:18.047] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:18.069] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:18.101] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:18.222] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:18.233] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:19.470] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:19.534] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:19.606] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:19.678] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:19.689] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:19.689] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:20.791] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.791] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: What's thee wantin'?
+[17:31:21.225] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:21.225] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:21.226] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:21.226] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:21.350] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:21.350] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:22.602] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:22.603] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:22.603] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:22.603] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:22.663] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:22.665] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:23.000] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:23.864] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:23.864] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:23.864] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:23.864] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:23.942] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:23.942] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:25.186] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:25.186] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:25.186] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:25.186] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:25.186] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:25.186] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:28.010] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:28.192] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:28.192] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:28.192] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:28.192] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:28.253] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:28.253] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:29.502] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:29.502] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:29.502] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:29.502] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:29.564] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:29.564] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:30.774] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:30.774] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:30.774] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:30.774] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:30.897] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:30.897] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:32.133] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:32.133] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:32.133] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:32.134] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:32.134] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:32.134] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:33.071] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:36.663] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:36.663] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:36.663] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:36.663] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:36.786] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:36.786] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:37.280] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:31:38.014] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:38.015] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:38.015] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:38.015] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:38.076] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:38.139] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:38.139] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:39.374] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:39.374] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:39.374] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:39.374] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:39.499] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:39.499] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:39.499] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:31:39.499] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:31:39.624] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:31:39.624] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:31:39.624] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:39.624] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:39.624] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:39.625] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:39.625] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:39.625] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:39.685] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:39.686] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:39.686] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:39.686] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:39.808] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:39.808] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:41.028] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:41.028] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:41.029] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:41.029] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:41.152] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:41.152] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:42.383] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:42.383] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:42.383] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:42.383] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:42.506] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:42.506] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:43.118] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:43.721] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:43.721] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:43.721] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:43.721] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:43.722] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:43.722] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:45.263] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:45.264] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:45.264] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:45.264] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:45.388] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:45.389] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:46.615] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:46.615] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:46.616] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:46.616] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:46.739] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:46.739] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:47.969] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:47.969] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:47.970] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:47.970] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:48.030] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:48.031] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:48.154] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:49.284] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:49.284] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:49.284] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:49.284] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:49.284] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:49.284] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:52.346] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:52.347] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:52.347] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:52.347] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:52.469] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:52.469] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:53.207] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:31:53.700] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:53.700] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:53.701] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:53.701] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:53.824] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:53.824] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:55.069] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:31:55.070] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:31:55.071] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:31:55.071] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:31:55.132] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:31:55.132] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:31:56.363] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:31:56.364] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:31:56.364] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:56.364] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:56.364] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:31:56.364] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:58.214] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:00.904] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:00.905] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:00.905] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:00.905] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:01.029] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:01.029] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:02.265] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:02.265] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:02.265] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:02.266] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:02.357] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:02.357] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:03.218] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:03.588] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:03.588] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:03.588] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:03.588] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:03.710] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:03.710] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:03.710] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:32:03.710] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:03.833] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:32:03.833] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:32:03.834] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:03.834] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:03.834] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:03.834] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:03.834] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:03.834] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:03.894] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:03.894] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:03.894] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:03.895] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:04.014] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:04.014] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:05.256] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:05.256] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:05.256] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:05.257] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:05.380] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:05.380] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:06.599] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:06.599] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:06.599] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:06.600] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:06.661] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:06.662] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:07.895] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:07.896] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:07.896] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:07.896] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:07.896] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:07.896] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:08.221] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:09.439] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:09.439] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:09.439] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:09.440] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:09.561] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:09.561] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:10.765] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:10.765] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:10.765] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:10.766] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:10.888] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:10.889] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:12.122] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:12.123] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:12.123] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:12.123] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:12.246] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:12.246] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:13.275] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:13.460] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:13.461] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:13.461] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:13.461] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:13.461] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:13.461] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:15.833] INFO  [wave10_RevGen3_03_Elvar] [chat uni  ] : bank
+[17:32:15.833] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: What's thou need?
+[17:32:15.833] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:16.513] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:16.514] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:16.514] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:16.514] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:16.637] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:16.638] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:17.884] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:17.885] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:17.885] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:17.885] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:18.006] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:18.006] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:18.315] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:19.243] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:19.243] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:19.243] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:19.243] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:19.365] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:19.366] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:20.625] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:20.626] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:20.626] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:20.626] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:20.626] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:20.626] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:23.335] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:25.184] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:25.184] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:25.184] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:25.185] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:25.309] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:25.309] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:26.537] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:26.537] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:26.537] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:26.537] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:26.662] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:26.662] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:27.893] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:27.894] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:27.894] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:27.894] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:28.015] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:28.015] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:28.015] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:32:28.015] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:28.136] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:32:28.137] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:32:28.137] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:28.137] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:28.137] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:28.137] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:28.137] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:28.137] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:28.197] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:28.198] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:28.198] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:28.198] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:28.318] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:28.318] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:28.378] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:29.544] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:29.544] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:29.544] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:29.544] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:29.666] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:29.666] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:30.900] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:30.900] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:30.901] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:30.901] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:31.022] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:31.023] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:32.257] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:32.258] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:32.258] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:32.258] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:32.258] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:32.258] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:33.422] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:33.792] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:33.792] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:33.792] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:33.792] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:33.915] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:33.916] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:35.151] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:35.151] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:35.152] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:35.152] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:35.213] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:35.213] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:36.448] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:36.449] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:36.449] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:36.449] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:36.572] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:36.573] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:37.319] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:32:37.811] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:37.811] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:37.811] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:37.811] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:37.811] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:37.811] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:38.440] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:40.851] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:40.852] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:40.852] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:40.852] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:40.869] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:40.870] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:42.077] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:42.078] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:42.078] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:42.078] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:42.139] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:42.140] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:43.384] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:43.384] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:43.384] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:43.384] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:43.459] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:43.460] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:43.460] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:44.719] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:44.719] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:44.719] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:44.719] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:44.719] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:44.720] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:48.521] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:49.259] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:49.260] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:49.260] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:49.260] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:51.106] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:51.106] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:52.207] INFO  [wave10_RevGen3_03_Elvar] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.207] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:52.329] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:52.329] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:52.329] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:52.329] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:53.576] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:54.115] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:54.115] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:55.376] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:55.377] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:55.377] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:55.377] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:56.964] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:32:56.965] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:32:57.027] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:32:57.027] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:32:57.028] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:32:57.028] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:32:57.028] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:57.028] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:57.028] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:32:57.028] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:32:57.090] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:57.090] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:57.090] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:57.090] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:57.090] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:57.091] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:32:58.597] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:32:58.597] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:32:58.598] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:32:59.802] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:32:59.802] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:32:59.802] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:32:59.803] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:01.666] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:01.666] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:02.869] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:02.869] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:02.869] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:02.870] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:03.612] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:04.506] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:04.506] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:05.724] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:05.724] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:05.725] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.725] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.725] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:05.725] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:07.269] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:07.269] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:07.269] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:07.269] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:08.577] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:08.577] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:08.654] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:09.794] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:09.794] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:09.794] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:09.794] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:11.601] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:11.601] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:12.817] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:12.818] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:12.818] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:12.818] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:12.849] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.849] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Aye?
+[17:33:12.849] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.677] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:14.449] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:14.449] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:15.651] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:15.651] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:15.651] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:15.651] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:15.652] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:15.652] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:18.681] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:18.681] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:18.681] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:18.682] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:18.682] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:20.415] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:20.415] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:21.674] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:21.674] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:21.675] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:21.675] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:23.495] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:23.495] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:23.737] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:24.735] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:24.735] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:24.735] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:24.735] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:26.725] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:26.726] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:27.971] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:27.972] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:27.972] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:27.972] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:27.972] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:27.972] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:28.738] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:32.521] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:32.521] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:32.521] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:32.521] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:33.798] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:34.308] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:34.308] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:34.400] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Hmm?
+[17:33:35.565] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:35.565] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:35.565] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:35.565] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:37.227] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:37.227] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:37.227] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:33:37.227] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:33:37.350] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:33:37.350] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:33:37.353] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:33:37.353] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:37.353] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:37.353] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:37.353] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:37.353] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:37.353] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:37.411] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:37.411] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:37.411] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:37.411] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:38.815] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:38.938] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:38.938] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:40.197] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:40.197] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:40.197] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:40.197] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:41.472] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:41.472] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:42.676] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:42.676] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:42.676] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:42.676] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:43.826] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:43.950] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:43.950] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:45.164] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:45.164] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:45.164] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:45.165] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:45.165] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:45.165] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:46.718] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:46.718] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:46.718] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:46.718] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:47.826] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:47.826] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:48.845] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:49.030] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:49.030] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:49.030] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:49.030] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:50.792] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:50.792] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:52.004] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:33:52.004] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:33:52.005] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:52.005] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:52.005] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:33:52.005] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:53.863] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: World save in 10 seconds
+[17:33:55.028] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:55.043] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:55.043] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:55.043] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:56.482] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:56.482] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:33:57.739] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:33:57.740] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:33:57.740] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:33:57.740] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:33:58.911] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:33:59.035] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:33:59.035] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:00.263] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:00.263] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:00.263] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:00.263] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:01.932] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:01.932] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:03.159] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:03.159] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:03.159] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:03.160] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:03.160] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:03.160] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:03.966] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: World save has been initiated.
+[17:34:07.714] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:07.714] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:07.714] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:07.714] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:09.020] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:09.328] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:09.328] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:10.549] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:10.549] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:10.549] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:10.550] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:12.059] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:12.059] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:13.278] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:13.279] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:13.279] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:13.279] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:14.077] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:14.863] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:14.863] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:14.863] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:14.863] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:14.987] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:34:14.987] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:14.988] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:14.989] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:14.989] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:14.989] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:16.424] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:16.424] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:17.640] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:19.014] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:19.014] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:19.137] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:20.262] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:20.263] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:20.263] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:20.263] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Hmm?
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Aye?
+[17:34:22.438] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:22.439] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:23.691] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:23.692] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:24.186] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:25.250] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:26.902] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:26.902] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:28.143] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:29.196] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:29.842] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:29.842] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:31.092] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:31.092] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:31.092] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:34.099] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:34.100] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:34.100] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:34.100] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:34.220] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:35.888] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:35.888] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:37.113] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:37.114] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:37.114] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:37.114] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:37.363] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:34:38.467] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:38.467] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:39.265] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:39.697] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:39.697] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:39.697] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:44.202] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:44.203] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:44.203] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:44.203] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:44.327] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:45.946] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:45.946] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:47.195] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:47.195] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:47.196] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:47.196] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:47.350] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Aye?
+[17:34:48.896] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:48.896] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:49.343] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:50.128] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:50.128] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:50.129] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:50.129] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:51.311] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:51.311] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:51.388] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:34:51.388] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:34:51.388] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:51.389] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:51.402] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:51.402] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:51.403] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:53.221] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:53.222] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:54.390] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:54.437] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:54.437] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:54.437] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:54.438] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:56.230] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:56.230] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.463] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.463] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:57.463] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:59.000] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:59.000] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:59.000] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:59.001] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:59.430] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:00.168] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:00.169] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:01.399] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:01.400] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:01.400] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:01.400] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:02.634] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:02.634] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:03.887] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:03.890] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:03.890] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:03.891] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:04.440] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.395] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:07.395] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:07.951] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:07.951] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:09.180] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:09.180] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:09.181] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:09.181] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:09.487] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:10.228] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:10.228] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:11.454] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:11.455] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:11.455] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:11.455] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:12.690] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:12.691] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:13.922] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:13.924] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:14.538] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:18.468] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:19.565] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:19.763] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:19.763] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:21.016] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:22.141] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:22.141] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:23.391] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:24.607] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:24.669] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:24.669] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:24.669] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:35:24.669] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:35:24.746] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.746] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:24.807] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:24.808] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:24.808] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:24.808] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:26.013] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:26.013] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:27.258] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:27.258] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:27.258] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:27.259] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:28.642] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:28.642] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Aye?
+[17:35:29.613] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:29.872] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:29.872] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:29.872] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:29.873] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:31.273] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:31.273] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:32.477] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.478] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:33.999] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:33.999] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:33.999] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:34.000] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:34.665] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:35.386] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:35.386] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:36.645] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:37.388] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_03.elvar/state.json
+[17:35:38.019] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:38.019] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:39.237] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:39.328] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.360] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.436] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Titus has departed from Britain.
+[wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:09.266] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1519043.1us)
+[17:34:09.266] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:34:09.328] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:09.328] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:10.549] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:10.549] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:10.549] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:10.550] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:11.997] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1397546.6us)
+[17:34:11.998] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:12.059] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:12.059] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:13.278] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:13.279] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:13.279] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:13.279] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:14.077] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:14.862] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1550786.7us)
+[17:34:14.863] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:14.863] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:14.863] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:14.863] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:14.863] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:14.987] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:34:14.987] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:14.988] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:14.988] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:14.989] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:14.989] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:14.989] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:16.362] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1357792.4us)
+[17:34:16.362] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 7 mobile(s))
+[17:34:16.424] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:16.424] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:17.640] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:17.640] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:19.013] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1344617.5us)
+[17:34:19.014] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:19.014] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:19.014] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:19.137] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:20.262] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:20.263] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:20.263] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:20.263] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Hmm?
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: What's thee wantin'?
+[17:34:21.602] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Aye?
+[17:34:21.603] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Hyman: Aye?
+[17:34:22.377] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 2080212.4us)
+[17:34:22.377] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:22.438] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:22.439] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:23.691] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:23.692] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:23.692] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:24.186] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:25.250] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:25.250] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:26.886] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1573645.4us)
+[17:34:26.886] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 7 mobile(s))
+[17:34:26.902] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:26.902] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:28.143] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:28.143] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:29.196] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:29.779] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1583498.0us)
+[17:34:29.780] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:29.842] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:29.842] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:31.091] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:31.092] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:31.092] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:31.092] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:34.099] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:34.100] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:34.100] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:34.100] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:34.220] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:35.826] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1689616.2us)
+[17:34:35.826] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:34:35.888] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:35.888] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:37.113] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:37.114] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:37.114] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:37.114] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:38.406] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1238282.1us)
+[17:34:38.406] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:34:38.467] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:38.467] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:39.265] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:39.696] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:39.697] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:39.697] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:39.697] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:44.202] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:44.203] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:44.203] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:44.203] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:44.327] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:45.945] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1731304.2us)
+[17:34:45.946] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:45.946] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:45.946] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:47.195] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:47.195] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:47.196] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:47.196] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:47.350] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Aye?
+[17:34:48.834] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1578834.2us)
+[17:34:48.834] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 7 mobile(s))
+[17:34:48.896] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:48.896] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:49.343] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:50.128] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:50.128] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:50.129] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:50.129] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:51.311] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:34:51.311] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:34:51.388] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:34:51.388] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:34:51.388] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:51.389] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:51.389] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:51.402] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:51.402] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:51.403] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:51.403] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:53.160] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1530839.8us)
+[17:34:53.160] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:53.221] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:53.222] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:54.390] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:34:54.437] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:54.437] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:54.437] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:54.438] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:56.168] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1702640.9us)
+[17:34:56.169] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:34:56.230] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:34:56.230] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:34:57.462] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.463] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.463] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:34:57.463] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:59.000] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:34:59.000] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:34:59.000] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:34:59.001] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:34:59.430] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:00.107] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1049921.7us)
+[17:35:00.107] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:00.168] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:00.169] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:01.399] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:01.400] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:01.400] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:01.400] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:02.573] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1160549.0us)
+[17:35:02.574] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:02.634] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:02.634] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:03.887] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:03.890] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:03.890] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:03.891] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:04.440] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.394] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.395] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:07.395] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:07.890] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 3952500.4us)
+[17:35:07.892] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:07.951] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:07.951] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:09.180] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:09.180] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:09.181] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:09.181] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:09.487] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:10.167] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 972743.1us)
+[17:35:10.167] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:10.228] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:10.228] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:11.454] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:11.455] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:11.455] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:11.455] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:12.628] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1124716.2us)
+[17:35:12.629] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:12.690] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:12.691] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:13.922] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:13.924] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:13.924] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:14.538] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:18.468] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:18.468] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:19.565] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:19.702] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1174829.0us)
+[17:35:19.702] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:19.763] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:19.763] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:21.016] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:21.016] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:22.140] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1101456.5us)
+[17:35:22.140] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:22.141] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:22.141] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:23.391] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:23.391] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:24.607] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:24.608] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1202096.4us)
+[17:35:24.608] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:24.669] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:24.669] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:24.669] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE ARRIVED at (1426,1687,0) -- arrived nearby; the destination tile was not free
+[17:35:24.669] LOG   [wave10_RevGen3_03_Elvar] event travel_done: label='mobile 0x000194DE' ok=1 at=(1426,1687) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mobile 0x000194DE -> (1430,1691) r=1 from (1426,1687)
+[17:35:24.746] LOG   [wave10_RevGen3_03_Elvar] event travel_start: label='mobile 0x000194DE' target=(1430,1691) radius=1 from=(1426,1687)
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.746] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:24.746] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:24.807] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:24.808] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:24.808] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:24.808] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:25.952] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1133056.2us)
+[17:35:25.953] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:26.013] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:26.013] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:27.258] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:27.258] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:27.258] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:27.259] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:28.580] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1269988.4us)
+[17:35:28.581] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:28.642] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:28.642] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: I'm listenin'.
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: What's thee wantin'?
+[17:35:28.934] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] Lyndon: Aye?
+[17:35:29.613] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:29.872] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:29.872] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:29.872] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:29.873] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:31.257] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1357147.5us)
+[17:35:31.257] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 5 mobile(s))
+[17:35:31.273] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:31.273] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:32.477] INFO  [wave10_RevGen3_03_Elvar] [travel] mode walk             usable   <- chosen
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode moongate         usable
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.478] LOG   [wave10_RevGen3_03_Elvar] event travel_mode: walk
+[17:35:32.478] INFO  [wave10_RevGen3_03_Elvar] [travel] plan mobile 0x000194DE: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:33.999] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:33.999] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:33.999] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:34.000] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:34.665] INFO  [wave10_RevGen3_03_Elvar] [survival] hp 56/56 (100%) -> fight
+[17:35:35.323] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1311267.8us)
+[17:35:35.324] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:35.386] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:35.386] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:36.645] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:36.645] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:38.003] WARN  [wave10_RevGen3_03_Elvar] [bot] no path to (1430,1691) avoiding 0 block(s); stopping (search 1319186.2us)
+[17:35:38.003] WARN  [wave10_RevGen3_03_Elvar] [bot] start (1426,1687,0) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 36 item(s), 6 mobile(s))
+[17:35:38.019] INFO  [wave10_RevGen3_03_Elvar] [action] goto finished at (1426,1687,0); target (1430,1691); stopped short (off by 8 tile(s))
+[17:35:38.019] LOG   [wave10_RevGen3_03_Elvar] event goto_done: at=(1426,1687) target=(1430,1691) arrived=0 off=8
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [action] goto (1430,1691) from (1426,1687,0)
+[17:35:39.237] LOG   [wave10_RevGen3_03_Elvar] event goto_start: target=(1430,1691) from=(1426,1687)
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [bot] running from (1426,1687,0) to (1430,1691,z0)
+[17:35:39.237] INFO  [wave10_RevGen3_03_Elvar] [bot] planning path to (1430,1691) in background
+[17:35:39.328] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.360] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.436] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_03_Elvar] [chat ascii] System: Titus has departed from Britain.

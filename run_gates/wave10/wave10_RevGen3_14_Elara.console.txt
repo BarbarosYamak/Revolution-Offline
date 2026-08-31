@@ -1,0 +1,450 @@
+[17:29:35.120] LOG   [wave10_RevGen3_14_Elara] event session_start: text log opened
+[17:29:35.122] LOG   [wave10_RevGen3_14_Elara] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.123] INFO  [wave10_RevGen3_14_Elara] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.125] LOG   [wave10_RevGen3_14_Elara] event net_connected: connect 127.0.0.1:2593
+[17:29:35.126] INFO  [wave10_RevGen3_14_Elara] [net] connected.
+[17:29:35.127] INFO  [wave10_RevGen3_14_Elara] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.130] LOG   [wave10_RevGen3_14_Elara] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.131] INFO  [wave10_RevGen3_14_Elara] [life] autonomous player active for 'Elara' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.138] INFO  [wave10_RevGen3_14_Elara] [0xA8] 1 server(s):
+[17:29:35.138] INFO  [wave10_RevGen3_14_Elara]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[17:29:35.150] INFO  [wave10_RevGen3_14_Elara] [0x8C] game server = 127.0.0.1:2593  seed=0x0359B7BC
+[17:29:35.150] LOG   [wave10_RevGen3_14_Elara] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x0359B7BC
+[17:29:35.152] INFO  [wave10_RevGen3_14_Elara] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.152] LOG   [wave10_RevGen3_14_Elara] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.152] INFO  [wave10_RevGen3_14_Elara] [0xB9] server features = 0x0005
+[17:29:35.153] INFO  [wave10_RevGen3_14_Elara] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.154] INFO  [wave10_RevGen3_14_Elara]   [0] Elara
+[17:29:35.156] INFO  [wave10_RevGen3_14_Elara]   [1] <empty>
+[17:29:35.157] INFO  [wave10_RevGen3_14_Elara]   [2] <empty>
+[17:29:35.159] INFO  [wave10_RevGen3_14_Elara]   [3] <empty>
+[17:29:35.160] INFO  [wave10_RevGen3_14_Elara]   [4] <empty>
+[17:29:35.160] INFO  [wave10_RevGen3_14_Elara] [ui] playing slot 0 ('Elara')
+[17:29:35.165] INFO  [wave10_RevGen3_14_Elara] [0x1B] serial=0x00011030 body=0x0191 pos=(1368,1781,15)
+[17:29:35.165] LOG   [wave10_RevGen3_14_Elara] event login_confirm: serial=0x00011030 body=0x0191 pos=(1368,1781,15)
+[17:29:35.167] INFO  [wave10_RevGen3_14_Elara] [0x20] player @(1368,1781,15) facing=7
+[17:29:35.169] INFO  [wave10_RevGen3_14_Elara] [0x55] login complete — entering world
+[17:29:35.171] LOG   [wave10_RevGen3_14_Elara] event in_world: 0x55 received
+[17:29:35.172] INFO  [wave10_RevGen3_14_Elara] [backpack] opening 0x40011013
+[17:29:35.173] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.173] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: There are 16 other players here.
+[17:29:35.173] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.177] INFO  [wave10_RevGen3_14_Elara] [action] requesting the skill list
+[17:29:35.184] INFO  [wave10_RevGen3_14_Elara] [0x24] open container 0x40011013 gump=60
+[17:29:35.185] INFO  [wave10_RevGen3_14_Elara] [0x3C] container contents: 10 item(s)
+[17:29:35.185] LOG   [wave10_RevGen3_14_Elara] event backpack_contents: serial=0x40011013 items=10
+[17:29:35.201] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.236] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.758] INFO  [wave10_RevGen3_14_Elara] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.759] INFO  [wave10_RevGen3_14_Elara] [survival] on
+[17:29:37.759] LOG   [wave10_RevGen3_14_Elara] event survival_mode: on
+[17:29:37.762] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:29:37.827] INFO  [wave10_RevGen3_14_Elara] [travel] Britain banker -> (1425,1690) r=5 from (1368,1781)
+[17:29:37.827] LOG   [wave10_RevGen3_14_Elara] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1368,1781)
+[17:29:37.827] INFO  [wave10_RevGen3_14_Elara] [travel] mode moongate         usable   <- chosen
+[17:29:37.827] INFO  [wave10_RevGen3_14_Elara] [travel] mode walk             usable
+[17:29:37.828] INFO  [wave10_RevGen3_14_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.828] INFO  [wave10_RevGen3_14_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.828] LOG   [wave10_RevGen3_14_Elara] event travel_mode: moongate
+[17:29:37.828] INFO  [wave10_RevGen3_14_Elara] [travel] plan Britain banker: ok legs=3 ~128 tiles transit=0 nodes=149
+[17:29:37.886] INFO  [wave10_RevGen3_14_Elara] [action] goto (1368,1752) from (1368,1781,15)
+[17:29:37.887] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1368,1752) from=(1368,1781)
+[17:29:37.887] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1368,1781,15) to (1368,1752)
+[17:29:37.887] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1368,1752) in background
+[17:29:37.947] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1368,1752): 29 steps in 139.1us
+[17:29:42.799] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:29:44.917] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1368,1752,5)
+[17:29:44.917] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:29:44.917] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:29:44.918] INFO  [wave10_RevGen3_14_Elara] [action] goto (1400,1720) from (1368,1752,5)
+[17:29:44.918] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1400,1720) from=(1368,1752)
+[17:29:44.918] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1368,1752,5) to (1400,1720)
+[17:29:44.918] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1400,1720) in background
+[17:29:44.977] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1400,1720): 53 steps in 15990.2us
+[17:29:47.814] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:29:50.304] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: You are now under the protection of the city guards
+[17:29:51.956] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=9 new segment=10 path=27 in 145.0us
+[17:29:52.865] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:29:57.892] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:29:59.247] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 4: anchor=5 new segment=12 path=12 in 405.1us
+[17:30:02.905] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:04.272] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1400,1720,20)
+[17:30:04.273] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1400,1720,20); target (1400,1720); ARRIVED (off by 0 tile(s))
+[17:30:04.273] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1400,1720) target=(1400,1720) arrived=1 off=0
+[17:30:04.273] INFO  [wave10_RevGen3_14_Elara] [action] goto (1425,1690) from (1400,1720,20)
+[17:30:04.273] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1425,1690) from=(1400,1720)
+[17:30:04.273] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1400,1720,20) to (1425,1690,z0)
+[17:30:04.273] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1425,1690) in background
+[17:30:04.332] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1425,1690): 61 steps in 19450.6us
+[17:30:07.962] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:12.977] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:15.556] INFO  [wave10_RevGen3_14_Elara] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[17:30:15.557] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:30:16.976] INFO  [wave10_RevGen3_14_Elara] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[17:30:16.977] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:30:18.032] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:20.455] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: You shove Odessa out of the way.
+[17:30:20.853] INFO  [wave10_RevGen3_14_Elara] [travel] Britain banker ARRIVED at (1429,1691,0)
+[17:30:20.853] LOG   [wave10_RevGen3_14_Elara] event travel_done: label='Britain banker' ok=1 at=(1429,1691) legs=3 plans=1 why=''
+[17:30:23.052] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:28.083] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:33.090] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:38.148] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:43.191] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:48.233] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:53.278] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:30:58.332] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:03.378] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:08.378] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:13.383] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:18.439] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.446] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:28.454] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:33.502] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:38.555] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:43.599] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:48.606] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:53.639] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:31:58.674] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:03.680] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:08.714] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:13.727] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:15.833] INFO  [wave10_RevGen3_14_Elara] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.747] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:23.767] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:28.806] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:33.853] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:38.888] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:43.918] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:48.921] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:52.207] INFO  [wave10_RevGen3_14_Elara] [chat uni  ] : bank
+[17:32:52.207] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:53.947] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:32:58.970] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:03.978] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:09.024] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:12.849] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_14_Elara] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.679] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object start
+[17:33:13.679] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object serial=0x40010EB3
+[17:33:13.693] INFO  [wave10_RevGen3_14_Elara] [0x3C] container contents: 13 item(s)
+[17:33:13.693] INFO  [wave10_RevGen3_14_Elara] [ACTION_RESULT] use_object success (14ms) contents received
+[17:33:13.693] LOG   [wave10_RevGen3_14_Elara] event action_result: use_object success took=14ms contents received
+[17:33:14.063] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:16.222] INFO  [wave10_RevGen3_14_Elara] [ACTION] move_item start
+[17:33:16.222] INFO  [wave10_RevGen3_14_Elara] [ACTION] move_item serial=0x40010DEF amount=1 dest=0x40010EB3
+[17:33:16.223] INFO  [wave10_RevGen3_14_Elara] [ITEM] drag serial=0x40010DEF amount=1
+[17:33:16.223] INFO  [wave10_RevGen3_14_Elara] [ITEM] drop container=0x40010EB3
+[17:33:16.238] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Can't add this to the spellbook
+[17:33:16.238] WARN  [wave10_RevGen3_14_Elara] [ACTION_RESULT] move_item server_failure (16ms) item 0x40010DEF landed in 0x40011013, not the destination 0x40010EB3
+[17:33:16.240] LOG   [wave10_RevGen3_14_Elara] event action_result: move_item server_failure took=16ms item 0x40010DEF landed in 0x40011013, not the destination 0x40010EB3
+[17:33:18.744] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object start
+[17:33:18.744] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object serial=0x40010EB3
+[17:33:18.775] INFO  [wave10_RevGen3_14_Elara] [0x3C] container contents: 13 item(s)
+[17:33:18.775] INFO  [wave10_RevGen3_14_Elara] [ACTION_RESULT] use_object success (31ms) contents received
+[17:33:18.776] LOG   [wave10_RevGen3_14_Elara] event action_result: use_object success took=31ms contents received
+[17:33:19.083] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:21.246] INFO  [wave10_RevGen3_14_Elara] [ACTION] move_item start
+[17:33:21.247] INFO  [wave10_RevGen3_14_Elara] [ACTION] move_item serial=0x40010DEE amount=1 dest=0x40010EB3
+[17:33:21.247] INFO  [wave10_RevGen3_14_Elara] [ITEM] drag serial=0x40010DEE amount=1
+[17:33:21.247] INFO  [wave10_RevGen3_14_Elara] [ITEM] drop container=0x40010EB3
+[17:33:21.247] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Can't add this to the spellbook
+[17:33:21.248] WARN  [wave10_RevGen3_14_Elara] [ACTION_RESULT] move_item server_failure (1ms) item 0x40010DEE landed in 0x40011013, not the destination 0x40010EB3
+[17:33:21.248] LOG   [wave10_RevGen3_14_Elara] event action_result: move_item server_failure took=1ms item 0x40010DEE landed in 0x40011013, not the destination 0x40010EB3
+[17:33:23.799] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object start
+[17:33:23.800] INFO  [wave10_RevGen3_14_Elara] [ACTION] use_object serial=0x40010EB3
+[17:33:23.800] INFO  [wave10_RevGen3_14_Elara] [0x3C] container contents: 13 item(s)
+[17:33:23.800] INFO  [wave10_RevGen3_14_Elara] [ACTION_RESULT] use_object success (1ms) contents received
+[17:33:23.800] LOG   [wave10_RevGen3_14_Elara] event action_result: use_object success took=1ms contents received
+[17:33:24.121] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:26.334] INFO  [wave10_RevGen3_14_Elara] [travel] Britain scribe -> (1494,1715) r=5 from (1429,1691)
+[17:33:26.334] LOG   [wave10_RevGen3_14_Elara] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1429,1691)
+[17:33:26.334] INFO  [wave10_RevGen3_14_Elara] [travel] mode moongate         usable   <- chosen
+[17:33:26.334] INFO  [wave10_RevGen3_14_Elara] [travel] mode walk             usable
+[17:33:26.335] INFO  [wave10_RevGen3_14_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:26.335] INFO  [wave10_RevGen3_14_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:26.335] LOG   [wave10_RevGen3_14_Elara] event travel_mode: moongate
+[17:33:26.335] INFO  [wave10_RevGen3_14_Elara] [travel] plan Britain scribe: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:33:26.342] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1429,1691,0); target (1425,1690); stopped short (off by 5 tile(s))
+[17:33:26.342] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1429,1691) target=(1425,1690) arrived=0 off=5
+[17:33:26.343] INFO  [wave10_RevGen3_14_Elara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:26.343] INFO  [wave10_RevGen3_14_Elara] [action] goto (1464,1688) from (1429,1691,0)
+[17:33:26.343] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1464,1688) from=(1429,1691)
+[17:33:26.343] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1429,1691,0) to (1464,1688)
+[17:33:26.343] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1464,1688) in background
+[17:33:26.402] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1464,1688): 37 steps in 1910.9us
+[17:33:29.062] INFO  [wave10_RevGen3_14_Elara] [bot] door ahead at (1439,1692,z0); OpenDoor before step
+[17:33:29.077] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:33:29.138] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:30.683] WARN  [wave10_RevGen3_14_Elara] [0x21] move REJECTED seq=17; server says (1439,1693,0) facing=3
+[17:33:30.683] INFO  [wave10_RevGen3_14_Elara] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[17:33:30.698] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:33:30.698] WARN  [wave10_RevGen3_14_Elara] [bot] 0x20 resync; aborting path
+[17:33:30.699] INFO  [wave10_RevGen3_14_Elara] [0x20] player @(1439,1693,0) facing=2
+[17:33:30.699] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1439,1693,0); target (1464,1688); stopped short (off by 30 tile(s))
+[17:33:30.699] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1439,1693) target=(1464,1688) arrived=0 off=30
+[17:33:31.952] INFO  [wave10_RevGen3_14_Elara] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:33:31.952] INFO  [wave10_RevGen3_14_Elara] [action] goto (1464,1688) from (1439,1693,0)
+[17:33:31.952] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1464,1688) from=(1439,1693)
+[17:33:31.953] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1439,1693,0) to (1464,1688)
+[17:33:31.953] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1464,1688) in background
+[17:33:31.968] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1464,1688): 25 steps in 583.8us
+[17:33:32.445] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=25 in 92.7us
+[17:33:32.891] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=24 in 184.1us
+[17:33:33.292] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=22 in 55.1us
+[17:33:33.738] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=20 in 162.7us
+[17:33:34.141] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:34.156] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=18 in 156.6us
+[17:33:34.618] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 154.1us
+[17:33:35.084] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=14 in 98.3us
+[17:33:35.488] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=14 in 193.7us
+[17:33:35.689] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=13 in 135.1us
+[17:33:35.888] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=12 in 118.1us
+[17:33:36.089] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=7 new segment=8 path=12 in 162.8us
+[17:33:37.458] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=6 in 147.5us
+[17:33:37.877] WARN  [wave10_RevGen3_14_Elara] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:33:37.877] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1461,1693,0)
+[17:33:37.937] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1461,1693,0); target (1464,1688); stopped short (off by 8 tile(s))
+[17:33:37.937] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1461,1693) target=(1464,1688) arrived=0 off=8
+[17:33:39.139] INFO  [wave10_RevGen3_14_Elara] [action] goto (1464,1688) from (1461,1693,0)
+[17:33:39.140] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1464,1688) from=(1461,1693)
+[17:33:39.140] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1461,1693,0) to (1464,1688)
+[17:33:39.140] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1464,1688) in background
+[17:33:39.155] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:40.397] WARN  [wave10_RevGen3_14_Elara] [bot] no path to (1464,1688) avoiding 0 block(s); stopping (search 1205083.0us)
+[17:33:40.398] WARN  [wave10_RevGen3_14_Elara] [bot] start (1461,1693,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 250 item(s), 5 mobile(s))
+[17:33:40.458] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1461,1693,0); target (1464,1688); stopped short (off by 8 tile(s))
+[17:33:40.459] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1461,1693) target=(1464,1688) arrived=0 off=8
+[17:33:41.685] INFO  [wave10_RevGen3_14_Elara] [travel] mode walk             usable   <- chosen
+[17:33:41.685] INFO  [wave10_RevGen3_14_Elara] [travel] mode moongate         usable
+[17:33:41.685] INFO  [wave10_RevGen3_14_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:41.685] INFO  [wave10_RevGen3_14_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:41.686] LOG   [wave10_RevGen3_14_Elara] event travel_mode: walk
+[17:33:41.686] INFO  [wave10_RevGen3_14_Elara] [travel] plan Britain scribe: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:33:43.205] INFO  [wave10_RevGen3_14_Elara] [action] goto (1494,1715) from (1461,1693,0)
+[17:33:43.205] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1494,1715) from=(1461,1693)
+[17:33:43.205] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1461,1693,0) to (1494,1715,z6)
+[17:33:43.205] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1494,1715) in background
+[17:33:43.266] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1494,1715): 48 steps in 15602.9us
+[17:33:44.197] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:48.381] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=29 in 393.0us
+[17:33:48.505] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=30 in 166.5us
+[17:33:48.753] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=29 in 99.0us
+[17:33:49.201] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:54.261] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: World save in 10 seconds
+[17:33:55.013] INFO  [wave10_RevGen3_14_Elara] [bot] door ahead at (1494,1723,z6); OpenDoor before step
+[17:33:55.028] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:33:56.128] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=8 new segment=11 path=12 in 1020.3us
+[17:33:56.925] INFO  [wave10_RevGen3_14_Elara] [travel] Britain scribe ARRIVED at (1494,1720,7)
+[17:33:56.925] LOG   [wave10_RevGen3_14_Elara] event travel_done: label='Britain scribe' ok=1 at=(1494,1720) legs=1 plans=2 why=''
+[17:33:57.005] INFO  [wave10_RevGen3_14_Elara] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1494,1720)
+[17:33:57.005] LOG   [wave10_RevGen3_14_Elara] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1494,1720)
+[17:33:57.006] INFO  [wave10_RevGen3_14_Elara] [travel] mode moongate         usable   <- chosen
+[17:33:57.006] INFO  [wave10_RevGen3_14_Elara] [travel] mode walk             usable
+[17:33:57.006] INFO  [wave10_RevGen3_14_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:57.006] INFO  [wave10_RevGen3_14_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:57.006] LOG   [wave10_RevGen3_14_Elara] event travel_mode: moongate
+[17:33:57.007] INFO  [wave10_RevGen3_14_Elara] [travel] plan Lord British's Castle scribe: ok legs=5 ~176 tiles transit=0 nodes=197
+[17:33:57.062] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1494,1720,7); target (1494,1715); stopped short (off by 5 tile(s))
+[17:33:57.062] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1494,1720) target=(1494,1715) arrived=0 off=5
+[17:33:57.063] INFO  [wave10_RevGen3_14_Elara] [action] goto (1464,1688) from (1494,1720,7)
+[17:33:57.063] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1464,1688) from=(1494,1720)
+[17:33:57.063] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1494,1720,7) to (1464,1688)
+[17:33:57.063] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1464,1688) in background
+[17:33:57.123] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1464,1688): 46 steps in 4050.1us
+[17:33:58.282] INFO  [wave10_RevGen3_14_Elara] [bot] door ahead at (1493,1724,z6); OpenDoor before step
+[17:33:58.282] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Opening door...
+[17:33:59.267] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:04.270] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: World save has been initiated.
+[17:34:09.327] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:09.636] WARN  [wave10_RevGen3_14_Elara] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.700] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1479,1710,0); target (1464,1688); stopped short (off by 37 tile(s))
+[17:34:09.700] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1479,1710) target=(1464,1688) arrived=0 off=37
+[17:34:09.906] WARN  [wave10_RevGen3_14_Elara] [0x22] unsolicited ack seq=30
+[17:34:10.903] INFO  [wave10_RevGen3_14_Elara] [action] goto (1464,1688) from (1479,1710,0)
+[17:34:10.903] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1464,1688) from=(1479,1710)
+[17:34:10.903] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1479,1710,0) to (1464,1688)
+[17:34:10.904] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1464,1688) in background
+[17:34:10.964] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1464,1688): 24 steps in 2697.0us
+[17:34:14.383] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:17.346] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1464,1688,0)
+[17:34:17.347] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:34:17.347] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:34:17.348] INFO  [wave10_RevGen3_14_Elara] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:17.348] INFO  [wave10_RevGen3_14_Elara] [action] goto (1432,1672) from (1464,1688,0)
+[17:34:17.348] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1432,1672) from=(1464,1688)
+[17:34:17.348] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1464,1688,0) to (1432,1672)
+[17:34:17.348] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1432,1672) in background
+[17:34:17.409] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1432,1672): 38 steps in 2192.9us
+[17:34:19.402] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:24.448] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:29.212] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1432,1672,10)
+[17:34:29.212] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1432,1672,10); target (1432,1672); ARRIVED (off by 0 tile(s))
+[17:34:29.212] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1432,1672) target=(1432,1672) arrived=1 off=0
+[17:34:29.212] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1640) from (1432,1672,10)
+[17:34:29.212] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1640) from=(1432,1672)
+[17:34:29.213] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1432,1672,10) to (1416,1640)
+[17:34:29.213] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1640) in background
+[17:34:29.273] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1640): 38 steps in 5941.1us
+[17:34:29.457] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:34.469] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:36.778] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=14 in 366.2us
+[17:34:38.269] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 185.9us
+[17:34:39.513] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:40.745] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1416,1640,20)
+[17:34:40.746] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[17:34:40.746] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[17:34:40.746] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1608) from (1416,1640,20)
+[17:34:40.746] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1608) from=(1416,1640)
+[17:34:40.746] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1416,1640,20) to (1416,1608)
+[17:34:40.747] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1608) in background
+[17:34:40.804] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1608): 59 steps in 32283.5us
+[17:34:44.527] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:46.646] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 641.1us
+[17:34:49.543] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:51.160] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 352.9us
+[17:34:54.545] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:34:54.626] INFO  [wave10_RevGen3_14_Elara] [bot] lookahead patched around block at step 5: anchor=6 new segment=17 path=23 in 3558.0us
+[17:34:59.568] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:02.589] WARN  [wave10_RevGen3_14_Elara] [0x21] move REJECTED seq=92; server says (1417,1607,30) facing=5
+[17:35:02.590] INFO  [wave10_RevGen3_14_Elara] [bot] dynamic item blocks (1416,1608,30); rerouting
+[17:35:02.590] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1608) in background
+[17:35:02.650] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1608): 41 steps in 6886.6us
+[17:35:04.580] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:07.859] INFO  [wave10_RevGen3_14_Elara] [travel] Lord British's Castle scribe ARRIVED at (1410,1594,30)
+[17:35:07.860] LOG   [wave10_RevGen3_14_Elara] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1410,1594) legs=5 plans=1 why=''
+[17:35:07.914] INFO  [wave10_RevGen3_14_Elara] [travel] Jhelom scribe -> (1387,3771) r=5 from (1410,1594)
+[17:35:07.914] LOG   [wave10_RevGen3_14_Elara] event travel_start: label='Jhelom scribe' target=(1387,3771) radius=5 from=(1410,1594)
+[17:35:07.914] INFO  [wave10_RevGen3_14_Elara] [travel] mode moongate         usable   <- chosen
+[17:35:07.914] INFO  [wave10_RevGen3_14_Elara] [travel] mode walk             usable
+[17:35:07.915] INFO  [wave10_RevGen3_14_Elara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.915] INFO  [wave10_RevGen3_14_Elara] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.915] LOG   [wave10_RevGen3_14_Elara] event travel_mode: moongate
+[17:35:07.917] INFO  [wave10_RevGen3_14_Elara] [travel] plan Jhelom scribe: ok legs=18 ~688 tiles transit=1 nodes=3721
+[17:35:07.980] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1410,1594,30); target (1416,1608); stopped short (off by 20 tile(s))
+[17:35:07.981] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1410,1594) target=(1416,1608) arrived=0 off=20
+[17:35:07.981] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1624) from (1410,1594,30)
+[17:35:07.982] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1624) from=(1410,1594)
+[17:35:07.982] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1410,1594,30) to (1416,1624)
+[17:35:07.982] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1624) in background
+[17:35:08.042] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1624): 41 steps in 7875.0us
+[17:35:09.627] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:14.662] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:19.687] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:19.931] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1416,1624,22)
+[17:35:19.931] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:35:19.931] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:35:19.931] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1656) from (1416,1624,22)
+[17:35:19.932] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1656) from=(1416,1624)
+[17:35:19.932] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1416,1624,22) to (1416,1656)
+[17:35:19.932] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1656) in background
+[17:35:19.992] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1656): 32 steps in 1249.3us
+[17:35:24.745] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:29.475] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1416,1656,10)
+[17:35:29.476] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:35:29.476] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:35:29.476] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1688) from (1416,1656,10)
+[17:35:29.476] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1688) from=(1416,1656)
+[17:35:29.476] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1416,1656,10) to (1416,1688)
+[17:35:29.476] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1688) in background
+[17:35:29.535] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1688): 32 steps in 862.3us
+[17:35:29.797] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:34.849] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:37.510] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1416,1688,0)
+[17:35:37.511] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:35:37.511] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:35:37.511] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1720) from (1416,1688,0)
+[17:35:37.512] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1720) from=(1416,1688)
+[17:35:37.512] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1416,1688,0) to (1416,1720)
+[17:35:37.512] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1720) in background
+[17:35:37.571] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1720): 32 steps in 647.4us
+[17:35:39.329] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Varek has departed from Britain.
+a] [bot] planning path to (1416,1688) in background
+[17:35:29.535] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1688): 32 steps in 862.3us
+[17:35:29.797] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:34.849] INFO  [wave10_RevGen3_14_Elara] [survival] hp 32/32 (100%) -> fight
+[17:35:37.510] INFO  [wave10_RevGen3_14_Elara] [bot] arrived at (1416,1688,0)
+[17:35:37.511] INFO  [wave10_RevGen3_14_Elara] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:35:37.511] LOG   [wave10_RevGen3_14_Elara] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:35:37.511] INFO  [wave10_RevGen3_14_Elara] [action] goto (1416,1720) from (1416,1688,0)
+[17:35:37.512] LOG   [wave10_RevGen3_14_Elara] event goto_start: target=(1416,1720) from=(1416,1688)
+[17:35:37.512] INFO  [wave10_RevGen3_14_Elara] [bot] running from (1416,1688,0) to (1416,1720)
+[17:35:37.512] INFO  [wave10_RevGen3_14_Elara] [bot] planning path to (1416,1720) in background
+[17:35:37.571] INFO  [wave10_RevGen3_14_Elara] [bot] replan to (1416,1720): 32 steps in 647.4us
+[17:35:37.944] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_14.elara/state.json
+[17:35:39.329] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.362] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_14_Elara] [chat ascii] System: Varek has departed from Britain.

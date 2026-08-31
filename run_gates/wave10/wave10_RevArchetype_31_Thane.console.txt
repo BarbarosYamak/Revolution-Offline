@@ -1,0 +1,562 @@
+[17:29:35.366] LOG   [wave10_RevArchetype_31_] event session_start: text log opened
+[17:29:35.367] LOG   [wave10_RevArchetype_31_] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.369] INFO  [wave10_RevArchetype_31_] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.372] LOG   [wave10_RevArchetype_31_] event net_connected: connect 127.0.0.1:2593
+[17:29:35.374] INFO  [wave10_RevArchetype_31_] [net] connected.
+[17:29:35.376] INFO  [wave10_RevArchetype_31_] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.377] LOG   [wave10_RevArchetype_31_] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.384] INFO  [wave10_RevArchetype_31_] [life] autonomous player active for 'Thane' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.386] INFO  [wave10_RevArchetype_31_] [0xA8] 1 server(s):
+[17:29:35.387] INFO  [wave10_RevArchetype_31_]   [0] MyShard                   1.0.0.127  full=12%  tz=0
+[17:29:35.387] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.404] INFO  [wave10_RevArchetype_31_] [0x8C] game server = 127.0.0.1:2593  seed=0x307EE5C4
+[17:29:35.404] LOG   [wave10_RevArchetype_31_] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x307EE5C4
+[17:29:35.404] INFO  [wave10_RevArchetype_31_] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.404] LOG   [wave10_RevArchetype_31_] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.417] INFO  [wave10_RevArchetype_31_] [0xB9] server features = 0x0005
+[17:29:35.417] INFO  [wave10_RevArchetype_31_] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.417] INFO  [wave10_RevArchetype_31_]   [0] Thane
+[17:29:35.417] INFO  [wave10_RevArchetype_31_]   [1] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_31_]   [2] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_31_]   [3] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_31_]   [4] <empty>
+[17:29:35.418] INFO  [wave10_RevArchetype_31_] [ui] playing slot 0 ('Thane')
+[17:29:35.434] INFO  [wave10_RevArchetype_31_] [0x1B] serial=0x0001976D body=0x0191 pos=(1431,1687,0)
+[17:29:35.436] LOG   [wave10_RevArchetype_31_] event login_confirm: serial=0x0001976D body=0x0191 pos=(1431,1687,0)
+[17:29:35.437] INFO  [wave10_RevArchetype_31_] [0x20] player @(1431,1687,0) facing=7
+[17:29:35.438] INFO  [wave10_RevArchetype_31_] [0x55] login complete — entering world
+[17:29:35.438] LOG   [wave10_RevArchetype_31_] event in_world: 0x55 received
+[17:29:35.438] INFO  [wave10_RevArchetype_31_] [backpack] opening 0x4001976B
+[17:29:35.439] INFO  [wave10_RevArchetype_31_] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.439] INFO  [wave10_RevArchetype_31_] [chat ascii] System: There are 33 other players here.
+[17:29:35.439] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.439] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.439] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.443] INFO  [wave10_RevArchetype_31_] [action] requesting the skill list
+[17:29:35.443] INFO  [wave10_RevArchetype_31_] [0x24] open container 0x4001976B gump=60
+[17:29:35.443] INFO  [wave10_RevArchetype_31_] [0x3C] container contents: 12 item(s)
+[17:29:35.444] LOG   [wave10_RevArchetype_31_] event backpack_contents: serial=0x4001976B items=12
+[17:29:35.449] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevArchetype_31_] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.261] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: What?
+[17:29:37.933] INFO  [wave10_RevArchetype_31_] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.934] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: Huh?
+[17:29:38.069] INFO  [wave10_RevArchetype_31_] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:38.071] INFO  [wave10_RevArchetype_31_] [survival] on
+[17:29:38.072] LOG   [wave10_RevArchetype_31_] event survival_mode: on
+[17:29:38.076] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:29:43.122] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:29:48.166] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:29:53.172] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:29:58.185] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:03.243] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:08.285] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:09.819] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: Hmm?
+[17:30:13.286] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:18.323] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:23.330] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:28.343] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:33.370] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:38.393] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:43.438] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:48.477] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:53.526] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:30:58.580] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:03.624] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:08.684] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:13.693] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:18.746] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevArchetype_31_] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.803] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:28.838] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:33.872] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:38.926] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:43.966] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:48.976] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:54.008] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:31:59.040] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:04.060] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:09.071] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:14.089] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:15.834] INFO  [wave10_RevArchetype_31_] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevArchetype_31_] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevArchetype_31_] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:19.119] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:24.138] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:29.173] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:34.223] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:38.749] INFO  [wave10_RevArchetype_31_] [ACTION] use_object start
+[17:32:38.749] INFO  [wave10_RevArchetype_31_] [ACTION] use_object serial=0x40019757
+[17:32:38.749] INFO  [wave10_RevArchetype_31_] [0x3C] container contents: 15 item(s)
+[17:32:38.749] INFO  [wave10_RevArchetype_31_] [ACTION_RESULT] use_object success (0ms) contents received
+[17:32:38.749] LOG   [wave10_RevArchetype_31_] event action_result: use_object success took=0ms contents received
+[17:32:39.263] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:41.265] INFO  [wave10_RevArchetype_31_] [travel] Britain scribe -> (1494,1715) r=5 from (1431,1687)
+[17:32:41.265] LOG   [wave10_RevArchetype_31_] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1431,1687)
+[17:32:41.265] INFO  [wave10_RevArchetype_31_] [travel] mode moongate         usable   <- chosen
+[17:32:41.265] INFO  [wave10_RevArchetype_31_] [travel] mode walk             usable
+[17:32:41.265] INFO  [wave10_RevArchetype_31_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:41.266] INFO  [wave10_RevArchetype_31_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:41.266] LOG   [wave10_RevArchetype_31_] event travel_mode: moongate
+[17:32:41.266] INFO  [wave10_RevArchetype_31_] [travel] plan Britain scribe: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:32:41.312] INFO  [wave10_RevArchetype_31_] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:41.312] INFO  [wave10_RevArchetype_31_] [action] goto (1464,1688) from (1431,1687,0)
+[17:32:41.312] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1464,1688) from=(1431,1687)
+[17:32:41.313] INFO  [wave10_RevArchetype_31_] [bot] running from (1431,1687,0) to (1464,1688)
+[17:32:41.313] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1464,1688) in background
+[17:32:41.372] INFO  [wave10_RevArchetype_31_] [bot] replan to (1464,1688): 34 steps in 1223.7us
+[17:32:42.739] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=31 in 115.2us
+[17:32:43.599] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=30 in 79.7us
+[17:32:44.073] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=29 in 131.3us
+[17:32:44.319] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:45.998] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=23 in 40.1us
+[17:32:46.429] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=22 in 35.1us
+[17:32:46.858] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=20 in 85.8us
+[17:32:47.330] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=18 in 122.8us
+[17:32:47.731] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=16 in 124.5us
+[17:32:48.133] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=14 in 73.5us
+[17:32:48.539] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=12 in 85.6us
+[17:32:48.937] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 153.7us
+[17:32:49.139] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=11 in 60.9us
+[17:32:49.322] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:49.599] WARN  [wave10_RevArchetype_31_] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:32:49.600] INFO  [wave10_RevArchetype_31_] [bot] arrived at (1457,1695,0)
+[17:32:49.660] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1457,1695,0); target (1464,1688); stopped short (off by 14 tile(s))
+[17:32:49.661] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1457,1695) target=(1464,1688) arrived=0 off=14
+[17:32:50.873] INFO  [wave10_RevArchetype_31_] [action] goto (1464,1688) from (1457,1695,0)
+[17:32:50.874] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1464,1688) from=(1457,1695)
+[17:32:50.874] INFO  [wave10_RevArchetype_31_] [bot] running from (1457,1695,0) to (1464,1688)
+[17:32:50.874] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1464,1688) in background
+[17:32:50.890] INFO  [wave10_RevArchetype_31_] [bot] replan to (1464,1688): 9 steps in 172.4us
+[17:32:54.283] INFO  [wave10_RevArchetype_31_] [bot] arrived at (1464,1688,0)
+[17:32:54.283] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:32:54.283] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:32:54.284] INFO  [wave10_RevArchetype_31_] [action] goto (1494,1715) from (1464,1688,0)
+[17:32:54.284] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1494,1715) from=(1464,1688)
+[17:32:54.284] INFO  [wave10_RevArchetype_31_] [bot] running from (1464,1688,0) to (1494,1715,z6)
+[17:32:54.284] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1494,1715) in background
+[17:32:54.360] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:32:54.361] INFO  [wave10_RevArchetype_31_] [bot] replan to (1494,1715): 53 steps in 28643.4us
+[17:32:59.384] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:04.426] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:05.740] INFO  [wave10_RevArchetype_31_] [bot] door ahead at (1494,1723,z6); OpenDoor before step
+[17:33:05.756] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Opening door...
+[17:33:06.778] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=8 new segment=11 path=12 in 642.4us
+[17:33:07.284] INFO  [wave10_RevArchetype_31_] [travel] Britain scribe ARRIVED at (1494,1720,7)
+[17:33:07.284] LOG   [wave10_RevArchetype_31_] event travel_done: label='Britain scribe' ok=1 at=(1494,1720) legs=2 plans=1 why=''
+[17:33:07.302] INFO  [wave10_RevArchetype_31_] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1494,1720)
+[17:33:07.302] LOG   [wave10_RevArchetype_31_] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1494,1720)
+[17:33:07.303] INFO  [wave10_RevArchetype_31_] [travel] mode moongate         usable   <- chosen
+[17:33:07.303] INFO  [wave10_RevArchetype_31_] [travel] mode walk             usable
+[17:33:07.303] INFO  [wave10_RevArchetype_31_] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:07.303] INFO  [wave10_RevArchetype_31_] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:07.303] LOG   [wave10_RevArchetype_31_] event travel_mode: moongate
+[17:33:07.303] INFO  [wave10_RevArchetype_31_] [travel] plan Lord British's Castle scribe: ok legs=5 ~176 tiles transit=0 nodes=197
+[17:33:07.361] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1494,1720,7); target (1494,1715); stopped short (off by 5 tile(s))
+[17:33:07.361] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1494,1720) target=(1494,1715) arrived=0 off=5
+[17:33:07.361] INFO  [wave10_RevArchetype_31_] [action] goto (1464,1688) from (1494,1720,7)
+[17:33:07.361] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1464,1688) from=(1494,1720)
+[17:33:07.361] INFO  [wave10_RevArchetype_31_] [bot] running from (1494,1720,7) to (1464,1688)
+[17:33:07.362] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1464,1688) in background
+[17:33:07.421] INFO  [wave10_RevArchetype_31_] [bot] replan to (1464,1688): 46 steps in 5923.9us
+[17:33:08.578] INFO  [wave10_RevArchetype_31_] [bot] door ahead at (1493,1724,z6); OpenDoor before step
+[17:33:08.592] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Opening door...
+[17:33:09.439] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:14.450] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:19.486] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:20.784] INFO  [wave10_RevArchetype_31_] [bot] arrived at (1464,1688,0)
+[17:33:20.784] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:20.784] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:20.785] INFO  [wave10_RevArchetype_31_] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:20.785] INFO  [wave10_RevArchetype_31_] [action] goto (1432,1672) from (1464,1688,0)
+[17:33:20.785] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1432,1672) from=(1464,1688)
+[17:33:20.785] INFO  [wave10_RevArchetype_31_] [bot] running from (1464,1688,0) to (1432,1672)
+[17:33:20.786] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1432,1672) in background
+[17:33:20.845] INFO  [wave10_RevArchetype_31_] [bot] replan to (1432,1672): 39 steps in 2093.8us
+[17:33:24.534] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:29.568] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:31.692] INFO  [wave10_RevArchetype_31_] [bot] arrived at (1432,1672,10)
+[17:33:31.693] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1432,1672,10); target (1432,1672); ARRIVED (off by 0 tile(s))
+[17:33:31.693] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1432,1672) target=(1432,1672) arrived=1 off=0
+[17:33:31.693] INFO  [wave10_RevArchetype_31_] [action] goto (1416,1640) from (1432,1672,10)
+[17:33:31.693] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1416,1640) from=(1432,1672)
+[17:33:31.693] INFO  [wave10_RevArchetype_31_] [bot] running from (1432,1672,10) to (1416,1640)
+[17:33:31.694] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1416,1640) in background
+[17:33:31.753] INFO  [wave10_RevArchetype_31_] [bot] replan to (1416,1640): 39 steps in 5882.6us
+[17:33:34.617] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:39.660] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:40.829] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:33:40.829] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:33:40.830] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:33:40.844] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:40.844] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:40.844] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:33:42.676] INFO  [wave10_RevArchetype_31_] [bot] arrived at (1416,1640,20)
+[17:33:42.677] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[17:33:42.677] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[17:33:42.677] INFO  [wave10_RevArchetype_31_] [action] goto (1416,1608) from (1416,1640,20)
+[17:33:42.677] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1416,1608) from=(1416,1640)
+[17:33:42.677] INFO  [wave10_RevArchetype_31_] [bot] running from (1416,1640,20) to (1416,1608)
+[17:33:42.677] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1416,1608) in background
+[17:33:42.738] INFO  [wave10_RevArchetype_31_] [bot] replan to (1416,1608): 59 steps in 15203.9us
+[17:33:44.689] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:44.889] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:33:44.889] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:33:44.950] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:33:44.950] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:33:44.950] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:33:44.965] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:44.965] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:44.966] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:33:48.969] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:33:48.969] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:33:49.030] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:33:49.030] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:33:49.031] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:33:49.046] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:49.047] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:49.047] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:33:49.125] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 460.3us
+[17:33:49.695] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:53.081] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:33:53.081] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:33:53.143] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:33:53.143] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:33:53.143] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:33:53.158] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:53.158] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:53.159] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:33:53.604] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 285.7us
+[17:33:54.568] INFO  [wave10_RevArchetype_31_] [chat ascii] System: World save in 10 seconds
+[17:33:54.707] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:33:57.051] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=18 path=24 in 3623.7us
+[17:33:57.170] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:33:57.170] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:33:57.232] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:33:57.232] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:33:57.233] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:33:57.248] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:57.248] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:33:57.248] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:33:59.724] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:01.234] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:01.234] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:01.234] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:01.235] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:01.235] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:01.249] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:01.249] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:01.250] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:04.599] INFO  [wave10_RevArchetype_31_] [chat ascii] System: World save has been initiated.
+[17:34:04.783] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:05.282] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:05.283] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:05.345] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:05.345] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:05.345] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:09.389] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:09.390] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:09.390] WARN  [wave10_RevArchetype_31_] [ITEM] drag of 0x4001975B abandoned after timeout
+[17:34:09.451] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:09.451] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:09.451] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:09.636] WARN  [wave10_RevArchetype_31_] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.700] INFO  [wave10_RevArchetype_31_] [action] goto finished at (1417,1606,30); target (1416,1608); stopped short (off by 3 tile(s))
+[17:34:09.700] LOG   [wave10_RevArchetype_31_] event goto_done: at=(1417,1606) target=(1416,1608) arrived=0 off=3
+[17:34:09.700] INFO  [wave10_RevArchetype_31_] [action] goto (1409,1590) from (1417,1606,30)
+[17:34:09.700] LOG   [wave10_RevArchetype_31_] event goto_start: target=(1409,1590) from=(1417,1606)
+[17:34:09.701] INFO  [wave10_RevArchetype_31_] [bot] running from (1417,1606,30) to (1409,1590,z42)
+[17:34:09.701] INFO  [wave10_RevArchetype_31_] [bot] planning path to (1409,1590) in background
+[17:34:09.762] INFO  [wave10_RevArchetype_31_] [bot] replan to (1409,1590): 21 steps in 1775.2us
+[17:34:09.824] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:09.907] WARN  [wave10_RevArchetype_31_] [0x22] ack seq=96, expected 0 — resyncing
+[17:34:09.920] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:09.921] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:09.921] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:09.922] WARN  [wave10_RevArchetype_31_] [ITEM] drag cancelled by server: cannot lift that (code 0)
+[17:34:09.922] LOG   [wave10_RevArchetype_31_] event drag_cancel: reason=0 cannot lift that
+[17:34:09.922] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip rejected (472ms) cannot lift that
+[17:34:09.922] LOG   [wave10_RevArchetype_31_] event action_result: equip rejected took=472ms cannot lift that
+[17:34:09.922] WARN  [wave10_RevArchetype_31_] [ITEM] drag cancelled by server: unspecified (code 5)
+[17:34:09.923] LOG   [wave10_RevArchetype_31_] event drag_cancel: reason=5 unspecified
+[17:34:09.923] WARN  [wave10_RevArchetype_31_] [0x22] unsolicited ack seq=0
+[17:34:11.457] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:11.457] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:11.457] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:11.472] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:11.473] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:11.473] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:11.474] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=16 in 495.9us
+[17:34:11.831] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=15 in 382.5us
+[17:34:12.076] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 310.3us
+[17:34:12.277] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=13 in 259.8us
+[17:34:12.724] INFO  [wave10_RevArchetype_31_] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=12 in 302.9us
+[17:34:13.078] INFO  [wave10_RevArchetype_31_] [chat ascii] Raisa: What's thee wantin'?
+[17:34:13.832] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You have left the protection of the city guards
+[17:34:13.833] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You have a feeling of complete safety
+[17:34:13.893] INFO  [wave10_RevArchetype_31_] [travel] Lord British's Castle scribe ARRIVED at (1409,1595,30)
+[17:34:13.893] LOG   [wave10_RevArchetype_31_] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1409,1595) legs=5 plans=1 why=''
+[17:34:14.878] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:15.468] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:15.468] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:15.530] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:15.530] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:15.530] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:15.546] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:15.546] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:15.546] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:19.541] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:19.541] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:19.602] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:19.603] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=1
+[17:34:19.603] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:19.617] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:19.618] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:19.618] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:19.938] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:23.612] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:23.613] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:23.676] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:23.676] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=1
+[17:34:23.676] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:23.692] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:23.692] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:23.692] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:24.386] INFO  [wave10_RevArchetype_31_] [chat ascii] Raisa: I'm listenin'.
+[17:34:24.990] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:27.694] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:27.694] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:27.711] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:27.711] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=1
+[17:34:27.711] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:27.725] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:27.726] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:27.726] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:30.012] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:31.769] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:31.769] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:33.853] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:33.853] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:33.853] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:33.869] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:33.869] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:33.869] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:35.069] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:37.869] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:37.869] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:37.931] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:37.931] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:37.931] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:37.946] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:37.947] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:37.947] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:40.113] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:41.992] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:41.993] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:42.055] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:42.055] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:42.055] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:42.055] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:42.056] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:42.056] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:45.126] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:46.069] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:46.069] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:46.131] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:46.131] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:46.131] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:46.132] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:46.132] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:46.132] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:50.144] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:50.144] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:50.144] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:50.206] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:50.206] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:50.206] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:50.221] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:50.221] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:50.221] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:54.222] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:54.222] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:54.282] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:54.282] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:54.283] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:54.298] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:54.298] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:54.298] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:34:55.196] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:34:58.339] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:34:58.339] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:34:58.400] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:34:58.400] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:34:58.401] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:34:58.416] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:58.416] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:34:58.416] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:00.199] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:02.435] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:02.435] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:02.497] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:02.497] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:02.497] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:02.512] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:02.513] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:02.513] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:05.224] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:06.501] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:06.502] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:06.564] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:06.564] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:06.565] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:06.580] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:06.580] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:06.580] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:10.228] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:10.609] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:10.609] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:10.672] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:10.672] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:10.672] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:10.688] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:10.688] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:10.688] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:14.724] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:14.724] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:14.742] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:14.742] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:14.742] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:14.755] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:14.756] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:14.756] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:15.264] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:18.761] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:18.762] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:18.823] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:18.824] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:18.824] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:18.839] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:18.840] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:18.840] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:20.267] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:22.849] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:22.850] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:25.271] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:26.935] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:26.937] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:26.996] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:26.997] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:26.997] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:30.272] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:31.012] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:31.012] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:35.091] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:35.092] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:35.307] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:39.191] WARN  [wave10_RevArchetype_31_] [ACTION_RESULT] equip timeout (no server confirmation)
+[17:35:39.192] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:39.330] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.380] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Castor has departed from Trinsic Healer.
+=0
+[17:35:14.742] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:14.755] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:14.756] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:14.756] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:15.264] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:18.762] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:18.823] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:18.823] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:18.824] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:18.824] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:18.839] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:18.840] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:18.840] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:20.267] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:22.850] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:22.910] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:22.911] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:22.926] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:25.271] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:26.937] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:26.996] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:26.996] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:26.997] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:26.997] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:27.013] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:30.272] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:31.012] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:31.073] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:31.073] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:31.089] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:35.092] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:35.153] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:35.153] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:35.169] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:35.307] INFO  [wave10_RevArchetype_31_] [survival] hp 48/48 (100%) -> fight
+[17:35:38.250] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revarchetype_31.thane/state.json
+[17:35:39.192] LOG   [wave10_RevArchetype_31_] event action_result: equip timeout
+[17:35:39.253] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ACTION] equip start
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ACTION] equip serial=0x4001975B layer=0
+[17:35:39.253] INFO  [wave10_RevArchetype_31_] [ITEM] drag serial=0x4001975B amount=1
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Not strong enough to equip pickaxe.
+[17:35:39.254] INFO  [wave10_RevArchetype_31_] [chat ascii] System: You put the pickaxe in your pack.
+[17:35:39.330] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.346] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.377] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.380] INFO  [wave10_RevArchetype_31_] [chat ascii] System: Castor has departed from Trinsic Healer.

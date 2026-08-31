@@ -1,0 +1,1818 @@
+[17:29:34.509] LOG   [wave10_RevGen3_01_Drave] event session_start: text log opened
+[17:29:34.511] LOG   [wave10_RevGen3_01_Drave] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.512] INFO  [wave10_RevGen3_01_Drave] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.514] LOG   [wave10_RevGen3_01_Drave] event net_connected: connect 127.0.0.1:2593
+[17:29:34.515] INFO  [wave10_RevGen3_01_Drave] [net] connected.
+[17:29:34.516] INFO  [wave10_RevGen3_01_Drave] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.516] LOG   [wave10_RevGen3_01_Drave] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.518] INFO  [wave10_RevGen3_01_Drave] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.522] INFO  [wave10_RevGen3_01_Drave] [0xA8] 1 server(s):
+[17:29:34.522] INFO  [wave10_RevGen3_01_Drave]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:29:34.525] INFO  [wave10_RevGen3_01_Drave] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[17:29:34.525] LOG   [wave10_RevGen3_01_Drave] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[17:29:34.525] INFO  [wave10_RevGen3_01_Drave] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.526] LOG   [wave10_RevGen3_01_Drave] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave] [0xB9] server features = 0x0005
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave]   [0] Draver
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave]   [1] <empty>
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave]   [2] <empty>
+[17:29:34.537] INFO  [wave10_RevGen3_01_Drave]   [3] <empty>
+[17:29:34.538] INFO  [wave10_RevGen3_01_Drave]   [4] <empty>
+[17:29:34.538] INFO  [wave10_RevGen3_01_Drave] [ui] playing slot 0 ('Draver')
+[17:29:34.552] INFO  [wave10_RevGen3_01_Drave] [0x1B] serial=0x00016DBB body=0x0191 pos=(2558,499,0)
+[17:29:34.552] LOG   [wave10_RevGen3_01_Drave] event login_confirm: serial=0x00016DBB body=0x0191 pos=(2558,499,0)
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [0x20] player @(2558,499,0) facing=3
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [0x55] login complete — entering world
+[17:29:34.553] LOG   [wave10_RevGen3_01_Drave] event in_world: 0x55 received
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [backpack] opening 0x40016DB8
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: There are 2 other players here.
+[17:29:34.553] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.554] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Kharain has arrived in Britain.
+[17:29:34.558] INFO  [wave10_RevGen3_01_Drave] [action] requesting the skill list
+[17:29:34.558] INFO  [wave10_RevGen3_01_Drave] [0x24] open container 0x40016DB8 gump=60
+[17:29:34.558] INFO  [wave10_RevGen3_01_Drave] [0x3C] container contents: 10 item(s)
+[17:29:34.558] LOG   [wave10_RevGen3_01_Drave] event backpack_contents: serial=0x40016DB8 items=10
+[17:29:34.566] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: You are fairly content
+[17:29:34.567] INFO  [wave10_RevGen3_01_Drave] [chat ascii] Draver: *You looks fairly content*
+[17:29:34.721] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Elvar has arrived in Britain.
+[17:29:34.737] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Zarthal has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Vorar has arrived in Britain.
+[17:29:34.753] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Halain has arrived in Britain Territory.
+[17:29:34.876] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Delras has arrived in Skara Brae.
+[17:29:35.005] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.076] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.200] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.305] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.325] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.177] INFO  [wave10_RevGen3_01_Drave] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.179] INFO  [wave10_RevGen3_01_Drave] [survival] on
+[17:29:37.179] LOG   [wave10_RevGen3_01_Drave] event survival_mode: on
+[17:29:37.184] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:29:37.243] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:29:37.244] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:29:37.244] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:29:37.244] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:29:37.244] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.244] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.244] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:29:37.244] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:29:37.305] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:29:37.305] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:29:37.305] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:29:37.305] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:29:37.366] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 170.0us
+[17:29:39.823] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:29:39.824] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:29:39.884] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:29:39.885] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:29:39.885] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:29:39.885] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:29:39.885] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:29:39.886] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:29:39.946] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 180.9us
+[17:29:42.229] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:29:42.969] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:29:42.969] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:29:42.970] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:29:42.970] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:29:42.970] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:29:42.970] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:29:42.970] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:29:42.971] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:42.971] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:42.971] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:29:42.971] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:29:43.029] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:29:43.030] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:29:43.030] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:29:43.030] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:29:43.091] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 264.2us
+[17:29:46.107] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:29:46.108] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:29:46.168] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:29:46.168] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:29:46.169] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:29:46.169] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:29:46.169] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:29:46.169] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:29:46.229] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 138.7us
+[17:29:47.231] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:29:49.793] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:29:49.793] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:29:49.793] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:29:49.794] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:29:49.794] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:29:49.794] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:29:49.794] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:29:49.794] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:49.795] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:49.795] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:29:49.795] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:29:49.855] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:29:49.855] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:29:49.855] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:29:49.855] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:29:49.917] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 277.4us
+[17:29:52.265] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:29:52.510] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:29:52.511] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:29:52.572] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:29:52.572] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:29:52.572] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:29:52.573] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:29:52.573] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:29:52.573] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:29:52.633] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 146.4us
+[17:29:55.606] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:29:55.606] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:29:55.606] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:29:55.607] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:29:55.607] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:29:55.607] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:29:55.607] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:29:55.607] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:55.607] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:55.608] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:29:55.608] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:29:55.666] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:29:55.666] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:29:55.666] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:29:55.666] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:29:55.727] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 259.7us
+[17:29:57.322] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:29:58.766] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:29:58.767] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:29:58.828] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:29:58.829] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:29:58.829] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:29:58.829] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:29:58.830] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:29:58.830] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:29:58.830] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 136.6us
+[17:30:02.322] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:02.322] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:02.323] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:02.323] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:02.323] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:02.323] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:02.323] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:02.324] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:02.324] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:02.324] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:02.324] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:02.324] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:02.384] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:02.384] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:02.384] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:02.384] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:02.446] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 253.9us
+[17:30:05.456] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2567,488,0)
+[17:30:05.457] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2567,488) legs=1 plans=1 why=''
+[17:30:05.518] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2567,488,0); target (2568,487); stopped short (off by 2 tile(s))
+[17:30:05.519] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2567,488) target=(2568,487) arrived=0 off=2
+[17:30:05.519] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2567,488,0)
+[17:30:05.519] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2567,488)
+[17:30:05.519] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2567,488,0) to (2558,499)
+[17:30:05.519] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:05.582] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 11 steps in 140.1us
+[17:30:07.373] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:09.357] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:09.357] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:09.357] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:09.358] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:09.358] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:09.358] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:09.417] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:09.417] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:09.418] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:09.418] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:09.480] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 139.2us
+[17:30:12.002] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:12.003] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:12.065] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:12.065] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:12.065] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:12.066] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:12.066] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:12.066] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:12.066] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 88.7us
+[17:30:12.389] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:15.093] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:15.093] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:15.093] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:15.093] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:15.093] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:15.094] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:15.094] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:15.094] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:15.094] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:15.094] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:15.094] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:15.153] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:15.153] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:15.153] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:15.154] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:15.215] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 183.1us
+[17:30:17.442] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:17.723] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:17.723] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:17.785] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:17.786] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:17.786] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:17.786] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:17.786] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:17.787] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:17.847] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 84.3us
+[17:30:20.913] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:20.914] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:20.914] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:20.914] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:20.914] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:20.914] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:20.915] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:20.915] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:20.915] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:20.915] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:20.915] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:20.975] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:20.975] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:20.975] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:20.976] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:21.036] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 148.5us
+[17:30:22.495] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:24.085] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:30:24.086] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:30:24.148] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:30:24.148] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:30:24.148] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:30:24.148] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:30:24.148] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:30:24.149] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:24.149] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 88.3us
+[17:30:27.557] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:27.695] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:27.695] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:27.695] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:27.696] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:27.696] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:27.696] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:27.696] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:27.696] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:27.697] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:27.697] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:27.697] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:27.757] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:27.757] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:27.757] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:27.757] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:27.819] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 303.2us
+[17:30:30.267] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:30.268] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:30.329] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:30.329] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:30.329] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:30.329] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:30.330] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:30.330] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:30.330] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 103.1us
+[17:30:32.582] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:33.463] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:33.463] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:33.463] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:33.463] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:33.464] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:33.464] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:33.464] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:33.464] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:33.464] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:33.464] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:33.464] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:33.525] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:33.525] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:33.525] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:33.526] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:33.586] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 190.4us
+[17:30:36.068] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:36.069] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:36.132] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:36.132] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:36.132] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:36.133] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:36.133] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:36.133] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:36.133] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 85.1us
+[17:30:37.639] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:39.362] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:39.363] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:39.363] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:39.363] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:39.363] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:39.363] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:39.363] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:39.363] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:39.364] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:39.364] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:39.364] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:39.423] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:39.423] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:39.424] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:39.424] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:39.485] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 156.7us
+[17:30:41.993] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:41.993] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:42.054] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:42.054] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:42.055] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:42.055] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:42.055] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:42.055] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:42.116] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 88.4us
+[17:30:42.668] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:45.115] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:45.115] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:45.115] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:45.115] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:45.115] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:45.115] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:45.116] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:45.116] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:45.116] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:45.116] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:45.116] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:45.176] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:45.176] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:45.177] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:45.177] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:45.238] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 165.7us
+[17:30:47.696] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:48.263] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:30:48.263] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:30:48.324] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:30:48.325] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:30:48.325] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:30:48.325] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:30:48.325] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:30:48.326] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:48.387] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 98.6us
+[17:30:51.914] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:51.915] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:51.915] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:51.915] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:51.915] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:51.915] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:51.915] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:51.916] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:51.916] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:51.916] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:51.916] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:51.975] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:51.975] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:51.975] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:51.975] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:52.037] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 183.1us
+[17:30:52.711] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:54.528] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:30:54.528] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:30:54.590] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:30:54.590] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:30:54.591] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:30:54.591] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:30:54.591] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:30:54.591] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:30:54.591] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 84.9us
+[17:30:57.668] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:30:57.668] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:30:57.669] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:30:57.669] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:30:57.670] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:30:57.670] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:30:57.670] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:30:57.670] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:57.670] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:57.670] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:30:57.670] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:30:57.729] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:30:57.730] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:30:57.730] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:30:57.730] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:30:57.730] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:30:57.730] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 219.2us
+[17:31:00.848] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:31:00.848] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:31:00.909] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:31:00.910] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:31:00.910] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:31:00.910] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:31:00.910] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:31:00.911] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:00.911] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 84.1us
+[17:31:02.746] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:04.517] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:04.518] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:04.518] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:04.518] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:04.518] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:04.518] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:04.519] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:04.519] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:04.519] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:04.519] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:04.519] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:04.578] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:04.579] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:04.579] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:04.579] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:04.640] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 315.3us
+[17:31:07.192] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:07.193] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:07.254] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:07.254] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:07.255] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:07.255] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:07.255] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:07.255] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:07.315] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 133.9us
+[17:31:07.763] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:10.424] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:10.424] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:10.425] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:10.425] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:10.425] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:10.425] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:10.425] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:10.425] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:10.426] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:10.426] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:10.426] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:10.485] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:10.485] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:10.485] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:10.486] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:10.505] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 274.0us
+[17:31:12.808] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:13.102] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:13.102] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:13.165] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:13.165] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:13.166] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:13.166] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:13.166] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:13.166] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:13.227] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 180.3us
+[17:31:16.342] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:16.342] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:16.342] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:16.343] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:16.343] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:16.343] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:16.343] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:16.343] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:16.343] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:16.343] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:16.344] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:16.403] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:16.403] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:16.403] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:16.404] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:16.464] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 246.8us
+[17:31:17.822] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:19.038] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:19.174] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:19.454] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:19.647] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:19.691] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:19.691] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:19.691] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:19.691] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:19.692] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 157.4us
+[17:31:22.802] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:22.805] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:22.805] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:22.806] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:22.806] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:22.806] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:22.806] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:22.806] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:22.806] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:22.806] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:22.807] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:22.863] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:22.863] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:22.864] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:22.864] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:22.864] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:22.864] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 271.1us
+[17:31:25.432] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:25.432] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:25.493] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:25.494] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:25.494] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:25.494] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:25.494] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:25.494] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:25.554] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 148.1us
+[17:31:27.871] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:28.685] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:28.685] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:28.686] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:28.686] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:28.686] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:28.686] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:28.686] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:28.687] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:28.687] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:28.687] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:28.687] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:28.747] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:28.747] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:28.747] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:28.747] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:28.807] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 251.4us
+[17:31:31.330] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:31.330] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:31.392] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:31.392] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:31.393] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:31.393] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:31.393] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:31.393] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:31.454] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 138.2us
+[17:31:32.916] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:34.506] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:34.506] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:34.507] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:34.507] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:34.507] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:34.507] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:34.508] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:34.508] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:34.508] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:34.508] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:34.508] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:34.567] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:34.568] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:34.568] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:34.568] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:34.628] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 273.6us
+[17:31:37.078] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:37.078] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:37.139] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:37.140] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:37.140] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:37.140] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:37.141] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:37.141] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:37.204] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 202.1us
+[17:31:37.953] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:40.240] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:40.240] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:40.241] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:40.241] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:40.241] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:40.241] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:40.241] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:40.242] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:40.242] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:40.242] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:40.242] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:40.301] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:40.302] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:40.302] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:40.302] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:40.364] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 207.7us
+[17:31:42.859] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:42.859] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:42.920] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:42.920] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:42.921] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:42.921] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:42.921] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:42.921] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:42.980] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:42.981] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 132.4us
+[17:31:46.034] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:46.035] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:46.035] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:46.035] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:46.036] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:46.036] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:46.036] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:46.036] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:46.036] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:46.037] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:46.037] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:46.096] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:46.096] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:46.097] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:46.097] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:46.157] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 219.1us
+[17:31:48.015] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:48.729] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:31:48.729] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:31:48.791] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:31:48.792] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:31:48.792] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:31:48.792] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:31:48.792] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:31:48.793] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:48.853] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 144.0us
+[17:31:51.961] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:51.962] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:51.962] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:51.962] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:51.962] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:51.962] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:51.963] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:51.963] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:51.963] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:51.963] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:51.963] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:52.022] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:52.023] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:52.023] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:52.023] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:52.083] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 251.1us
+[17:31:53.054] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:54.578] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:31:54.578] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:31:54.639] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:31:54.639] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:31:54.639] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:31:54.640] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:31:54.640] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:31:54.640] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:31:54.640] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 155.0us
+[17:31:58.074] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:31:58.152] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:31:58.152] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:31:58.152] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:31:58.153] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:31:58.153] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:31:58.153] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:31:58.153] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:31:58.153] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:58.153] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:58.154] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:31:58.154] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:31:58.214] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:31:58.214] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:31:58.215] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:31:58.215] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:31:58.276] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 231.8us
+[17:32:00.780] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:00.780] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:00.842] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:00.843] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:00.843] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:00.843] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:00.843] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:00.843] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:00.904] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 137.7us
+[17:32:03.110] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:03.880] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:03.880] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:03.880] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:03.881] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:03.881] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:03.881] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:03.881] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:03.881] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:03.881] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:03.881] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:03.882] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:03.940] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:03.940] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:03.940] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:03.940] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:03.999] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 196.3us
+[17:32:07.060] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:32:07.061] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:32:07.121] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:32:07.122] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:32:07.122] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:32:07.122] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:32:07.122] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:32:07.123] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:07.182] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 161.2us
+[17:32:08.112] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:10.812] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:10.812] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:10.813] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:10.813] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:10.813] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:10.813] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:10.813] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:10.813] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:10.814] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:10.814] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:10.814] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:10.873] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:10.874] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:10.874] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:10.874] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:10.934] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 241.4us
+[17:32:13.136] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:13.475] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:13.476] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:13.538] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:13.538] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:13.539] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:13.539] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:13.539] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:13.539] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:13.600] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 185.1us
+[17:32:16.499] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:16.500] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:16.500] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:16.500] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:16.500] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:16.500] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:16.500] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:16.501] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:16.501] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:16.501] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:16.501] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:16.559] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:16.559] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:16.560] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:16.560] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:16.622] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 240.8us
+[17:32:18.145] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:19.149] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:19.150] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:19.211] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:19.212] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:19.212] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:19.212] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:19.213] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:19.213] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:19.213] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 102.2us
+[17:32:22.300] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:22.301] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:22.301] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:22.302] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:22.302] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:22.302] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:22.363] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:22.363] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:22.363] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:22.364] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:22.425] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 235.1us
+[17:32:23.165] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:24.938] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:24.939] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:24.999] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:24.999] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:24.999] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:24.999] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:25.000] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:25.000] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:25.061] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 147.5us
+[17:32:28.136] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:28.137] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:28.137] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:28.137] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:28.137] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:28.137] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:28.138] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:28.138] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:28.138] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:28.138] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:28.138] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:28.197] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:28.198] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:28.198] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:28.198] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:28.198] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:28.198] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 188.6us
+[17:32:31.255] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:32:31.255] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:32:31.316] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:32:31.316] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:32:31.317] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:32:31.317] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:32:31.317] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:32:31.317] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:31.317] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 89.5us
+[17:32:33.208] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:34.856] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:34.857] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:34.857] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:34.857] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:34.857] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:34.857] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:34.858] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:34.858] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:34.858] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:34.858] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:34.858] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:34.919] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:34.919] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:34.919] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:34.919] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:34.982] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 183.7us
+[17:32:37.564] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:37.564] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:37.626] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:37.627] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:37.627] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:37.627] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:37.627] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:37.627] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:37.628] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 81.3us
+[17:32:38.257] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:40.667] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:40.667] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:40.667] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:40.668] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:40.668] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:40.668] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:40.728] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:40.728] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:40.728] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:40.728] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:40.789] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 187.5us
+[17:32:43.291] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:43.795] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:32:43.795] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:32:43.858] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:32:43.858] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:32:43.859] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:32:43.859] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:32:43.859] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:32:43.859] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:43.918] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 168.6us
+[17:32:47.498] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:47.498] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:47.498] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:47.499] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:47.499] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:47.499] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:47.499] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:47.499] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:47.500] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:47.500] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:47.500] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:47.560] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:47.560] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:47.560] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:47.560] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:47.620] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 275.4us
+[17:32:48.348] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:50.169] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:50.169] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:50.230] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:50.230] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:50.231] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:50.231] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:50.231] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:50.231] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:50.292] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 139.8us
+[17:32:53.344] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:53.345] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:53.345] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:53.345] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:53.345] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:53.345] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:53.346] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:53.346] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:53.346] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:53.346] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:53.346] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:53.405] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:53.405] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:53.405] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:53.405] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:53.405] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:53.406] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 237.7us
+[17:32:55.992] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:32:55.993] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:32:56.054] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:32:56.054] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:32:56.055] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:32:56.055] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:32:56.055] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:32:56.055] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:32:56.117] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 147.4us
+[17:32:58.414] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:32:59.109] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:32:59.110] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:32:59.110] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:32:59.111] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:32:59.111] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:32:59.111] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:32:59.111] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:32:59.111] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:59.111] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:59.112] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:32:59.112] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:32:59.169] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:32:59.169] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:32:59.170] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:32:59.170] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:32:59.231] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 181.6us
+[17:33:01.804] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:01.804] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:01.864] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:01.865] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:01.866] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:01.866] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:01.866] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:01.866] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:01.866] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 85.4us
+[17:33:03.427] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:05.044] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:05.045] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:05.045] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:05.045] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:05.046] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:05.046] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:05.046] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:05.046] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:05.046] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:05.046] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:05.047] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:05.106] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:05.107] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:05.107] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:05.107] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:05.169] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 231.8us
+[17:33:07.744] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:07.745] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:07.804] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:07.805] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:07.805] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:07.805] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:07.805] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:07.806] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:07.866] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 129.7us
+[17:33:08.437] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:10.827] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:10.827] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:10.827] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:10.828] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:10.828] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:10.828] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:10.828] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:10.828] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:10.829] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:10.829] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:10.829] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:10.888] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:10.888] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:10.888] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:10.889] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:10.951] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 234.7us
+[17:33:13.477] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:13.478] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:13.478] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:13.539] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:13.539] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:13.540] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:13.540] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:13.540] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:13.540] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:13.601] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 162.8us
+[17:33:16.702] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:16.702] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:16.702] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:16.703] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:16.703] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:16.703] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:16.703] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:16.703] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:16.703] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:16.703] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:16.704] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:16.763] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:16.763] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:16.763] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:16.764] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:16.826] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 208.6us
+[17:33:18.528] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:19.361] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:19.361] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:19.423] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:19.423] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:19.424] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:19.424] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:19.424] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:19.424] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:19.425] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 109.2us
+[17:33:22.525] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:22.525] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:22.525] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:22.526] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:22.526] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:22.526] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:22.526] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:22.526] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:22.527] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:22.527] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:22.527] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:22.585] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:22.585] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:22.586] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:22.586] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:22.646] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 248.2us
+[17:33:23.586] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:25.677] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2567,488,0)
+[17:33:25.677] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2567,488) legs=1 plans=1 why=''
+[17:33:25.740] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2567,488,0); target (2568,487); stopped short (off by 2 tile(s))
+[17:33:25.740] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2567,488) target=(2568,487) arrived=0 off=2
+[17:33:25.741] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2567,488,0)
+[17:33:25.741] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2567,488)
+[17:33:25.741] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2567,488,0) to (2558,499)
+[17:33:25.741] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:25.803] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 11 steps in 359.8us
+[17:33:28.600] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:29.787] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:29.788] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:29.788] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:29.788] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:29.788] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:29.788] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:29.789] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:29.789] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:29.789] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:29.789] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:29.789] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:29.849] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:29.849] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:29.849] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:29.849] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:29.911] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 299.2us
+[17:33:32.490] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:32.490] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:32.551] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:32.552] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:32.552] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:32.552] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:32.552] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:32.553] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:32.612] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 137.0us
+[17:33:33.660] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:35.688] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:35.689] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:35.689] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:35.689] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:35.689] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:35.690] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:35.690] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:35.690] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:35.690] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:35.690] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:35.690] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:35.750] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:35.750] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:35.750] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:35.751] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:35.810] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 241.2us
+[17:33:38.366] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:38.367] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:38.428] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:38.428] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:38.428] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:38.428] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:38.429] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:38.429] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:38.429] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 86.2us
+[17:33:38.690] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:41.608] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:41.608] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:41.609] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:41.609] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:41.609] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:41.609] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:41.609] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:41.609] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:41.610] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:41.610] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:41.610] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:41.670] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:41.670] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:41.670] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:41.670] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:41.732] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 155.6us
+[17:33:43.716] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:44.228] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:44.228] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:44.289] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:44.289] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:44.290] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:44.290] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:44.290] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:44.290] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:44.350] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 84.3us
+[17:33:47.484] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:47.485] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:47.485] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:47.485] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:47.485] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:47.485] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:47.485] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:47.485] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:47.486] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:47.486] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:47.486] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:47.546] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:47.547] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:47.547] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:47.547] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:47.608] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 229.2us
+[17:33:48.752] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:50.218] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:50.218] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:50.280] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:50.280] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:50.281] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:50.281] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:50.281] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:50.281] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:50.341] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 140.2us
+[17:33:53.435] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:53.436] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:53.436] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:53.436] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:53.437] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:53.437] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:53.437] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:53.437] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:53.437] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:53.437] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:53.437] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:53.495] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:53.495] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:53.496] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:53.496] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:53.557] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 179.7us
+[17:33:53.756] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: World save in 10 seconds
+[17:33:56.081] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:33:56.081] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:33:56.142] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:33:56.143] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:33:56.143] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:33:56.143] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:33:56.144] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:33:56.144] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:33:56.144] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 104.7us
+[17:33:58.802] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:33:59.267] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:33:59.267] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:33:59.268] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:33:59.268] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:33:59.268] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:33:59.268] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:33:59.268] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:33:59.269] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:59.269] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:59.269] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:33:59.269] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:33:59.329] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:33:59.329] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:33:59.329] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:33:59.330] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:33:59.389] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 296.8us
+[17:34:01.947] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:01.948] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:02.010] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:02.010] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:02.011] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:02.011] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:02.011] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:02.011] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:02.011] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 87.1us
+[17:34:03.827] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: World save has been initiated.
+[17:34:08.834] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_01_Drave] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2559,498,0); target (2558,499); stopped short (off by 2 tile(s))
+[17:34:09.824] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2559,498) target=(2558,499) arrived=0 off=2
+[17:34:09.825] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2559,498)
+[17:34:09.825] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2559,498)
+[17:34:09.825] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:09.825] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:09.826] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:09.826] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:09.826] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:09.826] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~11 tiles transit=0 nodes=0
+[17:34:09.887] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2559,498,0)
+[17:34:09.887] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2559,498)
+[17:34:09.887] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2559,498,0) to (2568,487)
+[17:34:09.887] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:09.906] WARN  [wave10_RevGen3_01_Drave] [0x22] unsolicited ack seq=11
+[17:34:09.921] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 11 steps in 273.4us
+[17:34:12.506] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2566,489,0)
+[17:34:12.507] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2566,489) legs=1 plans=1 why=''
+[17:34:12.569] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2566,489,0); target (2568,487); stopped short (off by 4 tile(s))
+[17:34:12.569] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2566,489) target=(2568,487) arrived=0 off=4
+[17:34:12.569] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2566,489,0)
+[17:34:12.570] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2566,489)
+[17:34:12.570] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2566,489,0) to (2558,499)
+[17:34:12.570] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:12.630] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 10 steps in 138.4us
+[17:34:13.877] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:16.191] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:16.192] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:16.192] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:16.193] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:16.193] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:16.193] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:16.193] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:16.193] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:16.193] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:16.194] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:16.194] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:16.253] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:16.253] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:16.253] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:16.254] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:16.315] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 247.6us
+[17:34:18.890] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:18.890] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:18.890] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:18.952] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:18.952] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:18.953] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:18.953] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:18.953] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:18.953] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:18.953] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 139.5us
+[17:34:22.050] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:22.051] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:22.051] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:22.051] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:22.051] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:22.051] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:22.052] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:22.052] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:22.052] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:22.052] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:22.052] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:22.112] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:22.113] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:22.113] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:22.113] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:22.174] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 299.6us
+[17:34:23.922] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:24.677] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:24.677] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:24.739] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:24.739] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:24.740] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:24.740] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:24.740] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:24.740] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:24.801] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 142.8us
+[17:34:27.865] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:27.865] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:27.865] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:27.865] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:27.866] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:27.866] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:27.866] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:27.866] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:27.866] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:27.866] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:27.866] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:27.928] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:27.928] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:27.928] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:27.928] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:27.989] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 233.4us
+[17:34:28.932] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:31.013] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2567,488,0)
+[17:34:31.014] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2567,488) legs=1 plans=1 why=''
+[17:34:31.076] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2567,488,0); target (2568,487); stopped short (off by 2 tile(s))
+[17:34:31.076] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2567,488) target=(2568,487) arrived=0 off=2
+[17:34:31.077] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2567,488,0)
+[17:34:31.077] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2567,488)
+[17:34:31.077] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2567,488,0) to (2558,499)
+[17:34:31.077] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:31.137] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 11 steps in 221.3us
+[17:34:33.991] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:34.978] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:34.979] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:34.979] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:34.979] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:34.979] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:34.979] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:34.980] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:34.980] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.980] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.980] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:34.980] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:35.039] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:35.039] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:35.039] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:35.040] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:35.100] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 341.3us
+[17:34:37.745] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:37.745] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:37.807] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:37.807] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:37.808] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:37.808] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:37.808] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:37.808] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:37.869] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 151.8us
+[17:34:39.021] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:40.912] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:40.913] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:40.913] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:40.913] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:40.913] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:40.913] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:40.914] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:40.914] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:40.914] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:40.914] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:40.914] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:40.974] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:40.974] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:40.974] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:40.975] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:41.036] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 330.3us
+[17:34:43.649] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:43.649] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:43.711] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:43.711] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:43.712] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:43.712] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:43.712] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:43.712] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:43.773] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 152.7us
+[17:34:44.034] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:46.874] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:46.874] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:46.874] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:46.875] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:46.875] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:46.875] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:46.875] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:46.875] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:46.875] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:46.875] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:46.876] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:46.935] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:46.935] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:46.935] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:46.936] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:46.996] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 227.3us
+[17:34:49.065] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:49.513] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:34:49.513] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:34:49.574] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:34:49.575] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:34:49.575] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:34:49.575] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:34:49.576] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:34:49.576] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:49.636] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 132.1us
+[17:34:52.869] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:52.869] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:52.869] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:52.870] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:52.870] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:52.870] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:52.870] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:52.870] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:52.870] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:52.870] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:52.871] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:52.929] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:52.929] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:52.930] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:52.930] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:34:52.991] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 236.7us
+[17:34:54.098] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:56.061] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2567,488,0)
+[17:34:56.062] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2567,488) legs=1 plans=1 why=''
+[17:34:56.122] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2567,488,0); target (2568,487); stopped short (off by 2 tile(s))
+[17:34:56.123] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2567,488) target=(2568,487) arrived=0 off=2
+[17:34:56.123] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2567,488,0)
+[17:34:56.123] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2567,488)
+[17:34:56.123] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2567,488,0) to (2558,499)
+[17:34:56.124] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:34:56.183] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 11 steps in 256.7us
+[17:34:59.155] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:34:59.909] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:34:59.909] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:34:59.909] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:34:59.909] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:34:59.910] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:34:59.910] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:34:59.910] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:34:59.910] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:59.910] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:59.910] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:34:59.910] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:34:59.969] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:34:59.970] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:34:59.970] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:34:59.970] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:00.031] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 171.6us
+[17:35:03.068] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2567,488,0)
+[17:35:03.068] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2567,488) legs=1 plans=1 why=''
+[17:35:03.130] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2567,488,0); target (2568,487); stopped short (off by 2 tile(s))
+[17:35:03.130] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2567,488) target=(2568,487) arrived=0 off=2
+[17:35:03.131] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2567,488,0)
+[17:35:03.131] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2567,488)
+[17:35:03.131] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2567,488,0) to (2558,499)
+[17:35:03.131] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:03.192] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 11 steps in 143.3us
+[17:35:04.163] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:07.014] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:07.015] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:07.016] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:07.017] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:07.018] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:07.018] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:07.019] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:07.019] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:07.019] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:07.019] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:07.019] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:07.077] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:07.077] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:07.078] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:07.079] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:07.133] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 629.0us
+[17:35:09.211] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:09.704] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:09.704] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:09.767] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:09.767] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:09.767] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:09.768] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:09.768] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:09.768] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:09.827] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 86.8us
+[17:35:12.996] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:12.997] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:12.997] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:12.998] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:13.057] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:13.057] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:13.058] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:13.058] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:13.119] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 189.3us
+[17:35:14.214] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:15.616] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:15.616] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:15.678] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:15.679] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:15.679] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:15.680] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 89.6us
+[17:35:18.746] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:18.746] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:18.747] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:18.747] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:18.748] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:18.808] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:18.870] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 265.7us
+[17:35:19.243] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:21.417] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:21.420] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:21.477] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:21.480] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:21.480] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:21.481] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:21.481] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:21.481] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:21.539] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 91.0us
+[17:35:24.280] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:24.654] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:24.654] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:24.654] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:24.655] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.655] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:24.715] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:24.715] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:24.715] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:24.716] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:24.776] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 154.1us
+[17:35:27.381] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:27.381] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:27.443] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:27.448] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:27.448] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:27.449] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:27.449] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:27.449] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:27.504] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 138.8us
+[17:35:29.322] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:30.657] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:30.661] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:30.661] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:30.662] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:30.663] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:30.663] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:30.719] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:30.720] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:30.720] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:30.720] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:30.781] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 255.9us
+[17:35:33.275] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:33.279] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:33.337] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:33.338] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:33.338] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:33.338] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:33.338] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:33.339] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:33.398] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 86.6us
+[17:35:34.339] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:36.354] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:36.355] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:36.355] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:36.356] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:36.415] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:36.477] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 144.8us
+[17:35:39.004] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:39.004] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:39.065] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:39.065] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:39.066] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 83.0us
+[17:35:39.328] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.345] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:39.360] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.436] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.515] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Amara has departed from Yew Territory.
+8,487); stopped short (off by 6 tile(s))
+[17:35:09.767] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:09.767] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:09.767] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:09.768] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:09.768] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:09.768] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:09.827] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 86.8us
+[17:35:12.996] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:12.997] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:12.997] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:12.997] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:12.997] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:12.998] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:12.998] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:13.057] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:13.057] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:13.058] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:13.058] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:13.119] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 189.3us
+[17:35:14.214] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:15.616] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:15.616] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:15.678] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:15.679] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:15.679] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:15.679] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:15.679] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:15.680] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 89.6us
+[17:35:18.746] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:18.746] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:18.747] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:18.747] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:18.747] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:18.747] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:18.748] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:18.748] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:18.808] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:18.808] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:18.870] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 265.7us
+[17:35:19.243] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:21.417] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:21.420] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:21.477] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:21.480] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:21.480] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:21.480] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:21.481] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:21.481] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:21.481] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:21.539] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 91.0us
+[17:35:24.280] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:24.654] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:24.654] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:24.654] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:24.654] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:24.655] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:24.655] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:24.655] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:24.715] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:24.715] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:24.715] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:24.716] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:24.776] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 154.1us
+[17:35:27.381] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:27.381] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:27.443] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:27.448] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:27.448] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:27.448] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:27.449] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:27.449] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:27.449] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:27.504] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 138.8us
+[17:35:29.322] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:30.657] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:30.661] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:30.661] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:30.661] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:30.662] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:30.662] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:30.663] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:30.663] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:30.719] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:30.720] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:30.720] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:30.720] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:30.781] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 255.9us
+[17:35:33.275] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:33.279] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:33.337] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:33.338] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:33.338] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:33.338] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:33.338] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:33.338] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:33.339] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:33.398] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 86.6us
+[17:35:34.339] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:36.354] INFO  [wave10_RevGen3_01_Drave] [bot] arrived at (2558,499,0)
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2558,499,0); target (2558,499); ARRIVED (off by 0 tile(s))
+[17:35:36.355] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2558,499) target=(2558,499) arrived=1 off=0
+[17:35:36.355] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2558,499)
+[17:35:36.355] LOG   [wave10_RevGen3_01_Drave] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2558,499)
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] mode walk             usable   <- chosen
+[17:35:36.355] INFO  [wave10_RevGen3_01_Drave] [travel] mode moongate         usable
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:36.356] LOG   [wave10_RevGen3_01_Drave] event travel_mode: walk
+[17:35:36.356] INFO  [wave10_RevGen3_01_Drave] [travel] plan Minoc Mine 1 interior: ok legs=1 ~12 tiles transit=0 nodes=0
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [action] goto (2568,487) from (2558,499,0)
+[17:35:36.415] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2568,487) from=(2558,499)
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2558,499,0) to (2568,487)
+[17:35:36.415] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2568,487) in background
+[17:35:36.477] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2568,487): 12 steps in 144.8us
+[17:35:37.373] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[17:35:39.004] INFO  [wave10_RevGen3_01_Drave] [travel] Minoc Mine 1 interior ARRIVED at (2565,490,0)
+[17:35:39.004] LOG   [wave10_RevGen3_01_Drave] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2565,490) legs=1 plans=1 why=''
+[17:35:39.065] INFO  [wave10_RevGen3_01_Drave] [action] goto finished at (2565,490,0); target (2568,487); stopped short (off by 6 tile(s))
+[17:35:39.065] LOG   [wave10_RevGen3_01_Drave] event goto_done: at=(2565,490) target=(2568,487) arrived=0 off=6
+[17:35:39.065] INFO  [life] mine: the rock is at 2557,500, 10 tiles off -- standing at 2558,499 to reach it
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [action] goto (2558,499) from (2565,490,0)
+[17:35:39.066] LOG   [wave10_RevGen3_01_Drave] event goto_start: target=(2558,499) from=(2565,490)
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] running from (2565,490,0) to (2558,499)
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] planning path to (2558,499) in background
+[17:35:39.066] INFO  [wave10_RevGen3_01_Drave] [bot] replan to (2558,499): 9 steps in 83.0us
+[17:35:39.328] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.345] INFO  [wave10_RevGen3_01_Drave] [survival] hp 56/56 (100%) -> fight
+[17:35:39.360] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.421] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.436] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.515] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_01_Drave] [chat ascii] System: Amara has departed from Yew Territory.

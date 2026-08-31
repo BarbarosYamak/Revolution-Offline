@@ -1,0 +1,686 @@
+[17:29:35.181] LOG   [wave10_RevGen3_17_Thali] event session_start: text log opened
+[17:29:35.183] LOG   [wave10_RevGen3_17_Thali] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.184] INFO  [wave10_RevGen3_17_Thali] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.186] LOG   [wave10_RevGen3_17_Thali] event net_connected: connect 127.0.0.1:2593
+[17:29:35.187] INFO  [wave10_RevGen3_17_Thali] [net] connected.
+[17:29:35.189] INFO  [wave10_RevGen3_17_Thali] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.189] LOG   [wave10_RevGen3_17_Thali] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.191] INFO  [wave10_RevGen3_17_Thali] [life] autonomous player active for 'Thalia' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.201] INFO  [wave10_RevGen3_17_Thali] [0xA8] 1 server(s):
+[17:29:35.203] INFO  [wave10_RevGen3_17_Thali]   [0] MyShard                   1.0.0.127  full=7%  tz=0
+[17:29:35.203] INFO  [wave10_RevGen3_17_Thali] [0x8C] game server = 127.0.0.1:2593  seed=0x9A50E606
+[17:29:35.204] LOG   [wave10_RevGen3_17_Thali] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x9A50E606
+[17:29:35.205] INFO  [wave10_RevGen3_17_Thali] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.205] LOG   [wave10_RevGen3_17_Thali] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.210] INFO  [wave10_RevGen3_17_Thali] [0xB9] server features = 0x0005
+[17:29:35.211] INFO  [wave10_RevGen3_17_Thali] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.212] INFO  [wave10_RevGen3_17_Thali]   [0] Thalia
+[17:29:35.212] INFO  [wave10_RevGen3_17_Thali]   [1] <empty>
+[17:29:35.212] INFO  [wave10_RevGen3_17_Thali]   [2] <empty>
+[17:29:35.212] INFO  [wave10_RevGen3_17_Thali]   [3] <empty>
+[17:29:35.212] INFO  [wave10_RevGen3_17_Thali]   [4] <empty>
+[17:29:35.213] INFO  [wave10_RevGen3_17_Thali] [ui] playing slot 0 ('Thalia')
+[17:29:35.216] INFO  [wave10_RevGen3_17_Thali] [0x1B] serial=0x0000C45C body=0x0191 pos=(1479,3772,0)
+[17:29:35.217] LOG   [wave10_RevGen3_17_Thali] event login_confirm: serial=0x0000C45C body=0x0191 pos=(1479,3772,0)
+[17:29:35.217] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1479,3772,0) facing=6
+[17:29:35.217] INFO  [wave10_RevGen3_17_Thali] [0x55] login complete — entering world
+[17:29:35.217] LOG   [wave10_RevGen3_17_Thali] event in_world: 0x55 received
+[17:29:35.218] INFO  [wave10_RevGen3_17_Thali] [backpack] opening 0x4000AB4F
+[17:29:35.219] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.219] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: There are 19 other players here.
+[17:29:35.219] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.224] INFO  [wave10_RevGen3_17_Thali] [action] requesting the skill list
+[17:29:35.227] INFO  [wave10_RevGen3_17_Thali] [0x24] open container 0x4000AB4F gump=60
+[17:29:35.228] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 10 item(s)
+[17:29:35.229] LOG   [wave10_RevGen3_17_Thali] event backpack_contents: serial=0x4000AB4F items=10
+[17:29:35.236] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.341] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.853] INFO  [wave10_RevGen3_17_Thali] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.855] INFO  [wave10_RevGen3_17_Thali] [survival] on
+[17:29:37.855] LOG   [wave10_RevGen3_17_Thali] event survival_mode: on
+[17:29:37.858] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:29:37.917] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object start
+[17:29:37.917] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object serial=0x40019D6B
+[17:29:37.917] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 13 item(s)
+[17:29:37.918] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] use_object success (1ms) contents received
+[17:29:37.918] LOG   [wave10_RevGen3_17_Thali] event action_result: use_object success took=1ms contents received
+[17:29:40.438] INFO  [wave10_RevGen3_17_Thali] [ACTION] move_item start
+[17:29:40.438] INFO  [wave10_RevGen3_17_Thali] [ACTION] move_item serial=0x40019D6A amount=1 dest=0x40019D6B
+[17:29:40.438] INFO  [wave10_RevGen3_17_Thali] [ITEM] drag serial=0x40019D6A amount=1
+[17:29:40.439] INFO  [wave10_RevGen3_17_Thali] [ITEM] drop container=0x40019D6B
+[17:29:40.453] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Can't add this to the spellbook
+[17:29:40.454] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] move_item server_failure (16ms) item 0x40019D6A landed in 0x4000AB4F, not the destination 0x40019D6B
+[17:29:40.455] LOG   [wave10_RevGen3_17_Thali] event action_result: move_item server_failure took=16ms item 0x40019D6A landed in 0x4000AB4F, not the destination 0x40019D6B
+[17:29:42.890] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:29:42.953] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object start
+[17:29:42.953] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object serial=0x40019D6B
+[17:29:42.969] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 13 item(s)
+[17:29:42.969] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] use_object success (16ms) contents received
+[17:29:42.969] LOG   [wave10_RevGen3_17_Thali] event action_result: use_object success took=16ms contents received
+[17:29:45.489] INFO  [wave10_RevGen3_17_Thali] [ACTION] move_item start
+[17:29:45.489] INFO  [wave10_RevGen3_17_Thali] [ACTION] move_item serial=0x40019D69 amount=1 dest=0x40019D6B
+[17:29:45.489] INFO  [wave10_RevGen3_17_Thali] [ITEM] drag serial=0x40019D69 amount=1
+[17:29:45.489] INFO  [wave10_RevGen3_17_Thali] [ITEM] drop container=0x40019D6B
+[17:29:45.490] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Can't add this to the spellbook
+[17:29:45.490] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] move_item server_failure (1ms) item 0x40019D69 landed in 0x4000AB4F, not the destination 0x40019D6B
+[17:29:45.491] LOG   [wave10_RevGen3_17_Thali] event action_result: move_item server_failure took=1ms item 0x40019D69 landed in 0x4000AB4F, not the destination 0x40019D6B
+[17:29:47.936] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:29:47.998] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object start
+[17:29:47.998] INFO  [wave10_RevGen3_17_Thali] [ACTION] use_object serial=0x40019D6B
+[17:29:47.998] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 13 item(s)
+[17:29:47.998] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] use_object success (1ms) contents received
+[17:29:47.998] LOG   [wave10_RevGen3_17_Thali] event action_result: use_object success took=1ms contents received
+[17:29:50.566] INFO  [wave10_RevGen3_17_Thali] [travel] Jhelom scribe -> (1387,3771) r=5 from (1479,3772)
+[17:29:50.567] LOG   [wave10_RevGen3_17_Thali] event travel_start: label='Jhelom scribe' target=(1387,3771) radius=5 from=(1479,3772)
+[17:29:50.568] INFO  [wave10_RevGen3_17_Thali] [travel] mode moongate         usable   <- chosen
+[17:29:50.568] INFO  [wave10_RevGen3_17_Thali] [travel] mode walk             usable
+[17:29:50.568] INFO  [wave10_RevGen3_17_Thali] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:50.568] INFO  [wave10_RevGen3_17_Thali] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:50.568] LOG   [wave10_RevGen3_17_Thali] event travel_mode: moongate
+[17:29:50.569] INFO  [wave10_RevGen3_17_Thali] [travel] plan Jhelom scribe: ok legs=3 ~112 tiles transit=0 nodes=78
+[17:29:50.628] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:29:50.629] INFO  [wave10_RevGen3_17_Thali] [action] goto (1448,3766) from (1479,3772,0)
+[17:29:50.629] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1448,3766) from=(1479,3772)
+[17:29:50.629] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1479,3772,0) to (1448,3766)
+[17:29:50.629] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1448,3766) in background
+[17:29:50.690] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1448,3766): 31 steps in 4861.9us
+[17:29:52.955] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:29:55.437] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You are now under the protection of the guards
+[17:29:57.969] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:00.048] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1448,3766,0)
+[17:30:00.048] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1448,3766,0); target (1448,3766); ARRIVED (off by 0 tile(s))
+[17:30:00.048] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1448,3766) target=(1448,3766) arrived=1 off=0
+[17:30:00.049] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:00.049] INFO  [wave10_RevGen3_17_Thali] [action] goto (1416,3784) from (1448,3766,0)
+[17:30:00.049] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1416,3784) from=(1448,3766)
+[17:30:00.049] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1448,3766,0) to (1416,3784)
+[17:30:00.049] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1416,3784) in background
+[17:30:00.110] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1416,3784): 44 steps in 3831.9us
+[17:30:03.013] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:08.024] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:12.206] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You shove Swift out of the way.
+[17:30:12.207] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1416,3784,0)
+[17:30:12.207] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1416,3784,0); target (1416,3784); ARRIVED (off by 0 tile(s))
+[17:30:12.207] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1416,3784) target=(1416,3784) arrived=1 off=0
+[17:30:12.207] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:12.207] INFO  [wave10_RevGen3_17_Thali] [action] goto (1387,3771) from (1416,3784,0)
+[17:30:12.207] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1387,3771) from=(1416,3784)
+[17:30:12.207] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1416,3784,0) to (1387,3771,z0)
+[17:30:12.208] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1387,3771) in background
+[17:30:12.267] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1387,3771): 54 steps in 9963.8us
+[17:30:13.084] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:17.506] INFO  [wave10_RevGen3_17_Thali] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=35 in 187.3us
+[17:30:18.093] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:23.146] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:23.207] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (1399,3772,z0); OpenDoor before step
+[17:30:23.222] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:30:26.136] INFO  [wave10_RevGen3_17_Thali] [travel] Jhelom scribe ARRIVED at (1391,3770,0)
+[17:30:26.136] LOG   [wave10_RevGen3_17_Thali] event travel_done: label='Jhelom scribe' ok=1 at=(1391,3770) legs=3 plans=1 why=''
+[17:30:26.218] INFO  [wave10_RevGen3_17_Thali] [travel] Ocllo scribe -> (3612,2466) r=5 from (1391,3770)
+[17:30:26.218] LOG   [wave10_RevGen3_17_Thali] event travel_start: label='Ocllo scribe' target=(3612,2466) radius=5 from=(1391,3770)
+[17:30:26.219] INFO  [wave10_RevGen3_17_Thali] [travel] mode moongate         usable   <- chosen
+[17:30:26.219] INFO  [wave10_RevGen3_17_Thali] [travel] mode walk             usable
+[17:30:26.219] INFO  [wave10_RevGen3_17_Thali] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:26.219] INFO  [wave10_RevGen3_17_Thali] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:26.219] LOG   [wave10_RevGen3_17_Thali] event travel_mode: moongate
+[17:30:26.220] INFO  [wave10_RevGen3_17_Thali] [travel] plan Ocllo scribe: ok legs=10 ~376 tiles transit=1 nodes=1534
+[17:30:26.277] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1391,3770,0); target (1387,3771); stopped short (off by 5 tile(s))
+[17:30:26.277] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1391,3770) target=(1387,3771) arrived=0 off=5
+[17:30:26.278] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:26.278] INFO  [wave10_RevGen3_17_Thali] [action] goto (1416,3784) from (1391,3770,0)
+[17:30:26.278] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1416,3784) from=(1391,3770)
+[17:30:26.278] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1391,3770,0) to (1416,3784)
+[17:30:26.278] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1416,3784) in background
+[17:30:26.338] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1416,3784): 47 steps in 9106.7us
+[17:30:28.204] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:29.318] WARN  [wave10_RevGen3_17_Thali] [0x21] move REJECTED seq=13; server says (1400,3772,0) facing=3
+[17:30:29.318] INFO  [wave10_RevGen3_17_Thali] [bot] step (1400,3772,0)->(1401,3773,0) rejected; OpenDoor + retry
+[17:30:29.333] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:30:29.333] WARN  [wave10_RevGen3_17_Thali] [bot] 0x20 resync; aborting path
+[17:30:29.333] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1400,3772,0) facing=4
+[17:30:29.334] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1400,3772,0); target (1416,3784); stopped short (off by 28 tile(s))
+[17:30:29.334] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1400,3772) target=(1416,3784) arrived=0 off=28
+[17:30:30.574] INFO  [wave10_RevGen3_17_Thali] [action] goto (1416,3784) from (1400,3772,0)
+[17:30:30.575] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1416,3784) from=(1400,3772)
+[17:30:30.575] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1400,3772,0) to (1416,3784)
+[17:30:30.575] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1416,3784) in background
+[17:30:30.636] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1416,3784): 38 steps in 7983.4us
+[17:30:33.230] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:36.396] INFO  [wave10_RevGen3_17_Thali] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=17 in 236.2us
+[17:30:38.241] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:41.638] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1416,3784,0)
+[17:30:41.639] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1416,3784,0); target (1416,3784); ARRIVED (off by 0 tile(s))
+[17:30:41.639] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1416,3784) target=(1416,3784) arrived=1 off=0
+[17:30:41.639] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:41.639] INFO  [wave10_RevGen3_17_Thali] [action] goto (1448,3784) from (1416,3784,0)
+[17:30:41.639] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1448,3784) from=(1416,3784)
+[17:30:41.639] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1416,3784,0) to (1448,3784)
+[17:30:41.640] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1448,3784) in background
+[17:30:41.700] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1448,3784): 32 steps in 415.3us
+[17:30:43.284] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:48.325] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:49.612] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1448,3784,0)
+[17:30:49.613] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1448,3784,0); target (1448,3784); ARRIVED (off by 0 tile(s))
+[17:30:49.613] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1448,3784) target=(1448,3784) arrived=1 off=0
+[17:30:49.613] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:30:49.613] INFO  [wave10_RevGen3_17_Thali] [action] goto (1480,3784) from (1448,3784,0)
+[17:30:49.613] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1480,3784) from=(1448,3784)
+[17:30:49.613] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1448,3784,0) to (1480,3784)
+[17:30:49.613] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1480,3784) in background
+[17:30:49.674] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1480,3784): 32 steps in 2299.8us
+[17:30:53.341] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:54.069] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You have left the protection of the guards
+[17:30:58.394] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:30:59.084] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1480,3784,0)
+[17:30:59.085] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1480,3784,0); target (1480,3784); ARRIVED (off by 0 tile(s))
+[17:30:59.085] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1480,3784) target=(1480,3784) arrived=1 off=0
+[17:30:59.085] INFO  [wave10_RevGen3_17_Thali] [action] goto (1496,3768) from (1480,3784,0)
+[17:30:59.085] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1496,3768) from=(1480,3784)
+[17:30:59.085] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1480,3784,0) to (1496,3768)
+[17:30:59.086] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1496,3768) in background
+[17:30:59.146] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1496,3768): 27 steps in 4253.4us
+[17:31:03.424] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:08.485] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:08.561] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1496,3768,0)
+[17:31:08.562] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1496,3768,0); target (1496,3768); ARRIVED (off by 0 tile(s))
+[17:31:08.562] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1496,3768) target=(1496,3768) arrived=1 off=0
+[17:31:08.562] INFO  [wave10_RevGen3_17_Thali] [travel] pre-armed moongate destination 'Ocllo (Newplayers)' while approaching
+[17:31:08.562] INFO  [wave10_RevGen3_17_Thali] [action] goto (1499,3771) from (1496,3768,0)
+[17:31:08.563] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1499,3771) from=(1496,3768)
+[17:31:08.563] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1496,3768,0) to (1499,3771)
+[17:31:08.563] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1499,3771) in background
+[17:31:08.563] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1499,3771): 3 steps in 96.3us
+[17:31:09.642] INFO  [wave10_RevGen3_17_Thali] [gump] 0x4000289F context=0x80A00402: 13 option(s), 15 text(s)
+[17:31:09.642] INFO  [wave10_RevGen3_17_Thali] [gump]   button 1000 = 'OKAY'
+[17:31:09.642] INFO  [wave10_RevGen3_17_Thali] [gump]   button 0 = 'CANCEL'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   button 1 = 'Felucca'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 1 = 'Moonglow'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 2 = 'Britain'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 3 = 'Jhelom'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 4 = 'Yew'
+[17:31:09.643] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 5 = 'New Magincia'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 6 = 'Minoc'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 7 = 'Trinsic'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 8 = 'Skara Brae'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 9 = 'Buccaneer's Den'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   text 0 = 'Pick your destination:'
+[17:31:09.644] INFO  [wave10_RevGen3_17_Thali] [gump]   text 1 = 'OKAY'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 2 = 'CANCEL'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 3 = 'Felucca'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 4 = 'Felucca'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 5 = 'Moonglow'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 6 = 'Britain'
+[17:31:09.645] INFO  [wave10_RevGen3_17_Thali] [gump]   text 7 = 'Jhelom'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 8 = 'Yew'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 9 = 'New Magincia'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 10 = 'Minoc'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 11 = 'Trinsic'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 12 = 'Skara Brae'
+[17:31:09.646] INFO  [wave10_RevGen3_17_Thali] [gump]   text 13 = 'Buccaneer's Den'
+[17:31:09.647] INFO  [wave10_RevGen3_17_Thali] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:31:09.647] LOG   [wave10_RevGen3_17_Thali] event gump_open: serial=0x4000289F context=0x80A00402 options=13
+[17:31:09.647] INFO  [wave10_RevGen3_17_Thali] [travel] gate gump: choosing 'Ocllo (Newplayers)' (choice 10, button 1000)
+[17:31:09.647] LOG   [wave10_RevGen3_17_Thali] event moongate_use: destination='Ocllo (Newplayers)' choice=10 button=1000
+[17:31:09.647] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1499,3771,5)
+[17:31:09.648] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1499,3771,5); target (1499,3771); ARRIVED (off by 0 tile(s))
+[17:31:09.648] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1499,3771) target=(1499,3771) arrived=1 off=0
+[17:31:09.648] INFO  [wave10_RevGen3_17_Thali] [travel] using moongate 0x4000289F for 'Ocllo (Newplayers)' (gump active=0 serial=0x00000000)
+[17:31:09.656] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(3725,2498,11) facing=3
+[17:31:09.656] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(3725,2498,11) facing=3
+[17:31:09.657] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You can't see the target
+[17:31:10.132] INFO  [wave10_RevGen3_17_Thali] [action] goto (3688,2488) from (3725,2498,11)
+[17:31:10.133] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3688,2488) from=(3725,2498)
+[17:31:10.133] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3725,2498,11) to (3688,2488)
+[17:31:10.133] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3688,2488) in background
+[17:31:10.193] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3688,2488): 39 steps in 18311.5us
+[17:31:10.439] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You have been revealed
+[17:31:13.506] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:18.562] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:23.617] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:24.265] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3688,2488,0)
+[17:31:24.266] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3688,2488,0); target (3688,2488); ARRIVED (off by 0 tile(s))
+[17:31:24.266] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3688,2488) target=(3688,2488) arrived=1 off=0
+[17:31:24.266] INFO  [wave10_RevGen3_17_Thali] [action] goto (3656,2488) from (3688,2488,0)
+[17:31:24.266] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3656,2488) from=(3688,2488)
+[17:31:24.266] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3688,2488,0) to (3656,2488)
+[17:31:24.267] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3656,2488) in background
+[17:31:24.325] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3656,2488): 32 steps in 814.4us
+[17:31:28.639] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:32.009] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3656,2488,0)
+[17:31:32.010] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3656,2488,0); target (3656,2488); ARRIVED (off by 0 tile(s))
+[17:31:32.010] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3656,2488) target=(3656,2488) arrived=1 off=0
+[17:31:32.010] INFO  [wave10_RevGen3_17_Thali] [action] goto (3624,2488) from (3656,2488,0)
+[17:31:32.010] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3624,2488) from=(3656,2488)
+[17:31:32.010] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3656,2488,0) to (3624,2488)
+[17:31:32.010] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3624,2488) in background
+[17:31:32.072] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3624,2488): 32 steps in 749.0us
+[17:31:33.686] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:38.741] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:39.701] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3624,2488,0)
+[17:31:39.702] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3624,2488,0); target (3624,2488); ARRIVED (off by 0 tile(s))
+[17:31:39.702] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3624,2488) target=(3624,2488) arrived=1 off=0
+[17:31:39.702] INFO  [wave10_RevGen3_17_Thali] [action] goto (3612,2466) from (3624,2488,0)
+[17:31:39.702] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3612,2466) from=(3624,2488)
+[17:31:39.702] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3624,2488,0) to (3612,2466,z0)
+[17:31:39.703] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3612,2466) in background
+[17:31:39.762] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3612,2466): 25 steps in 3567.3us
+[17:31:43.227] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (3620,2479,z0); OpenDoor before step
+[17:31:43.228] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:31:43.752] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:47.923] INFO  [wave10_RevGen3_17_Thali] [travel] Ocllo scribe ARRIVED at (3611,2470,0)
+[17:31:47.924] LOG   [wave10_RevGen3_17_Thali] event travel_done: label='Ocllo scribe' ok=1 at=(3611,2470) legs=10 plans=1 why=''
+[17:31:48.008] INFO  [wave10_RevGen3_17_Thali] [travel] Britain scribe -> (1494,1715) r=5 from (3611,2470)
+[17:31:48.009] LOG   [wave10_RevGen3_17_Thali] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(3611,2470)
+[17:31:48.009] INFO  [wave10_RevGen3_17_Thali] [travel] mode moongate         usable   <- chosen
+[17:31:48.009] INFO  [wave10_RevGen3_17_Thali] [travel] mode walk             usable
+[17:31:48.009] INFO  [wave10_RevGen3_17_Thali] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:48.009] INFO  [wave10_RevGen3_17_Thali] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:48.009] LOG   [wave10_RevGen3_17_Thali] event travel_mode: moongate
+[17:31:48.012] INFO  [wave10_RevGen3_17_Thali] [travel] plan Britain scribe: ok legs=16 ~624 tiles transit=1 nodes=6210
+[17:31:48.076] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3611,2470,0); target (3612,2466); stopped short (off by 5 tile(s))
+[17:31:48.076] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3611,2470) target=(3612,2466) arrived=0 off=5
+[17:31:48.076] INFO  [wave10_RevGen3_17_Thali] [action] goto (3640,2472) from (3611,2470,0)
+[17:31:48.076] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3640,2472) from=(3611,2470)
+[17:31:48.077] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3611,2470,0) to (3640,2472)
+[17:31:48.077] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3640,2472) in background
+[17:31:48.139] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3640,2472): 35 steps in 3628.1us
+[17:31:48.791] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:52.378] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (3621,2480,z0); OpenDoor before step
+[17:31:52.393] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:31:53.792] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:58.842] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:31:59.701] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3640,2472,0)
+[17:31:59.701] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3640,2472,0); target (3640,2472); ARRIVED (off by 0 tile(s))
+[17:31:59.702] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3640,2472) target=(3640,2472) arrived=1 off=0
+[17:31:59.702] INFO  [wave10_RevGen3_17_Thali] [action] goto (3672,2488) from (3640,2472,0)
+[17:31:59.702] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3672,2488) from=(3640,2472)
+[17:31:59.702] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3640,2472,0) to (3672,2488)
+[17:31:59.702] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3672,2488) in background
+[17:31:59.762] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3672,2488): 35 steps in 2360.4us
+[17:32:03.880] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:08.885] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:11.137] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3672,2488,0)
+[17:32:11.137] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3672,2488,0); target (3672,2488); ARRIVED (off by 0 tile(s))
+[17:32:11.138] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3672,2488) target=(3672,2488) arrived=1 off=0
+[17:32:11.138] INFO  [wave10_RevGen3_17_Thali] [action] goto (3704,2488) from (3672,2488,0)
+[17:32:11.138] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3704,2488) from=(3672,2488)
+[17:32:11.138] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3672,2488,0) to (3704,2488)
+[17:32:11.138] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3704,2488) in background
+[17:32:11.198] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3704,2488): 32 steps in 8432.2us
+[17:32:13.936] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:18.949] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:19.792] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3704,2488,0)
+[17:32:19.792] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3704,2488,0); target (3704,2488); ARRIVED (off by 0 tile(s))
+[17:32:19.793] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3704,2488) target=(3704,2488) arrived=1 off=0
+[17:32:19.793] INFO  [wave10_RevGen3_17_Thali] [action] goto (3720,2504) from (3704,2488,0)
+[17:32:19.793] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3720,2504) from=(3704,2488)
+[17:32:19.793] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3704,2488,0) to (3720,2504)
+[17:32:19.793] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3720,2504) in background
+[17:32:19.853] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3720,2504): 19 steps in 2738.7us
+[17:32:23.998] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:26.396] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3720,2504,2)
+[17:32:26.397] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3720,2504,2); target (3720,2504); ARRIVED (off by 0 tile(s))
+[17:32:26.397] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3720,2504) target=(3720,2504) arrived=1 off=0
+[17:32:26.397] INFO  [wave10_RevGen3_17_Thali] [travel] pre-armed moongate destination 'Britain' while approaching
+[17:32:26.398] INFO  [wave10_RevGen3_17_Thali] [action] goto (3725,2498) from (3720,2504,2)
+[17:32:26.398] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(3725,2498) from=(3720,2504)
+[17:32:26.398] INFO  [wave10_RevGen3_17_Thali] [bot] running from (3720,2504,2) to (3725,2498)
+[17:32:26.398] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (3725,2498) in background
+[17:32:26.458] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (3725,2498): 6 steps in 1280.5us
+[17:32:28.776] INFO  [wave10_RevGen3_17_Thali] [gump] 0x40002899 context=0x80A00402: 13 option(s), 15 text(s)
+[17:32:28.776] INFO  [wave10_RevGen3_17_Thali] [gump]   button 1000 = 'OKAY'
+[17:32:28.776] INFO  [wave10_RevGen3_17_Thali] [gump]   button 0 = 'CANCEL'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   button 1 = 'Felucca'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 1 = 'Moonglow'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 2 = 'Britain'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 3 = 'Jhelom'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 4 = 'Yew'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 5 = 'New Magincia'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 6 = 'Minoc'
+[17:32:28.777] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 7 = 'Trinsic'
+[17:32:28.778] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 8 = 'Skara Brae'
+[17:32:28.778] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 9 = 'Buccaneer's Den'
+[17:32:28.778] INFO  [wave10_RevGen3_17_Thali] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:32:28.778] INFO  [wave10_RevGen3_17_Thali] [gump]   text 0 = 'Pick your destination:'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 1 = 'OKAY'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 2 = 'CANCEL'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 3 = 'Felucca'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 4 = 'Felucca'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 5 = 'Moonglow'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 6 = 'Britain'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 7 = 'Jhelom'
+[17:32:28.779] INFO  [wave10_RevGen3_17_Thali] [gump]   text 8 = 'Yew'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 9 = 'New Magincia'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 10 = 'Minoc'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 11 = 'Trinsic'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 12 = 'Skara Brae'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 13 = 'Buccaneer's Den'
+[17:32:28.780] INFO  [wave10_RevGen3_17_Thali] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:32:28.780] LOG   [wave10_RevGen3_17_Thali] event gump_open: serial=0x40002899 context=0x80A00402 options=13
+[17:32:28.781] INFO  [wave10_RevGen3_17_Thali] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[17:32:28.781] LOG   [wave10_RevGen3_17_Thali] event moongate_use: destination='Britain' choice=2 button=1000
+[17:32:28.781] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (3725,2498,11)
+[17:32:28.781] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (3725,2498,11); target (3725,2498); ARRIVED (off by 0 tile(s))
+[17:32:28.781] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(3725,2498) target=(3725,2498) arrived=1 off=0
+[17:32:28.781] INFO  [wave10_RevGen3_17_Thali] [travel] using moongate 0x40002899 for 'Britain' (gump active=0 serial=0x00000000)
+[17:32:28.791] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1336,1997,5) facing=0
+[17:32:28.791] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1336,1997,5) facing=0
+[17:32:28.792] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You can't see the target
+[17:32:29.035] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:29.281] INFO  [wave10_RevGen3_17_Thali] [action] goto (1336,1960) from (1336,1997,5)
+[17:32:29.282] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1336,1960) from=(1336,1997)
+[17:32:29.282] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1997,5) to (1336,1960)
+[17:32:29.282] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1336,1960) in background
+[17:32:29.343] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1336,1960): 37 steps in 24711.1us
+[17:32:29.359] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You have been revealed
+[17:32:34.040] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:39.062] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:41.035] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1336,1960,0)
+[17:32:41.036] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[17:32:41.036] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[17:32:41.036] INFO  [wave10_RevGen3_17_Thali] [action] goto (1336,1928) from (1336,1960,0)
+[17:32:41.036] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1336,1928) from=(1336,1960)
+[17:32:41.036] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1960,0) to (1336,1928)
+[17:32:41.036] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1336,1928) in background
+[17:32:41.097] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1336,1928): 33 steps in 9647.8us
+[17:32:44.087] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:49.105] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:51.682] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1336,1928,0)
+[17:32:51.683] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[17:32:51.683] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[17:32:51.683] INFO  [wave10_RevGen3_17_Thali] [action] goto (1336,1896) from (1336,1928,0)
+[17:32:51.683] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1336,1896) from=(1336,1928)
+[17:32:51.683] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1928,0) to (1336,1896)
+[17:32:51.683] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1336,1896) in background
+[17:32:51.743] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1336,1896): 32 steps in 24441.3us
+[17:32:54.114] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:32:59.154] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:02.065] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1336,1896,0)
+[17:33:02.066] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[17:33:02.066] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[17:33:02.066] INFO  [wave10_RevGen3_17_Thali] [action] goto (1336,1864) from (1336,1896,0)
+[17:33:02.066] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1336,1864) from=(1336,1896)
+[17:33:02.066] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1896,0) to (1336,1864)
+[17:33:02.067] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1336,1864) in background
+[17:33:02.127] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1336,1864): 37 steps in 18761.2us
+[17:33:04.164] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:09.192] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:14.219] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:15.651] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1336,1864,0)
+[17:33:15.652] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[17:33:15.652] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[17:33:15.652] INFO  [wave10_RevGen3_17_Thali] [action] goto (1336,1832) from (1336,1864,0)
+[17:33:15.652] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1336,1832) from=(1336,1864)
+[17:33:15.652] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1864,0) to (1336,1832)
+[17:33:15.652] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1336,1832) in background
+[17:33:15.712] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1336,1832): 33 steps in 14731.8us
+[17:33:19.221] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:24.272] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:27.448] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1336,1832,0)
+[17:33:27.448] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[17:33:27.448] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[17:33:27.449] INFO  [wave10_RevGen3_17_Thali] [action] goto (1368,1800) from (1336,1832,0)
+[17:33:27.449] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1368,1800) from=(1336,1832)
+[17:33:27.449] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1336,1832,0) to (1368,1800)
+[17:33:27.449] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1368,1800) in background
+[17:33:27.509] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1368,1800): 45 steps in 25605.4us
+[17:33:29.276] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:34.308] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:39.368] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:42.056] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1368,1800,3)
+[17:33:42.056] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[17:33:42.056] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[17:33:42.056] INFO  [wave10_RevGen3_17_Thali] [action] goto (1402,1760) from (1368,1800,3)
+[17:33:42.057] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1402,1760) from=(1368,1800)
+[17:33:42.057] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1368,1800,3) to (1402,1760)
+[17:33:42.057] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1402,1760) in background
+[17:33:42.118] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1402,1760): 79 steps in 59066.6us
+[17:33:44.380] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:49.388] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:54.445] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: World save in 10 seconds
+[17:33:59.465] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:00.617] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: You are now under the protection of the city guards
+[17:34:04.501] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: World save has been initiated.
+[17:34:09.512] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_17_Thali] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[17:34:09.824] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[17:34:09.825] INFO  [wave10_RevGen3_17_Thali] [action] goto (1432,1752) from (1402,1760,0)
+[17:34:09.825] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1432,1752) from=(1402,1760)
+[17:34:09.825] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1402,1760,0) to (1432,1752)
+[17:34:09.825] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1432,1752) in background
+[17:34:09.887] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1432,1752): 48 steps in 15356.1us
+[17:34:09.906] WARN  [wave10_RevGen3_17_Thali] [0x22] ack seq=97, expected 0 — resyncing
+[17:34:09.920] WARN  [wave10_RevGen3_17_Thali] [0x22] unsolicited ack seq=0
+[17:34:14.552] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:19.602] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:24.263] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1432,1752,10)
+[17:34:24.264] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1432,1752,10); target (1432,1752); ARRIVED (off by 0 tile(s))
+[17:34:24.264] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1432,1752) target=(1432,1752) arrived=1 off=0
+[17:34:24.264] INFO  [wave10_RevGen3_17_Thali] [action] goto (1464,1736) from (1432,1752,10)
+[17:34:24.264] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1464,1736) from=(1432,1752)
+[17:34:24.265] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1432,1752,10) to (1464,1736)
+[17:34:24.265] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1464,1736) in background
+[17:34:24.324] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1464,1736): 43 steps in 7160.2us
+[17:34:24.630] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:29.642] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:34.656] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:37.392] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1464,1736,0)
+[17:34:37.392] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1464,1736,0); target (1464,1736); ARRIVED (off by 0 tile(s))
+[17:34:37.392] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1464,1736) target=(1464,1736) arrived=1 off=0
+[17:34:37.392] INFO  [wave10_RevGen3_17_Thali] [action] goto (1494,1715) from (1464,1736,0)
+[17:34:37.393] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1494,1715) from=(1464,1736)
+[17:34:37.393] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1464,1736,0) to (1494,1715,z6)
+[17:34:37.393] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1494,1715) in background
+[17:34:37.453] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1494,1715): 41 steps in 11827.7us
+[17:34:37.885] INFO  [wave10_RevGen3_17_Thali] [ACTION] cast_spell start
+[17:34:37.885] INFO  [wave10_RevGen3_17_Thali] [ACTION] cast_spell id=2 target=0x00000000 mana=48
+[17:34:37.886] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: The spell is not in your spellbook.
+[17:34:37.886] WARN  [wave10_RevGen3_17_Thali] [ACTION_RESULT] cast_spell server_failure (1ms) The spell is not in your spellbook.
+[17:34:37.886] LOG   [wave10_RevGen3_17_Thali] event action_result: cast_spell server_failure took=1ms The spell is not in your spellbook.
+[17:34:39.665] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:44.695] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:47.196] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (1494,1723,z6); OpenDoor before step
+[17:34:47.211] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:34:48.378] INFO  [wave10_RevGen3_17_Thali] [bot] lookahead patched around block at step 5: anchor=8 new segment=11 path=12 in 2893.4us
+[17:34:49.003] INFO  [wave10_RevGen3_17_Thali] [travel] Britain scribe ARRIVED at (1494,1720,7)
+[17:34:49.004] LOG   [wave10_RevGen3_17_Thali] event travel_done: label='Britain scribe' ok=1 at=(1494,1720) legs=16 plans=1 why=''
+[17:34:50.055] INFO  [wave10_RevGen3_17_Thali] [travel] place: skipping Wind baker -- 1324 tiles and 1 gate for a service Britain baker offers
+[17:34:50.055] INFO  [wave10_RevGen3_17_Thali] [travel] Britain baker -> (1450,1617) r=5 from (1494,1720)
+[17:34:50.055] LOG   [wave10_RevGen3_17_Thali] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1494,1720)
+[17:34:50.056] INFO  [wave10_RevGen3_17_Thali] [travel] mode moongate         usable   <- chosen
+[17:34:50.056] INFO  [wave10_RevGen3_17_Thali] [travel] mode walk             usable
+[17:34:50.056] INFO  [wave10_RevGen3_17_Thali] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:50.056] INFO  [wave10_RevGen3_17_Thali] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:50.056] LOG   [wave10_RevGen3_17_Thali] event travel_mode: moongate
+[17:34:50.056] INFO  [wave10_RevGen3_17_Thali] [travel] plan Britain baker: ok legs=3 ~136 tiles transit=0 nodes=129
+[17:34:50.057] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:34:50.057] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1494,1720,7); target (1494,1715); stopped short (off by 5 tile(s))
+[17:34:50.057] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1494,1720) target=(1494,1715) arrived=0 off=5
+[17:34:50.057] INFO  [wave10_RevGen3_17_Thali] [action] goto (1464,1688) from (1494,1720,7)
+[17:34:50.057] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1464,1688) from=(1494,1720)
+[17:34:50.057] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1494,1720,7) to (1464,1688)
+[17:34:50.058] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1464,1688) in background
+[17:34:50.113] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1464,1688): 46 steps in 9932.1us
+[17:34:51.296] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (1493,1724,z6); OpenDoor before step
+[17:34:51.311] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:34:55.072] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:00.077] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:04.394] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1464,1688,0)
+[17:35:04.396] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:35:04.396] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:35:04.396] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:04.396] INFO  [wave10_RevGen3_17_Thali] [action] goto (1448,1656) from (1464,1688,0)
+[17:35:04.396] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1448,1656) from=(1464,1688)
+[17:35:04.397] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1464,1688,0) to (1448,1656)
+[17:35:04.397] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1448,1656) in background
+[17:35:04.456] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1448,1656): 37 steps in 10055.9us
+[17:35:05.116] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:10.167] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:15.188] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:15.265] INFO  [wave10_RevGen3_17_Thali] [bot] arrived at (1448,1656,10)
+[17:35:15.265] INFO  [wave10_RevGen3_17_Thali] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:35:15.265] LOG   [wave10_RevGen3_17_Thali] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:35:15.265] INFO  [wave10_RevGen3_17_Thali] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:15.265] INFO  [wave10_RevGen3_17_Thali] [action] goto (1450,1617) from (1448,1656,10)
+[17:35:15.265] LOG   [wave10_RevGen3_17_Thali] event goto_start: target=(1450,1617) from=(1448,1656)
+[17:35:15.266] INFO  [wave10_RevGen3_17_Thali] [bot] running from (1448,1656,10) to (1450,1617,z20)
+[17:35:15.266] INFO  [wave10_RevGen3_17_Thali] [bot] planning path to (1450,1617) in background
+[17:35:15.325] INFO  [wave10_RevGen3_17_Thali] [bot] replan to (1450,1617): 65 steps in 27479.4us
+[17:35:20.205] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:25.256] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:30.257] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:32.135] INFO  [wave10_RevGen3_17_Thali] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[17:35:32.135] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Opening door...
+[17:35:34.278] INFO  [wave10_RevGen3_17_Thali] [travel] Britain baker ARRIVED at (1455,1614,20)
+[17:35:34.279] LOG   [wave10_RevGen3_17_Thali] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=3 plans=1 why=''
+[17:35:34.339] INFO  [wave10_RevGen3_17_Thali] [action] scanning nearby mobiles for names
+[17:35:34.340] INFO  [wave10_RevGen3_17_Thali] [action] requested 3 paperdoll(s) for trade titles
+[17:35:34.355] INFO  [wave10_RevGen3_17_Thali] [mobiles] nearby (4):
+[17:35:34.355] INFO  [wave10_RevGen3_17_Thali]   Lionel 0x000010B3
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali]   Natasha 0x00001194
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali]   Dale 0x000010C1
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali]   Caimile 0x00001239
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1455,1614,20) facing=5
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali] [world] Lionel, the baker is a baker at (1454,1616)
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali] [0x20] player @(1455,1614,20) facing=2
+[17:35:34.356] INFO  [wave10_RevGen3_17_Thali] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[17:35:34.357] INFO  [wave10_RevGen3_17_Thali] [world] Dale, the healer is a healer at (1470,1614)
+[17:35:34.357] INFO  [wave10_RevGen3_17_Thali] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[17:35:34.357] INFO  [wave10_RevGen3_17_Thali] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[17:35:35.261] INFO  [wave10_RevGen3_17_Thali] [survival] hp 16/16 (100%) -> fight
+[17:35:37.447] INFO  [wave10_RevGen3_17_Thali] [ACTION] vendor_buy start
+[17:35:37.448] INFO  [wave10_RevGen3_17_Thali] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[17:35:37.449] INFO  [wave10_RevGen3_17_Thali] [chat uni  ] Thalia: Lionel buy
+[17:35:37.449] INFO  [wave10_RevGen3_17_Thali] [chat ascii] Lionel: Good morrow!  How can I help thee?
+[17:35:37.449] INFO  [wave10_RevGen3_17_Thali] [chat ascii] Lionel: I got lots to sell!
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 11 item(s)
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x74]   bread loaves                 gfx=0x103B qty=77   price=8
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x74]   baked pie                    gfx=0x1041 qty=5    price=17
+[17:35:37.450] INFO  [wave10_RevGen3_17_Thali] [0x74]   cake                         gfx=0x09E9 qty=44   price=38
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   muffins                      gfx=0x09EA qty=18   price=8
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   sack of flour                gfx=0x1039 qty=53   price=6
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   french bread                 gfx=0x098C qty=64   price=9
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   pan of cookies               gfx=0x160B qty=46   price=7
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   pizzas                       gfx=0x1040 qty=72   price=15
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   jars of honey                gfx=0x09EC qty=49   price=10
+[17:35:37.451] INFO  [wave10_RevGen3_17_Thali] [0x74]   dough                        gfx=0x103D qty=41   price=12
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [0x74]   rolling pin                  gfx=0x1043 qty=3    price=9
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [0x3C] container contents: 0 item(s)
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [VENDOR] offer from 0x000010B3: 11 item(s)
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002878 bread loaves           x77  8 gp
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002877 baked pie              x5   17 gp
+[17:35:37.452] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002876 cake                   x44  38 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002875 muffins                x18  8 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x4000286F sack of flour          x53  6 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002865 french bread           x64  9 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x4000285E pan of cookies         x46  7 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x4000285A pizzas                 x72  15 gp
+[17:35:37.453] LOG   [wave10_RevGen3_17_Thali] event vendor_offer: vendor=0x000010B3 items=11
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] vendor_buy success (6ms) vendor offer received
+[17:35:37.454] LOG   [wave10_RevGen3_17_Thali] event action_result: vendor_buy success took=6ms vendor offer received
+[17:35:37.454] INFO  [wave10_RevGen3_17_Thali] [0x24] vendor buy gump for 0x000010B3
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [ACTION] vendor_buy start
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [policy] allowed NPC purchase of i_bread_loaf (0x103B): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_FOOD]
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [VENDOR] buy item=0x40002878 qty=2 from vendor=0x000010B3 gold=9580
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[17:35:37.526] LOG   [wave10_RevGen3_17_Thali] event action_result: vendor_buy success took=16ms purchased item delivered
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [chat ascii] Lionel: Here you are, Thalia That will be 16 gold coins.  I thank thee for thy business.
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[17:35:39.329] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Varek has departed from Britain.
+sack of flour          x53  6 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x40002865 french bread           x64  9 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x4000285E pan of cookies         x46  7 gp
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [VENDOR]   0x4000285A pizzas                 x72  15 gp
+[17:35:37.453] LOG   [wave10_RevGen3_17_Thali] event vendor_offer: vendor=0x000010B3 items=11
+[17:35:37.453] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] vendor_buy success (6ms) vendor offer received
+[17:35:37.454] LOG   [wave10_RevGen3_17_Thali] event action_result: vendor_buy success took=6ms vendor offer received
+[17:35:37.454] INFO  [wave10_RevGen3_17_Thali] [0x24] vendor buy gump for 0x000010B3
+[17:35:37.454] INFO  [life] food: the shop is open
+[17:35:37.510] INFO  [life] food: the shop is open; the caller chooses
+[17:35:37.510] INFO  [life] food: buying bread loaves at 8 gold
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [ACTION] vendor_buy start
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [policy] allowed NPC purchase of i_bread_loaf (0x103B): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_FOOD]
+[17:35:37.510] INFO  [wave10_RevGen3_17_Thali] [VENDOR] buy item=0x40002878 qty=2 from vendor=0x000010B3 gold=9580
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[17:35:37.526] LOG   [wave10_RevGen3_17_Thali] event action_result: vendor_buy success took=16ms purchased item delivered
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [chat ascii] Lionel: Here you are, Thalia That will be 16 gold coins.  I thank thee for thy business.
+[17:35:37.526] INFO  [wave10_RevGen3_17_Thali] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[17:35:37.527] INFO  [life] goal_changed=FILL_SPELLBOOK from=GET_FOOD reason="FILL_SPELLBOOK 62.1 superseded GET_FOOD 0.0"
+[17:35:37.527] INFO  [life] needs considered: NeedSpells(spells 0.56) NeedSupplies(buy craft inputs 0.44) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[17:35:37.527] INFO  [life]   score=62.1
+[17:35:37.527] INFO  [life]   reason: NeedSpells urgency 0.56 x 110 = 62.1
+[17:35:37.527] INFO  [life]   reason: spells 13/24 book=carried magery 50.0 gold 9580 reserve 5000 spare 4580 wealth 1.00
+[17:35:38.021] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[17:35:39.329] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Selene has departed from Britain Fields.
+[17:35:39.486] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Delras has departed from Skara Brae.
+[17:35:39.486] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Ghalor has departed from Britain.
+[17:35:39.500] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Leander has departed from Britain.
+[17:35:39.501] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Xerxes has departed from Ocllo.
+[17:35:39.516] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Cyras has departed from Skara Brae.
+[17:35:39.516] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Amara has departed from Yew Territory.
+[17:35:39.530] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Dorvar has departed from Skara Brae.
+[17:35:39.530] INFO  [wave10_RevGen3_17_Thali] [chat ascii] System: Varek has departed from Britain.
